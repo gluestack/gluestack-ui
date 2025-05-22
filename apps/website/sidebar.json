@@ -1,0 +1,463 @@
+{
+  "navigation": {
+    "sections": [
+      {
+        "type": "Dropdown",
+        "title": "Home",
+        "icons": {
+          "source": "lucide-react-native",
+          "name": "Home",
+          "headerTitle": "Home"
+        },
+        "subsections": [
+          {
+            "type": "heading",
+            "title": "Overview",
+            "items": [
+              {
+                "title": "Introduction",
+                "path": "/ui/docs/home/overview/introduction"
+              },
+              {
+                "title": "Quick Start",
+                "path": "/ui/docs/home/overview/quick-start"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Getting Started",
+            "items": [
+              {
+                "title": "Installation",
+                "path": "/ui/docs/home/getting-started/installation"
+              },
+              {
+                "title": "Tooling Setup",
+                "path": "/ui/docs/home/getting-started/tooling-setup"
+              },
+              {
+                "title": "VS Code Extensions",
+                "path": "/ui/docs/home/getting-started/vscode-extensions"
+              },
+              {
+                "title": "Figma UI Kit",
+                "path": "/ui/docs/home/getting-started/figma-ui-kit"
+              },
+              {
+                "title": "CLI",
+                "path": "/ui/docs/home/getting-started/cli"
+              },
+              {
+                "title": "gluestack-ui-nativewind-utils",
+                "path": "/ui/docs/home/getting-started/gluestack-ui-nativewind-utils"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Core Concepts",
+            "items": [
+              {
+                "title": "Accessibility",
+                "path": "/ui/docs/home/core-concepts/accessibility"
+              },
+              {
+                "title": "Universal",
+                "path": "/ui/docs/home/core-concepts/universal"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Performance",
+            "items": [
+              {
+                "title": "Benchmarks",
+                "path": "/ui/docs/home/performance/benchmarks"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Theme Configuration",
+            "items": [
+              {
+                "title": "Default Tokens",
+                "path": "/ui/docs/home/theme-configuration/default-tokens"
+              },
+              {
+                "title": "Customizing Theme",
+                "path": "/ui/docs/home/theme-configuration/customizing-theme"
+              },
+              {
+                "title": "Dark Mode",
+                "path": "/ui/docs/home/theme-configuration/dark-mode"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Dropdown",
+        "title": "Components",
+        "icons": {
+          "source": "lucide-react-native",
+          "name": "Component",
+          "headerTitle": "Components"
+        },
+        "subsections": [
+          {
+            "title": "All Components",
+            "path": "/ui/docs/components/all-components"
+          },
+          {
+            "type": "heading",
+            "title": "Typography",
+            "items": [
+              {
+                "title": "Heading",
+                "path": "/ui/docs/components/heading",
+                "tags": ["rsc"]
+              },
+              {
+                "title": "Text",
+                "path": "/ui/docs/components/text",
+                "tags": ["rsc"]
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Layout",
+            "items": [
+              {
+                "title": "Box",
+                "path": "/ui/docs/components/box",
+                "tags": ["rsc"]
+              },
+              {
+                "title": "Center",
+                "path": "/ui/docs/components/center",
+                "tags": ["rsc"]
+              },
+              {
+                "title": "Divider",
+                "path": "/ui/docs/components/divider"
+              },
+              {
+                "title": "HStack",
+                "path": "/ui/docs/components/hstack",
+                "tags": ["rsc"]
+              },
+              {
+                "title": "VStack",
+                "path": "/ui/docs/components/vstack",
+                "tags": ["rsc"]
+              },
+              {
+                "title": "Grid",
+                "path": "/ui/docs/components/grid",
+                "tags": ["alpha", "rsc"]
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Feedback",
+            "items": [
+              {
+                "title": "Alert",
+                "path": "/ui/docs/components/alert"
+              },
+              {
+                "title": "Progress",
+                "path": "/ui/docs/components/progress"
+              },
+              {
+                "title": "Spinner",
+                "path": "/ui/docs/components/spinner"
+              },
+              {
+                "title": "Toast",
+                "path": "/ui/docs/components/toast"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Data Display",
+            "items": [
+              {
+                "title": "Badge",
+                "path": "/ui/docs/components/badge"
+              },
+              {
+                "title": "Card",
+                "path": "/ui/docs/components/card",
+                "tags": ["rsc"]
+              },
+              {
+                "title": "Table",
+                "path": "/ui/docs/components/table",
+                "tags": ["alpha"]
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Forms",
+            "items": [
+              {
+                "title": "Button",
+                "path": "/ui/docs/components/button"
+              },
+              {
+                "title": "Checkbox",
+                "path": "/ui/docs/components/checkbox"
+              },
+              {
+                "title": "FormControl",
+                "path": "/ui/docs/components/form-control"
+              },
+              {
+                "title": "Input",
+                "path": "/ui/docs/components/input"
+              },
+              {
+                "title": "Link",
+                "path": "/ui/docs/components/link"
+              },
+              {
+                "title": "Pressable",
+                "path": "/ui/docs/components/pressable"
+              },
+              {
+                "title": "Radio",
+                "path": "/ui/docs/components/radio"
+              },
+              {
+                "title": "Select",
+                "path": "/ui/docs/components/select"
+              },
+              {
+                "title": "Slider",
+                "path": "/ui/docs/components/slider"
+              },
+              {
+                "title": "Switch",
+                "path": "/ui/docs/components/switch"
+              },
+              {
+                "title": "Textarea",
+                "path": "/ui/docs/components/textarea"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Overlay",
+            "items": [
+              {
+                "title": "AlertDialog",
+                "path": "/ui/docs/components/alert-dialog"
+              },
+              {
+                "title": "Drawer",
+                "path": "/ui/docs/components/drawer"
+              },
+              {
+                "title": "Menu",
+                "path": "/ui/docs/components/menu"
+              },
+              {
+                "title": "Modal",
+                "path": "/ui/docs/components/modal"
+              },
+              {
+                "title": "Popover",
+                "path": "/ui/docs/components/popover"
+              },
+              {
+                "title": "Portal",
+                "path": "/ui/docs/components/portal"
+              },
+              {
+                "title": "Tooltip",
+                "path": "/ui/docs/components/tooltip"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Disclosure",
+            "items": [
+              {
+                "title": "Actionsheet",
+                "path": "/ui/docs/components/actionsheet"
+              },
+              {
+                "title": "Accordion",
+                "path": "/ui/docs/components/accordion"
+              },
+              {
+                "title": "Accordion-Copy",
+                "path": "/ui/docs/components/accordion-copy"
+              },
+              {
+                "title": "BottomSheet",
+                "path": "/ui/docs/components/bottomsheet",
+                "tags": ["alpha"]
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Media And Icons",
+            "items": [
+              {
+                "title": "Avatar",
+                "path": "/ui/docs/components/avatar"
+              },
+              {
+                "title": "Image",
+                "path": "/ui/docs/components/image"
+              },
+              {
+                "title": "Icon",
+                "path": "/ui/docs/components/icon",
+                "tags": ["rsc"]
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Others",
+            "items": [
+              {
+                "title": "Fab",
+                "path": "/ui/docs/components/fab"
+              },
+              {
+                "title": "Skeleton",
+                "path": "/ui/docs/components/skeleton",
+                "tags": ["alpha", "rsc"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Dropdown",
+        "title": "Hooks",
+        "icons": {
+          "source": "lucide-react-native",
+          "name": "Anchor",
+          "headerTitle": "Hooks"
+        },
+        "subsections": [
+          {
+            "title": "useBreakPointValue",
+            "path": "/ui/docs/hooks/use-break-point-value"
+          },
+          {
+            "title": "useMediaQuery",
+            "path": "/ui/docs/hooks/use-media-query"
+          }
+        ]
+      },
+      {
+        "type": "Dropdown",
+        "title": "Apps",
+        "icons": {
+          "source": "lucide-react-native",
+          "name": "Layers",
+          "headerTitle": "Apps"
+        },
+        "subsections": [
+          {
+            "title": "Dashboard App",
+            "path": "/ui/docs/apps/dashboard-app"
+          },
+          {
+            "title": "Kitchensink App",
+            "path": "/ui/docs/apps/kitchensink-app"
+          },
+          {
+            "title": "Todo App",
+            "path": "/ui/docs/apps/todo-app"
+          },
+          {
+            "title": "Starter Kit",
+            "path": "/ui/docs/apps/starter-kit"
+          },
+          {
+            "title": "Storybook App",
+            "path": "/ui/docs/apps/storybook-app"
+          }
+        ]
+      },
+      {
+        "type": "Dropdown",
+        "title": "Guides",
+        "icons": {
+          "source": "lucide-react-native",
+          "name": "BookOpen",
+          "headerTitle": "Guides"
+        },
+        "subsections": [
+          {
+            "type": "heading",
+            "title": "Recipes",
+            "items": [
+              {
+                "title": "LinearGradient",
+                "path": "/ui/docs/guides/recipes/linear-gradient"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "Tutorials",
+            "items": [
+              {
+                "title": "Building Ecommerce App",
+                "path": "/ui/docs/guides/tutorials/building-ecommerce-app"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "title": "More",
+            "items": [
+              {
+                "title": "Upgrade to v2",
+                "path": "/ui/docs/guides/more/upgrade-to-v2"
+              },
+              {
+                "title": "FAQs",
+                "path": "/ui/docs/guides/more/faqs"
+              },
+              {
+                "title": "Releases",
+                "path": "/ui/docs/guides/more/releases"
+              },
+              {
+                "title": "Roadmap",
+                "path": "/ui/docs/guides/more/roadmap"
+              },
+              {
+                "title": "Troubleshooting",
+                "path": "/ui/docs/guides/more/troubleshooting"
+              },
+              {
+                "title": "Discord FAQs",
+                "path": "/ui/docs/guides/more/discord-faqs"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "argTypes": {},
-  "reactLive": {
-    "FormControl": "@/components/ui/form-control",
-    "Button": "@/components/ui/button",
-    "ButtonText": "@/components/ui/button",
-    "HStack": "@/components/ui/hstack"
-  }
-} 

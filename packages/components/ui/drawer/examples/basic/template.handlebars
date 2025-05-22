@@ -1,0 +1,45 @@
+function Example() {
+  const [showDrawer, setShowDrawer] = React.useState(false);
+  return (
+    <>
+      <Button
+        onPress={() => {
+          setShowDrawer(true);
+        }}
+      >
+        <ButtonText>Open Drawer</ButtonText>
+      </Button>
+      <Drawer
+        isOpen={showDrawer}
+        size="{{size}}"
+        anchor="{{anchor}}"
+        onClose={() => {
+          setShowDrawer(false);
+        }}
+      >
+        <DrawerBackdrop />
+        <DrawerContent>
+          <DrawerHeader>
+            <Heading size="lg">Menu</Heading>
+            <DrawerCloseButton>
+              <Icon as={CloseIcon} />
+            </DrawerCloseButton>
+          </DrawerHeader>
+          <DrawerBody>
+            <Text>This is the basic drawer component.</Text>
+          </DrawerBody>
+          <DrawerFooter>
+            <Button
+              variant="outline"
+              onPress={() => {
+                setShowDrawer(false);
+              }}
+            >
+              <ButtonText>Cancel</ButtonText>
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </>
+  );
+}

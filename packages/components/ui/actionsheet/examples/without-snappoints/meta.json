@@ -1,0 +1,15 @@
+{
+  "title": "Without SnapPoints",
+  "argTypes": {},
+  "reactLive": {
+    "Actionsheet": "@/components/ui/actionsheet",
+    "ActionsheetContent": "@/components/ui/actionsheet",
+    "ActionsheetItem": "@/components/ui/actionsheet",
+    "ActionsheetItemText": "@/components/ui/actionsheet",
+    "ActionsheetDragIndicator": "@/components/ui/actionsheet",
+    "ActionsheetDragIndicatorWrapper": "@/components/ui/actionsheet",
+    "ActionsheetBackdrop": "@/components/ui/actionsheet",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button"
+  }
+}
