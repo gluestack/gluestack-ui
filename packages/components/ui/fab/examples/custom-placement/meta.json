@@ -1,7 +1,6 @@
 {
   "title": "Custom Placement",
-  "description": "A FAB component with custom positioning",
-  "componentName": "Fab",
+  "description": "A Fab component with custom placement allows for flexible positioning of the button according to specific design requirements or user interface preferences, providing tailored and intuitive access to key actions or functionalities.",
   "argTypes": {},
   "reactLive": {
     "Fab": "@/components/ui/fab",

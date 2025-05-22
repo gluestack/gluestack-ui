@@ -1,7 +1,6 @@
 {
   "title": "Placement",
-  "description": "A FAB component with different placement options",
-  "componentName": "Fab",
+  "description": "A Fab component with placement options allows for flexible positioning of the button within a user interface, enabling convenient and intuitive access to key actions or functionalities in various locations.",
   "argTypes": {},
   "reactLive": {
     "Fab": "@/components/ui/fab",

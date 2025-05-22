@@ -1,6 +1,7 @@
 {
   "title": "Label Left",
   "description": "A checkbox component with Label left configuration aligns the label to the left, facilitating clear association between the option and its corresponding checkbox.",
+  
   "componentName": "Checkbox",
   "argTypes": {},
   "reactLive": {

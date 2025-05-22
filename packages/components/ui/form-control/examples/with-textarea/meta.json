@@ -1,4 +1,6 @@
 {
+  "title": "Form Control with Textarea",
+  "description": "The Textarea Component can be incorporated within the FormControl.",
   "argTypes": {},
   "reactLive": {
     "FormControl": "@/components/ui/form-control",

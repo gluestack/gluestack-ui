@@ -1,4 +1,6 @@
 {
+  "title": "Form Control with Error",
+  "description": "Error messages can be displayed using FormControl.",
   "argTypes": {},
   "reactLive": {
     "FormControl": "@/components/ui/form-control",

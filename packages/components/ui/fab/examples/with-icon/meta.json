@@ -1,7 +1,6 @@
 {
   "title": "FAB with Icon",
-  "description": "A FAB component with an icon for triggering actions",
-  "componentName": "Fab",
+  "description": "A Fab component with an icon adds a visually striking and easily recognizable button that triggers a specific action or function within a user interface.",
   "argTypes": {},
   "reactLive": {
     "Fab": "@/components/ui/fab",

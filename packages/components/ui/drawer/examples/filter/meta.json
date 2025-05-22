@@ -1,7 +1,5 @@
 {
   "title": "Filter",
-  "description": "A drawer component with filter options including categories, brands, and price range.",
-  "componentName": "Drawer",
   "argTypes": {},
   "reactLive": {
     "Drawer": "@/components/ui/drawer",

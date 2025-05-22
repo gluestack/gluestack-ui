@@ -1,7 +1,5 @@
 {
   "title": "Sidebar Menu",
-  "description": "A drawer component used as a sidebar menu with user profile and navigation options.",
-  "componentName": "Drawer",
   "argTypes": {},
   "reactLive": {
     "Drawer": "@/components/ui/drawer",

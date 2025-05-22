@@ -1,4 +1,6 @@
 {
+  "title": "Form Control with Radio",
+  "description": "The Radio Component can be incorporated within the FormControl.",
   "argTypes": {},
   "reactLive": {
     "FormControl": "@/components/ui/form-control",

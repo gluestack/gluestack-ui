@@ -41,7 +41,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Setting the gap between grid items"}>
   {props => {
   return (
     <Grid className="gap-4" _extra={{
@@ -75,7 +75,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Changing row and column gaps independently"}>
   {props => {
   return (
     <Grid className="gap-y-2 gap-x-4" _extra={{
@@ -133,7 +133,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Nested Grids"}>
   {props => {
   return (
     <Grid className="gap-3" _extra={{
@@ -199,7 +199,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Responsive Grids"}>
   {props => {
   return (
     <Grid className="gap-y-2 gap-x-4" _extra={{

@@ -1,7 +1,6 @@
 {
   "title": "Adding content within a Divider",
-  "description": "A Divider component with added content allows for the inclusion of additional text or elements alongside the dividing line.",
-  "componentName": "Divider",
+  "description": "A Divider component with added content allows for the inclusion of additional text or elements alongside the dividing line, enhancing the visual and informational aspects of the divider while providing a seamless integration of content within a user interface.",
   "argTypes": {},
   "reactLive": {
     "Divider": "@/components/ui/divider",
