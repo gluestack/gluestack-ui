@@ -1,6 +1,11 @@
 import path from "path";
 import * as fileOps from "../utils/fileOperations";
-import { componentPreviewerTemplate, codePreviewerTemplate } from "./templates";
+import * as regex from "../utils/regex";
+import {
+  componentPreviewerTemplate,
+  importTemplate,
+  wrappedComponentTemplate,
+} from "./templates";
 
 interface ImportMap {
   [key: string]: string[];
@@ -21,12 +26,6 @@ export const generateCodePreviewer = (
       return `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`;
     }
     let code = fileOps.readTextFile(codePath);
-    // Remove function Example() wrapper if it exists
-    code = code
-      .replace(/function Example\(\)/, "")
-      .replace(/\\\\/g, "")
-      .trim();
-
     const meta = fileOps.readJsonFile(argsPath);
     const argTypes = JSON.stringify(meta.argTypes || {}, null, 2);
     const title = JSON.stringify(meta.title);
@@ -41,122 +40,13 @@ export const generateCodePreviewer = (
         }
       });
     }
-
-    // If this is the basic example, copy it to the docs components folder
-    if (exampleName === "basic") {
-      const websitePath = path.resolve(
-        "apps/kitchen-sink/components/page-components/all-components"
-      );
-      const destPath = path.join(websitePath, component);
-      const destFilePath = path.join(destPath, "index.tsx");
-
-      // Create destination directory if it doesn't exist
-      fileOps.ensureDirectoryExists(destPath);
-
-      // Generate imports from meta.reactLive
-      const imports = meta.reactLive
-        ? Object.entries(meta.reactLive)
-            .map(([key, value]) => `import { ${key} } from '${value}';`)
-            .join("\n")
-        : "";
-
-      // Generate the component file content with ComponentPreviewer template
-      const fileContent = componentPreviewerTemplate(
-        imports,
-        code.trim(),
-        argTypes
-      );
-
-      // Write the file
-      fileOps.writeTextFile(destFilePath, fileContent);
-    }
-
-    return codePreviewerTemplate(code.trim(), argTypes, title);
+    return componentPreviewerTemplate(code.trim(), argTypes, title);
   } catch (error) {
     console.error(
       `:x: Error building CodePreviewer for Example:${exampleName} in ${component}:`,
       error
     );
     return `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`;
-  }
-};
-
-export const processFileContent = (content: string): string => {
-  const fileContentRegex = /%%--\s*File:\s*([^%]+)\s*--%%/g;
-  return content.replace(fileContentRegex, (_, filePath) => {
-    try {
-      const fileContent = fileOps.readTextFile(filePath.trim());
-      return fileContent;
-    } catch (error) {
-      console.error(`Failed to read file: ${filePath}`, error);
-      return `<!-- Failed to load file: ${filePath} -->`;
-    }
-  });
-};
-
-export const processFileForExamples = (
-  filePath: string,
-  component: string
-): boolean => {
-  const codePreviewerRegex = /\/\/\/\s*\{Example:([^}]+)\}\s*\/\/\//g;
-  const importMap: ImportMap = {
-    "@/components/custom/component-previewer": ["ComponentPreviewer"],
-  };
-  // Read file content
-  const content = fileOps.readTextFile(filePath);
-
-  // Extract existing imports
-  const contentWithoutImports = content.trim();
-
-  // Replace example markers and file content markers
-  const newContent = contentWithoutImports.replace(
-    codePreviewerRegex,
-    (_, exampleName) => {
-      return generateCodePreviewer(exampleName.trim(), component, importMap);
-    }
-  );
-
-  // Process file content markers
-  const processedContent = processFileContent(newContent);
-
-  // Generate import statements in one go
-  const importContent = Object.entries(importMap)
-    .map(([path, imports]) => {
-      return `import { ${imports.join(", ")} } from '${path}';`;
-    })
-    .join("\n");
-
-  const totalContent = `${importContent}\n\n${processedContent}`;
-
-  if (content !== totalContent) {
-    fileOps.writeTextFile(filePath, totalContent);
-    return true;
-  }
-  return false;
-};
-
-export const copyFileContent = (
-  sourcePath: string,
-  destinationPath: string
-) => {
-  try {
-    // Read the source file
-    const content = fileOps.readTextFile(sourcePath);
-
-    // Ensure the destination directory exists
-    const destDir = path.dirname(destinationPath);
-    fileOps.ensureDirectoryExists(destDir);
-
-    // Write to the destination file
-    fileOps.writeTextFile(destinationPath, content);
-
-    return true;
-  } catch (error) {
-    console.error(
-      `Error copying file content from ${sourcePath} to ${destinationPath}:`,
-      error
-    );
-    return false;
   }
 };
 
@@ -168,7 +58,6 @@ export const copyProcessedAnnotations = (
   try {
     // Read source file content
     const sourceContent = fileOps.readTextFile(sourcePath);
-    const codePreviewerRegex = /\/\/\/\s*\{Example:([^}]+)\}\s*\/\/\//g;
     const importMap: ImportMap = {
       "@/components/custom/component-previewer": ["ComponentPreviewer"],
     };
@@ -178,7 +67,7 @@ export const copyProcessedAnnotations = (
     let match;
 
     // Process each annotation match
-    while ((match = codePreviewerRegex.exec(sourceContent)) !== null) {
+    while ((match = regex.CodePreviewerRegex.exec(sourceContent)) !== null) {
       const exampleName = match[1].trim();
       const processedAnnotation = generateCodePreviewer(
         exampleName,
@@ -193,24 +82,12 @@ export const copyProcessedAnnotations = (
       // Generate import statements
       const importContent = Object.entries(importMap)
         .map(([importPath, imports]) => {
-          return `import { ${imports.join(", ")} } from '${importPath}';`;
+          return importTemplate(imports, importPath);
         })
         .join("\n");
 
       // Wrap the processed content in a component
-      const wrappedContent = `
-import { SafeAreaView } from 'react-native';
-import React from 'react';
-import { ScrollView } from 'react-native';
-export default function ComponentExamples() {
-  return (
-    <SafeAreaView className="flex-1 bg-background-0">
-        <ScrollView>
-      ${processedContent.trim()}
-        </ScrollView>
-    </SafeAreaView>
-  );
-}`;
+      const wrappedContent = wrappedComponentTemplate(processedContent);
 
       // Combine imports with wrapped content
       const finalContent = `${importContent}\n\n${wrappedContent}`;

@@ -1,5 +1,6 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Switch } from '@/components/ui/switch';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Switch } from '@/components/ui/switch'
+
 
 
 import { SafeAreaView } from 'react-native';

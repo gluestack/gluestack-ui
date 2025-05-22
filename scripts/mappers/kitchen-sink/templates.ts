@@ -1,32 +1,33 @@
 export const componentPreviewerTemplate = (
-  imports: string,
-  code: string,
-  argTypes: string
-) => `import { ComponentPreviewer } from '@/components/custom/component-previewer';
-
-${imports}
-
-export default function Example() {
-  return (
-    <ComponentPreviewer props={${argTypes}}>
-      {props => ${code.replace(/function\s+\w+\s*\(\)\s*{\s*return\s*/, '').replace(/}$/, '')
-        .replace(/="{{(\w+)}}"/g, "={props.$1}")
-        .replace(/={\s*{{\s*(\w+)\s*}}\s*}/g, "={props.$1}")}}
-    </ComponentPreviewer>
-  );
-}`;
-
-
-export const codePreviewerTemplate = (
   code: string,
   argTypes: string,
   title: string
 ) => `<ComponentPreviewer props={${argTypes}} title={${title}}>
   {props => ${code
-    .replace(/function\s+\w+\s*\(\)/, '')
-    .replace(/}$/, '')
+    .replace(/function\s+\w+\s*\(\)/, "")
+    .replace(/}$/, "")
     .replace(/="{{(\w+)}}"/g, "={props.$1}")
     .replace(/={\s*{{\s*(\w+)\s*}}\s*}/g, "={props.$1}")
-    .replace(/\\\\/g, '')
+    .replace(/\\\\/g, "")
     .trim()}}}
-</ComponentPreviewer>`; 
+</ComponentPreviewer>`;
+
+export const importTemplate = (imports: string[], importPath: string) => {
+  return `import { ${imports.join(", ")} } from '${importPath}'`;
+};
+
+export const wrappedComponentTemplate = (processedContent: string) => {
+  return `
+import { SafeAreaView } from 'react-native';
+import React from 'react';
+import { ScrollView } from 'react-native';
+export default function ComponentExamples() {
+  return (
+    <SafeAreaView className="flex-1 bg-background-0">
+        <ScrollView>
+      ${processedContent.trim()}
+        </ScrollView>
+    </SafeAreaView>
+  );
+}`;
+};

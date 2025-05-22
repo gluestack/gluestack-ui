@@ -7,5 +7,8 @@ export default {
   },
   nonComponent: function (path: string) {
     componentOperations.processNonComponentFile(path);
+    if (path === "packages/sidebar.json") {
+      componentOperations.processSidebarFile(path);
+    }
   },
 };

@@ -1,17 +1,17 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetIcon, ActionsheetVirtualizedList, ActionsheetFlatList, ActionsheetSectionList, ActionsheetSectionHeaderText } from '@/components/ui/actionsheet';
-import { Button, ButtonText, ButtonGroup } from '@/components/ui/button';
-import { VStack } from '@/components/ui/vstack';
-import { HStack } from '@/components/ui/hstack';
-import { Box } from '@/components/ui/box';
-import { Image } from '@/components/ui/image';
-import { FormControl, FormControlLabel, FormControlLabelText } from '@/components/ui/form-control';
-import { Input, InputSlot, InputField, InputIcon } from '@/components/ui/input';
-import { CreditCardIcon } from 'lucide-react-native';
-import { Text } from '@/components/ui/text';
-import { EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon, Icon, CloseIcon, UploadCloud } from '@/components/ui/icon';
-import { Heading } from '@/components/ui/heading';
-import { Pressable } from '@/components/ui/pressable';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetIcon, ActionsheetVirtualizedList, ActionsheetFlatList, ActionsheetSectionList, ActionsheetSectionHeaderText } from '@/components/ui/actionsheet'
+import { Button, ButtonText, ButtonGroup } from '@/components/ui/button'
+import { VStack } from '@/components/ui/vstack'
+import { HStack } from '@/components/ui/hstack'
+import { Box } from '@/components/ui/box'
+import { Image } from '@/components/ui/image'
+import { FormControl, FormControlLabel, FormControlLabelText } from '@/components/ui/form-control'
+import { Input, InputSlot, InputField, InputIcon } from '@/components/ui/input'
+import { CreditCardIcon } from 'lucide-react-native'
+import { Text } from '@/components/ui/text'
+import { EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon, Icon, CloseIcon, UploadCloud } from '@/components/ui/icon'
+import { Heading } from '@/components/ui/heading'
+import { Pressable } from '@/components/ui/pressable'
 
 
 import { SafeAreaView } from 'react-native';

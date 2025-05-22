@@ -1,11 +1,11 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
-import { FormControl } from '@/components/ui/form-control';
-import { VStack } from '@/components/ui/vstack';
-import { Heading } from '@/components/ui/heading';
-import { Text } from '@/components/ui/text';
-import { Button, ButtonText } from '@/components/ui/button';
-import { EyeIcon, EyeOffIcon, SearchIcon } from '@/components/ui/icon';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input'
+import { FormControl } from '@/components/ui/form-control'
+import { VStack } from '@/components/ui/vstack'
+import { Heading } from '@/components/ui/heading'
+import { Text } from '@/components/ui/text'
+import { Button, ButtonText } from '@/components/ui/button'
+import { EyeIcon, EyeOffIcon, SearchIcon } from '@/components/ui/icon'
 
 
 import { SafeAreaView } from 'react-native';

@@ -1,13 +1,13 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { FormControl, FormControlLabel, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlHelper, FormControlHelperText, FormControlLabelText } from '@/components/ui/form-control';
-import { AlertCircleIcon, CircleIcon, CheckIcon } from '@/components/ui/icon';
-import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
-import { Button, ButtonText, ButtonSpinner } from '@/components/ui/button';
-import { VStack } from '@/components/ui/vstack';
-import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from '@/components/ui/radio';
-import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from '@/components/ui/checkbox';
-import { Textarea, TextareaInput } from '@/components/ui/textarea';
-import { HStack } from '@/components/ui/hstack';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { FormControl, FormControlLabel, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlHelper, FormControlHelperText, FormControlLabelText } from '@/components/ui/form-control'
+import { AlertCircleIcon, CircleIcon, CheckIcon } from '@/components/ui/icon'
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input'
+import { Button, ButtonText, ButtonSpinner } from '@/components/ui/button'
+import { VStack } from '@/components/ui/vstack'
+import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from '@/components/ui/radio'
+import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from '@/components/ui/checkbox'
+import { Textarea, TextareaInput } from '@/components/ui/textarea'
+import { HStack } from '@/components/ui/hstack'
 
 
 import { SafeAreaView } from 'react-native';

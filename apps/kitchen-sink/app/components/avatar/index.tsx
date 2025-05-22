@@ -1,11 +1,11 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Avatar, AvatarFallbackText, AvatarImage, AvatarBadge, AvatarGroup } from '@/components/ui/avatar';
-import { Heading } from '@/components/ui/heading';
-import { HStack } from '@/components/ui/hstack';
-import { Text } from '@/components/ui/text';
-import { VStack } from '@/components/ui/vstack';
-import { Icon } from '@/components/ui/icon';
-import { User } from 'lucide-react-native';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Avatar, AvatarFallbackText, AvatarImage, AvatarBadge, AvatarGroup } from '@/components/ui/avatar'
+import { Heading } from '@/components/ui/heading'
+import { HStack } from '@/components/ui/hstack'
+import { Text } from '@/components/ui/text'
+import { VStack } from '@/components/ui/vstack'
+import { Icon } from '@/components/ui/icon'
+import { User } from 'lucide-react-native'
 
 
 import { SafeAreaView } from 'react-native';

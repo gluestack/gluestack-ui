@@ -1,7 +1,7 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon } from '@/components/ui/accordion';
-import { Divider } from '@/components/ui/divider';
-import { ChevronDownIcon, ChevronUpIcon, AddIcon, RemoveIcon } from '@/components/ui/icon';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon } from '@/components/ui/accordion'
+import { Divider } from '@/components/ui/divider'
+import { ChevronDownIcon, ChevronUpIcon, AddIcon, RemoveIcon } from '@/components/ui/icon'
 
 
 import { SafeAreaView } from 'react-native';

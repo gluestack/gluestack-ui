@@ -1,6 +1,6 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Grid, GridItem } from '@/components/ui/grid';
-import { Text } from '@/components/ui/text';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Grid, GridItem } from '@/components/ui/grid'
+import { Text } from '@/components/ui/text'
 
 
 import { SafeAreaView } from 'react-native';

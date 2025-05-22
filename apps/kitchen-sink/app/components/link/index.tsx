@@ -1,9 +1,9 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Link, LinkText } from '@/components/ui/link';
-import { HStack } from '@/components/ui/hstack';
-import { Text } from '@/components/ui/text';
-import { Icon } from '@/components/ui/icon';
-import { ArrowUpRight } from 'lucide-react-native';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Link, LinkText } from '@/components/ui/link'
+import { HStack } from '@/components/ui/hstack'
+import { Text } from '@/components/ui/text'
+import { Icon } from '@/components/ui/icon'
+import { ArrowUpRight } from 'lucide-react-native'
 
 
 import { SafeAreaView } from 'react-native';

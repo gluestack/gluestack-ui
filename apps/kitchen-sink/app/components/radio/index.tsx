@@ -1,6 +1,7 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel } from '@/components/ui/radio';
-import { CircleIcon } from '@/components/ui/icon';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel } from '@/components/ui/radio'
+import { CircleIcon } from '@/components/ui/icon'
+
 
 
 import { SafeAreaView } from 'react-native';

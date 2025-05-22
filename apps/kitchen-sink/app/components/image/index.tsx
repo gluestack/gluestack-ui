@@ -1,5 +1,5 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Image } from '@/components/ui/image';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Image } from '@/components/ui/image'
 
 
 import { SafeAreaView } from 'react-native';

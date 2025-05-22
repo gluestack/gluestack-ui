@@ -1,13 +1,13 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from '@/components/ui/checkbox';
-import { CheckIcon } from '@/components/ui/icon';
-import { VStack } from '@/components/ui/vstack';
-import { HStack } from '@/components/ui/hstack';
-import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
-import { FormControl } from '@/components/ui/form-control';
-import { Heading } from '@/components/ui/heading';
-import { Center } from '@/components/ui/center';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from '@/components/ui/checkbox'
+import { CheckIcon } from '@/components/ui/icon'
+import { VStack } from '@/components/ui/vstack'
+import { HStack } from '@/components/ui/hstack'
+import { Box } from '@/components/ui/box'
+import { Text } from '@/components/ui/text'
+import { FormControl } from '@/components/ui/form-control'
+import { Heading } from '@/components/ui/heading'
+import { Center } from '@/components/ui/center'
 
 
 import { SafeAreaView } from 'react-native';

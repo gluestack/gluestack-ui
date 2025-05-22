@@ -1,13 +1,13 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop } from '@/components/ui/alert-dialog';
-import { Button, ButtonText } from '@/components/ui/button';
-import { Text } from '@/components/ui/text';
-import { Heading } from '@/components/ui/heading';
-import { Box } from '@/components/ui/box';
-import { Image } from '@/components/ui/image';
-import { VStack } from '@/components/ui/vstack';
-import { Icon, TrashIcon } from '@/components/ui/icon';
-import { UploadCloud } from 'lucide-react-native';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop } from '@/components/ui/alert-dialog'
+import { Button, ButtonText } from '@/components/ui/button'
+import { Text } from '@/components/ui/text'
+import { Heading } from '@/components/ui/heading'
+import { Box } from '@/components/ui/box'
+import { Image } from '@/components/ui/image'
+import { VStack } from '@/components/ui/vstack'
+import { Icon, TrashIcon } from '@/components/ui/icon'
+import { UploadCloud } from 'lucide-react-native'
 
 
 import { SafeAreaView } from 'react-native';

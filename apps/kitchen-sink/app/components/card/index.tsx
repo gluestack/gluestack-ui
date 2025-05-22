@@ -1,7 +1,7 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Card } from '@/components/ui/card';
-import { Heading } from '@/components/ui/heading';
-import { Text } from '@/components/ui/text';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Card } from '@/components/ui/card'
+import { Heading } from '@/components/ui/heading'
+import { Text } from '@/components/ui/text'
 
 
 import { SafeAreaView } from 'react-native';

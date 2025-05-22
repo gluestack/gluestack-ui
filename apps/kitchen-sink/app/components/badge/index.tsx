@@ -1,14 +1,14 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Badge, BadgeText, BadgeIcon } from '@/components/ui/badge';
-import { GlobeIcon } from '@/components/ui/icon';
-import { Avatar, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar';
-import { Heading } from '@/components/ui/heading';
-import { HStack } from '@/components/ui/hstack';
-import { Text } from '@/components/ui/text';
-import { VStack } from '@/components/ui/vstack';
-import { BadgeCheckIcon } from 'lucide-react-native';
-import { Box } from '@/components/ui/box';
-import { Button, ButtonText } from '@/components/ui/button';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Badge, BadgeText, BadgeIcon } from '@/components/ui/badge'
+import { GlobeIcon } from '@/components/ui/icon'
+import { Avatar, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar'
+import { Heading } from '@/components/ui/heading'
+import { HStack } from '@/components/ui/hstack'
+import { Text } from '@/components/ui/text'
+import { VStack } from '@/components/ui/vstack'
+import { BadgeCheckIcon } from 'lucide-react-native'
+import { Box } from '@/components/ui/box'
+import { Button, ButtonText } from '@/components/ui/button'
 
 
 import { SafeAreaView } from 'react-native';

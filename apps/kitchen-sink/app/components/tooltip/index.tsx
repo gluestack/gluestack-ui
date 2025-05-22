@@ -1,6 +1,7 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip';
-import { Button, ButtonText } from '@/components/ui/button';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip'
+import { Button, ButtonText } from '@/components/ui/button'
+
 
 
 import { SafeAreaView } from 'react-native';

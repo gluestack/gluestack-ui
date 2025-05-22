@@ -1,9 +1,9 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Portal } from '@/components/ui/portal';
-import { HStack } from '@/components/ui/hstack';
-import { Text } from '@/components/ui/text';
-import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
-import { CloseIcon } from '@/components/ui/icon';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Portal } from '@/components/ui/portal'
+import { HStack } from '@/components/ui/hstack'
+import { Text } from '@/components/ui/text'
+import { Button, ButtonText, ButtonIcon } from '@/components/ui/button'
+import { CloseIcon } from '@/components/ui/icon'
 
 
 import { SafeAreaView } from 'react-native';

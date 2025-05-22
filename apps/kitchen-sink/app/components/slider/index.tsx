@@ -1,6 +1,7 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@/components/ui/slider';
-import { Center } from '@/components/ui/center';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@/components/ui/slider'
+import { Center } from '@/components/ui/center'
+
 
 
 import { SafeAreaView } from 'react-native';

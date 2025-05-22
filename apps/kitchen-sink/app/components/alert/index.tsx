@@ -1,12 +1,12 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Alert, AlertText, AlertIcon } from '@/components/ui/alert';
-import { InfoIcon, Icon, CloseIcon, EyeIcon, EyeOffIcon } from '@/components/ui/icon';
-import { VStack } from '@/components/ui/vstack';
-import { Button, ButtonText } from '@/components/ui/button';
-import { CloudIcon, Bomb } from 'lucide-react-native';
-import { Text } from '@/components/ui/text';
-import { Heading } from '@/components/ui/heading';
-import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Alert, AlertText, AlertIcon } from '@/components/ui/alert'
+import { InfoIcon, Icon, CloseIcon, EyeIcon, EyeOffIcon } from '@/components/ui/icon'
+import { VStack } from '@/components/ui/vstack'
+import { Button, ButtonText } from '@/components/ui/button'
+import { CloudIcon, Bomb } from 'lucide-react-native'
+import { Text } from '@/components/ui/text'
+import { Heading } from '@/components/ui/heading'
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input'
 
 
 import { SafeAreaView } from 'react-native';

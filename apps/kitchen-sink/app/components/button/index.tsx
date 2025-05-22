@@ -1,12 +1,12 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Button, ButtonText, ButtonSpinner, ButtonIcon } from '@/components/ui/button';
-import { EditIcon, ArrowUpIcon, InfoIcon, AddIcon, ArrowLeftIcon } from '@/components/ui/icon';
-import { Box } from '@/components/ui/box';
-import { Center } from '@/components/ui/center';
-import { Heading } from '@/components/ui/heading';
-import { Input, InputField } from '@/components/ui/input';
-import { Text } from '@/components/ui/text';
-import { VStack } from '@/components/ui/vstack';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Button, ButtonText, ButtonSpinner, ButtonIcon } from '@/components/ui/button'
+import { EditIcon, ArrowUpIcon, InfoIcon, AddIcon, ArrowLeftIcon } from '@/components/ui/icon'
+import { Box } from '@/components/ui/box'
+import { Center } from '@/components/ui/center'
+import { Heading } from '@/components/ui/heading'
+import { Input, InputField } from '@/components/ui/input'
+import { Text } from '@/components/ui/text'
+import { VStack } from '@/components/ui/vstack'
 
 
 import { SafeAreaView } from 'react-native';

@@ -1,16 +1,16 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter } from '@/components/ui/modal';
-import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
-import { Heading } from '@/components/ui/heading';
-import { Text } from '@/components/ui/text';
-import { Icon, CloseIcon, ArrowLeftIcon, TrashIcon, CopyIcon } from '@/components/ui/icon';
-import { HStack } from '@/components/ui/hstack';
-import { Input, InputField } from '@/components/ui/input';
-import { Link, LinkText } from '@/components/ui/link';
-import { Image } from '@/components/ui/image';
-import { Box } from '@/components/ui/box';
-import { VStack } from '@/components/ui/vstack';
-import { Pressable } from '@/components/ui/pressable';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter } from '@/components/ui/modal'
+import { Button, ButtonText, ButtonIcon } from '@/components/ui/button'
+import { Heading } from '@/components/ui/heading'
+import { Text } from '@/components/ui/text'
+import { Icon, CloseIcon, ArrowLeftIcon, TrashIcon, CopyIcon } from '@/components/ui/icon'
+import { HStack } from '@/components/ui/hstack'
+import { Input, InputField } from '@/components/ui/input'
+import { Link, LinkText } from '@/components/ui/link'
+import { Image } from '@/components/ui/image'
+import { Box } from '@/components/ui/box'
+import { VStack } from '@/components/ui/vstack'
+import { Pressable } from '@/components/ui/pressable'
 
 
 import { SafeAreaView } from 'react-native';

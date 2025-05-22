@@ -1,6 +1,7 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { VStack } from '@/components/ui/vstack';
-import { Box } from '@/components/ui/box';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { VStack } from '@/components/ui/vstack'
+import { Box } from '@/components/ui/box'
+
 
 
 import { SafeAreaView } from 'react-native';

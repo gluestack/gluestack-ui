@@ -1,5 +1,6 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Spinner } from '@/components/ui/spinner';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Spinner } from '@/components/ui/spinner'
+
 
 
 import { SafeAreaView } from 'react-native';

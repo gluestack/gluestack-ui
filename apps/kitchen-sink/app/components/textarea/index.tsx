@@ -1,5 +1,6 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Textarea, TextareaInput } from '@/components/ui/textarea';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Textarea, TextareaInput } from '@/components/ui/textarea'
+
 
 
 import { SafeAreaView } from 'react-native';

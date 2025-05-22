@@ -1,6 +1,6 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { HStack } from '@/components/ui/hstack';
-import { Box } from '@/components/ui/box';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { HStack } from '@/components/ui/hstack'
+import { Box } from '@/components/ui/box'
 
 
 import { SafeAreaView } from 'react-native';

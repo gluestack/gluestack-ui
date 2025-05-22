@@ -1,7 +1,8 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Skeleton, SkeletonText } from '@/components/ui/skeleton';
-import { Box } from '@/components/ui/box';
-import { HStack } from '@/components/ui/hstack';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Skeleton, SkeletonText } from '@/components/ui/skeleton'
+import { Box } from '@/components/ui/box'
+import { HStack } from '@/components/ui/hstack'
+
 
 
 import { SafeAreaView } from 'react-native';

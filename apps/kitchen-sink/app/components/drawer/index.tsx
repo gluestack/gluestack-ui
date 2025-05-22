@@ -1,17 +1,17 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton } from '@/components/ui/drawer';
-import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
-import { Heading } from '@/components/ui/heading';
-import { Text } from '@/components/ui/text';
-import { Icon, CloseIcon, CheckIcon } from '@/components/ui/icon';
-import { VStack } from '@/components/ui/vstack';
-import { HStack } from '@/components/ui/hstack';
-import { Divider } from '@/components/ui/divider';
-import { CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@/components/ui/checkbox';
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@/components/ui/slider';
-import { Pressable } from '@/components/ui/pressable';
-import { Avatar, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar';
-import { User, Home, ShoppingCart, Wallet, LogOut } from 'lucide-react-native';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton } from '@/components/ui/drawer'
+import { Button, ButtonText, ButtonIcon } from '@/components/ui/button'
+import { Heading } from '@/components/ui/heading'
+import { Text } from '@/components/ui/text'
+import { Icon, CloseIcon, CheckIcon } from '@/components/ui/icon'
+import { VStack } from '@/components/ui/vstack'
+import { HStack } from '@/components/ui/hstack'
+import { Divider } from '@/components/ui/divider'
+import { CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@/components/ui/checkbox'
+import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@/components/ui/slider'
+import { Pressable } from '@/components/ui/pressable'
+import { Avatar, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar'
+import { User, Home, ShoppingCart, Wallet, LogOut } from 'lucide-react-native'
 
 
 import { SafeAreaView } from 'react-native';

@@ -1,9 +1,9 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Progress, ProgressFilledTrack } from '@/components/ui/progress';
-import { Center } from '@/components/ui/center';
-import { VStack } from '@/components/ui/vstack';
-import { Text } from '@/components/ui/text';
-import { Heading } from '@/components/ui/heading';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Progress, ProgressFilledTrack } from '@/components/ui/progress'
+import { Center } from '@/components/ui/center'
+import { VStack } from '@/components/ui/vstack'
+import { Text } from '@/components/ui/text'
+import { Heading } from '@/components/ui/heading'
 
 
 import { SafeAreaView } from 'react-native';

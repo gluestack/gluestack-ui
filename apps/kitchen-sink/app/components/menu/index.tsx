@@ -1,8 +1,8 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Menu, MenuItem, MenuItemLabel, MenuSeparator } from '@/components/ui/menu';
-import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
-import { Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon, MenuIcon, HelpCircleIcon, MessageCircleIcon } from '@/components/ui/icon';
-import { Badge, BadgeText } from '@/components/ui/badge';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Menu, MenuItem, MenuItemLabel, MenuSeparator } from '@/components/ui/menu'
+import { Button, ButtonText, ButtonIcon } from '@/components/ui/button'
+import { Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon, MenuIcon, HelpCircleIcon, MessageCircleIcon } from '@/components/ui/icon'
+import { Badge, BadgeText } from '@/components/ui/badge'
 
 
 import { SafeAreaView } from 'react-native';

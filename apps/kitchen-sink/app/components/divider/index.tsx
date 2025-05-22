@@ -1,12 +1,12 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Center } from '@/components/ui/center';
-import { Text } from '@/components/ui/text';
-import { Divider } from '@/components/ui/divider';
-import { VStack } from '@/components/ui/vstack';
-import { HStack } from '@/components/ui/hstack';
-import { Heading } from '@/components/ui/heading';
-import { Box } from '@/components/ui/box';
-import { Button, ButtonText } from '@/components/ui/button';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Center } from '@/components/ui/center'
+import { Text } from '@/components/ui/text'
+import { Divider } from '@/components/ui/divider'
+import { VStack } from '@/components/ui/vstack'
+import { HStack } from '@/components/ui/hstack'
+import { Heading } from '@/components/ui/heading'
+import { Box } from '@/components/ui/box'
+import { Button, ButtonText } from '@/components/ui/button'
 
 
 import { SafeAreaView } from 'react-native';

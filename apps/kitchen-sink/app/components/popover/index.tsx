@@ -1,16 +1,16 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Popover, PopoverBackdrop, PopoverArrow, PopoverBody, PopoverContent, PopoverFooter, PopoverHeader } from '@/components/ui/popover';
-import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
-import { Text } from '@/components/ui/text';
-import { Avatar, AvatarGroup, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar';
-import { Pressable } from '@/components/ui/pressable';
-import { Heading } from '@/components/ui/heading';
-import { VStack } from '@/components/ui/vstack';
-import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from '@/components/ui/checkbox';
-import { CheckIcon, ArrowRightIcon, ChevronRightIcon, ShareIcon, ChevronDownIcon } from '@/components/ui/icon';
-import { Input, InputField } from '@/components/ui/input';
-import { Image } from '@/components/ui/image';
-import { HStack } from '@/components/ui/hstack';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Popover, PopoverBackdrop, PopoverArrow, PopoverBody, PopoverContent, PopoverFooter, PopoverHeader } from '@/components/ui/popover'
+import { Button, ButtonText, ButtonIcon } from '@/components/ui/button'
+import { Text } from '@/components/ui/text'
+import { Avatar, AvatarGroup, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar'
+import { Pressable } from '@/components/ui/pressable'
+import { Heading } from '@/components/ui/heading'
+import { VStack } from '@/components/ui/vstack'
+import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from '@/components/ui/checkbox'
+import { CheckIcon, ArrowRightIcon, ChevronRightIcon, ShareIcon, ChevronDownIcon } from '@/components/ui/icon'
+import { Input, InputField } from '@/components/ui/input'
+import { Image } from '@/components/ui/image'
+import { HStack } from '@/components/ui/hstack'
 
 
 import { SafeAreaView } from 'react-native';

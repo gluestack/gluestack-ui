@@ -1,6 +1,6 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectItem } from '@/components/ui/select';
-import { ChevronDownIcon } from '@/components/ui/icon';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectItem } from '@/components/ui/select'
+import { ChevronDownIcon } from '@/components/ui/icon'
 
 
 import { SafeAreaView } from 'react-native';

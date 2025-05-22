@@ -1,17 +1,17 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Box } from '@/components/ui/box';
-import { Fab, FabIcon, FabLabel } from '@/components/ui/fab';
-import { AddIcon, EditIcon, SearchIcon, CheckIcon } from '@/components/ui/icon';
-import { VStack } from '@/components/ui/vstack';
-import { HStack } from '@/components/ui/hstack';
-import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import { Heading } from '@/components/ui/heading';
-import { Text } from '@/components/ui/text';
-import { Divider } from '@/components/ui/divider';
-import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from '@/components/ui/checkbox';
-import { Image } from '@/components/ui/image';
-import { Link } from '@/components/ui/link';
-import { ShoppingCartIcon } from 'lucide-react-native';
+import { ComponentPreviewer } from '@/components/custom/component-previewer'
+import { Box } from '@/components/ui/box'
+import { Fab, FabIcon, FabLabel } from '@/components/ui/fab'
+import { AddIcon, EditIcon, SearchIcon, CheckIcon } from '@/components/ui/icon'
+import { VStack } from '@/components/ui/vstack'
+import { HStack } from '@/components/ui/hstack'
+import { Avatar, AvatarImage } from '@/components/ui/avatar'
+import { Heading } from '@/components/ui/heading'
+import { Text } from '@/components/ui/text'
+import { Divider } from '@/components/ui/divider'
+import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from '@/components/ui/checkbox'
+import { Image } from '@/components/ui/image'
+import { Link } from '@/components/ui/link'
+import { ShoppingCartIcon } from 'lucide-react-native'
 
 
 import { SafeAreaView } from 'react-native';
