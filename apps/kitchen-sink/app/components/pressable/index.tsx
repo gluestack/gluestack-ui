@@ -31,7 +31,8 @@ export default function ComponentExamples() {
           PRESSABLE
         </Text>
       )}
-    </Pressable>}}
+    </Pressable>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

@@ -173,7 +173,8 @@ export default function ComponentExamples() {
       <MenuItem key="Logout" textValue="Logout" className="p-2">
         <MenuItemLabel size="sm">Logout</MenuItemLabel>
       </MenuItem>
-    </Menu>}}
+    </Menu>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -233,7 +234,8 @@ export default function ComponentExamples() {
       >
         <MenuItemLabel size="sm">Install Chrome Extension</MenuItemLabel>
       </MenuItem>
-    </Menu>}}
+    </Menu>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

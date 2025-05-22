@@ -69,7 +69,8 @@ export default function ComponentExamples() {
       >
         <Text>C</Text>
       </GridItem>
-    </Grid>}}
+    </Grid>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -126,7 +127,8 @@ export default function ComponentExamples() {
       >
         <Text className="text-sm">06</Text>
       </GridItem>
-    </Grid>}}
+    </Grid>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -191,7 +193,8 @@ export default function ComponentExamples() {
           }}><Text className="text-sm">2</Text></GridItem>
         </Grid>
       </GridItem>
-    </Grid>}}
+    </Grid>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -248,7 +251,8 @@ export default function ComponentExamples() {
       >
         <Text className="text-sm">06</Text>
       </GridItem>
-    </Grid>}}
+    </Grid>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

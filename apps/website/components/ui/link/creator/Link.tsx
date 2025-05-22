@@ -1,5 +1,5 @@
 import React, { forwardRef, useMemo } from 'react';
-import { useLink } from './useLink';
+import { useLink } from './UseLink';
 import { mergeRefs } from '@/utils/gluestack-utils/common';
 
 import { composeEventHandlers } from '@/utils/gluestack-utils/common';

@@ -115,7 +115,8 @@ export default function ComponentExamples() {
           </AlertDialogBody>
         </AlertDialogContent>
       </AlertDialog>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -163,7 +164,8 @@ export default function ComponentExamples() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -211,7 +213,8 @@ export default function ComponentExamples() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

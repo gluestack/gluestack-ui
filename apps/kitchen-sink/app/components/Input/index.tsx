@@ -101,7 +101,8 @@ export default function ComponentExamples() {
           <ButtonText>Save</ButtonText>
         </Button>
       </VStack>
-    </FormControl>}}
+    </FormControl>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -114,7 +115,8 @@ export default function ComponentExamples() {
       <InputField
         placeholder="Search..."
       />
-    </Input>}}
+    </Input>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

@@ -81,7 +81,8 @@ export default function ComponentExamples() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -236,7 +237,8 @@ export default function ComponentExamples() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -295,7 +297,8 @@ export default function ComponentExamples() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -354,7 +357,8 @@ export default function ComponentExamples() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -411,7 +415,8 @@ export default function ComponentExamples() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -457,7 +462,8 @@ export default function ComponentExamples() {
           </ModalBody>
         </ModalContent>
       </Modal>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

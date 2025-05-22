@@ -66,7 +66,8 @@ export default function ComponentExamples() {
           <Text size="sm">Marketing Coordinator</Text>
         </VStack>
       </HStack>
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -91,7 +92,8 @@ export default function ComponentExamples() {
           <Text size="sm">Web Designer</Text>
         </VStack>
       </HStack>
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -127,7 +129,8 @@ export default function ComponentExamples() {
           <Text size="sm">Marketing Coordinator</Text>
         </VStack>
       </HStack>
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -153,7 +156,8 @@ export default function ComponentExamples() {
       <Avatar size="lg">
         <AvatarFallbackText>{"+ " + remainingCount + ""}</AvatarFallbackText>
       </Avatar>
-    </AvatarGroup>}}
+    </AvatarGroup>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -192,7 +196,8 @@ export default function ComponentExamples() {
           }}
         />
       </Avatar>
-    </AvatarGroup>}}
+    </AvatarGroup>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -235,7 +240,8 @@ export default function ComponentExamples() {
         />
         <AvatarBadge />
       </Avatar>
-    </AvatarGroup>}}
+    </AvatarGroup>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -260,7 +266,8 @@ export default function ComponentExamples() {
           <Text size="sm">Web Designer</Text>
         </VStack>
       </HStack>
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -275,7 +282,8 @@ export default function ComponentExamples() {
           }}
         />
       </Avatar>
-    </HStack>}}
+    </HStack>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

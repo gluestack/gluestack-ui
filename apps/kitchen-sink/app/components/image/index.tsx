@@ -46,7 +46,8 @@ export default function ComponentExamples() {
           alt="Logo"
           size='none'
           className="aspect-[320/208] w-full max-w-[320px]"
-        />}}
+        />
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

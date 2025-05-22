@@ -57,7 +57,9 @@ export default function Example() {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </>}
+    </>
+  );
+}
     </ComponentPreviewer>
   );
 }

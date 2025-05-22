@@ -64,7 +64,8 @@ export default function ComponentExamples() {
         </Button>
       </VStack>
       <Icon as={CloseIcon} />
-    </Alert>}}
+    </Alert>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -83,7 +84,8 @@ export default function ComponentExamples() {
         </Button>
       </VStack>
       <Icon as={CloseIcon} />
-    </Alert>}}
+    </Alert>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -97,7 +99,8 @@ export default function ComponentExamples() {
         </Text>
         Once done, this action cannot be undone
       </AlertText>
-    </Alert>}}
+    </Alert>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -139,7 +142,8 @@ export default function ComponentExamples() {
           number required.
         </AlertText>
       </Alert>
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

@@ -129,7 +129,8 @@ export default function ComponentExamples() {
       <Fab size='lg' className='bg-primary-600 hover:bg-primary-700 active:bg-primary-800'>
         <FabIcon as={EditIcon} color="white"/>
       </Fab>
-    </Box>}}
+    </Box>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -191,7 +192,8 @@ export default function ComponentExamples() {
           </HStack>
         </Box>
       </VStack>
-    </Box>}}
+    </Box>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -233,7 +235,8 @@ export default function ComponentExamples() {
       <Fab size='sm' placement='bottom center' className='top-0 relative'>
         <FabIcon as={AddIcon} size='sm'/>
       </Fab>
-    </Box>}}
+    </Box>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -274,7 +277,8 @@ export default function ComponentExamples() {
       <Fab size='lg' className='bg-primary-600 right-4 bottom-16 hover:bg-primary-700 active:bg-primary-800'>
         <FabIcon as={ShoppingCartIcon} className='h-4 w-4'/>
       </Fab>
-    </Box>}}
+    </Box>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

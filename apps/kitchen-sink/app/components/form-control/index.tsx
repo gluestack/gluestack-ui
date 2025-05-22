@@ -46,7 +46,7 @@ export default function ComponentExamples() {
     "defaultValue": "md"
   }
 }}>
-  {props => function App () {
+  {props => {
   const [isInvalid, setIsInvalid] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("12345");
 
@@ -94,8 +94,7 @@ export default function ComponentExamples() {
         <ButtonText>Submit</ButtonText>
       </Button>
     </VStack>
-  );
-};}}
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -141,11 +140,12 @@ export default function ComponentExamples() {
           Choose the fruit you like the most
         </FormControlHelperText>
       </FormControlHelper>
-    </FormControl>}}
+    </FormControl>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App() {
+  {props => {
       const [values, setValues] = React.useState(['bits']);
         return (
           <FormControl>
@@ -185,7 +185,8 @@ export default function ComponentExamples() {
                 Subscribe to newsletters for updates
               </FormControlHelperText>
             </FormControlHelper>
-          </FormControl>}}
+          </FormControl>
+        );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -231,7 +232,8 @@ export default function ComponentExamples() {
           Choose one time slot for the meeting
         </FormControlErrorText>
       </FormControlError>
-    </FormControl>}}
+    </FormControl>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -251,7 +253,8 @@ export default function ComponentExamples() {
           Enter your feedback or comments
         </FormControlHelperText>
       </FormControlHelper>
-    </FormControl>}}
+    </FormControl>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -272,7 +275,8 @@ export default function ComponentExamples() {
           </ButtonText>
         </Button>
       </FormControl>
-    </HStack>}}
+    </HStack>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

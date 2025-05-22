@@ -65,7 +65,8 @@ export default function ComponentExamples() {
     <Button className='p-3'>
       <ButtonSpinner color="gray" />
       <ButtonText className='font-medium text-sm ml-2'>Please wait...</ButtonText>
-    </Button>}}
+    </Button>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -76,7 +77,8 @@ export default function ComponentExamples() {
       className='rounded-full p-3.5'
     >
       <ButtonIcon as={EditIcon} />
-    </Button>}}
+    </Button>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -87,7 +89,8 @@ export default function ComponentExamples() {
         Back to top
       </ButtonText>
       <ButtonIcon as={ArrowUpIcon} className='h-3 w-3 text-background-900 ml-1' />
-    </Button>}}
+    </Button>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -102,7 +105,8 @@ export default function ComponentExamples() {
         <ButtonText>Right Icon</ButtonText>
         <ButtonIcon as={AddIcon} className='ml-2'/>
       </Button>
-    </Box>}}
+    </Box>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -152,7 +156,8 @@ export default function ComponentExamples() {
           </Box>
         </VStack>
       </Box>
-    </Center>}}
+    </Center>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

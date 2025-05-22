@@ -49,7 +49,8 @@ export default function ComponentExamples() {
         />
         <Text>Examples</Text>
       </HStack>
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -108,7 +109,8 @@ export default function ComponentExamples() {
           </Text>
         </HStack>
       </Box>
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -141,7 +143,8 @@ export default function ComponentExamples() {
           <ButtonText>Discord</ButtonText>
         </Button>
       </HStack>
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -169,7 +172,8 @@ export default function ComponentExamples() {
           </Text>
         </HStack>
       </Box>
-    </Box>}}
+    </Box>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

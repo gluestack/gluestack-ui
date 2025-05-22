@@ -20,7 +20,7 @@ export default function ComponentExamples() {
   return (
     <SafeAreaView>
       <ComponentPreviewer props={{}}>
-  {props => function App() {
+  {props => {
   const [showActionsheet, setShowActionsheet] = React.useState(false)
   const handleClose = () => setShowActionsheet(false)
   return (
@@ -56,7 +56,7 @@ export default function ComponentExamples() {
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App() {
+  {props => {
   const [showActionsheet, setShowActionsheet] = React.useState(false)
   const handleClose = () => setShowActionsheet(false)
   return (
@@ -92,7 +92,7 @@ export default function ComponentExamples() {
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App() {
+  {props => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
   const handleClose = () => setShowActionsheet(false);
 
@@ -146,11 +146,12 @@ export default function ComponentExamples() {
           </ActionsheetContent>
 
       </Actionsheet>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App() {
+  {props => {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
   const handleClose = () => setShowActionsheet(false);
 
@@ -187,11 +188,12 @@ export default function ComponentExamples() {
           </ActionsheetItem>
         </ActionsheetContent>
       </Actionsheet>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App(){
+  {props => {
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(false);
     const data = React.useMemo(() => Array(50).fill(0).map((_, index) => 'Item' + index),[]);
@@ -230,11 +232,12 @@ export default function ComponentExamples() {
           />
         </ActionsheetContent>
       </Actionsheet>
-    </>}}
+    </>
+);}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App(){
+  {props => {
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(false);
     const DATA = [
@@ -277,11 +280,12 @@ export default function ComponentExamples() {
           />
         </ActionsheetContent>
       </Actionsheet>
-    </>}}
+    </>
+);}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App(){
+  {props => {
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(false);
     const DATA = [
@@ -318,11 +322,12 @@ export default function ComponentExamples() {
           />
         </ActionsheetContent>
       </Actionsheet>
-    </>}}
+    </>
+);}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App(){
+  {props => {
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(false);
           return (
@@ -369,7 +374,8 @@ export default function ComponentExamples() {
                   </ButtonGroup>
                 </ActionsheetContent>
               </Actionsheet>
-            </>}}
+            </>
+          );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

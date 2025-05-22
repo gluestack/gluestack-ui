@@ -55,7 +55,8 @@ export default function ComponentExamples() {
       <Progress value={55} className="w-full h-1">
         <ProgressFilledTrack className="h-1" />
       </Progress>
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -74,7 +75,8 @@ export default function ComponentExamples() {
       <Progress value={46} className="w-full h-2" size="sm">
         <ProgressFilledTrack className="bg-cyan-600"/>
       </Progress>
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -86,7 +88,8 @@ export default function ComponentExamples() {
         <ProgressFilledTrack className="h-2 bg-lime-500" />
       </Progress>
       <Text size="md">14GB</Text>
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

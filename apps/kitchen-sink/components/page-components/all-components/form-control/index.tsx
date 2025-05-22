@@ -100,7 +100,7 @@ export default function Example() {
       </Button>
     </VStack>
   );
-};}
+}
     </ComponentPreviewer>
   );
 }

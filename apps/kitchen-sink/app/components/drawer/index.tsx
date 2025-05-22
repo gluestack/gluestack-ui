@@ -60,7 +60,8 @@ export default function ComponentExamples() {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -157,7 +158,8 @@ export default function ComponentExamples() {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -221,7 +223,8 @@ export default function ComponentExamples() {
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    </>}}
+    </>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

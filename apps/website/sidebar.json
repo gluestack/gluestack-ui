@@ -350,6 +350,11 @@
               "id": "/ui/docs/components/accordion"
             },
             {
+              "title": "newAccordion",
+              "pages": [],
+              "id": "/ui/docs/components/new-accordion"
+            },
+            {
               "title": "BottomSheet",
               "pages": [],
               "id": "/ui/docs/components/bottomsheet",

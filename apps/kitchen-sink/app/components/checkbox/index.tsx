@@ -78,7 +78,8 @@ export default function ComponentExamples() {
           <CheckboxLabel>Adobe XD</CheckboxLabel>
         </Checkbox>
       </VStack>
-    </CheckboxGroup>}}
+    </CheckboxGroup>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -108,7 +109,8 @@ export default function ComponentExamples() {
           <CheckboxLabel>Typography</CheckboxLabel>
         </Checkbox>
       </HStack>
-    </CheckboxGroup>}}
+    </CheckboxGroup>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -138,7 +140,8 @@ export default function ComponentExamples() {
           <Text size="sm" className='ml-7'>Subscribe to updates from the Marketing Feed</Text>
         </Box>
       </VStack>
-    </CheckboxGroup>}}
+    </CheckboxGroup>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -167,7 +170,8 @@ export default function ComponentExamples() {
         </Checkbox>
         <Text size="sm">Subscribe to newsletters for updates</Text>
       </VStack>
-    </FormControl>}}
+    </FormControl>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -197,7 +201,8 @@ export default function ComponentExamples() {
           </CheckboxIndicator>
         </Checkbox>
       </VStack>
-    </CheckboxGroup>}}
+    </CheckboxGroup>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -221,7 +226,8 @@ export default function ComponentExamples() {
           <CheckboxLabel>Software Development</CheckboxLabel>
         </Checkbox>
       </VStack>
-    </CheckboxGroup>}}
+    </CheckboxGroup>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -246,7 +252,8 @@ export default function ComponentExamples() {
           <CheckboxLabel>Residents</CheckboxLabel>
         </Checkbox>
       </VStack>
-    </CheckboxGroup>}}
+    </CheckboxGroup>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -270,7 +277,8 @@ export default function ComponentExamples() {
           </Checkbox>
         </VStack>
       </CheckboxGroup>
-    </Center>}}
+    </Center>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

@@ -79,7 +79,9 @@ export default function Example() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>}
+    </>
+  );
+}
     </ComponentPreviewer>
   );
 }

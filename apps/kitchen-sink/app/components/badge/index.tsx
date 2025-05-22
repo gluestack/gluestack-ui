@@ -85,7 +85,8 @@ export default function ComponentExamples() {
           <Text size='sm'>Nursing Assistant</Text>
         </VStack>
       </HStack>
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -105,7 +106,8 @@ export default function ComponentExamples() {
           </ButtonText>
         </Button>
       </VStack>
-    </Box>}}
+    </Box>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

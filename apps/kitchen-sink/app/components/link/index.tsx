@@ -40,7 +40,8 @@ export default function ComponentExamples() {
           <Icon as={ArrowUpRight} size="lg" className="mt-0.5 text-info-600"/>
         </HStack>
       </Link>
-    </HStack>}}
+    </HStack>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

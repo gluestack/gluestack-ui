@@ -28,7 +28,7 @@ export const generateCodePreviewer = (
     code = code
       .replace(/function Example\(\)/, "")
       .replace(/\\\\/g, "")
-      .replace(/\s*\);\s*}\s*$/, "")
+      
       .trim();
 
     const meta = fileOps.readJsonFile(argsPath);

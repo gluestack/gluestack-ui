@@ -14,7 +14,7 @@ export default function ComponentExamples() {
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App() { 
+  {props => { 
   const sizes = [ 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl',
 '4xl', '5xl' ]; 
 return (
@@ -24,7 +24,8 @@ return (
     {size}
   </Heading>
   ))}
-</Center>}}
+</Center>
+);}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

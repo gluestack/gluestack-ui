@@ -123,7 +123,7 @@ export default function ComponentExamples() {
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App(){
+  {props => {
     return (
       <Accordion
       className="w-[90%] m-5 border border-outline-300"
@@ -221,11 +221,12 @@ export default function ComponentExamples() {
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-    </Accordion>}}
+    </Accordion>
+);}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App(){
+  {props => {
     return (
           <Accordion className="m-5 w-[80%] max-w-[640px] bg-transparent">
       <AccordionItem value="item-1" className="rounded-lg">
@@ -283,11 +284,12 @@ export default function ComponentExamples() {
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-    </Accordion>}}
+    </Accordion>
+);}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App(){
+  {props => {
     return (
           <Accordion variant="unfilled" className="m-5 w-[90%]">
       <AccordionItem value="item-1" isDisabled={true}
@@ -344,11 +346,12 @@ export default function ComponentExamples() {
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-    </Accordion>}}
+    </Accordion>
+);}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App(){
+  {props => {
     return (
           <Accordion variant="unfilled" type="single" defaultValue="item-3" className="w-[90%] m-5">
       <AccordionItem value="item-1" className="rounded-lg">
@@ -430,11 +433,12 @@ export default function ComponentExamples() {
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-    </Accordion>}}
+    </Accordion>
+);}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App(){
+  {props => {
     return (
            <Accordion
            variant="unfilled"
@@ -516,11 +520,12 @@ export default function ComponentExamples() {
           </Accordion>
         </AccordionContent>
       </AccordionItem>
-    </Accordion>}}
+    </Accordion>
+);}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App(){
+  {props => {
     const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2']);
     return (
     <Accordion variant="unfilled" type="multiple" value={selectedValues} onValueChange={(item) => setSelectedValues(item)} className="m-5 w-[95%]">
@@ -603,7 +608,8 @@ export default function ComponentExamples() {
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-    </Accordion>}}
+    </Accordion>
+);}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

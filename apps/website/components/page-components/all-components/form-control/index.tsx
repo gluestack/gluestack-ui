@@ -69,7 +69,7 @@ export default function Example() {
       </Button>
     </VStack>
   );
-};`}
+}`}
       argTypes={{
   "isDisabled": {
     "control": {

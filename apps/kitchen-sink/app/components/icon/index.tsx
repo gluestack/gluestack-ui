@@ -94,7 +94,8 @@ export default function ComponentExamples() {
         <Icon as={ThreeDotsIcon} className="text-typography-500 m-2 w-4 h-4" />
         <Icon as={PlayIcon} className="text-typography-500 m-2 w-4 h-4" />
   </HStack>
-  </Center>}}
+  </Center>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
@@ -105,11 +106,12 @@ export default function ComponentExamples() {
       <Icon className="text-typography-500" size={props.size} as={ChromeIcon} />
       <Icon className="text-typography-500" size={props.size} as={InstagramIcon} />
       <Icon className="text-typography-500" size={props.size} as={FacebookIcon} />
-    </VStack>}}
+    </VStack>
+  );}}
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App() {
+  {props => {
   const GluestackIcon = createIcon({
     viewBox: "0 0 32 32",
     path: (

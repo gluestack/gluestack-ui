@@ -53,7 +53,7 @@ export default function ComponentExamples() {
     "defaultValue": "bottom"
   }
 }}>
-  {props => function App() {
+  {props => {
   const [isOpen, setIsOpen] = React.useState(false)
   const handleOpen = () => {
     setIsOpen(true)
@@ -91,7 +91,7 @@ export default function ComponentExamples() {
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App() {
+  {props => {
         const [isOpen, setIsOpen] = React.useState(false);
         const handleOpen = () => {
           setIsOpen(true);
@@ -173,7 +173,7 @@ export default function ComponentExamples() {
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App() {
+  {props => {
         const [isOpen, setIsOpen] = React.useState(false);
         const [values, setValues] = React.useState(['work']);
         const handleOpen = () => {
@@ -248,7 +248,7 @@ export default function ComponentExamples() {
 </ComponentPreviewer>
 
 <ComponentPreviewer props={{}}>
-  {props => function App() {
+  {props => {
   const [isOpen, setIsOpen] = React.useState(false)
   const handleOpen = () => {
     setIsOpen(true)
@@ -383,7 +383,8 @@ export default function ComponentExamples() {
           </VStack>
         </PopoverBody>
       </PopoverContent>
-    </Popover>}}
+    </Popover>
+  );}}
 </ComponentPreviewer>
     </SafeAreaView>
   );

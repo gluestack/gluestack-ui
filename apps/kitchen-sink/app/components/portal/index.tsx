@@ -12,7 +12,7 @@ export default function ComponentExamples() {
   return (
     <SafeAreaView>
       <ComponentPreviewer props={{}}>
-  {props => function App() {
+  {props => {
   const [visible, setVisible] = React.useState(false)
   const handleClose = () => setVisible(false)
   return (
