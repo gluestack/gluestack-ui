@@ -16,7 +16,32 @@ import { CloseIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
-    <ComponentPreviewer props={{}}>
+    <ComponentPreviewer props={{
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "full"
+    ],
+    "defaultValue": "md"
+  },
+  "anchor": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "left",
+      "right",
+      "top",
+      "bottom"
+    ],
+    "defaultValue": "left"
+  }
+}}>
       {props => {
   const [showDrawer, setShowDrawer] = React.useState(false);
   return (
@@ -30,6 +55,8 @@ export default function Example() {
       </Button>
       <Drawer
         isOpen={showDrawer}
+        size={props.size}
+        anchor={props.anchor}
         onClose={() => {
           setShowDrawer(false);
         }}

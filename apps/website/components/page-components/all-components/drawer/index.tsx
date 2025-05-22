@@ -29,6 +29,8 @@ export default function Example() {
       </Button>
       <Drawer
         isOpen={showDrawer}
+        size="{{size}}"
+        anchor="{{anchor}}"
         onClose={() => {
           setShowDrawer(false);
         }}
@@ -59,7 +61,32 @@ export default function Example() {
     </>
   );
 }`}
-      argTypes={{}}
+      argTypes={{
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "full"
+    ],
+    "defaultValue": "md"
+  },
+  "anchor": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "left",
+      "right",
+      "top",
+      "bottom"
+    ],
+    "defaultValue": "left"
+  }
+}}
       reactLive={{ Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton, Button, ButtonText, Heading, Text, Icon, CloseIcon }}
     />
   );

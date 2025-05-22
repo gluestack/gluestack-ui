@@ -37,6 +37,8 @@ Implement a responsive Drawer component in React & React Native for navigation a
       </Button>
       <Drawer
         isOpen={showDrawer}
+        size="{{size}}"
+        anchor="{{anchor}}"
         onClose={() => {
           setShowDrawer(false);
         }}
@@ -67,7 +69,32 @@ Implement a responsive Drawer component in React & React Native for navigation a
     </>
   );
 }`}
-  argTypes={{}}
+  argTypes={{
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "full"
+    ],
+    "defaultValue": "md"
+  },
+  "anchor": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "left",
+      "right",
+      "top",
+      "bottom"
+    ],
+    "defaultValue": "left"
+  }
+}}
   reactLive={{ Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton, Button, ButtonText, Heading, Text, Icon, CloseIcon }}
 />
 
