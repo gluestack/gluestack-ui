@@ -14,12 +14,12 @@ export const copyComponent = (component: string) => {
  }
 };
 
-export const processNonComponentFile = () => {
+export const processNonComponentFile = (filePath:string) => {
     const packagesDir = path.resolve("packages/utils/gluestack-utils");
     const kitchenSinkDir = path.resolve("apps/kitchen-sink/utils/gluestack-utils");
     try {
       fileOps.copyDir(packagesDir, kitchenSinkDir);
     } catch (error) {
-      console.error(`error in copying utils`, error);
+      console.error(`error in copying utils, ${filePath}`, error);
     }
 };
