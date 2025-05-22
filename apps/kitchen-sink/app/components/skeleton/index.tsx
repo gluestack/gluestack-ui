@@ -4,7 +4,6 @@ import { Box } from '@/components/ui/box'
 import { HStack } from '@/components/ui/hstack'
 
 
-
 import { SafeAreaView } from 'react-native';
 import React from 'react';
 import { ScrollView } from 'react-native';

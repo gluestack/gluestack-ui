@@ -2,7 +2,6 @@ import { ComponentPreviewer } from '@/components/custom/component-previewer'
 import { Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter } from '@/components/ui/table'
 
 
-
 import { SafeAreaView } from 'react-native';
 import React from 'react';
 import { ScrollView } from 'react-native';

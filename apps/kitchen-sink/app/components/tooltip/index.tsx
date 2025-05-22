@@ -3,7 +3,6 @@ import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip'
 import { Button, ButtonText } from '@/components/ui/button'
 
 
-
 import { SafeAreaView } from 'react-native';
 import React from 'react';
 import { ScrollView } from 'react-native';

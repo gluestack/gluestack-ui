@@ -3,7 +3,6 @@ import { Toast, ToastTitle, ToastDescription, useToast } from '@/components/ui/t
 import { Button, ButtonText } from '@/components/ui/button'
 
 
-
 import { SafeAreaView } from 'react-native';
 import React from 'react';
 import { ScrollView } from 'react-native';

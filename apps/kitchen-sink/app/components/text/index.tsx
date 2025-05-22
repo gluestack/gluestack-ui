@@ -2,7 +2,6 @@ import { ComponentPreviewer } from '@/components/custom/component-previewer'
 import { Text } from '@/components/ui/text'
 
 
-
 import { SafeAreaView } from 'react-native';
 import React from 'react';
 import { ScrollView } from 'react-native';

@@ -3,7 +3,6 @@ import { VStack } from '@/components/ui/vstack'
 import { Box } from '@/components/ui/box'
 
 
-
 import { SafeAreaView } from 'react-native';
 import React from 'react';
 import { ScrollView } from 'react-native';

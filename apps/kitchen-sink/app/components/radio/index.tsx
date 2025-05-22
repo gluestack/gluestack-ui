@@ -3,7 +3,6 @@ import { Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel } from '@/comp
 import { CircleIcon } from '@/components/ui/icon'
 
 
-
 import { SafeAreaView } from 'react-native';
 import React from 'react';
 import { ScrollView } from 'react-native';
