@@ -45,7 +45,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Avatar with letters"}>
   {props => {
   return (
     <VStack space="2xl">
@@ -72,7 +72,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Avatar with Icon"}>
   {props => {
   return (
     <VStack space="2xl">
@@ -98,7 +98,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Avatar with Image"}>
   {props => {
   return (
     <VStack space="2xl">
@@ -135,7 +135,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Avatar Group"}>
   {props => {
   const avatars = [
     { src: 'https://example.com.jpg', alt: 'Sandeep Srivastva', color:'bg-emerald-600' },
@@ -162,7 +162,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Avatar Group (Without Badge)"}>
   {props => {
   return (
     <AvatarGroup>
@@ -202,7 +202,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Avatar Group (with Badge)"}>
   {props => {
   return (
     <AvatarGroup>
@@ -246,7 +246,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Custom"}>
   {props => {
   return (
     <VStack space="2xl">
@@ -272,7 +272,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Fallback"}>
   {props => {
   return (
     <HStack space="md">

@@ -63,7 +63,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Badge with Avatar"}>
   {props => {
   return (
     <VStack space="2xl">
@@ -91,7 +91,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Badge Composition"}>
   {props => {
   return (
     <Box className='items-center'>

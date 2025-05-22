@@ -1,4 +1,6 @@
 {
+  "title": "Icon Button",
+  "description": "A button with an icon integrates a visual symbol within the button component, enhancing its appearance and providing a recognizable and intuitive representation of its associated action or functionality.",
   "argTypes": {},
   "reactLive": {
     "Button": "@/components/ui/button",

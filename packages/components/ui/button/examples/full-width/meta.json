@@ -1,4 +1,6 @@
 {
+  "title": "Button with Full Width",
+  "description": "The button with full width component utilizes a button component, expanding its width to occupy the entire available space, creating a visually prominent and easily accessible interface element.",
   "argTypes": {},
   "reactLive": {
     "Button": "@/components/ui/button",

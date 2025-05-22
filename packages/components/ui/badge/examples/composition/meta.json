@@ -1,4 +1,6 @@
 {
+  "title": "Badge Composition",
+  "description": "An example of the Badge component being used with the Composition component, allowing for the display of badges within a composition of other UI elements.",
   "argTypes": {},
   "reactLive": {
     "Badge": "@/components/ui/badge",

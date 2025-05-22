@@ -61,7 +61,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Button with Loading State"}>
   {props => {
   return (
     <Button className='p-3'>
@@ -71,7 +71,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Icon Button"}>
   {props => {
   return (
     <Button
@@ -83,7 +83,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Link Button"}>
   {props => {
   return (
     <Button variant='link'>
@@ -95,7 +95,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Button With Icon"}>
   {props => {
   return (
     <Box>
@@ -111,7 +111,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Button with Full Width"}>
   {props => {
   return (
     <Center>

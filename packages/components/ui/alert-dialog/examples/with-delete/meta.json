@@ -1,4 +1,5 @@
 {
+  "title": "AlertDialog with Delete Option",
   "argTypes": {},
   "reactLive": {
     "AlertDialog": "@/components/ui/alert-dialog",

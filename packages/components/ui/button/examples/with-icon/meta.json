@@ -1,4 +1,6 @@
 {
+  "title": "Button With Icon",
+  "description": "The icon component incorporates a button component, combining visual representation with interactive functionality for seamless user interaction.",
   "argTypes": {},
   "reactLive": {
     "Button": "@/components/ui/button",

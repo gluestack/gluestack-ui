@@ -1,4 +1,6 @@
 {
+  "title": "Avatar with Image",
+  "description": "An Avatar component with an image incorporates a user or entity representation using a profile picture or image, adding a personalized touch and visual identification within a user interface.",
   "argTypes": {},
   "reactLive": {
     "Avatar": "@/components/ui/avatar",

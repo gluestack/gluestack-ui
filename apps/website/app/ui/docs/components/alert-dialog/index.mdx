@@ -39,12 +39,12 @@ Build seamless React Native dialogs with the AlertDialog component. Enhance user
         <AlertDialogBackdrop />
         <AlertDialogContent>
           <AlertDialogHeader>
-            <Heading className="text-typography-950 font-semibold" size="{{size}}">
+            <Heading className="text-typography-950 font-semibold" size="md">
               Are you sure you want to delete this post?
             </Heading>
           </AlertDialogHeader>
           <AlertDialogBody className="mt-3 mb-4">
-            <Text size="{{size}}">
+            <Text size="sm">
               Deleting the post will remove it permanently and cannot be undone.
               Please confirm if you want to proceed.
             </Text>
@@ -54,11 +54,11 @@ Build seamless React Native dialogs with the AlertDialog component. Enhance user
               variant="outline"
               action="secondary"
               onPress={handleClose}
-              size="{{size}}"
+              size="sm"
             >
               <ButtonText>Cancel</ButtonText>
             </Button>
-            <Button size="{{size}}" onPress={handleClose}>
+            <Button size="sm" onPress={handleClose}>
               <ButtonText>Delete</ButtonText>
             </Button>
           </AlertDialogFooter>
@@ -598,8 +598,6 @@ AlertDialog component is created using View component from react-native. It exte
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 
-#### AlertDialog with Image
-
 <CodePreviewer
   code={`function Example() {
   const [showAlertDialog, setShowAlertDialog] = React.useState(false);
@@ -650,8 +648,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ AlertDialog, AlertDialogContent, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading, Box, Image, VStack }}
 />
-
-#### AlertDialog with icon + cta
 
 <CodePreviewer
   code={`function Example() {
@@ -704,8 +700,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ AlertDialog, AlertDialogContent, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading, Icon, VStack, Box, UploadCloud }}
 />
-
-#### AlertDialog with Delete Option
 
 <CodePreviewer
   code={`function Example() {

@@ -1,4 +1,6 @@
 {
+  "title": "Avatar with letters",
+  "description": "An Avatar component with text displays a stylized representation of a user or entity alongside accompanying text, providing a visual and textual identification within a user interface.",
   "argTypes": {},
   "reactLive": {
     "Avatar": "@/components/ui/avatar",

@@ -1,4 +1,6 @@
 {
+  "title": "Avatar Group (Without Badge)",
+  "description": "An Avatar Group component without badges organizes multiple avatars in a visually cohesive manner, offering a streamlined display of user or entity representations without additional visual indicators or badges within a user interface.",
   "argTypes": {},
   "reactLive": {
     "Avatar": "@/components/ui/avatar",
