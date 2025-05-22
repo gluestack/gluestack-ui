@@ -43,7 +43,7 @@ export default function ComponentExamples() {
 }}>
   {props => {
   return (
-    <Alert action="{{ action }}" variant="{{ variant }}">
+    <Alert action={props.action} variant={props.variant}>
       <AlertIcon as={InfoIcon} />
       <AlertText>Description of alert!</AlertText>
     </Alert>

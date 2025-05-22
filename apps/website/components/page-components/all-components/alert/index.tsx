@@ -9,7 +9,7 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Alert action="{{ action }}" variant="{{ variant }}">
+    <Alert action="{{action}}" variant="{{variant}}">
       <AlertIcon as={InfoIcon} />
       <AlertText>Description of alert!</AlertText>
     </Alert>
