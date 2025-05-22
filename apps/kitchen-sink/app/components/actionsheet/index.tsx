@@ -19,7 +19,7 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView>
+    <SafeAreaView className="flex-1 bg-background-50">
         <ScrollView>
       <ComponentPreviewer props={{}}>
   {props => {
