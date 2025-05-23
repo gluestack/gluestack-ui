@@ -16,7 +16,7 @@ import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
     <SafeAreaView className="flex-1 bg-background-0">
-        <ScrollView>
+        <ScrollView className="bg-background-0" contentContainerClassName="px-3 pb-6">
       <ComponentPreviewer props={{
   "size": {
     "control": {
@@ -31,7 +31,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "md"
   }
-}} title={undefined}>
+}} title={"Basic"}>
   {props => {
   const [showAlertDialog, setShowAlertDialog] = React.useState(false)
   const handleClose = () => setShowAlertDialog(false)

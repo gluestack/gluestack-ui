@@ -61,6 +61,7 @@ export default function RootLayout() {
         <GluestackUIProvider mode={colorMode}>
           <Stack>
             <Stack.Screen name="index" />
+            <Stack.Screen name="components/alert/index" options={getHeaderOptions("Alert")} />
           </Stack>
           <Fab
             className="bottom-10 sm:right-10 right-6 p-4 z-0"

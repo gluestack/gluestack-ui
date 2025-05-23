@@ -1,6 +1,22 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-
+import { Text } from "@/components/ui/text";
+import { View } from "@/components/ui/view";
+import { Switch } from "@/components/ui/switch";
+import { Box } from "@/components/ui/box";
+import {
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectItem,
+} from "@/components/ui/select";
+import { Center } from "@/components/ui/center";
+import { ChevronDownIcon } from "@/components/ui/icon";
 type ComponentPreviewerProps = {
   children: (props: { [key: string]: any }) => React.ReactNode;
   props: {
@@ -15,15 +31,16 @@ type ComponentPreviewerProps = {
   title?: string;
 };
 
-export const ComponentPreviewer = ({ children, props, title }: ComponentPreviewerProps) => {
+export const ComponentPreviewer = ({
+  children,
+  props,
+  title,
+}: ComponentPreviewerProps) => {
   // Initialize state for each option dynamically
-  const initialState = Object.keys(props).reduce(
-    (acc, key) => {
-      acc[key] = props[key].defaultValue;
-      return acc;
-    },
-    {} as { [key: string]: string | boolean },
-  );
+  const initialState = Object.keys(props).reduce((acc, key) => {
+    acc[key] = props[key].defaultValue;
+    return acc;
+  }, {} as { [key: string]: string | boolean });
 
   const [selectedValues, setSelectedValues] = useState(initialState);
 
@@ -33,82 +50,78 @@ export const ComponentPreviewer = ({ children, props, title }: ComponentPreviewe
 
   const renderControl = (key: string) => {
     const propConfig = props[key];
-    
+
     if (propConfig.control.type === "boolean") {
       return (
-        <View className="flex-row items-center space-x-4">
-          <TouchableOpacity
-            onPress={() => handleChange(key, true)}
-            className={`px-4 py-2 rounded border ${
-              selectedValues[key] === true 
-                ? 'bg-primary-500 border-primary-500' 
-                : 'bg-white border-gray-300'
-            }`}
-          >
-            <Text className={selectedValues[key] === true ? 'text-white' : 'text-black'}>
-              True
-            </Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity
-            onPress={() => handleChange(key, false)}
-            className={`px-4 py-2 rounded border ${
-              selectedValues[key] === false 
-                ? 'bg-primary-500 border-primary-500' 
-                : 'bg-white border-gray-300'
-            }`}
-          >
-            <Text className={selectedValues[key] === false ? 'text-white' : 'text-black'}>
-              False
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <Switch
+          size="md"
+          isDisabled={false}
+          trackColor={{ false: "#d4d4d4", true: "#005db4" }}
+          thumbColor={"#fafafa"}
+          activeThumbColor={"#fafafa"}
+          ios_backgroundColor={"#d4d4d4"}
+          value={selectedValues[key]}
+          onToggle={() => handleChange(key, !selectedValues[key])}
+        />
       );
     }
-    
+
     if (propConfig.control.type === "select" && propConfig.options) {
       return (
-        <View className="border p-2 rounded">
-          {propConfig.options.map((option) => (
-            <TouchableOpacity
-              key={option}
-              onPress={() => handleChange(key, option)}
-              className={`p-2 ${selectedValues[key] === option ? 'bg-primary-500' : ''}`}
-            >
-              <Text className={selectedValues[key] === option ? 'text-white' : 'text-black'}>
-                {option}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
+        <Select onValueChange={(value: string) => handleChange(key, value)}>
+          <SelectTrigger
+            variant="underlined"
+            className="w-full justify-between items-center border-outline-200"
+            size="md"
+          >
+            <SelectInput
+              className="text-typography-900 text-lg font-medium placeholder:text-typography-900"
+              placeholder={selectedValues[key]}
+            />
+            <SelectIcon
+              size="xl"
+              className="mr-3 text-typography-900"
+              as={ChevronDownIcon}
+            />
+          </SelectTrigger>
+          <SelectPortal>
+            <SelectBackdrop />
+            <SelectContent>
+              <SelectDragIndicatorWrapper>
+                <SelectDragIndicator />
+              </SelectDragIndicatorWrapper>
+              {propConfig.options.map((option) => (
+                <SelectItem key={option} label={option} value={option} />
+              ))}
+            </SelectContent>
+          </SelectPortal>
+        </Select>
       );
     }
-    
+
     return null;
   };
 
   return (
-    <View className="p-4">
-    
+    <Box className="p-5 rounded-lg m-3 mt-5 border border-outline-100 gap-5 w-full self-center">
+      <Box className="border-b border-outline-100 pb-2">
+        <Text className="text-typography-900 text-lg font-semibold pb-2">
+          {title}
+        </Text>
+      </Box>
 
-      {/* Loop through the props dynamically and render controls */}
       {Object.keys(props).map((key) => (
-        <View key={key} className="mt-4">
-          <Text className="mb-2 font-medium">
-            {key}: {String(selectedValues[key])}
-          </Text>
+        <Box
+          key={key}
+          className="flex-row flex-wrap justify-between items-center"
+        >
+          <Text className="mb-2 font-medium text-typography-400">{key}</Text>
           {renderControl(key)}
-        </View>
+        </Box>
       ))}
 
-      {/* Preview section */}
-      <Text className="text-lg font-semibold text-typography-900">{title}</Text>
-      <View className="mt-8 border-t pt-4">
-        <View className="flex items-center justify-center">
-          {children(selectedValues)}
-        </View>
-      </View>
-    </View>
+      <Center className="min-h-[100px] py-5">{children(selectedValues)}</Center>
+    </Box>
   );
 };
 

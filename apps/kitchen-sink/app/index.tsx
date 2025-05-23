@@ -5,7 +5,7 @@ import { Box } from "@/components/ui/box";
 import { Heading } from "@/components/ui/heading";
 import { VStack } from "@/components/ui/vstack";
 import { Text } from "@/components/ui/text";
-import { getAllComponents } from '@/utils/getComponents';
+import { getAllComponents } from "@/utils/getComponents";
 
 const components = getAllComponents();
 
@@ -30,19 +30,9 @@ export default function ComponentList() {
                   onPress={() => router.push(`components/${component.path}`)}
                 >
                   <Box className="p-3 rounded-lg bg-background-100">
-                    <Text className="text-typography-900">{component.name}</Text>
-                    {component.tags && component.tags.length > 0 && (
-                      <Box className="flex-row gap-2 mt-1">
-                        {component.tags.map((tag) => (
-                          <Text 
-                            key={tag}
-                            className="text-xs text-typography-500"
-                          >
-                            #{tag}
-                          </Text>
-                        ))}
-                      </Box>
-                    )}
+                    <Text className="text-typography-900">
+                      {component.name}
+                    </Text>
                   </Box>
                 </Pressable>
               ))}
