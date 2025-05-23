@@ -44,6 +44,10 @@ import {
 import PositiveThinking from "@public/images/PositiveThinking.jpg";
 import NextImage from "next/image";
 import { ThemeContext } from "@/utils/context/theme-context";
+import {
+  LocalThemeProvider,
+  useLocalTheme,
+} from "@/utils/context/local-theme-context";
 
 const getBorderStyle = (activeButton: string, elementType: string) => {
   switch (activeButton) {
@@ -61,16 +65,16 @@ const getBorderStyle = (activeButton: string, elementType: string) => {
 };
 
 const ButtonMap = [
-  { mode: "example", bg: "bg-typography-950" },
+  { mode: "default", bg: "bg-typography-950" },
   { mode: "violet", bg: "bg-[#8B5CF6]" },
   { mode: "cyan", bg: "bg-[#06B6D4]" },
   { mode: "rose", bg: "bg-[#F43F5E]" },
   { mode: "bluegray", bg: "bg-[#64748B]" },
 ];
 
-const Fold3 = () => {
+const Fold3Content = () => {
   const [activeButton, setActiveButton] = React.useState("Subtle");
-  const [themeMode, setThemeMode] = React.useState<any>("example");
+  const { themeMode, setThemeMode } = useLocalTheme();
 
   const handleClick = (buttonName: React.SetStateAction<string>) => {
     setActiveButton(buttonName);
@@ -113,7 +117,7 @@ const Fold3 = () => {
                   key={mode}
                   isHovered={mode === themeMode}
                   onPress={() => {
-                    setThemeMode(mode);
+                    setThemeMode(mode as any);
                   }}
                   aria-label="Theme Change"
                   variant="outline"
@@ -740,6 +744,14 @@ const Fold3 = () => {
         </HStack>
       </VStack>
     </VStack>
+  );
+};
+
+const Fold3 = () => {
+  return (
+    <LocalThemeProvider>
+      <Fold3Content />
+    </LocalThemeProvider>
   );
 };
 
