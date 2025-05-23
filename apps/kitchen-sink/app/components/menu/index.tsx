@@ -5,13 +5,11 @@ import { Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon, MenuIcon, HelpCircleI
 import { Badge, BadgeText } from '@/components/ui/badge'
 
 
-import { SafeAreaView } from 'react-native';
 import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-0">
-        <ScrollView className="bg-background-0" contentContainerClassName="px-3 pb-6">
+        <ScrollView className="bg-background-0 flex-1" contentContainerClassName="px-3 pb-6">
       <ComponentPreviewer props={{
   "placement": {
     "control": {
@@ -240,6 +238,5 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
         </ScrollView>
-    </SafeAreaView>
   );
 }

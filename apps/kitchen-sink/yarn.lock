@@ -1336,6 +1336,34 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-compose-refs" "1.0.0"
 
+"@react-aria/checkbox@^3.15.5":
+  version "3.15.5"
+  resolved "https://registry.yarnpkg.com/@react-aria/checkbox/-/checkbox-3.15.5.tgz#d734a036c32f851a437f582ebd2375f9ee804121"
+  integrity sha512-b9c76DBSYTdacSogbsvjkdZomTo5yhBNMmR5ufO544HQ718Ry8q8JmVbtmF/+dkZN7KGnBQCltzGLzXH0Vc0Zg==
+  dependencies:
+    "@react-aria/form" "^3.0.16"
+    "@react-aria/interactions" "^3.25.1"
+    "@react-aria/label" "^3.7.18"
+    "@react-aria/toggle" "^3.11.3"
+    "@react-aria/utils" "^3.29.0"
+    "@react-stately/checkbox" "^3.6.14"
+    "@react-stately/form" "^3.1.4"
+    "@react-stately/toggle" "^3.8.4"
+    "@react-types/checkbox" "^3.9.4"
+    "@react-types/shared" "^3.29.1"
+    "@swc/helpers" "^0.5.0"
+
+"@react-aria/form@^3.0.16":
+  version "3.0.16"
+  resolved "https://registry.yarnpkg.com/@react-aria/form/-/form-3.0.16.tgz#43fc38cbdb7d16c4b5ae828b986fcdff3a5adcde"
+  integrity sha512-N1bDsJfmnyDesayK0Ii6UPH6JWiF6Wz8WSveQ2y5004XHoIWn5LpWmOqnRedvyw4Yedw33schlvrY7ENEwMdpg==
+  dependencies:
+    "@react-aria/interactions" "^3.25.1"
+    "@react-aria/utils" "^3.29.0"
+    "@react-stately/form" "^3.1.4"
+    "@react-types/shared" "^3.29.1"
+    "@swc/helpers" "^0.5.0"
+
 "@react-aria/interactions@^3.25.1":
   version "3.25.1"
   resolved "https://registry.yarnpkg.com/@react-aria/interactions/-/interactions-3.25.1.tgz#097210e8f4ee474be30b53a7606a6a9b70508dcd"
@@ -1361,6 +1389,18 @@
   resolved "https://registry.yarnpkg.com/@react-aria/ssr/-/ssr-3.9.8.tgz#9c06f1860abac629517898c1b5424be5d03bc112"
   integrity sha512-lQDE/c9uTfBSDOjaZUJS8xP2jCKVk4zjQeIlCH90xaLhHDgbpCdns3xvFpJJujfj3nI4Ll9K7A+ONUBDCASOuw==
   dependencies:
+    "@swc/helpers" "^0.5.0"
+
+"@react-aria/toggle@^3.11.3":
+  version "3.11.3"
+  resolved "https://registry.yarnpkg.com/@react-aria/toggle/-/toggle-3.11.3.tgz#62c30110317da968c2baea8e4a7d0c86278c2d2f"
+  integrity sha512-S6ShToNR6TukRJh8qDdyl9b2Bcsx43eurUB5USANn4ycPov8+bIxQnxiknjssZx7jD8vX4jruuNh7BjFbNsGFw==
+  dependencies:
+    "@react-aria/interactions" "^3.25.1"
+    "@react-aria/utils" "^3.29.0"
+    "@react-stately/toggle" "^3.8.4"
+    "@react-types/checkbox" "^3.9.4"
+    "@react-types/shared" "^3.29.1"
     "@swc/helpers" "^0.5.0"
 
 "@react-aria/utils@^3.29.0":
@@ -4021,6 +4061,11 @@ expo-font@~12.0.10, expo-font@~12.0.7:
   integrity sha512-Q1i2NuYri3jy32zdnBaHHCya1wH1yMAsI+3CCmj9zlQzlhsS9Bdwcj2W3c5eU5FvH2hsNQy4O+O1NnM6o/pDaQ==
   dependencies:
     fontfaceobserver "^2.1.0"
+
+expo-image@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/expo-image/-/expo-image-2.1.7.tgz#c64cf29363c87762c9f4b16a016a59ac15998bc2"
+  integrity sha512-p2Gr8fP/YakFHHo4rbpJbRWwKNrZp1GzSD91WEG3ZYAbTVdTjheJ6gUxXgggFaxEbaY+4WeQ0c5j9tZq8+3cEg==
 
 expo-keep-awake@~13.0.2:
   version "13.0.2"
