@@ -118,7 +118,7 @@ export const ComponentPreviewer = ({
             {Object.keys(props).map((key) => (
               <Box
                 key={key}
-                className="flex-row md:mt-4 md:flex-col flex-wrap justify-between md:items-start items-center"
+                className="flex-row mt-2 md:mt-4 md:flex-col flex-wrap justify-between md:items-start items-center"
               >
                 <Text className="mb-2 font-medium text-typography-400">
                   {key}
