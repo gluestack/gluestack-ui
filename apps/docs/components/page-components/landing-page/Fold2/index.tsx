@@ -11,20 +11,11 @@ import {
   Image,
 } from '@/components/ui';
 import React, { useContext } from 'react';
-import NavIcon from '@/public/svg/NavIcon.svg';
-import ActiveNavIcon from '@/public/svg/ActiveNavIcon.svg';
-import NavIconDark from '@/public/svg/NavIcon_dark.svg';
-import EditIcon from '@/public/svg/EditIcon.svg';
-import EditIconDark from '@/public/svg/EditIcon_dark.svg';
-import ActiveEditIcon from '@/public/svg/ActiveEditIcon.svg';
-import BellIcon from '@/public/svg/BellIcon.svg';
-import BellIconDark from '@/public/svg/BellIcon_dark.svg';
-import ActiveBellIcon from '@/public/svg/ActiveBellIcon.svg';
 import FormsContent from './Forms';
 import NavigationContent from './Navigation';
 import CardsContent from './Cards';
 import { ThemeContext } from '@/utils/context/theme-context';
-// import { useMode } from '@/components/ui/gluestack-ui-provider/providerContext';
+
 type IActiveTab = 'Forms' | 'Navigation' | 'Cards';
 
 const tabsNameArray: IActiveTab[] = ['Forms', 'Navigation', 'Cards'];
@@ -37,21 +28,21 @@ const tabs: Array<{
   {
     name: 'Forms',
     description: 'Button, Checkbox, FormControl, Input, Radio, +10 components.',
-    DarkModeIcon: EditIconDark,
-    LightModeIcon: EditIcon,
+    DarkModeIcon: require('@/public/svg/EditIcon_dark.svg'),
+    LightModeIcon: require('@/public/svg/EditIcon.svg'),
   },
   {
     name: 'Navigation',
     description:
       'Tabs, Pagination, Bottom Navigation, Fab, Header +5 components.',
-    DarkModeIcon: NavIconDark,
-    LightModeIcon: NavIcon,
+    DarkModeIcon: require('@/public/svg/NavIcon_dark.svg'),
+    LightModeIcon: require('@/public/svg/NavIcon.svg'),
   },
   {
     name: 'Cards',
     description: 'Banners, Cards, Toasts, Banners +8 components.',
-    DarkModeIcon: BellIconDark,
-    LightModeIcon: BellIcon,
+    DarkModeIcon: require('@/public/svg/BellIcon_dark.svg'),
+    LightModeIcon: require('@/public/svg/BellIcon.svg'),
   },
 ];
 
@@ -63,7 +54,7 @@ const Fold2 = () => {
   };
 
   return (
-    <VStack className="gap-20 flex-1 mt-[120px]">
+    <VStack className="gap-20 mt-[120px]">
       <VStack className="gap-3">
         <Heading className="text-3xl font-bold sm:leading-[54px] leading-9 mb-3 text-typography-900 sm:text-4xl">
           Copy-paste components, patterns & screens
@@ -87,7 +78,7 @@ const Fold2 = () => {
           {tabs.map((tab, index) => (
             <HoriZontalTabNavigation
               key={tab.name}
-              colorMode={colorMode}
+              colorMode={colorMode as 'light' | 'dark'}
               isActive={activeTab === tab.name}
               handleFormsClick={() => handleClick(tab.name)}
               showDividers={tabs.length - 1 !== index}
@@ -167,7 +158,8 @@ const HoriZontalTabNavigation = ({
         <Image
           alt={`icon for ${tabName} tab`}
           className="w-6 h-6 self-center"
-          src={colorMode === 'light' ? LightModeIcon : DarkModeIcon}
+          source={colorMode === 'light' ? LightModeIcon : DarkModeIcon}
+          resizeMode="contain"
         />
         <VStack>
           <Text

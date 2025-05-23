@@ -40,9 +40,9 @@ const spaceMono = Space_Mono({
 });
 
 function ThemeWrapper({ children }: { children: React.ReactNode }) {
-  const { colorMode, themeMode } = useContext(ThemeContext);
+  const { colorMode } = useContext(ThemeContext);
   return (
-    <GluestackUIProvider mode={colorMode} theme={themeMode}>
+    <GluestackUIProvider mode={colorMode}>
       {children}
     </GluestackUIProvider>
   );

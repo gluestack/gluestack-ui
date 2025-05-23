@@ -12,7 +12,6 @@ import {
   Fab,
   FabIcon,
 } from "@/components/ui";
-// import React, { useEffect, useMemo } from 'react';
 import MeetCreators from "./MeetCreators";
 import { Newsletter } from "./Newsletter";
 import Footer from "./Footer";
@@ -24,7 +23,6 @@ import Fold1 from "./Fold1";
 import Fold2 from "./Fold2";
 import BadgeComponent from "./BadgeComponent";
 import { developersData } from "./Newsletter/data";
-// import { useBreakpointValue } from '@/hooks/useBreakPointValue';
 import AwardBadge from "./AwardBadge";
 import MadeWithGluestack from "./MadeWithGluestack";
 import NextLink from "next/link";
@@ -32,7 +30,7 @@ import { SocialMediaGridTestimonial } from "./Testimonials";
 import { Moon, Sun } from "lucide-react-native";
 import WebsiteLayout from "./WebsiteLayout";
 import useErrorShortcut from "./SentryTestComponent";
-// import AnimatedStars from '@/page-components/landing-page/AnimatedGithubCount';
+import AnimatedStars from "@/components/page-components/landing-page/AnimatedGithubCount";
 import Kitchensink from "./Kitchensink";
 import Tutorials from "./Tutorials";
 import VadimStream from "./VadimStream";
@@ -128,7 +126,7 @@ const App = ({ referrer }: { referrer: string }) => {
                       <Text className="text-md text-typography-900">Stars</Text>
                     </HStack>
                     <Divider orientation="vertical" className="mx-3 h-6" />
-                    {/* <AnimatedStars /> */}
+                    <AnimatedStars />
                   </HStack>
                 </NextLink>
               </VStack>
@@ -138,26 +136,28 @@ const App = ({ referrer }: { referrer: string }) => {
             <Fold2 />
             <Example />
             <Fold3 />
-            {/* <PowerOfTailwind /> */}
+            <PowerOfTailwind />
             <Kitchensink />
             <VadimStream />
             <SocialMediaGridTestimonial />
             <Inspiration />
-            {/* <Newsletter newsletterAvatarData={developersData} /> */}
+            <Newsletter newsletterAvatarData={developersData} />
             <MeetCreators geekyantsLink="https://geekyants.com/hire-react-native-developers?utm_source=gluestack.io&utm_medium=referral&utm_campaign=partner_site" />
           </VStack>
         </Box>
 
         <Footer />
         <BadgeComponent />
-        {/* <MadeWithGluestack /> */}
+        <MadeWithGluestack />
         <Box className="fixed bottom-0 right-0 min-[992px]:hidden ">
           <Fab
-            onPress={() => setColorMode(colorMode === 'light' ? 'dark' : 'light')}
+            onPress={() =>
+              setColorMode(colorMode === "light" ? "dark" : "light")
+            }
             className="absolute z-10 bottom-8 right-4"
           >
             <FabIcon
-              as={colorMode === 'light' ? Moon : Sun}
+              as={colorMode === "light" ? Moon : Sun}
               className="stroke-typography-200"
             />
           </Fab>

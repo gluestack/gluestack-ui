@@ -30,10 +30,12 @@ import NextLink from "next/link";
 import Sidebar from "./sidebar-header";
 import { Nav } from "@expo/html-elements";
 import { ThemeContext } from "@/utils/context/theme-context";
+import { usePathname } from "next/navigation";
 
 const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
   const { colorMode, setColorMode }: any = useContext(ThemeContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const pathname = usePathname();
 
   const handleMouseEnter = () => {
     setDropdownOpen(true);
@@ -89,7 +91,11 @@ const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
   return (
     <Box className="w-full bg-white dark:bg-background-0/60 bg-opacity-60 sticky top-0 z-10 border-outline-100 border-b ">
       <Nav className="py-3 items-center backdrop-blur">
-        <Box className="flex-row items-center justify-between w-[85%] max-w-[1440px] lg:mx-[180px] mx-5">
+        <Box
+          className={`flex-row items-center justify-between w-[85%] lg:mx-[180px] mx-5 ${
+            pathname?.includes("/ui/docs/") ? "w-[100%] px-5" : "max-w-[1440px]"
+          }`}
+        >
           <HStack className="items-center md:gap-3 gap-4">
             <HStack className="gap-1.5 items-center">
               <Link href="/" className="no-underline z-1 inherit">

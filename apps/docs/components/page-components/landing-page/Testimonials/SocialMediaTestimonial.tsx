@@ -10,6 +10,8 @@ import {
   Box,
   Link,
 } from '@/components/ui';
+import { ThemeContext } from '@/utils/context/theme-context';
+import { useContext } from 'react';
 
 type Props = {
   profileURI: string;
@@ -38,7 +40,7 @@ export const SocialMediaTestimonial = ({
   link,
   image,
 }: Props) => {
-
+  const { colorMode } = useContext(ThemeContext);
 
   return (
     <Link
@@ -67,12 +69,10 @@ export const SocialMediaTestimonial = ({
                 </Text>
                 {isVerified && (
                   <Image
-                    src="/icon/social/twitter-verified.svg"
+                    source={require('@/public/icon/social/twitter-verified.svg')}
                     alt="verified-tag"
                     size="md"
                     className="w-5 h-5"
-                    width={4}
-                    height={4}
                   />
                 )}
               </HStack>
@@ -82,29 +82,27 @@ export const SocialMediaTestimonial = ({
             </VStack>
           </HStack>
           <Box className="h-[22px] w-[22px]">
-            {/* {colorMode === 'dark' ? (
-              <Image src={logoDark} width={22} height={22} alt="twitter-icon" />
-            ) : ( */}
+            {colorMode === 'dark' ? (
+              <Image source={logoDark} alt="twitter-icon" className="w-5 h-5" />
+            ) : (
               <Image
-                src={logoLight}
-                width={22}
-                height={22}
+                source={logoLight}
+              className="w-5 h-5"
                 alt="twitter-icon"
               />
-            {/* )} */}
+            )}
           </Box>
         </HStack>
         <Text className="text-sm leading-[21px] py-7 font-roboto">
           {testimonialContent}
         </Text>
         {image && (
-          <Box className="my-1 hidden md:block">
+          <Box className="my-1">
             <Image
-              src={image}
+              source={image}
               alt="testimonial-image"
               className="w-full xl:h-48 lg:h-44 h-36 rounded-lg aspect-[256/133] object-contain xl:object-fill"
-              width={256}
-              height={133}
+              resizeMode="contain"
             />
           </Box>
         )}

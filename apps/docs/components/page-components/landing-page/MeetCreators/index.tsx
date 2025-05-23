@@ -13,9 +13,6 @@ import {
   Image,
   Heading,
 } from '@/components/ui';
-// import { useMode } from '@/components/ui/gluestack-ui-provider/providerContext';
-
-import GeekyAntsLogo from '@/public/svg/GeekyAnts_icon.svg';
 import { useContext } from 'react';
 
 function MeetCreators({ geekyantsLink }: { geekyantsLink: string }) {
@@ -28,7 +25,11 @@ function MeetCreators({ geekyantsLink }: { geekyantsLink: string }) {
             Created By
           </Heading>
           <HStack className="gap-1 items-center">
-            <Image src={GeekyAntsLogo} className="h-[54px] w-[54px]" />
+            <Image
+              source={require('@/public/svg/GeekyAnts_icon.svg')}
+              className="h-[54px] w-[54px]"
+              alt="GeekyAnts Logo"
+            />
             <Text className="text-3xl min-[425px]:text-2xl font-bold sm:leading-[54px] leading-9 text-typography-900 sm:text-4xl">
               GeɘkyAnts
             </Text>

@@ -1,35 +1,22 @@
-import React, { useMemo } from 'react';
-import { CodePreviewWithTabs } from '@/components/custom/CodePreviewWithTabs';
+import CodeBlock from "@/components/code-block";
 import {
+  Box,
   Button,
   ButtonText,
+  Center,
   Heading,
   Link,
   LinkText,
   Text,
   VStack,
-} from '@/components/ui';
-import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { createButton } from '@gluestack-ui/button';
-import { Svg } from 'react-native-svg';
-import {
-  withStyleContext,
-  useStyleContext,
-} from '@gluestack-ui/nativewind-utils/withStyleContext';
-import { withStyleContextAndStates } from '@gluestack-ui/nativewind-utils/withStyleContextAndStates';
-import { cssInterop } from 'nativewind';
-import {
-  ActivityIndicator,
+  HStack,
   Pressable,
-  Text as RNText,
-  View,
-  Platform,
-} from 'react-native';
-import { transformedCodeWithoutWrapper } from '@/docs-components/nativewind/utils';
+} from "@/components/ui";
+import { useState } from "react";
 
 const buttonCode = [
   {
-    fileName: 'Example.tsx',
+    fileName: "Example.tsx",
     code: `
     import { Button, ButtonText } from '@/components/ui/button';
     
@@ -43,7 +30,7 @@ const buttonCode = [
     `,
   },
   {
-    fileName: 'Button.tsx',
+    fileName: "Button.tsx",
     code: `// Built with gluestack-ui and NativeWind. Copy-paste the code into your project.
   import React, { useMemo } from 'react';
   import { createButton } from '@gluestack-ui/button';
@@ -152,7 +139,7 @@ const buttonCode = [
   `,
   },
   {
-    fileName: 'styles.ts',
+    fileName: "styles.ts",
     code: `// Built with gluestack-ui and NativeWind. Copy-paste the code into your project.
   import { tva } from '@gluestack-ui/nativewind-utils/tva';
   const buttonStyle = tva({
@@ -192,25 +179,28 @@ const buttonCode = [
 ];
 
 const PowerOfTailwind = () => {
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
-    <VStack className="mt-[120px] gap-20">
-      <VStack className="gap-3">
+    <VStack className="mt-[120px] gap-10 md:gap-20 w-full">
+      <VStack className="gap-3 w-full">
         <Heading
           size="2xl"
-          className="text-3xl font-bold sm:leading-[54px] leading-9 text-typography-900 sm:text-4xl"
+          className="text-3xl font-bold sm:leading-[54px] leading-9 text-typography-900 sm:text-4xl w-full"
         >
           The Power of Tailwind CSS with NativeWind
         </Heading>
-        <Text className="text-typography-700 text-lg font-normal leading-[30px] w-[75%]">
-          Unleash your creativity and maximize the styling possibilities with{' '}
+        <Text className="text-typography-700 text-lg font-normal leading-[30px] w-full md:w-[75%]">
+          Unleash your creativity and maximize the styling possibilities with{" "}
           <a
             href="https://gluestack.io/ui/docs/home/getting-started/installation"
             className="underline underline-offset-4 group-hover/link:underline"
           >
             Tailwind UI components
-          </a>
-          {' '}and utility classes. Combine Tailwind utility classes with the powerful styling engine of
-          NativeWind, ideal for universal applications.
+          </a>{" "}
+          and utility classes. Combine Tailwind utility classes with the
+          powerful styling engine of NativeWind, ideal for universal
+          applications.
         </Text>
         <Link
           href="https://gluestack.io/ui/docs/home/getting-started/installation"
@@ -221,30 +211,44 @@ const PowerOfTailwind = () => {
           </LinkText>
         </Link>
       </VStack>
-      <CodePreviewWithTabs
-        files={buttonCode}
-        transformCode={(code: any) => {
-          return transformedCodeWithoutWrapper(code, 'function', 'Example');
-        }}
-        scope={{
-          tva,
-          React,
-          useMemo,
-          createButton,
-          Svg,
-          withStyleContext,
-          useStyleContext,
-          withStyleContextAndStates,
-          cssInterop,
-          ActivityIndicator,
-          Pressable,
-          Text: RNText,
-          View,
-          Platform,
-          Button,
-          ButtonText,
-        }}
-      />
+      <Box className="flex flex-col md:flex-row w-full gap-5">
+        <Box className="w-full md:w-1/2">
+          <Center className="w-full border border-outline-50 mb-5 p-4 h-[446px]">
+            <Button className="bg-primary-500 hover:bg-primary-600 h-10 px-5 w-fit">
+              <ButtonText className="text-typography-50">Button</ButtonText>
+            </Button>
+          </Center>
+        </Box>
+        <Box className="w-full md:w-1/2">
+          <Box className="border border-outline-50 border-collapse flex-row min-h-[46px] w-full">
+            {buttonCode.map((code, index) => (
+              <Pressable
+                key={index}
+                onPress={() => setActiveTab(index)}
+                className={`px-4 py-2 ${
+                  activeTab === index
+                    ? "border-b-2 border-primary-500 bg-background-50"
+                    : "text-typography-500"
+                }`}
+              >
+                <Text
+                  className={`${
+                    activeTab === index
+                      ? "text-primary-500 font-medium"
+                      : "text-typography-500"
+                  }`}
+                >
+                  {code.fileName}
+                </Text>
+              </Pressable>
+            ))}
+          </Box>
+          <CodeBlock
+            code={buttonCode[activeTab].code}
+            className="h-[446px] border border-outline-50 rounded-none w-full overflow-auto"
+          />
+        </Box>
+      </Box>
     </VStack>
   );
 };

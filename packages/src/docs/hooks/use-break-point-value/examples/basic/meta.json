@@ -1,0 +1,8 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "Box": "@/components/ui/box",
+    "VStack": "@/components/ui/vstack",
+    "Text": "@/components/ui/text"
+  }
+}

@@ -301,6 +301,10 @@
                 "path": "/ui/docs/components/accordion"
               },
               {
+                "title": "Accordion-Copy",
+                "path": "/ui/docs/components/accordion-copy"
+              },
+              {
                 "title": "BottomSheet",
                 "path": "/ui/docs/components/bottomsheet",
                 "tags": ["alpha"]

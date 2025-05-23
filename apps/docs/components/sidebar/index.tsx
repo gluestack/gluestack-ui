@@ -90,7 +90,7 @@ export default function Sidebar() {
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const pathname = usePathname();
   const navigation = (sidebarData as Navigation).navigation;
-
+  const [isHovered, setIsHovered] = useState(false);
   // Get only the parent sections with type "Dropdown"
   const parentDropdowns = navigation.sections.filter(
     (section) => section.type === "Dropdown"
@@ -134,7 +134,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="ml-4 w-64 h-full border-r border-outline-100 flex flex-col">
+    <div className="ml-4 w-64 z-10 border-r border-outline-100 flex flex-col left-0 bg-background-0 h-[94vh] max-lg:hidden">
       {/* Fixed parent dropdowns at top */}
       <div className="flex-none py-4 border-b border-outline-100">
         {parentDropdowns.map((section: Section, index: number) => (
@@ -146,7 +146,15 @@ export default function Sidebar() {
             onClick={() => handleSectionClick(section.title)}
           >
             <div className="flex items-center gap-2 px-4 py-2">
-              {section.icons && <Icon as={section.icons.name} />}
+              {section.icons && (
+                <Icon
+                  as={
+                    require("lucide-react-native")[
+                      section.icons.name ?? "CircleHelp"
+                    ]
+                  }
+                />
+              )}
               <Text className="text-typography-950 font-medium">
                 {section.title}
               </Text>
@@ -156,7 +164,11 @@ export default function Sidebar() {
       </div>
 
       {/* Scrollable content section with all pages */}
-      <div className="flex-1 overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-background-300 [&::-webkit-scrollbar-thumb]:rounded-full">
+      <div
+        className={`flex-1 overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent  [&::-webkit-scrollbar-thumb]:rounded-full ${isHovered ? "[&::-webkit-scrollbar-thumb]:bg-background-300" : "[&::-webkit-scrollbar-thumb]:bg-transparent"}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div className="py-4">
           {navigation.sections.map((section: Section, index: number) => (
             <div

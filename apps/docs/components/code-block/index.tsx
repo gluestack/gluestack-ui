@@ -52,7 +52,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   const [copied, setCopied] = useState(false);
   const codeRef = useRef<HTMLElement>(null);
   const { colorMode } = useContext(ThemeContext);
-  const currentTheme = themes[colorMode];
+  const currentTheme = themes[colorMode as keyof typeof themes];
 
   useEffect(() => {
     Prism.highlightAll();

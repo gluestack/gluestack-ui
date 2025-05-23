@@ -39,22 +39,32 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ThemeContext } from "@/utils/context/theme-context";
-import { UsersIcon, EyeIcon, MenuIcon, EyeOffIcon } from "lucide-react-native";
+import {
+  LocalThemeProvider,
+  useLocalTheme,
+} from "@/utils/context/local-theme-context";
+import {
+  UsersIcon,
+  EyeIcon,
+  MenuIcon,
+  EyeOffIcon,
+  DownloadCloudIcon,
+  EllipsisIcon,
+} from "lucide-react-native";
 import NextImage from "next/image";
 import React, { useContext, useState } from "react";
 // import { ThemeProvider } from "@/utils/context/theme-context/theme-provider";
 
-const Fold1 = () => {
+const Fold1Content = () => {
   const ButtonMap = [
-    { mode: "example", bg: "bg-typography-950" },
+    { mode: "default", bg: "bg-typography-950" },
     { mode: "orange", bg: "bg-[#F97316]" },
     { mode: "blue", bg: "bg-[#0EA5E9]" },
     { mode: "green", bg: "bg-[#10B981]" },
     { mode: "violet", bg: "bg-[#8B5CF6]" },
   ];
 
-  const [themeMode, setThemeMode] = React.useState<any>("example");
+  const { themeMode, setThemeMode } = useLocalTheme();
   type CheckboxKey = "checkbox1" | "checkbox2" | "checkbox3";
 
   const [checkboxes, setCheckboxes] = useState<Record<CheckboxKey, boolean>>({
@@ -88,7 +98,6 @@ const Fold1 = () => {
     setAllChecked(allAreChecked);
   };
 
-  const { colorMode } = useContext(ThemeContext);
   const [showPassword, setShowPassword] = React.useState(false);
   const handleState = () => {
     setShowPassword((showState) => !showState);
@@ -103,7 +112,7 @@ const Fold1 = () => {
               key={mode + index}
               isHovered={mode === themeMode}
               onPress={() => {
-                setThemeMode(mode);
+                setThemeMode(mode as any);
               }}
               variant="outline"
               className="rounded-lg p-0 h-auto py-[9px] px-[10px] border-0"
@@ -121,7 +130,7 @@ const Fold1 = () => {
             {/* 1st */}
             <Box className="gap-6 w-full xl:flex hidden xl:w-[45%]">
               <VStack className="rounded-lg border-outline-100 border p-5 gap-6 h-full justify-between">
-                <Box className="w-full min-h-[230px]">
+                <Box className="w-full h-[230px]">
                   <NextImage
                     alt="PositiveThinking image"
                     layout="fill"
@@ -169,12 +178,12 @@ const Fold1 = () => {
                 </HStack>
               </VStack>
 
-              <HStack className="gap-4 rounded-lg border-outline-100 px-5 py-6 border">
+              <HStack className="gap-4 rounded-lg border-outline-100 px-5 py-6 border h-[230px]">
                 <Box className="p-2 h-8 border rounded-lg border-outline-100">
-                  {/* <Icon
-                      as={DownloadCloudIcon}
-                      className="w-4 h-4 text-typography-500"
-                    /> */}
+                  <Icon
+                    as={DownloadCloudIcon}
+                    className="w-4 h-4 text-typography-500"
+                  />
                 </Box>
                 <VStack>
                   <Heading className="text-base font-semibold text-typography-900 leading-6 tracking-[0.2px]">
@@ -224,7 +233,10 @@ const Fold1 = () => {
                           aria-label="Select all"
                         >
                           <CheckboxIndicator>
-                            <CheckboxIcon as={CheckIcon} />
+                            <CheckboxIcon
+                              as={CheckIcon}
+                              className="text-typography-white"
+                            />
                           </CheckboxIndicator>
                         </Checkbox>
                       </TableHead>
@@ -274,7 +286,10 @@ const Fold1 = () => {
                             aria-label="table datas"
                           >
                             <CheckboxIndicator>
-                              <CheckboxIcon as={CheckIcon} />
+                              <CheckboxIcon
+                                as={CheckIcon}
+                                className="text-typography-white"
+                              />
                             </CheckboxIndicator>
                           </Checkbox>
                         </TableData>
@@ -401,10 +416,10 @@ const Fold1 = () => {
                     className="w-9 h-8 border-0 p-0"
                     variant="outline"
                   >
-                    {/* <ButtonIcon
-                        className="h-4 w-4 fill-typography-900"
-                        as={EllipsisIcon}
-                      /> */}
+                    <ButtonIcon
+                      className="h-4 w-4 fill-typography-900"
+                      as={EllipsisIcon}
+                    />
                   </Button>
                 </HStack>
                 <Button
@@ -459,7 +474,7 @@ const Fold1 = () => {
               </Text>
               <HStack className="gap-1.5">
                 <Text className="font-normal text-sm text-typography-700">
-                  Don’t have an account?
+                  Don't have an account?
                 </Text>
                 <Text className="font-medium text-sm text-typography-700">
                   Sign up
@@ -516,9 +531,9 @@ const Fold1 = () => {
                   value="Remember me"
                   aria-label="Remember me"
                 >
-                  <CheckboxIndicator className="">
+                  <CheckboxIndicator>
                     <CheckboxIcon>
-                      <CheckIcon />
+                      <CheckIcon className="text-typography-black" />
                     </CheckboxIcon>
                   </CheckboxIndicator>
                   <CheckboxLabel className="sm:text-sm text-xs font-normal leading-[21px] text-typography-900">
@@ -562,19 +577,19 @@ const Fold1 = () => {
                 >
                   <path
                     d="M15.6875 6.53112H15.0833V6.5H8.33334V9.5H12.572C11.9536 11.2464 10.292 12.5 8.33334 12.5C5.84822 12.5 3.83334 10.4851 3.83334 8C3.83334 5.51487 5.84822 3.5 8.33334 3.5C9.48047 3.5 10.5241 3.93275 11.3187 4.63962L13.4401 2.51825C12.1006 1.26987 10.3088 0.5 8.33334 0.5C4.19147 0.5 0.833344 3.85812 0.833344 8C0.833344 12.1419 4.19147 15.5 8.33334 15.5C12.4752 15.5 15.8333 12.1419 15.8333 8C15.8333 7.49712 15.7816 7.00625 15.6875 6.53112Z"
-                    fill={colorMode === "light" ? "black" : "white"}
+                    fill="currentColor"
                   />
                   <path
                     d="M1.69809 4.50912L4.16221 6.31625C4.82896 4.6655 6.44372 3.5 8.33334 3.5C9.48047 3.5 10.5241 3.93275 11.3187 4.63962L13.4401 2.51825C12.1006 1.26987 10.3088 0.5 8.33334 0.5C5.45259 0.5 2.95434 2.12637 1.69809 4.50912Z"
-                    fill={colorMode === "light" ? "black" : "white"}
+                    fill="currentColor"
                   />
                   <path
                     d="M8.33346 15.4993C10.2707 15.4993 12.031 14.7579 13.3618 13.5523L11.0406 11.588C10.2876 12.1584 9.35159 12.4993 8.33346 12.4993C6.38271 12.4993 4.72634 11.2554 4.10234 9.51953L1.65659 11.4039C2.89784 13.8328 5.41859 15.4993 8.33346 15.4993Z"
-                    fill={colorMode === "light" ? "black" : "white"}
+                    fill="currentColor"
                   />
                   <path
                     d="M15.6875 6.53113H15.0833V6.5H8.33334V9.5H12.572C12.275 10.3389 11.7353 11.0622 11.0393 11.5891L11.0405 11.5884L13.3617 13.5526C13.1975 13.7019 15.8333 11.75 15.8333 8C15.8333 7.49713 15.7816 7.00625 15.6875 6.53113Z"
-                    fill={colorMode === "light" ? "black" : "white"}
+                    fill="currentColor"
                   />
                 </svg>
               </Button>
@@ -593,7 +608,7 @@ const Fold1 = () => {
                 >
                   <path
                     d="M5.66064 16.3131C12.4531 16.3131 16.1683 10.6856 16.1683 5.80539C16.1683 5.64555 16.1683 5.48643 16.1575 5.32803C16.8803 4.80525 17.5042 4.15794 18 3.41643C17.326 3.71523 16.611 3.9111 15.8789 3.99747C16.6499 3.53599 17.2269 2.81006 17.5025 1.95483C16.7776 2.38504 15.9845 2.6882 15.1574 2.85123C14.6006 2.25916 13.8642 1.86711 13.0621 1.73574C12.2601 1.60438 11.4371 1.74102 10.7205 2.12452C10.0039 2.50802 9.43367 3.11701 9.09806 3.85724C8.76245 4.59747 8.68016 5.42768 8.86392 6.21939C7.39567 6.14574 5.95932 5.76416 4.64809 5.09943C3.33686 4.4347 2.18007 3.50168 1.2528 2.36091C0.780546 3.17391 0.635904 4.13633 0.848325 5.05223C1.06075 5.96812 1.61426 6.76863 2.39616 7.29075C1.80842 7.27353 1.23349 7.11498 0.72 6.82851V6.87531C0.720233 7.72795 1.01539 8.55426 1.5554 9.21409C2.09542 9.87391 2.84705 10.3266 3.6828 10.4955C3.13911 10.6438 2.56866 10.6654 2.01528 10.5588C2.25136 11.2926 2.71082 11.9342 3.32943 12.394C3.94804 12.8539 4.69487 13.1089 5.46552 13.1235C4.69983 13.7253 3.82299 14.1703 2.88516 14.433C1.94733 14.6956 0.966911 14.7708 0 14.6542C1.68887 15.738 3.65394 16.3128 5.66064 16.3102"
-                    fill={colorMode === "light" ? "black" : "white"}
+                    fill="currentColor"
                   />
                 </svg>
               </Button>
@@ -615,35 +630,35 @@ const Fold1 = () => {
                       fillRule="evenodd"
                       clipRule="evenodd"
                       d="M9.66686 0.375C7.53028 0.376109 5.46375 1.13284 3.83681 2.50989C2.20986 3.88694 1.12858 5.79451 0.786315 7.8915C0.444046 9.98849 0.863102 12.1382 1.96856 13.9561C3.07402 15.7741 4.79379 17.1418 6.82035 17.8147C7.26745 17.8977 7.43585 17.6206 7.43585 17.385C7.43585 17.1494 7.42691 16.4663 7.42393 15.7194C4.9202 16.2603 4.39115 14.6629 4.39115 14.6629C3.9828 13.6256 3.39263 13.3529 3.39263 13.3529C2.57594 12.7987 3.45374 12.8091 3.45374 12.8091C4.35836 12.8728 4.83377 13.7323 4.83377 13.7323C5.63556 15.1 6.93958 14.7044 7.45224 14.4732C7.53272 13.8938 7.7667 13.4996 8.02453 13.2759C6.02453 13.0506 3.92319 12.283 3.92319 8.85407C3.91079 7.96478 4.24267 7.10479 4.85016 6.45201C4.75776 6.22677 4.44927 5.31692 4.93809 4.08107C4.93809 4.08107 5.69368 3.84102 7.4135 4.99833C8.88866 4.59722 10.4451 4.59722 11.9202 4.99833C13.6385 3.84102 14.3926 4.08107 14.3926 4.08107C14.8829 5.31396 14.5745 6.22381 14.4821 6.45201C15.0915 7.10489 15.424 7.96639 15.4105 8.85703C15.4105 12.2934 13.3047 13.0506 11.3017 13.2714C11.6236 13.55 11.9113 14.0938 11.9113 14.9296C11.9113 16.1269 11.9008 17.0901 11.9008 17.385C11.9008 17.6236 12.0633 17.9022 12.5193 17.8147C14.5461 17.1417 16.2661 15.7738 17.3715 13.9555C18.4769 12.1372 18.8958 9.98722 18.5531 7.89004C18.2105 5.79285 17.1286 3.88527 15.5012 2.50845C13.8737 1.13164 11.8067 0.375406 9.66983 0.375H9.66686Z"
-                      fill={colorMode === "light" ? "black" : "white"}
+                      fill="currentColor"
                     />
                     <path
                       d="M4.07504 13.224C4.05567 13.2684 3.98414 13.2818 3.92601 13.2506C3.86789 13.2195 3.82468 13.1617 3.84554 13.1158C3.8664 13.0699 3.93645 13.058 3.99457 13.0891C4.05269 13.1202 4.0974 13.1795 4.07504 13.224Z"
-                      fill={colorMode === "light" ? "black" : "white"}
+                      fill="currentColor"
                     />
                     <path
                       d="M4.44017 13.6286C4.40931 13.6441 4.374 13.6484 4.34028 13.6408C4.30657 13.6332 4.27656 13.6143 4.25537 13.5871C4.19725 13.5249 4.18532 13.4389 4.23003 13.4004C4.27474 13.3619 4.35522 13.3797 4.41335 13.4419C4.47147 13.5041 4.48488 13.5901 4.44017 13.6286Z"
-                      fill={colorMode === "light" ? "black" : "white"}
+                      fill="currentColor"
                     />
                     <path
                       d="M4.7949 14.1427C4.73976 14.1812 4.64586 14.1427 4.5937 14.0657C4.57928 14.0518 4.56781 14.0353 4.55998 14.0169C4.55214 13.9986 4.5481 13.9789 4.5481 13.959C4.5481 13.939 4.55214 13.9193 4.55998 13.901C4.56781 13.8827 4.57928 13.8661 4.5937 13.8523C4.64885 13.8152 4.74274 13.8523 4.7949 13.9278C4.84706 14.0034 4.84855 14.1042 4.7949 14.1427Z"
-                      fill={colorMode === "light" ? "black" : "white"}
+                      fill="currentColor"
                     />
                     <path
                       d="M5.27621 14.6407C5.22703 14.6955 5.12718 14.6807 5.04522 14.6066C4.96325 14.5325 4.94387 14.4317 4.99305 14.3784C5.04223 14.3251 5.14208 14.3399 5.22703 14.4125C5.31198 14.4851 5.32837 14.5873 5.27621 14.6407Z"
-                      fill={colorMode === "light" ? "black" : "white"}
+                      fill="currentColor"
                     />
                     <path
                       d="M5.95132 14.931C5.92896 15.0007 5.82762 15.0318 5.72628 15.0022C5.62494 14.9725 5.55787 14.8896 5.57725 14.8184C5.59662 14.7473 5.69945 14.7147 5.80229 14.7473C5.90512 14.7799 5.97069 14.8584 5.95132 14.931Z"
-                      fill={colorMode === "light" ? "black" : "white"}
+                      fill="currentColor"
                     />
                     <path
                       d="M6.68756 14.9815C6.68756 15.0541 6.60411 15.1164 6.49681 15.1178C6.3895 15.1193 6.30157 15.06 6.30157 14.9874C6.30157 14.9148 6.38503 14.8526 6.49233 14.8511C6.59963 14.8496 6.68756 14.9074 6.68756 14.9815Z"
-                      fill={colorMode === "light" ? "black" : "white"}
+                      fill="currentColor"
                     />
                     <path
                       d="M7.37311 14.8673C7.38652 14.9399 7.31201 15.0155 7.2047 15.0333C7.0974 15.0511 7.00351 15.0081 6.9901 14.937C6.97668 14.8658 7.05418 14.7888 7.1585 14.7695C7.26283 14.7503 7.3597 14.7947 7.37311 14.8673Z"
-                      fill={colorMode === "light" ? "black" : "white"}
+                      fill="currentColor"
                     />
                   </g>
                   <defs>
@@ -773,6 +788,14 @@ const Fold1 = () => {
       </HStack>
       {/* </ThemeProvider> */}
     </>
+  );
+};
+
+const Fold1 = () => {
+  return (
+    <LocalThemeProvider>
+      <Fold1Content />
+    </LocalThemeProvider>
   );
 };
 

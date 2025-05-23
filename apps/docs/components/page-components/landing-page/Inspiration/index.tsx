@@ -1,6 +1,5 @@
 'use client';
-import { Box, Heading, Text, VStack } from '@/components/ui';
-import Image from 'next/image';
+import { Box, Heading, Text, VStack, Image } from '@/components/ui';
 
 const Inspiration = () => {
   return (
@@ -15,7 +14,12 @@ const Inspiration = () => {
         </Text>
       </VStack>
       <Box className="relative max-w-4xl w-full h-full aspect-[844/311]">
-        <Image alt="tech logos" src="/assets/ins-img.png" fill sizes="100vw" />
+        <Image
+          alt="tech logos"
+          source={require('@/public/assets/ins-img.png')}
+          className="w-full h-full"
+          resizeMode="contain"
+        />
       </Box>
     </Box>
   );
