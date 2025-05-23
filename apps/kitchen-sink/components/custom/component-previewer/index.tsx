@@ -68,7 +68,10 @@ export const ComponentPreviewer = ({
 
     if (propConfig.control.type === "select" && propConfig.options) {
       return (
-        <Select onValueChange={(value: string) => handleChange(key, value)}>
+        <Select
+          className="w-full"
+          onValueChange={(value: string) => handleChange(key, value)}
+        >
           <SelectTrigger
             variant="underlined"
             className="w-full justify-between items-center border-outline-200"
@@ -103,24 +106,33 @@ export const ComponentPreviewer = ({
   };
 
   return (
-    <Box className="p-5 rounded-lg m-3 mt-5 border border-outline-100 gap-5 w-full self-center">
+    <Box className="p-5  rounded-lg m-3 mt-5 border border-outline-100 gap-5 w-full self-center">
       <Box className="border-b border-outline-100 pb-2">
         <Text className="text-typography-900 text-lg font-semibold pb-2">
           {title}
         </Text>
       </Box>
+      <Box className="md:flex-row">
+        {Object.keys(props).length > 0 && (
+          <Box className="flex-1">
+            {Object.keys(props).map((key) => (
+              <Box
+                key={key}
+                className="flex-row md:mt-4 md:flex-col flex-wrap justify-between md:items-start items-center"
+              >
+                <Text className="mb-2 font-medium text-typography-400">
+                  {key}
+                </Text>
+                {renderControl(key)}
+              </Box>
+            ))}
+          </Box>
+        )}
 
-      {Object.keys(props).map((key) => (
-        <Box
-          key={key}
-          className="flex-row flex-wrap justify-between items-center"
-        >
-          <Text className="mb-2 font-medium text-typography-400">{key}</Text>
-          {renderControl(key)}
-        </Box>
-      ))}
-
-      <Center className="min-h-[100px] py-5">{children(selectedValues)}</Center>
+        <Center className="min-h-[100px] flex-1 py-5">
+          {children(selectedValues)}
+        </Center>
+      </Box>
     </Box>
   );
 };

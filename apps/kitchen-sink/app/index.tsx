@@ -9,8 +9,44 @@ import { getAllComponents } from "@/utils/getComponents";
 import { HStack } from "@/components/ui/hstack";
 import { Image } from "@/components/ui/image";
 import { ColorModeContext } from "./_layout";
+import { ChevronRightIcon } from "@/components/ui/icon";
+import { Icon } from "@/components/ui/icon";
+import { Grid, GridItem } from "@/components/ui/grid";
 
 const components = getAllComponents();
+const ComponentCard = ({ component, onPress }: any) => {
+  const { colorMode }: any = useContext(ColorModeContext);
+  return (
+    <Pressable
+      className={`flex-1 rounded-xl bg-background-0 w-full h-full sm:gap-2 gap-1 flex flex-col lg:p-4 ${
+        colorMode === "light"
+          ? "lg:shadow-[0px_0px_4.374px_0px_rgba(38,38,38,0.10)] data-[hover=true]:lg:border data-[hover=true]:border-outline-100"
+          : "lg:shadow-soft-1 lg:border border-outline-50 data-[hover=true]:border-outline-200"
+      }`}
+      onPress={onPress}
+    >
+      <Box className="rounded-lg bg-background-50 px-3 lg:px-6 py-[14px] lg:py-7 aspect-[17/12]">
+        <Image
+          source={{
+            uri: colorMode === "light" ? component.url : component.darkUrl,
+          }}
+          alt={`${component.title} image`}
+          className={`w-full h-full rounded lg:rounded-md shadow-[0px_0px_1.998px_0px_rgba(38,38,38,0.10)]`}
+        />
+      </Box>
+      <HStack className="justify-between px-1.5 mt-1">
+        <Text className="text-typography-900 font-medium sm:text-base text-sm lg:text-xl">
+          {component.name}
+        </Text>
+        <Icon
+          as={ChevronRightIcon}
+          size="sm"
+          className="text-background-400 lg:hidden"
+        />
+      </HStack>
+    </Pressable>
+  );
+};
 const Header = () => {
   const { colorMode }: any = useContext(ColorModeContext);
   return (
@@ -56,7 +92,7 @@ const Header = () => {
       </VStack>
     </HStack>
   );
-}
+};
 export default function ComponentList() {
   const router = useRouter();
 
@@ -64,27 +100,35 @@ export default function ComponentList() {
     <SafeAreaView className="flex-1 bg-background-0">
       <ScrollView className="flex-1">
         <Header />
-        <VStack space="lg">
-        {components.map((category) => (
-          <Box key={category.category}>
-            <Heading size="lg" className="text-typography-900 mb-4">
-              {category.category}
-            </Heading>
-            <VStack space="sm">
-              {category.components.map((component) => (
-                <Pressable
-                  key={component.name}
-                  onPress={() => router.push(`components/${component.path}`)}
-                >
-                  <Box className="p-3 rounded-lg bg-background-50">
-                    <Text className="text-typography-900">
-                      {component.name}
-                    </Text>
-                  </Box>
-                </Pressable>
-              ))}
-            </VStack>
-          </Box>
+        <VStack className="p-5">
+          {components.map((category) => (
+            <Box key={category.category} className="mt-4 border-b border-outline-100 pb-8">
+              <Heading size="lg" className="text-typography-900 mb-4">
+                {category.category}
+              </Heading>
+              <Grid
+                className="gap-5"
+                _extra={{
+                  className: "grid-cols-2 md:grid-cols-4",
+                }}
+              >
+                {category.components.map((component) => (
+                  <GridItem
+                    _extra={{
+                      className: "col-span-1",
+                    }}
+                  >
+                    <ComponentCard
+                      key={component.name}
+                      component={component}
+                      onPress={() =>
+                        router.push(`components/${component.path}`)
+                      }
+                    />
+                  </GridItem>
+                ))}
+              </Grid>
+            </Box>
           ))}
         </VStack>
       </ScrollView>
