@@ -26,6 +26,8 @@ export default {
       }
       // for the docs components
       componentOperations.copyDocsComponents(filePath);
+      // for the sidebar
+      componentOperations.processSidebarFile(filePath);
     } catch (error) {
       console.error(`Error processing non-component file ${filePath}:`, error);
     }
