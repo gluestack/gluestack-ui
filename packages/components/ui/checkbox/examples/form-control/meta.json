@@ -1,4 +1,5 @@
 {
+  
   "title": "Form Control",
   "description": "A checkbox component integrated with form control enhances the user experience by enabling easy selection and submission of options within a structured input context.",
   "componentName": "Checkbox",

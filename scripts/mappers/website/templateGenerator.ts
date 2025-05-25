@@ -1,7 +1,7 @@
 import path from "path";
 import * as fileOps from "../utils/fileOperations";
 import { componentPreviewerTemplate, pageContentTemplate, codePreviewerTemplate } from "./templates";
-
+import { CodePreviewerRegex } from "../utils/regex";
 interface ImportMap {
   [key: string]: string[];
 }
@@ -98,7 +98,6 @@ export const processFileForExamples = (
   filePath: string,
   component: string
 ): boolean => {
-  const codePreviewerRegex = /\/\/\/\s*\{Example:([^}]+)\}\s*\/\/\//g;
   const importMap: ImportMap = {
     "@/components/custom/code-previewer": ["CodePreviewer"],
   };
@@ -110,7 +109,7 @@ export const processFileForExamples = (
 
   // Replace example markers and file content markers
   const newContent = contentWithoutImports.replace(
-    codePreviewerRegex,
+    CodePreviewerRegex,
     (_, exampleName) => {
       return generateCodePreviewer(exampleName.trim(), component, importMap);
     }

@@ -1,6 +1,7 @@
 import { Stack, useRouter } from "expo-router";
 import "../global.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+import { Box } from "@/components/ui/box";
 import { Pressable } from "react-native";
 import { ChevronLeftIcon, SunIcon, MoonIcon } from "@/components/ui/icon";
 import { Icon } from "@/components/ui/icon";
@@ -8,8 +9,16 @@ import React from "react";
 import { StyleSheet, Platform } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Fab } from "@/components/ui/fab";
+import { Text } from "@/components/ui/text";
 export const ColorModeContext = React.createContext({});
 
+const capitalize = (str: string) => {
+  return str
+    .replace(/components\/(.*?)\/index/, "$1")
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join("");
+};
 const CustomBackButton = () => {
   const router = useRouter();
 
@@ -27,30 +36,11 @@ const CustomBackButton = () => {
 
 export default function RootLayout() {
   const [colorMode, setColorMode] = React.useState<"light" | "dark">("light");
-
-  const styles = StyleSheet.create({
-    header: {
-      backgroundColor: colorMode === "light" ? "#fff" : "#000",
-      borderBottomColor: colorMode === "light" ? "#E6E6E6" : "#414141",
-      borderBottomWidth: 1,
-    },
-  });
-
   const handleColorMode = () => {
     setColorMode((prevMode: string) =>
       prevMode === "light" ? "dark" : "light"
     );
   };
-
-  const getHeaderOptions = (title: string) => ({
-    headerTitle: title,
-    headerTintColor: colorMode === "light" ? "#000" : "#fff",
-    headerStyle: styles.header,
-    ...(Platform.OS !== "android" && {
-      headerLeft: () => <CustomBackButton />,
-    }),
-  });
-
   return (
     <>
       <StatusBar
@@ -59,8 +49,33 @@ export default function RootLayout() {
       />
       <ColorModeContext.Provider value={{ colorMode }}>
         <GluestackUIProvider mode={colorMode}>
-          <Stack>
-            <Stack.Screen name="index" />
+            <Stack
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: colorMode === "light" ? "#FFFFFF" : "#000",
+              },
+              headerShadowVisible: false,
+              contentStyle: {
+                borderTopWidth: 1,
+                borderTopColor: colorMode === "light" ? "#E6E6E6" : "#414141",
+              },
+              headerLeft: ({ canGoBack }) =>
+                canGoBack ? <CustomBackButton /> : null,
+              headerTitle: (props) => {
+                return (
+                  <Text className="text-typography-900 text-xl font-bold">
+                    {capitalize(props.children)}
+                  </Text>
+                );
+              },
+            }}
+          >
+            <Stack.Screen
+              name="index"
+              options={{
+                headerShown: false,
+              }}
+            />
           </Stack>
           <Fab
             className="bottom-10 sm:right-10 right-6 p-4 z-0"

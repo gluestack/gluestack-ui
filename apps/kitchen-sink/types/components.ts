@@ -2,6 +2,8 @@ interface ComponentItem {
   title: string;
   path?: string;
   tags?: string[];
+  url?: string;
+  darkUrl?: string;
 }
 
 interface ComponentSection {
@@ -47,7 +49,9 @@ export function getNestedComponents(componentsJson: ComponentsJson) {
       components: section.items.map((item) => ({
         name: item.title,
         path: item.path?.replace('/ui/docs/components/', ''),
-        tags: item.tags || []
+        tags: item.tags || [],
+        url: item.url,
+        darkUrl: item.darkUrl
       }))
     }));
 

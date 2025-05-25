@@ -18,16 +18,13 @@ export const importTemplate = (imports: string[], importPath: string) => {
 
 export const wrappedComponentTemplate = (processedContent: string) => {
   return `
-import { SafeAreaView } from 'react-native';
 import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-0">
-        <ScrollView>
+        <ScrollView className="bg-background-0 flex-1" contentContainerClassName="px-3 pb-6">
       ${processedContent.trim()}
         </ScrollView>
-    </SafeAreaView>
   );
 }`;
 };

@@ -55,3 +55,9 @@ export const copyDocsComponents = (filePath: string) => {
     console.error(`error in copying docs components:${filePath}`, error);
   }
 };
+
+export const processSidebarFile = (filePath: string) => {
+  const sidebarDir = path.resolve("packages/sidebar.json");
+  const websiteUiPath = path.resolve("apps/website/sidebar.json");
+  fileOps.writeTextFile(websiteUiPath, fileOps.readTextFile(sidebarDir));
+};
