@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import Handlebars from "handlebars";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import CodeBlock from "@/components/custom/markdown/code-block";
-import { ChevronDownIcon, Switch } from "@/components/ui";
+import { Box, ChevronDownIcon, Switch, Text } from "@/components/ui";
 import { ThemeContext } from "@/utils/context/theme-context";
 import {
   Select,
@@ -61,27 +61,10 @@ export function CodePreviewer({
 
     if (control?.type === "select") {
       return (
-        <div className="control-item">
-          <label className="text-lg" htmlFor={name}>
+        <Box className="control-item">
+          <Text className="text-lg">
             {name}:
-          </label>
-          {/* <select
-            id={name}
-            value={values[name] || defaultValue}
-            onChange={(e) => handleChange(name, e.target.value)}
-          >
-            {Array.isArray(options)
-              ? options.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))
-              : Object.entries(options).map(([key, value]) => (
-                  <option key={key} value={key}>
-                    {value as string}
-                  </option>
-                ))}
-          </select> */}
+          </Text>
           <Select
           className="w-full"
           onValueChange={(value: string) => handleChange(name, value)}
@@ -113,15 +96,14 @@ export function CodePreviewer({
             </SelectContent>
           </SelectPortal>
         </Select>
-          {/* <div className="w-full h-px bg-gray-400"></div> */}
-        </div>
+        </Box>
       );
     }
 
     if (control?.type === "boolean" || typeof defaultValue === "boolean") {
       return (
-        <div className="flex flex-col gap-2">
-          <label className="text-lg" htmlFor={name}>{name}:</label>
+        <Box className="flex flex-col gap-2">
+          <Text className="text-lg" htmlFor={name}>{name}:</Text>
          <Switch
           size="md"
           isDisabled={false}
@@ -132,34 +114,34 @@ export function CodePreviewer({
           value={values[name] ?? defaultValue}
           onToggle={() => handleChange(name, !values[name] ?? defaultValue)}
           />
-        </div>
+        </Box>
       );
     }
 
     // Add more control types as needed (checkbox, radio, etc.)
 
     return (
-      <div className="control-item">
-        <span>
+      <Box className="control-item">
+        <Text className="text-lg">
           {name}: {JSON.stringify(values[name] || defaultValue)}
-        </span>
-      </div>
+        </Text>
+      </Box>
     );
   };
 
   return (
-    <div className="flex flex-col w-full my-2">
-      <div className="-mb-2 border border-outline-100 rounded-t-lg flex-col flex w-full min-h-[200px] md:flex-row">
+    <Box className="flex flex-col w-full my-2">
+      <Box className="-mb-2 border border-outline-100 rounded-t-lg flex-col flex w-full min-h-[200px] md:flex-row">
         {Object.keys(argTypes).length > 0 && (
-          <div className="p-4 md:border-r border-b py-10 border-outline-100 flex-1">
-            <div className="flex flex-col gap-2">
+          <Box className="p-4 md:border-r border-b py-10 border-outline-100 flex-1">
+            <Box className="flex flex-col gap-2">
             {Object.entries(argTypes).map(([key, value]) => (
               <ArgController key={key} name={key} config={value} />
             ))}
-          </div>
-        </div>
+          </Box>
+        </Box>
         )}
-        <div className="p-4 flex-1 flex items-center justify-center w-full ">
+        <Box className="p-4 flex-1 flex items-center justify-center w-full ">
           <LiveProvider
             code={compiledCode}
             scope={{ ...reactLive }}
@@ -167,9 +149,9 @@ export function CodePreviewer({
             <LiveError />
             <LivePreview className=" flex items-center justify-center  w-full" />
           </LiveProvider>
-        </div>
-      </div>
+        </Box>
+      </Box>
       <CodeBlock code={compiledCode} language="tsx" className="rounded-b-lg rounded-t-none border-t-0" />
-    </div>
+    </Box>
   );
 }
