@@ -1,4 +1,6 @@
 {
+  "title":"Nested Components",
+  "description":"You can nest Accordion components to create a nested accordion. This is useful when you want to group related content together. In the following example, we have created a nested accordion to group the states of USA by region.",
     "argTypes": {},
     "reactLive": {
       "Accordion": "@/components/ui/accordion",

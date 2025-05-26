@@ -1,4 +1,6 @@
 {
+  "title":"Controlled Accordion",
+  "description":"A component is controlled when it's managed by its parent using props. You can make the Accordion component controlled by passing the value prop to the Accordion and setting the onValueChange to update the value prop. In the following example, we have created a controlled accordion to display the expanded state of the accordion.",
     "argTypes": {},
     "reactLive": {
       "Accordion": "@/components/ui/accordion",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box } from '@/components/ui';
-import Header from '@/components/custom/header';
+import Header from '@/components/page-components/header';
 
 function WebsiteLayout({
   applyBgImage,

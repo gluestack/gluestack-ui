@@ -5,6 +5,7 @@ export default function Page() {
   return (
     <div>
       <Docs />
+      hello
     </div>
   );
 }

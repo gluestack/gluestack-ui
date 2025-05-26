@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { Box, Heading } from "@/components/ui";
-import { BlogListItem } from "@/components/custom/blogs-page/BlogListItem";
-import BlogsPageLayout from "@/components/custom/blogs-page/BlogsPageLayout";
+import { BlogListItem } from "@/components/page-components/blogs-page/BlogListItem";
+import BlogsPageLayout from "@/components/page-components/blogs-page/BlogsPageLayout";
 
 const blogs = [
   {

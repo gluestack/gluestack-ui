@@ -1,4 +1,6 @@
 {
+  "title": "Avatar with Icon",
+  "description": "An Avatar component with an icon combines a graphical symbol or icon with a user or entity representation, providing a visually appealing and easily recognizable identification within a user interface.",
   "argTypes": {},
   "reactLive": {
     "Avatar": "@/components/ui/avatar",

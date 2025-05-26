@@ -1,7 +1,8 @@
 {
-    "argTypes": {
-      "variant": {
-        "control": {
+  "title": "Basic",
+  "argTypes": {
+    "variant": {
+      "control": {
           "type": "select"
         },
         "options": ["solid", "outline"],

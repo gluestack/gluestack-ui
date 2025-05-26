@@ -1,4 +1,4 @@
-import CodeBlock from "@/components/code-block";
+import CodeBlock from "@/components/custom/markdown/code-block";
 import {
   Box,
   Button,

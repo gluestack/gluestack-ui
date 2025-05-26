@@ -1,0 +1,20 @@
+function Example() {
+  return (
+    <HStack>
+      <FormControl>
+        <Button variant='outline' action='secondary'>
+          <ButtonText>
+            Cancel
+          </ButtonText>
+        </Button>
+      </FormControl>
+      <FormControl>
+        <Button action='negative' className='ml-4'>
+          <ButtonText className="text-white group-hover/button:text-white group-active/button:text-white">
+            Delete
+          </ButtonText>
+        </Button>
+      </FormControl>
+    </HStack>
+  );
+} 

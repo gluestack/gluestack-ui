@@ -1,5 +1,5 @@
 import type { MDXComponents } from "mdx/types";
-import CodeBlock from "@/components/code-block";
+import CodeBlock from "@/components/custom/markdown/code-block";
 import React from "react";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
@@ -8,11 +8,11 @@ interface CodeProps {
   children: string;
   className?: string;
 }
-import { LI } from "@/components/li";
-import { InlineCode } from "./components/docs-components/inline-code";
-import { BlockQuote } from "./components/note/page";
-import { OL } from "./components/ol";
-import { UL } from "./components/ul";
+import { LI } from "@/components/custom/markdown/li";
+import { InlineCode } from "@/docs-components/inline-code";
+import { BlockQuote } from "@/components/custom/markdown/note/page";
+import { OL } from "@/components/custom/markdown/ol";
+import { UL } from "@/components/custom/markdown/ul";
 
 function containsAny(targetString: string) {
   const stringsToCheck: string[] = [

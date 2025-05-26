@@ -1,6 +1,6 @@
 import { Link as LinkMain } from './Link';
 import { LinkText } from './LinkText';
-import { useLink } from './useLink';
+import { useLink } from './UseLink';
 import type {
   InterfaceLinkProps,
   IUseLinkProp,

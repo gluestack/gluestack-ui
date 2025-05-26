@@ -1,0 +1,17 @@
+{
+  "argsTypes": {},
+  "reactLive": {
+    "Popover": "@/components/ui/popover",
+    "PopoverBackdrop": "@/components/ui/popover",
+    "PopoverContent": "@/components/ui/popover",
+    "PopoverBody": "@/components/ui/popover",
+    "PopoverArrow": "@/components/ui/popover",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Text": "@/components/ui/text",
+    "Avatar": "@/components/ui/avatar",
+    "AvatarGroup": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar"
+  }
+} 

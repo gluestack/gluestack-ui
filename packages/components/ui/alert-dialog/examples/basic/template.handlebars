@@ -15,7 +15,7 @@ function Example() {
             </Heading>
           </AlertDialogHeader>
           <AlertDialogBody className="mt-3 mb-4">
-            <Text size="md">
+            <Text size="sm">
               Deleting the post will remove it permanently and cannot be undone.
               Please confirm if you want to proceed.
             </Text>
@@ -25,11 +25,11 @@ function Example() {
               variant="outline"
               action="secondary"
               onPress={handleClose}
-              size="md"
+              size="sm"
             >
               <ButtonText>Cancel</ButtonText>
             </Button>
-            <Button size="md" onPress={handleClose}>
+            <Button size="sm" onPress={handleClose}>
               <ButtonText>Delete</ButtonText>
             </Button>
           </AlertDialogFooter>

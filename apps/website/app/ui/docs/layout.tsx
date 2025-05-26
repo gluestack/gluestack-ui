@@ -1,5 +1,5 @@
-import Header from "@/components/custom/header";
-import Sidebar from "@/components/sidebar";
+import Header from "@/components/page-components/header";
+import Sidebar from "@/components/page-components/sidebar";
 
 export default function DocsLayout({
   children,

@@ -1,4 +1,6 @@
 {
+  "title": "Icons",
+  "description": "The Actionsheet with Icons is a variation of the Actionsheet component that displays icons next to each option. It's commonly used in apps for a more visual representation of options and easier navigation.",
   "argTypes": {},
   "reactLive": {
     "Actionsheet": "@/components/ui/actionsheet",

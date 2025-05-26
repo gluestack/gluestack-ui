@@ -1,7 +1,7 @@
 "use client";
 import { Box } from "@/components/ui";
 import BuildaSimpleUIwithGluestackuiandExpoBlog from "./blog.mdx";
-import BlogsPageLayout from "@/components/custom/blogs-page/BlogsPageLayout";
+import BlogsPageLayout from "@/components/page-components/blogs-page/BlogsPageLayout";
 
 const BuildaSimpleUIwithGluestackuiandExpo = () => {
   return (

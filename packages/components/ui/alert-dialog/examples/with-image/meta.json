@@ -1,4 +1,5 @@
 {
+  "title": "AlertDialog with Image",
   "argTypes": {},
   "reactLive": {
     "AlertDialog": "@/components/ui/alert-dialog",

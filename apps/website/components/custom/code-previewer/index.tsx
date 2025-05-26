@@ -1,0 +1,178 @@
+import { useState, useEffect, useContext } from "react";
+import Handlebars from "handlebars";
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
+import CodeBlock from "@/components/custom/markdown/code-block";
+import { ChevronDownIcon, Switch } from "@/components/ui";
+import { ThemeContext } from "@/utils/context/theme-context";
+import {
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectItem,
+} from "@/components/ui/select";
+export function CodePreviewer({
+  code,
+  message,
+  argTypes,
+  reactLive,
+}: {
+  code: string;
+  message: string;
+  argTypes: Record<string, any>;
+  reactLive: any;
+}) {
+  const { colorMode } = useContext(ThemeContext);
+  // Initialize state with default values from args
+  const [values, setValues] = useState<Record<string, any>>({});
+  const [compiledCode, setCompiledCode] = useState<any>();
+  // Initialize values on component mount or when args change
+  useEffect(() => {
+    const initialValues: Record<string, any> = {};
+    Object.entries(argTypes).forEach(([key, value]) => {
+      initialValues[key] = value.defaultValue;
+    });
+    setValues(initialValues);
+  }, [argTypes]);
+
+  useEffect(() => {
+    const compiledCodetemp = Handlebars.compile(code);
+    if (values) {
+      setCompiledCode(compiledCodetemp(values));
+    }
+  }, [values]);
+
+  // Handle control value changes
+  const handleChange = (name: string, value: any) => {
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Generic controller component
+  const ArgController = ({ name, config }: { name: string; config: any }) => {
+    const { control, options, defaultValue } = config;
+
+    if (control?.type === "select") {
+      return (
+        <div className="control-item">
+          <label className="text-lg" htmlFor={name}>
+            {name}:
+          </label>
+          {/* <select
+            id={name}
+            value={values[name] || defaultValue}
+            onChange={(e) => handleChange(name, e.target.value)}
+          >
+            {Array.isArray(options)
+              ? options.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))
+              : Object.entries(options).map(([key, value]) => (
+                  <option key={key} value={key}>
+                    {value as string}
+                  </option>
+                ))}
+          </select> */}
+          <Select
+            className="w-full"
+            onValueChange={(value: string) => handleChange(name, value)}
+          >
+            <SelectTrigger
+              variant="underlined"
+              className="w-full justify-between items-center border-outline-200"
+              size="md"
+            >
+              <SelectInput
+                className="text-typography-900 text-lg font-medium placeholder:text-typography-900"
+                placeholder={values[name]}
+              />
+              <SelectIcon
+                size="xl"
+                className="mr-3 text-typography-900"
+                as={ChevronDownIcon}
+              />
+            </SelectTrigger>
+            <SelectPortal>
+              <SelectBackdrop />
+              <SelectContent>
+                <SelectDragIndicatorWrapper>
+                  <SelectDragIndicator />
+                </SelectDragIndicatorWrapper>
+                {Object.entries(options).map(([key, value]) => (
+                  <SelectItem key={key} label={value} value={value} />
+                ))}
+              </SelectContent>
+            </SelectPortal>
+          </Select>
+          {/* <div className="w-full h-px bg-gray-400"></div> */}
+        </div>
+      );
+    }
+
+    if (control?.type === "boolean" || typeof defaultValue === "boolean") {
+      return (
+        <div className="flex flex-col gap-2">
+          <label className="text-lg" htmlFor={name}>
+            {name}:
+          </label>
+          <Switch
+            size="md"
+            isDisabled={false}
+            trackColor={{ false: "#D4D4D4", true: "#005DB4" }}
+            thumbColor={"#FAFAFA"}
+            activeThumbColor={"#FAFAFA"}
+            ios_backgroundColor={"#D4D4D4"}
+            value={values[name] ?? defaultValue}
+            onToggle={() => handleChange(name, !values[name] ?? defaultValue)}
+          />
+        </div>
+      );
+    }
+
+    // Add more control types as needed (checkbox, radio, etc.)
+
+    return (
+      <div className="control-item">
+        <span>
+          {name}: {JSON.stringify(values[name] || defaultValue)}
+        </span>
+      </div>
+    );
+  };
+
+  return (
+    <div className="flex flex-col w-full my-2">
+      <div className="-mb-2 border border-outline-100 rounded-t-lg flex-col flex w-full min-h-[200px] md:flex-row">
+        {Object.keys(argTypes).length > 0 && (
+          <div className="p-4 md:border-r border-b py-10 border-outline-100 flex-1">
+            <div className="flex flex-col gap-2">
+              {Object.entries(argTypes).map(([key, value]) => (
+                <ArgController key={key} name={key} config={value} />
+              ))}
+            </div>
+          </div>
+        )}
+        <div className="p-4 flex-1 flex items-center justify-center w-full ">
+          <LiveProvider code={compiledCode} scope={{ ...reactLive }}>
+            <LiveError />
+            <LivePreview className=" flex items-center justify-center  w-full" />
+          </LiveProvider>
+        </div>
+      </div>
+      <CodeBlock
+        code={compiledCode}
+        language="tsx"
+        className="rounded-b-lg rounded-t-none border-t-0"
+      />
+    </div>
+  );
+}

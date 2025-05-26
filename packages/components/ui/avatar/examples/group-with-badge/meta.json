@@ -1,4 +1,6 @@
 {
+  "title": "Avatar Group (with Badge)",
+  "description": "An Avatar Group component with badges presents a collection of avatars with accompanying badges, providing visual indicators or additional information associated with each user or entity representation within a user interface.",
   "argTypes": {},
   "reactLive": {
     "Avatar": "@/components/ui/avatar",

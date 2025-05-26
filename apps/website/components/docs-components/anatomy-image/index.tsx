@@ -1,6 +1,6 @@
-import React from 'react';
-import { Center } from '@/components/ui/center';
-import Image from 'next/image';
+import React from "react";
+import { Center } from "@/components/ui/center";
+import Image from "next/image";
 
 export const AnatomyImage = ({
   mobileUrl,

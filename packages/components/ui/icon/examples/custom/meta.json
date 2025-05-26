@@ -1,0 +1,8 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "Icon": "@/components/ui/icon",
+    "createIcon": "@/components/ui/icon",
+    "Path": "react-native-svg"
+  }
+} 

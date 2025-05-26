@@ -14,7 +14,7 @@
         "@/*": ["./*"],
         "@/utils/*": ["./utils/*"],
         "@/components/*": ["./src/components/*"],
-        "@/docs-components/*": ["docs-components/*"]
+        "@/docs-components/*": ["./src/docs-components/*"]
       }
     },
     "exclude": [

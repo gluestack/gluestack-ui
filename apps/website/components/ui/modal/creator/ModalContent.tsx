@@ -2,10 +2,10 @@
 import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
 import { Platform, AccessibilityInfo, Keyboard } from 'react-native';
-import { FocusScope } from '@/utils/aria/focus/src';
+import { FocusScope } from '@/utils/gluestack-utils/aria/focus/src';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { useDialog } from '@/utils/aria/dialog/src';
-import { mergeRefs, findNodeHandle } from '@/utils/common';
+import { useDialog } from '@/utils/gluestack-utils/aria/dialog/src';
+import { mergeRefs, findNodeHandle } from '@/utils/gluestack-utils/common';
 
 const ModalContent = (StyledModalContent: any, AnimatePresence?: any) =>
   forwardRef(({ children, focusScope = true, ...props }: any, ref?: any) => {
