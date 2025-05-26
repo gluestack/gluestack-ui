@@ -8,10 +8,11 @@ interface CodeProps {
   children: string;
   className?: string;
 }
-
 import { LI } from "@/components/custom/markdown/li";
-import { InlineCode } from "@/components/docs-components/inline-code";
-import { BlockQuote } from "@/components/custom/markdown/note/page";
+import { InlineCode } from "./components/docs-components/inline-code";
+import { BlockQuote } from "./components/custom/markdown/note/page";
+import { OL } from "./components/custom/markdown/ol";
+import { UL } from "./components/custom/markdown/ul";
 
 function containsAny(targetString: string) {
   const stringsToCheck: string[] = [
@@ -40,8 +41,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h5: (props) => <Heading size="md" className="text-md font-bold text-typography-900 mt-2.5 mb-1.5 font-jakarta" {...props} />,
     p: (props) => <Text className="block mb-6 text-typography-800 font-inter" {...props} />,
     // Define paragraph styles
-    ul: (props: any) => <ul {...props} className="w-full mb-3" />,
-    ol: (props: any) => <ol {...props} className="mb-3" />,
+    ul: (props: any) => <UL {...props} className="w-full mb-3" />,
+    ol: (props: any) => <OL {...props} className="mb-3" />,
     li: (props: any) => {
       return (
         <LI {...props} className="w-full ">
@@ -59,7 +60,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       );
     },
     // Define container styles
-    wrapper: (props) => <div className="max-w-[55vw] mx-auto py-8" {...props} />,
+    wrapper: (props) => <div className="max-w-[836px] mx-auto py-8" {...props} />,
     // Handle code blocks
     pre: ({ children }: { children: React.ReactElement<CodeProps> }) => {
       const code = children?.props?.children || "";

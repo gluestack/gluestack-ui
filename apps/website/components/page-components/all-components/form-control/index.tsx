@@ -75,19 +75,19 @@ export default function Example() {
     "control": {
       "type": "boolean"
     },
-    "defaultValue": true
+    "defaultValue": false
   },
   "isReadOnly": {
     "control": {
       "type": "boolean"
     },
-    "defaultValue": true
+    "defaultValue": false
   },
   "isRequired": {
     "control": {
       "type": "boolean"
     },
-    "defaultValue": true
+    "defaultValue": false
   },
   "size": {
     "control": {

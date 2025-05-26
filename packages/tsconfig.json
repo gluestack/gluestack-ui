@@ -13,8 +13,8 @@
       "paths": {
         "@/*": ["./*"],
         "@/utils/*": ["./utils/*"],
-        "@/components/*": ["./src/components/*"],
-        "@/docs-components/*": ["./src/docs-components/*"]
+        "@/components/*": ["./components/*"],
+        "@/docs-components/*": ["./docs-components/*"]
       }
     },
     "exclude": [

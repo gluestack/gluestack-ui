@@ -1,9 +1,14 @@
 "use client";
-import { Inter, Roboto, Plus_Jakarta_Sans, Source_Code_Pro, Space_Mono} from "next/font/google";
+import {
+  Inter,
+  Roboto,
+  Plus_Jakarta_Sans,
+  Source_Code_Pro,
+  Space_Mono,
+} from "next/font/google";
 import "./globals.css";
-import Header from "@/components/custom/header";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ThemeContext, ThemeProvider } from "@/utils/context/theme-context";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -27,11 +32,11 @@ const sourceCodePro = Source_Code_Pro({
   variable: "--font-source-code-pro",
 });
 
-const spaceMono=Space_Mono({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-  variable: '--font-space-mono',
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--font-space-mono",
 });
 
 function ThemeWrapper({ children }: { children: React.ReactNode }) {
@@ -44,8 +49,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isOpenSidebar, setIsOpenSidebar] = useState(false);
-
   return (
     <html
       lang="en"
@@ -53,15 +56,7 @@ export default function RootLayout({
     >
       <body className={inter.className}>
         <ThemeProvider>
-          <ThemeWrapper>
-            <div className="flex flex-col w-full h-full">
-              <Header
-                isOpenSidebar={isOpenSidebar}
-                setIsOpenSidebar={setIsOpenSidebar}
-              />
-              <div className="w-4/5 h-[calc(100vh-64px)]">{children}</div>
-            </div>
-          </ThemeWrapper>
+          <ThemeWrapper>{children}</ThemeWrapper>
         </ThemeProvider>
       </body>
     </html>
