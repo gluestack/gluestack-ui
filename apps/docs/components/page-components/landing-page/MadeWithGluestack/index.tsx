@@ -7,14 +7,6 @@ const MadeWidthGluestack = () => {
   const { colorMode } = useContext(ThemeContext);
   return (
     <Box
-      // bottom="$6"
-      // right="$0"
-      // justifyContent="space-between"
-      // w="85%"
-      // maxWidth={1440}
-      // my="$0"
-      // mx="auto"
-      // pointerEvents="none"
       className="pointer-events-none mx-auto my-0 max-w-[1440px] w-[85%] justify-between right-0 web:sticky hidden lg:flex bottom-6"
     >
       <HStack className="justify-end">

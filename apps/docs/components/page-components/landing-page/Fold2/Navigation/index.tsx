@@ -161,7 +161,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
               isOpen={isOpen}
               onClose={handleClose}
               onOpen={handleOpen}
-              trigger={(triggerProps) => {
+              trigger={(triggerProps: any) => {
                 return (
                   <Button {...triggerProps}>
                     <ButtonText>Open Popover</ButtonText>
@@ -184,7 +184,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
           <HStack className="gap-[13px] md:flex hidden">
             <Tooltip
               placement="top"
-              trigger={(triggerProps) => {
+              trigger={(triggerProps: any) => {
                 return (
                   <Button
                     {...triggerProps}
@@ -208,7 +208,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
             <Menu
               offset={5}
               disabledKeys={["Settings"]}
-              trigger={({ ...triggerProps }) => {
+              trigger={({ ...triggerProps }: any) => {
                 return (
                   <Button {...triggerProps} size="sm">
                     <ButtonText>Menu</ButtonText>

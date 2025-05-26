@@ -89,7 +89,7 @@ const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
     },
   ];
   return (
-    <Box className="w-full bg-white dark:bg-background-0/60 bg-opacity-60 sticky top-0 z-10 border-outline-100 border-b ">
+    <Box className="w-full bg-white dark:bg-background-0/60 bg-opacity-60 sticky top-0 z-10 border-outline-100 border-b">
       <Nav className="py-3 items-center backdrop-blur">
         <Box
           className={`flex-row items-center justify-between w-[85%] lg:mx-[180px] mx-5 ${
@@ -389,7 +389,9 @@ const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
           </Box>
         </Box>
       </Nav>
-      {isOpenSidebar && <Sidebar />}
+      {isOpenSidebar && (
+        <Sidebar isOpen={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
+      )}
     </Box>
   );
 };

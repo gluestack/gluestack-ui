@@ -5,7 +5,7 @@ import { useKeyboardDismissable } from '@/utils/hooks/src';
 import { usePopover } from './PopoverContext';
 import { Platform, AccessibilityInfo, Keyboard, View } from 'react-native';
 import { findNodeHandle, mergeRefs } from '@/utils/common';
-import { useOverlayPosition } from '@/utils/aria/overlays/src';
+import { useOverlayPosition } from '@/components/ui/overlay/aria';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope as FocusScopeAria } from '@/utils/aria/focus/src';
 import { useDialog } from '@/utils/aria/dialog/src';

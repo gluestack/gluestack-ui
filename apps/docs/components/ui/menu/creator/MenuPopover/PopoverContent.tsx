@@ -3,7 +3,7 @@ import { useKeyboardDismissable } from '@/utils/hooks/src';
 import { usePopover } from './PopoverContext';
 import { AccessibilityInfo, View } from 'react-native';
 import { mergeRefs, findNodeHandle } from '@/utils/common';
-import { useOverlayPosition } from '@/utils/aria/overlays/src';
+import { useOverlayPosition } from '@/components/ui/overlay/aria';
 
 const PopoverContent = forwardRef(
   ({ children, style, ...props }: any, ref: any) => {

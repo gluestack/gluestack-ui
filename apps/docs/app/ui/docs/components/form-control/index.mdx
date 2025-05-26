@@ -12,8 +12,8 @@ Enhance form usability with FormControl components in React. Manage validation, 
 ### This is an illustration of Checkbox component.
 <CodePreviewer
   code={`function App () {
-  const [isInvalid, setIsInvalid] = useState(false);
-  const [inputValue, setInputValue] = useState("12345");
+  const [isInvalid, setIsInvalid] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState("12345");
 
   const handleSubmit = () => {
     if (inputValue.length < 6) {

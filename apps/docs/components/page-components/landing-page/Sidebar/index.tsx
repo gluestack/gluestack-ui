@@ -53,7 +53,7 @@ const SidebarWithHeaders = () => {
 };
 function Sidebar() {
   return (
-    <Box className="h-screen w-full bg-background-0 lg:hidden py-6 px-4 z-50 overflow-y-scroll">
+    <Box className="h-screen w-full bg-background-0 lg:hidden py-6 px-4 overflow-y-scroll fixed">
       <VStack className="pb-10 flex-grow gap-2 justify-between ">
         <SidebarWithHeaders />
         <Box className="py-20 w-full">

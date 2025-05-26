@@ -134,7 +134,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="ml-4 w-64 z-10 border-r border-outline-100 flex flex-col left-0 bg-background-0 h-[94vh] max-lg:hidden">
+    <div className="ml-4 w-64  border-r border-outline-100 flex flex-col left-0 bg-background-0 h-[94vh] max-lg:hidden overflow-y-scroll fixed bottom-0 z-0">
       {/* Fixed parent dropdowns at top */}
       <div className="flex-none py-4 border-b border-outline-100">
         {parentDropdowns.map((section: Section, index: number) => (

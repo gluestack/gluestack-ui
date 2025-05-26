@@ -13,7 +13,7 @@ import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope } from '@/utils/aria/focus/src';
 import { mergeRefs, findNodeHandle } from '@/utils/common';
 import { useDialog } from '@/utils/aria/dialog/src';
-import { usePreventScroll } from '@/utils/aria/overlays/src';
+import { usePreventScroll } from '@/components/ui/overlay/aria';
 
 //dimentions not giving proper window height on web
 const windowHeight =

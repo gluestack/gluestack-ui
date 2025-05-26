@@ -41,11 +41,7 @@ const spaceMono = Space_Mono({
 
 function ThemeWrapper({ children }: { children: React.ReactNode }) {
   const { colorMode } = useContext(ThemeContext);
-  return (
-    <GluestackUIProvider mode={colorMode}>
-      {children}
-    </GluestackUIProvider>
-  );
+  return <GluestackUIProvider mode={colorMode}>{children}</GluestackUIProvider>;
 }
 
 export default function RootLayout({
@@ -53,8 +49,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isOpenSidebar, setIsOpenSidebar] = useState(false);
-
   return (
     <html
       lang="en"

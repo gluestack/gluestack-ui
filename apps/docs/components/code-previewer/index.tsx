@@ -2,7 +2,20 @@ import { useState, useEffect, useContext } from "react";
 import Handlebars from "handlebars";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import CodeBlock from "../code-block";
+import { ChevronDownIcon, Switch } from "@/components/ui";
 import { ThemeContext } from "@/utils/context/theme-context";
+import {
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectItem,
+} from "@/components/ui/select";
 export function CodePreviewer({
   code,
   message,
@@ -52,7 +65,7 @@ export function CodePreviewer({
           <label className="text-lg" htmlFor={name}>
             {name}:
           </label>
-          <select
+          {/* <select
             id={name}
             value={values[name] || defaultValue}
             onChange={(e) => handleChange(name, e.target.value)}
@@ -68,7 +81,38 @@ export function CodePreviewer({
                     {value as string}
                   </option>
                 ))}
-          </select>
+          </select> */}
+          <Select
+          className="w-full"
+          onValueChange={(value: string) => handleChange(name, value)}
+        >
+          <SelectTrigger
+            variant="underlined"
+            className="w-full justify-between items-center border-outline-200"
+            size="md"
+          >
+            <SelectInput
+              className="text-typography-900 text-lg font-medium placeholder:text-typography-900"
+              placeholder={values[name]}
+            />
+            <SelectIcon
+              size="xl"
+              className="mr-3 text-typography-900"
+              as={ChevronDownIcon}
+            />
+          </SelectTrigger>
+          <SelectPortal>
+            <SelectBackdrop />
+            <SelectContent>
+              <SelectDragIndicatorWrapper>
+                <SelectDragIndicator />
+              </SelectDragIndicatorWrapper>
+              {Object.entries(options).map(([key, value]) => (
+                <SelectItem key={key} label={value} value={value} />
+              ))}
+            </SelectContent>
+          </SelectPortal>
+        </Select>
           {/* <div className="w-full h-px bg-gray-400"></div> */}
         </div>
       );
@@ -76,16 +120,17 @@ export function CodePreviewer({
 
     if (control?.type === "boolean" || typeof defaultValue === "boolean") {
       return (
-        <div className="flex items-center gap-2">
-          <label className="text-lg" htmlFor={name}>
-            {name}:
-          </label>
-          <input
-            type="checkbox"
-            id={name}
-            className="w-4 h-4"
-            checked={values[name] ?? defaultValue}
-            onChange={(e) => handleChange(name, e.target.checked)}
+        <div className="flex flex-col gap-2">
+          <label className="text-lg" htmlFor={name}>{name}:</label>
+         <Switch
+          size="md"
+          isDisabled={false}
+          trackColor={{ false: "#D4D4D4", true: "#005DB4" }}
+          thumbColor={"#FAFAFA"}
+          activeThumbColor={"#FAFAFA"}
+          ios_backgroundColor={"#D4D4D4"}
+          value={values[name] ?? defaultValue}
+          onToggle={() => handleChange(name, !values[name] ?? defaultValue)}
           />
         </div>
       );
@@ -104,9 +149,9 @@ export function CodePreviewer({
 
   return (
     <div className="flex flex-col w-full my-2">
-      <div className="-mb-2 border border-outline-100 rounded-t-lg flex w-full min-h-[200px]">
+      <div className="-mb-2 border border-outline-100 rounded-t-lg flex-col flex w-full min-h-[200px] md:flex-row">
         {Object.keys(argTypes).length > 0 && (
-          <div className="p-4 border-r py-10 border-outline-100 flex-1">
+          <div className="p-4 md:border-r border-b py-10 border-outline-100 flex-1">
             <div className="flex flex-col gap-2">
             {Object.entries(argTypes).map(([key, value]) => (
               <ArgController key={key} name={key} config={value} />
