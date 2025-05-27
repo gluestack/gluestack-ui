@@ -39,7 +39,7 @@ export default function ComponentExamples() {
     },
     "defaultValue": false
   }
-}} title={undefined}>
+}} title={"Basic"}>
   {props => {
   return (
     <Textarea

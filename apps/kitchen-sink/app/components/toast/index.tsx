@@ -39,7 +39,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "solid"
   }
-}} title={undefined}>
+}} title={"Basic"}>
   {props => {
   const toast = useToast()
   const [toastId, setToastId] = React.useState(0)
