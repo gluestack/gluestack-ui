@@ -37,7 +37,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "top"
   }
-}} title={undefined}>
+}} title={"Basic"}>
   {props => {
   return (
     <Tooltip
