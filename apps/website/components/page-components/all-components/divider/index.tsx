@@ -21,6 +21,8 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ Center, Text, Divider }}
+      title={""}
+      description={""}
     />
   );
 }
