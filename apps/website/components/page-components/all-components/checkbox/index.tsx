@@ -44,8 +44,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Checkbox, CheckboxIndicator, CheckboxLabel, CheckIcon, CheckboxIcon }}
-      title={""}
-      description={""}
+      title={}
+      description={}
     />
   );
 }

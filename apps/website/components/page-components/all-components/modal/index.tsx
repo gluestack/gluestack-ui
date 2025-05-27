@@ -83,8 +83,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, ButtonText, Heading, Text, Icon, CloseIcon }}
-      title={""}
-      description={""}
+      title={}
+      description={}
     />
   );
 }

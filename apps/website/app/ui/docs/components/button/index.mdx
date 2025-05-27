@@ -20,7 +20,12 @@ Discover a powerful button component for React & React Native with customizable 
 
 <br/>
  This is an illustration of __Button__ component.
-<CodePreviewer
+
+  
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Button variant="{{variant}}" size="{{size}}" action="{{action}}">
@@ -66,8 +71,6 @@ Discover a powerful button component for React & React Native with customizable 
   }
 }}
   reactLive={{ Button, ButtonText }}
-  title=""
-  description=""
 />
 <br/>
 ## Installation
@@ -775,7 +778,12 @@ The Examples section provides visual representations of the different variants o
 
 
 
-<CodePreviewer
+
+  #### Button with Loading State
+
+  A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Button className='p-3'>
@@ -786,12 +794,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Button, ButtonText, ButtonSpinner }}
-  title="Button with Loading State"
-  description="A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress."
 />
 
 
-<CodePreviewer
+
+  #### Icon Button
+
+  A button with an icon integrates a visual symbol within the button component, enhancing its appearance and providing a recognizable and intuitive representation of its associated action or functionality.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Button
@@ -804,12 +815,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Button, ButtonIcon, EditIcon }}
-  title="Icon Button"
-  description="A button with an icon integrates a visual symbol within the button component, enhancing its appearance and providing a recognizable and intuitive representation of its associated action or functionality."
 />
 
 
-<CodePreviewer
+
+  #### Link Button
+
+  A button with a link combines the interactive behavior of a button component with the ability to navigate to a specified URL, providing a clickable element for users to access external resources or internal pages.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Button variant='link'>
@@ -822,12 +836,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Button, ButtonText, ButtonIcon, ArrowUpIcon }}
-  title="Link Button"
-  description="A button with a link combines the interactive behavior of a button component with the ability to navigate to a specified URL, providing a clickable element for users to access external resources or internal pages."
 />
 
 
-<CodePreviewer
+
+  #### Button With Icon
+
+  The icon component incorporates a button component, combining visual representation with interactive functionality for seamless user interaction.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Box>
@@ -844,12 +861,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Button, ButtonText, ButtonIcon, Box, InfoIcon, AddIcon }}
-  title="Button With Icon"
-  description="The icon component incorporates a button component, combining visual representation with interactive functionality for seamless user interaction."
 />
 
 
-<CodePreviewer
+
+  #### Button with Full Width
+
+  The button with full width component utilizes a button component, expanding its width to occupy the entire available space, creating a visually prominent and easily accessible interface element.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Center>
@@ -901,6 +921,4 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Button, ButtonText, ButtonIcon, Box, Center, Heading, Input, InputField, Text, VStack, ArrowLeftIcon }}
-  title="Button with Full Width"
-  description="The button with full width component utilizes a button component, expanding its width to occupy the entire available space, creating a visually prominent and easily accessible interface element."
 />

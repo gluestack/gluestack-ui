@@ -25,7 +25,12 @@ gluestack-ui offers a responsive React Native Alert component with multiple styl
 
 ### This is an illustration of Alert component.
 
-<CodePreviewer
+
+  #### Basic
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Alert action="{{action}}" variant="{{variant}}">
@@ -60,8 +65,6 @@ gluestack-ui offers a responsive React Native Alert component with multiple styl
   }
 }}
   reactLive={{ Alert, AlertText, AlertIcon, InfoIcon }}
-  title="Basic"
-  description=""
 />
 
 <br />
@@ -407,7 +410,12 @@ Contains all text related layout style props and actions. It inherits all the pr
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-<CodePreviewer
+
+  #### Alert with CTA
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Alert
@@ -428,11 +436,14 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Alert, AlertText, VStack, Icon, CloseIcon, Button, ButtonText }}
-  title="Alert with CTA"
-  description=""
 />
 
-<CodePreviewer
+
+  #### Alert on cloud sync
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Alert
@@ -453,11 +464,14 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Alert, AlertText, AlertIcon, VStack, Icon, CloseIcon, Button, ButtonText, CloudIcon }}
-  title="Alert on cloud sync"
-  description=""
 />
 
-<CodePreviewer
+
+  #### Warning alert
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Alert action="error" className="gap-3">
@@ -473,11 +487,14 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Alert, AlertText, AlertIcon, Text, Bomb }}
-  title="Warning alert"
-  description=""
 />
 
-<CodePreviewer
+
+  #### Alert on confirm password modal
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleState = () => {
@@ -521,6 +538,4 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Alert, AlertText, AlertIcon, VStack, Button, ButtonText, Heading, Input, InputField, InputIcon, InputSlot, Text, EyeIcon, EyeOffIcon, InfoIcon }}
-  title="Alert on confirm password modal"
-  description=""
 />

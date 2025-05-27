@@ -37,8 +37,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Avatar, AvatarFallbackText, AvatarImage, AvatarBadge }}
-      title={"Basic"}
-      description={""}
+      title={Basic}
+      description={}
     />
   );
 }

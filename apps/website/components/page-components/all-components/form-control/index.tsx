@@ -102,8 +102,8 @@ export default function Example() {
   }
 }}
       reactLive={{ FormControl, FormControlLabel, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlHelper, FormControlHelperText, FormControlLabelText, AlertCircleIcon, Input, InputField, InputIcon, InputSlot, Button, ButtonText, ButtonSpinner, VStack }}
-      title={"Basic"}
-      description={""}
+      title={Basic}
+      description={}
     />
   );
 }

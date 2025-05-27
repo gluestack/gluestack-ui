@@ -28,7 +28,12 @@ Enhance your app with gluestack-ui's Badge component. A versatile React Native b
 
 
 ### This is an illustration of Badge component.
-<CodePreviewer
+
+  
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Badge size="{{size}}" variant="{{variant}}" action="{{action}}">
@@ -74,8 +79,6 @@ Enhance your app with gluestack-ui's Badge component. A versatile React Native b
   }
 }}
   reactLive={{ Badge, BadgeText, BadgeIcon, GlobeIcon }}
-  title=""
-  description=""
 />
 
 <br />
@@ -397,7 +400,12 @@ Badge component is created using View component from react-native. It extends al
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-<CodePreviewer
+
+  #### Badge with Avatar
+
+  An example of the Badge component being used with the Avatar component to display badges alongside user avatars for enhanced visual representation or identification.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <VStack space="2xl">
@@ -426,12 +434,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Avatar, AvatarFallbackText, AvatarImage, Badge, BadgeIcon, BadgeText, Heading, HStack, Text, VStack, BadgeCheckIcon }}
-  title="Badge with Avatar"
-  description="An example of the Badge component being used with the Avatar component to display badges alongside user avatars for enhanced visual representation or identification."
 />
 
 
-<CodePreviewer
+
+  #### Badge Composition
+
+  An example of the Badge component being used with the Composition component, allowing for the display of badges within a composition of other UI elements.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Box className='items-center'>
@@ -453,6 +464,4 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Badge, BadgeText, BadgeIcon, Box, Button, ButtonText, VStack }}
-  title="Badge Composition"
-  description="An example of the Badge component being used with the Composition component, allowing for the display of badges within a composition of other UI elements."
 />

@@ -25,7 +25,12 @@ import { AnatomyImage } from "@/docs-components/anatomy-image";
 Build interactive forms with a checkbox component for React & React Native. Features include hover, focus, disabled states, and multiple checkbox selection.
 
 ### This is an illustration of Checkbox component.
-<CodePreviewer
+
+  
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Checkbox isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } size="{{size}}">
@@ -62,8 +67,6 @@ Build interactive forms with a checkbox component for React & React Native. Feat
   }
 }}
   reactLive={{ Checkbox, CheckboxIndicator, CheckboxLabel, CheckIcon, CheckboxIcon }}
-  title=""
-  description=""
 />
 
 <br />
@@ -637,7 +640,12 @@ The Examples section provides visual representations of the different variants o
 
 
 
-<CodePreviewer
+
+  #### Multiple Checkbox
+
+  Checkbox provide a mutually exclusive selection mechanism, allowing users to choose a multiple option from a set of related choices.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState(["Eng"]);
   return (
@@ -669,13 +677,16 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, CheckIcon }}
-  title="Multiple Checkbox"
-  description="Checkbox provide a mutually exclusive selection mechanism, allowing users to choose a multiple option from a set of related choices."
 />
 
 
 
-<CodePreviewer
+
+  #### Horizontal
+
+  A horizontal component incorporating a checkbox allows for intuitive and space-efficient selection of multiple options within a linear layout.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState(["Illustration"]);
   return (
@@ -707,12 +718,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, HStack, CheckIcon }}
-  title="Horizontal"
-  description="A horizontal component incorporating a checkbox allows for intuitive and space-efficient selection of multiple options within a linear layout."
 />
 
 
-<CodePreviewer
+
+  #### With Help Text
+
+  A checkbox component with help text provides informative guidance alongside selectable options, ensuring clarity and ease of use.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState(["Design"]);
   return (
@@ -744,12 +758,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, Box, Text, CheckIcon }}
-  title="With Help Text"
-  description="A checkbox component with help text provides informative guidance alongside selectable options, ensuring clarity and ease of use."
 />
 
 
-<CodePreviewer
+
+  #### Form Control
+
+  A checkbox component integrated with form control enhances the user experience by enabling easy selection and submission of options within a structured input context.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <FormControl>
@@ -780,12 +797,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel, FormControl, VStack, Heading, Text, CheckIcon }}
-  title="Form Control"
-  description="A checkbox component integrated with form control enhances the user experience by enabling easy selection and submission of options within a structured input context."
 />
 
 
-<CodePreviewer
+
+  #### Label Left
+
+  A checkbox component with Label left configuration aligns the label to the left, facilitating clear association between the option and its corresponding checkbox.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState(["Jane"]);
   return (
@@ -817,12 +837,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, CheckIcon }}
-  title="Label Left"
-  description="A checkbox component with Label left configuration aligns the label to the left, facilitating clear association between the option and its corresponding checkbox."
 />
 
 
-<CodePreviewer
+
+  #### Controlled
+
+  A controlled component architecture incorporates a checkbox component, allowing for precise management of its state and behavior through explicit control mechanisms.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState(['UX Research']);
   return (
@@ -848,13 +871,16 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, CheckIcon }}
-  title="Controlled"
-  description="A controlled component architecture incorporates a checkbox component, allowing for precise management of its state and behavior through explicit control mechanisms."
 />
 
 
 
-<CodePreviewer
+
+  #### Uncontrolled
+
+  An uncontrolled component utilizes a checkbox component, providing a simpler implementation where the checkbox state is managed internally, without explicit control from external sources.
+  
+  <CodePreviewer
   code={`function Example() {
   const checkboxRef = React.useRef(null);
   const handleCheckboxChange = (e) => {
@@ -881,12 +907,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, CheckIcon }}
-  title="Uncontrolled"
-  description="An uncontrolled component utilizes a checkbox component, providing a simpler implementation where the checkbox state is managed internally, without explicit control from external sources."
 />
 
 
-<CodePreviewer
+
+  #### Checkbox Group
+
+  The checkbox group component allows users to group checkbox and display them in a horizontal or vertical row for better visual representation and functionality.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState([]);
   return (
@@ -912,6 +941,4 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, Center, CheckIcon }}
-  title="Checkbox Group"
-  description="The checkbox group component allows users to group checkbox and display them in a horizontal or vertical row for better visual representation and functionality."
 />

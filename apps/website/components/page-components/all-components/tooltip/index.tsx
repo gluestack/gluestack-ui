@@ -49,8 +49,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Tooltip, TooltipContent, TooltipText, Button, ButtonText }}
-      title={""}
-      description={""}
+      title={}
+      description={}
     />
   );
 }

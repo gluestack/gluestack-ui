@@ -1,9 +1,9 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import Handlebars from "handlebars";
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
+import { LiveProvider, LiveError, LivePreview } from "react-live";
 import CodeBlock from "@/components/custom/markdown/code-block";
-import { Box, ChevronDownIcon, Heading, Switch, Text } from "@/components/ui";
-import { ThemeContext } from "@/utils/context/theme-context";
+import { Box, ChevronDownIcon, Switch, Text } from "@/components/ui";
+
 import {
   Select,
   SelectTrigger,
@@ -16,22 +16,19 @@ import {
   SelectDragIndicatorWrapper,
   SelectItem,
 } from "@/components/ui/select";
+
+
+
 export function CodePreviewer({
   code,
-  message,
   argTypes,
   reactLive,
-  title,
-  description,
 }: {
   code: string;
   message: string;
   argTypes: Record<string, any>;
   reactLive: any;
-  title: string | {};
-  description: string | {};
 }) {
-  const { colorMode } = useContext(ThemeContext);
   // Initialize state with default values from args
   const [values, setValues] = useState<Record<string, any>>({});
   const [compiledCode, setCompiledCode] = useState<any>();
@@ -134,9 +131,7 @@ export function CodePreviewer({
   };
 
   return (
-    <Box>
-      {title && <Heading size="xl" className="text-xl font-bold text-typography-900 mt-3 mb-1.5 font-jakarta">{title}</Heading>}
-      {description && <Text className="text-typography-800 font-medium mb-3 font-inter">{description}</Text>}
+
       <Box className="flex flex-col w-full my-2">
         <Box className="-mb-2 border border-outline-100 rounded-t-lg flex-col flex w-full min-h-[200px] md:flex-row">
           {Object.keys(argTypes).length > 0 && (
@@ -161,6 +156,5 @@ export function CodePreviewer({
           className="rounded-b-lg rounded-t-none border-t-0"
         />
       </Box>
-    </Box>
   );
 }
