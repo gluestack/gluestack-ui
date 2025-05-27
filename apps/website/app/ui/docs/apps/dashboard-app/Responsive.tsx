@@ -93,8 +93,18 @@ function Responsiveness({
         }}
       >
         <Box
-          className="flex-row items-center bg-backgroundDark950 py-1.5 border-top-left-radius-2xl border-top-right-radius-2xl hidden md:flex"
-         
+          flexDirection="row"
+          alignItems="center"
+          bg="$backgroundDark950"
+          py="$1.5"
+          borderTopLeftRadius="$2xl"
+          borderTopRightRadius="$2xl"
+          display="none"
+          sx={{
+            '@sm': {
+              display: isMobile ? 'none' : 'flex',
+            },
+          }}
         >
           <NextImage
             src="/images/menu.svg"
@@ -107,20 +117,20 @@ function Responsiveness({
             }}
           />
           {showMenuItems && (
-            <Box  className="flex-row">
-              <Text className="mr-5 text-xs font-normal">
+            <Box flexDirection="row">
+              <Text mr="$5" fontSize="$xs" fontWeight="$normal">
                 Homestay
               </Text>
 
-              <Text className="mr-5 text-xs font-normal">
+              <Text mr="$5" fontSize="$xs" fontWeight="$normal">
                 File
               </Text>
 
-              <Text className="mr-5 text-xs font-normal">
+              <Text mr="$5" fontSize="$xs" fontWeight="$normal">
                 Edit
               </Text>
 
-              <Text className="mr-5 text-xs font-normal">
+              <Text mr="$5" fontSize="$xs" fontWeight="$normal">
                 View
               </Text>
             </Box>
@@ -128,16 +138,21 @@ function Responsiveness({
         </Box>
 
         <Box
-          className="flex flex-row justify-between items-center border-top-left-radius-2xl border-top-right-radius-2xl bg-backgroundDark950 py-1.5 "
-          
+          display="flex"
           sx={{
             '@sm': {
               display: isMobile ? 'flex' : 'none',
             },
           }}
-        
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+          borderTopLeftRadius="$2xl"
+          borderTopRightRadius="$2xl"
+          bg="$backgroundDark950"
+          py="$1.5"
         >
-          <Text className="ml-5 text-xs font-bold text-trueGray400">
+          <Text ml="$5" fontSize="$xs" fontWeight="$bold" color="$trueGray400">
             8:15
           </Text>
 
@@ -152,7 +167,7 @@ function Responsiveness({
           />
         </Box>
 
-        <Box className="h-full w-full overflow-hidden">
+        <Box h="100%" w="100%" overflow="hidden">
           <iframe
             src={iframeUri}
             title="NativeBase v3 Dashboard Example"
@@ -170,9 +185,9 @@ function Responsiveness({
       </Resizable>
 
       <Box
-        className="mt-[-12px] mb-6 rounded-lg border border-outline-900  p-4 w-auto self-start md:flex-row"
+        className="mt-[-12px] mb-6 border-radius-lg border-width-1 border-color-borderDark800 bg-backgroundDark950 p-4 w-auto self-start"
       >
-        <Box className="">
+        <Box>
           <Text className="text-typography-900 font-bold font-Inter" size="xl">
             Give it a shot!
           </Text>
@@ -203,7 +218,7 @@ function Responsiveness({
           </Text>
 
           <Pressable
-            className=" hidden md:flex py-1 px-3 mt-5 border-outline-900 rounded-sm border-1 bg-transparent flex-row items-center w-auto self-start"
+            className=" hidden md:flex py-1 px-3 mt-5 border-color-borderDark700 border-radius-sm border-width-1 bg-transparent flex-row items-center w-auto self-start"
             // sx={{
             //   '_web': {
             //     ':focus': {
@@ -230,7 +245,7 @@ function Responsiveness({
           </Pressable>
 
           <Pressable
-            className="flex py-1 px-3 mt-5 border-outline-900 rounded-sm border-1 bg-transparent flex-row items-center w-auto self-start "
+            className="flex py-1 px-3 mt-5 border-color-borderDark700 border-radius-sm border-width-1 bg-transparent flex-row items-center w-auto self-start border-color-borderDark700 bg-transparent "
 
             // borderWidth={1}
             // bg="transparent"

@@ -76,6 +76,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Switch }}
+      title={""}
+      description={""}
     />
   );
 }

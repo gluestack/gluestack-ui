@@ -22,6 +22,8 @@ export const generateCodePreviewer = (
     }
     const code = fileOps.readTextFile(codePath);
     const meta = fileOps.readJsonFile(argsPath);
+    const title = JSON.stringify(meta.title || "", null, 2);
+    const description = JSON.stringify(meta.description ||"", null, 2);
     const argTypes = JSON.stringify(meta.argTypes || {}, null, 2);
     const reactLiveKeys = meta.reactLive ? Object.keys(meta.reactLive) : [];
     const reactLive = `{ ${reactLiveKeys.join(", ")} }`;
@@ -60,14 +62,16 @@ export const generateCodePreviewer = (
         imports,
         code.trim(),
         argTypes,
-        reactLive
+        reactLive,
+        title,
+        description
       );
 
       // Write the file
       fileOps.writeTextFile(destFilePath, fileContent);
     }
 
-    return codePreviewerTemplate(code.trim(), argTypes, reactLive);
+    return codePreviewerTemplate(code.trim(), argTypes, reactLive, title, description);
   } catch (error) {
     console.error(
       `:x: Error building CodePreviewer for Example:${exampleName} in ${component}:`,

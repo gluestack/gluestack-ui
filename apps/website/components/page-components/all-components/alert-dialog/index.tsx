@@ -69,6 +69,8 @@ export default function Example() {
   }
 }}
       reactLive={{ AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading }}
+      title={"Basic"}
+      description={""}
     />
   );
 }

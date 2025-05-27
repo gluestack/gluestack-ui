@@ -50,6 +50,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Button, ButtonText }}
+      title={""}
+      description={""}
     />
   );
 }
