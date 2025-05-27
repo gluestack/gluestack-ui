@@ -1,10 +1,10 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Radio } from '@/components/ui/radio';
-import { RadioGroup } from '@/components/ui/radio';
-import { RadioIndicator } from '@/components/ui/radio';
-import { RadioIcon } from '@/components/ui/radio';
-import { RadioLabel } from '@/components/ui/radio';
-import { CircleIcon } from '@/components/ui/icon';
+import { ComponentPreviewer } from "@/components/custom/component-previewer";
+import { Radio } from "@/components/ui/radio";
+import { RadioGroup } from "@/components/ui/radio";
+import { RadioIndicator } from "@/components/ui/radio";
+import { RadioIcon } from "@/components/ui/radio";
+import { RadioLabel } from "@/components/ui/radio";
+import { CircleIcon } from "@/components/ui/icon";
 
 export default function Example() {
   return (
@@ -22,31 +22,34 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  },
-  "isInvalid": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": false
-  },
-  "isDisabled": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": false
-  }
-}}
-      reactLive={{ Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel, CircleIcon }}
+        size: {
+          control: {
+            type: "select",
+          },
+          options: ["sm", "md", "lg"],
+          defaultValue: "md",
+        },
+        isInvalid: {
+          control: {
+            type: "boolean",
+          },
+          defaultValue: false,
+        },
+        isDisabled: {
+          control: {
+            type: "boolean",
+          },
+          defaultValue: false,
+        },
+      }}
+      reactLive={{
+        Radio,
+        RadioGroup,
+        RadioIndicator,
+        RadioIcon,
+        RadioLabel,
+        CircleIcon,
+      }}
     />
   );
 }

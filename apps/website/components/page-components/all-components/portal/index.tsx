@@ -1,11 +1,11 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Portal } from '@/components/ui/portal';
-import { HStack } from '@/components/ui/hstack';
-import { Text } from '@/components/ui/text';
-import { Button } from '@/components/ui/button';
-import { ButtonText } from '@/components/ui/button';
-import { ButtonIcon } from '@/components/ui/button';
-import { CloseIcon } from '@/components/ui/icon';
+import { ComponentPreviewer } from "@/components/custom/component-previewer";
+import { Portal } from "@/components/ui/portal";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
+import { Button } from "@/components/ui/button";
+import { ButtonText } from "@/components/ui/button";
+import { ButtonIcon } from "@/components/ui/button";
+import { CloseIcon } from "@/components/ui/icon";
 
 export default function Example() {
   return (
@@ -35,7 +35,15 @@ export default function Example() {
   )
 }`}
       argTypes={{}}
-      reactLive={{ Portal, HStack, Text, Button, ButtonText, ButtonIcon, CloseIcon }}
+      reactLive={{
+        Portal,
+        HStack,
+        Text,
+        Button,
+        ButtonText,
+        ButtonIcon,
+        CloseIcon,
+      }}
     />
   );
 }
