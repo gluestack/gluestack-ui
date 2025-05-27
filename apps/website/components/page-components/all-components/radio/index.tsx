@@ -47,8 +47,6 @@ export default function Example() {
   }
 }}
       reactLive={{ Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel, CircleIcon }}
-      title={Basic}
-      description={}
     />
   );
 }

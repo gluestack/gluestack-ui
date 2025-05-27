@@ -63,8 +63,6 @@ export const generateCodePreviewer = (
         code.trim(),
         argTypes,
         reactLive,
-        title,
-        description
       );
 
       // Write the file

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Handlebars from "handlebars";
-import { LiveProvider, LiveError, LivePreview } from "react-live";  
+import { LiveProvider, LiveError, LivePreview } from "react-live";
 export function ComponentPreviewer({
   code,
   argTypes,
@@ -10,7 +10,6 @@ export function ComponentPreviewer({
   argTypes: Record<string, any>;
   reactLive: any;
 }) {
-
   // Initialize state with default values from args
   const [values, setValues] = useState<Record<string, any>>({});
   const [compiledCode, setCompiledCode] = useState<any>();
@@ -31,10 +30,10 @@ export function ComponentPreviewer({
   }, [values]);
 
   return (
-    <div className=" h-[300px] pt-4 w-[300px]">
+    <div className="flex  items-center justify-center">
       <LiveProvider code={compiledCode} scope={{ ...reactLive }}>
         <LiveError />
-        <LivePreview className=" flex items-center justify-center  w-full" />
+        <LivePreview className="scale-75" />
       </LiveProvider>
     </div>
   );

@@ -52,8 +52,6 @@ export default function Example() {
   }
 }}
       reactLive={{ Badge, BadgeText, BadgeIcon, GlobeIcon }}
-      title={}
-      description={}
     />
   );
 }

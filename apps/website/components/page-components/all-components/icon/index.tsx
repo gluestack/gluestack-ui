@@ -26,8 +26,6 @@ export default function Example() {
   }
 }}
       reactLive={{ Icon, EditIcon }}
-      title={}
-      description={}
     />
   );
 }

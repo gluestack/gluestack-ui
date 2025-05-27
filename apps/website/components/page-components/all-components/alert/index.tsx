@@ -41,8 +41,6 @@ export default function Example() {
   }
 }}
       reactLive={{ Alert, AlertText, AlertIcon, InfoIcon }}
-      title={Basic}
-      description={}
     />
   );
 }

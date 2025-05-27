@@ -41,8 +41,6 @@ export default function Example() {
   }
 }}
       reactLive={{ VStack, Box }}
-      title={}
-      description={}
     />
   );
 }
