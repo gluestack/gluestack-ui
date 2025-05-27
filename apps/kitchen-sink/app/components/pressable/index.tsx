@@ -10,7 +10,7 @@ import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
         <ScrollView className="bg-background-0 flex-1" contentContainerClassName="px-3 pb-6">
-      <ComponentPreviewer props={{}} title={undefined}>
+      <ComponentPreviewer props={{}} title={"Basic"}>
   {props => {
   return (
     <Pressable
@@ -22,7 +22,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Pressable child elements according to its states"}>
   {props => {
   return (
     <Pressable className="p-16 bg-primary-500">

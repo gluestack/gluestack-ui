@@ -1,0 +1,21 @@
+function App () {
+        const [values, setValues] = React.useState('Apartments');
+        return (
+          <RadioGroup value={values} onChange={setValues}>
+            <VStack space='md'>
+              <Radio value="Apartments">
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>Apartments</RadioLabel>
+              </Radio>
+              <Radio value="Houses">
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>Houses</RadioLabel>
+              </Radio>
+            </VStack>
+          </RadioGroup>
+          )
+        }

@@ -1,4 +1,6 @@
 {
+  "title": "Input with Icons",
+  "description": "The Input with Icons is a variation of the Input component that displays icons next to input field. It's commonly used in apps for a more visual representation of options and easier navigation.",
   "argTypes": {},
   "reactLive": {
     "Input": "@/components/ui/input",
@@ -7,4 +9,4 @@
     "InputSlot": "@/components/ui/input",
     "SearchIcon": "@/components/ui/icon"
   }
-} 
+}

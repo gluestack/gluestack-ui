@@ -11,7 +11,7 @@ import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
         <ScrollView className="bg-background-0 flex-1" contentContainerClassName="px-3 pb-6">
-      <ComponentPreviewer props={{}} title={undefined}>
+      <ComponentPreviewer props={{}} title={"Basic"}>
   {props => {
   const [visible, setVisible] = React.useState(false)
   const handleClose = () => setVisible(false)

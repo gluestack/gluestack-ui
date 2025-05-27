@@ -1,4 +1,5 @@
 {
+  "title": "Invite Friends to Project",
   "reactLive": {
     "Modal": "@/components/ui/modal",
     "ModalBackdrop": "@/components/ui/modal",

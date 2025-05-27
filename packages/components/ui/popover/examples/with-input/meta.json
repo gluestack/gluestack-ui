@@ -1,4 +1,5 @@
 {
+  "title": "Popover with InputField",
   "argsTypes": {},
   "reactLive": {
     "Popover": "@/components/ui/popover",

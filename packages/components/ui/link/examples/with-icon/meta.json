@@ -1,4 +1,5 @@
 {
+  "title": "Link with Icon",
   "argTypes": {},
   "reactLive": {
     "Link": "@/components/ui/link",

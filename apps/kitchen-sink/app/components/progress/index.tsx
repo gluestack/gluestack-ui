@@ -36,7 +36,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "horizontal"
   }
-}} title={undefined}>
+}} title={"Basic"}>
   {props => {
   return (
     <Center className="w-[300px] h-[150px]">
@@ -47,7 +47,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Value"}>
   {props => {
   return (
     <VStack space="lg" className="max-w-80 w-full">
@@ -59,7 +59,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Color"}>
   {props => {
   return (
     <VStack space="3xl" className="max-w-96 w-full">
@@ -79,7 +79,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Custom"}>
   {props => {
   return (
     <VStack space="lg" className="max-w-[410px] w-full">
