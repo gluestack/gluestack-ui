@@ -9,6 +9,8 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ Text }}
+      title={""}
+      description={""}
     />
   );
 }

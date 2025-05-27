@@ -69,6 +69,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Toast, ToastTitle, ToastDescription, useToast, Button, ButtonText }}
+      title={""}
+      description={""}
     />
   );
 }

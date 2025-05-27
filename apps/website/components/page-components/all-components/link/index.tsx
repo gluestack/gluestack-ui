@@ -14,6 +14,8 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ Link, LinkText }}
+      title={""}
+      description={""}
     />
   );
 }

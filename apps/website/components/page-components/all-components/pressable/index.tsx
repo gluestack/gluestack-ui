@@ -17,6 +17,8 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ Pressable, Text }}
+      title={""}
+      description={""}
     />
   );
 }

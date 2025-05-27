@@ -21,6 +21,8 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ Skeleton, SkeletonText, Box, HStack }}
+      title={""}
+      description={""}
     />
   );
 }
