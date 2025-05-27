@@ -1,0 +1,12 @@
+{
+    "title": "Social media notification",
+    "argTypes": {},
+    "reactLive": {
+      "Toast": "@/components/ui/toast",
+      "ToastTitle": "@/components/ui/toast",
+      "ToastDescription": "@/components/ui/toast",
+      "useToast": "@/components/ui/toast",
+      "Button": "@/components/ui/button",
+      "ButtonText": "@/components/ui/button"
+    }
+  }

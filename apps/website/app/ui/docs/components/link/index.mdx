@@ -286,31 +286,34 @@ We have outlined the various features that ensure the Link component is accessib
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Default Link
-The Link component provides a simple way to create hyperlinks in your application.
 
 
-  
+
+  #### Default Link
 
   
   
   <CodePreviewer
   code={`function Example() {
   return (
-    <Link href="https://gluestack.io/">
-      <LinkText>gluestack</LinkText>
-    </Link>
-  )
+    <HStack>
+            <Text
+              size="lg"
+            >Design inspiration from&nbsp;</Text>
+              <Link href="https://gluestack.io/" isExternal>
+                <LinkText size="lg">pinterest.com</LinkText>
+              </Link>
+          </HStack>
+  );
 }`}
   argTypes={{}}
-  reactLive={{ Link, LinkText }}
+  reactLive={{ Link, LinkText, HStack, Text }}
 />
 
-#### Link with Icon
-The Link with Icon variant adds a visual element to your links, making them more engaging and intuitive.
 
 
-  
+
+  #### Link with Icon
 
   
   

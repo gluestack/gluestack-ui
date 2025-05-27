@@ -55,7 +55,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "md"
   }
-}} title={undefined}>
+}} title={"Basic"}>
   {props => {
   return (
     <Input variant={props.variant} size={props.size} isDisabled={props.isDisabled} isInvalid={props.isInvalid} isReadOnly={props.isReadOnly}>
@@ -64,7 +64,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Input with FormControl"}>
   {props => {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleState = () => {
@@ -105,7 +105,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Input with Icons"}>
   {props => {
   return (
     <Input>

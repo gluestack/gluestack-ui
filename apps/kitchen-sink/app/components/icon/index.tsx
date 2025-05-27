@@ -33,7 +33,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"All Gluestack Icons"}>
   {props => {
   return (
     <Center>
@@ -98,19 +98,19 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Lucide Icons (Recommended)"}>
   {props => {
   return (
     <VStack space="md" className="items-center">
-      <Icon className="text-typography-500" size={props.size} as={Camera} />
-      <Icon className="text-typography-500" size={props.size} as={ChromeIcon} />
-      <Icon className="text-typography-500" size={props.size} as={InstagramIcon} />
-      <Icon className="text-typography-500" size={props.size} as={FacebookIcon} />
+      <Icon className="text-typography-500" as={Camera} />
+      <Icon className="text-typography-500" as={ChromeIcon} />
+      <Icon className="text-typography-500" as={InstagramIcon} />
+      <Icon className="text-typography-500" as={FacebookIcon} />
     </VStack>
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"SVG & Custom Icons"}>
   {props => {
   const GluestackIcon = createIcon({
     viewBox: "0 0 32 32",

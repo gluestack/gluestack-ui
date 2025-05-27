@@ -1,4 +1,6 @@
 {
+  "title": "Color",
+  "description": "You can add track color to progress bar as per our needs.",
   "reactLive": {
     "Progress": "@/components/ui/progress",
     "ProgressFilledTrack": "@/components/ui/progress",

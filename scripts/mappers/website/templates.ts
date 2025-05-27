@@ -3,8 +3,6 @@ export const componentPreviewerTemplate = (
   code: string,
   argTypes: string,
   reactLive: string,
-  title: string,
-  description: string
 ) => `import { ComponentPreviewer } from '@/components/custom/component-previewer';
 ${imports}
 
@@ -14,8 +12,6 @@ export default function Example() {
       code={\`${code}\`}
       argTypes={${argTypes}}
       reactLive={${reactLive}}
-      title={${title}}
-      description={${description}}
     />
   );
 }`;

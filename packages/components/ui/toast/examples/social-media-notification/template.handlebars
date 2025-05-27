@@ -1,0 +1,48 @@
+function Example() {
+          const toast = useToast();
+          return (
+            <Button
+              onPress={() => {
+                toast.show({
+                  placement:"top",
+                  render: ({ id }) => {
+                    const toastId = "toast-" + id;
+                    return (
+                      <Toast
+                        nativeID={toastId}
+                        className="p-4 gap-3 w-full sm:min-w-[386px] max-w-[386px] bg-background-0 shadow-hard-2 flex-row"
+                      >
+                        <Avatar>
+                          <AvatarFallbackText>JS</AvatarFallbackText>
+                          <AvatarImage
+                            source=\\{{
+                              uri: "https://gluestack.github.io/public-blog-video-assets/Avatar.png",
+                            }}
+                          />
+                        </Avatar>
+                        <VStack className="web:flex-1">
+                          <HStack className="justify-between">
+                            <Heading
+                              size="sm"
+                              className="text-typography-950 font-semibold"
+                            >
+                              Jacob Steve
+                            </Heading>
+                            <Text size="sm" className="text-typography-500">
+                              2m ago
+                            </Text>
+                          </HStack>
+                          <Text size="sm" className="text-typography-500">
+                            commented on your photo
+                          </Text>
+                        </VStack>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <ButtonText>Show Toast</ButtonText>
+            </Button>
+          );
+        }

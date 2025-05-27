@@ -1,4 +1,6 @@
 {
+  "title": "Multiple Modals",
+  "description": "A user interface featuring multiple modal components that allow for layered interaction and context-specific information display.",
   "reactLive": {
     "Modal": "@/components/ui/modal",
     "ModalBackdrop": "@/components/ui/modal",

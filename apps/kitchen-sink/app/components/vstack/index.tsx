@@ -1,6 +1,6 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer'
 import { VStack } from '@/components/ui/vstack'
-import { Box } from '@/components/ui/box'
+import { Box, Wrapper } from '@/components/ui/box'
 
 
 import React from 'react';
@@ -31,7 +31,7 @@ export default function ComponentExamples() {
     },
     "defaultValue": false
   }
-}} title={undefined}>
+}} title={"Basic"}>
   {props => {
   return (
     <Box className="justify-center h-80">
@@ -42,6 +42,17 @@ export default function ComponentExamples() {
       </VStack>
     </Box>
   )}}
+</ComponentPreviewer>
+
+<ComponentPreviewer props={{}} title={"VStack Reversed"}>
+  {props => {
+  return (
+    <VStack space='md' reversed>
+          <Box className='w-20 h-20 bg-primary-300' />
+          <Box className='w-20 h-20 bg-primary-400' />
+          <Box className='w-20 h-20 bg-primary-500' />
+        </VStack>
+  );}}
 </ComponentPreviewer>
         </ScrollView>
   );

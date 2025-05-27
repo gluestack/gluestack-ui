@@ -1,0 +1,10 @@
+{
+  "title": "Switch With Label",
+  "description": "An example of a switch component with a label, which includes another switch component for toggling additional options.",
+  "argTypes": {},
+  "reactLive": {
+    "Switch": "@/components/ui/switch",
+    "Text": "@/components/ui/text",
+    "HStack": "@/components/ui/hstack"
+  }
+}

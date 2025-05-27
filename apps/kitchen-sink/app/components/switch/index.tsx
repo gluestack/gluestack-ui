@@ -1,5 +1,7 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer'
 import { Switch } from '@/components/ui/switch'
+import { Text } from '@/components/ui/text'
+import { HStack } from '@/components/ui/hstack'
 
 
 import React from 'react';
@@ -65,7 +67,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "#E2E8F0"
   }
-}} title={undefined}>
+}} title={"Basic"}>
   {props => {
   return (
     <Switch
@@ -77,6 +79,37 @@ export default function ComponentExamples() {
       ios_backgroundColor={props.ios_backgroundColor}
     />
   )}}
+</ComponentPreviewer>
+
+<ComponentPreviewer props={{}} title={"Switch With Label"}>
+  {props => {
+  return (
+    <HStack space="md">
+          <Switch
+            trackColor={{ false: "#E2E8F0", true: "#000000" }}
+            thumbColor="#FFFFFF"
+            activeThumbColor="#000000"
+            ios_backgroundColor="#E2E8F0"
+          />
+          <Text size="sm" >Allow notifications</Text>
+        </HStack>
+  );}}
+</ComponentPreviewer>
+
+<ComponentPreviewer props={{}} title={"Checked State"}>
+  {props => {
+  return (
+    <HStack space="md">
+          <Switch
+            defaultValue={true}
+            trackColor="#E2E8F0"
+            thumbColor="#FFFFFF"
+            activeThumbColor="#000000"
+            ios_backgroundColor="#E2E8F0"
+          />
+          <Text size="sm" >Public profile</Text>
+        </HStack>
+  );}}
 </ComponentPreviewer>
         </ScrollView>
   );

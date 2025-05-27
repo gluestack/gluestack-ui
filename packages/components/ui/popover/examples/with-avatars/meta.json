@@ -1,4 +1,5 @@
 {
+  "title": "Popover used along with multiple Avatars",
   "argsTypes": {},
   "reactLive": {
     "Popover": "@/components/ui/popover",

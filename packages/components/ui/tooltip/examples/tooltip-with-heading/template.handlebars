@@ -1,0 +1,45 @@
+function App(){
+          return (
+            <Box className="justify-center h-96">
+              <AvatarGroup className="flex-row">
+                <Tooltip
+                  placement="top"
+                  trigger={(triggerProps) => {
+                    return (
+                      <Avatar
+                        size="lg"
+                        {...triggerProps}
+                        className="border-outline-0 border-2 bg-primary-600"
+                      >
+                        <AvatarFallbackText>+ 3</AvatarFallbackText>
+                      </Avatar>
+                    )
+                  }}
+                >
+                  <TooltipContent
+                    className="p-4 rounded-md max-w-72 bg-background-50"
+                  >
+                    <VStack space='md' className="rounded-lg">
+                      <Heading size="sm">View all members of this channel</Heading>
+                      <Center>
+                        <Text className="font-sm">Includes John, Sarah, Mike, Emily</Text>
+                        <Text className="font-sm">and David</Text>
+                      </Center>
+                    </VStack>
+                  </TooltipContent>
+                </Tooltip>
+               <Avatar size="lg"
+                    className="border-outline-0 border-2 bg-emerald-600" >
+                      <AvatarFallbackText className="text-white">Sandeep Srivastva</AvatarFallbackText>
+                </Avatar>
+                   <Avatar size="lg" className="border-outline-0 border-2 bg-cyan-600" >
+                      <AvatarFallbackText className="text-white">Arjun Kapoor</AvatarFallbackText>
+                </Avatar>
+                      <Avatar size="lg"
+                    className="border-outline-0 border-2 bg-indigo-600" >
+                      <AvatarFallbackText className="text-white">Ritik Sharma </AvatarFallbackText>
+                </Avatar>
+              </AvatarGroup>
+            </Box>
+          );
+        }

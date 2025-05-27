@@ -26,10 +26,11 @@ import { AnatomyImage } from "@/docs-components/anatomy-image";
 
 # Modal
 Create smooth and accessible modals in React & React Native. Implement React modal components for alerts, forms, and notifications with ease. Optimize modal component for better user engagement.
-### This is an illustration of Modal component.
+
+ This is an illustration of **Modal** component.
 
 
-  
+  #### Basic
 
   
   
@@ -586,14 +587,12 @@ Modal component is created using View component from react-native. It extends al
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Multiple Modals
-
-A user interface featuring multiple modal components that allow for layered interaction and context-specific information display.
 
 
-  
 
-  
+  #### Multiple Modals
+
+  A user interface featuring multiple modal components that allow for layered interaction and context-specific information display.
   
   <CodePreviewer
   code={`function Example() {
@@ -754,80 +753,9 @@ A user interface featuring multiple modal components that allow for layered inte
   reactLive={{ Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, ButtonText, ButtonIcon, Heading, Text, HStack, Input, InputField, Link, LinkText, ArrowLeftIcon }}
 />
 
-#### Onboarding Message
 
 
-  
-
-  
-  
-  <CodePreviewer
-  code={`function Example() {
-  const [showModal, setShowModal] = React.useState(false);
-  return (
-    <>
-      <Button onPress={() => setShowModal(true)}>
-        <ButtonText>Dashboard</ButtonText>
-      </Button>
-      <Modal
-        isOpen={showModal}
-        onClose={() => {
-          setShowModal(false);
-        }}
-      >
-        <ModalBackdrop />
-        <ModalContent className="max-w-[375px]">
-          <Image
-            source=\\{{
-              uri: 'https://gluestack.github.io/public-blog-video-assets/Image%20Element.png',
-            }}
-            alt="image"
-            className="h-[185px] w-full rounded"
-          />
-          <ModalBody className="mb-5" contentContainerClassName="">
-            <Heading size="md" className="text-typography-950 text-center">
-              Welcome to the dashboard
-            </Heading>
-            <Text size="sm" className="text-typography-500 text-center">
-              We are glad to have you on board, Here are some quick tips to let
-              you up and running.
-            </Text>
-          </ModalBody>
-          <ModalFooter className="w-full">
-            <Button
-              variant="outline"
-              action="secondary"
-              size="sm"
-              onPress={() => {
-                setShowModal(false);
-              }}
-              className="flex-grow"
-            >
-              <ButtonText>Skip</ButtonText>
-            </Button>
-            <Button
-              onPress={() => {
-                setShowModal(false);
-              }}
-              size="sm"
-              className="flex-grow"
-            >
-              <ButtonText>Next</ButtonText>
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
-  );
-}`}
-  argTypes={{}}
-  reactLive={{ Modal, ModalBackdrop, ModalContent, ModalBody, ModalFooter, Button, ButtonText, Heading, Text, Image }}
-/>
-
-
-#### Onboarding Message
-
-  
+  #### Onboarding Message
 
   
   
@@ -894,9 +822,9 @@ A user interface featuring multiple modal components that allow for layered inte
   reactLive={{ Modal, ModalBackdrop, ModalContent, ModalBody, ModalFooter, Button, ButtonText, Heading, Text, Image }}
 />
 
-#### Delete Post
 
-  
+
+  #### Delete Post
 
   
   
@@ -961,10 +889,10 @@ A user interface featuring multiple modal components that allow for layered inte
   reactLive={{ Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, ButtonText, Heading, Text, Icon, Box, TrashIcon }}
 />
 
-#### Invite Friends to Project
 
 
-  
+
+  #### Invite Friends to Project
 
   
   

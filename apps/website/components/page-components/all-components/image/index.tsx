@@ -33,8 +33,6 @@ export default function Example() {
   }
 }}
       reactLive={{ Image }}
-      title={}
-      description={}
     />
   );
 }
