@@ -27,7 +27,6 @@ export default function Page() {
   return (
     <div>
       <Docs />
-      hello
     </div>
   );
 }`;
@@ -44,4 +43,4 @@ export const codePreviewerTemplate = (
   reactLive={${reactLive}}
   title=${title}
   description=${description}
-/>`; 
+/>`;
