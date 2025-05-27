@@ -1,4 +1,5 @@
 {
+  "title": "Menu with Tag",
   "argTypes": {},
   "reactLive": {
     "Menu": "@/components/ui/menu",

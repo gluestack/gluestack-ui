@@ -66,63 +66,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{
-  "placement": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "top",
-      "bottom",
-      "left",
-      "right",
-      "top start",
-      "top end",
-      "bottom start",
-      "bottom end",
-      "left start",
-      "left end",
-      "right start",
-      "right end"
-    ],
-    "defaultValue": "top"
-  }
-}} title={undefined}>
-  {props => {
-  return (
-    <Menu
-      placement={props.placement}
-      offset={5}
-      disabledKeys={["Settings"]}
-      trigger={({ ...triggerProps }) => {
-        return (
-          <Button {...triggerProps}>
-            <ButtonText>Menu</ButtonText>
-          </Button>
-        )
-      }}
-    >
-      <MenuItem key="Add account" textValue="Add account">
-        <Icon as={AddIcon} size="sm" className="mr-2" />
-        <MenuItemLabel size="sm">Add account</MenuItemLabel>
-      </MenuItem>
-      <MenuItem key="Community" textValue="Community">
-        <Icon as={GlobeIcon} size="sm" className="mr-2" />
-        <MenuItemLabel size="sm">Community</MenuItemLabel>
-      </MenuItem>
-      <MenuItem key="Plugins" textValue="Plugins">
-        <Icon as={PlayIcon} size="sm" className="mr-2" />
-        <MenuItemLabel size="sm">Plugins</MenuItemLabel>
-      </MenuItem>
-      <MenuItem key="Settings" textValue="Settings">
-        <Icon as={SettingsIcon} size="sm" className="mr-2" />
-        <MenuItemLabel size="sm">Settings</MenuItemLabel>
-      </MenuItem>
-    </Menu>
-  )}}
-</ComponentPreviewer>
-
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Menu with Tag"}>
   {props => {
   return (
     <Menu
@@ -177,7 +121,7 @@ export default function ComponentExamples() {
   );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Menu with Selection"}>
   {props => {
   const [selected, setSelected] = React.useState(new Set([]));
   return (

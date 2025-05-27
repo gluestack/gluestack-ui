@@ -95,35 +95,14 @@ Role: img is passed
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### All gluestack icons
 
-Below is a list of all of the icons in the library.
 
 /// {Example:all-icons} ///
 
-#### Lucide Icons (Recommended)
 
-[Lucide](https://lucide.dev/docs/lucide-react-native) is an open source icon library for displaying icons for react-native. `gluestack-ui` provides an easy integration with lucide icons.
 
 /// {Example:lucide} ///
 
-#### SVG & Custom Icons
-
-We can directly create Icon using `createIcon` function exported from `@/components/ui/icon` and use it by passing it in `as` prop in `Icon` component.
-CreateIcon function takes viewBox, d, path etc as parameters. We can use svgs from other icon libraries like fluent, react-icons etc.
-
-**Notes to remember while using createIcon function**
-
-- Pass svg props such as `viewBox` in `createIcon` directly.
-- Copy the svg code without the SVG tag directly into the function argument `Path` or `D` or whichever prop justifies your svg.
-- Replace HTML SVG tags (e.g., `<path>`, `<rect>` etc) with the corresponding React Native SVG components (e.g., `<Path>`, `<Rect>` etc) for native.
-- For any color property (i.e. fill, stroke etc), if you want to override that color, pass "currentColor" instead of a colorCode or className.
-
-on Web :
-`<path fill="#FF0000" d="M10 10L20 20" /> `
-
-on Native :
-`<Path fill="currentColor" d="M10 10L20 20" /> `
 
 /// {Example:custom} ///
 

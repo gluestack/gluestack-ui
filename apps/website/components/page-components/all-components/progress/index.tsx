@@ -42,7 +42,7 @@ export default function Example() {
   }
 }}
       reactLive={{ Progress, ProgressFilledTrack, Center }}
-      title={}
+      title={Basic}
       description={}
     />
   );

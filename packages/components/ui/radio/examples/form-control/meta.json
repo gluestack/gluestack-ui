@@ -1,0 +1,18 @@
+{
+  "title": "Form Control",
+  "description": "Radio buttons can be used inside FormControl for better control of states and functionality.",
+  "argTypes": {},
+  "reactLive": {
+    "Center": "@/components/ui/center",
+    "Text": "@/components/ui/text",
+    "CircleIcon": "@/components/ui/icon",
+    "VStack": "@/components/ui/vstack",
+    "Heading": "@/components/ui/heading",
+    "Radio": "@/components/ui/radio",
+    "RadioGroup": "@/components/ui/radio",
+    "RadioIcon": "@/components/ui/radio",
+    "RadioIndicator": "@/components/ui/radio",
+    "RadioLabel": "@/components/ui/radio",
+    "FormControl": "@/components/ui/form-control"
+  }
+}

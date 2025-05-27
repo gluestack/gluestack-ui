@@ -1,4 +1,5 @@
 {
+  "title": "Delete Post",
   "reactLive": {
     "Modal": "@/components/ui/modal",
     "ModalBackdrop": "@/components/ui/modal",

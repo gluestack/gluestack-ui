@@ -1,4 +1,6 @@
 {
+  "title": "Input with FormControl",
+  "description": "The Input component integrates with an icon and a button, providing users with a comprehensive login window inside a FormControl component.",
   "argTypes": {},
   "reactLive": {
     "Input": "@/components/ui/input",
@@ -14,4 +16,4 @@
     "EyeIcon": "@/components/ui/icon",
     "EyeOffIcon": "@/components/ui/icon"
   }
-} 
+}

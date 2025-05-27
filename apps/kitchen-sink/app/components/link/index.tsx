@@ -20,16 +20,21 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Default Link"}>
   {props => {
   return (
-    <Link href="https://gluestack.io/">
-      <LinkText>gluestack</LinkText>
-    </Link>
-  )}}
+    <HStack>
+            <Text
+              size="lg"
+            >Design inspiration from&nbsp;</Text>
+              <Link href="https://gluestack.io/" isExternal>
+                <LinkText size="lg">pinterest.com</LinkText>
+              </Link>
+          </HStack>
+  );}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Link with Icon"}>
   {props => {
   return (
     <HStack>

@@ -1,5 +1,7 @@
 {
-    "argTypes": {},
+  "title": "All Gluestack Icons",
+  "description": "Below is a list of all of the icons in the library.",
+  "argTypes": {},
   "reactLive": {
     "Icon": "@/components/ui/icon",
     "Center": "@/components/ui/center",

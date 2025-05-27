@@ -52,7 +52,7 @@ export default function ComponentExamples() {
     ],
     "defaultValue": "bottom"
   }
-}} title={undefined}>
+}} title={"Basic"}>
   {props => {
   const [isOpen, setIsOpen] = React.useState(false)
   const handleOpen = () => {
@@ -90,7 +90,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Popover used along with multiple Avatars"}>
   {props => {
         const [isOpen, setIsOpen] = React.useState(false);
         const handleOpen = () => {
@@ -172,7 +172,7 @@ export default function ComponentExamples() {
         )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Popover with CTA"}>
   {props => {
         const [isOpen, setIsOpen] = React.useState(false);
         const [values, setValues] = React.useState(['work']);
@@ -247,7 +247,7 @@ export default function ComponentExamples() {
         )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Popover with Image"}>
   {props => {
   const [isOpen, setIsOpen] = React.useState(false)
   const handleOpen = () => {
@@ -303,7 +303,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Popover with InputField"}>
   {props => {
   const [showPopover, setShowPopover] = React.useState(false);
   return (

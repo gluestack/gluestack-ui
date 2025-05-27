@@ -1,4 +1,5 @@
 {
+  "title": "Popover with Image",
   "argsTypes": {},
   "reactLive": {
     "Popover": "@/components/ui/popover",
