@@ -23,7 +23,6 @@ export default function Page() {
   return (
     <div>
       <Docs />
-      hello
     </div>
   );
 }`;
@@ -36,4 +35,4 @@ export const codePreviewerTemplate = (
   code={\`${code}\`}
   argTypes={${argTypes}}
   reactLive={${reactLive}}
-/>`; 
+/>`;
