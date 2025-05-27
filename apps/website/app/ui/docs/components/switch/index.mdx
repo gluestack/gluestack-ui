@@ -1,5 +1,12 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Switch } from '@/components/ui/switch';
+import { Text } from '@/components/ui/text';
+import { HStack } from '@/components/ui/hstack';
+
+import {Tabs,TabItem} from '@/docs-components/tabs'
+import {Table, TableContainer, TableHeader, TableBody, TableRow, TableCell, TableText,TableHeaderCell} from '@/docs-components/table'
+import {InlineCode} from '@/docs-components/inline-code'
+import {AnatomyImage} from '@/docs-components/anatomy-image'
 
 # Switch
 
@@ -8,7 +15,7 @@ Enhance your UI with a sleek Switch Component. Built on React Native, it's custo
 
 ### This is an illustration of Switch component.
 
-  
+  #### Basic
 
   
   
@@ -85,4 +92,262 @@ Enhance your UI with a sleek Switch Component. Built on React Native, it's custo
   }
 }}
   reactLive={{ Switch }}
+/>
+
+<br />
+
+## Installation
+
+<Tabs >
+  <TabItem label="CLI">
+     
+### Run the following command:
+  ```bash
+  npx gluestack-ui add switch
+  ```
+  </TabItem>
+  <TabItem label="Manual"> 
+
+### Step 1: Install the following dependencies:
+
+  
+### Run the following command:
+```bash
+npx gluestack-ui add switch
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+
+```jsx 
+'use client';
+import React from 'react';
+import { Switch as RNSwitch } from 'react-native';
+import { createSwitch } from '@/components/ui/switch/creator';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import { withStyleContext } from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+
+const UISwitch = createSwitch({
+  Root: withStyleContext(RNSwitch),
+});
+
+const switchStyle = tva({
+  base: 'data-[focus=true]:outline-0 data-[focus=true]:ring-2 data-[focus=true]:ring-indicator-primary web:cursor-pointer disabled:cursor-not-allowed data-[disabled=true]:opacity-40 data-[invalid=true]:border-error-700 data-[invalid=true]:rounded-xl data-[invalid=true]:border-2',
+
+  variants: {
+    size: {
+      sm: 'scale-75',
+      md: '',
+      lg: 'scale-125',
+    },
+  },
+});
+
+type ISwitchProps = React.ComponentProps<typeof UISwitch> &
+  VariantProps<typeof switchStyle>;
+const Switch = React.forwardRef<
+  React.ComponentRef<typeof UISwitch>,
+  ISwitchProps
+>(function Switch({ className, size = 'md', ...props }, ref) {
+  return (
+    <UISwitch
+      ref={ref}
+      {...props}
+      className={switchStyle({ size, class: className })}
+    />
+  );
+});
+
+Switch.displayName = 'Switch';
+export { Switch };
+ 
+```
+
+### Step 3: Update the import paths to match your project setup.
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Switch } from '@/components/ui/switch';
+```
+
+<AnatomyImage mobileUrl='https://i.imgur.com/p6ndTjn.png' webUrl='https://i.imgur.com/rDy1AOi.png' classNameStyle='aspect-[513/298] md:aspect-[736/182]' />
+
+```ts
+export default () => <Switch />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Switch
+
+Contains all switch related layout style props and actions.
+It inherits all the properties of React Native's [Switch](https://reactnative.dev/docs/switch) component.
+
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isDisabled</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the switch is disabled and cannot be toggled</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isInvalid</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the switch displays an error state.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isRequired</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, sets aria-required="true" on the switch.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isHovered</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the switch displays a hover state.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>value</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>The value of the switch. If true the switch will be turned on.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>defaultValue</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>The defaultValue of the switch. If true the switch will be turned on initially.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>onToggle</InlineCode>
+          </TableCell>
+          <TableCell>{`() => any`}</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>Callback to be invoked when switch value is changed.</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Accessibility
+
+We have outlined the various features that ensure the Button component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/switch/).
+
+#### Keyboard
+
+- `Tab`: Moves focus to the next focusable element.
+- `Space`: Triggers the switch's action.
+
+### Screen Reader
+
+- VoiceOver: When the switch is focused, the screen reader will announce the switch's action and its current state.
+
+### Props
+
+Switch component is created using Switch component from react-native. It extends all the props supported by [React Native Switch](https://reactnative.dev/docs/switch#props).
+
+#### Switch
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Value</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>size</InlineCode>
+          </TableCell>
+          <TableCell>sm | md | lg</TableCell>
+          <TableCell>md</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+
+  #### Switch With Label
+
+  An example of a switch component with a label, which includes another switch component for toggling additional options.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <HStack space="md">
+          <Switch
+            trackColor=\\{{ false: "#E2E8F0", true: "#000000" }}
+            thumbColor="#FFFFFF"
+            activeThumbColor="#000000"
+            ios_backgroundColor="#E2E8F0"
+          />
+          <Text size="sm" >Allow notifications</Text>
+        </HStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Switch, Text, HStack }}
+/>
+
+
+  #### Checked State
+
+  An example of a switch component used within a checked state component to represent a pre-selected or activated option.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <HStack space="md">
+          <Switch
+            defaultValue={true}
+            trackColor="#E2E8F0"
+            thumbColor="#FFFFFF"
+            activeThumbColor="#000000"
+            ios_backgroundColor="#E2E8F0"
+          />
+          <Text size="sm" >Public profile</Text>
+        </HStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Switch, Text, HStack }}
 />
