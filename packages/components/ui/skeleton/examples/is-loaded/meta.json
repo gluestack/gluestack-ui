@@ -1,0 +1,23 @@
+{
+  "title": "Using isLoaded prop",
+  "description": "Use the `isLoaded` prop to show the content after the skeleton content is loaded.",
+  "argTypes": {
+    "isLoaded": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
+    }
+  },
+  "reactLive": {
+    "Skeleton": "@/components/ui/skeleton",
+    "SkeletonText": "@/components/ui/skeleton",
+    "Box": "@/components/ui/box",
+    "Image": "@/components/ui/image",
+    "Text": "@/components/ui/text",
+    "HStack": "@/components/ui/hstack",
+    "VStack": "@/components/ui/vstack",
+    "Avatar": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar"
+  }
+}

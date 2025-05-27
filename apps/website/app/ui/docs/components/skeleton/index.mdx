@@ -2,15 +2,23 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Skeleton, SkeletonText } from '@/components/ui/skeleton';
 import { Box } from '@/components/ui/box';
 import { HStack } from '@/components/ui/hstack';
+import { Image } from '@/components/ui/image';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { Avatar, AvatarFallbackText } from '@/components/ui/avatar';
+
+import {Tabs,TabItem} from '@/docs-components/tabs'
+import {Table, TableContainer, TableHeader, TableBody, TableRow, TableCell, TableText,TableHeaderCell} from '@/docs-components/table'
+import {InlineCode} from '@/docs-components/inline-code'
+import {AnatomyImage} from '@/docs-components/anatomy-image'
 
 # Skeleton
 
 Discover the ultimate gluestack-ui Skeleton component for React & React Native. Improve app loading visuals with gluestack-ui easy-to-use Skeleton.
 
+ This is an illustration of **Skeleton** component.
 
-### This is an illustration of Skeleton component.
-
-  
+  #### Basic
 
   
   
@@ -29,4 +37,543 @@ Discover the ultimate gluestack-ui Skeleton component for React & React Native. 
 }`}
   argTypes={{}}
   reactLive={{ Skeleton, SkeletonText, Box, HStack }}
+/>
+
+## Installation
+
+<Tabs>
+  <TabItem label="CLI">
+### Run the following command:
+  ```bash
+  npx gluestack-ui add skeleton
+  ```
+  </TabItem>
+  <TabItem label="Manual"> 
+
+### Step 1: Copy and paste the following code into your project.
+
+```jsx 
+import React, { forwardRef } from 'react';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import { Animated, Easing, Platform, View } from 'react-native';
+import { skeletonStyle, skeletonTextStyle } from './styles';
+
+type ISkeletonProps = React.ComponentProps<typeof View> &
+  VariantProps<typeof skeletonStyle> & {
+    isLoaded?: boolean;
+    startColor?: string;
+  };
+
+type ISkeletonTextProps = React.ComponentProps<typeof View> &
+  VariantProps<typeof skeletonTextStyle> & {
+    _lines?: number;
+    isLoaded?: boolean;
+    startColor?: string;
+  };
+
+const Skeleton = forwardRef<
+  React.ComponentRef<typeof Animated.View>,
+  ISkeletonProps
+>(function Skeleton(
+  {
+    className,
+    variant,
+    children,
+    startColor = 'bg-background-200',
+    isLoaded = false,
+    speed = 2,
+    ...props
+  },
+  ref
+) {
+  const pulseAnim = new Animated.Value(1);
+  const customTimingFunction = Easing.bezier(0.4, 0, 0.6, 1);
+  const fadeDuration = 0.6;
+  const animationDuration = (fadeDuration * 10000) / speed; // Convert seconds to milliseconds
+
+  const pulse = Animated.sequence([
+    Animated.timing(pulseAnim, {
+      toValue: 1, // Start with opacity 1
+      duration: animationDuration / 2, // Third of the animation duration
+      easing: customTimingFunction,
+      useNativeDriver: Platform.OS !== 'web',
+    }),
+    Animated.timing(pulseAnim, {
+      toValue: 0.75,
+      duration: animationDuration / 2, // Third of the animation duration
+      easing: customTimingFunction,
+      useNativeDriver: Platform.OS !== 'web',
+    }),
+    Animated.timing(pulseAnim, {
+      toValue: 1,
+      duration: animationDuration / 2, // Third of the animation duration
+      easing: customTimingFunction,
+      useNativeDriver: Platform.OS !== 'web',
+    }),
+  ]);
+
+  if (!isLoaded) {
+    Animated.loop(pulse).start();
+    return (
+      <Animated.View
+        style={{ opacity: pulseAnim }}
+        className={`${startColor} ${skeletonStyle({
+          variant,
+          class: className,
+        })}`}
+        {...props}
+        ref={ref}
+      />
+    );
+  } else {
+    Animated.loop(pulse).stop();
+
+    return children;
+  }
+});
+
+const SkeletonText = forwardRef<
+  React.ComponentRef<typeof View>,
+  ISkeletonTextProps
+>(function SkeletonText(
+  {
+    className,
+    _lines,
+    isLoaded = false,
+    startColor = 'bg-background-200',
+    gap = 2,
+    children,
+    ...props
+  },
+  ref
+) {
+  if (!isLoaded) {
+    if (_lines) {
+      return (
+        <View
+          className={`${skeletonTextStyle({
+            gap,
+          })}`}
+          ref={ref}
+        >
+          {Array.from({ length: _lines }).map((_, index) => (
+            <Skeleton
+              key={index}
+              className={`${startColor} ${skeletonTextStyle({
+                class: className,
+              })}`}
+              {...props}
+            />
+          ))}
+        </View>
+      );
+    } else {
+      return (
+        <Skeleton
+          className={`${startColor} ${skeletonTextStyle({
+            class: className,
+          })}`}
+          {...props}
+          ref={ref}
+        />
+      );
+    }
+  } else {
+    return children;
+  }
+});
+
+Skeleton.displayName = 'Skeleton';
+SkeletonText.displayName = 'SkeletonText';
+
+export { Skeleton, SkeletonText };
+ 
+```
+
+> Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2: Copy and paste the following code into index.web.tsx in your project.
+
+```jsx 
+import React from 'react';
+import { skeletonStyle, skeletonTextStyle } from './styles';
+
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+
+type ISkeletonProps = React.ComponentPropsWithoutRef<'div'> &
+  VariantProps<typeof skeletonStyle> & {
+    startColor?: string;
+    isLoaded?: boolean;
+  };
+
+const Skeleton = React.forwardRef<HTMLDivElement, ISkeletonProps>(
+  function Skeleton(
+    {
+      className,
+      variant = 'rounded',
+      children,
+      speed = 2,
+      startColor = 'bg-background-200',
+      isLoaded = false,
+      ...props
+    },
+    ref
+  ) {
+    if (!isLoaded) {
+      return (
+        <div
+          ref={ref}
+          className={`animate-pulse ${startColor} ${skeletonStyle({
+            variant,
+            speed,
+            class: className,
+          })}`}
+          {...props}
+        />
+      );
+    } else {
+      return children;
+    }
+  }
+);
+
+type ISkeletonTextProps = React.ComponentPropsWithoutRef<'div'> &
+  VariantProps<typeof skeletonTextStyle> & {
+    _lines?: number;
+    isLoaded?: boolean;
+    startColor?: string;
+  };
+
+const SkeletonText = React.forwardRef<HTMLDivElement, ISkeletonTextProps>(
+  function SkeletonText(
+    {
+      className,
+      _lines,
+      isLoaded = false,
+      startColor = 'bg-background-200',
+      gap = 2,
+      children,
+      ...props
+    },
+    ref
+  ) {
+    if (!isLoaded) {
+      if (_lines) {
+        return (
+          <div
+            ref={ref}
+            className={`flex flex-col ${skeletonTextStyle({
+              gap,
+            })}`}
+          >
+            {Array.from({ length: _lines }).map((_, index) => (
+              <div
+                key={index}
+                className={`animate-pulse ${startColor} ${skeletonTextStyle({
+                  class: className,
+                })}`}
+                {...props}
+              />
+            ))}
+          </div>
+        );
+      } else {
+        return (
+          <div
+            ref={ref}
+            className={`animate-pulse ${startColor} ${skeletonTextStyle({
+              class: className,
+            })}`}
+            {...props}
+          />
+        );
+      }
+    } else {
+      return children;
+    }
+  }
+);
+
+Skeleton.displayName = 'Skeleton';
+SkeletonText.displayName = 'SkeletonText';
+
+export { Skeleton, SkeletonText };
+ 
+```
+
+### Step 3: Copy and paste the following code into styles.tsx in your project.
+
+```jsx 
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+
+export const skeletonStyle = tva({
+  base: 'w-full h-full',
+  variants: {
+    variant: {
+      sharp: 'rounded-none',
+      circular: 'rounded-full',
+      rounded: 'rounded-md',
+    },
+    speed: {
+      1: 'duration-75',
+      2: 'duration-100',
+      3: 'duration-150',
+      4: 'duration-200',
+    },
+  },
+});
+export const skeletonTextStyle = tva({
+  base: 'rounded-sm w-full',
+  variants: {
+    speed: {
+      1: 'duration-75',
+      2: 'duration-100',
+      3: 'duration-150',
+      4: 'duration-200',
+    },
+    gap: {
+      1: 'gap-1',
+      2: 'gap-2',
+      3: 'gap-3',
+      4: 'gap-4',
+    },
+  },
+});
+ 
+```
+
+### Step 4: Update the import paths to match your project setup.
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Skeleton, SkeletonText } from '@/components/ui/skeleton';
+```
+
+```ts
+export default () => (
+  <Box className="gap-2">
+    <Skeleton variant="rounded" className="h-32 w-64" />
+    <SkeletonText className="h-4 w-64 " />
+  </Box>
+)
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+### Skeleton
+
+Renders a `<div />` on web and a `Animated.View` on native and has the following properties:
+
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Platform</TableHeaderCell>
+          <TableHeaderCell>Output</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>{`Web`}</InlineCode>
+          </TableCell>
+          <TableCell>{`<div />`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>Native</InlineCode>
+          </TableCell>
+          <TableCell>{`<View />`}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+
+
+<>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>variant</InlineCode>
+          </TableCell>
+          <TableCell>rounded | sharp | circular</TableCell>
+          <TableCell>rounded</TableCell>
+          <TableCell>Shape of the skeleton component</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>startColor</InlineCode>
+          </TableCell>
+          <TableCell>string</TableCell>
+          <TableCell>bg-background-200</TableCell>
+          <TableCell>Sets the color of the skeleton animation</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isLoaded</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the skeleton content will be displayed</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>speed</InlineCode>
+          </TableCell>
+          <TableCell>number</TableCell>
+          <TableCell>2</TableCell>
+          <TableCell>Sets the animation speed of the skeleton component</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+</>
+
+### SkeletonText
+
+Renders a `<div />` on web and a `Animated.View` on native and has the following properties:
+
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Platform</TableHeaderCell>
+          <TableHeaderCell>Output</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>{`Web`}</InlineCode>
+          </TableCell>
+          <TableCell>{`<div />`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>Native</InlineCode>
+          </TableCell>
+          <TableCell>{`<View />`}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>lines</InlineCode>
+          </TableCell>
+          <TableCell>number</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>Number of lines in text skeleton</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>startColor</InlineCode>
+          </TableCell>
+          <TableCell>string</TableCell>
+          <TableCell>bg-background-200</TableCell>
+          <TableCell>Sets the color of the skeleton animation</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isLoaded</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the skeleton content will be displayed</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>speed</InlineCode>
+          </TableCell>
+          <TableCell>number</TableCell>
+          <TableCell>2</TableCell>
+          <TableCell>Sets the animation speed of the skeleton component</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>gap</InlineCode>
+          </TableCell>
+          <TableCell>number</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>Sets the gap between the text skeletons</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+
+  #### Using isLoaded prop
+
+  Use the `isLoaded` prop to show the content after the skeleton content is loaded.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Box className="w-[290px] h-[400px] p-4 rounded-sm bg-background-100 gap-3">
+        <Skeleton variant="rounded" className="h-44 w-64 rounded-sm" isLoaded={ {{isLoaded}} }>
+          <Image
+          className="h-44 w-64 rounded-sm"
+          source=\\{{
+            uri: 'https://images.unsplash.com/photo-1715006020121-dd50879f9821?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          }}
+           />
+        </Skeleton>
+        <VStack className="gap-2">
+          <Text className="text-primary-700 text-sm">May 15, 2023</Text>
+          <Text className="text-primary-900 font-bold">
+          The Power of Positive Thinking
+          </Text>
+          <Text className="text-primary-700 text-sm">
+          Discover how the power of positive thinking can transform your life,
+          boost your confidence, and help you overcome challenges.
+          </Text>
+        </VStack>
+        <HStack className="gap-2">
+        <Avatar size="xs">
+          <AvatarFallbackText>John Smith</AvatarFallbackText>
+        </Avatar>
+        <Text className="text-sm font-bold">John Smith</Text>
+      </HStack>
+      </Box>
+  );
+}`}
+  argTypes={{
+  "isLoaded": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  }
+}}
+  reactLive={{ Skeleton, SkeletonText, Box, Image, Text, HStack, VStack, Avatar, AvatarFallbackText }}
 />
