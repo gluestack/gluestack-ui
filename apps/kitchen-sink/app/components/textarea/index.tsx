@@ -1,5 +1,6 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer'
 import { Textarea, TextareaInput } from '@/components/ui/textarea'
+import { FormControl, FormControlError, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText } from '@/components/ui/form-control'
 
 
 import React from 'react';
@@ -51,6 +52,27 @@ export default function ComponentExamples() {
       <TextareaInput placeholder="Your text goes here..." />
     </Textarea>
   )}}
+</ComponentPreviewer>
+
+<ComponentPreviewer props={{}} title={"FormControl"}>
+  {props => {
+  return (
+    <FormControl size="sm" className="max-w-[200px] w-full">
+          <FormControlLabel>
+            <FormControlLabelText>
+              Write with me
+            </FormControlLabelText>
+          </FormControlLabel>
+          <Textarea>
+            <TextareaInput placeholder='Once upon a time...'/>
+          </Textarea>
+          <FormControlHelper>
+            <FormControlHelperText>
+              Start your story
+            </FormControlHelperText>
+          </FormControlHelper>
+        </FormControl>
+  );}}
 </ComponentPreviewer>
         </ScrollView>
   );

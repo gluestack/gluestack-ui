@@ -1,5 +1,11 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Textarea, TextareaInput } from '@/components/ui/textarea';
+import { FormControl, FormControlError, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText } from '@/components/ui/form-control';
+
+import {Tabs,TabItem} from '@/docs-components/tabs'
+import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
+import {InlineCode} from '@/docs-components/inline-code'
+import {AnatomyImage} from '@/docs-components/anatomy-image'
 
 # TextArea
 
@@ -59,4 +65,484 @@ Easily integrate a React & React Native Textarea component with multi-line input
   }
 }}
   reactLive={{ Textarea, TextareaInput }}
+/>
+
+<br />
+
+## Installation
+
+<Tabs>
+  <TabItem label="CLI">
+     
+### Run the following command:
+  ```bash
+  npx gluestack-ui add textarea
+  ```
+  </TabItem>
+  <TabItem label="Manual"> 
+
+### Step 1: Install the following dependencies:
+```bash
+npm i @gluestack-ui/textarea
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx 
+'use client';
+import React from 'react';
+import { createTextarea } from '@/components/ui/textarea/creator';
+import { View, TextInput } from 'react-native';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+
+const SCOPE = 'TEXTAREA';
+const UITextarea = createTextarea({
+  Root: withStyleContext(View, SCOPE),
+  Input: TextInput,
+});
+
+const textareaStyle = tva({
+  base: 'w-full h-[100px] border border-background-300 rounded data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[focus=true]:data-[hover=true]:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:bg-background-50 data-[disabled=true]:data-[hover=true]:border-background-300',
+
+  variants: {
+    variant: {
+      default:
+        'data-[focus=true]:border-primary-700 data-[focus=true]:web:ring-1 data-[focus=true]:web:ring-inset data-[focus=true]:web:ring-indicator-primary data-[invalid=true]:border-error-700 data-[invalid=true]:web:ring-1 data-[invalid=true]:web:ring-inset data-[invalid=true]:web:ring-indicator-error data-[invalid=true]:data-[hover=true]:border-error-700 data-[invalid=true]:data-[focus=true]:data-[hover=true]:border-primary-700 data-[invalid=true]:data-[focus=true]:data-[hover=true]:web:ring-1 data-[invalid=true]:data-[focus=true]:data-[hover=true]:web:ring-inset data-[invalid=true]:data-[focus=true]:data-[hover=true]:web:ring-indicator-primary data-[invalid=true]:data-[disabled=true]:data-[hover=true]:border-error-700 data-[invalid=true]:data-[disabled=true]:data-[hover=true]:web:ring-1 data-[invalid=true]:data-[disabled=true]:data-[hover=true]:web:ring-inset data-[invalid=true]:data-[disabled=true]:data-[hover=true]:web:ring-indicator-error ',
+    },
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+      xl: '',
+    },
+  },
+});
+
+const textareaInputStyle = tva({
+  base: 'p-2 web:outline-0 web:outline-none flex-1 color-typography-900 align-text-top placeholder:text-typography-500 web:cursor-text web:data-[disabled=true]:cursor-not-allowed',
+  parentVariants: {
+    size: {
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+      xl: 'text-xl',
+    },
+  },
+});
+
+type ITextareaProps = React.ComponentProps<typeof UITextarea> &
+  VariantProps<typeof textareaStyle>;
+
+const Textarea = React.forwardRef<
+  React.ComponentRef<typeof UITextarea>,
+  ITextareaProps
+>(function Textarea(
+  { className, variant = 'default', size = 'md', ...props },
+  ref
+) {
+  return (
+    <UITextarea
+      ref={ref}
+      {...props}
+      className={textareaStyle({ variant, class: className })}
+      context={{ size }}
+    />
+  );
+});
+
+type ITextareaInputProps = React.ComponentProps<typeof UITextarea.Input> &
+  VariantProps<typeof textareaInputStyle>;
+
+const TextareaInput = React.forwardRef<
+  React.ComponentRef<typeof UITextarea.Input>,
+  ITextareaInputProps
+>(function TextareaInput({ className, ...props }, ref) {
+  const { size: parentSize } = useStyleContext(SCOPE);
+
+  return (
+    <UITextarea.Input
+      ref={ref}
+      {...props}
+      className={textareaInputStyle({
+        parentVariants: {
+          size: parentSize,
+        },
+        class: className,
+      })}
+    />
+  );
+});
+
+Textarea.displayName = 'Textarea';
+TextareaInput.displayName = 'TextareaInput';
+
+export { Textarea, TextareaInput };
+ 
+```
+
+### Run the following command:
+  ```bash   
+  npx gluestack-ui add textarea
+  ```
+
+
+### Step 1: Install the following dependencies:
+```bash
+npm i @gluestack-ui/textarea
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx 
+'use client';
+import React from 'react';
+import { createTextarea } from '@/components/ui/textarea/creator';
+import { View, TextInput } from 'react-native';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+
+const SCOPE = 'TEXTAREA';
+const UITextarea = createTextarea({
+  Root: withStyleContext(View, SCOPE),
+  Input: TextInput,
+});
+
+const textareaStyle = tva({
+  base: 'w-full h-[100px] border border-background-300 rounded data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[focus=true]:data-[hover=true]:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:bg-background-50 data-[disabled=true]:data-[hover=true]:border-background-300',
+
+  variants: {
+    variant: {
+      default:
+        'data-[focus=true]:border-primary-700 data-[focus=true]:web:ring-1 data-[focus=true]:web:ring-inset data-[focus=true]:web:ring-indicator-primary data-[invalid=true]:border-error-700 data-[invalid=true]:web:ring-1 data-[invalid=true]:web:ring-inset data-[invalid=true]:web:ring-indicator-error data-[invalid=true]:data-[hover=true]:border-error-700 data-[invalid=true]:data-[focus=true]:data-[hover=true]:border-primary-700 data-[invalid=true]:data-[focus=true]:data-[hover=true]:web:ring-1 data-[invalid=true]:data-[focus=true]:data-[hover=true]:web:ring-inset data-[invalid=true]:data-[focus=true]:data-[hover=true]:web:ring-indicator-primary data-[invalid=true]:data-[disabled=true]:data-[hover=true]:border-error-700 data-[invalid=true]:data-[disabled=true]:data-[hover=true]:web:ring-1 data-[invalid=true]:data-[disabled=true]:data-[hover=true]:web:ring-inset data-[invalid=true]:data-[disabled=true]:data-[hover=true]:web:ring-indicator-error ',
+    },
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+      xl: '',
+    },
+  },
+});
+
+const textareaInputStyle = tva({
+  base: 'p-2 web:outline-0 web:outline-none flex-1 color-typography-900 align-text-top placeholder:text-typography-500 web:cursor-text web:data-[disabled=true]:cursor-not-allowed',
+  parentVariants: {
+    size: {
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+      xl: 'text-xl',
+    },
+  },
+});
+
+type ITextareaProps = React.ComponentProps<typeof UITextarea> &
+  VariantProps<typeof textareaStyle>;
+
+const Textarea = React.forwardRef<
+  React.ComponentRef<typeof UITextarea>,
+  ITextareaProps
+>(function Textarea(
+  { className, variant = 'default', size = 'md', ...props },
+  ref
+) {
+  return (
+    <UITextarea
+      ref={ref}
+      {...props}
+      className={textareaStyle({ variant, class: className })}
+      context={{ size }}
+    />
+  );
+});
+
+type ITextareaInputProps = React.ComponentProps<typeof UITextarea.Input> &
+  VariantProps<typeof textareaInputStyle>;
+
+const TextareaInput = React.forwardRef<
+  React.ComponentRef<typeof UITextarea.Input>,
+  ITextareaInputProps
+>(function TextareaInput({ className, ...props }, ref) {
+  const { size: parentSize } = useStyleContext(SCOPE);
+
+  return (
+    <UITextarea.Input
+      ref={ref}
+      {...props}
+      className={textareaInputStyle({
+        parentVariants: {
+          size: parentSize,
+        },
+        class: className,
+      })}
+    />
+  );
+});
+
+Textarea.displayName = 'Textarea';
+TextareaInput.displayName = 'TextareaInput';
+
+export { Textarea, TextareaInput };
+ 
+```
+
+### Step 3: Update the import paths to match your project setup.
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Textarea } from '@/components/ui/textarea';
+```
+
+<AnatomyImage mobileUrl='https://i.imgur.com/PRakWVb.png' webUrl='https://i.imgur.com/MWi9UNn.png' classNameStyle='aspect-[513/299] md:aspect-[736/227]' />
+
+```ts
+export default () => (
+  <Textarea>
+    <TextareaInput />
+  </Textarea>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Textarea
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>size</InlineCode>
+          </TableCell>
+          <TableCell>'sm' | 'md' | 'lg' | 'xl'</TableCell>
+          <TableCell>'md'</TableCell>
+          <TableCell>Changes the size of the Input Text</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isInvalid</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the input displays an error state.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isDisabled</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the input is disabled and cannot be edited.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isHovered</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the input displays a hover state.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isFocused</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the input displays a focus state.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isRequired</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>If true, sets aria-required="true" on the input.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isReadOnly</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>If true, the input value cannot be edited.</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+**Descendants Styling Props**
+Props to style child components.
+
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Sx Prop</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>{`_input`}</InlineCode>
+          </TableCell>
+          <TableCell>Prop to style TextareaInput Component</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+
+#### TextareaInput
+
+Contains all TextInput related layout style props and actions.
+It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput) component.
+
+### Accessibility
+
+We have outlined the various features that ensure the Textarea component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+#### Keyboard
+
+- setting the aria-label and aria-hint
+
+#### Screen Reader
+
+- VoiceOver: accessible and aria-label props to describe the input's purpose
+- `aria-traits` and `aria-hint` for the various states of the input, such as "double tap to edit"
+
+### Props
+
+Textarea component is created using TextInput component from react-native. It extends all the props supported by [React Native Text Input](https://reactnative.dev/docs/textinput#props) and the props mentioned below.
+
+#### Textarea
+
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Value</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>size</InlineCode>
+          </TableCell>
+          <TableCell>xl | lg | md | sm</TableCell>
+          <TableCell>md</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Data Attributes Table
+
+Component receives states as props as boolean values, which are applied as ```data-*``` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>State</TableHeaderCell>
+          <TableHeaderCell>Data Attribute</TableHeaderCell>
+          <TableHeaderCell>Values</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>hover</InlineCode>
+          </TableCell>
+          <TableCell>data-hover</TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>focus</InlineCode>
+          </TableCell>
+          <TableCell>data-focus</TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>disabled</InlineCode>
+          </TableCell>
+          <TableCell>data-disabled</TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>invalid</InlineCode>
+          </TableCell>
+          <TableCell>data-invalid</TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+
+  #### FormControl
+
+  The Textarea Component can be incorporated within the FormControl.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <FormControl size="sm" className="max-w-[200px] w-full">
+          <FormControlLabel>
+            <FormControlLabelText>
+              Write with me
+            </FormControlLabelText>
+          </FormControlLabel>
+          <Textarea>
+            <TextareaInput placeholder='Once upon a time...'/>
+          </Textarea>
+          <FormControlHelper>
+            <FormControlHelperText>
+              Start your story
+            </FormControlHelperText>
+          </FormControlHelper>
+        </FormControl>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Textarea, TextareaInput, FormControl, FormControlError, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText }}
 />
