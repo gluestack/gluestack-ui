@@ -131,6 +131,18 @@ const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
                 <Pressable focusable={false} tabIndex={-1}>
                   <NextLink
                     className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary-50/10 active:bg-primary-50/20 outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    href="/ui/docs/mcp-server/mcp-server"
+                  >
+                    <Box className="rounded-full items-center justify-center">
+                      <Text className="leading-normal font-normal text-sm text-typography-700">
+                        MCP Server
+                      </Text>
+                    </Box>
+                  </NextLink>
+                </Pressable>
+                <Pressable focusable={false} tabIndex={-1}>
+                  <NextLink
+                    className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary-50/10 active:bg-primary-50/20 outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                     href="/ui/docs"
                   >
                     <Box className="rounded-full items-center justify-center">

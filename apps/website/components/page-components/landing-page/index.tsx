@@ -36,6 +36,7 @@ import VadimStream from "./VadimStream";
 import { Banner } from "./NativeBaseRedirectBanner";
 import { ThemeContext } from "@/utils/context/theme-context";
 import { useContext } from "react";
+import MCPServer from "./MCPServer";
 
 const App = ({ referrer }: { referrer: string }) => {
   const { colorMode, setColorMode } = useContext(ThemeContext);
@@ -131,6 +132,7 @@ const App = ({ referrer }: { referrer: string }) => {
             <Fold3 />
             <PowerOfTailwind />
             <Kitchensink />
+            <MCPServer />
             <VadimStream />
             <SocialMediaGridTestimonial />
             <Inspiration />
