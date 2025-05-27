@@ -1,0 +1,28 @@
+{
+  "title": "Select FormControlled",
+  "description": "The Select component with FormControl example demonstrates how to manage its state using the FormControl component. This allows for easy integration with forms and form validation.",
+  "argTypes": {},
+  "reactLive": {
+    "Select": "@/components/ui/select",
+    "SelectTrigger": "@/components/ui/select",
+    "SelectInput": "@/components/ui/select",
+    "SelectIcon": "@/components/ui/select",
+    "SelectPortal": "@/components/ui/select",
+    "SelectBackdrop": "@/components/ui/select",
+    "SelectContent": "@/components/ui/select",
+    "SelectDragIndicatorWrapper": "@/components/ui/select",
+    "SelectDragIndicator": "@/components/ui/select",
+    "SelectItem": "@/components/ui/select",
+    "Icon": "@/components/ui/icon",
+    "ChevronDownIcon": "@/components/ui/icon",
+    "FormControl": "@/components/ui/form-control",
+    "FormControlLabel": "@/components/ui/form-control",
+    "FormControlLabelText": "@/components/ui/form-control",
+    "FormControlHelper": "@/components/ui/form-control",
+    "FormControlHelperText": "@/components/ui/form-control",
+    "FormControlError": "@/components/ui/form-control",
+    "FormControlErrorIcon": "@/components/ui/form-control",
+    "FormControlErrorText": "@/components/ui/form-control",
+    "AlertCircleIcon": "@/components/ui/icon"
+  }
+}

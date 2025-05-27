@@ -42,7 +42,7 @@ export default function ComponentExamples() {
     },
     "defaultValue": false
   }
-}} title={undefined}>
+}} title={"Basic"}>
   {props => {
   return (
     <Center className="w-[300px] h-[150px]">
