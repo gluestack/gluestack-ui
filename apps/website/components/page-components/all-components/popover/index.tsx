@@ -83,8 +83,6 @@ export default function Example() {
   }
 }}
       reactLive={{ Popover, PopoverBackdrop, PopoverArrow, PopoverBody, PopoverContent, Button, ButtonText, Text }}
-      title={Basic}
-      description={}
     />
   );
 }

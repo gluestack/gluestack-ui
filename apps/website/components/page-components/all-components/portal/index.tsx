@@ -36,8 +36,6 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ Portal, HStack, Text, Button, ButtonText, ButtonIcon, CloseIcon }}
-      title={Basic}
-      description={}
     />
   );
 }

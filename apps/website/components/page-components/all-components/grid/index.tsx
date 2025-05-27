@@ -36,8 +36,6 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ Grid, GridItem }}
-      title={}
-      description={}
     />
   );
 }

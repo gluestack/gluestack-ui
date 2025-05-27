@@ -69,8 +69,6 @@ export default function Example() {
   }
 }}
       reactLive={{ Menu, MenuItem, MenuItemLabel, Button, ButtonText, Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon }}
-      title={}
-      description={}
     />
   );
 }

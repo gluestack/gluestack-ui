@@ -62,8 +62,6 @@ export default function Example() {
   }
 }}
       reactLive={{ Slider, SliderTrack, SliderFilledTrack, SliderThumb, Center }}
-      title={Basic}
-      description={}
     />
   );
 }
