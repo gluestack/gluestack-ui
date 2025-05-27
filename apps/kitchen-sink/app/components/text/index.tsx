@@ -1,5 +1,6 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer'
 import { Text } from '@/components/ui/text'
+import { Center } from '@/components/ui/center'
 
 
 import React from 'react';
@@ -10,6 +11,29 @@ export default function ComponentExamples() {
       <ComponentPreviewer props={{}} title={undefined}>
   {props => {
   return <Text>Hello World!</Text>}}
+</ComponentPreviewer>
+
+<ComponentPreviewer props={{}} title={"Text Sizes"}>
+  {props => {
+          const sizes = [
+            'xs',
+            'sm',
+            'md',
+            'lg',
+            'xl',
+            '2xl',
+            '3xl',
+            '4xl',
+            '5xl',
+            '6xl',
+          ];
+          return (
+            <Center>
+              {sizes.map((size, index) => (
+                <Text size={size} key={index} className="text-center">{size}</Text>
+              ))}
+            </Center>
+          );}}
 </ComponentPreviewer>
         </ScrollView>
   );
