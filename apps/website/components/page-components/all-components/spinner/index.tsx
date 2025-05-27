@@ -35,7 +35,7 @@ export default function Example() {
   }
 }}
       reactLive={{ Spinner }}
-      title={}
+      title={Basic}
       description={}
     />
   );
