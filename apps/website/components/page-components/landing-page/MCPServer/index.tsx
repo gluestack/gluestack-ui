@@ -76,8 +76,8 @@ const VadimStream = () => {
           MCP Server
         </Heading>
         <Text className="text-lg font-roboto font-normal leading-[30px] lg:w-[75%]">
-          A server that generates complete, consistent codebases using
-          gluestack-ui v2 components. Check out this demo video:
+          A server that generates complete, consistent code using gluestack-ui
+          v2 components. Check out this demo video:
         </Text>
       </VStack>
       <Box className="flex-1 border border-outline-200 rounded-lg overflow-hidden aspect-video md:max-w-[500px] lg:max-w-[600px] 2xl:max-w-[700px]">
@@ -85,7 +85,7 @@ const VadimStream = () => {
           id="mcp-server-video"
           width="100%"
           height="100%"
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          src="https://www.youtube.com/embed/5lSvkESJgmY"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
