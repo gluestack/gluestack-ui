@@ -9,6 +9,9 @@ import { OL } from "../markdown/ol";
 import { LI } from "../markdown/li";
 import { H1, H2, H3, H4, H5 } from "@expo/html-elements";
 import { useRef } from "react";
+import { PrevNextButtons } from "./PrevNextButtons";
+import sidebarData from "../../../sidebar.json";
+import EditPageOnGithubLink from "./EditPageOnGithubLink";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const docsLayoutRef = useRef<HTMLDivElement>(null);
@@ -146,11 +149,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               <div className="flex-1 xl:mx-12 px-4 md:px-0">
                 <LayoutContent
                   //   display={isOpenSidebar ? "none" : "flex"}
-                  className="flex md:min-w-[736px] lg:min-w-[662px] xl:min-w-[598px] 2xl:min-w-[736px] h-full w-full mx-auto"
+                  className="flex md:min-w-[736px] lg:min-w-[662px] xl:min-w-[598px] 2xl:min-w-[736px] h-full w-full mx-auto flex-col"
                 >
                   {children}
-                  {/* <EditPageOnGithubLink sidebarItems={sidebarItems} />
-                  <PrevNextButtons sidebarItems={sidebarItems} /> */}
+                  <EditPageOnGithubLink sidebarItems={sidebarData} />
+                  <PrevNextButtons sidebarItems={sidebarData} />
                 </LayoutContent>
               </div>
             </MDXProvider>

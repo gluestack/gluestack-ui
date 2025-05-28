@@ -8,10 +8,6 @@ import {
   Link,
   Image,
 } from "@/components/ui";
-import GeekyAntsLogo from "@/public/svg/Geekyants.svg";
-import GeekyAntsLogoDark from "@/public/svg/Geekyants_dark.svg";
-import GluestackLogo from "@/public/svg/gluestack_logo.svg";
-import GluestackLogoDark from "@/public/svg/gluestack_logo_dark.svg";
 import { ThemeContext } from "@/utils/context/theme-context";
 
 const footerItems = [
@@ -184,7 +180,7 @@ const Footer = () => {
               <Link
                 href="https://discord.com/invite/V5SU7HZSAQ"
                 isExternal
-                aria-label="twitter link"
+                aria-label="discord link"
                 className="bg-background-50 p-1 rounded"
               >
                 <svg
@@ -203,7 +199,7 @@ const Footer = () => {
               <Link
                 href="https://twitter.com/gluestack"
                 isExternal
-                aria-label="discord link"
+                aria-label="twitter link"
                 className="bg-background-50 p-1 justify-center rounded"
               >
                 <svg
@@ -270,7 +266,7 @@ const Footer = () => {
                 isExternal
               >
                 {colorMode === "light" ? (
-                <Image
+                  <Image
                     alt="geekyants logo light"
                     className="w-[81.362px] h-[14px]"
                     source={require("@/public/svg/Geekyants.svg")}
@@ -287,7 +283,7 @@ const Footer = () => {
               </Link>
             </HStack>
           </VStack>
-          
+
           {footerItems.map((item, key1) => (
             <VStack
               className="items-start basis-[50%] mt-6 xl:mt-0 xl:flex-1"
