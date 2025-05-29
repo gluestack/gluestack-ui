@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import { config } from "./config";
-import { View, ViewProps } from "react-native";
-import { OverlayProvider } from "@/components/ui/overlay/creator";
-import { ToastProvider } from "@/components/ui/toast/creator";
-import { useColorScheme } from "nativewind";
+import React, { useEffect } from 'react';
+import { config } from './config';
+import { View, ViewProps } from 'react-native';
+import { OverlayProvider } from '@/components/ui/overlay/creator';
+import { ToastProvider } from '@/components/ui/toast/creator';
+import { useColorScheme } from 'nativewind';
 
-export type ModeType = "light" | "dark" | "system";
+export type ModeType = 'light' | 'dark' | 'system';
 
 export function GluestackUIProvider({
-  mode = "light",
+  mode = 'light',
   ...props
 }: {
   mode?: ModeType;
   children?: React.ReactNode;
-  style?: ViewProps["style"];
+  style?: ViewProps['style'];
 }) {
   const { colorScheme, setColorScheme } = useColorScheme();
 
@@ -26,7 +26,7 @@ export function GluestackUIProvider({
     <View
       style={[
         config[colorScheme!],
-        { flex: 1, height: "100%", width: "100%" },
+        { flex: 1, height: '100%', width: '100%' },
         props.style,
       ]}
     >

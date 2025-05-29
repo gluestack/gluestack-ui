@@ -8,10 +8,28 @@ import { UL } from "../markdown/ul";
 import { OL } from "../markdown/ol";
 import { LI } from "../markdown/li";
 import { H1, H2, H3, H4, H5 } from "@expo/html-elements";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { PrevNextButtons } from "./PrevNextButtons";
 import sidebarData from "../../../sidebar.json";
 import EditPageOnGithubLink from "./EditPageOnGithubLink";
+import { ThemeContext } from "@/utils/context/theme-context";
+import { useMDXComponents } from "@/mdx-components";
+
+function containsAny(targetString: string) {
+  const stringsToCheck: string[] = [
+    "gluestack.io",
+    "ui",
+    "style",
+    "enterprise",
+    "contact-us",
+  ];
+  for (const str of stringsToCheck) {
+    if (targetString.includes(str)) {
+      return false; // The target string contains at least one of the strings to check.
+    }
+  }
+  return true; // None of the strings were found in the target string.
+}
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { colorMode } = useContext(ThemeContext);
