@@ -27,40 +27,41 @@ export default function Example() {
   )
 }`}
       argTypes={{
-        size: {
-          control: {
-            type: "select",
-          },
-          options: ["sm", "md", "lg"],
-          defaultValue: "md",
-        },
-        orientation: {
-          control: {
-            type: "select",
-          },
-          options: ["horizontal", "vertical"],
-          defaultValue: "horizontal",
-        },
-        isDisabled: {
-          control: {
-            type: "boolean",
-          },
-          defaultValue: false,
-        },
-        isReversed: {
-          control: {
-            type: "boolean",
-          },
-          defaultValue: false,
-        },
-      }}
-      reactLive={{
-        Slider,
-        SliderTrack,
-        SliderFilledTrack,
-        SliderThumb,
-        Center,
-      }}
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  },
+  "orientation": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "horizontal",
+      "vertical"
+    ],
+    "defaultValue": "horizontal"
+  },
+  "isDisabled": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  },
+  "isReversed": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  }
+}}
+      reactLive={{ Slider, SliderTrack, SliderFilledTrack, SliderThumb, Center }}
     />
   );
 }

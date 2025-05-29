@@ -19,33 +19,31 @@ export default function Example() {
   )
 }`}
       argTypes={{
-        isDisabled: {
-          control: {
-            type: "boolean",
-          },
-          defaultValue: false,
-        },
-        isInvalid: {
-          control: {
-            type: "boolean",
-          },
-          defaultValue: false,
-        },
-        size: {
-          control: {
-            type: "select",
-          },
-          options: ["sm", "md", "lg"],
-          defaultValue: "md",
-        },
-      }}
-      reactLive={{
-        Checkbox,
-        CheckboxIndicator,
-        CheckboxLabel,
-        CheckIcon,
-        CheckboxIcon,
-      }}
+  "isDisabled": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  },
+  "isInvalid": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  }
+}}
+      reactLive={{ Checkbox, CheckboxIndicator, CheckboxLabel, CheckIcon, CheckboxIcon }}
     />
   );
 }
