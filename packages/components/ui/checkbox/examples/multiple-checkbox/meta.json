@@ -1,5 +1,4 @@
 {
-  
   "title": "Multiple Checkbox",
   "description": "Checkbox provide a mutually exclusive selection mechanism, allowing users to choose a multiple option from a set of related choices.",
   "componentName": "Checkbox",

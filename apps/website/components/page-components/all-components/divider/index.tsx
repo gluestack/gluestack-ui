@@ -1,7 +1,7 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Center } from '@/components/ui/center';
-import { Text } from '@/components/ui/text';
-import { Divider } from '@/components/ui/divider';
+import { ComponentPreviewer } from "@/components/custom/component-previewer";
+import { Center } from "@/components/ui/center";
+import { Text } from "@/components/ui/text";
+import { Divider } from "@/components/ui/divider";
 
 export default function Example() {
   return (

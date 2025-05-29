@@ -3,7 +3,7 @@ import { CheckboxProvider } from './CheckboxProvider';
 import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions/src';
 import { useFocus } from '@/utils/gluestack-utils/aria/focus/src';
 import { useToggleState } from '@react-stately/toggle';
-import { useCheckbox, useCheckboxGroupItem } from '../aria/checkbox/src';
+import { useCheckbox, useCheckboxGroupItem } from '../aria';
 import { CheckboxGroupContext } from './CheckboxGroup';
 import {
   combineContextAndProps,
@@ -11,7 +11,7 @@ import {
   stableHash,
   composeEventHandlers,
 } from '@/utils/gluestack-utils/common';
-import { useFormControlContext } from '../../form-control/creator/useFormControl';
+import { useFormControlContext } from '@/components/ui/form-control/creator';
 
 export const Checkbox = (StyledCheckbox: any) =>
   forwardRef(

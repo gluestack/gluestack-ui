@@ -47,7 +47,7 @@ const App = ({ referrer }: { referrer: string }) => {
       <WebsiteLayout>
         <Box className="items-center justify-center">
           <VStack className="w-[85%] max-w-[1440px] justify-center self-center">
-            <VStack className="mx-auto max-w-[900px] pt-[200px] w-full my-0 items-center justify-center self-center">
+            <VStack className="mx-auto max-w-[900px] pt-[144px] w-full my-0 items-center justify-center self-center">
               <Banner referrer={referrer} />
               <Box className="flex w-full items-start sm:items-center mt-[50px] sm:mt-0">
                 <AwardBadge />

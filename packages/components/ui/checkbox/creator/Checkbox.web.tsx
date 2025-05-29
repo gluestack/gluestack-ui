@@ -3,7 +3,7 @@ import { CheckboxProvider } from './CheckboxProvider';
 import { useFocusRing } from '@/utils/gluestack-utils/aria/focus/src';
 import { useHover } from '@/utils/gluestack-utils/aria/interactions/src';
 import { useToggleState } from '@react-stately/toggle';
-import { useCheckbox, useCheckboxGroupItem } from '../aria/checkbox/src';
+import { useCheckbox, useCheckboxGroupItem } from '../aria';
 import { CheckboxGroupContext } from './CheckboxGroup';
 import {
   combineContextAndProps,
@@ -48,6 +48,7 @@ export const Checkbox = (StyledCheckbox: any) =>
     const mergedRef = mergeRefs([ref, _ref]);
     const { inputProps: groupItemInputProps } = checkboxGroupContext
       ? // eslint-disable-next-line react-hooks/rules-of-hooks
+        //@ts-ignore
         useCheckboxGroupItem(
           {
             ...combinedProps,

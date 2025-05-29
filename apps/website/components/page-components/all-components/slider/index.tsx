@@ -1,9 +1,9 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { Slider } from '@/components/ui/slider';
-import { SliderTrack } from '@/components/ui/slider';
-import { SliderFilledTrack } from '@/components/ui/slider';
-import { SliderThumb } from '@/components/ui/slider';
-import { Center } from '@/components/ui/center';
+import { ComponentPreviewer } from "@/components/custom/component-previewer";
+import { Slider } from "@/components/ui/slider";
+import { SliderTrack } from "@/components/ui/slider";
+import { SliderFilledTrack } from "@/components/ui/slider";
+import { SliderThumb } from "@/components/ui/slider";
+import { Center } from "@/components/ui/center";
 
 export default function Example() {
   return (
