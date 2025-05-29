@@ -1,0 +1,64 @@
+
+      function App(){
+      const [isMobile, isTablet, isSmallScreen, isLargeScreen] = useMediaQuery([
+    {
+      maxWidth: 480,
+    },
+    {
+      minWidth: 481,
+      maxWidth: 768,
+    },
+    {
+      minWidth: 769,
+      maxWidth: 1440,
+    },
+    {
+      minWidth: 1441,
+    },
+  ]);
+        return (
+    <Box className="justify-center items-center gap-4">
+      <Heading>useMediaQuery</Heading>
+      <Text>Resize your browser windows to see changes.</Text>
+      <Box className="flex-row flex-wrap gap-8 justify-center">
+        <Box
+          className={
+            'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
+            (isMobile ? 'border-primary-500 bg-background-50' : '')
+          }
+        >
+          <Icon as={Smartphone} size={'xs'} />
+          <Text size="sm">Small</Text>
+        </Box>
+        <Box
+          className={
+            'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
+            (isTablet ? 'border-primary-500 bg-background-50' : '')
+          }
+        >
+          <Icon as={Tablet} size="sm" />
+          <Text size="sm">medium</Text>
+        </Box>
+        <Box
+          className={
+            'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
+            (isSmallScreen ? 'border-primary-500 bg-background-50' : '')
+          }
+        >
+          <Icon as={Laptop} size="sm" />
+          <Text size="sm">Large</Text>
+        </Box>
+        <Box
+          className={
+            'border justify-center items-center w-[120px] h-[80px] rounded gap-2 ' +
+            (isLargeScreen ? 'border-primary-500 bg-background-50' : '')
+          }
+        >
+          <Icon as={Tv} size="sm" />
+          <Text size="sm">Extra Large</Text>
+        </Box>
+      </Box>
+    </Box>
+  );
+      }
+      
