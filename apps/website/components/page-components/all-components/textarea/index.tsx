@@ -1,6 +1,6 @@
-import { ComponentPreviewer } from "@/components/custom/component-previewer";
-import { Textarea } from "@/components/ui/textarea";
-import { TextareaInput } from "@/components/ui/textarea";
+import { ComponentPreviewer } from '@/components/custom/component-previewer';
+import { Textarea } from '@/components/ui/textarea';
+import { TextareaInput } from '@/components/ui/textarea';
 
 export default function Example() {
   return (
@@ -19,32 +19,37 @@ export default function Example() {
   )
 }`}
       argTypes={{
-        size: {
-          control: {
-            type: "select",
-          },
-          options: ["sm", "md", "lg", "xl"],
-          defaultValue: "md",
-        },
-        isReadOnly: {
-          control: {
-            type: "boolean",
-          },
-          defaultValue: false,
-        },
-        isInvalid: {
-          control: {
-            type: "boolean",
-          },
-          defaultValue: false,
-        },
-        isDisabled: {
-          control: {
-            type: "boolean",
-          },
-          defaultValue: false,
-        },
-      }}
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "defaultValue": "md"
+  },
+  "isReadOnly": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  },
+  "isInvalid": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  },
+  "isDisabled": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  }
+}}
       reactLive={{ Textarea, TextareaInput }}
     />
   );

@@ -1,10 +1,10 @@
-import { ComponentPreviewer } from "@/components/custom/component-previewer";
-import { Radio } from "@/components/ui/radio";
-import { RadioGroup } from "@/components/ui/radio";
-import { RadioIndicator } from "@/components/ui/radio";
-import { RadioIcon } from "@/components/ui/radio";
-import { RadioLabel } from "@/components/ui/radio";
-import { CircleIcon } from "@/components/ui/icon";
+import { ComponentPreviewer } from '@/components/custom/component-previewer';
+import { Radio } from '@/components/ui/radio';
+import { RadioGroup } from '@/components/ui/radio';
+import { RadioIndicator } from '@/components/ui/radio';
+import { RadioIcon } from '@/components/ui/radio';
+import { RadioLabel } from '@/components/ui/radio';
+import { CircleIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
