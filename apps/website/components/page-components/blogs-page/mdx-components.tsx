@@ -1,4 +1,4 @@
-"use client";
+
 
 import type { MDXComponents } from "mdx/types";
 import CodeBlock from "@/components/custom/markdown/code-block";

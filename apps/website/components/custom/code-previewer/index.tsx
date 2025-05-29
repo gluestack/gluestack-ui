@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import Handlebars from "handlebars";
 import { LiveProvider, LiveError, LivePreview } from "react-live";

@@ -1,9 +1,3 @@
-import { CodePreviewer } from '@/components/custom/code-previewer';
-import { useBreakpointValue } from '@/components/ui/utils/use-break-point-value';
-import { VStack } from '@/components/ui/vstack';
-import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
-
 import {Tabs,TabItem} from '@/docs-components/tabs'
 import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
 import {InlineCode} from '@/docs-components/inline-code'
@@ -14,36 +8,7 @@ Learn how to use the useBreakpointValue hook to manage breaking point values, br
 
 This is an illustration of **useBreakPointValue** hook.
 
-
-  
-
-  
-  
-  <CodePreviewer
-  code={`function App(){
-         const flexDir = useBreakpointValue(\{
-                default: "column",
-                sm: "row",
-              });
-          return (
-            <VStack
-              style=\\{{flexDirection: flexDir, gap: 10}}
-            > 
-              <Box className={"justify-center items-center p-4 rounded bg-primary-500"}>
-                <Text className="font-bold text-typography-0">Box 1</Text>
-              </Box>
-              <Box className={"justify-center items-center p-4 rounded bg-primary-600"}>
-                <Text className="font-bold text-typography-0">Box 2</Text>
-              </Box>
-              <Box className={"justify-center items-center p-4 rounded bg-primary-700"}>
-                <Text className="font-bold text-typography-0">Box 3</Text>
-              </Box>
-            </VStack>
-          );
-        }`}
-  argTypes={{}}
-  reactLive={{ useBreakpointValue, VStack, Box, Text }}
-/>
+/// {Example:basic} ///
 
 <br/>
 
@@ -58,128 +23,7 @@ This is an illustration of **useBreakPointValue** hook.
   <TabItem label="Manual">
     ### Step 1: Copy and paste the following code into your project.
     ```ts
-    import { Dimensions, useWindowDimensions } from 'react-native';
-import { useEffect, useState } from 'react';
-
-import resolveConfig from 'tailwindcss/resolveConfig';
-import * as tailwindConfig from '@/tailwind.config';
-
-const TailwindTheme = resolveConfig(tailwindConfig as any);
-const screenSize = TailwindTheme.theme.screens;
-
-type breakpoints = keyof typeof screenSize | 'default';
-
-type MediaQueriesBreakpoints = {
-  key: breakpoints;
-  breakpoint: number;
-  isValid: boolean;
-  value?: unknown;
-};
-
-type BreakPointValue = Partial<Record<breakpoints, unknown>>;
-
-const resolveScreenWidth: Record<breakpoints, number> = {
-  default: 0,
-};
-
-Object.entries(screenSize).forEach(([key, value]) => {
-  if (typeof value === 'string') {
-    resolveScreenWidth[key] = parseInt(value.replace('px', ''), 10);
-  }
-});
-
-export const getBreakPointValue = (
-  values: BreakPointValue,
-  width: number
-): unknown => {
-  if (typeof values !== 'object') return values;
-
-  let finalBreakPointResolvedValue: unknown;
-  const mediaQueriesBreakpoints: Array<MediaQueriesBreakpoints> = [
-    {
-      key: 'default',
-      breakpoint: 0,
-      isValid: true,
-    },
-  ];
-  Object.keys(resolveScreenWidth).forEach((key) => {
-    const isValid = isValidBreakpoint(resolveScreenWidth[key], width);
-
-    mediaQueriesBreakpoints.push({
-      key: key,
-      breakpoint: resolveScreenWidth[key],
-      isValid: isValid,
-    });
-  });
-
-  mediaQueriesBreakpoints.sort(
-    (a: MediaQueriesBreakpoints, b: MediaQueriesBreakpoints) =>
-      a.breakpoint - b.breakpoint
-  );
-
-  mediaQueriesBreakpoints.forEach(
-    (breakpoint: MediaQueriesBreakpoints, index: number) => {
-      breakpoint.value = values.hasOwnProperty(breakpoint.key)
-        ? values[breakpoint.key]
-        : mediaQueriesBreakpoints[index - 1]?.value ||
-          mediaQueriesBreakpoints[0]?.value;
-    }
-  );
-
-  const lastValidObject = getLastValidObject(mediaQueriesBreakpoints);
-
-  if (!lastValidObject) {
-    finalBreakPointResolvedValue = values;
-  } else {
-    finalBreakPointResolvedValue = lastValidObject.value;
-  }
-  return finalBreakPointResolvedValue;
-};
-
-export function useBreakpointValue(values: BreakPointValue): unknown {
-  const { width } = useWindowDimensions();
-
-  const [currentBreakPointValue, setCurrentBreakPointValue] = useState<unknown>(
-    getBreakPointValue(values, width)
-  );
-
-  useEffect(() => {
-    if (typeof values === 'object') {
-      const finalBreakPointResolvedValue = getBreakPointValue(values, width);
-      setCurrentBreakPointValue(finalBreakPointResolvedValue);
-    }
-  }, [values, width]);
-
-  if (typeof values !== 'object') return values;
-
-  return currentBreakPointValue;
-}
-
-export function isValidBreakpoint(
-  breakPointWidth: number,
-  width: number = Dimensions.get('window')?.width || 0
-) {
-  const windowWidth = width;
-
-  return windowWidth >= breakPointWidth;
-}
-
-function getLastValidObject(
-  mediaQueries: Array<{
-    key: breakpoints;
-    breakpoint: number;
-    isValid: boolean;
-    value?: unknown;
-  }>
-) {
-  for (let i = mediaQueries.length - 1; i >= 0; i--) {
-    if (mediaQueries[i].isValid) {
-      return mediaQueries[i];
-    }
-  }
-  return null; // No valid object found
-}
-
+    %%-- File: packages/components/ui/utils/use-break-point-value/index.ts --%%
     ```
 
     ### Step 2: Update the import paths to match your project setup.

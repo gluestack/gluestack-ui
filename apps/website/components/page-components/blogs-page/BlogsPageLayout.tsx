@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import { Blog } from '@/components/page-components/blogs-page/mdx-components';
 import Footer from '@/components/page-components/landing-page/Footer';

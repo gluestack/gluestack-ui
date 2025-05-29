@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx';
