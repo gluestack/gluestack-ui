@@ -1,6 +1,10 @@
 import path from "path";
 import * as fileOps from "../utils/fileOperations";
-import { componentPreviewerTemplate, pageContentTemplate, codePreviewerTemplate } from "./templates";
+import {
+  componentPreviewerTemplate,
+  pageContentTemplate,
+  codePreviewerTemplate,
+} from "./templates";
 import { CodePreviewerRegex } from "../utils/regex";
 interface ImportMap {
   [key: string]: string[];
@@ -11,7 +15,10 @@ export const generateCodePreviewer = (
   component: string,
   importMap: ImportMap
 ) => {
-  const sourcePath = path.resolve("packages/components/ui");
+  const sourcePath =
+    component === "use-break-point-value" || component === "use-media-query"
+      ? path.resolve("packages/components/ui/utils")
+      : path.resolve("packages/components/ui");
   const examplePath = path.join(sourcePath, component, "examples", exampleName);
   const codePath = path.join(examplePath, "template.handlebars");
   const argsPath = path.join(examplePath, "meta.json");
@@ -39,7 +46,11 @@ export const generateCodePreviewer = (
     });
 
     // If this is the basic example, copy it to the docs components folder
-    if (exampleName === "basic") {
+    if (
+      exampleName === "basic" &&
+      (component !== "use-break-point-value" &&
+        component !== "use-media-query")
+    ) {
       const websitePath = path.resolve(
         "apps/website/components/page-components/all-components"
       );
@@ -62,14 +73,20 @@ export const generateCodePreviewer = (
         imports,
         code.trim(),
         argTypes,
-        reactLive,
+        reactLive
       );
 
       // Write the file
       fileOps.writeTextFile(destFilePath, fileContent);
     }
 
-    return codePreviewerTemplate(code.trim(), argTypes, reactLive, title, description);
+    return codePreviewerTemplate(
+      code.trim(),
+      argTypes,
+      reactLive,
+      title,
+      description
+    );
   } catch (error) {
     console.error(
       `:x: Error building CodePreviewer for Example:${exampleName} in ${component}:`,

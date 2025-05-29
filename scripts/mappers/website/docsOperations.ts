@@ -40,6 +40,23 @@ export const copyComponentsDocs = (component: string) => {
   }
 };
 
+export const copyHooksDocs = (hook: string) => {
+  const sourcePath = path.resolve("packages/components/ui/utils");
+  const websitePath = path.resolve("apps/website/app/ui/docs/hooks");
+  const hookPath = path.join(sourcePath, hook, "docs");
+  const destPath = path.join(websitePath, hook);
+  fileOps.copyDir(hookPath, destPath);
+  templateGen.processFileForExamples(
+    path.join(destPath, "index.mdx"),
+    hook
+  );
+  console.log("destPath----------------", destPath);
+  fileOps.writeTextFile(
+    path.join(destPath, "page.tsx"),
+    templateGen.generatePageContent()
+  );
+};
+
 export const copyNonComponentDocs = (filePath: string) => {
   const sourcePath = path.resolve("packages/docs");
   const websitePath = path.resolve("apps/website/app/ui/docs");
