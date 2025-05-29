@@ -42,7 +42,7 @@ export default function ComponentExamples() {
   )}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"HStack Reversed"}>
   {props => {
   return (
     <HStack space="md" reversed>

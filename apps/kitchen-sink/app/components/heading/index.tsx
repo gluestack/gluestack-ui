@@ -13,7 +13,7 @@ export default function ComponentExamples() {
   return <Heading>I am a Heading</Heading>}}
 </ComponentPreviewer>
 
-<ComponentPreviewer props={{}} title={undefined}>
+<ComponentPreviewer props={{}} title={"Heading Sizes"}>
   {props => { 
   const sizes = [ 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl',
 '4xl', '5xl' ]; 

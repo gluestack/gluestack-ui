@@ -37,10 +37,14 @@ export const codePreviewerTemplate = (
   reactLive: string,
   title: string,
   description: string
-) => `<CodePreviewer
+) => 
+  `
+  ${title && `#### ${title}`}
+
+  ${description && `${description}`}
+  
+  <CodePreviewer
   code={\`${code}\`}
   argTypes={${argTypes}}
   reactLive={${reactLive}}
-  title=${title}
-  description=${description}
 />`;

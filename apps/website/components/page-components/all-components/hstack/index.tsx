@@ -39,8 +39,8 @@ export default function Example() {
   }
 }}
       reactLive={{ HStack, Box }}
-      title={""}
-      description={""}
+      title={}
+      description={}
     />
   );
 }

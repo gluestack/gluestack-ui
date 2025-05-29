@@ -12,7 +12,12 @@ import {InlineCode} from '@/docs-components/inline-code'
 Explore gluestack's Accordion component for Expo, next.js, React & React Native. Build sleek, interactive accordions with ease.
 
  This is an illustration of **Accordion** component.
-<CodePreviewer
+
+  #### Basic
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Accordion
@@ -126,8 +131,6 @@ Explore gluestack's Accordion component for Expo, next.js, React & React Native.
   }
 }}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, ChevronDownIcon, ChevronUpIcon }}
-  title="Basic"
-  description=""
 />
 
 <br/>
@@ -669,7 +672,12 @@ We have outlined the various features that ensure the Accordion component is acc
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-<CodePreviewer
+
+  #### Customized Component
+
+  The following example demonstrates how easily you can customize the Accordion component to suit your needs.
+  
+  <CodePreviewer
   code={`function App(){
     return (
       <Accordion
@@ -773,12 +781,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, ChevronDownIcon, ChevronUpIcon }}
-  title="Customized Component"
-  description="The following example demonstrates how easily you can customize the Accordion component to suit your needs."
 />
 
 
-<CodePreviewer
+
+  #### Rounded corners
+
+  The borderRadius prop can be used to create rounded corners for both the Accordion and AccordionItem components.
+  
+  <CodePreviewer
   code={`function App(){
     return (
           <Accordion className="m-5 w-[80%] max-w-[640px] bg-transparent">
@@ -842,12 +853,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
-  title="Rounded corners"
-  description="The borderRadius prop can be used to create rounded corners for both the Accordion and AccordionItem components."
 />
 
 
-<CodePreviewer
+
+  #### Disabled item
+
+  You can disable an item by setting the isDisabled prop to true. This will prevent the user from interacting with the item and its content. You can also disable the whole accordion by setting the isDisabled prop to true on the Accordion component.
+  
+  <CodePreviewer
   code={`function App(){
     return (
           <Accordion variant="unfilled" className="m-5 w-[90%]">
@@ -910,12 +924,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
-  title="Disabled item"
-  description="You can disable an item by setting the isDisabled prop to true. This will prevent the user from interacting with the item and its content. You can also disable the whole accordion by setting the isDisabled prop to true on the Accordion component."
 />
 
 
-<CodePreviewer
+
+  #### Default value
+
+  Use the defaultValue prop to define the open item by default.
+  
+  <CodePreviewer
   code={`function App(){
     return (
           <Accordion variant="unfilled" type="single" defaultValue="item-3" className="w-[90%] m-5">
@@ -1003,12 +1020,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
-  title="Default value"
-  description="Use the defaultValue prop to define the open item by default."
 />
 
 
-<CodePreviewer
+
+  #### Nested Components
+
+  You can nest Accordion components to create a nested accordion. This is useful when you want to group related content together. In the following example, we have created a nested accordion to group the states of USA by region.
+  
+  <CodePreviewer
   code={`function App(){
     return (
            <Accordion
@@ -1096,11 +1116,14 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
-  title="Nested Components"
-  description="You can nest Accordion components to create a nested accordion. This is useful when you want to group related content together. In the following example, we have created a nested accordion to group the states of USA by region."
 />
 
-<CodePreviewer
+
+  #### Controlled Accordion
+
+  A component is controlled when it's managed by its parent using props. You can make the Accordion component controlled by passing the value prop to the Accordion and setting the onValueChange to update the value prop. In the following example, we have created a controlled accordion to display the expanded state of the accordion.
+  
+  <CodePreviewer
   code={`function App(){
     const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2']);
     return (
@@ -1189,6 +1212,4 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
-  title="Controlled Accordion"
-  description="A component is controlled when it's managed by its parent using props. You can make the Accordion component controlled by passing the value prop to the Accordion and setting the onValueChange to update the value prop. In the following example, we have created a controlled accordion to display the expanded state of the accordion."
 />

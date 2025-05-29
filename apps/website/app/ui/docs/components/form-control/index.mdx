@@ -26,7 +26,12 @@ Enhance form usability with FormControl components in React. Manage validation, 
 
  This is an illustration of **FormControl** component.
 
-<CodePreviewer
+
+  #### Basic
+
+  
+  
+  <CodePreviewer
   code={`function App () {
   const [isInvalid, setIsInvalid] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("12345");
@@ -109,8 +114,6 @@ Enhance form usability with FormControl components in React. Manage validation, 
   }
 }}
   reactLive={{ FormControl, FormControlLabel, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlHelper, FormControlHelperText, FormControlLabelText, AlertCircleIcon, Input, InputField, InputIcon, InputSlot, Button, ButtonText, ButtonSpinner, VStack }}
-  title="Basic"
-  description=""
 />
 
 <br />
@@ -721,7 +724,12 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 
-<CodePreviewer
+
+  #### Form Control with Radio
+
+  The Radio Component can be incorporated within the FormControl.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState("Mango");
   return (
@@ -769,13 +777,16 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon, VStack, CircleIcon }}
-  title="Form Control with Radio"
-  description="The Radio Component can be incorporated within the FormControl."
 />
 
 
 
-<CodePreviewer
+
+  #### Form Control with Checkbox
+
+  The Checkbox Component can be incorporated within the FormControl.
+  
+  <CodePreviewer
   code={`function App() {
       const [values, setValues] = React.useState(['bits']);
         return (
@@ -821,12 +832,15 @@ The Examples section provides visual representations of the different variants o
       }`}
   argTypes={{}}
   reactLive={{ FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon, VStack, CheckIcon }}
-  title="Form Control with Checkbox"
-  description="The Checkbox Component can be incorporated within the FormControl."
 />
 
 
-<CodePreviewer
+
+  #### Form Control with Error
+
+  Error messages can be displayed using FormControl.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <FormControl isInvalid>
@@ -874,13 +888,16 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ FormControl, FormControlLabel, FormControlLabelText, FormControlError, FormControlErrorIcon, FormControlErrorText, Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon, VStack, AlertCircleIcon, CircleIcon }}
-  title="Form Control with Error"
-  description="Error messages can be displayed using FormControl."
 />
 
 
 
-<CodePreviewer
+
+  #### Form Control with Textarea
+
+  The Textarea Component can be incorporated within the FormControl.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <FormControl>
@@ -902,12 +919,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, Textarea, TextareaInput }}
-  title="Form Control with Textarea"
-  description="The Textarea Component can be incorporated within the FormControl."
 />
 
 
-<CodePreviewer
+
+  #### Form Control with Form Actions
+
+  Form Action Buttons can also be utilized in conjunction with FormControl.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <HStack>
@@ -930,6 +950,4 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ FormControl, Button, ButtonText, HStack }}
-  title="Form Control with Form Actions"
-  description="Form Action Buttons can also be utilized in conjunction with FormControl."
 />

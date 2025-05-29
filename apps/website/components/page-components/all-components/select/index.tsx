@@ -66,8 +66,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectItem, ChevronDownIcon }}
-      title={""}
-      description={""}
+      title={}
+      description={}
     />
   );
 }

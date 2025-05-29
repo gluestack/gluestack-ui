@@ -88,8 +88,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton, Button, ButtonText, Heading, Text, Icon, CloseIcon }}
-      title={""}
-      description={""}
+      title={}
+      description={}
     />
   );
 }

@@ -42,8 +42,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Card, Heading, Text }}
-      title={""}
-      description={""}
+      title={}
+      description={}
     />
   );
 }

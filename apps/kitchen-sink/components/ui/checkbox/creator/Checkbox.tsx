@@ -4,7 +4,7 @@ import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions/sr
 import { useFocus } from '@/utils/gluestack-utils/aria/focus/src';
 import { useToggleState } from '@react-stately/toggle';
 import { useCheckbox, useCheckboxGroupItem } from '../aria';
-import { CheckboxGroupContext } from './CheckboxGroupContext';
+import { CheckboxGroupContext } from './CheckboxGroup';
 import {
   combineContextAndProps,
   mergeRefs,

@@ -127,8 +127,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, ChevronDownIcon, ChevronUpIcon }}
-      title={"Basic"}
-      description={""}
+      title={Basic}
+      description={}
     />
   );
 }

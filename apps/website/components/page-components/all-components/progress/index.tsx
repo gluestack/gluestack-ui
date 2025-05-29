@@ -42,8 +42,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Progress, ProgressFilledTrack, Center }}
-      title={""}
-      description={""}
+      title={}
+      description={}
     />
   );
 }

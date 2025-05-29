@@ -70,8 +70,8 @@ export default function Example() {
   }
 }}
       reactLive={{ Box, Fab, FabIcon, FabLabel, AddIcon }}
-      title={""}
-      description={""}
+      title={}
+      description={}
     />
   );
 }

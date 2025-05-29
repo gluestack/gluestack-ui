@@ -22,8 +22,8 @@ export const generateCodePreviewer = (
     }
     const code = fileOps.readTextFile(codePath);
     const meta = fileOps.readJsonFile(argsPath);
-    const title = JSON.stringify(meta.title || "", null, 2);
-    const description = JSON.stringify(meta.description ||"", null, 2);
+    const title = meta.title || "";
+    const description = meta.description || "";
     const argTypes = JSON.stringify(meta.argTypes || {}, null, 2);
     const reactLiveKeys = meta.reactLive ? Object.keys(meta.reactLive) : [];
     const reactLive = `{ ${reactLiveKeys.join(", ")} }`;
