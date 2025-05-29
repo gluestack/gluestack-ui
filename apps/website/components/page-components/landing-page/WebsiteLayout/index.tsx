@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Box } from '@/components/ui';
-import Header from '@/components/page-components/header';
+import React, { useState, useEffect } from "react";
+import { Box } from "@/components/ui";
+import Header from "@/components/page-components/header";
 function WebsiteLayout({
-  applyBgImage,
   children,
 }: {
   applyBgImage?: boolean;
@@ -11,20 +10,20 @@ function WebsiteLayout({
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
   useEffect(() => {
     if (isOpenSidebar) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
   }, [isOpenSidebar]);
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       if (isOpenSidebar) {
         setIsOpenSidebar(false);
       }
     });
     return () => {
-      window.removeEventListener('resize', () => {
+      window.removeEventListener("resize", () => {
         if (isOpenSidebar) {
           setIsOpenSidebar(false);
         }
@@ -32,23 +31,18 @@ function WebsiteLayout({
     };
   }, [isOpenSidebar]);
   return (
-    <Box className={` web:flex-${isOpenSidebar ? '1' : 'none'} w-screen`}>
-        <Header
-          // @ts-ignore
-          isOpenSidebar={isOpenSidebar}
-          setIsOpenSidebar={setIsOpenSidebar}
-        />
-
-      {applyBgImage && (
-        <Box className="web:block absolute top-0 left-0 right-0 -z-1">
-          {/* <BgImage /> */}
-        </Box>
-      )}
-
-      <Box className={`${isOpenSidebar ? 'opacity-0' : 'opacity-100'} `}>
+    <div
+      className={` web:flex-${isOpenSidebar ? "1" : "none"} w-screen h-screen overflow-hidden overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
+    >
+      <Header
+        // @ts-ignore
+        isOpenSidebar={isOpenSidebar}
+        setIsOpenSidebar={setIsOpenSidebar}
+      />
+      <Box className={` ${isOpenSidebar ? "opacity-0" : "opacity-100"} `}>
         {children}
       </Box>
-    </Box>
+    </div>
   );
 }
 

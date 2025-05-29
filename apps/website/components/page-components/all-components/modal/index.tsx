@@ -16,7 +16,7 @@ import { CloseIcon } from '@/components/ui/icon';
 export default function Example() {
   return (
     <ComponentPreviewer
-      code={`{
+      code={`function Example() {
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>

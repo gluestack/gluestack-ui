@@ -10,9 +10,10 @@ type Item = {
 export const TOC = ({ items }: { items: Item[] }) => {
   const [selected, setSelected] = React.useState(items[0].id);
 
-  const handleScroll = () => {
+  const handleScroll = (scrollContainer: Element) => {
     const sections = document.querySelectorAll("h1, h2, h3, h4, h5");
-    const scrollPosition = window.scrollY;
+    const scrollPosition = scrollContainer.scrollTop;
+    const containerTop = scrollContainer.getBoundingClientRect().top;
 
     // Find the section that is currently in view
     let currentSection = null;
@@ -20,13 +21,16 @@ export const TOC = ({ items }: { items: Item[] }) => {
 
     sections.forEach((section: Element) => {
       const htmlElement = section as HTMLElement;
-      const sectionTop = htmlElement.offsetTop;
-      const sectionBottom = sectionTop + htmlElement.clientHeight;
-      const distance = Math.abs(scrollPosition - sectionTop);
+      const sectionRect = htmlElement.getBoundingClientRect();
+      const sectionTopRelativeToViewport = sectionRect.top;
 
+      // Calculate distance from the top of the viewport
+      const distance = Math.abs(sectionTopRelativeToViewport - containerTop);
+
+      // Check if section is in view (within reasonable viewport range)
       if (
-        scrollPosition >= sectionTop - 100 &&
-        scrollPosition < sectionBottom
+        sectionTopRelativeToViewport <= containerTop + 150 &&
+        sectionTopRelativeToViewport >= containerTop - 100
       ) {
         if (distance < minDistance) {
           minDistance = distance;
@@ -65,9 +69,43 @@ export const TOC = ({ items }: { items: Item[] }) => {
       }
     });
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    // Find the WebsiteLayout scrollable container
+    const findScrollContainer = (): Element | null => {
+      // Look for the specific container with h-screen and overflow-y-scroll classes
+      const selectors = [
+        '[class*="h-screen"][class*="overflow-y-scroll"]',
+        '[class*="h-screen"][class*="overflow-hidden"]',
+        ".overflow-y-scroll",
+        ".overflow-y-auto",
+      ];
+
+      for (const selector of selectors) {
+        const container = document.querySelector(selector);
+        if (container) {
+          return container;
+        }
+      }
+
+      // Fallback to document element
+      return document.documentElement;
+    };
+
+    const scrollContainer = findScrollContainer();
+
+    const scrollHandler = () => {
+      if (scrollContainer) {
+        handleScroll(scrollContainer);
+      }
+    };
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", scrollHandler);
+      // Initial call to set the correct section
+      setTimeout(() => handleScroll(scrollContainer), 100);
+
+      return () => scrollContainer.removeEventListener("scroll", scrollHandler);
+    }
+  }, [items]);
 
   return (
     <Box className="fixed right-[7%] top-[180px] hidden xl:flex">

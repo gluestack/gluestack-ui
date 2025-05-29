@@ -37,13 +37,13 @@ export const Community = ({
               className="min-w-[300px] lg:max-w-[300px] sm:flex-1 border-outline-100 rounded-xl overflow-hidden border hover:bg-background-50"
             >
               <VStack space="sm" className="p-6">
-                <HStack className="items-center text-black  dark:text-white">
+                <HStack className="items-center">
                   {community.icon}
                   <Text className="text-xl font-medium leading-xl ml-3">
                     {community.name}
                   </Text>
                 </HStack>
-                <Text className="text-typography-600  dark:text-typography-400 flex-wrap leading-md">
+                <Text className="text-typography-600  flex-wrap leading-md">
                   {community.description}
                 </Text>
               </VStack>
