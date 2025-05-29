@@ -3,6 +3,7 @@ import { withGluestackUI } from "@gluestack/ui-next-adapter";
 import withPlugins from "next-compose-plugins";
 import createMDX from "@next/mdx";
 import rehypeSlug from "rehype-slug";
+
 const redirects = [
   {
     source: "/ui/docs/styling/state",
@@ -742,11 +743,22 @@ const redirects = [
   },
 
   {
+    source: "/ui/docs/components/text-area",
+    destination: "/ui/docs/components/textarea",
+    permanent: true,
+  },
+  {
+    source: "/ui/with-nativewind/docs/overview/introduction",
+    destination: "/ui/docs/home/overview/introduction",
+    permanent: true,
+  },
+  {
     source: "/ui/docs/guides/resources/style/docs/getting-started/styled",
     destination: "/ui/docs/home/overview/introduction",
     permanent: true,
   },
 ];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = withGluestackUI({
   reactStrictMode: true,
@@ -1021,6 +1033,7 @@ const config = withPlugins([withMDX], {
   ...nextConfig,
 });
 
+export default config;
 export default withSentryConfig(config, {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
