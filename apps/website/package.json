@@ -21,6 +21,7 @@
     "@next/mdx": "^15.3.1",
     "@react-native/assets-registry": "^0.79.2",
     "@sendinblue/client": "^3.3.1",
+    "@sentry/nextjs": "^9.23.0",
     "@typeform/embed-react": "^4.1.0",
     "@types/mdx": "^2.0.13",
     "app": "*",
