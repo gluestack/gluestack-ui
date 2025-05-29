@@ -1,6 +1,6 @@
-"use client";
-import Docs from "./index.mdx";
 
+"use client";
+import Docs from './index.mdx';
 export default function Page() {
   return (
     <div>

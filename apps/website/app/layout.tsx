@@ -1,7 +1,5 @@
 /* eslint-disable @next/next/next-script-for-ga */
 /* eslint-disable @next/next/no-page-custom-font */
-/* eslint-disable @next/next/next-script-for-ga */
-/* eslint-disable @next/next/no-page-custom-font */
 "use client";
 import {
   Inter,
@@ -14,8 +12,6 @@ import "./globals.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { useContext } from "react";
 import { ThemeContext, ThemeProvider } from "@/utils/context/theme-context";
-import CanonicalLink from "@/src/components/CanonicalLink";
-import CanonicalLink from "@/src/components/CanonicalLink";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -73,7 +69,6 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
           rel="stylesheet"
         />
-        <CanonicalLink />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{

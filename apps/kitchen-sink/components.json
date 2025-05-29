@@ -477,6 +477,21 @@
       },
       {
         "type": "Dropdown",
+        "title": "MCP Server",
+        "icons": {
+          "source": "lucide-react-native",
+          "name": "Server",
+          "headerTitle": "MCP Server"
+        },
+        "subsections": [
+          {
+            "title": "MCP Server",
+            "path": "/ui/docs/mcp-server/mcp-server"
+          }
+        ]
+      },
+      {
+        "type": "Dropdown",
         "title": "Guides",
         "icons": {
           "source": "lucide-react-native",
