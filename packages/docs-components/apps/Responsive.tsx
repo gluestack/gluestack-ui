@@ -134,15 +134,15 @@ function Responsiveness({
 
         {/* Iframe container */}
         <Box className="h-full w-full overflow-hidden">
-        <iframe
+          <iframe
             src={iframeUri}
             title="NativeBase v3 Dashboard Example"
             style={{
-              transformOrigin: '0px 0px',
-              transform: 'scale(0.8)',
-              width: '125%',
-              height: '125%',
-              border: 'none',
+              transformOrigin: "0px 0px",
+              transform: "scale(0.8)",
+              width: "125%",
+              height: "125%",
+              border: "none",
               borderBottomLeftRadius: 16,
               borderBottomRightRadius: 16,
             }}
@@ -202,7 +202,9 @@ function Responsiveness({
                 fill="currentColor"
               />
             </svg>
-            <NText className="text-typography-950 ml-2.5 text-sm">Open in new tab</NText>
+            <NText className="text-typography-950 ml-2.5 text-sm">
+              Open in new tab
+            </NText>
           </Pressable>
 
           {/* Mobile button */}
@@ -222,7 +224,9 @@ function Responsiveness({
               width={17}
               height={16}
             />
-            <NText className="text-typography-950 ml-2.5 text-sm">Open in Expo</NText>
+            <NText className="text-typography-950 ml-2.5 text-sm">
+              Open in Expo
+            </NText>
           </Pressable>
         </Box>
 

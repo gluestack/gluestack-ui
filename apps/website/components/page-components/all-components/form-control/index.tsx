@@ -1,21 +1,21 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { FormControl } from '@/components/ui/form-control';
-import { FormControlLabel } from '@/components/ui/form-control';
-import { FormControlError } from '@/components/ui/form-control';
-import { FormControlErrorText } from '@/components/ui/form-control';
-import { FormControlErrorIcon } from '@/components/ui/form-control';
-import { FormControlHelper } from '@/components/ui/form-control';
-import { FormControlHelperText } from '@/components/ui/form-control';
-import { FormControlLabelText } from '@/components/ui/form-control';
-import { AlertCircleIcon } from '@/components/ui/icon';
-import { Input } from '@/components/ui/input';
-import { InputField } from '@/components/ui/input';
-import { InputIcon } from '@/components/ui/input';
-import { InputSlot } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { ButtonText } from '@/components/ui/button';
-import { ButtonSpinner } from '@/components/ui/button';
-import { VStack } from '@/components/ui/vstack';
+import { ComponentPreviewer } from "@/components/custom/component-previewer";
+import { FormControl } from "@/components/ui/form-control";
+import { FormControlLabel } from "@/components/ui/form-control";
+import { FormControlError } from "@/components/ui/form-control";
+import { FormControlErrorText } from "@/components/ui/form-control";
+import { FormControlErrorIcon } from "@/components/ui/form-control";
+import { FormControlHelper } from "@/components/ui/form-control";
+import { FormControlHelperText } from "@/components/ui/form-control";
+import { FormControlLabelText } from "@/components/ui/form-control";
+import { AlertCircleIcon } from "@/components/ui/icon";
+import { Input } from "@/components/ui/input";
+import { InputField } from "@/components/ui/input";
+import { InputIcon } from "@/components/ui/input";
+import { InputSlot } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { ButtonText } from "@/components/ui/button";
+import { ButtonSpinner } from "@/components/ui/button";
+import { VStack } from "@/components/ui/vstack";
 
 export default function Example() {
   return (

@@ -1,12 +1,10 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import { MDXProvider } from '@mdx-js/react';
-import { Blog } from '@/components/page-components/blogs-page/mdx-components';
-import Footer from '@/components/page-components/landing-page/Footer';
-import WebsiteLayout from '@/components/page-components/landing-page/WebsiteLayout';
-import BadgeComponent from '@/components/page-components/landing-page/BadgeComponent';
-import { Box } from '@/components/ui';
-import { usePathname } from 'next/navigation';
+"use client";
+import React from "react";
+import Footer from "@/components/page-components/landing-page/Footer";
+import WebsiteLayout from "@/components/page-components/landing-page/WebsiteLayout";
+import BadgeComponent from "@/components/page-components/landing-page/BadgeComponent";
+import { Box } from "@/components/ui";
+import { usePathname } from "next/navigation";
 
 export default function BlogsPageLayout({
   children,
@@ -16,10 +14,12 @@ export default function BlogsPageLayout({
   const pathname = usePathname();
 
   return (
-    <WebsiteLayout applyBgImage={true}>
-      <Blog MDXProvider={MDXProvider}>{children}</Blog>
+    <WebsiteLayout>
+      <Box className="flex-1 mt-5 flex-row w-[85%] max-w-[1440px] mx-auto pt-40 md:pt-[140px]">
+        <Box className="flex-1 w-full h-full">{children}</Box>
+      </Box>
       <BadgeComponent />
-      <Box className={pathname === '/blogs' ? 'w-full' : 'xl:w-[70%]'}>
+      <Box className={pathname === "/blogs" ? "w-full" : "xl:w-[70%]"}>
         <BadgeComponent />
         <Footer />
       </Box>

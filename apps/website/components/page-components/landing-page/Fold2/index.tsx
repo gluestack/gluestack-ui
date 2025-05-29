@@ -9,16 +9,16 @@ import {
   Text,
   VStack,
   Image,
-} from '@/components/ui';
-import React, { useContext } from 'react';
-import FormsContent from './Forms';
-import NavigationContent from './Navigation';
-import CardsContent from './Cards';
-import { ThemeContext } from '@/utils/context/theme-context';
+} from "@/components/ui";
+import React, { useContext } from "react";
+import FormsContent from "./Forms";
+import NavigationContent from "./Navigation";
+import CardsContent from "./Cards";
+import { ThemeContext } from "@/utils/context/theme-context";
 
-type IActiveTab = 'Forms' | 'Navigation' | 'Cards';
+type IActiveTab = "Forms" | "Navigation" | "Cards";
 
-const tabsNameArray: IActiveTab[] = ['Forms', 'Navigation', 'Cards'];
+const tabsNameArray: IActiveTab[] = ["Forms", "Navigation", "Cards"];
 const tabs: Array<{
   name: IActiveTab;
   description?: string;
@@ -26,29 +26,29 @@ const tabs: Array<{
   LightModeIcon: any;
 }> = [
   {
-    name: 'Forms',
-    description: 'Button, Checkbox, FormControl, Input, Radio, +10 components.',
-    DarkModeIcon: require('@/public/svg/EditIcon_dark.svg'),
-    LightModeIcon: require('@/public/svg/EditIcon.svg'),
+    name: "Forms",
+    description: "Button, Checkbox, FormControl, Input, Radio, +10 components.",
+    DarkModeIcon: require("@/public/svg/EditIcon_dark.svg"),
+    LightModeIcon: require("@/public/svg/EditIcon.svg"),
   },
   {
-    name: 'Navigation',
+    name: "Navigation",
     description:
-      'Tabs, Pagination, Bottom Navigation, Fab, Header +5 components.',
-    DarkModeIcon: require('@/public/svg/NavIcon_dark.svg'),
-    LightModeIcon: require('@/public/svg/NavIcon.svg'),
+      "Tabs, Pagination, Bottom Navigation, Fab, Header +5 components.",
+    DarkModeIcon: require("@/public/svg/NavIcon_dark.svg"),
+    LightModeIcon: require("@/public/svg/NavIcon.svg"),
   },
   {
-    name: 'Cards',
-    description: 'Banners, Cards, Toasts, Banners +8 components.',
-    DarkModeIcon: require('@/public/svg/BellIcon_dark.svg'),
-    LightModeIcon: require('@/public/svg/BellIcon.svg'),
+    name: "Cards",
+    description: "Banners, Cards, Toasts, Banners +8 components.",
+    DarkModeIcon: require("@/public/svg/BellIcon_dark.svg"),
+    LightModeIcon: require("@/public/svg/BellIcon.svg"),
   },
 ];
 
 const Fold2 = () => {
   const { colorMode } = useContext(ThemeContext);
-  const [activeTab, setActiveTab] = React.useState<IActiveTab>('Forms');
+  const [activeTab, setActiveTab] = React.useState<IActiveTab>("Forms");
   const handleClick = (buttonName: IActiveTab) => {
     setActiveTab(buttonName);
   };
@@ -60,8 +60,9 @@ const Fold2 = () => {
           Copy-paste components, patterns & screens
         </Heading>
         <Text className="text-typography-700 text-lg font-normal leading-[30px] lg:w-[75%]">
-          Quickly integrate pre-built, high-quality components and screens by copying and pasting from the gluestack UI component library. Save time, ensure consistency, and easily customize with Tailwind classes.
-
+          Quickly integrate pre-built, high-quality components and screens by
+          copying and pasting from the gluestack UI component library. Save
+          time, ensure consistency, and easily customize with Tailwind classes.
         </Text>
         <Link
           className="w-fit inline-block"
@@ -78,7 +79,7 @@ const Fold2 = () => {
           {tabs.map((tab, index) => (
             <HoriZontalTabNavigation
               key={tab.name}
-              colorMode={colorMode as 'light' | 'dark'}
+              colorMode={colorMode as "light" | "dark"}
               isActive={activeTab === tab.name}
               handleFormsClick={() => handleClick(tab.name)}
               showDividers={tabs.length - 1 !== index}
@@ -89,9 +90,9 @@ const Fold2 = () => {
             />
           ))}
         </VStack>
-        <FormsContent show={activeTab === 'Forms'} />
-        <NavigationContent show={activeTab === 'Navigation'} />
-        <CardsContent show={activeTab === 'Cards'} />
+        <FormsContent show={activeTab === "Forms"} />
+        <NavigationContent show={activeTab === "Navigation"} />
+        <CardsContent show={activeTab === "Cards"} />
       </Box>
       {/*  For mobile view */}
       <VStack className="gap-6 xl:hidden">
@@ -101,16 +102,16 @@ const Fold2 = () => {
               key={buttonName}
               onPress={() => handleClick(buttonName)}
               className={`gap-1.5 cursor-pointer ${
-                activeTab === buttonName ? 'bg-background-0' : ''
+                activeTab === buttonName ? "bg-background-0" : ""
               } rounded-lg px-3.5 py-2 items-center`}
             >
               <Text
                 className={`text-xs ${
                   activeTab === buttonName
-                    ? 'text-typography-900'
-                    : 'text-typography-700'
+                    ? "text-typography-900"
+                    : "text-typography-700"
                 } ${
-                  activeTab === buttonName ? 'font-semibold' : 'text-normal'
+                  activeTab === buttonName ? "font-semibold" : "text-normal"
                 }`}
               >
                 {buttonName}
@@ -118,9 +119,9 @@ const Fold2 = () => {
             </Pressable>
           ))}
         </HStack>
-        <FormsContent show={activeTab === 'Forms'} />
-        <NavigationContent show={activeTab === 'Navigation'} />
-        <CardsContent show={activeTab === 'Cards'} />
+        <FormsContent show={activeTab === "Forms"} />
+        <NavigationContent show={activeTab === "Navigation"} />
+        <CardsContent show={activeTab === "Cards"} />
       </VStack>
     </VStack>
   );
@@ -138,7 +139,7 @@ const HoriZontalTabNavigation = ({
   darkModeIcon: DarkModeIcon,
   lightModeIcon: LightModeIcon,
 }: {
-  colorMode: 'light' | 'dark';
+  colorMode: "light" | "dark";
   isActive: boolean;
   handleFormsClick: () => void;
   showDividers?: boolean;
@@ -152,13 +153,13 @@ const HoriZontalTabNavigation = ({
       <Pressable
         onPress={handleFormsClick}
         className={`gap-6 flex-row hover:bg-background-50/70 rounded-lg p-4 ${
-          isActive ? 'bg-background-50' : ''
+          isActive ? "bg-background-50" : ""
         }`}
       >
         <Image
           alt={`icon for ${tabName} tab`}
           className="w-6 h-6 self-center"
-          source={colorMode === 'light' ? LightModeIcon : DarkModeIcon}
+          source={colorMode === "light" ? LightModeIcon : DarkModeIcon}
           resizeMode="contain"
         />
         <VStack>
