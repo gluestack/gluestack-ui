@@ -1,6 +1,6 @@
-import { ComponentPreviewer } from "@/components/custom/component-previewer";
-import { Grid } from "@/components/ui/grid";
-import { GridItem } from "@/components/ui/grid";
+import { ComponentPreviewer } from '@/components/custom/component-previewer';
+import { Grid } from '@/components/ui/grid';
+import { GridItem } from '@/components/ui/grid';
 
 export default function Example() {
   return (

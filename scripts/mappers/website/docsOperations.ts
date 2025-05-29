@@ -28,7 +28,8 @@ export const copyComponentsDocs = (component: string) => {
     // Process code examples in copied files
     templateGen.processFileForExamples(
       path.join(destPath, "index.mdx"),
-      component
+      component,
+      destPath
     );
     // Create page.tsx file for routing
     fileOps.writeTextFile(
@@ -48,9 +49,9 @@ export const copyHooksDocs = (hook: string) => {
   fileOps.copyDir(hookPath, destPath);
   templateGen.processFileForExamples(
     path.join(destPath, "index.mdx"),
-    hook
+    hook,
+    destPath
   );
-  console.log("destPath----------------", destPath);
   fileOps.writeTextFile(
     path.join(destPath, "page.tsx"),
     templateGen.generatePageContent()

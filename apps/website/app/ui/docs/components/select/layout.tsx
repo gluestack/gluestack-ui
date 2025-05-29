@@ -1,0 +1,25 @@
+
+import React from 'react';
+import { Metadata } from 'next';
+
+ export const metadata: Metadata = {
+    "title": "gluestack-ui Select Component | Select React Native Installation, Usage & API",
+    "description": "Enhance your React Native app with a customizable Select dropdown component. Supports accessibility, animations, and flexible styling for a smooth user experience.",
+    "pageTitle": "Select",
+    "pageDescription": "Enhance your React Native app with a customizable Select dropdown component. Supports accessibility, animations, and flexible styling for a smooth user experience.",
+    "showHeader": true
+ }
+
+export default function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+
+  
+  return (
+    <>
+      {children}
+    </>
+  );
+}

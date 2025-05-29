@@ -4,6 +4,7 @@ import {
   componentPreviewerTemplate,
   pageContentTemplate,
   codePreviewerTemplate,
+  layoutTemplate,
 } from "./templates";
 import { CodePreviewerRegex } from "../utils/regex";
 interface ImportMap {
@@ -48,8 +49,8 @@ export const generateCodePreviewer = (
     // If this is the basic example, copy it to the docs components folder
     if (
       exampleName === "basic" &&
-      (component !== "use-break-point-value" &&
-        component !== "use-media-query")
+      component !== "use-break-point-value" &&
+      component !== "use-media-query"
     ) {
       const websitePath = path.resolve(
         "apps/website/components/page-components/all-components"
@@ -100,6 +101,37 @@ export const generatePageContent = (): string => {
   return pageContentTemplate;
 };
 
+export const replaceFrontMatter = (
+  content: string,
+  destPath: string
+): string => {
+  const frontMatterRegex = /---([\s\S]*?)---/;
+  const frontMatterObj: Record<string, any> = {};
+  const frontMatterMatch = content.replace(frontMatterRegex, (frontMatter) => {
+    const lines = frontMatter.split("\n");
+
+    for (const line of lines) {
+      const trimmedLine = line.trim();
+      if (trimmedLine) {
+        const [key, ...valueParts] = trimmedLine.split(":");
+        if (key && valueParts.length > 0) {
+          const value = valueParts.join(":").trim();
+          if (value.toLowerCase() === "true") {
+            frontMatterObj[key.trim()] = true;
+          } else if (value.toLowerCase() === "false") {
+            frontMatterObj[key.trim()] = false;
+          } else {
+            frontMatterObj[key.trim()] = value;
+          }
+        }
+      }
+    }
+    return `<Meta pageTitle="${frontMatterObj.pageTitle}" pageDescription="${frontMatterObj.description}" />`;
+  });
+  fileOps.writeTextFile(path.join(destPath, "layout.tsx"), layoutTemplate(frontMatterObj));
+  return frontMatterMatch;
+};
+
 export const processFileContent = (content: string): string => {
   const fileContentRegex = /%%--\s*File:\s*([^%]+)\s*--%%/g;
   return content.replace(fileContentRegex, (_, filePath) => {
@@ -115,10 +147,12 @@ export const processFileContent = (content: string): string => {
 
 export const processFileForExamples = (
   filePath: string,
-  component: string
+  component: string,
+  destPath: string
 ): boolean => {
   const importMap: ImportMap = {
     "@/components/custom/code-previewer": ["CodePreviewer"],
+    "@/components/custom/meta": ["Meta"],
   };
   // Read file content
   const content = fileOps.readTextFile(filePath);
@@ -137,6 +171,7 @@ export const processFileForExamples = (
   // Process file content markers
   const processedContent = processFileContent(newContent);
 
+  const frontMatter = replaceFrontMatter(processedContent, destPath);
   // Generate import statements in one go
   const importContent = Object.entries(importMap)
     .map(([path, imports]) => {
@@ -144,7 +179,7 @@ export const processFileForExamples = (
     })
     .join("\n");
 
-  const totalContent = `${importContent}\n\n${processedContent}`;
+  const totalContent = `${importContent}\n\n${frontMatter}`;
 
   if (content !== totalContent) {
     fileOps.writeTextFile(filePath, totalContent);
