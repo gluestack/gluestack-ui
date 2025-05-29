@@ -41,7 +41,54 @@ This is an illustration of **Text** component.
 ### Step 1: Copy and paste the following code into index.tsx in your project.
 
 ```jsx 
-<!-- Failed to load file: core-components/nativewind/text/index.tsx  --> 
+import React from 'react';
+
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import { Text as RNText } from 'react-native';
+import { textStyle } from './styles';
+
+type ITextProps = React.ComponentProps<typeof RNText> &
+  VariantProps<typeof textStyle>;
+
+const Text = React.forwardRef<React.ComponentRef<typeof RNText>, ITextProps>(
+  function Text(
+    {
+      className,
+      isTruncated,
+      bold,
+      underline,
+      strikeThrough,
+      size = 'md',
+      sub,
+      italic,
+      highlight,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <RNText
+        className={textStyle({
+          isTruncated,
+          bold,
+          underline,
+          strikeThrough,
+          size,
+          sub,
+          italic,
+          highlight,
+          class: className,
+        })}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+);
+
+Text.displayName = 'Text';
+
+export { Text }; 
 ```
 
 > Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
@@ -49,13 +96,103 @@ This is an illustration of **Text** component.
 ### Step 2(optional): Copy and paste the following code into index.web.tsx in your project.
 
 ```jsx 
-<!-- Failed to load file: core-components/nativewind/text/index.web.tsx  --> 
+import React from 'react';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import { textStyle } from './styles';
+
+type ITextProps = React.ComponentProps<'span'> & VariantProps<typeof textStyle>;
+
+const Text = React.forwardRef<React.ComponentRef<'span'>, ITextProps>(
+  function Text(
+    {
+      className,
+      isTruncated,
+      bold,
+      underline,
+      strikeThrough,
+      size = 'md',
+      sub,
+      italic,
+      highlight,
+      ...props
+    }: { className?: string } & ITextProps,
+    ref
+  ) {
+    return (
+      <span
+        className={textStyle({
+          isTruncated,
+          bold,
+          underline,
+          strikeThrough,
+          size,
+          sub,
+          italic,
+          highlight,
+          class: className,
+        })}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+);
+
+Text.displayName = 'Text';
+
+export { Text }; 
 ```
 
 ### Step 3: Copy and paste the following code into styles.tsx in your project.
 
 ```jsx 
-<!-- Failed to load file: core-components/nativewind/text/styles.tsx  --> 
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import { isWeb } from '@/utils/gluestack-utils/nativewind/utils/IsWeb';
+
+const baseStyle = isWeb
+  ? 'font-sans tracking-sm my-0 bg-transparent border-0 box-border display-inline list-none margin-0 padding-0 position-relative text-start no-underline whitespace-pre-wrap word-wrap-break-word'
+  : '';
+
+export const textStyle = tva({
+  base: `text-typography-700 font-body ${baseStyle}`,
+
+  variants: {
+    isTruncated: {
+      true: 'web:truncate',
+    },
+    bold: {
+      true: 'font-bold',
+    },
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-base',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+    sub: {
+      true: 'text-xs',
+    },
+    italic: {
+      true: 'italic',
+    },
+    highlight: {
+      true: 'bg-yellow-500',
+    },
+  },
+}); 
 ```
 
 ### Step 4: Update the import paths to match your project setup.

@@ -1,0 +1,23 @@
+
+      function App(){
+         const flexDir = useBreakpointValue(\{
+                default: "column",
+                sm: "row",
+              });
+          return (
+            <VStack
+              style=\\{{flexDirection: flexDir, gap: 10}}
+            > 
+              <Box className={"justify-center items-center p-4 rounded bg-primary-500"}>
+                <Text className="font-bold text-typography-0">Box 1</Text>
+              </Box>
+              <Box className={"justify-center items-center p-4 rounded bg-primary-600"}>
+                <Text className="font-bold text-typography-0">Box 2</Text>
+              </Box>
+              <Box className={"justify-center items-center p-4 rounded bg-primary-700"}>
+                <Text className="font-bold text-typography-0">Box 3</Text>
+              </Box>
+            </VStack>
+          );
+        }
+      
