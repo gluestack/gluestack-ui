@@ -1,8 +1,8 @@
-import { ComponentPreviewer } from "@/components/custom/component-previewer";
-import { Skeleton } from "@/components/ui/skeleton";
-import { SkeletonText } from "@/components/ui/skeleton";
-import { Box } from "@/components/ui/box";
-import { HStack } from "@/components/ui/hstack";
+import { ComponentPreviewer } from '@/components/custom/component-previewer';
+import { Skeleton } from '@/components/ui/skeleton';
+import { SkeletonText } from '@/components/ui/skeleton';
+import { Box } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
 
 export default function Example() {
   return (

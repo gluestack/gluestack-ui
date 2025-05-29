@@ -1,10 +1,10 @@
-import { ComponentPreviewer } from "@/components/custom/component-previewer";
-import { Toast } from "@/components/ui/toast";
-import { ToastTitle } from "@/components/ui/toast";
-import { ToastDescription } from "@/components/ui/toast";
-import { useToast } from "@/components/ui/toast";
-import { Button } from "@/components/ui/button";
-import { ButtonText } from "@/components/ui/button";
+import { ComponentPreviewer } from '@/components/custom/component-previewer';
+import { Toast } from '@/components/ui/toast';
+import { ToastTitle } from '@/components/ui/toast';
+import { ToastDescription } from '@/components/ui/toast';
+import { useToast } from '@/components/ui/toast';
+import { Button } from '@/components/ui/button';
+import { ButtonText } from '@/components/ui/button';
 
 export default function Example() {
   return (
