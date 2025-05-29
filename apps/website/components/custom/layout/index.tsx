@@ -51,7 +51,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="flex-1 flex-row">
             <MDXProvider components={useMDXComponents({})}>
               <div
-                className={`flex-1  mx-auto px-4 md:px-0 ${pathname.includes("/overview/quick-start")  ? "max-w-full" : "max-w-[736px]"}`}
+                className={`flex-1  mx-auto px-4 md:px-0 ${pathname.includes("/overview/quick-start") ? "max-w-full" : "max-w-[736px]"}`}
               >
                 <LayoutContent
                   //   display={isOpenSidebar ? "none" : "flex"}
