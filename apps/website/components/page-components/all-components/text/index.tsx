@@ -1,5 +1,5 @@
-import { ComponentPreviewer } from "@/components/custom/component-previewer";
-import { Text } from "@/components/ui/text";
+import { ComponentPreviewer } from '@/components/custom/component-previewer';
+import { Text } from '@/components/ui/text';
 
 export default function Example() {
   return (

@@ -1,9 +1,9 @@
-import { ComponentPreviewer } from "@/components/custom/component-previewer";
-import { Checkbox } from "@/components/ui/checkbox";
-import { CheckboxIndicator } from "@/components/ui/checkbox";
-import { CheckboxLabel } from "@/components/ui/checkbox";
-import { CheckIcon } from "@/components/ui/icon";
-import { CheckboxIcon } from "@/components/ui/checkbox";
+import { ComponentPreviewer } from '@/components/custom/component-previewer';
+import { Checkbox } from '@/components/ui/checkbox';
+import { CheckboxIndicator } from '@/components/ui/checkbox';
+import { CheckboxLabel } from '@/components/ui/checkbox';
+import { CheckIcon } from '@/components/ui/icon';
+import { CheckboxIcon } from '@/components/ui/checkbox';
 
 export default function Example() {
   return (

@@ -3,38 +3,19 @@ import Header from "@/components/page-components/header";
 import Sidebar from "@/components/page-components/sidebar";
 import { MDXProvider } from "@mdx-js/react";
 import { LayoutContent } from "./LayoutContent";
-import { InlineCode } from "@/components/docs-components/inline-code";
-import { UL } from "../markdown/ul";
-import { OL } from "../markdown/ol";
-import { LI } from "../markdown/li";
-import { H1, H2, H3, H4, H5 } from "@expo/html-elements";
 import { useContext, useRef } from "react";
 import { PrevNextButtons } from "./PrevNextButtons";
 import sidebarData from "../../../sidebar.json";
 import EditPageOnGithubLink from "./EditPageOnGithubLink";
 import { ThemeContext } from "@/utils/context/theme-context";
 import { useMDXComponents } from "@/mdx-components";
-
-function containsAny(targetString: string) {
-  const stringsToCheck: string[] = [
-    "gluestack.io",
-    "ui",
-    "style",
-    "enterprise",
-    "contact-us",
-  ];
-  for (const str of stringsToCheck) {
-    if (targetString.includes(str)) {
-      return false; // The target string contains at least one of the strings to check.
-    }
-  }
-  return true; // None of the strings were found in the target string.
-}
+import { usePathname } from "next/navigation";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { colorMode } = useContext(ThemeContext);
   const docsLayoutRef = useRef<HTMLDivElement>(null);
   const fluidLayout = false;
+  const pathname = usePathname();
   return (
     <div
       // @ts-ignore
@@ -69,7 +50,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
           <div className="flex-1 flex-row">
             <MDXProvider components={useMDXComponents({})}>
-              <div className="flex-1 xl:mx-12 px-4 md:px-0">
+              <div
+                className={`flex-1  mx-auto px-4 md:px-0 ${pathname.includes("/overview/quick-start")  ? "max-w-full" : "max-w-[736px]"}`}
+              >
                 <LayoutContent
                   //   display={isOpenSidebar ? "none" : "flex"}
                   className="flex md:min-w-[736px] lg:min-w-[662px] xl:min-w-[598px] 2xl:min-w-[736px] h-full w-full mx-auto flex-col"
@@ -80,9 +63,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 </LayoutContent>
               </div>
             </MDXProvider>
-
-            {/** Extra Space will be used for quick nav */}
-            {/* {toc ? <div className="w-[200px] hidden xl:flex" /> : null} */}
           </div>
         </div>
       </div>
