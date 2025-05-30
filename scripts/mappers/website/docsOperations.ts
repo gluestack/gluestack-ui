@@ -28,7 +28,8 @@ export const copyComponentsDocs = (component: string) => {
     // Process code examples in copied files
     templateGen.processFileForExamples(
       path.join(destPath, "index.mdx"),
-      component
+      component,
+      destPath
     );
     // Create page.tsx file for routing
     fileOps.writeTextFile(
@@ -48,9 +49,9 @@ export const copyHooksDocs = (hook: string) => {
   fileOps.copyDir(hookPath, destPath);
   templateGen.processFileForExamples(
     path.join(destPath, "index.mdx"),
-    hook
+    hook,
+    destPath
   );
-  console.log("destPath----------------", destPath);
   fileOps.writeTextFile(
     path.join(destPath, "page.tsx"),
     templateGen.generatePageContent()
@@ -65,12 +66,16 @@ export const copyNonComponentDocs = (filePath: string) => {
     fileOps.copyDir(sourcePath, websitePath);
     const relativePath = path.relative(sourcePath, filePath);
     const destFilePath = path.join(websitePath, relativePath);
-
     // Process file content markers if it's an MDX file
     if (filePath.endsWith(".mdx")) {
       const content = fileOps.readTextFile(destFilePath);
       const processedContent = templateGen.processFileContent(content);
-      fileOps.writeTextFile(destFilePath, processedContent);
+      const mdxPath = destFilePath.replace("index.mdx", "");
+      const layoutContent = templateGen.replaceFrontMatter(
+        processedContent,
+        mdxPath
+      );
+      fileOps.writeTextFile(destFilePath, layoutContent);
     }
 
     // Create page.tsx in the name-specific directory
