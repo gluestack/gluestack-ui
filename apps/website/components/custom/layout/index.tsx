@@ -31,7 +31,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         }`}
       >
         <div
-          className={`w-[250px] hidden lg:flex z-10 ${
+          className={`w-[250px] hidden lg:flex z-0 ${
             fluidLayout ? "border-r border-gray-200 dark:border-gray-800" : ""
           }`}
         >
