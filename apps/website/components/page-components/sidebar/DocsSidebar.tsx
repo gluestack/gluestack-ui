@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import sidebarData from "@/sidebar.json";
 import { Icon } from "@/components/ui/icon";
 import { Text } from "@/components/ui/text";
 import { Box } from "@/components/ui/box";
-import { ThemeContext } from "@/utils/context/theme-context";
+import { ToggleColorModeButton } from "@/components/custom/color-mode-toggle-button";
 
 interface NavigationItem {
   type?: string;
@@ -51,7 +51,7 @@ const ResponsiveSidebarLink = ({
 
   if (item.type === "heading") {
     return (
-      <div className="font-bold text-white py-2 pl-3 my-2 mt-4 uppercase text-sm">
+      <div className="font-bold text-typography-900 py-2 pl-3 my-2 mt-4 uppercase font-jakarta">
         {item.title}
       </div>
     );
@@ -61,18 +61,18 @@ const ResponsiveSidebarLink = ({
     <Link
       href={item.path || "#"}
       onClick={onItemClick}
-      className={`text-sm font-medium block py-3 px-4 my-0.5 text-gray-300 hover:bg-gray-800 hover:text-white transition-colors duration-200 ${
-        isActive ? "bg-gray-700 text-white border-l-2 border-blue-500" : ""
+      className={`text-sm font-medium block py-2 px-3.5 mr-2 my-0.5 text-typography-800 hover:bg-background-100 pl-3 font-inter ${
+        isActive ? "bg-background-100 border-l-[3px] border-primary-500" : ""
       }`}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center ">
         <span>{item.title}</span>
         {item.tags?.length && item.tags?.length > 0 && (
           <span
-            className={`text-xs uppercase font-semibold rounded px-1.5 py-0.5 ml-2 ${
+            className={`text-2xs uppercase font-roboto font-semibold rounded-sm px-1 py-0.5 m-2 ${
               item.tags?.includes("alpha")
-                ? "text-blue-300 bg-blue-900/30"
-                : "text-green-300 bg-green-900/30"
+                ? "text-info-600 bg-info-50/40"
+                : "text-success-600 bg-success-50/40"
             }`}
           >
             {item.tags?.map((tag) => tag).join(", ")}
@@ -98,10 +98,9 @@ const ResponsiveSidebarSection = ({
             as={
               require("lucide-react-native")[section.icons.name ?? "CircleHelp"]
             }
-            className="w-5 h-5 text-white"
           />
         )}
-        <Text className="text-white font-bold uppercase text-sm tracking-wide">
+        <Text className="text-typography-950 font-bold uppercase text-sm tracking-wide">
           {section.title}
         </Text>
       </div>
@@ -205,7 +204,7 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
   );
 
   return (
-    <Box className="w-full bg-background-0 lg:hidden z-50 overflow-y-auto h-[95vh] fixed top-[50px] left-0">
+    <Box className="w-full dark:bg-black bg-white lg:hidden z-0 overflow-y-auto h-[95vh] fixed top-[60px] left-0">
       {/* Fixed navigation at top */}
       <div className="border-b border-outline-100 p-2">
         {navigation.sections.map((section, index) => (
@@ -213,8 +212,8 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
             key={index}
             className={`flex items-center gap-2 px-4 py-2 my-1 cursor-pointer rounded-md ${
               selectedSection === section.title
-                ? "bg-gray-700 text-white"
-                : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                ? "bg-background-50 text-typography-950"
+                : "text-typography-800 hover:bg-background-100 hover:text-typography-900"
             }`}
             onClick={() => handleSectionClick(section)}
           >
@@ -242,6 +241,11 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
           />
         </div>
       )}
+      {/* color mode toggle button start */}
+      <div className="absolute bottom-0 right-0 p-4">
+        <ToggleColorModeButton />
+      </div>
+      {/* color mode toggle button end */}
     </Box>
   );
 };
