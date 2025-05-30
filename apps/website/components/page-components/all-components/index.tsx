@@ -63,7 +63,7 @@ export default function AllComponents() {
     <Grid
       className="gap-5"
       _extra={{
-        className: "grid-cols-2 md:grid-cols-3",
+        className: "sm:grid-cols-2 md:grid-cols-3 grid-cols-1 2xl:grid-cols-4",
       }}
     >
       {componentsList.map((componentName) => {
