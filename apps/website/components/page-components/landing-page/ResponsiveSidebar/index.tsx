@@ -66,7 +66,7 @@ const SidebarWithHeaders = ({ onItemClick }: { onItemClick: () => void }) => {
   );
 };
 
-function Sidebar({
+function ResponsiveSidebar({
   isOpen,
   setIsOpenSidebar,
 }: {
@@ -111,4 +111,4 @@ function Sidebar({
   );
 }
 
-export default Sidebar;
+export default ResponsiveSidebar;
