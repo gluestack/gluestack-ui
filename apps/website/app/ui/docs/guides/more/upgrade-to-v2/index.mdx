@@ -1,6 +1,6 @@
 import { Table, TableHeader, TableBody, TableRow, TableHeaderCell, TableCell } from '@/docs-components/table'
 import { Tabs,TabItem } from '@/docs-components/tabs'
-
+import { InlineCode } from '@/docs-components/inline-code'
 
 # Upgrade to gluestack-ui v2 with Codemod
 
@@ -61,13 +61,10 @@ npx gluestack-ui@latest add --all
 ```
 
 You can add only the necessary components instead of including all. Check [here](https://gluestack.io/ui/docs/components/heading).
-
-<CollapsibleCode>
   
 ```jsx 
 npx gluestack-ui@latest add heading 
 ```
-</CollapsibleCode>
 
 ## Step 4 : Code Migration
 
@@ -83,28 +80,16 @@ The gluestack-ui v2 migration process has been streamlined with the creation of 
   - Descendant Styling ( As it’s not supported in NativeWind at the moment)
   - Value of `sx` prop is variable
 #### Please proceed with the following steps to continue the migration:
-<Tabs value="cli" type="section">
-  <Tabs.TabList>
-      <Tabs.Tab value="cli">
-        <Tabs.TabTitle>With Codemod</Tabs.TabTitle>
-      </Tabs.Tab>
-     <Tabs.Tab value="manual">
-        <Tabs.TabTitle>Manual</Tabs.TabTitle>
-     </Tabs.Tab>
-  </Tabs.TabList>
-  <Tabs.TabPanels>
-    <Tabs.TabPanel value="cli">
-<>
+<Tabs>
+  <TabItem label="With Codemod">
 ### Run the following command :
 
 ```bash
 npx @gluestack-ui/v2-codemod@latest <project_dir>
 ```
 
-</>
-    </Tabs.TabPanel>
-    <Tabs.TabPanel value="manual"> 
-<>
+</TabItem>
+<TabItem label="Manual">
 
 To manually change the styling of any respective v1 specific style to v2 style we can follow this property mapper to ideally convert the styles to `NativeWind` stylings.
 
@@ -815,9 +800,7 @@ module.exports = {
 
 For Tailwind config configuration please refer to [this](https://tailwindcss.com/docs/configuration) .
 
-</>
-    </Tabs.TabPanel>
-  </Tabs.TabPanels>
+</TabItem>
 </Tabs>
 
 ### Limitations (Descendant Styling) :
