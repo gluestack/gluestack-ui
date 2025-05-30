@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import sidebarData from "@/sidebar.json";
 import { Icon } from "@/components/ui/icon";
 import { Text } from "@/components/ui/text";
@@ -90,8 +90,28 @@ const SidebarLink = ({ item }: { item: NavigationItem }) => {
 export default function Sidebar() {
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
   const navigation = (sidebarData as Navigation).navigation;
   const [isHovered, setIsHovered] = useState(false);
+
+  const getFirstPage = (sectionTitle: string): string => {
+    const section = navigation.sections.find((s) => s.title === sectionTitle);
+    if (section && section.subsections.length > 0) {
+      // Check first subsection for direct path
+      if (section.subsections[0].path) {
+        return section.subsections[0].path;
+      }
+      // If no direct path, check items of first subsection
+      if (
+        section.subsections[0].items &&
+        section.subsections[0].items.length > 0
+      ) {
+        return section.subsections[0].items[0].path || pathname;
+      }
+    }
+    return pathname;
+  };
+
   // Get only the parent sections with type "Dropdown"
   const parentDropdowns = navigation.sections.filter(
     (section) => section.type === "Dropdown"
@@ -126,6 +146,10 @@ export default function Sidebar() {
 
   const handleSectionClick = (title: string) => {
     setSelectedSection(title);
+    const firstPagePath = getFirstPage(title);
+    if (firstPagePath !== pathname) {
+      router.push(firstPagePath);
+    }
     const element = document.getElementById(
       `section-${title.toLowerCase().replace(/\s+/g, "-")}`
     );
