@@ -160,9 +160,7 @@ export default function Sidebar() {
   const { colorMode } = useContext(ThemeContext);
   return (
     <div
-      className={`ml-4 w-64  border-r border-outline-100 flex flex-col left-0 ${
-        colorMode === "light" ? "bg-white" : "bg-black"
-      } h-[94vh] max-lg:hidden overflow-y-scroll fixed bottom-0 z-0`}
+      className="ml-4 w-64  border-r border-outline-100 flex flex-col left-0 bg-white dark:bg-black h-[94vh] max-lg:hidden overflow-y-scroll fixed bottom-0 z-0"
     >
       {/* Fixed parent dropdowns at top */}
       <div className="flex-none py-4 border-b border-outline-100">
