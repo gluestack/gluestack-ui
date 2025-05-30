@@ -66,12 +66,16 @@ export const copyNonComponentDocs = (filePath: string) => {
     fileOps.copyDir(sourcePath, websitePath);
     const relativePath = path.relative(sourcePath, filePath);
     const destFilePath = path.join(websitePath, relativePath);
-
     // Process file content markers if it's an MDX file
     if (filePath.endsWith(".mdx")) {
       const content = fileOps.readTextFile(destFilePath);
       const processedContent = templateGen.processFileContent(content);
-      fileOps.writeTextFile(destFilePath, processedContent);
+      const mdxPath = destFilePath.replace("index.mdx", "");
+      const layoutContent = templateGen.replaceFrontMatter(
+        processedContent,
+        mdxPath
+      );
+      fileOps.writeTextFile(destFilePath, layoutContent);
     }
 
     // Create page.tsx in the name-specific directory

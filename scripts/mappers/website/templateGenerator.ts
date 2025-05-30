@@ -126,7 +126,12 @@ export const replaceFrontMatter = (
         }
       }
     }
-    return `<Meta pageTitle="${frontMatterObj.pageTitle}" pageDescription="${frontMatterObj.description}" />`;
+    if (frontMatterObj.pageTitle==="Installation | gluestack-ui | UI Component Library") {
+      console.log(frontMatterObj);
+    }
+    return `import { Meta } from '@/components/custom/meta';
+
+  <Meta pageTitle="${frontMatterObj.pageTitle}" pageDescription="${frontMatterObj.description}" />`;
   });
   fileOps.writeTextFile(path.join(destPath, "layout.tsx"), layoutTemplate(frontMatterObj));
   return frontMatterMatch;
@@ -152,7 +157,6 @@ export const processFileForExamples = (
 ): boolean => {
   const importMap: ImportMap = {
     "@/components/custom/code-previewer": ["CodePreviewer"],
-    "@/components/custom/meta": ["Meta"],
   };
   // Read file content
   const content = fileOps.readTextFile(filePath);
