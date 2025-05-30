@@ -27,15 +27,22 @@ import StarterKitLogoDark from "@/public/icon/logo/gluestack/logo-light.svg";
 import AppMarketLogo from "@/public/icon/logo/theappmarket/appmarket-logo.svg";
 
 import NextLink from "next/link";
-import Sidebar from "./sidebar-header";
+import ResponsiveSidebar from "../landing-page/ResponsiveSidebar";
+import DocsSidebar from "../sidebar/DocsSidebar";
 import { Nav } from "@expo/html-elements";
 import { ThemeContext } from "@/utils/context/theme-context";
 import { usePathname } from "next/navigation";
+import { UiDocSearch } from "./Docsearch";
 
-const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
+// Updated Header component with internal state management
+const Header = () => {
   const { colorMode, setColorMode }: any = useContext(ThemeContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isOpenSidebar, setIsOpenSidebar] = useState(false); // Manage state internally
   const pathname = usePathname();
+
+  // Check if current route is documentation
+  const isDocsRoute = pathname?.includes("/ui/docs/");
 
   const handleMouseEnter = () => {
     setDropdownOpen(true);
@@ -43,6 +50,10 @@ const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
 
   const handleMouseLeave = () => {
     setDropdownOpen(false);
+  };
+
+  const handleSidebarToggle = () => {
+    setIsOpenSidebar(!isOpenSidebar);
   };
 
   const dropdownOptions = [
@@ -88,6 +99,7 @@ const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
       },
     },
   ];
+
   return (
     <Box className="w-full bg-white dark:bg-background-0/60 bg-opacity-60 sticky top-0 z-10 border-outline-100 border-b">
       <Nav className="py-3 items-center backdrop-blur">
@@ -128,116 +140,129 @@ const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
           <Box className="items-center web:select-none">
             <HStack className="sm:gap-4 lg:gap-6 gap-2.5 items-center">
               <HStack className="gap-1.5 ld:gap-4">
-                <Pressable focusable={false} tabIndex={-1}>
-                  <NextLink
-                    className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary-50/10 active:bg-primary-50/20 outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                    href="/ui/docs/mcp-server/mcp-server"
-                  >
-                    <Box className="rounded-full items-center justify-center">
-                      <Text className="leading-normal font-normal text-sm text-typography-700">
-                        MCP Server
-                      </Text>
-                    </Box>
-                  </NextLink>
-                </Pressable>
-                <Pressable focusable={false} tabIndex={-1}>
-                  <NextLink
-                    className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary-50/10 active:bg-primary-50/20 outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                    href="/ui/docs"
-                  >
-                    <Box className="rounded-full items-center justify-center">
-                      <Text className="leading-normal font-normal text-sm text-typography-700">
-                        Docs
-                      </Text>
-                    </Box>
-                  </NextLink>
-                </Pressable>
-                <div
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  className="relative"
-                >
-                  <Pressable
-                    className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary-50/10 active:bg-primary-50/20 outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                    onPress={() => setDropdownOpen(!dropdownOpen)}
-                  >
-                    <Box className="rounded-full items-center justify-center flex-row">
-                      <Text className="leading-normal font-normal text-sm text-typography-700">
-                        Products
-                      </Text>
-                      {dropdownOpen ? (
-                        <Icon
-                          as={ChevronUpIcon}
-                          className="ml-1  h-4 w-4  text-typography-700 pointer-events-none"
-                        />
-                      ) : (
-                        <Icon
-                          as={ChevronDownIcon}
-                          className="ml-1  h-4 w-4  text-typography-700 pointer-events-none"
-                        />
-                      )}
-                    </Box>
-                  </Pressable>
+                {isDocsRoute ? (
+                  <Box className="sm:mr-6 mr-4">
+                    <UiDocSearch />
+                  </Box>
+                ) : (
+                  <>
+                    <Pressable focusable={false} tabIndex={-1}>
+                      <NextLink
+                        className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary-50/10 active:bg-primary-50/20 outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                        href="/ui/docs/mcp-server/mcp-server"
+                      >
+                        <Box className="rounded-full items-center justify-center">
+                          <Text className="leading-normal font-normal text-sm text-typography-700">
+                            MCP Server
+                          </Text>
+                        </Box>
+                      </NextLink>
+                    </Pressable>
+                    <Pressable focusable={false} tabIndex={-1}>
+                      <NextLink
+                        className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary-50/10 active:bg-primary-50/20 outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                        href="/ui/docs"
+                      >
+                        <Box className="rounded-full items-center justify-center">
+                          <Text className="leading-normal font-normal text-sm text-typography-700">
+                            Docs
+                          </Text>
+                        </Box>
+                      </NextLink>
+                    </Pressable>
+                    <div
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                      className="relative"
+                    >
+                      <Pressable
+                        className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary-50/10 active:bg-primary-50/20 outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                        onPress={() => setDropdownOpen(!dropdownOpen)}
+                      >
+                        <Box className="rounded-full items-center justify-center flex-row">
+                          <Text className="leading-normal font-normal text-sm text-typography-700">
+                            Products
+                          </Text>
+                          {dropdownOpen ? (
+                            <Icon
+                              as={ChevronUpIcon}
+                              className="ml-1  h-4 w-4  text-typography-700 pointer-events-none"
+                            />
+                          ) : (
+                            <Icon
+                              as={ChevronDownIcon}
+                              className="ml-1  h-4 w-4  text-typography-700 pointer-events-none"
+                            />
+                          )}
+                        </Box>
+                      </Pressable>
 
-                  {dropdownOpen && (
-                    <Box className="absolute top-full left-0 min-w-[350px] ">
-                      <Box className="mt-2.5 p-1 bg-background-0 shadow-hard-5 border border-outline-100 rounded-md max-h-[300px] overflow-x-scroll">
-                        {dropdownOptions.map((option) => (
-                          <Pressable focusable={false} tabIndex={-1}>
-                            <Link
-                              className="p-3 rounded flex-row min-w-[200px] hover:bg-primary-50/10 gap-2"
-                              isExternal
-                              href={option.href}
-                            >
-                              <HStack className="gap-3 justify-between w-full flex items-center">
-                                <Image
-                                  alt="dark mode"
-                                  className="w-6 h-6 mt-1"
-                                  src={
-                                    colorMode === "dark"
-                                      ? option.logo.dark
-                                      : option.logo.light
-                                  }
-                                />
-                                <VStack>
-                                  <Text className="leading-normal font-medium text-sm text-typography-700 mb-1">
-                                    {option.title}
-                                  </Text>
-                                  <Text className="text-xs font-normal text-typography-500 leading-normal">
-                                    {option.description}
-                                  </Text>
-                                </VStack>
-                                <Badge
-                                  // size="xs"
-                                  className="h-fit w-fit"
-                                  variant="solid"
-                                  action={option.badge.action as any}
+                      {dropdownOpen && (
+                        <Box className="absolute top-full left-0 min-w-[350px] ">
+                          <Box className="mt-2.5 p-1 bg-background-0 shadow-hard-5 border border-outline-100 rounded-md max-h-[300px] overflow-x-scroll">
+                            {dropdownOptions.map((option) => (
+                              <Pressable
+                                focusable={false}
+                                tabIndex={-1}
+                                key={option.href}
+                              >
+                                <Link
+                                  className="p-3 rounded flex-row min-w-[200px] hover:bg-primary-50/10 gap-2"
+                                  isExternal
+                                  href={option.href}
                                 >
-                                  <BadgeText className="text-xs font-roboto">
-                                    {option.badge.text}
-                                  </BadgeText>
-                                </Badge>
-                              </HStack>
-                            </Link>
-                          </Pressable>
-                        ))}
-                      </Box>
-                    </Box>
-                  )}
-                </div>
-                <Pressable focusable={false} tabIndex={-1}>
-                  <NextLink
-                    className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary-50/10 active:bg-primary-50/20 outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                    href="/blogs/"
-                  >
-                    <Box className="rounded-full items-center justify-center">
-                      <Text className="leading-normal font-normal text-sm text-typography-700">
-                        Blogs
-                      </Text>
-                    </Box>
-                  </NextLink>
-                </Pressable>
+                                  <HStack className="gap-3 justify-between w-full flex items-center">
+                                    <Image
+                                      alt="product logo"
+                                      className="w-6 h-6 mt-1"
+                                      src={
+                                        colorMode === "dark"
+                                          ? option.logo.dark
+                                          : option.logo.light
+                                      }
+                                    />
+                                    <VStack>
+                                      <Text className="leading-normal font-medium text-sm text-typography-700 mb-1">
+                                        {option.title}
+                                      </Text>
+                                      <Text className="text-xs font-normal text-typography-500 leading-normal">
+                                        {option.description}
+                                      </Text>
+                                    </VStack>
+                                    <Badge
+                                      className="h-fit w-fit"
+                                      variant="solid"
+                                      action={option.badge.action as any}
+                                    >
+                                      <BadgeText className="text-xs font-roboto">
+                                        {option.badge.text}
+                                      </BadgeText>
+                                    </Badge>
+                                  </HStack>
+                                </Link>
+                              </Pressable>
+                            ))}
+                          </Box>
+                        </Box>
+                      )}
+                    </div>
+                    <Pressable focusable={false} tabIndex={-1}>
+                      <NextLink
+                        className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary-50/10 active:bg-primary-50/20 outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                        href="/blogs/"
+                      >
+                        <Box className="rounded-full items-center justify-center">
+                          <Text className="leading-normal font-normal text-sm text-typography-700">
+                            Blogs
+                          </Text>
+                        </Box>
+                      </NextLink>
+                    </Pressable>
+                  </>
+                )}
               </HStack>
+
+              {/* Social Links */}
               <Pressable
                 focusable={false}
                 tabIndex={-1}
@@ -348,6 +373,8 @@ const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
                 </Link>
               </Pressable>
 
+              {/* social links end */}
+
               <Pressable
                 role="button"
                 onPress={() => {
@@ -379,10 +406,9 @@ const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
                 </Text>
               </Link>
 
+              {/* Mobile Menu Button */}
               <Pressable
-                onPress={() => {
-                  setIsOpenSidebar(!isOpenSidebar);
-                }}
+                onPress={handleSidebarToggle}
                 className="flex web:focus:shadow-none web:focus:outline-0 lg:hidden"
               >
                 {isOpenSidebar ? (
@@ -401,10 +427,25 @@ const Header = ({ isOpenSidebar, setIsOpenSidebar }: any) => {
           </Box>
         </Box>
       </Nav>
+
+      {/* Conditional Sidebar Rendering */}
       {isOpenSidebar && (
-        <Sidebar isOpen={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
+        <>
+          {isDocsRoute ? (
+            <DocsSidebar
+              isOpen={isOpenSidebar}
+              setIsOpenSidebar={setIsOpenSidebar}
+            />
+          ) : (
+            <ResponsiveSidebar
+              isOpen={isOpenSidebar}
+              setIsOpenSidebar={setIsOpenSidebar}
+            />
+          )}
+        </>
       )}
     </Box>
   );
 };
+
 export default Header;

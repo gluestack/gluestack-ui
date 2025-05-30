@@ -369,10 +369,6 @@
                 "darkUrl": "https://i.imgur.com/Q2dhSXA.png"
               },
               {
-                "title": "Accordion-Copy",
-                "path": "/ui/docs/components/accordion-copy"
-              },
-              {
                 "title": "BottomSheet",
                 "path": "/ui/docs/components/bottomsheet",
                 "tags": ["alpha"]

@@ -51,10 +51,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { colorMode } = useContext(ThemeContext);
   return (
     <html
       lang="en"
       className={`${plusJakartaSans.variable} ${roboto.variable} ${sourceCodePro.variable} ${inter.className} ${spaceMono.variable}`}
+      data-theme-id={colorMode}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
