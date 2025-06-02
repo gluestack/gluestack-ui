@@ -3,9 +3,8 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    "title": "gluestack-ui Tooltip Component | React Native Tooltip Installation",
-    "pageTitle": "gluestack-ui Tooltip Component",
-    "description": "Create an intuitive UI using the gluestack-ui Tooltip component in React & React Native. Add hints & tooltips seamlessly."
+  title: "gluestack-ui Tooltip Component",
+  description: "Create an intuitive UI using the gluestack-ui Tooltip component in React & React Native. Add hints & tooltips seamlessly."
 }
 
 export default function Layout({

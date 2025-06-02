@@ -3,9 +3,8 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    "title": "gluestack-ui Button Component | Button Installation in React Native",
-    "pageTitle": "gluestack-ui Button Component",
-    "description": "Discover a powerful button component for React & React Native with customizable size, shape, color, and behavior. Perfect for UI design & seamless user interactions."
+  title: "gluestack-ui Button Component",
+  description: "Discover a powerful button component for React & React Native with customizable size, shape, color, and behavior. Perfect for UI design & seamless user interactions."
 }
 
 export default function Layout({
