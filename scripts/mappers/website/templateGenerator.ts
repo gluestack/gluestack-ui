@@ -117,19 +117,18 @@ export const replaceFrontMatter = (
       for (const line of lines) {
         const trimmedLine = line.trim();
         if (trimmedLine && trimmedLine !== "---") {
-          // Handle multiline values
           if (
             trimmedLine.startsWith("description:") ||
             trimmedLine.startsWith("title:")
           ) {
             const [key, ...valueParts] = trimmedLine.split(":");
             const value = valueParts.join(":").trim();
-            frontMatterObj[key.trim()] = value;
-
-            // Extract pageTitle from title if present
             if (key.trim() === "title") {
+              // Extract clean title without any pipes
               const titleParts = value.split("|");
-              frontMatterObj.pageTitle = titleParts[0].trim();
+              frontMatterObj.title = titleParts[0].trim();
+            } else if (key.trim() === "description") {
+              frontMatterObj.description = value;
             }
           }
         }
@@ -138,7 +137,7 @@ export const replaceFrontMatter = (
     }
   );
 
-  // Write layout.tsx with the frontmatter
+  // Write layout.tsx with just title and description
   fileOps.writeTextFile(
     path.join(destPath, "layout.tsx"),
     layoutTemplate(frontMatterObj)

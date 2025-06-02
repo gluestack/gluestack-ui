@@ -46,15 +46,14 @@ export const codePreviewerTemplate = (
 />`;
 
 export const layoutTemplate = (frontMatter: Record<string, any>) => {
-  const { includeMeta, ...metadata } = frontMatter;
+  const { title, description } = frontMatter;
   return `
 import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  ${Object.entries(metadata)
-    .map(([key, value]) => `  "${key}": ${JSON.stringify(value)}`)
-    .join(",\n  ")}
+  title: ${JSON.stringify(title || "")},
+  description: ${JSON.stringify(description || "")}
 }
 
 export default function Layout({
