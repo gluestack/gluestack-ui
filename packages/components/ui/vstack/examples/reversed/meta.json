@@ -4,7 +4,6 @@
     "argTypes": {},
     "reactLive": {
       "Box": "@/components/ui/box",
-      "Wrapper": "@/components/ui/box",
       "VStack": "@/components/ui/vstack"
     }
   }

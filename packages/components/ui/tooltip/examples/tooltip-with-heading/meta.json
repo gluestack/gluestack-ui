@@ -6,7 +6,7 @@
       "Avatar": "@/components/ui/avatar",
       "AvatarGroup": "@/components/ui/avatar",
       "AvatarFallbackText": "@/components/ui/avatar",
-      "HStack": "@/components/ui/box",
+      "HStack": "@/components/ui/hstack",
       "Tooltip": "@/components/ui/tooltip",
       "TooltipContent": "@/components/ui/tooltip",
       "TooltipText": "@/components/ui/tooltip",
