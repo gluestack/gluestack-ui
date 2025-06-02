@@ -2,21 +2,17 @@
 import React from 'react';
 import { Metadata } from 'next';
 
- export const metadata: Metadata = {
+export const metadata: Metadata = {
     "title": "gluestack-ui Fab Component | React Native Fab Installation, Usage & API",
-    "description": "Improve your React Native app with the FAB component. Learn how to implement a React Native FAB button using gluestack-ui for a smooth UI experience.",
-    "pageTitle": "Fab",
-    "pageDescription": "Improve your React Native app with the FAB component. Learn how to implement a React Native FAB button using gluestack-ui for a smooth UI experience.",
-    "showHeader": true
- }
+    "pageTitle": "gluestack-ui Fab Component",
+    "description": "Improve your React Native app with the FAB component. Learn how to implement a React Native FAB button using gluestack-ui for a smooth UI experience."
+}
 
 export default function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-
-  
   return (
     <>
       {children}
