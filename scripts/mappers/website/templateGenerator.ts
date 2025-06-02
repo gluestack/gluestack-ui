@@ -105,36 +105,47 @@ export const replaceFrontMatter = (
   content: string,
   destPath: string
 ): string => {
-  const frontMatterRegex = /---([\s\S]*?)---/;
+  const frontMatterRegex = /^---([\s\S]*?)---\n*/;
   const frontMatterObj: Record<string, any> = {};
-  const frontMatterMatch = content.replace(frontMatterRegex, (frontMatter) => {
-    const lines = frontMatter.split("\n");
 
-    for (const line of lines) {
-      const trimmedLine = line.trim();
-      if (trimmedLine) {
-        const [key, ...valueParts] = trimmedLine.split(":");
-        if (key && valueParts.length > 0) {
-          const value = valueParts.join(":").trim();
-          if (value.toLowerCase() === "true") {
-            frontMatterObj[key.trim()] = true;
-          } else if (value.toLowerCase() === "false") {
-            frontMatterObj[key.trim()] = false;
-          } else {
+  // Extract and remove frontmatter
+  const contentWithoutFrontMatter = content.replace(
+    frontMatterRegex,
+    (frontMatter) => {
+      const lines = frontMatter.split("\n");
+
+      for (const line of lines) {
+        const trimmedLine = line.trim();
+        if (trimmedLine && trimmedLine !== "---") {
+          // Handle multiline values
+          if (
+            trimmedLine.startsWith("description:") ||
+            trimmedLine.startsWith("title:")
+          ) {
+            const [key, ...valueParts] = trimmedLine.split(":");
+            const value = valueParts.join(":").trim();
             frontMatterObj[key.trim()] = value;
+
+            // Extract pageTitle from title if present
+            if (key.trim() === "title") {
+              const titleParts = value.split("|");
+              frontMatterObj.pageTitle = titleParts[0].trim();
+            }
           }
         }
       }
+      return ""; // Remove the frontmatter completely
     }
-    if (frontMatterObj.pageTitle==="Installation | gluestack-ui | UI Component Library") {
-      console.log(frontMatterObj);
-    }
-    return `import { Meta } from '@/components/custom/meta';
+  );
 
-  <Meta pageTitle="${frontMatterObj.pageTitle}" pageDescription="${frontMatterObj.description}" />`;
-  });
-  fileOps.writeTextFile(path.join(destPath, "layout.tsx"), layoutTemplate(frontMatterObj));
-  return frontMatterMatch;
+  // Write layout.tsx with the frontmatter
+  fileOps.writeTextFile(
+    path.join(destPath, "layout.tsx"),
+    layoutTemplate(frontMatterObj)
+  );
+
+  // Return content without frontmatter
+  return contentWithoutFrontMatter.trim();
 };
 
 export const processFileContent = (content: string): string => {

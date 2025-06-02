@@ -2,21 +2,17 @@
 import React from 'react';
 import { Metadata } from 'next';
 
- export const metadata: Metadata = {
+export const metadata: Metadata = {
     "title": "gluestack-ui Radio Component | React Native Radio Button Installation",
-    "description": "Enhance your UI with a React Native radio button. Easily integrate radio buttons component with full accessibility support.",
-    "pageTitle": "Radio",
-    "pageDescription": "Enhance your UI with a React Native radio button. Easily integrate radio buttons component with full accessibility support.",
-    "showHeader": true
- }
+    "pageTitle": "gluestack-ui Radio Component",
+    "description": "Enhance your UI with a React Native radio button. Easily integrate radio buttons component with full accessibility support."
+}
 
 export default function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-
-  
   return (
     <>
       {children}

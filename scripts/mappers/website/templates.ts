@@ -45,27 +45,27 @@ export const codePreviewerTemplate = (
   reactLive={${reactLive}}
 />`;
 
-export const layoutTemplate = (frontMatter: Record<string, any>) => `
+export const layoutTemplate = (frontMatter: Record<string, any>) => {
+  const { includeMeta, ...metadata } = frontMatter;
+  return `
 import React from 'react';
 import { Metadata } from 'next';
 
- export const metadata: Metadata = {
-  ${Object.entries(frontMatter)
+export const metadata: Metadata = {
+  ${Object.entries(metadata)
     .map(([key, value]) => `  "${key}": ${JSON.stringify(value)}`)
     .join(",\n  ")}
- }
+}
 
 export default function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-
-  
   return (
     <>
       {children}
     </>
   );
-}
-`;
+}`;
+};
