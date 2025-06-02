@@ -1033,7 +1033,6 @@ const config = withPlugins([withMDX], {
   ...nextConfig,
 });
 
-export default config;
 export default withSentryConfig(config, {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options

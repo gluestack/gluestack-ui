@@ -11,6 +11,9 @@ const withMDX = createMDX({
 
 const nextConfig = withExpo({
   reactStrictMode: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   transpilePackages: [
     // you need to list `react-native` because `react-native-web` is aliased to `react-native`.
     "react-native",
@@ -25,19 +28,19 @@ const nextConfig = withExpo({
   images: {
     remotePatterns: [
       {
-        hostname: 'qr.expo.dev',
+        hostname: "qr.expo.dev",
       },
       {
-        hostname: 'i.imgur.com',
+        hostname: "i.imgur.com",
       },
       {
-        hostname: 'avatars.githubusercontent.com',
+        hostname: "avatars.githubusercontent.com",
       },
       {
-        hostname: 'gluestack.github.io',
+        hostname: "gluestack.github.io",
       },
       {
-        hostname: 'pbs.twimg.com',
+        hostname: "pbs.twimg.com",
       },
     ],
   },

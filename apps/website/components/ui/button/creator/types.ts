@@ -33,7 +33,7 @@ export interface IButtonGroupProps {
   /**
    *
    */
-  children: JSX.Element | Array<JSX.Element>;
+  children: React.ReactNode;
 
   /**
    * If true, the button will be disabled.

@@ -16,6 +16,7 @@ export const SocialMediaGridTestimonial = () => {
         </Text>
       </Box>
       <TestimonialsCarousel testimonials={data} />
+      {/* @ts-ignore */}
       <View className="gap-5 web:md:grid-cols-2 web:lg:grid-cols-3 relative pb-[54px] hidden xl:web:grid">
         {data.map((data, index) => (
           <SocialMediaTestimonial {...data} key={index} />

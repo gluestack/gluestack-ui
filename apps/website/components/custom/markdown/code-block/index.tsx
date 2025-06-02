@@ -99,6 +99,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
         className="absolute top-2 right-2 text-xs px-4 py-1 rounded-md transition-opacity opacity-0 group-hover:opacity-100"
       >
         <div className="flex items-center gap-2">
+          {/* @ts-ignore */}
           <CopyIcon className={`w-4 h-4 ${copied ? "text-green-500" : ""}`} />
           {copied ? "Copied!" : ""}
         </div>

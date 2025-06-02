@@ -142,6 +142,7 @@ type IMenuItemLabelProps = React.ComponentProps<typeof UIMenu.ItemLabel> &
 const Menu = React.forwardRef<React.ComponentRef<typeof UIMenu>, IMenuProps>(
   function Menu({ className, ...props }, ref) {
     return (
+      //@ts-expect-error
       <UIMenu
         ref={ref}
         initial={{

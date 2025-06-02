@@ -17,8 +17,6 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 
-
-
 export function CodePreviewer({
   code,
   argTypes,
@@ -89,7 +87,7 @@ export function CodePreviewer({
                 <SelectDragIndicatorWrapper>
                   <SelectDragIndicator />
                 </SelectDragIndicatorWrapper>
-                {Object.entries(options).map(([key, value]) => (
+                {Object.entries(options).map(([key, value]: any) => (
                   <SelectItem key={key} label={value} value={value} />
                 ))}
               </SelectContent>
@@ -113,7 +111,7 @@ export function CodePreviewer({
             activeThumbColor={"#FAFAFA"}
             ios_backgroundColor={"#D4D4D4"}
             value={values[name] ?? defaultValue}
-            onToggle={() => handleChange(name, !values[name] ?? defaultValue)}
+            onToggle={() => handleChange(name, values[name] ?? defaultValue)}
           />
         </Box>
       );
@@ -131,30 +129,29 @@ export function CodePreviewer({
   };
 
   return (
-
-      <Box className="flex flex-col w-full my-2">
-        <Box className="-mb-2 border border-outline-100 rounded-t-lg flex-col flex w-full min-h-[200px] md:flex-row">
-          {Object.keys(argTypes).length > 0 && (
-            <Box className="p-4 md:border-r border-b py-10 border-outline-100 flex-1">
-              <Box className="flex flex-col gap-2">
-                {Object.entries(argTypes).map(([key, value]) => (
-                  <ArgController key={key} name={key} config={value} />
-                ))}
-              </Box>
+    <Box className="flex flex-col w-full my-2">
+      <Box className="-mb-2 border border-outline-100 rounded-t-lg flex-col flex w-full min-h-[200px] md:flex-row">
+        {Object.keys(argTypes).length > 0 && (
+          <Box className="p-4 md:border-r border-b py-10 border-outline-100 flex-1">
+            <Box className="flex flex-col gap-2">
+              {Object.entries(argTypes).map(([key, value]) => (
+                <ArgController key={key} name={key} config={value} />
+              ))}
             </Box>
-          )}
-          <Box className="p-4 flex-1 flex items-center justify-center w-full ">
-            <LiveProvider code={compiledCode} scope={{ ...reactLive }}>
-              <LiveError />
-              <LivePreview className=" flex items-center justify-center  w-full" />
-            </LiveProvider>
           </Box>
+        )}
+        <Box className="p-4 flex-1 flex items-center justify-center w-full ">
+          <LiveProvider code={compiledCode} scope={{ ...reactLive }}>
+            <LiveError />
+            <LivePreview className=" flex items-center justify-center  w-full" />
+          </LiveProvider>
         </Box>
-        <CodeBlock
-          code={compiledCode}
-          language="tsx"
-          className="rounded-b-lg rounded-t-none border-t-0"
-        />
       </Box>
+      <CodeBlock
+        code={compiledCode}
+        language="tsx"
+        className="rounded-b-lg rounded-t-none border-t-0"
+      />
+    </Box>
   );
 }

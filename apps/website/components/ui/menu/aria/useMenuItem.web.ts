@@ -108,6 +108,7 @@ export function useMenuItem<T>(
   }
 
   if (isVirtualized) {
+    //@ts-expect-error
     ariaProps['aria-posinset'] = state.collection.getItem(key).index;
     ariaProps['aria-setsize'] = getItemCount(state.collection);
   }

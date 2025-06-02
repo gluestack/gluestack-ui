@@ -59,18 +59,6 @@ export default function RootLayout({
       data-theme-id={colorMode}
     >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        {/* @ts-ignore */}
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        {/* plus jakarta sans font */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
-          rel="stylesheet"
-        />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{

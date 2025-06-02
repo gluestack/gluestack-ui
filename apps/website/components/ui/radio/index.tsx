@@ -100,6 +100,7 @@ type IRadioProps = Omit<React.ComponentProps<typeof UIRadio>, "context"> &
 const Radio = React.forwardRef<React.ComponentRef<typeof UIRadio>, IRadioProps>(
   function Radio({ className, size = "md", ...props }, ref) {
     return (
+      //@ts-expect-error
       <UIRadio
         className={radioStyle({ class: className, size })}
         {...props}

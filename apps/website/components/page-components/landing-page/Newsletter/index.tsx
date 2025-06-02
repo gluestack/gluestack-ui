@@ -140,7 +140,7 @@ export const Newsletter = ({
             onPress={subscribeToNewsLetter}
           >
             {loading ? (
-              <Spinner size="small" _extra={{ className: "color-[#A3A3A3]" }} />
+              <Spinner size="small" color="color-[#A3A3A3]" />
             ) : (
               <>
                 <ButtonText className="font-medium leading-normal">

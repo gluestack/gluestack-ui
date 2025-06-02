@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { forwardRef } from 'react';
 import type { ColorValue, ViewProps } from 'react-native';
 import { Path, G } from 'react-native-svg';
@@ -109,7 +110,7 @@ export function createIcon<IconProps>({
               <ChildPath
                 key={child?.key ?? i}
                 element={child}
-                {...child?.props}
+                {...(child?.props || {})}
               />
             ))}
           </G>

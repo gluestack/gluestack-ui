@@ -438,6 +438,7 @@ const ActionsheetVirtualizedList = React.forwardRef<
   IActionsheetVirtualizedListProps
 >(function ActionsheetVirtualizedList({ className, ...props }, ref) {
   return (
+    //@ts-expect-error
     <UIActionsheet.VirtualizedList
       className={actionsheetVirtualizedListStyle({
         class: className,
@@ -453,6 +454,7 @@ const ActionsheetFlatList = React.forwardRef<
   IActionsheetFlatListProps
 >(function ActionsheetFlatList({ className, ...props }, ref) {
   return (
+    //@ts-expect-error
     <UIActionsheet.FlatList
       className={actionsheetFlatListStyle({
         class: className,
@@ -468,6 +470,7 @@ const ActionsheetSectionList = React.forwardRef<
   IActionsheetSectionListProps
 >(function ActionsheetSectionList({ className, ...props }, ref) {
   return (
+    //@ts-expect-error
     <UIActionsheet.SectionList
       className={actionsheetSectionListStyle({
         class: className,

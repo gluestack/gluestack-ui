@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { forwardRef } from 'react';
 import { InputProvider } from './InputContext';
 import { useHover } from '../../../../utils/gluestack-utils/aria/interactions/src';
@@ -21,7 +22,7 @@ export const InputGroup = (StyledInputRoot: any) =>
       }: any,
       ref?: any
     ) => {
-      const inputRef = React.useRef();
+      const inputRef = React.useRef(null);
       const inputFieldRef = React.useRef(null);
 
       const [isFocused, setIsFocused] = React.useState(false);

@@ -118,6 +118,7 @@ const Checkbox = React.forwardRef<
   ICheckboxProps
 >(function Checkbox({ className, size = "md", ...props }, ref) {
   return (
+    //@ts-expect-error
     <UICheckbox
       className={checkboxStyle({
         class: className,

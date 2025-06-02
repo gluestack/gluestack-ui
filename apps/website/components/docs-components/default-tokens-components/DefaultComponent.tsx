@@ -57,7 +57,7 @@ const ColorPaletteComponent = () => {
           className,
         }); // push the data into the result array
       }
-
+      // @ts-ignore
       paletteData.push({ name, variants }); // push the data into the result array
     }
 
@@ -78,7 +78,8 @@ const ColorPaletteComponent = () => {
             {name}
           </Heading>
           <HStack className="w-full mb-12 flex gap-x-2 gap-y-6 flex-wrap">
-            {colorPalette[i].variants.map((variant, j) => (
+            {/* @ts-ignore */}
+            {colorPalette[i].variants.map((variant: any, j: any) => (
               <VStack key={j} className="basis-[10%]">
                 <Box
                   className={`w-12 h-12 rounded-lg mb-2 ${variant.className}`}

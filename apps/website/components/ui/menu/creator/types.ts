@@ -1,4 +1,5 @@
-import type { ItemProps, Selection } from 'react-stately';
+import React, { JSX } from "react";
+import type { ItemProps, Selection } from "react-stately";
 export interface InterfaceMenuProps {
   /**
    * Function that returns a React Element. This element will be used as a Trigger for the menu.

@@ -1,9 +1,12 @@
-import React, { useCallback } from 'react';
-import { composeEventHandlers } from '@/utils/gluestack-utils/common';
-import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions/src';
-import { useFocusRing } from '@/utils/gluestack-utils/aria/focus/src';
-import { useMenuItem } from '@/components/ui/menu/aria';
-import { Platform } from 'react-native';
+import React, { useCallback } from "react";
+import { composeEventHandlers } from "@/utils/gluestack-utils/common";
+import {
+  useHover,
+  usePress,
+} from "@/utils/gluestack-utils/aria/interactions/src";
+import { useFocusRing } from "@/utils/gluestack-utils/aria/focus/src";
+import { useMenuItem } from "@/components/ui/menu/aria";
+import { Platform } from "react-native";
 
 const usePressed = (
   onPressIn: () => any,
@@ -36,21 +39,22 @@ export function MenuItem({
     menuItemProps: { focusable, ...restMenuProps },
   } = useMenuItem(
     {
-      'key': item.key,
+      key: item.key,
       onAction,
       onClose,
       closeOnSelect,
-      'aria-label': itemProps.textValue,
+      "aria-label": itemProps.textValue,
       ...itemProps,
     },
     state,
+    //@ts-ignore
     ref
   );
 
   // Handle focus events so we can apply highlighted
   // style to the focused menu item
   const toggleSelection = useCallback(() => {
-    if (Platform.OS === 'web') {
+    if (Platform.OS === "web") {
       state.selectionManager.toggleSelection(item.key);
     }
   }, [state.selectionManager, item.key]);
@@ -86,16 +90,16 @@ export function MenuItem({
         disabled: state.selectionManager.isDisabled(item.key),
       }}
       dataSet={{
-        hover: isHovered ? 'true' : 'false',
-        focus: isFocused ? 'true' : 'false',
-        active: isPressed ? 'true' : 'false',
-        focusVisible: isFocusVisible ? 'true' : 'false',
+        hover: isHovered ? "true" : "false",
+        focus: isFocused ? "true" : "false",
+        active: isPressed ? "true" : "false",
+        focusVisible: isFocusVisible ? "true" : "false",
         selected: state.selectionManager.isSelected(item.key)
-          ? 'true'
-          : 'false',
+          ? "true"
+          : "false",
         disabled: state.selectionManager.isDisabled(item.key)
-          ? 'true'
-          : 'false',
+          ? "true"
+          : "false",
       }}
       {...rest}
       // @ts-ignore - web only

@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { forwardRef } from 'react';
 import type { ColorValue, ViewProps } from 'react-native';
 
@@ -112,7 +113,7 @@ export function createIcon<IconProps>({
               <ChildPath
                 key={child?.key ?? i}
                 element={child}
-                {...child?.props}
+                {...(child?.props || {})}
               />
             ))}
           </g>
