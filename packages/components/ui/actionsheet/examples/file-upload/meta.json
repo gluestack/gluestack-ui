@@ -21,7 +21,7 @@
         "Text": "@/components/ui/text",
         "Icon": "@/components/ui/icon",
         "CloseIcon": "@/components/ui/icon",
-        "UploadCloud": "@/components/ui/icon",
+        "UploadCloud": "lucide-react-native",
         "Pressable": "@/components/ui/pressable"
     }
   }

@@ -5,7 +5,7 @@
     "reactLive": {
       "Avatar": "@/components/ui/avatar",
       "AvatarFallbackText": "@/components/ui/avatar",
-      "HStack": "@/components/ui/box",
+      "HStack": "@/components/ui/hstack",
       "Tooltip": "@/components/ui/tooltip",
       "TooltipContent": "@/components/ui/tooltip",
       "Text": "@/components/ui/text",
