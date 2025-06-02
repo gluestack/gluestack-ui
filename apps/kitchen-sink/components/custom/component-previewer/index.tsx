@@ -129,7 +129,7 @@ export const ComponentPreviewer = ({
           </Box>
         )}
 
-        <Center className="min-h-[100px] flex-1 py-5">
+        <Center className="min-h-[100px] flex-1 py-5 w-full">
           {children(selectedValues)}
         </Center>
       </Box>

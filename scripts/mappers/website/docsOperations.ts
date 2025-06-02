@@ -62,20 +62,29 @@ export const copyNonComponentDocs = (filePath: string) => {
   const sourcePath = path.resolve("packages/docs");
   const websitePath = path.resolve("apps/website/app/ui/docs");
   try {
-    // Copy the docs content
-    fileOps.copyDir(sourcePath, websitePath);
+    // First read the source file content
+    const sourceContent = fileOps.readTextFile(filePath);
     const relativePath = path.relative(sourcePath, filePath);
     const destFilePath = path.join(websitePath, relativePath);
-    // Process file content markers if it's an MDX file
+    const mdxPath = destFilePath.replace("index.mdx", "");
+
+    // Ensure the destination directory exists
+    fileOps.ensureDirectoryExists(path.dirname(destFilePath));
+
+    // Process file content markers and frontmatter if it's an MDX file
     if (filePath.endsWith(".mdx")) {
-      const content = fileOps.readTextFile(destFilePath);
-      const processedContent = templateGen.processFileContent(content);
-      const mdxPath = destFilePath.replace("index.mdx", "");
-      const layoutContent = templateGen.replaceFrontMatter(
+      // First process any file content markers
+      const processedContent = templateGen.processFileContent(sourceContent);
+      // Then handle frontmatter - this will also create the layout.tsx
+      const contentWithoutFrontmatter = templateGen.replaceFrontMatter(
         processedContent,
         mdxPath
       );
-      fileOps.writeTextFile(destFilePath, layoutContent);
+      // Write the processed content without frontmatter
+      fileOps.writeTextFile(destFilePath, contentWithoutFrontmatter);
+    } else {
+      // For non-MDX files, just copy them as is
+      fileOps.writeTextFile(destFilePath, sourceContent);
     }
 
     // Create page.tsx in the name-specific directory
