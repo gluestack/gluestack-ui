@@ -10,7 +10,7 @@ pageDescription: Enhance your UI with a React Native radio button. Easily integr
 showHeader: true
 ---
 
-import { Tabs, TabItem } from '@/docs-components/tabs'
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -18,9 +18,12 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from '@/docs-components/table'
-import { AnatomyImage } from '@/docs-components/anatomy-image'
-import { InlineCode } from '@/docs-components/inline-code'
+} from '@/docs-components/table';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Radio
+Enhance your UI with a React Native radio button. Easily integrate radio buttons component with full accessibility support.
 
 This is an illustration of **Radio** component.
 /// {Example:basic} ///
@@ -31,9 +34,11 @@ This is an illustration of **Radio** component.
   <TabItem label="CLI">
 
 ### Run the following command:
-  ```bash
-  npx gluestack-ui add radio
-  ```
+
+```bash
+npx gluestack-ui add radio
+```
+
 </TabItem>
 <TabItem label="Manual">
 ### Step 1: Install the following dependencies:
@@ -43,14 +48,14 @@ npm i @gluestack-ui/radio lucide-react-native
 
 ### Step 2: Copy and paste the following code into your project.
 
-```jsx 
-%%-- File: packages/components/ui/radio/index.tsx --%% 
+```jsx
+%%-- File: packages/components/ui/radio/index.tsx --%%
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
-
 
 ## API Reference
 
@@ -60,7 +65,11 @@ To use this component in your project, include the following import statement in
 import { Radio } from '@/components/ui/radio';
 ```
 
-<AnatomyImage mobileUrl='https://i.imgur.com/ayT9tUE.png' webUrl='https://i.imgur.com/niaZmLz.png' classNameStyle='aspect-[513/394] md:aspect-[736/234]' />
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/ayT9tUE.png"
+  webUrl="https://i.imgur.com/niaZmLz.png"
+  classNameStyle="aspect-[513/394] md:aspect-[736/234]"
+/>
 
 ```ts
 export default () => (
@@ -83,7 +92,6 @@ This section provides a comprehensive reference list for the component props, de
 
 Contains all Radio related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
-
 
     <Table>
       <TableHeader>
@@ -161,7 +169,6 @@ Contains all Indicator related layout style props and actions. It inherits all t
 #### RadioIcon
 
 Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](/style/docs/api/as-forwarder) component.
-
 
     <Table>
       <TableHeader>
@@ -265,70 +272,67 @@ We have outlined the various features that ensure the Radio component is accessi
 
 Radio component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props).
 
-
 ### Data Attributes Table
 
-Component receives states as props as boolean values, which are applied as ```data-*``` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+Component receives states as props as boolean values, which are applied as `data-*` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
 
 <>
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHeaderCell>State</TableHeaderCell>
-          <TableHeaderCell>Data Attribute</TableHeaderCell>
-          <TableHeaderCell>Values</TableHeaderCell>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell>
-            <InlineCode>hover</InlineCode>
-          </TableCell>
-          <TableCell>
-            data-hover
-          </TableCell>
-          <TableCell>
-            <InlineCode>true | false</InlineCode>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <InlineCode>active</InlineCode>
-          </TableCell>
-          <TableCell>data-active</TableCell>
-          <TableCell>
-            <InlineCode>true | false</InlineCode>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <InlineCode>disabled</InlineCode>
-          </TableCell>
-          <TableCell>data-disabled</TableCell>
-          <TableCell>
-            <InlineCode>true | false</InlineCode>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <InlineCode>focusVisible</InlineCode>
-          </TableCell>
-          <TableCell>data-focus-visible</TableCell>
-          <TableCell>
-            <InlineCode>true | false</InlineCode>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <InlineCode>invalid</InlineCode>
-          </TableCell>
-          <TableCell>data-invalid</TableCell>
-          <TableCell>
-            <InlineCode>true | false</InlineCode>
-          </TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>State</TableHeaderCell>
+        <TableHeaderCell>Data Attribute</TableHeaderCell>
+        <TableHeaderCell>Values</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>hover</InlineCode>
+        </TableCell>
+        <TableCell>data-hover</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>active</InlineCode>
+        </TableCell>
+        <TableCell>data-active</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>disabled</InlineCode>
+        </TableCell>
+        <TableCell>data-disabled</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>focusVisible</InlineCode>
+        </TableCell>
+        <TableCell>data-focus-visible</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>invalid</InlineCode>
+        </TableCell>
+        <TableCell>data-invalid</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### Examples

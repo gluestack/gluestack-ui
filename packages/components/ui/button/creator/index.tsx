@@ -10,7 +10,7 @@ export function createButton<
   TextProps,
   GroupProps,
   SpinnerProps,
-  IconProps
+  IconProps,
 >({
   Root,
   Text,

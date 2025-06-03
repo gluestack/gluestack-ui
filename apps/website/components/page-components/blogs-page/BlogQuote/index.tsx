@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import {
   Avatar,
   AvatarFallbackText,
   AvatarImage,
-} from "@/components/ui/avatar";
+} from '@/components/ui/avatar';
 
 interface BlogQuoteProps {
   quote: string;
@@ -16,9 +16,9 @@ interface BlogQuoteProps {
 const BlogQuote: React.FC<BlogQuoteProps> = ({
   quote,
   authorName,
-  authorTitle = "",
-  authorInitials = "",
-  authorImage = "",
+  authorTitle = '',
+  authorInitials = '',
+  authorImage = '',
 }) => {
   return (
     <div className="w-full max-w-3xl my-4">

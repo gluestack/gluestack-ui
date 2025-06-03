@@ -13,7 +13,7 @@ export type IAvatarComponentType<
   BadgeProps,
   GroupProps,
   ImageProps,
-  FallbackTextProps
+  FallbackTextProps,
 > = React.ForwardRefExoticComponent<
   React.PropsWithoutRef<IAvatarProps & AvatarProps> &
     React.RefAttributes<AvatarProps>

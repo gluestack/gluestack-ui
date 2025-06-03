@@ -1,7 +1,7 @@
-import { Box } from "@/components/ui/box";
-import React, { memo } from "react";
-import { CardTalk } from "./CardTalk";
-import { content1 } from "./content1";
+import { Box } from '@/components/ui/box';
+import React, { memo } from 'react';
+import { CardTalk } from './CardTalk';
+import { content1 } from './content1';
 
 const Fold3 = memo(() => {
   return (
@@ -23,6 +23,6 @@ const Fold3 = memo(() => {
   );
 });
 
-Fold3.displayName = "Fold3";
+Fold3.displayName = 'Fold3';
 
 export default Fold3;

@@ -1,22 +1,31 @@
 {
-    "title": "Basic",
-    "argTypes": {
-      "size": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["small", "large"],
-        "defaultValue": "small"
+  "title": "Basic",
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
       },
-      "color": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["red", "blue", "green", "black", "orange", "purple", "yellow"],
-        "defaultValue": "red"
-      }
+      "options": ["small", "large"],
+      "defaultValue": "small"
     },
-    "reactLive": {
-      "Spinner": "@/components/ui/spinner"
+    "color": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "red",
+        "blue",
+        "green",
+        "black",
+        "orange",
+        "purple",
+        "yellow",
+        "grey"
+      ],
+      "defaultValue": "grey"
     }
+  },
+  "reactLive": {
+    "Spinner": "@/components/ui/spinner"
   }
+}

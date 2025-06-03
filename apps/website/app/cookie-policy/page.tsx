@@ -1,9 +1,9 @@
-"use client";
-import { Box, Heading, Link, LinkText, Text } from "@/components/ui";
-import BadgeComponent from "@/components/page-components/landing-page/BadgeComponent";
-import Footer from "@/components/page-components/landing-page/Footer";
-import WebsiteLayout from "@/components/page-components/landing-page/WebsiteLayout";
-import React from "react";
+'use client';
+import { Box, Heading, Link, LinkText, Text } from '@/components/ui';
+import BadgeComponent from '@/components/page-components/landing-page/BadgeComponent';
+import Footer from '@/components/page-components/landing-page/Footer';
+import WebsiteLayout from '@/components/page-components/landing-page/WebsiteLayout';
+import React from 'react';
 
 const CookiePolicy = () => {
   return (
@@ -66,7 +66,7 @@ const CookiePolicy = () => {
             </Text>
             <Text className="my-3 font-normal">
               Pixel tags (also known as&nbsp;
-              <span className="font-bold">&quot;web beacons&quot;</span>{" "}
+              <span className="font-bold">&quot;web beacons&quot;</span>{' '}
               or&nbsp;
               <span className="font-bold">&quot;pixels&quot;</span>) are small
               blocks of code on a web page or in an email notification. Pixels

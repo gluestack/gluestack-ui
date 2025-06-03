@@ -1,5 +1,8 @@
 import components from '../components.json';
-import { getNestedComponents, type NestedComponents } from '../types/components';
+import {
+  getNestedComponents,
+  type NestedComponents,
+} from '../types/components';
 
 export function getAllComponents(): NestedComponents {
   return getNestedComponents(components);
@@ -26,4 +29,4 @@ const components = getAllComponents();
   },
   // ... other categories
 ]
-*/ 
+*/

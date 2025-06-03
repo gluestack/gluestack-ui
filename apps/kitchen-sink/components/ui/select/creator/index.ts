@@ -31,7 +31,7 @@ export function createSelect<
   SelectVirtualizedListProps,
   SelectFlatListProps,
   SelectSectionListProps,
-  SelectSectionHeaderTextProps
+  SelectSectionHeaderTextProps,
 >(
   {
     Root,

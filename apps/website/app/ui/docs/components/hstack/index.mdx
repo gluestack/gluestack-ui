@@ -2,7 +2,7 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { HStack } from '@/components/ui/hstack';
 import { Box } from '@/components/ui/box';
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -10,14 +10,14 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # HStack
 
 Use the gluestack-ui HStack component in React Native to align elements horizontally. Easily customize layouts with spacing and reverse props. Learn how to install and use HStack today!
 
-### This is an illustration of HStack component.
+This is an illustration of **HStack** component.
 
 
   
@@ -80,11 +80,11 @@ Use the gluestack-ui HStack component in React Native to align elements horizont
 ### Step 2: Copy and paste the following code into your project.
 
 ```tsx
-import React from "react";
-import type { VariantProps } from "@/utils/gluestack-utils/nativewind/utils";
-import { View } from "react-native";
-import type { ViewProps } from "react-native";
-import { hstackStyle } from "./styles";
+import React from 'react';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import { View } from 'react-native';
+import type { ViewProps } from 'react-native';
+import { hstackStyle } from './styles';
 
 type IHStackProps = ViewProps & VariantProps<typeof hstackStyle>;
 
@@ -100,13 +100,14 @@ const HStack = React.forwardRef<React.ComponentRef<typeof View>, IHStackProps>(
   }
 );
 
-HStack.displayName = "HStack";
+HStack.displayName = 'HStack';
 
 export { HStack };
- 
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -131,30 +132,39 @@ This section provides a comprehensive reference list for the component props, de
 HStack component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props) and the props mentioned below.
 
 <>
-<Table>
-<TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-  </TableHeader>
-  <TableBody>
-  <TableRow>
-    <TableCell><InlineCode>space</InlineCode></TableCell>
-    <TableCell>string</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>It sets the space between children. By default there is no space between the HStack items.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>reversed</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>When true, it places the HStack items in reverse direction.</TableCell>
-  </TableRow>
-  </TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>space</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          It sets the space between children. By default there is no space
+          between the HStack items.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>reversed</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          When true, it places the HStack items in reverse direction.
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### Accessibility
@@ -164,7 +174,6 @@ The accessibility of a HStack is primarily determined by the accessibility infor
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
 
 
   #### HStack Reversed

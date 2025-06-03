@@ -52,8 +52,8 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: ${JSON.stringify(title || "")},
-  description: ${JSON.stringify(description || "")}
+  title: ${JSON.stringify(title || '')},
+  description: ${JSON.stringify(description || '')}
 }
 
 export default function Layout({

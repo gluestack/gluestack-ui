@@ -1,5 +1,3 @@
-import React, { JSX } from "react";
-
 export interface InterfaceAvatarProps {}
 
 export interface IAvatarBadgeProps {}

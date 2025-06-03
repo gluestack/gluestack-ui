@@ -45,7 +45,7 @@ import {
   InfoIcon,
   PopoverArrow,
   PlayIcon,
-} from "@/components/ui";
+} from '@/components/ui';
 import {
   Bell,
   Download,
@@ -57,13 +57,13 @@ import {
   SettingsIcon,
   SquarePen,
   Trash,
-} from "lucide-react-native";
-import React from "react";
+} from 'lucide-react-native';
+import React from 'react';
 
 const NavigationContent = ({ show }: { show: boolean }) => {
-  const [activeButton, setActiveButton] = React.useState("Weekly");
-  const [underlineButton, setUnderlineButton] = React.useState("Attachments");
-  const [selectedButton, setSelectedButton] = React.useState("Messages");
+  const [activeButton, setActiveButton] = React.useState('Weekly');
+  const [underlineButton, setUnderlineButton] = React.useState('Attachments');
+  const [selectedButton, setSelectedButton] = React.useState('Messages');
 
   const handleClick = (buttonName: React.SetStateAction<string>) => {
     setActiveButton(buttonName);
@@ -84,23 +84,23 @@ const NavigationContent = ({ show }: { show: boolean }) => {
   };
   return (
     <Box
-      className={`gap-6 w-full lg:flex-row flex-col ${show ? "" : "hidden"}`}
+      className={`gap-6 w-full lg:flex-row flex-col ${show ? '' : 'hidden'}`}
     >
       <VStack className="gap-6 lg:w-[40%]">
         <HStack className="bg-background-50 rounded-lg p-1 lg:flex hidden gap-1.5 items-center">
-          {["Daily", "Weekly", "Monthly"].map((buttonName) => (
+          {['Daily', 'Weekly', 'Monthly'].map((buttonName) => (
             <Pressable
               key={buttonName}
               onPress={() => handleClick(buttonName)}
               className={` flex-1 gap-1.5 cursor-pointer ${
-                activeButton === buttonName ? "bg-background-0" : ""
+                activeButton === buttonName ? 'bg-background-0' : ''
               } rounded-lg px-3.5 py-2 items-center`}
             >
               <Text
                 className={`text-sm ${
                   activeButton === buttonName
-                    ? "text-typography-900 font-semibold"
-                    : "text-typography-700 font-normal"
+                    ? 'text-typography-900 font-semibold'
+                    : 'text-typography-700 font-normal'
                 } `}
               >
                 {buttonName}
@@ -207,7 +207,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
 
             <Menu
               offset={5}
-              disabledKeys={["Settings"]}
+              disabledKeys={['Settings']}
               trigger={({ ...triggerProps }: any) => {
                 return (
                   <Button {...triggerProps} size="sm">
@@ -245,7 +245,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
               <AvatarFallbackText>Kevin James</AvatarFallbackText>
               <AvatarImage
                 source={{
-                  uri: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
+                  uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
                 }}
               />
             </Avatar>
@@ -259,7 +259,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
               <AvatarFallbackText>Jacob Jones</AvatarFallbackText>
               <AvatarImage
                 source={{
-                  uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+                  uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
                 }}
               />
             </Avatar>
@@ -273,7 +273,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
               <AvatarFallbackText>Albert Flores</AvatarFallbackText>
               <AvatarImage
                 source={{
-                  uri: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+                  uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
                 }}
               />
             </Avatar>
@@ -301,9 +301,9 @@ const NavigationContent = ({ show }: { show: boolean }) => {
         <Box className="border border-dashed border-outline-100 rounded-lg gap-5 p-6 md:flex hidden">
           <HStack className="gap-3">
             {[
-              { name: "Attachments", icon: Paperclip },
-              { name: "Downloads", icon: Download },
-              { name: "Trash", icon: Trash },
+              { name: 'Attachments', icon: Paperclip },
+              { name: 'Downloads', icon: Download },
+              { name: 'Trash', icon: Trash },
             ].map((button) => (
               <Pressable
                 key={button.name}
@@ -312,7 +312,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
               >
                 <HStack
                   className={`gap-1.5 self-center pb-3 items-center border-primary-700 ${
-                    underlineButton === button.name ? "border-b-2" : "border-0"
+                    underlineButton === button.name ? 'border-b-2' : 'border-0'
                   }`}
                 >
                   <Icon
@@ -327,9 +327,9 @@ const NavigationContent = ({ show }: { show: boolean }) => {
 
           <HStack className="gap-3 justify-center">
             {[
-              { name: "Notification", icon: Bell },
-              { name: "Messages", icon: MessageCircle },
-              { name: "Settings", icon: Settings },
+              { name: 'Notification', icon: Bell },
+              { name: 'Messages', icon: MessageCircle },
+              { name: 'Settings', icon: Settings },
             ].map((button) => (
               <Pressable
                 key={button.name}
@@ -338,7 +338,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
               >
                 <HStack
                   className={`cursor-pointer ${
-                    selectedButton === button.name ? "bg-background-50" : ""
+                    selectedButton === button.name ? 'bg-background-50' : ''
                   } rounded-full px-6 py-3 gap-1.5 self-center items-center`}
                 >
                   <Icon

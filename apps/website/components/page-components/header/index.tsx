@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from 'react';
 import {
   Box,
   HStack,
@@ -14,25 +14,25 @@ import {
   VStack,
   Badge,
   BadgeText,
-} from "@/components/ui";
-import Image from "next/image";
-import GluestackLogo from "@/public/svg/gluestack_logo.svg";
-import GluestackLogoDark from "@/public/svg/gluestack_logo_dark.svg";
-import { MenuIcon, MoonIcon, SunIcon, X } from "lucide-react-native";
+} from '@/components/ui';
+import Image from 'next/image';
+import GluestackLogo from '@/public/svg/gluestack_logo.svg';
+import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';
+import { MenuIcon, MoonIcon, SunIcon, X } from 'lucide-react-native';
 
-import AppLaunchKitLogo from "@/public/icon/logo/app-launch-kit/dark-mode.svg";
-import AppLaunchKitLogoDark from "@/public/icon/logo/app-launch-kit/light-mode.svg";
-import StarterKitLogo from "@/public/icon/logo/gluestack/logo-dark.svg";
-import StarterKitLogoDark from "@/public/icon/logo/gluestack/logo-light.svg";
-import AppMarketLogo from "@/public/icon/logo/theappmarket/appmarket-logo.svg";
+import AppLaunchKitLogo from '@/public/icon/logo/app-launch-kit/dark-mode.svg';
+import AppLaunchKitLogoDark from '@/public/icon/logo/app-launch-kit/light-mode.svg';
+import StarterKitLogo from '@/public/icon/logo/gluestack/logo-dark.svg';
+import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
+import AppMarketLogo from '@/public/icon/logo/theappmarket/appmarket-logo.svg';
 
-import NextLink from "next/link";
-import ResponsiveSidebar from "../landing-page/ResponsiveSidebar";
-import DocsSidebar from "../sidebar/DocsSidebar";
-import { Nav } from "@expo/html-elements";
-import { ThemeContext } from "@/utils/context/theme-context";
-import { usePathname } from "next/navigation";
-import { UiDocSearch } from "./Docsearch";
+import NextLink from 'next/link';
+import ResponsiveSidebar from '../landing-page/ResponsiveSidebar';
+import DocsSidebar from '../sidebar/DocsSidebar';
+import { Nav } from '@expo/html-elements';
+import { ThemeContext } from '@/utils/context/theme-context';
+import { usePathname } from 'next/navigation';
+import { UiDocSearch } from './Docsearch';
 
 // Updated Header component with internal state management
 const Header = () => {
@@ -42,7 +42,7 @@ const Header = () => {
   const pathname = usePathname();
 
   // Check if current route is documentation
-  const isDocsRoute = pathname?.includes("/ui/docs/");
+  const isDocsRoute = pathname?.includes('/ui/docs/');
 
   const handleMouseEnter = () => {
     setDropdownOpen(true);
@@ -58,44 +58,44 @@ const Header = () => {
 
   const dropdownOptions = [
     {
-      href: "https://applaunchk.it/",
+      href: 'https://applaunchk.it/',
       logo: {
         light: AppLaunchKitLogo,
         dark: AppLaunchKitLogoDark,
       },
-      title: "AppLaunchKit",
-      description: "Fullstack Universal Template for Android, iOS and Web",
+      title: 'AppLaunchKit',
+      description: 'Fullstack Universal Template for Android, iOS and Web',
       badge: {
-        text: "PAID",
-        action: "info",
+        text: 'PAID',
+        action: 'info',
       },
     },
     {
-      href: "https://github.com/gluestack/gluestack-ui-starter-kits/",
+      href: 'https://github.com/gluestack/gluestack-ui-starter-kits/',
       logo: {
         light: StarterKitLogo,
         dark: StarterKitLogoDark,
       },
-      title: "Starter Kit",
+      title: 'Starter Kit',
       description:
-        "Helping you kickstart your application development with React and React Native.",
+        'Helping you kickstart your application development with React and React Native.',
       badge: {
-        text: "FREE",
-        action: "success",
+        text: 'FREE',
+        action: 'success',
       },
     },
     {
-      href: "https://theappmarket.io",
+      href: 'https://theappmarket.io',
       logo: {
         light: AppMarketLogo,
         dark: AppMarketLogo,
       },
-      title: "theappmarket",
+      title: 'theappmarket',
       description:
-        "Transform your app idea into reality with our production-ready, cross-platform free and premium React Native templates and UI kits, built with Expo, gluestack (NativeWind), and TypeScript.",
+        'Transform your app idea into reality with our production-ready, cross-platform free and premium React Native templates and UI kits, built with Expo, gluestack (NativeWind), and TypeScript.',
       badge: {
-        text: "PAID",
-        action: "info",
+        text: 'PAID',
+        action: 'info',
       },
     },
   ];
@@ -106,23 +106,23 @@ const Header = () => {
       <Nav className="py-3 items-center backdrop-blur">
         <Box
           className={`flex-row items-center justify-between w-[85%] lg:mx-[180px] mx-5 ${
-            pathname?.includes("/ui/docs/") ? "w-[100%] px-5" : "max-w-[1440px]"
+            pathname?.includes('/ui/docs/') ? 'w-[100%] px-5' : 'max-w-[1440px]'
           }`}
         >
           <HStack className="items-center md:gap-3 gap-4">
             <HStack className="gap-1.5 items-center">
               <Link href="/" className="no-underline z-1 inherit">
-                {colorMode === "dark" ? (
+                {colorMode === 'dark' ? (
                   <Image
                     alt="gluestack-ui logo"
-                    className={"w-44 h-[28px] "}
+                    className={'w-44 h-[28px] '}
                     src={GluestackLogoDark}
                     priority
                   />
                 ) : (
                   <Image
                     alt="gluestack-ui logo"
-                    className={"w-44 h-[28px] "}
+                    className={'w-44 h-[28px] '}
                     src={GluestackLogo}
                     priority
                   />
@@ -217,7 +217,7 @@ const Header = () => {
                                       alt="product logo"
                                       className="w-6 h-6 mt-1"
                                       src={
-                                        colorMode === "dark"
+                                        colorMode === 'dark'
                                           ? option.logo.dark
                                           : option.logo.light
                                       }
@@ -379,20 +379,20 @@ const Header = () => {
               <Pressable
                 role="button"
                 onPress={() => {
-                  setColorMode(colorMode === "dark" ? "light" : "dark");
+                  setColorMode(colorMode === 'dark' ? 'light' : 'dark');
                 }}
                 className="web:focus:shadow-none lg:flex hidden "
               >
                 <Box className={`rounded-full items-center justify-center `}>
-                  {colorMode === "dark" ? (
+                  {colorMode === 'dark' ? (
                     <Icon
                       as={MoonIcon}
-                      className={"sm:w-6 sm:h-6 h-5 w-5 text-typography-900 "}
+                      className={'sm:w-6 sm:h-6 h-5 w-5 text-typography-900 '}
                     />
                   ) : (
                     <Icon
                       as={SunIcon}
-                      className={"sm:w-6 sm:h-6 h-5 w-5 text-typography-900 "}
+                      className={'sm:w-6 sm:h-6 h-5 w-5 text-typography-900 '}
                     />
                   )}
                 </Box>

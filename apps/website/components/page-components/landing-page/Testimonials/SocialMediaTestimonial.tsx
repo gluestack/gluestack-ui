@@ -87,7 +87,7 @@ export const SocialMediaTestimonial = ({
             ) : (
               <Image
                 source={logoLight}
-              className="w-5 h-5"
+                className="w-5 h-5"
                 alt="twitter-icon"
               />
             )}

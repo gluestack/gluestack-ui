@@ -323,6 +323,7 @@ const GridItem = forwardRef<React.ComponentRef<typeof View>, IGridItemProps>(
         {...props}
         style={[
           {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             flexBasis: flexBasisValue as any,
           },
           props.style,

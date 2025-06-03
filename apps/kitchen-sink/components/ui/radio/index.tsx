@@ -1,20 +1,20 @@
-"use client";
-import React from "react";
-import { createRadio } from "@/components/ui/radio/creator";
-import { Pressable, View, Platform, Text } from "react-native";
-import { tva } from "@/utils/gluestack-utils/nativewind/utils/tva";
+'use client';
+import React from 'react';
+import { createRadio } from '@/components/ui/radio/creator';
+import { Pressable, View, Platform, Text } from 'react-native';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
 import {
   withStyleContext,
   useStyleContext,
-} from "@/utils/gluestack-utils/nativewind/utils/withStyleContext";
-import { cssInterop } from "nativewind";
-import type { VariantProps } from "@/utils/gluestack-utils/nativewind/utils";
-import { PrimitiveIcon, UIIcon } from "@/components/ui/icon/creator";
+} from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+import { cssInterop } from 'nativewind';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
 
-const SCOPE = "Radio";
+const SCOPE = 'Radio';
 
 const UIRadio = createRadio({
-  Root: (Platform.OS === "web"
+  Root: (Platform.OS === 'web'
     ? withStyleContext(View, SCOPE)
     : withStyleContext(Pressable, SCOPE)) as ReturnType<
     typeof withStyleContext<typeof Pressable>
@@ -27,78 +27,78 @@ const UIRadio = createRadio({
 
 cssInterop(PrimitiveIcon, {
   className: {
-    target: "style",
+    target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
       fill: true,
-      color: "classNameColor",
+      color: 'classNameColor',
       stroke: true,
     },
   },
 });
 
 const radioStyle = tva({
-  base: "group/radio flex-row justify-start items-center web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed",
+  base: 'group/radio flex-row justify-start items-center web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed',
   variants: {
     size: {
-      sm: "gap-1.5",
-      md: "gap-2",
-      lg: "gap-2",
+      sm: 'gap-1.5',
+      md: 'gap-2',
+      lg: 'gap-2',
     },
   },
 });
 
 const radioGroupStyle = tva({
-  base: "gap-2",
+  base: 'gap-2',
 });
 
 const radioIconStyle = tva({
-  base: "rounded-full justify-center items-center text-primary-800 fill-primary-800",
+  base: 'rounded-full justify-center items-center text-primary-800 fill-primary-800',
 
   parentVariants: {
     size: {
-      sm: "h-[9px] w-[9px]",
-      md: "h-3 w-3",
-      lg: "h-4 w-4",
+      sm: 'h-[9px] w-[9px]',
+      md: 'h-3 w-3',
+      lg: 'h-4 w-4',
     },
   },
 });
 
 const radioIndicatorStyle = tva({
-  base: "justify-center items-center bg-transparent border-outline-400 border-2 rounded-full data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[checked=true]:border-primary-600 data-[checked=true]:bg-transparent data-[hover=true]:border-outline-500 data-[hover=true]:bg-transparent data-[hover=true]:data-[checked=true]:bg-transparent data-[hover=true]:data-[checked=true]:border-primary-700 data-[hover=true]:data-[invalid=true]:border-error-700 data-[hover=true]:data-[disabled=true]:opacity-40 data-[hover=true]:data-[disabled=true]:border-outline-400 data-[hover=true]:data-[disabled=true]:data-[invalid=true]:border-error-400 data-[active=true]:bg-transparent data-[active=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[checked=true]:border-outline-400 data-[disabled=true]:data-[checked=true]:bg-transparent data-[disabled=true]:data-[invalid=true]:border-error-400",
+  base: 'justify-center items-center bg-transparent border-outline-400 border-2 rounded-full data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[checked=true]:border-primary-600 data-[checked=true]:bg-transparent data-[hover=true]:border-outline-500 data-[hover=true]:bg-transparent data-[hover=true]:data-[checked=true]:bg-transparent data-[hover=true]:data-[checked=true]:border-primary-700 data-[hover=true]:data-[invalid=true]:border-error-700 data-[hover=true]:data-[disabled=true]:opacity-40 data-[hover=true]:data-[disabled=true]:border-outline-400 data-[hover=true]:data-[disabled=true]:data-[invalid=true]:border-error-400 data-[active=true]:bg-transparent data-[active=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[checked=true]:border-outline-400 data-[disabled=true]:data-[checked=true]:bg-transparent data-[disabled=true]:data-[invalid=true]:border-error-400',
   parentVariants: {
     size: {
-      sm: "h-4 w-4",
-      md: "h-5 w-5",
-      lg: "h-6 w-6",
+      sm: 'h-4 w-4',
+      md: 'h-5 w-5',
+      lg: 'h-6 w-6',
     },
   },
 });
 
 const radioLabelStyle = tva({
-  base: "text-typography-600 data-[checked=true]:text-typography-900 data-[hover=true]:text-typography-900 data-[hover=true]:data-[disabled=true]:text-typography-600 data-[hover=true]:data-[disabled=true]:data-[checked=true]:text-typography-900 data-[active=true]:text-typography-900 data-[active=true]:data-[checked=true]:text-typography-900 data-[disabled=true]:opacity-40 web:select-none",
+  base: 'text-typography-600 data-[checked=true]:text-typography-900 data-[hover=true]:text-typography-900 data-[hover=true]:data-[disabled=true]:text-typography-600 data-[hover=true]:data-[disabled=true]:data-[checked=true]:text-typography-900 data-[active=true]:text-typography-900 data-[active=true]:data-[checked=true]:text-typography-900 data-[disabled=true]:opacity-40 web:select-none',
   parentVariants: {
     size: {
-      "2xs": "text-2xs",
-      xs: "text-xs",
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
-      xl: "text-xl",
-      "2xl": "text-2xl",
-      "3xl": "text-3xl",
-      "4xl": "text-4xl",
-      "5xl": "text-5xl",
-      "6xl": "text-6xl",
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-base',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
     },
   },
 });
 
-type IRadioProps = Omit<React.ComponentProps<typeof UIRadio>, "context"> &
+type IRadioProps = Omit<React.ComponentProps<typeof UIRadio>, 'context'> &
   VariantProps<typeof radioStyle>;
 const Radio = React.forwardRef<React.ComponentRef<typeof UIRadio>, IRadioProps>(
-  function Radio({ className, size = "md", ...props }, ref) {
+  function Radio({ className, size = 'md', ...props }, ref) {
     return (
       <UIRadio
         className={radioStyle({ class: className, size })}
@@ -174,7 +174,7 @@ const RadioIcon = React.forwardRef<
 >(function RadioIcon({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
-  if (typeof size === "number") {
+  if (typeof size === 'number') {
     return (
       <UIRadio.Icon
         ref={ref}
@@ -211,10 +211,10 @@ const RadioIcon = React.forwardRef<
   );
 });
 
-Radio.displayName = "Radio";
-RadioGroup.displayName = "RadioGroup";
-RadioIndicator.displayName = "RadioIndicator";
-RadioLabel.displayName = "RadioLabel";
-RadioIcon.displayName = "RadioIcon";
+Radio.displayName = 'Radio';
+RadioGroup.displayName = 'RadioGroup';
+RadioIndicator.displayName = 'RadioIndicator';
+RadioLabel.displayName = 'RadioLabel';
+RadioIcon.displayName = 'RadioIcon';
 
 export { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon };

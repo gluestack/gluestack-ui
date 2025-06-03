@@ -1,30 +1,30 @@
-"use client";
-import React, { useState } from "react";
-import { Link } from "@/components/ui/link";
-import { Button } from "@/components/ui/button";
-import { Text } from "@/components/ui/text";
-import { VStack } from "@/components/ui/vstack";
-import { HStack } from "@/components/ui/hstack";
-import { Box } from "@/components/ui/box";
-import Next from "./Next";
-import MySvgComponent from "./MySvgComponent";
-import Expo1 from "./Expo1";
-import ReactN from "./ReactN";
-import VsCode from "./VsCode";
-import NextLink from "next/link";
-import Tilde from "./Tilde";
-import Copied from "./Copied";
-import Copy from "./Copy";
-import Figma from "./Figma";
-import Unitools from "./Unitools";
-import { Icon } from "@/components/ui";
+'use client';
+import React, { useState } from 'react';
+import { Link } from '@/components/ui/link';
+import { Button } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Box } from '@/components/ui/box';
+import Next from './Next';
+import MySvgComponent from './MySvgComponent';
+import Expo1 from './Expo1';
+import ReactN from './ReactN';
+import VsCode from './VsCode';
+import NextLink from 'next/link';
+import Tilde from './Tilde';
+import Copied from './Copied';
+import Copy from './Copy';
+import Figma from './Figma';
+import Unitools from './Unitools';
+import { Icon } from '@/components/ui';
 
 function Card1() {
   const [copied, setCopied] = useState(false);
   const [showCopy, setShowCopy] = useState(false);
 
   const copyToClipboard = async () => {
-    const text = "npm create gluestack@latest";
+    const text = 'npm create gluestack@latest';
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => {
@@ -55,7 +55,7 @@ function Card1() {
               >
                 <Tilde />
                 <Text className="text-lg leading-sm mx-3 font-source-code-pro font-medium text-typography-900  md:text-xl  md:leading-md">
-                  npm create{" "}
+                  npm create{' '}
                   <Text className="text-lg leading-sm font-medium text-primary-300 font-source-code-pro md:text-xl  md:leading-md">
                     gluestack@latest
                   </Text>

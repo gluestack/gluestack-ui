@@ -1,106 +1,106 @@
-"use client";
-import { createAlert } from "@/components/ui/alert/creator";
-import { View, Text } from "react-native";
-import { tva } from "@/utils/gluestack-utils/nativewind/utils/tva";
+'use client';
+import { createAlert } from '@/components/ui/alert/creator';
+import { View, Text } from 'react-native';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
 import {
   withStyleContext,
   useStyleContext,
-} from "@/utils/gluestack-utils/nativewind/utils/withStyleContext";
-import React from "react";
-import { cssInterop } from "nativewind";
-import type { VariantProps } from "@/utils/gluestack-utils/nativewind/utils";
-import { PrimitiveIcon, UIIcon } from "@/components/ui/icon/creator";
+} from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+import React from 'react';
+import { cssInterop } from 'nativewind';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
 
-const SCOPE = "ALERT";
+const SCOPE = 'ALERT';
 
 const alertStyle = tva({
-  base: "items-center py-3 px-4 rounded-md flex-row gap-2 border-outline-100",
+  base: 'items-center py-3 px-4 rounded-md flex-row gap-2 border-outline-100',
 
   variants: {
     action: {
-      error: "bg-background-error",
-      warning: "bg-background-warning",
-      success: "bg-background-success",
-      info: "bg-background-info",
-      muted: "bg-background-muted",
+      error: 'bg-background-error',
+      warning: 'bg-background-warning',
+      success: 'bg-background-success',
+      info: 'bg-background-info',
+      muted: 'bg-background-muted',
     },
 
     variant: {
-      solid: "",
-      outline: "border bg-background-0",
+      solid: '',
+      outline: 'border bg-background-0',
     },
   },
 });
 
 const alertTextStyle = tva({
-  base: "font-normal font-body",
+  base: 'font-normal font-body',
 
   variants: {
     isTruncated: {
-      true: "web:truncate",
+      true: 'web:truncate',
     },
     bold: {
-      true: "font-bold",
+      true: 'font-bold',
     },
     underline: {
-      true: "underline",
+      true: 'underline',
     },
     strikeThrough: {
-      true: "line-through",
+      true: 'line-through',
     },
     size: {
-      "2xs": "text-2xs",
-      xs: "text-xs",
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
-      xl: "text-xl",
-      "2xl": "text-2xl",
-      "3xl": "text-3xl",
-      "4xl": "text-4xl",
-      "5xl": "text-5xl",
-      "6xl": "text-6xl",
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-base',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
     },
     sub: {
-      true: "text-xs",
+      true: 'text-xs',
     },
     italic: {
-      true: "italic",
+      true: 'italic',
     },
     highlight: {
-      true: "bg-yellow-500",
+      true: 'bg-yellow-500',
     },
   },
   parentVariants: {
     action: {
-      error: "text-error-800",
-      warning: "text-warning-800",
-      success: "text-success-800",
-      info: "text-info-800",
-      muted: "text-background-800",
+      error: 'text-error-800',
+      warning: 'text-warning-800',
+      success: 'text-success-800',
+      info: 'text-info-800',
+      muted: 'text-background-800',
     },
   },
 });
 
 const alertIconStyle = tva({
-  base: "fill-none",
+  base: 'fill-none',
   variants: {
     size: {
-      "2xs": "h-3 w-3",
-      xs: "h-3.5 w-3.5",
-      sm: "h-4 w-4",
-      md: "h-[18px] w-[18px]",
-      lg: "h-5 w-5",
-      xl: "h-6 w-6",
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'h-[18px] w-[18px]',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
     },
   },
   parentVariants: {
     action: {
-      error: "text-error-800",
-      warning: "text-warning-800",
-      success: "text-success-800",
-      info: "text-info-800",
-      muted: "text-background-800",
+      error: 'text-error-800',
+      warning: 'text-warning-800',
+      success: 'text-success-800',
+      info: 'text-info-800',
+      muted: 'text-background-800',
     },
   },
 });
@@ -113,12 +113,12 @@ export const UIAlert = createAlert({
 
 cssInterop(PrimitiveIcon, {
   className: {
-    target: "style",
+    target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
       fill: true,
-      color: "classNameColor",
+      color: 'classNameColor',
       stroke: true,
     },
   },
@@ -126,13 +126,13 @@ cssInterop(PrimitiveIcon, {
 
 type IAlertProps = Omit<
   React.ComponentPropsWithoutRef<typeof UIAlert>,
-  "context"
+  'context'
 > &
   VariantProps<typeof alertStyle>;
 
 const Alert = React.forwardRef<React.ComponentRef<typeof UIAlert>, IAlertProps>(
   function Alert(
-    { className, variant = "solid", action = "muted", ...props },
+    { className, variant = 'solid', action = 'muted', ...props },
     ref
   ) {
     return (
@@ -159,7 +159,7 @@ const AlertText = React.forwardRef<
     bold,
     underline,
     strikeThrough,
-    size = "md",
+    size = 'md',
     sub,
     italic,
     highlight,
@@ -199,10 +199,10 @@ type IAlertIconProps = React.ComponentPropsWithoutRef<typeof UIAlert.Icon> &
 const AlertIcon = React.forwardRef<
   React.ComponentRef<typeof UIAlert.Icon>,
   IAlertIconProps
->(function AlertIcon({ className, size = "md", ...props }, ref) {
+>(function AlertIcon({ className, size = 'md', ...props }, ref) {
   const { action: parentAction } = useStyleContext(SCOPE);
 
-  if (typeof size === "number") {
+  if (typeof size === 'number') {
     return (
       <UIAlert.Icon
         ref={ref}
@@ -238,8 +238,8 @@ const AlertIcon = React.forwardRef<
   );
 });
 
-Alert.displayName = "Alert";
-AlertText.displayName = "AlertText";
-AlertIcon.displayName = "AlertIcon";
+Alert.displayName = 'Alert';
+AlertText.displayName = 'AlertText';
+AlertIcon.displayName = 'AlertIcon';
 
 export { Alert, AlertText, AlertIcon };

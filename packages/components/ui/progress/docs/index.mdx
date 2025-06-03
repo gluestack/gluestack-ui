@@ -10,7 +10,7 @@ pageDescription: Enhance your app with a responsive Progress component. gluestac
 showHeader: true
 ---
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -18,13 +18,12 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # Progress
 
 Enhance your app with a responsive Progress component. gluestack-ui offers a React Native progress bar for tracking steps, ensuring a smooth progress bar UI experience.
-
 
 This is an illustration of **Progress** component.
 /// {Example:basic} ///
@@ -48,11 +47,12 @@ npm i @gluestack-ui/progress
 
 ### Step 2: Copy and paste the following code into your project.
 
-```tsx 
-%%-- File: packages/components/ui/progress/index.tsx --%% 
+```tsx
+%%-- File: packages/components/ui/progress/index.tsx --%%
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -81,22 +81,24 @@ This section provides a comprehensive reference list for the component props, de
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <Table>
-<TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-</TableHeader>
-<TableBody>
-  <TableRow>
-    <TableCell><InlineCode>value</InlineCode></TableCell>
-    <TableCell>number</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>It is used to set the progress of the progress bar</TableCell>
-  </TableRow>
-</TableBody>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>value</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>It is used to set the progress of the progress bar</TableCell>
+    </TableRow>
+  </TableBody>
 </Table>
 
 #### ProgressFilledTrack
@@ -122,25 +124,29 @@ Progress component is created using View component from react-native. It extends
 #### Progress
 
 <Table>
-<TableHeader>
-  <TableRow>
-    <TableHeaderCell>Name</TableHeaderCell>
-    <TableHeaderCell>Value</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-  </TableRow>
-</TableHeader>
-<TableBody>
-  <TableRow>
-    <TableCell><InlineCode>size</InlineCode></TableCell>
-    <TableCell>xs | sm | md | lg | xl | 2xl</TableCell>
-    <TableCell>md</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>orientation</InlineCode></TableCell>
-    <TableCell>vertical | horizontal</TableCell>
-    <TableCell>horizontal</TableCell>
-  </TableRow>
-</TableBody>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Name</TableHeaderCell>
+      <TableHeaderCell>Value</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
+      <TableCell>xs | sm | md | lg | xl | 2xl</TableCell>
+      <TableCell>md</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>orientation</InlineCode>
+      </TableCell>
+      <TableCell>vertical | horizontal</TableCell>
+      <TableCell>horizontal</TableCell>
+    </TableRow>
+  </TableBody>
 </Table>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
@@ -149,11 +155,8 @@ Progress component is created using View component from react-native. It extends
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-
 /// {Example:value} ///
 
-
 /// {Example:color} ///
-
 
 /// {Example:custom} ///

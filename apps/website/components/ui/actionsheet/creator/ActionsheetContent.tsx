@@ -1,4 +1,4 @@
-/* eslint-disable react/display-name */
+/* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
 import {
   Animated,
@@ -76,7 +76,7 @@ function ActionsheetContent(
         return windowHeight - snapPoints[0] * windowHeight * 0.01;
       }, [snapPoints, animatedViewSheetHeight, contentSheetHeightState]);
 
-      const contentRef: any = React.useRef(null);
+      const contentRef = React.useRef(null);
       React.useEffect(() => {
         if (contentRef) {
           const reactTag = findNodeHandle(contentRef.current);

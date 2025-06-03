@@ -1,9 +1,9 @@
-"use client";
-import { Box, Heading, Link, LinkText, Text } from "@/components/ui";
-import BadgeComponent from "@/components/page-components/landing-page/BadgeComponent";
-import Footer from "@/components/page-components/landing-page/Footer";
-import WebsiteLayout from "@/components/page-components/landing-page/WebsiteLayout";
-import React from "react";
+'use client';
+import { Box, Heading, Link, LinkText, Text } from '@/components/ui';
+import BadgeComponent from '@/components/page-components/landing-page/BadgeComponent';
+import Footer from '@/components/page-components/landing-page/Footer';
+import WebsiteLayout from '@/components/page-components/landing-page/WebsiteLayout';
+import React from 'react';
 
 const TermsOfService = () => {
   return (
@@ -524,7 +524,7 @@ const TermsOfService = () => {
           <Box className="ml-7">
             <Text className="my-3 font-normal">
               a. &nbsp;<Text className="font-bold">Confidentiality:</Text> Each
-              party (the{" "}
+              party (the{' '}
               <Text className="font-bold">&quot;Receiving Party&quot;</Text>)
               understands that the other party (the&nbsp;
               <Text className="font-bold">&quot;Disclosing Party&quot;</Text>)
@@ -850,9 +850,9 @@ const TermsOfService = () => {
             <Text className="my-3 font-normal">
               b. &nbsp;
               <Text className="font-bold">
-                {" "}
+                {' '}
                 Deployment URL squatting policy:
-              </Text>{" "}
+              </Text>{' '}
               We prohibit squatting of free *.alpha.gluestack.app or
               *.gluestack.app domain names, and these domain names may not be
               inactively held for future use. Inactive registrations may be

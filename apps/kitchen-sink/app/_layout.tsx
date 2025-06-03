@@ -1,23 +1,23 @@
-import { Stack, useRouter } from "expo-router";
-import "../global.css";
-import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { Box } from "@/components/ui/box";
-import { Pressable } from "react-native";
-import { ChevronLeftIcon, SunIcon, MoonIcon } from "@/components/ui/icon";
-import { Icon } from "@/components/ui/icon";
-import React from "react";
-import { StyleSheet, Platform } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { Fab } from "@/components/ui/fab";
-import { Text } from "@/components/ui/text";
+import { Stack, useRouter } from 'expo-router';
+import '../global.css';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { Box } from '@/components/ui/box';
+import { Pressable } from 'react-native';
+import { ChevronLeftIcon, SunIcon, MoonIcon } from '@/components/ui/icon';
+import { Icon } from '@/components/ui/icon';
+import React from 'react';
+import { StyleSheet, Platform } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { Fab } from '@/components/ui/fab';
+import { Text } from '@/components/ui/text';
 export const ColorModeContext = React.createContext({});
 
 const capitalize = (str: string) => {
   return str
-    .replace(/components\/(.*?)\/index/, "$1")
-    .split("-")
+    .replace(/components\/(.*?)\/index/, '$1')
+    .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join("");
+    .join('');
 };
 const CustomBackButton = () => {
   const router = useRouter();
@@ -35,29 +35,29 @@ const CustomBackButton = () => {
 };
 
 export default function RootLayout() {
-  const [colorMode, setColorMode] = React.useState<"light" | "dark">("light");
+  const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
   const handleColorMode = () => {
     setColorMode((prevMode: string) =>
-      prevMode === "light" ? "dark" : "light"
+      prevMode === 'light' ? 'dark' : 'light'
     );
   };
   return (
     <>
       <StatusBar
         style="auto" //android
-        backgroundColor={`${colorMode == "light" ? "#F6F6F6" : "#272625"}`}
+        backgroundColor={`${colorMode == 'light' ? '#F6F6F6' : '#272625'}`}
       />
       <ColorModeContext.Provider value={{ colorMode }}>
         <GluestackUIProvider mode={colorMode}>
-            <Stack
+          <Stack
             screenOptions={{
               headerStyle: {
-                backgroundColor: colorMode === "light" ? "#FFFFFF" : "#000",
+                backgroundColor: colorMode === 'light' ? '#FFFFFF' : '#000',
               },
               headerShadowVisible: false,
               contentStyle: {
                 borderTopWidth: 1,
-                borderTopColor: colorMode === "light" ? "#E6E6E6" : "#414141",
+                borderTopColor: colorMode === 'light' ? '#E6E6E6' : '#414141',
               },
               headerLeft: ({ canGoBack }) =>
                 canGoBack ? <CustomBackButton /> : null,
@@ -82,7 +82,7 @@ export default function RootLayout() {
             onPress={handleColorMode}
           >
             <Icon
-              as={colorMode === "light" ? SunIcon : MoonIcon}
+              as={colorMode === 'light' ? SunIcon : MoonIcon}
               className="text-typography-0"
             />
           </Fab>

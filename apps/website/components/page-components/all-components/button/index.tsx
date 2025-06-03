@@ -22,7 +22,7 @@ export default function Example() {
       "outline",
       "link"
     ],
-    "defaultValue": "outline"
+    "defaultValue": "solid"
   },
   "action": {
     "control": {

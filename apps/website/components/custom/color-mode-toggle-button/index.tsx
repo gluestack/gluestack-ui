@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext } from 'react';
 import {
   Pressable,
   SunIcon,
@@ -6,8 +6,8 @@ import {
   Icon,
   Fab,
   FabIcon,
-} from "@/components/ui";
-import { ThemeContext } from "@/utils/context/theme-context";
+} from '@/components/ui';
+import { ThemeContext } from '@/utils/context/theme-context';
 
 export const ToggleColorModeButton = () => {
   const { colorMode, setColorMode } = useContext(ThemeContext);
@@ -19,10 +19,10 @@ export const ToggleColorModeButton = () => {
         isHovered={false}
         isDisabled={false}
         isPressed={false}
-        onPress={() => setColorMode(colorMode === "light" ? "dark" : "light")}
+        onPress={() => setColorMode(colorMode === 'light' ? 'dark' : 'light')}
       >
         <FabIcon
-          as={colorMode === "dark" ? SunIcon : MoonIcon}
+          as={colorMode === 'dark' ? SunIcon : MoonIcon}
           className="text-typography-300"
         />
       </Fab>

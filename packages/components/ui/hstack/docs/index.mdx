@@ -12,7 +12,7 @@ showHeader: true
 tag: RSC
 ---
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -20,14 +20,14 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # HStack
 
 Use the gluestack-ui HStack component in React Native to align elements horizontally. Easily customize layouts with spacing and reverse props. Learn how to install and use HStack today!
 
-### This is an illustration of HStack component.
+This is an illustration of **HStack** component.
 
 /// {Example:basic} ///
 
@@ -50,10 +50,11 @@ Use the gluestack-ui HStack component in React Native to align elements horizont
 ### Step 2: Copy and paste the following code into your project.
 
 ```tsx
-%%-- File: packages/components/ui/hstack/index.tsx --%% 
+%%-- File: packages/components/ui/hstack/index.tsx --%%
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -78,30 +79,39 @@ This section provides a comprehensive reference list for the component props, de
 HStack component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props) and the props mentioned below.
 
 <>
-<Table>
-<TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-  </TableHeader>
-  <TableBody>
-  <TableRow>
-    <TableCell><InlineCode>space</InlineCode></TableCell>
-    <TableCell>string</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>It sets the space between children. By default there is no space between the HStack items.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>reversed</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>When true, it places the HStack items in reverse direction.</TableCell>
-  </TableRow>
-  </TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>space</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          It sets the space between children. By default there is no space
+          between the HStack items.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>reversed</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          When true, it places the HStack items in reverse direction.
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### Accessibility
@@ -112,6 +122,4 @@ The accessibility of a HStack is primarily determined by the accessibility infor
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-
 /// {Example:reversed} ///
-

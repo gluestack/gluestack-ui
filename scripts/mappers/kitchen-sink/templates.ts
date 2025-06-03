@@ -4,16 +4,16 @@ export const componentPreviewerTemplate = (
   title: string
 ) => `<ComponentPreviewer props={${argTypes}} title={${title}}>
   {props => ${code
-    .replace(/function\s+\w+\s*\(\)/, "")
-    .replace(/}$/, "")
-    .replace(/="{{(\w+)}}"/g, "={props.$1}")
-    .replace(/={\s*{{\s*(\w+)\s*}}\s*}/g, "={props.$1}")
-    .replace(/\\\\/g, "")
+    .replace(/function\s+\w+\s*\(\)/, '')
+    .replace(/}$/, '')
+    .replace(/="{{(\w+)}}"/g, '={props.$1}')
+    .replace(/={\s*{{\s*(\w+)\s*}}\s*}/g, '={props.$1}')
+    .replace(/\\\\/g, '')
     .trim()}}}
 </ComponentPreviewer>`;
 
 export const importTemplate = (imports: string[], importPath: string) => {
-  return `import { ${imports.join(", ")} } from '${importPath}'`;
+  return `import { ${imports.join(', ')} } from '${importPath}'`;
 };
 
 export const wrappedComponentTemplate = (processedContent: string) => {

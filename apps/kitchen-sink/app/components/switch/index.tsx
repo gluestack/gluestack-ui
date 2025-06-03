@@ -26,46 +26,6 @@ export default function ComponentExamples() {
       "type": "boolean"
     },
     "defaultValue": false
-  },
-  "trackColor": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "#E2E8F0",
-      "#000000"
-    ],
-    "defaultValue": "#E2E8F0"
-  },
-  "thumbColor": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "#FFFFFF",
-      "#000000"
-    ],
-    "defaultValue": "#FFFFFF"
-  },
-  "activeThumbColor": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "#000000",
-      "#FFFFFF"
-    ],
-    "defaultValue": "#000000"
-  },
-  "ios_backgroundColor": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "#E2E8F0",
-      "#000000"
-    ],
-    "defaultValue": "#E2E8F0"
   }
 }} title={"Basic"}>
   {props => {
@@ -73,10 +33,10 @@ export default function ComponentExamples() {
     <Switch
       size={props.size}
       isDisabled={props.isDisabled}
-      trackColor={props.trackColor}
-      thumbColor={props.thumbColor}
-      activeThumbColor={props.activeThumbColor}
-      ios_backgroundColor={props.ios_backgroundColor}
+      trackColor={ {false: "#d4d4d4", true: "#525252"} }
+      thumbColor="#fafafa"
+      activeThumbColor="#fafafa"
+      ios_backgroundColor="#d4d4d4"
     />
   )}}
 </ComponentPreviewer>
@@ -86,10 +46,10 @@ export default function ComponentExamples() {
   return (
     <HStack space="md">
           <Switch
-            trackColor={{ false: "#E2E8F0", true: "#000000" }}
-            thumbColor="#FFFFFF"
-            activeThumbColor="#000000"
-            ios_backgroundColor="#E2E8F0"
+            trackColor={ {false: "#d4d4d4", true: "#525252"} }
+            thumbColor="#fafafa"
+            activeThumbColor="#fafafa"
+            ios_backgroundColor="#d4d4d4"
           />
           <Text size="sm" >Allow notifications</Text>
         </HStack>
@@ -102,10 +62,10 @@ export default function ComponentExamples() {
     <HStack space="md">
           <Switch
             defaultValue={true}
-            trackColor="#E2E8F0"
-            thumbColor="#FFFFFF"
-            activeThumbColor="#000000"
-            ios_backgroundColor="#E2E8F0"
+            trackColor={ {false: "#d4d4d4", true: "#525252"} }
+            thumbColor="#fafafa"
+            activeThumbColor="#fafafa"
+            ios_backgroundColor="#d4d4d4"
           />
           <Text size="sm" >Public profile</Text>
         </HStack>

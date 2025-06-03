@@ -7,7 +7,7 @@ import { VStack } from '@/components/ui/vstack';
 import { Icon } from '@/components/ui/icon';
 import { User } from 'lucide-react-native';
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -15,15 +15,16 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
-import { AnatomyImage } from "@/docs-components/anatomy-image";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
 
 # Avatar
 
 Enhance your UI with our React Native Avatar component. Explore gluestack's-ui Avatar for seamless design and customization. Check out the docs to add an Avatar component to your app!
 
-### This is an illustration of Avatar component.
+This is an illustration of **Avatar** component.
+
 
   #### Basic
 
@@ -72,6 +73,7 @@ Enhance your UI with our React Native Avatar component. Explore gluestack's-ui A
 ```bash
 npx gluestack-ui add avatar
 ```
+
 </TabItem>
 <TabItem label="Manual">
 
@@ -290,7 +292,11 @@ import {
 } from '@/components/ui/avatar';
 ```
 
-<AnatomyImage mobileUrl='https://i.imgur.com/UWyUCue.png' webUrl='https://i.imgur.com/MUsrjdt.png' classNameStyle='aspect-[513/369] md:aspect-[736/209]' />
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/UWyUCue.png"
+  webUrl="https://i.imgur.com/MUsrjdt.png"
+  classNameStyle="aspect-[513/369] md:aspect-[736/209]"
+/>
 
 > IOS: It is highly recommended to use `<AvatarFallbackText />` before `<AvatarImage />` to avoid indexing issues in IOS.
 
@@ -342,28 +348,28 @@ Avatar component is created using View component from react-native. It extends a
 
 <Table>
   <TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
   </TableHeader>
   <TableBody>
-  <TableRow>
-    <TableCell><InlineCode>size</InlineCode></TableCell>
-    <TableCell>xs | sm | md | lg | xl | 2xl</TableCell>
-    <TableCell>md</TableCell>
-    <TableCell>Determines the size of the avatar.</TableCell>
-  </TableRow>
-</TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
+      <TableCell>xs | sm | md | lg | xl | 2xl</TableCell>
+      <TableCell>md</TableCell>
+      <TableCell>Determines the size of the avatar.</TableCell>
+    </TableRow>
+  </TableBody>
 </Table>
-
 
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
 
 
   #### Avatar with letters
@@ -401,7 +407,6 @@ The Examples section provides visual representations of the different variants o
 />
 
 
-
   #### Avatar with Icon
 
   An Avatar component with an icon combines a graphical symbol or icon with a user or entity representation, providing a visually appealing and easily recognizable identification within a user interface.
@@ -434,8 +439,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack, Icon, User }}
 />
-
-
 
 
   #### Avatar with Image
@@ -516,8 +519,8 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Avatar, AvatarGroup, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
 />
->To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<AvatarGroup>`
 
+> To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<AvatarGroup>`
 
 
   #### Avatar Group (Without Badge)
@@ -566,7 +569,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Avatar, AvatarGroup, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
 />
-
 
 
   #### Avatar Group (with Badge)
@@ -621,7 +623,6 @@ The Examples section provides visual representations of the different variants o
 />
 
 
-
   #### Custom
 
   A custom Avatar component with text allows for personalized user or entity representations by combining customized visuals, such as an image or icon, with accompanying text, providing a unique and identifiable presentation within a user interface.
@@ -654,7 +655,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack, Icon, User }}
 />
-
 
 
   #### Fallback

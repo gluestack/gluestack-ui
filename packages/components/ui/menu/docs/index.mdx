@@ -10,7 +10,7 @@ pageDescription: Build a user-friendly interface with gluestack-ui menu componen
 showHeader: true
 ---
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -18,20 +18,19 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
-import { AnatomyImage } from "@/docs-components/anatomy-image";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
 
 # Menu
 
 Build a user-friendly interface with gluestack-ui menu component in React & React Native, designed for easy navigation and accessibility.
 
+This is an illustration of **Menu** component.
 
-### This is an illustration of Menu component.
 /// {Example:basic} ///
 
 <br />
-
 ## Installation
 
 <Tabs>
@@ -51,10 +50,11 @@ npm i @gluestack-ui/menu @legendapp/motion
 ### Step 2: Copy and paste the following code into your project.
 
 ```tsx
-%%-- File: packages/components/ui/menu/index.tsx --%% 
+%%-- File: packages/components/ui/menu/index.tsx --%%
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -67,11 +67,15 @@ import {
   Menu,
   MenuItem,
   MenuItemLabel,
-  MenuSeparator
+  MenuSeparator,
 } from '@/components/ui/menu';
 ```
 
-<AnatomyImage mobileUrl='https://i.imgur.com/ychqRCR.png' webUrl='https://i.imgur.com/42xE2oh.png' classNameStyle='aspect-[513/477] md:aspect-[736/317]' />
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/ychqRCR.png"
+  webUrl="https://i.imgur.com/42xE2oh.png"
+  classNameStyle="aspect-[513/477] md:aspect-[736/317]"
+/>
 
 ```ts
 export default () => (
@@ -96,94 +100,137 @@ Contains all menu related layout style props and actions.
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <Table>
-<TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-</TableHeader>
-<TableBody>
-  <TableRow>
-    <TableCell><InlineCode>trigger</InlineCode></TableCell>
-    <TableCell>{'(_props: any, state: { open: boolean; }) => Element'}</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>Function that returns a React Element. This element will be used as a Trigger for the Menu</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>placement</InlineCode></TableCell>
-    <TableCell>"bottom" | "top" | "right" | "left" | "top left" | "top right" | "bottom left" | "bottom right" | "right top" | "right bottom" | "left top" | "left bottom"</TableCell>
-    <TableCell>bottom left</TableCell>
-    <TableCell>Menu placement</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>defaultIsOpen</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>If true, the menu will be opened by default</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>onOpen</InlineCode></TableCell>
-    <TableCell>{'() => void'}</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>This function will be invoked when the menu is opened</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>onClose</InlineCode></TableCell>
-    <TableCell>{'() => void'}</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>This function will be invoked when menu is closed</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isOpen</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>Whether the menu is opened. Useful for controlling the open state</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>offset</InlineCode></TableCell>
-    <TableCell>number</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>The additional offset applied along the main axis</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>crossOffset</InlineCode></TableCell>
-    <TableCell>number</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>The additional offset applied along the cross axis</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>disabledKeys</InlineCode></TableCell>
-    <TableCell>string[]</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>Item keys in this collection will be disabled</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>closeOnSelect</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>true</TableCell>
-    <TableCell>Whether menu is closed after option is selected</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>selectedKeys</InlineCode></TableCell>
-    <TableCell>{"'all' | Iterable<Key>"}</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>The currently selected keys in the collection (controlled)</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>selectionMode</InlineCode></TableCell>
-    <TableCell>{"'none' | 'single' | 'multiple'"}</TableCell>
-    <TableCell>none</TableCell>
-    <TableCell>The type of selection that is allowed in the collection</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>onSelectionChange</InlineCode></TableCell>
-    <TableCell>{"(keys: 'all' | Iterable<Key>) => void"}</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>Handler that is called when the selection changes</TableCell>
-  </TableRow>
-</TableBody>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>trigger</InlineCode>
+      </TableCell>
+      <TableCell>
+        {'(_props: any, state: { open: boolean; }) => Element'}
+      </TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        Function that returns a React Element. This element will be used as a
+        Trigger for the Menu
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>placement</InlineCode>
+      </TableCell>
+      <TableCell>
+        "bottom" | "top" | "right" | "left" | "top left" | "top right" | "bottom
+        left" | "bottom right" | "right top" | "right bottom" | "left top" |
+        "left bottom"
+      </TableCell>
+      <TableCell>bottom left</TableCell>
+      <TableCell>Menu placement</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>defaultIsOpen</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>If true, the menu will be opened by default</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onOpen</InlineCode>
+      </TableCell>
+      <TableCell>{'() => void'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        This function will be invoked when the menu is opened
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onClose</InlineCode>
+      </TableCell>
+      <TableCell>{'() => void'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>This function will be invoked when menu is closed</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isOpen</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>
+        Whether the menu is opened. Useful for controlling the open state
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>offset</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The additional offset applied along the main axis</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>crossOffset</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The additional offset applied along the cross axis</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>disabledKeys</InlineCode>
+      </TableCell>
+      <TableCell>string[]</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Item keys in this collection will be disabled</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>closeOnSelect</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>Whether menu is closed after option is selected</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>selectedKeys</InlineCode>
+      </TableCell>
+      <TableCell>{"'all' | Iterable<Key>"}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        The currently selected keys in the collection (controlled)
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>selectionMode</InlineCode>
+      </TableCell>
+      <TableCell>{"'none' | 'single' | 'multiple'"}</TableCell>
+      <TableCell>none</TableCell>
+      <TableCell>
+        The type of selection that is allowed in the collection
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onSelectionChange</InlineCode>
+      </TableCell>
+      <TableCell>{"(keys: 'all' | Iterable<Key>) => void"}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Handler that is called when the selection changes</TableCell>
+    </TableRow>
+  </TableBody>
 </Table>
 #### MenuItemLabel
 
@@ -192,11 +239,11 @@ Contains all text related layout style props and actions. It inherits all the pr
 #### MenuSeparator
 
 Contains all view related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
 ### Features
 
 - Keyboard support for actions
 - Support for hover, focus and active states
-
 
 ### Accessibility
 
@@ -223,9 +270,6 @@ We have outlined the various features that ensure the Menu component is accessib
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-
-
 /// {Example:with-tag} ///
-
 
 /// {Example:with-selection} ///

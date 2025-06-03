@@ -52,7 +52,7 @@ export type IButtonComponentType<
   GroupProps,
   SpinnerProps,
   TextProps,
-  IconProps
+  IconProps,
 > = React.ForwardRefExoticComponent<
   PropsWithoutRef<ButtonProps & IButtonProps> & RefAttributes<ButtonProps>
 > & {

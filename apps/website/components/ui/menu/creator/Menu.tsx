@@ -1,4 +1,4 @@
-/* eslint-disable react/display-name */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { forwardRef, useRef } from 'react';
 import { useMenu, useMenuTrigger } from '@/components/ui/menu/aria';
 import { useTreeState, useMenuTriggerState } from 'react-stately';
@@ -16,7 +16,6 @@ export const Menu = ({
   AnimatePresence,
   StyledSeparator,
 }: any) => {
-  // eslint-disable-next-line react/display-name
   return forwardRef(
     (
       {
@@ -73,7 +72,6 @@ export const Menu = ({
       const { menuTriggerProps, menuProps } = useMenuTrigger(
         {},
         state,
-        //@ts-ignore
         triggerRef
       );
 
@@ -154,7 +152,7 @@ const MenuComponent = forwardRef(
     ref?: any
   ) => {
     const state: any = useTreeState(props);
-    const menuRef = useRef<any>(null);
+    const menuRef = useRef(null);
     const mergeRef = mergeRefs([menuRef, ref]);
     const { menuProps } = useMenu(props, state, menuRef);
     const {

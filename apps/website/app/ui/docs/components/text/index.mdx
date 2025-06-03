@@ -2,9 +2,16 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Text } from '@/components/ui/text';
 import { Center } from '@/components/ui/center';
 
-import {Tabs,TabItem} from '@/docs-components/tabs'
-import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
-import {InlineCode} from '@/docs-components/inline-code'
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # Text
 
@@ -24,7 +31,7 @@ This is an illustration of **Text** component.
   reactLive={{ Text }}
 />
 
-<br/>
+<br />
 
 ## Installation
 
@@ -36,11 +43,11 @@ This is an illustration of **Text** component.
   npx gluestack-ui add text
   ```
   </TabItem>
-  <TabItem label="Manual"> 
+  <TabItem label="Manual">
 
 ### Step 1: Copy and paste the following code into index.tsx in your project.
 
-```jsx 
+```jsx
 import React from 'react';
 
 import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
@@ -88,14 +95,15 @@ const Text = React.forwardRef<React.ComponentRef<typeof RNText>, ITextProps>(
 
 Text.displayName = 'Text';
 
-export { Text }; 
+export { Text };
+
 ```
 
 > Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
 
 ### Step 2(optional): Copy and paste the following code into index.web.tsx in your project.
 
-```jsx 
+```jsx
 import React from 'react';
 import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 import { textStyle } from './styles';
@@ -140,12 +148,13 @@ const Text = React.forwardRef<React.ComponentRef<'span'>, ITextProps>(
 
 Text.displayName = 'Text';
 
-export { Text }; 
+export { Text };
+
 ```
 
 ### Step 3: Copy and paste the following code into styles.tsx in your project.
 
-```jsx 
+```jsx
 import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
 import { isWeb } from '@/utils/gluestack-utils/nativewind/utils/IsWeb';
 
@@ -192,10 +201,12 @@ export const textStyle = tva({
       true: 'bg-yellow-500',
     },
   },
-}); 
+});
+
 ```
 
 ### Step 4: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -218,7 +229,6 @@ This section provides a comprehensive reference list for the component props, de
 #### Text
 
 <p>{`Renders a <span /> on web and a Text on native.`}</p>
-
 
     <Table>
       <TableHeader>
@@ -245,10 +255,9 @@ This section provides a comprehensive reference list for the component props, de
 
 ### Props
 
-Text component is created using `Text` component from react-native on native and `span` html element on web. It accepts the following props: 
+Text component is created using `Text` component from react-native on native and `span` html element on web. It accepts the following props:
 
 #### Text
-
 
     <Table>
       <TableHeader>
@@ -352,7 +361,6 @@ The Examples section provides visual representations of the different variants o
   reactLive={{ Center, Text }}
 />
 Text component also accepts some shorthands for basic quick styling.
-
 
     <Table>
       <TableHeader>

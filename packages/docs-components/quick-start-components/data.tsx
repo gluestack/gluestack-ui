@@ -1,37 +1,37 @@
-import React from "react";
+import React from 'react';
 import {
   DiscordIcon,
   GithubIcon,
   StackoverflowIcon,
   TwitterIcon,
-} from "./icons";
+} from './icons';
 
 export const communities = [
   {
-    name: "Twitter",
+    name: 'Twitter',
     icon: <TwitterIcon />,
-    link: "https://twitter.com/gluestack",
-    description: "For announcements, blog posts, and general Stitches tips.",
+    link: 'https://twitter.com/gluestack',
+    description: 'For announcements, blog posts, and general Stitches tips.',
   },
   {
-    name: "GitHub",
+    name: 'GitHub',
     icon: <GithubIcon />,
-    link: "https://github.com/gluestack/gluestack-ui",
+    link: 'https://github.com/gluestack/gluestack-ui',
     description:
-      "To file issues, request features, and contribute, check out our GitHub.",
+      'To file issues, request features, and contribute, check out our GitHub.',
   },
   {
-    name: "Discord",
+    name: 'Discord',
     icon: <DiscordIcon />,
-    link: "https://discord.gg/95qQ84nf6f",
+    link: 'https://discord.gg/95qQ84nf6f',
     description:
-      "To get involved in the community, ask questions, and share tips.",
+      'To get involved in the community, ask questions, and share tips.',
   },
   {
-    name: "Stackoverflow",
+    name: 'Stackoverflow',
     icon: <StackoverflowIcon />,
-    link: "https://stackoverflow.com/questions/tagged/gluestack",
+    link: 'https://stackoverflow.com/questions/tagged/gluestack',
     description:
-      "Receive firsthand assistance from our community of developers.",
+      'Receive firsthand assistance from our community of developers.',
   },
 ];

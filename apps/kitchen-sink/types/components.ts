@@ -41,8 +41,9 @@ export function getNestedComponents(componentsJson: ComponentsJson) {
 
   // Create a nested structure of components
   const nestedComponents = componentsSection.subsections
-    .filter((subsection): subsection is ComponentSection => 
-      'type' in subsection && subsection.type === 'heading'
+    .filter(
+      (subsection): subsection is ComponentSection =>
+        'type' in subsection && subsection.type === 'heading'
     )
     .map((section) => ({
       category: section.title,
@@ -51,11 +52,11 @@ export function getNestedComponents(componentsJson: ComponentsJson) {
         path: item.path?.replace('/ui/docs/components/', ''),
         tags: item.tags || [],
         url: item.url,
-        darkUrl: item.darkUrl
-      }))
+        darkUrl: item.darkUrl,
+      })),
     }));
 
   return nestedComponents;
 }
 
-export type NestedComponents = ReturnType<typeof getNestedComponents>; 
+export type NestedComponents = ReturnType<typeof getNestedComponents>;

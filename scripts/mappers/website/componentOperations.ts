@@ -1,19 +1,20 @@
-import path from "path";
-import * as fileOps from "../utils/fileOperations";
-
+import path from 'path';
+import * as fileOps from '../utils/fileOperations';
 
 export const copyComponent = (component: string) => {
-  const sourcePath = path.resolve("packages/components/ui");
- const destPath = path.resolve("apps/website/components/ui");
- const componentPath = path.join(sourcePath, component);
- const destComponentPath = path.join(destPath, component);
- fileOps.copyDir(componentPath, destComponentPath,["docs","examples"]);
+  const sourcePath = path.resolve('packages/components/ui');
+  const destPath = path.resolve('apps/website/components/ui');
+  const componentPath = path.join(sourcePath, component);
+  const destComponentPath = path.join(destPath, component);
+  fileOps.copyDir(componentPath, destComponentPath, ['docs', 'examples']);
 };
 
-
 export const deleteComponentDocs = (component: string) => {
-  const websiteComponentPath = path.resolve("apps/website/components", component);
-  const websiteUiPath = path.resolve("apps/website/app/ui/docs", component);
+  const websiteComponentPath = path.resolve(
+    'apps/website/components',
+    component
+  );
+  const websiteUiPath = path.resolve('apps/website/app/ui/docs', component);
 
   try {
     // Delete from docs/components
@@ -35,8 +36,8 @@ export const deleteComponentDocs = (component: string) => {
 };
 
 export const processNonComponentFile = (srcPath: string) => {
-  const packagesDir = path.resolve("packages/utils/gluestack-utils");
-  const websiteDir = path.resolve("apps/website/utils/gluestack-utils");
+  const packagesDir = path.resolve('packages/utils/gluestack-utils');
+  const websiteDir = path.resolve('apps/website/utils/gluestack-utils');
 
   try {
     fileOps.copyDir(packagesDir, websiteDir);
@@ -46,8 +47,8 @@ export const processNonComponentFile = (srcPath: string) => {
 };
 
 export const copyDocsComponents = (filePath: string) => {
-  const packagesDir = path.resolve("packages/docs-components");
-  const websiteDir = path.resolve("apps/website/components/docs-components");
+  const packagesDir = path.resolve('packages/docs-components');
+  const websiteDir = path.resolve('apps/website/components/docs-components');
 
   try {
     fileOps.copyDir(packagesDir, websiteDir);
@@ -57,7 +58,7 @@ export const copyDocsComponents = (filePath: string) => {
 };
 
 export const processSidebarFile = (filePath: string) => {
-  const sidebarDir = path.resolve("packages/sidebar.json");
-  const websiteUiPath = path.resolve("apps/website/sidebar.json");
+  const sidebarDir = path.resolve('packages/sidebar.json');
+  const websiteUiPath = path.resolve('apps/website/sidebar.json');
   fileOps.writeTextFile(websiteUiPath, fileOps.readTextFile(sidebarDir));
 };

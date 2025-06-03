@@ -1,8 +1,7 @@
 {
-    "argTypes": {
-    },
-    "reactLive": {
-      "Box": "@/components/ui/box",
-      "Text": "@/components/ui/text"
-    }
+  "argTypes": {},
+  "reactLive": {
+    "Box": "@/components/ui/box",
+    "Text": "@/components/ui/text"
   }
+}

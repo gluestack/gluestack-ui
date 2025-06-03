@@ -50,6 +50,6 @@ export * from './virtualized-list';
 export * from './refresh-control';
 export * from './image-background';
 export * from './skeleton';
-export * from './bottom-sheet';
+export * from './bottomsheet';
 export * from './drawer';
 // export * from './image-viewer';

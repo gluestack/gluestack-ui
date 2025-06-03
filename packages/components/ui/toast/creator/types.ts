@@ -86,7 +86,7 @@ export type IToastContext = {
 export type IToastComponentType<
   StyledToast,
   StyledToastTitle,
-  StyledToastDescription
+  StyledToastDescription,
 > = React.ForwardRefExoticComponent<
   InnerForwardRefExoticComponent<StyledToast>
 > & {

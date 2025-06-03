@@ -5,7 +5,7 @@ import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
 import { ArrowUpRight } from 'lucide-react-native';
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -13,14 +13,15 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # Link
 
 Enhance navigation with a React Native link component. Seamless UI link design for intuitive user experiences. Learn more!
 
-### This is an illustration of Link component.
+This is an illustration of **Link** component.
+
 
   
 
@@ -157,10 +158,12 @@ const LinkText = React.forwardRef<
 Link.displayName = 'Link';
 LinkText.displayName = 'LinkText';
 
-export { Link, LinkText }; 
+export { Link, LinkText };
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -190,77 +193,95 @@ Contains all link related layout style props and actions.
 It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
 
 <>
-<Table>
-<TableHeader>
-  <TableRow>
-    <TableHeaderCell>Platform</TableHeaderCell>
-    <TableHeaderCell>Output</TableHeaderCell>
-  </TableRow>
-</TableHeader>
-<TableBody>
-  <TableRow>
-    <TableCell><InlineCode>Web</InlineCode></TableCell>
-    <TableCell>{`<a />`}</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>Native</InlineCode></TableCell>
-    <TableCell>{`<Pressable />`}</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<a />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<Pressable />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### Props
 
 <>
-<Table>
-<TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-</TableHeader>
-<TableBody>
-  <TableRow>
-    <TableCell><InlineCode>href</InlineCode></TableCell>
-    <TableCell>string</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>URL that should be opened on Link press</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>onPress</InlineCode></TableCell>
-    <TableCell>(event?: GestureResponderEvent) => any</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>Callback that will be invoked on Link press</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isExternal</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>If true, link will be opened in new tab on web</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isHovered</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>When true, the link displays a hover state</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isFocusVisible</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>To manually set focus visible state to the link</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>size</InlineCode></TableCell>
-    <TableCell>xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl</TableCell>
-    <TableCell>md</TableCell>
-    <TableCell>The size of the link</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>href</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>URL that should be opened on Link press</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onPress</InlineCode>
+        </TableCell>
+        <TableCell>(event?: GestureResponderEvent) => any</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Callback that will be invoked on Link press</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isExternal</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>If true, link will be opened in new tab on web</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isHovered</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>When true, the link displays a hover state</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isFocusVisible</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set focus visible state to the link</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>
+          xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl
+        </TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>The size of the link</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### Features
@@ -287,8 +308,6 @@ We have outlined the various features that ensure the Link component is accessib
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 
-
-
   #### Default Link
 
   
@@ -309,8 +328,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Link, LinkText, HStack, Text }}
 />
-
-
 
 
   #### Link with Icon

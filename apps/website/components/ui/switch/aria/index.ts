@@ -1,1 +1,1 @@
-export { useSwitch } from "./useSwitch";
+export { useSwitch } from './useSwitch';

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Box,
@@ -11,32 +11,32 @@ import {
   Divider,
   Fab,
   FabIcon,
-} from "@/components/ui";
-import MeetCreators from "./MeetCreators";
-import { Newsletter } from "./Newsletter";
-import Footer from "./Footer";
-import Inspiration from "./Inspiration";
-import PowerOfTailwind from "./PowerOfTailwind";
-import Example from "./Example";
-import Fold3 from "./Fold3";
-import Fold1 from "./Fold1";
-import Fold2 from "./Fold2";
-import BadgeComponent from "./BadgeComponent";
-import { developersData } from "./Newsletter/data";
-import AwardBadge from "./AwardBadge";
-import MadeWithGluestack from "./MadeWithGluestack";
-import NextLink from "next/link";
-import { SocialMediaGridTestimonial } from "./Testimonials";
-import { Moon, Sun } from "lucide-react-native";
-import WebsiteLayout from "./WebsiteLayout";
-import useErrorShortcut from "./SentryTestComponent";
-import AnimatedStars from "@/components/page-components/landing-page/AnimatedGithubCount";
-import Kitchensink from "./Kitchensink";
-import VadimStream from "./VadimStream";
-import { Banner } from "./NativeBaseRedirectBanner";
-import { ThemeContext } from "@/utils/context/theme-context";
-import { useContext } from "react";
-import MCPServer from "./MCPServer";
+} from '@/components/ui';
+import MeetCreators from './MeetCreators';
+import { Newsletter } from './Newsletter';
+import Footer from './Footer';
+import Inspiration from './Inspiration';
+import PowerOfTailwind from './PowerOfTailwind';
+import Example from './Example';
+import Fold3 from './Fold3';
+import Fold1 from './Fold1';
+import Fold2 from './Fold2';
+import BadgeComponent from './BadgeComponent';
+import { developersData } from './Newsletter/data';
+import AwardBadge from './AwardBadge';
+import MadeWithGluestack from './MadeWithGluestack';
+import NextLink from 'next/link';
+import { SocialMediaGridTestimonial } from './Testimonials';
+import { Moon, Sun } from 'lucide-react-native';
+import WebsiteLayout from './WebsiteLayout';
+import useErrorShortcut from './SentryTestComponent';
+import AnimatedStars from '@/components/page-components/landing-page/AnimatedGithubCount';
+import Kitchensink from './Kitchensink';
+import VadimStream from './VadimStream';
+import { Banner } from './NativeBaseRedirectBanner';
+import { ThemeContext } from '@/utils/context/theme-context';
+import { useContext } from 'react';
+import MCPServer from './MCPServer';
 
 const App = ({ referrer }: { referrer: string }) => {
   const { colorMode, setColorMode } = useContext(ThemeContext);
@@ -66,7 +66,7 @@ const App = ({ referrer }: { referrer: string }) => {
                   size="2xl"
                   className="text-typography-950 md:text-lg text-lg font-normal inline"
                 >
-                  {" "}
+                  {' '}
                   Copy-paste UI components library & patterns crafted with
                   Tailwind CSS (NativeWind)
                 </Heading>
@@ -99,7 +99,7 @@ const App = ({ referrer }: { referrer: string }) => {
                   className="web:focus:shadow-none border border-outline-300 px-6 py-2 rounded hover:bg-secondary-50 active:bg-secondary-50 focus-visible:ring-2 focus-visible:ring-primary-200"
                   style={{
                     //@ts-ignore
-                    outline: "none",
+                    outline: 'none',
                   }}
                   target="_blank"
                 >
@@ -147,12 +147,12 @@ const App = ({ referrer }: { referrer: string }) => {
         <Box className="fixed bottom-0 right-0 min-[992px]:hidden ">
           <Fab
             onPress={() =>
-              setColorMode(colorMode === "light" ? "dark" : "light")
+              setColorMode(colorMode === 'light' ? 'dark' : 'light')
             }
             className="absolute z-10 bottom-8 right-4"
           >
             <FabIcon
-              as={colorMode === "light" ? Moon : Sun}
+              as={colorMode === 'light' ? Moon : Sun}
               className="stroke-typography-200"
             />
           </Fab>

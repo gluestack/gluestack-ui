@@ -24,7 +24,7 @@ export default function ComponentExamples() {
       "outline",
       "link"
     ],
-    "defaultValue": "outline"
+    "defaultValue": "solid"
   },
   "action": {
     "control": {

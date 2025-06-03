@@ -16,7 +16,7 @@ export function createPopover<
   FooterProps,
   BodyProps,
   BackdropProps,
-  CloseButtonProps
+  CloseButtonProps,
 >({
   Root,
   Arrow,

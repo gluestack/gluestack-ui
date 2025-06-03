@@ -2,7 +2,7 @@
 import { Text, View } from 'react-native';
 import React from 'react';
 import { createFormControl } from './creator';
-import { tva } from '@/utils/gluestack-utils/nativewind/utils'
+import { tva } from '@/utils/gluestack-utils/nativewind/utils';
 import {
   withStyleContext,
   useStyleContext,

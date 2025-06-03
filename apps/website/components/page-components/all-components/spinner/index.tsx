@@ -29,9 +29,10 @@ export default function Example() {
       "black",
       "orange",
       "purple",
-      "yellow"
+      "yellow",
+      "grey"
     ],
-    "defaultValue": "red"
+    "defaultValue": "grey"
   }
 }}
       reactLive={{ Spinner }}

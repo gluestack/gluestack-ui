@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-var flushStyles = "";
+var flushStyles = '';
 
 export function flush() {
-  return React.createElement("style", {
-    id: "nativewind-style",
-    key: "nativewind-style",
+  return React.createElement('style', {
+    id: 'nativewind-style',
+    key: 'nativewind-style',
     dangerouslySetInnerHTML: {
       __html: flushStyles,
     },

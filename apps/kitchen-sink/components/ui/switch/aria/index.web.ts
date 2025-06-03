@@ -1,1 +1,1 @@
-export { useSwitch } from "./useSwitch.web";
+export { useSwitch } from './useSwitch.web';

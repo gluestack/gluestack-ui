@@ -84,7 +84,9 @@ const Ticker = ({ h = '95vh', ...props }) => {
   }, []);
 
   if (starsCount === 0) {
-    return <Skeleton variant="sharp" className="h-[15px] w-[40px] rounded-sm" />;
+    return (
+      <Skeleton variant="sharp" className="h-[15px] w-[40px] rounded-sm" />
+    );
   } else {
     return (
       <Text className={`text-md text-typography-900 font-medium`}>

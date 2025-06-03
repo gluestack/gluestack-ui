@@ -75,7 +75,17 @@ export default function Example() {
   );
       }`}
       argTypes={{}}
-      reactLive={{ useMediaQuery, Box, Text, Icon, Laptop, Tablet, Smartphone, Tv, Heading }}
+      reactLive={{
+        useMediaQuery,
+        Box,
+        Text,
+        Icon,
+        Laptop,
+        Tablet,
+        Smartphone,
+        Tv,
+        Heading,
+      }}
     />
   );
 }

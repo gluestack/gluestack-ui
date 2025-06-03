@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ExitAnimationContext } from "@/components/ui/overlay/creator";
-import React, { forwardRef } from "react";
-import { Animated } from "react-native";
+import { ExitAnimationContext } from '@/components/ui/overlay/creator';
+import React, { forwardRef } from 'react';
+import { Animated } from 'react-native';
 
 const defaultTransitionConfig = {
-  type: "timing",
+  type: 'timing',
   useNativeDriver: true,
   duration: 0,
   delay: 0,
@@ -14,38 +14,38 @@ export const OverlayAnimatePresence = forwardRef(
   ({ children, visible = false, AnimatePresence, onExit }: any, ref?: any) => {
     const animateValue = React.useRef(new Animated.Value(0)).current;
 
-    const [animationState, setAnimationState] = React.useState("");
+    const [animationState, setAnimationState] = React.useState('');
 
     const prevVisible = React.useRef(visible);
     const { setExited }: any = React.useContext(ExitAnimationContext);
 
     React.useEffect(() => {
-      if (animationState === "entering" || animationState === "exiting") {
-        const startAnimation = animationState === "entering" ? 1 : 0;
+      if (animationState === 'entering' || animationState === 'exiting') {
+        const startAnimation = animationState === 'entering' ? 1 : 0;
 
         const transition = defaultTransitionConfig;
 
         if (AnimatePresence) {
           Animated.sequence([
-            Animated[transition.type ?? "timing"](animateValue, {
+            Animated[transition.type ?? 'timing'](animateValue, {
               toValue: startAnimation,
               useNativeDriver: true,
             }),
           ]).start(() => {
-            if (animationState === "entering") {
-              setAnimationState("entered");
-            } else if (animationState === "exiting") {
-              setAnimationState("exited");
+            if (animationState === 'entering') {
+              setAnimationState('entered');
+            } else if (animationState === 'exiting') {
+              setAnimationState('exited');
             }
           });
         }
         // });
       }
 
-      if (animationState === "exited") {
+      if (animationState === 'exited') {
         setExited(true);
         onExit();
-      } else if (animationState === "entered") {
+      } else if (animationState === 'entered') {
         setExited(false);
       }
       // if (animationState === 'entering') {
@@ -57,11 +57,11 @@ export const OverlayAnimatePresence = forwardRef(
     React.useEffect(() => {
       // if (!visible) {
       if (prevVisible.current !== visible && !visible) {
-        setAnimationState("exiting");
+        setAnimationState('exiting');
       }
 
       if (visible) {
-        setAnimationState("entering");
+        setAnimationState('entering');
       }
       prevVisible.current = visible;
       // }

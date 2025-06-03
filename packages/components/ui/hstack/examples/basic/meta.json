@@ -1,21 +1,21 @@
 {
-    "argTypes": {
-      "space": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
-        "defaultValue": "md"
+  "argTypes": {
+    "space": {
+      "control": {
+        "type": "select"
       },
-      "isReversed": {
-        "control": {
-          "type": "boolean"
-        },
-        "defaultValue": false
-      }
+      "options": ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl"],
+      "defaultValue": "md"
     },
-    "reactLive": {
-      "HStack": "@/components/ui/hstack",
-      "Box": "@/components/ui/box"
+    "isReversed": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
     }
+  },
+  "reactLive": {
+    "HStack": "@/components/ui/hstack",
+    "Box": "@/components/ui/box"
   }
+}

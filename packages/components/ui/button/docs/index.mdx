@@ -10,18 +10,24 @@ pageDescription: Discover a powerful button component for React & React Native w
 showHeader: true
 ---
 
-import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
-import {Tabs,TabItem} from '@/docs-components/tabs'
-import {AnatomyImage} from '@/docs-components/anatomy-image'
-import {InlineCode} from '@/docs-components/inline-code'
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # Button
-<br/>
 
 Discover a powerful button component for React & React Native with customizable size, shape, color, and behavior. Perfect for UI design & seamless user interactions.
 
-<br/>
- This is an illustration of __Button__ component.
+ This is an illustration of **Button** component.
+
 ///{Example:basic}///
 <br/>
 ## Installation
@@ -41,12 +47,12 @@ npm i @gluestack-ui/button
 
 ### Step 2: Copy and paste the following code into your project.
 
-```jsx 
-%%-- File: packages/components/ui/button/index.tsx --%% 
+```jsx
+%%-- File: packages/components/ui/button/index.tsx --%%
 ```
 
-
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -64,7 +70,11 @@ import {
 } from '@/components/ui/button';
 ```
 
-<AnatomyImage mobileUrl='https://i.imgur.com/64ja4mQ.png' webUrl='https://i.imgur.com/eLSw4hK.png' classNameStyle='aspect-[513/296] md:aspect-[736/228]' />
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/64ja4mQ.png"
+  webUrl="https://i.imgur.com/eLSw4hK.png"
+  classNameStyle="aspect-[513/296] md:aspect-[736/228]"
+/>
 
 ```jsx
 export default () => (
@@ -88,41 +98,48 @@ Contains all button related layout style props and actions. It inherits all the 
 
 <>
 
-  <Table>
-    <TableBody>
-      <TableRow>
-        <TableHeaderCell>Prop</TableHeaderCell>
-        <TableHeaderCell>Type</TableHeaderCell>
-        <TableHeaderCell>Default</TableHeaderCell>
-        <TableHeaderCell>Description</TableHeaderCell>
-      </TableRow>
-      <TableRow>
-        <TableCell><InlineCode>isHovered</InlineCode></TableCell>
-        <TableCell>bool</TableCell>
-        <TableCell>false</TableCell>
-        <TableCell>To manually set hover to the button.</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell><InlineCode>isPressed</InlineCode></TableCell>
-        <TableCell>bool</TableCell>
-        <TableCell>false</TableCell>
-        <TableCell>To manually set pressable state to the button.</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell><InlineCode>isFocused</InlineCode></TableCell>
-        <TableCell>bool</TableCell>
-        <TableCell>false</TableCell>
-        <TableCell>To manually set focused state to the button.</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell><InlineCode>isDisabled</InlineCode></TableCell>
-        <TableCell>bool</TableCell>
-        <TableCell>false</TableCell>
-        <TableCell>To manually set disable to the button.</TableCell>
-      </TableRow>
-    </TableBody>
-  </Table>
-
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isHovered</InlineCode>
+      </TableCell>
+      <TableCell>bool</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>To manually set hover to the button.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isPressed</InlineCode>
+      </TableCell>
+      <TableCell>bool</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>To manually set pressable state to the button.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isFocused</InlineCode>
+      </TableCell>
+      <TableCell>bool</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>To manually set focused state to the button.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isDisabled</InlineCode>
+      </TableCell>
+      <TableCell>bool</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>To manually set disable to the button.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
 
 </>
 
@@ -136,7 +153,7 @@ Contains all group related layout style props and actions. It inherits all the p
 
 <>
   <Table>
-  <TableHeader>
+    <TableHeader>
       <TableRow>
         <TableHeaderCell>Prop</TableHeaderCell>
         <TableHeaderCell>Type</TableHeaderCell>
@@ -146,31 +163,49 @@ Contains all group related layout style props and actions. It inherits all the p
     </TableHeader>
     <TableBody>
       <TableRow>
-        <TableCell><InlineCode>flexDirection</InlineCode></TableCell>
-        <TableCell>'row' | 'column' | 'row-reverse' | 'column-reverse'</TableCell>
+        <TableCell>
+          <InlineCode>flexDirection</InlineCode>
+        </TableCell>
+        <TableCell>
+          'row' | 'column' | 'row-reverse' | 'column-reverse'
+        </TableCell>
         <TableCell>'row'</TableCell>
-        <TableCell>Set the direction of Button group to vertical or horizontal</TableCell>
+        <TableCell>
+          Set the direction of Button group to vertical or horizontal
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>isDisabled</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
-        <TableCell>When true, this will disable all the buttons in a ButtonGroup.</TableCell>
+        <TableCell>
+          When true, this will disable all the buttons in a ButtonGroup.
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>isAttached</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>isAttached</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
-        <TableCell>When attached, all buttons will be attached to each other.</TableCell>
+        <TableCell>
+          When attached, all buttons will be attached to each other.
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>reversed</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>reversed</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
         <TableCell>To reverse the order of components.</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>space</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>space</InlineCode>
+        </TableCell>
         <TableCell>string</TableCell>
         <TableCell>md</TableCell>
         <TableCell>It sets the space between different buttons.</TableCell>
@@ -226,20 +261,28 @@ Button component is created using Pressable component from react-native. It exte
         <TableHeaderCell>Value</TableHeaderCell>
         <TableHeaderCell>Default</TableHeaderCell>
       </TableRow>
-      </TableHeader>
-      <TableBody>
+    </TableHeader>
+    <TableBody>
       <TableRow>
-        <TableCell><InlineCode>action</InlineCode></TableCell>
-        <TableCell>primary | secondary | positive | negative | default</TableCell>
+        <TableCell>
+          <InlineCode>action</InlineCode>
+        </TableCell>
+        <TableCell>
+          primary | secondary | positive | negative | default
+        </TableCell>
         <TableCell>primary</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>variant</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>variant</InlineCode>
+        </TableCell>
         <TableCell>link | outline | solid</TableCell>
         <TableCell>solid</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>size</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
         <TableCell>xs | sm | md | lg | xl</TableCell>
         <TableCell>md</TableCell>
       </TableRow>
@@ -249,10 +292,9 @@ Button component is created using Pressable component from react-native. It exte
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
 
-
 ### Data Attributes Table
 
-Component receives states as props as boolean values, which are applied as ```data-*``` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+Component receives states as props as boolean values, which are applied as `data-*` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
 
 <>
   <Table>
@@ -265,46 +307,55 @@ Component receives states as props as boolean values, which are applied as ```da
     </TableHeader>
     <TableBody>
       <TableRow>
-        <TableCell><InlineCode>hover</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>hover</InlineCode>
+        </TableCell>
         <TableCell>data-hover</TableCell>
-        <TableCell><InlineCode>true | false</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>active</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>active</InlineCode>
+        </TableCell>
         <TableCell>data-active</TableCell>
-        <TableCell><InlineCode>true | false</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>disabled</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>disabled</InlineCode>
+        </TableCell>
         <TableCell>data-disabled</TableCell>
-        <TableCell><InlineCode>true | false</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>focusVisible</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>focusVisible</InlineCode>
+        </TableCell>
         <TableCell>data-focus-visible</TableCell>
-        <TableCell><InlineCode>true | false</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
       </TableRow>
     </TableBody>
   </Table>
 </>
 
-
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-
-
 /// {Example:with-loading-state} ///
-
 
 /// {Example:icon-button} ///
 
-
 /// {Example:link-button} ///
 
-
 /// {Example:with-icon} ///
-
 
 /// {Example:full-width} ///

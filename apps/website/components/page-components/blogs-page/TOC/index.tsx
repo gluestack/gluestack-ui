@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { Box, Link, Text, LinkText } from "@/components/ui";
-import Head from "next/head";
+import React, { useEffect } from 'react';
+import { Box, Link, Text, LinkText } from '@/components/ui';
+import Head from 'next/head';
 
 type Item = {
   id: string;
@@ -11,7 +11,7 @@ export const TOC = ({ items }: { items: Item[] }) => {
   const [selected, setSelected] = React.useState(items[0].id);
 
   const handleScroll = (scrollContainer: Element) => {
-    const sections = document.querySelectorAll("h1, h2, h3, h4, h5");
+    const sections = document.querySelectorAll('h1, h2, h3, h4, h5');
     const scrollPosition = scrollContainer.scrollTop;
     const containerTop = scrollContainer.getBoundingClientRect().top;
 
@@ -41,8 +41,8 @@ export const TOC = ({ items }: { items: Item[] }) => {
 
     if (currentSection) {
       // Get the text content of the heading and convert it to an ID
-      const headingText = (currentSection as HTMLElement).textContent || "";
-      const headingId = headingText.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      const headingText = (currentSection as HTMLElement).textContent || '';
+      const headingId = headingText.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
       // Find the matching TOC item
       const matchingItem = items.find(
@@ -59,12 +59,12 @@ export const TOC = ({ items }: { items: Item[] }) => {
 
   useEffect(() => {
     // Add IDs to headings if they don't exist
-    const sections = document.querySelectorAll("h1, h2, h3, h4, h5");
+    const sections = document.querySelectorAll('h1, h2, h3, h4, h5');
     sections.forEach((section: Element) => {
       const htmlElement = section as HTMLElement;
       if (!htmlElement.id) {
-        const headingText = htmlElement.textContent || "";
-        const headingId = headingText.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        const headingText = htmlElement.textContent || '';
+        const headingId = headingText.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         htmlElement.id = headingId;
       }
     });
@@ -75,8 +75,8 @@ export const TOC = ({ items }: { items: Item[] }) => {
       const selectors = [
         '[class*="h-screen"][class*="overflow-y-scroll"]',
         '[class*="h-screen"][class*="overflow-hidden"]',
-        ".overflow-y-scroll",
-        ".overflow-y-auto",
+        '.overflow-y-scroll',
+        '.overflow-y-auto',
       ];
 
       for (const selector of selectors) {
@@ -99,11 +99,11 @@ export const TOC = ({ items }: { items: Item[] }) => {
     };
 
     if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", scrollHandler);
+      scrollContainer.addEventListener('scroll', scrollHandler);
       // Initial call to set the correct section
       setTimeout(() => handleScroll(scrollContainer), 100);
 
-      return () => scrollContainer.removeEventListener("scroll", scrollHandler);
+      return () => scrollContainer.removeEventListener('scroll', scrollHandler);
     }
   }, [items]);
 
@@ -127,8 +127,8 @@ export const TOC = ({ items }: { items: Item[] }) => {
                 className={
                   `text-sm leading-5 font-body  no-underline ` +
                   (selected === item.id
-                    ? "text-typography-900"
-                    : "text-typography-500")
+                    ? 'text-typography-900'
+                    : 'text-typography-500')
                 }
               >
                 {item.title.trim()}

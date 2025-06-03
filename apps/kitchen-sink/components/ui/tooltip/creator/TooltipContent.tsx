@@ -48,14 +48,14 @@ export function TooltipContent<StyledTooltipContentProps>(
         calculatedPlacement === 'top'
           ? 6
           : calculatedPlacement === 'bottom'
-          ? -6
-          : 0,
+            ? -6
+            : 0,
       x:
         calculatedPlacement === 'right'
           ? -6
           : calculatedPlacement === 'left'
-          ? 6
-          : 0,
+            ? 6
+            : 0,
     };
 
     const animatedStyles = {

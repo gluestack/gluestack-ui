@@ -1,7 +1,7 @@
-import React, { forwardRef } from "react";
-import { useControllableState } from "@/utils/gluestack-utils/hooks/src";
-import { Overlay } from "@/components/ui/overlay/creator";
-import { PopoverProvider } from "./PopoverContext";
+import React, { forwardRef } from 'react';
+import { useControllableState } from '@/utils/gluestack-utils/hooks/src';
+import { Overlay } from '@/components/ui/overlay/creator';
+import { PopoverProvider } from './PopoverContext';
 
 export const Popover = (StyledPopover: any) =>
   forwardRef(
@@ -18,7 +18,7 @@ export const Popover = (StyledPopover: any) =>
         useRNModal,
         focusScope = true,
         trapFocus = true,
-        placement = "bottom",
+        placement = 'bottom',
         shouldOverlapWithTrigger = false,
         crossOffset,
         offset,
@@ -43,7 +43,7 @@ export const Popover = (StyledPopover: any) =>
 
       var idCounter = 0;
 
-      function uniqueId(prefix = "") {
+      function uniqueId(prefix = '') {
         var id = ++idCounter;
         return prefix + id;
       }
@@ -65,11 +65,11 @@ export const Popover = (StyledPopover: any) =>
       const updatedTrigger = (reference: any) => {
         return trigger(
           {
-            ref: reference,
-            onPress: handleOpen,
-            "aria-expanded": isOpen ? true : false,
-            "aria-controls": isOpen ? popoverContentId : undefined,
-            "aria-haspopup": true,
+            'ref': reference,
+            'onPress': handleOpen,
+            'aria-expanded': isOpen ? true : false,
+            'aria-controls': isOpen ? popoverContentId : undefined,
+            'aria-haspopup': true,
           },
           { open: isOpen }
         );
@@ -86,7 +86,7 @@ export const Popover = (StyledPopover: any) =>
       const contextValue: any = React.useMemo(() => {
         return {
           targetRef,
-          strategy: "absolute",
+          strategy: 'absolute',
           handleClose,
           initialFocusRef,
           finalFocusRef,

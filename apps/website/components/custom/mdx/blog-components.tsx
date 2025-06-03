@@ -1,25 +1,25 @@
-import CodeBlock from "@/components/custom/markdown/code-block";
-import React from "react";
-import { Heading } from "@/components/ui/heading";
-import { Text } from "@/components/ui/text";
-import { Link } from "@/components/ui/link";
+import CodeBlock from '@/components/custom/markdown/code-block';
+import React from 'react';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { Link } from '@/components/ui/link';
 interface CodeProps {
   children: string;
   className?: string;
 }
-import { LI } from "@/components/custom/markdown/li";
-import { InlineCode } from "@/components/docs-components/inline-code";
-import { BlockQuote } from "@/components/custom/markdown/note/page";
-import { OL } from "@/components/custom/markdown/ol";
-import { UL } from "@/components/custom/markdown/ul";
+import { LI } from '@/components/custom/markdown/li';
+import { InlineCode } from '@/components/docs-components/inline-code';
+import { BlockQuote } from '@/components/custom/markdown/note/page';
+import { OL } from '@/components/custom/markdown/ol';
+import { UL } from '@/components/custom/markdown/ul';
 
 function containsAny(targetString: string) {
   const stringsToCheck: string[] = [
-    "gluestack.io",
-    "ui",
-    "style",
-    "enterprise",
-    "contact-us",
+    'gluestack.io',
+    'ui',
+    'style',
+    'enterprise',
+    'contact-us',
   ];
   for (const str of stringsToCheck) {
     if (targetString.includes(str)) {
@@ -85,9 +85,9 @@ export const blogComponents = {
     );
   },
   pre: ({ children }: { children: React.ReactElement<CodeProps> }) => {
-    const code = children?.props?.children || "";
+    const code = children?.props?.children || '';
     const language =
-      children?.props?.className?.replace("language-", "") || "jsx";
+      children?.props?.className?.replace('language-', '') || 'jsx';
     return <CodeBlock code={code} language={language} />;
   },
   code: (props: any) => <InlineCode {...props} />,

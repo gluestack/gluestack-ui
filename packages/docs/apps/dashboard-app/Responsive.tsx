@@ -72,9 +72,7 @@ function Responsiveness({
         }}
         handleComponent={{
           right: (
-            <Box
-              className="hidden md:flex"
-            >
+            <Box className="hidden md:flex">
               <Expand />
             </Box>
           ),
@@ -184,9 +182,7 @@ function Responsiveness({
         </Box>
       </Resizable>
 
-      <Box
-        className="mt-[-12px] mb-6 border-radius-lg border-width-1 border-color-borderDark800 bg-backgroundDark950 p-4 w-auto self-start"
-      >
+      <Box className="mt-[-12px] mb-6 border-radius-lg border-width-1 border-color-borderDark800 bg-backgroundDark950 p-4 w-auto self-start">
         <Box>
           <Text className="text-typography-900 font-bold font-Inter" size="xl">
             Give it a shot!
@@ -228,7 +224,7 @@ function Responsiveness({
             //       },
             //     },
             //   },
-           
+
             // }}
             onPress={() =>
               checkPlatform({
@@ -246,7 +242,6 @@ function Responsiveness({
 
           <Pressable
             className="flex py-1 px-3 mt-5 border-color-borderDark700 border-radius-sm border-width-1 bg-transparent flex-row items-center w-auto self-start border-color-borderDark700 bg-transparent "
-
             // borderWidth={1}
             // bg="transparent"
             // flexDirection="row"
@@ -285,14 +280,8 @@ function Responsiveness({
             </Text>
           </Pressable>
         </Box>
-        <Box
-          className="ml-10 hidden md:flex flex-row justify-center items-center "
-        >
-          <Image
-            alt="qr-code"
-            className="w-24 h-24"
-            source={qrCodeUri}
-          />
+        <Box className="ml-10 hidden md:flex flex-row justify-center items-center ">
+          <Image alt="qr-code" className="w-24 h-24" source={qrCodeUri} />
         </Box>
       </Box>
     </Box>

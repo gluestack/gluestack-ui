@@ -17,8 +17,8 @@ const useProgress = ({
     value < max && value > min
       ? Math.round(((value - min) / (max - min)) * 100)
       : value > min
-      ? 100
-      : 0;
+        ? 100
+        : 0;
 
   return {
     'accessible': true,

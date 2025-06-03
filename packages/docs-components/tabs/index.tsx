@@ -22,9 +22,7 @@ export const Tabs = ({ children }) => {
           </button>
         ))}
       </div>
-      <div className="py-4">
-        {React.Children.toArray(children)[activeTab]}
-      </div>
+      <div className="py-4">{React.Children.toArray(children)[activeTab]}</div>
     </div>
   );
 };

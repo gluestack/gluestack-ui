@@ -5,7 +5,7 @@ type WithStyleContextProps = {
   states?: any;
 };
 export declare const withStyleContextAndStates: <
-  T extends React.ComponentType<any>
+  T extends React.ComponentType<any>,
 >(
   Component: T,
   scope?: string

@@ -67,7 +67,7 @@ export type IAlertDialogComponentType<
   StyledAlertDialogHeader,
   StyledAlertDialogFooter,
   StyledAlertDialogBody,
-  StyledAlertDialogBackdrop
+  StyledAlertDialogBackdrop,
 > = React.ForwardRefExoticComponent<
   React.RefAttributes<StyledAlertDialog> &
     React.PropsWithoutRef<StyledAlertDialog & IAlertDialogProps>

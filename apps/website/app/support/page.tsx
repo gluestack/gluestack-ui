@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import { Box } from "@/components/ui";
-import BadgeComponent from "@/components/page-components/landing-page/BadgeComponent";
-import Footer from "@/components/page-components/landing-page/Footer";
-import SupportFormFold from "./SupportFormFold";
-import BackedByGeekyAnts from "./BackedByGeekyAnts";
-import Diversified from "./Diversified";
-import WebsiteLayout from "@/components/page-components/landing-page/WebsiteLayout";
+'use client';
+import React from 'react';
+import { Box } from '@/components/ui';
+import BadgeComponent from '@/components/page-components/landing-page/BadgeComponent';
+import Footer from '@/components/page-components/landing-page/Footer';
+import SupportFormFold from './SupportFormFold';
+import BackedByGeekyAnts from './BackedByGeekyAnts';
+import Diversified from './Diversified';
+import WebsiteLayout from '@/components/page-components/landing-page/WebsiteLayout';
 
 const Support = () => {
   return (

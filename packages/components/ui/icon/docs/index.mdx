@@ -12,7 +12,7 @@ showHeader: true
 tag: RSC
 ---
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -20,13 +20,17 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # Icon
+
 Use gluestack-ui Icon component to enhance your web and mobile app with scalable component icons. A must-have React Native icon library for modern development!
-### This is an illustration of Icon component.
+
+This is an illustration of **Icon** component.
+
 /// {Example:basic} ///
+<br/>
 ## Installation
 
 <Tabs>
@@ -45,10 +49,11 @@ npm i @gluestack-ui/icon
 ### Step 2: Copy and paste the following code into your project.
 
 ```tsx
-%%-- File: packages/components/ui/icon/index.tsx --%% 
+%%-- File: packages/components/ui/icon/index.tsx --%%
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -85,38 +90,34 @@ We have outlined the various features that ensure the Icon component is accessib
 Role: img is passed
 
 <>
-<Table>
-<TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-  </TableHeader>
-  <TableBody>
-  <TableRow>
-    <TableCell><InlineCode>size</InlineCode></TableCell>
-    <TableCell>2xs | xs | sm | md | lg | xl</TableCell>
-    <TableCell>md</TableCell>
-    <TableCell>The size of the icon.</TableCell>
-  </TableRow>
-  </TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>2xs | xs | sm | md | lg | xl</TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>The size of the icon.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-
-
 /// {Example:all-icons} ///
-
-
 
 /// {Example:lucide} ///
 
-
 /// {Example:custom} ///
-

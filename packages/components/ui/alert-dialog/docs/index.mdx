@@ -10,8 +10,7 @@ pageDescription: Build seamless React Native dialogs with the AlertDialog compon
 showHeader: true
 ---
 
-
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -19,15 +18,15 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # AlertDialog
 
 Build seamless React Native dialogs with the AlertDialog component. Enhance user engagement with smooth and responsive modal prompts.
 
+This is an illustration of **AlertDialog** component.
 
-### This is an illustration of AlertDialog component.
 /// {Example:basic} ///
 
 <br />
@@ -71,8 +70,7 @@ import {
   AlertDialogCloseButton,
   AlertDialogFooter,
   AlertDialogBody,
-} from "@/components/ui/alert-dialog"
-
+} from '@/components/ui/alert-dialog';
 ```
 
 ```ts
@@ -101,70 +99,102 @@ This section provides a comprehensive reference list for the component props, de
 Contains all alert dialog related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <>
-<Table>
-<TableBody>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isOpen</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>If true, the alert-dialog will open. Useful for controllable state behavior.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>onClose</InlineCode></TableCell>
-    <TableCell>() => any</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>Callback invoked when the alert-dialog is closed.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>useRNModal</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>If true, renders react-native native modal. (Only works in react-native)</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>defaultIsOpen</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>Specifies the default open state of the AlertDialog</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>initialFocusRef</InlineCode></TableCell>
-    <TableCell>{`React.RefObject<any>`}</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>The ref of element to receive focus when the alert-dialog opens.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>finalFocusRef</InlineCode></TableCell>
-    <TableCell>{`React.RefObject<any>`}</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>The ref of element to receive focus when the alert-dialog closes.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>avoidKeyboard</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>If true, the AlertDialog will avoid the keyboard.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>closeOnOverlayClick</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>true</TableCell>
-    <TableCell>If true, the AlertDialog will close when the overlay is clicked.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isKeyboardDismissable</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>true</TableCell>
-    <TableCell>If true, the keyboard can dismiss the AlertDialog</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isOpen</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          If true, the alert-dialog will open. Useful for controllable state
+          behavior.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onClose</InlineCode>
+        </TableCell>
+        <TableCell>() => any</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Callback invoked when the alert-dialog is closed.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>useRNModal</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          If true, renders react-native native modal. (Only works in
+          react-native)
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>defaultIsOpen</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          Specifies the default open state of the AlertDialog
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>initialFocusRef</InlineCode>
+        </TableCell>
+        <TableCell>{`React.RefObject<any>`}</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          The ref of element to receive focus when the alert-dialog opens.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>finalFocusRef</InlineCode>
+        </TableCell>
+        <TableCell>{`React.RefObject<any>`}</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          The ref of element to receive focus when the alert-dialog closes.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>avoidKeyboard</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>If true, the AlertDialog will avoid the keyboard.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>closeOnOverlayClick</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>true</TableCell>
+        <TableCell>
+          If true, the AlertDialog will close when the overlay is clicked.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isKeyboardDismissable</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>true</TableCell>
+        <TableCell>If true, the keyboard can dismiss the AlertDialog</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 #### AlertDialogBackdrop
@@ -201,10 +231,10 @@ We have outlined the various features that ensure the AlertDialog component is a
 
 #### Keyboard
 
-- `Tab`: 
+- `Tab`:
   - Moves focus to the next tabbable element inside the dialog.
   - If focus is on the last tabbable element inside the dialog, moves focus to the first tabbable element inside the dialog.
-- `Shift + Tab`: 
+- `Shift + Tab`:
   - Moves focus to the previous tabbable element inside the dialog.
   - If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.
 - `Escape`: Closes the dialog.
@@ -224,28 +254,29 @@ AlertDialog component is created using View component from react-native. It exte
 #### AlertDialog
 
 <>
-<Table>
-  <TableHeader>
-  <TableRow>
-    <TableHeaderCell>Name</TableHeaderCell>
-    <TableHeaderCell>Value</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-  </TableRow>
-  </TableHeader>
-  <TableBody>
-  <TableRow>
-    <TableCell><InlineCode>size</InlineCode></TableCell>
-    <TableCell>xs | sm | md | lg | full</TableCell>
-    <TableCell>md</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Value</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>xs | sm | md | lg | full</TableCell>
+        <TableCell>md</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
 
 /// {Example:with-image} ///
 

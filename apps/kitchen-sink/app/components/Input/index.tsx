@@ -18,7 +18,7 @@ export default function ComponentExamples() {
     "control": {
       "type": "boolean"
     },
-    "defaultValue": true
+    "defaultValue": false
   },
   "isInvalid": {
     "control": {

@@ -11,7 +11,7 @@ export function createAvatar<
   BadgeProps,
   GroupProps,
   ImageProps,
-  FallbackTextProps
+  FallbackTextProps,
 >({
   Root,
   Badge,

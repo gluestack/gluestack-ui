@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import Handlebars from "handlebars";
-import { LiveProvider, LiveError, LivePreview } from "react-live";
-import CodeBlock from "@/components/custom/markdown/code-block";
-import { Box, ChevronDownIcon, Switch, Text } from "@/components/ui";
+import { useState, useEffect } from 'react';
+import Handlebars from 'handlebars';
+import { LiveProvider, LiveError, LivePreview } from 'react-live';
+import CodeBlock from '@/components/custom/markdown/code-block';
+import { Box, ChevronDownIcon, Switch, Text } from '@/components/ui';
 
 import {
   Select,
@@ -15,7 +15,7 @@ import {
   SelectDragIndicator,
   SelectDragIndicatorWrapper,
   SelectItem,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 
 export function CodePreviewer({
   code,
@@ -58,7 +58,7 @@ export function CodePreviewer({
   const ArgController = ({ name, config }: { name: string; config: any }) => {
     const { control, options, defaultValue } = config;
 
-    if (control?.type === "select") {
+    if (control?.type === 'select') {
       return (
         <Box className="control-item">
           <Text className="text-lg">{name}:</Text>
@@ -97,7 +97,7 @@ export function CodePreviewer({
       );
     }
 
-    if (control?.type === "boolean" || typeof defaultValue === "boolean") {
+    if (control?.type === 'boolean' || typeof defaultValue === 'boolean') {
       return (
         <Box className="flex flex-col gap-2">
           <Text className="text-lg" htmlFor={name}>
@@ -106,10 +106,10 @@ export function CodePreviewer({
           <Switch
             size="md"
             isDisabled={false}
-            trackColor={{ false: "#D4D4D4", true: "#005DB4" }}
-            thumbColor={"#FAFAFA"}
-            activeThumbColor={"#FAFAFA"}
-            ios_backgroundColor={"#D4D4D4"}
+            trackColor={{ false: '#D4D4D4', true: '#005DB4' }}
+            thumbColor={'#FAFAFA'}
+            activeThumbColor={'#FAFAFA'}
+            ios_backgroundColor={'#D4D4D4'}
             value={values[name] ?? defaultValue}
             onToggle={() => handleChange(name, !values[name])}
           />

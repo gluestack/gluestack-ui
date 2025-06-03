@@ -69,7 +69,7 @@ export type IActionsheetComponentType<
   FlatListProps,
   SectionListProps,
   SectionHeaderTextProps,
-  IconProps
+  IconProps,
 > = React.ForwardRefExoticComponent<
   React.RefAttributes<ActionsheetProps> &
     React.PropsWithoutRef<ActionsheetProps & IActionsheetProps>

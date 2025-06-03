@@ -90,7 +90,7 @@ export type IAccordionComponentType<
   ContentProps,
   IconProps,
   TitleTextProps,
-  ContentTextProps
+  ContentTextProps,
 > = React.ForwardRefExoticComponent<
   React.PropsWithoutRef<AccordionProps & IAccordionProps> &
     React.RefAttributes<AccordionProps>

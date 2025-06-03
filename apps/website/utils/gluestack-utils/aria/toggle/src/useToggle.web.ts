@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import { AriaToggleProps } from "@react-types/checkbox";
-import { filterDOMProps, mergeProps } from "@react-aria/utils";
-import { InputHTMLAttributes, RefObject } from "react";
-import { ToggleState } from "@react-stately/toggle";
-import { useFocusable } from "@react-aria/focus";
-import { usePress } from "@/utils/gluestack-utils/aria/interactions/src";
+import { AriaToggleProps } from '@react-types/checkbox';
+import { filterDOMProps, mergeProps } from '@react-aria/utils';
+import { InputHTMLAttributes, RefObject } from 'react';
+import { ToggleState } from '@react-stately/toggle';
+import { useFocusable } from '@react-aria/focus';
+import { usePress } from '@/utils/gluestack-utils/aria/interactions/src';
 
 export interface ToggleAria {
   /**
@@ -39,9 +39,9 @@ export function useToggle(
     value,
     name,
     children,
-    "aria-label": ariaLabel,
-    "aria-labelledby": ariaLabelledby,
-    validationState = "valid",
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    validationState = 'valid',
   } = props;
 
   let onChange = (e: any) => {
@@ -55,7 +55,7 @@ export function useToggle(
   let hasAriaLabel = ariaLabel != null || ariaLabelledby != null;
   if (!hasChildren && !hasAriaLabel) {
     console.warn(
-      "If you do not provide children, you must specify an aria-label for accessibility"
+      'If you do not provide children, you must specify an aria-label for accessibility'
     );
   }
 
@@ -70,16 +70,16 @@ export function useToggle(
 
   return {
     inputProps: mergeProps(domProps, {
-      "aria-invalid": validationState === "invalid" || undefined,
-      "aria-errormessage": props["aria-errormessage"],
-      "aria-controls": props["aria-controls"],
-      "aria-readonly": isReadOnly || undefined,
+      'aria-invalid': validationState === 'invalid' || undefined,
+      'aria-errormessage': props['aria-errormessage'],
+      'aria-controls': props['aria-controls'],
+      'aria-readonly': isReadOnly || undefined,
       onChange,
-      disabled: isDisabled,
-      required: isRequired,
+      'disabled': isDisabled,
+      'required': isRequired,
       value,
       name,
-      type: "checkbox",
+      'type': 'checkbox',
       ...interactions,
     }),
   };

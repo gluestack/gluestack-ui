@@ -1,6 +1,6 @@
-"use client";
-import { HStack, Text, VStack } from "@/components/ui";
-import NextImage from "next/image";
+'use client';
+import { HStack, Text, VStack } from '@/components/ui';
+import NextImage from 'next/image';
 
 function CardInfo({
   iconSrc,

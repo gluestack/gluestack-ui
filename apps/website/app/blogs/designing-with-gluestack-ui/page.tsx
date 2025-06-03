@@ -1,7 +1,7 @@
-"use client";
-import { Box } from "@/components/ui";
-import DesigningWithGluestackUI from "./blog.mdx";
-import BlogsPageLayout from "@/components/page-components/blogs-page/BlogsPageLayout";
+'use client';
+import { Box } from '@/components/ui';
+import DesigningWithGluestackUI from './blog.mdx';
+import BlogsPageLayout from '@/components/page-components/blogs-page/BlogsPageLayout';
 
 const DesigningWithGluestackUIV2 = () => {
   return (

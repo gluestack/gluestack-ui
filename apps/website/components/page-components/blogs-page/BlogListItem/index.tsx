@@ -1,7 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
-import { BlogHeader } from "../BlogHeader";
-import { Box } from "@/components/ui";
+import Link from 'next/link';
+import Image from 'next/image';
+import { BlogHeader } from '../BlogHeader';
+import { Box } from '@/components/ui';
 
 export const BlogListItem = ({ key, blog }: { key: number; blog: any }) => {
   return (
@@ -11,7 +11,7 @@ export const BlogListItem = ({ key, blog }: { key: number; blog: any }) => {
     >
       {blog.cover && (
         <Box className="w-full aspect-[357/200.99] max-w-[357px] rounded-sm overflow-hidden">
-          <Link href={"/blogs/" + blog.slug}>
+          <Link href={'/blogs/' + blog.slug}>
             <Image src={blog.cover} alt={blog.title} fill />
           </Link>
         </Box>

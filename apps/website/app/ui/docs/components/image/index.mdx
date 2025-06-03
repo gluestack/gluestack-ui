@@ -1,7 +1,7 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Image } from '@/components/ui/image';
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -9,14 +9,15 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # Image
 
 Enhance your app with the Image component from gluestack-ui. Build seamless UI component images in React & React Native with ease. Explore the docs now!
 
-### This is an illustration of Image component.
+This is an illustration of **Image** component.
+
 
   
 
@@ -54,6 +55,7 @@ Enhance your app with the Image component from gluestack-ui. Build seamless UI c
   reactLive={{ Image }}
 />
 
+<br/>
 ## Installation
 
 <Tabs>
@@ -121,10 +123,11 @@ const Image = React.forwardRef<
 
 Image.displayName = 'Image';
 export { Image };
- 
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -149,24 +152,28 @@ This section provides a comprehensive reference list for the component props, de
 It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image) component.
 
 <>
-<Table>
-<TableHeader>
-  <TableRow>
-    <TableHeaderCell>Platform</TableHeaderCell>
-    <TableHeaderCell>Output</TableHeaderCell>
-  </TableRow>
-</TableHeader>
-<TableBody>
-  <TableRow>
-    <TableCell><InlineCode>Web</InlineCode></TableCell>
-    <TableCell>{`<img />`}</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>Native</InlineCode></TableCell>
-    <TableCell>{`<Image />`}</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<img />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<Image />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### Props
@@ -174,45 +181,51 @@ It inherits all the properties of React Native's [Image](https://reactnative.dev
 Image component is created using Image component from react-native. It extends all the props supported by [React Native Image](https://reactnative.dev/docs/image#props).
 
 <>
-<Table>
-<TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-</TableHeader>
-<TableBody>
-  <TableRow>
-    <TableCell><InlineCode>source</InlineCode></TableCell>
-    <TableCell>ImageSourcePropType</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>The source of the image</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>alt</InlineCode></TableCell>
-    <TableCell>string</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>The alt text for the image</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>size</InlineCode></TableCell>
-    <TableCell>2xs | xs | sm | md | lg | xl | 2xl | full</TableCell>
-    <TableCell>md</TableCell>
-    <TableCell>The size of the image</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>source</InlineCode>
+        </TableCell>
+        <TableCell>ImageSourcePropType</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>The source of the image</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>alt</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>The alt text for the image</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>2xs | xs | sm | md | lg | xl | 2xl | full</TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>The size of the image</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### Examples
 
 The Examples section offers visual previews of the component, letting you quickly identify the best fit for your needs. Just copy the code and use it in your project.
 
-#### Basic Unitools Image 
+#### Basic Unitools Image
 
-The below example will run for both Expo and Next.js projects. For installation steps, refer to the [Installation](https://unitools.geekyants.com/packages/image/) section of ```@unitools/image```.
+The below example will run for both Expo and Next.js projects. For installation steps, refer to the [Installation](https://unitools.geekyants.com/packages/image/) section of `@unitools/image`.
 
 ```ts
 import Image from '@unitools/image';

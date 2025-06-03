@@ -4,9 +4,16 @@ import { VStack } from '@/components/ui/vstack';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 
-import {Tabs,TabItem} from '@/docs-components/tabs'
-import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
-import {InlineCode} from '@/docs-components/inline-code'
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # useBreakpointValue
 
@@ -45,7 +52,7 @@ This is an illustration of **useBreakPointValue** hook.
   reactLive={{ useBreakpointValue, VStack, Box, Text }}
 />
 
-<br/>
+<br />
 
 ## Installation
 
@@ -183,6 +190,7 @@ function getLastValidObject(
     ```
 
     ### Step 2: Update the import paths to match your project setup.
+
   </TabItem>
 </Tabs>
 
@@ -194,9 +202,9 @@ import { useBreakPointValue } from '@/components/ui/utils/use-break-point-value'
 
 ```ts
 const flexDir = useBreakpointValue({
-        default: "column",
-        sm: "row",
-    });
+  default: 'column',
+  sm: 'row',
+});
 ```
 
 ### Hook Arguments

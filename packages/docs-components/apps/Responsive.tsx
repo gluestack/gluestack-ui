@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { Box, Text, Pressable } from "@/components/ui";
-import React, { useRef, useState } from "react";
-import NextImage from "next/image";
-import { Expand } from "@/docs-components/apps/dashboard-app/Expand";
-import { Resizable } from "re-resizable";
-import { Text as NText } from "@/components/ui";
-import { Image as NImage } from "@/components/ui";
+import { Box, Text, Pressable } from '@/components/ui';
+import React, { useRef, useState } from 'react';
+import NextImage from 'next/image';
+import { Expand } from '@/docs-components/apps/dashboard-app/Expand';
+import { Resizable } from 're-resizable';
+import { Text as NText } from '@/components/ui';
+import { Image as NImage } from '@/components/ui';
 
 //function to detect if the user is on a web browser
 function checkPlatform({
@@ -22,7 +22,7 @@ function checkPlatform({
     window.location.href = `exp://u.expo.dev/update/${android}`;
   } else if (/iPad|iPhone|iPod/i.test(navigator.userAgent)) {
     window.location.href = `exp://u.expo.dev/update/${ios}`;
-  } else if (typeof window !== "undefined" && typeof document !== "undefined") {
+  } else if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     window.open(uri);
   }
 }
@@ -60,15 +60,15 @@ function Responsiveness({
         }}
         bounds="parent"
         handleClasses={{
-          right: "right-handler",
+          right: 'right-handler',
         }}
         handleStyles={{
           right: {
             right: 0,
             width: 20,
-            height: "10px",
-            top: "40%",
-            bottom: "50%",
+            height: '10px',
+            top: '40%',
+            bottom: '50%',
           },
         }}
         handleComponent={{
@@ -94,7 +94,7 @@ function Responsiveness({
         {/* Desktop header bar */}
         <Box
           className={`flex-row items-center bg-gray-950 py-1.5 rounded-t-2xl ${
-            isMobile ? "hidden" : "hidden sm:flex"
+            isMobile ? 'hidden' : 'hidden sm:flex'
           }`}
         >
           <NextImage
@@ -119,7 +119,7 @@ function Responsiveness({
         {/* Mobile header bar */}
         <Box
           className={`${
-            isMobile ? "flex" : "flex sm:hidden"
+            isMobile ? 'flex' : 'flex sm:hidden'
           } flex-row justify-between items-center rounded-t-2xl bg-gray-950 py-1.5`}
         >
           <Text className="ml-5 text-xs font-bold text-gray-400">8:15</Text>
@@ -138,11 +138,11 @@ function Responsiveness({
             src={iframeUri}
             title="NativeBase v3 Dashboard Example"
             style={{
-              transformOrigin: "0px 0px",
-              transform: "scale(0.8)",
-              width: "125%",
-              height: "125%",
-              border: "none",
+              transformOrigin: '0px 0px',
+              transform: 'scale(0.8)',
+              width: '125%',
+              height: '125%',
+              border: 'none',
               borderBottomLeftRadius: 16,
               borderBottomRightRadius: 16,
             }}

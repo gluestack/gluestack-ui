@@ -7,9 +7,12 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-    "dev": "tsx --watch scripts/dev.ts"
+    "dev": "tsx --watch scripts/dev.ts",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,mdx}\""
   },
   "devDependencies": {
+    "prettier": "^3.2.5",
     "tsx": "^4.19.3"
   }
 }

@@ -8,14 +8,24 @@ import { Heading } from '@/components/ui/heading';
 import { Box } from '@/components/ui/box';
 import { Button, ButtonText } from '@/components/ui/button';
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
-import { Table, TableHeader, TableCell, TableHeaderCell, TableBody, TableRow } from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
-import { AnatomyImage } from "@/docs-components/anatomy-image";
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
 
 # Divider
+
 gluestack-ui's Divider component ensures a well-structured interface. Use the Divider component for clean content separation in your design with flexible orientation options.
-### This is an illustration of Divider component.
+
+This is an illustration of **Divider** component.
+
 
   
 
@@ -52,13 +62,14 @@ gluestack-ui's Divider component ensures a well-structured interface. Use the Di
 <TabItem label="Manual">
 
 ### Step 1: Install the following dependencies:
+
 ```bash
 npm i @gluestack-ui/divider
 ```
 
 ### Step 2: Copy and paste the following code into your project.
 
-```jsx 
+```jsx
 'use client';
 import React from 'react';
 import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
@@ -98,7 +109,8 @@ const Divider = React.forwardRef<
 
 Divider.displayName = 'Divider';
 
-export { Divider }; 
+export { Divider };
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -114,7 +126,11 @@ To use this component in your project, include the following import statement in
 import { Divider } from '@/components/ui/divider';
 ```
 
-<AnatomyImage mobileUrl='https://i.imgur.com/WAEtXS7.png' webUrl='https://i.imgur.com/4Nl0JfM.png' classNameStyle='aspect-[513/239] md:aspect-[736/167]' />
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/WAEtXS7.png"
+  webUrl="https://i.imgur.com/4Nl0JfM.png"
+  classNameStyle="aspect-[513/239] md:aspect-[736/167]"
+/>
 
 ```jsx
 export default () => <Divider />;
@@ -160,7 +176,6 @@ Divider component is created using View component from react-native. It extends 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 
-
   #### Variants
 
   A Divider component with different layouts offers versatile options for visually dividing content in various arrangements, such as horizontal or vertical orientations, enabling flexible and visually appealing designs for organizing and structuring elements within a user interface.
@@ -191,7 +206,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Divider, VStack, HStack, Text, Heading }}
 />
-
 
 
   #### Orientation
@@ -262,7 +276,6 @@ The Examples section provides visual representations of the different variants o
 />
 
 
-
   #### With & Without Inset
 
   A Divider component used with or without inset adds visual hierarchy and distinction by creating a dividing line either with or without indentation, providing options for organizing and structuring content within a user interface.
@@ -303,7 +316,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Divider, VStack, HStack, Button, ButtonText }}
 />
-
 
 
   #### Adding content within a Divider

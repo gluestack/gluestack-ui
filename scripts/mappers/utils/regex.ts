@@ -1,2 +1,1 @@
-export const CodePreviewerRegex = /\/\/\/\s*\{Example:([^}]+)\}\s*\/\/\//g
-
+export const CodePreviewerRegex = /\/\/\/\s*\{Example:([^}]+)\}\s*\/\/\//g;

@@ -24,8 +24,8 @@ export function Switch(StyledSwitch: any) {
         defaultSelected: !(defaultValue === null || defaultValue === undefined)
           ? defaultValue
           : !(value === null || value === undefined)
-          ? value
-          : false,
+            ? value
+            : false,
       });
 
       const checked = !(value === null || value === undefined)

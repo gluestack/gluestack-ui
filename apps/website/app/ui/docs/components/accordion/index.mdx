@@ -3,15 +3,22 @@ import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionT
 import { Divider } from '@/components/ui/divider';
 import { ChevronDownIcon, ChevronUpIcon, AddIcon, RemoveIcon } from '@/components/ui/icon';
 
-import {Tabs,TabItem} from '@/docs-components/tabs'
-import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
-import {InlineCode} from '@/docs-components/inline-code'
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # Accordion
 
 Explore gluestack's Accordion component for Expo, next.js, React & React Native. Build sleek, interactive accordions with ease.
 
- This is an illustration of **Accordion** component.
+This is an illustration of **Accordion** component.
 
   #### Basic
 
@@ -133,7 +140,7 @@ Explore gluestack's Accordion component for Expo, next.js, React & React Native.
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, ChevronDownIcon, ChevronUpIcon }}
 />
 
-<br/>
+<br />
 ## Installation
 
 <Tabs>
@@ -152,96 +159,95 @@ npm i @gluestack-ui/accordion @expo/html-elements
 
 ### Step 2: Copy and paste the following code into your project.
 
-
-```jsx 
-"use client";
-import React from "react";
-import { createAccordion } from "@/components/ui/accordion/creator";
-import { View, Pressable, Text, Platform, TextProps } from "react-native";
-import { tva } from "@/utils/gluestack-utils/nativewind/utils/tva";
-import type { VariantProps } from "@/utils/gluestack-utils/nativewind/utils";
+```jsx
+'use client';
+import React from 'react';
+import { createAccordion } from '@/components/ui/accordion/creator';
+import { View, Pressable, Text, Platform, TextProps } from 'react-native';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 import {
   withStyleContext,
   useStyleContext,
-} from "@/utils/gluestack-utils/nativewind/utils/withStyleContext";
-import { H3 } from "@expo/html-elements";
-import { cssInterop } from "nativewind";
-import { PrimitiveIcon, UIIcon } from "@/components/ui/icon/creator";
+} from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+import { H3 } from '@expo/html-elements';
+import { cssInterop } from 'nativewind';
+import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
 
-const SCOPE = "ACCORDION";
+const SCOPE = 'ACCORDION';
 /** Styles */
 
 const accordionStyle = tva({
-  base: "w-full",
+  base: 'w-full',
   variants: {
     variant: {
-      filled: "bg-white shadow-hard-2",
-      unfilled: "",
+      filled: 'bg-white shadow-hard-2',
+      unfilled: '',
     },
     size: {
-      sm: "",
-      md: "",
-      lg: "",
+      sm: '',
+      md: '',
+      lg: '',
     },
   },
 });
 
 const accordionItemStyle = tva({
-  base: "",
+  base: '',
   parentVariants: {
     variant: {
-      filled: "bg-background-0",
-      unfilled: "bg-transparent",
+      filled: 'bg-background-0',
+      unfilled: 'bg-transparent',
     },
   },
 });
 const accordionTitleTextStyle = tva({
-  base: "text-typography-900 font-bold flex-1 text-left",
+  base: 'text-typography-900 font-bold flex-1 text-left',
   parentVariants: {
     size: {
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
     },
   },
 });
 const accordionIconStyle = tva({
-  base: "text-typography-900 fill-none",
+  base: 'text-typography-900 fill-none',
   parentVariants: {
     size: {
-      "2xs": "h-3 w-3",
-      xs: "h-3.5 w-3.5",
-      sm: "h-4 w-4",
-      md: "h-[18px] w-[18px]",
-      lg: "h-5 w-5",
-      xl: "h-6 w-6",
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'h-[18px] w-[18px]',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
     },
   },
 });
 const accordionContentTextStyle = tva({
-  base: "text-typography-700 font-normal",
+  base: 'text-typography-700 font-normal',
   parentVariants: {
     size: {
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
     },
   },
 });
 const accordionHeaderStyle = tva({
-  base: "mx-0 my-0",
+  base: 'mx-0 my-0',
 });
 const accordionContentStyle = tva({
-  base: "pt-1 pb-3 px-4",
+  base: 'pt-1 pb-3 px-4',
 });
 const accordionTriggerStyle = tva({
-  base: "w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50 py-3 px-4",
+  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50 py-3 px-4',
 });
 
 const Root = withStyleContext(View, SCOPE);
 
 const Header = (
-  Platform.OS === "web" ? H3 : View
+  Platform.OS === 'web' ? H3 : View
 ) as React.ComponentType<TextProps>;
 
 /** Creator */
@@ -258,12 +264,12 @@ const UIAccordion = createAccordion({
 
 cssInterop(PrimitiveIcon, {
   className: {
-    target: "style",
+    target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
       fill: true,
-      color: "classNameColor",
+      color: 'classNameColor',
       stroke: true,
     },
   },
@@ -271,7 +277,7 @@ cssInterop(PrimitiveIcon, {
 
 cssInterop(H3, {
   className: {
-    target: "style",
+    target: 'style',
   },
 });
 
@@ -320,7 +326,7 @@ type IAccordionTitleTextProps = React.ComponentPropsWithoutRef<
 const Accordion = React.forwardRef<
   React.ComponentRef<typeof UIAccordion>,
   IAccordionProps
->(({ className, variant = "filled", size = "md", ...props }, ref) => {
+>(({ className, variant = 'filled', size = 'md', ...props }, ref) => {
   return (
     <UIAccordion
       ref={ref}
@@ -386,7 +392,7 @@ const AccordionIcon = React.forwardRef<
 >(function AccordionIcon({ size, className, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
-  if (typeof size === "number") {
+  if (typeof size === 'number') {
     return (
       <UIAccordion.Icon
         ref={ref}
@@ -466,14 +472,14 @@ const AccordionTitleText = React.forwardRef<
   );
 });
 
-Accordion.displayName = "Accordion";
-AccordionItem.displayName = "AccordionItem";
-AccordionHeader.displayName = "AccordionHeader";
-AccordionTrigger.displayName = "AccordionTrigger";
-AccordionTitleText.displayName = "AccordionTitleText";
-AccordionContentText.displayName = "AccordionContentText";
-AccordionIcon.displayName = "AccordionIcon";
-AccordionContent.displayName = "AccordionContent";
+Accordion.displayName = 'Accordion';
+AccordionItem.displayName = 'AccordionItem';
+AccordionHeader.displayName = 'AccordionHeader';
+AccordionTrigger.displayName = 'AccordionTrigger';
+AccordionTitleText.displayName = 'AccordionTitleText';
+AccordionContentText.displayName = 'AccordionContentText';
+AccordionIcon.displayName = 'AccordionIcon';
+AccordionContent.displayName = 'AccordionContent';
 
 export {
   Accordion,
@@ -485,11 +491,10 @@ export {
   AccordionIcon,
   AccordionContent,
 };
- 
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
-
 
 </TabItem>
 </Tabs>
@@ -529,7 +534,6 @@ export default () => (
 );
 ```
 
-
 ### Component Props
 
 This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
@@ -538,91 +542,131 @@ This section provides a comprehensive reference list for the component props, de
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-<br/>
+<br />
 <>
-<Table>
-  <TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-  </TableHeader>
-  <TableBody>
-  <TableRow>
-    <TableCell><InlineCode>type</InlineCode></TableCell>
-    <TableCell>"single" | "multiple"</TableCell>
-    <TableCell>"single"</TableCell>
-    <TableCell>Determines whether one or multiple items can be opened at the same time.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isCollapsible</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>true</TableCell>
-    <TableCell>When type is "single" or "multiple", allows closing content when clicking trigger for an open item.</TableCell>
-  </TableRow>
-   <TableRow>
-    <TableCell><InlineCode>defaultValue</InlineCode></TableCell>
-    <TableCell>string[]</TableCell>
-    <TableCell>[]</TableCell>
-    <TableCell>The value of the item to expand when initially rendered when type is "single" or "multiple".</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>value</InlineCode></TableCell>
-    <TableCell>string[]</TableCell>
-    <TableCell>[]</TableCell>
-    <TableCell>The controlled value of the item to expand when type is "single" or "multiple".</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>onValueChange</InlineCode></TableCell>
-    <TableCell>function</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>Event handler called when the expanded state of an item changes and type is "single" or "multiple".</TableCell>
-  </TableRow>
-    <TableRow>
-    <TableCell><InlineCode>isDisabled</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>When true, prevents the user from interacting with the accordion and all its items.</TableCell>
-  </TableRow>
-  </TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>type</InlineCode>
+        </TableCell>
+        <TableCell>"single" | "multiple"</TableCell>
+        <TableCell>"single"</TableCell>
+        <TableCell>
+          Determines whether one or multiple items can be opened at the same
+          time.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isCollapsible</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>true</TableCell>
+        <TableCell>
+          When type is "single" or "multiple", allows closing content when
+          clicking trigger for an open item.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>defaultValue</InlineCode>
+        </TableCell>
+        <TableCell>string[]</TableCell>
+        <TableCell>[]</TableCell>
+        <TableCell>
+          The value of the item to expand when initially rendered when type is
+          "single" or "multiple".
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>value</InlineCode>
+        </TableCell>
+        <TableCell>string[]</TableCell>
+        <TableCell>[]</TableCell>
+        <TableCell>
+          The controlled value of the item to expand when type is "single" or
+          "multiple".
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onValueChange</InlineCode>
+        </TableCell>
+        <TableCell>function</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Event handler called when the expanded state of an item changes and
+          type is "single" or "multiple".
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          When true, prevents the user from interacting with the accordion and
+          all its items.
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 #### AccordionItem
 
 Contains all the parts of a collapsible section.
 
 <>
-<Table>
-  <TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-  </TableHeader>
-  <TableBody>
-  <TableRow>
-    <TableCell><InlineCode>value</InlineCode></TableCell>
-    <TableCell>string</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>The controlled value of the item to expand when type is "single" or "multiple". Must be used in conjunction with onValueChange. This is a mandatory prop.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isDisabled</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>When true, prevents the user from interacting with the accordion and all its items.</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>value</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          The controlled value of the item to expand when type is "single" or
+          "multiple". Must be used in conjunction with onValueChange. This is a
+          mandatory prop.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          When true, prevents the user from interacting with the accordion and
+          all its items.
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 #### AccordionHeader
 
 Wraps an `Accordion.Trigger`. It inherits all the properties of @expo/html-elements's [H3](https://www.npmjs.com/package/@expo/html-elements#h3) on web and It inherits all the properties of react native's [View](https://reactnative.dev/docs/view) on native. Use the as prop to update it to the appropriate heading level for your page.
-
 
 #### AccordionTrigger
 
@@ -647,7 +691,6 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 ### Accessibility
 
 Adheres to the Accordion [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/).
-
 
 We have outlined the various features that ensure the Accordion component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
@@ -784,7 +827,6 @@ The Examples section provides visual representations of the different variants o
 />
 
 
-
   #### Rounded corners
 
   The borderRadius prop can be used to create rounded corners for both the Accordion and AccordionItem components.
@@ -856,7 +898,6 @@ The Examples section provides visual representations of the different variants o
 />
 
 
-
   #### Disabled item
 
   You can disable an item by setting the isDisabled prop to true. This will prevent the user from interacting with the item and its content. You can also disable the whole accordion by setting the isDisabled prop to true on the Accordion component.
@@ -925,7 +966,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
 />
-
 
 
   #### Default value
@@ -1021,7 +1061,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
 />
-
 
 
   #### Nested Components

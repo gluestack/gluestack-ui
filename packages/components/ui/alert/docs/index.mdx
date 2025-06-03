@@ -10,8 +10,7 @@ pageDescription: gluestack-ui offers a responsive React Native Alert component w
 showHeader: true
 ---
 
-
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -19,14 +18,15 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
-import { AnatomyImage } from "@/docs-components/anatomy-image";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
 
 # Alert
+
 gluestack-ui offers a responsive React Native Alert component with multiple styles. Easily integrate alerts into your UI with customizable React Native alert styles.
 
-### This is an illustration of Alert component.
+This is an illustration of **Alert** component.
 
 /// {Example:basic} ///
 
@@ -63,7 +63,7 @@ npm i @gluestack-ui/alert
 To use this component in your project, include the following import statement in your file.
 
 ```ts
-import { Alert, AlertIcon, AlertText } from "@/components/ui/alert";
+import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
 ```
 
 <AnatomyImage
@@ -90,30 +90,34 @@ This section provides a comprehensive reference list for the component props, de
 Contains all alert related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <>
-<Table>
-  <TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-  </TableHeader>
-  <TableBody>
-  <TableRow>
-    <TableCell><InlineCode>action</InlineCode></TableCell>
-    <TableCell>error | warning | success | info | muted</TableCell>
-    <TableCell>info</TableCell>
-    <TableCell>Determines the color scheme of the alert.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>variant</InlineCode></TableCell>
-    <TableCell>solid | outline</TableCell>
-    <TableCell>solid</TableCell>
-    <TableCell>Determines the visual style of the alert.</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>action</InlineCode>
+        </TableCell>
+        <TableCell>error | warning | success | info | muted</TableCell>
+        <TableCell>info</TableCell>
+        <TableCell>Determines the color scheme of the alert.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>variant</InlineCode>
+        </TableCell>
+        <TableCell>solid | outline</TableCell>
+        <TableCell>solid</TableCell>
+        <TableCell>Determines the visual style of the alert.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 #### AlertIcon

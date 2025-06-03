@@ -10,17 +10,24 @@ pageDescription: gluestack-ui Toast component for React Native lets you show toa
 showHeader: true
 ---
 
-import {Tabs,TabItem} from '@/docs-components/tabs'
-import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
-import {InlineCode} from '@/docs-components/inline-code'
-import {AnatomyImage} from '@/docs-components/anatomy-image'
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
 
 # Toast
 
 gluestack-ui Toast component for React Native lets you show toast messages effortlessly. Improve your Toast component with flexible placement, duration, and actions.
 
+This is an illustration of **Toast** component.
 
-### This is an illustration of Toast component.
 /// {Example:basic} ///
 
 <br />
@@ -31,11 +38,13 @@ gluestack-ui Toast component for React Native lets you show toast messages effor
   <TabItem label="CLI">
 
 ### Run the following command:
-  ```bash
-  npx gluestack-ui add toast
-  ```
+
+```bash
+npx gluestack-ui add toast
+```
+
   </TabItem>
-  <TabItem label="Manual"> 
+  <TabItem label="Manual">
 
 ### Step 1: Install the following dependencies:
 
@@ -47,15 +56,12 @@ npm i @gluestack-ui/toast
 
 ### Step 2: Copy and paste the following code into your project.
 
-
-
-```jsx 
-%%-- File: packages/components/ui/toast/index.tsx --%% 
+```jsx
+%%-- File: packages/components/ui/toast/index.tsx --%%
 ```
 
-
-
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -67,7 +73,11 @@ To use this component in your project, include the following import statement in
 import { useToast, Toast } from '@/components/ui/toast';
 ```
 
-<AnatomyImage mobileUrl='https://i.imgur.com/hESv96t.png' webUrl='https://i.imgur.com/onUcTTR.png' classNameStyle='aspect-[513/399] md:aspect-[736/283]' />
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/hESv96t.png"
+  webUrl="https://i.imgur.com/onUcTTR.png"
+  classNameStyle="aspect-[513/399] md:aspect-[736/283]"
+/>
 
 ```ts
 export default () => (
@@ -77,6 +87,7 @@ export default () => (
   </Toast>
 );
 ```
+
 ### Component Props
 
 This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
@@ -213,7 +224,6 @@ Toast component is created using View component from react-native. It extends al
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
 
 /// {Example:note-talking} ///
 

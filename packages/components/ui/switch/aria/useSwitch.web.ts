@@ -1,7 +1,7 @@
-import type { AriaSwitchProps } from "@react-types/switch";
-import type { RefObject } from "react";
-import type { ToggleState } from "@react-stately/toggle";
-import { useSwitch as useSwitchWeb } from "@react-aria/switch";
+import type { AriaSwitchProps } from '@react-types/switch';
+import type { RefObject } from 'react';
+import type { ToggleState } from '@react-stately/toggle';
+import { useSwitch as useSwitchWeb } from '@react-aria/switch';
 
 export interface SwitchAria {
   /** Props for the input element. */
@@ -21,7 +21,7 @@ export function useSwitch(
   ref: RefObject<HTMLInputElement>
 ): SwitchAria {
   const label = props.accessibilityLabel;
-  let temp = useSwitchWeb({ ...props, "aria-label": label }, state, ref);
+  let temp = useSwitchWeb({ ...props, 'aria-label': label }, state, ref);
 
   return temp;
 }

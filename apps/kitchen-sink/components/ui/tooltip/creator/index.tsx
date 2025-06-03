@@ -7,7 +7,7 @@ export function createTooltip<
   TooltipProps,
   TooltipContentProps,
   TextProps,
-  TooltipAnimatePresenceProps
+  TooltipAnimatePresenceProps,
 >({
   Text,
   Root,
