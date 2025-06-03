@@ -9,7 +9,6 @@ import {
   LinkText,
   Text,
   VStack,
-  HStack,
   Pressable,
 } from "@/components/ui";
 import { useState } from "react";
@@ -17,16 +16,15 @@ import { useState } from "react";
 const buttonCode = [
   {
     fileName: "Example.tsx",
-    code: `
-    import { Button, ButtonText } from '@/components/ui/button';
-    
-    function Example() {
+    code: `import { Button, ButtonText } from '@/components/ui/button';
+
+  function Example() {
       return (
         <Button size="md" style={{ $$css: true }} className="bg-primary-500 hover:bg-primary-600">
           <ButtonText style={{ $$css: true }} className="text-typography-50" >Button</ButtonText>
         </Button>
       );
-    }
+  }
     `,
   },
   {
