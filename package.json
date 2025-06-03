@@ -12,6 +12,7 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,mdx}\""
   },
   "devDependencies": {
+    "@tsconfig/react-native": "^3.0.5",
     "prettier": "^3.2.5",
     "tsx": "^4.19.3"
   }
