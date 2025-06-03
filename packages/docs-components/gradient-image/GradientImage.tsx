@@ -11,7 +11,7 @@ const GradientImage = () => {
       <Image
         source={"/assets/dark-lg.svg"}
         alt="linear-gradient"
-        className="h-64 w-96 dark:block"
+        className="h-64 w-96 dark:block hidden"
       />
     </Center>
   );
