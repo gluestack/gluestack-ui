@@ -18,6 +18,10 @@ export default {
     },
   ],
   theme: {
+    fontFamily: {
+      sans: ["Roboto", "sans-serif"],
+      monospace: ["Monospace", "sans-serif"],
+    },
     extend: {
       colors: {
         primary: {
