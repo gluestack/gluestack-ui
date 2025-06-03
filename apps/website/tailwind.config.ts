@@ -19,8 +19,8 @@ export default {
   ],
   theme: {
     fontFamily: {
-      sans: ["Roboto", "sans-serif"],
-      monospace: ["Monospace", "sans-serif"],
+      sans: ['Roboto', 'sans-serif'],
+      monospace: ['Monospace', 'sans-serif'],
     },
     extend: {
       colors: {

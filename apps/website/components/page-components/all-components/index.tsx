@@ -29,7 +29,7 @@ const getComponentsFromSidebar = () => {
 
   // Filter out any empty or undefined values and components we don't want to show
   return components.filter(
-    (component) => component && component !== 'table' // Exclude specific components that might not have implementations
+    (component) => component && component !== '' // Exclude specific components that might not have implementations
   );
 };
 
@@ -75,12 +75,17 @@ export default function AllComponents() {
             }}
             key={componentName}
           >
-            <Box className="flex h-[250px] border border-outline-100  items-center overflow-hidden justify-center rounded-lg">
-              <Box className="flex-1 w-full flex items-center bg-background-50 justify-center">
+            <Box className="flex h-[250px] border border-outline-100  items-center overflow-hidden justify-center rounded-lg dark:bg-black bg-white">
+              <Box className="flex-1 w-full flex items-center justify-center origin-center scale-75">
                 <Component />
               </Box>
-              <Box className="w-full py-2 px-4 bg-background-0">
-                <Text className="text-left text-typography-700 text-lg font-medium">
+              <Box
+                className="w-full py-2 px-4 bg-background-100 cursor-pointer"
+                onClick={() => {
+                  window.location.href = `/ui/docs/components/${componentName}`;
+                }}
+              >
+                <Text className="text-left text-typography-700 text-lg font-medium capitalize">
                   {componentName}
                 </Text>
               </Box>

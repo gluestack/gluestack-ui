@@ -54,7 +54,7 @@ export default function ComponentExamples() {
   {props => {
   return (
     <Button variant={props.variant} size={props.size} action={props.action}>
-        <ButtonText>Button Text</ButtonText>
+        <ButtonText>Click me</ButtonText>
     </Button>
   )}}
 </ComponentPreviewer>
