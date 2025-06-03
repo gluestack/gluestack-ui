@@ -231,7 +231,7 @@ const Example = () => {
             </Link>
           </HStack>
           <Pressable
-            className="hidden py-1 px-3 mt-5 rounded-sm border border-typography-700 bg-transparent flex-row items-center w-auto md:flex"
+            className="hidden py-1 px-3 mt-5 rounded-sm border border-typography-700 bg-transparent flex-row items-center w-fit md:flex"
             onPress={() => {
               checkPlatform(colorMode);
             }}
