@@ -8,13 +8,15 @@ import { TOC } from '@/components/page-components/blogs-page/TOC';
 <HStack className="gap-3 items-center">
   <Box className="h-8 w-8 rounded-full overflow-hidden">
     <Image
-      source={{ uri: "https://avatars.githubusercontent.com/u/62778911?v=4" }}
+      source={{ uri: 'https://avatars.githubusercontent.com/u/62778911?v=4' }}
       alt="sravan"
       className="h-8 w-8"
     />
   </Box>
   <Box>
-    <Text className="text-sm font-bold text-typography-900">Sravan Kumar Velangi</Text>
+    <Text className="text-sm font-bold text-typography-900">
+      Sravan Kumar Velangi
+    </Text>
     <Text className="text-sm">Building gluestack-ui</Text>
   </Box>
 </HStack>
@@ -35,7 +37,7 @@ The animation process is divided into three key states:
 
 Let’s consider an example of how we see all three states as a process ;
 
-``` jsx
+```jsx
 <Animated.View
   initial={{ scale: 0.5 }}
   animate={{ scale: 1 }}
@@ -89,7 +91,7 @@ For making this guide more clear, We can divide entire animation into three segm
 
 We'll use the `isAnimated` state to toggle animations. Define the properties you want to animate in the `tailwind.config.ts` file:
 
-``` ts
+```ts
 transitionProperty: {
   width: "width",
   height: "height",
@@ -101,7 +103,7 @@ We can add a custom animation property here, that will add this fade effect as t
 
 For custom animations, add keyframes (In tailwind):
 
-``` ts
+```ts
 keyframes: {
     appear: {
       '0%': { opacity:'0%' },
@@ -117,7 +119,7 @@ animation: {
 
 Change the width dynamically based on `isAnimated`:
 
-``` jsx
+```jsx
 <Box
   className={
     'flex flex-row' + isAnimated
@@ -135,11 +137,11 @@ By toggling the width property, you control the animation.
 
 Handle the rotation of an icon with a simple press:
 
-``` jsx
+```jsx
 <Pressable onPress={() => setIsAnimated(!isAnimated)}>
-    <Box className={isAnimated ? 'rotate-45' : 'rotate-0'}>
-      <Icon as={PlusIcon} />
-    </Box>
+  <Box className={isAnimated ? 'rotate-45' : 'rotate-0'}>
+    <Icon as={PlusIcon} />
+  </Box>
 </Pressable>
 ```
 
@@ -147,7 +149,7 @@ Handle the rotation of an icon with a simple press:
 
 Control both width and opacity during the animation:
 
-``` jsx
+```jsx
 <Box
   className={
     isAnimated

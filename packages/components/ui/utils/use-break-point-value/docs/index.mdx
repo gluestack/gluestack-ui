@@ -1,6 +1,13 @@
-import {Tabs,TabItem} from '@/docs-components/tabs'
-import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
-import {InlineCode} from '@/docs-components/inline-code'
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # useBreakpointValue
 
@@ -10,7 +17,7 @@ This is an illustration of **useBreakPointValue** hook.
 
 /// {Example:basic} ///
 
-<br/>
+<br />
 
 ## Installation
 
@@ -27,6 +34,7 @@ This is an illustration of **useBreakPointValue** hook.
     ```
 
     ### Step 2: Update the import paths to match your project setup.
+
   </TabItem>
 </Tabs>
 
@@ -38,9 +46,9 @@ import { useBreakPointValue } from '@/components/ui/utils/use-break-point-value'
 
 ```ts
 const flexDir = useBreakpointValue({
-        default: "column",
-        sm: "row",
-    });
+  default: 'column',
+  sm: 'row',
+});
 ```
 
 ### Hook Arguments

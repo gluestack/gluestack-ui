@@ -1,5 +1,5 @@
-import React from "react";
-import { Badge, BadgeText, Image } from "@/components/ui";
+import React from 'react';
+import { Badge, BadgeText, Image } from '@/components/ui';
 
 export interface SidebarItemProps {
   title: string;
@@ -16,11 +16,11 @@ export interface SidebarSectionProps {
 
 export const headerItems: SidebarSectionProps[] = [
   {
-    title: "Resources",
+    title: 'Resources',
     items: [
       {
-        title: "Docs",
-        link: "/ui/docs",
+        title: 'Docs',
+        link: '/ui/docs',
         logo: (
           <svg
             width="20"
@@ -57,8 +57,8 @@ export const headerItems: SidebarSectionProps[] = [
         ),
       },
       {
-        title: "Figma",
-        link: "https://www.figma.com/community/file/1358053104938234615/gluestack-ui-v2-0-design-kit",
+        title: 'Figma',
+        link: 'https://www.figma.com/community/file/1358053104938234615/gluestack-ui-v2-0-design-kit',
         logo: (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -93,8 +93,8 @@ export const headerItems: SidebarSectionProps[] = [
         ),
       },
       {
-        title: "GitHub",
-        link: "https://github.com/gluestack/gluestack-ui",
+        title: 'GitHub',
+        link: 'https://github.com/gluestack/gluestack-ui',
         logo: (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +105,7 @@ export const headerItems: SidebarSectionProps[] = [
           >
             <path
               d="M12 2C10.6868 2 9.38642 2.25866 8.17317 2.7612C6.95991 3.26375 5.85752 4.00035 4.92893 4.92893C3.05357 6.8043 2 9.34784 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21V19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26V21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12C22 10.6868 21.7413 9.38642 21.2388 8.17317C20.7362 6.95991 19.9997 5.85752 19.0711 4.92893C18.1425 4.00035 17.0401 3.26375 15.8268 2.7612C14.6136 2.25866 13.3132 2 12 2Z"
-              fill={"#272625"}
+              fill={'#272625'}
             />
           </svg>
         ),
@@ -119,14 +119,14 @@ export const headerItems: SidebarSectionProps[] = [
           >
             <path
               d="M12 2C10.6868 2 9.38642 2.25866 8.17317 2.7612C6.95991 3.26375 5.85752 4.00035 4.92893 4.92893C3.05357 6.8043 2 9.34784 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21V19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26V21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12C22 10.6868 21.7413 9.38642 21.2388 8.17317C20.7362 6.95991 19.9997 5.85752 19.0711 4.92893C18.1425 4.00035 17.0401 3.26375 15.8268 2.7612C14.6136 2.25866 13.3132 2 12 2Z"
-              fill={"#F6F6F6"}
+              fill={'#F6F6F6'}
             />
           </svg>
         ),
       },
       {
-        title: "Blogs",
-        link: "/blogs",
+        title: 'Blogs',
+        link: '/blogs',
         logo: (
           <svg
             width="22"
@@ -159,17 +159,17 @@ export const headerItems: SidebarSectionProps[] = [
     ],
   },
   {
-    title: "Products",
+    title: 'Products',
     items: [
       {
-        title: "AppLaunchKit",
-        link: "https://applaunchk.it/",
+        title: 'AppLaunchKit',
+        link: 'https://applaunchk.it/',
         logo: (
           <Image
             alt="dark mode"
             className="w-5 h-5"
             size="md"
-            source={require("@/public/icon/logo/app-launch-kit/dark-mode.svg")}
+            source={require('@/public/icon/logo/app-launch-kit/dark-mode.svg')}
           />
         ),
         logoDark: (
@@ -177,7 +177,7 @@ export const headerItems: SidebarSectionProps[] = [
             alt="light mode"
             className="w-5 h-5"
             size="md"
-            source={require("@/public/icon/logo/app-launch-kit/light-mode.svg")}
+            source={require('@/public/icon/logo/app-launch-kit/light-mode.svg')}
           />
         ),
         badge: (
@@ -187,14 +187,14 @@ export const headerItems: SidebarSectionProps[] = [
         ),
       },
       {
-        title: "Starter Kit",
-        link: "https://github.com/gluestack/gluestack-ui-starter-kits/",
+        title: 'Starter Kit',
+        link: 'https://github.com/gluestack/gluestack-ui-starter-kits/',
         logo: (
           <Image
             alt="dark mode"
             className="w-5 h-5"
             size="md"
-            source={require("@/public/icon/logo/gluestack/logo-dark.svg")}
+            source={require('@/public/icon/logo/gluestack/logo-dark.svg')}
           />
         ),
         logoDark: (
@@ -202,7 +202,7 @@ export const headerItems: SidebarSectionProps[] = [
             alt="dark mode"
             className="w-5 h-5"
             size="md"
-            source={require("@/public/icon/logo/gluestack/logo-light.svg")}
+            source={require('@/public/icon/logo/gluestack/logo-light.svg')}
           />
         ),
         badge: (
@@ -212,14 +212,14 @@ export const headerItems: SidebarSectionProps[] = [
         ),
       },
       {
-        title: "theappmarket",
-        link: "https://theappmarket.io",
+        title: 'theappmarket',
+        link: 'https://theappmarket.io',
         logo: (
           <Image
             alt="dark mode"
             className="w-5 h-5"
             size="md"
-            source={require("@/public/icon/logo/theappmarket/appmarket-logo.svg")}
+            source={require('@/public/icon/logo/theappmarket/appmarket-logo.svg')}
           />
         ),
         logoDark: (
@@ -227,7 +227,7 @@ export const headerItems: SidebarSectionProps[] = [
             alt="dark mode"
             className="w-5 h-5"
             size="md"
-            source={require("@/public/icon/logo/theappmarket/appmarket-logo.svg")}
+            source={require('@/public/icon/logo/theappmarket/appmarket-logo.svg')}
           />
         ),
         badge: (
@@ -239,11 +239,11 @@ export const headerItems: SidebarSectionProps[] = [
     ],
   },
   {
-    title: "Community",
+    title: 'Community',
     items: [
       {
-        title: "Discord",
-        link: "https://discord.com/invite/V5SU7HZSAQ",
+        title: 'Discord',
+        link: 'https://discord.com/invite/V5SU7HZSAQ',
         logo: (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -274,14 +274,14 @@ export const headerItems: SidebarSectionProps[] = [
         ),
       },
       {
-        title: "Discord FAQs",
-        link: "https://gluestack.forumify.io/",
+        title: 'Discord FAQs',
+        link: 'https://gluestack.forumify.io/',
         logo: (
           <Image
             alt="dark mode"
             className="w-5 h-5"
             size="md"
-            source={require("@/public/icon/favicons/faq.svg")}
+            source={require('@/public/icon/favicons/faq.svg')}
           />
         ),
         logoDark: (
@@ -289,13 +289,13 @@ export const headerItems: SidebarSectionProps[] = [
             alt="dark mode"
             className="w-5 h-5"
             size="md"
-            source={require("@/public/icon/favicons/faq-dark.svg")}
+            source={require('@/public/icon/favicons/faq-dark.svg')}
           />
         ),
       },
       {
-        title: "Twitter",
-        link: "https://twitter.com/gluestackio",
+        title: 'Twitter',
+        link: 'https://twitter.com/gluestackio',
         logo: (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -366,8 +366,8 @@ export const headerItems: SidebarSectionProps[] = [
         ),
       },
       {
-        title: "LinkedIn",
-        link: "https://www.linkedin.com/company/gluestackio/",
+        title: 'LinkedIn',
+        link: 'https://www.linkedin.com/company/gluestackio/',
         logo: (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -398,8 +398,8 @@ export const headerItems: SidebarSectionProps[] = [
         ),
       },
       {
-        title: "Stack Overflow",
-        link: "https://stackoverflow.com/questions/tagged/gluestack",
+        title: 'Stack Overflow',
+        link: 'https://stackoverflow.com/questions/tagged/gluestack',
         logo: (
           <svg
             xmlns="http://www.w3.org/2000/svg"

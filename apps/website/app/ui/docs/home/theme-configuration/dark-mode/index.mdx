@@ -21,11 +21,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'rgb(var(--color-primary)/<alpha-value>)'
-      }
-    }
-  }
-}
+        primary: 'rgb(var(--color-primary)/<alpha-value>)',
+      },
+    },
+  },
+};
 ```
 
 2. Now, define the values of that CSS variable for the `light` and `dark` color schemes in the `config.ts` file as shown below. [Reference](https://www.nativewind.dev/v4/guides/themes).
@@ -39,40 +39,40 @@ export const config = {
   }),
   dark: vars({
     '--color-primary': '240 240 240',
-  })
-}
+  }),
+};
 ```
 
 3. Pass the color mode to the `GluestackUIProvider` using the `mode` prop and use the tokens inside your code. `mode`prop accepts three values: `system`, `light` and `dark`.
 
-  - `system`: It uses the system color mode.
-  - `light`: It uses the light color mode.
-  - `dark`: It uses the dark color mode.
+- `system`: It uses the system color mode.
+- `light`: It uses the light color mode.
+- `dark`: It uses the dark color mode.
 
 ```js
 // App.tsx
 
-import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { Box } from "@/components/ui/box";
-import { Button, ButtonText } from "@/components/ui/Button";
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { Box } from '@/components/ui/box';
+import { Button, ButtonText } from '@/components/ui/Button';
 import { useState } from 'react';
 
 export default function App() {
-  const [colorMode, setColorMode] = useState<"light" | "dark">("light");
+  const [colorMode, setColorMode] = (useState < 'light') | ('dark' > 'light');
 
   return (
     <GluestackUIProvider mode={colorMode}>
       <Box className="bg-primary flex-1">
         <Button
           onPress={() => {
-            setColorMode(colorMode === "light" ? "dark" : "light");
+            setColorMode(colorMode === 'light' ? 'dark' : 'light');
           }}
         >
           <ButtonText>Toggle color mode</ButtonText>
         </Button>
       </Box>
     </GluestackUIProvider>
-  )
+  );
 }
 ```
 
@@ -83,27 +83,27 @@ gluestack-ui also supports Tailwind's default `dark:` concept. Let's see how to 
 ```js
 // App.tsx
 
-import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { Box } from "@/components/ui/box";
-import { Button, ButtonText } from "@/components/ui/Button";
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { Box } from '@/components/ui/box';
+import { Button, ButtonText } from '@/components/ui/Button';
 import { useState } from 'react';
 
 export default function App() {
-  const [colorMode, setColorMode] = useState<"light" | "dark">("light");
+  const [colorMode, setColorMode] = (useState < 'light') | ('dark' > 'light');
 
   return (
     <GluestackUIProvider mode={colorMode}>
       <Box className="bg-white dark:bg-black flex-1">
         <Button
           onPress={() => {
-            setColorMode(colorMode === "light" ? "dark" : "light");
+            setColorMode(colorMode === 'light' ? 'dark' : 'light');
           }}
         >
           <ButtonText>Toggle color mode</ButtonText>
         </Button>
       </Box>
     </GluestackUIProvider>
-  )
+  );
 }
 ```
 
@@ -115,7 +115,7 @@ In the above example, we switch the background color of our Box component in dar
 module.exports = {
   darkMode: process.env.DARK_MODE ? process.env.DARK_MODE : 'media',
   // rest of the config
-}
+};
 ```
 
 After this, we need to update our scripts in the `package.json` file as shown below:
@@ -136,12 +136,11 @@ For Next.js projects, you can directly set the `darkMode` strategy to `"class"` 
 
 ## Persist Color Mode
 
-
 <Tabs>
   <TabItem label="Native">
 
-
 Step 1: Install the following dependencies:
+
 ```bash
 npm i @react-native-async-storage/async-storage
 ```
@@ -150,7 +149,7 @@ We will use the `@react-native-async-storage/async-storage` package to store the
 
 Step 2: Create a new file `ThemeProvider.tsx` at `components/ui/ThemeProvider`.
 
-```jsx 
+```jsx
 // components/ui/ThemeProvider/ThemeProvider.tsx
 "use client";
 
@@ -206,10 +205,12 @@ export const useTheme = () => {
 ```
 
 Step 3: Update your app's root to utilize the `ThemeProvider` component.
+
 </TabItem>
 <TabItem label="Web">
 
 Step 1: Install the following dependencies:
+
 ```bash
 npm i js-cookie @types/js-cookie
 ```
@@ -218,7 +219,7 @@ We have to use the `js-cookie` library to set and get cookies in the browser.
 
 Step 2: Create a new file `ThemeProvider.web.tsx` at `components/ui/ThemeProvider`.
 
-```jsx 
+```jsx
 // components/ui/ThemeProvider/ThemeProvider.web.tsx
 "use client";
 
@@ -274,6 +275,7 @@ export const useTheme = () => {
 ```
 
 Step 3: Update your app's root to utilize the `ThemeProvider` component.
+
 </TabItem>
 </Tabs>
 

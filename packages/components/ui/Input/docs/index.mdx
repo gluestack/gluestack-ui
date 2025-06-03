@@ -10,7 +10,7 @@ pageDescription: A feature-rich React Native Input component – supports icons,
 showHeader: true
 ---
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -18,13 +18,15 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # Input
+
 A feature-rich React Native Input component – supports icons, validation, and styling options for seamless user input in your mobile app.
 
-### Illustartion of input component
+This is an illustration of **Input** component.
+
 /// {Example:basic} ///
 
 ## Installation
@@ -45,10 +47,11 @@ npm i @gluestack-ui/input
 ### Step 2: Copy and paste the following code into your project.
 
 ```tsx
-%%-- File: packages/components/ui/input/index.tsx --%% 
+%%-- File: packages/components/ui/input/index.tsx --%%
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -80,89 +83,111 @@ This section provides a comprehensive reference list for the component props, de
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
 <>
-<Table>
-<TableHeader>
-  <TableRow>
-    <TableHeaderCell>Platform</TableHeaderCell>
-    <TableHeaderCell>Output</TableHeaderCell>
-  </TableRow>
-</TableHeader>
-<TableBody>
-  <TableRow>
-    <TableCell><InlineCode>Web</InlineCode></TableCell>
-    <TableCell>{`<input />`}</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>Native</InlineCode></TableCell>
-    <TableCell>{`<TextInput />`}</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<input />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<TextInput />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### Props
 
 <>
-<Table>
-<TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-</TableHeader>
-<TableBody>
-  <TableRow>
-    <TableCell><InlineCode>isInvalid</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>When true, the input displays an error state</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isDisabled</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>When true, the input is disabled and cannot be edited</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isHovered</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>When true, the input displays a hover state</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isFocused</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>When true, the input displays a focus state</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isRequired</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>If true, sets aria-required="true" on the input</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>isReadOnly</InlineCode></TableCell>
-    <TableCell>boolean</TableCell>
-    <TableCell>false</TableCell>
-    <TableCell>If true, the input value cannot be edited</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>size</InlineCode></TableCell>
-    <TableCell>xl | lg | md | sm</TableCell>
-    <TableCell>md</TableCell>
-    <TableCell>The size of the input</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>variant</InlineCode></TableCell>
-    <TableCell>underlined | outline | rounded</TableCell>
-    <TableCell>outline</TableCell>
-    <TableCell>The variant of the input</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isInvalid</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>When true, the input displays an error state</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          When true, the input is disabled and cannot be edited
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isHovered</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>When true, the input displays a hover state</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isFocused</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>When true, the input displays a focus state</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isRequired</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>If true, sets aria-required="true" on the input</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isReadOnly</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>If true, the input value cannot be edited</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>xl | lg | md | sm</TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>The size of the input</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>variant</InlineCode>
+        </TableCell>
+        <TableCell>underlined | outline | rounded</TableCell>
+        <TableCell>outline</TableCell>
+        <TableCell>The variant of the input</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### Features
@@ -189,9 +214,6 @@ We have outlined the various features that ensure the Input component is accessi
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-
 /// {Example:with-form-control} ///
-
-
 
 /// {Example:with-icons} ///

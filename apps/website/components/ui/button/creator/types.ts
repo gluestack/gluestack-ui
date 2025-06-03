@@ -33,7 +33,7 @@ export interface IButtonGroupProps {
   /**
    *
    */
-  children: React.ReactNode;
+  children: JSX.Element | Array<JSX.Element>;
 
   /**
    * If true, the button will be disabled.
@@ -52,7 +52,7 @@ export type IButtonComponentType<
   GroupProps,
   SpinnerProps,
   TextProps,
-  IconProps
+  IconProps,
 > = React.ForwardRefExoticComponent<
   PropsWithoutRef<ButtonProps & IButtonProps> & RefAttributes<ButtonProps>
 > & {

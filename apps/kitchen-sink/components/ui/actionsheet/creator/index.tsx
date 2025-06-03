@@ -28,7 +28,7 @@ export function createActionsheet<
   SectionListProps,
   SectionHeaderTextProps,
   IconProps,
-  AnimatePresenceProps
+  AnimatePresenceProps,
 >({
   Root,
   Backdrop,

@@ -3,23 +3,23 @@
   "argTypes": {
     "variant": {
       "control": {
-          "type": "select"
-        },
-        "options": ["solid", "outline"],
-        "defaultValue": "outline"
+        "type": "select"
       },
-      "action": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["success", "info", "error", "warning", "muted"],
-        "defaultValue": "muted"
-      }
+      "options": ["solid", "outline"],
+      "defaultValue": "outline"
     },
-    "reactLive": {
-      "Alert": "@/components/ui/alert",
-      "AlertText": "@/components/ui/alert",
-      "AlertIcon": "@/components/ui/alert",
-      "InfoIcon": "@/components/ui/icon"
+    "action": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["success", "info", "error", "warning", "muted"],
+      "defaultValue": "muted"
     }
+  },
+  "reactLive": {
+    "Alert": "@/components/ui/alert",
+    "AlertText": "@/components/ui/alert",
+    "AlertIcon": "@/components/ui/alert",
+    "InfoIcon": "@/components/ui/icon"
   }
+}

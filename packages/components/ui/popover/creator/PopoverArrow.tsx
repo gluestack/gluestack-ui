@@ -42,14 +42,14 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
               actualPlacement === 'top'
                 ? 2
                 : actualPlacement === 'bottom'
-                ? -2
-                : 0,
+                  ? -2
+                  : 0,
             x:
               actualPlacement === 'right'
                 ? -2
                 : actualPlacement === 'left'
-                ? 2
-                : 0,
+                  ? 2
+                  : 0,
             rotate: '45deg',
           }}
           animate={{

@@ -1,7 +1,7 @@
-import React, { useContext, Fragment, useMemo } from "react";
-import tailwindConfig from "tailwind.config";
-import { config } from "@/components/ui/gluestack-ui-provider/config";
-import { VStack, HStack, Box, Text, Heading } from "@/components/ui";
+import React, { useContext, Fragment, useMemo } from 'react';
+import tailwindConfig from 'tailwind.config';
+import { config } from '@/components/ui/gluestack-ui-provider/config';
+import { VStack, HStack, Box, Text, Heading } from '@/components/ui';
 
 const ColorPaletteComponent = () => {
   const colorPalette = useMemo(() => {
@@ -39,15 +39,15 @@ const ColorPaletteComponent = () => {
           const hexColors = rgbColors?.map((color: any) => {
             let hex = Number(color).toString(16);
             if (hex.length < 2) {
-              hex = "0" + hex;
+              hex = '0' + hex;
             }
             return hex;
           });
 
-          return `#${hexColors?.join("")}`;
+          return `#${hexColors?.join('')}`;
         };
 
-        const newColor = RGBcolorCode?.split(" ");
+        const newColor = RGBcolorCode?.split(' ');
         const colorCode = RGBcolorCode ? convertRGBToHex(newColor) : undefined;
 
         variants.push({
@@ -57,7 +57,7 @@ const ColorPaletteComponent = () => {
           className,
         }); // push the data into the result array
       }
-      // @ts-ignore
+
       paletteData.push({ name, variants }); // push the data into the result array
     }
 
@@ -78,8 +78,7 @@ const ColorPaletteComponent = () => {
             {name}
           </Heading>
           <HStack className="w-full mb-12 flex gap-x-2 gap-y-6 flex-wrap">
-            {/* @ts-ignore */}
-            {colorPalette[i].variants.map((variant: any, j: any) => (
+            {colorPalette[i].variants.map((variant, j) => (
               <VStack key={j} className="basis-[10%]">
                 <Box
                   className={`w-12 h-12 rounded-lg mb-2 ${variant.className}`}

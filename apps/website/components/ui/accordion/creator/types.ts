@@ -1,4 +1,4 @@
-import React, { JSX } from 'react';
+import React from 'react';
 import type { ViewProps } from 'react-native';
 
 export interface IAccordionProps extends ViewProps {
@@ -90,7 +90,7 @@ export type IAccordionComponentType<
   ContentProps,
   IconProps,
   TitleTextProps,
-  ContentTextProps
+  ContentTextProps,
 > = React.ForwardRefExoticComponent<
   React.PropsWithoutRef<AccordionProps & IAccordionProps> &
     React.RefAttributes<AccordionProps>

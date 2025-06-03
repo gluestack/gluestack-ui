@@ -5,7 +5,7 @@
         "type": "select"
       },
       "options": ["sm", "md", "lg", "full"],
-      "defaultValue": "md"
+      "defaultValue": "sm"
     },
     "anchor": {
       "control": {

@@ -9,7 +9,7 @@ import { FormControl } from '@/components/ui/form-control';
 import { Heading } from '@/components/ui/heading';
 import { Center } from '@/components/ui/center';
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -17,14 +17,16 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
-import { AnatomyImage } from "@/docs-components/anatomy-image";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
 
 # Checkbox
+
 Build interactive forms with a checkbox component for React & React Native. Features include hover, focus, disabled states, and multiple checkbox selection.
 
-### This is an illustration of Checkbox component.
+This is an illustration of **Checkbox** component.
+
 
   
 
@@ -79,6 +81,7 @@ Build interactive forms with a checkbox component for React & React Native. Feat
 ```bash
 npx gluestack-ui add checkbox
 ```
+
 </TabItem>
 <TabItem label="Manual">
 
@@ -90,24 +93,24 @@ npm i @gluestack-ui/checkbox lucide-react-native
 
 ### Step 2: Copy and paste the following code into your project.
 
-```jsx 
-"use client";
-import React from "react";
-import { createCheckbox } from "./creator";
-import { View, Pressable, Text, Platform } from "react-native";
-import type { TextProps, ViewProps } from "react-native";
-import { tva } from "@/utils/gluestack-utils/nativewind/utils/tva";
+```jsx
+'use client';
+import React from 'react';
+import { createCheckbox } from './creator';
+import { View, Pressable, Text, Platform } from 'react-native';
+import type { TextProps, ViewProps } from 'react-native';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
 import {
   PrimitiveIcon,
   IPrimitiveIcon,
   UIIcon,
-} from "@/components/ui/icon/creator";
+} from '@/components/ui/icon/creator';
 import {
   withStyleContext,
   useStyleContext,
-} from "@/utils/gluestack-utils/nativewind/utils/withStyleContext";
-import { cssInterop } from "nativewind";
-import type { VariantProps } from "@/utils/gluestack-utils/nativewind/utils";
+} from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+import { cssInterop } from 'nativewind';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 
 const IndicatorWrapper = React.forwardRef<
   React.ComponentRef<typeof View>,
@@ -130,11 +133,11 @@ const IconWrapper = React.forwardRef<
   return <UIIcon {...props} ref={ref} />;
 });
 
-const SCOPE = "CHECKBOX";
+const SCOPE = 'CHECKBOX';
 const UICheckbox = createCheckbox({
   // @ts-expect-error : internal implementation for r-19/react-native-web
   Root:
-    Platform.OS === "web"
+    Platform.OS === 'web'
       ? withStyleContext(View, SCOPE)
       : withStyleContext(Pressable, SCOPE),
   Group: View,
@@ -145,58 +148,58 @@ const UICheckbox = createCheckbox({
 
 cssInterop(PrimitiveIcon, {
   className: {
-    target: "style",
+    target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
       fill: true,
-      color: "classNameColor",
+      color: 'classNameColor',
       stroke: true,
     },
   },
 });
 
 const checkboxStyle = tva({
-  base: "group/checkbox flex-row items-center justify-start web:cursor-pointer data-[disabled=true]:cursor-not-allowed",
+  base: 'group/checkbox flex-row items-center justify-start web:cursor-pointer data-[disabled=true]:cursor-not-allowed',
   variants: {
     size: {
-      lg: "gap-2",
-      md: "gap-2",
-      sm: "gap-1.5",
+      lg: 'gap-2',
+      md: 'gap-2',
+      sm: 'gap-1.5',
     },
   },
 });
 
 const checkboxIndicatorStyle = tva({
-  base: "justify-center items-center border-outline-400 bg-transparent rounded web:data-[focus-visible=true]:outline-none web:data-[focus-visible=true]:ring-2 web:data-[focus-visible=true]:ring-indicator-primary data-[checked=true]:bg-primary-600 data-[checked=true]:border-primary-600 data-[hover=true]:data-[checked=false]:border-outline-500 data-[hover=true]:bg-transparent data-[hover=true]:data-[invalid=true]:border-error-700 data-[hover=true]:data-[checked=true]:bg-primary-700 data-[hover=true]:data-[checked=true]:border-primary-700 data-[hover=true]:data-[checked=true]:data-[disabled=true]:border-primary-600 data-[hover=true]:data-[checked=true]:data-[disabled=true]:bg-primary-600 data-[hover=true]:data-[checked=true]:data-[disabled=true]:opacity-40 data-[hover=true]:data-[checked=true]:data-[disabled=true]:data-[invalid=true]:border-error-700 data-[hover=true]:data-[disabled=true]:border-outline-400 data-[hover=true]:data-[disabled=true]:data-[invalid=true]:border-error-700 data-[active=true]:data-[checked=true]:bg-primary-800 data-[active=true]:data-[checked=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40",
+  base: 'justify-center items-center border-outline-400 bg-transparent rounded web:data-[focus-visible=true]:outline-none web:data-[focus-visible=true]:ring-2 web:data-[focus-visible=true]:ring-indicator-primary data-[checked=true]:bg-primary-600 data-[checked=true]:border-primary-600 data-[hover=true]:data-[checked=false]:border-outline-500 data-[hover=true]:bg-transparent data-[hover=true]:data-[invalid=true]:border-error-700 data-[hover=true]:data-[checked=true]:bg-primary-700 data-[hover=true]:data-[checked=true]:border-primary-700 data-[hover=true]:data-[checked=true]:data-[disabled=true]:border-primary-600 data-[hover=true]:data-[checked=true]:data-[disabled=true]:bg-primary-600 data-[hover=true]:data-[checked=true]:data-[disabled=true]:opacity-40 data-[hover=true]:data-[checked=true]:data-[disabled=true]:data-[invalid=true]:border-error-700 data-[hover=true]:data-[disabled=true]:border-outline-400 data-[hover=true]:data-[disabled=true]:data-[invalid=true]:border-error-700 data-[active=true]:data-[checked=true]:bg-primary-800 data-[active=true]:data-[checked=true]:border-primary-800 data-[invalid=true]:border-error-700 data-[disabled=true]:opacity-40',
   parentVariants: {
     size: {
-      lg: "w-6 h-6 border-[3px]",
-      md: "w-5 h-5 border-2",
-      sm: "w-4 h-4 border-2",
+      lg: 'w-6 h-6 border-[3px]',
+      md: 'w-5 h-5 border-2',
+      sm: 'w-4 h-4 border-2',
     },
   },
 });
 
 const checkboxLabelStyle = tva({
-  base: "text-typography-600 data-[checked=true]:text-typography-900 data-[hover=true]:text-typography-900 data-[hover=true]:data-[checked=true]:text-typography-900 data-[hover=true]:data-[checked=true]:data-[disabled=true]:text-typography-900 data-[hover=true]:data-[disabled=true]:text-typography-400 data-[active=true]:text-typography-900 data-[active=true]:data-[checked=true]:text-typography-900 data-[disabled=true]:opacity-40 web:select-none",
+  base: 'text-typography-600 data-[checked=true]:text-typography-900 data-[hover=true]:text-typography-900 data-[hover=true]:data-[checked=true]:text-typography-900 data-[hover=true]:data-[checked=true]:data-[disabled=true]:text-typography-900 data-[hover=true]:data-[disabled=true]:text-typography-400 data-[active=true]:text-typography-900 data-[active=true]:data-[checked=true]:text-typography-900 data-[disabled=true]:opacity-40 web:select-none',
   parentVariants: {
     size: {
-      lg: "text-lg",
-      md: "text-base",
-      sm: "text-sm",
+      lg: 'text-lg',
+      md: 'text-base',
+      sm: 'text-sm',
     },
   },
 });
 
 const checkboxIconStyle = tva({
-  base: "text-typography-50 fill-none",
+  base: 'text-typography-50 fill-none',
 
   parentVariants: {
     size: {
-      sm: "h-3 w-3",
-      md: "h-4 w-4",
-      lg: "h-5 w-5",
+      sm: 'h-3 w-3',
+      md: 'h-4 w-4',
+      lg: 'h-5 w-5',
     },
   },
 });
@@ -209,7 +212,7 @@ type ICheckboxProps = React.ComponentPropsWithoutRef<typeof UICheckbox> &
 const Checkbox = React.forwardRef<
   React.ComponentRef<typeof UICheckbox>,
   ICheckboxProps
->(function Checkbox({ className, size = "md", ...props }, ref) {
+>(function Checkbox({ className, size = 'md', ...props }, ref) {
   return (
     <UICheckbox
       className={checkboxStyle({
@@ -284,7 +287,7 @@ const CheckboxIcon = React.forwardRef<
 >(function CheckboxIcon({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
-  if (typeof size === "number") {
+  if (typeof size === 'number') {
     return (
       <UICheckbox.Icon
         ref={ref}
@@ -321,10 +324,10 @@ const CheckboxIcon = React.forwardRef<
   );
 });
 
-Checkbox.displayName = "Checkbox";
-CheckboxIndicator.displayName = "CheckboxIndicator";
-CheckboxLabel.displayName = "CheckboxLabel";
-CheckboxIcon.displayName = "CheckboxIcon";
+Checkbox.displayName = 'Checkbox';
+CheckboxIndicator.displayName = 'CheckboxIndicator';
+CheckboxLabel.displayName = 'CheckboxLabel';
+CheckboxIcon.displayName = 'CheckboxIcon';
 
 export {
   Checkbox,
@@ -333,9 +336,8 @@ export {
   CheckboxIcon,
   CheckboxGroup,
 };
- 
-```
 
+```
 
 ### Step 3: Update the import paths to match your project setup.
 
@@ -350,7 +352,11 @@ To use this component in your project, include the following import statement in
 import { Checkbox } from '@/components/ui/checkbox';
 ```
 
-<AnatomyImage mobileUrl='https://i.imgur.com/qjGDZ6d.png' webUrl='https://i.imgur.com/tN9jjW3.png' classNameStyle='aspect-[513/388] md:aspect-[736/228]' />
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/qjGDZ6d.png"
+  webUrl="https://i.imgur.com/tN9jjW3.png"
+  classNameStyle="aspect-[513/388] md:aspect-[736/228]"
+/>
 
 ```jsx
 export default () => (
@@ -385,61 +391,91 @@ Contains all Checkbox related layout style props and actions. It inherits all th
     </TableHeader>
     <TableBody>
       <TableRow>
-        <TableCell><InlineCode>value</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>value</InlineCode>
+        </TableCell>
         <TableCell>string</TableCell>
         <TableCell>-</TableCell>
-        <TableCell>The value to be used in the checkbox input. This is the value that will be returned on form submission.</TableCell>
+        <TableCell>
+          The value to be used in the checkbox input. This is the value that
+          will be returned on form submission.
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>onChange</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>onChange</InlineCode>
+        </TableCell>
         <TableCell>(value: boolean) => void</TableCell>
         <TableCell>-</TableCell>
-        <TableCell>Function called when the state of the checkbox changes.</TableCell>
+        <TableCell>
+          Function called when the state of the checkbox changes.
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>defaultIsChecked</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>defaultIsChecked</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
         <TableCell>If true, the checkbox will be initially checked.</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>isChecked</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>isChecked</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
-        <TableCell>When true, the checkbox will be checked. You'll need to pass onChange to update it's value (since it's now controlled).</TableCell>
+        <TableCell>
+          When true, the checkbox will be checked. You'll need to pass onChange
+          to update it's value (since it's now controlled).
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>isDisabled</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
         <TableCell>To manually set disable to the checkbox.</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>isInvalid</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>isInvalid</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
         <TableCell>To manually set invalid to the checkbox.</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>isReadOnly</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>isReadOnly</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
         <TableCell>To manually set read-only to the checkbox.</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>isHovered</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>isHovered</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
         <TableCell>To manually set hover to the checkbox.</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>isFocusVisible</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>isFocusVisible</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
-        <TableCell>To manually set focus visible state to the checkbox.</TableCell>
+        <TableCell>
+          To manually set focus visible state to the checkbox.
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>isIndeterminate</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>isIndeterminate</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
         <TableCell>To manually set indeterminate to the checkbox.</TableCell>
@@ -468,10 +504,15 @@ Contains all Icon related layout style props and actions. It inherits all the pr
     </TableHeader>
     <TableBody>
       <TableRow>
-        <TableCell><InlineCode>forceMount</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>forceMount</InlineCode>
+        </TableCell>
         <TableCell>boolean</TableCell>
         <TableCell>false</TableCell>
-        <TableCell>Forces mounting when more control is needed, useful for animations with React libraries.</TableCell>
+        <TableCell>
+          Forces mounting when more control is needed, useful for animations
+          with React libraries.
+        </TableCell>
       </TableRow>
     </TableBody>
   </Table>
@@ -497,31 +538,43 @@ Contains all Group related layout style props and actions. It inherits all the p
     </TableHeader>
     <TableBody>
       <TableRow>
-        <TableCell><InlineCode>value</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>value</InlineCode>
+        </TableCell>
         <TableCell>string[]</TableCell>
         <TableCell>-</TableCell>
         <TableCell>The value of the checkbox group.</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>onChange</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>onChange</InlineCode>
+        </TableCell>
         <TableCell>{`(values: Array<string>) => void`}</TableCell>
         <TableCell>-</TableCell>
-        <TableCell>The callback fired when any children Checkbox is checked or unchecked.</TableCell>
+        <TableCell>
+          The callback fired when any children Checkbox is checked or unchecked.
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>isDisabled</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
         <TableCell>To manually set disable to the checkbox.</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>isInvalid</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>isInvalid</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
         <TableCell>To manually set invalid to the checkbox.</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>isReadOnly</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>isReadOnly</InlineCode>
+        </TableCell>
         <TableCell>bool</TableCell>
         <TableCell>false</TableCell>
         <TableCell>To manually set read-only to the checkbox.</TableCell>
@@ -576,7 +629,9 @@ Checkbox component is created using Pressable component from react-native. It ex
     </TableHeader>
     <TableBody>
       <TableRow>
-        <TableCell><InlineCode>size</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
         <TableCell>lg | md | sm</TableCell>
         <TableCell>md</TableCell>
       </TableRow>
@@ -588,7 +643,7 @@ Checkbox component is created using Pressable component from react-native. It ex
 
 ### Data Attributes Table
 
-Component receives states as props as boolean values, which are applied as ```data-*``` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+Component receives states as props as boolean values, which are applied as `data-*` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
 
 <>
   <Table>
@@ -601,34 +656,58 @@ Component receives states as props as boolean values, which are applied as ```da
     </TableHeader>
     <TableBody>
       <TableRow>
-        <TableCell><InlineCode>hover</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>hover</InlineCode>
+        </TableCell>
         <TableCell>data-hover</TableCell>
-        <TableCell><InlineCode>true | false</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>active</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>active</InlineCode>
+        </TableCell>
         <TableCell>data-active</TableCell>
-        <TableCell><InlineCode>true | false</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>disabled</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>disabled</InlineCode>
+        </TableCell>
         <TableCell>data-disabled</TableCell>
-        <TableCell><InlineCode>true | false</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>focusVisible</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>focusVisible</InlineCode>
+        </TableCell>
         <TableCell>data-focus-visible</TableCell>
-        <TableCell><InlineCode>true | false</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>invalid</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>invalid</InlineCode>
+        </TableCell>
         <TableCell>data-invalid</TableCell>
-        <TableCell><InlineCode>true | false</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell><InlineCode>checked</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>checked</InlineCode>
+        </TableCell>
         <TableCell>data-checked</TableCell>
-        <TableCell><InlineCode>true | false</InlineCode></TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
       </TableRow>
     </TableBody>
   </Table>
@@ -637,8 +716,6 @@ Component receives states as props as boolean values, which are applied as ```da
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-
 
 
   #### Multiple Checkbox
@@ -680,8 +757,6 @@ The Examples section provides visual representations of the different variants o
 />
 
 
-
-
   #### Horizontal
 
   A horizontal component incorporating a checkbox allows for intuitive and space-efficient selection of multiple options within a linear layout.
@@ -719,7 +794,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, HStack, CheckIcon }}
 />
-
 
 
   #### With Help Text
@@ -761,7 +835,6 @@ The Examples section provides visual representations of the different variants o
 />
 
 
-
   #### Form Control
 
   A checkbox component integrated with form control enhances the user experience by enabling easy selection and submission of options within a structured input context.
@@ -798,7 +871,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel, FormControl, VStack, Heading, Text, CheckIcon }}
 />
-
 
 
   #### Label Left
@@ -840,7 +912,6 @@ The Examples section provides visual representations of the different variants o
 />
 
 
-
   #### Controlled
 
   A controlled component architecture incorporates a checkbox component, allowing for precise management of its state and behavior through explicit control mechanisms.
@@ -872,8 +943,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, CheckIcon }}
 />
-
-
 
 
   #### Uncontrolled
@@ -908,7 +977,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, CheckIcon }}
 />
-
 
 
   #### Checkbox Group

@@ -48,7 +48,7 @@ const BottomSheetContext = createContext<{
   handleOpen: () => void;
 }>({
   visible: false,
-  bottomSheetRef: { current: null } as any,
+  bottomSheetRef: { current: null },
   handleClose: () => {},
   handleOpen: () => {},
 });
@@ -65,7 +65,7 @@ export const BottomSheet = ({
   onOpen?: () => void;
   onClose?: () => void;
 }) => {
-  const bottomSheetRef: any = useRef<GorhomBottomSheet>(null);
+  const bottomSheetRef = useRef<GorhomBottomSheet>(null);
 
   const [visible, setVisible] = useState(false);
 

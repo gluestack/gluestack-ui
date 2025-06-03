@@ -3,9 +3,16 @@ title: Upgrade to v2 with Codemod | gluestack-ui
 description: Upgrade to gluestack-ui v2 easily with Codemod. Automate code transformations for smooth migration from v1 to v2 and improve your web and mobile app development process.
 ---
 
-import { Table, TableHeader, TableBody, TableRow, TableHeaderCell, TableCell } from '@/docs-components/table'
-import { Tabs,TabItem } from '@/docs-components/tabs'
-import { InlineCode } from '@/docs-components/inline-code'
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHeaderCell,
+  TableCell,
+} from '@/docs-components/table';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # Upgrade to gluestack-ui v2 with Codemod
 
@@ -23,7 +30,7 @@ gluestack-ui v1 users can be divided into three scenarios:
 
 At this time, we fully support migration for users in **Scenario 1 and Scenario 2** using codemod.
 
-### Overview of Steps to Follow (for  Scenario 1 and Scenario 2  Users)
+### Overview of Steps to Follow (for Scenario 1 and Scenario 2 Users)
 
 <br/>
 1. **Initialize gluestack-ui v2**: `npx gluestack-ui@latest init`
@@ -42,7 +49,6 @@ npx gluestack-ui@latest init
 
 To refer more about the gluestack-ui v2 installation, check [this](https://gluestack.io/ui/docs/home/getting-started/installation).
 
-
 > Installation using gluestack-ui CLI in Expo projects supports for Expo SDK 50 and above only. For Expo SDK < 49, please refer to the manual installation guide [here](https://gluestack.io/ui/docs/home/getting-started/installation).
 
 ## Step 2 : Setup Tailwind CSS
@@ -57,6 +63,7 @@ export default function App() {
   return <GluestackUIProvider>{/* Your code */}</GluestackUIProvider>;
 }
 ```
+
 ## Step 3 : Add All Components
 
 To add all the components run the following command:
@@ -66,25 +73,33 @@ npx gluestack-ui@latest add --all
 ```
 
 You can add only the necessary components instead of including all. Check [here](https://gluestack.io/ui/docs/components/heading).
-  
-```jsx 
-npx gluestack-ui@latest add heading 
+
+```jsx
+npx gluestack-ui@latest add heading
 ```
 
 ## Step 4 : Code Migration
 
 ### Codemod
+
 The gluestack-ui v2 migration process has been streamlined with the creation of a codemod. This codemod automates the conversion of your existing v1 code to v2, ensuring a smooth transition. Here’s what the codemod does:
 
 ##### Style Migration:
-  - It migrates all your existing stylings in v1 code to the appropriate v2 code.
-  - The migrated styles will match the styling conventions used in NativeWind.
+
+- It migrates all your existing stylings in v1 code to the appropriate v2 code.
+- The migrated styles will match the styling conventions used in NativeWind.
+
 ##### Config Migration:
-  - If you have a custom v1 configuration, the codemod will also migrate this configuration to be compatible with v2.
+
+- If you have a custom v1 configuration, the codemod will also migrate this configuration to be compatible with v2.
+
 ##### Limitations:
-  - Descendant Styling ( As it’s not supported in NativeWind at the moment)
-  - Value of `sx` prop is variable
+
+- Descendant Styling ( As it’s not supported in NativeWind at the moment)
+- Value of `sx` prop is variable
+
 #### Please proceed with the following steps to continue the migration:
+
 <Tabs>
   <TabItem label="With Codemod">
 ### Run the following command :
@@ -618,7 +633,7 @@ module.exports = {
       },
       //adding new media query breakpoints
       screens: {
-        'base': '0px',
+        base: '0px',
       },
 
       colors: {

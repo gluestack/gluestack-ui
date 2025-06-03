@@ -1,31 +1,31 @@
 {
-    "argTypes": {
-      "variant": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["solid", "outline"],
-        "defaultValue": "solid"
+  "argTypes": {
+    "variant": {
+      "control": {
+        "type": "select"
       },
-      "action": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["error", "warning", "success", "info", "muted"],
-        "defaultValue": "muted"
-      },
-      "size": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["sm", "md", "lg"],
-        "defaultValue": "md"
-      }
+      "options": ["solid", "outline"],
+      "defaultValue": "solid"
     },
-    "reactLive": {
-      "Badge": "@/components/ui/badge",
-      "BadgeText": "@/components/ui/badge",
-      "BadgeIcon": "@/components/ui/badge",
-      "GlobeIcon": "@/components/ui/icon"
+    "action": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["error", "warning", "success", "info", "muted"],
+      "defaultValue": "muted"
+    },
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg"],
+      "defaultValue": "md"
     }
+  },
+  "reactLive": {
+    "Badge": "@/components/ui/badge",
+    "BadgeText": "@/components/ui/badge",
+    "BadgeIcon": "@/components/ui/badge",
+    "GlobeIcon": "@/components/ui/icon"
   }
+}

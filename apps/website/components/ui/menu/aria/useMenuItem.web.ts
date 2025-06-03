@@ -13,7 +13,10 @@
 import { getItemCount } from '@react-stately/collections';
 import { Key, RefObject } from 'react';
 import { isFocusVisible, useKeyboard } from '@react-aria/interactions';
-import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions/src';
+import {
+  useHover,
+  usePress,
+} from '@/utils/gluestack-utils/aria/interactions/src';
 import { mapDomPropsToRN } from '@/utils/gluestack-utils/aria/utils/src';
 import { mergeProps, useSlotId } from '@react-aria/utils';
 import { PressEvent } from '@react-types/shared';
@@ -108,7 +111,6 @@ export function useMenuItem<T>(
   }
 
   if (isVirtualized) {
-    //@ts-expect-error
     ariaProps['aria-posinset'] = state.collection.getItem(key).index;
     ariaProps['aria-setsize'] = getItemCount(state.collection);
   }

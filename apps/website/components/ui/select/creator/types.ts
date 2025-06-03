@@ -41,7 +41,7 @@ export type ISelectComponentType<
   SelectVirtualizedListProps,
   SelectFlatListProps,
   SelectSectionListProps,
-  SelectSectionHeaderTextProps
+  SelectSectionHeaderTextProps,
 > = React.ForwardRefExoticComponent<
   React.PropsWithoutRef<SelectProps> &
     ISelectProps &

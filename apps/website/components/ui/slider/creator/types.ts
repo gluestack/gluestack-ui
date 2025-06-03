@@ -76,7 +76,7 @@ export type ISliderComponentType<
   StyledSlider,
   StyledSliderThumb,
   StyledSliderTrack,
-  StyledSliderFilledTrack
+  StyledSliderFilledTrack,
 > = React.ForwardRefExoticComponent<
   InnerForwardRefExoticComponent<StyledSlider> & ISliderProps
 > & {

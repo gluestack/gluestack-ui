@@ -30,7 +30,7 @@ export default function ComponentExamples() {
       "lg",
       "full"
     ],
-    "defaultValue": "md"
+    "defaultValue": "sm"
   },
   "anchor": {
     "control": {

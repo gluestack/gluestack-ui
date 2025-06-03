@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import Handlebars from "handlebars";
-import { LiveProvider, LiveError, LivePreview } from "react-live";
+import { useState, useEffect } from 'react';
+import Handlebars from 'handlebars';
+import { LiveProvider, LiveError, LivePreview } from 'react-live';
 export function ComponentPreviewer({
   code,
   argTypes,

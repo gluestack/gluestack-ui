@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Text } from "@/components/ui/text";
-import { View } from "@/components/ui/view";
-import { Switch } from "@/components/ui/switch";
-import { Box } from "@/components/ui/box";
+import React, { useState } from 'react';
+import { Text } from '@/components/ui/text';
+import { View } from '@/components/ui/view';
+import { Switch } from '@/components/ui/switch';
+import { Box } from '@/components/ui/box';
 import {
   Select,
   SelectTrigger,
@@ -14,9 +14,9 @@ import {
   SelectDragIndicator,
   SelectDragIndicatorWrapper,
   SelectItem,
-} from "@/components/ui/select";
-import { Center } from "@/components/ui/center";
-import { ChevronDownIcon } from "@/components/ui/icon";
+} from '@/components/ui/select';
+import { Center } from '@/components/ui/center';
+import { ChevronDownIcon } from '@/components/ui/icon';
 type ComponentPreviewerProps = {
   children: (props: { [key: string]: any }) => React.ReactNode;
   props: {
@@ -37,10 +37,13 @@ export const ComponentPreviewer = ({
   title,
 }: ComponentPreviewerProps) => {
   // Initialize state for each option dynamically
-  const initialState = Object.keys(props).reduce((acc, key) => {
-    acc[key] = props[key].defaultValue;
-    return acc;
-  }, {} as { [key: string]: string | boolean });
+  const initialState = Object.keys(props).reduce(
+    (acc, key) => {
+      acc[key] = props[key].defaultValue;
+      return acc;
+    },
+    {} as { [key: string]: string | boolean }
+  );
 
   const [selectedValues, setSelectedValues] = useState(initialState);
 
@@ -51,22 +54,22 @@ export const ComponentPreviewer = ({
   const renderControl = (key: string) => {
     const propConfig = props[key];
 
-    if (propConfig.control.type === "boolean") {
+    if (propConfig.control.type === 'boolean') {
       return (
         <Switch
           size="md"
           isDisabled={false}
-          trackColor={{ false: "#d4d4d4", true: "#005db4" }}
-          thumbColor={"#fafafa"}
-          activeThumbColor={"#fafafa"}
-          ios_backgroundColor={"#d4d4d4"}
+          trackColor={{ false: '#d4d4d4', true: '#005db4' }}
+          thumbColor={'#fafafa'}
+          activeThumbColor={'#fafafa'}
+          ios_backgroundColor={'#d4d4d4'}
           value={selectedValues[key]}
           onToggle={() => handleChange(key, !selectedValues[key])}
         />
       );
     }
 
-    if (propConfig.control.type === "select" && propConfig.options) {
+    if (propConfig.control.type === 'select' && propConfig.options) {
       return (
         <Select
           className="w-full"

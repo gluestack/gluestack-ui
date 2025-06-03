@@ -1,5 +1,4 @@
 {
-
   "title": "Pressable child elements according to its states",
   "description": "You can change the child elements according to the states of Pressable component.",
   "reactLive": {
@@ -8,4 +7,4 @@
     "Box": "@/components/ui/box",
     "VStack": "@/components/ui/vstack"
   }
-} 
+}

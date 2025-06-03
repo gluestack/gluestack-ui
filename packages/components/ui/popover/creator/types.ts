@@ -98,7 +98,7 @@ export type IPopoverComponentType<
   FooterProps,
   BodyProps,
   BackdropProps,
-  CloseButtonProps
+  CloseButtonProps,
 > = React.ForwardRefExoticComponent<
   IPopoverProps &
     React.PropsWithoutRef<PopoverProps> &

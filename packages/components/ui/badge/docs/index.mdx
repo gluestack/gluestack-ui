@@ -10,7 +10,7 @@ pageDescription: Enhance your app with gluestack-ui's Badge component. A versati
 showHeader: true
 ---
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -18,16 +18,16 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
-import { AnatomyImage } from "@/docs-components/anatomy-image";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
 
 # Badge
 
 Enhance your app with gluestack-ui's Badge component. A versatile React Native badge with multiple variants for clear status indicators in your badges component.
 
+This is an illustration of **Badge** component.
 
-### This is an illustration of Badge component.
 /// {Example:basic} ///
 
 <br />
@@ -65,7 +65,12 @@ To use this component in your project, include the following import statement in
 ```ts
 import { Badge } from '@/components/ui/badge';
 ```
-<AnatomyImage mobileUrl='https://i.imgur.com/l1rzVbp.png' webUrl='https://i.imgur.com/H735cuy.png' classNameStyle='aspect-[513/341] md:aspect-[736/225]' />
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/l1rzVbp.png"
+  webUrl="https://i.imgur.com/H735cuy.png"
+  classNameStyle="aspect-[513/341] md:aspect-[736/225]"
+/>
 
 ```ts
 export default () => (
@@ -100,33 +105,39 @@ Badge component is created using View component from react-native. It extends al
 
 <Table>
   <TableHeader>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
   </TableHeader>
   <TableBody>
-  <TableRow>
-    <TableCell><InlineCode>action</InlineCode></TableCell>
-    <TableCell>error | warning | success | info | muted</TableCell>
-    <TableCell>success</TableCell>
-    <TableCell>Determines the color scheme of the badge.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>variant</InlineCode></TableCell>
-    <TableCell>solid | outline</TableCell>
-    <TableCell>solid</TableCell>
-    <TableCell>Determines the visual style of the badge.</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>size</InlineCode></TableCell>
-    <TableCell>sm | md | lg</TableCell>
-    <TableCell>md</TableCell>
-    <TableCell>Determines the size of the badge.</TableCell>
-  </TableRow>
-</TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>action</InlineCode>
+      </TableCell>
+      <TableCell>error | warning | success | info | muted</TableCell>
+      <TableCell>success</TableCell>
+      <TableCell>Determines the color scheme of the badge.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>variant</InlineCode>
+      </TableCell>
+      <TableCell>solid | outline</TableCell>
+      <TableCell>solid</TableCell>
+      <TableCell>Determines the visual style of the badge.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
+      <TableCell>sm | md | lg</TableCell>
+      <TableCell>md</TableCell>
+      <TableCell>Determines the size of the badge.</TableCell>
+    </TableRow>
+  </TableBody>
 </Table>
 
 > Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
@@ -136,6 +147,5 @@ Badge component is created using View component from react-native. It extends al
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
 /// {Example:with-avatar} ///
-
 
 /// {Example:composition} ///

@@ -1,7 +1,7 @@
-"use client";
-import { Box } from "@/components/ui";
-import TheYearThatWas2024Content from "./blog.mdx";
-import BlogsPageLayout from "@/components/page-components/blogs-page/BlogsPageLayout";
+'use client';
+import { Box } from '@/components/ui';
+import TheYearThatWas2024Content from './blog.mdx';
+import BlogsPageLayout from '@/components/page-components/blogs-page/BlogsPageLayout';
 
 const TheYearThatWas2024 = () => {
   return (

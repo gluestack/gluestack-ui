@@ -14,7 +14,9 @@ import { TOC } from '@/components/page-components/blogs-page/TOC';
     />
   </Box>
   <Box>
-    <Text className="text-sm font-bold text-typography-900">Rajat Chaudhary</Text>
+    <Text className="text-sm font-bold text-typography-900">
+      Rajat Chaudhary
+    </Text>
     <Text className="text-sm">Building gluestack-ui</Text>
   </Box>
 </HStack>
@@ -41,7 +43,7 @@ Let's get started by creating a new Expo project:
 
 ### 1. Create the Expo project:
 
-``` jsx
+```jsx
 npx create-expo-app@latest -t
 ```
 
@@ -53,7 +55,7 @@ npx create-expo-app@latest -t
 
 ### 3. Start the development server:
 
-``` bash
+```bash
 npm start
 ```
 
@@ -65,7 +67,7 @@ Now that we have the expo project set up, let's initialize gluestack-ui:
 
 1. Run the initialization command:
 
-``` bash 
+```bash
 npx gluestack-ui init
 ```
 
@@ -74,7 +76,7 @@ The init command adds the necessary `gluestack-ui.config.json` file, includes th
 <br />
 <Image
   source={{
-    uri: "https://gluestack.github.io/public-blog-video-assets/simpleuiinit.png",
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuiinit.png',
   }}
   className="w-full h-[520px] rounded-lg"
   resizeMode="contain"
@@ -82,39 +84,47 @@ The init command adds the necessary `gluestack-ui.config.json` file, includes th
 <br />
 
 #### - **metro.config.js**
-___
+
+---
+
 This file is added to integrate NativeWind with our Expo project. This configuration ensures that NativeWind styles are properly processed and bundled with our application, enabling the use of Tailwind CSS classes in our project.
-<br/>
-#### - **babel.config.js**
-___
-This updated configuration modifies this file by integrating NativeWind for styling and sets up module resolution for easier imports. Here's what changes:
+
+<br />
+#### - **babel.config.js** ___ This updated configuration modifies this file by
+integrating NativeWind for styling and sets up module resolution for easier
+imports. Here's what changes:
 
 a. The `babel-preset-expo` now includes a `jsxImportSource: "nativewind"` option.
 b. A new preset `"nativewind/babel"` is added to the presets array.
 c. A `module-resolver` plugin is introduced with a root directory set to `"./"` and an alias `"@"` pointing to the root.
 
 These modifications enable you to use NativeWind's styling capabilities and simplify your import statements using the `@` alias.
-<br/>
-#### - tsconfig.js
-___
-Modify this file by adding the paths configuration under compilerOptions. This new setting creates an alias @ that points to the root directory of our project.
-<br/>
-#### - **tailwind.config.js**
-___
-This file is extensive and sets up your Tailwind CSS configuration for use with gluestack-ui. It includes a custom color palette, font settings, and other theme extensions.
-This configuration allows you to use gluestack-ui's predefined design tokens and extend them with your own custom styles, ensuring a consistent look and feel across your application.
-<br/>
-#### - **global.css**
-___
-This file is a standard entry point for Tailwind CSS directives. This file ensures that Tailwind's base styles, component classes, and utility classes are properly imported and available throughout your application.
-<br/>
-#### - **gluestack-ui.config.json**
-___
-This file is a configuration file specific to gluestack-ui. Which tells gluestack-ui where to find your Tailwind configuration, global CSS, main application entry point, and UI components. It helps in setting up the correct paths for your project structure.
-<br/>
-#### - **gluestack-ui-provider**
-___
-This command creates a `gluestack-ui-provider` folder within your project's `components/ui` directory. This folder is crucial for setting up the theming and provider infrastructure for your gluestack-ui components. It contains four key files:
+
+<br />
+#### - tsconfig.js ___ Modify this file by adding the paths configuration under
+compilerOptions. This new setting creates an alias @ that points to the root
+directory of our project.
+<br />
+#### - **tailwind.config.js** ___ This file is extensive and sets up your
+Tailwind CSS configuration for use with gluestack-ui. It includes a custom color
+palette, font settings, and other theme extensions. This configuration allows
+you to use gluestack-ui's predefined design tokens and extend them with your own
+custom styles, ensuring a consistent look and feel across your application.
+<br />
+#### - **global.css** ___ This file is a standard entry point for Tailwind CSS
+directives. This file ensures that Tailwind's base styles, component classes,
+and utility classes are properly imported and available throughout your
+application.
+<br />
+#### - **gluestack-ui.config.json** ___ This file is a configuration file
+specific to gluestack-ui. Which tells gluestack-ui where to find your Tailwind
+configuration, global CSS, main application entry point, and UI components. It
+helps in setting up the correct paths for your project structure.
+<br />
+#### - **gluestack-ui-provider** ___ This command creates a
+`gluestack-ui-provider` folder within your project's `components/ui` directory.
+This folder is crucial for setting up the theming and provider infrastructure
+for your gluestack-ui components. It contains four key files:
 
 a. `config.ts`:
 This file defines color schemes variables for light and dark modes using NativeWind's `vars` function. It sets up a comprehensive color palette for primary, secondary, tertiary, and semantic colors, ensuring consistent theming across your application.
@@ -124,18 +134,21 @@ c. `index.web.tsx`:
 A web-specific version of the `GluestackUIProvider`. It handles CSS variables for theming, manages system-level dark mode preferences, and ensures proper hydration in server-side rendering scenarios. It also injects a script for theme switching without causing unstyled content flashes.
 d. `script.ts`:
 Exports a function that applies the correct theme class to the document root element. It handles manual theme selection and system preferences, ensuring the appropriate theme is applied immediately, even before React hydration on the client side.
-<br/>
-#### - **entry file (of your project)**
-___
-Modifies this file by importing `global.css` at the top, \*\*\*\*Additionally, the entire application is now wrapped with the `GluestackUIProvider` component. These changes ensure that your entire application has access to gluestack-ui's theming capabilities and Tailwind CSS utilities, providing a consistent and customizable design system throughout our expo project.
-<br/>
-#### - **.npmrc**
-___
-This file ensures that all required packages can be installed without version conflicts.
-<br/>
+
+<br />
+#### - **entry file (of your project)** ___ Modifies this file by importing
+`global.css` at the top, \*\*\*\*Additionally, the entire application is now
+wrapped with the `GluestackUIProvider` component. These changes ensure that your
+entire application has access to gluestack-ui's theming capabilities and
+Tailwind CSS utilities, providing a consistent and customizable design system
+throughout our expo project.
+<br />
+#### - **.npmrc** ___ This file ensures that all required packages can be
+installed without version conflicts.
+<br />
 ### Add gluestack-ui components:
 
-``` bash
+```bash
 npx gluestack-ui add [component_name]
 ```
 
@@ -144,7 +157,7 @@ This will install and configure the component that gluestack-ui provides for you
 <br />
 <Image
   source={{
-    uri: "https://gluestack.github.io/public-blog-video-assets/simpleuisingle.png",
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuisingle.png',
   }}
   className="w-full h-[480px] rounded-lg"
   resizeMode="contain"
@@ -158,7 +171,7 @@ Let's create a simple UI using some of the gluestack-ui components.
 <br />
 <Image
   source={{
-    uri: "https://gluestack.github.io/public-blog-video-assets/simpleuilogin.png",
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuilogin.png',
   }}
   className="w-full h-[340px] rounded-lg"
   resizeMode="contain"
@@ -167,8 +180,8 @@ Let's create a simple UI using some of the gluestack-ui components.
 
 ### Open App.tsx and update it with the following code:
 
-``` jsx
-  const App = () => {
+```jsx
+const App = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   return (
     <GluestackUIProvider>
@@ -185,7 +198,7 @@ Let's create a simple UI using some of the gluestack-ui components.
           <Text className="mt-6">Password</Text>
           <Input>
             <InputField
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               placeholder="Enter your password"
             />
             <InputSlot
@@ -197,7 +210,7 @@ Let's create a simple UI using some of the gluestack-ui components.
           </Input>
 
           <HStack className="justify-between my-5">
-            <Checkbox value={""} size="sm">
+            <Checkbox value={''} size="sm">
               <CheckboxIndicator>
                 <CheckboxIcon as={CheckIcon} />
               </CheckboxIndicator>
@@ -223,14 +236,14 @@ Let's create a simple UI using some of the gluestack-ui components.
 
 ### Run the App:
 
-``` bash
+```bash
 npm start
 ```
 
 <br />
 <Image
   source={{
-    uri: "https://gluestack.github.io/public-blog-video-assets/simpleuioutput.png",
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuioutput.png',
   }}
   className="w-full h-[500px] rounded-lg"
   resizeMode="contain"
@@ -241,19 +254,19 @@ npm start
 
 1. Update `App.tsx` with **form validation** and **state management**:
 
-``` jsx
-  const App = () => {
+```jsx
+const App = () => {
   const [isInvalid, setIsInvalid] = React.useState(false);
-  const [emailInput, setEmailInput] = React.useState("");
-  const [passwordInput, setPasswordInput] = React.useState("");
+  const [emailInput, setEmailInput] = React.useState('');
+  const [passwordInput, setPasswordInput] = React.useState('');
   const [showPassword, setShowPassword] = React.useState(false);
   const handleLogin = () => {
-      if (passwordInput?.length < 6) {
+    if (passwordInput?.length < 6) {
       setIsInvalid(true);
     } else {
       setIsInvalid(false);
-      setEmailInput("");
-      setPasswordInput("");
+      setEmailInput('');
+      setPasswordInput('');
     }
   };
   return (
@@ -283,7 +296,7 @@ npm start
             </FormControlLabel>
             <Input>
               <InputField
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 placeholder="Enter your password"
                 value={passwordInput}
                 //@ts-ignore
@@ -313,7 +326,7 @@ npm start
           </FormControl>
 
           <HStack className="justify-between my-5">
-            <Checkbox value={""} size="sm">
+            <Checkbox value={''} size="sm">
               <CheckboxIndicator>
                 <CheckboxIcon as={CheckIcon} />
               </CheckboxIndicator>
@@ -332,21 +345,20 @@ npm start
         </VStack>
       </Center>
     </GluestackUIProvider>
-    );
-
+  );
 };
 ```
 
 ### Run the app to see the changes:
 
-``` bash
+```bash
 npm start
 ```
 
 <br />
 <Image
   source={{
-    uri: "https://gluestack.github.io/public-blog-video-assets/simpleuifunctionality.png",
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuifunctionality.png',
   }}
   className="w-full h-[500px] rounded-lg"
   resizeMode="contain"
@@ -364,7 +376,7 @@ Add a new rounded variant to make the button rounded in `components/ui/button/in
 <br />
 <Image
   source={{
-    uri: "https://gluestack.github.io/public-blog-video-assets/simpleuicustomize.png",
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuicustomize.png',
   }}
   className="w-full h-[180px] rounded-lg"
   resizeMode="contain"
@@ -376,7 +388,7 @@ Usage:-
 <br />
 <Image
   source={{
-    uri: "https://gluestack.github.io/public-blog-video-assets/simpleuicustomize1.png",
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuicustomize1.png',
   }}
   className="w-full h-[180px] rounded-lg"
   resizeMode="contain"
@@ -390,7 +402,7 @@ Before:
 <br />
 <Image
   source={{
-    uri: "https://gluestack.github.io/public-blog-video-assets/simpleuioldconfig.png",
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuioldconfig.png',
   }}
   className="w-full h-[580px] rounded-lg"
   resizeMode="contain"
@@ -402,7 +414,7 @@ After:
 <br />
 <Image
   source={{
-    uri: "https://gluestack.github.io/public-blog-video-assets/simpleuinewconfig.png",
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuinewconfig.png',
   }}
   className="w-full h-[580px] rounded-lg"
   resizeMode="contain"
@@ -414,7 +426,7 @@ Result:
 <br />
 <Image
   source={{
-    uri: "https://gluestack.github.io/public-blog-video-assets/simpleuifinaloutput.png",
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuifinaloutput.png',
   }}
   className="w-full h-[480px] rounded-lg"
   resizeMode="contain"

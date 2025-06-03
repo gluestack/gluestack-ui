@@ -1,10 +1,10 @@
-import React, { forwardRef } from "react";
-import { Platform } from "react-native";
-import { useControllableState } from "@/utils/gluestack-utils/hooks/src";
-import { Overlay } from "@/components/ui/overlay/creator";
-import { ActionsheetContext } from "./context";
-import { StyleSheet } from "react-native";
-import type { IActionsheetProps } from "./types";
+import React, { forwardRef } from 'react';
+import { Platform } from 'react-native';
+import { useControllableState } from '@/utils/gluestack-utils/hooks/src';
+import { Overlay } from '@/components/ui/overlay/creator';
+import { ActionsheetContext } from './context';
+import { StyleSheet } from 'react-native';
+import type { IActionsheetProps } from './types';
 
 export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
   return forwardRef(
@@ -29,7 +29,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
       }: IActionsheetProps,
       ref?: any
     ) => {
-      const overlayStyle = Platform.OS === "web" ? { position: "fixed" } : {};
+      const overlayStyle = Platform.OS === 'web' ? { position: 'fixed' } : {};
 
       const [visible, setVisible] = useControllableState({
         value: isOpen,

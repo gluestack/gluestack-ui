@@ -1,1 +1,1 @@
-export * from "./useToggle.web";
+export * from './useToggle.web';

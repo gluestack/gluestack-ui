@@ -1,7 +1,7 @@
-import React from "react";
-import { getGithubLink } from "../../utils/helperFunction";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+import React from 'react';
+import { getGithubLink } from '../../utils/helperFunction';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 const PencilIcon = () => (
   <svg

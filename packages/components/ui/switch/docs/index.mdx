@@ -10,18 +10,28 @@ pageDescription: Enhance your UI with a sleek Switch Component. Built on React N
 showHeader: true
 ---
 
-
-import {Tabs,TabItem} from '@/docs-components/tabs'
-import {Table, TableContainer, TableHeader, TableBody, TableRow, TableCell, TableText,TableHeaderCell} from '@/docs-components/table'
-import {InlineCode} from '@/docs-components/inline-code'
-import {AnatomyImage} from '@/docs-components/anatomy-image'
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableContainer,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableText,
+  TableHeaderCell,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
 
 # Switch
 
 Enhance your UI with a sleek Switch Component. Built on React Native, it's customizable and accessible. Perfect for toggling options seamlessly.
 
+>The current component is functioning as expected, but we have decided to rebuild it entirely to align with our vision and enhance its performance. It is primarily based on React Native, and while we have made minimal modifications so far, our upcoming rebuild will involve significant changes to ensure it closely matches our desired structure and meets our objectives.
 
-### This is an illustration of Switch component.
+This is an illustration of **Switch** component.
+
 /// {Example:basic} ///
 
 <br />
@@ -36,24 +46,24 @@ Enhance your UI with a sleek Switch Component. Built on React Native, it's custo
   npx gluestack-ui add switch
   ```
   </TabItem>
-  <TabItem label="Manual"> 
+  <TabItem label="Manual">
 
 ### Step 1: Install the following dependencies:
 
-  
 ### Run the following command:
+
 ```bash
 npx gluestack-ui add switch
 ```
 
 ### Step 2: Copy and paste the following code into your project.
 
-
-```jsx 
-%%-- File: packages/components/ui/switch/index.tsx --%% 
+```jsx
+%%-- File: packages/components/ui/switch/index.tsx --%%
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -65,7 +75,11 @@ To use this component in your project, include the following import statement in
 import { Switch } from '@/components/ui/switch';
 ```
 
-<AnatomyImage mobileUrl='https://i.imgur.com/p6ndTjn.png' webUrl='https://i.imgur.com/rDy1AOi.png' classNameStyle='aspect-[513/298] md:aspect-[736/182]' />
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/p6ndTjn.png"
+  webUrl="https://i.imgur.com/rDy1AOi.png"
+  classNameStyle="aspect-[513/298] md:aspect-[736/182]"
+/>
 
 ```ts
 export default () => <Switch />;
@@ -79,7 +93,6 @@ This section provides a comprehensive reference list for the component props, de
 
 Contains all switch related layout style props and actions.
 It inherits all the properties of React Native's [Switch](https://reactnative.dev/docs/switch) component.
-
 
     <Table>
       <TableHeader>

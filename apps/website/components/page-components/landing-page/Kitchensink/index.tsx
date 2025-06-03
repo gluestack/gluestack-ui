@@ -10,7 +10,7 @@ import {
   ButtonText,
   ButtonIcon,
   ChevronRightIcon,
-  Icon
+  Icon,
 } from '@/components/ui';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -50,24 +50,24 @@ const Kitchensink = () => {
       <HStack className="relative flex-1 w-full h-full  gap-5 flex-col xl:flex-row sm:border sm:border-outline-200 rounded-lg">
         <Box className=" p-10 md:flex hidden">
           <VStack className="flex-1">
-              <VStack className="web:md:flex md:flex hidden web:hidden">
-                <Heading className="text-4xl tracking-tighter font-bold sm:leading-[34px] leading-9 text-typography-900 ">
-                  Check out the App
-                </Heading>
-                <Text className="text-xl font-normal mt-4 leading-[20px]  text-typography-900 ">
-                  Scan the QR to open the app on your store
-                </Text>
-              </VStack>
-              <NextLink
-                href="/ui/docs/apps/kitchensink-app"
-                className="md:flex hidden mt-8"
-              >
-                <Button>
-                  <ButtonText>Learn More</ButtonText>
-                  <ButtonIcon as={ChevronRightIcon}></ButtonIcon>
-                </Button>
-              </NextLink>
-              {/* <NextLink
+            <VStack className="web:md:flex md:flex hidden web:hidden">
+              <Heading className="text-4xl tracking-tighter font-bold sm:leading-[34px] leading-9 text-typography-900 ">
+                Check out the App
+              </Heading>
+              <Text className="text-xl font-normal mt-4 leading-[20px]  text-typography-900 ">
+                Scan the QR to open the app on your store
+              </Text>
+            </VStack>
+            <NextLink
+              href="/ui/docs/apps/kitchensink-app"
+              className="md:flex hidden mt-8"
+            >
+              <Button>
+                <ButtonText>Learn More</ButtonText>
+                <ButtonIcon as={ChevronRightIcon}></ButtonIcon>
+              </Button>
+            </NextLink>
+            {/* <NextLink
                 href="/ui/docs/apps/kitchensink-app"
                 className="md:hidden flex"
               >
@@ -76,7 +76,7 @@ const Kitchensink = () => {
                   <ButtonIcon as={ChevronRightIcon}></ButtonIcon>
                 </Button>
               </NextLink> */}
-           
+
             <Box className="flex-1 mt-10">
               <HStack className="flex-1 gap-2 items-end">
                 <Box className="flex-1 md:flex hidden">

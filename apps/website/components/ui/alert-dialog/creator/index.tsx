@@ -15,7 +15,7 @@ export function createAlertDialog<
   AlertDialogFooter,
   AlertDialogBody,
   AlertDialogBackdrop,
-  AlertDialogAnimatePresence
+  AlertDialogAnimatePresence,
 >({
   Root,
   Content,

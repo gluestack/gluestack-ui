@@ -72,7 +72,7 @@ export default function Example() {
       "lg",
       "full"
     ],
-    "defaultValue": "md"
+    "defaultValue": "sm"
   },
   "anchor": {
     "control": {

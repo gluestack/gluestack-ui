@@ -20,7 +20,7 @@ export const createFormControl = <
   LabelText,
   LabelAstrick,
   Helper,
-  HelperText
+  HelperText,
 >({
   Root,
   Error,

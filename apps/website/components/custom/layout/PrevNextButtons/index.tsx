@@ -1,11 +1,11 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 import {
   convertSidebarItemsToPathsArray,
   getPrevAndNextLinks,
-} from "../../utils/helperFunction";
-import { LinkButton } from "./LinkButton";
-import { usePathname } from "next/navigation";
+} from '../../utils/helperFunction';
+import { LinkButton } from './LinkButton';
+import { usePathname } from 'next/navigation';
 
 export const PrevNextButtons = ({ sidebarItems }: any) => {
   const pathname = usePathname();
@@ -24,7 +24,7 @@ export const PrevNextButtons = ({ sidebarItems }: any) => {
             pageText={prev}
             pageLink={prevLink}
             NextLink={Link}
-            type={"previous"}
+            type={'previous'}
           />
         ) : null}
         {nextLink ? (
@@ -32,7 +32,7 @@ export const PrevNextButtons = ({ sidebarItems }: any) => {
             pageText={next}
             pageLink={nextLink}
             NextLink={Link}
-            type={"next"}
+            type={'next'}
           />
         ) : null}
       </div>
@@ -44,7 +44,7 @@ export const PrevNextButtons = ({ sidebarItems }: any) => {
             pageText={prev}
             pageLink={prevLink}
             NextLink={Link}
-            type={"previous"}
+            type={'previous'}
           />
         ) : (
           <div className="flex-1"></div>
@@ -54,7 +54,7 @@ export const PrevNextButtons = ({ sidebarItems }: any) => {
             pageText={next}
             pageLink={nextLink}
             NextLink={Link}
-            type={"next"}
+            type={'next'}
           />
         ) : (
           <div className="flex-1"></div>

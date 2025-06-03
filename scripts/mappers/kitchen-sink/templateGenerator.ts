@@ -1,11 +1,11 @@
-import path from "path";
-import * as fileOps from "../utils/fileOperations";
-import * as regex from "../utils/regex";
+import path from 'path';
+import * as fileOps from '../utils/fileOperations';
+import * as regex from '../utils/regex';
 import {
   componentPreviewerTemplate,
   importTemplate,
   wrappedComponentTemplate,
-} from "./templates";
+} from './templates';
 
 interface ImportMap {
   [key: string]: string[];
@@ -16,10 +16,10 @@ export const generateCodePreviewer = (
   component: string,
   importMap: ImportMap
 ) => {
-  const sourcePath = path.resolve("packages/components/ui");
-  const examplePath = path.join(sourcePath, component, "examples", exampleName);
-  const codePath = path.join(examplePath, "template.handlebars");
-  const argsPath = path.join(examplePath, "meta.json");
+  const sourcePath = path.resolve('packages/components/ui');
+  const examplePath = path.join(sourcePath, component, 'examples', exampleName);
+  const codePath = path.join(examplePath, 'template.handlebars');
+  const argsPath = path.join(examplePath, 'meta.json');
   try {
     if (!fileOps.pathExists(codePath) || !fileOps.pathExists(argsPath)) {
       console.error(`Missing files for example ${exampleName} in ${component}`);
@@ -59,11 +59,11 @@ export const copyProcessedAnnotations = (
     // Read source file content
     const sourceContent = fileOps.readTextFile(sourcePath);
     const importMap: ImportMap = {
-      "@/components/custom/component-previewer": ["ComponentPreviewer"],
+      '@/components/custom/component-previewer': ['ComponentPreviewer'],
     };
 
     // Only collect the processed annotations
-    let processedContent = "";
+    let processedContent = '';
     let match;
 
     // Process each annotation match
@@ -74,7 +74,7 @@ export const copyProcessedAnnotations = (
         component,
         importMap
       );
-      processedContent += processedAnnotation + "\n\n";
+      processedContent += processedAnnotation + '\n\n';
     }
 
     // If we found and processed any annotations
@@ -84,7 +84,7 @@ export const copyProcessedAnnotations = (
         .map(([importPath, imports]) => {
           return importTemplate(imports, importPath);
         })
-        .join("\n");
+        .join('\n');
 
       // Wrap the processed content in a component
       const wrappedContent = wrappedComponentTemplate(processedContent);

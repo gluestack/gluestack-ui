@@ -32,9 +32,10 @@ export default function ComponentExamples() {
       "black",
       "orange",
       "purple",
-      "yellow"
+      "yellow",
+      "grey"
     ],
-    "defaultValue": "red"
+    "defaultValue": "grey"
   }
 }} title={"Basic"}>
   {props => {

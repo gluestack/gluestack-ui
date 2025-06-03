@@ -17,7 +17,7 @@ export const createModal = <
   FooterProps,
   BodyProps,
   BackdropProps,
-  AnimatePresenceProps
+  AnimatePresenceProps,
 >({
   Root,
   Content,

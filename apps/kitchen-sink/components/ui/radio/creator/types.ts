@@ -22,7 +22,7 @@ export type IRadioComponentType<
   GroupProps,
   IconProps,
   IndicatorProps,
-  LabelProps
+  LabelProps,
 > = React.ForwardRefExoticComponent<
   InterfaceRadio &
     React.RefAttributes<RadioProps> &

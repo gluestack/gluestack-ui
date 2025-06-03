@@ -89,7 +89,6 @@ const Tooltip = React.forwardRef<
   ITooltipProps
 >(function Tooltip({ className, ...props }, ref) {
   return (
-    //@ts-expect-error
     <UITooltip
       ref={ref}
       className={tooltipStyle({ class: className })}

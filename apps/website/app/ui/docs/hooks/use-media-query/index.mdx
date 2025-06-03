@@ -6,15 +6,22 @@ import { Icon } from '@/components/ui/icon';
 import { Laptop, Tablet, Smartphone, Tv } from 'lucide-react-native';
 import { Heading } from '@/components/ui/heading';
 
-import {Tabs,TabItem} from '@/docs-components/tabs'
-import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
-import {InlineCode} from '@/docs-components/inline-code'
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # useMediaQuery
 
 Implement responsive designs in React & React Native with the useMediaQuery hook and component. Learn how to use the React useMediaQuery hook today.
 
-**useMediaQuery** is a custom hook that helps detect matches between a single media query or multiple media queries. React Native does not natively support media queries, so useMediaQuery is still limited. 
+**useMediaQuery** is a custom hook that helps detect matches between a single media query or multiple media queries. React Native does not natively support media queries, so useMediaQuery is still limited.
 
 
   
@@ -102,8 +109,7 @@ Implement responsive designs in React & React Native with the useMediaQuery hook
 <TabItem label="Manual">
 ### Step 1: Copy and paste the following code into index.ts in your project.
 
-
-```ts 
+```ts
 import { useWindowDimensions } from 'react-native';
 
 type QueryKeys =
@@ -185,15 +191,14 @@ function calculateQuery(
   }
   return retval;
 }
- 
+
 ```
 
 > Note: **Step 2 is for web only**
 
 ### Step 2: Copy and paste the following code into index.web.ts in your project.
 
-
-```ts 
+```ts
 import { useState, useEffect } from 'react';
 
 type QueryKeys =
@@ -291,10 +296,11 @@ function calculateQuery(
   }
   return retval;
 }
- 
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -308,9 +314,9 @@ import { useMediaQuery } from '@/components/ui/utils/use-media-query';
 
 ```ts
 const flexDir = useMediaQuery({
-        minWidth: 480,
-        maxWidth: 1280,
-    });
+  minWidth: 480,
+  maxWidth: 1280,
+});
 ```
 
 ### Hook Arguments
@@ -338,11 +344,10 @@ This section provides a comprehensive reference list for the hook arguments, det
   </TableBody>
 </Table>
 
-
 ### Return Value
 
 The **useMediaQuery** hook returns an array of booleans, indicating whether the given query matches or queries match.
 
-### Why an array? 
+### Why an array?
 
 **useMediaQuery** accepts both an object and an array of object, but will always return an array. This way, you can combine multiple media queries which will be individually matched in a single call. The options to use are still limited to maxWidth, minWidth, maxHeight, minHeight, orientation.

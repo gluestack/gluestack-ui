@@ -8,7 +8,6 @@ To customize tokens, follow these steps:
 
 1. Go to `gluestack-ui-provider/config.ts` file. Update or add new tokens as per your requirements.
 
-
 ```jsx
 export const config = {
   light: vars({
@@ -38,7 +37,6 @@ export const config = {
 
 2. In case you are adding a new color in your config file, you need to update it in the tailwind.config.js file as well.
 
-
 ```jsx
  theme: {
     extend: {
@@ -66,9 +64,10 @@ By utilizing this approach, you can seamlessly modify the primary color tokens o
 If you want to extend the default tailwind config and add fonts, breakpoints, border radius values, and more, please refer to the [tailwindcss](https://tailwindcss.com/docs/theme#customizing-the-default-theme) documentation.
 
 In order for `custom-heading-xl` to work, you also will need to pass an additional config for the [tva](https://gluestack.io/ui/docs/home/getting-started/gluestack-ui-nativewind-utils#tva-tailwind-variant-authority) function when defining a component, for [Text](https://gluestack.io/ui/docs/components/text) it will be:
+
 ```jsx
 // Text style props are from here https://gluestack.io/ui/docs/components/text (step 3, the one from styles.tsx)
-const textStyleProps = {}
+const textStyleProps = {};
 
 //ref @see https://www.tailwind-variants.org/docs/api-reference#config-optional
 const config = {
@@ -84,6 +83,7 @@ const config = {
   },
 };
 
-export const textStyle = tva(...textStyleProps, config)
+export const textStyle = tva(...textStyleProps, config);
 ```
+
 Another way to solve this is by setting [global tailwind-variants config](https://www.tailwind-variants.org/docs/config#global-config), but it will affect all components. Maybe it's not your case and you want to have a custom font-size only for a specific component/part of the app.

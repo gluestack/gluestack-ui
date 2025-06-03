@@ -30,7 +30,7 @@ import {
   CloseIcon,
   InputSlot,
   InputIcon,
-} from "@/components/ui";
+} from '@/components/ui';
 import {
   Table,
   TableBody,
@@ -38,11 +38,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from '@/components/ui/table';
 import {
   LocalThemeProvider,
   useLocalTheme,
-} from "@/utils/context/local-theme-context";
+} from '@/utils/context/local-theme-context';
 import {
   UsersIcon,
   EyeIcon,
@@ -50,22 +50,22 @@ import {
   EyeOffIcon,
   DownloadCloudIcon,
   EllipsisIcon,
-} from "lucide-react-native";
-import NextImage from "next/image";
-import React, { useContext, useState } from "react";
+} from 'lucide-react-native';
+import NextImage from 'next/image';
+import React, { useContext, useState } from 'react';
 // import { ThemeProvider } from "@/utils/context/theme-context/theme-provider";
 
 const Fold1Content = () => {
   const ButtonMap = [
-    { mode: "default", bg: "bg-typography-950" },
-    { mode: "orange", bg: "bg-[#F97316]" },
-    { mode: "blue", bg: "bg-[#0EA5E9]" },
-    { mode: "green", bg: "bg-[#10B981]" },
-    { mode: "violet", bg: "bg-[#8B5CF6]" },
+    { mode: 'default', bg: 'bg-typography-950' },
+    { mode: 'orange', bg: 'bg-[#F97316]' },
+    { mode: 'blue', bg: 'bg-[#0EA5E9]' },
+    { mode: 'green', bg: 'bg-[#10B981]' },
+    { mode: 'violet', bg: 'bg-[#8B5CF6]' },
   ];
 
   const { themeMode, setThemeMode } = useLocalTheme();
-  type CheckboxKey = "checkbox1" | "checkbox2" | "checkbox3";
+  type CheckboxKey = 'checkbox1' | 'checkbox2' | 'checkbox3';
 
   const [checkboxes, setCheckboxes] = useState<Record<CheckboxKey, boolean>>({
     checkbox1: true,
@@ -160,7 +160,7 @@ const Fold1Content = () => {
                     <AvatarFallbackText>JS</AvatarFallbackText>
                     <AvatarImage
                       source={{
-                        uri: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
+                        uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
                       }}
                     />
                   </Avatar>
@@ -232,7 +232,7 @@ const Fold1Content = () => {
                           isDisabled={false}
                           isChecked={allChecked}
                           onChange={handleAllCheckboxChange}
-                          value={""}
+                          value={''}
                           aria-label="Select all"
                         >
                           <CheckboxIndicator>
@@ -259,26 +259,26 @@ const Fold1Content = () => {
                   <TableBody>
                     {[
                       {
-                        id: "checkbox1" as CheckboxKey,
-                        name: "John Doe",
-                        phone: "+01 1234567890",
+                        id: 'checkbox1' as CheckboxKey,
+                        name: 'John Doe',
+                        phone: '+01 1234567890',
                       },
                       {
-                        id: "checkbox2" as CheckboxKey,
-                        name: "Michael K",
-                        phone: "+01 1234567890",
+                        id: 'checkbox2' as CheckboxKey,
+                        name: 'Michael K',
+                        phone: '+01 1234567890',
                       },
                       {
-                        id: "checkbox3" as CheckboxKey,
-                        name: "Martine D.",
-                        phone: "+01 1234567890",
+                        id: 'checkbox3' as CheckboxKey,
+                        name: 'Martine D.',
+                        phone: '+01 1234567890',
                       },
                     ].map((row) => (
                       <TableRow
                         key={row.id}
                         //@ts-ignore
                         className={`border-b-0 h-[60px] ${
-                          checkboxes[row.id] ? "bg-background-50" : ""
+                          checkboxes[row.id] ? 'bg-background-50' : ''
                         }`}
                       >
                         <TableData>
@@ -288,7 +288,7 @@ const Fold1Content = () => {
                             isInvalid={false}
                             isDisabled={false}
                             onChange={() => handleCheckboxChange(row.id)}
-                            value={""}
+                            value={''}
                             aria-label="table datas"
                           >
                             <CheckboxIndicator>
@@ -524,7 +524,7 @@ const Fold1Content = () => {
                     aria-label="Password"
                     placeholder="Enter password"
                     className="text-sm font-normal leading-[21px] text-typography-600 h-full"
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                   />
                   <InputSlot className="pr-3" onPress={handleState}>
                     <InputIcon

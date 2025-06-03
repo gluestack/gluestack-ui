@@ -1,12 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { forwardRef } from "react";
-import { View } from "react-native";
+import React, { forwardRef } from 'react';
+import { View } from 'react-native';
 import {
   useControllableState,
   useKeyboardBottomInset,
-} from "@/utils/gluestack-utils/hooks/src";
-import { ModalContext } from "./Context";
-import { Overlay } from "@/components/ui/overlay/creator";
+} from '@/utils/gluestack-utils/hooks/src';
+import { ModalContext } from './Context';
+import { Overlay } from '@/components/ui/overlay/creator';
 
 const Modal = (StyledModal: any) =>
   forwardRef(
@@ -45,8 +45,8 @@ const Modal = (StyledModal: any) =>
         <View
           style={{
             // @ts-ignore
-            pointerEvents: "box-none",
-            width: "100%",
+            pointerEvents: 'box-none',
+            width: '100%',
             height: avoidKeyboard ? bottomInset : undefined,
           }}
         />

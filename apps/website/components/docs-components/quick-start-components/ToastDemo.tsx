@@ -12,7 +12,7 @@ function ToastDemo() {
   const toast = useToast();
   const [toastId, setToastId] = React.useState(0);
   const handleToast = () => {
-    if (!toast.isActive(toastId.toString())) {
+    if (!toast.isActive(toastId)) {
       showNewToast();
     }
   };
@@ -20,7 +20,7 @@ function ToastDemo() {
     const newId = Math.random();
     setToastId(newId);
     toast.show({
-      id: newId.toString(),
+      id: newId,
       placement: 'top',
       duration: 3000,
       render: ({ id }) => {

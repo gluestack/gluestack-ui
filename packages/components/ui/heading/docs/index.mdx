@@ -12,18 +12,25 @@ showHeader: true
 tag: RSC
 ---
 
-
-import {Tabs,TabItem} from '@/docs-components/tabs'
-import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
-import {InlineCode} from '@/docs-components/inline-code'
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # Heading
 
 Explore the gluestack-ui Heading Component with installation steps, API reference, and usage examples. Customize React Native headings with different sizes and styles easily for your projects.
 
-
-### This is an illustration of Heading component.
+This is an illustration of **Heading** component.
 /// {Example:basic} ///
+
+## Installation
 
 <Tabs>
 <TabItem label="CLI">
@@ -35,30 +42,26 @@ Explore the gluestack-ui Heading Component with installation steps, API referenc
 <TabItem label="Manual">
 ### Step 1: Copy and paste the following code into index.tsx in your project.
 
-
-```jsx 
-%%-- File: packages/components/ui/heading/index.tsx --%% 
+```jsx
+%%-- File: packages/components/ui/heading/index.tsx --%%
 ```
 
 > Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
 
 ### Step 2(optional): Copy and paste the following code into index.web.tsx in your project.
 
-
-```jsx 
-%%-- File: packages/components/ui/heading/index.web.tsx --%% 
+```jsx
+%%-- File: packages/components/ui/heading/index.web.tsx --%%
 ```
-
 
 ### Step 3: Copy and paste the following code into styles.tsx in your project.
 
-
-```jsx 
-%%-- File: packages/components/ui/heading/styles.tsx --%% 
+```jsx
+%%-- File: packages/components/ui/heading/styles.tsx --%%
 ```
 
-
 ### Step 4: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -67,7 +70,7 @@ Explore the gluestack-ui Heading Component with installation steps, API referenc
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-import { Heading } from "@/components/ui/heading"
+import { Heading } from '@/components/ui/heading';
 ```
 
 ```jsx
@@ -90,34 +93,70 @@ Heading renders a heading element with a range of sizes and semantic meanings. I
       <TableHeaderCell>Native (@expo-html/elements)</TableHeaderCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>5xl, 4xl, 3xl</InlineCode></TableCell>
-      <TableCell><InlineCode>{`<h1 />`}</InlineCode></TableCell>
-      <TableCell><InlineCode>H1</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>5xl, 4xl, 3xl</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`<h1 />`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>H1</InlineCode>
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>2xl</InlineCode></TableCell>
-      <TableCell><InlineCode>{`<h2 />`}</InlineCode></TableCell>
-      <TableCell><InlineCode>H2</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>2xl</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`<h2 />`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>H2</InlineCode>
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>xl</InlineCode></TableCell>
-      <TableCell><InlineCode>{`<h3 />`}</InlineCode></TableCell>
-      <TableCell><InlineCode>H3</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>xl</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`<h3 />`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>H3</InlineCode>
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>lg</InlineCode></TableCell>
-      <TableCell><InlineCode>{`<h4 />`}</InlineCode></TableCell>
-      <TableCell><InlineCode>H4</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>lg</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`<h4 />`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>H4</InlineCode>
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>md</InlineCode></TableCell>
-      <TableCell><InlineCode>{`<h5 />`}</InlineCode></TableCell>
-      <TableCell><InlineCode>H5</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>md</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`<h5 />`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>H5</InlineCode>
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>sm, xs</InlineCode></TableCell>
-      <TableCell><InlineCode>{`<h6 />`}</InlineCode></TableCell>
-      <TableCell><InlineCode>H6</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>sm, xs</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`<h6 />`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>H6</InlineCode>
+      </TableCell>
     </TableRow>
   </TableBody>
 </Table>
@@ -136,42 +175,58 @@ Heading component is created using Heading component from @expo/html-elements on
       <TableHeaderCell>Default</TableHeaderCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>isTruncated</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>isTruncated</InlineCode>
+      </TableCell>
       <TableCell>true | false</TableCell>
       <TableCell>false</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>bold</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>bold</InlineCode>
+      </TableCell>
       <TableCell>true | false</TableCell>
       <TableCell>false</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>underline</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>underline</InlineCode>
+      </TableCell>
       <TableCell>true | false</TableCell>
       <TableCell>false</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>strikeThrough</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>strikeThrough</InlineCode>
+      </TableCell>
       <TableCell>true | false</TableCell>
       <TableCell>false</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>sub</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>sub</InlineCode>
+      </TableCell>
       <TableCell>true | false</TableCell>
       <TableCell>false</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>italic</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>italic</InlineCode>
+      </TableCell>
       <TableCell>true | false</TableCell>
       <TableCell>false</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>highlight</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>highlight</InlineCode>
+      </TableCell>
       <TableCell>true | false</TableCell>
       <TableCell>false</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>size</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
       <TableCell>5xl | 4xl | 3xl | 2xl | xl | lg | md | sm | xs</TableCell>
       <TableCell>md</TableCell>
     </TableRow>

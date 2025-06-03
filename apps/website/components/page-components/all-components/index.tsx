@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import sidebarData from "@/sidebar.json";
-import { GridItem } from "@/components/ui/grid";
-import { Box, Grid } from "@/components/ui";
-import { Text } from "@/components/ui/text";
+import React, { useEffect, useState } from 'react';
+import sidebarData from '@/sidebar.json';
+import { GridItem } from '@/components/ui/grid';
+import { Box, Grid } from '@/components/ui';
+import { Text } from '@/components/ui/text';
 const getComponentsFromSidebar = () => {
   // Find the Components section
   const componentsSection = sidebarData.navigation.sections.find(
-    (section) => section.title === "Components"
+    (section) => section.title === 'Components'
   );
 
   if (!componentsSection) return [];
 
   // Get all subsections that are of type "heading"
   const componentHeadings = componentsSection.subsections.filter(
-    (subsection) => subsection.type === "heading"
+    (subsection) => subsection.type === 'heading'
   );
 
   // Extract all component items from each heading
@@ -21,7 +21,7 @@ const getComponentsFromSidebar = () => {
     const componentItems = heading.items || [];
     const componentNames = componentItems.map((item) => {
       // Extract component name from path, e.g., "/ui/docs/components/button" -> "button"
-      const pathParts = item.path?.split("/") || [];
+      const pathParts = item.path?.split('/') || [];
       return pathParts[pathParts.length - 1];
     });
     return [...acc, ...componentNames];
@@ -29,9 +29,7 @@ const getComponentsFromSidebar = () => {
 
   // Filter out any empty or undefined values and components we don't want to show
   return components.filter(
-    (component) =>
-      component &&
-      component !== "table" // Exclude specific components that might not have implementations
+    (component) => component && component !== 'table' // Exclude specific components that might not have implementations
   );
 };
 
@@ -63,7 +61,7 @@ export default function AllComponents() {
     <Grid
       className="gap-5"
       _extra={{
-        className: "sm:grid-cols-2 md:grid-cols-3 grid-cols-1 2xl:grid-cols-4",
+        className: 'sm:grid-cols-2 md:grid-cols-3 grid-cols-1 2xl:grid-cols-4',
       }}
     >
       {componentsList.map((componentName) => {
@@ -73,7 +71,7 @@ export default function AllComponents() {
         return (
           <GridItem
             _extra={{
-              className: "col-span-1",
+              className: 'col-span-1',
             }}
             key={componentName}
           >
@@ -82,7 +80,9 @@ export default function AllComponents() {
                 <Component />
               </Box>
               <Box className="w-full py-2 px-4 bg-background-0">
-                <Text className="text-left text-typography-700 text-lg font-medium">{componentName}</Text>
+                <Text className="text-left text-typography-700 text-lg font-medium">
+                  {componentName}
+                </Text>
               </Box>
             </Box>
           </GridItem>

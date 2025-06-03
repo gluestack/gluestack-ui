@@ -64,7 +64,7 @@ export type IModalComponentType<
   HeaderProps,
   FooterProps,
   BodyProps,
-  BackdropProps
+  BackdropProps,
 > = React.ForwardRefExoticComponent<
   React.PropsWithoutRef<ModalProps> &
     InterfaceModalProps &

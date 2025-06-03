@@ -1,91 +1,91 @@
-"use client";
-import React from "react";
-import { createAccordion } from "@/components/ui/accordion/creator";
-import { View, Pressable, Text, Platform, TextProps } from "react-native";
-import { tva } from "@/utils/gluestack-utils/nativewind/utils/tva";
-import type { VariantProps } from "@/utils/gluestack-utils/nativewind/utils";
+'use client';
+import React from 'react';
+import { createAccordion } from '@/components/ui/accordion/creator';
+import { View, Pressable, Text, Platform, TextProps } from 'react-native';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
 import {
   withStyleContext,
   useStyleContext,
-} from "@/utils/gluestack-utils/nativewind/utils/withStyleContext";
-import { H3 } from "@expo/html-elements";
-import { cssInterop } from "nativewind";
-import { PrimitiveIcon, UIIcon } from "@/components/ui/icon/creator";
+} from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+import { H3 } from '@expo/html-elements';
+import { cssInterop } from 'nativewind';
+import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
 
-const SCOPE = "ACCORDION";
+const SCOPE = 'ACCORDION';
 /** Styles */
 
 const accordionStyle = tva({
-  base: "w-full",
+  base: 'w-full',
   variants: {
     variant: {
-      filled: "bg-white shadow-hard-2",
-      unfilled: "",
+      filled: 'bg-white shadow-hard-2',
+      unfilled: '',
     },
     size: {
-      sm: "",
-      md: "",
-      lg: "",
+      sm: '',
+      md: '',
+      lg: '',
     },
   },
 });
 
 const accordionItemStyle = tva({
-  base: "",
+  base: '',
   parentVariants: {
     variant: {
-      filled: "bg-background-0",
-      unfilled: "bg-transparent",
+      filled: 'bg-background-0',
+      unfilled: 'bg-transparent',
     },
   },
 });
 const accordionTitleTextStyle = tva({
-  base: "text-typography-900 font-bold flex-1 text-left",
+  base: 'text-typography-900 font-bold flex-1 text-left',
   parentVariants: {
     size: {
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
     },
   },
 });
 const accordionIconStyle = tva({
-  base: "text-typography-900 fill-none",
+  base: 'text-typography-900 fill-none',
   parentVariants: {
     size: {
-      "2xs": "h-3 w-3",
-      xs: "h-3.5 w-3.5",
-      sm: "h-4 w-4",
-      md: "h-[18px] w-[18px]",
-      lg: "h-5 w-5",
-      xl: "h-6 w-6",
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'h-[18px] w-[18px]',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
     },
   },
 });
 const accordionContentTextStyle = tva({
-  base: "text-typography-700 font-normal",
+  base: 'text-typography-700 font-normal',
   parentVariants: {
     size: {
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
     },
   },
 });
 const accordionHeaderStyle = tva({
-  base: "mx-0 my-0",
+  base: 'mx-0 my-0',
 });
 const accordionContentStyle = tva({
-  base: "pt-1 pb-3 px-4",
+  base: 'pt-1 pb-3 px-4',
 });
 const accordionTriggerStyle = tva({
-  base: "w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50 py-3 px-4",
+  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50 py-3 px-4',
 });
 
 const Root = withStyleContext(View, SCOPE);
 
 const Header = (
-  Platform.OS === "web" ? H3 : View
+  Platform.OS === 'web' ? H3 : View
 ) as React.ComponentType<TextProps>;
 
 /** Creator */
@@ -102,12 +102,12 @@ const UIAccordion = createAccordion({
 
 cssInterop(PrimitiveIcon, {
   className: {
-    target: "style",
+    target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
       fill: true,
-      color: "classNameColor",
+      color: 'classNameColor',
       stroke: true,
     },
   },
@@ -115,7 +115,7 @@ cssInterop(PrimitiveIcon, {
 
 cssInterop(H3, {
   className: {
-    target: "style",
+    target: 'style',
   },
 });
 
@@ -164,7 +164,7 @@ type IAccordionTitleTextProps = React.ComponentPropsWithoutRef<
 const Accordion = React.forwardRef<
   React.ComponentRef<typeof UIAccordion>,
   IAccordionProps
->(({ className, variant = "filled", size = "md", ...props }, ref) => {
+>(({ className, variant = 'filled', size = 'md', ...props }, ref) => {
   return (
     <UIAccordion
       ref={ref}
@@ -181,7 +181,6 @@ const AccordionItem = React.forwardRef<
 >(({ className, ...props }, ref) => {
   const { variant } = useStyleContext(SCOPE);
   return (
-    //@ts-expect-error
     <UIAccordion.Item
       ref={ref}
       {...props}
@@ -231,7 +230,7 @@ const AccordionIcon = React.forwardRef<
 >(function AccordionIcon({ size, className, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
-  if (typeof size === "number") {
+  if (typeof size === 'number') {
     return (
       <UIAccordion.Icon
         ref={ref}
@@ -285,7 +284,6 @@ const AccordionTrigger = React.forwardRef<
   IAccordionTriggerProps
 >(function AccordionTrigger({ className, ...props }, ref) {
   return (
-    //@ts-expect-error
     <UIAccordion.Trigger
       ref={ref}
       {...props}
@@ -312,14 +310,14 @@ const AccordionTitleText = React.forwardRef<
   );
 });
 
-Accordion.displayName = "Accordion";
-AccordionItem.displayName = "AccordionItem";
-AccordionHeader.displayName = "AccordionHeader";
-AccordionTrigger.displayName = "AccordionTrigger";
-AccordionTitleText.displayName = "AccordionTitleText";
-AccordionContentText.displayName = "AccordionContentText";
-AccordionIcon.displayName = "AccordionIcon";
-AccordionContent.displayName = "AccordionContent";
+Accordion.displayName = 'Accordion';
+AccordionItem.displayName = 'AccordionItem';
+AccordionHeader.displayName = 'AccordionHeader';
+AccordionTrigger.displayName = 'AccordionTrigger';
+AccordionTitleText.displayName = 'AccordionTitleText';
+AccordionContentText.displayName = 'AccordionContentText';
+AccordionIcon.displayName = 'AccordionIcon';
+AccordionContent.displayName = 'AccordionContent';
 
 export {
   Accordion,

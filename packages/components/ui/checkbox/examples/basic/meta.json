@@ -1,30 +1,30 @@
 {
-    "argTypes": {
-      "isDisabled": {
-        "control": {
-          "type": "boolean"
-        },
-        "defaultValue": false
+  "argTypes": {
+    "isDisabled": {
+      "control": {
+        "type": "boolean"
       },
-      "isInvalid": {
-        "control": {
-          "type": "boolean"
-        },
-        "defaultValue": false
-      },
-      "size": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["sm", "md", "lg"],
-        "defaultValue": "md"
-      }
+      "defaultValue": false
     },
-    "reactLive": {
-      "Checkbox": "@/components/ui/checkbox",
-      "CheckboxIndicator": "@/components/ui/checkbox",
-      "CheckboxLabel": "@/components/ui/checkbox",
-      "CheckIcon": "@/components/ui/icon",
-      "CheckboxIcon": "@/components/ui/checkbox"
+    "isInvalid": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
+    },
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg"],
+      "defaultValue": "md"
     }
+  },
+  "reactLive": {
+    "Checkbox": "@/components/ui/checkbox",
+    "CheckboxIndicator": "@/components/ui/checkbox",
+    "CheckboxLabel": "@/components/ui/checkbox",
+    "CheckIcon": "@/components/ui/icon",
+    "CheckboxIcon": "@/components/ui/checkbox"
   }
+}

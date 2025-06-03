@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ArrowBackDocsIcon = () => (
   <svg
@@ -34,7 +34,7 @@ export const LinkButton = ({ pageText, pageLink, NextLink, type }: any) => {
       passHref
       style={{
         flex: 1,
-        textDecoration: "none",
+        textDecoration: 'none',
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
@@ -42,11 +42,11 @@ export const LinkButton = ({ pageText, pageLink, NextLink, type }: any) => {
       <div
         className={`
           flex flex-1 rounded-lg border p-5 justify-between transition-colors
-          ${type === "previous" ? "flex-row" : "flex-row-reverse"}
+          ${type === 'previous' ? 'flex-row' : 'flex-row-reverse'}
           bg-transparent border-outline-100 hover:bg-primary-500 hover:border-transparent pointer-events-none`}
       >
         <div className="flex justify-center items-center">
-          {type === "previous" ? (
+          {type === 'previous' ? (
             <ArrowBackDocsIcon />
           ) : (
             <ArrowForwardDocsIcon />
@@ -55,16 +55,16 @@ export const LinkButton = ({ pageText, pageLink, NextLink, type }: any) => {
 
         <div
           className={`flex flex-col ${
-            type === "previous" ? "items-end" : "items-start"
+            type === 'previous' ? 'items-end' : 'items-start'
           }`}
         >
           <span className="text-sm leading-tight text-typography-800 font-medium">
-            {type === "previous" ? "Go back" : "Up next"}
+            {type === 'previous' ? 'Go back' : 'Up next'}
           </span>
           <span
             className={`
               text-lg leading-tight text-typography-950 font-semibold
-              ${type === "previous" ? "text-left" : "text-right"}
+              ${type === 'previous' ? 'text-left' : 'text-right'}
             `}
           >
             {pageText}

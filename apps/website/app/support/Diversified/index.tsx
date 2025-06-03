@@ -1,8 +1,8 @@
-"use client";
-import { Box, Text } from "@/components/ui";
-import { ThemeContext } from "@/utils/context/theme-context";
-import NextImage from "next/image";
-import { useContext } from "react";
+'use client';
+import { Box, Text } from '@/components/ui';
+import { ThemeContext } from '@/utils/context/theme-context';
+import NextImage from 'next/image';
+import { useContext } from 'react';
 
 function Diversified() {
   const { colorMode } = useContext(ThemeContext);
@@ -27,9 +27,9 @@ function Diversified() {
 
         <NextImage
           src={
-            colorMode === "light"
-              ? "/images/darden.png"
-              : "/images/enterprise/darden.svg"
+            colorMode === 'light'
+              ? '/images/darden.png'
+              : '/images/enterprise/darden.svg'
           }
           width={171}
           height={46}
@@ -45,9 +45,9 @@ function Diversified() {
 
         <NextImage
           src={
-            colorMode === "light"
-              ? "/images/atsign.svg"
-              : "/images/enterprise/atsign.svg"
+            colorMode === 'light'
+              ? '/images/atsign.svg'
+              : '/images/enterprise/atsign.svg'
           }
           width={139}
           height={46}
@@ -56,9 +56,9 @@ function Diversified() {
 
         <NextImage
           src={
-            colorMode === "light"
-              ? "/svg/icici_light.svg"
-              : "/svg/icici_dark.svg"
+            colorMode === 'light'
+              ? '/svg/icici_light.svg'
+              : '/svg/icici_dark.svg'
           }
           width={214}
           height={46}

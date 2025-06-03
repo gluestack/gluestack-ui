@@ -1,10 +1,10 @@
-import chokidar from "chokidar";
-import path from "path";
-import fs from "fs";
-import mappers from "./mappers";
+import chokidar from 'chokidar';
+import path from 'path';
+import fs from 'fs';
+import mappers from './mappers';
 
-const sourcePath = "./packages";
-const componentsPath = "./packages/components/ui";
+const sourcePath = './packages';
+const componentsPath = './packages/components/ui';
 
 // Initialize watcher
 const watcher = chokidar.watch(sourcePath, {
@@ -16,7 +16,6 @@ const watcher = chokidar.watch(sourcePath, {
   },
 });
 
-
 const getComponentFromPath = (filePath: string): string | null => {
   const normalizedPath = path.normalize(filePath);
   if (!normalizedPath.includes('components/ui')) {
@@ -24,7 +23,7 @@ const getComponentFromPath = (filePath: string): string | null => {
   }
   const relativePath = path.relative(componentsPath, normalizedPath);
   const parts = relativePath.split(path.sep);
-  
+
   if (parts.length > 0) {
     return parts[0];
   }
@@ -32,13 +31,12 @@ const getComponentFromPath = (filePath: string): string | null => {
 };
 
 const processFileChange = async (event: string, filePath: string) => {
-
   const component = getComponentFromPath(filePath);
-  
+
   // If a component directory is being deleted, handle it directly
   // if (event === "removed" && component) {
   //   const componentDir = path.join(componentsPath, component);
-    // Check if the component directory no longer exists
+  // Check if the component directory no longer exists
   //   if (!fs.existsSync(componentDir)) {
   //     console.log(`Component directory deleted: ${component}`);
   //     if (mappers && typeof mappers.component === 'function') {
@@ -51,12 +49,12 @@ const processFileChange = async (event: string, filePath: string) => {
   //     }
   //   }
   // }
-  
+
   // Continue with the regular processing
   for (const mapperConfig of mappers) {
     try {
       const { name, mapper } = mapperConfig;
-      
+
       if (component) {
         if (mapper && typeof mapper.component === 'function') {
           await mapper.component(component, event);
@@ -72,7 +70,10 @@ const processFileChange = async (event: string, filePath: string) => {
       }
     } catch (error) {
       if (component) {
-        console.error(`Error processing mapper for component ${component}:`, error);
+        console.error(
+          `Error processing mapper for component ${component}:`,
+          error
+        );
       } else {
         console.error(`Error processing mapper for file ${filePath}:`, error);
       }
@@ -80,8 +81,8 @@ const processFileChange = async (event: string, filePath: string) => {
   }
 };
 watcher
-  .on("add", path => processFileChange("added", path))
-  .on("change", path => processFileChange("changed", path))
-  .on("unlink", path => processFileChange("removed", path));
+  .on('add', (path) => processFileChange('added', path))
+  .on('change', (path) => processFileChange('changed', path))
+  .on('unlink', (path) => processFileChange('removed', path));
 
-console.log(`Watching for file changes in ${sourcePath}...`)
+console.log(`Watching for file changes in ${sourcePath}...`);

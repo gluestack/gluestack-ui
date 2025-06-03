@@ -1,5 +1,4 @@
 {
-
   "title": "Value",
   "description": "Progress component with value",
   "reactLive": {
@@ -8,4 +7,4 @@
     "VStack": "@/components/ui/vstack",
     "Text": "@/components/ui/text"
   }
-} 
+}

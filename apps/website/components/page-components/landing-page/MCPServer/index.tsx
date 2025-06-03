@@ -1,6 +1,6 @@
-"use client";
-import { Box, Heading, Text, VStack } from "@/components/ui";
-import { useEffect } from "react";
+'use client';
+import { Box, Heading, Text, VStack } from '@/components/ui';
+import { useEffect } from 'react';
 
 declare global {
   interface Window {
@@ -12,42 +12,42 @@ declare global {
 const VadimStream = () => {
   useEffect(() => {
     // Only load the API if it hasn't been loaded yet
-    if (!document.getElementById("youtube-api")) {
-      const tag = document.createElement("script");
-      tag.id = "youtube-api";
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName("script")[0];
+    if (!document.getElementById('youtube-api')) {
+      const tag = document.createElement('script');
+      tag.id = 'youtube-api';
+      tag.src = 'https://www.youtube.com/iframe_api';
+      const firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
     }
 
     // Initialize players when API is ready
     const initializePlayers = () => {
-      new window.YT.Player("player1", {
+      new window.YT.Player('player1', {
         events: {
           onStateChange: (event: any) => {
             if (event.data === window.YT.PlayerState.PLAYING) {
               const player2Frame = document.getElementById(
-                "player2"
+                'player2'
               ) as HTMLIFrameElement;
               player2Frame?.contentWindow?.postMessage(
                 '{"event":"command","func":"pauseVideo","args":""}',
-                "*"
+                '*'
               );
             }
           },
         },
       });
 
-      new window.YT.Player("player2", {
+      new window.YT.Player('player2', {
         events: {
           onStateChange: (event: any) => {
             if (event.data === window.YT.PlayerState.PLAYING) {
               const player1Frame = document.getElementById(
-                "player1"
+                'player1'
               ) as HTMLIFrameElement;
               player1Frame?.contentWindow?.postMessage(
                 '{"event":"command","func":"pauseVideo","args":""}',
-                "*"
+                '*'
               );
             }
           },

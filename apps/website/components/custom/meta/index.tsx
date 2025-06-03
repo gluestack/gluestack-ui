@@ -117,4 +117,3 @@ export function Meta({ pageTitle, description, ogImgUrl, ogUrl }: any) {
     </Head>
   );
 }
-

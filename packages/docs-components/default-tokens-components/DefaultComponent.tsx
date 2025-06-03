@@ -1,7 +1,7 @@
-import React, { useContext, Fragment, useMemo } from "react";
-import tailwindConfig from "tailwind.config";
-import { config } from "@/components/ui/gluestack-ui-provider/config";
-import { VStack, HStack, Box, Text, Heading } from "@/components/ui";
+import React, { useContext, Fragment, useMemo } from 'react';
+import tailwindConfig from 'tailwind.config';
+import { config } from '@/components/ui/gluestack-ui-provider/config';
+import { VStack, HStack, Box, Text, Heading } from '@/components/ui';
 
 const ColorPaletteComponent = () => {
   const colorPalette = useMemo(() => {
@@ -39,15 +39,15 @@ const ColorPaletteComponent = () => {
           const hexColors = rgbColors?.map((color: any) => {
             let hex = Number(color).toString(16);
             if (hex.length < 2) {
-              hex = "0" + hex;
+              hex = '0' + hex;
             }
             return hex;
           });
 
-          return `#${hexColors?.join("")}`;
+          return `#${hexColors?.join('')}`;
         };
 
-        const newColor = RGBcolorCode?.split(" ");
+        const newColor = RGBcolorCode?.split(' ');
         const colorCode = RGBcolorCode ? convertRGBToHex(newColor) : undefined;
 
         variants.push({

@@ -2,25 +2,26 @@ import { Tabs, TabItem } from '@/docs-components/tabs';
 import GradientImage from '@/docs-components/gradient-image/GradientImage';
 
 # LinearGradient
+
 Learn how to use LinearGradient components in React Native for stunning UI effects. Create smooth color transitions with Linear Gradient for beautiful app designs.
 This is an illustration of **Linear Gradient** component in `App.tsx` file.
 
 <GradientImage />
 
 ```jsx
-import "./global.css";
-import React, { useState } from "react";
-import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
-import { SafeAreaView } from "@/components/ui/safe-area-view";
-import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { LinearGradient } from "@/components/ui/linear-gradient";
-import { Heading } from "@/components/ui/heading";
-import { Text } from "@/components/ui/text";
-import { Center } from "@/components/ui/center";
-import { Mail } from "lucide-react-native";
+import './global.css';
+import React, { useState } from 'react';
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
+import { SafeAreaView } from '@/components/ui/safe-area-view';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { LinearGradient } from '@/components/ui/linear-gradient';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { Center } from '@/components/ui/center';
+import { Mail } from 'lucide-react-native';
 
 export default function App() {
-  const [colorMode, setColorMode] = useState<"dark" | "light">("light");
+  const [colorMode, setColorMode] = (useState < 'dark') | ('light' > 'light');
   return (
     <SafeAreaView className="flex-1 justify-center items-center">
       <GluestackUIProvider mode={colorMode}>
@@ -42,14 +43,14 @@ export default function App() {
             <InputSlot className="pr-3">
               <InputIcon
                 as={Mail}
-                color={colorMode === "light" ? "#525252" : "#DBDBDC"}
+                color={colorMode === 'light' ? '#525252' : '#DBDBDC'}
               />
             </InputSlot>
           </Input>
 
           <LinearGradient
             className="w-full rounded-full items-center py-2"
-            colors={["#8637CF", "#0F55A1"]}
+            colors={['#8637CF', '#0F55A1']}
             start={[0, 1]}
             end={[1, 0]}
           >
@@ -68,16 +69,16 @@ export default function App() {
 
 <Tabs>
   <TabItem label="Expo Linear Gradient">
-  
 
 ### Step 1: Install the following dependencies:
+
 ```bash
 npx expo install expo-linear-gradient
 ```
 
 ### Step 2: Copy and paste the following code into your project.
 
-```jsx 
+```jsx
 
 'use client';
 import React from 'react';
@@ -105,22 +106,23 @@ export const LinearGradient = React.forwardRef(
   }
 );
 
- 
+
 ```
 
-
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 <TabItem label="React Native Linear Gradient">
 
 ### Step 1: Install the following dependencies:
+
 ```bash
 npm i react-native-linear-gradient
 ```
 
 ### Step 2: Copy and paste the following code into your project.
 
-```jsx 
+```jsx
 
 'use client';
 import React from 'react';
@@ -149,10 +151,11 @@ export const LinearGradient = React.forwardRef(
   }
 );
 
- 
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 

@@ -5,7 +5,10 @@ import { mergeRefs } from '@/utils/gluestack-utils/common';
 import { composeEventHandlers } from '@/utils/gluestack-utils/common';
 
 import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus/src';
-import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions/src';
+import {
+  useHover,
+  usePress,
+} from '@/utils/gluestack-utils/aria/interactions/src';
 import { LinkContext } from './Context';
 
 export const Link = <LinkProps,>(StyledLink: React.ComponentType<LinkProps>) =>

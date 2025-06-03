@@ -2,7 +2,7 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Grid, GridItem } from '@/components/ui/grid';
 import { Text } from '@/components/ui/text';
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -10,14 +10,15 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # Grid
 
 Discover a powerful Grid component for React & React Native with customizable layout and behavior. Perfect for creating responsive grid layouts in your UI design.
 
-### This is an illustration of Grid component.
+This is an illustration of **Grid** component.
+
 
   
 
@@ -70,7 +71,7 @@ Discover a powerful Grid component for React & React Native with customizable la
 <TabItem label="Manual">
 ### Step 1: Copy and paste the following code into your project.
 
-```jsx 
+```jsx
 import React, {
   useEffect,
   useState,
@@ -409,14 +410,15 @@ const GridItem = forwardRef<React.ComponentRef<typeof View>, IGridItemProps>(
 Grid.displayName = 'Grid';
 GridItem.displayName = 'GridItem';
 
-export { Grid, GridItem }; 
+export { Grid, GridItem };
+
 ```
 
 > Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
 
 ### Step 2(optional): Copy and paste the following code into your project.
 
-```jsx 
+```jsx
 import React from 'react';
 import { gridStyle, gridItemStyle } from './styles';
 
@@ -482,12 +484,13 @@ const GridItem = React.forwardRef<HTMLDivElement, IGridItemProps>(
 Grid.displayName = 'Grid';
 GridItem.displayName = 'GridItem';
 
-export { Grid, GridItem }; 
+export { Grid, GridItem };
+
 ```
 
 ### Step 3: Copy and paste the following code into your project.
 
-```jsx 
+```jsx
 import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
 import { isWeb } from '@/utils/gluestack-utils/nativewind/utils/IsWeb';
 
@@ -502,10 +505,12 @@ export const gridStyle = tva({
 
 export const gridItemStyle = tva({
   base: `w-full ${gridItemBaseStyle}`,
-}); 
+});
+
 ```
 
 ### Step 4: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -525,7 +530,7 @@ export default () => (
 );
 ```
 
-> Note: Our responsive grid component is based on a 12-column grid layout. It follows the CSS **grid system** on the web and **flexbox layout** on native devices. Since the grid layout is only supported on the web, passing the grid-cols and col-span classNames inside _extra is **recommended** for the grid component to work effortlessly on both web and native. Our grid component currently does not support rowSpan.
+> Note: Our responsive grid component is based on a 12-column grid layout. It follows the CSS **grid system** on the web and **flexbox layout** on native devices. Since the grid layout is only supported on the web, passing the grid-cols and col-span classNames inside \_extra is **recommended** for the grid component to work effortlessly on both web and native. Our grid component currently does not support rowSpan.
 
 > Note: The immediate parent of **GridItem** must be **Grid**. There should be no higher-order component (HOC) between them.
 
@@ -538,43 +543,49 @@ This section provides a comprehensive reference list for the component props, de
 <p>{`Renders a <div /> on web and a View on native.`}</p>
 
 <>
-<Table>
-<TableBody>
-  <TableRow>
-    <TableHeaderCell>Platform</TableHeaderCell>
-    <TableHeaderCell>Output</TableHeaderCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>Web</InlineCode></TableCell>
-    <TableCell>{`<div />`}</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>Native</InlineCode></TableCell>
-    <TableCell>{`<View />`}</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<div />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<View />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 #### Props
 
 <>
-<Table>
-<TableBody>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>_extra</InlineCode></TableCell>
-    <TableCell>object</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>{`Accepts grid-cols-* className. Value for * can range from 1 to 12. Default value is grid-cols-12.`}</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>_extra</InlineCode>
+        </TableCell>
+        <TableCell>object</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Accepts grid-cols-* className. Value for * can range from 1 to 12. Default value is grid-cols-12.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### GridItem
@@ -582,49 +593,54 @@ This section provides a comprehensive reference list for the component props, de
 <p>{`Renders a <div /> on web and a View on native.`}</p>
 
 <>
-<Table>
-<TableBody>
-  <TableRow>
-    <TableHeaderCell>Platform</TableHeaderCell>
-    <TableHeaderCell>Output</TableHeaderCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>Web</InlineCode></TableCell>
-    <TableCell>{`<div />`}</TableCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>Native</InlineCode></TableCell>
-    <TableCell>{`<View />`}</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<div />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<View />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 #### Props
 
 <>
-<Table>
-<TableBody>
-  <TableRow>
-    <TableHeaderCell>Prop</TableHeaderCell>
-    <TableHeaderCell>Type</TableHeaderCell>
-    <TableHeaderCell>Default</TableHeaderCell>
-    <TableHeaderCell>Description</TableHeaderCell>
-  </TableRow>
-  <TableRow>
-    <TableCell><InlineCode>_extra</InlineCode></TableCell>
-    <TableCell>object</TableCell>
-    <TableCell>-</TableCell>
-    <TableCell>{`Accepts col-span-* className. Value for * can range from 1 to 12. Default value is col-span-1.`}</TableCell>
-  </TableRow>
-</TableBody>
-</Table>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>_extra</InlineCode>
+        </TableCell>
+        <TableCell>object</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Accepts col-span-* className. Value for * can range from 1 to 12. Default value is col-span-1.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 </>
 
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
 
 
   #### Setting the gap between grid items
@@ -667,7 +683,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
 />
-
 
 
   #### Changing row and column gaps independently
@@ -734,8 +749,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
 />
-
-
 
 
   #### Nested Grids
@@ -810,7 +823,6 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
 />
-
 
 
   #### Responsive Grids

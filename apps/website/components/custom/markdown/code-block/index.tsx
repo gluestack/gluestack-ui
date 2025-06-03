@@ -1,53 +1,53 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
-import Prism from "prismjs";
-import "prismjs/components/prism-jsx";
-import "prismjs/components/prism-javascript";
-import "prismjs/components/prism-typescript";
-import "prismjs/components/prism-tsx";
-import "prismjs/components/prism-bash";
-import "prismjs/components/prism-json";
-import "prismjs/components/prism-css";
-import "prismjs/components/prism-markup";
-import "prismjs/components/prism-diff";
-import { ThemeContext } from "@/utils/context/theme-context";
-import "./styles.css";
-import { CopyIcon } from "lucide-react-native";
+import React, { useEffect, useRef, useState, useContext } from 'react';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-tsx';
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-diff';
+import { ThemeContext } from '@/utils/context/theme-context';
+import './styles.css';
+import { CopyIcon } from 'lucide-react-native';
 
 // Theme configurations
 const themes = {
   light: {
-    background: "#F5F5F5",
-    text: "#728FCB",
-    comment: "#8E908C",
-    keyword: "#728FCB",
-    string: "#B29762",
-    function: "#063289",
-    number: "#728FCB",
-    operator: "#063289",
-    punctuation: "#B6AD9A",
+    background: '#F5F5F5',
+    text: '#728FCB',
+    comment: '#8E908C',
+    keyword: '#728FCB',
+    string: '#B29762',
+    function: '#063289',
+    number: '#728FCB',
+    operator: '#063289',
+    punctuation: '#B6AD9A',
   },
   dark: {
-    background: "#171717",
-    text: "#9CDCFE",
-    comment: "#D4D4D4",
-    keyword: "#9CDCFE",
-    string: "#CE9178",
-    function: "#DCDCAA",
-    number: "#9CDCFE",
-    operator: "#569CD6",
-    punctuation: "#D4D4D4",
+    background: '#171717',
+    text: '#9CDCFE',
+    comment: '#D4D4D4',
+    keyword: '#9CDCFE',
+    string: '#CE9178',
+    function: '#DCDCAA',
+    number: '#9CDCFE',
+    operator: '#569CD6',
+    punctuation: '#D4D4D4',
   },
 };
 
 type CodeBlockProps = {
   className?: string;
   code: string;
-  language?: "jsx" | "javascript" | "ts" | "tsx" | "patch" | string;
+  language?: 'jsx' | 'javascript' | 'ts' | 'tsx' | 'patch' | string;
 };
 
 const CodeBlock: React.FC<CodeBlockProps> = ({
   code,
-  language = "jsx",
+  language = 'jsx',
   className,
 }) => {
   const [copied, setCopied] = useState(false);
@@ -69,21 +69,21 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
           setTimeout(() => setCopied(false), 2000);
         })
         .catch((err) => {
-          console.error("Copy failed:", err);
+          console.error('Copy failed:', err);
         });
     }
   };
 
   const themeStyles = {
-    "--prism-background": currentTheme.background,
-    "--prism-text": currentTheme.text,
-    "--prism-comment": currentTheme.comment,
-    "--prism-keyword": currentTheme.keyword,
-    "--prism-string": currentTheme.string,
-    "--prism-function": currentTheme.function,
-    "--prism-number": currentTheme.number,
-    "--prism-operator": currentTheme.operator,
-    "--prism-punctuation": currentTheme.punctuation,
+    '--prism-background': currentTheme.background,
+    '--prism-text': currentTheme.text,
+    '--prism-comment': currentTheme.comment,
+    '--prism-keyword': currentTheme.keyword,
+    '--prism-string': currentTheme.string,
+    '--prism-function': currentTheme.function,
+    '--prism-number': currentTheme.number,
+    '--prism-operator': currentTheme.operator,
+    '--prism-punctuation': currentTheme.punctuation,
   } as React.CSSProperties;
 
   return (
@@ -100,8 +100,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
       >
         <div className="flex items-center gap-2">
           {/* @ts-ignore */}
-          <CopyIcon className={`w-4 h-4 ${copied ? "text-green-500" : ""}`} />
-          {copied ? "Copied!" : ""}
+          <CopyIcon className={`w-4 h-4 ${copied ? 'text-green-500' : ''}`} />
+          {copied ? 'Copied!' : ''}
         </div>
       </button>
     </div>

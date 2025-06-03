@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useContext } from "react";
+import React, { useMemo, useEffect, useContext } from 'react';
 import {
   Box,
   HStack,
@@ -9,13 +9,13 @@ import {
   Pressable,
   Text,
   VStack,
-} from "@/components/ui";
-import NextImage from "next/image";
-import { Resizable } from "re-resizable";
-import { Expand } from "../Expand";
-import QRCode from "@/public/assets/ui-example-nativewind-qr-code.png";
-import { ExternalLink } from "lucide-react-native";
-import { ThemeContext } from "@/utils/context/theme-context";
+} from '@/components/ui';
+import NextImage from 'next/image';
+import { Resizable } from 're-resizable';
+import { Expand } from '../Expand';
+import QRCode from '@/public/assets/ui-example-nativewind-qr-code.png';
+import { ExternalLink } from 'lucide-react-native';
+import { ThemeContext } from '@/utils/context/theme-context';
 
 // Function to detect if the user is on a web browser
 function checkPlatform(colorMode: string) {
@@ -23,7 +23,7 @@ function checkPlatform(colorMode: string) {
     window.location.href = `exp://u.expo.dev/update/${kitchensink.updateIds.android}`;
   } else if (/iPad|iPhone|iPod/i.test(navigator.userAgent)) {
     window.location.href = `exp://u.expo.dev/update/${kitchensink.updateIds.ios}`;
-  } else if (typeof window !== "undefined" && typeof document !== "undefined") {
+  } else if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     window.open(
       `https://ui-example-nativewind.vercel.app/?iframeMode=${colorMode}`
     );
@@ -32,8 +32,8 @@ function checkPlatform(colorMode: string) {
 
 const kitchensink = {
   updateIds: {
-    android: "32fe7e6c-3f69-438e-999e-e9c1e9e76c5c",
-    ios: "89435e24-fa85-4d61-ac98-35168b4df84d",
+    android: '32fe7e6c-3f69-438e-999e-e9c1e9e76c5c',
+    ios: '89435e24-fa85-4d61-ac98-35168b4df84d',
   },
 };
 
@@ -41,7 +41,7 @@ const Example = () => {
   const { colorMode } = useContext(ThemeContext);
   const resizableRef = React.useRef<any>(null);
   const [isMobile, setIsMobile] = React.useState(false);
-  const iframeTheme = colorMode === "light" ? "dark" : "light";
+  const iframeTheme = colorMode === 'light' ? 'dark' : 'light';
   const iframeSrc = useMemo(
     () => `https://ui-example-nativewind.vercel.app/?iframeMode=${iframeTheme}`,
     [iframeTheme]
@@ -55,8 +55,8 @@ const Example = () => {
     };
 
     checkWidth();
-    window.addEventListener("resize", checkWidth);
-    return () => window.removeEventListener("resize", checkWidth);
+    window.addEventListener('resize', checkWidth);
+    return () => window.removeEventListener('resize', checkWidth);
   }, []);
 
   return (
@@ -91,7 +91,7 @@ const Example = () => {
             src={iframeSrc}
             title="NativeBase v3 Dashboard Example"
             style={{
-              transformOrigin: "0px 0px",
+              transformOrigin: '0px 0px',
               // transform: "",
             }}
             loading="lazy"
@@ -108,25 +108,25 @@ const Example = () => {
             }}
             ref={resizableRef}
             defaultSize={{
-              width: "100%",
-              height: "100%",
+              width: '100%',
+              height: '100%',
             }}
             style={{
-              boxShadow: "0px 0px 30px 0px rgba(38, 38, 38, 0.10)",
+              boxShadow: '0px 0px 30px 0px rgba(38, 38, 38, 0.10)',
               borderRadius: 16,
-              height: "100%",
+              height: '100%',
             }}
             bounds="parent"
             handleClasses={{
-              right: "right-handler",
+              right: 'right-handler',
             }}
             handleStyles={{
               right: {
                 right: 0,
                 width: 20,
-                height: "10px",
-                top: "calc(45%+5px)",
-                bottom: "50%",
+                height: '10px',
+                top: 'calc(45%+5px)',
+                bottom: '50%',
               },
             }}
             handleComponent={{
@@ -151,7 +151,7 @@ const Example = () => {
           >
             <Box
               className={`${
-                colorMode === "light" ? "bg-background-900" : "bg-[#404040]"
+                colorMode === 'light' ? 'bg-background-900' : 'bg-[#404040]'
               } rounded-t-2xl py-1.5 overflow-hidden flex flex-row`}
             >
               <NextImage
@@ -164,7 +164,7 @@ const Example = () => {
                   marginLeft: 27,
                 }}
               />
-              {["Homestay", "File", "Edit", "View"].map((item, index) => (
+              {['Homestay', 'File', 'Edit', 'View'].map((item, index) => (
                 <Text
                   className="mr-5 text-xs font-normal text-white"
                   key={item + index}
@@ -178,10 +178,10 @@ const Example = () => {
               src={iframeSrc}
               title="NativeBase v3 Dashboard Example"
               style={{
-                transformOrigin: "0px 0px",
-                transform: "scale(0.8)",
-                width: "125%",
-                border: "none",
+                transformOrigin: '0px 0px',
+                transform: 'scale(0.8)',
+                width: '125%',
+                border: 'none',
                 borderBottomLeftRadius: 16,
                 borderBottomRightRadius: 16,
               }}
@@ -199,7 +199,7 @@ const Example = () => {
 
           <Box className="hidden md:flex">
             <Text className="text-base font-normal text-typography-800 leading-6">
-              Try it in your browser or scan the QR code with the{" "}
+              Try it in your browser or scan the QR code with the{' '}
             </Text>
             <HStack className="items-center">
               <NextImage
@@ -208,7 +208,7 @@ const Example = () => {
                 width={18}
                 height={24}
                 style={{
-                  verticalAlign: "middle",
+                  verticalAlign: 'middle',
                 }}
               />
               <Text> Expo app on your phone.</Text>
@@ -221,7 +221,7 @@ const Example = () => {
           </Text>
           <HStack className="items-center">
             <Text className="text-typography-800">
-              The source code is available on{" "}
+              The source code is available on{' '}
             </Text>
             <Link
               href="https://github.com/gluestack/ui-example-nativewind"

@@ -37,7 +37,7 @@ But if you're currently using NativeWind, here are solutions to common issues yo
 
 NativeWind depends on `react-native-css-interop`. Version mismatches between these packages often cause styling issues. Run the following command to check the installed version:
 
-```bash 
+```bash
 npm list react-native-css-interop
 ```
 
@@ -45,7 +45,9 @@ When you use **gluestack-ui**, version conflicts are automatically resolved by i
 
 <br />
 <Image
-  source={{ uri: "https://gluestack.github.io/public-blog-video-assets/troubleshootingcli.png" }}
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/troubleshootingcli.png',
+  }}
   className="w-full h-[140px]"
   resizeMode="contain"
   alt="image"
@@ -60,7 +62,9 @@ Refer to the [Tailwind CSS Content Configuration](https://tailwindcss.com/docs/i
 
 <br />
 <Image
-  source={{ uri: "https://gluestack.github.io/public-blog-video-assets/troubleshootingtailwind.png" }}
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/troubleshootingtailwind.png',
+  }}
   className="w-full h-[480px]"
   resizeMode="contain"
   alt="image"
@@ -71,7 +75,7 @@ Refer to the [Tailwind CSS Content Configuration](https://tailwindcss.com/docs/i
 
 If you’re using React Native Web and find its styles overriding your Tailwind classes, add the `important: 'html'` setting to your `tailwind.config.js`.
 
-``` jsx
+```jsx
 module.exports = {
   important: 'html',
   // other configurations
@@ -86,13 +90,13 @@ module.exports = {
 
 NativeWind requires specific Babel presets to work seamlessly. Add the following to your Babel configuration (`babel.config.js`):
 
-``` jsx
+```jsx
 module.exports = function (api) {
   api.cache(true);
   return {
     presets: [
-      ["babel-preset-expo", { jsxImportSource: "nativewind" }],
-      "nativewind/babel",
+      ['babel-preset-expo', { jsxImportSource: 'nativewind' }],
+      'nativewind/babel',
     ],
   };
 };
@@ -106,13 +110,13 @@ No need to worry about these configurations if you’re using **gluestack-ui**�
 
 Your `metro.config.js` should be wrapped with the `withNativeWind` function, and it must point to the correct CSS file for Tailwind directives (`global.css`):
 
-``` jsx
-const { getDefaultConfig } = require("expo/metro-config");
-const { withNativeWind } = require("nativewind/metro");
+```jsx
+const { getDefaultConfig } = require('expo/metro-config');
+const { withNativeWind } = require('nativewind/metro');
 
 const config = getDefaultConfig(__dirname);
 
-module.exports = withNativeWind(config, { input: "./global.css" });
+module.exports = withNativeWind(config, { input: './global.css' });
 ```
 
 With **gluestack-ui**, this configuration is automatically generated.
@@ -123,10 +127,10 @@ With **gluestack-ui**, this configuration is automatically generated.
 
 Make sure the file containing Tailwind directives (e.g., `global.css`) is imported in your `_layout` or root file (`App.*`):
 
-``` jsx
+```jsx
 // app/_layout.tsx or App.tsx
 
-import "../global.css";
+import '../global.css';
 ```
 
 ---
@@ -139,7 +143,7 @@ NativeWind requires the `jsxImportSource` to be set to `nativewind`.
 
 - For Babel, update `babel.config.js`:
 
-``` json
+```json
 plugins: [
   [
     "@babel/plugin-transform-react-jsx",
@@ -153,7 +157,7 @@ plugins: [
 
 - For SWC, update `tsconfig.json`:
 
-``` json
+```json
 {
   "compilerOptions": {
     "jsxImportSource": "nativewind"
@@ -169,7 +173,7 @@ When using **gluestack-ui**, this configuration is automatically added for you.
 
 To work with `react-native-web`, add `nativewind` and `react-native-css-interop` to the `transpilePackages` array in `next.config.js`:
 
-``` json
+```json
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["nativewind", "react-native-css-interop"],
@@ -201,15 +205,15 @@ Save time, reduce friction, and get started on your next project with **gluestac
       title: 'NativeWind Styling is Not Working?',
     },
     {
-        id: 'issues-with-expo',
-        title: 'Issues with Expo',
+      id: 'issues-with-expo',
+      title: 'Issues with Expo',
     },
     {
-        id: 'nativewind-nextjs',
-        title: 'NativeWind + Next.js',
+      id: 'nativewind-nextjs',
+      title: 'NativeWind + Next.js',
     },
     {
-        id: 'why-gluestack-ui',
+      id: 'why-gluestack-ui',
       title: 'Why gluestack-ui?',
     },
   ]}

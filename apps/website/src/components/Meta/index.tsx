@@ -1,5 +1,5 @@
-import Head from "next/head";
-import { usePathname } from "next/navigation";
+import Head from 'next/head';
+import { usePathname } from 'next/navigation';
 
 function Meta({ pageTitle, description, ogImgUrl, ogUrl }: any) {
   const pathname = usePathname();
@@ -18,7 +18,7 @@ function Meta({ pageTitle, description, ogImgUrl, ogUrl }: any) {
         name="viewport"
         content="minimum-scale=1, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
       />
-      <title>{pageTitle || "gluestack-ui"}</title>
+      <title>{pageTitle || 'gluestack-ui'}</title>
 
       <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       <link rel="apple-touch-icon" href="/icon/apple-touch-icon.png" />
@@ -67,7 +67,7 @@ function Meta({ pageTitle, description, ogImgUrl, ogUrl }: any) {
         name="description"
         content={
           description ||
-          "gluestack - One stack for web, mobile & backend. 100% open source full-stack framework that takes away the complexities of building modern web & mobile apps."
+          'gluestack - One stack for web, mobile & backend. 100% open source full-stack framework that takes away the complexities of building modern web & mobile apps.'
         }
       />
       <meta key="og:type" property="og:type" content="website" />
@@ -75,11 +75,11 @@ function Meta({ pageTitle, description, ogImgUrl, ogUrl }: any) {
       <meta
         key="og:title"
         property="og:title"
-        content={pageTitle || "gluestack-ui: Universal headless components"}
+        content={pageTitle || 'gluestack-ui: Universal headless components'}
       />
       <meta
         name="twitter:title"
-        content={pageTitle || "gluestack-ui: Universal headless components"}
+        content={pageTitle || 'gluestack-ui: Universal headless components'}
       />
 
       <meta
@@ -87,12 +87,12 @@ function Meta({ pageTitle, description, ogImgUrl, ogUrl }: any) {
         property="og:description"
         content={
           description ||
-          "Customizable Components for React Native, Next.js, Expo & React with Optional Styling"
+          'Customizable Components for React Native, Next.js, Expo & React with Optional Styling'
         }
       />
       <meta
         name="og:image"
-        content={ogImgUrl || "https://gluestack.io/images/og-image.png"}
+        content={ogImgUrl || 'https://gluestack.io/images/og-image.png'}
       />
 
       <meta name="twitter:site" content="@gluestackio" />
@@ -111,9 +111,9 @@ function Meta({ pageTitle, description, ogImgUrl, ogUrl }: any) {
         content="Customizable Components for React Native, Next.js, Expo & React with Optional Styling"
       />
 
-      <meta property="og:url" content={ogUrl || "https://gluestack.io"} />
+      <meta property="og:url" content={ogUrl || 'https://gluestack.io'} />
 
-      <meta property="twitter:url" content={ogUrl || "https://gluestack.io"} />
+      <meta property="twitter:url" content={ogUrl || 'https://gluestack.io'} />
     </Head>
   );
 }

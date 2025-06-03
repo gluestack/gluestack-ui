@@ -1,10 +1,10 @@
-import React from "react";
-import { Icon, createIcon } from "@/components/ui/icon";
-import { Path } from "react-native-svg";
+import React from 'react';
+import { Icon, createIcon } from '@/components/ui/icon';
+import { Path } from 'react-native-svg';
 
 export const DiscordIcon = () => {
   const DiscordIcon = createIcon({
-    viewBox: "0 0 24 24",
+    viewBox: '0 0 24 24',
     path: (
       <>
         <Path
@@ -18,7 +18,7 @@ export const DiscordIcon = () => {
 };
 export const StackoverflowIcon = () => {
   const StackoverflowIcon = createIcon({
-    viewBox: "0 0 24 24",
+    viewBox: '0 0 24 24',
     path: (
       <>
         <Path
@@ -28,12 +28,14 @@ export const StackoverflowIcon = () => {
       </>
     ),
   });
-  return <Icon as={StackoverflowIcon} size="xl" className="text-typography-900" />;
+  return (
+    <Icon as={StackoverflowIcon} size="xl" className="text-typography-900" />
+  );
 };
 
 export const GithubIcon = () => {
   const GithubIcon = createIcon({
-    viewBox: "0 0 24 24",
+    viewBox: '0 0 24 24',
     path: (
       <>
         <Path
@@ -48,7 +50,7 @@ export const GithubIcon = () => {
 
 export const TwitterIcon = () => {
   const TwitterIcon = createIcon({
-    viewBox: "0 0 24 24",
+    viewBox: '0 0 24 24',
     path: (
       <>
         <Path

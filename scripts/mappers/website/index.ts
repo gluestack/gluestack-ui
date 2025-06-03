@@ -1,21 +1,21 @@
-import * as componentOperations from "./componentOperations";
-import * as docsOperations from "./docsOperations";
+import * as componentOperations from './componentOperations';
+import * as docsOperations from './docsOperations';
 
 export default {
   // this is for the component code and component docs sync
-  component: function (component: string, event = "added") {
-    if (event === "removed") {
+  component: function (component: string, event = 'added') {
+    if (event === 'removed') {
       // delete the component code
       componentOperations.deleteComponentDocs(component);
     } else {
       // copy the component code
       componentOperations.copyComponent(component);
-      if (component !== "gluestack-ui-provider" && component !== "overlay") {
+      if (component !== 'gluestack-ui-provider' && component !== 'overlay') {
         docsOperations.copyComponentsDocs(component);
       }
-      if (component === "utils") {
-        docsOperations.copyHooksDocs("use-break-point-value");
-        docsOperations.copyHooksDocs("use-media-query");
+      if (component === 'utils') {
+        docsOperations.copyHooksDocs('use-break-point-value');
+        docsOperations.copyHooksDocs('use-media-query');
       }
     }
   },
@@ -25,7 +25,7 @@ export default {
       // for the non-component code
       componentOperations.processNonComponentFile(filePath);
       // for the non-component docs
-      if (filePath.includes("/docs/") || filePath.includes("\\docs\\")) {
+      if (filePath.includes('/docs/') || filePath.includes('\\docs\\')) {
         docsOperations.copyNonComponentDocs(filePath);
       }
       // for the docs components

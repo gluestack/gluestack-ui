@@ -1,15 +1,15 @@
 {
-    "argTypes": {
-      "size": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["xs", "sm", "md", "lg", "xl"],
-        "defaultValue": "md"
-      }
-    },
-    "reactLive": {
-      "Icon": "@/components/ui/icon",
-      "EditIcon": "@/components/ui/icon"
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["xs", "sm", "md", "lg", "xl"],
+      "defaultValue": "md"
     }
+  },
+  "reactLive": {
+    "Icon": "@/components/ui/icon",
+    "EditIcon": "@/components/ui/icon"
   }
+}

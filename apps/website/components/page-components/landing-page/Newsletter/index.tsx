@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import {
   Box,
   Text,
@@ -18,9 +18,9 @@ import {
   VStack,
   Spinner,
   Heading,
-} from "@/components/ui";
-import axios from "axios";
-import Image from "next/image";
+} from '@/components/ui';
+import axios from 'axios';
+import Image from 'next/image';
 
 export type NewsletterAvatarItem = {
   id: string;
@@ -48,8 +48,8 @@ export const Newsletter = ({
   const [loading, setLoading] = useState(false);
   const [, setError] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [email, setEmail] = useState<string>("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [email, setEmail] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [avatars, setAvatars] = useState<NewsletterAvatarItem[]>([]);
 
@@ -63,29 +63,29 @@ export const Newsletter = ({
 
   const makeRequestToServer = async () => {
     setLoading(true);
-    const res = await axios.post("/api/newsletter-subscribe", { email: email });
+    const res = await axios.post('/api/newsletter-subscribe', { email: email });
     if (res.status === 200) {
       setSuccess(true);
       setError(false);
       setLoading(false);
-      setErrorMessage("");
-      setEmail("");
+      setErrorMessage('');
+      setEmail('');
     } else {
       setError(true);
       setSuccess(false);
       setLoading(false);
-      setErrorMessage("Error in subscribing!");
-      setEmail("");
+      setErrorMessage('Error in subscribing!');
+      setEmail('');
     }
   };
 
   const subscribeToNewsLetter = (e: any) => {
     e.preventDefault();
-    if (email === "") {
-      setErrorMessage("Email address is required!");
+    if (email === '') {
+      setErrorMessage('Email address is required!');
       setError(true);
     } else if (!emailValidator.test(email)) {
-      setErrorMessage("Enter a valid email address!");
+      setErrorMessage('Enter a valid email address!');
       setError(true);
     } else {
       makeRequestToServer();
@@ -121,7 +121,7 @@ export const Newsletter = ({
           <InputIcon as={MailIcon} />
           <InputField
             onKeyPress={(e: any) => {
-              if (e.key === "Enter") {
+              if (e.key === 'Enter') {
                 subscribeToNewsLetter(e);
               }
             }}

@@ -3,9 +3,8 @@
   "argTypes": {},
   "reactLive": {
     "Link": "@/components/ui/link",
-      "LinkText": "@/components/ui/link",
-      "HStack": "@/components/ui/hstack",
-      "Text": "@/components/ui/text"
-    }
+    "LinkText": "@/components/ui/link",
+    "HStack": "@/components/ui/hstack",
+    "Text": "@/components/ui/text"
   }
-  
+}

@@ -1,29 +1,29 @@
 {
-    "argTypes": {
-      "variant": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["solid", "outline", "link"],
-        "defaultValue": "outline"
+  "argTypes": {
+    "variant": {
+      "control": {
+        "type": "select"
       },
-      "action": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["primary", "secondary", "positive", "negative"],
-        "defaultValue": "primary"
-      },
-      "size": {
-        "control": {
-          "type": "select"
-        },
-        "options": ["xs", "sm", "md", "lg"],
-        "defaultValue": "md"
-      }
+      "options": ["solid", "outline", "link"],
+      "defaultValue": "solid"
     },
-    "reactLive": {
-      "Button": "@/components/ui/button",
-      "ButtonText": "@/components/ui/button"
+    "action": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["primary", "secondary", "positive", "negative"],
+      "defaultValue": "primary"
+    },
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["xs", "sm", "md", "lg"],
+      "defaultValue": "md"
     }
+  },
+  "reactLive": {
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button"
   }
+}

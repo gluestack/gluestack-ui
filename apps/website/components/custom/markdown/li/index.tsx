@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
-import { CircleIcon} from "@/components/ui/icon";
-import { HStack} from '@/components/ui/hstack';
-import { Text} from '@/components/ui/text';
+import { CircleIcon } from '@/components/ui/icon';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
 import { StyledLI } from './StyledLI';
 
 export const LI = memo(

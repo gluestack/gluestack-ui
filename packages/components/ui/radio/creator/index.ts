@@ -10,7 +10,7 @@ export const createRadio = <
   GroupProps,
   IconProps,
   IndicatorProps,
-  LabelProps
+  LabelProps,
 >({
   Root,
   Group,

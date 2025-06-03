@@ -1,13 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { forwardRef, memo } from "react";
-import { RadioProvider } from "./RadioProvider";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
-import { useFocusRing } from "@/utils/gluestack-utils/aria/focus/src";
-import { useHover } from "@/utils/gluestack-utils/aria/interactions/src";
-import { useRadio } from "@/components/ui/radio/aria";
-import { useRadioGroup } from "./RadioGroupContext";
-import { stableHash, composeEventHandlers } from "@/utils/gluestack-utils/common";
-import { useFormControlContext } from "@/components/ui/form-control/creator";
+import React, { forwardRef, memo } from 'react';
+import { RadioProvider } from './RadioProvider';
+import { VisuallyHidden } from '@react-aria/visually-hidden';
+import { useFocusRing } from '@/utils/gluestack-utils/aria/focus/src';
+import { useHover } from '@/utils/gluestack-utils/aria/interactions/src';
+import { useRadio } from '@/components/ui/radio/aria';
+import { useRadioGroup } from './RadioGroupContext';
+import {
+  stableHash,
+  composeEventHandlers,
+} from '@/utils/gluestack-utils/common';
+import { useFormControlContext } from '@/components/ui/form-control/creator';
 
 const RadioComponent = memo(
   forwardRef(
@@ -74,13 +77,13 @@ const RadioComponent = memo(
             hover: isHovered,
           }}
           dataSet={{
-            readonly: isReadOnly ? "true" : "false",
-            intermediate: isIndeterminate ? "true" : "false",
-            checked: isChecked ? "true" : "false",
-            focusVisible: isFocusVisible ? "true" : "false",
-            disabled: isDisabled ? "true" : "false",
-            invalid: isInvalid ? "true" : "false",
-            hover: isHovered ? "true" : "false",
+            readonly: isReadOnly ? 'true' : 'false',
+            intermediate: isIndeterminate ? 'true' : 'false',
+            checked: isChecked ? 'true' : 'false',
+            focusVisible: isFocusVisible ? 'true' : 'false',
+            disabled: isDisabled ? 'true' : 'false',
+            invalid: isInvalid ? 'true' : 'false',
+            hover: isHovered ? 'true' : 'false',
           }}
         >
           <RadioProvider
@@ -129,7 +132,7 @@ const Radio = (StyledRadio: any) =>
       ref?: any
     ) => {
       const formControlContext = useFormControlContext();
-      const contextState = useRadioGroup("RadioGroupContext");
+      const contextState = useRadioGroup('RadioGroupContext');
 
       const combinedProps = {
         ...formControlContext,
@@ -138,11 +141,11 @@ const Radio = (StyledRadio: any) =>
       };
 
       const inputRef = React.useRef(null);
-      const ariaLabel = props["aria-label"] || props.value || "Radio";
+      const ariaLabel = props['aria-label'] || props.value || 'Radio';
       const radioState = useRadio(
         {
           ...combinedProps,
-          "aria-label": ariaLabel,
+          'aria-label': ariaLabel,
           children,
         },
         contextState.state.state ?? {},
@@ -160,11 +163,11 @@ const Radio = (StyledRadio: any) =>
       }, [stableHash(combinedProps)]);
 
       if (!contextState) {
-        console.error("Error: Radio must be wrapped inside a Radio.Group");
+        console.error('Error: Radio must be wrapped inside a Radio.Group');
       }
 
       const isInvalid =
-        contextCombinedProps?.state?.validationState === "invalid"
+        contextCombinedProps?.state?.validationState === 'invalid'
           ? true
           : false;
 

@@ -17,7 +17,7 @@ export function createAccordion<
   ContentProps,
   IconProps,
   TitleTextProps,
-  ContentTextProps
+  ContentTextProps,
 >({
   Root,
   Item,

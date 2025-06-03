@@ -2,17 +2,24 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Textarea, TextareaInput } from '@/components/ui/textarea';
 import { FormControl, FormControlError, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText } from '@/components/ui/form-control';
 
-import {Tabs,TabItem} from '@/docs-components/tabs'
-import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
-import {InlineCode} from '@/docs-components/inline-code'
-import {AnatomyImage} from '@/docs-components/anatomy-image'
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
 
 # TextArea
 
 Easily integrate a React & React Native Textarea component with multi-line input. Customize size, state, and accessibility for seamless UI.
 
+This is an illustration of **TextArea** component.
 
-### This is an illustration of TextArea component.
 
   #### Basic
 
@@ -68,7 +75,6 @@ Easily integrate a React & React Native Textarea component with multi-line input
 />
 
 <br />
-
 ## Installation
 
 <Tabs>
@@ -79,16 +85,17 @@ Easily integrate a React & React Native Textarea component with multi-line input
   npx gluestack-ui add textarea
   ```
   </TabItem>
-  <TabItem label="Manual"> 
+  <TabItem label="Manual">
 
 ### Step 1: Install the following dependencies:
+
 ```bash
 npm i @gluestack-ui/textarea
 ```
 
 ### Step 2: Copy and paste the following code into your project.
 
-```jsx 
+```jsx
 'use client';
 import React from 'react';
 import { createTextarea } from '@/components/ui/textarea/creator';
@@ -182,23 +189,24 @@ Textarea.displayName = 'Textarea';
 TextareaInput.displayName = 'TextareaInput';
 
 export { Textarea, TextareaInput };
- 
+
 ```
 
 ### Run the following command:
-  ```bash   
-  npx gluestack-ui add textarea
-  ```
 
+```bash
+npx gluestack-ui add textarea
+```
 
 ### Step 1: Install the following dependencies:
+
 ```bash
 npm i @gluestack-ui/textarea
 ```
 
 ### Step 2: Copy and paste the following code into your project.
 
-```jsx 
+```jsx
 'use client';
 import React from 'react';
 import { createTextarea } from '@/components/ui/textarea/creator';
@@ -292,10 +300,11 @@ Textarea.displayName = 'Textarea';
 TextareaInput.displayName = 'TextareaInput';
 
 export { Textarea, TextareaInput };
- 
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
+
 </TabItem>
 </Tabs>
 
@@ -307,7 +316,11 @@ To use this component in your project, include the following import statement in
 import { Textarea } from '@/components/ui/textarea';
 ```
 
-<AnatomyImage mobileUrl='https://i.imgur.com/PRakWVb.png' webUrl='https://i.imgur.com/MWi9UNn.png' classNameStyle='aspect-[513/299] md:aspect-[736/227]' />
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/PRakWVb.png"
+  webUrl="https://i.imgur.com/MWi9UNn.png"
+  classNameStyle="aspect-[513/299] md:aspect-[736/227]"
+/>
 
 ```ts
 export default () => (
@@ -324,7 +337,6 @@ This section provides a comprehensive reference list for the component props, de
 #### Textarea
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
-
 
     <Table>
       <TableHeader>
@@ -398,7 +410,6 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 **Descendants Styling Props**
 Props to style child components.
 
-
     <Table>
       <TableHeader>
         <TableRow>
@@ -415,7 +426,6 @@ Props to style child components.
         </TableRow>
       </TableBody>
     </Table>
-
 
 #### TextareaInput
 
@@ -441,7 +451,6 @@ Textarea component is created using TextInput component from react-native. It ex
 
 #### Textarea
 
-
     <Table>
       <TableHeader>
         <TableRow>
@@ -463,8 +472,7 @@ Textarea component is created using TextInput component from react-native. It ex
 
 ### Data Attributes Table
 
-Component receives states as props as boolean values, which are applied as ```data-*``` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
-
+Component receives states as props as boolean values, which are applied as `data-*` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
 
     <Table>
       <TableHeader>

@@ -115,20 +115,20 @@ export function getGithubLink(sidebarItems: any, pathName: any) {
   }
 
   // If no explicit githubPath found, generate one based on the current path
-  if (pathName && pathName.startsWith("/ui/docs/")) {
+  if (pathName && pathName.startsWith('/ui/docs/')) {
     // Convert path like '/ui/docs/components/button' to GitHub file path
     // Remove '/ui/docs/' prefix and add appropriate file extensions
-    const relativePath = pathName.replace("/ui/docs/", "");
+    const relativePath = pathName.replace('/ui/docs/', '');
 
     // Map different sections to their corresponding file paths
-    if (relativePath.startsWith("components/")) {
-      const componentName = relativePath.replace("components/", "");
+    if (relativePath.startsWith('components/')) {
+      const componentName = relativePath.replace('components/', '');
       return `https://github.com/gluestack/gluestack-ui/tree/main/apps/website/app/ui/docs/components/${componentName}/index.mdx`;
-    } else if (relativePath.startsWith("home/")) {
-      const pagePath = relativePath.replace("home/", "");
+    } else if (relativePath.startsWith('home/')) {
+      const pagePath = relativePath.replace('home/', '');
       return `https://github.com/gluestack/gluestack-ui/tree/main/packages/docs/${pagePath}/index.mdx`;
-    } else if (relativePath.startsWith("apps/")) {
-      const appPath = relativePath.replace("apps/", "");
+    } else if (relativePath.startsWith('apps/')) {
+      const appPath = relativePath.replace('apps/', '');
       return `https://github.com/gluestack/gluestack-ui/tree/main/packages/docs/apps/${appPath}/index.mdx`;
     } else {
       // For other paths, try a generic approach

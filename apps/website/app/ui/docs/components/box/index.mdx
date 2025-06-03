@@ -2,7 +2,7 @@ import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 
-import { Tabs, TabItem } from "@/docs-components/tabs";
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -10,13 +10,15 @@ import {
   TableHeaderCell,
   TableBody,
   TableRow,
-} from "@/docs-components/table";
-import { InlineCode } from "@/docs-components/inline-code";
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # Box
+
 Use gluestack-ui Box, a powerful box component for flexible layouts. Customize styles, props, and structure easily for web and native platforms.
 
-### This is an illustration of Box component.
+This is an illustration of **Box** component.
+
 
   
 
@@ -44,11 +46,11 @@ Use gluestack-ui Box, a powerful box component for flexible layouts. Customize s
 ```bash
 npx gluestack-ui add box
 ```
+
 </TabItem>
 <TabItem label="Manual">
 
 ### Step 1: Copy and paste the following code into index.tsx in your project.
-
 
 ```tsx
 import React from 'react';
@@ -70,12 +72,12 @@ const Box = React.forwardRef<React.ComponentRef<typeof View>, IBoxProps>(
 
 Box.displayName = 'Box';
 export { Box };
+
 ```
 
 > Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
 
 ### Step 2: Step 2(optional): Copy and paste the following code into index.web.tsx in your project.
-
 
 ```tsx
 import React from 'react';
@@ -97,6 +99,7 @@ const Box = React.forwardRef<HTMLDivElement, IBoxProps>(function Box(
 
 Box.displayName = 'Box';
 export { Box };
+
 ```
 
 ### Step 3: Copy and paste the following code into styles.tsx in your project.
@@ -112,10 +115,10 @@ const baseStyle = isWeb
 export const boxStyle = tva({
   base: baseStyle,
 });
+
 ```
 
 ## Step 4: Update the import paths to match your project setup.
-
 </TabItem>
 </Tabs>
 

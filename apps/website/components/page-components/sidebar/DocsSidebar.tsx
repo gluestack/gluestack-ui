@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import sidebarData from "@/sidebar.json";
-import { Icon } from "@/components/ui/icon";
-import { Text } from "@/components/ui/text";
-import { Box } from "@/components/ui/box";
-import { ToggleColorModeButton } from "@/components/custom/color-mode-toggle-button";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import sidebarData from '@/sidebar.json';
+import { Icon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
+import { Box } from '@/components/ui/box';
+import { ToggleColorModeButton } from '@/components/custom/color-mode-toggle-button';
 
 interface NavigationItem {
   type?: string;
@@ -49,7 +49,7 @@ const ResponsiveSidebarLink = ({
   const pathname = usePathname();
   const isActive = pathname === item.path;
 
-  if (item.type === "heading") {
+  if (item.type === 'heading') {
     return (
       <div className="font-bold text-typography-900 py-2 pl-3 my-2 mt-4 uppercase font-jakarta">
         {item.title}
@@ -59,10 +59,10 @@ const ResponsiveSidebarLink = ({
 
   return (
     <Link
-      href={item.path || "#"}
+      href={item.path || '#'}
       onClick={onItemClick}
       className={`text-sm font-medium block py-2 px-3.5 mr-2 my-0.5 text-typography-800 hover:bg-background-100 pl-3 font-inter ${
-        isActive ? "bg-background-100 border-l-[3px] border-primary-500" : ""
+        isActive ? 'bg-background-100 border-l-[3px] border-primary-500' : ''
       }`}
     >
       <div className="flex items-center ">
@@ -70,12 +70,12 @@ const ResponsiveSidebarLink = ({
         {item.tags?.length && item.tags?.length > 0 && (
           <span
             className={`text-2xs uppercase font-roboto font-semibold rounded-sm px-1 py-0.5 m-2 ${
-              item.tags?.includes("alpha")
-                ? "text-info-600 bg-info-50/40"
-                : "text-success-600 bg-success-50/40"
+              item.tags?.includes('alpha')
+                ? 'text-info-600 bg-info-50/40'
+                : 'text-success-600 bg-success-50/40'
             }`}
           >
-            {item.tags?.map((tag) => tag).join(", ")}
+            {item.tags?.map((tag) => tag).join(', ')}
           </span>
         )}
       </div>
@@ -96,7 +96,7 @@ const ResponsiveSidebarSection = ({
         {section.icons && (
           <Icon
             as={
-              require("lucide-react-native")[section.icons.name ?? "CircleHelp"]
+              require('lucide-react-native')[section.icons.name ?? 'CircleHelp']
             }
           />
         )}
@@ -146,27 +146,27 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
   setIsOpenSidebar,
 }) => {
   const navigation = (sidebarData as Navigation).navigation;
-  const [selectedSection, setSelectedSection] = useState<string>("Home");
+  const [selectedSection, setSelectedSection] = useState<string>('Home');
   const pathname = usePathname();
 
   useEffect(() => {
     if (isOpen) {
       // Prevent background scroll when sidebar is open
-      document.body.style.overflow = "hidden";
-      document.body.style.position = "fixed";
-      document.body.style.width = "100%";
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
     } else {
       // Restore scrolling when sidebar is closed
-      document.body.style.overflow = "auto";
-      document.body.style.position = "static";
-      document.body.style.width = "auto";
+      document.body.style.overflow = 'auto';
+      document.body.style.position = 'static';
+      document.body.style.width = 'auto';
     }
 
     return () => {
       // Cleanup styles when component unmounts
-      document.body.style.overflow = "auto";
-      document.body.style.position = "static";
-      document.body.style.width = "auto";
+      document.body.style.overflow = 'auto';
+      document.body.style.position = 'static';
+      document.body.style.width = 'auto';
     };
   }, [isOpen]);
 
@@ -186,7 +186,7 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
           return section.title;
         }
       }
-      return "Home";
+      return 'Home';
     };
 
     const parentSection = findParentSection(navigation.sections, pathname);
@@ -212,16 +212,16 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
             key={index}
             className={`flex items-center gap-2 px-4 py-2 my-1 cursor-pointer rounded-md ${
               selectedSection === section.title
-                ? "bg-background-50 text-typography-950"
-                : "text-typography-800 hover:bg-background-100 hover:text-typography-900"
+                ? 'bg-background-50 text-typography-950'
+                : 'text-typography-800 hover:bg-background-100 hover:text-typography-900'
             }`}
             onClick={() => handleSectionClick(section)}
           >
             {section.icons && (
               <Icon
                 as={
-                  require("lucide-react-native")[
-                    section.icons.name ?? "CircleHelp"
+                  require('lucide-react-native')[
+                    section.icons.name ?? 'CircleHelp'
                   ]
                 }
                 className="w-5 h-5"

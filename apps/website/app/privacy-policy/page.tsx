@@ -1,9 +1,9 @@
-"use client";
-import { Box, Heading, Link, LinkText, Text } from "@/components/ui";
-import BadgeComponent from "@/components/page-components/landing-page/BadgeComponent";
-import Footer from "@/components/page-components/landing-page/Footer";
-import WebsiteLayout from "@/components/page-components/landing-page/WebsiteLayout";
-import React from "react";
+'use client';
+import { Box, Heading, Link, LinkText, Text } from '@/components/ui';
+import BadgeComponent from '@/components/page-components/landing-page/BadgeComponent';
+import Footer from '@/components/page-components/landing-page/Footer';
+import WebsiteLayout from '@/components/page-components/landing-page/WebsiteLayout';
+import React from 'react';
 
 const PrivacyPolicy = () => {
   return (
@@ -845,7 +845,7 @@ const PrivacyPolicy = () => {
             className="no-underline"
           >
             <LinkText className="text-[#38BDF8] no-underline">
-              {" "}
+              {' '}
               California Legislative Information website
             </LinkText>
           </Link>

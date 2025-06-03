@@ -1,5 +1,4 @@
 {
-
   "title": "Popover with CTA",
   "argsTypes": {},
   "reactLive": {
@@ -24,4 +23,4 @@
     "ArrowRightIcon": "@/components/ui/icon",
     "ChevronRightIcon": "@/components/ui/icon"
   }
-} 
+}

@@ -1,12 +1,12 @@
-import { Box, Text, VStack, HStack } from "@/components/ui";
-import Link from "next/link";
+import { Box, Text, VStack, HStack } from '@/components/ui';
+import Link from 'next/link';
 import {
   headerItems,
   SidebarItemProps,
   SidebarSectionProps,
-} from "./sidebar-header-items";
-import { ThemeContext } from "@/utils/context/theme-context";
-import { useContext, useEffect } from "react";
+} from './sidebar-header-items';
+import { ThemeContext } from '@/utils/context/theme-context';
+import { useContext, useEffect } from 'react';
 
 const SidebarItem = ({
   title,
@@ -21,7 +21,7 @@ const SidebarItem = ({
     <Link href={link} onClick={onItemClick}>
       <HStack className="hover:bg-background-100 px-3.5 py-2 gap-2 items-center">
         <Box className="p-0.5 items-center justify-center bg-background-50 rounded">
-          {colorMode === "light" ? logo : logoDark}
+          {colorMode === 'light' ? logo : logoDark}
         </Box>
         <Text className="text-typography-800">{title}</Text>
         {badge && <Box className="ml-2">{badge}</Box>}
@@ -75,13 +75,13 @@ function ResponsiveSidebar({
 }) {
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
     }
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
 

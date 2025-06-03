@@ -1,14 +1,14 @@
-import path from "path";
-import * as fileOps from "../utils/fileOperations";
-import * as templateGen from "./templateGenerator";
+import path from 'path';
+import * as fileOps from '../utils/fileOperations';
+import * as templateGen from './templateGenerator';
 
 export const copyComponentsDocs = (component: string) => {
-  const sourcePath = path.resolve("packages/components/ui");
-  const kitchenSinkPath = path.resolve("apps/kitchen-sink/app/components");
+  const sourcePath = path.resolve('packages/components/ui');
+  const kitchenSinkPath = path.resolve('apps/kitchen-sink/app/components');
 
   try {
     // Find docs files in the component folder
-    const componentDocsPath = path.join(sourcePath, component, "docs");
+    const componentDocsPath = path.join(sourcePath, component, 'docs');
     if (!fileOps.pathExists(componentDocsPath)) {
       console.log(`No docs found for ${component}  ${componentDocsPath}`);
       return;
@@ -26,9 +26,9 @@ export const copyComponentsDocs = (component: string) => {
     fileOps.ensureDirectoryExists(destPath);
 
     // Source MDX file path
-    const sourceMdxPath = path.join(componentDocsPath, "index.mdx");
+    const sourceMdxPath = path.join(componentDocsPath, 'index.mdx');
     // Destination TSX file path
-    const destTsxPath = path.join(destPath, "index.tsx");
+    const destTsxPath = path.join(destPath, 'index.tsx');
 
     // Copy only the processed annotations from MDX to TSX
     templateGen.copyProcessedAnnotations(sourceMdxPath, destTsxPath, component);

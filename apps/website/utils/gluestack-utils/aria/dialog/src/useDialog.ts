@@ -23,8 +23,7 @@ export interface DialogAria {
   titleProps: DOMAttributes;
 }
 
-export interface DialogProps extends AriaDialogProps {
-}
+export interface DialogProps extends AriaDialogProps {}
 
 /**
  * Provides the behavior and accessibility implementation for a dialog component.

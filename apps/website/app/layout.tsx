@@ -1,44 +1,44 @@
 /* eslint-disable @next/next/next-script-for-ga */
 /* eslint-disable @next/next/no-page-custom-font */
-"use client";
+'use client';
 import {
   Inter,
   Roboto,
   Plus_Jakarta_Sans,
   Source_Code_Pro,
   Space_Mono,
-} from "next/font/google";
-import "./globals.css";
-import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { useContext } from "react";
-import { ThemeContext, ThemeProvider } from "@/utils/context/theme-context";
+} from 'next/font/google';
+import './globals.css';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { useContext } from 'react';
+import { ThemeContext, ThemeProvider } from '@/utils/context/theme-context';
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-plus-jakarta-sans",
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-plus-jakarta-sans',
 });
 
 const roboto = Roboto({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-roboto",
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto',
 });
 
 const sourceCodePro = Source_Code_Pro({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-source-code-pro",
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-source-code-pro',
 });
 
 const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-  variable: "--font-space-mono",
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+  variable: '--font-space-mono',
 });
 
 function ThemeWrapper({ children }: { children: React.ReactNode }) {

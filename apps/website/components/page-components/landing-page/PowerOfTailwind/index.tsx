@@ -1,4 +1,4 @@
-import CodeBlock from "@/components/custom/markdown/code-block";
+import CodeBlock from '@/components/custom/markdown/code-block';
 import {
   Box,
   Button,
@@ -10,12 +10,12 @@ import {
   Text,
   VStack,
   Pressable,
-} from "@/components/ui";
-import { useState } from "react";
+} from '@/components/ui';
+import { useState } from 'react';
 
 const buttonCode = [
   {
-    fileName: "Example.tsx",
+    fileName: 'Example.tsx',
     code: `import { Button, ButtonText } from '@/components/ui/button';
 
   function Example() {
@@ -28,7 +28,7 @@ const buttonCode = [
     `,
   },
   {
-    fileName: "Button.tsx",
+    fileName: 'Button.tsx',
     code: `// Built with gluestack-ui and NativeWind. Copy-paste the code into your project.
   import React, { useMemo } from 'react';
   import { createButton } from '@gluestack-ui/button';
@@ -137,7 +137,7 @@ const buttonCode = [
   `,
   },
   {
-    fileName: "styles.ts",
+    fileName: 'styles.ts',
     code: `// Built with gluestack-ui and NativeWind. Copy-paste the code into your project.
   import { tva } from '@gluestack-ui/nativewind-utils/tva';
   const buttonStyle = tva({
@@ -189,13 +189,13 @@ const PowerOfTailwind = () => {
           The Power of Tailwind CSS with NativeWind
         </Heading>
         <Text className="text-typography-700 text-lg font-normal leading-[30px] w-full md:w-[75%]">
-          Unleash your creativity and maximize the styling possibilities with{" "}
+          Unleash your creativity and maximize the styling possibilities with{' '}
           <a
             href="https://gluestack.io/ui/docs/home/getting-started/installation"
             className="underline underline-offset-4 group-hover/link:underline"
           >
             Tailwind UI components
-          </a>{" "}
+          </a>{' '}
           and utility classes. Combine Tailwind utility classes with the
           powerful styling engine of NativeWind, ideal for universal
           applications.
@@ -225,15 +225,15 @@ const PowerOfTailwind = () => {
                 onPress={() => setActiveTab(index)}
                 className={`px-4 py-2 ${
                   activeTab === index
-                    ? "border-b-2 border-primary-500 bg-background-50"
-                    : "text-typography-500"
+                    ? 'border-b-2 border-primary-500 bg-background-50'
+                    : 'text-typography-500'
                 }`}
               >
                 <Text
                   className={`${
                     activeTab === index
-                      ? "text-primary-500 font-medium"
-                      : "text-typography-500"
+                      ? 'text-primary-500 font-medium'
+                      : 'text-typography-500'
                   }`}
                 >
                   {code.fileName}

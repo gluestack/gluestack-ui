@@ -13,9 +13,16 @@ import { EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon, Icon, CloseIc
 import { Heading } from '@/components/ui/heading';
 import { Pressable } from '@/components/ui/pressable';
 
-import {Tabs,TabItem} from '@/docs-components/tabs'
-import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
-import {InlineCode} from '@/docs-components/inline-code'
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # ActionSheet
 
@@ -66,7 +73,7 @@ This is an illustration of **ActionSheet** component.
   reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText }}
 />
 
-<br/>
+<br />
 ## Installation
 
 <Tabs>
@@ -85,12 +92,11 @@ npm i @gluestack-ui/actionsheet
 
 ### Step 2: Copy and paste the following code into your project.
 
-
-```jsx 
-"use client";
-import React from "react";
-import { H4 } from "@expo/html-elements";
-import { createActionsheet } from "@/components/ui/actionsheet/creator";
+```jsx
+'use client';
+import React from 'react';
+import { H4 } from '@expo/html-elements';
+import { createActionsheet } from '@/components/ui/actionsheet/creator';
 import {
   Pressable,
   View,
@@ -101,17 +107,17 @@ import {
   SectionList,
   PressableProps,
   ViewStyle,
-} from "react-native";
-import { PrimitiveIcon, UIIcon } from "@/components/ui/icon/creator";
-import { tva } from "@/utils/gluestack-utils/nativewind/utils/tva";
-import type { VariantProps } from "@/utils/gluestack-utils/nativewind/utils";
-import { cssInterop } from "nativewind";
+} from 'react-native';
+import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
+import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import { cssInterop } from 'nativewind';
 import {
   Motion,
   AnimatePresence,
   createMotionAnimatedComponent,
   MotionComponentProps,
-} from "@legendapp/motion";
+} from '@legendapp/motion';
 
 const ItemWrapper = React.forwardRef<
   React.ComponentRef<typeof Pressable>,
@@ -149,170 +155,170 @@ export const UIActionsheet = createActionsheet({
   AnimatePresence: AnimatePresence,
 });
 
-cssInterop(UIActionsheet, { className: "style" });
-cssInterop(UIActionsheet.Content, { className: "style" });
-cssInterop(ItemWrapper, { className: "style" });
-cssInterop(UIActionsheet.ItemText, { className: "style" });
-cssInterop(UIActionsheet.DragIndicator, { className: "style" });
-cssInterop(UIActionsheet.DragIndicatorWrapper, { className: "style" });
-cssInterop(UIActionsheet.Backdrop, { className: "style" });
+cssInterop(UIActionsheet, { className: 'style' });
+cssInterop(UIActionsheet.Content, { className: 'style' });
+cssInterop(ItemWrapper, { className: 'style' });
+cssInterop(UIActionsheet.ItemText, { className: 'style' });
+cssInterop(UIActionsheet.DragIndicator, { className: 'style' });
+cssInterop(UIActionsheet.DragIndicatorWrapper, { className: 'style' });
+cssInterop(UIActionsheet.Backdrop, { className: 'style' });
 cssInterop(UIActionsheet.ScrollView, {
-  className: "style",
-  contentContainerClassName: "contentContainerStyle",
-  indicatorClassName: "indicatorStyle",
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
 });
 cssInterop(UIActionsheet.VirtualizedList, {
-  className: "style",
-  ListFooterComponentClassName: "ListFooterComponentStyle",
-  ListHeaderComponentClassName: "ListHeaderComponentStyle",
-  contentContainerClassName: "contentContainerStyle",
-  indicatorClassName: "indicatorStyle",
+  className: 'style',
+  ListFooterComponentClassName: 'ListFooterComponentStyle',
+  ListHeaderComponentClassName: 'ListHeaderComponentStyle',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
 });
 cssInterop(UIActionsheet.FlatList, {
-  className: "style",
-  ListFooterComponentClassName: "ListFooterComponentStyle",
-  ListHeaderComponentClassName: "ListHeaderComponentStyle",
-  columnWrapperClassName: "columnWrapperStyle",
-  contentContainerClassName: "contentContainerStyle",
-  indicatorClassName: "indicatorStyle",
+  className: 'style',
+  ListFooterComponentClassName: 'ListFooterComponentStyle',
+  ListHeaderComponentClassName: 'ListHeaderComponentStyle',
+  columnWrapperClassName: 'columnWrapperStyle',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
 });
-cssInterop(UIActionsheet.SectionList, { className: "style" });
-cssInterop(UIActionsheet.SectionHeaderText, { className: "style" });
+cssInterop(UIActionsheet.SectionList, { className: 'style' });
+cssInterop(UIActionsheet.SectionHeaderText, { className: 'style' });
 
 cssInterop(PrimitiveIcon, {
   className: {
-    target: "style",
+    target: 'style',
     nativeStyleToProp: {
       height: true,
       width: true,
       fill: true,
-      color: "classNameColor",
+      color: 'classNameColor',
       stroke: true,
     },
   },
 });
 
-const actionsheetStyle = tva({ base: "w-full h-full web:pointer-events-none" });
+const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 
 const actionsheetContentStyle = tva({
-  base: "items-center rounded-tl-3xl rounded-tr-3xl p-5 pt-2 bg-background-0 web:pointer-events-auto web:select-none shadow-hard-5 border border-b-0 border-outline-100",
+  base: 'items-center rounded-tl-3xl rounded-tr-3xl p-5 pt-2 bg-background-0 web:pointer-events-auto web:select-none shadow-hard-5 border border-b-0 border-outline-100',
 });
 
 const actionsheetItemStyle = tva({
-  base: "w-full flex-row items-center p-3 rounded-sm data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-auto data-[disabled=true]:web:cursor-not-allowed hover:bg-background-50 active:bg-background-100 data-[focus=true]:bg-background-100 web:data-[focus-visible=true]:bg-background-100 web:data-[focus-visible=true]:outline-indicator-primary gap-2",
+  base: 'w-full flex-row items-center p-3 rounded-sm data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-auto data-[disabled=true]:web:cursor-not-allowed hover:bg-background-50 active:bg-background-100 data-[focus=true]:bg-background-100 web:data-[focus-visible=true]:bg-background-100 web:data-[focus-visible=true]:outline-indicator-primary gap-2',
 });
 
 const actionsheetItemTextStyle = tva({
-  base: "text-typography-700 font-normal font-body",
+  base: 'text-typography-700 font-normal font-body',
   variants: {
     isTruncated: {
-      true: "",
+      true: '',
     },
     bold: {
-      true: "font-bold",
+      true: 'font-bold',
     },
     underline: {
-      true: "underline",
+      true: 'underline',
     },
     strikeThrough: {
-      true: "line-through",
+      true: 'line-through',
     },
     size: {
-      "2xs": "text-2xs",
-      xs: "text-xs",
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
-      xl: "text-xl",
-      "2xl": "text-2xl",
-      "3xl": "text-3xl",
-      "4xl": "text-4xl",
-      "5xl": "text-5xl",
-      "6xl": "text-6xl",
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-base',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
     },
   },
 });
 
 const actionsheetDragIndicatorStyle = tva({
-  base: "w-16 h-1 bg-background-400 rounded-full",
+  base: 'w-16 h-1 bg-background-400 rounded-full',
 });
 
 const actionsheetDragIndicatorWrapperStyle = tva({
-  base: "w-full py-1 items-center",
+  base: 'w-full py-1 items-center',
 });
 
 const actionsheetBackdropStyle = tva({
-  base: "absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default web:pointer-events-auto",
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default web:pointer-events-auto',
 });
 
 const actionsheetScrollViewStyle = tva({
-  base: "w-full h-auto",
+  base: 'w-full h-auto',
 });
 
 const actionsheetVirtualizedListStyle = tva({
-  base: "w-full h-auto",
+  base: 'w-full h-auto',
 });
 
 const actionsheetFlatListStyle = tva({
-  base: "w-full h-auto",
+  base: 'w-full h-auto',
 });
 
 const actionsheetSectionListStyle = tva({
-  base: "w-full h-auto",
+  base: 'w-full h-auto',
 });
 
 const actionsheetSectionHeaderTextStyle = tva({
-  base: "leading-5 font-bold font-heading my-0 text-typography-500 p-3 uppercase",
+  base: 'leading-5 font-bold font-heading my-0 text-typography-500 p-3 uppercase',
   variants: {
     isTruncated: {
-      true: "",
+      true: '',
     },
     bold: {
-      true: "font-bold",
+      true: 'font-bold',
     },
     underline: {
-      true: "underline",
+      true: 'underline',
     },
     strikeThrough: {
-      true: "line-through",
+      true: 'line-through',
     },
     size: {
-      "5xl": "text-5xl",
-      "4xl": "text-4xl",
-      "3xl": "text-3xl",
-      "2xl": "text-2xl",
-      xl: "text-xl",
-      lg: "text-lg",
-      md: "text-base",
-      sm: "text-sm",
-      xs: "text-xs",
+      '5xl': 'text-5xl',
+      '4xl': 'text-4xl',
+      '3xl': 'text-3xl',
+      '2xl': 'text-2xl',
+      'xl': 'text-xl',
+      'lg': 'text-lg',
+      'md': 'text-base',
+      'sm': 'text-sm',
+      'xs': 'text-xs',
     },
 
     sub: {
-      true: "text-xs",
+      true: 'text-xs',
     },
     italic: {
-      true: "italic",
+      true: 'italic',
     },
     highlight: {
-      true: "bg-yellow500",
+      true: 'bg-yellow500',
     },
   },
   defaultVariants: {
-    size: "xs",
+    size: 'xs',
   },
 });
 
 const actionsheetIconStyle = tva({
-  base: "text-background-500 fill-none",
+  base: 'text-background-500 fill-none',
   variants: {
     size: {
-      "2xs": "h-3 w-3",
-      xs: "h-3.5 w-3.5",
-      sm: "h-4 w-4",
-      md: "w-[18px] h-[18px]",
-      lg: "h-5 w-5",
-      xl: "h-6 w-6",
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'w-[18px] h-[18px]',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
     },
   },
 });
@@ -431,7 +437,7 @@ const ActionsheetItemText = React.forwardRef<
     bold,
     underline,
     strikeThrough,
-    size = "sm",
+    size = 'sm',
     className,
     ...props
   },
@@ -607,8 +613,8 @@ const ActionsheetSectionHeaderText = React.forwardRef<
 const ActionsheetIcon = React.forwardRef<
   React.ComponentRef<typeof UIActionsheet.Icon>,
   IActionsheetIconProps
->(function ActionsheetIcon({ className, size = "sm", ...props }, ref) {
-  if (typeof size === "number") {
+>(function ActionsheetIcon({ className, size = 'sm', ...props }, ref) {
+  if (typeof size === 'number') {
     return (
       <UIActionsheet.Icon
         ref={ref}
@@ -656,7 +662,7 @@ export {
   ActionsheetSectionHeaderText,
   ActionsheetIcon,
 };
- 
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -683,6 +689,7 @@ export default () => (
   </Actionsheet>
 );
 ```
+
 <br/>
 ```ts
 import {
@@ -697,7 +704,7 @@ import {
 } from '@/components/ui/actionsheet';
 ```
 
-<br/>
+<br />
 
 ### Component Props
 
@@ -706,7 +713,6 @@ This section provides a comprehensive reference list for the component props, de
 #### Actionsheet
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
-
 
 <Table>
   <TableHeader>
@@ -734,25 +740,30 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       <TableCell>`snapPoints`</TableCell>
       <TableCell>number[]</TableCell>
       <TableCell>-</TableCell>
-      <TableCell>Array of numbers representing the snap points in percentage.</TableCell>
+      <TableCell>
+        Array of numbers representing the snap points in percentage.
+      </TableCell>
     </TableRow>
     <TableRow>
       <TableCell>`initialFocusRef`</TableCell>
       <TableCell>React.RefObject&lt;any&gt;</TableCell>
       <TableCell>-</TableCell>
-      <TableCell>Ref for the element that should be focused when the actionsheet opens.</TableCell>
+      <TableCell>
+        Ref for the element that should be focused when the actionsheet opens.
+      </TableCell>
     </TableRow>
     <TableRow>
       <TableCell>`finalFocusRef`</TableCell>
       <TableCell>React.RefObject&lt;any&gt;</TableCell>
       <TableCell>-</TableCell>
-      <TableCell>Ref for the element that should be focused when the actionsheet closes.</TableCell>
+      <TableCell>
+        Ref for the element that should be focused when the actionsheet closes.
+      </TableCell>
     </TableRow>
   </TableBody>
 </Table>
 
->Note: If snapPoints are not provided to Actionsheet, then it's essential to set maxHeight to ActionsheetContent.
-
+> Note: If snapPoints are not provided to Actionsheet, then it's essential to set maxHeight to ActionsheetContent.
 
 #### ActionsheetBackdrop
 
@@ -814,6 +825,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 - Scrolling is blocked on the elements behind the Actionsheet
 
 ### Accessibility
+
 We have outlined the various features that ensure the Actionsheet component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
 #### Keyboard
@@ -839,7 +851,6 @@ The Examples section provides visual representations of the different variants o
 #### Keyboard handling
 
 Demonstrates a common UI pattern known as keyboard handling or keyboard scrolling, in which an input field is automatically scrolled into view when the user taps on it and the keyboard appears. This improves usability and ensures that the input field is always visible and accessible, even when the keyboard is blocking part of the screen.
-
 
 
   #### Without SnapPoints
@@ -884,7 +895,6 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
   argTypes={{}}
   reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText }}
 />
-
 
 
   #### With SnapPoints
@@ -954,7 +964,6 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
 />
 
 
-
   #### Icons
 
   The Actionsheet with Icons is a variation of the Actionsheet component that displays icons next to each option. It's commonly used in apps for a more visual representation of options and easier navigation.
@@ -1003,7 +1012,6 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
   argTypes={{}}
   reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetIcon, Button, ButtonText, EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon }}
 />
-
 
 
   #### VirtualizedList
@@ -1056,7 +1064,6 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
   argTypes={{}}
   reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText, ActionsheetVirtualizedList }}
 />
-
 
 
   #### FlatList
@@ -1115,7 +1122,6 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
 />
 
 
-
   #### SectionList
 
   The Actionsheet with SectionList is a variation of the Actionsheet component that displays a sectioned list of options. It's commonly used in apps to organize options into different categories or sections for better readability and navigation.
@@ -1164,7 +1170,6 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
   argTypes={{}}
   reactLive={{ Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText, ActionsheetSectionList, ActionsheetSectionHeaderText, Button, ButtonText }}
 />
-
 
 
   #### File Upload with Actionsheet

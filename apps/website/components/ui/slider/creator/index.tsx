@@ -13,7 +13,7 @@ export function createSlider<
   SliderThumbInteractionProps,
   SliderThumbProps,
   SliderTrackProps,
-  SliderFilledTrackProps
+  SliderFilledTrackProps,
 >({
   Root,
   ThumbInteraction,

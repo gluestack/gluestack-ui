@@ -9,10 +9,10 @@ export default function Example() {
     <Switch
       size="{{size}}"
       isDisabled={ {{isDisabled}} }
-      trackColor="{{trackColor}}"
-      thumbColor="{{thumbColor}}"
-      activeThumbColor="{{activeThumbColor}}"
-      ios_backgroundColor="{{ios_backgroundColor}}"
+      trackColor={ {false: "#d4d4d4", true: "#525252"} }
+      thumbColor="#fafafa"
+      activeThumbColor="#fafafa"
+      ios_backgroundColor="#d4d4d4"
     />
   )
 }`}
@@ -33,46 +33,6 @@ export default function Example() {
       "type": "boolean"
     },
     "defaultValue": false
-  },
-  "trackColor": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "#E2E8F0",
-      "#000000"
-    ],
-    "defaultValue": "#E2E8F0"
-  },
-  "thumbColor": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "#FFFFFF",
-      "#000000"
-    ],
-    "defaultValue": "#FFFFFF"
-  },
-  "activeThumbColor": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "#000000",
-      "#FFFFFF"
-    ],
-    "defaultValue": "#000000"
-  },
-  "ios_backgroundColor": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "#E2E8F0",
-      "#000000"
-    ],
-    "defaultValue": "#E2E8F0"
   }
 }}
       reactLive={{ Switch }}

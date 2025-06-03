@@ -10,9 +10,16 @@ pageDescription: Discover the ActionSheet component for Expo, React & React Nati
 showHeader: true
 ---
 
-import {Tabs,TabItem} from '@/docs-components/tabs'
-import {Table,TableHeader,TableCell,TableHeaderCell,TableBody,TableRow} from '@/docs-components/table'
-import {InlineCode} from '@/docs-components/inline-code'
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
 
 # ActionSheet
 
@@ -21,7 +28,7 @@ Discover the ActionSheet component for Expo, React & React Native. Easily create
 This is an illustration of **ActionSheet** component.
 /// {Example:basic} ///
 
-<br/>
+<br />
 ## Installation
 
 <Tabs>
@@ -40,9 +47,8 @@ npm i @gluestack-ui/actionsheet
 
 ### Step 2: Copy and paste the following code into your project.
 
-
-```jsx 
-%%-- File: packages/components/ui/actionsheet/index.tsx --%% 
+```jsx
+%%-- File: packages/components/ui/actionsheet/index.tsx --%%
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -69,6 +75,7 @@ export default () => (
   </Actionsheet>
 );
 ```
+
 <br/>
 ```ts
 import {
@@ -83,7 +90,7 @@ import {
 } from '@/components/ui/actionsheet';
 ```
 
-<br/>
+<br />
 
 ### Component Props
 
@@ -92,7 +99,6 @@ This section provides a comprehensive reference list for the component props, de
 #### Actionsheet
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
-
 
 <Table>
   <TableHeader>
@@ -120,25 +126,30 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
       <TableCell>`snapPoints`</TableCell>
       <TableCell>number[]</TableCell>
       <TableCell>-</TableCell>
-      <TableCell>Array of numbers representing the snap points in percentage.</TableCell>
+      <TableCell>
+        Array of numbers representing the snap points in percentage.
+      </TableCell>
     </TableRow>
     <TableRow>
       <TableCell>`initialFocusRef`</TableCell>
       <TableCell>React.RefObject&lt;any&gt;</TableCell>
       <TableCell>-</TableCell>
-      <TableCell>Ref for the element that should be focused when the actionsheet opens.</TableCell>
+      <TableCell>
+        Ref for the element that should be focused when the actionsheet opens.
+      </TableCell>
     </TableRow>
     <TableRow>
       <TableCell>`finalFocusRef`</TableCell>
       <TableCell>React.RefObject&lt;any&gt;</TableCell>
       <TableCell>-</TableCell>
-      <TableCell>Ref for the element that should be focused when the actionsheet closes.</TableCell>
+      <TableCell>
+        Ref for the element that should be focused when the actionsheet closes.
+      </TableCell>
     </TableRow>
   </TableBody>
 </Table>
 
->Note: If snapPoints are not provided to Actionsheet, then it's essential to set maxHeight to ActionsheetContent.
-
+> Note: If snapPoints are not provided to Actionsheet, then it's essential to set maxHeight to ActionsheetContent.
 
 #### ActionsheetBackdrop
 
@@ -200,6 +211,7 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 - Scrolling is blocked on the elements behind the Actionsheet
 
 ### Accessibility
+
 We have outlined the various features that ensure the Actionsheet component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
 
 #### Keyboard
@@ -226,23 +238,16 @@ The Examples section provides visual representations of the different variants o
 
 Demonstrates a common UI pattern known as keyboard handling or keyboard scrolling, in which an input field is automatically scrolled into view when the user taps on it and the keyboard appears. This improves usability and ensures that the input field is always visible and accessible, even when the keyboard is blocking part of the screen.
 
-
 /// {Example:without-snappoints} ///
-
 
 /// {Example:with-snappoints} ///
 
-
 /// {Example:icons} ///
-
 
 /// {Example:virtualized-list} ///
 
-
 /// {Example:flatlist} ///
 
-
 /// {Example:section-list} ///
-
 
 /// {Example:file-upload} ///
