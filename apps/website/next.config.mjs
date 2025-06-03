@@ -1,8 +1,8 @@
 import { withSentryConfig } from "@sentry/nextjs";
-import { withGluestackUI } from "@gluestack/ui-next-adapter";
 import withPlugins from "next-compose-plugins";
 import createMDX from "@next/mdx";
-import rehypeSlug from "rehype-slug";
+import { withExpo } from "@expo/next-adapter";
+import remarkPrism from "remark-prism";
 
 const redirects = [
   {
@@ -759,18 +759,22 @@ const redirects = [
   },
 ];
 
-/** @type {import('next').NextConfig} */
-const nextConfig = withGluestackUI({
+const nextConfig = withExpo({
   reactStrictMode: true,
-  transpilePackages: ["nativewind", "react-native-css-interop"],
-  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
     ignoreBuildErrors: true,
   },
+  transpilePackages: [
+    // you need to list `react-native` because `react-native-web` is aliased to `react-native`.
+    "react-native",
+    "react-native-web",
+    "ui",
+    "nativewind",
+    "react-native-css-interop",
+    "@expo/html-elements",
+    "react-native-safe-area-context",
+    // Add other packages that need transpiling
+  ],
   images: {
     remotePatterns: [
       {
@@ -790,19 +794,29 @@ const nextConfig = withGluestackUI({
       },
     ],
   },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      // Transform all direct `react-native` imports to `react-native-web`
+      "react-native$": "react-native-web",
+      "react-native/Libraries/Image/AssetRegistry":
+        "react-native-web/dist/cjs/modules/AssetRegistry", // Fix for loading images in web builds with Expo-Image
+    };
+    config.resolve.extensions = [
+      ".web.js",
+      ".web.jsx",
+      ".web.ts",
+      ".web.tsx",
+      ...config.resolve.extensions,
+    ];
+    return config;
+  },
 });
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    providerImportSource: "@mdx-js/react",
-    // If you use remark-gfm, you'll need to use next.config.mjs
-    // as the package is ESM only
-    // https://github.com/remarkjs/remark-gfm#install
-    remarkPlugins: [],
-    rehypePlugins: [rehypeSlug],
-    // If you use `MDXProvider`, uncomment the following line.
-    // providerImportSource: "@mdx-js/react",
+    remarkPlugins: [remarkPrism],
   },
 });
 
