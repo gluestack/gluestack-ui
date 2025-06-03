@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
+import type { NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 import { Box, Pressable, Icon, FlatList } from '@/components/ui';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import { SocialMediaTestimonial } from '../Testimonials/SocialMediaTestimonial';
@@ -63,6 +63,7 @@ export const TestimonialsCarousel = ({ testimonials }: Props) => {
           horizontal
           //   contentContainerClassName="gap-6"
           ItemSeparatorComponent={() => <Box className="w-4" />}
+          //@ts-ignore
           className="w-[100%] sm:max-w-[97%]"
           showsHorizontalScrollIndicator={false}
           ref={flatListRef}

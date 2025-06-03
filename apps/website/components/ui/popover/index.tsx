@@ -157,6 +157,7 @@ const Popover = React.forwardRef<
   ref
 ) {
   return (
+    //@ts-expect-error
     <UIPopover
       ref={ref}
       placement={placement}

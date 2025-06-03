@@ -40,7 +40,7 @@ const FormControlDemo = () => {
           type="password"
           placeholder="password"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target?.value)}
+          onChange={(e: any) => setInputValue(e.target?.value)}
           onSubmitEditing={handleSubmit}
         />
       </Input>

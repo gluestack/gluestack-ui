@@ -1,6 +1,6 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer'
 import { VStack } from '@/components/ui/vstack'
-import { Box, Wrapper } from '@/components/ui/box'
+import { Box } from '@/components/ui/box'
 
 
 import React from 'react';

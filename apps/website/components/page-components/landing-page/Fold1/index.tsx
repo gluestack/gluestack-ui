@@ -219,9 +219,12 @@ const Fold1Content = () => {
             {/* 2 */}
             <Box className="gap-6 xl:gap-0 xl:justify-between xl:w-[55%] md:w-auto">
               <Box className="border border-outline-100 sm:flex hidden rounded-lg overflow-hidden">
+                {/* @ts-ignore */}
                 <Table className="w-full">
                   <TableHeader>
+                    {/* @ts-ignore */}
                     <TableRow className="h-[70px] border-outline-100">
+                      {/* @ts-ignore */}
                       <TableHead className="h-[70px]">
                         <Checkbox
                           size="sm"
@@ -240,9 +243,11 @@ const Fold1Content = () => {
                           </CheckboxIndicator>
                         </Checkbox>
                       </TableHead>
+                      {/* @ts-ignore */}
                       <TableHead className="px-6 py-5 text-sm font-bold leading-normal my-5 mx-6">
                         Name
                       </TableHead>
+                      {/* @ts-ignore */}
                       <TableHead className="px-6 py-5 text-sm font-bold leading-normal text-start">
                         Phone Number
                       </TableHead>
@@ -271,6 +276,7 @@ const Fold1Content = () => {
                     ].map((row) => (
                       <TableRow
                         key={row.id}
+                        //@ts-ignore
                         className={`border-b-0 h-[60px] ${
                           checkboxes[row.id] ? "bg-background-50" : ""
                         }`}
@@ -293,12 +299,15 @@ const Fold1Content = () => {
                             </CheckboxIndicator>
                           </Checkbox>
                         </TableData>
+                        {/* @ts-ignore */}
                         <TableData className="px-6 py-5 text-sm leading-4 font-normal text-typography-900">
                           {row.name}
                         </TableData>
+                        {/* @ts-ignore */}
                         <TableData className="px-6 py-5 text-sm leading-4 font-normal text-typography-900">
                           {row.phone}
                         </TableData>
+                        {/* @ts-ignore */}
                         <TableData className="px-6 py-5 shrink-0">
                           {/* <Icon className="w-4 h-4" as={EllipsisIcon} /> */}
                         </TableData>
@@ -474,7 +483,7 @@ const Fold1Content = () => {
               </Text>
               <HStack className="gap-1.5">
                 <Text className="font-normal text-sm text-typography-700">
-                  Don't have an account?
+                  Don&apos;t have an account?
                 </Text>
                 <Text className="font-medium text-sm text-typography-700">
                   Sign up
@@ -532,9 +541,10 @@ const Fold1Content = () => {
                   aria-label="Remember me"
                 >
                   <CheckboxIndicator>
-                    <CheckboxIcon>
-                      <CheckIcon className="text-typography-black" />
-                    </CheckboxIcon>
+                    <CheckboxIcon
+                      as={CheckIcon}
+                      className="text-typography-black"
+                    />
                   </CheckboxIndicator>
                   <CheckboxLabel className="sm:text-sm text-xs font-normal leading-[21px] text-typography-900">
                     Remember me

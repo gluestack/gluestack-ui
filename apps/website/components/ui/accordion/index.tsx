@@ -181,6 +181,7 @@ const AccordionItem = React.forwardRef<
 >(({ className, ...props }, ref) => {
   const { variant } = useStyleContext(SCOPE);
   return (
+    //@ts-expect-error
     <UIAccordion.Item
       ref={ref}
       {...props}
@@ -284,6 +285,7 @@ const AccordionTrigger = React.forwardRef<
   IAccordionTriggerProps
 >(function AccordionTrigger({ className, ...props }, ref) {
   return (
+    //@ts-expect-error
     <UIAccordion.Trigger
       ref={ref}
       {...props}

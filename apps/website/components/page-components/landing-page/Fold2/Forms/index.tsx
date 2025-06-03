@@ -282,7 +282,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
             >
               <AccordionHeader>
                 <AccordionTrigger>
-                  {({ isExpanded }) => {
+                  {({ isExpanded }: { isExpanded: boolean }) => {
                     return (
                       <>
                         {isExpanded ? (
@@ -315,7 +315,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
             >
               <AccordionHeader>
                 <AccordionTrigger>
-                  {({ isExpanded }) => {
+                  {({ isExpanded }: { isExpanded: boolean }) => {
                     return (
                       <>
                         {isExpanded ? (

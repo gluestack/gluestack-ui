@@ -411,6 +411,7 @@ const ButtonGroup = React.forwardRef<
     ref
   ) => {
     return (
+      //@ts-expect-error
       <UIButton.Group
         className={buttonGroupStyle({
           class: className,

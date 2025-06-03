@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Heading, Link as DSLink, Divider } from "@/components/ui";
-import { BlogListItem } from "@/components/custom/blogs-page/BlogListItem";
+import { BlogListItem } from "../BlogListItem";
 
 const Blogs = ({ blogs }: { blogs: any }) => {
   // const totalCards = cardDetails.length;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import type { ViewProps } from 'react-native';
 
 export interface IAccordionProps extends ViewProps {

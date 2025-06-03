@@ -175,7 +175,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
                 <PopoverBody>
                   <Text className="text-typography-900">
                     Alex, Annie and many others are already enjoying the Pro
-                    features, don't miss out on the fun!
+                    features, don&apos;t miss out on the fun!
                   </Text>
                 </PopoverBody>
               </PopoverContent>
@@ -397,9 +397,9 @@ const NavigationContent = ({ show }: { show: boolean }) => {
         </Box>
         <HStack className="gap-6 md:mt-[34px] md:flex-row flex-col">
           <VStack className="gap-3 p-6 border border-dashed border-outline-100 rounded-lg md:flex-col flex-row">
-            <Spinner size="large" _extra={{ className: "color-indigo-600" }} />
-            <Spinner size="large" _extra={{ className: "color-emerald-600" }} />
-            <Spinner size="large" _extra={{ className: "color-amber-600" }} />
+            <Spinner size="large" color="color-indigo-600" />
+            <Spinner size="large" color="color-emerald-600" />
+            <Spinner size="large" color="color-amber-600" />
           </VStack>
           <VStack className="gap-5">
             <Alert>
