@@ -86,7 +86,7 @@ const Fold3Content = () => {
   };
 
   return (
-    <VStack className="gap-10 sm:gap-20 flex-1 mt-[60px] sm:mt-[120px] px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto">
+    <VStack className="gap-10 sm:gap-20 flex-1 mt-[60px] sm:mt-[120px] max-w-[1440px] mx-auto">
       <VStack className="gap-3 w-full">
         <Heading
           size="2xl"
@@ -150,7 +150,7 @@ const Fold3Content = () => {
             ))}
           </HStack>
         </HStack>
-        <HStack className="gap-6 p-2 sm:p-4 w-full flex-col lg:flex-row">
+        <HStack className="gap-6  w-full flex-col lg:flex-row">
           <VStack className="gap-6 w-full lg:w-2/3">
             <HStack className="gap-6 flex-col lg:flex-row w-full">
               <VStack className="gap-6 hidden lg:flex lg:w-[45%]">
