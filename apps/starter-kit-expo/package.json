@@ -13,8 +13,11 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo/html-elements": "^0.12.5",
     "@expo/vector-icons": "^14.1.0",
+    "@react-aria/utils": "^3.29.0",
     "@react-navigation/native": "^7.1.6",
+    "babel-plugin-module-resolver": "^5.0.2",
     "expo": "~53.0.9",
     "expo-font": "~13.3.1",
     "expo-linking": "~7.1.5",
@@ -30,7 +33,9 @@
     "react-native-reanimated": "3.16.2",
     "react-native-safe-area-context": "^5.4.1",
     "react-native-screens": "~4.11.1",
+    "react-native-svg": "^15.12.0",
     "react-native-web": "~0.20.0",
+    "tailwind-variants": "^1.0.0",
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
