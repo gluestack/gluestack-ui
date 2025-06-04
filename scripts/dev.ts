@@ -6,6 +6,32 @@ import mappers from './mappers';
 const sourcePath = './packages';
 const componentsPath = './packages/components/ui';
 
+// Get command line arguments for mapper filtering
+const args = process.argv.slice(2);
+const mapperFilter = args
+  .find((arg) => arg.startsWith('--mapper='))
+  ?.split('=')[1];
+
+// Filter mappers based on command line argument
+const activeMappers = mapperFilter
+  ? mappers.filter((mapper) => mapper.name === mapperFilter)
+  : mappers;
+
+if (mapperFilter && activeMappers.length === 0) {
+  console.error(
+    `❌ Mapper "${mapperFilter}" not found. Available mappers: ${mappers.map((m) => m.name).join(', ')}`
+  );
+  process.exit(1);
+}
+
+if (mapperFilter) {
+  console.log(`🎯 Running only mapper: ${mapperFilter}`);
+} else {
+  console.log(
+    `🔄 Running all mappers: ${mappers.map((m) => m.name).join(', ')}`
+  );
+}
+
 // Initialize watcher
 const watcher = chokidar.watch(sourcePath, {
   persistent: true,
@@ -51,7 +77,7 @@ const processFileChange = async (event: string, filePath: string) => {
   // }
 
   // Continue with the regular processing
-  for (const mapperConfig of mappers) {
+  for (const mapperConfig of activeMappers) {
     try {
       const { name, mapper } = mapperConfig;
 

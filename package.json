@@ -8,6 +8,9 @@
   },
   "scripts": {
     "dev": "tsx --watch scripts/dev.ts",
+    "dev:starter-kit-expo": "tsx --watch scripts/dev.ts --mapper=starter-kit-expo",
+    "dev:kitchen-sink": "tsx --watch scripts/dev.ts --mapper=kitchen-sink",
+    "dev:website": "tsx --watch scripts/dev.ts --mapper=website",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "build:website": "cd apps/website && yarn build"
