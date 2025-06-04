@@ -38,7 +38,7 @@ export const PrevNextButtons = ({ sidebarItems }: any) => {
       </div>
 
       {/* Desktop Layout - Horizontal Stack */}
-      <div className="w-full flex gap-4 justify-between mt-10 mb-20 hidden md:flex">
+      <div className="w-full gap-4 justify-between mt-10 mb-20 hidden md:flex">
         {prevLink ? (
           <LinkButton
             pageText={prev}

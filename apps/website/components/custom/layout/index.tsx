@@ -3,7 +3,7 @@ import Header from '@/components/page-components/header';
 import Sidebar from '@/components/page-components/sidebar';
 import { MDXProvider } from '@mdx-js/react';
 import { LayoutContent } from './LayoutContent';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { PrevNextButtons } from './PrevNextButtons';
 import sidebarData from '../../../sidebar.json';
 import EditPageOnGithubLink from './EditPageOnGithubLink';
@@ -14,6 +14,15 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   const docsLayoutRef = useRef<HTMLDivElement>(null);
   const fluidLayout = false;
   const pathname = usePathname();
+
+  // Reset scroll position when pathname changes
+  useEffect(() => {
+    const layoutElement = docsLayoutRef.current;
+    if (layoutElement) {
+      layoutElement.scrollTop = 0;
+    }
+  }, [pathname]);
+
   return (
     <div
       // @ts-ignore
@@ -24,7 +33,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     >
       <Header />
       <div
-        className={`md:flex justify-between mx-auto ${
+        className={`md:flex justify-between mx-auto${
           fluidLayout ? 'lg:ml-4' : 'lg:ml-36 md:w-[85%]'
         }`}
       >
@@ -51,7 +60,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               <div
                 className={`flex-1  mx-auto px-4 md:px-0 ${pathname.includes('/overview/quick-start') || pathname.includes('components/all-components') ? 'max-w-full' : 'max-w-[736px]'}`}
               >
-                <LayoutContent className="flex md:min-w-[736px] lg:min-w-[662px] xl:min-w-[598px] 2xl:min-w-[736px] h-full w-full mx-auto flex-col">
+                <LayoutContent className="flex md:min-w-[736px] lg:min-w-[662px] xl:min-w-[598px] 2xl:min-w-[736px] h-full w-full mx-auto flex-col scroll-smooth">
                   {children}
                   <EditPageOnGithubLink sidebarItems={sidebarData} />
                   <PrevNextButtons sidebarItems={sidebarData} />
