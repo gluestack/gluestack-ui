@@ -12,6 +12,7 @@ import './globals.css';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { useContext } from 'react';
 import { ThemeContext, ThemeProvider } from '@/utils/context/theme-context';
+import CanonicalLink from '@/components/custom/canonical/CanonicalLink';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -59,6 +60,7 @@ export default function RootLayout({
       data-theme-id={colorMode}
     >
       <head>
+      <CanonicalLink />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
