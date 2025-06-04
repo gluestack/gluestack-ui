@@ -64,7 +64,7 @@ export default function AllComponents() {
         className: 'sm:grid-cols-2 md:grid-cols-3 grid-cols-1 2xl:grid-cols-4',
       }}
     >
-      {componentsList.map((componentName) => {
+      {componentsList.sort().map((componentName) => {
         const Component = components[componentName];
         if (!Component) return null;
 
