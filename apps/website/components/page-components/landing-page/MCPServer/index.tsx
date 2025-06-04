@@ -76,8 +76,12 @@ const VadimStream = () => {
           MCP Server
         </Heading>
         <Text className="text-lg font-roboto font-normal leading-[30px] lg:w-[75%]">
-          A server that generates complete, consistent code using gluestack-ui
-          v2 components. Check out this demo video:
+          Our MCP (Model Context Protocol) Server is an intelligent code
+          generation tool that creates production-ready, consistent UI
+          components using gluestack-ui v2. It streamlines your development
+          workflow by automatically generating accessible, type-safe components
+          that follow best practices across any framework or technology. Watch
+          our demo to see how it accelerates development with gluestack-ui:
         </Text>
       </VStack>
       <Box className="flex-1 border border-outline-200 rounded-lg overflow-hidden aspect-video md:max-w-[500px] lg:max-w-[600px] 2xl:max-w-[700px]">
