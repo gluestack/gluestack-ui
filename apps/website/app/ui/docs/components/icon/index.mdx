@@ -1,9 +1,72 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { Icon, EditIcon, AddIcon, AlertCircleIcon, ArrowUpIcon, ArrowDownIcon, ArrowRightIcon, ArrowLeftIcon, AtSignIcon, BellIcon, CalendarDaysIcon, CheckIcon, CheckCircleIcon, ChevronUpIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, ChevronsUpDownIcon, CircleIcon, ClockIcon, CloseIcon, CloseCircleIcon, CopyIcon, DownloadIcon, EyeIcon, EyeOffIcon, FavouriteIcon, GlobeIcon, GripVerticalIcon, HelpCircleIcon, InfoIcon, LinkIcon, ExternalLinkIcon, LoaderIcon, LockIcon, MailIcon, MenuIcon, MessageCircleIcon, MoonIcon, PaperclipIcon, PhoneIcon, PlayIcon, RemoveIcon, RepeatIcon, Repeat1Icon, SearchIcon, SettingsIcon, ShareIcon, SlashIcon, StarIcon, SunIcon, ThreeDotsIcon, TrashIcon, UnlockIcon, createIcon } from '@/components/ui/icon';
+import {
+  Icon,
+  EditIcon,
+  AddIcon,
+  AlertCircleIcon,
+  ArrowUpIcon,
+  ArrowDownIcon,
+  ArrowRightIcon,
+  ArrowLeftIcon,
+  AtSignIcon,
+  BellIcon,
+  CalendarDaysIcon,
+  CheckIcon,
+  CheckCircleIcon,
+  ChevronUpIcon,
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronsLeftIcon,
+  ChevronsRightIcon,
+  ChevronsUpDownIcon,
+  CircleIcon,
+  ClockIcon,
+  CloseIcon,
+  CloseCircleIcon,
+  CopyIcon,
+  DownloadIcon,
+  EyeIcon,
+  EyeOffIcon,
+  FavouriteIcon,
+  GlobeIcon,
+  GripVerticalIcon,
+  HelpCircleIcon,
+  InfoIcon,
+  LinkIcon,
+  ExternalLinkIcon,
+  LoaderIcon,
+  LockIcon,
+  MailIcon,
+  MenuIcon,
+  MessageCircleIcon,
+  MoonIcon,
+  PaperclipIcon,
+  PhoneIcon,
+  PlayIcon,
+  RemoveIcon,
+  RepeatIcon,
+  Repeat1Icon,
+  SearchIcon,
+  SettingsIcon,
+  ShareIcon,
+  SlashIcon,
+  StarIcon,
+  SunIcon,
+  ThreeDotsIcon,
+  TrashIcon,
+  UnlockIcon,
+  createIcon,
+} from '@/components/ui/icon';
 import { Center } from '@/components/ui/center';
 import { HStack } from '@/components/ui/hstack';
 import { VStack } from '@/components/ui/vstack';
-import { Camera, ChromeIcon, InstagramIcon, FacebookIcon } from 'lucide-react-native';
+import {
+  Camera,
+  ChromeIcon,
+  InstagramIcon,
+  FacebookIcon,
+} from 'lucide-react-native';
 import { Path } from 'react-native-svg';
 
 import { Tabs, TabItem } from '@/docs-components/tabs';
@@ -23,32 +86,21 @@ Use gluestack-ui Icon component to enhance your web and mobile app with scalable
 
 This is an illustration of **Icon** component.
 
-
-  
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
      <Icon as={EditIcon} size="{{size}}" />
   )
 }`}
   argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      defaultValue: 'md',
     },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg",
-      "xl"
-    ],
-    "defaultValue": "md"
-  }
-}}
+  }}
   reactLive={{ Icon, EditIcon }}
 />
 
@@ -1659,7 +1711,6 @@ const UnlockIcon = createIcon({
 
 UnlockIcon.displayName = 'UnlockIcon';
 export { UnlockIcon };
-
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -1726,12 +1777,11 @@ Role: img is passed
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### All Gluestack Icons
 
-  #### All Gluestack Icons
+Below is a list of all of the icons in the library.
 
-  Below is a list of all of the icons in the library.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Center>
@@ -1796,15 +1846,73 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ Icon, Center, HStack, AddIcon, AlertCircleIcon, ArrowUpIcon, ArrowDownIcon, ArrowRightIcon, ArrowLeftIcon, AtSignIcon, BellIcon, CalendarDaysIcon, CheckIcon, CheckCircleIcon, ChevronUpIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, ChevronsUpDownIcon, CircleIcon, ClockIcon, CloseIcon, CloseCircleIcon, CopyIcon, DownloadIcon, EditIcon, EyeIcon, EyeOffIcon, FavouriteIcon, GlobeIcon, GripVerticalIcon, HelpCircleIcon, InfoIcon, LinkIcon, ExternalLinkIcon, LoaderIcon, LockIcon, MailIcon, MenuIcon, MessageCircleIcon, MoonIcon, PaperclipIcon, PhoneIcon, PlayIcon, RemoveIcon, RepeatIcon, Repeat1Icon, SearchIcon, SettingsIcon, ShareIcon, SlashIcon, StarIcon, SunIcon, ThreeDotsIcon, TrashIcon, UnlockIcon }}
+  reactLive={{
+    Icon,
+    Center,
+    HStack,
+    AddIcon,
+    AlertCircleIcon,
+    ArrowUpIcon,
+    ArrowDownIcon,
+    ArrowRightIcon,
+    ArrowLeftIcon,
+    AtSignIcon,
+    BellIcon,
+    CalendarDaysIcon,
+    CheckIcon,
+    CheckCircleIcon,
+    ChevronUpIcon,
+    ChevronDownIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    ChevronsLeftIcon,
+    ChevronsRightIcon,
+    ChevronsUpDownIcon,
+    CircleIcon,
+    ClockIcon,
+    CloseIcon,
+    CloseCircleIcon,
+    CopyIcon,
+    DownloadIcon,
+    EditIcon,
+    EyeIcon,
+    EyeOffIcon,
+    FavouriteIcon,
+    GlobeIcon,
+    GripVerticalIcon,
+    HelpCircleIcon,
+    InfoIcon,
+    LinkIcon,
+    ExternalLinkIcon,
+    LoaderIcon,
+    LockIcon,
+    MailIcon,
+    MenuIcon,
+    MessageCircleIcon,
+    MoonIcon,
+    PaperclipIcon,
+    PhoneIcon,
+    PlayIcon,
+    RemoveIcon,
+    RepeatIcon,
+    Repeat1Icon,
+    SearchIcon,
+    SettingsIcon,
+    ShareIcon,
+    SlashIcon,
+    StarIcon,
+    SunIcon,
+    ThreeDotsIcon,
+    TrashIcon,
+    UnlockIcon,
+  }}
 />
 
+#### Lucide Icons (Recommended)
 
-  #### Lucide Icons (Recommended)
+[Lucide](https://lucide.dev/docs/lucide-react-native) is an open source icon library for displaying icons for react-native. `gluestack-ui` provides an easy integration with lucide icons.
 
-  [Lucide](https://lucide.dev/docs/lucide-react-native) is an open source icon library for displaying icons for react-native. `gluestack-ui` provides an easy integration with lucide icons.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <VStack space="md" className="items-center">
@@ -1819,10 +1927,9 @@ The Examples section provides visual representations of the different variants o
   reactLive={{ Icon, VStack, Camera, ChromeIcon, InstagramIcon, FacebookIcon }}
 />
 
+#### SVG & Custom Icons
 
-  #### SVG & Custom Icons
-
-  We can directly create Icon using `createIcon` function exported from `@/components/ui/icon` and use it by passing it in `as` prop in `Icon` component.
+We can directly create Icon using `createIcon` function exported from `@/components/ui/icon` and use it by passing it in `as` prop in `Icon` component.
 
 CreateIcon function takes viewBox, d, path etc as parameters. We can use svgs from other icon libraries like fluent, react-icons etc.
 
@@ -1838,8 +1945,8 @@ on Web:
 
 on Native:
 `<Path fill="currentColor" d="M10 10L20 20" />`
-  
-  <CodePreviewer
+
+<CodePreviewer
   code={`function App() {
   const GluestackIcon = createIcon({
     viewBox: "0 0 32 32",

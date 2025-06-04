@@ -23,12 +23,7 @@ Implement responsive designs in React & React Native with the useMediaQuery hook
 
 **useMediaQuery** is a custom hook that helps detect matches between a single media query or multiple media queries. React Native does not natively support media queries, so useMediaQuery is still limited.
 
-
-  
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function App(){
       const [isMobile, isTablet, isSmallScreen, isLargeScreen] = useMediaQuery([
     {
@@ -92,7 +87,17 @@ Implement responsive designs in React & React Native with the useMediaQuery hook
   );
       }`}
   argTypes={{}}
-  reactLive={{ useMediaQuery, Box, Text, Icon, Laptop, Tablet, Smartphone, Tv, Heading }}
+  reactLive={{
+    useMediaQuery,
+    Box,
+    Text,
+    Icon,
+    Laptop,
+    Tablet,
+    Smartphone,
+    Tv,
+    Heading,
+  }}
 />
 
 <br />
@@ -191,7 +196,6 @@ function calculateQuery(
   }
   return retval;
 }
-
 ```
 
 > Note: **Step 2 is for web only**
@@ -296,7 +300,6 @@ function calculateQuery(
   }
   return retval;
 }
-
 ```
 
 ### Step 3: Update the import paths to match your project setup.

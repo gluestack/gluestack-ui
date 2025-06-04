@@ -48,41 +48,44 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg",
-      "full"
-    ],
-    "defaultValue": "md"
-  },
-  "placement": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "top",
-      "bottom",
-      "left",
-      "right",
-      "bottom left",
-      "bottom right",
-      "top left",
-      "top right",
-      "left bottom",
-      "left right",
-      "right bottom",
-      "right top"
-    ],
-    "defaultValue": "bottom"
-  }
-}}
-      reactLive={{ Popover, PopoverBackdrop, PopoverArrow, PopoverBody, PopoverContent, Button, ButtonText, Text }}
+        size: {
+          control: {
+            type: 'select',
+          },
+          options: ['xs', 'sm', 'md', 'lg', 'full'],
+          defaultValue: 'md',
+        },
+        placement: {
+          control: {
+            type: 'select',
+          },
+          options: [
+            'top',
+            'bottom',
+            'left',
+            'right',
+            'bottom left',
+            'bottom right',
+            'top left',
+            'top right',
+            'left bottom',
+            'left right',
+            'right bottom',
+            'right top',
+          ],
+          defaultValue: 'bottom',
+        },
+      }}
+      reactLive={{
+        Popover,
+        PopoverBackdrop,
+        PopoverArrow,
+        PopoverBody,
+        PopoverContent,
+        Button,
+        ButtonText,
+        Text,
+      }}
     />
   );
 }

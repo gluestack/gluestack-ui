@@ -1,15 +1,40 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetIcon, ActionsheetVirtualizedList, ActionsheetFlatList, ActionsheetSectionList, ActionsheetSectionHeaderText } from '@/components/ui/actionsheet';
+import {
+  Actionsheet,
+  ActionsheetContent,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetBackdrop,
+  ActionsheetIcon,
+  ActionsheetVirtualizedList,
+  ActionsheetFlatList,
+  ActionsheetSectionList,
+  ActionsheetSectionHeaderText,
+} from '@/components/ui/actionsheet';
 import { Button, ButtonText, ButtonGroup } from '@/components/ui/button';
 import { VStack } from '@/components/ui/vstack';
 import { HStack } from '@/components/ui/hstack';
 import { Box } from '@/components/ui/box';
 import { Image } from '@/components/ui/image';
-import { FormControl, FormControlLabel, FormControlLabelText } from '@/components/ui/form-control';
+import {
+  FormControl,
+  FormControlLabel,
+  FormControlLabelText,
+} from '@/components/ui/form-control';
 import { Input, InputSlot, InputField, InputIcon } from '@/components/ui/input';
 import { CreditCardIcon, UploadCloud } from 'lucide-react-native';
 import { Text } from '@/components/ui/text';
-import { EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon, Icon, CloseIcon } from '@/components/ui/icon';
+import {
+  EditIcon,
+  EyeOffIcon,
+  ClockIcon,
+  DownloadIcon,
+  TrashIcon,
+  Icon,
+  CloseIcon,
+} from '@/components/ui/icon';
 import { Heading } from '@/components/ui/heading';
 import { Pressable } from '@/components/ui/pressable';
 
@@ -30,11 +55,9 @@ Discover the ActionSheet component for Expo, React & React Native. Easily create
 
 This is an illustration of **ActionSheet** component.
 
-  #### Basic
+#### Basic
 
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function App() {
   const [showActionsheet, setShowActionsheet] = React.useState(false)
   const handleClose = () => setShowActionsheet(false)
@@ -70,7 +93,17 @@ This is an illustration of **ActionSheet** component.
   )
 }`}
   argTypes={{}}
-  reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText }}
+  reactLive={{
+    Actionsheet,
+    ActionsheetContent,
+    ActionsheetItem,
+    ActionsheetItemText,
+    ActionsheetDragIndicator,
+    ActionsheetDragIndicatorWrapper,
+    ActionsheetBackdrop,
+    Button,
+    ButtonText,
+  }}
 />
 
 <br />
@@ -852,12 +885,9 @@ The Examples section provides visual representations of the different variants o
 
 Demonstrates a common UI pattern known as keyboard handling or keyboard scrolling, in which an input field is automatically scrolled into view when the user taps on it and the keyboard appears. This improves usability and ensures that the input field is always visible and accessible, even when the keyboard is blocking part of the screen.
 
+#### Without SnapPoints
 
-  #### Without SnapPoints
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function App() {
   const [showActionsheet, setShowActionsheet] = React.useState(false)
   const handleClose = () => setShowActionsheet(false)
@@ -893,30 +923,37 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
   )
 }`}
   argTypes={{}}
-  reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText }}
+  reactLive={{
+    Actionsheet,
+    ActionsheetContent,
+    ActionsheetItem,
+    ActionsheetItemText,
+    ActionsheetDragIndicator,
+    ActionsheetDragIndicatorWrapper,
+    ActionsheetBackdrop,
+    Button,
+    ButtonText,
+  }}
 />
 
+#### With SnapPoints
 
-  #### With SnapPoints
-
-  
-  
   <CodePreviewer
   code={`function App() {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
   const handleClose = () => setShowActionsheet(false);
 
-  return (
-    <>
-      <Button onPress={() => setShowActionsheet(true)}>
-        <ButtonText>Open</ButtonText>
-      </Button>
-      <Actionsheet
+return (
+<>
+<Button onPress={() => setShowActionsheet(true)}>
+<ButtonText>Open</ButtonText>
+</Button>
+<Actionsheet
         isOpen={showActionsheet}
         onClose={handleClose}
         snapPoints={[36]}
       >
-       
+
           <ActionsheetBackdrop />
           <ActionsheetContent className="">
             <ActionsheetDragIndicatorWrapper>
@@ -957,68 +994,67 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
 
       </Actionsheet>
     </>
-  );
+
+);
 }`}
-  argTypes={{}}
-  reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText, VStack, HStack, Box, Image, FormControl, FormControlLabel, FormControlLabelText, Input, InputSlot, InputField, InputIcon, CreditCardIcon, Text }}
+argTypes={{}}
+reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText, VStack, HStack, Box, Image, FormControl, FormControlLabel, FormControlLabelText, Input, InputSlot, InputField, InputIcon, CreditCardIcon, Text }}
 />
 
+#### Icons
 
-  #### Icons
+The Actionsheet with Icons is a variation of the Actionsheet component that displays icons next to each option. It's commonly used in apps for a more visual representation of options and easier navigation.
 
-  The Actionsheet with Icons is a variation of the Actionsheet component that displays icons next to each option. It's commonly used in apps for a more visual representation of options and easier navigation.
-  
   <CodePreviewer
   code={`function App() {
   const [showActionsheet, setShowActionsheet] = React.useState(false);
   const handleClose = () => setShowActionsheet(false);
 
-  return (
-    <>
-      <Button onPress={() => setShowActionsheet(true)}>
-        <ButtonText>Open</ButtonText>
-      </Button>
-      <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
-        <ActionsheetBackdrop />
-        <ActionsheetContent>
-          <ActionsheetDragIndicatorWrapper>
-            <ActionsheetDragIndicator />
-          </ActionsheetDragIndicatorWrapper>
-          <ActionsheetItem onPress={handleClose}>
-            <ActionsheetIcon className="stroke-background-700" as={EditIcon} />
-            <ActionsheetItemText>Edit Message</ActionsheetItemText>
-          </ActionsheetItem>
-          <ActionsheetItem onPress={handleClose}>
-            <ActionsheetIcon className="stroke-background-700" as={EyeOffIcon} />
-            <ActionsheetItemText>Mark Unread</ActionsheetItemText>
-          </ActionsheetItem>
-          <ActionsheetItem onPress={handleClose}>
-            <ActionsheetIcon className="stroke-background-700" as={ClockIcon} />
-            <ActionsheetItemText>Remind Me</ActionsheetItemText>
-          </ActionsheetItem>
-          <ActionsheetItem onPress={handleClose}>
-            <ActionsheetIcon className="stroke-background-700" as={DownloadIcon} />
-            <ActionsheetItemText>Add to Saved Items</ActionsheetItemText>
-          </ActionsheetItem>
-          <ActionsheetItem isDisabled onPress={handleClose}>
-            <ActionsheetIcon className="stroke-background-700" as={TrashIcon} />
-            <ActionsheetItemText>Delete</ActionsheetItemText>
-          </ActionsheetItem>
-        </ActionsheetContent>
-      </Actionsheet>
-    </>
-  );
+return (
+<>
+<Button onPress={() => setShowActionsheet(true)}>
+<ButtonText>Open</ButtonText>
+</Button>
+<Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+<ActionsheetBackdrop />
+<ActionsheetContent>
+<ActionsheetDragIndicatorWrapper>
+<ActionsheetDragIndicator />
+</ActionsheetDragIndicatorWrapper>
+<ActionsheetItem onPress={handleClose}>
+<ActionsheetIcon className="stroke-background-700" as={EditIcon} />
+<ActionsheetItemText>Edit Message</ActionsheetItemText>
+</ActionsheetItem>
+<ActionsheetItem onPress={handleClose}>
+<ActionsheetIcon className="stroke-background-700" as={EyeOffIcon} />
+<ActionsheetItemText>Mark Unread</ActionsheetItemText>
+</ActionsheetItem>
+<ActionsheetItem onPress={handleClose}>
+<ActionsheetIcon className="stroke-background-700" as={ClockIcon} />
+<ActionsheetItemText>Remind Me</ActionsheetItemText>
+</ActionsheetItem>
+<ActionsheetItem onPress={handleClose}>
+<ActionsheetIcon className="stroke-background-700" as={DownloadIcon} />
+<ActionsheetItemText>Add to Saved Items</ActionsheetItemText>
+</ActionsheetItem>
+<ActionsheetItem isDisabled onPress={handleClose}>
+<ActionsheetIcon className="stroke-background-700" as={TrashIcon} />
+<ActionsheetItemText>Delete</ActionsheetItemText>
+</ActionsheetItem>
+</ActionsheetContent>
+</Actionsheet>
+</>
+);
 }`}
-  argTypes={{}}
-  reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetIcon, Button, ButtonText, EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon }}
+argTypes={{}}
+reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetIcon, Button, ButtonText, EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon }}
 />
 
+#### VirtualizedList
 
-  #### VirtualizedList
+The Actionsheet with Virtualized List includes a virtualized list for better performance when displaying a large number of options. It's commonly used in apps with long lists of options for an improved user experience.
 
-  The Actionsheet with Virtualized List includes a virtualized list for better performance when displaying a large number of options. It's commonly used in apps with long lists of options for an improved user experience.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(false);
@@ -1062,15 +1098,25 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
 );
 }`}
   argTypes={{}}
-  reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText, ActionsheetVirtualizedList }}
+  reactLive={{
+    Actionsheet,
+    ActionsheetContent,
+    ActionsheetItem,
+    ActionsheetItemText,
+    ActionsheetDragIndicator,
+    ActionsheetDragIndicatorWrapper,
+    ActionsheetBackdrop,
+    Button,
+    ButtonText,
+    ActionsheetVirtualizedList,
+  }}
 />
 
+#### FlatList
 
-  #### FlatList
+The Actionsheet with Flat List is a variation of the Actionsheet component that displays a flat list of options. It's commonly used in apps for a simple and straightforward display of options to the user.
 
-  The Actionsheet with Flat List is a variation of the Actionsheet component that displays a flat list of options. It's commonly used in apps for a simple and straightforward display of options to the user.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(false);
@@ -1118,15 +1164,25 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
 );
 }`}
   argTypes={{}}
-  reactLive={{ Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText, ActionsheetFlatList, Button, ButtonText }}
+  reactLive={{
+    Actionsheet,
+    ActionsheetBackdrop,
+    ActionsheetContent,
+    ActionsheetDragIndicator,
+    ActionsheetDragIndicatorWrapper,
+    ActionsheetItem,
+    ActionsheetItemText,
+    ActionsheetFlatList,
+    Button,
+    ButtonText,
+  }}
 />
 
+#### SectionList
 
-  #### SectionList
+The Actionsheet with SectionList is a variation of the Actionsheet component that displays a sectioned list of options. It's commonly used in apps to organize options into different categories or sections for better readability and navigation.
 
-  The Actionsheet with SectionList is a variation of the Actionsheet component that displays a sectioned list of options. It's commonly used in apps to organize options into different categories or sections for better readability and navigation.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function App(){
     const [showActionsheet, setShowActionsheet] = React.useState(false);
     const handleClose = () => setShowActionsheet(false);
@@ -1168,15 +1224,24 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
 );
 }`}
   argTypes={{}}
-  reactLive={{ Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText, ActionsheetSectionList, ActionsheetSectionHeaderText, Button, ButtonText }}
+  reactLive={{
+    Actionsheet,
+    ActionsheetBackdrop,
+    ActionsheetContent,
+    ActionsheetDragIndicator,
+    ActionsheetDragIndicatorWrapper,
+    ActionsheetItem,
+    ActionsheetItemText,
+    ActionsheetSectionList,
+    ActionsheetSectionHeaderText,
+    Button,
+    ButtonText,
+  }}
 />
 
+#### File Upload with Actionsheet
 
-  #### File Upload with Actionsheet
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function App(){
           const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(false);
@@ -1228,5 +1293,27 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
           );
         }`}
   argTypes={{}}
-  reactLive={{ Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText, ActionsheetSectionList, ActionsheetSectionHeaderText, ButtonGroup, Button, ButtonText, HStack, VStack, Box, Heading, Text, Icon, CloseIcon, UploadCloud, Pressable }}
+  reactLive={{
+    Actionsheet,
+    ActionsheetBackdrop,
+    ActionsheetContent,
+    ActionsheetDragIndicator,
+    ActionsheetDragIndicatorWrapper,
+    ActionsheetItem,
+    ActionsheetItemText,
+    ActionsheetSectionList,
+    ActionsheetSectionHeaderText,
+    ButtonGroup,
+    Button,
+    ButtonText,
+    HStack,
+    VStack,
+    Box,
+    Heading,
+    Text,
+    Icon,
+    CloseIcon,
+    UploadCloud,
+    Pressable,
+  }}
 />

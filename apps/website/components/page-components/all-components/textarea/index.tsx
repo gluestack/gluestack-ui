@@ -19,37 +19,32 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg",
-      "xl"
-    ],
-    "defaultValue": "md"
-  },
-  "isReadOnly": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": false
-  },
-  "isInvalid": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": false
-  },
-  "isDisabled": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": false
-  }
-}}
+        size: {
+          control: {
+            type: 'select',
+          },
+          options: ['sm', 'md', 'lg', 'xl'],
+          defaultValue: 'md',
+        },
+        isReadOnly: {
+          control: {
+            type: 'boolean',
+          },
+          defaultValue: false,
+        },
+        isInvalid: {
+          control: {
+            type: 'boolean',
+          },
+          defaultValue: false,
+        },
+        isDisabled: {
+          control: {
+            type: 'boolean',
+          },
+          defaultValue: false,
+        },
+      }}
       reactLive={{ Textarea, TextareaInput }}
     />
   );

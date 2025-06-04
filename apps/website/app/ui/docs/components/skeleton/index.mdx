@@ -27,11 +27,9 @@ Discover the ultimate gluestack-ui Skeleton component for React & React Native. 
 
 This is an illustration of **Skeleton** component.
 
-  #### Basic
+#### Basic
 
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Box className="w-[325px] gap-4 p-3 rounded-md bg-background-100">
@@ -349,7 +347,6 @@ export const skeletonTextStyle = tva({
     },
   },
 });
-
 ```
 
 ### Step 4: Update the import paths to match your project setup.
@@ -536,12 +533,11 @@ Renders a `<div />` on web and a `Animated.View` on native and has the following
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Using isLoaded prop
 
-  #### Using isLoaded prop
+Use the `isLoaded` prop to show the content after the skeleton content is loaded.
 
-  Use the `isLoaded` prop to show the content after the skeleton content is loaded.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Box className="w-[290px] h-[400px] p-4 rounded-sm bg-background-100 gap-3">
@@ -573,12 +569,22 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{
-  "isLoaded": {
-    "control": {
-      "type": "boolean"
+    isLoaded: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  }
-}}
-  reactLive={{ Skeleton, SkeletonText, Box, Image, Text, HStack, VStack, Avatar, AvatarFallbackText }}
+  }}
+  reactLive={{
+    Skeleton,
+    SkeletonText,
+    Box,
+    Image,
+    Text,
+    HStack,
+    VStack,
+    Avatar,
+    AvatarFallbackText,
+  }}
 />

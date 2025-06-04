@@ -1,5 +1,12 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop } from '@/components/ui/alert-dialog';
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogBody,
+  AlertDialogBackdrop,
+} from '@/components/ui/alert-dialog';
 import { Button, ButtonText } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { Heading } from '@/components/ui/heading';
@@ -26,12 +33,9 @@ Build seamless React Native dialogs with the AlertDialog component. Enhance user
 
 This is an illustration of **AlertDialog** component.
 
+#### Basic
 
-  #### Basic
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   const [showAlertDialog, setShowAlertDialog] = React.useState(false)
   const handleClose = () => setShowAlertDialog(false)
@@ -73,21 +77,26 @@ This is an illustration of **AlertDialog** component.
   )
 }`}
   argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['xs', 'sm', 'md', 'lg', 'full'],
+      defaultValue: 'md',
     },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg",
-      "full"
-    ],
-    "defaultValue": "md"
-  }
-}}
-  reactLive={{ AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading }}
+  }}
+  reactLive={{
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogHeader,
+    AlertDialogFooter,
+    AlertDialogBody,
+    AlertDialogBackdrop,
+    Button,
+    ButtonText,
+    Text,
+    Heading,
+  }}
 />
 
 <br />
@@ -406,7 +415,6 @@ export {
   AlertDialogBody,
   AlertDialogBackdrop,
 };
-
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -635,12 +643,9 @@ AlertDialog component is created using View component from react-native. It exte
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### AlertDialog with Image
 
-  #### AlertDialog with Image
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   const [showAlertDialog, setShowAlertDialog] = React.useState(false);
   const handleClose = () => setShowAlertDialog(false);
@@ -688,15 +693,24 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ AlertDialog, AlertDialogContent, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading, Box, Image, VStack }}
+  reactLive={{
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogBody,
+    AlertDialogBackdrop,
+    Button,
+    ButtonText,
+    Text,
+    Heading,
+    Box,
+    Image,
+    VStack,
+  }}
 />
 
+#### AlertDialog with icon + cta
 
-  #### AlertDialog with icon + cta
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   const [showAlertDialog, setShowAlertDialog] = React.useState(false);
   const handleClose = () => setShowAlertDialog(false);
@@ -745,15 +759,26 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ AlertDialog, AlertDialogContent, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading, Icon, VStack, Box, UploadCloud }}
+  reactLive={{
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogFooter,
+    AlertDialogBody,
+    AlertDialogBackdrop,
+    Button,
+    ButtonText,
+    Text,
+    Heading,
+    Icon,
+    VStack,
+    Box,
+    UploadCloud,
+  }}
 />
 
+#### AlertDialog with Delete Option
 
-  #### AlertDialog with Delete Option
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   const [showAlertDialog, setShowAlertDialog] = React.useState(false);
   const handleClose = () => setShowAlertDialog(false);
@@ -802,5 +827,19 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading, Icon, TrashIcon, Box }}
+  reactLive={{
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogHeader,
+    AlertDialogFooter,
+    AlertDialogBody,
+    AlertDialogBackdrop,
+    Button,
+    ButtonText,
+    Text,
+    Heading,
+    Icon,
+    TrashIcon,
+    Box,
+  }}
 />

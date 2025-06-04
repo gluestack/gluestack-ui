@@ -236,10 +236,7 @@ const Fold1Content = () => {
                           aria-label="Select all"
                         >
                           <CheckboxIndicator>
-                            <CheckboxIcon
-                              as={CheckIcon}
-                              className="text-typography-white"
-                            />
+                            <CheckboxIcon as={CheckIcon} />
                           </CheckboxIndicator>
                         </Checkbox>
                       </TableHead>
@@ -292,10 +289,7 @@ const Fold1Content = () => {
                             aria-label="table datas"
                           >
                             <CheckboxIndicator>
-                              <CheckboxIcon
-                                as={CheckIcon}
-                                className="text-typography-white"
-                              />
+                              <CheckboxIcon as={CheckIcon} />
                             </CheckboxIndicator>
                           </Checkbox>
                         </TableData>

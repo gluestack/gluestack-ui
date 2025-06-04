@@ -1,11 +1,32 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { FormControl, FormControlLabel, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlHelper, FormControlHelperText, FormControlLabelText } from '@/components/ui/form-control';
+import {
+  FormControl,
+  FormControlLabel,
+  FormControlError,
+  FormControlErrorText,
+  FormControlErrorIcon,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlLabelText,
+} from '@/components/ui/form-control';
 import { AlertCircleIcon, CircleIcon, CheckIcon } from '@/components/ui/icon';
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
 import { Button, ButtonText, ButtonSpinner } from '@/components/ui/button';
 import { VStack } from '@/components/ui/vstack';
-import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from '@/components/ui/radio';
-import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from '@/components/ui/checkbox';
+import {
+  Radio,
+  RadioGroup,
+  RadioIndicator,
+  RadioLabel,
+  RadioIcon,
+} from '@/components/ui/radio';
+import {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxIndicator,
+  CheckboxLabel,
+  CheckboxIcon,
+} from '@/components/ui/checkbox';
 import { Textarea, TextareaInput } from '@/components/ui/textarea';
 import { HStack } from '@/components/ui/hstack';
 
@@ -27,63 +48,59 @@ Enhance form usability with FormControl components in React. Manage validation, 
 
 This is an illustration of **FormControl** component.
 
+#### Basic
 
-  #### Basic
-
-  
-  
   <CodePreviewer
   code={`function App () {
   const [isInvalid, setIsInvalid] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("12345");
 
-  const handleSubmit = () => {
-    if (inputValue.length < 6) {
-      setIsInvalid(true);
-    } else {
-      setIsInvalid(false);
-    }
-  };
+const handleSubmit = () => {
+if (inputValue.length < 6) {
+setIsInvalid(true);
+} else {
+setIsInvalid(false);
+}
+};
 
-  return (
-    <VStack>
-      <FormControl
-        isInvalid={isInvalid}
-        size="{{size}}"
-        isDisabled={ {{isDisabled}} }
-        isReadOnly={ {{isReadOnly}} }
-        isRequired={ {{isRequired}} }
-      >
-        <FormControlLabel>
-          <FormControlLabelText>Password</FormControlLabelText>
-        </FormControlLabel>
-        <Input className="my-1" size="{{size}}">
-          <InputField
-            type="password"
-            placeholder="password"
-            value={inputValue}
-            onChangeText={(text) => setInputValue(text)}
-          />
-        </Input>
-        <FormControlHelper>
-          <FormControlHelperText>
-            Must be at least 6 characters.
-          </FormControlHelperText>
-        </FormControlHelper>
-        <FormControlError>
-          <FormControlErrorIcon as={AlertCircleIcon} className="text-red-500"/>
-          <FormControlErrorText  className="text-red-500">
-            At least 6 characters are required.
-          </FormControlErrorText>
-        </FormControlError>
-      </FormControl>
-      <Button className="w-fit self-end mt-4" size="sm" variant="outline" onPress={handleSubmit}>
-        <ButtonText>Submit</ButtonText>
-      </Button>
-    </VStack>
-  );
+return (
+<VStack>
+<FormControl
+isInvalid={isInvalid}
+size="{{size}}"
+isDisabled={ {{isDisabled}} }
+isReadOnly={ {{isReadOnly}} }
+isRequired={ {{isRequired}} } >
+<FormControlLabel>
+<FormControlLabelText>Password</FormControlLabelText>
+</FormControlLabel>
+<Input className="my-1" size="{{size}}">
+<InputField
+type="password"
+placeholder="password"
+value={inputValue}
+onChangeText={(text) => setInputValue(text)}
+/>
+</Input>
+<FormControlHelper>
+<FormControlHelperText>
+Must be at least 6 characters.
+</FormControlHelperText>
+</FormControlHelper>
+<FormControlError>
+<FormControlErrorIcon as={AlertCircleIcon} className="text-red-500"/>
+<FormControlErrorText  className="text-red-500">
+At least 6 characters are required.
+</FormControlErrorText>
+</FormControlError>
+</FormControl>
+<Button className="w-fit self-end mt-4" size="sm" variant="outline" onPress={handleSubmit}>
+<ButtonText>Submit</ButtonText>
+</Button>
+</VStack>
+);
 }`}
-  argTypes={{
+argTypes={{
   "isDisabled": {
     "control": {
       "type": "boolean"
@@ -114,7 +131,7 @@ This is an illustration of **FormControl** component.
     "defaultValue": "md"
   }
 }}
-  reactLive={{ FormControl, FormControlLabel, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlHelper, FormControlHelperText, FormControlLabelText, AlertCircleIcon, Input, InputField, InputIcon, InputSlot, Button, ButtonText, ButtonSpinner, VStack }}
+reactLive={{ FormControl, FormControlLabel, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlHelper, FormControlHelperText, FormControlLabelText, AlertCircleIcon, Input, InputField, InputIcon, InputSlot, Button, ButtonText, ButtonSpinner, VStack }}
 />
 
 <br />
@@ -604,7 +621,6 @@ export {
   FormControlHelper,
   FormControlHelperText,
 };
-
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -734,12 +750,11 @@ It inherits all the properties of React Native's [Text](https://reactnative.dev/
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Form Control with Radio
 
-  #### Form Control with Radio
+The Radio Component can be incorporated within the FormControl.
 
-  The Radio Component can be incorporated within the FormControl.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState("Mango");
   return (
@@ -786,15 +801,27 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon, VStack, CircleIcon }}
+  reactLive={{
+    FormControl,
+    FormControlLabel,
+    FormControlLabelText,
+    FormControlHelper,
+    FormControlHelperText,
+    Radio,
+    RadioGroup,
+    RadioIndicator,
+    RadioLabel,
+    RadioIcon,
+    VStack,
+    CircleIcon,
+  }}
 />
 
+#### Form Control with Checkbox
 
-  #### Form Control with Checkbox
+The Checkbox Component can be incorporated within the FormControl.
 
-  The Checkbox Component can be incorporated within the FormControl.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function App() {
       const [values, setValues] = React.useState(['bits']);
         return (
@@ -839,15 +866,27 @@ The Examples section provides visual representations of the different variants o
         );
       }`}
   argTypes={{}}
-  reactLive={{ FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon, VStack, CheckIcon }}
+  reactLive={{
+    FormControl,
+    FormControlLabel,
+    FormControlLabelText,
+    FormControlHelper,
+    FormControlHelperText,
+    Checkbox,
+    CheckboxGroup,
+    CheckboxIndicator,
+    CheckboxLabel,
+    CheckboxIcon,
+    VStack,
+    CheckIcon,
+  }}
 />
 
+#### Form Control with Error
 
-  #### Form Control with Error
+Error messages can be displayed using FormControl.
 
-  Error messages can be displayed using FormControl.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <FormControl isInvalid>
@@ -894,15 +933,29 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ FormControl, FormControlLabel, FormControlLabelText, FormControlError, FormControlErrorIcon, FormControlErrorText, Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon, VStack, AlertCircleIcon, CircleIcon }}
+  reactLive={{
+    FormControl,
+    FormControlLabel,
+    FormControlLabelText,
+    FormControlError,
+    FormControlErrorIcon,
+    FormControlErrorText,
+    Radio,
+    RadioGroup,
+    RadioIndicator,
+    RadioLabel,
+    RadioIcon,
+    VStack,
+    AlertCircleIcon,
+    CircleIcon,
+  }}
 />
 
+#### Form Control with Textarea
 
-  #### Form Control with Textarea
+The Textarea Component can be incorporated within the FormControl.
 
-  The Textarea Component can be incorporated within the FormControl.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <FormControl>
@@ -923,15 +976,22 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, Textarea, TextareaInput }}
+  reactLive={{
+    FormControl,
+    FormControlLabel,
+    FormControlLabelText,
+    FormControlHelper,
+    FormControlHelperText,
+    Textarea,
+    TextareaInput,
+  }}
 />
 
+#### Form Control with Form Actions
 
-  #### Form Control with Form Actions
+Form Action Buttons can also be utilized in conjunction with FormControl.
 
-  Form Action Buttons can also be utilized in conjunction with FormControl.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <HStack>
