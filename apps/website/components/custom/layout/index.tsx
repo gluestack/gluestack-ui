@@ -33,7 +33,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     >
       <Header />
       <div
-        className={`md:flex justify-between mx-auto${
+        className={`md:flex justify-between mx-auto ${
           fluidLayout ? 'lg:ml-4' : 'lg:ml-36 md:w-[85%]'
         }`}
       >
