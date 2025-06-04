@@ -11,20 +11,14 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg",
-      "xl"
-    ],
-    "defaultValue": "md"
-  }
-}}
+        size: {
+          control: {
+            type: 'select',
+          },
+          options: ['xs', 'sm', 'md', 'lg', 'xl'],
+          defaultValue: 'md',
+        },
+      }}
       reactLive={{ Icon, EditIcon }}
     />
   );

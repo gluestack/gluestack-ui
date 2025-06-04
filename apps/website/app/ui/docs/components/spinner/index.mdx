@@ -24,42 +24,37 @@ Enhance your UI with the gluestack-ui Spinner component. A React Native spinner 
 
 This is an illustration of **Spinner** component.
 
-  #### Basic
+#### Basic
 
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return <Spinner size="{{size}}" color="{{color}}" />
 }`}
   argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['small', 'large'],
+      defaultValue: 'small',
     },
-    "options": [
-      "small",
-      "large"
-    ],
-    "defaultValue": "small"
-  },
-  "color": {
-    "control": {
-      "type": "select"
+    color: {
+      control: {
+        type: 'select',
+      },
+      options: [
+        'red',
+        'blue',
+        'green',
+        'black',
+        'orange',
+        'purple',
+        'yellow',
+        'grey',
+      ],
+      defaultValue: 'grey',
     },
-    "options": [
-      "red",
-      "blue",
-      "green",
-      "black",
-      "orange",
-      "purple",
-      "yellow",
-      "grey"
-    ],
-    "defaultValue": "grey"
-  }
-}}
+  }}
   reactLive={{ Spinner }}
 />
 
@@ -173,12 +168,11 @@ We have outlined the various features that ensure the Fab component is accessibl
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Spinner with Label
 
-  #### Spinner with Label
+A Spinner component with a label provides informative text or a label alongside the spinner, offering descriptive context and improving user understanding and interaction with the spinner element within a user interface.
 
-  A Spinner component with a label provides informative text or a label alongside the spinner, offering descriptive context and improving user understanding and interaction with the spinner element within a user interface.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <HStack space="sm" >
@@ -191,12 +185,11 @@ The Examples section provides visual representations of the different variants o
   reactLive={{ Spinner, HStack, Text }}
 />
 
+#### Color Scheme
 
-  #### Color Scheme
+A Spinner component with a color scheme enhances visual appeal by incorporating distinct colors, adding a touch of customization and style to the spinner element within a user interface.
 
-  A Spinner component with a color scheme enhances visual appeal by incorporating distinct colors, adding a touch of customization and style to the spinner element within a user interface.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <VStack space="md" >

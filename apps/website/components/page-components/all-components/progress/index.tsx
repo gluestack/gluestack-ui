@@ -16,31 +16,21 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg",
-      "xl",
-      "2xl"
-    ],
-    "defaultValue": "md"
-  },
-  "orientation": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "horizontal",
-      "vertical"
-    ],
-    "defaultValue": "horizontal"
-  }
-}}
+        size: {
+          control: {
+            type: 'select',
+          },
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+          defaultValue: 'md',
+        },
+        orientation: {
+          control: {
+            type: 'select',
+          },
+          options: ['horizontal', 'vertical'],
+          defaultValue: 'horizontal',
+        },
+      }}
       reactLive={{ Progress, ProgressFilledTrack, Center }}
     />
   );

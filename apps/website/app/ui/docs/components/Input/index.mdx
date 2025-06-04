@@ -24,12 +24,9 @@ A feature-rich React Native Input component – supports icons, validation, and 
 
 This is an illustration of **Input** component.
 
+#### Basic
 
-  #### Basic
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Input variant="{{variant}}" size="{{size}}" isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } isReadOnly={ {{isReadOnly}} }>
@@ -38,48 +35,39 @@ This is an illustration of **Input** component.
   )
 }`}
   argTypes={{
-  "isDisabled": {
-    "control": {
-      "type": "boolean"
+    isDisabled: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  },
-  "isInvalid": {
-    "control": {
-      "type": "boolean"
+    isInvalid: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  },
-  "isReadOnly": {
-    "control": {
-      "type": "boolean"
+    isReadOnly: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  },
-  "variant": {
-    "control": {
-      "type": "select"
+    variant: {
+      control: {
+        type: 'select',
+      },
+      options: ['outline', 'rounded', 'underlined'],
+      defaultValue: 'outline',
     },
-    "options": [
-      "outline",
-      "rounded",
-      "underlined"
-    ],
-    "defaultValue": "outline"
-  },
-  "size": {
-    "control": {
-      "type": "select"
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['sm', 'md', 'lg', 'xl'],
+      defaultValue: 'md',
     },
-    "options": [
-      "sm",
-      "md",
-      "lg",
-      "xl"
-    ],
-    "defaultValue": "md"
-  }
-}}
+  }}
   reactLive={{ Input, InputField }}
 />
 
@@ -318,7 +306,6 @@ InputSlot.displayName = 'InputSlot';
 InputField.displayName = 'InputField';
 
 export { Input, InputField, InputIcon, InputSlot };
-
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -485,12 +472,11 @@ We have outlined the various features that ensure the Input component is accessi
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Input with FormControl
 
-  #### Input with FormControl
+The Input component integrates with an icon and a button, providing users with a comprehensive login window inside a FormControl component.
 
-  The Input component integrates with an icon and a button, providing users with a comprehensive login window inside a FormControl component.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleState = () => {
@@ -531,15 +517,27 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ Input, InputField, InputIcon, InputSlot, FormControl, VStack, Heading, Text, Button, ButtonText, EyeIcon, EyeOffIcon }}
+  reactLive={{
+    Input,
+    InputField,
+    InputIcon,
+    InputSlot,
+    FormControl,
+    VStack,
+    Heading,
+    Text,
+    Button,
+    ButtonText,
+    EyeIcon,
+    EyeOffIcon,
+  }}
 />
 
+#### Input with Icons
 
-  #### Input with Icons
+The Input with Icons is a variation of the Input component that displays icons next to input field. It's commonly used in apps for a more visual representation of options and easier navigation.
 
-  The Input with Icons is a variation of the Input component that displays icons next to input field. It's commonly used in apps for a more visual representation of options and easier navigation.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Input>

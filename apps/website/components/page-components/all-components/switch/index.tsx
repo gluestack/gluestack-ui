@@ -17,24 +17,20 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  },
-  "isDisabled": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": false
-  }
-}}
+        size: {
+          control: {
+            type: 'select',
+          },
+          options: ['sm', 'md', 'lg'],
+          defaultValue: 'md',
+        },
+        isDisabled: {
+          control: {
+            type: 'boolean',
+          },
+          defaultValue: false,
+        },
+      }}
       reactLive={{ Switch }}
     />
   );

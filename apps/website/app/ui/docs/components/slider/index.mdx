@@ -1,5 +1,10 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@/components/ui/slider';
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from '@/components/ui/slider';
 import { Center } from '@/components/ui/center';
 
 import { Tabs, TabItem } from '@/docs-components/tabs';
@@ -22,12 +27,9 @@ Create smooth, interactive controls with the gluestack-ui React Native Slider co
 
 This is an illustration of **Slider** component.
 
+#### Basic
 
-  #### Basic
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Center className="w-[300px] h-[150px]">
@@ -47,40 +49,33 @@ This is an illustration of **Slider** component.
   )
 }`}
   argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['sm', 'md', 'lg'],
+      defaultValue: 'md',
     },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  },
-  "orientation": {
-    "control": {
-      "type": "select"
+    orientation: {
+      control: {
+        type: 'select',
+      },
+      options: ['horizontal', 'vertical'],
+      defaultValue: 'horizontal',
     },
-    "options": [
-      "horizontal",
-      "vertical"
-    ],
-    "defaultValue": "horizontal"
-  },
-  "isDisabled": {
-    "control": {
-      "type": "boolean"
+    isDisabled: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  },
-  "isReversed": {
-    "control": {
-      "type": "boolean"
+    isReversed: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  }
-}}
+  }}
   reactLive={{ Slider, SliderTrack, SliderFilledTrack, SliderThumb, Center }}
 />
 

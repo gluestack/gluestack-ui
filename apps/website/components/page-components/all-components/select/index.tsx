@@ -41,31 +41,34 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "variant": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "underlined",
-      "outline",
-      "rounded"
-    ],
-    "defaultValue": "outline"
-  },
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg",
-      "xl"
-    ],
-    "defaultValue": "md"
-  }
-}}
-      reactLive={{ Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectItem, ChevronDownIcon }}
+        variant: {
+          control: {
+            type: 'select',
+          },
+          options: ['underlined', 'outline', 'rounded'],
+          defaultValue: 'outline',
+        },
+        size: {
+          control: {
+            type: 'select',
+          },
+          options: ['sm', 'md', 'lg', 'xl'],
+          defaultValue: 'md',
+        },
+      }}
+      reactLive={{
+        Select,
+        SelectTrigger,
+        SelectInput,
+        SelectIcon,
+        SelectPortal,
+        SelectBackdrop,
+        SelectContent,
+        SelectDragIndicator,
+        SelectDragIndicatorWrapper,
+        SelectItem,
+        ChevronDownIcon,
+      }}
     />
   );
 }
