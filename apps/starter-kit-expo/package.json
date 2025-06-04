@@ -30,6 +30,7 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.2",
+    "react-native-css-interop": "^0.1.22",
     "react-native-reanimated": "3.16.2",
     "react-native-safe-area-context": "^5.4.1",
     "react-native-screens": "~4.11.1",
