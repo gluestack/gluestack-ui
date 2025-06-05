@@ -12,6 +12,7 @@
     "nativewind": "^4.1.23",
     "next": "15.3.3",
     "react": "^19.0.0",
+    "react-aria": "^3.40.0",
     "react-dom": "^19.0.0",
     "react-native-svg": "^15.12.0",
     "react-native-web": "^0.20.0"
