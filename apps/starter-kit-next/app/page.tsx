@@ -1,3 +1,5 @@
+"use client"
+import Button from "@/components/button";
 import Image from "next/image";
 
 export default function Home() {
@@ -98,6 +100,7 @@ export default function Home() {
           Go to nextjs.org →
         </a>
       </footer>
+      <Button/>
     </div>
   );
 }
