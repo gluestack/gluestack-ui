@@ -12,9 +12,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className} style={{ flex:1 }}>
+      <body className={inter.className} style={{ flex: 1 }}>
         <StyledJsxRegistry>
-          <GluestackUIProvider mode="light">{children}</GluestackUIProvider>
+          <GluestackUIProvider mode="light">
+            <div className="h-screen w-screen overflow-hidden overflow-y-scroll">
+              {children}
+            </div>
+          </GluestackUIProvider>
         </StyledJsxRegistry>
       </body>
     </html>
