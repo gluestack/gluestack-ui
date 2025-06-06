@@ -1,30 +1,30 @@
 #! /usr/bin/env node
-import { cancel, text, select } from "@clack/prompts";
-import { displayHelp } from "./help";
-import data from "./data";
-import chalk from "chalk";
-import { cloneProject, gitInit, installDependencies } from "./utils";
+import { cancel, text, select, isCancel } from '@clack/prompts';
+import { displayHelp } from './help';
+import data from './data';
+import chalk from 'chalk';
+import { cloneProject, gitInit, installDependencies } from './utils';
 
 export async function main(args: string[]) {
-  console.log(chalk.bold.magenta("\nWelcome to gluestack-ui v2!"));
-  console.log(chalk.yellow("Creating a new project with gluestack-ui v2."));
+  console.log(chalk.bold.magenta('\nWelcome to gluestack-ui v2!'));
+  console.log(chalk.yellow('Creating a new project with gluestack-ui v2.'));
 
   const supportedFrameworkArgs = [
-    "--expo-router",
-    "--next-app-router",
-    "--universal",
+    '--expo-router',
+    '--next-app-router',
+    '--universal',
   ];
 
-  const supportedPackagemanagers = ["npm", "yarn", "pnpm", "bun"];
+  const supportedPackagemanagers = ['npm', 'yarn', 'pnpm', 'bun'];
   const supportedPackagemanagerArgs = supportedPackagemanagers.map(
-    (manager) => "--use-" + manager
+    (manager) => '--use-' + manager
   );
 
-  const supportedDocumentationArgs = ["--help", "-h"];
+  const supportedDocumentationArgs = ['--help', '-h'];
 
-  let selectedFramework = "";
-  let selectedPackageManager = "";
-  let projName = "";
+  let selectedFramework = '';
+  let selectedPackageManager = '';
+  let projName = '';
 
   if (args.length > 0) {
     if (args.some((arg) => supportedDocumentationArgs.includes(arg))) {
@@ -32,7 +32,7 @@ export async function main(args: string[]) {
       displayHelp();
     }
 
-    if (!args[0].startsWith("-")) {
+    if (!args[0].startsWith('-')) {
       projName = args[0];
       args.shift();
     }
@@ -48,58 +48,80 @@ export async function main(args: string[]) {
     });
   }
 
-  process.on("SIGINT", function () {
-    cancel("Operation cancelled.");
+  process.on('SIGINT', function () {
+    cancel('Operation cancelled.');
     process.exit(0);
   });
   let templateName = selectedFramework;
-  if (templateName === "") {
+  if (templateName === '') {
     const { question, options } = data.options.framework.default;
 
     // @ts-ignore
-    selectedFramework = await select({
+    const frameworkSelection = await select({
       message: question,
       options: [...options],
     });
+
+    // Handle cancellation
+    if (isCancel(frameworkSelection)) {
+      cancel('Operation cancelled.');
+      process.exit(0);
+    }
+
+    selectedFramework = frameworkSelection as string;
     templateName = selectedFramework;
   }
 
+  // Ensure templateName is a string before calling includes
+  if (typeof templateName !== 'string') {
+    console.error('Invalid template selection');
+    process.exit(1);
+  }
+
   // Universal Template coming soon...
-  if (templateName.includes("universal")) {
-    console.log(chalk.bgGreen("\nComing Soon...\n"));
+  if (templateName.includes('universal')) {
+    console.log(chalk.bgGreen('\nComing Soon...\n'));
     process.exit(0);
   }
 
-  if (projName === "") {
-    projName = (await text({
-      message: "Enter the name of your project: ",
-      placeholder: "my-app",
-      defaultValue: "my-app",
-    })) as string;
+  if (projName === '') {
+    const projectNameInput = await text({
+      message: 'Enter the name of your project: ',
+      placeholder: 'my-app',
+      defaultValue: 'my-app',
+    });
+
+    // Handle cancellation
+    if (isCancel(projectNameInput)) {
+      cancel('Operation cancelled.');
+      process.exit(0);
+    }
+
+    projName = projectNameInput as string;
   }
 
   templateName = `${templateName}`;
 
-  if (selectedPackageManager === "") {
+  if (selectedPackageManager === '') {
     const userPackageManager = process.env.npm_config_user_agent;
-    if (userPackageManager && userPackageManager.includes("bun")) {
-      selectedPackageManager = "bun";
-    } else if (userPackageManager && userPackageManager.includes("pnpm")) {
-      selectedPackageManager = "pnpm";
-    } else if (userPackageManager && userPackageManager.includes("yarn")) {
-      selectedPackageManager = "yarn";
+    if (userPackageManager && userPackageManager.includes('bun')) {
+      selectedPackageManager = 'bun';
+    } else if (userPackageManager && userPackageManager.includes('pnpm')) {
+      selectedPackageManager = 'pnpm';
+    } else if (userPackageManager && userPackageManager.includes('yarn')) {
+      selectedPackageManager = 'yarn';
     } else {
-      selectedPackageManager = "npm";
+      selectedPackageManager = 'npm';
     }
   }
 
-  let message = "";
-  if (templateName.includes("universal")) {
-    message = "a universal";
-  } else if (templateName.includes("next")) {
-    message = "a next-app-router";
-  } else if (templateName.includes("expo")) {
-    message = "an expo";
+  let message = '';
+  if (templateName.includes('universal')) {
+    message = 'a universal';
+  } else if (templateName.includes('next')) {
+    message = 'a next-app-router';
+  } else if (templateName.includes('expo')) {
+    message = 'an expo';
   }
   console.log(
     `⏳ Creating ${message} app. Hang tight, this may take a while...\n`
@@ -107,17 +129,17 @@ export async function main(args: string[]) {
 
   try {
     await cloneProject(projName, templateName);
-    if (!templateName.includes("universal")) {
+    if (!templateName.includes('universal')) {
       await installDependencies(projName, selectedPackageManager);
     }
     await gitInit(projName);
     console.log(
       chalk.green(
-        "\nProject created successfully in " + projName + " folder.\n"
+        '\nProject created successfully in ' + projName + ' folder.\n'
       )
     );
   } catch (error: any) {
-    console.error("Failed to create project");
+    console.error('Failed to create project');
     console.error(error.message);
     process.exit(1);
   }
@@ -127,7 +149,7 @@ export async function main(args: string[]) {
 if (require.main === module) {
   const args = process.argv.slice(2);
   main(args).catch((error) => {
-    console.error("Error:", error);
+    console.error('Error:', error);
     process.exit(1);
   });
 }
