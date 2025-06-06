@@ -9,6 +9,10 @@ const nextConfig = {
 
     // More explicit resolution order - web files first
     config.resolve.extensions = [
+      '.next15.js',
+      '.next15.jsx',
+      '.next15.ts',
+      '.next15.tsx',
       '.web.js',
       '.web.jsx',
       '.web.ts',
@@ -34,6 +38,10 @@ const nextConfig = {
       'react-native': 'react-native-web',
     },
     resolveExtensions: [
+      '.next15.js',
+      '.next15.jsx',
+      '.next15.ts',
+      '.next15.tsx',
       '.web.js',
       '.web.jsx',
       '.web.ts',
