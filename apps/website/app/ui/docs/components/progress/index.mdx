@@ -22,9 +22,11 @@ Enhance your app with a responsive Progress component. gluestack-ui offers a Rea
 
 This is an illustration of **Progress** component.
 
-#### Basic
+  #### Basic
 
-<CodePreviewer
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Center className="w-[300px] h-[150px]">
@@ -35,21 +37,31 @@ This is an illustration of **Progress** component.
   )
 }`}
   argTypes={{
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-      defaultValue: 'md',
+  "size": {
+    "control": {
+      "type": "select"
     },
-    orientation: {
-      control: {
-        type: 'select',
-      },
-      options: ['horizontal', 'vertical'],
-      defaultValue: 'horizontal',
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+      "2xl"
+    ],
+    "defaultValue": "md"
+  },
+  "orientation": {
+    "control": {
+      "type": "select"
     },
-  }}
+    "options": [
+      "horizontal",
+      "vertical"
+    ],
+    "defaultValue": "horizontal"
+  }
+}}
   reactLive={{ Progress, ProgressFilledTrack, Center }}
 />
 
@@ -242,6 +254,7 @@ const ProgressFilledTrack = React.forwardRef<
 });
 
 export { Progress, ProgressFilledTrack };
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -348,11 +361,12 @@ Progress component is created using View component from react-native. It extends
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Value
 
-Progress component with value
+  #### Value
 
-<CodePreviewer
+  Progress component with value
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <VStack space="lg" className="max-w-80 w-full">
@@ -367,11 +381,12 @@ Progress component with value
   reactLive={{ Progress, ProgressFilledTrack, VStack, Text }}
 />
 
-#### Color
 
-You can add track color to progress bar as per our needs.
+  #### Color
 
-<CodePreviewer
+  You can add track color to progress bar as per our needs.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <VStack space="3xl" className="max-w-96 w-full">
@@ -394,11 +409,12 @@ You can add track color to progress bar as per our needs.
   reactLive={{ Progress, ProgressFilledTrack, VStack }}
 />
 
-#### Custom
 
-You can customize the progress bar. Below is the example where we have change the theme of progress bar.
+  #### Custom
 
-<CodePreviewer
+  You can customize the progress bar. Below is the example where we have change the theme of progress bar.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <VStack space="lg" className="max-w-[410px] w-full">

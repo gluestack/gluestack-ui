@@ -27,27 +27,27 @@ export default function Example() {
   )
 }`}
       argTypes={{
-        placement: {
-          control: {
-            type: 'select',
-          },
-          options: [
-            'top',
-            'top left',
-            'top right',
-            'bottom',
-            'bottom left',
-            'bottom right',
-            'left',
-            'left top',
-            'left bottom',
-            'right',
-            'right top',
-            'right bottom',
-          ],
-          defaultValue: 'top',
-        },
-      }}
+  "placement": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "top",
+      "top left",
+      "top right",
+      "bottom",
+      "bottom left",
+      "bottom right",
+      "left",
+      "left top",
+      "left bottom",
+      "right",
+      "right top",
+      "right bottom"
+    ],
+    "defaultValue": "top"
+  }
+}}
       reactLive={{ Tooltip, TooltipContent, TooltipText, Button, ButtonText }}
     />
   );

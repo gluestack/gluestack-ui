@@ -1,17 +1,6 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import {
-  Button,
-  ButtonText,
-  ButtonSpinner,
-  ButtonIcon,
-} from '@/components/ui/button';
-import {
-  EditIcon,
-  ArrowUpIcon,
-  InfoIcon,
-  AddIcon,
-  ArrowLeftIcon,
-} from '@/components/ui/icon';
+import { Button, ButtonText, ButtonSpinner, ButtonIcon } from '@/components/ui/button';
+import { EditIcon, ArrowUpIcon, InfoIcon, AddIcon, ArrowLeftIcon } from '@/components/ui/icon';
 import { Box } from '@/components/ui/box';
 import { Center } from '@/components/ui/center';
 import { Heading } from '@/components/ui/heading';
@@ -37,7 +26,12 @@ Discover a powerful button component for React & React Native with customizable 
 
 This is an illustration of **Button** component.
 
-<CodePreviewer
+
+  
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Button variant="{{variant}}" size="{{size}}" action="{{action}}">
@@ -46,28 +40,42 @@ This is an illustration of **Button** component.
   )
 }`}
   argTypes={{
-    variant: {
-      control: {
-        type: 'select',
-      },
-      options: ['solid', 'outline', 'link'],
-      defaultValue: 'solid',
+  "variant": {
+    "control": {
+      "type": "select"
     },
-    action: {
-      control: {
-        type: 'select',
-      },
-      options: ['primary', 'secondary', 'positive', 'negative'],
-      defaultValue: 'primary',
+    "options": [
+      "solid",
+      "outline",
+      "link"
+    ],
+    "defaultValue": "solid"
+  },
+  "action": {
+    "control": {
+      "type": "select"
     },
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: ['xs', 'sm', 'md', 'lg'],
-      defaultValue: 'md',
+    "options": [
+      "primary",
+      "secondary",
+      "positive",
+      "negative"
+    ],
+    "defaultValue": "primary"
+  },
+  "size": {
+    "control": {
+      "type": "select"
     },
-  }}
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  }
+}}
   reactLive={{ Button, ButtonText }}
 />
 
@@ -826,11 +834,12 @@ Component receives states as props as boolean values, which are applied as `data
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Button with Loading State
 
-A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress.
+  #### Button with Loading State
 
-<CodePreviewer
+  A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Button className='p-3'>
@@ -843,11 +852,12 @@ A loading button is a type of button component that provides visual feedback to 
   reactLive={{ Button, ButtonText, ButtonSpinner }}
 />
 
-#### Icon Button
 
-A button with an icon integrates a visual symbol within the button component, enhancing its appearance and providing a recognizable and intuitive representation of its associated action or functionality.
+  #### Icon Button
 
-<CodePreviewer
+  A button with an icon integrates a visual symbol within the button component, enhancing its appearance and providing a recognizable and intuitive representation of its associated action or functionality.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Button
@@ -862,11 +872,12 @@ A button with an icon integrates a visual symbol within the button component, en
   reactLive={{ Button, ButtonIcon, EditIcon }}
 />
 
-#### Link Button
 
-A button with a link combines the interactive behavior of a button component with the ability to navigate to a specified URL, providing a clickable element for users to access external resources or internal pages.
+  #### Link Button
 
-<CodePreviewer
+  A button with a link combines the interactive behavior of a button component with the ability to navigate to a specified URL, providing a clickable element for users to access external resources or internal pages.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Button variant='link'>
@@ -881,11 +892,12 @@ A button with a link combines the interactive behavior of a button component wit
   reactLive={{ Button, ButtonText, ButtonIcon, ArrowUpIcon }}
 />
 
-#### Button With Icon
 
-The icon component incorporates a button component, combining visual representation with interactive functionality for seamless user interaction.
+  #### Button With Icon
 
-<CodePreviewer
+  The icon component incorporates a button component, combining visual representation with interactive functionality for seamless user interaction.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Box>
@@ -904,11 +916,12 @@ The icon component incorporates a button component, combining visual representat
   reactLive={{ Button, ButtonText, ButtonIcon, Box, InfoIcon, AddIcon }}
 />
 
-#### Button with Full Width
 
-The button with full width component utilizes a button component, expanding its width to occupy the entire available space, creating a visually prominent and easily accessible interface element.
+  #### Button with Full Width
 
-<CodePreviewer
+  The button with full width component utilizes a button component, expanding its width to occupy the entire available space, creating a visually prominent and easily accessible interface element.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Center>
@@ -959,17 +972,5 @@ The button with full width component utilizes a button component, expanding its 
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Button,
-    ButtonText,
-    ButtonIcon,
-    Box,
-    Center,
-    Heading,
-    Input,
-    InputField,
-    Text,
-    VStack,
-    ArrowLeftIcon,
-  }}
+  reactLive={{ Button, ButtonText, ButtonIcon, Box, Center, Heading, Input, InputField, Text, VStack, ArrowLeftIcon }}
 />

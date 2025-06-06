@@ -13,28 +13,42 @@ export default function Example() {
   )
 }`}
       argTypes={{
-        variant: {
-          control: {
-            type: 'select',
-          },
-          options: ['solid', 'outline', 'link'],
-          defaultValue: 'solid',
-        },
-        action: {
-          control: {
-            type: 'select',
-          },
-          options: ['primary', 'secondary', 'positive', 'negative'],
-          defaultValue: 'primary',
-        },
-        size: {
-          control: {
-            type: 'select',
-          },
-          options: ['xs', 'sm', 'md', 'lg'],
-          defaultValue: 'md',
-        },
-      }}
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "solid",
+      "outline",
+      "link"
+    ],
+    "defaultValue": "solid"
+  },
+  "action": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "primary",
+      "secondary",
+      "positive",
+      "negative"
+    ],
+    "defaultValue": "primary"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  }
+}}
       reactLive={{ Button, ButtonText }}
     />
   );

@@ -47,39 +47,28 @@ export default function Example() {
   )
 }`}
       argTypes={{
-        placement: {
-          control: {
-            type: 'select',
-          },
-          options: [
-            'top',
-            'bottom',
-            'left',
-            'right',
-            'top start',
-            'top end',
-            'bottom start',
-            'bottom end',
-            'left start',
-            'left end',
-            'right start',
-            'right end',
-          ],
-          defaultValue: 'top',
-        },
-      }}
-      reactLive={{
-        Menu,
-        MenuItem,
-        MenuItemLabel,
-        Button,
-        ButtonText,
-        Icon,
-        AddIcon,
-        GlobeIcon,
-        PlayIcon,
-        SettingsIcon,
-      }}
+  "placement": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "top",
+      "bottom",
+      "left",
+      "right",
+      "top start",
+      "top end",
+      "bottom start",
+      "bottom end",
+      "left start",
+      "left end",
+      "right start",
+      "right end"
+    ],
+    "defaultValue": "top"
+  }
+}}
+      reactLive={{ Menu, MenuItem, MenuItemLabel, Button, ButtonText, Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon }}
     />
   );
 }

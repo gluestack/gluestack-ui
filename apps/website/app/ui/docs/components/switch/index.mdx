@@ -25,9 +25,12 @@ Enhance your UI with a sleek Switch Component. Built on React Native, it's custo
 
 This is an illustration of **Switch** component.
 
-#### Basic
 
-<CodePreviewer
+  #### Basic
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Switch
@@ -41,20 +44,24 @@ This is an illustration of **Switch** component.
   )
 }`}
   argTypes={{
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: ['sm', 'md', 'lg'],
-      defaultValue: 'md',
+  "size": {
+    "control": {
+      "type": "select"
     },
-    isDisabled: {
-      control: {
-        type: 'boolean',
-      },
-      defaultValue: false,
+    "options": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  },
+  "isDisabled": {
+    "control": {
+      "type": "boolean"
     },
-  }}
+    "defaultValue": false
+  }
+}}
   reactLive={{ Switch }}
 />
 
@@ -272,11 +279,12 @@ Switch component is created using Switch component from react-native. It extends
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Switch With Label
 
-An example of a switch component with a label, which includes another switch component for toggling additional options.
+  #### Switch With Label
 
-<CodePreviewer
+  An example of a switch component with a label, which includes another switch component for toggling additional options.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <HStack space="md">
@@ -294,11 +302,12 @@ An example of a switch component with a label, which includes another switch com
   reactLive={{ Switch, Text, HStack }}
 />
 
-#### Checked State
 
-An example of a switch component used within a checked state component to represent a pre-selected or activated option.
+  #### Checked State
 
-<CodePreviewer
+  An example of a switch component used within a checked state component to represent a pre-selected or activated option.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <HStack space="md">

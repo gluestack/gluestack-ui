@@ -1,27 +1,7 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import {
-  Select,
-  SelectTrigger,
-  SelectInput,
-  SelectIcon,
-  SelectPortal,
-  SelectBackdrop,
-  SelectContent,
-  SelectDragIndicator,
-  SelectDragIndicatorWrapper,
-  SelectItem,
-} from '@/components/ui/select';
+import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectItem } from '@/components/ui/select';
 import { ChevronDownIcon, Icon, AlertCircleIcon } from '@/components/ui/icon';
-import {
-  FormControl,
-  FormControlLabel,
-  FormControlLabelText,
-  FormControlHelper,
-  FormControlHelperText,
-  FormControlError,
-  FormControlErrorIcon,
-  FormControlErrorText,
-} from '@/components/ui/form-control';
+import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorIcon, FormControlErrorText } from '@/components/ui/form-control';
 
 import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
@@ -43,9 +23,11 @@ Enhance your React Native app with a customizable Select dropdown component. Sup
 
 This is an illustration of **Select** component.
 
-#### Basic
+  #### Basic
 
-<CodePreviewer
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Select>
@@ -73,34 +55,31 @@ This is an illustration of **Select** component.
   )
 }`}
   argTypes={{
-    variant: {
-      control: {
-        type: 'select',
-      },
-      options: ['underlined', 'outline', 'rounded'],
-      defaultValue: 'outline',
+  "variant": {
+    "control": {
+      "type": "select"
     },
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: ['sm', 'md', 'lg', 'xl'],
-      defaultValue: 'md',
+    "options": [
+      "underlined",
+      "outline",
+      "rounded"
+    ],
+    "defaultValue": "outline"
+  },
+  "size": {
+    "control": {
+      "type": "select"
     },
-  }}
-  reactLive={{
-    Select,
-    SelectTrigger,
-    SelectInput,
-    SelectIcon,
-    SelectPortal,
-    SelectBackdrop,
-    SelectContent,
-    SelectDragIndicator,
-    SelectDragIndicatorWrapper,
-    SelectItem,
-    ChevronDownIcon,
-  }}
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectItem, ChevronDownIcon }}
 />
 
 <br />
@@ -402,6 +381,7 @@ export {
   SelectSectionList,
   SelectSectionHeaderText,
 };
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -800,11 +780,11 @@ Component receives states as props as boolean values, which are applied as `data
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Select FormControlled
+  #### Select FormControlled
 
-The Select component with FormControl example demonstrates how to manage its state using the FormControl component. This allows for easy integration with forms and form validation.
-
-<CodePreviewer
+  The Select component with FormControl example demonstrates how to manage its state using the FormControl component. This allows for easy integration with forms and form validation.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <FormControl isRequired isInvalid>
@@ -845,27 +825,5 @@ The Select component with FormControl example demonstrates how to manage its sta
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Select,
-    SelectTrigger,
-    SelectInput,
-    SelectIcon,
-    SelectPortal,
-    SelectBackdrop,
-    SelectContent,
-    SelectDragIndicatorWrapper,
-    SelectDragIndicator,
-    SelectItem,
-    Icon,
-    ChevronDownIcon,
-    FormControl,
-    FormControlLabel,
-    FormControlLabelText,
-    FormControlHelper,
-    FormControlHelperText,
-    FormControlError,
-    FormControlErrorIcon,
-    FormControlErrorText,
-    AlertCircleIcon,
-  }}
+  reactLive={{ Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicatorWrapper, SelectDragIndicator, SelectItem, Icon, ChevronDownIcon, FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorIcon, FormControlErrorText, AlertCircleIcon }}
 />

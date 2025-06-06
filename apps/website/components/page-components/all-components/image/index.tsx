@@ -16,14 +16,22 @@ export default function Example() {
   )
 }`}
       argTypes={{
-        size: {
-          control: {
-            type: 'select',
-          },
-          options: ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-          defaultValue: 'md',
-        },
-      }}
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "2xs",
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+      "2xl"
+    ],
+    "defaultValue": "md"
+  }
+}}
       reactLive={{ Image }}
     />
   );
