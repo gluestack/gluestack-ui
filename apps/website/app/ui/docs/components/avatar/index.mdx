@@ -1,11 +1,5 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import {
-  Avatar,
-  AvatarFallbackText,
-  AvatarImage,
-  AvatarBadge,
-  AvatarGroup,
-} from '@/components/ui/avatar';
+import { Avatar, AvatarFallbackText, AvatarImage, AvatarBadge, AvatarGroup } from '@/components/ui/avatar';
 import { Heading } from '@/components/ui/heading';
 import { HStack } from '@/components/ui/hstack';
 import { Text } from '@/components/ui/text';
@@ -31,9 +25,12 @@ Enhance your UI with our React Native Avatar component. Explore gluestack's-ui A
 
 This is an illustration of **Avatar** component.
 
-#### Basic
 
-<CodePreviewer
+  #### Basic
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Avatar size="{{size}}">
@@ -48,14 +45,21 @@ This is an illustration of **Avatar** component.
   )
 }`}
   argTypes={{
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-      defaultValue: 'md',
+  "size": {
+    "control": {
+      "type": "select"
     },
-  }}
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+      "2xl"
+    ],
+    "defaultValue": "md"
+  }
+}}
   reactLive={{ Avatar, AvatarFallbackText, AvatarImage, AvatarBadge }}
 />
 
@@ -267,6 +271,7 @@ const AvatarGroup = React.forwardRef<
 });
 
 export { Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, AvatarGroup };
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -366,11 +371,12 @@ Avatar component is created using View component from react-native. It extends a
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Avatar with letters
 
-An Avatar component with text displays a stylized representation of a user or entity alongside accompanying text, providing a visual and textual identification within a user interface.
+  #### Avatar with letters
 
-<CodePreviewer
+  An Avatar component with text displays a stylized representation of a user or entity alongside accompanying text, providing a visual and textual identification within a user interface.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <VStack space="2xl">
@@ -397,23 +403,15 @@ An Avatar component with text displays a stylized representation of a user or en
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Avatar,
-    AvatarBadge,
-    AvatarFallbackText,
-    AvatarImage,
-    Heading,
-    HStack,
-    Text,
-    VStack,
-  }}
+  reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack }}
 />
 
-#### Avatar with Icon
 
-An Avatar component with an icon combines a graphical symbol or icon with a user or entity representation, providing a visually appealing and easily recognizable identification within a user interface.
+  #### Avatar with Icon
 
-<CodePreviewer
+  An Avatar component with an icon combines a graphical symbol or icon with a user or entity representation, providing a visually appealing and easily recognizable identification within a user interface.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <VStack space="2xl">
@@ -439,25 +437,15 @@ An Avatar component with an icon combines a graphical symbol or icon with a user
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Avatar,
-    AvatarBadge,
-    AvatarFallbackText,
-    AvatarImage,
-    Heading,
-    HStack,
-    Text,
-    VStack,
-    Icon,
-    User,
-  }}
+  reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack, Icon, User }}
 />
 
-#### Avatar with Image
 
-An Avatar component with an image incorporates a user or entity representation using a profile picture or image, adding a personalized touch and visual identification within a user interface.
+  #### Avatar with Image
 
-<CodePreviewer
+  An Avatar component with an image incorporates a user or entity representation using a profile picture or image, adding a personalized touch and visual identification within a user interface.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <VStack space="2xl">
@@ -494,23 +482,15 @@ An Avatar component with an image incorporates a user or entity representation u
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Avatar,
-    AvatarBadge,
-    AvatarFallbackText,
-    AvatarImage,
-    Heading,
-    HStack,
-    Text,
-    VStack,
-  }}
+  reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack }}
 />
 
-#### Avatar Group
 
-The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
+  #### Avatar Group
 
-<CodePreviewer
+  The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
+  
+  <CodePreviewer
   code={`function Example() {
   const avatars = [
     { src: 'https://example.com.jpg', alt: 'Sandeep Srivastva', color:'bg-emerald-600' },
@@ -537,23 +517,17 @@ The avatar group allows users to group avatars and display them in a horizontal 
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Avatar,
-    AvatarGroup,
-    AvatarBadge,
-    AvatarFallbackText,
-    AvatarImage,
-    HStack,
-  }}
+  reactLive={{ Avatar, AvatarGroup, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
 />
 
 > To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<AvatarGroup>`
 
-#### Avatar Group (Without Badge)
 
-An Avatar Group component without badges organizes multiple avatars in a visually cohesive manner, offering a streamlined display of user or entity representations without additional visual indicators or badges within a user interface.
+  #### Avatar Group (Without Badge)
 
-<CodePreviewer
+  An Avatar Group component without badges organizes multiple avatars in a visually cohesive manner, offering a streamlined display of user or entity representations without additional visual indicators or badges within a user interface.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <AvatarGroup>
@@ -593,21 +567,15 @@ An Avatar Group component without badges organizes multiple avatars in a visuall
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Avatar,
-    AvatarGroup,
-    AvatarBadge,
-    AvatarFallbackText,
-    AvatarImage,
-    HStack,
-  }}
+  reactLive={{ Avatar, AvatarGroup, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
 />
 
-#### Avatar Group (with Badge)
 
-An Avatar Group component with badges presents a collection of avatars with accompanying badges, providing visual indicators or additional information associated with each user or entity representation within a user interface.
+  #### Avatar Group (with Badge)
 
-<CodePreviewer
+  An Avatar Group component with badges presents a collection of avatars with accompanying badges, providing visual indicators or additional information associated with each user or entity representation within a user interface.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <AvatarGroup>
@@ -651,21 +619,15 @@ An Avatar Group component with badges presents a collection of avatars with acco
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Avatar,
-    AvatarGroup,
-    AvatarBadge,
-    AvatarFallbackText,
-    AvatarImage,
-    HStack,
-  }}
+  reactLive={{ Avatar, AvatarGroup, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
 />
 
-#### Custom
 
-A custom Avatar component with text allows for personalized user or entity representations by combining customized visuals, such as an image or icon, with accompanying text, providing a unique and identifiable presentation within a user interface.
+  #### Custom
 
-<CodePreviewer
+  A custom Avatar component with text allows for personalized user or entity representations by combining customized visuals, such as an image or icon, with accompanying text, providing a unique and identifiable presentation within a user interface.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <VStack space="2xl">
@@ -691,25 +653,15 @@ A custom Avatar component with text allows for personalized user or entity repre
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Avatar,
-    AvatarBadge,
-    AvatarFallbackText,
-    AvatarImage,
-    Heading,
-    HStack,
-    Text,
-    VStack,
-    Icon,
-    User,
-  }}
+  reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack, Icon, User }}
 />
 
-#### Fallback
 
-Fallback text is shown when the image fails to load, the image is not available or the provided image url is not correct.
+  #### Fallback
 
-<CodePreviewer
+  Fallback text is shown when the image fails to load, the image is not available or the provided image url is not correct.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <HStack space="md">

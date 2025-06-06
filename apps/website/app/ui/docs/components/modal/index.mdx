@@ -1,23 +1,9 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import {
-  Modal,
-  ModalBackdrop,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
-} from '@/components/ui/modal';
+import { Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter } from '@/components/ui/modal';
 import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
-import {
-  Icon,
-  CloseIcon,
-  ArrowLeftIcon,
-  TrashIcon,
-  CopyIcon,
-} from '@/components/ui/icon';
+import { Icon, CloseIcon, ArrowLeftIcon, TrashIcon, CopyIcon } from '@/components/ui/icon';
 import { HStack } from '@/components/ui/hstack';
 import { Input, InputField } from '@/components/ui/input';
 import { Link, LinkText } from '@/components/ui/link';
@@ -44,9 +30,12 @@ Create smooth and accessible modals in React & React Native. Implement React mod
 
 This is an illustration of **Modal** component.
 
-#### Basic
 
-<CodePreviewer
+  #### Basic
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   const [showModal, setShowModal] = React.useState(false);
   return (
@@ -99,29 +88,21 @@ This is an illustration of **Modal** component.
   );
 }`}
   argTypes={{
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: ['xs', 'sm', 'md', 'lg', 'full'],
-      defaultValue: 'md',
+  "size": {
+    "control": {
+      "type": "select"
     },
-  }}
-  reactLive={{
-    Modal,
-    ModalBackdrop,
-    ModalContent,
-    ModalHeader,
-    ModalCloseButton,
-    ModalBody,
-    ModalFooter,
-    Button,
-    ButtonText,
-    Heading,
-    Text,
-    Icon,
-    CloseIcon,
-  }}
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "full"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, ButtonText, Heading, Text, Icon, CloseIcon }}
 />
 
 <br />
@@ -420,6 +401,7 @@ export {
   ModalBody,
   ModalFooter,
 };
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -653,11 +635,12 @@ Modal component is created using View component from react-native. It extends al
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Multiple Modals
 
-A user interface featuring multiple modal components that allow for layered interaction and context-specific information display.
+  #### Multiple Modals
 
-<CodePreviewer
+  A user interface featuring multiple modal components that allow for layered interaction and context-specific information display.
+  
+  <CodePreviewer
   code={`function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [showModal2, setShowModal2] = React.useState(false);
@@ -813,30 +796,15 @@ A user interface featuring multiple modal components that allow for layered inte
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Modal,
-    ModalBackdrop,
-    ModalContent,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-    Button,
-    ButtonText,
-    ButtonIcon,
-    Heading,
-    Text,
-    HStack,
-    Input,
-    InputField,
-    Link,
-    LinkText,
-    ArrowLeftIcon,
-  }}
+  reactLive={{ Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, ButtonText, ButtonIcon, Heading, Text, HStack, Input, InputField, Link, LinkText, ArrowLeftIcon }}
 />
 
-#### Onboarding Message
 
-<CodePreviewer
+  #### Onboarding Message
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   const [showModal, setShowModal] = React.useState(false);
   return (
@@ -896,23 +864,15 @@ A user interface featuring multiple modal components that allow for layered inte
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Modal,
-    ModalBackdrop,
-    ModalContent,
-    ModalBody,
-    ModalFooter,
-    Button,
-    ButtonText,
-    Heading,
-    Text,
-    Image,
-  }}
+  reactLive={{ Modal, ModalBackdrop, ModalContent, ModalBody, ModalFooter, Button, ButtonText, Heading, Text, Image }}
 />
 
-#### Delete Post
 
-<CodePreviewer
+  #### Delete Post
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   const [showModal, setShowModal] = React.useState(false);
   return (
@@ -970,26 +930,15 @@ A user interface featuring multiple modal components that allow for layered inte
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Modal,
-    ModalBackdrop,
-    ModalContent,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-    Button,
-    ButtonText,
-    Heading,
-    Text,
-    Icon,
-    Box,
-    TrashIcon,
-  }}
+  reactLive={{ Modal, ModalBackdrop, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, ButtonText, Heading, Text, Icon, Box, TrashIcon }}
 />
 
-#### Invite Friends to Project
 
-<CodePreviewer
+  #### Invite Friends to Project
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   const [showModal, setShowModal] = React.useState(false);
   return (
@@ -1036,23 +985,5 @@ A user interface featuring multiple modal components that allow for layered inte
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Modal,
-    ModalBackdrop,
-    ModalContent,
-    ModalHeader,
-    ModalCloseButton,
-    ModalBody,
-    Button,
-    ButtonText,
-    Heading,
-    Text,
-    VStack,
-    Icon,
-    CloseIcon,
-    CopyIcon,
-    Input,
-    InputField,
-    Pressable,
-  }}
+  reactLive={{ Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Button, ButtonText, Heading, Text, VStack, Icon, CloseIcon, CopyIcon, Input, InputField, Pressable }}
 />

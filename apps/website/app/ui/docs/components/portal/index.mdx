@@ -23,9 +23,12 @@ Learn how to use the Portal component in React and React Native to render conten
 
 This is an illustration of **Portal** component.
 
-#### Basic
 
-<CodePreviewer
+  #### Basic
+
+  
+  
+  <CodePreviewer
   code={`function App() {
   const [visible, setVisible] = React.useState(false)
   const handleClose = () => setVisible(false)
@@ -51,15 +54,7 @@ This is an illustration of **Portal** component.
   )
 }`}
   argTypes={{}}
-  reactLive={{
-    Portal,
-    HStack,
-    Text,
-    Button,
-    ButtonText,
-    ButtonIcon,
-    CloseIcon,
-  }}
+  reactLive={{ Portal, HStack, Text, Button, ButtonText, ButtonIcon, CloseIcon }}
 />
 
 <br />
@@ -102,6 +97,7 @@ const Portal = React.forwardRef<
 Portal.displayName = 'Portal';
 
 export { Portal };
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.

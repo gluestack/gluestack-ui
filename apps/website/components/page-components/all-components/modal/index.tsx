@@ -68,29 +68,21 @@ export default function Example() {
   );
 }`}
       argTypes={{
-        size: {
-          control: {
-            type: 'select',
-          },
-          options: ['xs', 'sm', 'md', 'lg', 'full'],
-          defaultValue: 'md',
-        },
-      }}
-      reactLive={{
-        Modal,
-        ModalBackdrop,
-        ModalContent,
-        ModalHeader,
-        ModalCloseButton,
-        ModalBody,
-        ModalFooter,
-        Button,
-        ButtonText,
-        Heading,
-        Text,
-        Icon,
-        CloseIcon,
-      }}
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "full"
+    ],
+    "defaultValue": "md"
+  }
+}}
+      reactLive={{ Modal, ModalBackdrop, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Button, ButtonText, Heading, Text, Icon, CloseIcon }}
     />
   );
 }

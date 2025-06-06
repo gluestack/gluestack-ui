@@ -13,39 +13,48 @@ export default function Example() {
   )
 }`}
       argTypes={{
-        isDisabled: {
-          control: {
-            type: 'boolean',
-          },
-          defaultValue: false,
-        },
-        isInvalid: {
-          control: {
-            type: 'boolean',
-          },
-          defaultValue: false,
-        },
-        isReadOnly: {
-          control: {
-            type: 'boolean',
-          },
-          defaultValue: false,
-        },
-        variant: {
-          control: {
-            type: 'select',
-          },
-          options: ['outline', 'rounded', 'underlined'],
-          defaultValue: 'outline',
-        },
-        size: {
-          control: {
-            type: 'select',
-          },
-          options: ['sm', 'md', 'lg', 'xl'],
-          defaultValue: 'md',
-        },
-      }}
+  "isDisabled": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  },
+  "isInvalid": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  },
+  "isReadOnly": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  },
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "outline",
+      "rounded",
+      "underlined"
+    ],
+    "defaultValue": "outline"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "defaultValue": "md"
+  }
+}}
       reactLive={{ Input, InputField }}
     />
   );

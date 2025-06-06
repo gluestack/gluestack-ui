@@ -8,4 +8,4 @@ function CanonicalLink() {
   return <link rel="canonical" href={`${baseUrl}${pathname}`} />;
 }
 
-export default CanonicalLink; 
+export default CanonicalLink;

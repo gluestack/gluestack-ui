@@ -60,7 +60,7 @@ export default function RootLayout({
       data-theme-id={colorMode}
     >
       <head>
-      <CanonicalLink />
+        <CanonicalLink />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{

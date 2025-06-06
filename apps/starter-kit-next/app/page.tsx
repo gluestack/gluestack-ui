@@ -1,6 +1,6 @@
-import { Box } from "@/components/ui/box";
-import { Text } from "@/components/ui/text";
-import Image from "next/image";
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import Image from 'next/image';
 
 export default function Home() {
   return (
