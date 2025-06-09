@@ -42,6 +42,11 @@ const ChildPath = ({ element, fill, stroke: pathStroke }: any) => {
     return null;
   }
 
+  // Check if element is a React Fragment
+  if (element.type === React.Fragment) {
+    return element;
+  }
+
   return React.cloneElement(element, {
     fill: fillColor ? fillColor : 'currentColor',
     stroke: pathStrokeColor,
@@ -109,7 +114,7 @@ export function createIcon<IconProps>({
               <ChildPath
                 key={child?.key ?? i}
                 element={child}
-                {...child?.props}
+                {...(child?.props || {})}
               />
             ))}
           </G>
