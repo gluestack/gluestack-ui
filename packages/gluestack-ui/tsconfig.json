@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["es6", "es2015", "dom"],
+    "declaration": true,
+    "outDir": "dist",
+    "strict": true,
+    "types": ["node"],
+    "esModuleInterop": true,
+    "module": "UMD",
+    "moduleResolution": "node",
+    "allowJs": true
+  },
+  "include": ["src/**/*", "node_modules/@types/*"],
+  "exclude": ["src/dependencies.ts"]
+}
