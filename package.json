@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "@gluestack-style/react": "^1.0.57",
-    "@gluestack-ui/themed": "^1.1.73",
     "chokidar": "^4.0.3",
     "solito": "^4.4.1",
     "typescript": "^5.8.3"
