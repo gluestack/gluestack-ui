@@ -24,7 +24,7 @@ export const RawConfigSchema = z
 export const NextResolvedConfigSchema = z.object({
   tailwind: z.object({
     config: z.string().default(''),
-    css: z.string().default('global.css'),
+    css: z.string().default('globals.css'),
   }),
   config: z.object({
     postCssConfig: z.string().default('postcss.config.js'),

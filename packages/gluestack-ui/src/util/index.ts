@@ -33,18 +33,15 @@ const projectRootPath: string = dirname(rootPackageJsonPath);
 const getAllComponents = async (): Promise<string[]> => {
   const componentList = fs
     .readdirSync(
-      join(
-        homeDir,
-        config.gluestackDir,
-        config.componentsResourcePath,
-        config.style
-      )
+      join(homeDir, config.gluestackDir, config.componentsResourcePath)
     )
     .filter(
       (file) =>
         !['.tsx', '.ts', '.jsx', '.js', '.json'].includes(
           extname(file).toLowerCase()
-        ) && file !== config.providerComponent
+        ) &&
+        file !== config.providerComponent &&
+        !config.ignoreComponents.includes(file)
     );
   return componentList;
 };
@@ -287,7 +284,12 @@ const installDependencies = async (
       flag: string
     ): string =>
       Object.entries(deps)
-        .map(([pkg, version]) => `${pkg}@${version}`)
+        .map(([pkg, version]) => {
+          // If version is empty or undefined, use 'latest'
+          const packageVersion =
+            version && version.trim() !== '' ? version : 'latest';
+          return `${pkg}@${packageVersion}`;
+        })
         .join(' ') + flag;
 
     const commands: { [key: string]: { install: string; devFlag: string } } = {
@@ -306,24 +308,82 @@ const installDependencies = async (
       '⏳ Installing dependencies. This might take a couple of minutes...'
     );
 
+    // Debug logging
+    console.log(
+      '\x1b[36m[DEBUG] Dependencies to install:\x1b[0m',
+      JSON.stringify(dependenciesToInstall, null, 2)
+    );
+    console.log('\x1b[36m[DEBUG] Install command:\x1b[0m', installCommand);
+    console.log(
+      '\x1b[36m[DEBUG] Dev install command:\x1b[0m',
+      devInstallCommand
+    );
+
     try {
       if (Object.keys(dependenciesToInstall.dependencies).length > 0) {
-        spawnSync(installCommand, {
+        const installArgs = installCommand.split(' ');
+        const cmd = installArgs.shift();
+        console.log('\x1b[36m[DEBUG] Executing:\x1b[0m', cmd, installArgs);
+        const result = spawnSync(cmd!, installArgs, {
           cwd: currDir,
           stdio: 'inherit',
           shell: true,
         });
+        if (result.error) {
+          throw new Error(
+            `Failed to install dependencies: ${result.error.message}`
+          );
+        }
+        if (result.status !== 0) {
+          throw new Error(
+            `Install command failed with exit code ${result.status}`
+          );
+        }
+      } else {
+        console.log(
+          '\x1b[36m[DEBUG] No regular dependencies to install\x1b[0m'
+        );
       }
       if (Object.keys(dependenciesToInstall.devDependencies).length > 0) {
-        spawnSync(devInstallCommand, {
+        const devInstallArgs = devInstallCommand.split(' ');
+        const devCmd = devInstallArgs.shift();
+        console.log(
+          '\x1b[36m[DEBUG] Executing dev:\x1b[0m',
+          devCmd,
+          devInstallArgs
+        );
+        const devResult = spawnSync(devCmd!, devInstallArgs, {
           cwd: currDir,
           stdio: 'inherit',
           shell: true,
         });
+        if (devResult.error) {
+          throw new Error(
+            `Failed to install dev dependencies: ${devResult.error.message}`
+          );
+        }
+        if (devResult.status !== 0) {
+          throw new Error(
+            `Dev install command failed with exit code ${devResult.status}`
+          );
+        }
+      } else {
+        console.log('\x1b[36m[DEBUG] No dev dependencies to install\x1b[0m');
       }
 
       s.stop(`Dependencies have been installed successfully.`);
     } catch (err) {
+      s.stop(`\x1b[31mFailed to install dependencies.\x1b[0m`);
+      log.error(
+        `\x1b[31mError installing dependencies: ${(err as Error).message}\x1b[0m`
+      );
+      log.warning(`\x1b[33mPlease run the following commands manually:\x1b[0m`);
+      if (Object.keys(dependenciesToInstall.dependencies).length > 0) {
+        log.warning(`\x1b[33m${installCommand}\x1b[0m`);
+      }
+      if (Object.keys(dependenciesToInstall.devDependencies).length > 0) {
+        log.warning(`\x1b[33m${devInstallCommand}\x1b[0m`);
+      }
       throw new Error(
         `Error installing dependencies: ${(err as Error).message}`
       );

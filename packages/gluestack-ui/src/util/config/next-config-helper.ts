@@ -18,7 +18,6 @@ import { join, relative } from 'path';
 import { execSync } from 'child_process';
 import { ensureFilesPromise } from '..';
 import { commonInitialization } from '../init';
-import { addReactNativeWebPatch } from '../init/addReactNativeWebPatch';
 //next project type initialization
 async function getNextProjectType(cwd: string): Promise<string | undefined> {
   const files = await fg.glob('**/*', {
@@ -76,18 +75,16 @@ async function initNatiwindNextApp(
   isNextjs15: boolean | undefined
 ) {
   try {
-    if (isNextjs15) {
-      await addReactNativeWebPatch();
-    }
-
     if (
       resolvedConfig.app?.entry?.includes('layout') &&
       resolvedConfig.app.registry
     ) {
       // if app router add registry file to root
       const registryPath = isNextjs15 ? ['nextjs', 'next15'] : ['common'];
+      const currentDir = __dirname;
+      const projectRoot = path.resolve(currentDir, '../../../../..');
       const registryContent = await readFile(
-        join(__dirname, config.templatesDir, ...registryPath, 'registry.tsx'),
+        join(projectRoot, config.templatesDir, ...registryPath, 'registry.tsx'),
         'utf8'
       );
       await writeFile(resolvedConfig.app.registry, registryContent, 'utf8');
@@ -131,7 +128,7 @@ async function generateConfigNextApp(
       config: tailwindConfigPath.length
         ? tailwindConfigPath
         : 'tailwind.config.js',
-      css: globalCssPath.length ? globalCssPath : 'global.css',
+      css: globalCssPath.length ? globalCssPath : 'globals.css',
     },
     app: {
       entry: entryPath,
@@ -144,7 +141,7 @@ async function generateConfigNextApp(
       config: tailwindConfigPath.length
         ? tailwindConfigPath
         : 'tailwind.config.js',
-      css: globalCssPath.length ? globalCssPath : 'global.css',
+      css: globalCssPath.length ? globalCssPath : 'globals.css',
     },
     config: {
       postCssConfig: postCssConfigPath.length

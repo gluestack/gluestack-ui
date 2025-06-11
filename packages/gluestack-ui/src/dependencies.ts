@@ -17,25 +17,49 @@ export interface Dependencies {
 const projectBasedDependencies: Dependencies = {
   nextjs: {
     dependencies: {
-      postcss: '',
-      autoprefixer: '',
-      'react-native-web': '',
+      'react-native-web': '^0.19.12',
+      nativewind: '^4.1.23',
+      tailwindcss: '^3.4.17',
+      'react-aria': '^3.33.0',
+      '@expo/html-elements': '^0.10.1',
+      'tailwind-variants': '^0.1.20',
+      '@legendapp/motion': '^2.3.0',
+      'react-native-svg': '^15.2.0',
+      'dom-helpers': '^5.2.1',
     },
     devDependencies: {
       '@types/react-native': '0.72.8',
+      autoprefixer: '^10.4.21',
+      postcss: '^8.5.4',
     },
   },
   expo: {
     dependencies: {
-      'react-native-reanimated': '',
+      'react-native-reanimated': '~3.17.4',
+      nativewind: '^4.1.23',
+      tailwindcss: '^3.4.17',
+      'react-native-safe-area-context': '^4.11.0',
+      'react-aria': '^3.33.0',
+      '@expo/html-elements': '^0.10.1',
+      'tailwind-variants': '^0.1.20',
+      '@legendapp/motion': '^2.3.0',
+      'react-native-svg': '^15.2.0',
     },
   },
   'react-native-cli': {
     dependencies: {
-      'react-native-reanimated': '',
+      'react-native-reanimated': '~3.17.4',
+      nativewind: '^4.1.23',
+      tailwindcss: '^3.4.17',
+      'react-native-safe-area-context': '^4.11.0',
+      'react-aria': '^3.33.0',
+      '@expo/html-elements': '^0.10.1',
+      'tailwind-variants': '^0.1.20',
+      '@legendapp/motion': '^2.3.0',
+      'react-native-svg': '^15.2.0',
     },
     devDependencies: {
-      'babel-plugin-module-resolver': '',
+      'babel-plugin-module-resolver': '^5.0.0',
     },
   },
 };

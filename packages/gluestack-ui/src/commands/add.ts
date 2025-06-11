@@ -49,6 +49,7 @@ export const add = new Command()
         components: command.args.length > 0 ? command.args : [],
         ...opts,
       });
+
       const isTemplate = options.templateOnly;
       !isTemplate && log.info('\n\x1b[1mWelcome to gluestack-ui!\x1b[0m\n');
 

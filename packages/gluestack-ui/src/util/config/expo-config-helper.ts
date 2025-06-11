@@ -53,6 +53,11 @@ async function isExpoSDK50(cwd: string): Promise<boolean> {
   const packageJson = JSON.parse(packageJsonContent);
   const expoVersion = packageJson.dependencies.expo;
 
+  // Check if expo dependency exists
+  if (!expoVersion) {
+    return false;
+  }
+
   const version = expoVersion.replace('^', '').replace('~', '');
   const versionArray = version.split('.');
   const majorVersion = parseInt(versionArray[0]);

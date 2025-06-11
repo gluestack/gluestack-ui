@@ -60,13 +60,13 @@ export const init = new Command()
       }
 
       //TODO : remove this check once nextjs 15 is supported properly
-      const isNextjs15 = await checkNextVersion();
-      if (isNextjs15) {
-        log.info(
-          `Next.js 15 is not supported by the init command.\n Please use 'npm create gluestack-ui@latest' to clone a new next 15 project.\n`
-        );
-        process.exit(1);
-      }
+      // const isNextjs15 = await checkNextVersion();
+      // if (isNextjs15) {
+      //   log.info(
+      //     `Next.js 15 is not supported by the init command.\n Please use 'npm create gluestack-ui@latest' to clone a new next 15 project.\n`
+      //   );
+      //   process.exit(1);
+      // }
 
       //if multiple package managers are used
       if (

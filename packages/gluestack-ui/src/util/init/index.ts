@@ -23,6 +23,10 @@ import { generateConfigExpoApp } from '../config/expo-config-helper';
 import { generateConfigRNApp } from '../config/react-native-config-helper';
 import { checkNextVersion } from '../check-next-version';
 import { readFile } from 'fs-extra';
+import {
+  modifyLayoutFile,
+  modifyLayoutFilesAutomatically,
+} from './modify-layout';
 
 const _currDir = process.cwd();
 const _homeDir = os.homedir();
@@ -65,15 +69,6 @@ const InitializeGlueStack = async ({
       projectType,
       config.style
     );
-    if (isNextjs15) {
-      additionalDependencies = {
-        ...additionalDependencies,
-        devDependencies: {
-          ...additionalDependencies?.devDependencies,
-          'patch-package': 'latest',
-        },
-      };
-    }
     let versionManager: string | null = findLockFileType();
     if (!versionManager) {
       versionManager = await promptVersionManager();
@@ -94,9 +89,6 @@ const InitializeGlueStack = async ({
     );
 
     await addProvider(isNextjs15);
-    if (isNextjs15) {
-      execSync(`${versionManager} run postinstall`);
-    }
     s.stop(`\x1b[32mProject configuration generated.\x1b[0m`);
     log.step(
       'Please refer the above link for more details --> \x1b[33mhttps://gluestack.io/ui/docs/home/overview/introduction \x1b[0m'
@@ -121,7 +113,6 @@ async function addProvider(isNextjs15: boolean | undefined) {
       _homeDir,
       config.gluestackDir,
       config.componentsResourcePath,
-      config.style,
       config.providerComponent
     );
 
@@ -158,10 +149,12 @@ async function updateTailwindConfig(
   projectType: string
 ) {
   try {
+    const currentDir = __dirname;
+    const projectRoot = path.resolve(currentDir, '../../../../..');
     const tailwindConfigRootPath = join(
-      _homeDir,
-      config.gluestackDir,
-      config.tailwindConfigRootPath
+      projectRoot,
+      config.templatesDir,
+      'tailwind.config.js'
     );
     const tailwindConfigPath = resolvedConfig.tailwind.config;
     await fs.copy(tailwindConfigRootPath, tailwindConfigPath);
@@ -234,12 +227,26 @@ async function updateGlobalCss(resolvedConfig: RawConfig): Promise<void> {
     const globalCSSPath = resolvedConfig.tailwind.css;
     const currentDir = __dirname;
     const projectRoot = path.resolve(currentDir, '../../../../..');
+
+    // Determine which template to use based on the target filename
+    const cssFileName = path.basename(globalCSSPath);
+    const templateCSSFile =
+      cssFileName === 'globals.css' ? 'globals.css' : 'global.css';
+
     const globalCSSContent = await fs.readFile(
-      join(projectRoot, config.templatesDir, 'common', 'global.css'),
+      join(projectRoot, config.templatesDir, 'common', templateCSSFile),
       'utf8'
     );
     const existingContent = await fs.readFile(globalCSSPath, 'utf8');
-    if (existingContent.includes(globalCSSContent)) {
+
+    // Check if @import "tailwindcss"; exists and replace it with globalcss content
+    if (existingContent.includes('@import "tailwindcss";')) {
+      const updatedContent = existingContent.replace(
+        '@import "tailwindcss";',
+        globalCSSContent.trim()
+      );
+      await fs.writeFile(globalCSSPath, updatedContent, 'utf8');
+    } else if (existingContent.includes(globalCSSContent)) {
       return;
     } else {
       await fs.appendFile(
@@ -250,6 +257,25 @@ async function updateGlobalCss(resolvedConfig: RawConfig): Promise<void> {
     }
   } catch (err) {
     log.error(`\x1b[31mError: ${err as Error}\x1b[0m`);
+  }
+}
+
+async function addUtils() {
+  try {
+    const targetPath = join(_currDir, config.writableUtilsPath);
+    const sourcePath = join(
+      _homeDir,
+      config.gluestackDir,
+      config.utilsResourcePath
+    );
+
+    await fs.ensureDir(targetPath);
+    await fs.copy(sourcePath, targetPath, {
+      overwrite: true,
+    });
+  } catch (err) {
+    log.error(`\x1b[31mError occurred while adding utils.\x1b[0m`);
+    throw new Error((err as Error).message);
   }
 }
 
@@ -264,24 +290,52 @@ async function commonInitialization(
     const flattenedConfigValues = resolvedConfigValues.flatMap((value) =>
       typeof value === 'string' ? value : Object.values(value as object)
     );
-    const resolvedConfigFileNames = flattenedConfigValues.map(
-      (filePath: any) =>
-        typeof filePath === 'string' && path.parse(filePath).base
-    );
+    const resolvedConfigFileNames = flattenedConfigValues
+      .map((filePath: any) =>
+        typeof filePath === 'string' ? path.parse(filePath).base : null
+      )
+      .filter((fileName): fileName is string => fileName !== null);
 
     const currentDir = __dirname;
     const projectRoot = path.resolve(currentDir, '../../../../..');
     const resourcePath = join(projectRoot, config.templatesDir, projectType);
+
     //if any filepath
     if (existsSync(resourcePath)) {
       const filesAndFolders = fs.readdirSync(resourcePath);
+
       //if any fileName in resourcePath matches with the resolvedConfigFileNames, copy the file
       await Promise.all(
         filesAndFolders.map(async (file) => {
-          if (resolvedConfigFileNames.includes(path.parse(file).base)) {
-            await copy(join(resourcePath, file), join(_currDir, file), {
-              overwrite: true,
-            });
+          const templateFileName = path.parse(file).name; // Get filename without extension
+          const templateFileExt = path.parse(file).ext; // Get extension
+
+          // Check if any resolved config file matches this template file
+          const matchingConfigFile = resolvedConfigFileNames.find(
+            (configFileName: string) => {
+              const configName = path.parse(configFileName).name;
+              const configExt = path.parse(configFileName).ext;
+
+              // Match by name first, then prefer exact extension match or fallback to any extension
+              return (
+                configName === templateFileName &&
+                (configExt === templateFileExt ||
+                  templateFileName === 'next.config' ||
+                  templateFileName === 'postcss.config' ||
+                  templateFileName === 'tailwind.config')
+              );
+            }
+          );
+
+          if (matchingConfigFile) {
+            const targetFileName = matchingConfigFile;
+            await copy(
+              join(resourcePath, file),
+              join(_currDir, targetFileName),
+              {
+                overwrite: true,
+              }
+            );
           }
         })
       );
@@ -296,6 +350,10 @@ async function commonInitialization(
     );
 
     await fs.copy(templatesPath, join(_currDir, 'nativewind-env.d.ts'));
+
+    // Copy utils directory
+    await addUtils();
+
     permission && (await updateTSConfig(projectType, resolvedConfig));
     permission && (await updateGlobalCss(resolvedConfig));
     await updateTailwindConfig(resolvedConfig, projectType);
@@ -320,6 +378,13 @@ async function commonInitialization(
         'utf8'
       );
     }
+
+    // Automatically modify layout files to add GluestackUIProvider wrapper
+    await modifyLayoutFilesAutomatically(
+      projectType,
+      resolvedConfig,
+      permission === true
+    );
   } catch (err) {
     throw new Error((err as Error).message);
   }
@@ -364,7 +429,8 @@ const filesToOverride = (projectType: string) => {
       return [
         'next.config.*',
         'tailwind.config.*',
-        'global.css',
+        'postcss.config.*',
+        'globals.css',
         'tsconfig.json',
       ];
     case config.expoProject:

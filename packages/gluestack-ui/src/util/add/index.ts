@@ -152,13 +152,34 @@ const writeComponent = async (component: string, targetPath: string) => {
         _homeDir,
         config.gluestackDir,
         config.componentsResourcePath,
-        config.style,
         component
       ),
       join(targetPath),
-
       {
         overwrite: true,
+        filter: (src: string) => {
+          const relativePath = src.replace(
+            join(
+              _homeDir,
+              config.gluestackDir,
+              config.componentsResourcePath,
+              component
+            ),
+            ''
+          );
+
+          // Skip if the path starts with any of the ignored folders
+          for (const ignoreFolder of config.ignoreFolders) {
+            if (
+              relativePath.startsWith(`/${ignoreFolder}`) ||
+              relativePath.startsWith(`\\${ignoreFolder}`)
+            ) {
+              return false;
+            }
+          }
+
+          return true;
+        },
       }
     );
   } catch (error) {
