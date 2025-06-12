@@ -64,7 +64,12 @@ const InitializeGlueStack = async ({
 
     console.log(`\n\x1b[1mInitializing gluestack-ui v2...\x1b[0m\n`);
     await cloneRepositoryAtRoot(join(_homeDir, config.gluestackDir));
-    const inputComponent = [config.providerComponent];
+    const inputComponent = [
+      config.providerComponent,
+      'icon',
+      'overlay',
+      'toast',
+    ];
     let additionalDependencies = await getProjectBasedDependencies(
       projectType,
       config.style
@@ -89,6 +94,7 @@ const InitializeGlueStack = async ({
     );
 
     await addProvider(isNextjs15);
+    await addEssentialComponents(['icon', 'overlay', 'toast']);
     s.stop(`\x1b[32mProject configuration generated.\x1b[0m`);
     log.step(
       'Please refer the above link for more details --> \x1b[33mhttps://gluestack.io/ui/docs/home/overview/introduction \x1b[0m'
@@ -139,6 +145,50 @@ async function addProvider(isNextjs15: boolean | undefined) {
     }
   } catch (err) {
     log.error(`\x1b[31mError occured while adding the provider.\x1b[0m`);
+    throw new Error((err as Error).message);
+  }
+}
+
+async function addEssentialComponents(components: string[]) {
+  try {
+    for (const component of components) {
+      const targetPath = join(
+        _currDir,
+        config.writableComponentsPath,
+        component
+      );
+      const sourcePath = join(
+        _homeDir,
+        config.gluestackDir,
+        config.componentsResourcePath,
+        component
+      );
+
+      await fs.ensureDir(targetPath);
+      await fs.copy(sourcePath, targetPath, {
+        overwrite: true,
+        filter: (src: string) => {
+          const relativePath = src.replace(sourcePath, '');
+
+          // Skip if the path starts with any of the ignored folders
+          for (const ignoreFolder of config.ignoreFolders) {
+            if (
+              relativePath.startsWith(`/${ignoreFolder}`) ||
+              relativePath.startsWith(`\\${ignoreFolder}`)
+            ) {
+              return false;
+            }
+          }
+
+          return true;
+        },
+      });
+    }
+    log.step(`✅ Added essential components: ${components.join(', ')}`);
+  } catch (err) {
+    log.error(
+      `\x1b[31mError occurred while adding essential components.\x1b[0m`
+    );
     throw new Error((err as Error).message);
   }
 }
