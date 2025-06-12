@@ -1,0 +1,6 @@
+node_modules
+/coverage.data
+/coverage/
+junit.xml
+dist
+components/

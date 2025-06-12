@@ -1,0 +1,10 @@
+{
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "globals.css"
+  },
+  "app": {
+    "entry": "",
+    "components": "../../apps/next-14/components/ui"
+  }
+}
