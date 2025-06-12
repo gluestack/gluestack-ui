@@ -61,11 +61,27 @@ export const copyUtils = (config: MapperConfig) => {
   }
 };
 
+// Track last copy times for special files to prevent infinite loops
+const specialFileCopyTimes = new Map<string, number>();
+const SPECIAL_FILE_DEBOUNCE = 10000; // 10 seconds for special files
+
 export const copySpecialFile = (sourcePath: string, destPath: string) => {
+  const fileKey = `${sourcePath}->${destPath}`;
+  const now = Date.now();
+
+  // Check if this file was copied recently
+  if (specialFileCopyTimes.has(fileKey)) {
+    const lastCopyTime = specialFileCopyTimes.get(fileKey)!;
+    if (now - lastCopyTime < SPECIAL_FILE_DEBOUNCE) {
+      return; // Skip if copied recently
+    }
+  }
+
   try {
     if (fs.existsSync(sourcePath)) {
       fileOps.copyFile(sourcePath, destPath);
       console.log(`✅ Copied special file: ${path.basename(sourcePath)}`);
+      specialFileCopyTimes.set(fileKey, now);
     }
   } catch (error) {
     console.error(`❌ Error copying special file ${sourcePath}:`, error);

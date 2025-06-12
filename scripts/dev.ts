@@ -10,6 +10,10 @@ const componentsPath = './packages/components/ui';
 const debounceMap = new Map<string, NodeJS.Timeout>();
 const DEBOUNCE_DELAY = 1000; // 1 second
 
+// Track processed files to prevent infinite loops
+const processedFiles = new Map<string, number>();
+const PROCESSED_FILE_COOLDOWN = 30000; // 30 seconds cooldown for same file
+
 // Get command line arguments for mapper filtering
 const args = process.argv.slice(2);
 const mapperFilter = args
@@ -72,6 +76,8 @@ const watcher = chokidar.watch(sourcePath, {
     '**/.DS_Store',
     '**/*.log',
     '**/*.tmp',
+    // Ignore destination directories to prevent infinite loops
+    'apps/**',
   ],
 });
 
@@ -91,6 +97,11 @@ const getComponentFromPath = (filePath: string): string | null => {
 
 const shouldProcessFile = (filePath: string): boolean => {
   const normalizedPath = path.normalize(filePath);
+
+  // Skip destination directories completely
+  if (normalizedPath.includes('apps/')) {
+    return false;
+  }
 
   // Only process files in our target directories
   const targetDirs = [
@@ -147,9 +158,26 @@ const isRecentlyModified = (
   }
 };
 
+const hasFileBeenProcessedRecently = (filePath: string): boolean => {
+  const now = Date.now();
+  if (processedFiles.has(filePath)) {
+    const lastProcessed = processedFiles.get(filePath)!;
+    return now - lastProcessed < PROCESSED_FILE_COOLDOWN;
+  }
+  return false;
+};
+
 const processFileChange = async (event: string, filePath: string) => {
   // Skip files that shouldn't be processed
   if (!shouldProcessFile(filePath)) {
+    return;
+  }
+
+  // For special files like sidebar.json, check if processed recently
+  if (
+    path.basename(filePath) === 'sidebar.json' &&
+    hasFileBeenProcessedRecently(filePath)
+  ) {
     return;
   }
 
@@ -172,6 +200,9 @@ const processFileChange = async (event: string, filePath: string) => {
       try {
         const relativePath = path.relative(process.cwd(), filePath);
         console.log(`📁 Processing ${event}: ${relativePath}`);
+
+        // Mark file as processed
+        processedFiles.set(filePath, Date.now());
 
         const component = getComponentFromPath(filePath);
 
