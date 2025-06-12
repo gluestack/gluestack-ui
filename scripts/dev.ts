@@ -6,11 +6,18 @@ import mappers from './mappers';
 const sourcePath = './packages';
 const componentsPath = './packages/components/ui';
 
+// Debounce map to prevent rapid repeated processing
+const debounceMap = new Map<string, NodeJS.Timeout>();
+const DEBOUNCE_DELAY = 1000; // 1 second
+
 // Get command line arguments for mapper filtering
 const args = process.argv.slice(2);
 const mapperFilter = args
   .find((arg) => arg.startsWith('--mapper='))
   ?.split('=')[1];
+
+// Check for sync flag
+const syncFlag = args.includes('--sync') || args.includes('--initial');
 
 // Filter mappers based on command line argument
 const activeMappers = mapperFilter
@@ -32,14 +39,40 @@ if (mapperFilter) {
   );
 }
 
+if (syncFlag) {
+  console.log(`🔄 Sync mode enabled - will process existing files`);
+}
+
 // Initialize watcher
 const watcher = chokidar.watch(sourcePath, {
   persistent: true,
-  ignoreInitial: false,
+  ignoreInitial: !syncFlag, // Process existing files only if sync flag is set
   awaitWriteFinish: {
-    stabilityThreshold: 2000,
+    stabilityThreshold: 1000,
     pollInterval: 100,
   },
+  ignored: [
+    /node_modules/,
+    /\.git/,
+    /dist/,
+    /build/,
+    /\.next/,
+    /\.cache/,
+    /\.DS_Store/,
+    /\.env/,
+    /\.log$/,
+    /\.tmp$/,
+    // Ignore specific directories that we don't want to monitor
+    '**/node_modules/**',
+    '**/.git/**',
+    '**/dist/**',
+    '**/build/**',
+    '**/.next/**',
+    '**/.cache/**',
+    '**/.DS_Store',
+    '**/*.log',
+    '**/*.tmp',
+  ],
 });
 
 const getComponentFromPath = (filePath: string): string | null => {
@@ -56,59 +89,174 @@ const getComponentFromPath = (filePath: string): string | null => {
   return null;
 };
 
-const processFileChange = async (event: string, filePath: string) => {
-  const component = getComponentFromPath(filePath);
+const shouldProcessFile = (filePath: string): boolean => {
+  const normalizedPath = path.normalize(filePath);
 
-  // If a component directory is being deleted, handle it directly
-  // if (event === "removed" && component) {
-  //   const componentDir = path.join(componentsPath, component);
-  // Check if the component directory no longer exists
-  //   if (!fs.existsSync(componentDir)) {
-  //     console.log(`Component directory deleted: ${component}`);
-  //     if (mappers && typeof mappers.component === 'function') {
-  //       try {
-  //         // Call the docs mapper directly with 'removed' event
-  //         await mappers.component(component, 'removed');
-  //       } catch (error) {
-  //         console.error(`Error deleting docs for component ${component}:`, error);
-  //       }
-  //     }
-  //   }
-  // }
+  // Only process files in our target directories
+  const targetDirs = [
+    'packages/components',
+    'packages/utils',
+    'packages/docs',
+    'packages/sidebar.json',
+  ];
 
-  // Continue with the regular processing
-  for (const mapperConfig of activeMappers) {
-    try {
-      const { name, mapper } = mapperConfig;
+  const isInTargetDir = targetDirs.some((dir) => normalizedPath.includes(dir));
+  if (!isInTargetDir) {
+    return false;
+  }
 
-      if (component) {
-        if (mapper && typeof mapper.component === 'function') {
-          await mapper.component(component, event);
-        } else {
-          console.warn(`Mapper ${name} doesn't have a component method`);
-        }
-      } else {
-        if (mapper && typeof mapper.nonComponent === 'function') {
-          await mapper.nonComponent(filePath);
-        } else {
-          console.warn(`Mapper ${name} doesn't have a nonComponent method`);
-        }
-      }
-    } catch (error) {
-      if (component) {
-        console.error(
-          `Error processing mapper for component ${component}:`,
-          error
-        );
-      } else {
-        console.error(`Error processing mapper for file ${filePath}:`, error);
-      }
+  // Skip hidden files and directories
+  const fileName = path.basename(filePath);
+  if (fileName.startsWith('.')) {
+    return false;
+  }
+
+  // Skip certain file types
+  const skipExtensions = ['.log', '.tmp', '.cache', '.lock', '.tsbuildinfo'];
+  const ext = path.extname(filePath);
+  if (skipExtensions.includes(ext)) {
+    return false;
+  }
+
+  // Skip if path contains node_modules (extra safety)
+  if (normalizedPath.includes('node_modules')) {
+    return false;
+  }
+
+  return true;
+};
+
+const isRecentlyModified = (
+  filePath: string,
+  minutesThreshold: number = 30
+): boolean => {
+  try {
+    if (!fs.existsSync(filePath)) {
+      return false;
     }
+
+    const stats = fs.statSync(filePath);
+    const now = new Date();
+    const modifiedTime = stats.mtime;
+    const diffInMinutes =
+      (now.getTime() - modifiedTime.getTime()) / (1000 * 60);
+
+    return diffInMinutes <= minutesThreshold;
+  } catch (error) {
+    return false;
   }
 };
-watcher
-  .on('add', (path) => processFileChange('added', path))
-  .on('change', (path) => processFileChange('changed', path))
-  .on('unlink', (path) => processFileChange('removed', path));
 
-console.log(`Watching for file changes in ${sourcePath}...`);
+const processFileChange = async (event: string, filePath: string) => {
+  // Skip files that shouldn't be processed
+  if (!shouldProcessFile(filePath)) {
+    return;
+  }
+
+  // For initial processing (when not in sync mode), only process recently modified files
+  if (event === 'add' && !syncFlag && !isRecentlyModified(filePath, 30)) {
+    return;
+  }
+
+  const fileKey = `${event}-${filePath}`;
+
+  // Clear existing timeout for this file
+  if (debounceMap.has(fileKey)) {
+    clearTimeout(debounceMap.get(fileKey)!);
+  }
+
+  // Set new timeout for debouncing
+  debounceMap.set(
+    fileKey,
+    setTimeout(async () => {
+      try {
+        const relativePath = path.relative(process.cwd(), filePath);
+        console.log(`📁 Processing ${event}: ${relativePath}`);
+
+        const component = getComponentFromPath(filePath);
+
+        // Process with all active mappers
+        for (const mapperConfig of activeMappers) {
+          try {
+            const { name, mapper } = mapperConfig;
+
+            if (component) {
+              if (mapper && typeof mapper.component === 'function') {
+                await mapper.component(component, event);
+              } else {
+                console.warn(`Mapper ${name} doesn't have a component method`);
+              }
+            } else {
+              if (mapper && typeof mapper.nonComponent === 'function') {
+                await mapper.nonComponent(filePath);
+              } else {
+                console.warn(
+                  `Mapper ${name} doesn't have a nonComponent method`
+                );
+              }
+            }
+          } catch (error) {
+            if (component) {
+              console.error(
+                `❌ Error in mapper ${mapperConfig.name} for component ${component}:`,
+                error
+              );
+            } else {
+              console.error(
+                `❌ Error in mapper ${mapperConfig.name} for file ${relativePath}:`,
+                error
+              );
+            }
+          }
+        }
+      } finally {
+        // Clean up the debounce map
+        debounceMap.delete(fileKey);
+      }
+    }, DEBOUNCE_DELAY)
+  );
+};
+
+// Set up event handlers
+watcher
+  .on('add', (filePath) => processFileChange('added', filePath))
+  .on('change', (filePath) => processFileChange('changed', filePath))
+  .on('unlink', (filePath) => processFileChange('removed', filePath))
+  .on('addDir', (dirPath) => {
+    // Handle directory additions if needed
+    const component = getComponentFromPath(dirPath);
+    if (component && shouldProcessFile(dirPath)) {
+      console.log(
+        `📂 Directory added: ${path.relative(process.cwd(), dirPath)}`
+      );
+      processFileChange('added', dirPath);
+    }
+  })
+  .on('unlinkDir', (dirPath) => {
+    // Handle directory deletions
+    const component = getComponentFromPath(dirPath);
+    if (component && shouldProcessFile(dirPath)) {
+      console.log(
+        `📂 Directory removed: ${path.relative(process.cwd(), dirPath)}`
+      );
+      processFileChange('removed', dirPath);
+    }
+  })
+  .on('error', (error) => {
+    console.error('❌ Watcher error:', error);
+  })
+  .on('ready', () => {
+    console.log('✅ File watcher is ready');
+  });
+
+console.log(`👀 Watching for file changes in ${sourcePath}...`);
+if (syncFlag) {
+  console.log(`💡 Sync mode: Processing all existing files`);
+} else {
+  console.log(
+    `💡 Normal mode: Processing only recently modified files (last 30 minutes) and new changes`
+  );
+  console.log(
+    `💡 Use --sync flag to process all existing files: npm run <script> -- --sync`
+  );
+}

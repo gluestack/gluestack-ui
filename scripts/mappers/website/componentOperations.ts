@@ -1,12 +1,22 @@
 import path from 'path';
+import {
+  processComponentChange,
+  copyUtils,
+  copySpecialFile,
+  MapperConfig,
+} from '../utils/componentOperations';
 import * as fileOps from '../utils/fileOperations';
 
-export const copyComponent = (component: string) => {
-  const sourcePath = path.resolve('packages/components/ui');
-  const destPath = path.resolve('apps/website/components/ui');
-  const componentPath = path.join(sourcePath, component);
-  const destComponentPath = path.join(destPath, component);
-  fileOps.copyDir(componentPath, destComponentPath, ['docs', 'examples']);
+const mapperConfig: MapperConfig = {
+  sourcePath: path.resolve('packages/components/ui'),
+  destPath: path.resolve('apps/website/components/ui'),
+  utilsSourcePath: path.resolve('packages/utils/gluestack-utils'),
+  utilsDestPath: path.resolve('apps/website/utils/gluestack-utils'),
+  ignoreFiles: ['docs', 'examples'],
+};
+
+export const copyComponent = (component: string, event: string = 'added') => {
+  processComponentChange(component, event, mapperConfig);
 };
 
 export const deleteComponentDocs = (component: string) => {
@@ -36,14 +46,7 @@ export const deleteComponentDocs = (component: string) => {
 };
 
 export const processNonComponentFile = (srcPath: string) => {
-  const packagesDir = path.resolve('packages/utils/gluestack-utils');
-  const websiteDir = path.resolve('apps/website/utils/gluestack-utils');
-
-  try {
-    fileOps.copyDir(packagesDir, websiteDir);
-  } catch (error) {
-    console.error(`error in copying docs components:${srcPath}`, error);
-  }
+  copyUtils(mapperConfig);
 };
 
 export const copyDocsComponents = (filePath: string) => {
@@ -52,13 +55,14 @@ export const copyDocsComponents = (filePath: string) => {
 
   try {
     fileOps.copyDir(packagesDir, websiteDir);
+    console.log(`✅ Copied docs components`);
   } catch (error) {
-    console.error(`error in copying docs components:${filePath}`, error);
+    console.error(`❌ Error copying docs components:`, error);
   }
 };
 
 export const processSidebarFile = (filePath: string) => {
-  const sidebarDir = path.resolve('packages/sidebar.json');
-  const websiteUiPath = path.resolve('apps/website/sidebar.json');
-  fileOps.writeTextFile(websiteUiPath, fileOps.readTextFile(sidebarDir));
+  const sourcePath = path.resolve('packages/sidebar.json');
+  const destPath = path.resolve('apps/website/sidebar.json');
+  copySpecialFile(sourcePath, destPath);
 };
