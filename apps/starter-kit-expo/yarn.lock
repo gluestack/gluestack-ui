@@ -1440,6 +1440,18 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@legendapp/motion@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@legendapp/motion/-/motion-2.4.0.tgz#eef6f934b784e07fe94631d5648d412f34fa0c6b"
+  integrity sha512-AAYpRLGvxGD5hIGl9sVHyoUufr66zoH82PuxYcKiPSMdCBI3jwZFWh6CuHjV1leRKVIRk2py1rSvIVabG8eqcw==
+  dependencies:
+    "@legendapp/tools" "2.0.1"
+
+"@legendapp/tools@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@legendapp/tools/-/tools-2.0.1.tgz#995fe6cb3e2398b939f645505aa8e1abc84bd07f"
+  integrity sha512-Kxt0HWvWElRK6oybHRzcYxdgaKGwuaiRNreS7usW7QuHXRIHaH4yMcW2YNRG4DHE5fpefv+Bno/BohQcCE4FaA==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -2388,6 +2400,14 @@
     "@react-stately/select" "^3.6.14"
     "@react-stately/utils" "^3.10.7"
     "@react-types/combobox" "^3.13.6"
+    "@react-types/shared" "^3.30.0"
+    "@swc/helpers" "^0.5.0"
+
+"@react-stately/data@^3.13.1":
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/@react-stately/data/-/data-3.13.1.tgz#876042e9eb922bfcadcfd06f9e9912a76ca19b00"
+  integrity sha512-hKEvHCM/nHM6FFJz3gT6Ms85H+qNhXfHDYP/TU7XiDoeVHzUpj2Yc3xGsIty6/K2k7jrblUj+LuKmdvidd9mug==
+  dependencies:
     "@react-types/shared" "^3.30.0"
     "@swc/helpers" "^0.5.0"
 
@@ -6828,6 +6848,38 @@ react-server-dom-webpack@~19.0.0:
     acorn-loose "^8.3.0"
     neo-async "^2.6.1"
     webpack-sources "^3.2.0"
+
+react-stately@^3.39.0:
+  version "3.39.0"
+  resolved "https://registry.yarnpkg.com/react-stately/-/react-stately-3.39.0.tgz#9eafdf40d6b08ee7b9f8724342b15b2e27154f90"
+  integrity sha512-/8JC3Tmj7G8fHn47F88c6t5kFNhQAufwqjEKxYeNi7TPz9UL+35BeoH1poMmDHJsPz8qM/z4sWMzaW5AwYK8lQ==
+  dependencies:
+    "@react-stately/calendar" "^3.8.2"
+    "@react-stately/checkbox" "^3.6.15"
+    "@react-stately/collections" "^3.12.5"
+    "@react-stately/color" "^3.8.6"
+    "@react-stately/combobox" "^3.10.6"
+    "@react-stately/data" "^3.13.1"
+    "@react-stately/datepicker" "^3.14.2"
+    "@react-stately/disclosure" "^3.0.5"
+    "@react-stately/dnd" "^3.6.0"
+    "@react-stately/form" "^3.1.5"
+    "@react-stately/list" "^3.12.3"
+    "@react-stately/menu" "^3.9.5"
+    "@react-stately/numberfield" "^3.9.13"
+    "@react-stately/overlays" "^3.6.17"
+    "@react-stately/radio" "^3.10.14"
+    "@react-stately/searchfield" "^3.5.13"
+    "@react-stately/select" "^3.6.14"
+    "@react-stately/selection" "^3.20.3"
+    "@react-stately/slider" "^3.6.5"
+    "@react-stately/table" "^3.14.3"
+    "@react-stately/tabs" "^3.8.3"
+    "@react-stately/toast" "^3.1.1"
+    "@react-stately/toggle" "^3.8.5"
+    "@react-stately/tooltip" "^3.5.5"
+    "@react-stately/tree" "^3.9.0"
+    "@react-types/shared" "^3.30.0"
 
 react-test-renderer@19.0.0:
   version "19.0.0"

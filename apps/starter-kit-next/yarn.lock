@@ -455,6 +455,18 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@legendapp/motion@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@legendapp/motion/-/motion-2.4.0.tgz#eef6f934b784e07fe94631d5648d412f34fa0c6b"
+  integrity sha512-AAYpRLGvxGD5hIGl9sVHyoUufr66zoH82PuxYcKiPSMdCBI3jwZFWh6CuHjV1leRKVIRk2py1rSvIVabG8eqcw==
+  dependencies:
+    "@legendapp/tools" "2.0.1"
+
+"@legendapp/tools@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@legendapp/tools/-/tools-2.0.1.tgz#995fe6cb3e2398b939f645505aa8e1abc84bd07f"
+  integrity sha512-Kxt0HWvWElRK6oybHRzcYxdgaKGwuaiRNreS7usW7QuHXRIHaH4yMcW2YNRG4DHE5fpefv+Bno/BohQcCE4FaA==
+
 "@napi-rs/wasm-runtime@^0.2.10":
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/@napi-rs/wasm-runtime/-/wasm-runtime-0.2.10.tgz#f3b7109419c6670000b2401e0c778b98afc25f84"
@@ -1188,6 +1200,11 @@
     "@react-types/shared" "^3.30.0"
     "@swc/helpers" "^0.5.0"
 
+"@react-native/assets-registry@^0.79.3":
+  version "0.79.3"
+  resolved "https://registry.yarnpkg.com/@react-native/assets-registry/-/assets-registry-0.79.3.tgz#022218d55a5d9d221a6d176987ab0b35c10d388b"
+  integrity sha512-Vy8DQXCJ21YSAiHxrNBz35VqVlZPpRYm50xRTWRf660JwHuJkFQG8cUkrLzm7AUriqUXxwpkQHcY+b0ibw9ejQ==
+
 "@react-native/normalize-colors@^0.74.1":
   version "0.74.89"
   resolved "https://registry.yarnpkg.com/@react-native/normalize-colors/-/normalize-colors-0.74.89.tgz#b8ac17d1bbccd3ef9a1f921665d04d42cff85976"
@@ -1258,6 +1275,14 @@
     "@react-stately/select" "^3.6.14"
     "@react-stately/utils" "^3.10.7"
     "@react-types/combobox" "^3.13.6"
+    "@react-types/shared" "^3.30.0"
+    "@swc/helpers" "^0.5.0"
+
+"@react-stately/data@^3.13.1":
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/@react-stately/data/-/data-3.13.1.tgz#876042e9eb922bfcadcfd06f9e9912a76ca19b00"
+  integrity sha512-hKEvHCM/nHM6FFJz3gT6Ms85H+qNhXfHDYP/TU7XiDoeVHzUpj2Yc3xGsIty6/K2k7jrblUj+LuKmdvidd9mug==
+  dependencies:
     "@react-types/shared" "^3.30.0"
     "@swc/helpers" "^0.5.0"
 
@@ -4332,6 +4357,38 @@ react-native-web@^0.20.0:
     nullthrows "^1.1.1"
     postcss-value-parser "^4.2.0"
     styleq "^0.1.3"
+
+react-stately@^3.39.0:
+  version "3.39.0"
+  resolved "https://registry.yarnpkg.com/react-stately/-/react-stately-3.39.0.tgz#9eafdf40d6b08ee7b9f8724342b15b2e27154f90"
+  integrity sha512-/8JC3Tmj7G8fHn47F88c6t5kFNhQAufwqjEKxYeNi7TPz9UL+35BeoH1poMmDHJsPz8qM/z4sWMzaW5AwYK8lQ==
+  dependencies:
+    "@react-stately/calendar" "^3.8.2"
+    "@react-stately/checkbox" "^3.6.15"
+    "@react-stately/collections" "^3.12.5"
+    "@react-stately/color" "^3.8.6"
+    "@react-stately/combobox" "^3.10.6"
+    "@react-stately/data" "^3.13.1"
+    "@react-stately/datepicker" "^3.14.2"
+    "@react-stately/disclosure" "^3.0.5"
+    "@react-stately/dnd" "^3.6.0"
+    "@react-stately/form" "^3.1.5"
+    "@react-stately/list" "^3.12.3"
+    "@react-stately/menu" "^3.9.5"
+    "@react-stately/numberfield" "^3.9.13"
+    "@react-stately/overlays" "^3.6.17"
+    "@react-stately/radio" "^3.10.14"
+    "@react-stately/searchfield" "^3.5.13"
+    "@react-stately/select" "^3.6.14"
+    "@react-stately/selection" "^3.20.3"
+    "@react-stately/slider" "^3.6.5"
+    "@react-stately/table" "^3.14.3"
+    "@react-stately/tabs" "^3.8.3"
+    "@react-stately/toast" "^3.1.1"
+    "@react-stately/toggle" "^3.8.5"
+    "@react-stately/tooltip" "^3.5.5"
+    "@react-stately/tree" "^3.9.0"
+    "@react-types/shared" "^3.30.0"
 
 react@^19.0.0:
   version "19.1.0"
