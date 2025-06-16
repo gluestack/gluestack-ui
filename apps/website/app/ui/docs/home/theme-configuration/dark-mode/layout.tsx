@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Dark Mode",
-  description: "Customizing the theme in gluestack-ui v2 for different color schemes and color mode support."
+  description: "Customize the theme in gluestack-ui v2 with Tailwind dark mode, UI theme dark mode colors, and React Native light & dark mode for different color schemes and color mode support."
 }
 
 export default function Layout({
