@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@legendapp/motion": "^2.4.0",
+    "dom-helpers": "^5.2.1",
     "nativewind": "^4.1.23",
     "next": "15.3.3",
     "react": "^19.0.0",
