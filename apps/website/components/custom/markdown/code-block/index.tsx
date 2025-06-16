@@ -17,6 +17,10 @@ import { CopyIcon } from 'lucide-react-native';
 const themes = {
   light: {
     background: '#F5F5F5',
+    fontFamily: 'var(--font-mono-space-mono)',
+    fontSize: '14px',
+    fontWeight: '500',
+    lineHeight: '24px',
     text: '#728FCB',
     comment: '#8E908C',
     keyword: '#728FCB',
@@ -28,6 +32,10 @@ const themes = {
   },
   dark: {
     background: '#171717',
+    fontFamily: 'var(--font-mono-space-mono)',
+    fontSize: '14px',
+    fontWeight: '500',
+    lineHeight: '24px',
     text: '#9CDCFE',
     comment: '#D4D4D4',
     keyword: '#9CDCFE',
@@ -77,6 +85,10 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   const themeStyles = {
     '--prism-background': currentTheme.background,
     '--prism-text': currentTheme.text,
+    '--prism-font-size': currentTheme.fontSize,
+    '--prism-font-weight': currentTheme.fontWeight,
+    '--prism-font-family': currentTheme.fontFamily,
+    '--prism-line-height': currentTheme.lineHeight,
     '--prism-comment': currentTheme.comment,
     '--prism-keyword': currentTheme.keyword,
     '--prism-string': currentTheme.string,
