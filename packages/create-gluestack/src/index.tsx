@@ -28,7 +28,6 @@ export async function main(args: string[]) {
 
   if (args.length > 0) {
     if (args.some((arg) => supportedDocumentationArgs.includes(arg))) {
-      // trigger help commmand and exit.
       displayHelp();
     }
 

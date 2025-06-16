@@ -1,18 +1,33 @@
 {
-  "name": "create-gluestack",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "create-gluecode",
+  "version": "1.0.6",
+  "main": "./dist/index.js",
   "bin": {
-    "create-gluestack": "./dist/index.js"
+    "create-gluecode": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "npx tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "changeset publish"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "gluestack",
+    "cli",
+    "create-app",
+    "boilerplate"
+  ],
+  "author": "GlueStack",
+  "license": "MIT",
+  "description": "A CLI tool for easily initialising gluestack-ui and adding components to your projects.",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@clack/prompts": "^0.11.0",
     "chalk": "^4.1.2",
@@ -21,6 +36,7 @@
     "fs-extra": "^11.1.1"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.4",
     "@types/fs-extra": "^11.0.0",
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0"
