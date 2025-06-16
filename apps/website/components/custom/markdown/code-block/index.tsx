@@ -11,8 +11,8 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-diff';
 import { ThemeContext } from '@/utils/context/theme-context';
 import './styles.css';
-import { CopyIcon } from 'lucide-react-native';
-
+import { Icon } from '@/components/ui/icon';
+import { CheckIcon, CopyIcon } from 'lucide-react-native';
 // Theme configurations
 const themes = {
   light: {
@@ -112,7 +112,11 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
       >
         <div className="flex items-center gap-2">
           {/* @ts-ignore */}
-          <CopyIcon className={`w-4 h-4 ${copied ? 'text-green-500' : ''}`} />
+          <Icon
+            as={CopyIcon}
+            size={16}
+            className={` ${copied ? 'text-green-500' : ''}`}
+          />
           {copied ? 'Copied!' : ''}
         </div>
       </button>
