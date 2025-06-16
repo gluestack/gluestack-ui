@@ -69,7 +69,7 @@ export function CodePreviewer({
     if (control?.type === 'select') {
       return (
         <Box className="control-item">
-          <Text className="text-xs">{name}:</Text>
+          <Text className="text-xs">{name}</Text>
           <Select
             className="w-full"
             onValueChange={(value: string) => handleChange(name, value)}
@@ -109,7 +109,7 @@ export function CodePreviewer({
       return (
         <Box className="flex flex-col gap-2">
           <Text className="text-sm" htmlFor={name}>
-            {name}:
+            {name}
           </Text>
           <Switch
             size="sm"
