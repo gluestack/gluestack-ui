@@ -36,7 +36,7 @@ export const generateCodePreviewer = (
     const reactLiveKeys = meta.reactLive ? Object.keys(meta.reactLive) : [];
     const reactLive = `{ ${reactLiveKeys.join(', ')} }`;
     const importExampleMap: ImportMap = {};
-    
+
     // Add reactLive imports to importExampleMap for this specific example
     reactLiveKeys.forEach((key) => {
       const value = meta.reactLive[key];
@@ -53,7 +53,7 @@ export const generateCodePreviewer = (
       if (!importMap[path]) {
         importMap[path] = [];
       }
-      imports.forEach(imp => {
+      imports.forEach((imp) => {
         if (!importMap[path].includes(imp)) {
           importMap[path].push(imp);
         }
@@ -139,9 +139,8 @@ export const replaceFrontMatter = (
             const [key, ...valueParts] = trimmedLine.split(':');
             const value = valueParts.join(':').trim();
             if (key.trim() === 'title') {
-              // Extract clean title without any pipes
-              const titleParts = value.split('|');
-              frontMatterObj.title = titleParts[0].trim();
+              // Keep the entire title including any | characters
+              frontMatterObj.title = value;
             } else if (key.trim() === 'description') {
               frontMatterObj.description = value;
             }
