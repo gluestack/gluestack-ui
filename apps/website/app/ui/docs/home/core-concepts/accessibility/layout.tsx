@@ -3,7 +3,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "gluestack-ui Accessibility Guide",
+  title: "gluestack-ui Accessibility Guide | Core Concepts for Inclusive Design",
   description: "gluestack-ui is a UI library with universal, unstyled components, offering keyboard accessibility, focus management, and accessibility UI design for better functionality."
 }
 

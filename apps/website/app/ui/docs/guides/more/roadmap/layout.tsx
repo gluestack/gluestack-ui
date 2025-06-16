@@ -3,7 +3,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Roadmap",
+  title: "Roadmap | gluestack-ui | Explore New Components and Enhancements",
   description: "New features like Tooltip Arrow, Nested Menu, and utility props support for NativeWind. Get ready for exciting updates, component redesigns, and performance boosts."
 }
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Figma UI Kit",
+  title: "Figma UI Kit | gluestack-ui | Figma Design Kit for React Native",
   description: "The Figma UI Kit provides a collection of ready-to-use UI components from the gluestack-ui library, designed for seamless React Native Figma UI Kit integration.."
 }
 

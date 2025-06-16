@@ -3,7 +3,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "gluestack-ui Modal Component",
+  title: "gluestack-ui Modal Component | React Modal Installation, Usage & API",
   description: "Create smooth and accessible modals in React & React Native. Implement React modal components for alerts, forms, and notifications with ease. Optimize modal component for better user engagement."
 }
 

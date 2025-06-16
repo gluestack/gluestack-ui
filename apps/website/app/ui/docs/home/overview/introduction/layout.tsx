@@ -3,7 +3,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Introduction",
+  title: "Introduction | gluestack-ui",
   description: "React & React Native Components & Patterns (copy-paste components & patterns crafted with Tailwind CSS (NativeWind))"
 }
 

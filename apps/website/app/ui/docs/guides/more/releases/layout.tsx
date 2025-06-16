@@ -3,7 +3,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Releases",
+  title: "Releases | GitHub Releases | gluestack-ui",
   description: "Stay updated with the latest gluestack-ui releases and improvements. Check out detailed release notes and GitHub updates for gluestack-ui."
 }
 
