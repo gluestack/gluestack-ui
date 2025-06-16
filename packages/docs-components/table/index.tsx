@@ -1,10 +1,13 @@
+import { Box } from '@/components/ui/box';
 import React from 'react';
 
 export const Table = (props: React.HTMLProps<HTMLTableElement>) => (
-  <table
-    {...props}
-    className={`w-full text-sm my-4 rounded-xl border-collapse`}
-  />
+  <Box className="w-full overflow-x-scroll">
+    <table
+      {...props}
+      className={`w-full text-sm my-4 rounded-xl border-collapse`}
+    />
+  </Box>
 );
 
 export const TableHeader = (
