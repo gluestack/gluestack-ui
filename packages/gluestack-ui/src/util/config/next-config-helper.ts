@@ -18,6 +18,10 @@ import { join, relative } from 'path';
 import { execSync } from 'child_process';
 import { ensureFilesPromise } from '..';
 import { commonInitialization } from '../init';
+import os from 'os';
+
+const _homeDir = os.homedir();
+
 //next project type initialization
 async function getNextProjectType(cwd: string): Promise<string | undefined> {
   const files = await fg.glob('**/*', {
@@ -81,10 +85,13 @@ async function initNatiwindNextApp(
     ) {
       // if app router add registry file to root
       const registryPath = isNextjs15 ? ['nextjs', 'next15'] : ['common'];
-      const currentDir = __dirname;
-      const projectRoot = path.resolve(currentDir, '../../../../..');
+      const templatesPath = join(
+        _homeDir,
+        config.gluestackDir,
+        'packages/templates'
+      );
       const registryContent = await readFile(
-        join(projectRoot, config.templatesDir, ...registryPath, 'registry.tsx'),
+        join(templatesPath, ...registryPath, 'registry.tsx'),
         'utf8'
       );
       await writeFile(resolvedConfig.app.registry, registryContent, 'utf8');

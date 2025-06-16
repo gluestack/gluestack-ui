@@ -31,6 +31,21 @@ import {
 const _currDir = process.cwd();
 const _homeDir = os.homedir();
 
+// Get package root directory
+const getPackageRoot = () => {
+  // When running from source
+  if (__dirname.includes('src')) {
+    return path.resolve(__dirname, '../../');
+  }
+  // When running from published package
+  return path.resolve(__dirname, '../');
+};
+
+// Get templates from GitHub repository
+const getTemplatesPath = () => {
+  return join(_homeDir, config.gluestackDir, 'packages/templates');
+};
+
 const readFileAsync = promisify(fs.readFile);
 const writeFileAsync = promisify(fs.writeFile);
 
@@ -125,16 +140,9 @@ async function addProvider(isNextjs15: boolean | undefined) {
     await fs.ensureDir(targetPath);
     await fs.copy(sourcePath, targetPath);
     if (isNextjs15) {
-      const currentDir = __dirname;
-      const projectRoot = path.resolve(currentDir, '../../../../..');
+      const templatesPath = getTemplatesPath();
       const providerContent = await readFile(
-        join(
-          projectRoot,
-          config.templatesDir,
-          'nextjs',
-          'next15',
-          'index.web.tsx'
-        ),
+        join(templatesPath, 'nextjs', 'next15', 'index.web.tsx'),
         'utf8'
       );
       await writeFile(
@@ -199,13 +207,8 @@ async function updateTailwindConfig(
   projectType: string
 ) {
   try {
-    const currentDir = __dirname;
-    const projectRoot = path.resolve(currentDir, '../../../../..');
-    const tailwindConfigRootPath = join(
-      projectRoot,
-      config.templatesDir,
-      'tailwind.config.js'
-    );
+    const templatesPath = getTemplatesPath();
+    const tailwindConfigRootPath = join(templatesPath, 'tailwind.config.js');
     const tailwindConfigPath = resolvedConfig.tailwind.config;
     await fs.copy(tailwindConfigRootPath, tailwindConfigPath);
   } catch (err) {
@@ -275,8 +278,7 @@ async function updateTSConfig(
 async function updateGlobalCss(resolvedConfig: RawConfig): Promise<void> {
   try {
     const globalCSSPath = resolvedConfig.tailwind.css;
-    const currentDir = __dirname;
-    const projectRoot = path.resolve(currentDir, '../../../../..');
+    const templatesPath = getTemplatesPath();
 
     // Determine which template to use based on the target filename
     const cssFileName = path.basename(globalCSSPath);
@@ -284,7 +286,7 @@ async function updateGlobalCss(resolvedConfig: RawConfig): Promise<void> {
       cssFileName === 'globals.css' ? 'globals.css' : 'global.css';
 
     const globalCSSContent = await fs.readFile(
-      join(projectRoot, config.templatesDir, 'common', templateCSSFile),
+      join(templatesPath, 'common', templateCSSFile),
       'utf8'
     );
     const existingContent = await fs.readFile(globalCSSPath, 'utf8');
@@ -299,11 +301,7 @@ async function updateGlobalCss(resolvedConfig: RawConfig): Promise<void> {
     } else if (existingContent.includes(globalCSSContent)) {
       return;
     } else {
-      await fs.appendFile(
-        globalCSSPath,
-        globalCSSContent.toString(), // Convert buffer to string
-        'utf8'
-      );
+      await fs.appendFile(globalCSSPath, globalCSSContent.toString(), 'utf8');
     }
   } catch (err) {
     log.error(`\x1b[31mError: ${err as Error}\x1b[0m`);
@@ -346,9 +344,8 @@ async function commonInitialization(
       )
       .filter((fileName): fileName is string => fileName !== null);
 
-    const currentDir = __dirname;
-    const projectRoot = path.resolve(currentDir, '../../../../..');
-    const resourcePath = join(projectRoot, config.templatesDir, projectType);
+    const templatesPath = getTemplatesPath();
+    const resourcePath = join(templatesPath, projectType);
 
     //if any filepath
     if (existsSync(resourcePath)) {
@@ -357,8 +354,8 @@ async function commonInitialization(
       //if any fileName in resourcePath matches with the resolvedConfigFileNames, copy the file
       await Promise.all(
         filesAndFolders.map(async (file) => {
-          const templateFileName = path.parse(file).name; // Get filename without extension
-          const templateFileExt = path.parse(file).ext; // Get extension
+          const templateFileName = path.parse(file).name;
+          const templateFileExt = path.parse(file).ext;
 
           // Check if any resolved config file matches this template file
           const matchingConfigFile = resolvedConfigFileNames.find(
@@ -366,7 +363,6 @@ async function commonInitialization(
               const configName = path.parse(configFileName).name;
               const configExt = path.parse(configFileName).ext;
 
-              // Match by name first, then prefer exact extension match or fallback to any extension
               return (
                 configName === templateFileName &&
                 (configExt === templateFileExt ||
@@ -379,27 +375,41 @@ async function commonInitialization(
 
           if (matchingConfigFile) {
             const targetFileName = matchingConfigFile;
-            await copy(
-              join(resourcePath, file),
-              join(_currDir, targetFileName),
-              {
+            const targetPath = join(_currDir, targetFileName);
+
+            // Ensure the directory exists
+            await fs.ensureDir(path.dirname(targetPath));
+
+            // Copy the file with error handling
+            try {
+              await fs.copy(join(resourcePath, file), targetPath, {
                 overwrite: true,
+                errorOnExist: false,
+              });
+            } catch (err) {
+              // If the file doesn't exist, create it
+              if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
+                await fs.writeFile(
+                  targetPath,
+                  await fs.readFile(join(resourcePath, file))
+                );
+              } else {
+                throw err;
               }
-            );
+            }
           }
         })
       );
     }
 
     //add nativewind-env.d.ts contents
-    const templatesPath = join(
-      projectRoot,
-      config.templatesDir,
+    const nativewindEnvPath = join(
+      templatesPath,
       'common',
       'nativewind-env.d.ts'
     );
 
-    await fs.copy(templatesPath, join(_currDir, 'nativewind-env.d.ts'));
+    await fs.copy(nativewindEnvPath, join(_currDir, 'nativewind-env.d.ts'));
 
     // Copy utils directory
     await addUtils();

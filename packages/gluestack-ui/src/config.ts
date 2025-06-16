@@ -11,7 +11,7 @@ const config = {
   tailwindConfigRootPath: 'packages/templates/tailwind.config.js',
   writableComponentsPath: 'components/ui',
   writableUtilsPath: 'utils',
-  branchName: 'feat/gluestack-ui-cli',
+  branchName: 'feat/v3',
   style: 'nativewind',
   providerComponent: 'gluestack-ui-provider',
   nativewindUtilPattern: '@/utils/gluestack-utils/nativewind/utils/',
