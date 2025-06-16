@@ -28,7 +28,10 @@
     "watch": "tsc --watch",
     "build": "tsc",
     "prepare": "tsc",
-    "test": "echo 'Test passed'"
+    "test": "echo 'Test passed'",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "changeset publish"
   },
   "husky": {
     "hooks": {

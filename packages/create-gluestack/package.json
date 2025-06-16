@@ -1,6 +1,6 @@
 {
   "name": "create-gluecode",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "./dist/index.js",
   "bin": {
     "create-gluecode": "./dist/index.js"
@@ -11,7 +11,10 @@
   "scripts": {
     "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "changeset publish"
   },
   "keywords": [
     "gluestack",
@@ -33,6 +36,7 @@
     "fs-extra": "^11.1.1"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.4",
     "@types/fs-extra": "^11.0.0",
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0"
