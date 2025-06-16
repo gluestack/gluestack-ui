@@ -21,11 +21,13 @@ export function CodePreviewer({
   code,
   argTypes,
   reactLive,
+  importMap,
 }: {
   code: string;
   message: string;
   argTypes: Record<string, any>;
   reactLive: any;
+  importMap: Record<string, string[]>;
 }) {
   // Initialize state with default values from args
   const [values, setValues] = useState<Record<string, any>>({});
@@ -54,6 +56,10 @@ export function CodePreviewer({
     }));
   };
 
+  const importText = Object.entries(importMap).map(([key, value]) => {
+    return `import { ${value.join(', ')} } from '${key}';`;
+  });
+  console.log(importText);
   // Generic controller component
   const ArgController = ({ name, config }: { name: string; config: any }) => {
     const { control, options, defaultValue } = config;
@@ -148,7 +154,7 @@ export function CodePreviewer({
         )}
       </Box>
       <CodeBlock
-        code={compiledCode}
+        code={importText.join('\n') + '\n\n' + compiledCode}
         language="tsx"
         className="rounded-b-lg rounded-t-none border-t-0"
       />

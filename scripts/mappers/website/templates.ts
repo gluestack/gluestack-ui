@@ -32,7 +32,8 @@ export const codePreviewerTemplate = (
   argTypes: string,
   reactLive: string,
   title: string,
-  description: string
+  description: string,
+  importMap: Record<string, string[]>
 ) =>
   `
   ${title && `#### ${title}`}
@@ -43,6 +44,7 @@ export const codePreviewerTemplate = (
   code={\`${code}\`}
   argTypes={${argTypes}}
   reactLive={${reactLive}}
+  importMap={${JSON.stringify(importMap)}}
 />`;
 
 export const layoutTemplate = (frontMatter: Record<string, any>) => {
