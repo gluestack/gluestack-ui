@@ -1,5 +1,5 @@
 {
-  "name": "gluestack-ui",
+  "name": "gluecode-ui",
   "keywords": [
     "react",
     "react-native",
@@ -10,13 +10,16 @@
     "cli"
   ],
   "description": "A CLI tool for easily adding components from gluestack to your projects.",
-  "version": "0.7.22",
+  "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
     "dist",
     "template"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=18"
   },
@@ -33,7 +36,7 @@
     }
   },
   "bin": {
-    "gluestack-cli": "dist/index.js"
+    "gluecode-ui": "./dist/index.js"
   },
   "prettier": {
     "printWidth": 80,
