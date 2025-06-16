@@ -27,7 +27,7 @@ export function CodePreviewer({
   message: string;
   argTypes: Record<string, any>;
   reactLive: any;
-  importMap: Record<string, string[]>;
+  importMap?: Record<string, string[]>;
 }) {
   // Initialize state with default values from args
   const [values, setValues] = useState<Record<string, any>>({});
@@ -56,9 +56,11 @@ export function CodePreviewer({
     }));
   };
 
-  const importText = Object.entries(importMap).map(([key, value]) => {
-    return `import { ${value.join(', ')} } from '${key}';`;
-  });
+  const importText = importMap
+    ? Object.entries(importMap).map(([key, value]) => {
+        return `import { ${value.join(', ')} } from '${key}';`;
+      })
+    : [];
   console.log(importText);
   // Generic controller component
   const ArgController = ({ name, config }: { name: string; config: any }) => {
@@ -106,18 +108,18 @@ export function CodePreviewer({
     if (control?.type === 'boolean' || typeof defaultValue === 'boolean') {
       return (
         <Box className="flex flex-col gap-2">
-          <Text className="text-lg" htmlFor={name}>
+          <Text className="text-sm" htmlFor={name}>
             {name}:
           </Text>
           <Switch
-            size="md"
+            size="sm"
             isDisabled={false}
             trackColor={{ false: '#D4D4D4', true: '#005DB4' }}
             thumbColor={'#FAFAFA'}
             activeThumbColor={'#FAFAFA'}
             ios_backgroundColor={'#D4D4D4'}
             value={values[name] ?? defaultValue}
-            onToggle={() => handleChange(name, !values[name])}
+ j           onToggle={() => handleChange(name, !values[name])}
           />
         </Box>
       );
