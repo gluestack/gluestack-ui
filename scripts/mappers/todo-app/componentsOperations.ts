@@ -7,9 +7,9 @@ import {
 
 const mapperConfig: MapperConfig = {
   sourcePath: path.resolve('packages/components/ui'),
-  destPath: path.resolve('apps/starter-kit-next/components/ui'),
+  destPath: path.resolve('apps/todo-app/components/ui'),
   utilsSourcePath: path.resolve('packages/utils/gluestack-utils'),
-  utilsDestPath: path.resolve('apps/starter-kit-next/utils/gluestack-utils'),
+  utilsDestPath: path.resolve('apps/todo-app/utils/gluestack-utils'),
   ignoreFiles: ['docs', 'examples'],
 };
 

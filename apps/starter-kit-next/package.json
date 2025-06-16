@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@legendapp/motion": "^2.4.0",
     "nativewind": "^4.1.23",
     "next": "15.3.3",
     "react": "^19.0.0",
@@ -16,10 +17,12 @@
     "react-dom": "^19.0.0",
     "react-native-svg": "^15.12.0",
     "react-native-web": "^0.20.0",
+    "react-stately": "^3.39.0",
     "tailwind-variants": "^1.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@react-native/assets-registry": "^0.79.3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

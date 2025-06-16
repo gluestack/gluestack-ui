@@ -9,7 +9,7 @@ export default {
       componentOperations.deleteComponentDocs(component);
     } else {
       // copy the component code
-      componentOperations.copyComponent(component);
+      componentOperations.copyComponent(component, event);
       if (component !== 'gluestack-ui-provider' && component !== 'overlay') {
         docsOperations.copyComponentsDocs(component);
       }

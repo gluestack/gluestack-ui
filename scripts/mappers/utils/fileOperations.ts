@@ -6,8 +6,37 @@ export const copyDir = (
   dest: string,
   ignoreFiles: string[] = []
 ) => {
-  // Don't create the destination directory yet - only create it when we have files to copy
+  // Check if source exists
   if (!fs.existsSync(src)) {
+    return;
+  }
+
+  // Get stats to determine if it's a file or directory
+  const srcStats = fs.statSync(src);
+
+  // If source is a file, copy it directly
+  if (srcStats.isFile()) {
+    // Extract filename from source path
+    const fileName = path.basename(src);
+
+    // Skip if the file should be ignored
+    if (ignoreFiles.includes(fileName)) {
+      return;
+    }
+
+    // Ensure destination directory exists
+    const destDir = path.dirname(dest);
+    if (!fs.existsSync(destDir)) {
+      fs.mkdirSync(destDir, { recursive: true });
+    }
+
+    // Copy the file
+    fs.copyFileSync(src, dest);
+    return;
+  }
+
+  // If source is not a directory, return
+  if (!srcStats.isDirectory()) {
     return;
   }
 
@@ -88,6 +117,20 @@ const hasFilesInDirectory = (
   }
 
   return false;
+};
+
+export const copyFile = (src: string, dest: string) => {
+  if (!fs.existsSync(src)) {
+    return;
+  }
+
+  // Ensure destination directory exists
+  const destDir = path.dirname(dest);
+  if (!fs.existsSync(destDir)) {
+    fs.mkdirSync(destDir, { recursive: true });
+  }
+
+  fs.copyFileSync(src, dest);
 };
 
 export const pathExists = (filePath: string): boolean => {

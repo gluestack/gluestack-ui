@@ -1,26 +1,22 @@
 import path from 'path';
-import * as fileOps from '../utils/fileOperations';
+import {
+  processComponentChange,
+  copyUtils,
+  MapperConfig,
+} from '../utils/componentOperations';
 
-export const copyComponent = (component: string) => {
-  const sourcePath = path.resolve('packages/components/ui');
-  const destPath = path.resolve('apps/starter-kit-expo/components/ui');
-  const componentPath = path.join(sourcePath, component);
-  const destComponentPath = path.join(destPath, component);
-  try {
-    fileOps.copyDir(componentPath, destComponentPath, ['docs', 'examples']);
-  } catch (error) {
-    console.error(`error in copying components:${component}`, error);
-  }
+const mapperConfig: MapperConfig = {
+  sourcePath: path.resolve('packages/components/ui'),
+  destPath: path.resolve('apps/starter-kit-expo/components/ui'),
+  utilsSourcePath: path.resolve('packages/utils/gluestack-utils'),
+  utilsDestPath: path.resolve('apps/starter-kit-expo/utils/gluestack-utils'),
+  ignoreFiles: ['docs', 'examples'],
+};
+
+export const copyComponent = (component: string, event: string = 'added') => {
+  processComponentChange(component, event, mapperConfig);
 };
 
 export const processNonComponentFile = (filePath: string) => {
-  const packagesDir = path.resolve('packages/utils/gluestack-utils');
-  const starterKitDir = path.resolve(
-    'apps/starter-kit-expo/utils/gluestack-utils'
-  );
-  try {
-    fileOps.copyDir(packagesDir, starterKitDir);
-  } catch (error) {
-    console.error(`error in copying utils, ${filePath}`, error);
-  }
+  copyUtils(mapperConfig);
 };

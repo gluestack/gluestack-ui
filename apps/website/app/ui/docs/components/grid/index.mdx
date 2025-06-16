@@ -889,3 +889,8 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
 />
+
+
+#### Why we introduced _extra prop?
+
+Grid Layout is not supported in native. In order to make our component universal, we introduced the `_extra` prop to pass the grid classnames to the grid component. We use the `_extra` prop to pass the grid classnames to the grid component & extract the neccessary styles from the provided classname. This approach provides a SSR friendly solution for responsiveness.

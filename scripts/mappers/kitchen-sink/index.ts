@@ -2,7 +2,7 @@ import * as componentOperations from './componentsOperations';
 import * as docsOperations from './docsOperations';
 export default {
   component: function (component: string, event = 'added') {
-    componentOperations.copyComponent(component);
+    componentOperations.copyComponent(component, event);
     docsOperations.copyComponentsDocs(component);
   },
   nonComponent: function (path: string) {

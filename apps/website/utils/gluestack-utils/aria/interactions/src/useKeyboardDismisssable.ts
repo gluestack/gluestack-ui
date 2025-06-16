@@ -56,17 +56,24 @@ export function useBackHandler({ enabled, callback }: IParams) {
         document?.body?.removeEventListener?.('keyup', handleEscape);
       };
     } else {
-      let backHandler = () => {
+      let subscription: any = null;
+      const backHandler = () => {
         callback();
         return true;
       };
+
       if (enabled) {
-        BackHandler.addEventListener('hardwareBackPress', backHandler);
-      } else {
-        BackHandler.removeEventListener('hardwareBackPress', backHandler);
+        subscription = BackHandler.addEventListener(
+          'hardwareBackPress',
+          backHandler
+        );
       }
-      return () =>
-        BackHandler.removeEventListener('hardwareBackPress', backHandler);
+
+      return () => {
+        if (subscription && subscription.remove) {
+          subscription.remove();
+        }
+      };
     }
   }, [enabled, callback]);
 }
