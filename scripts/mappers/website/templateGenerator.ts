@@ -35,15 +35,29 @@ export const generateCodePreviewer = (
     const argTypes = JSON.stringify(meta.argTypes || {}, null, 2);
     const reactLiveKeys = meta.reactLive ? Object.keys(meta.reactLive) : [];
     const reactLive = `{ ${reactLiveKeys.join(', ')} }`;
-    // Add reactLive imports to importMap
+    const importExampleMap: ImportMap = {};
+    
+    // Add reactLive imports to importExampleMap for this specific example
     reactLiveKeys.forEach((key) => {
       const value = meta.reactLive[key];
-      if (!importMap[value]) {
-        importMap[value] = [];
+      if (!importExampleMap[value]) {
+        importExampleMap[value] = [];
       }
-      if (!importMap[value].includes(key)) {
-        importMap[value].push(key);
+      if (!importExampleMap[value].includes(key)) {
+        importExampleMap[value].push(key);
       }
+    });
+
+    // Merge example imports into the main importMap
+    Object.entries(importExampleMap).forEach(([path, imports]) => {
+      if (!importMap[path]) {
+        importMap[path] = [];
+      }
+      imports.forEach(imp => {
+        if (!importMap[path].includes(imp)) {
+          importMap[path].push(imp);
+        }
+      });
     });
 
     // If this is the basic example, copy it to the docs components folder
@@ -86,7 +100,8 @@ export const generateCodePreviewer = (
       argTypes,
       reactLive,
       title,
-      description
+      description,
+      importExampleMap
     );
   } catch (error) {
     console.error(

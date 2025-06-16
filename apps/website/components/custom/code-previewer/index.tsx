@@ -21,11 +21,13 @@ export function CodePreviewer({
   code,
   argTypes,
   reactLive,
+  importMap,
 }: {
   code: string;
   message: string;
   argTypes: Record<string, any>;
   reactLive: any;
+  importMap?: Record<string, string[]>;
 }) {
   // Initialize state with default values from args
   const [values, setValues] = useState<Record<string, any>>({});
@@ -54,6 +56,12 @@ export function CodePreviewer({
     }));
   };
 
+  const importText = importMap
+    ? Object.entries(importMap).map(([key, value]) => {
+        return `import { ${value.join(', ')} } from '${key}';`;
+      })
+    : [];
+  console.log(importText);
   // Generic controller component
   const ArgController = ({ name, config }: { name: string; config: any }) => {
     const { control, options, defaultValue } = config;
@@ -61,7 +69,7 @@ export function CodePreviewer({
     if (control?.type === 'select') {
       return (
         <Box className="control-item">
-          <Text className="text-lg">{name}:</Text>
+          <Text className="text-xs">{name}</Text>
           <Select
             className="w-full"
             onValueChange={(value: string) => handleChange(name, value)}
@@ -72,7 +80,7 @@ export function CodePreviewer({
               size="md"
             >
               <SelectInput
-                className="text-typography-900 text-lg font-medium placeholder:text-typography-900"
+                className="text-typography-900 text-sm font-medium placeholder:text-typography-900"
                 placeholder={values[name]}
               />
               <SelectIcon
@@ -100,18 +108,18 @@ export function CodePreviewer({
     if (control?.type === 'boolean' || typeof defaultValue === 'boolean') {
       return (
         <Box className="flex flex-col gap-2">
-          <Text className="text-lg" htmlFor={name}>
-            {name}:
+          <Text className="text-sm" htmlFor={name}>
+            {name}
           </Text>
           <Switch
-            size="md"
+            size="sm"
             isDisabled={false}
             trackColor={{ false: '#D4D4D4', true: '#005DB4' }}
             thumbColor={'#FAFAFA'}
             activeThumbColor={'#FAFAFA'}
             ios_backgroundColor={'#D4D4D4'}
             value={values[name] ?? defaultValue}
-            onToggle={() => handleChange(name, !values[name])}
+ j           onToggle={() => handleChange(name, !values[name])}
           />
         </Box>
       );
@@ -131,8 +139,14 @@ export function CodePreviewer({
   return (
     <Box className="flex flex-col w-full my-2">
       <Box className="-mb-2 border border-outline-100 rounded-t-lg flex-col flex w-full min-h-[200px] md:flex-row">
+        <Box className="p-4 md:border-r border-outline-100 flex-1 flex items-center justify-center w-full ">
+          <LiveProvider code={compiledCode} scope={{ ...reactLive }}>
+            <LiveError />
+            <LivePreview className=" flex items-center justify-center  w-full" />
+          </LiveProvider>
+        </Box>
         {Object.keys(argTypes).length > 0 && (
-          <Box className="p-4 md:border-r border-b py-10 border-outline-100 flex-1">
+          <Box className="p-4  border-b py-10  flex-1">
             <Box className="flex flex-col gap-2">
               {Object.entries(argTypes).map(([key, value]) => (
                 <ArgController key={key} name={key} config={value} />
@@ -140,15 +154,9 @@ export function CodePreviewer({
             </Box>
           </Box>
         )}
-        <Box className="p-4 flex-1 flex items-center justify-center w-full ">
-          <LiveProvider code={compiledCode} scope={{ ...reactLive }}>
-            <LiveError />
-            <LivePreview className=" flex items-center justify-center  w-full" />
-          </LiveProvider>
-        </Box>
       </Box>
       <CodeBlock
-        code={compiledCode}
+        code={importText.join('\n') + '\n\n' + compiledCode}
         language="tsx"
         className="rounded-b-lg rounded-t-none border-t-0"
       />

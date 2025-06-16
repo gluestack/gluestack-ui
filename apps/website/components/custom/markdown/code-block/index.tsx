@@ -11,12 +11,22 @@ import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-diff';
 import { ThemeContext } from '@/utils/context/theme-context';
 import './styles.css';
-import { CopyIcon } from 'lucide-react-native';
-
+import { Icon } from '@/components/ui/icon';
+import { CheckIcon, CopyIcon } from 'lucide-react-native';
+import * as prettier from 'prettier';
+import prettierPluginBabel from 'prettier/plugins/babel';
+import prettierPluginEstree from 'prettier/plugins/estree';
+import prettierPluginTypescript from 'prettier/plugins/typescript';
+import prettierPluginCSS from 'prettier/plugins/postcss';
+import prettierPluginHTML from 'prettier/plugins/html';
 // Theme configurations
 const themes = {
   light: {
     background: '#F5F5F5',
+    fontFamily: 'var(--font-mono-space-mono)',
+    fontSize: '14px',
+    fontWeight: '500',
+    lineHeight: '24px',
     text: '#728FCB',
     comment: '#8E908C',
     keyword: '#728FCB',
@@ -28,6 +38,10 @@ const themes = {
   },
   dark: {
     background: '#171717',
+    fontFamily: 'var(--font-mono-space-mono)',
+    fontSize: '14px',
+    fontWeight: '500',
+    lineHeight: '24px',
     text: '#9CDCFE',
     comment: '#D4D4D4',
     keyword: '#9CDCFE',
@@ -51,13 +65,40 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   className,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [formattedCode, setFormattedCode] = useState(code);
   const codeRef = useRef<HTMLElement>(null);
   const { colorMode } = useContext(ThemeContext);
   const currentTheme = themes[colorMode as keyof typeof themes];
 
   useEffect(() => {
+    const formatCode = async () => {
+      try {
+        const parser = language === 'tsx' ? 'typescript' : language;
+        const formatted = await prettier.format(code, {
+          parser,
+          plugins: [
+            prettierPluginBabel,
+            prettierPluginEstree,
+            prettierPluginTypescript,
+            prettierPluginCSS,
+            prettierPluginHTML,
+          ],
+          semi: true,
+          singleQuote: true,
+          trailingComma: 'es5',
+        });
+        setFormattedCode(formatted);
+      } catch (error) {
+        console.error('Error formatting code:', error);
+        setFormattedCode(code);
+      }
+    };
+    formatCode();
+  }, [code, language]);
+
+  useEffect(() => {
     Prism.highlightAll();
-  }, [code]);
+  }, [formattedCode]);
 
   const handleCopy = () => {
     if (codeRef.current) {
@@ -77,6 +118,10 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   const themeStyles = {
     '--prism-background': currentTheme.background,
     '--prism-text': currentTheme.text,
+    '--prism-font-size': currentTheme.fontSize,
+    '--prism-font-weight': currentTheme.fontWeight,
+    '--prism-font-family': currentTheme.fontFamily,
+    '--prism-line-height': currentTheme.lineHeight,
     '--prism-comment': currentTheme.comment,
     '--prism-keyword': currentTheme.keyword,
     '--prism-string': currentTheme.string,
@@ -92,7 +137,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
         className={`language-${language} border border-outline-100 rounded-lg max-h-[400px] overflow-y-auto p-6 [&::-webkit-scrollbar-track]:bg-transparent ${className}`}
         style={themeStyles}
       >
-        <code ref={codeRef}>{code}</code>
+        <code ref={codeRef}>{formattedCode}</code>
       </pre>
       <button
         onClick={handleCopy}
@@ -100,7 +145,11 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
       >
         <div className="flex items-center gap-2">
           {/* @ts-ignore */}
-          <CopyIcon className={`w-4 h-4 ${copied ? 'text-green-500' : ''}`} />
+          <Icon
+            as={CopyIcon}
+            size={16}
+            className={` ${copied ? 'text-green-500' : ''}`}
+          />
           {copied ? 'Copied!' : ''}
         </div>
       </button>
