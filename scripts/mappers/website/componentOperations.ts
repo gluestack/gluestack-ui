@@ -10,7 +10,7 @@ import * as fileOps from '../utils/fileOperations';
 const mapperConfig: MapperConfig = {
   sourcePath: path.resolve('packages/components/ui'),
   destPath: path.resolve('apps/website/components/ui'),
-  utilsSourcePath: path.resolve('packages/utils/gluestack-utils'),
+  utilsSourcePath: path.resolve('src/utils/gluestack-utils'),
   utilsDestPath: path.resolve('apps/website/utils/gluestack-utils'),
   ignoreFiles: ['docs', 'examples'],
 };

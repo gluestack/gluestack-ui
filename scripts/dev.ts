@@ -106,7 +106,7 @@ const shouldProcessFile = (filePath: string): boolean => {
   // Only process files in our target directories
   const targetDirs = [
     'packages/components',
-    'packages/utils',
+    'src/utils',
     'packages/docs',
     'packages/sidebar.json',
   ];
