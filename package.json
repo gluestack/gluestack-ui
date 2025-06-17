@@ -19,12 +19,20 @@
     "sync:todo-app": "tsx --watch scripts/dev.ts --mapper=todo-app --sync",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
-    "build:website": "cd apps/website && yarn build"
+    "build:website": "cd apps/website && yarn build",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.4",
     "@tsconfig/react-native": "^3.0.5",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "tsx": "^4.19.3"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,json,md,mdx}": [
+      "prettier --write"
+    ]
   }
 }
