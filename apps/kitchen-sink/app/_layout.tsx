@@ -1,12 +1,10 @@
 import { Stack, useRouter } from 'expo-router';
 import '../global.css';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-import { Box } from '@/components/ui/box';
 import { Pressable } from 'react-native';
 import { ChevronLeftIcon, SunIcon, MoonIcon } from '@/components/ui/icon';
 import { Icon } from '@/components/ui/icon';
 import React from 'react';
-import { StyleSheet, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Fab } from '@/components/ui/fab';
 import { Text } from '@/components/ui/text';
