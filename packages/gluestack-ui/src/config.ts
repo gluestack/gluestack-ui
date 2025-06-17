@@ -8,7 +8,7 @@ const config = {
   expoProject: 'expo',
   nextJsProject: 'nextjs',
   reactNativeCLIProject: 'react-native-cli',
-  tailwindConfigRootPath: 'packages/templates/tailwind.config.js',
+  tailwindConfigRootPath: 'packages/gluestack-ui/templates/tailwind.config.js',
   writableComponentsPath: 'components/ui',
   writableUtilsPath: 'utils',
   branchName: 'feat/v3',
@@ -16,7 +16,7 @@ const config = {
   providerComponent: 'gluestack-ui-provider',
   nativewindUtilPattern: '@/utils/gluestack-utils/nativewind/utils/',
   gluestackUIPattern: '@/components/ui/',
-  templatesDir: 'packages/templates',
+  templatesDir: 'packages/gluestack-ui/templates',
   packageManager: null as string | null,
   // Ignore patterns for component copying (folders to exclude during fs.copy)
   ignoreFolders: ['docs', 'examples'],

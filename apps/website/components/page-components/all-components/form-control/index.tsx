@@ -71,37 +71,51 @@ export default function Example() {
   );
 }`}
       argTypes={{
-  "isDisabled": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": false
-  },
-  "isReadOnly": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": false
-  },
-  "isRequired": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": false
-  },
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  }
-}}
-      reactLive={{ FormControl, FormControlLabel, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlHelper, FormControlHelperText, FormControlLabelText, AlertCircleIcon, Input, InputField, InputIcon, InputSlot, Button, ButtonText, ButtonSpinner, VStack }}
+        isDisabled: {
+          control: {
+            type: 'boolean',
+          },
+          defaultValue: false,
+        },
+        isReadOnly: {
+          control: {
+            type: 'boolean',
+          },
+          defaultValue: false,
+        },
+        isRequired: {
+          control: {
+            type: 'boolean',
+          },
+          defaultValue: false,
+        },
+        size: {
+          control: {
+            type: 'select',
+          },
+          options: ['sm', 'md', 'lg'],
+          defaultValue: 'md',
+        },
+      }}
+      reactLive={{
+        FormControl,
+        FormControlLabel,
+        FormControlError,
+        FormControlErrorText,
+        FormControlErrorIcon,
+        FormControlHelper,
+        FormControlHelperText,
+        FormControlLabelText,
+        AlertCircleIcon,
+        Input,
+        InputField,
+        InputIcon,
+        InputSlot,
+        Button,
+        ButtonText,
+        ButtonSpinner,
+        VStack,
+      }}
     />
   );
 }

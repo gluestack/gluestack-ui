@@ -19,12 +19,7 @@ Discover a powerful Grid component for React & React Native with customizable la
 
 This is an illustration of **Grid** component.
 
-
-  
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Grid
@@ -56,7 +51,7 @@ This is an illustration of **Grid** component.
 }`}
   argTypes={{}}
   reactLive={{ Grid, GridItem }}
-  importMap={{"@/components/ui/grid":["Grid","GridItem"]}}
+  importMap={{ '@/components/ui/grid': ['Grid', 'GridItem'] }}
 />
 
 <br />
@@ -507,7 +502,6 @@ export const gridStyle = tva({
 export const gridItemStyle = tva({
   base: `w-full ${gridItemBaseStyle}`,
 });
-
 ```
 
 ### Step 4: Update the import paths to match your project setup.
@@ -643,12 +637,11 @@ This section provides a comprehensive reference list for the component props, de
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Setting the gap between grid items
 
-  #### Setting the gap between grid items
+Use the gap-\* utilities to change the gap between both rows and columns in grid.
 
-  Use the gap-* utilities to change the gap between both rows and columns in grid.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Grid className="gap-4" _extra=\\{{
@@ -683,15 +676,17 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
-  importMap={{"@/components/ui/grid":["Grid","GridItem"],"@/components/ui/text":["Text"]}}
+  importMap={{
+    '@/components/ui/grid': ['Grid', 'GridItem'],
+    '@/components/ui/text': ['Text'],
+  }}
 />
 
+#### Changing row and column gaps independently
 
-  #### Changing row and column gaps independently
+Use the gap-x-_ and gap-y-_ utilities to change the gap between columns and rows independently.
 
-  Use the gap-x-* and gap-y-* utilities to change the gap between columns and rows independently.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Grid className="gap-y-2 gap-x-4" _extra=\\{{
@@ -750,15 +745,17 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
-  importMap={{"@/components/ui/grid":["Grid","GridItem"],"@/components/ui/text":["Text"]}}
+  importMap={{
+    '@/components/ui/grid': ['Grid', 'GridItem'],
+    '@/components/ui/text': ['Text'],
+  }}
 />
 
+#### Nested Grids
 
-  #### Nested Grids
+The following example depicts how easily you can nest grids to create complex layouts with multiple levels of nesting.
 
-  The following example depicts how easily you can nest grids to create complex layouts with multiple levels of nesting.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Grid className="gap-3" _extra=\\{{
@@ -825,15 +822,17 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
-  importMap={{"@/components/ui/grid":["Grid","GridItem"],"@/components/ui/text":["Text"]}}
+  importMap={{
+    '@/components/ui/grid': ['Grid', 'GridItem'],
+    '@/components/ui/text': ['Text'],
+  }}
 />
 
+#### Responsive Grids
 
-  #### Responsive Grids
+You can pass different grid-cols-_ and col-span-_ values at different breakpoints to create a more responsive layout.
 
-  You can pass different grid-cols-* and col-span-* values at different breakpoints to create a more responsive layout.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Grid className="gap-y-2 gap-x-4" _extra=\\{{
@@ -892,10 +891,12 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
-  importMap={{"@/components/ui/grid":["Grid","GridItem"],"@/components/ui/text":["Text"]}}
+  importMap={{
+    '@/components/ui/grid': ['Grid', 'GridItem'],
+    '@/components/ui/text': ['Text'],
+  }}
 />
 
-
-#### Why we introduced _extra prop?
+#### Why we introduced \_extra prop?
 
 Grid Layout is not supported in native. In order to make our component universal, we introduced the `_extra` prop to pass the grid classnames to the grid component. We use the `_extra` prop to pass the grid classnames to the grid component & extract the neccessary styles from the provided classname. This approach provides a SSR friendly solution for responsiveness.

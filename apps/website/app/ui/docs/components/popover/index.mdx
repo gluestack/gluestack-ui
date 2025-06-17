@@ -1,13 +1,38 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { Popover, PopoverBackdrop, PopoverArrow, PopoverBody, PopoverContent, PopoverFooter, PopoverHeader } from '@/components/ui/popover';
+import {
+  Popover,
+  PopoverBackdrop,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverFooter,
+  PopoverHeader,
+} from '@/components/ui/popover';
 import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
-import { Avatar, AvatarGroup, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar';
+import {
+  Avatar,
+  AvatarGroup,
+  AvatarFallbackText,
+  AvatarImage,
+} from '@/components/ui/avatar';
 import { Pressable } from '@/components/ui/pressable';
 import { Heading } from '@/components/ui/heading';
 import { VStack } from '@/components/ui/vstack';
-import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from '@/components/ui/checkbox';
-import { CheckIcon, ArrowRightIcon, ChevronRightIcon, ShareIcon, ChevronDownIcon } from '@/components/ui/icon';
+import {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxIndicator,
+  CheckboxLabel,
+  CheckboxIcon,
+} from '@/components/ui/checkbox';
+import {
+  CheckIcon,
+  ArrowRightIcon,
+  ChevronRightIcon,
+  ShareIcon,
+  ChevronDownIcon,
+} from '@/components/ui/icon';
 import { Input, InputField } from '@/components/ui/input';
 import { Image } from '@/components/ui/image';
 import { HStack } from '@/components/ui/hstack';
@@ -30,12 +55,9 @@ Improve user experience with a React Popover component—perfect for contextual 
 
 This is an illustration of **Popover** component.
 
+#### Basic
 
-  #### Basic
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function App() {
   const [isOpen, setIsOpen] = React.useState(false)
   const handleOpen = () => {
@@ -73,42 +95,55 @@ This is an illustration of **Popover** component.
   )
 }`}
   argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['xs', 'sm', 'md', 'lg', 'full'],
+      defaultValue: 'md',
     },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg",
-      "full"
-    ],
-    "defaultValue": "md"
-  },
-  "placement": {
-    "control": {
-      "type": "select"
+    placement: {
+      control: {
+        type: 'select',
+      },
+      options: [
+        'top',
+        'bottom',
+        'left',
+        'right',
+        'bottom left',
+        'bottom right',
+        'top left',
+        'top right',
+        'left bottom',
+        'left right',
+        'right bottom',
+        'right top',
+      ],
+      defaultValue: 'bottom',
     },
-    "options": [
-      "top",
-      "bottom",
-      "left",
-      "right",
-      "bottom left",
-      "bottom right",
-      "top left",
-      "top right",
-      "left bottom",
-      "left right",
-      "right bottom",
-      "right top"
+  }}
+  reactLive={{
+    Popover,
+    PopoverBackdrop,
+    PopoverArrow,
+    PopoverBody,
+    PopoverContent,
+    Button,
+    ButtonText,
+    Text,
+  }}
+  importMap={{
+    '@/components/ui/popover': [
+      'Popover',
+      'PopoverBackdrop',
+      'PopoverArrow',
+      'PopoverBody',
+      'PopoverContent',
     ],
-    "defaultValue": "bottom"
-  }
-}}
-  reactLive={{ Popover, PopoverBackdrop, PopoverArrow, PopoverBody, PopoverContent, Button, ButtonText, Text }}
-  importMap={{"@/components/ui/popover":["Popover","PopoverBackdrop","PopoverArrow","PopoverBody","PopoverContent"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/text":["Text"]}}
+    '@/components/ui/button': ['Button', 'ButtonText'],
+    '@/components/ui/text': ['Text'],
+  }}
 />
 
 <br />
@@ -476,7 +511,6 @@ export {
   PopoverBody,
   PopoverContent,
 };
-
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -792,12 +826,9 @@ Popover component is created using View component from react-native. It extends 
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Popover used along with multiple Avatars
 
-  #### Popover used along with multiple Avatars
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function App() {
         const [isOpen, setIsOpen] = React.useState(false);
         const handleOpen = () => {
@@ -879,16 +910,42 @@ The Examples section provides visual representations of the different variants o
         )
       }`}
   argTypes={{}}
-  reactLive={{ Popover, PopoverBackdrop, PopoverContent, PopoverBody, PopoverArrow, Button, ButtonText, Text, Avatar, AvatarGroup, AvatarFallbackText, AvatarImage }}
-  importMap={{"@/components/ui/popover":["Popover","PopoverBackdrop","PopoverContent","PopoverBody","PopoverArrow"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/text":["Text"],"@/components/ui/avatar":["Avatar","AvatarGroup","AvatarFallbackText","AvatarImage"]}}
+  reactLive={{
+    Popover,
+    PopoverBackdrop,
+    PopoverContent,
+    PopoverBody,
+    PopoverArrow,
+    Button,
+    ButtonText,
+    Text,
+    Avatar,
+    AvatarGroup,
+    AvatarFallbackText,
+    AvatarImage,
+  }}
+  importMap={{
+    '@/components/ui/popover': [
+      'Popover',
+      'PopoverBackdrop',
+      'PopoverContent',
+      'PopoverBody',
+      'PopoverArrow',
+    ],
+    '@/components/ui/button': ['Button', 'ButtonText'],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/avatar': [
+      'Avatar',
+      'AvatarGroup',
+      'AvatarFallbackText',
+      'AvatarImage',
+    ],
+  }}
 />
 
+#### Popover with CTA
 
-  #### Popover with CTA
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function App() {
         const [isOpen, setIsOpen] = React.useState(false);
         const [values, setValues] = React.useState(['work']);
@@ -963,16 +1020,55 @@ The Examples section provides visual representations of the different variants o
         )
       }`}
   argTypes={{}}
-  reactLive={{ Pressable, Popover, PopoverBackdrop, PopoverContent, PopoverBody, PopoverFooter, Button, ButtonText, ButtonIcon, Heading, Text, VStack, Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckIcon, ArrowRightIcon, ChevronRightIcon }}
-  importMap={{"@/components/ui/pressable":["Pressable"],"@/components/ui/popover":["Popover","PopoverBackdrop","PopoverContent","PopoverBody","PopoverFooter"],"@/components/ui/button":["Button","ButtonText","ButtonIcon"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/checkbox":["Checkbox","CheckboxGroup","CheckboxIndicator","CheckboxLabel","CheckboxIcon"],"@/components/ui/icon":["CheckIcon","ArrowRightIcon","ChevronRightIcon"]}}
+  reactLive={{
+    Pressable,
+    Popover,
+    PopoverBackdrop,
+    PopoverContent,
+    PopoverBody,
+    PopoverFooter,
+    Button,
+    ButtonText,
+    ButtonIcon,
+    Heading,
+    Text,
+    VStack,
+    Checkbox,
+    CheckboxGroup,
+    CheckboxIndicator,
+    CheckboxLabel,
+    CheckboxIcon,
+    CheckIcon,
+    ArrowRightIcon,
+    ChevronRightIcon,
+  }}
+  importMap={{
+    '@/components/ui/pressable': ['Pressable'],
+    '@/components/ui/popover': [
+      'Popover',
+      'PopoverBackdrop',
+      'PopoverContent',
+      'PopoverBody',
+      'PopoverFooter',
+    ],
+    '@/components/ui/button': ['Button', 'ButtonText', 'ButtonIcon'],
+    '@/components/ui/heading': ['Heading'],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/vstack': ['VStack'],
+    '@/components/ui/checkbox': [
+      'Checkbox',
+      'CheckboxGroup',
+      'CheckboxIndicator',
+      'CheckboxLabel',
+      'CheckboxIcon',
+    ],
+    '@/components/ui/icon': ['CheckIcon', 'ArrowRightIcon', 'ChevronRightIcon'],
+  }}
 />
 
+#### Popover with Image
 
-  #### Popover with Image
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function App() {
   const [isOpen, setIsOpen] = React.useState(false)
   const handleOpen = () => {
@@ -1028,16 +1124,39 @@ The Examples section provides visual representations of the different variants o
   )
 }`}
   argTypes={{}}
-  reactLive={{ Popover, PopoverBackdrop, PopoverContent, PopoverBody, Button, ButtonText, Heading, Text, VStack, Input, InputField, Image }}
-  importMap={{"@/components/ui/popover":["Popover","PopoverBackdrop","PopoverContent","PopoverBody"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/input":["Input","InputField"],"@/components/ui/image":["Image"]}}
+  reactLive={{
+    Popover,
+    PopoverBackdrop,
+    PopoverContent,
+    PopoverBody,
+    Button,
+    ButtonText,
+    Heading,
+    Text,
+    VStack,
+    Input,
+    InputField,
+    Image,
+  }}
+  importMap={{
+    '@/components/ui/popover': [
+      'Popover',
+      'PopoverBackdrop',
+      'PopoverContent',
+      'PopoverBody',
+    ],
+    '@/components/ui/button': ['Button', 'ButtonText'],
+    '@/components/ui/heading': ['Heading'],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/vstack': ['VStack'],
+    '@/components/ui/input': ['Input', 'InputField'],
+    '@/components/ui/image': ['Image'],
+  }}
 />
 
+#### Popover with InputField
 
-  #### Popover with InputField
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   const [showPopover, setShowPopover] = React.useState(false);
   return (
@@ -1121,6 +1240,42 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ Popover, PopoverBackdrop, PopoverContent, PopoverHeader, PopoverBody, Button, ButtonText, ButtonIcon, Heading, Text, HStack, VStack, Input, InputField, Avatar, AvatarFallbackText, AvatarImage, ShareIcon, ChevronDownIcon }}
-  importMap={{"@/components/ui/popover":["Popover","PopoverBackdrop","PopoverContent","PopoverHeader","PopoverBody"],"@/components/ui/button":["Button","ButtonText","ButtonIcon"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/hstack":["HStack"],"@/components/ui/vstack":["VStack"],"@/components/ui/input":["Input","InputField"],"@/components/ui/avatar":["Avatar","AvatarFallbackText","AvatarImage"],"@/components/ui/icon":["ShareIcon","ChevronDownIcon"]}}
+  reactLive={{
+    Popover,
+    PopoverBackdrop,
+    PopoverContent,
+    PopoverHeader,
+    PopoverBody,
+    Button,
+    ButtonText,
+    ButtonIcon,
+    Heading,
+    Text,
+    HStack,
+    VStack,
+    Input,
+    InputField,
+    Avatar,
+    AvatarFallbackText,
+    AvatarImage,
+    ShareIcon,
+    ChevronDownIcon,
+  }}
+  importMap={{
+    '@/components/ui/popover': [
+      'Popover',
+      'PopoverBackdrop',
+      'PopoverContent',
+      'PopoverHeader',
+      'PopoverBody',
+    ],
+    '@/components/ui/button': ['Button', 'ButtonText', 'ButtonIcon'],
+    '@/components/ui/heading': ['Heading'],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/hstack': ['HStack'],
+    '@/components/ui/vstack': ['VStack'],
+    '@/components/ui/input': ['Input', 'InputField'],
+    '@/components/ui/avatar': ['Avatar', 'AvatarFallbackText', 'AvatarImage'],
+    '@/components/ui/icon': ['ShareIcon', 'ChevronDownIcon'],
+  }}
 />

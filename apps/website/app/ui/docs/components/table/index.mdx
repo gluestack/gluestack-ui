@@ -1,5 +1,13 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter } from '@/components/ui/table';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableData,
+  TableFooter,
+} from '@/components/ui/table';
 
 # Table
 
@@ -7,12 +15,7 @@ Effortlessly manage tabular data with gluestack-ui Table component. A fully cust
 
 This is an illustration of **Table** component.
 
-
-  
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Table className="w-full">
@@ -61,6 +64,24 @@ This is an illustration of **Table** component.
   )
 }`}
   argTypes={{}}
-  reactLive={{ Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter }}
-  importMap={{"@/components/ui/table":["Table","TableBody","TableHeader","TableRow","TableHead","TableData","TableFooter"]}}
+  reactLive={{
+    Table,
+    TableBody,
+    TableHeader,
+    TableRow,
+    TableHead,
+    TableData,
+    TableFooter,
+  }}
+  importMap={{
+    '@/components/ui/table': [
+      'Table',
+      'TableBody',
+      'TableHeader',
+      'TableRow',
+      'TableHead',
+      'TableData',
+      'TableFooter',
+    ],
+  }}
 />

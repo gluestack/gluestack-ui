@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { VStack } from "@/components/ui/vstack";
-import { FormControl } from "@/components/ui/form-control";
-import { Input, InputField, InputIcon } from "@/components/ui/input";
-import { AddIcon } from "@/components/ui/icon";
-import { Pressable } from "@/components/ui/pressable";
-import { defaultTodos } from "@/constants/todo";
-import TodoContainer, { Todo } from "@/components/app-components/TodoContainer";
-import shortid from "shortid";
+import React, { useState } from 'react';
+import { VStack } from '@/components/ui/vstack';
+import { FormControl } from '@/components/ui/form-control';
+import { Input, InputField, InputIcon } from '@/components/ui/input';
+import { AddIcon } from '@/components/ui/icon';
+import { Pressable } from '@/components/ui/pressable';
+import { defaultTodos } from '@/constants/todo';
+import TodoContainer, { Todo } from '@/components/app-components/TodoContainer';
+import shortid from 'shortid';
 
 const Home = () => {
-  const [item, setItem] = useState("");
+  const [item, setItem] = useState('');
   const [todos, setTodos] = useState<Todo[]>(defaultTodos);
 
   const addTodo = (task: string) => {
     const lastTodo = todos[todos?.length - 1];
-    if (lastTodo?.task !== "" && task !== "") {
+    if (lastTodo?.task !== '' && task !== '') {
       setTodos([
         ...todos,
         {
@@ -23,7 +23,7 @@ const Home = () => {
           completed: false,
         },
       ]);
-      setItem("");
+      setItem('');
     }
   };
 

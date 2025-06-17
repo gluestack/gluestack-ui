@@ -58,7 +58,15 @@ export default function Example() {
   )
 }`}
       argTypes={{}}
-      reactLive={{ Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter }}
+      reactLive={{
+        Table,
+        TableBody,
+        TableHeader,
+        TableRow,
+        TableHead,
+        TableData,
+        TableFooter,
+      }}
     />
   );
 }

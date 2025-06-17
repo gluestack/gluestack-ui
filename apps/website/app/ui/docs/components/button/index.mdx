@@ -1,6 +1,17 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { Button, ButtonText, ButtonSpinner, ButtonIcon } from '@/components/ui/button';
-import { EditIcon, ArrowUpIcon, InfoIcon, AddIcon, ArrowLeftIcon } from '@/components/ui/icon';
+import {
+  Button,
+  ButtonText,
+  ButtonSpinner,
+  ButtonIcon,
+} from '@/components/ui/button';
+import {
+  EditIcon,
+  ArrowUpIcon,
+  InfoIcon,
+  AddIcon,
+  ArrowLeftIcon,
+} from '@/components/ui/icon';
 import { Box } from '@/components/ui/box';
 import { Center } from '@/components/ui/center';
 import { Heading } from '@/components/ui/heading';
@@ -26,12 +37,7 @@ Discover a powerful button component for React & React Native with customizable 
 
 This is an illustration of **Button** component.
 
-
-  
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Button variant="{{variant}}" size="{{size}}" action="{{action}}">
@@ -40,44 +46,30 @@ This is an illustration of **Button** component.
   )
 }`}
   argTypes={{
-  "variant": {
-    "control": {
-      "type": "select"
+    variant: {
+      control: {
+        type: 'select',
+      },
+      options: ['solid', 'outline', 'link'],
+      defaultValue: 'solid',
     },
-    "options": [
-      "solid",
-      "outline",
-      "link"
-    ],
-    "defaultValue": "solid"
-  },
-  "action": {
-    "control": {
-      "type": "select"
+    action: {
+      control: {
+        type: 'select',
+      },
+      options: ['primary', 'secondary', 'positive', 'negative'],
+      defaultValue: 'primary',
     },
-    "options": [
-      "primary",
-      "secondary",
-      "positive",
-      "negative"
-    ],
-    "defaultValue": "primary"
-  },
-  "size": {
-    "control": {
-      "type": "select"
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['xs', 'sm', 'md', 'lg'],
+      defaultValue: 'md',
     },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  }
-}}
+  }}
   reactLive={{ Button, ButtonText }}
-  importMap={{"@/components/ui/button":["Button","ButtonText"]}}
+  importMap={{ '@/components/ui/button': ['Button', 'ButtonText'] }}
 />
 
 <br />
@@ -835,12 +827,11 @@ Component receives states as props as boolean values, which are applied as `data
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Button with Loading State
 
-  #### Button with Loading State
+A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress.
 
-  A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Button className='p-3'>
@@ -851,15 +842,16 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Button, ButtonText, ButtonSpinner }}
-  importMap={{"@/components/ui/button":["Button","ButtonText","ButtonSpinner"]}}
+  importMap={{
+    '@/components/ui/button': ['Button', 'ButtonText', 'ButtonSpinner'],
+  }}
 />
 
+#### Icon Button
 
-  #### Icon Button
+A button with an icon integrates a visual symbol within the button component, enhancing its appearance and providing a recognizable and intuitive representation of its associated action or functionality.
 
-  A button with an icon integrates a visual symbol within the button component, enhancing its appearance and providing a recognizable and intuitive representation of its associated action or functionality.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Button
@@ -872,15 +864,17 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Button, ButtonIcon, EditIcon }}
-  importMap={{"@/components/ui/button":["Button","ButtonIcon"],"@/components/ui/icon":["EditIcon"]}}
+  importMap={{
+    '@/components/ui/button': ['Button', 'ButtonIcon'],
+    '@/components/ui/icon': ['EditIcon'],
+  }}
 />
 
+#### Link Button
 
-  #### Link Button
+A button with a link combines the interactive behavior of a button component with the ability to navigate to a specified URL, providing a clickable element for users to access external resources or internal pages.
 
-  A button with a link combines the interactive behavior of a button component with the ability to navigate to a specified URL, providing a clickable element for users to access external resources or internal pages.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Button variant='link'>
@@ -893,15 +887,17 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Button, ButtonText, ButtonIcon, ArrowUpIcon }}
-  importMap={{"@/components/ui/button":["Button","ButtonText","ButtonIcon"],"@/components/ui/icon":["ArrowUpIcon"]}}
+  importMap={{
+    '@/components/ui/button': ['Button', 'ButtonText', 'ButtonIcon'],
+    '@/components/ui/icon': ['ArrowUpIcon'],
+  }}
 />
 
+#### Button With Icon
 
-  #### Button With Icon
+The icon component incorporates a button component, combining visual representation with interactive functionality for seamless user interaction.
 
-  The icon component incorporates a button component, combining visual representation with interactive functionality for seamless user interaction.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Box>
@@ -918,15 +914,18 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Button, ButtonText, ButtonIcon, Box, InfoIcon, AddIcon }}
-  importMap={{"@/components/ui/button":["Button","ButtonText","ButtonIcon"],"@/components/ui/box":["Box"],"@/components/ui/icon":["InfoIcon","AddIcon"]}}
+  importMap={{
+    '@/components/ui/button': ['Button', 'ButtonText', 'ButtonIcon'],
+    '@/components/ui/box': ['Box'],
+    '@/components/ui/icon': ['InfoIcon', 'AddIcon'],
+  }}
 />
 
+#### Button with Full Width
 
-  #### Button with Full Width
+The button with full width component utilizes a button component, expanding its width to occupy the entire available space, creating a visually prominent and easily accessible interface element.
 
-  The button with full width component utilizes a button component, expanding its width to occupy the entire available space, creating a visually prominent and easily accessible interface element.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Center>
@@ -977,6 +976,27 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ Button, ButtonText, ButtonIcon, Box, Center, Heading, Input, InputField, Text, VStack, ArrowLeftIcon }}
-  importMap={{"@/components/ui/button":["Button","ButtonText","ButtonIcon"],"@/components/ui/box":["Box"],"@/components/ui/center":["Center"],"@/components/ui/heading":["Heading"],"@/components/ui/input":["Input","InputField"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["ArrowLeftIcon"]}}
+  reactLive={{
+    Button,
+    ButtonText,
+    ButtonIcon,
+    Box,
+    Center,
+    Heading,
+    Input,
+    InputField,
+    Text,
+    VStack,
+    ArrowLeftIcon,
+  }}
+  importMap={{
+    '@/components/ui/button': ['Button', 'ButtonText', 'ButtonIcon'],
+    '@/components/ui/box': ['Box'],
+    '@/components/ui/center': ['Center'],
+    '@/components/ui/heading': ['Heading'],
+    '@/components/ui/input': ['Input', 'InputField'],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/vstack': ['VStack'],
+    '@/components/ui/icon': ['ArrowLeftIcon'],
+  }}
 />

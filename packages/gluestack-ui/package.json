@@ -73,6 +73,7 @@
   },
   "devDependencies": {
     "@babel/parser": "^7.26.2",
+    "@changesets/cli": "^2.29.4",
     "@size-limit/preset-small-lib": "^8.2.4",
     "@types/find-package-json": "^1.2.3",
     "@types/fs-extra": "^11.0.1",

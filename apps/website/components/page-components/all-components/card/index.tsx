@@ -17,30 +17,21 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "variant": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "elevated",
-      "outline",
-      "ghost",
-      "filled"
-    ],
-    "defaultValue": "elevated"
-  },
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  }
-}}
+        variant: {
+          control: {
+            type: 'select',
+          },
+          options: ['elevated', 'outline', 'ghost', 'filled'],
+          defaultValue: 'elevated',
+        },
+        size: {
+          control: {
+            type: 'select',
+          },
+          options: ['sm', 'md', 'lg'],
+          defaultValue: 'md',
+        },
+      }}
       reactLive={{ Card, Heading, Text }}
     />
   );

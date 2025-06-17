@@ -56,13 +56,8 @@ const replaceFiles = async (
     path.relative(appDirectory, currentDirectory)
   );
   const documentExt = getDocumentExtension();
-  const {
-    document,
-    nextConfig,
-    app,
-    providerContent,
-    layoutContent,
-  } = getDataFiles(folderName, gluestackConfigImportPath, packageName);
+  const { document, nextConfig, app, providerContent, layoutContent } =
+    getDataFiles(folderName, gluestackConfigImportPath, packageName);
   if (isAppDir) {
     await createProvidersFile(appPath, providerContent);
     await updateDocument(layoutContent, path.join(appPath, 'layout.tsx'));

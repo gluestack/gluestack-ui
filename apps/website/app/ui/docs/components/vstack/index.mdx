@@ -21,12 +21,9 @@ Use the gluestack-ui VStack component to arrange elements vertically with custom
 
 This is an illustration of **VStack** component.
 
+#### Basic
 
-  #### Basic
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Box className="justify-center h-80">
@@ -39,31 +36,25 @@ This is an illustration of **VStack** component.
   )
 }`}
   argTypes={{
-  "space": {
-    "control": {
-      "type": "select"
+    space: {
+      control: {
+        type: 'select',
+      },
+      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
+      defaultValue: 'md',
     },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg",
-      "xl",
-      "2xl",
-      "3xl",
-      "4xl"
-    ],
-    "defaultValue": "md"
-  },
-  "isReversed": {
-    "control": {
-      "type": "boolean"
+    isReversed: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  }
-}}
+  }}
   reactLive={{ VStack, Box }}
-  importMap={{"@/components/ui/vstack":["VStack"],"@/components/ui/box":["Box"]}}
+  importMap={{
+    '@/components/ui/vstack': ['VStack'],
+    '@/components/ui/box': ['Box'],
+  }}
 />
 
 <br />
@@ -175,7 +166,6 @@ export const vstackStyle = tva({
     },
   },
 });
-
 ```
 
 ### Step 4: Update the import paths to match your project setup.
@@ -269,12 +259,11 @@ In essence, the VStack acts as a container that inherits and propagates the acce
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### VStack Reversed
 
-  #### VStack Reversed
+A VStack component with the reversed prop reverses the order of vertically stacked elements, enabling customized vertical layouts and visual arrangements of content within a user interface.
 
-  A VStack component with the reversed prop reverses the order of vertically stacked elements, enabling customized vertical layouts and visual arrangements of content within a user interface.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <VStack space='md' reversed>
@@ -286,5 +275,8 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Box, VStack }}
-  importMap={{"@/components/ui/box":["Box"],"@/components/ui/vstack":["VStack"]}}
+  importMap={{
+    '@/components/ui/box': ['Box'],
+    '@/components/ui/vstack': ['VStack'],
+  }}
 />
