@@ -1,6 +1,6 @@
 {
   "name": "create-gluecode",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "main": "./dist/index.js",
   "bin": {
     "create-gluecode": "./dist/index.js"
