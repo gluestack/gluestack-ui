@@ -88,7 +88,7 @@ async function initNatiwindNextApp(
       const templatesPath = join(
         _homeDir,
         config.gluestackDir,
-        'packages/templates'
+        config.templatesDir
       );
       const registryContent = await readFile(
         join(templatesPath, ...registryPath, 'registry.tsx'),

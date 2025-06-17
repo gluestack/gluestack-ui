@@ -43,7 +43,7 @@ const getPackageRoot = () => {
 
 // Get templates from GitHub repository
 const getTemplatesPath = () => {
-  return join(_homeDir, config.gluestackDir, 'packages/templates');
+  return join(_homeDir, config.gluestackDir, config.templatesDir);
 };
 
 const readFileAsync = promisify(fs.readFile);
