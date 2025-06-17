@@ -3,8 +3,8 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Introduction | gluestack-ui",
-  description: "React & React Native Components & Patterns (copy-paste components & patterns crafted with Tailwind CSS (NativeWind))"
+  title: "Introduction - gluestack-UI | React, Next.js & React Native Components",
+  description: "Elevate your UI with gluestack—React Native components, Tailwind styling & shadows for web & mobile apps. The best UI library for React, Next.js & React Native."
 }
 
 export default function Layout({
