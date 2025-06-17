@@ -82,16 +82,15 @@ export const copyNonComponentDocs = (filePath: string) => {
       );
       // Write the processed content without frontmatter
       fileOps.writeTextFile(destFilePath, contentWithoutFrontmatter);
+      // Create page.tsx in the name-specific directory (only for MDX)
+      fileOps.writeTextFile(
+        path.join(websitePath, relativePath.replace('index.mdx', 'page.tsx')),
+        templateGen.generatePageContent()
+      );
     } else {
       // For non-MDX files, just copy them as is
       fileOps.writeTextFile(destFilePath, sourceContent);
     }
-
-    // Create page.tsx in the name-specific directory
-    fileOps.writeTextFile(
-      path.join(websitePath, relativePath.replace('index.mdx', 'page.tsx')),
-      templateGen.generatePageContent()
-    );
   } catch (error) {
     console.error(`Error copying docs for ${filePath}:`, error);
   }
