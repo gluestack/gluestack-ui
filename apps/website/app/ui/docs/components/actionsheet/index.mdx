@@ -968,6 +968,7 @@ Demonstrates a common UI pattern known as keyboard handling or keyboard scrollin
   const handleClose = () => setShowActionsheet(false);
 
 return (
+
 <>
 <Button onPress={() => setShowActionsheet(true)}>
 <ButtonText>Open</ButtonText>
@@ -1036,44 +1037,80 @@ The Actionsheet with Icons is a variation of the Actionsheet component that disp
   const handleClose = () => setShowActionsheet(false);
 
 return (
+
 <>
-<Button onPress={() => setShowActionsheet(true)}>
-<ButtonText>Open</ButtonText>
-</Button>
-<Actionsheet isOpen={showActionsheet} onClose={handleClose}>
-<ActionsheetBackdrop />
-<ActionsheetContent>
-<ActionsheetDragIndicatorWrapper>
-<ActionsheetDragIndicator />
-</ActionsheetDragIndicatorWrapper>
-<ActionsheetItem onPress={handleClose}>
-<ActionsheetIcon className="stroke-background-700" as={EditIcon} />
-<ActionsheetItemText>Edit Message</ActionsheetItemText>
-</ActionsheetItem>
-<ActionsheetItem onPress={handleClose}>
-<ActionsheetIcon className="stroke-background-700" as={EyeOffIcon} />
-<ActionsheetItemText>Mark Unread</ActionsheetItemText>
-</ActionsheetItem>
-<ActionsheetItem onPress={handleClose}>
-<ActionsheetIcon className="stroke-background-700" as={ClockIcon} />
-<ActionsheetItemText>Remind Me</ActionsheetItemText>
-</ActionsheetItem>
-<ActionsheetItem onPress={handleClose}>
-<ActionsheetIcon className="stroke-background-700" as={DownloadIcon} />
-<ActionsheetItemText>Add to Saved Items</ActionsheetItemText>
-</ActionsheetItem>
-<ActionsheetItem isDisabled onPress={handleClose}>
-<ActionsheetIcon className="stroke-background-700" as={TrashIcon} />
-<ActionsheetItemText>Delete</ActionsheetItemText>
-</ActionsheetItem>
-</ActionsheetContent>
-</Actionsheet>
+  <Button onPress={() => setShowActionsheet(true)}>
+    <ButtonText>Open</ButtonText>
+  </Button>
+  <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+    <ActionsheetBackdrop />
+    <ActionsheetContent>
+      <ActionsheetDragIndicatorWrapper>
+        <ActionsheetDragIndicator />
+      </ActionsheetDragIndicatorWrapper>
+      <ActionsheetItem onPress={handleClose}>
+        <ActionsheetIcon className="stroke-background-700" as={EditIcon} />
+        <ActionsheetItemText>Edit Message</ActionsheetItemText>
+      </ActionsheetItem>
+      <ActionsheetItem onPress={handleClose}>
+        <ActionsheetIcon className="stroke-background-700" as={EyeOffIcon} />
+        <ActionsheetItemText>Mark Unread</ActionsheetItemText>
+      </ActionsheetItem>
+      <ActionsheetItem onPress={handleClose}>
+        <ActionsheetIcon className="stroke-background-700" as={ClockIcon} />
+        <ActionsheetItemText>Remind Me</ActionsheetItemText>
+      </ActionsheetItem>
+      <ActionsheetItem onPress={handleClose}>
+        <ActionsheetIcon className="stroke-background-700" as={DownloadIcon} />
+        <ActionsheetItemText>Add to Saved Items</ActionsheetItemText>
+      </ActionsheetItem>
+      <ActionsheetItem isDisabled onPress={handleClose}>
+        <ActionsheetIcon className="stroke-background-700" as={TrashIcon} />
+        <ActionsheetItemText>Delete</ActionsheetItemText>
+      </ActionsheetItem>
+    </ActionsheetContent>
+  </Actionsheet>
 </>
-);
-}`}
-argTypes={{}}
-reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetIcon, Button, ButtonText, EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon }}
-importMap={{"@/components/ui/actionsheet":["Actionsheet","ActionsheetContent","ActionsheetItem","ActionsheetItemText","ActionsheetDragIndicator","ActionsheetDragIndicatorWrapper","ActionsheetBackdrop","ActionsheetIcon"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/icon":["EditIcon","EyeOffIcon","ClockIcon","DownloadIcon","TrashIcon"]}}
+); }`} argTypes={{}}
+reactLive=
+{{
+  Actionsheet,
+  ActionsheetContent,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetBackdrop,
+  ActionsheetIcon,
+  Button,
+  ButtonText,
+  EditIcon,
+  EyeOffIcon,
+  ClockIcon,
+  DownloadIcon,
+  TrashIcon,
+}}
+importMap=
+{{
+  '@/components/ui/actionsheet': [
+    'Actionsheet',
+    'ActionsheetContent',
+    'ActionsheetItem',
+    'ActionsheetItemText',
+    'ActionsheetDragIndicator',
+    'ActionsheetDragIndicatorWrapper',
+    'ActionsheetBackdrop',
+    'ActionsheetIcon',
+  ],
+  '@/components/ui/button': ['Button', 'ButtonText'],
+  '@/components/ui/icon': [
+    'EditIcon',
+    'EyeOffIcon',
+    'ClockIcon',
+    'DownloadIcon',
+    'TrashIcon',
+  ],
+}}
 />
 
 #### VirtualizedList
