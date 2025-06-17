@@ -3,7 +3,7 @@ import * as fileOps from '../utils/fileOperations';
 import * as templateGen from './templateGenerator';
 
 export const copyComponentsDocs = (component: string) => {
-  const sourcePath = path.resolve('packages/components/ui');
+  const sourcePath = path.resolve('src/components/ui');
   const kitchenSinkPath = path.resolve('apps/kitchen-sink/app/components');
 
   try {

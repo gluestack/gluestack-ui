@@ -1,13 +1,26 @@
 import chokidar from 'chokidar';
+import { EventEmitter } from 'events';
+import type { FSWatcher } from 'chokidar';
 import path from 'path';
 import fs from 'fs';
 import mappers from './mappers';
 
+// Define mapper interface
+interface Mapper {
+  component?: (component: string, event?: string) => Promise<void> | void;
+  nonComponent?: (filePath: string) => Promise<void> | void;
+}
+
+interface MapperConfig {
+  name: string;
+  mapper: Mapper;
+}
+
 const sourcePath = './src';
-const componentsPath = './packages/components/ui';
+const componentsPath = './src/components/ui';
 
 // Debounce map to prevent rapid repeated processing
-const debounceMap = new Map<string, NodeJS.Timeout>();
+const debounceMap = new Map<string, ReturnType<typeof setTimeout>>();
 const DEBOUNCE_DELAY = 1000; // 1 second
 
 // Track processed files to prevent infinite loops
@@ -24,7 +37,7 @@ const mapperFilter = args
 const syncFlag = args.includes('--sync') || args.includes('--initial');
 
 // Filter mappers based on command line argument
-const activeMappers = mapperFilter
+const activeMappers: MapperConfig[] = mapperFilter
   ? mappers.filter((mapper) => mapper.name === mapperFilter)
   : mappers;
 
@@ -79,7 +92,9 @@ const watcher = chokidar.watch(sourcePath, {
     // Ignore destination directories to prevent infinite loops
     'apps/**',
   ],
-});
+}) as unknown as {
+  on: (event: string, callback: (path: string) => void) => any;
+};
 
 const getComponentFromPath = (filePath: string): string | null => {
   const normalizedPath = path.normalize(filePath);
@@ -105,7 +120,7 @@ const shouldProcessFile = (filePath: string): boolean => {
 
   // Only process files in our target directories
   const targetDirs = [
-    'packages/components',
+    'src/components',
     'src/utils',
     'src/docs',
     'src/sidebar.json',
@@ -215,15 +230,13 @@ const processFileChange = async (event: string, filePath: string) => {
               if (mapper && typeof mapper.component === 'function') {
                 await mapper.component(component, event);
               } else {
-                console.warn(`Mapper ${name} doesn't have a component method`);
+                console.warn(`Mapper ${name} doesn't have required methods`);
               }
             } else {
               if (mapper && typeof mapper.nonComponent === 'function') {
                 await mapper.nonComponent(filePath);
               } else {
-                console.warn(
-                  `Mapper ${name} doesn't have a nonComponent method`
-                );
+                console.warn(`Mapper ${name} doesn't have required methods`);
               }
             }
           } catch (error) {
@@ -250,10 +263,10 @@ const processFileChange = async (event: string, filePath: string) => {
 
 // Set up event handlers
 watcher
-  .on('add', (filePath) => processFileChange('added', filePath))
-  .on('change', (filePath) => processFileChange('changed', filePath))
-  .on('unlink', (filePath) => processFileChange('removed', filePath))
-  .on('addDir', (dirPath) => {
+  .on('add', (filePath: string) => processFileChange('added', filePath))
+  .on('change', (filePath: string) => processFileChange('changed', filePath))
+  .on('unlink', (filePath: string) => processFileChange('removed', filePath))
+  .on('addDir', (dirPath: string) => {
     // Handle directory additions if needed
     const component = getComponentFromPath(dirPath);
     if (component && shouldProcessFile(dirPath)) {
@@ -263,7 +276,7 @@ watcher
       processFileChange('added', dirPath);
     }
   })
-  .on('unlinkDir', (dirPath) => {
+  .on('unlinkDir', (dirPath: string) => {
     // Handle directory deletions
     const component = getComponentFromPath(dirPath);
     if (component && shouldProcessFile(dirPath)) {
@@ -273,7 +286,7 @@ watcher
       processFileChange('removed', dirPath);
     }
   })
-  .on('error', (error) => {
+  .on('error', (error: Error) => {
     console.error('❌ Watcher error:', error);
   })
   .on('ready', () => {

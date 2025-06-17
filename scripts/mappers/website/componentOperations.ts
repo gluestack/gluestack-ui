@@ -8,7 +8,7 @@ import {
 import * as fileOps from '../utils/fileOperations';
 
 const mapperConfig: MapperConfig = {
-  sourcePath: path.resolve('packages/components/ui'),
+  sourcePath: path.resolve('src/components/ui'),
   destPath: path.resolve('apps/website/components/ui'),
   utilsSourcePath: path.resolve('src/utils/gluestack-utils'),
   utilsDestPath: path.resolve('apps/website/utils/gluestack-utils'),

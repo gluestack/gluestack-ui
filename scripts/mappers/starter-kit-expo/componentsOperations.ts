@@ -6,7 +6,7 @@ import {
 } from '../utils/componentOperations';
 
 const mapperConfig: MapperConfig = {
-  sourcePath: path.resolve('packages/components/ui'),
+  sourcePath: path.resolve('src/components/ui'),
   destPath: path.resolve('apps/starter-kit-expo/components/ui'),
   utilsSourcePath: path.resolve('src/utils/gluestack-utils'),
   utilsDestPath: path.resolve('apps/starter-kit-expo/utils/gluestack-utils'),

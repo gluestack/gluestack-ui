@@ -30,7 +30,7 @@ describe('Ignore functionality', () => {
     test('should ignore docs and examples folders during component copy', () => {
       // Test that the filter function properly excludes ignored folders
       const component = 'button';
-      const basePath = `/home/user/.gluestack/cache/gluestack-ui/packages/components/ui/${component}`;
+      const basePath = `/home/user/.gluestack/cache/gluestack-ui/src/components/ui/${component}`;
 
       // Simulate the filter function from writeComponent
       const filter = (src) => {
