@@ -82,53 +82,51 @@ export default function Example() {
   )
 }`}
       argTypes={{
-        size: {
-          control: {
-            type: 'select',
-          },
-          options: ['sm', 'md', 'lg'],
-          defaultValue: 'md',
-        },
-        variant: {
-          control: {
-            type: 'select',
-          },
-          options: ['filled', 'unfilled'],
-          defaultValue: 'filled',
-        },
-        type: {
-          control: {
-            type: 'select',
-          },
-          options: ['single', 'multiple'],
-          defaultValue: 'single',
-        },
-        isCollapsible: {
-          control: {
-            type: 'boolean',
-          },
-          defaultValue: true,
-        },
-        isDisabled: {
-          control: {
-            type: 'boolean',
-          },
-          defaultValue: false,
-        },
-      }}
-      reactLive={{
-        Accordion,
-        AccordionItem,
-        AccordionHeader,
-        AccordionTrigger,
-        AccordionTitleText,
-        AccordionContent,
-        AccordionContentText,
-        AccordionIcon,
-        Divider,
-        ChevronDownIcon,
-        ChevronUpIcon,
-      }}
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  },
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "filled",
+      "unfilled"
+    ],
+    "defaultValue": "filled"
+  },
+  "type": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "single",
+      "multiple"
+    ],
+    "defaultValue": "single"
+  },
+  "isCollapsible": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": true
+  },
+  "isDisabled": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  }
+}}
+      reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, ChevronDownIcon, ChevronUpIcon }}
     />
   );
 }

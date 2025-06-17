@@ -1,21 +1,7 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import {
-  Menu,
-  MenuItem,
-  MenuItemLabel,
-  MenuSeparator,
-} from '@/components/ui/menu';
+import { Menu, MenuItem, MenuItemLabel, MenuSeparator } from '@/components/ui/menu';
 import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
-import {
-  Icon,
-  AddIcon,
-  GlobeIcon,
-  PlayIcon,
-  SettingsIcon,
-  MenuIcon,
-  HelpCircleIcon,
-  MessageCircleIcon,
-} from '@/components/ui/icon';
+import { Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon, MenuIcon, HelpCircleIcon, MessageCircleIcon } from '@/components/ui/icon';
 import { Badge, BadgeText } from '@/components/ui/badge';
 
 import { Tabs, TabItem } from '@/docs-components/tabs';
@@ -36,7 +22,12 @@ Build a user-friendly interface with gluestack-ui menu component in React & Reac
 
 This is an illustration of **Menu** component.
 
-<CodePreviewer
+
+  
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Menu
@@ -71,50 +62,29 @@ This is an illustration of **Menu** component.
   )
 }`}
   argTypes={{
-    placement: {
-      control: {
-        type: 'select',
-      },
-      options: [
-        'top',
-        'bottom',
-        'left',
-        'right',
-        'top start',
-        'top end',
-        'bottom start',
-        'bottom end',
-        'left start',
-        'left end',
-        'right start',
-        'right end',
-      ],
-      defaultValue: 'top',
+  "placement": {
+    "control": {
+      "type": "select"
     },
-  }}
-  reactLive={{
-    Menu,
-    MenuItem,
-    MenuItemLabel,
-    Button,
-    ButtonText,
-    Icon,
-    AddIcon,
-    GlobeIcon,
-    PlayIcon,
-    SettingsIcon,
-  }}
-  importMap={{
-    '@/components/ui/menu': ['Menu', 'MenuItem', 'MenuItemLabel'],
-    '@/components/ui/button': ['Button', 'ButtonText'],
-    '@/components/ui/icon': [
-      'Icon',
-      'AddIcon',
-      'GlobeIcon',
-      'PlayIcon',
-      'SettingsIcon',
+    "options": [
+      "top",
+      "bottom",
+      "left",
+      "right",
+      "top start",
+      "top end",
+      "bottom start",
+      "bottom end",
+      "left start",
+      "left end",
+      "right start",
+      "right end"
     ],
-  }}
+    "defaultValue": "top"
+  }
+}}
+  reactLive={{ Menu, MenuItem, MenuItemLabel, Button, ButtonText, Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon }}
+  importMap={{"@/components/ui/menu":["Menu","MenuItem","MenuItemLabel"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/icon":["Icon","AddIcon","GlobeIcon","PlayIcon","SettingsIcon"]}}
 />
 
 <br />
@@ -354,6 +324,7 @@ MenuItem.displayName = 'MenuItem';
 MenuItemLabel.displayName = 'MenuItemLabel';
 MenuSeparator.displayName = 'MenuSeparator';
 export { Menu, MenuItem, MenuItemLabel, MenuSeparator };
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -573,9 +544,12 @@ We have outlined the various features that ensure the Menu component is accessib
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Menu with Tag
 
-<CodePreviewer
+  #### Menu with Tag
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Menu
@@ -630,33 +604,16 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Menu,
-    MenuItem,
-    MenuItemLabel,
-    MenuSeparator,
-    Button,
-    ButtonIcon,
-    MenuIcon,
-    Badge,
-    BadgeText,
-  }}
-  importMap={{
-    '@/components/ui/menu': [
-      'Menu',
-      'MenuItem',
-      'MenuItemLabel',
-      'MenuSeparator',
-    ],
-    '@/components/ui/button': ['Button', 'ButtonIcon'],
-    '@/components/ui/icon': ['MenuIcon'],
-    '@/components/ui/badge': ['Badge', 'BadgeText'],
-  }}
+  reactLive={{ Menu, MenuItem, MenuItemLabel, MenuSeparator, Button, ButtonIcon, MenuIcon, Badge, BadgeText }}
+  importMap={{"@/components/ui/menu":["Menu","MenuItem","MenuItemLabel","MenuSeparator"],"@/components/ui/button":["Button","ButtonIcon"],"@/components/ui/icon":["MenuIcon"],"@/components/ui/badge":["Badge","BadgeText"]}}
 />
 
-#### Menu with Selection
 
-<CodePreviewer
+  #### Menu with Selection
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   const [selected, setSelected] = React.useState(new Set([]));
   return (
@@ -717,31 +674,6 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Menu,
-    MenuItem,
-    MenuItemLabel,
-    MenuSeparator,
-    Button,
-    ButtonText,
-    Icon,
-    SettingsIcon,
-    HelpCircleIcon,
-    MessageCircleIcon,
-  }}
-  importMap={{
-    '@/components/ui/menu': [
-      'Menu',
-      'MenuItem',
-      'MenuItemLabel',
-      'MenuSeparator',
-    ],
-    '@/components/ui/button': ['Button', 'ButtonText'],
-    '@/components/ui/icon': [
-      'Icon',
-      'SettingsIcon',
-      'HelpCircleIcon',
-      'MessageCircleIcon',
-    ],
-  }}
+  reactLive={{ Menu, MenuItem, MenuItemLabel, MenuSeparator, Button, ButtonText, Icon, SettingsIcon, HelpCircleIcon, MessageCircleIcon }}
+  importMap={{"@/components/ui/menu":["Menu","MenuItem","MenuItemLabel","MenuSeparator"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/icon":["Icon","SettingsIcon","HelpCircleIcon","MessageCircleIcon"]}}
 />

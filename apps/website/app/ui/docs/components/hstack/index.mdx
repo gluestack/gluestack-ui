@@ -19,7 +19,12 @@ Use the gluestack-ui HStack component in React Native to align elements horizont
 
 This is an illustration of **HStack** component.
 
-<CodePreviewer
+
+  
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <HStack space="{{space}}" reversed={ {{isReversed}} }>
@@ -30,25 +35,31 @@ This is an illustration of **HStack** component.
   )
 }`}
   argTypes={{
-    space: {
-      control: {
-        type: 'select',
-      },
-      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
-      defaultValue: 'md',
+  "space": {
+    "control": {
+      "type": "select"
     },
-    isReversed: {
-      control: {
-        type: 'boolean',
-      },
-      defaultValue: false,
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+      "2xl",
+      "3xl",
+      "4xl"
+    ],
+    "defaultValue": "md"
+  },
+  "isReversed": {
+    "control": {
+      "type": "boolean"
     },
-  }}
+    "defaultValue": false
+  }
+}}
   reactLive={{ HStack, Box }}
-  importMap={{
-    '@/components/ui/hstack': ['HStack'],
-    '@/components/ui/box': ['Box'],
-  }}
+  importMap={{"@/components/ui/hstack":["HStack"],"@/components/ui/box":["Box"]}}
 />
 
 <br />
@@ -93,6 +104,7 @@ const HStack = React.forwardRef<React.ComponentRef<typeof View>, IHStackProps>(
 HStack.displayName = 'HStack';
 
 export { HStack };
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -164,11 +176,12 @@ The accessibility of a HStack is primarily determined by the accessibility infor
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### HStack Reversed
 
-HStack component with the reversed prop reverses the order of horizontally stacked elements, allowing for customized layouts and visual arrangements of content within a user interface.
+  #### HStack Reversed
 
-<CodePreviewer
+  HStack component with the reversed prop reverses the order of horizontally stacked elements, allowing for customized layouts and visual arrangements of content within a user interface.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <HStack space="md" reversed>
@@ -180,8 +193,5 @@ HStack component with the reversed prop reverses the order of horizontally stack
 }`}
   argTypes={{}}
   reactLive={{ HStack, Box }}
-  importMap={{
-    '@/components/ui/hstack': ['HStack'],
-    '@/components/ui/box': ['Box'],
-  }}
+  importMap={{"@/components/ui/hstack":["HStack"],"@/components/ui/box":["Box"]}}
 />

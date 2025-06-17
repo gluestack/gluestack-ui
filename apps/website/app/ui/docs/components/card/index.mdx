@@ -9,7 +9,12 @@ Build beautiful interfaces with the gluestack-ui Card component. This React Nati
 
 This is an illustration of **Card** component.
 
-<CodePreviewer
+
+  
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Card size="{{size}}" variant="{{variant}}" className="m-3">
@@ -21,25 +26,30 @@ This is an illustration of **Card** component.
   )
 }`}
   argTypes={{
-    variant: {
-      control: {
-        type: 'select',
-      },
-      options: ['elevated', 'outline', 'ghost', 'filled'],
-      defaultValue: 'elevated',
+  "variant": {
+    "control": {
+      "type": "select"
     },
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: ['sm', 'md', 'lg'],
-      defaultValue: 'md',
+    "options": [
+      "elevated",
+      "outline",
+      "ghost",
+      "filled"
+    ],
+    "defaultValue": "elevated"
+  },
+  "size": {
+    "control": {
+      "type": "select"
     },
-  }}
+    "options": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  }
+}}
   reactLive={{ Card, Heading, Text }}
-  importMap={{
-    '@/components/ui/card': ['Card'],
-    '@/components/ui/heading': ['Heading'],
-    '@/components/ui/text': ['Text'],
-  }}
+  importMap={{"@/components/ui/card":["Card"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"]}}
 />

@@ -26,7 +26,12 @@ gluestack-ui's Divider component ensures a well-structured interface. Use the Di
 
 This is an illustration of **Divider** component.
 
-<CodePreviewer
+
+  
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
 <Center>
@@ -42,11 +47,7 @@ This is an illustration of **Divider** component.
 }`}
   argTypes={{}}
   reactLive={{ Center, Text, Divider }}
-  importMap={{
-    '@/components/ui/center': ['Center'],
-    '@/components/ui/text': ['Text'],
-    '@/components/ui/divider': ['Divider'],
-  }}
+  importMap={{"@/components/ui/center":["Center"],"@/components/ui/text":["Text"],"@/components/ui/divider":["Divider"]}}
 />
 
 <br />
@@ -175,11 +176,12 @@ Divider component is created using View component from react-native. It extends 
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Variants
 
-A Divider component with different layouts offers versatile options for visually dividing content in various arrangements, such as horizontal or vertical orientations, enabling flexible and visually appealing designs for organizing and structuring elements within a user interface.
+  #### Variants
 
-<CodePreviewer
+  A Divider component with different layouts offers versatile options for visually dividing content in various arrangements, such as horizontal or vertical orientations, enabling flexible and visually appealing designs for organizing and structuring elements within a user interface.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <VStack>
@@ -204,20 +206,15 @@ A Divider component with different layouts offers versatile options for visually
 }`}
   argTypes={{}}
   reactLive={{ Divider, VStack, HStack, Text, Heading }}
-  importMap={{
-    '@/components/ui/divider': ['Divider'],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/hstack': ['HStack'],
-    '@/components/ui/text': ['Text'],
-    '@/components/ui/heading': ['Heading'],
-  }}
+  importMap={{"@/components/ui/divider":["Divider"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/heading":["Heading"]}}
 />
 
-#### Orientation
 
-A Divider component with a specified divider orientation allows for clear visual separation of content, either horizontally or vertically, providing a structured and organized layout within a user interface.
+  #### Orientation
 
-<CodePreviewer
+  A Divider component with a specified divider orientation allows for clear visual separation of content, either horizontally or vertically, providing a structured and organized layout within a user interface.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <VStack
@@ -278,21 +275,15 @@ A Divider component with a specified divider orientation allows for clear visual
 }`}
   argTypes={{}}
   reactLive={{ Divider, VStack, HStack, Text, Box, Heading }}
-  importMap={{
-    '@/components/ui/divider': ['Divider'],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/hstack': ['HStack'],
-    '@/components/ui/text': ['Text'],
-    '@/components/ui/box': ['Box'],
-    '@/components/ui/heading': ['Heading'],
-  }}
+  importMap={{"@/components/ui/divider":["Divider"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/box":["Box"],"@/components/ui/heading":["Heading"]}}
 />
 
-#### With & Without Inset
 
-A Divider component used with or without inset adds visual hierarchy and distinction by creating a dividing line either with or without indentation, providing options for organizing and structuring content within a user interface.
+  #### With & Without Inset
 
-<CodePreviewer
+  A Divider component used with or without inset adds visual hierarchy and distinction by creating a dividing line either with or without indentation, providing options for organizing and structuring content within a user interface.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <VStack space="2xl">
@@ -327,19 +318,15 @@ A Divider component used with or without inset adds visual hierarchy and distinc
 }`}
   argTypes={{}}
   reactLive={{ Divider, VStack, HStack, Button, ButtonText }}
-  importMap={{
-    '@/components/ui/divider': ['Divider'],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/hstack': ['HStack'],
-    '@/components/ui/button': ['Button', 'ButtonText'],
-  }}
+  importMap={{"@/components/ui/divider":["Divider"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"@/components/ui/button":["Button","ButtonText"]}}
 />
 
-#### Adding content within a Divider
 
-A Divider component with added content allows for the inclusion of additional text or elements alongside the dividing line, enhancing the visual and informational aspects of the divider while providing a seamless integration of content within a user interface.
+  #### Adding content within a Divider
 
-<CodePreviewer
+  A Divider component with added content allows for the inclusion of additional text or elements alongside the dividing line, enhancing the visual and informational aspects of the divider while providing a seamless integration of content within a user interface.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Box className="py-9 px-20 m-5 rounded-lg border border-outline-300">
@@ -369,11 +356,5 @@ A Divider component with added content allows for the inclusion of additional te
 }`}
   argTypes={{}}
   reactLive={{ Divider, Box, HStack, Text, Heading }}
-  importMap={{
-    '@/components/ui/divider': ['Divider'],
-    '@/components/ui/box': ['Box'],
-    '@/components/ui/hstack': ['HStack'],
-    '@/components/ui/text': ['Text'],
-    '@/components/ui/heading': ['Heading'],
-  }}
+  importMap={{"@/components/ui/divider":["Divider"],"@/components/ui/box":["Box"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/heading":["Heading"]}}
 />

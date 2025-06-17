@@ -1,12 +1,6 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Alert, AlertText, AlertIcon } from '@/components/ui/alert';
-import {
-  InfoIcon,
-  Icon,
-  CloseIcon,
-  EyeIcon,
-  EyeOffIcon,
-} from '@/components/ui/icon';
+import { InfoIcon, Icon, CloseIcon, EyeIcon, EyeOffIcon } from '@/components/ui/icon';
 import { VStack } from '@/components/ui/vstack';
 import { Button, ButtonText } from '@/components/ui/button';
 import { CloudIcon, Bomb } from 'lucide-react-native';
@@ -32,9 +26,12 @@ gluestack-ui offers a responsive React Native Alert component with multiple styl
 
 This is an illustration of **Alert** component.
 
-#### Basic
 
-<CodePreviewer
+  #### Basic
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Alert action="{{action}}" variant="{{variant}}">
@@ -44,26 +41,32 @@ This is an illustration of **Alert** component.
   )
 }`}
   argTypes={{
-    variant: {
-      control: {
-        type: 'select',
-      },
-      options: ['solid', 'outline'],
-      defaultValue: 'outline',
+  "variant": {
+    "control": {
+      "type": "select"
     },
-    action: {
-      control: {
-        type: 'select',
-      },
-      options: ['success', 'info', 'error', 'warning', 'muted'],
-      defaultValue: 'muted',
+    "options": [
+      "solid",
+      "outline"
+    ],
+    "defaultValue": "outline"
+  },
+  "action": {
+    "control": {
+      "type": "select"
     },
-  }}
+    "options": [
+      "success",
+      "info",
+      "error",
+      "warning",
+      "muted"
+    ],
+    "defaultValue": "muted"
+  }
+}}
   reactLive={{ Alert, AlertText, AlertIcon, InfoIcon }}
-  importMap={{
-    '@/components/ui/alert': ['Alert', 'AlertText', 'AlertIcon'],
-    '@/components/ui/icon': ['InfoIcon'],
-  }}
+  importMap={{"@/components/ui/alert":["Alert","AlertText","AlertIcon"],"@/components/ui/icon":["InfoIcon"]}}
 />
 
 <br />
@@ -331,6 +334,7 @@ AlertText.displayName = 'AlertText';
 AlertIcon.displayName = 'AlertIcon';
 
 export { Alert, AlertText, AlertIcon };
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -412,9 +416,12 @@ Contains all text related layout style props and actions. It inherits all the pr
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Alert with CTA
 
-<CodePreviewer
+  #### Alert with CTA
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Alert
@@ -435,17 +442,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Alert, AlertText, VStack, Icon, CloseIcon, Button, ButtonText }}
-  importMap={{
-    '@/components/ui/alert': ['Alert', 'AlertText'],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/icon': ['Icon', 'CloseIcon'],
-    '@/components/ui/button': ['Button', 'ButtonText'],
-  }}
+  importMap={{"@/components/ui/alert":["Alert","AlertText"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["Icon","CloseIcon"],"@/components/ui/button":["Button","ButtonText"]}}
 />
 
-#### Alert on cloud sync
 
-<CodePreviewer
+  #### Alert on cloud sync
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Alert
@@ -465,29 +470,16 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Alert,
-    AlertText,
-    AlertIcon,
-    VStack,
-    Icon,
-    CloseIcon,
-    Button,
-    ButtonText,
-    CloudIcon,
-  }}
-  importMap={{
-    '@/components/ui/alert': ['Alert', 'AlertText', 'AlertIcon'],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/icon': ['Icon', 'CloseIcon'],
-    '@/components/ui/button': ['Button', 'ButtonText'],
-    'lucide-react-native': ['CloudIcon'],
-  }}
+  reactLive={{ Alert, AlertText, AlertIcon, VStack, Icon, CloseIcon, Button, ButtonText, CloudIcon }}
+  importMap={{"@/components/ui/alert":["Alert","AlertText","AlertIcon"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["Icon","CloseIcon"],"@/components/ui/button":["Button","ButtonText"],"lucide-react-native":["CloudIcon"]}}
 />
 
-#### Warning alert
 
-<CodePreviewer
+  #### Warning alert
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Alert action="error" className="gap-3">
@@ -503,16 +495,15 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Alert, AlertText, AlertIcon, Text, Bomb }}
-  importMap={{
-    '@/components/ui/alert': ['Alert', 'AlertText', 'AlertIcon'],
-    '@/components/ui/text': ['Text'],
-    'lucide-react-native': ['Bomb'],
-  }}
+  importMap={{"@/components/ui/alert":["Alert","AlertText","AlertIcon"],"@/components/ui/text":["Text"],"lucide-react-native":["Bomb"]}}
 />
 
-#### Alert on confirm password modal
 
-<CodePreviewer
+  #### Alert on confirm password modal
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   const [showPassword, setShowPassword] = React.useState(false);
   const handleState = () => {
@@ -555,30 +546,6 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Alert,
-    AlertText,
-    AlertIcon,
-    VStack,
-    Button,
-    ButtonText,
-    Heading,
-    Input,
-    InputField,
-    InputIcon,
-    InputSlot,
-    Text,
-    EyeIcon,
-    EyeOffIcon,
-    InfoIcon,
-  }}
-  importMap={{
-    '@/components/ui/alert': ['Alert', 'AlertText', 'AlertIcon'],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/button': ['Button', 'ButtonText'],
-    '@/components/ui/heading': ['Heading'],
-    '@/components/ui/input': ['Input', 'InputField', 'InputIcon', 'InputSlot'],
-    '@/components/ui/text': ['Text'],
-    '@/components/ui/icon': ['EyeIcon', 'EyeOffIcon', 'InfoIcon'],
-  }}
+  reactLive={{ Alert, AlertText, AlertIcon, VStack, Button, ButtonText, Heading, Input, InputField, InputIcon, InputSlot, Text, EyeIcon, EyeOffIcon, InfoIcon }}
+  importMap={{"@/components/ui/alert":["Alert","AlertText","AlertIcon"],"@/components/ui/vstack":["VStack"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/heading":["Heading"],"@/components/ui/input":["Input","InputField","InputIcon","InputSlot"],"@/components/ui/text":["Text"],"@/components/ui/icon":["EyeIcon","EyeOffIcon","InfoIcon"]}}
 />
