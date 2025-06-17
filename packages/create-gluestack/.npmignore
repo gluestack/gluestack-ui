@@ -1,5 +1,5 @@
 node_modules
-dist
+src
 .git
 .gitignore
 .npmrc
@@ -8,3 +8,4 @@ dist
 .env.development.local
 .env.test.local
 .env.production.local
+.changeset
