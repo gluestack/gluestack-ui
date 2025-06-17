@@ -16,30 +16,21 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "variant": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "solid",
-      "outline"
-    ],
-    "defaultValue": "outline"
-  },
-  "action": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "success",
-      "info",
-      "error",
-      "warning",
-      "muted"
-    ],
-    "defaultValue": "muted"
-  }
-}}
+        variant: {
+          control: {
+            type: 'select',
+          },
+          options: ['solid', 'outline'],
+          defaultValue: 'outline',
+        },
+        action: {
+          control: {
+            type: 'select',
+          },
+          options: ['success', 'info', 'error', 'warning', 'muted'],
+          defaultValue: 'muted',
+        },
+      }}
       reactLive={{ Alert, AlertText, AlertIcon, InfoIcon }}
     />
   );

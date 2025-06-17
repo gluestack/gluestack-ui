@@ -1,5 +1,10 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { Toast, ToastTitle, ToastDescription, useToast } from '@/components/ui/toast';
+import {
+  Toast,
+  ToastTitle,
+  ToastDescription,
+  useToast,
+} from '@/components/ui/toast';
 import { Button, ButtonText, ButtonGroup } from '@/components/ui/button';
 import { Pressable } from '@/components/ui/pressable';
 import { Icon, CloseIcon, HelpCircleIcon } from '@/components/ui/icon';
@@ -27,12 +32,9 @@ gluestack-ui Toast component for React Native lets you show toast messages effor
 
 This is an illustration of **Toast** component.
 
+#### Basic
 
-  #### Basic
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   const toast = useToast()
   const [toastId, setToastId] = React.useState(0)
@@ -68,32 +70,38 @@ This is an illustration of **Toast** component.
   )
 }`}
   argTypes={{
-  "action": {
-    "control": {
-      "type": "select"
+    action: {
+      control: {
+        type: 'select',
+      },
+      options: ['success', 'info', 'warning', 'error', 'muted'],
+      defaultValue: 'muted',
     },
-    "options": [
-      "success",
-      "info",
-      "warning",
-      "error",
-      "muted"
-    ],
-    "defaultValue": "muted"
-  },
-  "variant": {
-    "control": {
-      "type": "select"
+    variant: {
+      control: {
+        type: 'select',
+      },
+      options: ['solid', 'outline'],
+      defaultValue: 'solid',
     },
-    "options": [
-      "solid",
-      "outline"
+  }}
+  reactLive={{
+    Toast,
+    ToastTitle,
+    ToastDescription,
+    useToast,
+    Button,
+    ButtonText,
+  }}
+  importMap={{
+    '@/components/ui/toast': [
+      'Toast',
+      'ToastTitle',
+      'ToastDescription',
+      'useToast',
     ],
-    "defaultValue": "solid"
-  }
-}}
-  reactLive={{ Toast, ToastTitle, ToastDescription, useToast, Button, ButtonText }}
-  importMap={{"@/components/ui/toast":["Toast","ToastTitle","ToastDescription","useToast"],"@/components/ui/button":["Button","ButtonText"]}}
+    '@/components/ui/button': ['Button', 'ButtonText'],
+  }}
 />
 
 <br />
@@ -531,12 +539,9 @@ Toast component is created using View component from react-native. It extends al
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Toast in note talking platform
 
-  #### Toast in note talking platform
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
           const toast = useToast();
           const [toastId, setToastId] = React.useState(0);
@@ -593,16 +598,38 @@ The Examples section provides visual representations of the different variants o
           );
         }`}
   argTypes={{}}
-  reactLive={{ Toast, ToastTitle, ToastDescription, useToast, Button, ButtonText, Pressable, Icon, CloseIcon, HelpCircleIcon, HStack, VStack }}
-  importMap={{"@/components/ui/toast":["Toast","ToastTitle","ToastDescription","useToast"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/pressable":["Pressable"],"@/components/ui/icon":["Icon","CloseIcon","HelpCircleIcon"],"@/components/ui/hstack":["HStack"],"@/components/ui/vstack":["VStack"]}}
+  reactLive={{
+    Toast,
+    ToastTitle,
+    ToastDescription,
+    useToast,
+    Button,
+    ButtonText,
+    Pressable,
+    Icon,
+    CloseIcon,
+    HelpCircleIcon,
+    HStack,
+    VStack,
+  }}
+  importMap={{
+    '@/components/ui/toast': [
+      'Toast',
+      'ToastTitle',
+      'ToastDescription',
+      'useToast',
+    ],
+    '@/components/ui/button': ['Button', 'ButtonText'],
+    '@/components/ui/pressable': ['Pressable'],
+    '@/components/ui/icon': ['Icon', 'CloseIcon', 'HelpCircleIcon'],
+    '@/components/ui/hstack': ['HStack'],
+    '@/components/ui/vstack': ['VStack'],
+  }}
 />
 
+#### Social media notification
 
-  #### Social media notification
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
           const toast = useToast();
           return (
@@ -652,16 +679,28 @@ The Examples section provides visual representations of the different variants o
           );
         }`}
   argTypes={{}}
-  reactLive={{ Toast, ToastTitle, ToastDescription, useToast, Button, ButtonText }}
-  importMap={{"@/components/ui/toast":["Toast","ToastTitle","ToastDescription","useToast"],"@/components/ui/button":["Button","ButtonText"]}}
+  reactLive={{
+    Toast,
+    ToastTitle,
+    ToastDescription,
+    useToast,
+    Button,
+    ButtonText,
+  }}
+  importMap={{
+    '@/components/ui/toast': [
+      'Toast',
+      'ToastTitle',
+      'ToastDescription',
+      'useToast',
+    ],
+    '@/components/ui/button': ['Button', 'ButtonText'],
+  }}
 />
 
+#### Software update toast
 
-  #### Software update toast
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
         const toast = useToast();
         const [toastId, setToastId] = React.useState(0);
@@ -731,16 +770,42 @@ The Examples section provides visual representations of the different variants o
         );
       }`}
   argTypes={{}}
-  reactLive={{ Toast, ToastTitle, ToastDescription, useToast, Button, ButtonText, Pressable, Icon, CloseIcon, HStack, VStack, Box, RefreshCw, ButtonGroup }}
-  importMap={{"@/components/ui/toast":["Toast","ToastTitle","ToastDescription","useToast"],"@/components/ui/button":["Button","ButtonText","ButtonGroup"],"@/components/ui/pressable":["Pressable"],"@/components/ui/icon":["Icon","CloseIcon"],"@/components/ui/hstack":["HStack"],"@/components/ui/vstack":["VStack"],"@/components/ui/box":["Box"],"lucide-react-native":["RefreshCw"]}}
+  reactLive={{
+    Toast,
+    ToastTitle,
+    ToastDescription,
+    useToast,
+    Button,
+    ButtonText,
+    Pressable,
+    Icon,
+    CloseIcon,
+    HStack,
+    VStack,
+    Box,
+    RefreshCw,
+    ButtonGroup,
+  }}
+  importMap={{
+    '@/components/ui/toast': [
+      'Toast',
+      'ToastTitle',
+      'ToastDescription',
+      'useToast',
+    ],
+    '@/components/ui/button': ['Button', 'ButtonText', 'ButtonGroup'],
+    '@/components/ui/pressable': ['Pressable'],
+    '@/components/ui/icon': ['Icon', 'CloseIcon'],
+    '@/components/ui/hstack': ['HStack'],
+    '@/components/ui/vstack': ['VStack'],
+    '@/components/ui/box': ['Box'],
+    'lucide-react-native': ['RefreshCw'],
+  }}
 />
 
+#### Message sent toast
 
-  #### Message sent toast
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
           const toast = useToast();
           return (
@@ -776,6 +841,21 @@ The Examples section provides visual representations of the different variants o
           );
         }`}
   argTypes={{}}
-  reactLive={{ Toast, ToastTitle, useToast, Button, ButtonText, Icon, Send, Divider }}
-  importMap={{"@/components/ui/toast":["Toast","ToastTitle","useToast"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/icon":["Icon"],"lucide-react-native":["Send"],"@/components/ui/divider":["Divider"]}}
+  reactLive={{
+    Toast,
+    ToastTitle,
+    useToast,
+    Button,
+    ButtonText,
+    Icon,
+    Send,
+    Divider,
+  }}
+  importMap={{
+    '@/components/ui/toast': ['Toast', 'ToastTitle', 'useToast'],
+    '@/components/ui/button': ['Button', 'ButtonText'],
+    '@/components/ui/icon': ['Icon'],
+    'lucide-react-native': ['Send'],
+    '@/components/ui/divider': ['Divider'],
+  }}
 />

@@ -1,5 +1,13 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton } from '@/components/ui/drawer';
+import {
+  Drawer,
+  DrawerBackdrop,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  DrawerCloseButton,
+} from '@/components/ui/drawer';
 import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
@@ -7,10 +15,25 @@ import { Icon, CloseIcon, CheckIcon } from '@/components/ui/icon';
 import { VStack } from '@/components/ui/vstack';
 import { HStack } from '@/components/ui/hstack';
 import { Divider } from '@/components/ui/divider';
-import { CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@/components/ui/checkbox';
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@/components/ui/slider';
+import {
+  CheckboxGroup,
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxIcon,
+  CheckboxLabel,
+} from '@/components/ui/checkbox';
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from '@/components/ui/slider';
 import { Pressable } from '@/components/ui/pressable';
-import { Avatar, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar';
+import {
+  Avatar,
+  AvatarFallbackText,
+  AvatarImage,
+} from '@/components/ui/avatar';
 import { User, Home, ShoppingCart, Wallet, LogOut } from 'lucide-react-native';
 
 import { Tabs, TabItem } from '@/docs-components/tabs';
@@ -31,12 +54,7 @@ Implement a responsive Drawer component in React & React Native for navigation a
 
 This is an illustration of **Drawer** component.
 
-
-  
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
   return (
@@ -83,33 +101,51 @@ This is an illustration of **Drawer** component.
   );
 }`}
   argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['sm', 'md', 'lg', 'full'],
+      defaultValue: 'sm',
     },
-    "options": [
-      "sm",
-      "md",
-      "lg",
-      "full"
-    ],
-    "defaultValue": "sm"
-  },
-  "anchor": {
-    "control": {
-      "type": "select"
+    anchor: {
+      control: {
+        type: 'select',
+      },
+      options: ['left', 'right', 'top', 'bottom'],
+      defaultValue: 'left',
     },
-    "options": [
-      "left",
-      "right",
-      "top",
-      "bottom"
+  }}
+  reactLive={{
+    Drawer,
+    DrawerBackdrop,
+    DrawerContent,
+    DrawerHeader,
+    DrawerBody,
+    DrawerFooter,
+    DrawerCloseButton,
+    Button,
+    ButtonText,
+    Heading,
+    Text,
+    Icon,
+    CloseIcon,
+  }}
+  importMap={{
+    '@/components/ui/drawer': [
+      'Drawer',
+      'DrawerBackdrop',
+      'DrawerContent',
+      'DrawerHeader',
+      'DrawerBody',
+      'DrawerFooter',
+      'DrawerCloseButton',
     ],
-    "defaultValue": "left"
-  }
-}}
-  reactLive={{ Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton, Button, ButtonText, Heading, Text, Icon, CloseIcon }}
-  importMap={{"@/components/ui/drawer":["Drawer","DrawerBackdrop","DrawerContent","DrawerHeader","DrawerBody","DrawerFooter","DrawerCloseButton"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/icon":["Icon","CloseIcon"]}}
+    '@/components/ui/button': ['Button', 'ButtonText'],
+    '@/components/ui/heading': ['Heading'],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/icon': ['Icon', 'CloseIcon'],
+  }}
 />
 
 <br />
@@ -722,12 +758,9 @@ Modal component is created using View component from react-native. It extends al
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Filter
 
-  #### Filter
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
   const [categories, setCategories] = React.useState([]);
@@ -825,16 +858,64 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, Button, ButtonText, Heading, Text, VStack, HStack, Divider, CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel, CheckIcon, Slider, SliderTrack, SliderFilledTrack, SliderThumb }}
-  importMap={{"@/components/ui/drawer":["Drawer","DrawerBackdrop","DrawerContent","DrawerHeader","DrawerBody"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"@/components/ui/divider":["Divider"],"@/components/ui/checkbox":["CheckboxGroup","Checkbox","CheckboxIndicator","CheckboxIcon","CheckboxLabel"],"@/components/ui/icon":["CheckIcon"],"@/components/ui/slider":["Slider","SliderTrack","SliderFilledTrack","SliderThumb"]}}
+  reactLive={{
+    Drawer,
+    DrawerBackdrop,
+    DrawerContent,
+    DrawerHeader,
+    DrawerBody,
+    Button,
+    ButtonText,
+    Heading,
+    Text,
+    VStack,
+    HStack,
+    Divider,
+    CheckboxGroup,
+    Checkbox,
+    CheckboxIndicator,
+    CheckboxIcon,
+    CheckboxLabel,
+    CheckIcon,
+    Slider,
+    SliderTrack,
+    SliderFilledTrack,
+    SliderThumb,
+  }}
+  importMap={{
+    '@/components/ui/drawer': [
+      'Drawer',
+      'DrawerBackdrop',
+      'DrawerContent',
+      'DrawerHeader',
+      'DrawerBody',
+    ],
+    '@/components/ui/button': ['Button', 'ButtonText'],
+    '@/components/ui/heading': ['Heading'],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/vstack': ['VStack'],
+    '@/components/ui/hstack': ['HStack'],
+    '@/components/ui/divider': ['Divider'],
+    '@/components/ui/checkbox': [
+      'CheckboxGroup',
+      'Checkbox',
+      'CheckboxIndicator',
+      'CheckboxIcon',
+      'CheckboxLabel',
+    ],
+    '@/components/ui/icon': ['CheckIcon'],
+    '@/components/ui/slider': [
+      'Slider',
+      'SliderTrack',
+      'SliderFilledTrack',
+      'SliderThumb',
+    ],
+  }}
 />
 
+#### Sidebar Menu
 
-  #### Sidebar Menu
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
   return (
@@ -899,6 +980,46 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, Button, ButtonText, ButtonIcon, Text, VStack, Pressable, Divider, Avatar, AvatarFallbackText, AvatarImage, Icon, User, Home, ShoppingCart, Wallet, LogOut }}
-  importMap={{"@/components/ui/drawer":["Drawer","DrawerBackdrop","DrawerContent","DrawerHeader","DrawerBody","DrawerFooter"],"@/components/ui/button":["Button","ButtonText","ButtonIcon"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/pressable":["Pressable"],"@/components/ui/divider":["Divider"],"@/components/ui/avatar":["Avatar","AvatarFallbackText","AvatarImage"],"@/components/ui/icon":["Icon"],"lucide-react-native":["User","Home","ShoppingCart","Wallet","LogOut"]}}
+  reactLive={{
+    Drawer,
+    DrawerBackdrop,
+    DrawerContent,
+    DrawerHeader,
+    DrawerBody,
+    DrawerFooter,
+    Button,
+    ButtonText,
+    ButtonIcon,
+    Text,
+    VStack,
+    Pressable,
+    Divider,
+    Avatar,
+    AvatarFallbackText,
+    AvatarImage,
+    Icon,
+    User,
+    Home,
+    ShoppingCart,
+    Wallet,
+    LogOut,
+  }}
+  importMap={{
+    '@/components/ui/drawer': [
+      'Drawer',
+      'DrawerBackdrop',
+      'DrawerContent',
+      'DrawerHeader',
+      'DrawerBody',
+      'DrawerFooter',
+    ],
+    '@/components/ui/button': ['Button', 'ButtonText', 'ButtonIcon'],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/vstack': ['VStack'],
+    '@/components/ui/pressable': ['Pressable'],
+    '@/components/ui/divider': ['Divider'],
+    '@/components/ui/avatar': ['Avatar', 'AvatarFallbackText', 'AvatarImage'],
+    '@/components/ui/icon': ['Icon'],
+    'lucide-react-native': ['User', 'Home', 'ShoppingCart', 'Wallet', 'LogOut'],
+  }}
 />

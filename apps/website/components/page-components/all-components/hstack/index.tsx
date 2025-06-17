@@ -15,29 +15,20 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "space": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg",
-      "xl",
-      "2xl",
-      "3xl",
-      "4xl"
-    ],
-    "defaultValue": "md"
-  },
-  "isReversed": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": false
-  }
-}}
+        space: {
+          control: {
+            type: 'select',
+          },
+          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'],
+          defaultValue: 'md',
+        },
+        isReversed: {
+          control: {
+            type: 'boolean',
+          },
+          defaultValue: false,
+        },
+      }}
       reactLive={{ HStack, Box }}
     />
   );

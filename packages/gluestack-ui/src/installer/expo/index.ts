@@ -1,4 +1,4 @@
-import {addDependencies}  from '../utils';
+import { addDependencies } from '../utils';
 import { log } from '@clack/prompts';
 
 const expoInstaller = async () => {

@@ -11,6 +11,7 @@ showHeader: true
 
 tag: alpha
 ---
+
 import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
@@ -34,15 +35,15 @@ Implement a dynamic bottom sheet in React & React Native with gluestack's bottom
 <TabItem label="CLI">
 
 ### Run the following command:
-  ```bash
-  npx gluestack-ui add bottomsheet
-  ```
+
+```bash
+npx gluestack-ui add bottomsheet
+```
 
 > Note: you need to install specific versions of `@gorhom/bottom-sheet@5.0.0-alpha.10 (v5)`, `react-native-reanimated` version `~3.6.2` and `react-native-gesture-handler` version `~2.14.0`.
 
 </TabItem>
-<TabItem label="Manual"> 
-
+<TabItem label="Manual">
 
 ### Step 1: Install the following dependencies:
 
@@ -52,10 +53,9 @@ npm i @gorhom/bottom-sheet@alpha react-native-reanimated@~3.6.2 react-native-ges
 
 > Note: you need to install specific versions of `@gorhom/bottom-sheet@alpha (v5)`, `react-native-reanimated` version `~3.6.2` and `react-native-gesture-handler` version `~2.14.0`.
 
-
 ### Step 2: Copy and paste the following code into your project.
 
-```jsx 
+```jsx
 
 import GorhomBottomSheet, {
   BottomSheetBackdrop as GorhomBottomSheetBackdrop,
@@ -352,14 +352,12 @@ cssInterop(GorhomBottomSheetScrollView, { className: 'style' });
 cssInterop(GorhomBottomSheetFlatList, { className: 'style' });
 cssInterop(GorhomBottomSheetSectionList, { className: 'style' });
 
- 
-```
 
+```
 
 ### Step 3: Wrap your App or layout with GestureHandlerRootView.
 
 ```jsx
-
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
@@ -369,7 +367,6 @@ export default function App() {
     </GestureHandlerRootView>
   );
 }
-
 ```
 
 for more info follow their [installation instructions.](https://docs.swmansion.com/react-native-gesture-handler/docs/fundamentals/installation)
@@ -384,7 +381,6 @@ for more info follow their [installation instructions.](https://docs.swmansion.c
 To use this component in your project, include the following import statement in your file.
 
 ```jsx
-
 import {
   BottomSheet,
   BottomSheetBackdrop,
@@ -395,33 +391,32 @@ import {
   BottomSheetPortal,
   BottomSheetTrigger,
 } from '@/components/ui/bottomsheet';
-
 ```
 
 ```jsx
 export default () => (
-   <BottomSheet>
-      <BottomSheetTrigger>
-        <Text>Open BottomSheet</Text>
-      </BottomSheetTrigger>
-      <BottomSheetPortal
-        snapPoints={['25%', '50%']}
-        backdropComponent={BottomSheetBackdrop}
-        handleComponent={BottomSheetDragIndicator}
-      >
-        <BottomSheetContent>
-          <BottomSheetItem>
-            <BottomSheetItemText>Item 1</BottomSheetItemText>
-          </BottomSheetItem>
-          <BottomSheetItem>
-            <BottomSheetItemText>Item 2</BottomSheetItemText>
-          </BottomSheetItem>
-          <BottomSheetItem>
-            <BottomSheetItemText>Item 3</BottomSheetItemText>
-          </BottomSheetItem>
-        </BottomSheetContent>
-      </BottomSheetPortal>
-    </BottomSheet>
+  <BottomSheet>
+    <BottomSheetTrigger>
+      <Text>Open BottomSheet</Text>
+    </BottomSheetTrigger>
+    <BottomSheetPortal
+      snapPoints={['25%', '50%']}
+      backdropComponent={BottomSheetBackdrop}
+      handleComponent={BottomSheetDragIndicator}
+    >
+      <BottomSheetContent>
+        <BottomSheetItem>
+          <BottomSheetItemText>Item 1</BottomSheetItemText>
+        </BottomSheetItem>
+        <BottomSheetItem>
+          <BottomSheetItemText>Item 2</BottomSheetItemText>
+        </BottomSheetItem>
+        <BottomSheetItem>
+          <BottomSheetItemText>Item 3</BottomSheetItemText>
+        </BottomSheetItem>
+      </BottomSheetContent>
+    </BottomSheetPortal>
+  </BottomSheet>
 );
 ```
 
@@ -492,13 +487,12 @@ It is a context provider for entire bottomsheet api.
           </TableCell>
         </TableRow>
       </TableBody>
-  </Table>
 
+  </Table>
 
 #### BottomSheetTrigger
 
 It inherits all the properties of React Native's [pressable](https://reactnative.dev/docs/pressable) component.
-
 
 #### BottomSheetPortal
 

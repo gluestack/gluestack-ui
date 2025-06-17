@@ -22,11 +22,9 @@ Simplify interactive UI with the Pressable component in React Native. Manage hov
 
 This is an illustration of **Pressable** component.
 
-  #### Basic
+#### Basic
 
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Pressable
@@ -39,7 +37,10 @@ This is an illustration of **Pressable** component.
 }`}
   argTypes={{}}
   reactLive={{ Pressable, Text }}
-  importMap={{"@/components/ui/pressable":["Pressable"],"@/components/ui/text":["Text"]}}
+  importMap={{
+    '@/components/ui/pressable': ['Pressable'],
+    '@/components/ui/text': ['Text'],
+  }}
 />
 
 <br />
@@ -101,7 +102,6 @@ const Pressable = React.forwardRef<
 
 Pressable.displayName = 'Pressable';
 export { Pressable };
-
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -173,12 +173,11 @@ Component receives states as props as boolean values, which are applied as `data
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### Pressable child elements according to its states
 
-  #### Pressable child elements according to its states
+You can change the child elements according to the states of Pressable component.
 
-  You can change the child elements according to the states of Pressable component.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Pressable className="p-16 bg-primary-500">
@@ -192,5 +191,10 @@ The Examples section provides visual representations of the different variants o
 }`}
   argTypes={{}}
   reactLive={{ Pressable, Text, Box, VStack }}
-  importMap={{"@/components/ui/pressable":["Pressable"],"@/components/ui/text":["Text"],"@/components/ui/box":["Box"],"@/components/ui/vstack":["VStack"]}}
+  importMap={{
+    '@/components/ui/pressable': ['Pressable'],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/box': ['Box'],
+    '@/components/ui/vstack': ['VStack'],
+  }}
 />

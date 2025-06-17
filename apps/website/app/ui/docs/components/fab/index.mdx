@@ -8,7 +8,12 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
 import { Divider } from '@/components/ui/divider';
-import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from '@/components/ui/checkbox';
+import {
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
+  CheckboxIcon,
+} from '@/components/ui/checkbox';
 import { Image } from '@/components/ui/image';
 import { Link } from '@/components/ui/link';
 import { ShoppingCartIcon } from 'lucide-react-native';
@@ -31,12 +36,7 @@ Improve your React Native app with the FAB component. Learn how to implement a R
 
 This is an illustration of **Fab** component.
 
-
-  
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Box className="h-[360px] w-80 bg-background-50 rounded-md">
@@ -54,52 +54,52 @@ This is an illustration of **Fab** component.
   )
 }`}
   argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['sm', 'md', 'lg'],
+      defaultValue: 'md',
     },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  },
-  "placement": {
-    "control": {
-      "type": "select"
+    placement: {
+      control: {
+        type: 'select',
+      },
+      options: [
+        'top left',
+        'top center',
+        'top right',
+        'bottom left',
+        'bottom center',
+        'bottom right',
+      ],
+      defaultValue: 'bottom right',
     },
-    "options": [
-      "top left",
-      "top center",
-      "top right",
-      "bottom left",
-      "bottom center",
-      "bottom right"
-    ],
-    "defaultValue": "bottom right"
-  },
-  "isHovered": {
-    "control": {
-      "type": "boolean"
+    isHovered: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  },
-  "isDisabled": {
-    "control": {
-      "type": "boolean"
+    isDisabled: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  },
-  "isPressed": {
-    "control": {
-      "type": "boolean"
+    isPressed: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  }
-}}
+  }}
   reactLive={{ Box, Fab, FabIcon, FabLabel, AddIcon }}
-  importMap={{"@/components/ui/box":["Box"],"@/components/ui/fab":["Fab","FabIcon","FabLabel"],"@/components/ui/icon":["AddIcon"]}}
+  importMap={{
+    '@/components/ui/box': ['Box'],
+    '@/components/ui/fab': ['Fab', 'FabIcon', 'FabLabel'],
+    '@/components/ui/icon': ['AddIcon'],
+  }}
 />
 
 <br />
@@ -558,12 +558,11 @@ Component receives states as props as boolean values, which are applied as `data
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### FAB with Icon
 
-  #### FAB with Icon
+A Fab component with an icon adds a visually striking and easily recognizable button that triggers a specific action or function within a user interface.
 
-  A Fab component with an icon adds a visually striking and easily recognizable button that triggers a specific action or function within a user interface.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   const data = [
     {
@@ -615,16 +614,35 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ Fab, FabIcon, Box, VStack, HStack, Avatar, AvatarImage, Heading, Text, EditIcon }}
-  importMap={{"@/components/ui/fab":["Fab","FabIcon"],"@/components/ui/box":["Box"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"@/components/ui/avatar":["Avatar","AvatarImage"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/icon":["EditIcon"]}}
+  reactLive={{
+    Fab,
+    FabIcon,
+    Box,
+    VStack,
+    HStack,
+    Avatar,
+    AvatarImage,
+    Heading,
+    Text,
+    EditIcon,
+  }}
+  importMap={{
+    '@/components/ui/fab': ['Fab', 'FabIcon'],
+    '@/components/ui/box': ['Box'],
+    '@/components/ui/vstack': ['VStack'],
+    '@/components/ui/hstack': ['HStack'],
+    '@/components/ui/avatar': ['Avatar', 'AvatarImage'],
+    '@/components/ui/heading': ['Heading'],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/icon': ['EditIcon'],
+  }}
 />
 
+#### FAB with Icon and Text
 
-  #### FAB with Icon and Text
+A Fab component with an icon and text combines a visual icon with accompanying text to create a prominent and descriptive button that triggers a specific action or function within a user interface.
 
-  A Fab component with an icon and text combines a visual icon with accompanying text to create a prominent and descriptive button that triggers a specific action or function within a user interface.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Box className='max-w-96 border rounded-lg border-outline-200 py-[56px] px-6 mx-5 bg-background-100'>
@@ -687,16 +705,35 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ Fab, FabIcon, FabLabel, Box, VStack, HStack, Heading, Text, Divider, SearchIcon }}
-  importMap={{"@/components/ui/fab":["Fab","FabIcon","FabLabel"],"@/components/ui/box":["Box"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/divider":["Divider"],"@/components/ui/icon":["SearchIcon"]}}
+  reactLive={{
+    Fab,
+    FabIcon,
+    FabLabel,
+    Box,
+    VStack,
+    HStack,
+    Heading,
+    Text,
+    Divider,
+    SearchIcon,
+  }}
+  importMap={{
+    '@/components/ui/fab': ['Fab', 'FabIcon', 'FabLabel'],
+    '@/components/ui/box': ['Box'],
+    '@/components/ui/vstack': ['VStack'],
+    '@/components/ui/hstack': ['HStack'],
+    '@/components/ui/heading': ['Heading'],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/divider': ['Divider'],
+    '@/components/ui/icon': ['SearchIcon'],
+  }}
 />
 
+#### Placement
 
-  #### Placement
+A Fab component with placement options allows for flexible positioning of the button within a user interface, enabling convenient and intuitive access to key actions or functionalities in various locations.
 
-  A Fab component with placement options allows for flexible positioning of the button within a user interface, enabling convenient and intuitive access to key actions or functionalities in various locations.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Box className='border rounded-lg border-outline-300 py-4 bg-background-0 mx-5'>
@@ -739,16 +776,39 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ Fab, FabIcon, Box, VStack, Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, Text, AddIcon, CheckIcon }}
-  importMap={{"@/components/ui/fab":["Fab","FabIcon"],"@/components/ui/box":["Box"],"@/components/ui/vstack":["VStack"],"@/components/ui/checkbox":["Checkbox","CheckboxIndicator","CheckboxLabel","CheckboxIcon"],"@/components/ui/text":["Text"],"@/components/ui/icon":["AddIcon","CheckIcon"]}}
+  reactLive={{
+    Fab,
+    FabIcon,
+    Box,
+    VStack,
+    Checkbox,
+    CheckboxIndicator,
+    CheckboxLabel,
+    CheckboxIcon,
+    Text,
+    AddIcon,
+    CheckIcon,
+  }}
+  importMap={{
+    '@/components/ui/fab': ['Fab', 'FabIcon'],
+    '@/components/ui/box': ['Box'],
+    '@/components/ui/vstack': ['VStack'],
+    '@/components/ui/checkbox': [
+      'Checkbox',
+      'CheckboxIndicator',
+      'CheckboxLabel',
+      'CheckboxIcon',
+    ],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/icon': ['AddIcon', 'CheckIcon'],
+  }}
 />
 
+#### Custom Placement
 
-  #### Custom Placement
+A Fab component with custom placement allows for flexible positioning of the button according to specific design requirements or user interface preferences, providing tailored and intuitive access to key actions or functionalities.
 
-  A Fab component with custom placement allows for flexible positioning of the button according to specific design requirements or user interface preferences, providing tailored and intuitive access to key actions or functionalities.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Box className='max-w-96 border rounded-lg border-outline-200 overflow-hidden mx-5 bg-background-100'>
@@ -790,6 +850,25 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ Fab, FabIcon, Box, VStack, Heading, Text, Image, Link, ShoppingCartIcon }}
-  importMap={{"@/components/ui/fab":["Fab","FabIcon"],"@/components/ui/box":["Box"],"@/components/ui/vstack":["VStack"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/image":["Image"],"@/components/ui/link":["Link"],"lucide-react-native":["ShoppingCartIcon"]}}
+  reactLive={{
+    Fab,
+    FabIcon,
+    Box,
+    VStack,
+    Heading,
+    Text,
+    Image,
+    Link,
+    ShoppingCartIcon,
+  }}
+  importMap={{
+    '@/components/ui/fab': ['Fab', 'FabIcon'],
+    '@/components/ui/box': ['Box'],
+    '@/components/ui/vstack': ['VStack'],
+    '@/components/ui/heading': ['Heading'],
+    '@/components/ui/text': ['Text'],
+    '@/components/ui/image': ['Image'],
+    '@/components/ui/link': ['Link'],
+    'lucide-react-native': ['ShoppingCartIcon'],
+  }}
 />

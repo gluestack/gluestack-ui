@@ -44,31 +44,29 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "action": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "success",
-      "info",
-      "warning",
-      "error",
-      "muted"
-    ],
-    "defaultValue": "muted"
-  },
-  "variant": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "solid",
-      "outline"
-    ],
-    "defaultValue": "solid"
-  }
-}}
-      reactLive={{ Toast, ToastTitle, ToastDescription, useToast, Button, ButtonText }}
+        action: {
+          control: {
+            type: 'select',
+          },
+          options: ['success', 'info', 'warning', 'error', 'muted'],
+          defaultValue: 'muted',
+        },
+        variant: {
+          control: {
+            type: 'select',
+          },
+          options: ['solid', 'outline'],
+          defaultValue: 'solid',
+        },
+      }}
+      reactLive={{
+        Toast,
+        ToastTitle,
+        ToastDescription,
+        useToast,
+        Button,
+        ButtonText,
+      }}
     />
   );
 }

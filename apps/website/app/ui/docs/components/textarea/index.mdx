@@ -1,6 +1,13 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Textarea, TextareaInput } from '@/components/ui/textarea';
-import { FormControl, FormControlError, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText } from '@/components/ui/form-control';
+import {
+  FormControl,
+  FormControlError,
+  FormControlLabel,
+  FormControlLabelText,
+  FormControlHelper,
+  FormControlHelperText,
+} from '@/components/ui/form-control';
 
 import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
@@ -20,12 +27,9 @@ Easily integrate a React & React Native Textarea component with multi-line input
 
 This is an illustration of **TextArea** component.
 
+#### Basic
 
-  #### Basic
-
-  
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <Textarea
@@ -40,39 +44,34 @@ This is an illustration of **TextArea** component.
   )
 }`}
   argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['sm', 'md', 'lg', 'xl'],
+      defaultValue: 'md',
     },
-    "options": [
-      "sm",
-      "md",
-      "lg",
-      "xl"
-    ],
-    "defaultValue": "md"
-  },
-  "isReadOnly": {
-    "control": {
-      "type": "boolean"
+    isReadOnly: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  },
-  "isInvalid": {
-    "control": {
-      "type": "boolean"
+    isInvalid: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  },
-  "isDisabled": {
-    "control": {
-      "type": "boolean"
+    isDisabled: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
     },
-    "defaultValue": false
-  }
-}}
+  }}
   reactLive={{ Textarea, TextareaInput }}
-  importMap={{"@/components/ui/textarea":["Textarea","TextareaInput"]}}
+  importMap={{ '@/components/ui/textarea': ['Textarea', 'TextareaInput'] }}
 />
 
 <br />
@@ -527,12 +526,11 @@ Component receives states as props as boolean values, which are applied as `data
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
+#### FormControl
 
-  #### FormControl
+The Textarea Component can be incorporated within the FormControl.
 
-  The Textarea Component can be incorporated within the FormControl.
-  
-  <CodePreviewer
+<CodePreviewer
   code={`function Example() {
   return (
     <FormControl size="sm" className="max-w-[200px] w-full">
@@ -553,6 +551,25 @@ The Examples section provides visual representations of the different variants o
   );
 }`}
   argTypes={{}}
-  reactLive={{ Textarea, TextareaInput, FormControl, FormControlError, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText }}
-  importMap={{"@/components/ui/textarea":["Textarea","TextareaInput"],"@/components/ui/form-control":["FormControl","FormControlError","FormControlLabel","FormControlLabelText","FormControlHelper","FormControlHelperText"]}}
+  reactLive={{
+    Textarea,
+    TextareaInput,
+    FormControl,
+    FormControlError,
+    FormControlLabel,
+    FormControlLabelText,
+    FormControlHelper,
+    FormControlHelperText,
+  }}
+  importMap={{
+    '@/components/ui/textarea': ['Textarea', 'TextareaInput'],
+    '@/components/ui/form-control': [
+      'FormControl',
+      'FormControlError',
+      'FormControlLabel',
+      'FormControlLabelText',
+      'FormControlHelper',
+      'FormControlHelperText',
+    ],
+  }}
 />

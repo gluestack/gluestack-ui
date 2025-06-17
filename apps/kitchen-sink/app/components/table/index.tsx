@@ -1,60 +1,71 @@
-import { ComponentPreviewer } from '@/components/custom/component-previewer'
-import { Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter } from '@/components/ui/table'
-
+import { ComponentPreviewer } from '@/components/custom/component-previewer';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableData,
+  TableFooter,
+} from '@/components/ui/table';
 
 import React from 'react';
 import { ScrollView } from 'react-native';
 export default function ComponentExamples() {
   return (
-        <ScrollView className="bg-background-0 flex-1" contentContainerClassName="px-3 pb-6">
+    <ScrollView
+      className="bg-background-0 flex-1"
+      contentContainerClassName="px-3 pb-6"
+    >
       <ComponentPreviewer props={{}} title={undefined}>
-  {props => {
-  return (
-    <Table className="w-full">
-      <TableHeader>
-        <TableRow>
-          <TableHead>Customer Name</TableHead>
-          <TableHead>Units</TableHead>
-          <TableHead>Costs</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableData>Rajesh Kumar</TableData>
-          <TableData>10</TableData>
-          <TableData>$130</TableData>
-        </TableRow>
-        <TableRow>
-          <TableData>Priya Sharma</TableData>
-          <TableData>12</TableData>
-          <TableData>$210</TableData>
-        </TableRow>
-        <TableRow>
-          <TableData>Ravi Patel</TableData>
-          <TableData>6</TableData>
-          <TableData>$55</TableData>
-        </TableRow>
-        <TableRow>
-          <TableData>Ananya Gupta</TableData>
-          <TableData>18</TableData>
-          <TableData>$340</TableData>
-        </TableRow>
-        <TableRow>
-          <TableData>Arjun Singh</TableData>
-          <TableData>2</TableData>
-          <TableData>$35</TableData>
-        </TableRow>
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableHead>Total</TableHead>
-          <TableHead>48</TableHead>
-          <TableHead>$770</TableHead>
-        </TableRow>
-      </TableFooter>
-    </Table>
-  )}}
-</ComponentPreviewer>
-        </ScrollView>
+        {(props) => {
+          return (
+            <Table className="w-full">
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Customer Name</TableHead>
+                  <TableHead>Units</TableHead>
+                  <TableHead>Costs</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableData>Rajesh Kumar</TableData>
+                  <TableData>10</TableData>
+                  <TableData>$130</TableData>
+                </TableRow>
+                <TableRow>
+                  <TableData>Priya Sharma</TableData>
+                  <TableData>12</TableData>
+                  <TableData>$210</TableData>
+                </TableRow>
+                <TableRow>
+                  <TableData>Ravi Patel</TableData>
+                  <TableData>6</TableData>
+                  <TableData>$55</TableData>
+                </TableRow>
+                <TableRow>
+                  <TableData>Ananya Gupta</TableData>
+                  <TableData>18</TableData>
+                  <TableData>$340</TableData>
+                </TableRow>
+                <TableRow>
+                  <TableData>Arjun Singh</TableData>
+                  <TableData>2</TableData>
+                  <TableData>$35</TableData>
+                </TableRow>
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TableHead>Total</TableHead>
+                  <TableHead>48</TableHead>
+                  <TableHead>$770</TableHead>
+                </TableRow>
+              </TableFooter>
+            </Table>
+          );
+        }}
+      </ComponentPreviewer>
+    </ScrollView>
   );
 }
