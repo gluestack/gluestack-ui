@@ -14,12 +14,41 @@ import { useContext } from 'react';
 import { ThemeContext, ThemeProvider } from '@/utils/context/theme-context';
 import CanonicalLink from '@/components/custom/canonical/CanonicalLink';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+// Configure fonts with local fallbacks and optimized loading
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  preload: true,
+  fallback: [
+    'system-ui',
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'Segoe UI',
+    'Roboto',
+    'Helvetica Neue',
+    'Arial',
+    'sans-serif',
+  ],
+  adjustFontFallback: true,
+});
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-plus-jakarta-sans',
+  preload: true,
+  fallback: [
+    'system-ui',
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'Segoe UI',
+    'Roboto',
+    'Helvetica Neue',
+    'Arial',
+    'sans-serif',
+  ],
+  adjustFontFallback: true,
 });
 
 const roboto = Roboto({
@@ -27,12 +56,34 @@ const roboto = Roboto({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-roboto',
+  preload: true,
+  fallback: [
+    'system-ui',
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'Segoe UI',
+    'Helvetica Neue',
+    'Arial',
+    'sans-serif',
+  ],
+  adjustFontFallback: true,
 });
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-source-code-pro',
+  preload: true,
+  fallback: [
+    'ui-monospace',
+    'SFMono-Regular',
+    'SF Mono',
+    'Menlo',
+    'Consolas',
+    'Liberation Mono',
+    'monospace',
+  ],
+  adjustFontFallback: true,
 });
 
 const spaceMono = Space_Mono({
@@ -40,6 +91,17 @@ const spaceMono = Space_Mono({
   weight: ['400', '700'],
   display: 'swap',
   variable: '--font-space-mono',
+  preload: true,
+  fallback: [
+    'ui-monospace',
+    'SFMono-Regular',
+    'SF Mono',
+    'Menlo',
+    'Consolas',
+    'Liberation Mono',
+    'monospace',
+  ],
+  adjustFontFallback: true,
 });
 
 function ThemeWrapper({ children }: { children: React.ReactNode }) {
@@ -60,6 +122,19 @@ export default function RootLayout({
       data-theme-id={colorMode}
     >
       <head>
+        {/* Preconnect to Google Fonts domains with higher priority */}
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <CanonicalLink />
         {/* Google Tag Manager */}
         <script
