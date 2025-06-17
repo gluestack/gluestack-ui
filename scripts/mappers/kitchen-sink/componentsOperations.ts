@@ -23,7 +23,7 @@ export const processNonComponentFile = (filePath: string) => {
 };
 
 export const processSidebarFile = (filePath: string) => {
-  const sourcePath = path.resolve('packages/sidebar.json');
+  const sourcePath = path.resolve('src/sidebar.json');
   const destPath = path.resolve('apps/kitchen-sink/components.json');
   copySpecialFile(sourcePath, destPath);
 };

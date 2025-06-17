@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import mappers from './mappers';
 
-const sourcePath = './packages';
+const sourcePath = './src';
 const componentsPath = './packages/components/ui';
 
 // Debounce map to prevent rapid repeated processing
@@ -107,8 +107,8 @@ const shouldProcessFile = (filePath: string): boolean => {
   const targetDirs = [
     'packages/components',
     'src/utils',
-    'packages/docs',
-    'packages/sidebar.json',
+    'src/docs',
+    'src/sidebar.json',
   ];
 
   const isInTargetDir = targetDirs.some((dir) => normalizedPath.includes(dir));
