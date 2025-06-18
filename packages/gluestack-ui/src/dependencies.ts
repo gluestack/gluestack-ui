@@ -37,7 +37,6 @@ const projectBasedDependencies: Dependencies = {
   },
   expo: {
     dependencies: {
-      'react-native-reanimated': '^3.17.4',
       nativewind: '^4.1.23',
       tailwindcss: '^3.4.17',
       'react-native-safe-area-context': '^4.11.0',
@@ -47,11 +46,11 @@ const projectBasedDependencies: Dependencies = {
       '@legendapp/motion': '^2.3.0',
       'react-native-svg': '^15.2.0',
       'react-stately': '^3.39.0',
+      'react-native-reanimated': '^3.17.4',
     },
   },
   'react-native-cli': {
     dependencies: {
-      'react-native-reanimated': '^3.17.4',
       nativewind: '^4.1.23',
       tailwindcss: '^3.4.17',
       'react-native-safe-area-context': '^4.11.0',
@@ -61,6 +60,7 @@ const projectBasedDependencies: Dependencies = {
       '@legendapp/motion': '^2.3.0',
       'react-native-svg': '^15.2.0',
       'react-stately': '^3.39.0',
+      'react-native-reanimated': '^3.17.4',
     },
     devDependencies: {
       'babel-plugin-module-resolver': '^5.0.0',
