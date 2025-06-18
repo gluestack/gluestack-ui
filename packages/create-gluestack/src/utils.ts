@@ -1,4 +1,4 @@
-import templatesMap from './data.js';
+import templatesMap from './data';
 import {
   appendFileSync,
   existsSync,
