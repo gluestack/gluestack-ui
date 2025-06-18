@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "prebuild": "yarn test"
   },
   "dependencies": {
     "@legendapp/motion": "^2.4.0",
@@ -22,9 +24,12 @@
     "tailwind-variants": "^1.0.0"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.27.1",
     "@eslint/eslintrc": "^3",
     "@react-native/assets-registry": "^0.79.3",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -33,8 +38,17 @@
     "babel-plugin-react-native-web": "^0.20.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
+    "jest": "^30.0.0",
     "postcss": "^8.5.4",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "^@/(.*)": "<rootDir>/$1",
+      "react-native": "react-native-web"
+    },
+    "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"]
   }
 }
