@@ -12,7 +12,7 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/$1',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
   },
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: [
     '**/*.{js,jsx,ts,tsx}',
     '!**/coverage/**',
