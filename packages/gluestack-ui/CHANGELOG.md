@@ -1,5 +1,17 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 0.1.24
+
+### Patch Changes
+
+- chore: removed reanimated from expo deps
+
+## 0.1.32
+
+### Patch Changes
+
+- chore: updated babel config
+
 ## 0.1.31
 
 ### Patch Changes
