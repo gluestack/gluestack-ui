@@ -363,12 +363,36 @@ async function commonInitialization(
               const configName = path.parse(configFileName).name;
               const configExt = path.parse(configFileName).ext;
 
-              return (
+              // For config files that can have multiple extensions, prioritize exact matches
+              if (
                 configName === templateFileName &&
-                (configExt === templateFileExt ||
-                  templateFileName === 'next.config' ||
+                (templateFileName === 'next.config' ||
                   templateFileName === 'postcss.config' ||
                   templateFileName === 'tailwind.config')
+              ) {
+                // If extensions match exactly, this is the preferred match
+                if (configExt === templateFileExt) {
+                  return true;
+                }
+
+                // Only allow extension mismatch if no template with matching extension exists
+                const hasMatchingExtensionTemplate = filesAndFolders.some(
+                  (otherFile) => {
+                    const otherTemplateName = path.parse(otherFile).name;
+                    const otherTemplateExt = path.parse(otherFile).ext;
+                    return (
+                      otherTemplateName === templateFileName &&
+                      otherTemplateExt === configExt
+                    );
+                  }
+                );
+
+                return !hasMatchingExtensionTemplate;
+              }
+
+              // For other files, require exact match
+              return (
+                configName === templateFileName && configExt === templateFileExt
               );
             }
           );

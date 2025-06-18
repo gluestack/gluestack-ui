@@ -37,7 +37,7 @@ const projectBasedDependencies: Dependencies = {
   },
   expo: {
     dependencies: {
-      'react-native-reanimated': '~3.17.4',
+      'react-native-reanimated': '^3.17.4',
       nativewind: '^4.1.23',
       tailwindcss: '^3.4.17',
       'react-native-safe-area-context': '^4.11.0',
@@ -51,7 +51,7 @@ const projectBasedDependencies: Dependencies = {
   },
   'react-native-cli': {
     dependencies: {
-      'react-native-reanimated': '~3.17.4',
+      'react-native-reanimated': '^3.17.4',
       nativewind: '^4.1.23',
       tailwindcss: '^3.4.17',
       'react-native-safe-area-context': '^4.11.0',
