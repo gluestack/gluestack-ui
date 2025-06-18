@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 0.1.33
+
+### Patch Changes
+
+- chore: removed unneccassary console log
+
 ## 0.1.24
 
 ### Patch Changes
