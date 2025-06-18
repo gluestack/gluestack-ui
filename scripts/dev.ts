@@ -1,6 +1,5 @@
 import chokidar from 'chokidar';
-import { EventEmitter } from 'events';
-import type { FSWatcher } from 'chokidar';
+
 import path from 'path';
 import fs from 'fs';
 import mappers from './mappers';
@@ -25,7 +24,7 @@ const DEBOUNCE_DELAY = 1000; // 1 second
 
 // Track processed files to prevent infinite loops
 const processedFiles = new Map<string, number>();
-const PROCESSED_FILE_COOLDOWN = 30000; // 30 seconds cooldown for same file
+const PROCESSED_FILE_COOLDOWN = 3000; // 30 seconds cooldown for same file
 
 // Get command line arguments for mapper filtering
 const args = process.argv.slice(2);
@@ -57,12 +56,19 @@ if (mapperFilter) {
 }
 
 if (syncFlag) {
-  console.log(`🔄 Sync mode enabled - will process existing files`);
+  console.log(`🔄 Sync mode enabled - will process existing files and exit`);
+} else {
+  console.log(`👀 Dev mode - will watch for file changes continuously`);
 }
+
+// Track initial sync completion
+let initialSyncCompleted = false;
+let initialFileCount = 0;
+let processedFileCount = 0;
 
 // Initialize watcher
 const watcher = chokidar.watch(sourcePath, {
-  persistent: true,
+  persistent: !syncFlag, // Don't persist if sync flag is set
   ignoreInitial: !syncFlag, // Process existing files only if sync flag is set
   awaitWriteFinish: {
     stabilityThreshold: 1000,
@@ -94,6 +100,7 @@ const watcher = chokidar.watch(sourcePath, {
   ],
 }) as unknown as {
   on: (event: string, callback: (path: string) => void) => any;
+  close: () => void;
 };
 
 const getComponentFromPath = (filePath: string): string | null => {
@@ -196,11 +203,6 @@ const processFileChange = async (event: string, filePath: string) => {
     return;
   }
 
-  // For initial processing (when not in sync mode), only process recently modified files
-  if (event === 'add' && !syncFlag && !isRecentlyModified(filePath, 30)) {
-    return;
-  }
-
   const fileKey = `${event}-${filePath}`;
 
   // Clear existing timeout for this file
@@ -253,6 +255,12 @@ const processFileChange = async (event: string, filePath: string) => {
             }
           }
         }
+
+        // Track processed files in sync mode
+        if (syncFlag && event === 'added') {
+          processedFileCount++;
+          checkSyncCompletion();
+        }
       } finally {
         // Clean up the debounce map
         debounceMap.delete(fileKey);
@@ -261,9 +269,26 @@ const processFileChange = async (event: string, filePath: string) => {
   );
 };
 
+// Check if sync is complete and exit if so
+const checkSyncCompletion = () => {
+  if (
+    syncFlag &&
+    initialSyncCompleted &&
+    processedFileCount >= initialFileCount
+  ) {
+    console.log(`✅ Sync completed! Processed ${processedFileCount} files.`);
+    process.exit(0);
+  }
+};
+
 // Set up event handlers
 watcher
-  .on('add', (filePath: string) => processFileChange('added', filePath))
+  .on('add', (filePath: string) => {
+    if (syncFlag && !initialSyncCompleted) {
+      initialFileCount++;
+    }
+    processFileChange('added', filePath);
+  })
   .on('change', (filePath: string) => processFileChange('changed', filePath))
   .on('unlink', (filePath: string) => processFileChange('removed', filePath))
   .on('addDir', (dirPath: string) => {
@@ -291,16 +316,27 @@ watcher
   })
   .on('ready', () => {
     console.log('✅ File watcher is ready');
+
+    if (syncFlag) {
+      initialSyncCompleted = true;
+      console.log(`📊 Found ${initialFileCount} files to process`);
+
+      // If no files to process, exit immediately
+      if (initialFileCount === 0) {
+        console.log(`✅ Sync completed! No files to process.`);
+        process.exit(0);
+      }
+    }
   });
 
 console.log(`👀 Watching for file changes in ${sourcePath}...`);
 if (syncFlag) {
-  console.log(`💡 Sync mode: Processing all existing files`);
-} else {
   console.log(
-    `💡 Normal mode: Processing only recently modified files (last 30 minutes) and new changes`
+    `💡 Sync mode: Processing all existing files and will exit when complete`
   );
+} else {
+  console.log(`💡 Dev mode: Processing all files and watching for new changes`);
   console.log(
-    `💡 Use --sync flag to process all existing files: npm run <script> -- --sync`
+    `💡 Use --sync flag to process all existing files once: npm run <script> -- --sync`
   );
 }
