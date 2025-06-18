@@ -19,7 +19,8 @@
     "sync:todo-app": "tsx --watch scripts/dev.ts --mapper=todo-app --sync",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
-    "build:website": "cd apps/website && yarn build"
+    "build:website": "cd apps/website && yarn build",
+    "test": "tsx scripts/test.ts"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.27.1",
