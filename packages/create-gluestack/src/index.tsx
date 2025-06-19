@@ -127,17 +127,11 @@ export async function main(args: string[]) {
   );
 
   try {
-    console.log('Starting project cloning process...');
     await cloneProject(projName, templateName);
-    console.log('Project cloning completed.');
     if (!templateName.includes('universal')) {
-      console.log('Starting dependency installation...');
       await installDependencies(projName, selectedPackageManager);
-      console.log('Dependency installation completed.');
     }
-    console.log('Initializing git repository...');
     await gitInit(projName);
-    console.log('Git initialization completed.');
     console.log(
       chalk.green(
         '\nProject created successfully in ' + projName + ' folder.\n'
@@ -145,7 +139,7 @@ export async function main(args: string[]) {
     );
   } catch (error: any) {
     console.error('Failed to create project');
-    console.error('Error details:', error);
+    console.error(error.message);
     process.exit(1);
   }
 }
