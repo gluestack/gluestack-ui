@@ -1,8 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import sidebarData from '@/sidebar.json';
 import { GridItem } from '@/components/ui/grid';
 import { Box, Grid } from '@/components/ui';
 import { Text } from '@/components/ui/text';
+
+// Direct static imports - much simpler and faster!
+import AccordionComponent from './accordion';
+import ActionsheetComponent from './actionsheet';
+import AlertComponent from './alert';
+import AlertDialogComponent from './alert-dialog';
+import AvatarComponent from './avatar';
+import BadgeComponent from './badge';
+import BoxComponent from './box';
+import ButtonComponent from './button';
+import CardComponent from './card';
+import CenterComponent from './center';
+import CheckboxComponent from './checkbox';
+import DividerComponent from './divider';
+import DrawerComponent from './drawer';
+import FabComponent from './fab';
+import FormControlComponent from './form-control';
+import GridComponent from './grid';
+import HeadingComponent from './heading';
+import HstackComponent from './hstack';
+import IconComponent from './icon';
+import ImageComponent from './image';
+import InputComponent from './input';
+import LinkComponent from './link';
+import MenuComponent from './menu';
+import ModalComponent from './modal';
+import PopoverComponent from './popover';
+import PortalComponent from './portal';
+import PressableComponent from './pressable';
+import ProgressComponent from './progress';
+import RadioComponent from './radio';
+import SelectComponent from './select';
+import SkeletonComponent from './skeleton';
+import SliderComponent from './slider';
+import SpinnerComponent from './spinner';
+import SwitchComponent from './switch';
+import TableComponent from './table';
+import TextComponent from './text';
+import TextareaComponent from './textarea';
+import ToastComponent from './toast';
+import TooltipComponent from './tooltip';
+import VstackComponent from './vstack';
+
 const getComponentsFromSidebar = () => {
   // Find the Components section
   const componentsSection = sidebarData.navigation.sections.find(
@@ -33,30 +76,53 @@ const getComponentsFromSidebar = () => {
   );
 };
 
+// Component mapping - direct references, no async loading needed!
+const componentMap: { [key: string]: React.ComponentType } = {
+  'accordion': AccordionComponent,
+  'actionsheet': ActionsheetComponent,
+  'alert': AlertComponent,
+  'alert-dialog': AlertDialogComponent,
+  'avatar': AvatarComponent,
+  'badge': BadgeComponent,
+  'box': BoxComponent,
+  'button': ButtonComponent,
+  'card': CardComponent,
+  'center': CenterComponent,
+  'checkbox': CheckboxComponent,
+  'divider': DividerComponent,
+  'drawer': DrawerComponent,
+  'fab': FabComponent,
+  'form-control': FormControlComponent,
+  'grid': GridComponent,
+  'heading': HeadingComponent,
+  'hstack': HstackComponent,
+  'icon': IconComponent,
+  'image': ImageComponent,
+  'input': InputComponent,
+  'link': LinkComponent,
+  'menu': MenuComponent,
+  'modal': ModalComponent,
+  'popover': PopoverComponent,
+  'portal': PortalComponent,
+  'pressable': PressableComponent,
+  'progress': ProgressComponent,
+  'radio': RadioComponent,
+  'select': SelectComponent,
+  'skeleton': SkeletonComponent,
+  'slider': SliderComponent,
+  'spinner': SpinnerComponent,
+  'switch': SwitchComponent,
+  'table': TableComponent,
+  'text': TextComponent,
+  'textarea': TextareaComponent,
+  'toast': ToastComponent,
+  'tooltip': TooltipComponent,
+  'vstack': VstackComponent,
+};
+
 const componentsList = getComponentsFromSidebar();
 
 export default function AllComponents() {
-  const [components, setComponents] = useState<{ [key: string]: any }>({});
-
-  useEffect(() => {
-    const loadComponents = async () => {
-      const loadedComponents: { [key: string]: any } = {};
-
-      for (const component of componentsList) {
-        try {
-          const module = await import(`./${component}`);
-          loadedComponents[component] = module.default;
-        } catch (error) {
-          console.error(`Failed to load component: ${component}`, error);
-        }
-      }
-
-      setComponents(loadedComponents);
-    };
-
-    loadComponents();
-  }, []);
-
   return (
     <Grid
       className="gap-5"
@@ -65,7 +131,7 @@ export default function AllComponents() {
       }}
     >
       {componentsList.sort().map((componentName) => {
-        const Component = components[componentName];
+        const Component = componentMap[componentName];
         if (!Component) return null;
 
         return (
