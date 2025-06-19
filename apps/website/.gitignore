@@ -41,3 +41,10 @@ components/ui/
 components/docs-components/
 utils/gluestack-utils/
 sidebar.json
+app/ui/docs/apps/
+app/ui/docs/components/
+app/ui/docs/guides/
+app/ui/docs/home/
+app/ui/docs/hooks/
+app/ui/docs/mcp-server/
+
