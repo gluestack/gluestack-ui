@@ -61,7 +61,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="flex-1 flex-row">
             <MDXProvider components={useMDXComponents({})}>
               <div
-                className={`flex-1  px-4 md:px-0 ${pathname.includes('/overview/quick-start') || pathname.includes('components/all-components') || pathname.includes('docs/apps') ? 'max-w-[95%] mx-auto' : 'max-w-[736px] 2xl:mx-auto'}`}
+                className={`flex-1  px-4 md:px-0 ${fluidLayout ? 'max-w-[95%] mx-auto' : 'max-w-[736px] 2xl:mx-auto'} ${pathname.includes('overview/quick-start') || pathname.includes('docs/apps') ? 'xl:max-w-[1280px]' : ''}`}
               >
                 <LayoutContent className="flex md:min-w-[736px] lg:min-w-[662px] xl:min-w-[598px] 2xl:min-w-[736px] h-full w-full mx-auto flex-col scroll-smooth">
                   {children}
