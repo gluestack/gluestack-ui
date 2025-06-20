@@ -1,5 +1,4 @@
-import React from 'react';
-import sidebarData from '@/sidebar.json';
+import React from 'react';;
 import { GridItem } from '@/components/ui/grid';
 import { Box, Grid } from '@/components/ui';
 import { Text } from '@/components/ui/text';
