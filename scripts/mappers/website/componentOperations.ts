@@ -73,6 +73,10 @@ export const processSidebarFile = (filePath: string) => {
   
 const components = getComponentsFromSidebar(sidebar);
 console.log(components);
+const componentMap = createComponentMap(components);
+console.log(componentMap);
+const template = createTemplate(components, componentMap);
+console.log(template);
   // Proceed with copying the file
   copySpecialFile(sourcePath, destPath);
 };
@@ -109,6 +113,66 @@ const getComponentsFromSidebar = (sidebarData: any) => {
   );
 };
 
+const createComponentMap = (components: string[]) => {
+  return `
+  
+    ${components.map((component) => `
+    import {${component}} from './${component}',
+    `).join('\n')}
+  
+  `;
+};
 
+const createTemplate = (components: string[], componentMap: string) => {
+  return `import React from 'react';
+import sidebarData from '@/sidebar.json';
+import { GridItem } from '@/components/ui/grid';
+import { Box, Grid } from '@/components/ui';
+import { Text } from '@/components/ui/text';
 
+${componentMap}
 
+const componentsList = ${components};
+
+export default function AllComponents() {
+  return (
+    <Grid
+      className="gap-5"
+      _extra={{
+        className: 'sm:grid-cols-2 md:grid-cols-3 grid-cols-1 2xl:grid-cols-4',
+      }}
+    >
+      {componentsList.sort().map((componentName) => {
+        
+
+        return (
+          <GridItem
+            _extra={{
+              className: 'col-span-1',
+            }}
+            key={componentName}
+          >
+            <Box className="flex h-[250px] border border-outline-100  items-center overflow-hidden justify-center rounded-lg dark:bg-black bg-white">
+              <Box className="flex-1 w-full flex items-center justify-center origin-center scale-75">
+                <Component />
+              </Box>
+              <Box
+                className="w-full py-2 px-4 bg-background-100 cursor-pointer"
+                onClick={() => {
+                  window.location.href = \`/ui/docs/components/\${componentName}\`;
+                }}
+              >
+                <Text className="text-left text-typography-700 text-lg font-medium capitalize">
+                  {componentName}
+                </Text>
+              </Box>
+            </Box>
+          </GridItem>
+        );
+      })}
+    </Grid>
+  );
+}
+
+  `;
+};
