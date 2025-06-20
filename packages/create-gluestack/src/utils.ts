@@ -1,12 +1,5 @@
 import templatesMap from './data.js';
-import {
-  appendFileSync,
-  existsSync,
-  mkdirSync,
-  rmSync,
-  renameSync,
-  readdirSync,
-} from 'fs';
+import { existsSync, rmSync, renameSync, readdirSync } from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
 
@@ -20,25 +13,13 @@ async function cloneProject(projectName: string, templateName: string) {
     // Delete directory recursively
     rmSync(projectName, { recursive: true, force: true });
   }
-  // Create new directory
-  mkdirSync(projectName);
+
   try {
-    // Clone the project-template
-    execSync('git init', { cwd: dirPath });
-    execSync(`git remote add origin ${gitRepo}`, { cwd: dirPath });
-    execSync('git config core.sparseCheckout true', { cwd: dirPath });
-
-    // Create sparse-checkout file
-    const sparseCheckoutPath = path.join(
-      dirPath,
-      '.git',
-      'info',
-      'sparse-checkout'
+    // Single command shallow clone with sparse checkout - much faster!
+    execSync(
+      `git clone --depth=1 --filter=blob:none --sparse ${gitRepo} ${projectName} --branch ${branch}`
     );
-    appendFileSync(sparseCheckoutPath, path.join('apps', templateName) + '\n');
-
-    // Pull the template
-    execSync(`git pull origin ${branch}`, { cwd: dirPath });
+    execSync(`git sparse-checkout set apps/${templateName}`, { cwd: dirPath });
 
     // Move files
     moveAllFiles(dirPath, templateName);

@@ -57,9 +57,6 @@ coverage
 # Yarn Integrity file
 .yarn-integrity
 
-# Monorepo packages (exclude other apps)
-../kitchen-sink
-../../packages
 
 # TypeScript
 *.tsbuildinfo

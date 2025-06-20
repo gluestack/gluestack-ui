@@ -1,5 +1,11 @@
 # create-gluecode
 
+## 1.0.11
+
+### Patch Changes
+
+- perf: optimize template cloning with shallow git clone
+
 ## 1.0.9
 
 ### Patch Changes
