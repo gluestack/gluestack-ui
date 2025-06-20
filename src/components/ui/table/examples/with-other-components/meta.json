@@ -1,0 +1,18 @@
+{
+    "title": "Table with other components",
+    "description": "This example illustrates a table component with a badge component.",
+    "argTypes": {},
+    "reactLive": {
+      "Table": "@/components/ui/table",
+      "TableBody": "@/components/ui/table",
+      "TableHeader": "@/components/ui/table",
+      "TableRow": "@/components/ui/table",
+      "TableHead": "@/components/ui/table",
+      "TableData": "@/components/ui/table",
+      "TableFooter": "@/components/ui/table",
+      "Box": "@/components/ui/box",
+      "Badge": "@/components/ui/badge",
+      "BadgeText": "@/components/ui/badge"
+    }
+  }
+  
