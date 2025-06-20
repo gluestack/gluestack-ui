@@ -62,26 +62,27 @@ export const copyDocsComponents = (filePath: string) => {
 };
 
 export const processSidebarFile = (filePath: string) => {
-  const sourcePath = path.resolve('src/sidebar.json');
-  const destPath = path.resolve('apps/website/sidebar.json');
-  
+  const sourceSidebarPath = path.resolve('src/sidebar.json');
+  const destSidebarPath = path.resolve('apps/website/sidebar.json');
+  const allComponentsPath = path.resolve('apps/website/components/page-components/all-components/index.tsx');
   // Read and parse the JSON file
-  const sidebar = fileOps.readJsonFile(sourcePath);
+  const sidebar = fileOps.readJsonFile(sourceSidebarPath);
   
   // Log the sidebar data to ensure it's being read correctly
   console.log("Sidebar Data:", JSON.stringify(sidebar, null, 2));
   
-let components = getComponentsFromSidebar(sidebar);
+let components = getComponentsFromSidebar(sidebar).sort();
 components = components.map((component: string) => component.replace('-', '') + 'Component');
 console.log(components);
-const componentsNameList = getComponentsFromSidebar(sidebar);
+const componentsNameList = getComponentsFromSidebar(sidebar).sort();
 console.log(componentsNameList);
 const componentMap = createComponentMap(components,componentsNameList);
 console.log(componentMap);
 const template = createTemplate(components, componentMap,componentsNameList);
 console.log(template);
   // Proceed with copying the file
-  copySpecialFile(sourcePath, destPath);
+  copySpecialFile(sourceSidebarPath, destSidebarPath);
+  fileOps.writeTextFile(allComponentsPath, template);
 };
 
 const getComponentsFromSidebar = (sidebarData: any) => {
@@ -112,7 +113,8 @@ const getComponentsFromSidebar = (sidebarData: any) => {
   return components.filter(
     (component: string) =>
       component &&
-      component !== "table" // Exclude specific components that might not have implementations
+      component !== "table" &&
+      component !== "bottomsheet"
   );
 };
 
@@ -144,7 +146,7 @@ export default function AllComponents() {
         className: 'sm:grid-cols-2 md:grid-cols-3 grid-cols-1 2xl:grid-cols-4',
       }}
     >
-      {componentsNameList.sort().map((componentName,index) => {
+      {componentsNameList.map((componentName,index) => {
         const Component = componentsList[index];
 
         return (
