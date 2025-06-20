@@ -88,9 +88,9 @@ body {
   background: transparent;
 }
 *::-webkit-scrollbar-thumb {
-  background-color: #9ca3af;
-  border-radius: 20px;
-  border: 3px solid transparent;
+  background-color: transparent;
+  /* border-radius: 20px;
+  border: 3px solid transparent; */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -105,12 +105,12 @@ body {
 }
 
 .light ::-webkit-scrollbar-thumb {
-  background-color: #d4d4d4;
-  border-radius: 20px;
-  border: 3px solid transparent;
+  background-color: transparent;
+  /* border-radius: 20px; */
+  /* border: 3px solid transparent; */
 }
 .dark ::-webkit-scrollbar-thumb {
-  background-color: #404040;
-  border-radius: 20px;
-  border: 3px solid transparent;
+  background-color: transparent;
+  /* border-radius: 20px; */
+  /* border: 3px solid transparent; */
 }
