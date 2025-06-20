@@ -64,5 +64,51 @@ export const copyDocsComponents = (filePath: string) => {
 export const processSidebarFile = (filePath: string) => {
   const sourcePath = path.resolve('src/sidebar.json');
   const destPath = path.resolve('apps/website/sidebar.json');
+  
+  // Read and parse the JSON file
+  const sidebar = fileOps.readJsonFile(sourcePath);
+  
+  // Log the sidebar data to ensure it's being read correctly
+  console.log("Sidebar Data:", JSON.stringify(sidebar, null, 2));
+  
+const components = getComponentsFromSidebar(sidebar);
+console.log(components);
+  // Proceed with copying the file
   copySpecialFile(sourcePath, destPath);
 };
+
+const getComponentsFromSidebar = (sidebarData: any) => {
+  // Find the Components section
+  const componentsSection = sidebarData.navigation.sections.find(
+    (section: any) => section.title === "Components"
+  );
+
+  if (!componentsSection) return [];
+
+  // Get all subsections that are of type "heading"
+  const componentHeadings = componentsSection.subsections.filter(
+    (subsection: any) => subsection.type === "heading"
+  );
+
+  // Extract all component items from each heading
+  const components = componentHeadings.reduce((acc: string[], heading: any) => {
+    const componentItems = heading.items || [];
+    const componentNames = componentItems.map((item: any) => {
+      // Extract component name from path, e.g., "/ui/docs/components/button" -> "button"
+      const pathParts = item.path?.split("/") || [];
+      return pathParts[pathParts.length - 1];
+    });
+    return [...acc, ...componentNames];
+  }, []);
+
+  // Filter out any empty or undefined values and components we don't want to show
+  return components.filter(
+    (component: string) =>
+      component &&
+      component !== "table" // Exclude specific components that might not have implementations
+  );
+};
+
+
+
+
