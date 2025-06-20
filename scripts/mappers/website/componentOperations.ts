@@ -128,8 +128,7 @@ const createComponentMap = (components: string[],componentsNameList: string[]) =
 };
 
 const createTemplate = (components: string[], componentMap: string,componentsNameList: string[]) => {
-  return `import React from 'react';
-import sidebarData from '@/sidebar.json';
+  return `import React from 'react';;
 import { GridItem } from '@/components/ui/grid';
 import { Box, Grid } from '@/components/ui';
 import { Text } from '@/components/ui/text';
