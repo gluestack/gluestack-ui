@@ -66,3 +66,51 @@ body {
     -ms-overflow-style: scrollbar;
 }
 
+#tab-list::-webkit-scrollbar {
+  display: none;
+  height: 2px;
+}
+
+#tab-list {
+  scrollbar-gutter: stable both-edge;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  /* border-radius: 20px;
+  border: 3px solid transparent; */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#heading-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#heading-tabs {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  /* border-radius: 20px; */
+  /* border: 3px solid transparent; */
+}
+.dark ::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  /* border-radius: 20px; */
+  /* border: 3px solid transparent; */
+}
