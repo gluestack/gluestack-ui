@@ -6,6 +6,7 @@ import {
   MapperConfig,
 } from '../utils/componentOperations';
 import * as fileOps from '../utils/fileOperations';
+import { createAllComponentsTemplate } from './templates';
 
 const mapperConfig: MapperConfig = {
   sourcePath: path.resolve('src/components/ui'),
@@ -62,7 +63,68 @@ export const copyDocsComponents = (filePath: string) => {
 };
 
 export const processSidebarFile = (filePath: string) => {
-  const sourcePath = path.resolve('src/sidebar.json');
-  const destPath = path.resolve('apps/website/sidebar.json');
-  copySpecialFile(sourcePath, destPath);
+  const sourceSidebarPath = path.resolve('src/sidebar.json');
+  const destSidebarPath = path.resolve('apps/website/sidebar.json');
+  const allComponentsPath = path.resolve('apps/website/components/page-components/all-components/index.tsx');
+  // Read and parse the JSON file
+  const sidebar = fileOps.readJsonFile(sourceSidebarPath);
+  
+  // Log the sidebar data to ensure it's being read correctly
+  console.log("Sidebar Data:", JSON.stringify(sidebar, null, 2));
+  
+let components = getComponentsFromSidebar(sidebar).sort();
+components = components.map((component: string) => component.replace('-', '') + 'Component');
+console.log(components);
+const componentsNameList = getComponentsFromSidebar(sidebar).sort();
+console.log(componentsNameList);
+const componentMap = createComponentMap(components,componentsNameList);
+console.log(componentMap);
+const template = createAllComponentsTemplate(components, componentMap,componentsNameList);
+console.log(template);
+  // Proceed with copying the file
+  copySpecialFile(sourceSidebarPath, destSidebarPath);
+  fileOps.writeTextFile(allComponentsPath, template);
 };
+
+const getComponentsFromSidebar = (sidebarData: any) => {
+  // Find the Components section
+  const componentsSection = sidebarData.navigation.sections.find(
+    (section: any) => section.title === "Components"
+  );
+
+  if (!componentsSection) return [];
+
+  // Get all subsections that are of type "heading"
+  const componentHeadings = componentsSection.subsections.filter(
+    (subsection: any) => subsection.type === "heading"
+  );
+
+  // Extract all component items from each heading
+  const components = componentHeadings.reduce((acc: string[], heading: any) => {
+    const componentItems = heading.items || [];
+    const componentNames = componentItems.map((item: any) => {
+      // Extract component name from path, e.g., "/ui/docs/components/button" -> "button"
+      const pathParts = item.path?.split("/") || [];
+      return pathParts[pathParts.length - 1];
+    });
+    return [...acc, ...componentNames];
+  }, []);
+
+  // Filter out any empty or undefined values and components we don't want to show
+  return components.filter(
+    (component: string) =>
+      component &&
+      component !== "table" &&
+      component !== "bottomsheet"
+  );
+};
+
+const createComponentMap = (components: string[],componentsNameList: string[]) => {
+  return `
+  
+    ${components.map((component,index) => `
+    import ${component} from './${componentsNameList[index]}'`).join('\n')}
+  
+  `;
+};
+
