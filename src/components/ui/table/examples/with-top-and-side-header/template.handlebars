@@ -1,0 +1,52 @@
+function App(){
+    return (
+<Box className="border border-solid border-outline-200 rounded-lg overflow-hidden w-full">
+      <Table className="w-full">
+        <TableHeader>
+          <TableRow className="bg-background-50">
+            <TableHead className="border-0 border-r border-solid border-outline-200">Player</TableHead>
+            <TableHead>Pts</TableHead>
+            <TableHead>Reb</TableHead>
+            <TableHead>Ast</TableHead>
+            <TableHead>Stl</TableHead>
+            <TableHead>Blk</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">LeBron James</TableHead>
+            <TableData>30</TableData>
+            <TableData>10</TableData>
+            <TableData>5</TableData>
+            <TableData>5</TableData>
+            <TableData>2</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">Anthony Davis</TableHead>
+            <TableData>21</TableData>
+            <TableData>15</TableData>
+            <TableData>10</TableData>
+            <TableData>3</TableData>
+            <TableData>6</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">Austin Reaves</TableHead>
+            <TableData>18</TableData>
+            <TableData>8</TableData>
+            <TableData>15</TableData>
+            <TableData>3</TableData>
+            <TableData>3</TableData>
+          </TableRow>
+          <TableRow className="border-b-0">
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">Kobe Bryant</TableHead>
+            <TableData>32</TableData>
+            <TableData>12</TableData>
+            <TableData>13</TableData>
+            <TableData>4</TableData>
+            <TableData>5</TableData>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Box>
+);
+}
