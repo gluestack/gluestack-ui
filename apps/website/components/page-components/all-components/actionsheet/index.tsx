@@ -47,17 +47,7 @@ export default function Example() {
   )
 }`}
       argTypes={{}}
-      reactLive={{
-        Actionsheet,
-        ActionsheetContent,
-        ActionsheetItem,
-        ActionsheetItemText,
-        ActionsheetDragIndicator,
-        ActionsheetDragIndicatorWrapper,
-        ActionsheetBackdrop,
-        Button,
-        ButtonText,
-      }}
+      reactLive={{ Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, Button, ButtonText }}
     />
   );
 }

@@ -8,30 +8,33 @@ export default function Example() {
   return <Spinner size="{{size}}" color="{{color}}" />
 }`}
       argTypes={{
-        size: {
-          control: {
-            type: 'select',
-          },
-          options: ['small', 'large'],
-          defaultValue: 'small',
-        },
-        color: {
-          control: {
-            type: 'select',
-          },
-          options: [
-            'red',
-            'blue',
-            'green',
-            'black',
-            'orange',
-            'purple',
-            'yellow',
-            'grey',
-          ],
-          defaultValue: 'grey',
-        },
-      }}
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "small",
+      "large"
+    ],
+    "defaultValue": "small"
+  },
+  "color": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "red",
+      "blue",
+      "green",
+      "black",
+      "orange",
+      "purple",
+      "yellow",
+      "grey"
+    ],
+    "defaultValue": "grey"
+  }
+}}
       reactLive={{ Spinner }}
     />
   );

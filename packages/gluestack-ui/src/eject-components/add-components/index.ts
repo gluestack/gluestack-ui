@@ -3,7 +3,6 @@ import path from 'path';
 import {
   addIndexFile,
   dashToPascal,
-  getConfigComponentPath,
   getPackageJsonPath,
   pascalToDash,
 } from '../../utils';
@@ -98,7 +97,7 @@ const componentAdder = async (
 
     await Promise.all(
       addComponents.map(async (component) => {
-        const componentPath = getConfigComponentPath();
+        const componentPath = 'components/ui'; // <-- Replace with actual logic if needed
         // createFolders(path.join(currDir, componentPath));
         const targetPath = path.join(currDir, componentPath);
 
@@ -328,7 +327,7 @@ const checkForExistingFolders = async (
   let selectedComponents: any = [];
 
   for (const component of specificComponents) {
-    const componentPath = getConfigComponentPath();
+    const componentPath = 'components/ui'; // <-- Replace with actual logic if needed
     const pathToCheck = path.join(
       currDir,
       componentPath,

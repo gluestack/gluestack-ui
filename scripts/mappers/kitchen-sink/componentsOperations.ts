@@ -7,9 +7,9 @@ import {
 } from '../utils/componentOperations';
 
 const mapperConfig: MapperConfig = {
-  sourcePath: path.resolve('packages/components/ui'),
+  sourcePath: path.resolve('src/components/ui'),
   destPath: path.resolve('apps/kitchen-sink/components/ui'),
-  utilsSourcePath: path.resolve('packages/utils/gluestack-utils'),
+  utilsSourcePath: path.resolve('src/utils/gluestack-utils'),
   utilsDestPath: path.resolve('apps/kitchen-sink/utils/gluestack-utils'),
   ignoreFiles: ['docs', 'examples'],
 };
@@ -23,7 +23,7 @@ export const processNonComponentFile = (filePath: string) => {
 };
 
 export const processSidebarFile = (filePath: string) => {
-  const sourcePath = path.resolve('packages/sidebar.json');
+  const sourcePath = path.resolve('src/sidebar.json');
   const destPath = path.resolve('apps/kitchen-sink/components.json');
   copySpecialFile(sourcePath, destPath);
 };

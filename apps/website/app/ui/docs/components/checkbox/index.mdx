@@ -1,11 +1,5 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import {
-  Checkbox,
-  CheckboxIndicator,
-  CheckboxLabel,
-  CheckboxIcon,
-  CheckboxGroup,
-} from '@/components/ui/checkbox';
+import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from '@/components/ui/checkbox';
 import { CheckIcon } from '@/components/ui/icon';
 import { VStack } from '@/components/ui/vstack';
 import { HStack } from '@/components/ui/hstack';
@@ -33,7 +27,12 @@ Build interactive forms with a checkbox component for React & React Native. Feat
 
 This is an illustration of **Checkbox** component.
 
-<CodePreviewer
+
+  
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Checkbox isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } size="{{size}}">
@@ -45,42 +44,32 @@ This is an illustration of **Checkbox** component.
   )
 }`}
   argTypes={{
-    isDisabled: {
-      control: {
-        type: 'boolean',
-      },
-      defaultValue: false,
+  "isDisabled": {
+    "control": {
+      "type": "boolean"
     },
-    isInvalid: {
-      control: {
-        type: 'boolean',
-      },
-      defaultValue: false,
+    "defaultValue": false
+  },
+  "isInvalid": {
+    "control": {
+      "type": "boolean"
     },
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: ['sm', 'md', 'lg'],
-      defaultValue: 'md',
+    "defaultValue": false
+  },
+  "size": {
+    "control": {
+      "type": "select"
     },
-  }}
-  reactLive={{
-    Checkbox,
-    CheckboxIndicator,
-    CheckboxLabel,
-    CheckIcon,
-    CheckboxIcon,
-  }}
-  importMap={{
-    '@/components/ui/checkbox': [
-      'Checkbox',
-      'CheckboxIndicator',
-      'CheckboxLabel',
-      'CheckboxIcon',
+    "options": [
+      "sm",
+      "md",
+      "lg"
     ],
-    '@/components/ui/icon': ['CheckIcon'],
-  }}
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ Checkbox, CheckboxIndicator, CheckboxLabel, CheckIcon, CheckboxIcon }}
+  importMap={{"@/components/ui/checkbox":["Checkbox","CheckboxIndicator","CheckboxLabel","CheckboxIcon"],"@/components/ui/icon":["CheckIcon"]}}
 />
 
 <br />
@@ -729,11 +718,12 @@ Component receives states as props as boolean values, which are applied as `data
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Multiple Checkbox
 
-Checkbox provide a mutually exclusive selection mechanism, allowing users to choose a multiple option from a set of related choices.
+  #### Multiple Checkbox
 
-<CodePreviewer
+  Checkbox provide a mutually exclusive selection mechanism, allowing users to choose a multiple option from a set of related choices.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState(["Eng"]);
   return (
@@ -764,33 +754,16 @@ Checkbox provide a mutually exclusive selection mechanism, allowing users to cho
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Checkbox,
-    CheckboxGroup,
-    CheckboxIndicator,
-    CheckboxIcon,
-    CheckboxLabel,
-    VStack,
-    CheckIcon,
-  }}
-  importMap={{
-    '@/components/ui/checkbox': [
-      'Checkbox',
-      'CheckboxGroup',
-      'CheckboxIndicator',
-      'CheckboxIcon',
-      'CheckboxLabel',
-    ],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/icon': ['CheckIcon'],
-  }}
+  reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, CheckIcon }}
+  importMap={{"@/components/ui/checkbox":["Checkbox","CheckboxGroup","CheckboxIndicator","CheckboxIcon","CheckboxLabel"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["CheckIcon"]}}
 />
 
-#### Horizontal
 
-A horizontal component incorporating a checkbox allows for intuitive and space-efficient selection of multiple options within a linear layout.
+  #### Horizontal
 
-<CodePreviewer
+  A horizontal component incorporating a checkbox allows for intuitive and space-efficient selection of multiple options within a linear layout.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState(["Illustration"]);
   return (
@@ -821,33 +794,16 @@ A horizontal component incorporating a checkbox allows for intuitive and space-e
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Checkbox,
-    CheckboxGroup,
-    CheckboxIndicator,
-    CheckboxIcon,
-    CheckboxLabel,
-    HStack,
-    CheckIcon,
-  }}
-  importMap={{
-    '@/components/ui/checkbox': [
-      'Checkbox',
-      'CheckboxGroup',
-      'CheckboxIndicator',
-      'CheckboxIcon',
-      'CheckboxLabel',
-    ],
-    '@/components/ui/hstack': ['HStack'],
-    '@/components/ui/icon': ['CheckIcon'],
-  }}
+  reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, HStack, CheckIcon }}
+  importMap={{"@/components/ui/checkbox":["Checkbox","CheckboxGroup","CheckboxIndicator","CheckboxIcon","CheckboxLabel"],"@/components/ui/hstack":["HStack"],"@/components/ui/icon":["CheckIcon"]}}
 />
 
-#### With Help Text
 
-A checkbox component with help text provides informative guidance alongside selectable options, ensuring clarity and ease of use.
+  #### With Help Text
 
-<CodePreviewer
+  A checkbox component with help text provides informative guidance alongside selectable options, ensuring clarity and ease of use.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState(["Design"]);
   return (
@@ -878,37 +834,16 @@ A checkbox component with help text provides informative guidance alongside sele
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Checkbox,
-    CheckboxGroup,
-    CheckboxIndicator,
-    CheckboxIcon,
-    CheckboxLabel,
-    VStack,
-    Box,
-    Text,
-    CheckIcon,
-  }}
-  importMap={{
-    '@/components/ui/checkbox': [
-      'Checkbox',
-      'CheckboxGroup',
-      'CheckboxIndicator',
-      'CheckboxIcon',
-      'CheckboxLabel',
-    ],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/box': ['Box'],
-    '@/components/ui/text': ['Text'],
-    '@/components/ui/icon': ['CheckIcon'],
-  }}
+  reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, Box, Text, CheckIcon }}
+  importMap={{"@/components/ui/checkbox":["Checkbox","CheckboxGroup","CheckboxIndicator","CheckboxIcon","CheckboxLabel"],"@/components/ui/vstack":["VStack"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/icon":["CheckIcon"]}}
 />
 
-#### Form Control
 
-A checkbox component integrated with form control enhances the user experience by enabling easy selection and submission of options within a structured input context.
+  #### Form Control
 
-<CodePreviewer
+  A checkbox component integrated with form control enhances the user experience by enabling easy selection and submission of options within a structured input context.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <FormControl>
@@ -938,37 +873,16 @@ A checkbox component integrated with form control enhances the user experience b
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Checkbox,
-    CheckboxIndicator,
-    CheckboxIcon,
-    CheckboxLabel,
-    FormControl,
-    VStack,
-    Heading,
-    Text,
-    CheckIcon,
-  }}
-  importMap={{
-    '@/components/ui/checkbox': [
-      'Checkbox',
-      'CheckboxIndicator',
-      'CheckboxIcon',
-      'CheckboxLabel',
-    ],
-    '@/components/ui/form-control': ['FormControl'],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/heading': ['Heading'],
-    '@/components/ui/text': ['Text'],
-    '@/components/ui/icon': ['CheckIcon'],
-  }}
+  reactLive={{ Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel, FormControl, VStack, Heading, Text, CheckIcon }}
+  importMap={{"@/components/ui/checkbox":["Checkbox","CheckboxIndicator","CheckboxIcon","CheckboxLabel"],"@/components/ui/form-control":["FormControl"],"@/components/ui/vstack":["VStack"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/icon":["CheckIcon"]}}
 />
 
-#### Label Left
 
-A checkbox component with Label left configuration aligns the label to the left, facilitating clear association between the option and its corresponding checkbox.
+  #### Label Left
 
-<CodePreviewer
+  A checkbox component with Label left configuration aligns the label to the left, facilitating clear association between the option and its corresponding checkbox.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState(["Jane"]);
   return (
@@ -999,33 +913,16 @@ A checkbox component with Label left configuration aligns the label to the left,
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Checkbox,
-    CheckboxGroup,
-    CheckboxIndicator,
-    CheckboxIcon,
-    CheckboxLabel,
-    VStack,
-    CheckIcon,
-  }}
-  importMap={{
-    '@/components/ui/checkbox': [
-      'Checkbox',
-      'CheckboxGroup',
-      'CheckboxIndicator',
-      'CheckboxIcon',
-      'CheckboxLabel',
-    ],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/icon': ['CheckIcon'],
-  }}
+  reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, CheckIcon }}
+  importMap={{"@/components/ui/checkbox":["Checkbox","CheckboxGroup","CheckboxIndicator","CheckboxIcon","CheckboxLabel"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["CheckIcon"]}}
 />
 
-#### Controlled
 
-A controlled component architecture incorporates a checkbox component, allowing for precise management of its state and behavior through explicit control mechanisms.
+  #### Controlled
 
-<CodePreviewer
+  A controlled component architecture incorporates a checkbox component, allowing for precise management of its state and behavior through explicit control mechanisms.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState(['UX Research']);
   return (
@@ -1050,33 +947,16 @@ A controlled component architecture incorporates a checkbox component, allowing 
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Checkbox,
-    CheckboxGroup,
-    CheckboxIndicator,
-    CheckboxIcon,
-    CheckboxLabel,
-    VStack,
-    CheckIcon,
-  }}
-  importMap={{
-    '@/components/ui/checkbox': [
-      'Checkbox',
-      'CheckboxGroup',
-      'CheckboxIndicator',
-      'CheckboxIcon',
-      'CheckboxLabel',
-    ],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/icon': ['CheckIcon'],
-  }}
+  reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, CheckIcon }}
+  importMap={{"@/components/ui/checkbox":["Checkbox","CheckboxGroup","CheckboxIndicator","CheckboxIcon","CheckboxLabel"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["CheckIcon"]}}
 />
 
-#### Uncontrolled
 
-An uncontrolled component utilizes a checkbox component, providing a simpler implementation where the checkbox state is managed internally, without explicit control from external sources.
+  #### Uncontrolled
 
-<CodePreviewer
+  An uncontrolled component utilizes a checkbox component, providing a simpler implementation where the checkbox state is managed internally, without explicit control from external sources.
+  
+  <CodePreviewer
   code={`function Example() {
   const checkboxRef = React.useRef(null);
   const handleCheckboxChange = (e) => {
@@ -1102,33 +982,16 @@ An uncontrolled component utilizes a checkbox component, providing a simpler imp
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Checkbox,
-    CheckboxGroup,
-    CheckboxIndicator,
-    CheckboxIcon,
-    CheckboxLabel,
-    VStack,
-    CheckIcon,
-  }}
-  importMap={{
-    '@/components/ui/checkbox': [
-      'Checkbox',
-      'CheckboxGroup',
-      'CheckboxIndicator',
-      'CheckboxIcon',
-      'CheckboxLabel',
-    ],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/icon': ['CheckIcon'],
-  }}
+  reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, CheckIcon }}
+  importMap={{"@/components/ui/checkbox":["Checkbox","CheckboxGroup","CheckboxIndicator","CheckboxIcon","CheckboxLabel"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["CheckIcon"]}}
 />
 
-#### Checkbox Group
 
-The checkbox group component allows users to group checkbox and display them in a horizontal or vertical row for better visual representation and functionality.
+  #### Checkbox Group
 
-<CodePreviewer
+  The checkbox group component allows users to group checkbox and display them in a horizontal or vertical row for better visual representation and functionality.
+  
+  <CodePreviewer
   code={`function Example() {
   const [values, setValues] = React.useState([]);
   return (
@@ -1153,26 +1016,6 @@ The checkbox group component allows users to group checkbox and display them in 
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Checkbox,
-    CheckboxGroup,
-    CheckboxIndicator,
-    CheckboxIcon,
-    CheckboxLabel,
-    VStack,
-    Center,
-    CheckIcon,
-  }}
-  importMap={{
-    '@/components/ui/checkbox': [
-      'Checkbox',
-      'CheckboxGroup',
-      'CheckboxIndicator',
-      'CheckboxIcon',
-      'CheckboxLabel',
-    ],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/center': ['Center'],
-    '@/components/ui/icon': ['CheckIcon'],
-  }}
+  reactLive={{ Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxIcon, CheckboxLabel, VStack, Center, CheckIcon }}
+  importMap={{"@/components/ui/checkbox":["Checkbox","CheckboxGroup","CheckboxIndicator","CheckboxIcon","CheckboxLabel"],"@/components/ui/vstack":["VStack"],"@/components/ui/center":["Center"],"@/components/ui/icon":["CheckIcon"]}}
 />

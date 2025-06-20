@@ -1,11 +1,7 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip';
 import { Button, ButtonText } from '@/components/ui/button';
-import {
-  Avatar,
-  AvatarGroup,
-  AvatarFallbackText,
-} from '@/components/ui/avatar';
+import { Avatar, AvatarGroup, AvatarFallbackText } from '@/components/ui/avatar';
 import { HStack } from '@/components/ui/hstack';
 import { Text } from '@/components/ui/text';
 import { Box } from '@/components/ui/box';
@@ -33,9 +29,12 @@ Create an intuitive UI using the gluestack-ui Tooltip component in React & React
 
 This is an illustration of **Tooltip** component.
 
-#### Basic
 
-<CodePreviewer
+  #### Basic
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Tooltip
@@ -55,32 +54,29 @@ This is an illustration of **Tooltip** component.
   )
 }`}
   argTypes={{
-    placement: {
-      control: {
-        type: 'select',
-      },
-      options: [
-        'top',
-        'top left',
-        'top right',
-        'bottom',
-        'bottom left',
-        'bottom right',
-        'left',
-        'left top',
-        'left bottom',
-        'right',
-        'right top',
-        'right bottom',
-      ],
-      defaultValue: 'top',
+  "placement": {
+    "control": {
+      "type": "select"
     },
-  }}
+    "options": [
+      "top",
+      "top left",
+      "top right",
+      "bottom",
+      "bottom left",
+      "bottom right",
+      "left",
+      "left top",
+      "left bottom",
+      "right",
+      "right top",
+      "right bottom"
+    ],
+    "defaultValue": "top"
+  }
+}}
   reactLive={{ Tooltip, TooltipContent, TooltipText, Button, ButtonText }}
-  importMap={{
-    '@/components/ui/tooltip': ['Tooltip', 'TooltipContent', 'TooltipText'],
-    '@/components/ui/button': ['Button', 'ButtonText'],
-  }}
+  importMap={{"@/components/ui/tooltip":["Tooltip","TooltipContent","TooltipText"],"@/components/ui/button":["Button","ButtonText"]}}
 />
 
 <br />
@@ -461,11 +457,12 @@ We have outlined the various features that ensure the Tooltip component is acces
 
 ### Examples
 
-#### Tooltip with Heading
 
-A tooltip component with an avatar is a user interface element that displays a small pop-up box of additional information when the user hovers over or interacts with an avatar or an icon.
+  #### Tooltip with Heading
 
-<CodePreviewer
+  A tooltip component with an avatar is a user interface element that displays a small pop-up box of additional information when the user hovers over or interacts with an avatar or an icon.
+  
+  <CodePreviewer
   code={`function App(){
           return (
             <Box className="justify-center h-96">
@@ -512,37 +509,16 @@ A tooltip component with an avatar is a user interface element that displays a s
           );
         }`}
   argTypes={{}}
-  reactLive={{
-    Avatar,
-    AvatarGroup,
-    AvatarFallbackText,
-    HStack,
-    Tooltip,
-    TooltipContent,
-    TooltipText,
-    Text,
-    Box,
-    Heading,
-    VStack,
-    Center,
-  }}
-  importMap={{
-    '@/components/ui/avatar': ['Avatar', 'AvatarGroup', 'AvatarFallbackText'],
-    '@/components/ui/hstack': ['HStack'],
-    '@/components/ui/tooltip': ['Tooltip', 'TooltipContent', 'TooltipText'],
-    '@/components/ui/text': ['Text'],
-    '@/components/ui/box': ['Box'],
-    '@/components/ui/heading': ['Heading'],
-    '@/components/ui/vstack': ['VStack'],
-    '@/components/ui/center': ['Center'],
-  }}
+  reactLive={{ Avatar, AvatarGroup, AvatarFallbackText, HStack, Tooltip, TooltipContent, TooltipText, Text, Box, Heading, VStack, Center }}
+  importMap={{"@/components/ui/avatar":["Avatar","AvatarGroup","AvatarFallbackText"],"@/components/ui/hstack":["HStack"],"@/components/ui/tooltip":["Tooltip","TooltipContent","TooltipText"],"@/components/ui/text":["Text"],"@/components/ui/box":["Box"],"@/components/ui/heading":["Heading"],"@/components/ui/vstack":["VStack"],"@/components/ui/center":["Center"]}}
 />
 
-#### Tooltip with Icon
 
-A tooltip component with an icon is a user interface element that provides contextual information or explanatory text when the user hovers over or interacts with an icon.
+  #### Tooltip with Icon
 
-<CodePreviewer
+  A tooltip component with an icon is a user interface element that provides contextual information or explanatory text when the user hovers over or interacts with an icon.
+  
+  <CodePreviewer
   code={`function App(){
           return (
             <Box className="h-96 justify-center">
@@ -576,27 +552,6 @@ A tooltip component with an icon is a user interface element that provides conte
         );
         }`}
   argTypes={{}}
-  reactLive={{
-    Avatar,
-    AvatarFallbackText,
-    HStack,
-    Tooltip,
-    TooltipContent,
-    Text,
-    Box,
-    Heading,
-    EditIcon,
-    Command,
-    Icon,
-  }}
-  importMap={{
-    '@/components/ui/avatar': ['Avatar', 'AvatarFallbackText'],
-    '@/components/ui/hstack': ['HStack'],
-    '@/components/ui/tooltip': ['Tooltip', 'TooltipContent'],
-    '@/components/ui/text': ['Text'],
-    '@/components/ui/box': ['Box'],
-    '@/components/ui/heading': ['Heading'],
-    '@/components/ui/icon': ['EditIcon', 'Icon'],
-    'lucide-react-native': ['Command'],
-  }}
+  reactLive={{ Avatar, AvatarFallbackText, HStack, Tooltip, TooltipContent, Text, Box, Heading, EditIcon, Command, Icon }}
+  importMap={{"@/components/ui/avatar":["Avatar","AvatarFallbackText"],"@/components/ui/hstack":["HStack"],"@/components/ui/tooltip":["Tooltip","TooltipContent"],"@/components/ui/text":["Text"],"@/components/ui/box":["Box"],"@/components/ui/heading":["Heading"],"@/components/ui/icon":["EditIcon","Icon"],"lucide-react-native":["Command"]}}
 />

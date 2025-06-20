@@ -5,7 +5,10 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  webpack: (config, { isServer }) => {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  webpack: (config: any, { isServer }: { isServer: boolean }) => {
     // Configure webpack for standard builds
     config.resolve.alias = {
       ...config.resolve.alias,

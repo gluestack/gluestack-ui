@@ -105,18 +105,6 @@ const installDependencies = async (
   }
 };
 
-const getConfigComponentPath = () => {
-  const configFile = fs.readFileSync(
-    path.join(currDir, 'gluestack-ui.config.ts'),
-    'utf-8'
-  );
-  const match = configFile.match(/componentPath:\s+(['"])(.*?)\1/);
-
-  const componentPath = (match && match[2]) ?? '';
-
-  return componentPath;
-};
-
 const addIndexFile = (componentsDirectory: string, level = 0) => {
   try {
     const files = fs.readdirSync(componentsDirectory);
@@ -156,7 +144,6 @@ const dashToPascal = (str: string): string => {
 };
 
 export {
-  getConfigComponentPath,
   installDependencies,
   addIndexFile,
   pascalToDash,

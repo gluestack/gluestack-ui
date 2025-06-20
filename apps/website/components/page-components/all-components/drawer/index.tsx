@@ -62,36 +62,32 @@ export default function Example() {
   );
 }`}
       argTypes={{
-        size: {
-          control: {
-            type: 'select',
-          },
-          options: ['sm', 'md', 'lg', 'full'],
-          defaultValue: 'sm',
-        },
-        anchor: {
-          control: {
-            type: 'select',
-          },
-          options: ['left', 'right', 'top', 'bottom'],
-          defaultValue: 'left',
-        },
-      }}
-      reactLive={{
-        Drawer,
-        DrawerBackdrop,
-        DrawerContent,
-        DrawerHeader,
-        DrawerBody,
-        DrawerFooter,
-        DrawerCloseButton,
-        Button,
-        ButtonText,
-        Heading,
-        Text,
-        Icon,
-        CloseIcon,
-      }}
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "full"
+    ],
+    "defaultValue": "sm"
+  },
+  "anchor": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "left",
+      "right",
+      "top",
+      "bottom"
+    ],
+    "defaultValue": "left"
+  }
+}}
+      reactLive={{ Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton, Button, ButtonText, Heading, Text, Icon, CloseIcon }}
     />
   );
 }

@@ -16,28 +16,41 @@ export default function Example() {
   )
 }`}
       argTypes={{
-        variant: {
-          control: {
-            type: 'select',
-          },
-          options: ['solid', 'outline'],
-          defaultValue: 'solid',
-        },
-        action: {
-          control: {
-            type: 'select',
-          },
-          options: ['error', 'warning', 'success', 'info', 'muted'],
-          defaultValue: 'muted',
-        },
-        size: {
-          control: {
-            type: 'select',
-          },
-          options: ['sm', 'md', 'lg'],
-          defaultValue: 'md',
-        },
-      }}
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "solid",
+      "outline"
+    ],
+    "defaultValue": "solid"
+  },
+  "action": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "error",
+      "warning",
+      "success",
+      "info",
+      "muted"
+    ],
+    "defaultValue": "muted"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  }
+}}
       reactLive={{ Badge, BadgeText, BadgeIcon, GlobeIcon }}
     />
   );

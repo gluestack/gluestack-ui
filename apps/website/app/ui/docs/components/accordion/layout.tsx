@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Metadata } from 'next';
 
@@ -6,6 +7,14 @@ export const metadata: Metadata = {
   description: "Explore gluestack's Accordion component for Expo, next.js, React & React Native. Build sleek, interactive accordions with ease."
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+export default function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <>
+      {children}
+    </>
+  );
 }

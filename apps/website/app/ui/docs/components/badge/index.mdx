@@ -1,11 +1,7 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
 import { Badge, BadgeText, BadgeIcon } from '@/components/ui/badge';
 import { GlobeIcon } from '@/components/ui/icon';
-import {
-  Avatar,
-  AvatarFallbackText,
-  AvatarImage,
-} from '@/components/ui/avatar';
+import { Avatar, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar';
 import { Heading } from '@/components/ui/heading';
 import { HStack } from '@/components/ui/hstack';
 import { Text } from '@/components/ui/text';
@@ -32,7 +28,12 @@ Enhance your app with gluestack-ui's Badge component. A versatile React Native b
 
 This is an illustration of **Badge** component.
 
-<CodePreviewer
+
+  
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Badge size="{{size}}" variant="{{variant}}" action="{{action}}">
@@ -42,33 +43,43 @@ This is an illustration of **Badge** component.
   )
 }`}
   argTypes={{
-    variant: {
-      control: {
-        type: 'select',
-      },
-      options: ['solid', 'outline'],
-      defaultValue: 'solid',
+  "variant": {
+    "control": {
+      "type": "select"
     },
-    action: {
-      control: {
-        type: 'select',
-      },
-      options: ['error', 'warning', 'success', 'info', 'muted'],
-      defaultValue: 'muted',
+    "options": [
+      "solid",
+      "outline"
+    ],
+    "defaultValue": "solid"
+  },
+  "action": {
+    "control": {
+      "type": "select"
     },
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: ['sm', 'md', 'lg'],
-      defaultValue: 'md',
+    "options": [
+      "error",
+      "warning",
+      "success",
+      "info",
+      "muted"
+    ],
+    "defaultValue": "muted"
+  },
+  "size": {
+    "control": {
+      "type": "select"
     },
-  }}
+    "options": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "defaultValue": "md"
+  }
+}}
   reactLive={{ Badge, BadgeText, BadgeIcon, GlobeIcon }}
-  importMap={{
-    '@/components/ui/badge': ['Badge', 'BadgeText', 'BadgeIcon'],
-    '@/components/ui/icon': ['GlobeIcon'],
-  }}
+  importMap={{"@/components/ui/badge":["Badge","BadgeText","BadgeIcon"],"@/components/ui/icon":["GlobeIcon"]}}
 />
 
 <br />
@@ -305,6 +316,7 @@ BadgeText.displayName = 'BadgeText';
 BadgeIcon.displayName = 'BadgeIcon';
 
 export { Badge, BadgeIcon, BadgeText };
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -400,11 +412,12 @@ Badge component is created using View component from react-native. It extends al
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
 
-#### Badge with Avatar
 
-An example of the Badge component being used with the Avatar component to display badges alongside user avatars for enhanced visual representation or identification.
+  #### Badge with Avatar
 
-<CodePreviewer
+  An example of the Badge component being used with the Avatar component to display badges alongside user avatars for enhanced visual representation or identification.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <VStack space="2xl">
@@ -432,35 +445,16 @@ An example of the Badge component being used with the Avatar component to displa
   );
 }`}
   argTypes={{}}
-  reactLive={{
-    Avatar,
-    AvatarFallbackText,
-    AvatarImage,
-    Badge,
-    BadgeIcon,
-    BadgeText,
-    Heading,
-    HStack,
-    Text,
-    VStack,
-    BadgeCheckIcon,
-  }}
-  importMap={{
-    '@/components/ui/avatar': ['Avatar', 'AvatarFallbackText', 'AvatarImage'],
-    '@/components/ui/badge': ['Badge', 'BadgeIcon', 'BadgeText'],
-    '@/components/ui/heading': ['Heading'],
-    '@/components/ui/hstack': ['HStack'],
-    '@/components/ui/text': ['Text'],
-    '@/components/ui/vstack': ['VStack'],
-    'lucide-react-native': ['BadgeCheckIcon'],
-  }}
+  reactLive={{ Avatar, AvatarFallbackText, AvatarImage, Badge, BadgeIcon, BadgeText, Heading, HStack, Text, VStack, BadgeCheckIcon }}
+  importMap={{"@/components/ui/avatar":["Avatar","AvatarFallbackText","AvatarImage"],"@/components/ui/badge":["Badge","BadgeIcon","BadgeText"],"@/components/ui/heading":["Heading"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"lucide-react-native":["BadgeCheckIcon"]}}
 />
 
-#### Badge Composition
 
-An example of the Badge component being used with the Composition component, allowing for the display of badges within a composition of other UI elements.
+  #### Badge Composition
 
-<CodePreviewer
+  An example of the Badge component being used with the Composition component, allowing for the display of badges within a composition of other UI elements.
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Box className='items-center'>
@@ -482,10 +476,5 @@ An example of the Badge component being used with the Composition component, all
 }`}
   argTypes={{}}
   reactLive={{ Badge, BadgeText, BadgeIcon, Box, Button, ButtonText, VStack }}
-  importMap={{
-    '@/components/ui/badge': ['Badge', 'BadgeText', 'BadgeIcon'],
-    '@/components/ui/box': ['Box'],
-    '@/components/ui/button': ['Button', 'ButtonText'],
-    '@/components/ui/vstack': ['VStack'],
-  }}
+  importMap={{"@/components/ui/badge":["Badge","BadgeText","BadgeIcon"],"@/components/ui/box":["Box"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/vstack":["VStack"]}}
 />

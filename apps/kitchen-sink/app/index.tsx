@@ -120,12 +120,12 @@ export default function ComponentList() {
                     _extra={{
                       className: 'col-span-1',
                     }}
+                    key={component.name}
                   >
                     <ComponentCard
-                      key={component.name}
                       component={component}
                       onPress={() =>
-                        router.push(`components/${component.path}`)
+                        router.push(`components/${component.path}` as any)
                       }
                     />
                   </GridItem>

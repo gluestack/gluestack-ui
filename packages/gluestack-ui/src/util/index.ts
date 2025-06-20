@@ -308,22 +308,10 @@ const installDependencies = async (
       '⏳ Installing dependencies. This might take a couple of minutes...'
     );
 
-    // Debug logging
-    console.log(
-      '\x1b[36m[DEBUG] Dependencies to install:\x1b[0m',
-      JSON.stringify(dependenciesToInstall, null, 2)
-    );
-    console.log('\x1b[36m[DEBUG] Install command:\x1b[0m', installCommand);
-    console.log(
-      '\x1b[36m[DEBUG] Dev install command:\x1b[0m',
-      devInstallCommand
-    );
-
     try {
       if (Object.keys(dependenciesToInstall.dependencies).length > 0) {
         const installArgs = installCommand.split(' ');
         const cmd = installArgs.shift();
-        console.log('\x1b[36m[DEBUG] Executing:\x1b[0m', cmd, installArgs);
         const result = spawnSync(cmd!, installArgs, {
           cwd: currDir,
           stdio: 'inherit',
@@ -339,19 +327,10 @@ const installDependencies = async (
             `Install command failed with exit code ${result.status}`
           );
         }
-      } else {
-        console.log(
-          '\x1b[36m[DEBUG] No regular dependencies to install\x1b[0m'
-        );
       }
       if (Object.keys(dependenciesToInstall.devDependencies).length > 0) {
         const devInstallArgs = devInstallCommand.split(' ');
         const devCmd = devInstallArgs.shift();
-        console.log(
-          '\x1b[36m[DEBUG] Executing dev:\x1b[0m',
-          devCmd,
-          devInstallArgs
-        );
         const devResult = spawnSync(devCmd!, devInstallArgs, {
           cwd: currDir,
           stdio: 'inherit',
@@ -367,8 +346,6 @@ const installDependencies = async (
             `Dev install command failed with exit code ${devResult.status}`
           );
         }
-      } else {
-        console.log('\x1b[36m[DEBUG] No dev dependencies to install\x1b[0m');
       }
 
       s.stop(`Dependencies have been installed successfully.`);

@@ -8,9 +8,9 @@ import {
 import * as fileOps from '../utils/fileOperations';
 
 const mapperConfig: MapperConfig = {
-  sourcePath: path.resolve('packages/components/ui'),
+  sourcePath: path.resolve('src/components/ui'),
   destPath: path.resolve('apps/website/components/ui'),
-  utilsSourcePath: path.resolve('packages/utils/gluestack-utils'),
+  utilsSourcePath: path.resolve('src/utils/gluestack-utils'),
   utilsDestPath: path.resolve('apps/website/utils/gluestack-utils'),
   ignoreFiles: ['docs', 'examples'],
 };
@@ -50,7 +50,7 @@ export const processNonComponentFile = (srcPath: string) => {
 };
 
 export const copyDocsComponents = (filePath: string) => {
-  const packagesDir = path.resolve('packages/docs-components');
+  const packagesDir = path.resolve('src/docs-components');
   const websiteDir = path.resolve('apps/website/components/docs-components');
 
   try {
@@ -62,7 +62,7 @@ export const copyDocsComponents = (filePath: string) => {
 };
 
 export const processSidebarFile = (filePath: string) => {
-  const sourcePath = path.resolve('packages/sidebar.json');
+  const sourcePath = path.resolve('src/sidebar.json');
   const destPath = path.resolve('apps/website/sidebar.json');
   copySpecialFile(sourcePath, destPath);
 };

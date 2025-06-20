@@ -18,7 +18,12 @@ Enhance your app with the Image component from gluestack-ui. Build seamless UI c
 
 This is an illustration of **Image** component.
 
-<CodePreviewer
+
+  
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Image
@@ -31,16 +36,24 @@ This is an illustration of **Image** component.
   )
 }`}
   argTypes={{
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-      defaultValue: 'md',
+  "size": {
+    "control": {
+      "type": "select"
     },
-  }}
+    "options": [
+      "2xs",
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+      "2xl"
+    ],
+    "defaultValue": "md"
+  }
+}}
   reactLive={{ Image }}
-  importMap={{ '@/components/ui/image': ['Image'] }}
+  importMap={{"@/components/ui/image":["Image"]}}
 />
 
 <br />
@@ -111,6 +124,7 @@ const Image = React.forwardRef<
 
 Image.displayName = 'Image';
 export { Image };
+
 ```
 
 ### Step 3: Update the import paths to match your project setup.
@@ -220,7 +234,12 @@ import Image from '@unitools/image';
 
 {/* <UnitoolsImageEg/> */}
 
-<CodePreviewer
+
+  
+
+  
+  
+  <CodePreviewer
   code={`function Example() {
   return (
     <Image
@@ -235,5 +254,5 @@ import Image from '@unitools/image';
 }`}
   argTypes={{}}
   reactLive={{ Image }}
-  importMap={{ '@/components/ui/image': ['Image'] }}
+  importMap={{"@/components/ui/image":["Image"]}}
 />

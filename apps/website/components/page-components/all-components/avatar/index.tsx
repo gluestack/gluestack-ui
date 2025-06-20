@@ -21,14 +21,21 @@ export default function Example() {
   )
 }`}
       argTypes={{
-        size: {
-          control: {
-            type: 'select',
-          },
-          options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
-          defaultValue: 'md',
-        },
-      }}
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+      "2xl"
+    ],
+    "defaultValue": "md"
+  }
+}}
       reactLive={{ Avatar, AvatarFallbackText, AvatarImage, AvatarBadge }}
     />
   );

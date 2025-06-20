@@ -54,26 +54,21 @@ export default function Example() {
   )
 }`}
       argTypes={{
-        size: {
-          control: {
-            type: 'select',
-          },
-          options: ['xs', 'sm', 'md', 'lg', 'full'],
-          defaultValue: 'md',
-        },
-      }}
-      reactLive={{
-        AlertDialog,
-        AlertDialogContent,
-        AlertDialogHeader,
-        AlertDialogFooter,
-        AlertDialogBody,
-        AlertDialogBackdrop,
-        Button,
-        ButtonText,
-        Text,
-        Heading,
-      }}
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "full"
+    ],
+    "defaultValue": "md"
+  }
+}}
+      reactLive={{ AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading }}
     />
   );
 }
