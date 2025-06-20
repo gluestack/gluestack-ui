@@ -71,11 +71,14 @@ export const processSidebarFile = (filePath: string) => {
   // Log the sidebar data to ensure it's being read correctly
   console.log("Sidebar Data:", JSON.stringify(sidebar, null, 2));
   
-const components = getComponentsFromSidebar(sidebar);
+let components = getComponentsFromSidebar(sidebar);
+components = components.map((component: string) => component.replace('-', '') + 'Component');
 console.log(components);
-const componentMap = createComponentMap(components);
+const componentsNameList = getComponentsFromSidebar(sidebar);
+console.log(componentsNameList);
+const componentMap = createComponentMap(components,componentsNameList);
 console.log(componentMap);
-const template = createTemplate(components, componentMap);
+const template = createTemplate(components, componentMap,componentsNameList);
 console.log(template);
   // Proceed with copying the file
   copySpecialFile(sourcePath, destPath);
@@ -113,17 +116,16 @@ const getComponentsFromSidebar = (sidebarData: any) => {
   );
 };
 
-const createComponentMap = (components: string[]) => {
+const createComponentMap = (components: string[],componentsNameList: string[]) => {
   return `
   
-    ${components.map((component) => `
-    import {${component}} from './${component}',
-    `).join('\n')}
+    ${components.map((component,index) => `
+    import ${component} from './${componentsNameList[index]}'`).join('\n')}
   
   `;
 };
 
-const createTemplate = (components: string[], componentMap: string) => {
+const createTemplate = (components: string[], componentMap: string,componentsNameList: string[]) => {
   return `import React from 'react';
 import sidebarData from '@/sidebar.json';
 import { GridItem } from '@/components/ui/grid';
@@ -132,8 +134,8 @@ import { Text } from '@/components/ui/text';
 
 ${componentMap}
 
-const componentsList = ${components};
-
+const componentsList = [${components}];
+const componentsNameList = ${JSON.stringify(componentsNameList)};
 export default function AllComponents() {
   return (
     <Grid
@@ -142,8 +144,8 @@ export default function AllComponents() {
         className: 'sm:grid-cols-2 md:grid-cols-3 grid-cols-1 2xl:grid-cols-4',
       }}
     >
-      {componentsList.sort().map((componentName) => {
-        
+      {componentsNameList.sort().map((componentName,index) => {
+        const Component = componentsList[index];
 
         return (
           <GridItem
