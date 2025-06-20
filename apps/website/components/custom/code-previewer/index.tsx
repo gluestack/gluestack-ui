@@ -119,7 +119,8 @@ export function CodePreviewer({
             activeThumbColor={'#FAFAFA'}
             ios_backgroundColor={'#D4D4D4'}
             value={values[name] ?? defaultValue}
- j           onToggle={() => handleChange(name, !values[name])}
+            j
+            onToggle={() => handleChange(name, !values[name])}
           />
         </Box>
       );

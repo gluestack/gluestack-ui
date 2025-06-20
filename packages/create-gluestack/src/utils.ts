@@ -1,3 +1,4 @@
+
 import templatesMap from './data';
 import {
   appendFileSync,
@@ -7,6 +8,8 @@ import {
   renameSync,
   readdirSync,
 } from 'fs';
+
+
 import path from 'path';
 import { execSync } from 'child_process';
 
@@ -20,30 +23,34 @@ async function cloneProject(projectName: string, templateName: string) {
     // Delete directory recursively
     rmSync(projectName, { recursive: true, force: true });
   }
-  // Create new directory
-  mkdirSync(projectName);
+
   try {
-    // Clone the project-template
-    execSync('git init', { cwd: dirPath });
-    execSync(`git remote add origin ${gitRepo}`, { cwd: dirPath });
-    execSync('git config core.sparseCheckout true', { cwd: dirPath });
+    // Single command shallow clone with sparse checkout - much faster!
+    execSync(
+      `git clone --depth=1 --filter=blob:none --sparse ${gitRepo} ${projectName} --branch ${branch}`
+    );
+    execSync(`git sparse-checkout set apps/${templateName}`, { cwd: dirPath });
+
+    // Move files
+    moveAllFiles(dirPath, templateName);
+
+    // Clean up
+    try {
+      // Remove the apps directory
+      rmSync(path.join(dirPath, 'apps'), { recursive: true, force: true });
+      // Remove the .git directory
+      rmSync(path.join(dirPath, '.git'), { recursive: true, force: true });
+    } catch (cleanupError) {
+      console.warn(
+        'Warning: Some cleanup operations failed, but project should still be usable'
+      );
+    }
   } catch (error) {
-    console.log('Git not installed. Please install git and try again...');
+    console.log(
+      'Git not installed or error occurred. Please install git and try again...'
+    );
     process.exit(1);
   }
-  appendFileSync(
-    path.join(dirPath, '.git', 'info', 'sparse-checkout'),
-    path.join('apps', templateName) + '\n'
-  );
-  execSync(`git pull origin ${branch}`, { cwd: dirPath });
-
-  // execSync(`mv apps/templates/${templateName}/* ./`, { cwd: dirPath });
-  moveAllFiles(dirPath, templateName);
-  // Remove the apps directory
-  rmSync(path.join(dirPath, 'apps'), { recursive: true, force: true });
-
-  // Remove the .git directory
-  rmSync(path.join(dirPath, '.git'), { recursive: true, force: true });
 }
 
 async function installDependencies(

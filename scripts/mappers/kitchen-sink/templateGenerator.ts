@@ -16,7 +16,7 @@ export const generateCodePreviewer = (
   component: string,
   importMap: ImportMap
 ) => {
-  const sourcePath = path.resolve('packages/components/ui');
+  const sourcePath = path.resolve('src/components/ui');
   const examplePath = path.join(sourcePath, component, 'examples', exampleName);
   const codePath = path.join(examplePath, 'template.handlebars');
   const argsPath = path.join(examplePath, 'meta.json');

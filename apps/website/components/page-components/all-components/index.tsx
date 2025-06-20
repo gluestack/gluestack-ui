@@ -1,62 +1,94 @@
-import React, { useEffect, useState } from 'react';
-import sidebarData from '@/sidebar.json';
+import React from 'react';;
 import { GridItem } from '@/components/ui/grid';
 import { Box, Grid } from '@/components/ui';
 import { Text } from '@/components/ui/text';
-const getComponentsFromSidebar = () => {
-  // Find the Components section
-  const componentsSection = sidebarData.navigation.sections.find(
-    (section) => section.title === 'Components'
-  );
 
-  if (!componentsSection) return [];
 
-  // Get all subsections that are of type "heading"
-  const componentHeadings = componentsSection.subsections.filter(
-    (subsection) => subsection.type === 'heading'
-  );
+  
+    
+    import accordionComponent from './accordion'
 
-  // Extract all component items from each heading
-  const components = componentHeadings.reduce((acc: string[], heading) => {
-    const componentItems = heading.items || [];
-    const componentNames = componentItems.map((item) => {
-      // Extract component name from path, e.g., "/ui/docs/components/button" -> "button"
-      const pathParts = item.path?.split('/') || [];
-      return pathParts[pathParts.length - 1];
-    });
-    return [...acc, ...componentNames];
-  }, []);
+    import actionsheetComponent from './actionsheet'
 
-  // Filter out any empty or undefined values and components we don't want to show
-  return components.filter(
-    (component) => component && component !== '' // Exclude specific components that might not have implementations
-  );
-};
+    import alertComponent from './alert'
 
-const componentsList = getComponentsFromSidebar();
+    import alertdialogComponent from './alert-dialog'
 
+    import avatarComponent from './avatar'
+
+    import badgeComponent from './badge'
+
+    import boxComponent from './box'
+
+    import buttonComponent from './button'
+
+    import cardComponent from './card'
+
+    import centerComponent from './center'
+
+    import checkboxComponent from './checkbox'
+
+    import dividerComponent from './divider'
+
+    import drawerComponent from './drawer'
+
+    import fabComponent from './fab'
+
+    import formcontrolComponent from './form-control'
+
+    import gridComponent from './grid'
+
+    import headingComponent from './heading'
+
+    import hstackComponent from './hstack'
+
+    import iconComponent from './icon'
+
+    import imageComponent from './image'
+
+    import inputComponent from './input'
+
+    import linkComponent from './link'
+
+    import menuComponent from './menu'
+
+    import modalComponent from './modal'
+
+    import popoverComponent from './popover'
+
+    import portalComponent from './portal'
+
+    import pressableComponent from './pressable'
+
+    import progressComponent from './progress'
+
+    import radioComponent from './radio'
+
+    import selectComponent from './select'
+
+    import skeletonComponent from './skeleton'
+
+    import sliderComponent from './slider'
+
+    import spinnerComponent from './spinner'
+
+    import switchComponent from './switch'
+
+    import textComponent from './text'
+
+    import textareaComponent from './textarea'
+
+    import toastComponent from './toast'
+
+    import tooltipComponent from './tooltip'
+
+    import vstackComponent from './vstack'
+  
+  
+
+const componentsList = [accordionComponent,actionsheetComponent,alertComponent,alertdialogComponent,avatarComponent,badgeComponent,boxComponent,buttonComponent,cardComponent,centerComponent,checkboxComponent,dividerComponent,drawerComponent,fabComponent,formcontrolComponent,gridComponent,headingComponent,hstackComponent,iconComponent,imageComponent,inputComponent,linkComponent,menuComponent,modalComponent,popoverComponent,portalComponent,pressableComponent,progressComponent,radioComponent,selectComponent,skeletonComponent,sliderComponent,spinnerComponent,switchComponent,textComponent,textareaComponent,toastComponent,tooltipComponent,vstackComponent];
+const componentsNameList = ["accordion","actionsheet","alert","alert-dialog","avatar","badge","box","button","card","center","checkbox","divider","drawer","fab","form-control","grid","heading","hstack","icon","image","input","link","menu","modal","popover","portal","pressable","progress","radio","select","skeleton","slider","spinner","switch","text","textarea","toast","tooltip","vstack"];
 export default function AllComponents() {
-  const [components, setComponents] = useState<{ [key: string]: any }>({});
-
-  useEffect(() => {
-    const loadComponents = async () => {
-      const loadedComponents: { [key: string]: any } = {};
-
-      for (const component of componentsList) {
-        try {
-          const module = await import(`./${component}`);
-          loadedComponents[component] = module.default;
-        } catch (error) {
-          console.error(`Failed to load component: ${component}`, error);
-        }
-      }
-
-      setComponents(loadedComponents);
-    };
-
-    loadComponents();
-  }, []);
-
   return (
     <Grid
       className="gap-5"
@@ -64,9 +96,8 @@ export default function AllComponents() {
         className: 'sm:grid-cols-2 md:grid-cols-3 grid-cols-1 2xl:grid-cols-4',
       }}
     >
-      {componentsList.sort().map((componentName) => {
-        const Component = components[componentName];
-        if (!Component) return null;
+      {componentsNameList.map((componentName,index) => {
+        const Component = componentsList[index];
 
         return (
           <GridItem
@@ -96,3 +127,5 @@ export default function AllComponents() {
     </Grid>
   );
 }
+
+  

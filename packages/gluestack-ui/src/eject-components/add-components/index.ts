@@ -3,7 +3,6 @@ import path from 'path';
 import {
   addIndexFile,
   dashToPascal,
-  getConfigComponentPath,
   getPackageJsonPath,
   pascalToDash,
 } from '../../utils';
@@ -89,17 +88,16 @@ const componentAdder = async (
       requestedComponent !== '' &&
       !forceUpdate
     ) {
-      const updatedComponents = await checkForExistingFolders(
-        requestedComponents
-      );
+      const updatedComponents =
+        await checkForExistingFolders(requestedComponents);
       addComponents = [...updatedComponents];
     } else {
       addComponents = requestedComponents;
     }
 
     await Promise.all(
-      addComponents.map(async component => {
-        const componentPath = getConfigComponentPath();
+      addComponents.map(async (component) => {
+        const componentPath = 'components/ui'; // <-- Replace with actual logic if needed
         // createFolders(path.join(currDir, componentPath));
         const targetPath = path.join(currDir, componentPath);
 
@@ -177,7 +175,7 @@ const copyFolders = async (
           type: 'multiselect',
           name: 'value',
           message: 'Select the type of components:',
-          choices: Object.keys(groupedComponents).map(type => {
+          choices: Object.keys(groupedComponents).map((type) => {
             return { value: type, title: type };
           }),
           validate: (value: any) => value.length > 0,
@@ -202,7 +200,7 @@ const copyFolders = async (
                 type: 'multiselect',
                 name: 'value',
                 message: 'Select the type of components:',
-                choices: groupedComponents[component].map(type => {
+                choices: groupedComponents[component].map((type) => {
                   return { title: type, value: type };
                 }),
                 instructions: false,
@@ -236,7 +234,7 @@ const copyFolders = async (
   }
 
   await Promise.all(
-    Object.keys(selectedComponents).map(component => {
+    Object.keys(selectedComponents).map((component) => {
       // createFolders(path.join(targetPath, component));
       selectedComponents[component].map((subcomponent: any) => {
         // Add Packages
@@ -306,15 +304,15 @@ const copyFolders = async (
 
         if (!isUpdate) {
           log.success(
-            `\x1b[32m✅  ${'\u001b[1m' +
-              originalComponentPath +
-              '\u001b[22m'} \x1b[0m component added successfully!`
+            `\x1b[32m✅  ${
+              '\u001b[1m' + originalComponentPath + '\u001b[22m'
+            } \x1b[0m component added successfully!`
           );
         } else {
           log.success(
-            `\x1b[32m✅  ${'\u001b[1m' +
-              originalComponentPath +
-              '\u001b[22m'} \x1b[0m component updated successfully!`
+            `\x1b[32m✅  ${
+              '\u001b[1m' + originalComponentPath + '\u001b[22m'
+            } \x1b[0m component updated successfully!`
           );
         }
       });
@@ -329,7 +327,7 @@ const checkForExistingFolders = async (
   let selectedComponents: any = [];
 
   for (const component of specificComponents) {
-    const componentPath = getConfigComponentPath();
+    const componentPath = 'components/ui'; // <-- Replace with actual logic if needed
     const pathToCheck = path.join(
       currDir,
       componentPath,
@@ -358,7 +356,7 @@ const checkForExistingFolders = async (
         type: 'multiselect',
         name: 'value',
         message: `The following components already exists. Kindly choose the ones you wish to replace. Be advised that if there are any interdependent components, selecting them for replacement will result in their dependent components being replaced as well.`,
-        choices: alreadyExistingComponents.map(component => ({
+        choices: alreadyExistingComponents.map((component) => ({
           title: component,
           value: component,
         })),
@@ -376,7 +374,7 @@ const checkForExistingFolders = async (
 
   // Remove repeated components from all components
   const filteredComponents = specificComponents.filter(
-    component => !alreadyExistingComponents.includes(component)
+    (component) => !alreadyExistingComponents.includes(component)
   );
 
   // Add selected components to all components

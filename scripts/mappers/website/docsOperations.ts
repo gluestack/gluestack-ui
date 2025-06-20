@@ -3,7 +3,7 @@ import * as fileOps from '../utils/fileOperations';
 import * as templateGen from './templateGenerator';
 
 export const copyComponentsDocs = (component: string) => {
-  const sourcePath = path.resolve('packages/components/ui');
+  const sourcePath = path.resolve('src/components/ui');
   const websitePath = path.resolve('apps/website/app/ui/docs/components');
 
   try {
@@ -42,7 +42,7 @@ export const copyComponentsDocs = (component: string) => {
 };
 
 export const copyHooksDocs = (hook: string) => {
-  const sourcePath = path.resolve('packages/components/ui/utils');
+  const sourcePath = path.resolve('src/components/ui/utils');
   const websitePath = path.resolve('apps/website/app/ui/docs/hooks');
   const hookPath = path.join(sourcePath, hook, 'docs');
   const destPath = path.join(websitePath, hook);
@@ -59,7 +59,7 @@ export const copyHooksDocs = (hook: string) => {
 };
 
 export const copyNonComponentDocs = (filePath: string) => {
-  const sourcePath = path.resolve('packages/docs');
+  const sourcePath = path.resolve('src/docs');
   const websitePath = path.resolve('apps/website/app/ui/docs');
   try {
     // First read the source file content

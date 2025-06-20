@@ -30,7 +30,8 @@ export const updateConfig = () => {
       fs.mkdirSync(join(currDir, 'temp'));
     }
     // Regular expression to match both require and import statements
-    const importRegex = /(require\s*\(|import\s+(?:\w+\s+)?from\s+)(["'])([^"']+)\2\s*\)?;?/g;
+    const importRegex =
+      /(require\s*\(|import\s+(?:\w+\s+)?from\s+)(["'])([^"']+)\2\s*\)?;?/g;
 
     // Array to store matched import paths
     const importPaths = [];

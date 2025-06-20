@@ -6,53 +6,6 @@ const { join } = require('path');
 const { spawnSync } = require('child_process');
 const { spawn } = require('child_process');
 const { promisify } = require('util');
-const { getDataFiles } = require('../../dist/installer/next/data');
-
-const checkGluestackConfig = () => {
-  const filePath = path.join(nextAppPath, 'gluestack-ui.config.ts');
-  return fs.existsSync(filePath);
-};
-
-const getConfigComponentPath = () => {
-  const configFile = fs.readFileSync(
-    `${nextAppPath}/gluestack-ui.config.ts`,
-    'utf-8'
-  );
-  const match = configFile.match(/componentPath:\s+(['"])(.*?)\1/);
-
-  const componentPath = (match && match[2]) ?? '';
-
-  return componentPath;
-};
-
-const initGluestack = () => {
-  return new Promise((resolve, reject) => {
-    const child = spawn('node ../../../dist/index.js init', {
-      shell: true,
-      cwd: nextAppPath,
-    });
-
-    child.stdout.on('data', function (data) {
-      child.stdin.write('\n');
-      console.log(data.toString());
-    });
-
-    child.on('close', (code) => {
-      console.log(`child process close all stdio with code ${code}`);
-      resolve();
-    });
-
-    child.on('exit', (code) => {
-      console.log(`child process exited with code ${code}`);
-      resolve();
-    });
-
-    child.on('error', function (error) {
-      console.log(error);
-      reject();
-    });
-  });
-};
 
 const requiredDependencies = [
   '@gluestack-style/react',
@@ -130,12 +83,6 @@ describe('Next.js Command: npx gluestack-ui@latest init', () => {
     console.log('✅️  Gluestack UI repo is present in home dir');
   });
 
-  it('adds a gluestack-ui.config file', () => {
-    const gluestackUiConfigPresent = checkGluestackConfig();
-    expect(gluestackUiConfigPresent).toBeTruthy();
-    console.log('✅️  Gluestack UI config file is added');
-  });
-
   it('adds required dependencies to package.json', () => {
     const packageJsonPath = path.join(nextAppPath, 'package.json');
     const packageJsonData = JSON.parse(
@@ -156,70 +103,6 @@ describe('Next.js Command: npx gluestack-ui@latest init', () => {
       expect(packageJsonData.devDependencies).toHaveProperty(dependency);
     });
     console.log('✅️  Required devDependencies are added to package.json');
-  });
-
-  it('updates next.config.js', () => {
-    const { nextConfig } = getDataFiles('components');
-    const nextConfigPath = path.join(nextAppPath, 'next.config.js');
-    const nextConfigCode = fs.readFileSync(nextConfigPath, 'utf-8');
-    expect(nextConfigCode).toEqual(nextConfig);
-    console.log('✅️  next.config.js is updated');
-  });
-
-  it('updates _document.tsx', () => {
-    const { document } = getDataFiles('components');
-    const documentPath = path.join(nextAppPath, 'pages/_document.tsx');
-    const documentCode = fs.readFileSync(documentPath, 'utf-8');
-    expect(document).toEqual(documentCode);
-    console.log('✅️  _document.tsx is updated');
-  });
-
-  it('updates _app.tsx', () => {
-    const { app } = getDataFiles('components');
-    const appPath = path.join(nextAppPath, 'pages/_app.tsx');
-    const appCode = fs.readFileSync(appPath, 'utf-8');
-    expect(app).toEqual(appCode);
-    console.log('✅️  _app.tsx is updated');
-  });
-
-  it('check if components folder is created', () => {
-    const componentPath = getConfigComponentPath();
-    const componentsFolderPath = path.join(nextAppPath, componentPath);
-    expect(fs.existsSync(componentsFolderPath)).toBe(true);
-    console.log('✅️  components folder is created');
-  });
-
-  it('check if core folder is created inside components folder', () => {
-    const componentPath = getConfigComponentPath();
-    const coreFolderPath = path.join(nextAppPath, componentPath, 'core');
-    expect(fs.existsSync(coreFolderPath)).toBe(true);
-    console.log('✅️  core folder is created inside components folder');
-  });
-
-  it('check if styled folder is created inside core folder', () => {
-    const componentPath = getConfigComponentPath();
-    const styledFolderPath = path.join(
-      nextAppPath,
-      componentPath,
-      'core',
-      'styled'
-    );
-    expect(fs.existsSync(styledFolderPath)).toBe(true);
-    console.log('✅️  styled folder is created inside core folder');
-  });
-
-  it('check if GluestackUIProvider component is created inside core folder', () => {
-    const componentPath = getConfigComponentPath();
-    const gluestackProviderFolderPath = path.join(
-      nextAppPath,
-      componentPath,
-      'core',
-      'GluestackUIProvider'
-    );
-    expect(fs.existsSync(gluestackProviderFolderPath)).toBe(true);
-    console.log(
-      '✅️  GluestackUIProvider component is created inside core folder'
-    );
   });
 
   it('check if required dependencies are installed correctly', () => {

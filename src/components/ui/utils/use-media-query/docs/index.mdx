@@ -1,0 +1,97 @@
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# useMediaQuery
+
+Implement responsive designs in React & React Native with the useMediaQuery hook and component. Learn how to use the React useMediaQuery hook today.
+
+**useMediaQuery** is a custom hook that helps detect matches between a single media query or multiple media queries. React Native does not natively support media queries, so useMediaQuery is still limited.
+
+/// {Example:basic} ///
+
+<br />
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+  ```bash
+  npx gluestack-ui add useMediaQuery
+  ```
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into index.ts in your project.
+
+```ts
+%%-- File: src/components/ui/utils/use-media-query/index.ts --%%
+```
+
+> Note: **Step 2 is for web only**
+
+### Step 2: Copy and paste the following code into index.web.ts in your project.
+
+```ts
+%%-- File: src/components/ui/utils/use-media-query/index.web.ts --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { useMediaQuery } from '@/components/ui/utils/use-media-query';
+```
+
+```ts
+const flexDir = useMediaQuery({
+  minWidth: 480,
+  maxWidth: 1280,
+});
+```
+
+### Hook Arguments
+
+This section provides a comprehensive reference list for the hook arguments, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### useBreakPointValue
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Name</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>options</InlineCode>
+      </TableCell>
+      <TableCell>{`{ [key: maxHeight | maxWidth | minHeight | minWidth | orientation] : value } \nArray<{ [key: maxHeight | maxWidth | minHeight | minWidth | orientation] : value }`}</TableCell>
+      <TableCell>-</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+### Return Value
+
+The **useMediaQuery** hook returns an array of booleans, indicating whether the given query matches or queries match.
+
+### Why an array?
+
+**useMediaQuery** accepts both an object and an array of object, but will always return an array. This way, you can combine multiple media queries which will be individually matched in a single call. The options to use are still limited to maxWidth, minWidth, maxHeight, minHeight, orientation.

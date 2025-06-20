@@ -6,9 +6,9 @@ import {
 } from '../utils/componentOperations';
 
 const mapperConfig: MapperConfig = {
-  sourcePath: path.resolve('packages/components/ui'),
+  sourcePath: path.resolve('src/components/ui'),
   destPath: path.resolve('apps/todo-app/components/ui'),
-  utilsSourcePath: path.resolve('packages/utils/gluestack-utils'),
+  utilsSourcePath: path.resolve('src/utils/gluestack-utils'),
   utilsDestPath: path.resolve('apps/todo-app/utils/gluestack-utils'),
   ignoreFiles: ['docs', 'examples'],
 };

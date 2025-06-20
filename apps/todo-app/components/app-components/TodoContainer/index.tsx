@@ -1,13 +1,13 @@
-import React from "react";
-import { HStack } from "@/components/ui/hstack";
-import { Pressable } from "@/components/ui/pressable";
-import { CheckIcon, CloseIcon, Icon } from "@/components/ui/icon";
+import React from 'react';
+import { HStack } from '@/components/ui/hstack';
+import { Pressable } from '@/components/ui/pressable';
+import { CheckIcon, CloseIcon, Icon } from '@/components/ui/icon';
 import {
   Checkbox,
   CheckboxIcon,
   CheckboxIndicator,
   CheckboxLabel,
-} from "@/components/ui/checkbox";
+} from '@/components/ui/checkbox';
 
 export interface Todo {
   id: string;
@@ -51,7 +51,7 @@ const TodoContainer = ({
             <Icon
               as={CloseIcon}
               size="xs"
-              className={hovered ? "stroke-red-400" : "stroke-primary-50"}
+              className={hovered ? 'stroke-red-400' : 'stroke-primary-50'}
             />
           );
         }}
