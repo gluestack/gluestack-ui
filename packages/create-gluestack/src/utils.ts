@@ -1,5 +1,15 @@
-import templatesMap from './data.js';
-import { existsSync, rmSync, renameSync, readdirSync } from 'fs';
+
+import templatesMap from './data';
+import {
+  appendFileSync,
+  existsSync,
+  mkdirSync,
+  rmSync,
+  renameSync,
+  readdirSync,
+} from 'fs';
+
+
 import path from 'path';
 import { execSync } from 'child_process';
 

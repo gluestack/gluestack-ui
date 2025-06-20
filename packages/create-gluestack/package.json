@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "npx tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "prepublishOnly": "npm run build",
     "changeset": "changeset",
     "version": "changeset version",
@@ -38,7 +38,10 @@
   "devDependencies": {
     "@changesets/cli": "^2.29.4",
     "@types/fs-extra": "^11.0.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20.0.0",
+    "jest": "^30.0.0",
+    "ts-jest": "^29.4.0",
     "typescript": "^5.0.0"
   }
 }
