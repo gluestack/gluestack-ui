@@ -1,9 +1,16 @@
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import { existsSync, statSync, readdirSync } from 'fs';
+import { existsSync, statSync, readdirSync, rmdirSync } from 'fs'
 import path from 'path';
+import { spawn } from 'child_process';
 
 const execAsync = promisify(exec);
+
+const packageRoot = path.resolve(__dirname, '..');
+const appName = 'my-gluestack-app';
+const appPath = path.join(packageRoot, appName);
+console.log(appPath);
+
 
 describe('Build Process', () => {
   const packageRoot = path.resolve(__dirname, '..');
@@ -13,6 +20,19 @@ describe('Build Process', () => {
   beforeAll(async () => {
     // Change to package directory for build
     process.chdir(packageRoot);
+    if (existsSync(appPath)) {
+      rmdirSync(appPath, { recursive: true });
+      console.log('Deleted existing folder before test.');
+    }
+  
+    
+  });
+
+  afterAll(() => {
+    if (existsSync(appPath)) {
+      rmdirSync(appPath, { recursive: true });
+      console.log('Cleaned up folder after test.');
+    }
   });
 
   test('should build the package successfully with yarn build', async () => {
@@ -88,4 +108,50 @@ describe('Build Process', () => {
       expect(existsSync(path.join(distDir, expectedMapFile))).toBe(true);
     });
   });
+
+  test('should automate CLI process and create project', (done) => {
+    const child = spawn('node', ['../create-gluestack/dist/index.js'], {
+      cwd: packageRoot,
+      stdio: ['pipe', 'pipe', 'pipe'],
+    });
+
+    let successDetected = false;
+
+    setTimeout(() => {
+      child.stdin.write('\r\n');
+    }, 2000);
+    setTimeout(() => {
+      child.stdin.write(`${appName}\r\n`);
+    }, 4000);
+    child.stdout.on('data', (data) => {
+      const output = data.toString();
+      console.log(output);
+      if (output.includes(`Project created successfully in ${appName} folder.`)) {
+        successDetected = true;
+      }
+    });
+
+    child.stderr.on('data', (data) => {
+      console.error('STDERR:', data.toString());
+    });
+
+    child.on('close', (code) => {
+      console.log(`Child exited with code ${code}`);
+      try {
+        expect(code).toBe(0);
+        expect(successDetected).toBe(true);
+        expect(existsSync(appPath)).toBe(true); // Ensure app folder was created
+        done();
+      } catch (err) {
+        done(err);
+      }
+    });
+
+    child.on('error', (err) => {
+      console.error('Process failed:', err);
+      done(err);
+    });
+  }, 200000); // 2 minute timeout
+   // Set timeout to 120 seconds
 });
+
