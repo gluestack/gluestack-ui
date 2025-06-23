@@ -1,5 +1,9 @@
 'use client';
-import { Box, Heading, Text, VStack, HStack } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
 import { Span } from '@expo/html-elements';
 import { useEffect } from 'react';
 

@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import { parseISO, format } from 'date-fns';
 import Link from 'next/link';
-import { Box, HStack, Text } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
 
 export const BlogHeader = ({ blog }: any) => {
   const date = parseISO(blog?.published_at?.start || blog.created_time);

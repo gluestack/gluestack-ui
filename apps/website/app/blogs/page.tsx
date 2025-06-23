@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
-import { Box, Heading } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Heading } from '@/components/ui/heading';
 import { BlogListItem } from '@/components/page-components/blogs-page/BlogListItem';
 import BlogsPageLayout from '@/components/page-components/blogs-page/BlogsPageLayout';
 

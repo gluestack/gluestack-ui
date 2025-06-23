@@ -1,4 +1,7 @@
-import { Box, Text, VStack, HStack } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
 import Link from 'next/link';
 import {
   headerItems,

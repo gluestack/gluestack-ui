@@ -1,16 +1,12 @@
 import CodeBlock from '@/components/custom/markdown/code-block';
-import {
-  Box,
-  Button,
-  ButtonText,
-  Center,
-  Heading,
-  Link,
-  LinkText,
-  Text,
-  VStack,
-  Pressable,
-} from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Pressable } from '@/components/ui/pressable';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Center } from '@/components/ui/center';
+import { Heading } from '@/components/ui/heading';
+import { Link, LinkText } from '@/components/ui/link';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
 import { useState } from 'react';
 
 const buttonCode = [

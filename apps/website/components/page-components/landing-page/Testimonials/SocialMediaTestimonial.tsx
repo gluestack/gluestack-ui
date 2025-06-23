@@ -1,15 +1,12 @@
 'use client';
-import {
-  Image,
-  HStack,
-  VStack,
-  Text,
-  Divider,
-  Avatar,
-  AvatarImage,
-  Box,
-  Link,
-} from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Link } from '@/components/ui/link';
+import { Divider } from '@/components/ui/divider';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { Image } from '@/components/ui/image';
 import { ThemeContext } from '@/utils/context/theme-context';
 import { useContext } from 'react';
 

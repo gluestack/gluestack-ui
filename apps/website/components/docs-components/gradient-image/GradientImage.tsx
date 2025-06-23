@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, Center } from '@/components/ui';
+import { Image } from '@/components/ui/image';
+import { Center } from '@/components/ui/center';
 const GradientImage = () => {
   return (
     <Center>

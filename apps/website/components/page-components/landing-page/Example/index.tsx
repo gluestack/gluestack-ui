@@ -1,15 +1,12 @@
 import React, { useMemo, useEffect, useContext } from 'react';
-import {
-  Box,
-  HStack,
-  Heading,
-  Icon,
-  Link,
-  LinkText,
-  Pressable,
-  Text,
-  VStack,
-} from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Heading } from '@/components/ui/heading';
+import { Icon } from '@/components/ui/icon';
+import { Link, LinkText } from '@/components/ui/link';
+import { Pressable } from '@/components/ui/pressable';
+import { Text } from '@/components/ui/text';
 import NextImage from 'next/image';
 import { Resizable } from 're-resizable';
 import { Expand } from '../Expand';

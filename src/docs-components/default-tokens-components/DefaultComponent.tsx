@@ -1,7 +1,11 @@
 import React, { useContext, Fragment, useMemo } from 'react';
 import tailwindConfig from 'tailwind.config';
 import { config } from '@/components/ui/gluestack-ui-provider/config';
-import { VStack, HStack, Box, Text, Heading } from '@/components/ui';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { Heading } from '@/components/ui/heading';
 
 const ColorPaletteComponent = () => {
   const colorPalette = useMemo(() => {

@@ -69,18 +69,11 @@ export const processSidebarFile = (filePath: string) => {
   // Read and parse the JSON file
   const sidebar = fileOps.readJsonFile(sourceSidebarPath);
   
-  // Log the sidebar data to ensure it's being read correctly
-  console.log("Sidebar Data:", JSON.stringify(sidebar, null, 2));
-  
 let components = getComponentsFromSidebar(sidebar).sort();
 components = components.map((component: string) => component.replace('-', '') + 'Component');
-console.log(components);
 const componentsNameList = getComponentsFromSidebar(sidebar).sort();
-console.log(componentsNameList);
 const componentMap = createComponentMap(components,componentsNameList);
-console.log(componentMap);
 const template = createAllComponentsTemplate(components, componentMap,componentsNameList);
-console.log(template);
   // Proceed with copying the file
   copySpecialFile(sourceSidebarPath, destSidebarPath);
   fileOps.writeTextFile(allComponentsPath, template);

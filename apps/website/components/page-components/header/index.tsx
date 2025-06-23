@@ -1,20 +1,16 @@
 'use client';
 
 import React, { useContext, useState } from 'react';
-import {
-  Box,
-  HStack,
-  Icon,
-  Link,
-  Pressable,
-  Text,
-  ChevronUpIcon,
-  ChevronDownIcon,
-  Divider,
-  VStack,
-  Badge,
-  BadgeText,
-} from '@/components/ui';
+import { Badge, BadgeText } from '@/components/ui/badge';
+import { Divider } from '@/components/ui/divider';
+import { HStack } from '@/components/ui/hstack';
+import { Icon, ChevronUpIcon, ChevronDownIcon } from '@/components/ui/icon';
+import { Link } from '@/components/ui/link';
+import { Pressable } from '@/components/ui/pressable';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { Box } from '@/components/ui/box';
+
 import Image from 'next/image';
 import GluestackLogo from '@/public/svg/gluestack_logo.svg';
 import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';

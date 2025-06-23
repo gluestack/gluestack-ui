@@ -1,5 +1,9 @@
 'use client';
-import { Box, Heading, Text, VStack, Image } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { Image } from '@/components/ui/image';
 
 const Inspiration = () => {
   return (

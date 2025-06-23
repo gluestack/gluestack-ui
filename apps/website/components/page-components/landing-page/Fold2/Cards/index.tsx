@@ -1,21 +1,18 @@
+import { Box } from '@/components/ui/box';
+import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { Heading } from '@/components/ui/heading';
+import { HStack } from '@/components/ui/hstack';
+import { Icon, AlertCircleIcon } from '@/components/ui/icon';
+import { Divider } from '@/components/ui/divider';
+import { Button, ButtonText } from '@/components/ui/button';
 import {
-  Alert,
-  AlertCircleIcon,
-  AlertIcon,
-  AlertText,
   Avatar,
   AvatarFallbackText,
   AvatarImage,
-  Box,
-  Button,
-  ButtonText,
-  Divider,
-  HStack,
-  Heading,
-  Icon,
-  Text,
-  VStack,
-} from '@/components/ui';
+} from '@/components/ui/avatar';
+
 import { X } from 'lucide-react-native';
 
 const CardsContent = ({ show }: { show: boolean }) => {

@@ -1,5 +1,7 @@
 'use client';
-import { Box, Divider, Text } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Divider } from '@/components/ui/divider';
+import { Text } from '@/components/ui/text';
 import CardInfo from '../CardInfo';
 
 const data = [

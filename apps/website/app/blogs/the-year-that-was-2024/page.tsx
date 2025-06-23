@@ -1,5 +1,5 @@
 'use client';
-import { Box } from '@/components/ui';
+import { Box } from '@/components/ui/box';
 import TheYearThatWas2024Content from './blog.mdx';
 import BlogsPageLayout from '@/components/page-components/blogs-page/BlogsPageLayout';
 

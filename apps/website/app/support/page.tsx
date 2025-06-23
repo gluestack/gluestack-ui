@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Box } from '@/components/ui';
+import { Box } from '@/components/ui/box';
 import BadgeComponent from '@/components/page-components/landing-page/BadgeComponent';
 import Footer from '@/components/page-components/landing-page/Footer';
 import SupportFormFold from './SupportFormFold';

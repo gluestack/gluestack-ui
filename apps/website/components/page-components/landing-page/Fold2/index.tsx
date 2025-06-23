@@ -1,15 +1,12 @@
-import {
-  Box,
-  Divider,
-  HStack,
-  Heading,
-  Link,
-  LinkText,
-  Pressable,
-  Text,
-  VStack,
-  Image,
-} from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Divider } from '@/components/ui/divider';
+import { HStack } from '@/components/ui/hstack';
+import { Heading } from '@/components/ui/heading';
+import { Link, LinkText } from '@/components/ui/link';
+import { Pressable } from '@/components/ui/pressable';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { Image } from '@/components/ui/image';
 import React, { useContext } from 'react';
 import FormsContent from './Forms';
 import NavigationContent from './Navigation';

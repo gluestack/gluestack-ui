@@ -1,17 +1,12 @@
 'use client';
-import {
-  Box,
-  Heading,
-  Text,
-  VStack,
-  HStack,
-  Divider,
-  Button,
-  ButtonText,
-  ButtonIcon,
-  ChevronRightIcon,
-  Icon,
-} from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { ChevronRightIcon } from '@/components/ui/icon';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Divider } from '@/components/ui/divider';
+import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import IOS from '../Ios';

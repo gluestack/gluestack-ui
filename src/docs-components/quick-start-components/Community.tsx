@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from '@/components/ui';
-import { Text } from '@/components/ui';
-import { VStack } from '@/components/ui';
-import { HStack } from '@/components/ui';
-import { Box } from '@/components/ui';
-import { Heading } from '@/components/ui';
+import { Link } from '@/components/ui/link';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Box } from '@/components/ui/box';
+import { Heading } from '@/components/ui/heading';
 export type CommunityItem = {
   name: string;
   icon: React.ReactElement;

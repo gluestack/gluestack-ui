@@ -1,5 +1,9 @@
 'use client';
-import { Heading, View, Box, VStack, Text } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { View } from '@/components/ui/view';
 import { SocialMediaTestimonial } from './SocialMediaTestimonial';
 import { data } from './content';
 import { TestimonialsCarousel } from '../TestimonialsCarousel';

@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
-import { Box, Link, Text, LinkText } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Link } from '@/components/ui/link';
+import { Text } from '@/components/ui/text';
+import { LinkText } from '@/components/ui/link';
 import Head from 'next/head';
 
 type Item = {
