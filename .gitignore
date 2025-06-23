@@ -15,7 +15,7 @@ logs/
 .next/
 .swc/
 out/
-build
+build/
 lib
 # expo
 .expo
