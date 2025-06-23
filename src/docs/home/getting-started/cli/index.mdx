@@ -27,7 +27,7 @@ The init command adds the necessary `gluestack-ui.config.json` file, includes th
 - entry file (for your project)
 
 ```bash
-npx gluestack-ui init
+npx gluestack-ui-nightly init
 ```
 
 > Note: If you wish to make changes to your project manually, you can refer to the [installation](/ui/docs/home/getting-started/installation) guide.
@@ -39,7 +39,7 @@ npx gluestack-ui init
 - `--use-<package>`: This flag specifies the package manager to use when initializing gluestack-ui. Supported options are npm (default), yarn, bun, and pnpm. Replace `<package>` with your preferred package manager.
 
 ```bash
-Usage: npx gluestack-ui init [options]
+Usage: npx gluestack-ui-nightly init [options]
 
 initialize your gluestack-ui and install dependencies
 
@@ -52,7 +52,7 @@ Options:
 Use the `add` command to add components and their dependencies to your project:
 
 ```bash
-npx gluestack-ui add [component]
+npx gluestack-ui-nightly add [component]
 ```
 
 ### Options:
@@ -61,7 +61,7 @@ npx gluestack-ui add [component]
 - `--path <path>`: Specifies the directory path where you want to add the component. By default, it will add the component to the same directory where the GluestackUIProvider is located.
 
 ```bash
-Usage: npx gluestack-ui add [component] [options]
+Usage: npx gluestack-ui-nightly add [component] [options]
 
 add component to your project
 
@@ -85,7 +85,7 @@ The `gluestack-ui.config.json` file holds the configuration for your project. It
 Manual creation of gluestack-ui.config.json file is not necessary. It will be automatically generated upon executing the following command:
 
 ```bash
-npx gluestack-ui init
+npx gluestack-ui-nightly init
 ```
 
 ## tailwind

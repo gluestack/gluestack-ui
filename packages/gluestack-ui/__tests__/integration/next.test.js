@@ -27,7 +27,7 @@ const repoPath = path.join(homeDir, '.gluestack/cache/gluestack-ui');
 const NEXT_PORT = '3039';
 const nextAppUrl = `http://localhost:${NEXT_PORT}`;
 
-describe('Next.js Command: npx gluestack-ui@latest init', () => {
+describe('Next.js Command: npx gluestack-ui-nightly@latest init', () => {
   let appProcess;
   let nextServerStarted;
 
@@ -68,7 +68,7 @@ describe('Next.js Command: npx gluestack-ui@latest init', () => {
       });
       console.log('my-next-app setup completed successfully');
 
-      // Runs "npx gluestack-ui@latest init"
+      // Runs "npx gluestack-ui-nightly@latest init"
       await initGluestack();
       console.log('gluestack-ui init setup completed successfully');
     } catch (error) {

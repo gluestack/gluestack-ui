@@ -65,7 +65,7 @@ export const add = new Command()
       const initialized = await checkIfInitialized(projectRootPath);
       if (!initialized) {
         log.warning(
-          `\x1b[33mgluestack is not initialized in the project. use 'npx gluestack-ui init' or 'help' to continue.\x1b[0m`
+          `\x1b[33mgluestack is not initialized in the project. use 'npx gluestack-ui-nightly init' or 'help' to continue.\x1b[0m`
         );
         process.exit(1);
       }
