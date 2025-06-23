@@ -2,6 +2,8 @@
   "dependencies": {
     "chokidar": "^4.0.3",
     "solito": "^4.4.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   },
   "scripts": {
@@ -16,6 +18,7 @@
     "sync:starter-kit-expo": "tsx scripts/dev.ts --mapper=starter-kit-expo --sync",
     "sync:kitchen-sink": "tsx scripts/dev.ts --mapper=kitchen-sink --sync",
     "sync:website": "tsx scripts/dev.ts --mapper=website --sync",
+    "sync:website:alt": "ts-node scripts/dev.ts --mapper=website --sync",
     "sync:todo-app": "tsx scripts/dev.ts --mapper=todo-app --sync",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
@@ -25,8 +28,7 @@
     "@changesets/cli": "^2.29.4",
     "@tsconfig/react-native": "^3.0.5",
     "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5",
-    "tsx": "^4.19.3"
+    "prettier": "^3.2.5"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,json,md,mdx}": [
