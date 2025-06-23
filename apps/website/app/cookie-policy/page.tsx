@@ -1,9 +1,13 @@
 'use client';
-import { Box, Heading, Link, LinkText, Text } from '@/components/ui';
+import React from 'react';
+import { Box } from '@/components/ui/box';
+import { Heading } from '@/components/ui/heading';
+import { Link } from '@/components/ui/link';
+import { LinkText } from '@/components/ui/link';
+import { Text } from '@/components/ui/text';
 import BadgeComponent from '@/components/page-components/landing-page/BadgeComponent';
 import Footer from '@/components/page-components/landing-page/Footer';
 import WebsiteLayout from '@/components/page-components/landing-page/WebsiteLayout';
-import React from 'react';
 
 const CookiePolicy = () => {
   return (

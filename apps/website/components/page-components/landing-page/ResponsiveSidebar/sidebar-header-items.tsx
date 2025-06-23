@@ -1,5 +1,6 @@
 import React from 'react';
-import { Badge, BadgeText, Image } from '@/components/ui';
+import { Badge, BadgeText } from '@/components/ui/badge';
+import { Image } from '@/components/ui/image';
 
 export interface SidebarItemProps {
   title: string;

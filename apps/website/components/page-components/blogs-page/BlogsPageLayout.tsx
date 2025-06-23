@@ -3,7 +3,7 @@ import React from 'react';
 import Footer from '@/components/page-components/landing-page/Footer';
 import WebsiteLayout from '@/components/page-components/landing-page/WebsiteLayout';
 import BadgeComponent from '@/components/page-components/landing-page/BadgeComponent';
-import { Box } from '@/components/ui';
+import { Box } from '@/components/ui/box';
 import { usePathname } from 'next/navigation';
 
 export default function BlogsPageLayout({

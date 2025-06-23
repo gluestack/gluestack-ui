@@ -1,5 +1,5 @@
 'use client';
-import { Box } from '@/components/ui';
+import { Box } from '@/components/ui/box';
 import TroubleshootingCommonIssuesWithNativeWind from './blog.mdx';
 import BlogsPageLayout from '@/components/page-components/blogs-page/BlogsPageLayout';
 

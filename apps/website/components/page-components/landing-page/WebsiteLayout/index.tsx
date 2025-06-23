@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box } from '@/components/ui';
+import { Box } from '@/components/ui/box';
 import Header from '@/components/page-components/header';
 function WebsiteLayout({
   children,

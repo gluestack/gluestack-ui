@@ -1,3 +1,41 @@
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { HStack } from '@/components/ui/hstack';
+import { VStack } from '@/components/ui/vstack';
+import {
+  RadioGroup,
+  Radio,
+  RadioIcon,
+  RadioIndicator,
+  RadioLabel,
+} from '@/components/ui/radio';
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
+import {
+  AlertCircleIcon,
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  CircleIcon,
+  EyeIcon,
+  EyeOffIcon,
+  SearchIcon,
+} from '@/components/ui/icon';
+import {
+  FormControl,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlLabel,
+  FormControlLabelText,
+} from '@/components/ui/form-control';
+import {
+  Checkbox,
+  CheckboxIcon,
+  CheckboxIndicator,
+  CheckboxLabel,
+} from '@/components/ui/checkbox';
 import {
   Accordion,
   AccordionContent,
@@ -7,50 +45,19 @@ import {
   AccordionItem,
   AccordionTitleText,
   AccordionTrigger,
-  AlertCircleIcon,
-  Box,
-  CheckIcon,
-  Checkbox,
-  CheckboxIcon,
-  CheckboxIndicator,
-  CheckboxLabel,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  CircleIcon,
-  EyeIcon,
-  EyeOffIcon,
-  FormControl,
-  FormControlError,
-  FormControlErrorIcon,
-  FormControlErrorText,
-  FormControlHelper,
-  FormControlHelperText,
-  FormControlLabel,
-  FormControlLabelText,
-  HStack,
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-  Radio,
-  RadioGroup,
-  RadioIcon,
-  RadioIndicator,
-  RadioLabel,
-  SearchIcon,
+} from '@/components/ui/accordion';
+import {
   Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectItem,
+  SelectPortal,
   SelectBackdrop,
   SelectContent,
   SelectDragIndicator,
   SelectDragIndicatorWrapper,
-  SelectIcon,
-  SelectInput,
-  SelectItem,
-  SelectPortal,
-  SelectTrigger,
-  Text,
-  VStack,
-} from '@/components/ui';
+} from '@/components/ui/select';
 import React from 'react';
 
 const FormsContent = ({ show }: { show: boolean }) => {

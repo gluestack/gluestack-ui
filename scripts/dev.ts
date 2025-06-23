@@ -77,8 +77,6 @@ const watcher = chokidar.watch(sourcePath, {
   ignored: [
     /node_modules/,
     /\.git/,
-    /dist/,
-    /build/,
     /\.next/,
     /\.cache/,
     /\.DS_Store/,
@@ -88,15 +86,11 @@ const watcher = chokidar.watch(sourcePath, {
     // Ignore specific directories that we don't want to monitor
     '**/node_modules/**',
     '**/.git/**',
-    '**/dist/**',
-    '**/build/**',
     '**/.next/**',
     '**/.cache/**',
     '**/.DS_Store',
     '**/*.log',
     '**/*.tmp',
-    // Ignore destination directories to prevent infinite loops
-    'apps/**',
   ],
 }) as unknown as {
   on: (event: string, callback: (path: string) => void) => any;
@@ -120,11 +114,6 @@ const getComponentFromPath = (filePath: string): string | null => {
 const shouldProcessFile = (filePath: string): boolean => {
   const normalizedPath = path.normalize(filePath);
 
-  // Skip destination directories completely
-  if (normalizedPath.includes('apps/')) {
-    return false;
-  }
-
   // Only process files in our target directories
   const targetDirs = [
     'src/components',
@@ -139,10 +128,10 @@ const shouldProcessFile = (filePath: string): boolean => {
   }
 
   // Skip hidden files and directories
-  const fileName = path.basename(filePath);
-  if (fileName.startsWith('.')) {
-    return false;
-  }
+  // const fileName = path.basename(filePath);
+  // if (fileName.startsWith('.')) {
+  //   return false;
+  // }
 
   // Skip certain file types
   const skipExtensions = ['.log', '.tmp', '.cache', '.lock', '.tsbuildinfo'];
@@ -159,26 +148,26 @@ const shouldProcessFile = (filePath: string): boolean => {
   return true;
 };
 
-const isRecentlyModified = (
-  filePath: string,
-  minutesThreshold: number = 30
-): boolean => {
-  try {
-    if (!fs.existsSync(filePath)) {
-      return false;
-    }
+// const isRecentlyModified = (
+//   filePath: string,
+//   minutesThreshold: number = 30
+// ): boolean => {
+//   try {
+//     if (!fs.existsSync(filePath)) {
+//       return false;
+//     }
 
-    const stats = fs.statSync(filePath);
-    const now = new Date();
-    const modifiedTime = stats.mtime;
-    const diffInMinutes =
-      (now.getTime() - modifiedTime.getTime()) / (1000 * 60);
+//     const stats = fs.statSync(filePath);
+//     const now = new Date();
+//     const modifiedTime = stats.mtime;
+//     const diffInMinutes =
+//       (now.getTime() - modifiedTime.getTime()) / (1000 * 60);
 
-    return diffInMinutes <= minutesThreshold;
-  } catch (error) {
-    return false;
-  }
-};
+//     return diffInMinutes <= minutesThreshold;
+//   } catch (error) {
+//     return false;
+//   }
+// };
 
 const hasFileBeenProcessedRecently = (filePath: string): boolean => {
   const now = Date.now();

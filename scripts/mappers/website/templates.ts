@@ -71,11 +71,14 @@ export default function Layout({
 }`;
 };
 
-
-export const createAllComponentsTemplate = (components: string[], componentMap: string,componentsNameList: string[]) => {
+export const createAllComponentsTemplate = (
+  components: string[],
+  componentMap: string,
+  componentsNameList: string[]
+) => {
   return `import React from 'react';;
-import { GridItem } from '@/components/ui/grid';
-import { Box, Grid } from '@/components/ui';
+import { Grid,GridItem } from '@/components/ui/grid';
+import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 
 ${componentMap}

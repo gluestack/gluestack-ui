@@ -2,7 +2,10 @@ import { useState, useEffect } from 'react';
 import Handlebars from 'handlebars';
 import { LiveProvider, LiveError, LivePreview } from 'react-live';
 import CodeBlock from '@/components/custom/markdown/code-block';
-import { Box, ChevronDownIcon, Switch, Text } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Switch } from '@/components/ui/switch';
+import { Text } from '@/components/ui/text';
+import { ChevronDownIcon } from '@/components/ui/icon';
 
 import {
   Select,

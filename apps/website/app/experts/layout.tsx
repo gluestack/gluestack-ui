@@ -1,5 +1,5 @@
 'use client';
-import { Box } from '@/components/ui';
+import { Box } from '@/components/ui/box';
 import WebsiteLayout from '@/components/page-components/landing-page/WebsiteLayout';
 import BadgeComponent from '@/components/page-components/landing-page/BadgeComponent';
 import Footer from '@/components/page-components/landing-page/Footer';

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Box } from '@/components/ui';
+import { Box } from '@/components/ui/box';
 // import { ThemeContext } from '@/utils/context/theme-context';
 const AwardBadge = () => {
   // const { colorMode } = useContext(ThemeContext);

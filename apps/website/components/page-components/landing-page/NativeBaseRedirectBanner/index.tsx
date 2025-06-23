@@ -1,12 +1,8 @@
 import { useState } from 'react';
-import {
-  Box,
-  Text,
-  Icon,
-  ButtonIcon,
-  Button,
-  CloseIcon,
-} from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { Icon, CloseIcon } from '@/components/ui/icon';
+import { Button, ButtonIcon } from '@/components/ui/button';
 import NextLink from 'next/link';
 import { TriangleAlertIcon } from 'lucide-react-native';
 

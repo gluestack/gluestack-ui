@@ -1,24 +1,18 @@
 import { useState, useEffect } from 'react';
+import { Box } from '@/components/ui/box';
+import { ArrowRightIcon, MailIcon } from '@/components/ui/icon';
+import { Spinner } from '@/components/ui/spinner';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { Input, InputIcon, InputField } from '@/components/ui/input';
+import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
 import {
-  Box,
-  Text,
-  Input,
-  Button,
   Avatar,
-  InputIcon,
-  InputField,
-  ButtonText,
   AvatarFallbackText,
   AvatarGroup,
-  ButtonIcon,
-  ArrowRightIcon,
-  MailIcon,
-  Link,
-  LinkText,
-  VStack,
-  Spinner,
-  Heading,
-} from '@/components/ui';
+} from '@/components/ui/avatar';
+import { Link, LinkText } from '@/components/ui/link';
+import { VStack } from '@/components/ui/vstack';
 import axios from 'axios';
 import Image from 'next/image';
 

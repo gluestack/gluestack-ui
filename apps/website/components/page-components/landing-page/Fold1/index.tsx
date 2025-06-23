@@ -1,36 +1,40 @@
 import {
-  Avatar,
-  AvatarFallbackText,
-  AvatarImage,
-  Box,
   Button,
   ButtonIcon,
   ButtonText,
-  CheckIcon,
-  Checkbox,
-  CheckboxIcon,
-  CheckboxIndicator,
-  CheckboxLabel,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  Divider,
+  ButtonGroup,
+} from '@/components/ui/button';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { Divider } from '@/components/ui/divider';
+import {
   FormControl,
   FormControlLabel,
   FormControlLabelText,
-  HStack,
-  Heading,
+} from '@/components/ui/form-control';
+import {
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
+  CheckboxIcon,
+} from '@/components/ui/checkbox';
+import { HStack } from '@/components/ui/hstack';
+import { Heading } from '@/components/ui/heading';
+import {
   Icon,
-  Input,
-  InputField,
-  Link,
-  LinkText,
-  Text,
-  VStack,
-  ButtonGroup,
+  CheckIcon,
   CloseIcon,
-  InputSlot,
-  InputIcon,
-} from '@/components/ui';
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from '@/components/ui/icon';
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
+import { Link, LinkText } from '@/components/ui/link';
+import { VStack } from '@/components/ui/vstack';
+import {
+  Avatar,
+  AvatarFallbackText,
+  AvatarImage,
+} from '@/components/ui/avatar';
 import {
   Table,
   TableBody,

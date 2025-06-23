@@ -1,38 +1,34 @@
 import React, { useContext } from 'react';
 import {
-  Avatar,
-  AvatarFallbackText,
-  AvatarImage,
-  Box,
-  Button,
-  ButtonText,
-  CheckIcon,
   Checkbox,
   CheckboxIcon,
   CheckboxIndicator,
   CheckboxLabel,
-  Divider,
+} from '@/components/ui/checkbox';
+import { Box } from '@/components/ui/box';
+import { Switch } from '@/components/ui/switch';
+import { Progress, ProgressFilledTrack } from '@/components/ui/progress';
+import { Divider } from '@/components/ui/divider';
+import {
   FormControl,
   FormControlLabel,
   FormControlLabelText,
-  HStack,
-  Heading,
-  Icon,
-  Image,
-  Input,
-  InputField,
-  InputIcon,
-  InputSlot,
-  Link,
-  LinkText,
-  MailIcon,
-  Pressable,
-  Progress,
-  ProgressFilledTrack,
-  Switch,
-  Text,
-  VStack,
-} from '@/components/ui';
+} from '@/components/ui/form-control';
+import { Button, ButtonText } from '@/components/ui/button';
+import { HStack } from '@/components/ui/hstack';
+import { Heading } from '@/components/ui/heading';
+import { Icon, CheckIcon, MailIcon } from '@/components/ui/icon';
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
+import { Link, LinkText } from '@/components/ui/link';
+import { Pressable } from '@/components/ui/pressable';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import {
+  Avatar,
+  AvatarFallbackText,
+  AvatarImage,
+} from '@/components/ui/avatar';
+
 import {
   Type,
   CircleDollarSign,
@@ -41,7 +37,6 @@ import {
   EyeIcon,
   EyeOffIcon,
 } from 'lucide-react-native';
-import PositiveThinking from '@public/images/PositiveThinking.jpg';
 import NextImage from 'next/image';
 import { ThemeContext } from '@/utils/context/theme-context';
 import {

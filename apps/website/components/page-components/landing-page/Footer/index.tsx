@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
-import {
-  Box,
-  HStack,
-  VStack,
-  Text,
-  Pressable,
-  Link,
-  Image,
-} from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { VStack } from '@/components/ui/vstack';
+import { Text } from '@/components/ui/text';
+import { Pressable } from '@/components/ui/pressable';
+import { Link } from '@/components/ui/link';
+import { Image } from '@/components/ui/image';
 import { ThemeContext } from '@/utils/context/theme-context';
 
 const footerItems = [

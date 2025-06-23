@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
-import { Box, Text, Badge, HStack, Link } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { Badge } from '@/components/ui/badge';
+import { HStack } from '@/components/ui/hstack';
 import NextImage from 'next/image';
 import { ThemeContext } from '@/utils/context/theme-context';
 

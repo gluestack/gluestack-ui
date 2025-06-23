@@ -1,5 +1,6 @@
 'use client';
-import { Box, Text } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
 import { ThemeContext } from '@/utils/context/theme-context';
 import NextImage from 'next/image';
 import { useContext } from 'react';

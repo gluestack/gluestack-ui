@@ -1,12 +1,14 @@
 'use client';
 
-import { Box, Text, Pressable } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { Pressable } from '@/components/ui/pressable';
 import React, { useRef, useState } from 'react';
 import NextImage from 'next/image';
 import { Expand } from '@/docs-components/apps/dashboard-app/Expand';
 import { Resizable } from 're-resizable';
-import { Text as NText } from '@/components/ui';
-import { Image as NImage } from '@/components/ui';
+import { Text as NText } from '@/components/ui/text';
+import { Image as NImage } from '@/components/ui/image';
 
 //function to detect if the user is on a web browser
 function checkPlatform({

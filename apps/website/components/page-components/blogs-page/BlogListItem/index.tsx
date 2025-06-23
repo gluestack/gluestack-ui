@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { BlogHeader } from '../BlogHeader';
-import { Box } from '@/components/ui';
+import { Box } from '@/components/ui/box';
 
 export const BlogListItem = ({ key, blog }: { key: number; blog: any }) => {
   return (

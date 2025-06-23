@@ -1,5 +1,9 @@
 'use client';
-import { Box, HStack, Heading, Text, VStack } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
 import NextImage from 'next/image';
 import { useEffect } from 'react';
 

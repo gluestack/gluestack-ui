@@ -1,6 +1,9 @@
 import { useRef, useState } from 'react';
 import type { NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
-import { Box, Pressable, Icon, FlatList } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Pressable } from '@/components/ui/pressable';
+import { Icon } from '@/components/ui/icon';
+import { FlatList } from '@/components/ui/flat-list';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import { SocialMediaTestimonial } from '../Testimonials/SocialMediaTestimonial';
 

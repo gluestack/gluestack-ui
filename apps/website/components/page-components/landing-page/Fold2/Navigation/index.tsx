@@ -1,58 +1,50 @@
+import { Box } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Fab, FabIcon } from '@/components/ui/fab';
+import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip';
 import {
+  Popover,
+  PopoverBackdrop,
+  PopoverBody,
+  PopoverContent,
+  PopoverArrow,
+} from '@/components/ui/popover';
+import { Heading } from '@/components/ui/heading';
+import {
+  Avatar,
+  AvatarFallbackText,
+  AvatarImage,
+} from '@/components/ui/avatar';
+import {
+  Icon,
+  InfoIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  PlayIcon,
   AddIcon,
+  GlobeIcon,
+} from '@/components/ui/icon';
+import { Pressable } from '@/components/ui/pressable';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { Alert, AlertText, AlertIcon } from '@/components/ui/alert';
+import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
+import {
   AlertDialog,
   AlertDialogBackdrop,
   AlertDialogBody,
   AlertDialogContent,
   AlertDialogFooter,
   AlertDialogHeader,
-  Avatar,
-  AvatarFallbackText,
-  AvatarImage,
-  Box,
-  Button,
-  ButtonIcon,
-  ButtonText,
-  CloseIcon,
-  Fab,
-  FabIcon,
-  GlobeIcon,
-  HStack,
-  Heading,
-  Icon,
-  Menu,
-  MenuItem,
-  MenuItemLabel,
-  Popover,
-  PopoverBackdrop,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverFooter,
-  PopoverHeader,
-  Pressable,
-  Spinner,
-  Text,
-  Tooltip,
-  TooltipContent,
-  TooltipText,
-  VStack,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  Alert,
-  AlertText,
-  AlertIcon,
-  InfoIcon,
-  PopoverArrow,
-  PlayIcon,
-} from '@/components/ui';
+} from '@/components/ui/alert-dialog';
+import { Spinner } from '@/components/ui/spinner';
+import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
+
 import {
   Bell,
   Download,
   MessageCircle,
-  PaintBucket,
   Paperclip,
-  PuzzleIcon,
   Settings,
   SettingsIcon,
   SquarePen,

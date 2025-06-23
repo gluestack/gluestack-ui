@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "cd ../.. && yarn install && yarn sync:website && cd apps/website && next build",
+    "build:only": "next build",
     "start": "next start"
   },
   "dependencies": {

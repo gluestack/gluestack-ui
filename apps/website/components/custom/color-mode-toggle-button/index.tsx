@@ -1,12 +1,6 @@
 import { useContext } from 'react';
-import {
-  Pressable,
-  SunIcon,
-  MoonIcon,
-  Icon,
-  Fab,
-  FabIcon,
-} from '@/components/ui';
+import { Fab, FabIcon } from '@/components/ui/fab';
+import { MoonIcon, SunIcon } from '@/components/ui/icon';
 import { ThemeContext } from '@/utils/context/theme-context';
 
 export const ToggleColorModeButton = () => {

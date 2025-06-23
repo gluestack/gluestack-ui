@@ -1,17 +1,14 @@
 'use client';
 
-import {
-  Box,
-  Text,
-  VStack,
-  Heading,
-  HStack,
-  Icon,
-  ArrowRightIcon,
-  Divider,
-  Fab,
-  FabIcon,
-} from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { Heading } from '@/components/ui/heading';
+import { HStack } from '@/components/ui/hstack';
+import { Icon, ArrowRightIcon } from '@/components/ui/icon';
+import { Divider } from '@/components/ui/divider';
+import { Fab, FabIcon } from '@/components/ui/fab';
+
 import MeetCreators from './MeetCreators';
 import { Newsletter } from './Newsletter';
 import Footer from './Footer';

@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react';
-import {
-  Badge,
-  Box,
-  Button,
-  ButtonText,
-  HStack,
-  Link,
-  LinkText,
-  Text,
-  VStack,
-} from '@/components/ui';
+import { Badge } from '@/components/ui/badge';
+import { Box } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Link, LinkText } from '@/components/ui/link';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
 
 const BadgeComponent = () => {
   const [isBadgeVisible, setIsBadgeVisible] = useState(false);
