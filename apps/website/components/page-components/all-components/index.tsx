@@ -1,7 +1,6 @@
 import React from 'react';;
-import { GridItem } from '@/components/ui/grid';
+import { Grid,GridItem } from '@/components/ui/grid';
 import { Box } from '@/components/ui/box';
-import { Grid } from '@/components/ui/grid';
 import { Text } from '@/components/ui/text';
 
 
