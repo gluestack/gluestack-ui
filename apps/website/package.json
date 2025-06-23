@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "cd ../.. && yarn install && yarn sync:website && cd apps/website && next build",
     "build:only": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "dependencies": {
     "@docsearch/react": "^3.9.0",
@@ -31,6 +32,7 @@
     "dom-helpers": "^5.2.1",
     "dotenv": "^16.5.0",
     "handlebars": "^4.7.8",
+    "jest": "^30.0.2",
     "js-cookie": "^3.0.5",
     "lucide-react-native": "^0.510.0",
     "nativewind": "^4.1.23",
