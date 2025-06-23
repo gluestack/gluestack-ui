@@ -1,9 +1,9 @@
 {
-  "name": "create-gluecode",
-  "version": "1.0.11",
+  "name": "create-gluestack-nightly",
+  "version": "2.0.4",
   "main": "./dist/index.js",
   "bin": {
-    "create-gluecode": "./dist/index.js"
+    "create-gluestack-nightly": "./dist/index.js"
   },
   "files": [
     "dist"
