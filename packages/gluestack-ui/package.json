@@ -1,5 +1,13 @@
 {
-  "name": "gluecode-ui-v2",
+  "name": "gluestack-ui-nightly",
+  "version": "0.7.22",
+  "main": "dist/index.js",
+  "bin": {
+    "gluestack-ui-nightly": "./dist/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "react",
     "react-native",
@@ -10,15 +18,10 @@
     "cli"
   ],
   "description": "A CLI tool for easily adding components from gluestack to your projects.",
-  "version": "0.1.33",
   "license": "MIT",
-  "main": "dist/index.js",
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "engines": {
     "node": ">=18"
   },
@@ -36,9 +39,6 @@
     "hooks": {
       "pre-commit": "tsdx lint"
     }
-  },
-  "bin": {
-    "gluecode-ui-v2": "./dist/index.js"
   },
   "prettier": {
     "printWidth": 80,
