@@ -1,6 +1,8 @@
 'use client';
 
-import { Box, Text, Pressable } from '@/components/ui';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { Pressable } from '@/components/ui/pressable';
 import React, { useRef, useState } from 'react';
 import NextImage from 'next/image';
 import { Expand } from '@/docs-components/apps/dashboard-app/Expand';
