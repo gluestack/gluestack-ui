@@ -4,7 +4,7 @@ function runYarnSync() {
   try {
     console.log('🔄 Running yarn sync command...');
     // Run the dev.ts script with --sync flag to process all files and exit
-    execSync('npx tsx scripts/dev.ts --sync', { stdio: 'inherit' });
+    execSync('yarn sync', { stdio: 'inherit' });
     console.log('✅ Yarn sync completed successfully!');
   } catch (error) {
     console.error('❌ Error running yarn sync:', error);
