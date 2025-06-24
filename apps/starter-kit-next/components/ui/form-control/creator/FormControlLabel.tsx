@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
-import { combineContextAndProps } from '../../../../utils/gluestack-utils/common';
+import { combineContextAndProps } from '@/utils/gluestack-utils/common';
 import { useFormControlContext } from './useFormControl';
-import { mergeRefs } from '../../../../utils/gluestack-utils/common';
+import { mergeRefs } from '@/utils/gluestack-utils/common';
 
 const FormControlLabel = ({
   Label: StyledFormControlLabel,

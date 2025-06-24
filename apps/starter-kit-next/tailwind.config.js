@@ -1,4 +1,4 @@
-import gluestackPlugin from './utils/gluestack-utils/nativewind/utils/tailwind-plugin';
+import gluestackPlugin from './utils/gluestack-utils/nativewind-utils/tailwind-plugin';
 
 //@ts-expect-error : nativewind/preset is not a module
 import * as nativewind from 'nativewind/preset';

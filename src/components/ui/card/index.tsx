@@ -1,5 +1,5 @@
 import React from 'react';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
 import { View, ViewProps } from 'react-native';
 import { cardStyle } from './styles';
 

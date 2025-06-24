@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { flattenChildren } from '../../../../utils/gluestack-utils/common/getSpacedChild';
+import { flattenChildren } from '@/utils/gluestack-utils/common/getSpacedChild';
 
 export const ButtonGroup = (StyledButtonGroup: any) =>
   forwardRef(

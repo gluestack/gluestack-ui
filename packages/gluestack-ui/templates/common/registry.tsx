@@ -4,7 +4,7 @@ import { useServerInsertedHTML } from 'next/navigation';
 import { StyleRegistry, createStyleRegistry } from 'styled-jsx';
 // @ts-expect-error : AppRegistry is defined in react-native-web but its type is not defined
 import { AppRegistry } from 'react-native-web';
-import { flush } from '@/utils/gluestack-utils/nativewind/utils/flush';
+import { flush } from '@/utils/gluestack-utils/nativewind-utils/flush';
 
 export default function StyledJsxRegistry({
   children,

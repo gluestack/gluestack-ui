@@ -50,7 +50,6 @@ const Table = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <ExpoTable
-      // @ts-expect-error : ref type changed
       ref={ref}
       className={tableStyle({ class: className })}
       {...props}
@@ -70,7 +69,6 @@ const TableHeader = React.forwardRef<
   return (
     <TableHeaderContext.Provider value={contextValue}>
       <ExpoTHead
-        // @ts-expect-error : ref type changed
         ref={ref}
         className={tableHeaderStyle({ class: className })}
         {...props}
@@ -85,7 +83,6 @@ const TableBody = React.forwardRef<
 >(function TableBody({ className, ...props }, ref) {
   return (
     <ExpoTBody
-      // @ts-expect-error : ref type changed
       ref={ref}
       className={tableBodyStyle({ class: className })}
       {...props}
@@ -105,7 +102,6 @@ const TableFooter = React.forwardRef<
   return (
     <TableFooterContext.Provider value={contextValue}>
       <ExpoTFoot
-        // @ts-expect-error : ref type changed
         ref={ref}
         className={tableFooterStyle({ class: className })}
         {...props}
@@ -146,7 +142,6 @@ const TableRow = React.forwardRef<
 
   return (
     <ExpoTR
-      // @ts-expect-error : ref type changed
       ref={ref}
       className={tableRowStyleStyle({
         isHeaderRow,
@@ -187,7 +182,6 @@ const TableCaption = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <ExpoTCaption
-      // @ts-expect-error : ref type changed
       ref={ref}
       className={tableCaptionStyle({ class: className })}
       {...props}

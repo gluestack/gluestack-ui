@@ -9,7 +9,7 @@ import GorhomBottomSheet, {
 } from '@gorhom/bottom-sheet';
 import { Platform } from 'react-native';
 import type { PressableProps, TextProps } from 'react-native';
-import { FocusScope } from '@/utils/gluestack-utils/aria/focus/src';
+import { FocusScope } from '@/utils/gluestack-utils/aria/focus';
 import React, {
   createContext,
   useCallback,
@@ -20,7 +20,7 @@ import React, {
 } from 'react';
 import { Pressable, Text } from 'react-native';
 import { cssInterop } from 'nativewind';
-import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
 
 const bottomSheetBackdropStyle = tva({
   base: 'absolute inset-0 flex-1 touch-none select-none bg-black opacity-0',

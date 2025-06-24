@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { combineContextAndProps } from '../../../../utils/gluestack-utils/common';
+import { combineContextAndProps } from '@/utils/gluestack-utils/common';
 import { useFormControlContext } from './useFormControl';
 
 const FormControlError = (StyledFormControlError: any) =>

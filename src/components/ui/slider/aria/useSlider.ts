@@ -3,7 +3,7 @@ import { AriaSliderProps } from '@react-types/slider';
 import React, { useRef } from 'react';
 import { SliderState } from '@react-stately/slider';
 import { useLabel } from '@react-aria/label';
-import { isRTL } from '@/utils/gluestack-utils/aria/utils/src';
+import { isRTL } from '@/utils/gluestack-utils/aria/utils';
 
 interface SliderAria {
   /** Props for the label element. */

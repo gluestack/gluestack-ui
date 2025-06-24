@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import { TextareaProvider } from './TextareaContext';
-import { useHover } from '@/utils/gluestack-utils/aria/interactions/src';
+import { useHover } from '@/utils/gluestack-utils/aria/interactions';
 import { useFormControlContext } from '@/components/ui/form-control/creator';
 import { mergeRefs } from '@/utils/gluestack-utils/common';
-import { useFocusRing } from '@/utils/gluestack-utils/aria/focus/src';
+import { useFocusRing } from '@/utils/gluestack-utils/aria/focus';
 
 export const TextareaRoot = (StyledTextareaRoot: any) =>
   forwardRef(

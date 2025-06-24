@@ -1,10 +1,7 @@
 import React, { useCallback } from 'react';
 import { composeEventHandlers } from '@/utils/gluestack-utils/common';
-import {
-  useHover,
-  usePress,
-} from '@/utils/gluestack-utils/aria/interactions/src';
-import { useFocusRing } from '@/utils/gluestack-utils/aria/focus/src';
+import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions';
+import { useFocusRing } from '@/utils/gluestack-utils/aria/focus';
 import { useMenuItem } from '@/components/ui/menu/aria';
 import { Platform } from 'react-native';
 

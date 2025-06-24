@@ -20,7 +20,7 @@ import { SliderState } from '@react-stately/slider';
 import { useFocusable } from '@react-aria/focus';
 import { useLabel } from '@react-aria/label';
 import { useMove } from './useMove';
-import { isRTL } from '@/utils/gluestack-utils/aria/utils/src';
+import { isRTL } from '@/utils/gluestack-utils/aria/utils';
 
 interface SliderThumbAria {
   /** Props for the root thumb element; handles the dragging motion. */
