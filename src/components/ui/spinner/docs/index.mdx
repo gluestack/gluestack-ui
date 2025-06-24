@@ -10,7 +10,7 @@ pageDescription: Enhance your UI with the gluestack-ui Spinner component. A Reac
 showHeader: true
 ---
 
-import { Tabs, TabItem } from '@/docs-components/tabs';
+import ManualInstallationNote from '@/docs-components/manual-installation-note';
 import {
   Table,
   TableContainer,
@@ -35,34 +35,11 @@ This is an illustration of **Spinner** component.
 
 ## Installation
 
-<Tabs >
-  <TabItem label="CLI">
-
 ### Run the following command:
-
-```bash
-npx gluestack-ui-nightly add spinner
-```
-
-  </TabItem>
-  <TabItem label="Manual">
-
-### Step 1: Install the following dependencies:
-
-```bash
-npm i @gluestack-ui/spinner
-```
-
-### Step 2: Copy and paste the following code into your project.
-
-```jsx
-%%-- File: src/components/ui/spinner/index.tsx --%%
-```
-
-### Step 3: Update the import paths to match your project setup.
-
-</TabItem>
-</Tabs>
+    ```bash
+   npx gluestack-ui-nightly add spinner
+    ```
+<ManualInstallationNote />
 
 ## API Reference
 
@@ -75,32 +52,3 @@ import { Spinner } from '@/components/ui/spinner';
 ```jsx
 export default () => <Spinner />;
 ```
-
-### Component Props
-
-This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
-
-#### Spinner
-
-Contains all Spinner related layout style props and actions.
-It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator) component.
-
-### Accessibility
-
-We have outlined the various features that ensure the Fab component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
-
-#### Keyboard
-
-- Tab: Moves focus to the next focusable element.
-
-#### Screen Reader
-
-- VoiceOver: When the Spinner is focused, the screen reader will announce the loading indicator.
-
-### Examples
-
-The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
-
-/// {Example:with-label} ///
-
-/// {Example:color-scheme} ///

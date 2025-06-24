@@ -12,7 +12,7 @@ showHeader: true
 tag: RSC
 ---
 
-import { Tabs, TabItem } from '@/docs-components/tabs';
+import ManualInstallationNote from '@/docs-components/manual-installation-note';
 import {
   Table,
   TableHeader,
@@ -34,29 +34,11 @@ This is an illustration of **Icon** component.
 <br />
 ## Installation
 
-<Tabs>
-<TabItem label="CLI">
 ### Run the following command:
-  ```bash
-  npx gluestack-ui-nightly add icon
-  ```
-</TabItem>
-<TabItem label="Manual">
-### Step 1: Install the following dependencies:
-```bash
-npm i @gluestack-ui/icon
-```
-
-### Step 2: Copy and paste the following code into your project.
-
-```tsx
-%%-- File: src/components/ui/icon/index.tsx --%%
-```
-
-### Step 3: Update the import paths to match your project setup.
-
-</TabItem>
-</Tabs>
+    ```bash
+   npx gluestack-ui-nightly add icon
+    ```
+<ManualInstallationNote />
 
 ## API Reference
 
