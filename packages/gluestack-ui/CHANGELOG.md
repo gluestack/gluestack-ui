@@ -1,5 +1,17 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 0.7.24
+
+### Patch Changes
+
+- chore: republished package
+
+## 0.7.23
+
+### Patch Changes
+
+- chore: updated remote git branch
+
 ## 0.1.33
 
 ### Patch Changes
