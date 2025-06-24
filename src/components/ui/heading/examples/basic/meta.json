@@ -1,4 +1,5 @@
 {
+  "title": "Basic",
   "argTypes": {},
   "reactLive": {
     "Heading": "@/components/ui/heading"
