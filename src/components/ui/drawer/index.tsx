@@ -14,13 +14,13 @@ import {
   createMotionAnimatedComponent,
   MotionComponentProps,
 } from '@legendapp/motion';
-import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
-} from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+} from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
 
 type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
   MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;

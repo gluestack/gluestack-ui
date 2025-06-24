@@ -3,10 +3,10 @@ import { createLink } from './creator';
 import { Pressable } from 'react-native';
 import { Text } from 'react-native';
 
-import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
-import { withStyleContext } from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
+import { withStyleContext } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
 
 import React from 'react';
 export const UILink = createLink({

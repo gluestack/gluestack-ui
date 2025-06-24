@@ -2,12 +2,12 @@
 import React from 'react';
 import { createAccordion } from '@/components/ui/accordion/creator';
 import { View, Pressable, Text, Platform, TextProps } from 'react-native';
-import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+} from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 import { H3 } from '@expo/html-elements';
 import { cssInterop } from 'nativewind';
 import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';

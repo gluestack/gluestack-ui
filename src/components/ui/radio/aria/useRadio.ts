@@ -2,7 +2,7 @@ import type { AriaRadioProps } from '@react-types/radio';
 import { mergeProps } from '@react-aria/utils';
 import type { RefObject } from 'react';
 import type { RadioGroupState } from '@react-stately/radio';
-import { usePress } from '@/utils/gluestack-utils/aria/interactions/src';
+import { usePress } from '@/utils/gluestack-utils/aria/interactions';
 import type { AccessibilityProps } from 'react-native';
 import { getLabel } from '@/utils/gluestack-utils/aria/utils/src';
 

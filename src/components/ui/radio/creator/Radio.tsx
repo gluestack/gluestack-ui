@@ -3,10 +3,7 @@ import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus/src';
 import { RadioProvider } from './RadioProvider';
 import { useRadio } from '@/components/ui/radio/aria';
 import { useRadioGroup } from './RadioGroupContext';
-import {
-  usePress,
-  useHover,
-} from '@/utils/gluestack-utils/aria/interactions/src';
+import { usePress, useHover } from '@/utils/gluestack-utils/aria/interactions';
 import {
   stableHash,
   composeEventHandlers,

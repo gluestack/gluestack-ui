@@ -12,8 +12,8 @@ import { ActionsheetContentProvider } from './ActionsheetContentContext';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope } from '@/utils/gluestack-utils/aria/focus/src';
 import { mergeRefs, findNodeHandle } from '@/utils/gluestack-utils/common';
-import { useDialog } from '@/utils/gluestack-utils/aria/dialog/src';
-import { usePreventScroll } from '@/utils/gluestack-utils/aria/overlays/src';
+import { useDialog } from '@/utils/gluestack-utils/aria/dialog';
+import { usePreventScroll } from '@/utils/gluestack-utils/aria/overlays';
 
 //dimentions not giving proper window height on web
 const windowHeight =

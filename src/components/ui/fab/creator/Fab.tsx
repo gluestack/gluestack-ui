@@ -1,8 +1,5 @@
 import React, { forwardRef } from 'react';
-import {
-  useHover,
-  usePress,
-} from '@/utils/gluestack-utils/aria/interactions/src';
+import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions';
 import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus/src';
 import { composeEventHandlers } from '@/utils/gluestack-utils/common';
 

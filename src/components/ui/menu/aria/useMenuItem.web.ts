@@ -13,10 +13,7 @@
 import { getItemCount } from '@react-stately/collections';
 import { Key, RefObject } from 'react';
 import { isFocusVisible, useKeyboard } from '@react-aria/interactions';
-import {
-  useHover,
-  usePress,
-} from '@/utils/gluestack-utils/aria/interactions/src';
+import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions';
 import { mapDomPropsToRN } from '@/utils/gluestack-utils/aria/utils/src';
 import { mergeProps, useSlotId } from '@react-aria/utils';
 import { PressEvent } from '@react-types/shared';

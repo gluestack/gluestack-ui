@@ -2,9 +2,9 @@
 import React from 'react';
 import { createTooltip } from '@/components/ui/tooltip/creator';
 import { View, Text, ViewStyle } from 'react-native';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
-import { tva } from '@/utils/gluestack-utils/nativewind/utils';
-import { withStyleContext } from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
+import { tva } from '@/utils/gluestack-utils/nativewind-utils/utils';
+import { withStyleContext } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 import {
   Motion,
   AnimatePresence,

@@ -7,7 +7,7 @@ import { composeEventHandlers } from '../../../../utils/gluestack-utils/common/c
 import {
   useHover,
   usePress,
-} from '../../../../utils/gluestack-utils/aria/interactions/src';
+} from '../../../../utils/gluestack-utils/aria/interactions';
 import { ButtonContext } from './Context';
 
 import type { IButtonProps } from './types';

@@ -4,13 +4,13 @@ import { createAvatar } from '@/components/ui/avatar/creator';
 
 import { View, Text, Image, Platform } from 'react-native';
 
-import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
-} from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+} from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 const SCOPE = 'AVATAR';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
 
 const UIAvatar = createAvatar({
   Root: withStyleContext(View, SCOPE),

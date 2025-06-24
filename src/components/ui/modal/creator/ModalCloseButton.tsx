@@ -1,9 +1,6 @@
 import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
-import {
-  useHover,
-  usePress,
-} from '@/utils/gluestack-utils/aria/interactions/src';
+import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions';
 import { composeEventHandlers } from '@/utils/gluestack-utils/common';
 import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus/src';
 

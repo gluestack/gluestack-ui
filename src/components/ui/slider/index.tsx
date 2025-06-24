@@ -3,12 +3,12 @@ import { createSlider } from '@/components/ui/slider/creator';
 import { Pressable } from 'react-native';
 import { View } from 'react-native';
 import React from 'react';
-import { tva } from '@/utils/gluestack-utils/nativewind/utils/tva';
+import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
 import {
   withStyleContext,
   useStyleContext,
-} from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+} from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
 import { cssInterop } from 'nativewind';
 
 const SCOPE = 'SLIDER';
