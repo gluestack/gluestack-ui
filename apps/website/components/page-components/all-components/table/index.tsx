@@ -31,17 +31,12 @@ export default function Example() {
           <TableData>12</TableData>
           <TableData>$210</TableData>
         </TableRow>
-        <TableRow>
-          <TableData>Ananya Gupta</TableData>
-          <TableData>18</TableData>
-          <TableData>$340</TableData>
-        </TableRow>
       </TableBody>
       <TableFooter>
         <TableRow>
           <TableHead>Total</TableHead>
-          <TableHead>40</TableHead>
-          <TableHead>$680</TableHead>
+          <TableHead>22</TableHead>
+          <TableHead>$340</TableHead>
         </TableRow>
       </TableFooter>
     </Table>
