@@ -16,7 +16,7 @@ export default function Example() {
       "small",
       "large"
     ],
-    "defaultValue": "small"
+    "defaultValue": "large"
   },
   "color": {
     "control": {
