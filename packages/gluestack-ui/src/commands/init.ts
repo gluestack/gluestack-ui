@@ -10,9 +10,8 @@ import {
   getPackageMangerFlag,
   isValidPath,
 } from '../util';
-import path, { resolve } from 'path';
+import path from 'path';
 import fs from 'fs';
-import { checkNextVersion } from '../util/check-next-version';
 
 const initOptionsSchema = z.object({
   useNpm: z.boolean(),
