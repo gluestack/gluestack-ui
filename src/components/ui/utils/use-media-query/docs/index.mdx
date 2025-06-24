@@ -1,4 +1,4 @@
-import { Tabs, TabItem } from '@/docs-components/tabs';
+import ManualInstallationNote from '@/docs-components/manual-installation-note';
 import {
   Table,
   TableHeader,
@@ -11,9 +11,9 @@ import { InlineCode } from '@/docs-components/inline-code';
 
 # useMediaQuery
 
-Implement responsive designs in React & React Native with the useMediaQuery hook and component. Learn how to use the React useMediaQuery hook today.
+Create responsive layouts with the useMediaQuery hook. Perfect for conditional rendering based on screen size in your React Native app.
 
-**useMediaQuery** is a custom hook that helps detect matches between a single media query or multiple media queries. React Native does not natively support media queries, so useMediaQuery is still limited.
+This is an illustration of **useMediaQuery** hook.
 
 /// {Example:basic} ///
 
@@ -21,34 +21,11 @@ Implement responsive designs in React & React Native with the useMediaQuery hook
 
 ## Installation
 
-<Tabs>
-<TabItem label="CLI">
 ### Run the following command:
-  ```bash
-  npx gluestack-ui-nightly add useMediaQuery
-  ```
-</TabItem>
-<TabItem label="Manual">
-### Step 1: Copy and paste the following code into index.ts in your project.
-
-```ts
-%%-- File: src/components/ui/utils/use-media-query/index.ts --%%
-```
-
-> Note: **Step 2 is for web only**
-
-### Step 2: Copy and paste the following code into index.web.ts in your project.
-
-```ts
-%%-- File: src/components/ui/utils/use-media-query/index.web.ts --%%
-```
-
-### Step 3: Update the import paths to match your project setup.
-
-</TabItem>
-</Tabs>
-
-## API Reference
+    ```bash
+   npx gluestack-ui add use-media-query
+    ```
+<ManualInstallationNote />
 
 To use this component in your project, include the following import statement in your file.
 

@@ -10,7 +10,7 @@ pageDescription: Build a user-friendly interface with gluestack-ui menu componen
 showHeader: true
 ---
 
-import { Tabs, TabItem } from '@/docs-components/tabs';
+import ManualInstallationNote from '@/docs-components/manual-installation-note';
 import {
   Table,
   TableHeader,
@@ -33,30 +33,11 @@ This is an illustration of **Menu** component.
 <br />
 ## Installation
 
-<Tabs>
-<TabItem label="CLI">
 ### Run the following command:
-  ```bash
-  npx gluestack-ui-nightly add menu
-  ```
-</TabItem>
-<TabItem label="Manual">
-### Step 1: Install the following dependencies:
-```bash
-npm i @gluestack-ui/menu @legendapp/motion
-```
-> Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
-
-### Step 2: Copy and paste the following code into your project.
-
-```tsx
-%%-- File: src/components/ui/menu/index.tsx --%%
-```
-
-### Step 3: Update the import paths to match your project setup.
-
-</TabItem>
-</Tabs>
+    ```bash
+   npx gluestack-ui-nightly add menu
+    ```
+<ManualInstallationNote />
 
 ## API Reference
 
