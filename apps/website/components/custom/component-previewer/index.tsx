@@ -33,7 +33,7 @@ export function ComponentPreviewer({
     <div className="flex  items-center justify-center">
       <LiveProvider code={compiledCode} scope={{ ...reactLive }}>
         <LiveError />
-        <LivePreview className="scale-75" />
+        <LivePreview className="" />
       </LiveProvider>
     </div>
   );
