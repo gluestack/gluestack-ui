@@ -14,7 +14,7 @@ const config = {
   branchName: 'feat/v3',
   style: 'nativewind',
   providerComponent: 'gluestack-ui-provider',
-  nativewindUtilPattern: '@/utils/gluestack-utils/nativewind/utils/',
+  nativewindUtilPattern: '@/utils/gluestack-utils/nativewind-utils/',
   gluestackUIPattern: '@/components/ui/',
   templatesDir: 'packages/gluestack-ui/templates',
   packageManager: null as string | null,
