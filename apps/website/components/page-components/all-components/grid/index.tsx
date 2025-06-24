@@ -8,8 +8,8 @@ export default function Example() {
       code={`function Example() {
   return (
     <Grid
-      className="gap-5"
-      _extra=\\{{className: "grid-cols-8"}}
+      className="gap-4"
+      _extra=\\{{className: "grid-cols-10"}}
     >
       <GridItem
         className="bg-background-50 p-6 rounded-md"
@@ -21,7 +21,19 @@ export default function Example() {
       />
       <GridItem
         className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-2"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-4"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
         _extra=\\{{className: "col-span-6"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-2"}}
       />
       <GridItem
         className="bg-background-50 p-6 rounded-md"
