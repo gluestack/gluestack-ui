@@ -36,7 +36,7 @@ export const codePreviewerTemplate = (
   importMap: Record<string, string[]>
 ) =>
   `
-  ${title && `#### ${title}`}
+  ${title && title.toLowerCase() !== 'basic' ? `#### ${title}` : ''}
 
   ${description && `${description}`}
   
