@@ -5,7 +5,7 @@
         "type": "select"
       },
       "options": ["xs", "sm", "md", "lg", "xl"],
-      "defaultValue": "md"
+      "defaultValue": "lg"
     }
   },
   "reactLive": {
