@@ -29,7 +29,7 @@ export default function Example() {
       "xl",
       "2xl"
     ],
-    "defaultValue": "md"
+    "defaultValue": "xl"
   }
 }}
       reactLive={{ Image }}

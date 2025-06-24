@@ -6,7 +6,7 @@
         "type": "select"
       },
       "options": ["small", "large"],
-      "defaultValue": "small"
+      "defaultValue": "large"
     },
     "color": {
       "control": {

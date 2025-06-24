@@ -22,7 +22,7 @@ export default function Example() {
       "lg",
       "xl"
     ],
-    "defaultValue": "md"
+    "defaultValue": "lg"
   }
 }}
       reactLive={{ Icon, EditIcon }}

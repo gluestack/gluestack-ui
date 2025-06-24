@@ -7,11 +7,11 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Box className="justify-center h-80">
+    <Box className="justify-center h-60">
       <VStack space="{{space}}" reversed={ {{isReversed}} }>
-        <Box className="h-20 w-20 bg-primary-300" />
-        <Box className="h-20 w-20 bg-primary-400" />
-        <Box className="h-20 w-20 bg-primary-500" />
+        <Box className="h-16 w-16 bg-primary-300" />
+        <Box className="h-16 w-16 bg-primary-400" />
+        <Box className="h-16 w-16 bg-primary-500" />
       </VStack>
     </Box>
   )

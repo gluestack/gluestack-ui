@@ -107,7 +107,6 @@ const getComponentsFromSidebar = (sidebarData: any) => {
   return components.filter(
     (component: string) =>
       component &&
-      component !== "table" &&
       component !== "bottomsheet"
   );
 };

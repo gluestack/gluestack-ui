@@ -5,7 +5,7 @@
         "type": "select"
       },
       "options": ["sm", "md", "lg"],
-      "defaultValue": "md"
+      "defaultValue": "sm"
     },
     "placement": {
       "control": {

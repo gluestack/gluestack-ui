@@ -74,6 +74,8 @@ import { Text } from '@/components/ui/text';
 
     import switchComponent from './switch'
 
+    import tableComponent from './table'
+
     import textComponent from './text'
 
     import textareaComponent from './textarea'
@@ -86,8 +88,8 @@ import { Text } from '@/components/ui/text';
   
   
 
-const componentsList = [accordionComponent,actionsheetComponent,alertComponent,alertdialogComponent,avatarComponent,badgeComponent,boxComponent,buttonComponent,cardComponent,centerComponent,checkboxComponent,dividerComponent,drawerComponent,fabComponent,formcontrolComponent,gridComponent,headingComponent,hstackComponent,iconComponent,imageComponent,inputComponent,linkComponent,menuComponent,modalComponent,popoverComponent,portalComponent,pressableComponent,progressComponent,radioComponent,selectComponent,skeletonComponent,sliderComponent,spinnerComponent,switchComponent,textComponent,textareaComponent,toastComponent,tooltipComponent,vstackComponent];
-const componentsNameList = ["accordion","actionsheet","alert","alert-dialog","avatar","badge","box","button","card","center","checkbox","divider","drawer","fab","form-control","grid","heading","hstack","icon","image","input","link","menu","modal","popover","portal","pressable","progress","radio","select","skeleton","slider","spinner","switch","text","textarea","toast","tooltip","vstack"];
+const componentsList = [accordionComponent,actionsheetComponent,alertComponent,alertdialogComponent,avatarComponent,badgeComponent,boxComponent,buttonComponent,cardComponent,centerComponent,checkboxComponent,dividerComponent,drawerComponent,fabComponent,formcontrolComponent,gridComponent,headingComponent,hstackComponent,iconComponent,imageComponent,inputComponent,linkComponent,menuComponent,modalComponent,popoverComponent,portalComponent,pressableComponent,progressComponent,radioComponent,selectComponent,skeletonComponent,sliderComponent,spinnerComponent,switchComponent,tableComponent,textComponent,textareaComponent,toastComponent,tooltipComponent,vstackComponent];
+const componentsNameList = ["accordion","actionsheet","alert","alert-dialog","avatar","badge","box","button","card","center","checkbox","divider","drawer","fab","form-control","grid","heading","hstack","icon","image","input","link","menu","modal","popover","portal","pressable","progress","radio","select","skeleton","slider","spinner","switch","table","text","textarea","toast","tooltip","vstack"];
 export default function AllComponents() {
   return (
     <Grid
@@ -106,8 +108,8 @@ export default function AllComponents() {
             }}
             key={componentName}
           >
-            <Box className="flex h-[250px] border border-outline-100  items-center overflow-hidden justify-center rounded-lg dark:bg-black bg-white">
-              <Box className="flex-1 w-full flex items-center justify-center origin-center scale-75">
+            <Box className="flex h-[300px] border border-outline-100  items-center overflow-hidden justify-center rounded-lg dark:bg-black bg-white">
+              <Box className="flex-1 w-full flex items-center justify-center origin-center">
                 <Component />
               </Box>
               <Box
