@@ -10,7 +10,7 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Box className="h-[360px] w-80 bg-background-50 rounded-md">
+    <Box className="h-[230px] w-60 bg-background-50 rounded-md">
       <Fab
         size="{{size}}"
         placement="{{placement}}"
@@ -34,7 +34,7 @@ export default function Example() {
       "md",
       "lg"
     ],
-    "defaultValue": "md"
+    "defaultValue": "sm"
   },
   "placement": {
     "control": {
