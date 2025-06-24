@@ -103,8 +103,8 @@ export default function AllComponents() {
             }}
             key={componentName}
           >
-            <Box className="flex h-[250px] border border-outline-100  items-center overflow-hidden justify-center rounded-lg dark:bg-black bg-white">
-              <Box className="flex-1 w-full flex items-center justify-center origin-center scale-75">
+            <Box className="flex h-[300px] border border-outline-100  items-center overflow-hidden justify-center rounded-lg dark:bg-black bg-white">
+              <Box className="flex-1 w-full flex items-center justify-center origin-center">
                 <Component />
               </Box>
               <Box
