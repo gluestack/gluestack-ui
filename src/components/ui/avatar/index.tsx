@@ -10,7 +10,7 @@ import {
   useStyleContext,
 } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 const SCOPE = 'AVATAR';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
 
 const UIAvatar = createAvatar({
   Root: withStyleContext(View, SCOPE),

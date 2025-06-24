@@ -7,7 +7,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
 
 const SCOPE = 'TEXTAREA';
 const UITextarea = createTextarea({

@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef, useState } from 'react';
-import { useKeyboardDismissable } from '@/utils/gluestack-utils/hooks/src';
+import { useKeyboardDismissable } from '@/utils/gluestack-utils/hooks';
 import { usePopover } from './PopoverContext';
 import { Platform, AccessibilityInfo, Keyboard, View } from 'react-native';
 import { findNodeHandle, mergeRefs } from '@/utils/gluestack-utils/common';
-import { useOverlayPosition } from '@/utils/gluestack-utils/aria/overlays/src';
+import { useOverlayPosition } from '@/utils/gluestack-utils/aria/overlays';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { FocusScope as FocusScopeAria } from '@/utils/gluestack-utils/aria/focus/src';
-import { useDialog } from '@/utils/gluestack-utils/aria/dialog/src';
+import { FocusScope as FocusScopeAria } from '@/utils/gluestack-utils/aria/focus';
+import { useDialog } from '@/utils/gluestack-utils/aria/dialog';
 import { PopoverContentProvider } from './PopoverContext';
 import { getContainerStyle } from './utils';
 

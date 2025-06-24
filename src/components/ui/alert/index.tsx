@@ -8,7 +8,7 @@ import {
 } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 import React from 'react';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
 
 const SCOPE = 'ALERT';

@@ -6,7 +6,7 @@ import React, {
   useMemo,
   forwardRef,
 } from 'react';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
 import { View, Dimensions, Platform, ViewProps } from 'react-native';
 import { gridStyle, gridItemStyle } from './styles';
 import { cssInterop } from 'nativewind';

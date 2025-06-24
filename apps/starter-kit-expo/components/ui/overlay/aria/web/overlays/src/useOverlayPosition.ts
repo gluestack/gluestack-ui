@@ -21,7 +21,7 @@ import {
 } from 'react';
 import { Placement, PlacementAxis, PositionProps } from '@react-types/overlays';
 import { useCloseOnScroll } from './useCloseOnScroll';
-import { isRTL, useLayoutEffect } from '@/utils/gluestack-utils/aria/utils/src';
+import { isRTL, useLayoutEffect } from '@/utils/gluestack-utils/aria/utils';
 
 interface AriaPositionProps extends PositionProps {
   /**

@@ -8,7 +8,7 @@ import {
 } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
 import {
   Motion,
   AnimatePresence,

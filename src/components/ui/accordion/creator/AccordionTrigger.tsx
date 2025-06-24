@@ -1,7 +1,7 @@
 import React, { forwardRef, useContext } from 'react';
 import { AccordionItemContext } from './Context';
 import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions';
-import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus/src';
+import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus';
 import { composeEventHandlers } from '@/utils/gluestack-utils/common';
 import { Platform } from 'react-native';
 

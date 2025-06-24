@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { ModalContext } from './Context';
 import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions';
 import { composeEventHandlers } from '@/utils/gluestack-utils/common';
-import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus/src';
+import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus';
 
 const ModalCloseButton = (StyledModalCloseButton: any) =>
   forwardRef((props: any, ref?: any) => {

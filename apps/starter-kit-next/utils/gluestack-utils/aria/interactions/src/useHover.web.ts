@@ -1,6 +1,6 @@
 import { useHover as useHoverWeb, HoverProps } from '@react-aria/interactions';
 import { useEffect } from 'react';
-import { attachEventHandlersOnRef } from '../../utils/src';
+import { attachEventHandlersOnRef } from '../../utils';
 
 export const useHover = (props = {} as HoverProps, ref?: any) => {
   let params = useHoverWeb(props);

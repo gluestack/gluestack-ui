@@ -3,7 +3,7 @@ import { SelectContext } from './SelectContext';
 import { useHover } from '@/utils/gluestack-utils/aria/interactions';
 import { useControllableState } from '@/utils/gluestack-utils/hooks';
 import { useFormControlContext } from '@/components/ui/form-control/creator';
-import { useFocusRing } from '@/utils/gluestack-utils/aria/focus/src';
+import { useFocusRing } from '@/utils/gluestack-utils/aria/focus';
 
 export const Select = (StyledSelect: any) =>
   forwardRef(

@@ -1,9 +1,6 @@
 import React, { forwardRef } from 'react';
-import {
-  useHover,
-  usePress,
-} from '@/utils/gluestack-utils/aria/interactions/src';
-import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus/src';
+import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions';
+import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus';
 import { composeEventHandlers } from '@/utils/gluestack-utils/common';
 
 function Fab<StyledFab>(StyledFab: React.ComponentType<StyledFab>) {

@@ -2,7 +2,7 @@
 import React from 'react';
 import { createIcon } from './creator';
 import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
-import { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
+import { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
 import { PrimitiveIcon, Svg } from './creator';
 
 export const UIIcon = createIcon({

@@ -1,6 +1,6 @@
 import React from 'react';
 // import { useId } from '@react-native-aria/utils';
-import { ariaAttr } from '../../../../utils/gluestack-utils/common';
+import { ariaAttr } from '@/utils/gluestack-utils/common';
 
 export type IFormControlContext = Omit<
   ReturnType<typeof useFormControlProvider>,

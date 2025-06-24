@@ -2,7 +2,7 @@
 import React, { forwardRef, memo } from 'react';
 import { RadioProvider } from './RadioProvider';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
-import { useFocusRing } from '@/utils/gluestack-utils/aria/focus/src';
+import { useFocusRing } from '@/utils/gluestack-utils/aria/focus';
 import { useHover } from '@/utils/gluestack-utils/aria/interactions';
 import { useRadio } from '@/components/ui/radio/aria';
 import { useRadioGroup } from './RadioGroupContext';

@@ -14,7 +14,7 @@ import {
   useStyleContext,
 } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
 
 const IndicatorWrapper = React.forwardRef<
   React.ComponentRef<typeof View>,

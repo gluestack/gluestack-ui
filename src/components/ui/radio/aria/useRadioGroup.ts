@@ -1,6 +1,6 @@
 import type { AriaRadioGroupProps } from '@react-types/radio';
 import type { RadioGroupState } from '@react-stately/radio';
-import { getLabel } from '@/utils/gluestack-utils/aria/utils/src';
+import { getLabel } from '@/utils/gluestack-utils/aria/utils';
 
 export interface RNAriaRadioGroupProps extends AriaRadioGroupProps {
   children?: React.ReactNode;

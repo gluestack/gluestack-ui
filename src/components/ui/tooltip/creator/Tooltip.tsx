@@ -3,7 +3,7 @@ import { useControllableState } from '@/utils/gluestack-utils/hooks';
 import { useKeyboardDismissable } from '@/utils/gluestack-utils/aria/interactions';
 import { TooltipProvider } from './context';
 import type { ITooltipProps } from './types';
-import { useId } from '@/utils/gluestack-utils/aria/utils/src';
+import { useId } from '@/utils/gluestack-utils/aria/utils';
 import { Platform } from 'react-native';
 import { Overlay } from '@/components/ui/overlay/creator';
 import { composeEventHandlers } from '@/utils/gluestack-utils/common';

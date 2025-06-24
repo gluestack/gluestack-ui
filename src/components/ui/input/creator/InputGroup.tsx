@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import { InputProvider } from './InputContext';
-import { useHover } from '../../../../utils/gluestack-utils/aria/interactions';
+import { useHover } from '@/utils/gluestack-utils/aria/interactions';
 import { useFormControlContext } from '../../form-control/creator';
-import { mergeRefs } from '../../../../utils/gluestack-utils/common';
-import { useFocusRing } from '../../../../utils/gluestack-utils/aria/focus/src';
+import { mergeRefs } from '@/utils/gluestack-utils/common';
+import { useFocusRing } from '@/utils/gluestack-utils/aria/focus';
 
 export const InputGroup = (StyledInputRoot: any) =>
   forwardRef(

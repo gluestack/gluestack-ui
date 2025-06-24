@@ -1,6 +1,6 @@
 import React, { forwardRef, useContext } from 'react';
 import { CheckboxProvider } from './CheckboxProvider';
-import { useFocusRing } from '@/utils/gluestack-utils/aria/focus/src';
+import { useFocusRing } from '@/utils/gluestack-utils/aria/focus';
 import { useHover } from '@/utils/gluestack-utils/aria/interactions';
 import { useToggleState } from '@react-stately/toggle';
 import { useCheckbox, useCheckboxGroupItem } from '../aria';

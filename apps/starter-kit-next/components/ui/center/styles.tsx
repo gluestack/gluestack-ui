@@ -1,5 +1,5 @@
-import { tva } from '@/utils/gluestack-utils/nativewind/utils';
-import { isWeb } from '@/utils/gluestack-utils/nativewind/utils/IsWeb';
+import { tva } from '@/utils/gluestack-utils/nativewind-utils';
+import { isWeb } from '@/utils/gluestack-utils/nativewind-utils/IsWeb';
 
 const baseStyle = isWeb ? 'flex flex-col relative z-0' : '';
 

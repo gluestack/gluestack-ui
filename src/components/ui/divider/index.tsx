@@ -2,7 +2,7 @@
 import React from 'react';
 import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
 import { Platform, View } from 'react-native';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
 
 const dividerStyle = tva({
   base: 'bg-background-200',

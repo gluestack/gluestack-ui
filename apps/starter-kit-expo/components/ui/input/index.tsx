@@ -2,13 +2,13 @@
 import React from 'react';
 import { createInput } from './creator';
 import { View, Pressable, TextInput } from 'react-native';
-import { tva } from '@/utils/gluestack-utils/nativewind/utils';
+import { tva } from '@/utils/gluestack-utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@/utils/gluestack-utils/nativewind/utils/withStyleContext';
+} from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
 
 const SCOPE = 'INPUT';

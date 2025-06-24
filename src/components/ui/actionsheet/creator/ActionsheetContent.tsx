@@ -10,7 +10,7 @@ import {
 import { ActionsheetContext } from './context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { FocusScope } from '@/utils/gluestack-utils/aria/focus/src';
+import { FocusScope } from '@/utils/gluestack-utils/aria/focus';
 import { mergeRefs, findNodeHandle } from '@/utils/gluestack-utils/common';
 import { useDialog } from '@/utils/gluestack-utils/aria/dialog';
 import { usePreventScroll } from '@/utils/gluestack-utils/aria/overlays';

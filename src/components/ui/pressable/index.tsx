@@ -5,7 +5,7 @@ import { Pressable as RNPressable } from 'react-native';
 
 import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
 import { withStyleContext } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils/utils';
+import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
 
 const UIPressable = createPressable({
   Root: withStyleContext(RNPressable),

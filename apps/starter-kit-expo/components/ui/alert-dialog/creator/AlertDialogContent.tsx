@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import { AlertDialogContext } from './Context';
 import { Platform, AccessibilityInfo, Keyboard } from 'react-native';
-import { FocusScope } from '@/utils/gluestack-utils/aria/focus/src';
+import { FocusScope } from '@/utils/gluestack-utils/aria/focus';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { useDialog } from '@/utils/gluestack-utils/aria/dialog/src';
+import { useDialog } from '@/utils/gluestack-utils/aria/dialog';
 import { mergeRefs, findNodeHandle } from '@/utils/gluestack-utils/common';
 
 const AlertDialogContent = (
