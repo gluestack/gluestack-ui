@@ -48,7 +48,7 @@ export default function Example() {
       "md",
       "lg"
     ],
-    "defaultValue": "md"
+    "defaultValue": "lg"
   }
 }}
       reactLive={{ Badge, BadgeText, BadgeIcon, GlobeIcon }}

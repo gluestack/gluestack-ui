@@ -19,7 +19,7 @@
         "type": "select"
       },
       "options": ["sm", "md", "lg"],
-      "defaultValue": "md"
+      "defaultValue": "lg"
     }
   },
   "reactLive": {
