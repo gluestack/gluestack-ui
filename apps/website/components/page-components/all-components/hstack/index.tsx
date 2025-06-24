@@ -8,9 +8,9 @@ export default function Example() {
       code={`function Example() {
   return (
     <HStack space="{{space}}" reversed={ {{isReversed}} }>
-      <Box className="h-20 w-20 bg-primary-300" />
-      <Box className="h-20 w-20 bg-primary-400" />
-      <Box className="h-20 w-20 bg-primary-500" />
+      <Box className="h-16 w-16 bg-primary-300" />
+      <Box className="h-16 w-16 bg-primary-400" />
+      <Box className="h-16 w-16 bg-primary-500" />
     </HStack>
   )
 }`}
