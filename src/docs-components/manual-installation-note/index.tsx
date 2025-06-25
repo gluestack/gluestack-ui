@@ -22,7 +22,7 @@ function ManualInstallationNote() {
   const currentUrl = `${githubLink}${componentName}`;
 
   return (
-    <div>This command will copy all the files from the <Link href={currentUrl} className="underline">{componentName}</Link>—excluding the docs and examples folders—into your project’s <InlineCode>components/ui</InlineCode> directory.</div>
+    <div>This command will copies all the code from <Link href={currentUrl} className="underline">git repo</Link> — excluding the docs and examples folders — into your project’s <InlineCode>components/ui</InlineCode> directory.</div>
   );
 }
 
