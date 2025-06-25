@@ -1,0 +1,15 @@
+{
+  "title": "Blog Card",
+  "description": "This is an example of a Card component with a blog post.",
+  "argTypes": {},
+  "reactLive": {
+    "Avatar": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "Box": "@/components/ui/box",
+    "Card": "@/components/ui/card",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack"
+  }
+}
