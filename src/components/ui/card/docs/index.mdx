@@ -12,6 +12,18 @@ showHeader: true
 tag: RSC
 ---
 
+import ManualInstallationNote from '@/docs-components/manual-installation-note';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { InlineCode } from '@/docs-components/inline-code';
+
 # Card
 
 Build beautiful interfaces with the gluestack-ui Card component. This React Native card offers a clean, modern design for any project. Perfect for seamless card design UI integration.
@@ -19,3 +31,97 @@ Build beautiful interfaces with the gluestack-ui Card component. This React Nati
 This is an illustration of **Card** component.
 
 /// {Example:basic} ///
+
+## Installation
+
+### Run the following command:
+
+  ```bash
+  npx gluestack-ui-nightly add card
+  ```
+
+<ManualInstallationNote />
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Card } from '@/components/ui/card';
+```
+
+```ts
+export default () => <Card />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+### Card
+
+Renders a `<div />` on web and a `View` on native.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<div />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<View />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>sm | md | lg</TableCell>
+        <TableCell>md</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>variant</InlineCode>
+        </TableCell>
+        <TableCell>elevated | outline | ghost | filled</TableCell>
+        <TableCell>elevated</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:with-images} ///
+
+/// {Example:advance-composition} ///
+
+/// {Example:product} ///
+
+/// {Example:blog} ///
