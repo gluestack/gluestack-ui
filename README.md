@@ -1,123 +1,78 @@
-# Gluestack UI
+# gluestack-ui: React & React Native Components & Patterns
 
-A repo containing source components and multiple destination applications that are automatically synchronized using mapper scripts.
+gluestack-ui is a library of copy-pasteable components & patterns crafted with Tailwind CSS (NativeWind).
 
-## 🏗️ Project Structure
+[![GitHub stars](https://img.shields.io/github/stars/gluestack/gluestack-ui)](https://github.com/gluestack/gluestack-ui)
 
-This repository uses a **source-to-destination** architecture:
+[![NPM downloads](https://img.shields.io/npm/dw/@gluestack-ui/button?logo=npm&label=NPM%20downloads&cacheSeconds=3600)](https://www.npmjs.com/package/@gluestack-ui/button) [![Commits per month](https://img.shields.io/github/commit-activity/m/gluestack/gluestack-ui?label=Commits&logo=git)](https://github.com/gluestack/gluestack-ui/commits)
 
-- **`src/`** - Source files for components, utilities, and documentation
-- **`scripts/`** - Mapper scripts that sync files to destination apps
-- **`apps/`** - Destination applications (Next.js, Expo, etc.)
-- **`packages/`** - Additional packages and utilities
+[![Next.js Latest](https://github.com/gluestack/gluestack-ui/actions/workflows/next-latest.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-latest.yml)
+[![Next.js 14.x](https://github.com/gluestack/gluestack-ui/actions/workflows/next-14.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-14.yml)
+[![Next.js 13.x](https://github.com/gluestack/gluestack-ui/actions/workflows/next-13.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-13.yml)
+[![Expo Latest](https://github.com/gluestack/gluestack-ui/actions/workflows/expo-latest.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/expo-latest.yml)
 
-## 🚀 Quick Start
+<h3 align="center">
+  <a href="https://github.com/gluestack/gluestack-ui">
+    <img src="https://raw.githubusercontent.com/gluestack/gluestack-ui/main/assets/gluestack-banner.png" alt="gluestack-ui logo" >
+  </a>
+  <br>
+  <br>
+</h3>
 
-### Initial Setup
+## Introduction
 
-```bash
-# Install dependencies
-npm install
+**gluestack-ui v2** offers customizable, beautifully designed components for your projects. Unlike traditional libraries, it's not a pre-packaged dependency. Choose the components you need and copy-paste them directly into your React, Next.js & React Native projects.
 
-# Sync all source files to destination apps
-npm run sync
+## Documentation
 
-# Start watching for changes (recommended for development)
-npm run dev
-```
+You can find detailed documentation for each component, including a list of props and examples, in https://gluestack.io/ui/docs website.
 
-### Available Scripts
+## Features
 
-#### Development Scripts (Watch Mode)
+- **Modular Architecture:** Pick and choose the components you need without unnecessary bloat.
+- **NativeWind Integration:** Tailwind CSS support for seamless styling across web and mobile.
+- **RSC Compatible:** Optimized for React Server Components to enhance performance.
+- **Universal Design:** Consistent design across web and mobile platforms.
+- **Flexible Theming:** Customize your components with ease using theming tokens and configuration.
+- **Accessibility:** Built with robust accessibility features to ensure inclusivity.
+- **Frequent updates:** We are constantly working on improving the library and adding new components. Follow us on GitHub to stay up-to-date on the latest releases and features.
+- **Community support:** Need help using the library or have a suggestion for a new feature? Join our [Discord](https://discord.com/invite/95qQ84nf6f) channel to connect with the community and get support.
 
-```bash
-npm run dev                    # Watch all mappers
-npm run dev:website           # Watch website only
-npm run dev:starter-kit-next  # Watch starter-kit-next only
-npm run dev:starter-kit-expo  # Watch starter-kit-expo only
-npm run dev:kitchen-sink      # Watch kitchen-sink only
-npm run dev:todo-app          # Watch todo-app only
-```
+## Installing **gluestack-ui v2**
 
-#### Sync Scripts (One-time)
-
-```bash
-npm run sync                    # Sync all mappers once
-npm run sync:website           # Sync website only
-npm run sync:starter-kit-next  # Sync starter-kit-next only
-npm run sync:starter-kit-expo  # Sync starter-kit-expo only
-npm run sync:kitchen-sink      # Sync kitchen-sink only
-npm run sync:todo-app          # Sync todo-app only
-```
-
-#### Other Scripts
+To get started with **gluestack-ui v2**, you must have an existing Next.js or Expo project. Then, simply run the following command:
 
 ```bash
-npm run format                # Format all files
-npm run format:check          # Check formatting
-npm run build:website         # Build website
+npx gluestack-ui-nightly init
 ```
 
-## 📁 Destination Apps
+For detailed installation instructions, visit the [gluestack-ui v2 installation guide](https://gluestack.io/ui/docs/home/getting-started/installation).
 
-The following apps are automatically synchronized from source files:
+## Tech Stack
 
-- **`apps/website/`** - Main documentation website (Next.js)
-- **`apps/starter-kit-next/`** - Next.js starter kit
-- **`apps/starter-kit-expo/`** - Expo/React Native starter kit
-- **`apps/kitchen-sink/`** - Component testing app
-- **`apps/todo-app/`** - Example todo application
+JavaScript, React, React Native, Styled System
 
-## ⚠️ Important: Generated Files
+## Getting Started
 
-**This repository uses an auto-generated files system.** Certain files in destination apps are automatically generated from source files and should never be edited directly.
+- **Install gluestack-ui:** Follow the [installation guide](https://gluestack.io/ui/docs/home/getting-started/installation).
+- **Add Components:** Use our CLI to add components to your project, or simply copy-paste from our documentation.
+- **Customize:** Tailor the components to fit your project's needs using theming tokens and configuration.
+- **Build:** Start building your app with a consistent, accessible, and high-performance UI.
 
-### 📖 Read the Generated Files Documentation
+## Migration from gluestack-ui v1
 
-**Before making any changes, please read:** [`GENERATED_FILES.md`](./GENERATED_FILES.md)
+If you're migrating from gluestack-ui v1, we've got you covered with a detailed [migration guide](https://gluestack.io/ui/docs/home/overview/upgrade-to-v2) with codemod.
 
-This documentation explains:
+## Created By GeekyAnts
 
-- Which files are auto-generated and should not be edited
-- How the mapper scripts work
-- Why certain files are gitignored
-- Developer guidelines and troubleshooting
+GeekyAnts is a team of React Native experts who love open-source and solving developer problems. We’ve been working on React Native since 2015 and have designed and built React Native apps for almost 200+ clients across the globe. Our clients include startups to big enterprises! Need help with your React Native app?
 
-### Quick Reference
+[Contact Us](https://geekyants.com/?utm_source=gluestack_github&utm_medium=read_me&utm_campaign=gluestack_integration)
 
-#### ✅ Edit These (Source Files)
+## Contributing
 
-- `src/components/ui/` - UI components
-- `src/utils/gluestack-utils/` - Utility functions
-- `src/docs-components/` - Documentation components
-- `src/sidebar.json` - Sidebar configuration
+We welcome contributions to the `gluestack-ui`. If you have an idea for a new component or a bug fix, please read our [contributing guide](./CONTRIBUTING.md) instructions on how to submit a pull request.
 
-#### ❌ Don't Edit These (Generated Files)
+## License
 
-- `apps/*/components/ui/` - Auto-generated from source
-- `apps/*/utils/gluestack-utils/` - Auto-generated from source
-- `apps/website/components/docs-components/` - Auto-generated from source
-- `apps/website/sidebar.json` - Auto-generated from source
-
-## 🔄 Development Workflow
-
-1. **Make changes** to source files in `src/`
-2. **Run mapper scripts** with `npm run dev` to watch for changes
-3. **Test changes** in the destination apps
-4. **Commit only source files** - generated files are automatically ignored
-
-## 🛠️ Troubleshooting
-
-- **Missing generated files?** → Run `npm run sync`
-- **Changes not reflecting?** → Ensure `npm run dev` is running
-- **Git trying to commit generated files?** → Check `.gitignore` in destination apps
-
-## 📚 Documentation
-
-- [`GENERATED_FILES.md`](./GENERATED_FILES.md) - Detailed guide to the generated files system
-- `apps/*/README.md` - Individual app documentation
-- `scripts/mappers/` - Mapper script implementations
-
----
-
-For questions about the generated files system or mapper scripts, refer to the documentation or contact the development team.
+Licensed under the MIT License, Copyright © 2024 GeekyAnts. See [LICENSE](https://github.com/gluestack/gluestack-ui/blob/main/LICENSE) for more information.
