@@ -1,5 +1,11 @@
 # create-gluecode
 
+## 2.0.5
+
+### Patch Changes
+
+- fix: removed unnecessary files
+
 ## 1.0.11
 
 ### Patch Changes

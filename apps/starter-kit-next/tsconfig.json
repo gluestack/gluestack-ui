@@ -31,7 +31,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next.config.js",
-    "nativewind-env.d.ts"
+    "nativewind-env.d.ts",
+    "tailwind-variants.d.ts"
   ],
   "exclude": ["node_modules"]
 }
