@@ -19,7 +19,12 @@ async function cloneProject(projectName: string, templateName: string) {
     execSync(
       `git clone --depth=1 --filter=blob:none --sparse ${gitRepo} ${projectName} --branch ${branch}`
     );
-    execSync(`git sparse-checkout set apps/${templateName}`, { cwd: dirPath });
+
+    // Initialize sparse checkout with no cone mode and explicit patterns
+    execSync(`git sparse-checkout init --no-cone`, { cwd: dirPath });
+    execSync(`git sparse-checkout set "apps/${templateName}/*"`, {
+      cwd: dirPath,
+    });
 
     // Move files
     moveAllFiles(dirPath, templateName);
