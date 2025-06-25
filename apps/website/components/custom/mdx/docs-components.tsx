@@ -9,7 +9,7 @@ interface CodeProps {
 }
 import { LI } from '@/components/custom/markdown/li';
 import { InlineCode } from '@/components/docs-components/inline-code';
-import { BlockQuote } from '@/components/custom/markdown/note/page';
+import { Note } from '@/components/custom/markdown/note';
 import { OL } from '@/components/custom/markdown/ol';
 import { UL } from '@/components/custom/markdown/ul';
 
@@ -67,6 +67,7 @@ export const docsComponents = {
   p: (props: any) => (
     <Text className="block mb-6 text-typography-800 font-inter" {...props} />
   ),
+
   // Define paragraph styles
   ul: (props: any) => <UL {...props} className="w-full mb-3" />,
   ol: (props: any) => <OL {...props} className="mb-3" />,
@@ -99,6 +100,6 @@ export const docsComponents = {
     return <InlineCode {...props} />;
   },
   blockquote: (props: any) => {
-    return <BlockQuote {...props} />;
+    return <Note {...props} />;
   },
 };

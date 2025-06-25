@@ -64,7 +64,6 @@ export function CodePreviewer({
         return `import { ${value.join(', ')} } from '${key}';`;
       })
     : [];
-  console.log(importText);
   // Generic controller component
   const ArgController = ({ name, config }: { name: string; config: any }) => {
     const { control, options, defaultValue } = config;
