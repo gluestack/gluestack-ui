@@ -1,0 +1,19 @@
+{
+  "title": "Advanced Composition",
+  "description": "This is an example of a Card component with other components like Avatar, Image and Button.",
+  "argTypes": {},
+  "reactLive": {
+    "Avatar": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "Box": "@/components/ui/box",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Card": "@/components/ui/card",
+    "Divider": "@/components/ui/divider",
+    "Heading": "@/components/ui/heading",
+    "Image": "@/components/ui/image",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack"
+  }
+}

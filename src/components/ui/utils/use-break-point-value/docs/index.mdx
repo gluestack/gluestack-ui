@@ -1,4 +1,4 @@
-import ManualInstallationNote from '@/docs-components/manual-installation-note';
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -19,18 +19,10 @@ This is an illustration of **useBreakPointValue** hook.
 
 <br />
 
-## Installation
-
-### Run the following command:
-    ```bash
-   npx gluestack-ui add use-break-point-value
-    ```
-<ManualInstallationNote />
-
 To use this component in your project, include the following import statement in your file.
 
 ```ts
-import { useBreakPointValue } from '@/components/ui/utils/use-break-point-value';
+import { useBreakPointValue } from '@/utils/gluestack-utils/hooks/use-break-point-value';
 ```
 
 ```ts

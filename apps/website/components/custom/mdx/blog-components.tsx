@@ -9,7 +9,7 @@ interface CodeProps {
 }
 import { LI } from '@/components/custom/markdown/li';
 import { InlineCode } from '@/components/docs-components/inline-code';
-import { BlockQuote } from '@/components/custom/markdown/note/page';
+import { Note } from '@/components/custom/markdown/note';
 import { OL } from '@/components/custom/markdown/ol';
 import { UL } from '@/components/custom/markdown/ul';
 
@@ -91,5 +91,5 @@ export const blogComponents = {
     return <CodeBlock code={code} language={language} />;
   },
   code: (props: any) => <InlineCode {...props} />,
-  blockquote: (props: any) => <BlockQuote {...props} />,
+  blockquote: (props: any) => <Note {...props} />,
 };
