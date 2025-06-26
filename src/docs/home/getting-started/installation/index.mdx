@@ -10,7 +10,7 @@ pageDescription: Quickly set up gluestack-ui, the ultimate UI components library
 showHeader: false
 ---
 
-import UtilsLink from './utils-link';
+import { UtilsLink, OverlayLink, ToastLink, GluestackUIProviderLink } from './utils-link';
 import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
@@ -91,7 +91,7 @@ Setup nativewind in your project following [NativeWind documentation](https://ww
 Install the dependencies and devDependencies of gluestack-ui in your project. This can be done using the following command:
 
 ```bash
-yarn add @expo/html-elements @legendapp/motion dom-helpers react-aria react-native-svg react-native-web react-stately tailwind-variants
+yarn add @expo/html-elements @legendapp/motion dom-helpers react-aria react-native-svg react-native-web react-stately tailwind-variants nativewind
 ```
 
 ```bash
@@ -101,23 +101,40 @@ yarn add -D @react-native/assets-registry @types/react-native tailwindcss@3 post
 OR
 
 ```bash
-npm i @expo/html-elements @legendapp/motion dom-helpers react-aria react-native-svg react-native-web react-stately tailwind-variants
+npm i @expo/html-elements @legendapp/motion dom-helpers react-aria react-native-svg react-native-web react-stately tailwind-variants nativewind
 ```
 
 ```bash
 npm i -D @react-native/assets-registry @types/react-native tailwindcss@3 postcss autoprefixer typescript
 ```
 
+For Next.js 14, it's recommended to use the `--legacy-peer-deps` flag due to peer dependency resolution issues.
+
+```bash
+npm i @expo/html-elements @legendapp/motion dom-helpers react-aria react-native-svg react-native-web react-stately tailwind-variants nativewind --legacy-peer-deps
+```
+
+```bash
+npm i -D @react-native/assets-registry @types/react-native tailwindcss@3 postcss autoprefixer typescript --legacy-peer-deps
+```
+
+
 ### Step 3: Copy gluestack-utils
 
-<UtilsLink />
+Copy all the contents of the gluestack-utils folder from the <UtilsLink /> into your project's `@/utils/gluestack-utils` directory.
 
-### Step 4: Update Configuration Files
+### Step 4: Copy required components
+ 
+ - Copy all the contents of the Overlay component folder from the{" "}<OverlayLink />{" "}into your project's `@/components/ui/overlay` directory.
+ - Copy all the contents of the Toast component folder from the{" "}<ToastLink />{" "}(except docs and examples folder) into your project's `@/components/ui/toast` directory.
+ - Copy all the contents of the GluestackUIProvider folder from the{" "}<GluestackUIProviderLink />{" "}into your project's `@/components/ui/gluestack-ui-provider` directory.
+
+### Step 5: Update Configuration Files
 You need to update the following configuration files in the root of your project. Replace the content of each file with the provided code blocks below. If a file does not exist, create it manually.
 
 
 
-#### Step 4.1: Update Tailwind configuration
+#### Step 5.1: Update Tailwind configuration
 
 Update the `tailwind.config.js` file with the following code and also the `content` property with paths to the files where components are used.
 
@@ -125,7 +142,7 @@ Update the `tailwind.config.js` file with the following code and also the `conte
 %%-- File: packages/gluestack-ui/templates/tailwind.config.js --%%
 ```
 
-#### Step 4.2: Configure components path
+#### Step 5.2: Configure components path
 
 Create a `components/ui` folder inside `src` folder and add path in `tsconfig.json`
 
@@ -140,7 +157,7 @@ Create a `components/ui` folder inside `src` folder and add path in `tsconfig.js
   }
 ```
 
-#### Step 4.3: Configure GluestackUIProvider
+#### Step 5.3: Configure GluestackUIProvider
 
 To add config, create a `gluestack-ui-provider/config.ts` file in your `components/ui` folder and paste the following code.
 
@@ -150,7 +167,7 @@ To add config, create a `gluestack-ui-provider/config.ts` file in your `componen
 
 
 
-### Step 5: Update Next config file. (Next.js Only).
+### Step 6: Update Next config file. (Next.js Only).
 
 Make sure your `next.config` file look like this, as mentioned below.
 
@@ -158,13 +175,13 @@ Make sure your `next.config` file look like this, as mentioned below.
 %%-- File: packages/gluestack-ui/templates/nextjs/next.config.js --%%
 ```
 
-### Step 5: Server-side rendering (SSR) (Next.js Only).
+### Step 7: Server-side rendering (SSR) (Next.js Only).
 
 It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the `@/utils/gluestack-utils/nativewind-utils`
 
 <Tabs>
 <TabItem label="App Router">
-(**For Next-15 only**) For Next.js App Routers we will create a new `registry.tsx` file in the root of your project and use the flush function from `utils/gluestack-utils/nativewind-utils/flush`
+(**For Next-15 only**) For Next.js App Routers we will create a new `registry.tsx` file in the `app` folder of your project and use the flush function from `utils/gluestack-utils/nativewind-utils/flush`
 
 ```tsx
 %%-- File: packages/gluestack-ui/templates/nextjs/next15/registry.tsx --%%
