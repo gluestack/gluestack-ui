@@ -114,3 +114,12 @@ body {
   /* border-radius: 20px; */
   /* border: 3px solid transparent; */
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
