@@ -182,7 +182,6 @@ export const processFileForExamples = (
 ): boolean => {
   const importMap: ImportMap = {
     '@/components/custom/code-previewer': ['CodePreviewer'],
-    '@/components/custom/markdown/code-block': ['CodeBlock'],
   };
   // Read file content
   const content = fileOps.readTextFile(filePath);
