@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { InlineCode } from '@/docs-components/inline-code';
 function ManualInstallationNote() {
   const pathname = usePathname();
-  const githubLink = 'https://github.com/gluestack/gluestack-ui/tree/feat/v3/src/components/ui/';
+  const githubLink = `https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/src/components/ui/`;
   
   // Extract component name from pathname
   const getComponentName = (path: string) => {
@@ -22,7 +22,7 @@ function ManualInstallationNote() {
   const currentUrl = `${githubLink}${componentName}`;
 
   return (
-    <div>This command will copies all the code from <Link href={currentUrl} className="underline">git repo</Link> — excluding the docs and examples folders — into your project’s <InlineCode>components/ui</InlineCode> directory.</div>
+    <div>This command will copies all the code from <Link className="leading-6 font-body text-typography-950 underline underline-offset-4 decoration-typography-950 inline-block" href={currentUrl}>git repo</Link> — excluding the docs and examples folders — into your project’s <InlineCode>components/ui</InlineCode> directory.</div>
   );
 }
 
