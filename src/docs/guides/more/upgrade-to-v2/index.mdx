@@ -33,9 +33,9 @@ At this time, we fully support migration for users in **Scenario 1 and Scenario 
 ### Overview of Steps to Follow (for Scenario 1 and Scenario 2 Users)
 
 <br/>
-1. **Initialize gluestack-ui v2**: `npx gluestack-ui-nightly@latest init`
+1. **Initialize gluestack-ui v2**: <InlineCode>{`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'}@latest init`}</InlineCode>
 2. **Setup Tailwind CSS**: `import "@/global.css"`
-3. **Add All Components**: `npx gluestack-ui-nightly@latest add --all`
+3. **Add All Components**: <InlineCode>{`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'}@latest add --all`}</InlineCode>
 4. **Code Migration**: `npx @gluestack-ui/v2-codemod@latest <project_dir>`
 <br/>
 
@@ -43,9 +43,7 @@ At this time, we fully support migration for users in **Scenario 1 and Scenario 
 
 **Run the below command to setup the project**:
 
-```
-npx gluestack-ui-nightly@latest init
-```
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'}@latest init`} language="bash" />
 
 To refer more about the gluestack-ui v2 installation, check [this](https://gluestack.io/ui/docs/home/getting-started/installation).
 
@@ -68,15 +66,11 @@ export default function App() {
 
 To add all the components run the following command:
 
-```jsx
-npx gluestack-ui-nightly@latest add --all
-```
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'}@latest add --all`} language="bash" />
 
 You can add only the necessary components instead of including all. Check [here](https://gluestack.io/ui/docs/components/heading).
 
-```jsx
-npx gluestack-ui-nightly@latest add heading
-```
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'}@latest add heading`} language="bash" />
 
 ## Step 4 : Code Migration
 
