@@ -147,7 +147,8 @@ export const replaceFrontMatter = (
           }
         }
       }
-      return ''; // Remove the frontmatter completely
+      // remove frontmatter from index.mdx file and add import for codeBlock
+      return 'import { CodeBlock } from "@/components/custom/markdown/code-block"; \n\n';
     }
   );
 
