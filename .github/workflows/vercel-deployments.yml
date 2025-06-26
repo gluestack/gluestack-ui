@@ -1,4 +1,4 @@
-name: Vercel Deployments
+name: Vercel Deployments Nightly
 
 on:
   push:

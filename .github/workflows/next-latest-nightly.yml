@@ -1,4 +1,4 @@
-name: Next.js Latest
+name: Next.js Latest Nightly
 
 on:
   push:
@@ -55,7 +55,7 @@ jobs:
 
       - name: Create Next.js project from create-command
         run: |
-          npx create-gluestack-nightly@latest test-app --next-app-router
+          npx create-gluestack-nightly@latest test-app --starter-kit-next
           cd test-app
 
       - name: Build Next.js app
