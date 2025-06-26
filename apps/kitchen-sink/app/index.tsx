@@ -71,7 +71,7 @@ const Header = () => {
           </Text>
         </HStack>
         <Heading className="mb-2 xl:mb-[18px] text-4xl lg:text-5xl xl:text-[56px]">
-          Kitchensink app
+          Kitchensink app latest
         </Heading>
         <Text className="text-sm lg:text-base xl:text-lg">
           Kitchensink is a comprehensive demo app showcasing all the gluestack
