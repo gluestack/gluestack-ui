@@ -1,4 +1,4 @@
-name: Expo Latest
+name: Expo Latest Nightly
 
 on:
   push:
@@ -48,27 +48,9 @@ jobs:
       - name: Install gluestack-ui
         working-directory: test-app
         run: |
-          npx gluestack-ui-nightly init --template-only --projectType expo
+          npx gluestack-ui-nightly init --projectType expo
           npx gluestack-ui-nightly add --all
           npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css
-      - name: Add Button component
-        working-directory: test-app
-        run: |
-          mkdir -p app/\(tabs\)
-          cat <<EOT > app/\(tabs\)/index.tsx
-          import React from 'react';
-          import { View } from 'react-native';
-          import { Button, ButtonText } from '@/components/ui/button';
-          export default function App() {
-            return (
-              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Button size="md" variant="solid" action="primary">
-                  <ButtonText>Hello World!</ButtonText>
-                </Button>
-              </View>
-            );
-          }
-          EOT
       - name: Start Expo web app
         working-directory: test-app
         run: |
