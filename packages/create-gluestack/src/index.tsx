@@ -10,8 +10,8 @@ export async function main(args: string[]) {
   console.log(chalk.yellow('Creating a new project with gluestack-ui v2.'));
 
   const supportedFrameworkArgs = [
-    '--expo-router',
-    '--next-app-router',
+    '--starter-kit-expo',
+    '--starter-kit-next',
     '--universal',
   ];
 

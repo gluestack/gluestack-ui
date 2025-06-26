@@ -1,5 +1,11 @@
 # create-gluecode
 
+## 2.0.6
+
+### Patch Changes
+
+- chore: updated options
+
 ## 2.0.5
 
 ### Patch Changes
