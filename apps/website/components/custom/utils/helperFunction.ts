@@ -123,16 +123,16 @@ export function getGithubLink(sidebarItems: any, pathName: any) {
     // Map different sections to their corresponding file paths
     if (relativePath.startsWith('components/')) {
       const componentName = relativePath.replace('components/', '');
-      return `https://github.com/gluestack/gluestack-ui/tree/feat/v3/src/components/ui/${componentName}/docs/index.mdx`;
+      return `https://github.com/gluestack/gluestack-ui/tree/${process.env.PUBLIC_GITHUB_BRANCH || 'main'}/src/components/ui/${componentName}/docs/index.mdx`;
     } else if (relativePath.startsWith('home/')) {
       const pagePath = relativePath.replace('home/', '');
-      return `https://github.com/gluestack/gluestack-ui/tree/feat/v3/src/docs/${pagePath}/index.mdx`;
+      return `https://github.com/gluestack/gluestack-ui/tree/${process.env.PUBLIC_GITHUB_BRANCH || 'main'}/src/docs/${pagePath}/index.mdx`;
     } else if (relativePath.startsWith('apps/')) {
       const appPath = relativePath.replace('apps/', '');
-      return `https://github.com/gluestack/gluestack-ui/tree/feat/v3/src/docs/apps/${appPath}/index.mdx`;
+      return `https://github.com/gluestack/gluestack-ui/tree/${process.env.PUBLIC_GITHUB_BRANCH || 'main'}/src/docs/apps/${appPath}/index.mdx`;
     } else {
       // For other paths, try a generic approach
-      return `https://github.com/gluestack/gluestack-ui/tree/feat/v3/src/docs/${relativePath}/index.mdx`;
+      return `https://github.com/gluestack/gluestack-ui/tree/${process.env.PUBLIC_GITHUB_BRANCH || 'main'}/src/docs/${relativePath}/index.mdx`;
     }
   }
 

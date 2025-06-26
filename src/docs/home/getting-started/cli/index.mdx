@@ -26,9 +26,9 @@ The init command adds the necessary `gluestack-ui.config.json` file, includes th
 - `ts.config.json`
 - entry file (for your project)
 
-```bash
-npx gluestack-ui-nightly init
-```
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} init`} language="bash" />
+
 
 > Note: If you wish to make changes to your project manually, you can refer to the [installation](/ui/docs/home/getting-started/installation) guide.
 
@@ -38,41 +38,22 @@ npx gluestack-ui-nightly init
 
 - `--use-<package>`: This flag specifies the package manager to use when initializing gluestack-ui. Supported options are npm (default), yarn, bun, and pnpm. Replace `<package>` with your preferred package manager.
 
-```bash
-Usage: npx gluestack-ui-nightly init [options]
-
-initialize your gluestack-ui and install dependencies
-
-Options:
-  --path <path>    Path to add GluestackUIProvider, defaults to components/ui in the current directory.
-```
+<CodeBlock code={`Usage: ${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} init [options] \n \n initialize your gluestack-ui and install dependencies \n \n Options: \n   --path <path>    Path to add GluestackUIProvider, defaults to components/ui in the current directory.`} language="bash" />
 
 ## Add
 
 Use the `add` command to add components and their dependencies to your project:
 
-```bash
-npx gluestack-ui-nightly add [component]
-```
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add [component]`} language="bash" />
 
 ### Options:
 
 - `--all`: This flag can be used to add all available components from gluestack-ui to your project.
 - `--path <path>`: Specifies the directory path where you want to add the component. By default, it will add the component to the same directory where the GluestackUIProvider is located.
 
-```bash
-Usage: npx gluestack-ui-nightly add [component] [options]
 
-add component to your project
+<CodeBlock code={`Usage: ${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add [component] [options] \n \n add component to your project \n \n Options: \n   --all          Adds all existing components from gluestack-ui \n   --path <path>  Path to add components, defaults to the directory where GluestackUIProvider is located. \n   --use-npm      Set npm as the project's package manager, default \n   --use-yarn     Set yarn as the project's package manager \n   --use-bun      Set bun as the project's package manager \n   --use-pnpm     Set pnpm as the project's package manager, currently not supported in react-native-cli projects.`} language="bash" />
 
-Options:
-  --all          Adds all existing components from gluestack-ui
-  --path <path>  Path to add components, defaults to the directory where GluestackUIProvider is located.
-  --use-npm      Set npm as the project's package manager, default
-  --use-yarn     Set yarn as the project's package manager
-  --use-bun      Set bun as the project's package manager
-  --use-pnpm     Set pnpm as the project's package manager, currently not supported in react-native-cli projects
-```
 
 ## gluestack-ui.config.json
 
@@ -84,9 +65,7 @@ The `gluestack-ui.config.json` file holds the configuration for your project. It
 
 Manual creation of gluestack-ui.config.json file is not necessary. It will be automatically generated upon executing the following command:
 
-```bash
-npx gluestack-ui-nightly init
-```
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} init`} language="bash" />
 
 ## tailwind
 

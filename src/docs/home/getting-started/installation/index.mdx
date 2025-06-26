@@ -71,15 +71,11 @@ Ensure you have the following prerequisites installed on your project to use glu
 
 Go to your project, and use the `init` command at the root of your project to add `GluestackUIProvider` and essential components (`icon`, `overlay`, `toast`) to your project.
 
-```bash
-npx gluestack-ui-nightly init
-```
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} init`} language="bash" />
 
 Your project is now ready to use **gluestack-ui** components. To add gluestack-ui components to your project using the CLI, refer to the above command or use the [CLI guide](/ui/docs/home/getting-started/cli).
 
-```bash
-npx gluestack-ui-nightly add box
-```
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add box`} language="bash" />
 
 If you encounter issues during the CLI installation, refer to the manual installation guide available.
 
