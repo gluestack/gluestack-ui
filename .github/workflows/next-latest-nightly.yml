@@ -1,4 +1,4 @@
-name: Next.js Latest
+name: Next.js Latest Nightly
 
 on:
   push:
