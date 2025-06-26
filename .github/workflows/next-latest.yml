@@ -1,0 +1,98 @@
+name: Next.js Latest
+
+on:
+  push:
+    branches: [feat/v3]
+  pull_request:
+    branches: [feat/v3]
+  schedule:
+    - cron: '0 0 * * *' # Run daily at midnight UTC
+
+jobs:
+  check-next-version:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+      latest_version: ${{ steps.check.outputs.latest_version }}
+    steps:
+      - id: check
+        run: |
+          LATEST=$(npm view next version)
+          CURRENT=$(cat .next-version 2>/dev/null || echo "")
+          echo "Latest version: $LATEST"
+          echo "Current version: $CURRENT"
+          if [ "$LATEST" != "$CURRENT" ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "latest_version=$LATEST" >> $GITHUB_OUTPUT
+            echo $LATEST > .next-version
+          else
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          fi
+
+  test-next-latest:
+    needs: check-next-version
+    if: ${{ needs.check-next-version.outputs.should_run == 'true' || github.event_name == 'push' || github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    name: Next.js latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Print Environment Info
+        run: |
+          node -v
+          npm -v
+          cat .next-version || echo ".next-version file not found"
+
+      - name: Set Git identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create Next.js project from create-command
+        run: |
+          npx create-gluestack@latest test-app --next-app-router
+          cd test-app
+
+      - name: Build Next.js app
+        working-directory: test-app
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+        run: |
+          npm run build
+
+      - name: Start Next.js app
+        working-directory: test-app
+        run: |
+          npm run start &
+          sleep 20
+
+      - name: Fetch and Log Server Response
+        run: |
+          curl -s http://localhost:3000 || echo "Failed to reach the server"
+          curl -s http://localhost:3000 > server_response.html
+          cat server_response.html
+
+      - name: Check if text is rendered
+        run: |
+          RESPONSE=$(curl -s http://localhost:3000)
+          echo "$RESPONSE" | grep -q "Get started by editing" && echo "text found" || (echo "text not found" && exit 1)
+
+  notify:
+    needs: test-next-latest
+    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/feat/v3'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Notification
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: 'Next.js Latest Test: ${{ job.status }}'
+          fields: repo,commit,action,eventName
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
