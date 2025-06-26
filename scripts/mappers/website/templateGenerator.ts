@@ -147,7 +147,8 @@ export const replaceFrontMatter = (
           }
         }
       }
-      return ''; // Remove the frontmatter completely
+      // remove frontmatter from index.mdx file and add import for codeBlock
+      return 'import { CodeBlock } from "@/components/custom/markdown/code-block";';
     }
   );
 
@@ -181,6 +182,7 @@ export const processFileForExamples = (
 ): boolean => {
   const importMap: ImportMap = {
     '@/components/custom/code-previewer': ['CodePreviewer'],
+    '@/components/custom/markdown/code-block': ['CodeBlock'],
   };
   // Read file content
   const content = fileOps.readTextFile(filePath);

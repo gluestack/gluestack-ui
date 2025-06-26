@@ -59,7 +59,7 @@ type CodeBlockProps = {
   language?: 'jsx' | 'javascript' | 'ts' | 'tsx' | 'patch' | string;
 };
 
-const CodeBlock: React.FC<CodeBlockProps> = ({
+export const CodeBlock: React.FC<CodeBlockProps> = ({
   code,
   language = 'jsx',
   className,
@@ -134,7 +134,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   return (
     <div className="relative group mb-5">
       <pre
-        className={`language-${language} border border-outline-100 rounded-lg max-h-[400px] overflow-y-auto p-6 [&::-webkit-scrollbar-track]:bg-transparent ${className}`}
+        className={`language-${language} border border-outline-100 rounded-lg max-h-[400px] overflow-y-auto p-6 scrollbar-hide ${className}`}
         style={themeStyles}
       >
         <code ref={codeRef}>{formattedCode}</code>
@@ -156,5 +156,3 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
     </div>
   );
 };
-
-export default CodeBlock;
