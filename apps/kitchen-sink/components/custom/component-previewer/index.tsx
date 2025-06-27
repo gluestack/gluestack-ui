@@ -120,7 +120,7 @@ export const ComponentPreviewer = ({
           {children(selectedValues)}
         </Center>
         {Object.keys(props).length > 0 && (
-          <Box className="flex-1 web:items-start web:justify-center w-full web:items-center">
+          <Box className="flex-1 web:items-start web:justify-center w-full web:items-center min-h-fit border-t md:border-t-0">
     
             {Object.keys(props).map((key) => (
               <Box
