@@ -464,10 +464,6 @@
           {
             "title": "Starter Kit",
             "path": "/ui/docs/apps/starter-kit"
-          },
-          {
-            "title": "Storybook App",
-            "path": "/ui/docs/apps/storybook-app"
           }
         ]
       },
