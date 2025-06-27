@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Pressable, SafeAreaView, ScrollView } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, usePathname } from 'expo-router';
 import { Box } from '@/components/ui/box';
 import { Heading } from '@/components/ui/heading';
 import { VStack } from '@/components/ui/vstack';
@@ -95,13 +95,37 @@ const Header = () => {
 };
 export default function ComponentList() {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const handleComponentPress = (componentPath: string) => {
+    // Use Expo Router's built-in navigation state check
+    const targetPath = `components/${componentPath}`;
+    
+    // Prevent navigation if we're already on the target path or if navigation is in progress
+    if (pathname.includes(targetPath)) {
+      return;
+    }
+    
+    // Use replace instead of push to prevent stack accumulation on rapid clicks
+    router.push(`/components/${componentPath}` as any);
+  };
+
+  // Filter out bottomsheet components and components without paths
+  const filteredComponents = components.map(category => ({
+    ...category,
+    components: category.components.filter(component => 
+      component.path && 
+      !component.name.toLowerCase().includes('bottomsheet') &&
+      !component.path.toLowerCase().includes('bottomsheet')
+    )
+  })).filter(category => category.components.length > 0);
 
   return (
     <SafeAreaView className="flex-1 bg-background-0">
       <ScrollView className="flex-1">
         <Header />
         <VStack className="p-5">
-          {components.map((category) => (
+          {filteredComponents.map((category) => (
             <Box
               key={category.category}
               className="mt-4 border-b border-outline-100 pb-8"
@@ -124,9 +148,7 @@ export default function ComponentList() {
                   >
                     <ComponentCard
                       component={component}
-                      onPress={() =>
-                        router.push(`components/${component.path}` as any)
-                      }
+                      onPress={() => handleComponentPress(component.path!)}
                     />
                   </GridItem>
                 ))}
