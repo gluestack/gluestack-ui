@@ -118,6 +118,7 @@ npm i @expo/html-elements @legendapp/motion dom-helpers react-aria react-native-
 npm i -D @react-native/assets-registry @types/react-native tailwindcss@3 postcss autoprefixer typescript --legacy-peer-deps
 ```
 
+>  **For React Native CLI:** Make sure to install `react-dom` as well as it is required by some of the Gluestack UI components. 
 
 ### Step 3: Copy gluestack-utils
 
@@ -132,7 +133,7 @@ Copy all the contents of the gluestack-utils folder from the <UtilsLink /> into 
 ### Step 5: Update Configuration Files
 You need to update the following configuration files in the root of your project. Replace the content of each file with the provided code blocks below. If a file does not exist, create it manually.
 
-
+> **(For Expo/React Native)** Make sure `global.css` is in the project root. If not, update its path in `metro.config.js` and  `app/layout.tsx`.
 
 #### Step 5.1: Update Tailwind configuration
 
@@ -165,7 +166,18 @@ To add config, create a `gluestack-ui-provider/config.ts` file in your `componen
 %%-- File: src/components/ui/gluestack-ui-provider/config.ts --%%
 ```
 
+#### Step 5.4: Configure GluestackUIProvider in project
+Wrap your app with `GluestackUIProvider` in `App.tsx`.
 
+```tsx
+// App.tsx
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+import "@/global.css"; // Make sure this path is correct
+
+export default function App() {
+  return <GluestackUIProvider>{/* Add your app code here */}</GluestackUIProvider>;
+}
+```
 
 ### Step 6: Update Next config file. (Next.js Only).
 
@@ -187,40 +199,14 @@ It's also recommended to set up your server-side rendering (SSR) correctly. To d
 %%-- File: packages/gluestack-ui/templates/nextjs/next15/registry.tsx --%%
 ```
 
-- We need to wrap `children` with `GluestackUIProvider` in the `layout.tsx` file.
-```tsx
-"use client";
-
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-const inter = Inter({ subsets: ["latin"] });
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body className={inter.className} style={{ display: "flex" }}>
-          <GluestackUIProvider mode="light">{children}</GluestackUIProvider>
-      </body>
-    </html>
-  );
-}
-
-```
-
 - (**For Next-15 only**) We also need to wrap `children` with `StyledJsxRegistry` in the `layout.tsx` file.
 
 ```jsx
 "use client";
-
-import { Inter } from "next/font/google";
-import "./globals.css";
+import "./globals.css";  // Make sure this path is correct
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-const inter = Inter({ subsets: ["latin"] });
 import StyledJsxRegistry from "./registry";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -228,7 +214,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className} style={{ display: "flex" }}>
+      <body style={{ display: "flex" }}>
         <StyledJsxRegistry>
           <GluestackUIProvider mode="light">{children}</GluestackUIProvider>
         </StyledJsxRegistry>
