@@ -3,8 +3,8 @@ export function displayHelp() {
   console.log('Options:\n');
   // framework options
   console.log('  framework options:');
-  console.log(`    --next-app-router         Next.js with app router
-    --expo-router             Expo app with Expo router V3
+  console.log(`    --starter-kit-next        Next.js with app router
+    --starter-kit-expo        Expo app with Expo router
     --universal               Universal app (Next.js with app router + Expo router)
     `);
   // help options

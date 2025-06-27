@@ -1,0 +1,71 @@
+name: Expo Latest Nightly
+
+on:
+  push:
+    branches: [ feat/v3 ]
+  pull_request:
+    branches: [ feat/v3 ]
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight UTC
+
+jobs:
+  check-expo-version:
+    runs-on: macos-latest
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+      latest_version: ${{ steps.check.outputs.latest_version }}
+    steps:
+      - id: check
+        run: |
+          LATEST=$(npm view expo version)
+          CURRENT=$(cat .expo-version 2>/dev/null || echo "")
+          if [ "$LATEST" != "$CURRENT" ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "latest_version=$LATEST" >> $GITHUB_OUTPUT
+            echo $LATEST > .expo-version
+          else
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          fi
+  test-expo-latest:
+    needs: check-expo-version
+    if: ${{ needs.check-expo-version.outputs.should_run == 'true' || github.event_name == 'push' || github.event_name == 'pull_request' }}
+    runs-on: macos-latest
+    name: Expo latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Create Expo project
+        run: |
+          npx create-expo-app@latest test-app
+          cd test-app
+      - name: Install dependencies
+        working-directory: test-app
+        run: |
+          npm install react-native-web react-dom @expo/metro-runtime
+      - name: Install gluestack-ui
+        working-directory: test-app
+        run: |
+          npx gluestack-ui-nightly init --template-only --projectType expo
+          npx gluestack-ui-nightly add --all
+          npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css
+      - name: Start Expo web app
+        working-directory: test-app
+        run: |
+          npm run web & sleep 30
+  notify:
+    needs: test-expo-latest
+    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/feat/v3'
+    runs-on: macos-latest
+    steps:
+    - name: Slack Notification
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        text: 'Expo Latest Test: ${{ job.status }}'
+        fields: repo,commit,action,eventName
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
