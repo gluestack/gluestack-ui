@@ -8,7 +8,8 @@
     "android": "DARK_MODE=media expo start --android",
     "ios": "DARK_MODE=media expo start --ios",
     "web": "DARK_MODE=media expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "build": "cd ../.. && yarn sync:kitchen-sink && cd apps/kitchen-sink && expo export --platform web --output-dir dist"
   },
   "dependencies": {
     "@expo/html-elements": "^0.10.1",
