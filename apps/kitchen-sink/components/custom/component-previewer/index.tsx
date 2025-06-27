@@ -72,7 +72,7 @@ export const ComponentPreviewer = ({
     if (propConfig.control.type === 'select' && propConfig.options) {
       return (
         <Select
-          className="w-full"
+          className="w-full web:w-fit"
           onValueChange={(value: string) => handleChange(key, value)}
         >
           <SelectTrigger
@@ -109,21 +109,25 @@ export const ComponentPreviewer = ({
   };
 
   return (
-    <Box className="p-5  rounded-lg m-3 mt-5 border border-outline-100 gap-5 w-full self-center flex-1">
+    <Box className="p-5 min-h-fit rounded-lg m-3 mt-5 border border-outline-100 gap-5 w-full self-center flex-1">
       <Box className="border-b border-outline-100 pb-2">
         <Text className="text-typography-900 text-lg font-semibold pb-2">
           {title}
         </Text>
       </Box>
       <Box className="md:flex-row">
+      <Center className="min-h-[100px] md:border-r border-outline-100 flex-1 py-5 w-full">
+          {children(selectedValues)}
+        </Center>
         {Object.keys(props).length > 0 && (
-          <Box className="flex-1">
+          <Box className="flex-1 web:items-start web:justify-center w-full web:items-center">
+    
             {Object.keys(props).map((key) => (
               <Box
                 key={key}
-                className="flex-row mt-2 md:mt-4 md:flex-col flex-wrap justify-between md:items-start items-center"
+                className="flex-row mt-2 md:mt-4 flex-wrap justify-between items-center web:justify-between web:mx-auto web:w-1/2"
               >
-                <Text className="mb-2 font-medium text-typography-400">
+                <Text className="mb-2 font-medium text-typography-400 web:w-[120px] web:mb-0">
                   {key}
                 </Text>
                 {renderControl(key)}
@@ -132,9 +136,7 @@ export const ComponentPreviewer = ({
           </Box>
         )}
 
-        <Center className="min-h-[100px] flex-1 py-5 w-full">
-          {children(selectedValues)}
-        </Center>
+      
       </Box>
     </Box>
   );
