@@ -18,6 +18,7 @@
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
     "babel-plugin-module-resolver": "^5.0.2",
+    "dom-helpers": "^6.0.1",
     "expo": "~53.0.13",
     "expo-blur": "~14.1.5",
     "expo-constants": "~17.1.6",
