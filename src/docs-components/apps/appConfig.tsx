@@ -12,7 +12,7 @@ export const kitchensink = {
     android: '5756c799-2232-48af-b4ca-e52c0e7f2b37',
     ios: '92b0bea4-2cb2-49c4-b9ed-6602bea5677f',
   },
-  iframeUri: 'https://kitchen-sink-v2.gluestack.io/',
+  iframeUri: 'https://kitchen-sink-gluestack.vercel.app/',
   qrCodeUri:
     'https://qr.expo.dev/eas-update?slug=exp&projectId=8d16a046-45ac-43e4-b730-33c7a0d6d1ea&groupId=bfdd42b2-0ee4-4c5b-a97d-e2db7e7c9f8b&host=u.expo.dev',
 };
