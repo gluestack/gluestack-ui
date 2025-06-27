@@ -1,4 +1,4 @@
-import { Stack, useRouter } from 'expo-router';
+import { Stack, usePathname, useRouter } from 'expo-router';
 import '../global.css';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { Pressable } from 'react-native';
@@ -34,6 +34,7 @@ const CustomBackButton = () => {
 
 export default function RootLayout() {
   const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
+  const pathname = usePathname();
   const handleColorMode = () => {
     setColorMode((prevMode: string) =>
       prevMode === 'light' ? 'dark' : 'light'
@@ -62,7 +63,7 @@ export default function RootLayout() {
               headerTitle: (props) => {
                 return (
                   <Text className="text-typography-900 text-xl font-bold">
-                    {capitalize(props.children)}
+                    {capitalize(pathname.split('/').pop() || '')}
                   </Text>
                 );
               },
