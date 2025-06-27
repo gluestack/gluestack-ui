@@ -46,10 +46,13 @@ export const Checkbox = (StyledCheckbox: any) =>
       combinedProps['aria-label'] || combinedProps.value || 'Checkbox';
 
     const mergedRef = mergeRefs([ref, _ref]);
-    const { inputProps: groupItemInputProps } = checkboxGroupContext
-      ? // eslint-disable-next-line react-hooks/rules-of-hooks
-        //@ts-ignore
-        useCheckboxGroupItem(
+    
+    // Fix: Add defensive checks for checkbox group context
+    let groupItemInputProps = { inputProps: {} };
+    
+    if (checkboxGroupContext?.state) {
+      try {
+        groupItemInputProps = useCheckboxGroupItem(
           {
             ...combinedProps,
             'aria-label': ariaLabel,
@@ -58,25 +61,37 @@ export const Checkbox = (StyledCheckbox: any) =>
           checkboxGroupContext.state,
           //@ts-ignore
           mergedRef
-        )
-      : // eslint-disable-next-line react-hooks/rules-of-hooks
-        useCheckbox(
-          {
-            ...combinedProps,
-            'aria-label': ariaLabel,
-          },
-          state,
-          //@ts-ignore
-          mergedRef
         );
+      } catch (error) {
+        console.warn('CheckboxGroupItem hook failed, falling back to standalone checkbox:', error);
+        groupItemInputProps = { inputProps: {} };
+      }
+    }
+    
+    const standaloneCheckboxProps = useCheckbox(
+      {
+        ...combinedProps,
+        'aria-label': ariaLabel,
+      },
+      state,
+      //@ts-ignore
+      mergedRef
+    );
+
+    // Use group props if available and valid, otherwise use standalone
+    const { inputProps: finalInputProps } = 
+      (checkboxGroupContext?.state && groupItemInputProps.inputProps?.onChange) 
+        ? groupItemInputProps 
+        : standaloneCheckboxProps;
 
     const inputProps = React.useMemo(
-      () => groupItemInputProps,
+      () => finalInputProps,
       // eslint-disable-next-line react-hooks/exhaustive-deps
       [
-        groupItemInputProps.checked,
-        groupItemInputProps.disabled,
-        groupItemInputProps,
+        finalInputProps?.checked,
+        finalInputProps?.disabled,
+        finalInputProps?.value,
+        finalInputProps?.onChange,
       ]
     );
 
@@ -85,7 +100,7 @@ export const Checkbox = (StyledCheckbox: any) =>
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [stableHash(combinedProps)]);
 
-    const { checked: isChecked, disabled: isDisabled } = inputProps;
+    const { checked: isChecked, disabled: isDisabled } = inputProps || {};
 
     return (
       <StyledCheckbox
