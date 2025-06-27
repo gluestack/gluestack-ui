@@ -38,12 +38,16 @@ export const appStoryConfig = {
     'https://qr.expo.dev/eas-update?slug=exp&projectId=46cc2b6b-d237-419f-b683-e7b9f451a2e6&groupId=0af31d0c-13fe-4bb9-a0c1-a39bad6a69f4',
 };
 
-export const starterKit = {
+export const starterKitNext = {
+  iframeUri: 'https://starter-kit-next-gluestack.vercel.app/',
+};
+
+export const starterKitExpo = {
   updateIds: {
     android: 'e0af9f3a-ef66-4896-8b76-314c059f6408',
     ios: '20a9694c-2803-45c2-a956-88e8ee9e6d6a',
   },
-  iframeUri: 'https://universal-starter-kit.gluestack.io',
+  iframeUri: 'https://starter-kit-expo.vercel.app/',
   qrCodeUri:
     'https://qr.expo.dev/eas-update?slug=exp&projectId=148098d1-7e19-4326-9814-dd661a192776&groupId=552a8e7a-2682-451d-97c5-1d633e75acd1',
 };

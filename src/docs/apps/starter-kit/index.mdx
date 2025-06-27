@@ -1,10 +1,27 @@
 import Responsiveness from '@/docs-components/apps/Responsive';
-import { starterKit } from '@/docs-components/apps/appConfig';
+import { StarterKitLink } from './starterkit-link';
+import { starterKitExpo, starterKitNext } from '@/docs-components/apps/appConfig';
 
 # Starter Kit
 
-This [Starter Kit](https://universal-starter-kit.gluestack.io) is built using `gluestack-ui v2`.
+These Starter Kits are built using `gluestack-ui v2`.
 
-<Responsiveness {...starterKit} />
+## Expo
 
-GitHub link for this [Starter Kit](https://github.com/gluestack/gluestack-ui-starter-kits).
+<Responsiveness {...starterKitExpo} />
+
+<br />
+
+---
+
+<br />
+
+## Next.js
+
+<Responsiveness {...starterKitNext} ctaVisible={false} />
+
+---
+
+<br />
+
+GitHub link for <StarterKitLink>starter-kit-next</StarterKitLink> and <StarterKitLink>starter-kit-expo</StarterKitLink>
