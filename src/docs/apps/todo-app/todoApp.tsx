@@ -8,8 +8,6 @@ import { defaultTodos } from './todo';
 import TodoContainer, { Todo } from './todoContainer';
 
 import shortid from 'shortid';
-import { Box } from '@/components/ui/box';
-import { Expand } from './Expand';
 
 const Home = () => {
   const [item, setItem] = useState('');
