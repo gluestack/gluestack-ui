@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Pressable, SafeAreaView, ScrollView } from 'react-native';
+import { Pressable, ScrollView } from 'react-native';
 import { useRouter, usePathname } from 'expo-router';
 import { Box } from '@/components/ui/box';
 import { Heading } from '@/components/ui/heading';
@@ -12,6 +12,7 @@ import { ColorModeContext } from './_layout';
 import { ChevronRightIcon } from '@/components/ui/icon';
 import { Icon } from '@/components/ui/icon';
 import { Grid, GridItem } from '@/components/ui/grid';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const components = getAllComponents();
 const ComponentCard = ({ component, onPress }: any) => {
