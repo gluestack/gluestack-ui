@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Pressable, SafeAreaView, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Box } from '@/components/ui/box';
@@ -95,6 +95,21 @@ const Header = () => {
 };
 export default function ComponentList() {
   const router = useRouter();
+  const navigationInProgress = useRef(false);
+
+  const handleComponentPress = (componentPath: string) => {
+    if (navigationInProgress.current) {
+      return; // Prevent navigation if already in progress
+    }
+    
+    navigationInProgress.current = true;
+    router.push(`components/${componentPath}` as any);
+    
+    // Reset the flag after a short delay
+    setTimeout(() => {
+      navigationInProgress.current = false;
+    }, 500);
+  };
 
   return (
     <SafeAreaView className="flex-1 bg-background-0">
@@ -124,9 +139,7 @@ export default function ComponentList() {
                   >
                     <ComponentCard
                       component={component}
-                      onPress={() =>
-                        router.push(`components/${component.path}` as any)
-                      }
+                      onPress={() => component.path && handleComponentPress(component.path)}
                     />
                   </GridItem>
                 ))}
