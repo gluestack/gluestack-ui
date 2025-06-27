@@ -8,10 +8,8 @@ module.exports = {
     './components/**/*.{html,js,jsx,ts,tsx,mdx}',
     './utils/**/*.{html,js,jsx,ts,tsx,mdx}',
     './*.{html,js,jsx,ts,tsx,mdx}',
-    './src/**/*.{html,js,jsx,ts,tsx,mdx}',
   ],
   presets: [require('nativewind/preset')],
-  important: 'html',
   safelist: [
     {
       pattern:
@@ -177,13 +175,13 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: undefined,
-        body: undefined,
-        mono: undefined,
-        jakarta: ['var(--font-plus-jakarta-sans)'],
-        roboto: ['var(--font-roboto)'],
-        code: ['var(--font-source-code-pro)'],
-        inter: ['var(--font-inter)'],
+        'heading': undefined,
+        'body': undefined,
+        'mono': undefined,
+        'jakarta': ['var(--font-plus-jakarta-sans)'],
+        'roboto': ['var(--font-roboto)'],
+        'code': ['var(--font-source-code-pro)'],
+        'inter': ['var(--font-inter)'],
         'space-mono': ['var(--font-space-mono)'],
       },
       fontWeight: {

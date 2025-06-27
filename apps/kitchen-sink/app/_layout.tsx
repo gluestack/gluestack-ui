@@ -1,91 +1,36 @@
-import { Stack, useRouter } from 'expo-router';
-import '../global.css';
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-import { Pressable } from 'react-native';
-import { ChevronLeftIcon, SunIcon, MoonIcon } from '@/components/ui/icon';
-import { Icon } from '@/components/ui/icon';
-import React from 'react';
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
+import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { Fab } from '@/components/ui/fab';
-import { Text } from '@/components/ui/text';
-export const ColorModeContext = React.createContext({});
+import 'react-native-reanimated';
 
-const capitalize = (str: string) => {
-  return str
-    .replace(/components\/(.*?)\/index/, '$1')
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join('');
-};
-const CustomBackButton = () => {
-  const router = useRouter();
+import { useColorScheme } from '@/hooks/useColorScheme';
 
-  return (
-    <Pressable
-      onPress={() => {
-        router.back();
-      }}
-      className="web:ml-2 ios:-ml-2 android:mr-4"
-    >
-      <Icon as={ChevronLeftIcon} size="xl" />
-    </Pressable>
-  );
-};
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import '@/global.css';
 
 export default function RootLayout() {
-  const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
-  const handleColorMode = () => {
-    setColorMode((prevMode: string) =>
-      prevMode === 'light' ? 'dark' : 'light'
-    );
-  };
+  const colorScheme = useColorScheme();
+  const [loaded] = useFonts({
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  });
+
+  if (!loaded) {
+    // Async font loading only occurs in development.
+    return null;
+  }
+
   return (
-    <>
-      <StatusBar
-        style="auto" //android
-        backgroundColor={`${colorMode == 'light' ? '#F6F6F6' : '#272625'}`}
-      />
-      <ColorModeContext.Provider value={{ colorMode }}>
-        <GluestackUIProvider mode={colorMode}>
-          <Stack
-            screenOptions={{
-              headerStyle: {
-                backgroundColor: colorMode === 'light' ? '#FFFFFF' : '#000',
-              },
-              headerShadowVisible: false,
-              contentStyle: {
-                borderTopWidth: 1,
-                borderTopColor: colorMode === 'light' ? '#E6E6E6' : '#414141',
-              },
-              headerLeft: ({ canGoBack }) =>
-                canGoBack ? <CustomBackButton /> : null,
-              headerTitle: (props) => {
-                return (
-                  <Text className="text-typography-900 text-xl font-bold">
-                    {capitalize(props.children)}
-                  </Text>
-                );
-              },
-            }}
-          >
-            <Stack.Screen
-              name="index"
-              options={{
-                headerShown: false,
-              }}
-            />
-          </Stack>
-          <Fab
-            className="bottom-10 sm:right-10 right-6 p-4 z-0"
-            onPress={handleColorMode}
-          >
-            <Icon
-              as={colorMode === 'light' ? SunIcon : MoonIcon}
-              className="text-typography-0"
-            />
-          </Fab>
-        </GluestackUIProvider>
-      </ColorModeContext.Provider>
-    </>
+    
+    <GluestackUIProvider mode="light">
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+      <StatusBar style="auto" />
+    </ThemeProvider>
+    </GluestackUIProvider>
+  
   );
 }
