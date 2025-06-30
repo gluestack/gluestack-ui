@@ -7,7 +7,7 @@ import { Pressable } from '@/components/ui/pressable';
 import { defaultTodos } from './todo';
 import TodoContainer, { Todo } from './todoContainer';
 
-import shortid from 'shortid';
+import { nanoid } from 'nanoid';
 
 const Home = () => {
   const [item, setItem] = useState('');
@@ -19,7 +19,7 @@ const Home = () => {
       setTodos([
         ...todos,
         {
-          id: shortid.generate(),
+          id: nanoid(),
           task: task,
           completed: false,
         },

@@ -33,6 +33,7 @@
     "jest": "^30.0.2",
     "js-cookie": "^3.0.5",
     "lucide-react-native": "^0.510.0",
+    "nanoid": "^5.1.5",
     "nativewind": "^4.1.23",
     "next": "14.2.4",
     "prism-react-renderer": "^2.4.1",
