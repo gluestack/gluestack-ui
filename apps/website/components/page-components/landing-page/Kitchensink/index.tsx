@@ -11,6 +11,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import IOS from '../Ios';
 import Android from '../Android';
+import { kitchensink } from '@/components/docs-components/apps/appConfig';
 
 const Kitchensink = () => {
   return (
@@ -77,9 +78,10 @@ const Kitchensink = () => {
                 <Box className="flex-1 md:flex hidden">
                   <Image
                     alt="kitchensink qrcode"
-                    src="/assets/kitchensink-app.png"
+                    src={kitchensink.qrCodeUri}
                     height={256}
                     width={256}
+                    unoptimized
                   />
                 </Box>
                 <VStack className="flex-1 items-center">
