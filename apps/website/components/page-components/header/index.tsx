@@ -97,7 +97,7 @@ const Header = () => {
   ];
 
   return (
-    <Box className="w-full bg-white dark:bg-background-0/60 bg-opacity-60 sticky top-0 z-10 border-outline-100 border-b">
+    <Box className="w-full bg-white/60 dark:bg-background-0/60 sticky top-0 z-10 border-outline-200 border-b">
       {/* @ts-ignore */}
       <Nav className="py-2.5 items-center backdrop-blur">
         <Box
