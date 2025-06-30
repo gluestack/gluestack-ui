@@ -539,10 +539,7 @@ const Fold1Content = () => {
                   aria-label="Remember me"
                 >
                   <CheckboxIndicator>
-                    <CheckboxIcon
-                      as={CheckIcon}
-                      className="text-typography-black"
-                    />
+                    <CheckboxIcon as={CheckIcon} />
                   </CheckboxIndicator>
                   <CheckboxLabel className="sm:text-sm text-xs font-normal leading-[21px] text-typography-900">
                     Remember me
