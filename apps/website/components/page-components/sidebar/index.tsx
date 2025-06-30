@@ -6,7 +6,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import sidebarData from '@/sidebar.json';
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
-import { ThemeContext } from '@/utils/context/theme-context';
 
 interface NavigationItem {
   type?: string;
@@ -157,7 +156,6 @@ export default function Sidebar() {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
-  const { colorMode } = useContext(ThemeContext);
   return (
     <div className="ml-4 w-64  border-r border-outline-100 flex flex-col left-0 bg-white dark:bg-black h-[94vh] max-lg:hidden overflow-y-scroll fixed bottom-0 z-0">
       {/* Fixed parent dropdowns at top */}

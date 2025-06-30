@@ -149,27 +149,6 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
   const [selectedSection, setSelectedSection] = useState<string>('Home');
   const pathname = usePathname();
 
-  useEffect(() => {
-    if (isOpen) {
-      // Prevent background scroll when sidebar is open
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
-    } else {
-      // Restore scrolling when sidebar is closed
-      document.body.style.overflow = 'auto';
-      document.body.style.position = 'static';
-      document.body.style.width = 'auto';
-    }
-
-    return () => {
-      // Cleanup styles when component unmounts
-      document.body.style.overflow = 'auto';
-      document.body.style.position = 'static';
-      document.body.style.width = 'auto';
-    };
-  }, [isOpen]);
-
   // Find the parent section that contains the current pathname
   useEffect(() => {
     const findParentSection = (
@@ -204,7 +183,7 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
   );
 
   return (
-    <Box className="w-full dark:bg-black bg-white lg:hidden z-0 overflow-y-auto h-[95vh] fixed top-[60px] left-0">
+    <Box className="w-full dark:bg-black bg-white lg:hidden z-0 overflow-y-auto fixed h-[calc(100vh-64px)] top-16 left-0">
       {/* Fixed navigation at top */}
       <div className="border-b border-outline-100 p-2">
         {navigation.sections.map((section, index) => (

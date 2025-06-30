@@ -3,16 +3,23 @@ import Header from '@/components/page-components/header';
 import Sidebar from '@/components/page-components/sidebar';
 import { MDXProvider } from '@mdx-js/react';
 import { LayoutContent } from './LayoutContent';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { PrevNextButtons } from './PrevNextButtons';
-import sidebarData from '../../../sidebar.json';
+import sidebarData from '@/sidebar.json';
 import EditPageOnGithubLink from './EditPageOnGithubLink';
 import { useMDXComponents } from '@/mdx-components';
 import { usePathname } from 'next/navigation';
+import DocsSidebar from '@/components/page-components/sidebar/DocsSidebar';
+import ResponsiveSidebar from '@/components/page-components/landing-page/ResponsiveSidebar';
+import { LayoutContext } from './LayoutContext';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
+  const [isOpenSidebar, setIsOpenSidebar] = useState(false);
   const docsLayoutRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  // Check if current route is documentation
+  const isDocsRoute = pathname?.includes('/docs/');
+
   const fluidLayout =
     pathname.includes('docs/apps') ||
     pathname.includes('docs/components/all-components') ||
@@ -27,6 +34,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   }, [pathname]);
 
   return (
+    <LayoutContext.Provider value={{ isOpenSidebar, setIsOpenSidebar }}>
     <div
       // @ts-ignore
       ref={docsLayoutRef}
@@ -58,10 +66,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             sidebarItems={sidebars}
           /> */}
 
-          <div className="flex-1 flex-row">
+          <div className={`flex-1 flex-row sidebar-hide ${isOpenSidebar ? 'hidden' : ''}`}>
             <MDXProvider components={useMDXComponents({})}>
               <div
-                className={`flex-1  px-4 md:px-0 ${fluidLayout ? 'max-w-[92%] mx-auto' : 'max-w-[736px] 2xl:mx-auto'} ${pathname.includes('overview/quick-start') || pathname.includes('docs/apps') ? '2xl:max-w-[1280px]' : ''}`}
+                className={`px-4 md:px-0 ${fluidLayout ? 'max-w-[92%] mx-auto' : 'max-w-[736px] 2xl:mx-auto'} ${pathname.includes('overview/quick-start') || pathname.includes('docs/apps') ? '2xl:max-w-[1280px]' : ''}`}
               >
                 <LayoutContent className="flex md:min-w-[736px] lg:min-w-[662px] xl:min-w-[598px] 2xl:min-w-[736px] h-full w-full mx-auto flex-col scroll-smooth">
                   {children}
@@ -73,6 +81,23 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-    </div>
+      {/* Conditional Sidebar Rendering */}
+      {isOpenSidebar && (
+        <>
+          {isDocsRoute ? (
+            <DocsSidebar
+              isOpen={isOpenSidebar}
+              setIsOpenSidebar={setIsOpenSidebar}
+            />
+          ) : (
+            <ResponsiveSidebar
+              isOpen={isOpenSidebar}
+              setIsOpenSidebar={setIsOpenSidebar}
+            />
+          )}
+        </>
+      )}
+      </div>
+      </LayoutContext.Provider>
   );
 };

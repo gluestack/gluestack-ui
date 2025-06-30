@@ -23,18 +23,17 @@ import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
 import AppMarketLogo from '@/public/icon/logo/theappmarket/appmarket-logo.svg';
 
 import NextLink from 'next/link';
-import ResponsiveSidebar from '../landing-page/ResponsiveSidebar';
-import DocsSidebar from '../sidebar/DocsSidebar';
 import { Nav } from '@expo/html-elements';
 import { ThemeContext } from '@/utils/context/theme-context';
 import { usePathname } from 'next/navigation';
 import { UiDocSearch } from './Docsearch';
+import { LayoutContext } from '@/components/custom/layout/LayoutContext';
 
 // Updated Header component with internal state management
 const Header = () => {
+  const { isOpenSidebar, setIsOpenSidebar } = useContext(LayoutContext);
   const { colorMode, setColorMode }: any = useContext(ThemeContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [isOpenSidebar, setIsOpenSidebar] = useState(false); // Manage state internally
   const pathname = usePathname();
 
   // Check if current route is documentation
@@ -396,7 +395,7 @@ const Header = () => {
 
               <Link
                 href="https://geekyants.com/hire?utm_source=gluestack.io&utm_medium=referral&utm_campaign=partner_site"
-                className="bg-primary-500 px-4 py-1.5 lg:flex hidden rounded"
+                className="bg-primary-500 px-4 py-1.5 xl:flex hidden rounded"
               >
                 <Text className="text-sm text-typography-0">
                   Hire React Native Experts
@@ -424,23 +423,6 @@ const Header = () => {
           </Box>
         </Box>
       </Nav>
-
-      {/* Conditional Sidebar Rendering */}
-      {isOpenSidebar && (
-        <>
-          {isDocsRoute ? (
-            <DocsSidebar
-              isOpen={isOpenSidebar}
-              setIsOpenSidebar={setIsOpenSidebar}
-            />
-          ) : (
-            <ResponsiveSidebar
-              isOpen={isOpenSidebar}
-              setIsOpenSidebar={setIsOpenSidebar}
-            />
-          )}
-        </>
-      )}
     </Box>
   );
 };
