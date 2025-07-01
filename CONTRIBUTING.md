@@ -89,7 +89,6 @@ gluestack-ui/
 - **`kitchen-sink/`** - Component showcase & testing
 - **`starter-kit-next/`** - Next.js starter template
 - **`starter-kit-expo/`** - Expo starter template
-- **`todo-app/`** - Todo application example
 
 #### Packages (`packages/`)
 
@@ -121,7 +120,6 @@ This repository uses a **source-to-destination** file generation system where:
     ├── website/                # Generated files are gitignored
     ├── starter-kit-next/
     ├── starter-kit-expo/
-    ├── todo-app/               # Generated files are gitignored
     └── kitchen-sink/           # Generated files are gitignored
 ```
 
