@@ -1,7 +1,7 @@
 import React, { forwardRef, memo } from 'react';
 import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus';
 import { RadioProvider } from './RadioProvider';
-import { useRadio } from '@/components/ui/radio/aria';
+import { useRadio } from '../aria';
 import { useRadioGroup } from './RadioGroupContext';
 import { usePress, useHover } from '@/utils/gluestack-utils/aria/interactions';
 import {

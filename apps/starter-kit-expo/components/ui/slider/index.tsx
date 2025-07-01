@@ -1,5 +1,5 @@
 'use client';
-import { createSlider } from '@/components/ui/slider/creator';
+import { createSlider } from './creator';
 import { Pressable } from 'react-native';
 import { View } from 'react-native';
 import React from 'react';

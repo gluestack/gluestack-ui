@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect } from 'react';
 import { Platform } from 'react-native';
-import { useSliderThumb } from '@/components/ui/slider/aria';
+import { useSliderThumb } from '../aria';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { SliderContext } from './Context';
 import { useHover } from '@/utils/gluestack-utils/aria/interactions';

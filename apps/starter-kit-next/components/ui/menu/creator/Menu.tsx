@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { forwardRef, useRef } from 'react';
-import { useMenu, useMenuTrigger } from '@/components/ui/menu/aria';
+import { useMenu, useMenuTrigger } from '../aria';
 import { useTreeState, useMenuTriggerState } from 'react-stately';
 import { Popover } from './MenuPopover/Popover';
 import { MenuItem } from './MenuItem';
