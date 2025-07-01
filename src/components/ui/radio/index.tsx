@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createRadio } from '@/components/ui/radio/creator';
+import { createRadio } from './creator';
 import { Pressable, View, Platform, Text } from 'react-native';
 import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
 import {
