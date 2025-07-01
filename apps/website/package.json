@@ -37,6 +37,7 @@
     "nanoid": "^5.1.5",
     "nativewind": "^4.1.23",
     "next": "14.2.4",
+    "next-compose-plugins": "^2.2.1",
     "prism-react-renderer": "^2.4.1",
     "re-resizable": "^6.11.2",
     "react": "^18",
