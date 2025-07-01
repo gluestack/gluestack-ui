@@ -23,18 +23,27 @@ import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
 import AppMarketLogo from '@/public/icon/logo/theappmarket/appmarket-logo.svg';
 
 import NextLink from 'next/link';
-import ResponsiveSidebar from '../landing-page/ResponsiveSidebar';
-import DocsSidebar from '../sidebar/DocsSidebar';
 import { Nav } from '@expo/html-elements';
 import { ThemeContext } from '@/utils/context/theme-context';
 import { usePathname } from 'next/navigation';
 import { UiDocSearch } from './Docsearch';
+import { LayoutContext } from '@/components/custom/layout/LayoutContext';
 
 // Updated Header component with internal state management
-const Header = () => {
+const Header = ({
+  isOpenSidebar: propsIsOpenSidebar,
+  setIsOpenSidebar: propsSetIsOpenSidebar,
+}: {
+  isOpenSidebar?: boolean;
+  setIsOpenSidebar?: (value: boolean) => void;
+} = {}) => {
+  // Use props if available, otherwise fall back to context
+  const context = useContext(LayoutContext);
+  const isOpenSidebar = propsIsOpenSidebar ?? context.isOpenSidebar;
+  const setIsOpenSidebar = propsSetIsOpenSidebar ?? context.setIsOpenSidebar;
+
   const { colorMode, setColorMode }: any = useContext(ThemeContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [isOpenSidebar, setIsOpenSidebar] = useState(false); // Manage state internally
   const pathname = usePathname();
 
   // Check if current route is documentation
@@ -97,7 +106,7 @@ const Header = () => {
   ];
 
   return (
-    <Box className="w-full bg-white dark:bg-background-0/60 bg-opacity-60 sticky top-0 z-10 border-outline-100 border-b">
+    <Box className="w-full bg-white/60 dark:bg-background-0/60 sticky top-0 z-10 border-outline-200 border-b">
       {/* @ts-ignore */}
       <Nav className="py-2.5 items-center backdrop-blur">
         <Box
@@ -396,7 +405,7 @@ const Header = () => {
 
               <Link
                 href="https://geekyants.com/hire?utm_source=gluestack.io&utm_medium=referral&utm_campaign=partner_site"
-                className="bg-primary-500 px-4 py-1.5 lg:flex hidden rounded"
+                className="bg-primary-500 px-4 py-1.5 xl:flex hidden rounded"
               >
                 <Text className="text-sm text-typography-0">
                   Hire React Native Experts
@@ -424,23 +433,6 @@ const Header = () => {
           </Box>
         </Box>
       </Nav>
-
-      {/* Conditional Sidebar Rendering */}
-      {isOpenSidebar && (
-        <>
-          {isDocsRoute ? (
-            <DocsSidebar
-              isOpen={isOpenSidebar}
-              setIsOpenSidebar={setIsOpenSidebar}
-            />
-          ) : (
-            <ResponsiveSidebar
-              isOpen={isOpenSidebar}
-              setIsOpenSidebar={setIsOpenSidebar}
-            />
-          )}
-        </>
-      )}
     </Box>
   );
 };

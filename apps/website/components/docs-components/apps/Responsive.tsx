@@ -34,6 +34,7 @@ function Responsiveness({
   qrCodeUri,
   updateIds,
   showMenuItems = false,
+  ctaVisible = true,
 }: {
   iframeUri: string;
   qrCodeUri: string;
@@ -41,7 +42,8 @@ function Responsiveness({
     android: string;
     ios: string;
   };
-  showMenuItems?: boolean;
+    showMenuItems?: boolean;
+  ctaVisible?: boolean;
 }) {
   const resizableRef = useRef<any>(null);
   const [isMobile, setIsMobile] = useState(true);
@@ -152,6 +154,8 @@ function Responsiveness({
         </Box>
       </Resizable>
 
+      {ctaVisible && (
+        <>
       {/* Bottom info section */}
       <Box className="flex flex-col md:flex-row -mt-12 mb-6 rounded-lg border border-outline-400 bg-background-0 p-4 w-auto self-start">
         <Box className="flex-1">
@@ -240,9 +244,11 @@ function Responsiveness({
             source={{
               uri: qrCodeUri,
             }}
-          />
-        </Box>
-      </Box>
+            />
+            </Box>
+          </Box>
+        </>
+      )}
     </Box>
   );
 }

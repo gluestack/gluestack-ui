@@ -4,11 +4,12 @@ import { FormControl } from '@/components/ui/form-control';
 import { Input, InputField, InputIcon } from '@/components/ui/input';
 import { AddIcon } from '@/components/ui/icon';
 import { Pressable } from '@/components/ui/pressable';
-import { defaultTodos } from '@/constants/todo';
-import TodoContainer, { Todo } from '@/components/app-components/TodoContainer';
-import shortid from 'shortid';
+import { defaultTodos } from './todo';
+import TodoContainer, { Todo } from './todoContainer';
 
-const Home = () => {
+import { nanoid } from 'nanoid';
+
+const TodoApp = () => {
   const [item, setItem] = useState('');
   const [todos, setTodos] = useState<Todo[]>(defaultTodos);
 
@@ -18,7 +19,7 @@ const Home = () => {
       setTodos([
         ...todos,
         {
-          id: shortid.generate(),
+          id: nanoid(),
           task: task,
           completed: false,
         },
@@ -43,6 +44,7 @@ const Home = () => {
   };
 
   return (
+    
     <VStack className="flex-1 bg-secondary-100 md:bg-secondary-0 md:items-center md:justify-center ">
       <VStack className="rounded-md bg-secondary-100 md:h-[500px] md:w-[700px]">
         <FormControl className="my-4">
@@ -68,7 +70,8 @@ const Home = () => {
         ))}
       </VStack>
     </VStack>
+    
   );
 };
 
-export default Home;
+export default TodoApp;

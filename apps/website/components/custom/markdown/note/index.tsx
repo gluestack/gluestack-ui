@@ -5,8 +5,8 @@ import { HStack } from '@/components/ui/hstack';
 
 export const Note = ({ children, ...props }: any) => {
   return (
-    <Box className="p-4 flex border-1 border-outline-100 border rounded-md mb-6 pb-0">
-      <HStack className="w-full items-center justify-center" space="md" display="flex" alignItems="center">
+    <Box className="p-4 flex border-1 border-outline-100 border rounded-md mb-6">
+      <HStack className="w-full items-center justify-start flex" space="md">
         <Box className="flex justify-center items-center h-14 w-14 rounded-full bg-background-50">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ export const Note = ({ children, ...props }: any) => {
         <Box className="max-w-fit max-h-fit flex-1 text-sm gap-2.5">
           <Text className="font-semibold text-lg">Important Note</Text>
           {/* in box there is text element with its own styles, we need to override it */}
-          <Box className="[&>*]:!text-typography-800 [&>*]:!text-sm [&>*]:!leading-7 [&>*]:!tracking-medium [&>*]:!font-sans ">
+          <Box className="[&>*]:!text-typography-800 [&>*]:!text-sm [&>*]:!leading-7 [&>*]:mb-0 [&>*]:!tracking-medium [&>*]:!font-sans ">
             {children}
           </Box>
         </Box>

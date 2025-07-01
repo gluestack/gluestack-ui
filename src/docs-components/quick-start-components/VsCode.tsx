@@ -17,12 +17,12 @@ function VsCode() {
           fill="white"
           fillOpacity="0.06"
         />
-        <rect
+        {/* <rect
           width="212.426"
           height={72}
           rx={8}
           fill="url(#paint0_radial_11109_118448)"
-        />
+        /> */}
         <mask
           id="mask0_11109_118448"
           style={{ maskType: 'alpha' }}

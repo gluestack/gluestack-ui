@@ -526,9 +526,7 @@ const Fold3Content = () => {
                 <HStack className="justify-between">
                   <Checkbox size="sm" value="Remember me">
                     <CheckboxIndicator>
-                      <CheckboxIcon>
-                        <CheckIcon />
-                      </CheckboxIcon>
+                      <CheckboxIcon as={CheckIcon} />
                     </CheckboxIndicator>
                     <CheckboxLabel className="text-sm font-normal leading-[21px] text-typography-900">
                       Remember me

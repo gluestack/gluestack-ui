@@ -9,12 +9,12 @@ export const dashboard = {
 };
 export const kitchensink = {
   updateIds: {
-    android: '5756c799-2232-48af-b4ca-e52c0e7f2b37',
-    ios: '92b0bea4-2cb2-49c4-b9ed-6602bea5677f',
+    android: 'a4cbd3f5-d7ff-464c-849e-2a6136e3bc34',
+    ios: '8e2509fd-24e0-47b9-b822-f7592a2aaee2',
   },
-  iframeUri: 'https://kitchen-sink-v2.gluestack.io/',
+  iframeUri: 'https://kitchen-sink-gluestack.vercel.app/',
   qrCodeUri:
-    'https://qr.expo.dev/eas-update?slug=exp&projectId=8d16a046-45ac-43e4-b730-33c7a0d6d1ea&groupId=bfdd42b2-0ee4-4c5b-a97d-e2db7e7c9f8b&host=u.expo.dev',
+    'https://qr.expo.dev/eas-update?slug=exp&projectId=b3529931-c47f-4970-aa9f-de2f59c05f07&groupId=44b0f62a-bc8c-4654-8e19-131e23786ded&host=u.expo.dev',
 };
 export const todoapp = {
   updateIds: {
@@ -27,23 +27,16 @@ export const todoapp = {
     'https://qr.expo.dev/eas-update?slug=exp&projectId=2f45053e-e4a6-4598-b0bb-5b7a5024029d&groupId=6eaef910-7074-458e-91df-adf917e222d3',
 };
 
-export const appStoryConfig = {
-  updateIds: {
-    android: '586d1726-8104-4426-bf53-3beac0a476c0',
-    ios: '77374791-3bec-4258-a45b-878c1d266749',
-  },
-  iframeUri:
-    'https://storybook-v2.gluestack.io/?path=/story/stories-accordion--accordion',
-  qrCodeUri:
-    'https://qr.expo.dev/eas-update?slug=exp&projectId=46cc2b6b-d237-419f-b683-e7b9f451a2e6&groupId=0af31d0c-13fe-4bb9-a0c1-a39bad6a69f4',
+export const starterKitNext = {
+  iframeUri: 'https://starter-kit-next-gluestack.vercel.app/',
 };
 
-export const starterKit = {
+export const starterKitExpo = {
   updateIds: {
     android: 'e0af9f3a-ef66-4896-8b76-314c059f6408',
     ios: '20a9694c-2803-45c2-a956-88e8ee9e6d6a',
   },
-  iframeUri: 'https://universal-starter-kit.gluestack.io',
+  iframeUri: 'https://starter-kit-expo.vercel.app/',
   qrCodeUri:
     'https://qr.expo.dev/eas-update?slug=exp&projectId=148098d1-7e19-4326-9814-dd661a192776&groupId=552a8e7a-2682-451d-97c5-1d633e75acd1',
 };

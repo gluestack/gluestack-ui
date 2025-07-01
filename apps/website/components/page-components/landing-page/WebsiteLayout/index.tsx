@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Box } from '@/components/ui/box';
 import Header from '@/components/page-components/header';
+import ResponsiveSidebar from '@/components/page-components/landing-page/ResponsiveSidebar';
+
 function WebsiteLayout({
   children,
 }: {
@@ -32,16 +34,26 @@ function WebsiteLayout({
   }, [isOpenSidebar]);
   return (
     <div
-      className={` web:flex-${isOpenSidebar ? '1' : 'none'} w-screen h-screen overflow-hidden overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
+      className={` web:flex-${isOpenSidebar ? '1' : 'none'} w-screen h-dvh overflow-hidden overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scrollbar-hide`}
+      style={{
+        height: '100dvh', // Fallback for browsers that don't support dvh
+        minHeight: '-webkit-fill-available', // iOS Safari specific fix
+      }}
     >
       <Header
-        // @ts-ignore
         isOpenSidebar={isOpenSidebar}
         setIsOpenSidebar={setIsOpenSidebar}
       />
       <Box className={` ${isOpenSidebar ? 'opacity-0' : 'opacity-100'} `}>
         {children}
       </Box>
+      {/* Responsive Sidebar */}
+      {isOpenSidebar && (
+        <ResponsiveSidebar
+          isOpen={isOpenSidebar}
+          setIsOpenSidebar={setIsOpenSidebar}
+        />
+      )}
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box } from '@/components/ui/box';
 import { HStack } from '@/components/ui/hstack';
 import { Fab, FabIcon } from '@/components/ui/fab';
@@ -50,7 +51,7 @@ import {
   SquarePen,
   Trash,
 } from 'lucide-react-native';
-import React from 'react';
+import colors from 'tailwindcss/colors';
 
 const NavigationContent = ({ show }: { show: boolean }) => {
   const [activeButton, setActiveButton] = React.useState('Weekly');
@@ -389,9 +390,9 @@ const NavigationContent = ({ show }: { show: boolean }) => {
         </Box>
         <HStack className="gap-6 md:mt-[34px] md:flex-row flex-col">
           <VStack className="gap-3 p-6 border border-dashed border-outline-100 rounded-lg md:flex-col flex-row">
-            <Spinner size="large" color="color-indigo-600" />
-            <Spinner size="large" color="color-emerald-600" />
-            <Spinner size="large" color="color-amber-600" />
+            <Spinner size="large" color={colors.indigo[600]} />
+            <Spinner size="large" color={colors.emerald[600]} />
+            <Spinner size="large" color={colors.amber[600]} />
           </VStack>
           <VStack className="gap-5">
             <Alert>

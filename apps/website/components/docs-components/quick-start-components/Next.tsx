@@ -11,12 +11,12 @@ function Next() {
     >
       <g filter="url(#filter0_ii_10256_68770)">
         <rect width={92} height={72} rx={8} fill="white" fillOpacity="0.06" />
-        <rect
+        {/* <rect
           width={92}
           height={72}
           rx={8}
           fill="url(#paint0_radial_10256_68770)"
-        />
+        /> */}
         <g clipPath="url(#clip0_10256_68770)">
           <path
             d="M56.5391 29.5892H67.6866V31.6467H63.2645V42.4712H61.0533V31.6467H56.5391V29.5892Z"
