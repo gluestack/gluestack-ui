@@ -19,7 +19,7 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
-  preload: true,
+  preload: false, // Only preload critical fonts
   fallback: [
     'system-ui',
     '-apple-system',
@@ -37,7 +37,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-plus-jakarta-sans',
-  preload: true,
+  preload: true, // Keep primary font preloaded
   fallback: [
     'system-ui',
     '-apple-system',
@@ -56,7 +56,7 @@ const roboto = Roboto({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-roboto',
-  preload: true,
+  preload: false, // Disable preload for non-critical fonts
   fallback: [
     'system-ui',
     '-apple-system',
@@ -73,7 +73,7 @@ const sourceCodePro = Source_Code_Pro({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-source-code-pro',
-  preload: true,
+  preload: false, // Disable preload for code font
   fallback: [
     'ui-monospace',
     'SFMono-Regular',
@@ -91,7 +91,7 @@ const spaceMono = Space_Mono({
   weight: ['400', '700'],
   display: 'swap',
   variable: '--font-space-mono',
-  preload: true,
+  preload: false, // Disable preload for monospace font
   fallback: [
     'ui-monospace',
     'SFMono-Regular',
@@ -135,6 +135,9 @@ export default function RootLayout({
         />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+        {/* Optimize resource loading hints */}
+        <meta name="resource-preload-policy" content="conservative" />
         <CanonicalLink />
         {/* Google Tag Manager */}
         <script
