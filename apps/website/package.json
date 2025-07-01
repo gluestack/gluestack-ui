@@ -28,6 +28,7 @@
     "@types/mdx": "^2.0.13",
     "app": "*",
     "axios": "^1.9.0",
+    "critters": "^0.0.25",
     "date-fns": "^4.1.0",
     "dom-helpers": "^5.2.1",
     "dotenv": "^16.5.0",

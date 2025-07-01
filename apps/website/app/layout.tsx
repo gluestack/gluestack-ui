@@ -37,7 +37,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-plus-jakarta-sans',
-  preload: true, // Keep primary font preloaded
+  preload: false, // Keep primary font preloaded
   fallback: [
     'system-ui',
     '-apple-system',
