@@ -19,7 +19,7 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
-  preload: false, // Only preload critical fonts
+  preload: false,
   fallback: [
     'system-ui',
     '-apple-system',
@@ -37,7 +37,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-plus-jakarta-sans',
-  preload: false, // Keep primary font preloaded
+  preload: false,
   fallback: [
     'system-ui',
     '-apple-system',
@@ -56,7 +56,7 @@ const roboto = Roboto({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-roboto',
-  preload: false, // Disable preload for non-critical fonts
+  preload: false,
   fallback: [
     'system-ui',
     '-apple-system',
@@ -73,7 +73,7 @@ const sourceCodePro = Source_Code_Pro({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-source-code-pro',
-  preload: false, // Disable preload for code font
+  preload: false,
   fallback: [
     'ui-monospace',
     'SFMono-Regular',
@@ -91,7 +91,7 @@ const spaceMono = Space_Mono({
   weight: ['400', '700'],
   display: 'swap',
   variable: '--font-space-mono',
-  preload: false, // Disable preload for monospace font
+  preload: false,
   fallback: [
     'ui-monospace',
     'SFMono-Regular',
