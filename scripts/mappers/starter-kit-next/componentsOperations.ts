@@ -10,7 +10,7 @@ const mapperConfig: MapperConfig = {
   destPath: path.resolve('apps/starter-kit-next/components/ui'),
   utilsSourcePath: path.resolve('src/utils/gluestack-utils'),
   utilsDestPath: path.resolve('apps/starter-kit-next/utils/gluestack-utils'),
-  ignoreFiles: ['docs', 'examples', 'dependencies.json'], // ignore files that are not comp
+  ignoreFiles: ['docs', 'examples', 'dependencies.json'], // ignore docs, examples and dependencies.json files
 };
 
 export const copyComponent = (component: string, event: string = 'added') => {
