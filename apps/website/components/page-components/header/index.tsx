@@ -30,8 +30,18 @@ import { UiDocSearch } from './Docsearch';
 import { LayoutContext } from '@/components/custom/layout/LayoutContext';
 
 // Updated Header component with internal state management
-const Header = () => {
-  const { isOpenSidebar, setIsOpenSidebar } = useContext(LayoutContext);
+const Header = ({
+  isOpenSidebar: propsIsOpenSidebar,
+  setIsOpenSidebar: propsSetIsOpenSidebar,
+}: {
+  isOpenSidebar?: boolean;
+  setIsOpenSidebar?: (value: boolean) => void;
+} = {}) => {
+  // Use props if available, otherwise fall back to context
+  const context = useContext(LayoutContext);
+  const isOpenSidebar = propsIsOpenSidebar ?? context.isOpenSidebar;
+  const setIsOpenSidebar = propsSetIsOpenSidebar ?? context.setIsOpenSidebar;
+
   const { colorMode, setColorMode }: any = useContext(ThemeContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname();

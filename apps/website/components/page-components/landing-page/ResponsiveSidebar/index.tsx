@@ -2,7 +2,7 @@ import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { HStack } from '@/components/ui/hstack';
-import Link from 'next/link';
+// import Link from 'next/link';
 import {
   headerItems,
   SidebarItemProps,
@@ -10,6 +10,7 @@ import {
 } from './sidebar-header-items';
 import { ThemeContext } from '@/utils/context/theme-context';
 import { useContext, useEffect } from 'react';
+import { Link } from '@/components/ui/link';
 
 const SidebarItem = ({
   title,
@@ -38,7 +39,7 @@ const SidebarSection = ({
   items,
   onItemClick,
 }: SidebarSectionProps & { onItemClick: () => void }) => (
-  <Box className="mb-2 flex-1">
+  <Box className="mb-2 ">
     <Text className="p-3.5 text-typography-900 font-semibold">{title}</Text>
     {items.map((item) => (
       <SidebarItem
@@ -56,7 +57,7 @@ const SidebarSection = ({
 
 const SidebarWithHeaders = ({ onItemClick }: { onItemClick: () => void }) => {
   return (
-    <Box className="w-full">
+    <Box className="w-full h-full">
       {headerItems.map((headerItem) => (
         <SidebarSection
           key={headerItem.title}
@@ -92,16 +93,16 @@ function ResponsiveSidebar({
 
   return (
     <>
-      <Box className=" w-full bg-background-0 lg:hidden z-50 overflow-y-auto h-[calc(100vh-60px)]">
-        <VStack className="pb-10 flex-grow gap-2 justify-between py-6 px-4">
+      <Box className="fixed top-16 left-0 w-full lg:hidden overflow-y-auto h-[calc(100vh-56px)] z-0">
+        <VStack className=" gap-2 px-4 min-h-fit pb-20">
           <SidebarWithHeaders onItemClick={() => setIsOpenSidebar(false)} />
-          <Box className="py-20 w-full">
+          <Box className="pb-10 w-full">
             <Link
               href="https://geekyants.com/hire?utm_source=gluestack.io&utm_medium=referral&utm_campaign=partner_site"
               className="w-full"
               onClick={() => setIsOpenSidebar(false)}
             >
-              <Box className="flex justify-center items-center px-4 py-2 bg-primary-500 rounded hover:bg-primary-600">
+              <Box className="flex-1 justify-center items-center px-4 py-2 bg-primary-500 rounded hover:bg-primary-600">
                 <Text className="font-normal leading-normal text-base text-typography-0">
                   Hire React Native Experts
                 </Text>
