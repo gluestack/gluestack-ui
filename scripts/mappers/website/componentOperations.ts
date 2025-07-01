@@ -13,7 +13,7 @@ const mapperConfig: MapperConfig = {
   destPath: path.resolve('apps/website/components/ui'),
   utilsSourcePath: path.resolve('src/utils/gluestack-utils'),
   utilsDestPath: path.resolve('apps/website/utils/gluestack-utils'),
-  ignoreFiles: ['docs', 'examples'],
+  ignoreFiles: ['docs', 'examples', 'dependencies.json'],
 };
 
 export const copyComponent = (component: string, event: string = 'added') => {
@@ -65,15 +65,23 @@ export const copyDocsComponents = (filePath: string) => {
 export const processSidebarFile = (filePath: string) => {
   const sourceSidebarPath = path.resolve('src/sidebar.json');
   const destSidebarPath = path.resolve('apps/website/sidebar.json');
-  const allComponentsPath = path.resolve('apps/website/components/page-components/all-components/index.tsx');
+  const allComponentsPath = path.resolve(
+    'apps/website/components/page-components/all-components/index.tsx'
+  );
   // Read and parse the JSON file
   const sidebar = fileOps.readJsonFile(sourceSidebarPath);
-  
-let components = getComponentsFromSidebar(sidebar).sort();
-components = components.map((component: string) => component.replace('-', '') + 'Component');
-const componentsNameList = getComponentsFromSidebar(sidebar).sort();
-const componentMap = createComponentMap(components,componentsNameList);
-const template = createAllComponentsTemplate(components, componentMap,componentsNameList);
+
+  let components = getComponentsFromSidebar(sidebar).sort();
+  components = components.map(
+    (component: string) => component.replace('-', '') + 'Component'
+  );
+  const componentsNameList = getComponentsFromSidebar(sidebar).sort();
+  const componentMap = createComponentMap(components, componentsNameList);
+  const template = createAllComponentsTemplate(
+    components,
+    componentMap,
+    componentsNameList
+  );
   // Proceed with copying the file
   copySpecialFile(sourceSidebarPath, destSidebarPath);
   fileOps.writeTextFile(allComponentsPath, template);
@@ -82,14 +90,14 @@ const template = createAllComponentsTemplate(components, componentMap,components
 const getComponentsFromSidebar = (sidebarData: any) => {
   // Find the Components section
   const componentsSection = sidebarData.navigation.sections.find(
-    (section: any) => section.title === "Components"
+    (section: any) => section.title === 'Components'
   );
 
   if (!componentsSection) return [];
 
   // Get all subsections that are of type "heading"
   const componentHeadings = componentsSection.subsections.filter(
-    (subsection: any) => subsection.type === "heading"
+    (subsection: any) => subsection.type === 'heading'
   );
 
   // Extract all component items from each heading
@@ -97,7 +105,7 @@ const getComponentsFromSidebar = (sidebarData: any) => {
     const componentItems = heading.items || [];
     const componentNames = componentItems.map((item: any) => {
       // Extract component name from path, e.g., "/ui/docs/components/button" -> "button"
-      const pathParts = item.path?.split("/") || [];
+      const pathParts = item.path?.split('/') || [];
       return pathParts[pathParts.length - 1];
     });
     return [...acc, ...componentNames];
@@ -105,18 +113,22 @@ const getComponentsFromSidebar = (sidebarData: any) => {
 
   // Filter out any empty or undefined values and components we don't want to show
   return components.filter(
-    (component: string) =>
-      component &&
-      component !== "bottomsheet"
+    (component: string) => component && component !== 'bottomsheet'
   );
 };
 
-const createComponentMap = (components: string[],componentsNameList: string[]) => {
+const createComponentMap = (
+  components: string[],
+  componentsNameList: string[]
+) => {
   return `
   
-    ${components.map((component,index) => `
-    import ${component} from './${componentsNameList[index]}'`).join('\n')}
+    ${components
+      .map(
+        (component, index) => `
+    import ${component} from './${componentsNameList[index]}'`
+      )
+      .join('\n')}
   
   `;
 };
-
