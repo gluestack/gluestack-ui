@@ -149,6 +149,13 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
   const [selectedSection, setSelectedSection] = useState<string>('Home');
   const pathname = usePathname();
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   // Find the parent section that contains the current pathname
   useEffect(() => {
     const findParentSection = (
@@ -183,7 +190,7 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
   );
 
   return (
-    <Box className="w-full dark:bg-black bg-white lg:hidden z-0 overflow-y-auto fixed h-[calc(100vh-64px)] top-16 left-0">
+    <Box className="w-full dark:bg-black bg-white lg:hidden z-0 overflow-y-auto fixed h-[calc(100vh-56px)] top-0 pt-16 left-0 scrollbar-hide">
       {/* Fixed navigation at top */}
       <div className="border-b border-outline-100 p-2">
         {navigation.sections.map((section, index) => (
