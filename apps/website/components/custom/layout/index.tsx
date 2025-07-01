@@ -36,12 +36,16 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <LayoutContext.Provider value={{ isOpenSidebar, setIsOpenSidebar }}>
     <div
-      // @ts-ignore
-      ref={docsLayoutRef}
-      className="bg-white dark:bg-black overflow-auto w-screen h-screen"
-      //to add handler to the container on scroll and update the active tab
-      id="layout-content"
-    >
+        // @ts-ignore
+        ref={docsLayoutRef}
+        className="bg-white dark:bg-black overflow-auto w-screen h-dvh scrollbar-hide"
+        //to add handler to the container on scroll and update the active tab
+        id="layout-content"
+        style={{
+          height: '100dvh', // Fallback for browsers that don't support dvh
+          minHeight: '-webkit-fill-available', // iOS Safari specific fix
+        }}
+      >
       <Header />
       <div
         className={`md:flex justify-between mx-auto ${
