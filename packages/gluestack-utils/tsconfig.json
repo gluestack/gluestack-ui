@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext",
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@common/*": ["src/common/*"],
+      "@aria/*": ["src/aria/*"],
+      "@nativewind-utils/*": ["src/nativewind-utils/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["lib", "node_modules"]
+} 

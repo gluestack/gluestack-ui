@@ -1,0 +1,38 @@
+{
+  "name": "@gluestack-ui-nightly/utils",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Utility functions and hooks for gluestack-ui",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "types": "lib/typescript/index.d.ts",
+  "react-native": "src/index.ts",
+  "source": "src/index.ts",
+  "files": [
+    "src",
+    "lib"
+  ],
+  "scripts": {
+    "clean": "rm -rf lib",
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "prepare": "yarn clean && yarn build"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.64.0",
+    "tailwindcss": ">=3.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-native": "^0.72.0",
+    "react": "^18.2.0",
+    "react-native": "^0.72.0",
+    "typescript": "^5.0.0",
+    "tailwindcss": "^3.3.0"
+  },
+  "dependencies": {
+    "react-aria": "^3.41.1",
+    "tailwind-variants": "0.1.14"
+  }
+}

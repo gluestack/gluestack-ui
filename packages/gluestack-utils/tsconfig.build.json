@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "outDir": "./lib/typescript",
+    "jsx": "react-jsx"
+  },
+  "exclude": ["**/__tests__", "**/__fixtures__", "**/__mocks__"]
+} 
