@@ -45,13 +45,30 @@ const componentAdder = async ({
       let requestedComponents = addAll
         ? await getAllComponents()
         : componentsToAdd;
-      const { hooks } = await checkComponentDependencies(requestedComponents);
+
+      const { hooks, components: additionalComponents } =
+        await checkComponentDependencies(requestedComponents);
       hooksToAdd = Array.from(hooks);
 
+      // Include additional components from dependencies.json files
+      const allComponents = [...requestedComponents, ...additionalComponents];
+      const uniqueComponents = Array.from(new Set(allComponents));
+
+      // Show user what additional components are being added
+      if (additionalComponents.length > 0) {
+        console.log(
+          `\n📦 \x1b[36mAdditional components found in dependencies:\x1b[0m`
+        );
+        additionalComponents.forEach((component) => {
+          console.log(`   • ${component}`);
+        });
+        console.log('');
+      }
+
       const updatedComponents =
-        !existingComponentsChecked && requestedComponents.length
-          ? await isComponentInProject(requestedComponents)
-          : requestedComponents;
+        !existingComponentsChecked && uniqueComponents.length
+          ? await isComponentInProject(uniqueComponents)
+          : uniqueComponents;
       const count = updatedComponents.length;
       await Promise.all(
         updatedComponents.map(async (component) => {
@@ -70,6 +87,15 @@ const componentAdder = async ({
             versionManager = await promptVersionManager();
           }
           await installDependencies(updatedComponents, versionManager);
+
+          // Show summary of what was added
+          console.log(
+            `\n✅ \x1b[32mSuccessfully added ${count} component${count === 1 ? '' : 's'}:\x1b[0m`
+          );
+          updatedComponents.forEach((component) => {
+            console.log(`   • ${component}`);
+          });
+
           log.success(
             `\x1b[32mDone!\x1b[0m Added new \x1b[1mgluestack-ui\x1b[0m ${count === 1 ? 'component' : 'components'} into project`
           );
@@ -176,6 +202,15 @@ const writeComponent = async (component: string, targetPath: string) => {
             ) {
               return false;
             }
+          }
+
+          // Skip dependencies.json file
+          if (
+            relativePath === '/dependencies.json' ||
+            relativePath === '\\dependencies.json' ||
+            relativePath === 'dependencies.json'
+          ) {
+            return false;
           }
 
           return true;
