@@ -1,5 +1,5 @@
 {
-  "name": "@gluestack-utils-nightly/utils",
+  "name": "@gluestack-ui-nightly/utils",
   "version": "0.1.0",
   "private": true,
   "description": "Utility functions and hooks for gluestack-ui",
@@ -25,8 +25,7 @@
     "clean": "rm -rf lib",
     "build": "tsc -p tsconfig.build.json",
     "watch": "tsc -p tsconfig.build.json --watch",
-    "link-local": "yarn link",
-    "dev": "yarn link-local && yarn watch",
+    "dev": "yarn prepare && yarn link && yarn watch",
     "prepare": "yarn clean && yarn build"
   },
   "peerDependencies": {

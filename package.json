@@ -20,7 +20,9 @@
     "sync:website:alt": "ts-node scripts/dev.ts --mapper=website --sync",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
-    "build:website": "cd apps/website && yarn build"
+    "build:website": "cd apps/website && yarn build",
+    "link-local": "cd packages/gluestack-utils && yarn dev && link-apps",
+    "link-apps": "cd apps/website && yarn link @gluestack-utils-nightly/utils && cd ../kitchen-sink && yarn link @gluestack-utils-nightly/utils"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
