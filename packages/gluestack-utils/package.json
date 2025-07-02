@@ -1,11 +1,20 @@
 {
-  "name": "@gluestack-ui-nightly/utils",
+  "name": "@gluestack-utils-nightly/utils",
   "version": "0.1.0",
   "private": true,
   "description": "Utility functions and hooks for gluestack-ui",
-  "main": "lib/commonjs/index.js",
-  "module": "lib/module/index.js",
-  "types": "lib/typescript/index.d.ts",
+  "type": "module",
+  "main": "./lib/esm/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/esm/index.d.ts",
+      "import": "./lib/esm/index.js",
+      "require": "./lib/esm/index.js"
+    }
+  },
+  "sideEffects": false,
   "react-native": "src/index.ts",
   "source": "src/index.ts",
   "files": [

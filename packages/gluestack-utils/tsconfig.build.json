@@ -3,8 +3,10 @@
   "compilerOptions": {
     "noEmit": false,
     "declaration": true,
-    "outDir": "./lib/commonjs",
-    "module": "commonjs",
+    "outDir": "./lib/esm",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es2015",
     "jsx": "react-jsx",
     "paths": {
       "react-native": ["./node_modules/react-native-web"]
