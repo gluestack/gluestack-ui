@@ -623,6 +623,12 @@
   dependencies:
     tslib "^2.8.0"
 
+"@gluestack-ui-nightly/utils@../../packages/gluestack-utils":
+  version "0.1.0"
+  dependencies:
+    react-aria "^3.41.1"
+    tailwind-variants "0.1.14"
+
 "@gorhom/bottom-sheet@^5.0.0-alpha.11":
   version "5.1.6"
   resolved "https://registry.npmjs.org/@gorhom/bottom-sheet/-/bottom-sheet-5.1.6.tgz#92365894ae4d4eefdbaa577408cfaf62463a9490"
@@ -7761,7 +7767,7 @@ re-resizable@^6.11.2:
   resolved "https://registry.npmjs.org/re-resizable/-/re-resizable-6.11.2.tgz#2e8f7119ca3881d5b5aea0ffa014a80e5c1252b3"
   integrity sha512-2xI2P3OHs5qw7K0Ud1aLILK6MQxW50TcO+DetD9eIV58j84TqYeHoZcL9H4GXFXXIh7afhH8mv5iUCXII7OW7A==
 
-react-aria@^3.39.0:
+react-aria@^3.39.0, react-aria@^3.41.1:
   version "3.41.1"
   resolved "https://registry.npmjs.org/react-aria/-/react-aria-3.41.1.tgz#7d6a97a1248d4647821e72da0023aab2715220bb"
   integrity sha512-5mujwnW6/NHvONDecb7DiWkzI27dzBO1auKt4KkgNuW+Awud1LCaK/NOlHp4xZl3fSfh1ROpdAKERHCh7nvAAQ==
@@ -8663,6 +8669,18 @@ tailwind-merge@3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/tailwind-merge/-/tailwind-merge-3.0.2.tgz#567eff76de12211e24dd909da0f5ed6f4f422b0c"
   integrity sha512-l7z+OYZ7mu3DTqrL88RiKrKIqO3NcpEO8V/Od04bNpvk0kiIFndGEoqfuzvj4yuhRkHKjRkII2z+KS2HfPcSxw==
+
+tailwind-merge@^1.13.2:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-1.14.0.tgz#e677f55d864edc6794562c63f5001f45093cdb8b"
+  integrity sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==
+
+tailwind-variants@0.1.14:
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/tailwind-variants/-/tailwind-variants-0.1.14.tgz#1c9d59b92f5c902e8157ee14256eb4b90d287963"
+  integrity sha512-qfOkSGP+cSolTTkJboldGmiM+w5uE77pazCRkwixEBsuaml9CmhN0E8qgH7QnZNmOTVSsgRK1tn/MsKOvOKVWA==
+  dependencies:
+    tailwind-merge "^1.13.2"
 
 tailwind-variants@^1.0.0:
   version "1.0.0"
