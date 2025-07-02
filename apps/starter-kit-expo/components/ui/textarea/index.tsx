@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createTextarea } from '@/components/ui/textarea/creator';
+import { createTextarea } from './creator';
 import { View, TextInput } from 'react-native';
 import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
 import {

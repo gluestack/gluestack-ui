@@ -8,7 +8,7 @@ import {
   useStyleContext,
 } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
-import { createSelect } from '@/components/ui/select/creator';
+import { createSelect } from './creator';
 import { cssInterop } from 'nativewind';
 import {
   Actionsheet,

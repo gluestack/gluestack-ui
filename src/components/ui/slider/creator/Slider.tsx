@@ -3,7 +3,7 @@ import { useSliderState } from '@react-stately/slider';
 import { useLayout } from '@/utils/gluestack-utils/hooks';
 import type { ISliderProps } from './types';
 import { SliderContext } from './Context';
-import { useSlider } from '@/components/ui/slider/aria';
+import { useSlider } from '../aria';
 import { useFormControlContext } from '@/components/ui/form-control/creator';
 
 function Slider<StyledSliderProps>(

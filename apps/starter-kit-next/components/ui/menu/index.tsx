@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createMenu } from '@/components/ui/menu/creator';
+import { createMenu } from './creator';
 import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
 import { cssInterop } from 'nativewind';
 import { Pressable, Text, View, ViewStyle } from 'react-native';

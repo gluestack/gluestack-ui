@@ -1,0 +1,8 @@
+{
+  "dependencies": {},
+  "devDependencies": {},
+  "components": [
+    "icon",
+    "form-control"
+  ]
+}

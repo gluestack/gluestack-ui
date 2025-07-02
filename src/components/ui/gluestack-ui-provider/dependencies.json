@@ -1,0 +1,8 @@
+{
+  "dependencies": {},
+  "devDependencies": {},
+  "components": [
+    "overlay",
+    "toast"
+  ]
+}

@@ -11,7 +11,7 @@ const mapperConfig: MapperConfig = {
   destPath: path.resolve('apps/kitchen-sink/components/ui'),
   utilsSourcePath: path.resolve('src/utils/gluestack-utils'),
   utilsDestPath: path.resolve('apps/kitchen-sink/utils/gluestack-utils'),
-  ignoreFiles: ['docs', 'examples'],
+  ignoreFiles: ['docs', 'examples', 'dependencies.json'],
 };
 
 export const copyComponent = (component: string, event: string = 'added') => {

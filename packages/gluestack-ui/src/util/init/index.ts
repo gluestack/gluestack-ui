@@ -109,7 +109,7 @@ const InitializeGlueStack = async ({
     );
 
     await addProvider(isNextjs15);
-    await addEssentialComponents(['icon', 'overlay', 'toast']);
+    await addEssentialComponents(['overlay', 'toast']);
     s.stop(`\x1b[32mProject configuration generated.\x1b[0m`);
     log.step(
       'Please refer the above link for more details --> \x1b[33mhttps://gluestack.io/ui/docs/home/overview/introduction \x1b[0m'

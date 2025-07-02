@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { useRadioGroup } from '@/components/ui/radio/aria';
+import { useRadioGroup } from '../aria';
 import { useRadioGroupState } from '@react-stately/radio';
 import { RadioGroupProvider } from './RadioGroupContext';
 import { useFormControlContext } from '@/components/ui/form-control/creator';
