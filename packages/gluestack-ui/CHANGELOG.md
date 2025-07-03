@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 0.7.27
+
+### Patch Changes
+
+- fix: ignored dependencies.json file in init
+
 ## 0.7.26
 
 ### Patch Changes

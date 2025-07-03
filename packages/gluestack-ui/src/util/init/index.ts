@@ -2,7 +2,7 @@ import os from 'os';
 import { config } from '../../config';
 import { promisify } from 'util';
 import { execSync } from 'child_process';
-import path, { join } from 'path';
+import path, { basename, join } from 'path';
 import { log, confirm, spinner } from '@clack/prompts';
 import fs, { copy, existsSync, writeFile } from 'fs-extra';
 import { RawConfig } from '../config/config-types';
@@ -79,12 +79,7 @@ const InitializeGlueStack = async ({
 
     console.log(`\n\x1b[1mInitializing gluestack-ui v2...\x1b[0m\n`);
     await cloneRepositoryAtRoot(join(_homeDir, config.gluestackDir));
-    const inputComponent = [
-      config.providerComponent,
-      'icon',
-      'overlay',
-      'toast',
-    ];
+    const inputComponent = [config.providerComponent, 'overlay', 'toast'];
     let additionalDependencies = await getProjectBasedDependencies(
       projectType,
       config.style
@@ -138,7 +133,32 @@ async function addProvider(isNextjs15: boolean | undefined) {
     );
 
     await fs.ensureDir(targetPath);
-    await fs.copy(sourcePath, targetPath);
+    await fs.copy(sourcePath, targetPath, {
+      overwrite: true,
+      filter: (src: string) => {
+        const relativePath = src.replace(sourcePath, '');
+
+        // Skip if the path starts with any of the ignored folders
+        for (const ignoreFolder of config.ignoreFolders) {
+          if (
+            relativePath.startsWith(`/${ignoreFolder}`) ||
+            relativePath.startsWith(`\\${ignoreFolder}`)
+          ) {
+            return false;
+          }
+        }
+
+        // Skip dependencies.json file
+        if (
+          relativePath.includes('dependencies.json') ||
+          basename(relativePath) === 'dependencies.json'
+        ) {
+          return false;
+        }
+
+        return true;
+      },
+    });
     if (isNextjs15) {
       const templatesPath = getTemplatesPath();
       const providerContent = await readFile(
@@ -186,6 +206,14 @@ async function addEssentialComponents(components: string[]) {
             ) {
               return false;
             }
+          }
+
+          // Skip dependencies.json file
+          if (
+            relativePath.includes('dependencies.json') ||
+            basename(relativePath) === 'dependencies.json'
+          ) {
+            return false;
           }
 
           return true;
