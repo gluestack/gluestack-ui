@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Animated, Dimensions, PanResponder } from 'react-native';
-import { mergeRefs } from '@/utils/gluestack-utils/common';
+import { mergeRefs } from '@gluestack-ui-nightly/utils/common';
 import { useActionsheetContent } from './ActionsheetContentContext';
 const windowHeight = Dimensions.get('window').height;
 export function ActionsheetDragIndicatorWrapper<T>(

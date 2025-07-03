@@ -9,9 +9,43 @@
   "types": "./lib/esm/index.d.ts",
   "exports": {
     ".": {
-      "types": "./lib/esm/index.d.ts",
       "import": "./lib/esm/index.js",
-      "require": "./lib/esm/index.js"
+      "types": "./lib/esm/index.d.ts"
+    },
+    "./hooks": {
+      "import": "./lib/esm/hooks/index.js",
+      "types": "./lib/esm/hooks/index.d.ts"
+    },
+    "./aria": {
+      "import": "./lib/esm/aria/index.js",
+      "types": "./lib/esm/aria/index.d.ts"
+    },
+    "./nativewind-utils": {
+      "import": "./lib/esm/nativewind-utils/index.js",
+      "types": "./lib/esm/nativewind-utils/index.d.ts"
+    },
+    "./common": {
+      "import": "./lib/esm/common/index.js",
+      "types": "./lib/esm/common/index.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./lib/esm/index.d.ts"
+      ],
+      "aria": [
+        "./lib/esm/aria/index.d.ts"
+      ],
+      "hooks": [
+        "./lib/esm/hooks/index.d.ts"
+      ],
+      "nativewind-utils": [
+        "./lib/esm/nativewind-utils/index.d.ts"
+      ],
+      "common": [
+        "./lib/esm/common/index.d.ts"
+      ]
     }
   },
   "sideEffects": false,
@@ -40,11 +74,13 @@
     "react": "^18.2.0",
     "react-native": "^0.72.0",
     "react-native-web": "^0.19.0",
-    "typescript": "^5.0.0",
-    "tailwindcss": "^3.3.0"
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.0.0"
   },
   "dependencies": {
+    "dom-helpers": "^6.0.1",
     "react-aria": "^3.41.1",
+    "react-stately": "^3.39.0",
     "tailwind-variants": "0.1.14"
   }
 }
