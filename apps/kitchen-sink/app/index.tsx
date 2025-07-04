@@ -123,7 +123,7 @@ export default function ComponentList() {
 
   return (
     <SafeAreaView className="flex-1 bg-background-0">
-      <ScrollView className="flex-1">
+      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         <Header />
         <VStack className="p-5 md:px-20">
           {filteredComponents.map((category) => (
