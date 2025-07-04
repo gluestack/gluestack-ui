@@ -110,7 +110,7 @@ export const ComponentPreviewer = ({
 
   return (
     <Box className="p-5 min-h-fit rounded-lg m-3 mt-5 border border-outline-100 gap-5 w-full self-center flex-1">
-      <Box className="border-b border-outline-100 pb-2">
+      <Box className={title && `border-b border-outline-100 pb-2`}>
         <Text className="text-typography-900 text-lg font-semibold pb-2">
           {title}
         </Text>
