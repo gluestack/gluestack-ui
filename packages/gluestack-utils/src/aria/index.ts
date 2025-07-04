@@ -44,3 +44,6 @@ export {
     useMapDomPropsToRN,
     mapDomPropsToRN,
 } from './utils';
+
+// Toggle
+export { useToggle } from './toggle';

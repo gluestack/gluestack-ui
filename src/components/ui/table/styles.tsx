@@ -1,5 +1,5 @@
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
-import { isWeb } from '@/utils/gluestack-utils/nativewind-utils/IsWeb';
+import { isWeb } from '@gluestack-ui-nightly/utils/nativewind-utils';
 
 const captionTableStyle = isWeb ? 'caption-bottom' : '';
 

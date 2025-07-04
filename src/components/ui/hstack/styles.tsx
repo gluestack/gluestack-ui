@@ -1,4 +1,4 @@
-import { isWeb } from '@/utils/gluestack-utils/nativewind-utils/IsWeb';;
+import { isWeb } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 
 const baseStyle = isWeb
