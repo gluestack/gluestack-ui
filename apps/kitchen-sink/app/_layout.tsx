@@ -55,6 +55,7 @@ export default function RootLayout() {
               },
               headerShadowVisible: false,
               contentStyle: {
+                backgroundColor: colorMode === 'light' ? '#FFFFFF' : '#121212',
                 borderTopWidth: 1,
                 borderTopColor: colorMode === 'light' ? '#E6E6E6' : '#414141',
               },
