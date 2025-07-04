@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef, useState } from 'react';
-import { useKeyboardDismissable } from '@/utils/gluestack-utils/hooks';
+import { useKeyboardDismissable } from '@gluestack-ui-nightly/utils/aria';
 import { usePopover } from './PopoverContext';
 import { Platform, AccessibilityInfo, Keyboard, View } from 'react-native';
 import { findNodeHandle, mergeRefs } from '@gluestack-ui-nightly/utils/common';
