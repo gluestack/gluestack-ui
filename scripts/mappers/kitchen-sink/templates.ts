@@ -20,10 +20,9 @@ export const wrappedComponentTemplate = (processedContent: string) => {
   return `
 import React from 'react';
 import { ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 export default function ComponentExamples() {
   return (
-        <ScrollView className="bg-background-0 flex-1" contentContainerClassName="px-3 pb-6 web:flex-col">
+        <ScrollView className="bg-background-0 flex-1" contentContainerClassName="px-3 pb-6 web:flex-col md:max-w-[1230px] w-full mx-auto">
       ${processedContent.trim()}
         </ScrollView>
   );
