@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
 import { AlertDialogContext } from './Context';
 import { Platform, AccessibilityInfo, Keyboard } from 'react-native';
-import { FocusScope } from '@/utils/gluestack-utils/aria/focus';
+import { FocusScope } from '@gluestack-ui-nightly/utils/aria';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { useDialog } from '@/utils/gluestack-utils/aria/dialog';
-import { mergeRefs, findNodeHandle } from '@/utils/gluestack-utils/common';
+import { useDialog } from '@gluestack-ui-nightly/utils/aria';
+import { mergeRefs, findNodeHandle } from '@gluestack-ui-nightly/utils/common';
 
 const AlertDialogContent = (
   StyledAlertDialogContent: any,
