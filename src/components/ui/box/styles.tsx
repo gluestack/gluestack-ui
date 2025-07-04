@@ -1,4 +1,4 @@
-import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
+import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { isWeb } from '@/utils/gluestack-utils/nativewind-utils/IsWeb';
 
 const baseStyle = isWeb

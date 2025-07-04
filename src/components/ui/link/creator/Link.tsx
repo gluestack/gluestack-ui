@@ -1,11 +1,11 @@
 import React, { forwardRef, useMemo } from 'react';
 import { useLink } from './UseLink';
-import { mergeRefs } from '@/utils/gluestack-utils/common';
+import { mergeRefs } from '@gluestack-ui-nightly/utils/common';
 
-import { composeEventHandlers } from '@/utils/gluestack-utils/common';
+import { composeEventHandlers } from '@gluestack-ui-nightly/utils/common';
 
-import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus';
-import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions';
+import { useFocusRing, useFocus } from '@gluestack-ui-nightly/utils/aria';
+import { useHover, usePress } from '@gluestack-ui-nightly/utils/aria';
 import { LinkContext } from './Context';
 
 export const Link = <LinkProps,>(StyledLink: React.ComponentType<LinkProps>) =>

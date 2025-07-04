@@ -1,7 +1,7 @@
 import type { RefObject } from 'react';
 import type { MenuTriggerState } from '@react-stately/menu';
 import type { AccessibilityProps, PressableProps } from 'react-native';
-import { useOverlayTrigger } from '@/utils/gluestack-utils/aria/overlays';
+import { useOverlayTrigger } from '@gluestack-ui-nightly/utils/aria';
 
 interface MenuTriggerAriaProps {
   /** The type of menu that the menu trigger opens. */

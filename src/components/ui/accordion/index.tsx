@@ -2,8 +2,8 @@
 import React from 'react';
 import { createAccordion } from '@/components/ui/accordion/creator';
 import { View, Pressable, Text, Platform, TextProps } from 'react-native';
-import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
+import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,

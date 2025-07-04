@@ -1,6 +1,6 @@
 import type { Key, RefObject } from 'react';
 import type { TreeState } from '@react-stately/tree';
-import { usePress } from '@/utils/gluestack-utils/aria/interactions';
+import { usePress } from '@gluestack-ui-nightly/utils/aria';
 
 interface MenuItemAria {
   /** Props for the menu item element. */

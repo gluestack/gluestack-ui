@@ -1,7 +1,7 @@
 import React, { forwardRef, useContext } from 'react';
 import { CheckboxProvider } from './CheckboxProvider';
-import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions';
-import { useFocus } from '@/utils/gluestack-utils/aria/focus';
+import { useHover, usePress } from '@gluestack-ui-nightly/utils/aria';
+import { useFocus } from '@gluestack-ui-nightly/utils/aria';
 import { useToggleState } from '@react-stately/toggle';
 import { useCheckbox, useCheckboxGroupItem } from '../aria';
 import { CheckboxGroupContext } from './CheckboxGroup';
@@ -10,7 +10,7 @@ import {
   mergeRefs,
   stableHash,
   composeEventHandlers,
-} from '@/utils/gluestack-utils/common';
+} from '@gluestack-ui-nightly/utils/common';
 import { useFormControlContext } from '@/components/ui/form-control/creator';
 
 export const Checkbox = (StyledCheckbox: any) =>

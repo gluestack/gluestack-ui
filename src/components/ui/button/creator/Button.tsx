@@ -1,7 +1,7 @@
-import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus';
+import { useFocusRing, useFocus } from '@gluestack-ui-nightly/utils/aria';
 import React, { forwardRef, useMemo } from 'react';
-import { composeEventHandlers } from '@/utils/gluestack-utils/common/composeEventHandlers';
-import { useHover, usePress } from '@/utils/gluestack-utils/aria/interactions';
+import { composeEventHandlers } from '@gluestack-ui-nightly/utils/common';
+import { useHover, usePress } from '@gluestack-ui-nightly/utils/aria';
 import { ButtonContext } from './Context';
 
 import type { IButtonProps } from './types';

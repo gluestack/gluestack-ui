@@ -2,13 +2,13 @@
 import React from 'react';
 import { createFab } from '@/components/ui/fab/creator';
 import { Pressable, Text } from 'react-native';
-import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
+import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
 } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
 
 const SCOPE = 'FAB';

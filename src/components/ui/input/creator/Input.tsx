@@ -2,7 +2,7 @@ import React, { forwardRef, useMemo } from 'react';
 import { Platform } from 'react-native';
 import { useFormControl } from '@/components/ui/form-control/creator';
 import { useInput } from './InputContext';
-import { mergeRefs } from '@/utils/gluestack-utils/common';
+import { mergeRefs } from '@gluestack-ui-nightly/utils/common';
 
 export const Input = (StyledInput: any) =>
   forwardRef(

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { PressEvents, usePress } from '@/utils/gluestack-utils/aria/interactions';
+import { PressEvents, usePress } from '@gluestack-ui-nightly/utils/aria';
 import { AccessibilityProps, PressableProps } from 'react-native';
 import { mergeProps } from '@react-aria/utils';
 

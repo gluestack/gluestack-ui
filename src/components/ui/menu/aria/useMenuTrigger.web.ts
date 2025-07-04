@@ -1,7 +1,7 @@
 import { RefObject } from 'react';
 import type { MenuTriggerState } from '@react-stately/menu';
 import { useMenuTrigger as useMenuTriggerWeb } from '@react-aria/menu';
-import { mapDomPropsToRN } from '@/utils/gluestack-utils/aria/utils';
+import { mapDomPropsToRN } from '@gluestack-ui-nightly/utils/aria';
 
 interface MenuTriggerAriaProps {
   /** The type of menu that the menu trigger opens. */

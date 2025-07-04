@@ -1,6 +1,6 @@
 import type { CheckboxGroupState } from '@react-stately/checkbox';
 import { mergeProps, filterDOMProps } from '@react-aria/utils';
-import { getLabel } from '@/utils/gluestack-utils/aria/utils';
+import { getLabel } from '@gluestack-ui-nightly/utils/aria';
 import { AriaCheckboxGroupProps } from '@react-types/checkbox';
 
 interface CheckboxGroupAria {

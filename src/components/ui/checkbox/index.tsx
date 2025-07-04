@@ -3,7 +3,7 @@ import React from 'react';
 import { createCheckbox } from './creator';
 import { View, Pressable, Text, Platform } from 'react-native';
 import type { TextProps, ViewProps } from 'react-native';
-import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
+import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
   PrimitiveIcon,
   IPrimitiveIcon,
@@ -14,7 +14,7 @@ import {
   useStyleContext,
 } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
 
 const IndicatorWrapper = React.forwardRef<
   React.ComponentRef<typeof View>,
