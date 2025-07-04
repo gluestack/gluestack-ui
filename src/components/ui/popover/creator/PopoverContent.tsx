@@ -4,11 +4,11 @@ import React, { forwardRef, useState } from 'react';
 import { useKeyboardDismissable } from '@/utils/gluestack-utils/hooks';
 import { usePopover } from './PopoverContext';
 import { Platform, AccessibilityInfo, Keyboard, View } from 'react-native';
-import { findNodeHandle, mergeRefs } from '@/utils/gluestack-utils/common';
-import { useOverlayPosition } from '@/utils/gluestack-utils/aria/overlays';
+import { findNodeHandle, mergeRefs } from '@gluestack-ui-nightly/utils/common';
+import { useOverlayPosition } from '@gluestack-ui-nightly/utils/aria';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { FocusScope as FocusScopeAria } from '@/utils/gluestack-utils/aria/focus';
-import { useDialog } from '@/utils/gluestack-utils/aria/dialog';
+import { FocusScope as FocusScopeAria } from '@gluestack-ui-nightly/utils/aria';
+import { useDialog } from '@gluestack-ui-nightly/utils/aria';
 import { PopoverContentProvider } from './PopoverContext';
 import { getContainerStyle } from './utils';
 

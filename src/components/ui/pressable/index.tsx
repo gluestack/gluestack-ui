@@ -3,9 +3,9 @@ import React from 'react';
 import { createPressable } from './creator';
 import { Pressable as RNPressable } from 'react-native';
 
-import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
+import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { withStyleContext } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
 
 const UIPressable = createPressable({
   Root: withStyleContext(RNPressable),

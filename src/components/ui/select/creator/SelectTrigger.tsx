@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { SelectContext } from './SelectContext';
-import { mergeRefs } from '@/utils/gluestack-utils/common';
+import { mergeRefs } from '@gluestack-ui-nightly/utils/common';
 import { Keyboard } from 'react-native';
 
 export const SelectTrigger = (StyledSelectTrigger: any) =>

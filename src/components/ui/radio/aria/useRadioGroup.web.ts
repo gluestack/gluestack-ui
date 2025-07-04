@@ -2,7 +2,7 @@ import { useRadioGroup as useRadioGroupWeb } from '@react-aria/radio';
 import { RadioGroupState } from '@react-stately/radio';
 import { mergeProps } from '@react-aria/utils';
 import { AriaRadioGroupProps } from '@react-types/radio';
-import { mapDomPropsToRN } from '@/utils/gluestack-utils/aria/utils';
+import { mapDomPropsToRN } from '@gluestack-ui-nightly/utils/aria';
 
 interface RadioGroupAria {
   /** Props for the radio group wrapper element. */

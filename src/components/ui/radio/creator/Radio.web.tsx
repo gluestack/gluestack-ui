@@ -2,14 +2,14 @@
 import React, { forwardRef, memo } from 'react';
 import { RadioProvider } from './RadioProvider';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
-import { useFocusRing } from '@/utils/gluestack-utils/aria/focus';
-import { useHover } from '@/utils/gluestack-utils/aria/interactions';
+import { useFocusRing } from '@gluestack-ui-nightly/utils/aria';
+import { useHover } from '@gluestack-ui-nightly/utils/aria';
 import { useRadio } from '../aria';
 import { useRadioGroup } from './RadioGroupContext';
 import {
   stableHash,
   composeEventHandlers,
-} from '@/utils/gluestack-utils/common';
+} from '@gluestack-ui-nightly/utils/common';
 import { useFormControlContext } from '@/components/ui/form-control/creator';
 
 const RadioComponent = memo(

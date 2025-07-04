@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { SliderContext } from './Context';
-import { mergeRefs } from '@/utils/gluestack-utils/common';
-import { useHover } from '@/utils/gluestack-utils/aria/interactions';
+import { mergeRefs } from '@gluestack-ui-nightly/utils/common';
+import { useHover } from '@gluestack-ui-nightly/utils/aria';
 
 function SliderTrack<StyledSliderTrackProps>(
   StyledSliderTrack: React.ComponentType<StyledSliderTrackProps>

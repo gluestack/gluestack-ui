@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
+import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
 import {
   withStyleContext,
   useStyleContext,
 } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { createSelect } from './creator';
 import { cssInterop } from 'nativewind';
 import {

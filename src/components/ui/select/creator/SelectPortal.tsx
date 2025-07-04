@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { SelectContext, SelectPortalContext } from './SelectContext';
 import { StyleSheet, Platform } from 'react-native';
-import { mergeRefs } from '@/utils/gluestack-utils/common';
+import { mergeRefs } from '@gluestack-ui-nightly/utils/common';
 const PLACEHOLDER_OPTION = '__GluestackPlaceholder__';
 
 export const SelectPortal = (StyledSelectPortal: any) =>
