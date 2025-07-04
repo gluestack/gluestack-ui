@@ -51,7 +51,7 @@ const ComponentCard = ({ component, onPress }: any) => {
 const Header = () => {
   const { colorMode }: any = useContext(ColorModeContext);
   return (
-    <HStack className="flex-1 bg-background-50 max-w-[1730px] w-full mx-auto justify-between">
+    <HStack className="flex-1 bg-background-50 w-full mx-auto justify-between">
       <VStack className="w-full  md:max-w-[630px] lg:max-w-[400px] xl:max-w-[480px] mx-5 md:ml-8 mb-8 mt-10 lg:my-[44px] xl:ml-[80px] flex-1">
         <HStack
           className="rounded-full bg-background-0 py-4 px-5 mb-7 md:mb-9 lg:mb-[80px] xl:mb-[132px] items-center native:max-w-[250px] w-fit"
@@ -123,9 +123,9 @@ export default function ComponentList() {
 
   return (
     <SafeAreaView className="flex-1 bg-background-0">
-      <ScrollView className="flex-1">
+      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         <Header />
-        <VStack className="p-5">
+        <VStack className="p-5 md:px-20">
           {filteredComponents.map((category) => (
             <Box
               key={category.category}
@@ -137,7 +137,7 @@ export default function ComponentList() {
               <Grid
                 className="gap-5"
                 _extra={{
-                  className: 'grid-cols-2 md:grid-cols-4',
+                  className: 'grid-cols-2 md:grid-cols-4 xl:grid-cols-6',
                 }}
               >
                 {category.components.map((component) => (
