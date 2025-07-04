@@ -12,12 +12,12 @@ export default [
     name: 'kitchen-sink',
     mapper: kitchenSinkMapper,
   },
-  {
-    name: 'starter-kit-expo',
-    mapper: starterKitExpoMapper,
-  },
-  {
-    name: 'starter-kit-next',
-    mapper: starterKitNextMapper,
-  },
+  // {
+  //   name: 'starter-kit-expo',
+  //   mapper: starterKitExpoMapper,
+  // },
+  // {
+  //   name: 'starter-kit-next',
+  //   mapper: starterKitNextMapper,
+  // },
 ];

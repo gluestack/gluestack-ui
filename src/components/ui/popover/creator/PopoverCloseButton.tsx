@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
-import { usePress, useHover } from '@/utils/gluestack-utils/aria/interactions';
-import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus';
-import { composeEventHandlers } from '@/utils/gluestack-utils/common';
+import { usePress, useHover } from '@gluestack-ui-nightly/utils/aria';
+import { useFocusRing, useFocus } from '@gluestack-ui-nightly/utils/aria';
+import { composeEventHandlers } from '@gluestack-ui-nightly/utils/common';
 import { usePopoverContent } from './PopoverContext';
 
 const PopoverCloseButton = (StyledPopoverCloseButton: any) =>
