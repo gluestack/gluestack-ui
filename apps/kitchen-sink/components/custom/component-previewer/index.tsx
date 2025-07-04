@@ -116,11 +116,11 @@ export const ComponentPreviewer = ({
         </Text>
       </Box>
       <Box className="md:flex-row">
-      <Center className="min-h-[100px] md:border-r border-outline-100 flex-1 py-5 w-full">
+      <Center className={`min-h-[100px] ${Object.keys(props).length > 0 ? 'md:border-r' : ''} border-outline-100 flex-1 py-5 w-full`}>
           {children(selectedValues)}
         </Center>
         {Object.keys(props).length > 0 && (
-          <Box className="flex-1 web:items-start web:justify-center w-full web:items-center min-h-fit border-t md:border-t-0">
+          <Box className="flex-1 web:items-start web:justify-center w-full web:items-center min-h-fit border-t border-outline-100 md:border-t-0">
     
             {Object.keys(props).map((key) => (
               <Box
