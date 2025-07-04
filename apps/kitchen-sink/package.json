@@ -14,6 +14,7 @@
   "dependencies": {
     "@expo/html-elements": "^0.10.1",
     "@expo/vector-icons": "^14.1.0",
+    "@gluestack-ui-nightly/utils": "file:.yalc/@gluestack-ui-nightly/utils",
     "@legendapp/motion": "^2.4.0",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",

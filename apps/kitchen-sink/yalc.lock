@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@gluestack-ui-nightly/utils": {
+      "signature": "9d28ca051d584d5864a897bf009e2766",
+      "file": true
+    }
+  }
+}

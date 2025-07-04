@@ -1,7 +1,6 @@
 {
   "name": "@gluestack-ui-nightly/utils",
   "version": "0.1.0",
-  "private": true,
   "description": "Utility functions and hooks for gluestack-ui",
   "type": "module",
   "main": "./lib/esm/index.js",
@@ -59,8 +58,9 @@
     "clean": "rm -rf lib",
     "build": "tsc -p tsconfig.build.json",
     "watch": "tsc -p tsconfig.build.json --watch",
-    "dev": "yarn prepare && yarn link && yarn watch",
-    "prepare": "yarn clean && yarn build"
+    "dev": "nodemon --watch src --ext ts,tsx,js,jsx,json --exec 'yarn build && yalc push --private'",
+    "prepare": "yarn clean && yarn build",
+    "watch:push": "concurrently \"tsc -p tsconfig.build.json --watch\" \"yalc publish --watch --push\""
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -71,6 +71,7 @@
   "devDependencies": {
     "@types/react": "^18.2.0",
     "@types/react-native": "^0.72.0",
+    "concurrently": "^9.2.0",
     "react": "^18.2.0",
     "react-native": "^0.72.0",
     "react-native-web": "^0.19.0",
