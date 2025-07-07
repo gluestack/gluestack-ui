@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import gluestackPlugin from './utils/gluestack-utils/nativewind-utils/tailwind-plugin';
+import gluestackPlugin from '@gluestack-ui-nightly/utils/nativewind-utils';
 
 /** @type {import('tailwindcss').Config} */
 export default {

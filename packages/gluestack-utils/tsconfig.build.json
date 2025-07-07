@@ -1,13 +1,13 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "jsx": "preserve", 
     "noEmit": false,
     "declaration": true,
     "outDir": "./lib/esm",
     "module": "esnext",
     "moduleResolution": "node",
     "target": "es2015",
-    "jsx": "react-jsx",
     "paths": {
       "react-native": ["./node_modules/react-native-web"]
     }
