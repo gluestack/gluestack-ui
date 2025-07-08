@@ -475,9 +475,9 @@
     "@babel/plugin-transform-modules-commonjs" "^7.27.1"
     "@babel/plugin-transform-typescript" "^7.27.1"
 
-"@babel/runtime@^7.18.6", "@babel/runtime@^7.25.0", "@babel/runtime@^7.6.2", "@babel/runtime@^7.8.7":
+"@babel/runtime@^7.18.6", "@babel/runtime@^7.25.0", "@babel/runtime@^7.27.1", "@babel/runtime@^7.6.2", "@babel/runtime@^7.8.7":
   version "7.27.6"
-  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.27.6.tgz#ec4070a04d76bae8ddbb10770ba55714a417b7c6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.27.6.tgz#ec4070a04d76bae8ddbb10770ba55714a417b7c6"
   integrity sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==
 
 "@babel/template@^7.25.0", "@babel/template@^7.27.2", "@babel/template@^7.3.3":
@@ -623,10 +623,14 @@
   dependencies:
     tslib "^2.8.0"
 
-"@gluestack-ui-nightly/utils@../../packages/gluestack-utils":
+"@gluestack-ui-nightly/utils@*":
   version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui-nightly/utils/-/utils-0.1.0.tgz#915187f9e010595010c25b05df5f7832f58cd3ee"
+  integrity sha512-c3lol3Y6yd0cegGrt3HAIhDRHGe+MxulA/sSC6jtEBGtemSwFbsiuH1SO8G96fRwKmnP1EEmd5sJ6ECTwiOrXQ==
   dependencies:
+    dom-helpers "^6.0.1"
     react-aria "^3.41.1"
+    react-stately "^3.39.0"
     tailwind-variants "0.1.14"
 
 "@gorhom/bottom-sheet@^5.0.0-alpha.11":
@@ -1627,7 +1631,7 @@
     "@react-types/shared" "^3.30.0"
     "@swc/helpers" "^0.5.0"
 
-"@react-aria/checkbox@3.2.1", "@react-aria/checkbox@^3.15.7":
+"@react-aria/checkbox@3.2.1":
   version "3.2.1"
   resolved "https://registry.npmjs.org/@react-aria/checkbox/-/checkbox-3.2.1.tgz#493d9d584b4db474645a4565c4f899ee3a579f07"
   integrity sha512-XnypnlVIfhB3CD7eSjSds8hNkzHgnhu0t48I1D0jYdL1O6tQC4UytPdIqlemRYBVHDloZkWerbjenpHnxhv8iA==
@@ -1639,6 +1643,23 @@
     "@react-stately/checkbox" "^3.0.1"
     "@react-stately/toggle" "^3.2.1"
     "@react-types/checkbox" "^3.2.1"
+
+"@react-aria/checkbox@^3.15.7":
+  version "3.15.7"
+  resolved "https://registry.yarnpkg.com/@react-aria/checkbox/-/checkbox-3.15.7.tgz#8c0e4c877693a5c0ab8ff329a40968aef312d708"
+  integrity sha512-L64van+K2ZEmCpx/KeZGHoxdxQvVHgfusFRFYZbh3e7YEtDcShvUrTDVKmZkINqnmuhGTDolFDQq+E8fWEpcRg==
+  dependencies:
+    "@react-aria/form" "^3.0.18"
+    "@react-aria/interactions" "^3.25.3"
+    "@react-aria/label" "^3.7.19"
+    "@react-aria/toggle" "^3.11.5"
+    "@react-aria/utils" "^3.29.1"
+    "@react-stately/checkbox" "^3.6.15"
+    "@react-stately/form" "^3.1.5"
+    "@react-stately/toggle" "^3.8.5"
+    "@react-types/checkbox" "^3.9.5"
+    "@react-types/shared" "^3.30.0"
+    "@swc/helpers" "^0.5.0"
 
 "@react-aria/color@^3.0.9":
   version "3.0.9"
@@ -4419,9 +4440,9 @@ cssstyle@^2.3.0:
   dependencies:
     cssom "~0.3.6"
 
-csstype@^3.0.2:
+csstype@^3.0.2, csstype@^3.1.3:
   version "3.1.3"
-  resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
 
 dashdash@^1.12.0:
@@ -4535,6 +4556,14 @@ dom-helpers@^5.2.1:
   dependencies:
     "@babel/runtime" "^7.8.7"
     csstype "^3.0.2"
+
+dom-helpers@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-6.0.1.tgz#f56400eb45770e3dd4fa014513739e6b670e6362"
+  integrity sha512-IKySryuFwseGkrCA/pIqlwUPOD50w1Lj/B2Yief3vBOP18k5y4t+hTqKh55gULDVeJMRitcozve+g/wVFf4sFQ==
+  dependencies:
+    "@babel/runtime" "^7.27.1"
+    csstype "^3.1.3"
 
 dom-serializer@^2.0.0:
   version "2.0.0"
@@ -7963,9 +7992,9 @@ react-refresh@^0.14.0:
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.14.2.tgz#3833da01ce32da470f1f936b9d477da5c7028bf9"
   integrity sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==
 
-react-stately@^3.37.0:
+react-stately@^3.37.0, react-stately@^3.39.0:
   version "3.39.0"
-  resolved "https://registry.npmjs.org/react-stately/-/react-stately-3.39.0.tgz#9eafdf40d6b08ee7b9f8724342b15b2e27154f90"
+  resolved "https://registry.yarnpkg.com/react-stately/-/react-stately-3.39.0.tgz#9eafdf40d6b08ee7b9f8724342b15b2e27154f90"
   integrity sha512-/8JC3Tmj7G8fHn47F88c6t5kFNhQAufwqjEKxYeNi7TPz9UL+35BeoH1poMmDHJsPz8qM/z4sWMzaW5AwYK8lQ==
   dependencies:
     "@react-stately/calendar" "^3.8.2"
@@ -8506,11 +8535,6 @@ statuses@~1.5.0:
   resolved "https://registry.npmjs.org/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==
 
-std@0.1.x:
-  version "0.1.40"
-  resolved "https://registry.npmjs.org/std/-/std-0.1.40.tgz#3678a5f65094d9e1b6b5e26edbfc0212b8342b71"
-  integrity sha512-wUf57hkDGCoVShrhPA8Q7lAg2Qosk+FaMlECmAsr1A4/rL2NRXFHQGBcgMUFKVkPEemJFW9gzjCQisRty14ohg==
-
 streamsearch@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/streamsearch/-/streamsearch-1.1.0.tgz#404dd1e2247ca94af554e841a8ef0eaa238da764"
@@ -8870,13 +8894,6 @@ uglify-js@^3.1.4, uglify-js@x:
   version "3.19.3"
   resolved "https://registry.npmjs.org/uglify-js/-/uglify-js-3.19.3.tgz#82315e9bbc6f2b25888858acd1fff8441035b77f"
   integrity sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==
-
-ui@*:
-  version "0.2.4"
-  resolved "https://registry.npmjs.org/ui/-/ui-0.2.4.tgz#39b7c8086b2b1b64a72c6437c38ddc7c4e4e836d"
-  integrity sha512-se2D+frb/i6JwFc7j72IEa0JADF8lfgc6ivOigaYkXHOuZRBtWe8R7UZ2YiXcbJ1dYNsjq40dn39rlNRxmVdPw==
-  dependencies:
-    std "0.1.x"
 
 undici-types@~6.21.0:
   version "6.21.0"

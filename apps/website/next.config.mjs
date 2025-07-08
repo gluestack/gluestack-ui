@@ -798,6 +798,7 @@ const nextConfig = withExpo({
     'react-native-css-interop',
     '@expo/html-elements',
     'react-native-safe-area-context',
+    '@gluestack-ui-nightly/utils',
     // Add other packages that need transpiling
   ],
   images: {
