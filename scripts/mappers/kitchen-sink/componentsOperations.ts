@@ -18,9 +18,9 @@ export const copyComponent = (component: string, event: string = 'added') => {
   processComponentChange(component, event, mapperConfig);
 };
 
-export const processNonComponentFile = (filePath: string) => {
-  copyUtils(mapperConfig);
-};
+// export const processNonComponentFile = (filePath: string) => {
+//   copyUtils(mapperConfig);
+// };
 
 export const processSidebarFile = (filePath: string) => {
   const sourcePath = path.resolve('src/sidebar.json');

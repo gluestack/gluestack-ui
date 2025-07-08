@@ -6,7 +6,7 @@ export default {
     docsOperations.copyComponentsDocs(component);
   },
   nonComponent: function (path: string) {
-    componentOperations.processNonComponentFile(path);
+    // componentOperations.processNonComponentFile(path);
     if (path === 'src/sidebar.json') {
       componentOperations.processSidebarFile(path);
     }

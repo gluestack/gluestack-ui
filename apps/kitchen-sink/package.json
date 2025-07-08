@@ -9,12 +9,11 @@
     "ios": "DARK_MODE=media expo start --ios",
     "web": "DARK_MODE=media expo start --web",
     "lint": "expo lint",
-    "build": "cd ../.. && yarn install && yarn sync:kitchen-sink && cd apps/kitchen-sink && expo export --platform web --output-dir dist"
+    "build": "cd ../.. && yarn install && yarn sync:kitchen-sink && cd apps/kitchen-sink && yarn remove @gluestack-ui-nightly/utils && expo export --platform web --output-dir dist"
   },
   "dependencies": {
     "@expo/html-elements": "^0.10.1",
     "@expo/vector-icons": "^14.1.0",
-    "@gluestack-ui-nightly/utils": "file:.yalc/@gluestack-ui-nightly/utils",
     "@legendapp/motion": "^2.4.0",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
