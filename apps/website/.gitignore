@@ -47,4 +47,7 @@ app/ui/docs/guides/
 app/ui/docs/home/
 app/ui/docs/hooks/
 app/ui/docs/mcp-server/
+
+# yalc
 .yalc/
+yalc.lock
