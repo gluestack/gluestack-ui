@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createButton } from './creator';
+import { createButton } from '@gluestack-ui-nightly/core/button/creator';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
   withStyleContext,

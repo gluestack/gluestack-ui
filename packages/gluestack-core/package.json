@@ -21,6 +21,14 @@
     "./button/creator": {
       "import": "./lib/esm/button/creator/index.jsx",
       "types": "./lib/esm/button/creator/index.d.ts"
+    },
+    "./accordion/aria": {
+      "import": "./lib/esm/accordion/aria/index.js",
+      "types": "./lib/esm/accordion/aria/index.d.ts"
+    },
+    "./accordion/creator": {
+      "import": "./lib/esm/accordion/creator/index.jsx",
+      "types": "./lib/esm/accordion/creator/index.d.ts"
     }
   },
   "typesVersions": {
