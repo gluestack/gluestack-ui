@@ -3,7 +3,7 @@
       "baseUrl": ".",
       "declaration": true,
       "esModuleInterop": true,
-      "jsx": "react",
+      "jsx": "preserve",
       "lib": ["esnext", "dom"],
       "module": "esnext",
       "moduleResolution": "node",

@@ -9,6 +9,33 @@
     "watch": "tsc -p tsconfig.build.json --watch",
     "dev": "nodemon --watch src --ext ts,tsx,js,jsx,json --exec 'yarn build && yalc push --private'"
   },
+  "exports": {
+    ".": {
+      "import": "./lib/esm/index.js",
+      "types": "./lib/esm/index.d.ts"
+    },
+    "./button/aria": {
+      "import": "./lib/esm/button/aria/index.js",
+      "types": "./lib/esm/button/aria/index.d.ts"
+    },
+    "./button/creator": {
+      "import": "./lib/esm/button/creator/index.jsx",
+      "types": "./lib/esm/button/creator/index.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./lib/esm/index.d.ts"
+      ],
+      "./button/aria": [
+        "./lib/esm/button/aria/index.d.ts"
+      ],
+      "./button/creator": [
+        "./lib/esm/button/creator/index.d.ts"
+      ]
+    }
+  },
   "dependencies": {
     "@gluestack-ui-nightly/utils": "*"
   },
