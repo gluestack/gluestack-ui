@@ -29,6 +29,10 @@
     "./accordion/creator": {
       "import": "./lib/esm/accordion/creator/index.jsx",
       "types": "./lib/esm/accordion/creator/index.d.ts"
+    },
+    "./alert/creator": {
+      "import": "./lib/esm/alert/creator/index.jsx",
+      "types": "./lib/esm/alert/creator/index.d.ts"
     }
   },
   "typesVersions": {
