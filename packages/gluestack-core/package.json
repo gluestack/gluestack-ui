@@ -1,0 +1,28 @@
+{
+  "name": "@gluestack-ui-nightly/core",
+  "version": "1.0.0",
+  "main": "lib/esm/index.js",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf lib",
+    "build": "tsc -p tsconfig.build.json",
+    "watch": "tsc -p tsconfig.build.json --watch",
+    "dev": "nodemon --watch src --ext ts,tsx,js,jsx,json --exec 'yarn build && yalc push --private'"
+  },
+  "dependencies": {
+    "@gluestack-ui-nightly/utils": "*"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.64.0",
+    "react-native-web": ">=0.19.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-native": "^0.72.0",
+    "react": "^18.2.0",
+    "react-native": "^0.72.0",
+    "react-native-web": "^0.19.0",
+    "typescript": "^5.8.3"
+  }
+}

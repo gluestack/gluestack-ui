@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "declaration": true,
+      "esModuleInterop": true,
+      "jsx": "react",
+      "lib": ["esnext", "dom"],
+      "module": "esnext",
+      "moduleResolution": "node",
+      "noEmit": true,
+      "strict": true,
+      "target": "esnext",
+      "skipLibCheck": true,
+      "paths": {
+        "@/*": ["src/*"],
+      }
+    },
+    "include": ["src"],
+    "exclude": ["lib", "node_modules"]
+  } 
