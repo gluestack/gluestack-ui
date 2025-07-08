@@ -46,9 +46,9 @@ export const deleteComponentDocs = (component: string) => {
   }
 };
 
-export const processNonComponentFile = (srcPath: string) => {
-  copyUtils(mapperConfig);
-};
+// export const processNonComponentFile = (srcPath: string) => {
+//   copyUtils(mapperConfig);
+// };
 
 export const copyDocsComponents = (filePath: string) => {
   const packagesDir = path.resolve('src/docs-components');
