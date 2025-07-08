@@ -790,7 +790,7 @@ const nextConfig = withExpo({
     optimizeCss: true,
   },
   transpilePackages: [
-    // you need to list `react-native` because `react-native-web` is aliased to `react-native`
+    // you need to list `react-native` because `react-native-web` `@gluestack-ui-nightly/utils` is aliased to `react-native`.
     'react-native',
     'react-native-web',
     'ui',
