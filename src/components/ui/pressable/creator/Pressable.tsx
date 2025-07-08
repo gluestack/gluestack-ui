@@ -1,4 +1,4 @@
-import { useFocusRing, useFocus } from '@/utils/gluestack-utils/aria/focus';
+import { useFocusRing, useFocus } from '@gluestack-ui-nightly/utils/aria';
 import React, { forwardRef } from 'react';
 import type { PressableProps } from 'react-native';
 import { useHover, usePress } from '@gluestack-ui-nightly/utils/aria';

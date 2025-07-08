@@ -1,7 +1,7 @@
 import { useCheckboxGroup as useCheckboxGroupWeb } from '@react-aria/checkbox';
 import { AriaCheckboxGroupProps } from '@react-types/checkbox';
 import { CheckboxGroupState } from '@react-stately/checkbox';
-import { mapDomPropsToRN } from '@/utils/gluestack-utils/aria/utils';
+import { mapDomPropsToRN } from '@gluestack-ui-nightly/utils/aria';
 
 interface CheckboxGroupAria {
   /** Props for the checkbox group wrapper element. */

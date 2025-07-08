@@ -6,6 +6,9 @@
   "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "import": "./lib/esm/index.js",

@@ -15,7 +15,7 @@ import {
 import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
-import { withStyleContext } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
+import { withStyleContext } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import {
   Motion,

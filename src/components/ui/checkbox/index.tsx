@@ -12,7 +12,7 @@ import {
 import {
   withStyleContext,
   useStyleContext,
-} from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
+} from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
 

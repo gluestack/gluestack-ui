@@ -2,12 +2,12 @@
 import React from 'react';
 import { createTextarea } from './creator';
 import { View, TextInput } from 'react-native';
-import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
+import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
+} from '@gluestack-ui-nightly/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
 
 const SCOPE = 'TEXTAREA';
 const UITextarea = createTextarea({

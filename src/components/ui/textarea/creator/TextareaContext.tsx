@@ -1,4 +1,4 @@
-import { createContext } from '@/utils/gluestack-utils/common';
+import { createContext } from '@gluestack-ui-nightly/utils/common';
 import type { TextareaContext } from './types';
 
 export const [TextareaProvider, useTextarea] =

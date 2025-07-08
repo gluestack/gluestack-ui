@@ -1,7 +1,7 @@
 {
   "args": {},
   "reactLive": {
-    "useMediaQuery": "@/utils/gluestack-utils/hooks/use-media-query",
+    "useMediaQuery": "@gluestack-ui-nightly/utils/hooks",
     "Box": "@/components/ui/box",
     "Text": "@/components/ui/text",
     "Icon": "@/components/ui/icon",
