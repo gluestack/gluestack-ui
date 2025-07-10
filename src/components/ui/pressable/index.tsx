@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createPressable } from './creator';
+import { createPressable } from '@gluestack-ui-nightly/core/pressable/creator';
 import { Pressable as RNPressable } from 'react-native';
 
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
