@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createInput } from './creator';
+import { createInput } from '@gluestack-ui-nightly/core/input/creator';
 import { View, Pressable, TextInput } from 'react-native';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
@@ -9,7 +9,7 @@ import {
 } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
-import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui-nightly/core/icon/creator';
 
 const SCOPE = 'INPUT';
 

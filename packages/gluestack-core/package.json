@@ -53,8 +53,15 @@
     "./fab/creator": {
       "import": "./lib/esm/fab/creator/index.jsx",
       "types": "./lib/esm/fab/creator/index.d.ts"
+    },
+    "./form-control/creator": {
+      "import": "./lib/esm/form-control/creator/index.jsx",
+      "types": "./lib/esm/form-control/creator/index.d.ts"
+    },
+    "./input/creator": {
+      "import": "./lib/esm/input/creator/index.jsx",
+      "types": "./lib/esm/input/creator/index.d.ts"
     }
-      
   },
   "typesVersions": {
     "*": {
@@ -81,8 +88,13 @@
       ],
       "./fab/creator": [
         "./lib/esm/fab/creator/index.d.ts"
+      ],
+      "./form-control/creator": [
+        "./lib/esm/form-control/creator/index.d.ts"
+      ],
+      "./input/creator": [
+        "./lib/esm/input/creator/index.d.ts"
       ]
-
     }
   },
   "dependencies": {

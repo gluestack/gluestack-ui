@@ -1,7 +1,7 @@
 'use client';
 import { Text, View } from 'react-native';
 import React from 'react';
-import { createFormControl } from './creator';
+import { createFormControl } from '@gluestack-ui-nightly/core/form-control/creator';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
   withStyleContext,
@@ -9,7 +9,7 @@ import {
 } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
-import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui-nightly/core/icon/creator';
 
 const SCOPE = 'FORM_CONTROL';
 
