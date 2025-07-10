@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createProgress } from './creator';
+import { createProgress } from '@gluestack-ui-nightly/core/progress/creator';
 import { View } from 'react-native';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
