@@ -49,6 +49,10 @@
     "./checkbox/aria": {
       "import": "./lib/esm/checkbox/aria/index.js",
       "types": "./lib/esm/checkbox/aria/index.d.ts"
+    },
+    "./fab/creator": {
+      "import": "./lib/esm/fab/creator/index.jsx",
+      "types": "./lib/esm/fab/creator/index.d.ts"
     }
       
   },
@@ -74,6 +78,9 @@
       ],
       "./checkbox/aria": [
         "./lib/esm/checkbox/aria/index.d.ts"
+      ],
+      "./fab/creator": [
+        "./lib/esm/fab/creator/index.d.ts"
       ]
 
     }

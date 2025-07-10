@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createFab } from '@/components/ui/fab/creator';
+import { createFab } from '@gluestack-ui-nightly/core/fab/creator';
 import { Pressable, Text } from 'react-native';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
