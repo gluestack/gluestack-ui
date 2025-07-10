@@ -38,11 +38,18 @@
       "import": "./lib/esm/avatar/creator/index.jsx",
       "types": "./lib/esm/avatar/creator/index.d.ts"
     },
-    "./badge/creator": {
-      "import": "./lib/esm/badge/creator/index.jsx",
-      "types": "./lib/esm/badge/creator/index.d.ts"
+    "./icon/creator": {
+      "import": "./lib/esm/icon/creator/index.jsx",
+      "types": "./lib/esm/icon/creator/index.d.ts"
+    },
+    "./checkbox/creator": {
+      "import": "./lib/esm/checkbox/creator/index.js",
+      "types": "./lib/esm/checkbox/creator/index.d.ts"
+    },
+    "./checkbox/aria": {
+      "import": "./lib/esm/checkbox/aria/index.js",
+      "types": "./lib/esm/checkbox/aria/index.d.ts"
     }
-    
       
   },
   "typesVersions": {
@@ -59,8 +66,14 @@
       "./avatar/creator": [
         "./lib/esm/avatar/creator/index.d.ts"
       ],
-      "./badge/creator": [
-        "./lib/esm/badge/creator/index.d.ts"
+      "./icon/creator": [
+        "./lib/esm/icon/creator/index.d.ts"
+      ],
+      "./checkbox/creator": [
+        "./lib/esm/checkbox/creator/index.d.ts"
+      ],
+      "./checkbox/aria": [
+        "./lib/esm/checkbox/aria/index.d.ts"
       ]
 
     }

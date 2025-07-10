@@ -1,6 +1,6 @@
 'use client';
-import React from 'react';
-import { createCheckbox } from './creator';
+  import React from 'react';
+  import { createCheckbox } from '@gluestack-ui-nightly/core/checkbox/creator';
 import { View, Pressable, Text, Platform } from 'react-native';
 import type { TextProps, ViewProps } from 'react-native';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
@@ -8,7 +8,7 @@ import {
   PrimitiveIcon,
   IPrimitiveIcon,
   UIIcon,
-} from '@/components/ui/icon/creator';
+} from '@gluestack-ui-nightly/core/icon/creator';
 import {
   withStyleContext,
   useStyleContext,
