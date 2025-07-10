@@ -251,10 +251,6 @@ type IGridItemProps = ViewProps &
 
 const GridItem = forwardRef<React.ComponentRef<typeof View>, IGridItemProps>(
   function GridItem({ className, _extra, ...props }, ref) {
-    const [flexBasisValue, setFlexBasisValue] = useState<
-      number | string | null
-    >('auto');
-
     const {
       calculatedWidth,
       numColumns,
@@ -269,7 +265,7 @@ const GridItem = forwardRef<React.ComponentRef<typeof View>, IGridItemProps>(
       generateResponsiveColSpans({ gridItemClassName: gridItemClass })
     ) ?? 1) as number;
 
-    useEffect(() => {
+    const flexBasisValue = useMemo(() => {
       if (
         !flexDirection?.includes('column') &&
         calculatedWidth &&
@@ -291,18 +287,17 @@ const GridItem = forwardRef<React.ComponentRef<typeof View>, IGridItemProps>(
             ? 2
             : rowColsCount - 1);
 
-        const flexBasisVal =
+        return (
           Math.min(
             (((calculatedWidth - gutterOffset) * responsiveColSpan) /
               numColumns /
               calculatedWidth) *
-              100,
-            100
-          ) + '%';
-
-        setFlexBasisValue(flexBasisVal);
+            100,
+            100,
+          ) + '%'
+        );
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+      return 'auto';
     }, [
       calculatedWidth,
       responsiveColSpan,
@@ -310,6 +305,8 @@ const GridItem = forwardRef<React.ComponentRef<typeof View>, IGridItemProps>(
       columnGap,
       gap,
       flexDirection,
+      itemsPerRow,
+      props?.index,
     ]);
 
     return (
