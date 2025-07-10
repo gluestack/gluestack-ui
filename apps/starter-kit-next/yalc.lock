@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "packages": {
+    "@gluestack-nightly/ui-next-adapter": {
+      "signature": "d9f60932dcb8f013965babfc05c569f5"
+    },
+    "@gluestack-ui-nightly/utils": {
+      "signature": "40003f8412a12bb4808908d7c940c98b"
+    }
+  }
+}

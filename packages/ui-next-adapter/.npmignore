@@ -1,0 +1,9 @@
+examples/
+*.log
+.DS_Store
+.env*
+coverage/
+.nyc_output/
+src/
+tests/
+.github/
