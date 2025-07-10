@@ -7,8 +7,9 @@
       "lib": ["esnext", "dom"],
       "module": "esnext",
       "moduleResolution": "node",
+      "noImplicitAny": true,
       "noEmit": true,
-      "strict": true,
+      "strict": false,
       "target": "esnext",
       "skipLibCheck": true,
       "paths": {

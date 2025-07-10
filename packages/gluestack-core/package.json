@@ -33,7 +33,17 @@
     "./alert/creator": {
       "import": "./lib/esm/alert/creator/index.jsx",
       "types": "./lib/esm/alert/creator/index.d.ts"
+    },
+    "./avatar/creator": {
+      "import": "./lib/esm/avatar/creator/index.jsx",
+      "types": "./lib/esm/avatar/creator/index.d.ts"
+    },
+    "./badge/creator": {
+      "import": "./lib/esm/badge/creator/index.jsx",
+      "types": "./lib/esm/badge/creator/index.d.ts"
     }
+    
+      
   },
   "typesVersions": {
     "*": {
@@ -45,11 +55,19 @@
       ],
       "./button/creator": [
         "./lib/esm/button/creator/index.d.ts"
+      ],
+      "./avatar/creator": [
+        "./lib/esm/avatar/creator/index.d.ts"
+      ],
+      "./badge/creator": [
+        "./lib/esm/badge/creator/index.d.ts"
       ]
+
     }
   },
   "dependencies": {
-    "@gluestack-ui-nightly/utils": "*"
+    "@gluestack-ui-nightly/utils": "*",
+    "react-native-svg": "^15.12.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

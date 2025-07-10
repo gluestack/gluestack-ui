@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createAvatar } from '@/components/ui/avatar/creator';
+import { createAvatar } from '@gluestack-ui-nightly/core/avatar/creator';
 
 import { View, Text, Image, Platform } from 'react-native';
 
