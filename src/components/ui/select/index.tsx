@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
-import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui-nightly/core/icon/creator';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
-import { createSelect } from './creator';
+import { createSelect } from '@gluestack-ui-nightly/core/select/creator';
 import { cssInterop } from 'nativewind';
 import {
   Actionsheet,

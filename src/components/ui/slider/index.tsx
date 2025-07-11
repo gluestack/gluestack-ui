@@ -1,5 +1,5 @@
 'use client';
-import { createSlider } from './creator';
+import { createSlider } from '@gluestack-ui-nightly/core/slider/creator';
 import { Pressable } from 'react-native';
 import { View } from 'react-native';
 import React from 'react';
