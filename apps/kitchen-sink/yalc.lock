@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "@gluestack-ui-nightly/core": {
-      "signature": "3f22c22d86442da5eb27fab19fef30ee"
+      "signature": "99e69ee111f8ccf28404a9750268d99b"
     },
     "@gluestack-ui-nightly/utils": {
       "signature": "31020bcf24dca11ff777df3eb5ae2920"

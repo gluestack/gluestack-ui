@@ -109,14 +109,6 @@
     "./switch/aria": {
       "import": "./lib/esm/switch/aria/index.js",
       "types": "./lib/esm/switch/aria/index.d.ts"
-    },
-    "./vstack/creator": {
-      "import": "./lib/esm/vstack/creator/index.jsx",
-      "types": "./lib/esm/vstack/creator/index.d.ts"
-    },
-    "./hstack/creator": {
-      "import": "./lib/esm/hstack/creator/index.jsx",
-      "types": "./lib/esm/hstack/creator/index.d.ts"
     }
     
   },
@@ -187,12 +179,6 @@
       ],
       "./switch/aria": [
         "./lib/esm/switch/aria/index.d.ts"
-      ],
-      "./vstack/creator": [
-        "./lib/esm/vstack/creator/index.d.ts"
-      ],
-      "./hstack/creator": [
-        "./lib/esm/hstack/creator/index.d.ts"
       ]
     }
   },
