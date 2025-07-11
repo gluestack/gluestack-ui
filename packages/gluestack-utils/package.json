@@ -86,5 +86,18 @@
     "react-aria": "^3.41.1",
     "react-stately": "^3.39.0",
     "tailwind-variants": "0.1.14"
-  }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "expo",
+    "nextjs",
+    "cross-platform",
+    "utilities",
+    "hooks",
+    "aria"
+  ]
 }

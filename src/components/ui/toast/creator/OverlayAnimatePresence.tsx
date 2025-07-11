@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ExitAnimationContext } from '@/components/ui/overlay/creator';
+import { ExitAnimationContext } from '@gluestack-ui-nightly/core/overlay/creator';
 import React, { forwardRef } from 'react';
 import { Animated } from 'react-native';
 

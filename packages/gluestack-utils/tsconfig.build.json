@@ -1,16 +1,31 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "jsx": "preserve", 
+    "jsx": "preserve",
     "noEmit": false,
     "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "outDir": "./lib/esm",
     "module": "esnext",
     "moduleResolution": "node",
     "target": "es2015",
+    "removeComments": false,
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "paths": {
       "react-native": ["./node_modules/react-native-web"]
-    }
+    },
+    "skipLibCheck": true,
   },
-  "exclude": ["**/__tests__", "**/__fixtures__", "**/__mocks__"]
-} 
+  "exclude": [
+    "**/__tests__", 
+    "**/__fixtures__", 
+    "**/__mocks__",
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/examples/**",
+    "**/docs/**"
+  ]
+}
