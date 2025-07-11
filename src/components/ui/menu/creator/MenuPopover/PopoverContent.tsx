@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { useKeyboardDismissable } from '@gluestack-ui-nightly/utils/hooks';
+import { useKeyboardDismissable } from '@gluestack-ui-nightly/utils/aria';
 import { usePopover } from './PopoverContext';
 import { AccessibilityInfo, View } from 'react-native';
 import { mergeRefs, findNodeHandle } from '@gluestack-ui-nightly/utils/common';
