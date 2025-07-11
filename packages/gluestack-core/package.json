@@ -87,9 +87,38 @@
       "types": "./lib/esm/radio/aria/index.d.ts"
     },
     "./select/creator": {
-      "import": "./lib/esm/select/creator/index.jsx",
+      "import": "./lib/esm/select/creator/index.js",
       "types": "./lib/esm/select/creator/index.d.ts"
+    },
+    "./spinner/creator": {
+      "import": "./lib/esm/spinner/creator/index.jsx",
+      "types": "./lib/esm/spinner/creator/index.d.ts"
+    },
+    "./slider/creator": {
+      "import": "./lib/esm/slider/creator/index.jsx",
+      "types": "./lib/esm/slider/creator/index.d.ts"
+    },
+    "./textarea/creator": {
+      "import": "./lib/esm/textarea/creator/index.jsx",
+      "types": "./lib/esm/textarea/creator/index.d.ts"
+    },
+    "./switch/creator": {
+      "import": "./lib/esm/switch/creator/index.jsx",
+      "types": "./lib/esm/switch/creator/index.d.ts"
+    },
+    "./switch/aria": {
+      "import": "./lib/esm/switch/aria/index.js",
+      "types": "./lib/esm/switch/aria/index.d.ts"
+    },
+    "./vstack/creator": {
+      "import": "./lib/esm/vstack/creator/index.jsx",
+      "types": "./lib/esm/vstack/creator/index.d.ts"
+    },
+    "./hstack/creator": {
+      "import": "./lib/esm/hstack/creator/index.jsx",
+      "types": "./lib/esm/hstack/creator/index.d.ts"
     }
+    
   },
   "typesVersions": {
     "*": {
@@ -143,6 +172,27 @@
       ],
       "./select/creator": [
         "./lib/esm/select/creator/index.d.ts"
+      ],
+      "./spinner/creator": [
+        "./lib/esm/spinner/creator/index.d.ts"
+      ],
+      "./slider/creator": [
+        "./lib/esm/slider/creator/index.d.ts"
+      ],
+      "./textarea/creator": [
+        "./lib/esm/textarea/creator/index.d.ts"
+      ],
+      "./switch/creator": [
+        "./lib/esm/switch/creator/index.d.ts"
+      ],
+      "./switch/aria": [
+        "./lib/esm/switch/aria/index.d.ts"
+      ],
+      "./vstack/creator": [
+        "./lib/esm/vstack/creator/index.d.ts"
+      ],
+      "./hstack/creator": [
+        "./lib/esm/hstack/creator/index.d.ts"
       ]
     }
   },

@@ -10,7 +10,7 @@ import {
 } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { H3 } from '@expo/html-elements';
 import { cssInterop } from 'nativewind';
-import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui-nightly/core/icon/creator';
 
 const SCOPE = 'ACCORDION';
 /** Styles */
