@@ -352,13 +352,14 @@ const ButtonIcon = React.forwardRef<
     size: parentSize,
     action: parentAction,
   } = useStyleContext(SCOPE);
+  const parentVariants = { variant: parentVariant, action: parentAction };
 
   if (typeof size === 'number') {
     return (
       <UIButton.Icon
         ref={ref}
         {...props}
-        className={buttonIconStyle({ class: className })}
+        className={buttonIconStyle({ parentVariants, class: className })}
         size={size}
       />
     );
@@ -370,7 +371,7 @@ const ButtonIcon = React.forwardRef<
       <UIButton.Icon
         ref={ref}
         {...props}
-        className={buttonIconStyle({ class: className })}
+        className={buttonIconStyle({ parentVariants, class: className })}
       />
     );
   }
@@ -380,8 +381,7 @@ const ButtonIcon = React.forwardRef<
       className={buttonIconStyle({
         parentVariants: {
           size: parentSize,
-          variant: parentVariant,
-          action: parentAction,
+          ...parentVariants
         },
         size,
         class: className,

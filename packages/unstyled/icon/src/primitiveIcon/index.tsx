@@ -46,7 +46,7 @@ export const PrimitiveIcon = React.forwardRef<
 
     let colorProps = {};
     if (fill) {
-      colorProps = { ...colorProps, fill: fill };
+      colorProps = { ...colorProps, fill: fill === 'currentColor' ? color : fill };
     }
     if (stroke !== 'currentColor') {
       colorProps = { ...colorProps, stroke: stroke };

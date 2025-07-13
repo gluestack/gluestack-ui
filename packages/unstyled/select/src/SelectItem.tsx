@@ -13,8 +13,10 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
         // isHovered,
         // isInvalid,
         label,
+        description,
         value,
-        textStyle,
+        labelTextStyle,
+        descriptionTextStyle,
         ...props
       }: any,
       ref?: any
@@ -44,8 +46,13 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
             dataSet={{
               checked: activeValue == value ? 'true' : 'false',
             }}
+            style={{
+              flexDirection: 'column',
+              alignItems: 'flex-start'
+            }}
           >
-            <StyledSelectItemText {...textStyle}>{label}</StyledSelectItemText>
+            <StyledSelectItemText {...labelTextStyle}>{label}</StyledSelectItemText>
+            {!!description && <StyledSelectItemText style={{ fontFamily: undefined }} size='xs' {...descriptionTextStyle}>{description}</StyledSelectItemText>}
           </StyledSelectItem>
         );
       }
