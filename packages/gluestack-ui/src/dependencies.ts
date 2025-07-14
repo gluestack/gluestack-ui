@@ -1,4 +1,7 @@
 import { config } from './config';
+import fs from 'fs-extra';
+import { join } from 'path';
+import os from 'os';
 
 export interface Dependency {
   [key: string]: string;
@@ -13,6 +16,8 @@ export interface ComponentConfig {
 export interface Dependencies {
   [key: string]: ComponentConfig;
 }
+
+const _homeDir = os.homedir();
 
 const projectBasedDependencies: Dependencies = {
   nextjs: {
@@ -90,16 +95,43 @@ async function getProjectBasedDependencies(
   }
 }
 
-// Get dependencies for a component (simplified version without external config)
+// Get dependencies for a component by reading its dependencies.json file
 const getComponentDependencies = async (
   componentName: string
 ): Promise<ComponentConfig> => {
-  return {
-    dependencies: {},
-    devDependencies: {},
-    additionalComponents: [],
-    hooks: [],
-  };
+  try {
+    const dependenciesPath = join(
+      _homeDir,
+      config.gluestackDir,
+      config.componentsResourcePath,
+      componentName,
+      'dependencies.json'
+    );
+
+    if (fs.existsSync(dependenciesPath)) {
+      const dependenciesContent = await fs.readJSON(dependenciesPath);
+      return {
+        dependencies: dependenciesContent.dependencies || {},
+        devDependencies: dependenciesContent.devDependencies || {},
+        additionalComponents: dependenciesContent.components || [],
+        hooks: dependenciesContent.hooks || [],
+      };
+    }
+
+    return {
+      dependencies: {},
+      devDependencies: {},
+      additionalComponents: [],
+      hooks: [],
+    };
+  } catch (error) {
+    return {
+      dependencies: {},
+      devDependencies: {},
+      additionalComponents: [],
+      hooks: [],
+    };
+  }
 };
 
 export { getComponentDependencies, getProjectBasedDependencies };

@@ -48,7 +48,6 @@ const getAllComponents = async (): Promise<string[]> => {
 
 interface AdditionalDependencies {
   components: string[];
-  hooks: string[];
 }
 
 async function checkComponentDependencies(
@@ -56,25 +55,35 @@ async function checkComponentDependencies(
 ): Promise<AdditionalDependencies> {
   const additionalDependencies: AdditionalDependencies = {
     components: [],
-    hooks: [],
   };
 
-  for (const component of components) {
-    const dependencyConfig = await getComponentDependencies(component);
-    // Add additional components
-    dependencyConfig.additionalComponents?.forEach((additionalComponent) => {
-      if (!additionalDependencies.components.includes(additionalComponent)) {
-        additionalDependencies.components.push(additionalComponent);
-      }
-    });
+  const processedComponents = new Set<string>();
 
-    // Add hooks
-    dependencyConfig.hooks?.forEach((hook) => {
-      if (!additionalDependencies.hooks.includes(hook)) {
-        additionalDependencies.hooks.push(hook);
+  const processComponent = async (component: string) => {
+    if (processedComponents.has(component)) {
+      return;
+    }
+
+    processedComponents.add(component);
+    const dependencyConfig = await getComponentDependencies(component);
+
+    // Add additional components
+    if (dependencyConfig.additionalComponents) {
+      for (const additionalComponent of dependencyConfig.additionalComponents) {
+        if (!additionalDependencies.components.includes(additionalComponent)) {
+          additionalDependencies.components.push(additionalComponent);
+          // Recursively process dependencies of this component
+          await processComponent(additionalComponent);
+        }
       }
-    });
+    }
+  };
+
+  // Process all requested components
+  for (const component of components) {
+    await processComponent(component);
   }
+
   return additionalDependencies;
 }
 
@@ -300,8 +309,14 @@ const installDependencies = async (
     };
     const { install, devFlag } = commands[versionManager];
 
-    const installCommand = `${install} ${generateInstallCommand(dependenciesToInstall.dependencies, '')}`;
-    const devInstallCommand = `${install} ${generateInstallCommand(dependenciesToInstall.devDependencies, devFlag)}`;
+    const installCommand = `${install} ${generateInstallCommand(
+      dependenciesToInstall.dependencies,
+      ''
+    )}`;
+    const devInstallCommand = `${install} ${generateInstallCommand(
+      dependenciesToInstall.devDependencies,
+      devFlag
+    )}`;
 
     const s = spinner();
     s.start(
@@ -352,7 +367,9 @@ const installDependencies = async (
     } catch (err) {
       s.stop(`\x1b[31mFailed to install dependencies.\x1b[0m`);
       log.error(
-        `\x1b[31mError installing dependencies: ${(err as Error).message}\x1b[0m`
+        `\x1b[31mError installing dependencies: ${
+          (err as Error).message
+        }\x1b[0m`
       );
       log.warning(`\x1b[33mPlease run the following commands manually:\x1b[0m`);
       if (Object.keys(dependenciesToInstall.dependencies).length > 0) {

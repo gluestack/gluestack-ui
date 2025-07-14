@@ -173,24 +173,19 @@ async function addEssentialComponents(components: string[]) {
       );
 
       await fs.ensureDir(targetPath);
-      await fs.copy(sourcePath, targetPath, {
-        overwrite: true,
-        filter: (src: string) => {
-          const relativePath = src.replace(sourcePath, '');
 
-          // Skip if the path starts with any of the ignored folders
-          for (const ignoreFolder of config.ignoreFolders) {
-            if (
-              relativePath.startsWith(`/${ignoreFolder}`) ||
-              relativePath.startsWith(`\\${ignoreFolder}`)
-            ) {
-              return false;
-            }
-          }
+      // Copy only files from the root directory, excluding subdirectories and dependencies.json
+      const files = await fs.readdir(sourcePath, { withFileTypes: true });
 
-          return true;
-        },
-      });
+      for (const file of files) {
+        if (file.isFile() && file.name !== 'dependencies.json') {
+          await fs.copy(
+            join(sourcePath, file.name),
+            join(targetPath, file.name),
+            { overwrite: true }
+          );
+        }
+      }
     }
     log.step(`✅ Added essential components: ${components.join(', ')}`);
   } catch (err) {
@@ -269,7 +264,9 @@ async function updateTSConfig(
     await writeFileAsync(configPath, JSON.stringify(tsConfig, null, 2), 'utf8');
   } catch (err) {
     log.error(
-      `\x1b[31mError occurred while updating tsconfig.json: ${(err as Error).message}\x1b[0m`
+      `\x1b[31mError occurred while updating tsconfig.json: ${
+        (err as Error).message
+      }\x1b[0m`
     );
   }
 }
@@ -305,25 +302,6 @@ async function updateGlobalCss(resolvedConfig: RawConfig): Promise<void> {
     }
   } catch (err) {
     log.error(`\x1b[31mError: ${err as Error}\x1b[0m`);
-  }
-}
-
-async function addUtils() {
-  try {
-    const targetPath = join(_currDir, config.writableUtilsPath);
-    const sourcePath = join(
-      _homeDir,
-      config.gluestackDir,
-      config.utilsResourcePath
-    );
-
-    await fs.ensureDir(targetPath);
-    await fs.copy(sourcePath, targetPath, {
-      overwrite: true,
-    });
-  } catch (err) {
-    log.error(`\x1b[31mError occurred while adding utils.\x1b[0m`);
-    throw new Error((err as Error).message);
   }
 }
 
@@ -434,9 +412,6 @@ async function commonInitialization(
     );
 
     await fs.copy(nativewindEnvPath, join(_currDir, 'nativewind-env.d.ts'));
-
-    // Copy utils directory
-    await addUtils();
 
     permission && (await updateTSConfig(projectType, resolvedConfig));
     permission && (await updateGlobalCss(resolvedConfig));
