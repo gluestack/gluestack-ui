@@ -153,6 +153,10 @@
     "./toast/creator": {
       "import": "./lib/esm/toast/creator/index.jsx",
       "types": "./lib/esm/toast/creator/index.d.ts"
+    },
+    "./tooltip/creator": {
+      "import": "./lib/esm/tooltip/creator/index.jsx",
+      "types": "./lib/esm/tooltip/creator/index.d.ts"
     }
   },
   "typesVersions": {
@@ -231,6 +235,9 @@
       ],
       "./toast/creator": [
         "./lib/esm/toast/creator/index.d.ts"
+      ],
+      "./tooltip/creator": [
+        "./lib/esm/tooltip/creator/index.d.ts"
       ]
     }
   },

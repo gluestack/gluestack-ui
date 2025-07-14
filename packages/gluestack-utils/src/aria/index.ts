@@ -18,16 +18,7 @@ export {
   useBackHandler,
 } from './interactions';
 
-// Overlays
-export {
-  useOverlay,
-  useOverlayPosition,
-  useOverlayTrigger,
-  usePreventScroll,
-  PortalProvider,
-  OverlayProvider,
-  OverlayContainer,
-} from './overlays';
+
 
 // utils
 export {

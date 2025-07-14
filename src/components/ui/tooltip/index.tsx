@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createTooltip } from './creator';
+import { createTooltip } from '@gluestack-ui-nightly/core/tooltip/creator';
 import { View, Text, ViewStyle } from 'react-native';
 import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';

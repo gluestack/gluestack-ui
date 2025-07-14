@@ -13,7 +13,7 @@ import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope } from '@gluestack-ui-nightly/utils/aria';
 import { mergeRefs, findNodeHandle } from '@gluestack-ui-nightly/utils/common';
 import { useDialog } from '@gluestack-ui-nightly/utils/aria';
-import { usePreventScroll } from '@gluestack-ui-nightly/utils/aria';
+import { usePreventScroll } from '../../overlay/aria';
 
 //dimentions not giving proper window height on web
 const windowHeight =

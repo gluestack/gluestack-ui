@@ -5,7 +5,7 @@ import { useKeyboardDismissable } from '@gluestack-ui-nightly/utils/aria';
 import { usePopover } from './PopoverContext';
 import { Platform, AccessibilityInfo, Keyboard, View } from 'react-native';
 import { findNodeHandle, mergeRefs } from '@gluestack-ui-nightly/utils/common';
-import { useOverlayPosition } from '@gluestack-ui-nightly/utils/aria';
+import { useOverlayPosition } from '../../overlay/aria';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { FocusScope as FocusScopeAria } from '@gluestack-ui-nightly/utils/aria';
 import { useDialog } from '@gluestack-ui-nightly/utils/aria';
