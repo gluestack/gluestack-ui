@@ -1,13 +1,25 @@
 {
   "name": "@gluestack-ui-nightly/core",
   "version": "1.0.0",
+  "type": "module",
   "main": "lib/esm/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/esm/index.d.ts",
   "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "lib",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "rm -rf lib",
     "build": "tsc -p tsconfig.build.json",
     "watch": "tsc -p tsconfig.build.json --watch",
-    "dev": "nodemon --watch src --ext ts,tsx,js,jsx,json --exec 'yarn build && yalc push --private'"
+    "dev": "nodemon --watch src --ext ts,tsx,js,jsx,json --exec 'yarn build && yalc push --private'",
+    "prepare": "yarn clean && yarn build"
   },
   "exports": {
     ".": {
@@ -87,30 +99,13 @@
       "types": "./lib/esm/radio/aria/index.d.ts"
     },
     "./select/creator": {
-      "import": "./lib/esm/select/creator/index.js",
+      "import": "./lib/esm/select/creator/index.jsx",
       "types": "./lib/esm/select/creator/index.d.ts"
     },
-    "./spinner/creator": {
-      "import": "./lib/esm/spinner/creator/index.jsx",
-      "types": "./lib/esm/spinner/creator/index.d.ts"
-    },
-    "./slider/creator": {
-      "import": "./lib/esm/slider/creator/index.jsx",
-      "types": "./lib/esm/slider/creator/index.d.ts"
-    },
-    "./textarea/creator": {
-      "import": "./lib/esm/textarea/creator/index.jsx",
-      "types": "./lib/esm/textarea/creator/index.d.ts"
-    },
-    "./switch/creator": {
-      "import": "./lib/esm/switch/creator/index.jsx",
-      "types": "./lib/esm/switch/creator/index.d.ts"
-    },
-    "./switch/aria": {
-      "import": "./lib/esm/switch/aria/index.js",
-      "types": "./lib/esm/switch/aria/index.d.ts"
+    "./overlay/creator": {
+      "import": "./lib/esm/overlay/creator/index.jsx",
+      "types": "./lib/esm/overlay/creator/index.d.ts"
     }
-    
   },
   "typesVersions": {
     "*": {
@@ -164,155 +159,6 @@
       ],
       "./select/creator": [
         "./lib/esm/select/creator/index.d.ts"
-      ],
-      "./spinner/creator": [
-        "./lib/esm/spinner/creator/index.d.ts"
-      ],
-      "./slider/creator": [
-        "./lib/esm/slider/creator/index.d.ts"
-      ],
-      "./textarea/creator": [
-        "./lib/esm/textarea/creator/index.d.ts"
-      ],
-      "./switch/creator": [
-        "./lib/esm/switch/creator/index.d.ts"
-      ],
-      "./switch/aria": [
-        "./lib/esm/switch/aria/index.d.ts"
-      ]
-    }
-  },
-  "dependencies": {
-    "@gluestack-ui-nightly/utils": "*",
-    "react-native-svg": "^15.12.0"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-native": ">=0.64.0",
-    "react-native-web": ">=0.19.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-native": "^0.72.0",
-    "react": "^18.2.0",
-    "react-native": "^0.72.0",
-    "react-native-web": "^0.19.0",
-    "typescript": "^5.8.3"
-  }
-}
-
-{
-  "name": "@gluestack-ui-nightly/core",
-  "version": "1.0.0",
-  "type": "module",
-  "main": "lib/esm/index.js",
-  "module": "lib/esm/index.js",
-  "types": "lib/esm/index.d.ts",
-  "license": "MIT",
-  "sideEffects": false,
-  "files": [
-    "lib",
-    "src"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "clean": "rm -rf lib",
-    "build": "tsc -p tsconfig.build.json",
-    "watch": "tsc -p tsconfig.build.json --watch",
-    "dev": "nodemon --watch src --ext ts,tsx,js,jsx,json --exec 'yarn build && yalc push --private'",
-    "prepare": "yarn clean && yarn build"
-  },
-  "exports": {
-    ".": {
-      "import": "./lib/esm/index.js",
-      "types": "./lib/esm/index.d.ts"
-    },
-    "./button/aria": {
-      "import": "./lib/esm/button/aria/index.js",
-      "types": "./lib/esm/button/aria/index.d.ts"
-    },
-    "./button/creator": {
-      "import": "./lib/esm/button/creator/index.jsx",
-      "types": "./lib/esm/button/creator/index.d.ts"
-    },
-    "./accordion/aria": {
-      "import": "./lib/esm/accordion/aria/index.js",
-      "types": "./lib/esm/accordion/aria/index.d.ts"
-    },
-    "./accordion/creator": {
-      "import": "./lib/esm/accordion/creator/index.jsx",
-      "types": "./lib/esm/accordion/creator/index.d.ts"
-    },
-    "./alert/creator": {
-      "import": "./lib/esm/alert/creator/index.jsx",
-      "types": "./lib/esm/alert/creator/index.d.ts"
-    },
-    "./avatar/creator": {
-      "import": "./lib/esm/avatar/creator/index.jsx",
-      "types": "./lib/esm/avatar/creator/index.d.ts"
-    },
-    "./icon/creator": {
-      "import": "./lib/esm/icon/creator/index.jsx",
-      "types": "./lib/esm/icon/creator/index.d.ts"
-    },
-    "./checkbox/creator": {
-      "import": "./lib/esm/checkbox/creator/index.js",
-      "types": "./lib/esm/checkbox/creator/index.d.ts"
-    },
-    "./checkbox/aria": {
-      "import": "./lib/esm/checkbox/aria/index.js",
-      "types": "./lib/esm/checkbox/aria/index.d.ts"
-    },
-    "./fab/creator": {
-      "import": "./lib/esm/fab/creator/index.jsx",
-      "types": "./lib/esm/fab/creator/index.d.ts"
-    },
-    "./form-control/creator": {
-      "import": "./lib/esm/form-control/creator/index.jsx",
-      "types": "./lib/esm/form-control/creator/index.d.ts"
-    },
-    "./input/creator": {
-      "import": "./lib/esm/input/creator/index.jsx",
-      "types": "./lib/esm/input/creator/index.d.ts"
-    },
-    "./overlay/creator": {
-      "import": "./lib/esm/overlay/creator/index.jsx",
-      "types": "./lib/esm/overlay/creator/index.d.ts"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      ".": [
-        "./lib/esm/index.d.ts"
-      ],
-      "./button/aria": [
-        "./lib/esm/button/aria/index.d.ts"
-      ],
-      "./button/creator": [
-        "./lib/esm/button/creator/index.d.ts"
-      ],
-      "./avatar/creator": [
-        "./lib/esm/avatar/creator/index.d.ts"
-      ],
-      "./icon/creator": [
-        "./lib/esm/icon/creator/index.d.ts"
-      ],
-      "./checkbox/creator": [
-        "./lib/esm/checkbox/creator/index.d.ts"
-      ],
-      "./checkbox/aria": [
-        "./lib/esm/checkbox/aria/index.d.ts"
-      ],
-      "./fab/creator": [
-        "./lib/esm/fab/creator/index.d.ts"
-      ],
-      "./form-control/creator": [
-        "./lib/esm/form-control/creator/index.d.ts"
-      ],
-      "./input/creator": [
-        "./lib/esm/input/creator/index.d.ts"
       ],
       "./overlay/creator": [
         "./lib/esm/overlay/creator/index.d.ts"
