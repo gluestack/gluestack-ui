@@ -9,7 +9,7 @@
     "ios": "DARK_MODE=media expo start --ios",
     "web": "DARK_MODE=media expo start --web",
     "lint": "expo lint",
-    "build": "cd ../.. && yarn install && yarn sync:kitchen-sink && cd apps/kitchen-sink && yarn remove @gluestack-ui-nightly/utils && expo export --platform web --output-dir dist"
+    "build": "cd ../.. && yarn install && yarn sync:kitchen-sink && cd apps/kitchen-sink && yarn add @gluestack-ui-nightly/core @gluestack-ui-nightly/utils && expo export --platform web --output-dir dist"
   },
   "dependencies": {
     "@expo/html-elements": "^0.10.1",
