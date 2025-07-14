@@ -5,7 +5,7 @@ import { TooltipProvider } from './context';
 import type { ITooltipProps } from './types';
 import { useId } from '@gluestack-ui-nightly/utils/aria';
 import { Platform } from 'react-native';
-import { Overlay } from '@/components/ui/overlay/creator';
+import { Overlay } from '../../overlay/creator';
 import { composeEventHandlers } from '@gluestack-ui-nightly/utils/common';
 
 function Tooltip<StyledTooltipProp>(
