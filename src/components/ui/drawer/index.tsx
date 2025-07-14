@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createModal as createDrawer } from '@/components/ui/modal/creator';
+import { createModal as createDrawer } from '@gluestack-ui-nightly/core/modal/creator';
 import {
   Pressable,
   View,
