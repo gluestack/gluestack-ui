@@ -9,7 +9,7 @@ import {
 import { cssInterop } from 'nativewind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import type { VariantProps } from 'tailwind-variants';
-import { PrimitiveIcon, UIIcon } from '../icon/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui-nightly/core/icon/creator';
 
 const SCOPE = 'BUTTON';
 

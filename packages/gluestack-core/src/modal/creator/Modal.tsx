@@ -1,44 +1,46 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
 import { View } from 'react-native';
-import { AlertDialogContext } from './Context';
-import { Overlay } from '@/components/ui/overlay/creator';
-import type { IAlertDialogProps } from './types';
 import {
   useControllableState,
   useKeyboardBottomInset,
 } from '@gluestack-ui-nightly/utils/hooks';
+import { ModalContext } from './Context';
+import { Overlay } from '../../overlay/creator';
 
-export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
+const Modal = (StyledModal: any) =>
   forwardRef(
     (
       {
         children,
         isOpen,
         onClose,
-        defaultIsOpen = false,
+        defaultIsOpen,
         initialFocusRef,
         finalFocusRef,
-        useRNModal,
-        avoidKeyboard = false,
+        avoidKeyboard,
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
-        animationPreset = 'fade',
-        // @ts-ignore
         _experimentalOverlay = false,
         ...props
-      }: IAlertDialogProps,
+      }: any,
       ref?: any
     ) => {
       const bottomInset = useKeyboardBottomInset();
 
+      const { useRNModal, ...remainingProps } = props;
+
       const [visible, setVisible] = useControllableState({
-        value: isOpen,
-        defaultValue: defaultIsOpen,
-        onChange: (val: any) => {
+        value: defaultIsOpen ?? isOpen,
+        onChange: (val) => {
           if (!val) onClose && onClose();
         },
       });
+
+      const handleClose = React.useCallback(() => {
+        setVisible(false);
+      }, [setVisible]);
+
       const avoidKeyboardSpacer = (
         <View
           style={{
@@ -50,20 +52,15 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
         />
       );
 
-      const handleClose = React.useCallback(
-        () => setVisible(false),
-        [setVisible]
-      );
-
       const contextValue = React.useMemo(() => {
         return {
           handleClose,
           initialFocusRef,
           finalFocusRef,
           closeOnOverlayClick,
+          visible,
           avoidKeyboard,
           bottomInset,
-          visible,
         };
       }, [
         handleClose,
@@ -77,12 +74,12 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
 
       if (_experimentalOverlay) {
         return (
-          <AlertDialogContext.Provider value={contextValue}>
-            <StyledAlertDialog {...(props as T)} ref={ref}>
+          <ModalContext.Provider value={contextValue}>
+            <StyledModal {...remainingProps} ref={ref}>
               {children}
               {avoidKeyboard ? avoidKeyboardSpacer : null}
-            </StyledAlertDialog>
-          </AlertDialogContext.Provider>
+            </StyledModal>
+          </ModalContext.Provider>
         );
       }
 
@@ -91,16 +88,17 @@ export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
           isOpen={visible}
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
-          animationPreset={animationPreset}
           useRNModal={useRNModal}
         >
-          <AlertDialogContext.Provider value={contextValue}>
-            <StyledAlertDialog {...(props as T)} ref={ref}>
+          <ModalContext.Provider value={contextValue}>
+            <StyledModal {...remainingProps} ref={ref}>
               {children}
               {avoidKeyboard ? avoidKeyboardSpacer : null}
-            </StyledAlertDialog>
-          </AlertDialogContext.Provider>
+            </StyledModal>
+          </ModalContext.Provider>
         </Overlay>
       );
     }
   );
+
+export default Modal;

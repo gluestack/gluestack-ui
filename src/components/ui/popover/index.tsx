@@ -7,7 +7,7 @@ import {
   AnimatePresence,
   MotionComponentProps,
 } from '@legendapp/motion';
-import { createPopover } from './creator';
+import { createPopover } from '@gluestack-ui-nightly/core/popover/creator';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
   withStyleContext,

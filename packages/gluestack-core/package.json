@@ -99,12 +99,56 @@
       "types": "./lib/esm/radio/aria/index.d.ts"
     },
     "./select/creator": {
-      "import": "./lib/esm/select/creator/index.jsx",
+      "import": "./lib/esm/select/creator/index.js",
       "types": "./lib/esm/select/creator/index.d.ts"
     },
     "./overlay/creator": {
       "import": "./lib/esm/overlay/creator/index.jsx",
       "types": "./lib/esm/overlay/creator/index.d.ts"
+    },
+    "./switch/creator": {
+      "import": "./lib/esm/switch/creator/index.jsx",
+      "types": "./lib/esm/switch/creator/index.d.ts"
+    },
+    "./switch/aria": {
+      "import": "./lib/esm/switch/aria/index.jsx",
+      "types": "./lib/esm/switch/aria/index.d.ts"
+    },
+    "./textarea/creator": {
+      "import": "./lib/esm/textarea/creator/index.jsx",
+      "types": "./lib/esm/textarea/creator/index.d.ts"
+    },
+    "./slider/creator": {
+      "import": "./lib/esm/slider/creator/index.jsx",
+      "types": "./lib/esm/slider/creator/index.d.ts"
+    },
+    "./slider/aria": {
+      "import": "./lib/esm/slider/aria/index.jsx",
+      "types": "./lib/esm/slider/aria/index.d.ts"
+    },
+    "./actionsheet/creator": {
+      "import": "./lib/esm/actionsheet/creator/index.jsx",
+      "types": "./lib/esm/actionsheet/creator/index.d.ts"
+    },
+    "./alert-dialogue/creator": {
+      "import": "./lib/esm/alert-dialogue/creator/index.jsx",
+      "types": "./lib/esm/alert-dialogue/creator/index.d.ts"
+    },
+    "./menu/creator": {
+      "import": "./lib/esm/menu/creator/index.jsx",
+      "types": "./lib/esm/menu/creator/index.d.ts"
+    },
+    "./menu/aria": {
+      "import": "./lib/esm/menu/aria/index.jsx",
+      "types": "./lib/esm/menu/aria/index.d.ts"
+    },
+    "./modal/creator": {
+      "import": "./lib/esm/modal/creator/index.jsx",
+      "types": "./lib/esm/modal/creator/index.d.ts"
+    },
+    "./popover/creator": {
+      "import": "./lib/esm/popover/creator/index.jsx",
+      "types": "./lib/esm/popover/creator/index.d.ts"
     }
   },
   "typesVersions": {
@@ -162,6 +206,24 @@
       ],
       "./overlay/creator": [
         "./lib/esm/overlay/creator/index.d.ts"
+      ],
+      "./actionsheet/creator": [
+        "./lib/esm/actionsheet/creator/index.d.ts"
+      ],
+      "./alert-dialogue/creator": [
+        "./lib/esm/alert-dialogue/creator/index.d.ts"
+      ],
+      "./menu/creator": [
+        "./lib/esm/menu/creator/index.d.ts"
+      ],
+      "./menu/aria": [
+        "./lib/esm/menu/aria/index.d.ts"
+      ],
+      "./modal/creator": [
+        "./lib/esm/modal/creator/index.d.ts"
+      ],
+      "./popover/creator": [
+        "./lib/esm/popover/creator/index.d.ts"
       ]
     }
   },

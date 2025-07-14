@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createModal } from './creator';
+import { createModal } from '@gluestack-ui-nightly/core/modal/creator';
 import { Pressable, View, ScrollView, ViewStyle } from 'react-native';
 import {
   Motion,

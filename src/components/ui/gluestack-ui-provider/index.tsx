@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { config } from './config';
 import { View, ViewProps } from 'react-native';
-import { OverlayProvider } from '@/components/ui/overlay/creator';
+import { OverlayProvider } from '@gluestack-ui-nightly/core/overlay/creator';
 import { ToastProvider } from '@/components/ui/toast/creator';
 import { useColorScheme } from 'nativewind';
 

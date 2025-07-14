@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { forwardRef } from 'react';
 import { Animated } from 'react-native';
-import { ExitAnimationContext } from '@gluestack-ui-nightly/core/overlay/creator';
+import { ExitAnimationContext } from '../../../overlay/creator';
 
 const defaultTransitionConfig: any = {
   type: 'timing',

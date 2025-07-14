@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { forwardRef } from 'react';
 import { Animated } from 'react-native';
-import { ExitAnimationContext } from '@/components/ui/overlay/creator';
+import { ExitAnimationContext } from '../../overlay/creator';
 
 const defaultTransitionConfig: any = {
   type: 'timing',
@@ -41,6 +41,7 @@ export const OverlayAnimatePresence = forwardRef(
             }
           });
         }
+        // });
       }
 
       if (animationState === 'exited') {
@@ -48,10 +49,14 @@ export const OverlayAnimatePresence = forwardRef(
       } else if (animationState === 'entered') {
         setExited(false);
       }
+      // if (animationState === 'entering') {
+      //   //
+      // }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [animationState]);
 
     React.useEffect(() => {
+      // if (!visible) {
       if (prevVisible.current !== visible && !visible) {
         setAnimationState('exiting');
       }
@@ -62,6 +67,8 @@ export const OverlayAnimatePresence = forwardRef(
       prevVisible.current = visible;
       // }
     }, [visible]);
+
+    // {animationState === 'entered' || animationState === 'entering'
 
     if (!AnimatePresence) {
       return children;

@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { forwardRef } from 'react';
 import { Animated } from 'react-native';
-import { ExitAnimationContext } from '@/components/ui/overlay/creator';
+import { ExitAnimationContext } from '../../overlay/creator';
 
 const defaultTransitionConfig: any = {
   type: 'timing',
   useNativeDriver: true,
-  duration: 200,
+  duration: 0,
   delay: 0,
 };
 
@@ -52,7 +52,6 @@ export const OverlayAnimatePresence = forwardRef(
     }, [animationState]);
 
     React.useEffect(() => {
-      // if (!visible) {
       if (prevVisible.current !== visible && !visible) {
         setAnimationState('exiting');
       }
@@ -69,9 +68,7 @@ export const OverlayAnimatePresence = forwardRef(
     }
 
     return (
-      <AnimatePresence ref={ref}>
-        {prevVisible.current ? children : null}
-      </AnimatePresence>
+      <AnimatePresence ref={ref}>{visible ? children : null}</AnimatePresence>
     );
   }
 );

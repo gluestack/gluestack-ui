@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createAlertDialog } from '@/components/ui/alert-dialog/creator';
+import { createAlertDialog } from '@gluestack-ui-nightly/core/alert-dialogue/creator';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
   withStyleContext,

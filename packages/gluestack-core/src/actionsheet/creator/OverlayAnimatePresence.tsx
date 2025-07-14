@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { forwardRef } from 'react';
 import { Animated } from 'react-native';
-import { ExitAnimationContext } from '@/components/ui/overlay/creator';
+import { ExitAnimationContext } from '../../overlay/creator';
 
 const defaultTransitionConfig: any = {
   type: 'timing',
   useNativeDriver: true,
-  duration: 0,
+  duration: 200,
   delay: 0,
 };
 
@@ -41,7 +41,6 @@ export const OverlayAnimatePresence = forwardRef(
             }
           });
         }
-        // });
       }
 
       if (animationState === 'exited') {
@@ -49,9 +48,6 @@ export const OverlayAnimatePresence = forwardRef(
       } else if (animationState === 'entered') {
         setExited(false);
       }
-      // if (animationState === 'entering') {
-      //   //
-      // }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [animationState]);
 
@@ -68,14 +64,14 @@ export const OverlayAnimatePresence = forwardRef(
       // }
     }, [visible]);
 
-    // {animationState === 'entered' || animationState === 'entering'
-
     if (!AnimatePresence) {
       return children;
     }
 
     return (
-      <AnimatePresence ref={ref}>{visible ? children : null}</AnimatePresence>
+      <AnimatePresence ref={ref}>
+        {prevVisible.current ? children : null}
+      </AnimatePresence>
     );
   }
 );

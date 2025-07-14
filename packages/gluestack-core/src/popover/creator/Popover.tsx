@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { useControllableState } from '@gluestack-ui-nightly/utils/hooks';
-import { Overlay } from '@/components/ui/overlay/creator';
+import { Overlay } from '../../overlay/creator';
 import { PopoverProvider } from './PopoverContext';
 
 export const Popover = (StyledPopover: any) =>

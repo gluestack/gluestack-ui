@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { composeEventHandlers } from '@gluestack-ui-nightly/utils/common';
 import { useHover, usePress } from '@gluestack-ui-nightly/utils/aria';
 import { useFocusRing } from '@gluestack-ui-nightly/utils/aria';
-import { useMenuItem } from '@/components/ui/menu/aria';
+import { useMenuItem } from '../aria';
 import { Platform } from 'react-native';
 
 const usePressed = (
