@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui-nightly/utils",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Utility functions and hooks for gluestack-ui",
   "type": "module",
   "main": "./lib/esm/index.js",
