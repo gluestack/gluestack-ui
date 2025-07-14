@@ -149,6 +149,10 @@
     "./popover/creator": {
       "import": "./lib/esm/popover/creator/index.jsx",
       "types": "./lib/esm/popover/creator/index.d.ts"
+    },
+    "./toast/creator": {
+      "import": "./lib/esm/toast/creator/index.jsx",
+      "types": "./lib/esm/toast/creator/index.d.ts"
     }
   },
   "typesVersions": {
@@ -224,6 +228,9 @@
       ],
       "./popover/creator": [
         "./lib/esm/popover/creator/index.d.ts"
+      ],
+      "./toast/creator": [
+        "./lib/esm/toast/creator/index.d.ts"
       ]
     }
   },
