@@ -1,6 +1,6 @@
 {
   "name": "gluestack-ui-nightly",
-  "version": "0.7.28",
+  "version": "0.7.29",
   "main": "dist/index.js",
   "bin": {
     "gluestack-ui-nightly": "./dist/index.js"
