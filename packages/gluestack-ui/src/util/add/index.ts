@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import chalk from 'chalk';
 import os from 'os';
-import { basename, join, parse } from 'path';
+import { join } from 'path';
 import { log, confirm } from '@clack/prompts';
 import { config } from '../../config';
 import {
@@ -9,7 +9,6 @@ import {
   getAllComponents,
   installDependencies,
   projectRootPath,
-  removeHyphen,
   findLockFileType,
   promptVersionManager,
 } from '..';

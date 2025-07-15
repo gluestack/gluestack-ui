@@ -4,7 +4,6 @@ import { pathExists, readFile, writeFile } from 'fs-extra';
 import { config } from '../../config';
 import {
   findDirectory,
-  generateConfig,
   getFilePath,
   pathResolver,
   _currDir,
@@ -14,8 +13,7 @@ import {
   NextResolvedConfig,
   PROJECT_SHARED_IGNORE,
 } from './config-types';
-import { join, relative } from 'path';
-import { execSync } from 'child_process';
+import { join } from 'path';
 import { ensureFilesPromise } from '..';
 import { commonInitialization } from '../init';
 import os from 'os';
@@ -165,7 +163,7 @@ async function generateConfigNextApp(
     },
   };
 
-  generateConfig(gluestackConfig);
+  // generateConfig(gluestackConfig);
   const resolvedConfig = await resolvedNextJsPaths(resolvedGluestackConfig);
   const filesTobeEnsured = [
     resolvedConfig.app.registry ?? '',

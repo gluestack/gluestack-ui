@@ -1,16 +1,10 @@
 import os from 'os';
 import { config } from '../../config';
 import { promisify } from 'util';
-import { execSync } from 'child_process';
 import path, { join } from 'path';
 import { log, confirm, spinner } from '@clack/prompts';
-import fs, { copy, existsSync, writeFile } from 'fs-extra';
-import { RawConfig } from '../config/config-types';
-import {
-  checkIfInitialized,
-  generateMonoRepoConfig,
-  getEntryPathAndComponentsPath,
-} from '../config';
+import fs, { existsSync, writeFile } from 'fs-extra';
+import { checkIfInitialized, generateMonoRepoConfig } from '../config';
 import {
   cloneRepositoryAtRoot,
   findLockFileType,
@@ -23,23 +17,10 @@ import { generateConfigExpoApp } from '../config/expo-config-helper';
 import { generateConfigRNApp } from '../config/react-native-config-helper';
 import { checkNextVersion } from '../check-next-version';
 import { readFile } from 'fs-extra';
-import {
-  modifyLayoutFile,
-  modifyLayoutFilesAutomatically,
-} from './modify-layout';
+import { modifyLayoutFilesAutomatically } from './modify-layout';
 
 const _currDir = process.cwd();
 const _homeDir = os.homedir();
-
-// Get package root directory
-const getPackageRoot = () => {
-  // When running from source
-  if (__dirname.includes('src')) {
-    return path.resolve(__dirname, '../../');
-  }
-  // When running from published package
-  return path.resolve(__dirname, '../');
-};
 
 // Get templates from GitHub repository
 const getTemplatesPath = () => {
@@ -79,12 +60,7 @@ const InitializeGlueStack = async ({
 
     console.log(`\n\x1b[1mInitializing gluestack-ui v2...\x1b[0m\n`);
     await cloneRepositoryAtRoot(join(_homeDir, config.gluestackDir));
-    const inputComponent = [
-      config.providerComponent,
-      'icon',
-      'overlay',
-      'toast',
-    ];
+    const inputComponent = [config.providerComponent];
     let additionalDependencies = await getProjectBasedDependencies(
       projectType,
       config.style
@@ -109,7 +85,7 @@ const InitializeGlueStack = async ({
     );
 
     await addProvider(isNextjs15);
-    await addEssentialComponents(['icon', 'overlay', 'toast']);
+    await addEssentialComponents([]);
     s.stop(`\x1b[32mProject configuration generated.\x1b[0m`);
     log.step(
       'Please refer the above link for more details --> \x1b[33mhttps://gluestack.io/ui/docs/home/overview/introduction \x1b[0m'
@@ -138,7 +114,19 @@ async function addProvider(isNextjs15: boolean | undefined) {
     );
 
     await fs.ensureDir(targetPath);
-    await fs.copy(sourcePath, targetPath);
+
+    // Copy only files from the root directory, excluding subdirectories and dependencies.json
+    const files = await fs.readdir(sourcePath, { withFileTypes: true });
+
+    for (const file of files) {
+      if (file.isFile() && file.name !== 'dependencies.json') {
+        await fs.copy(
+          join(sourcePath, file.name),
+          join(targetPath, file.name),
+          { overwrite: true }
+        );
+      }
+    }
     if (isNextjs15) {
       const templatesPath = getTemplatesPath();
       const providerContent = await readFile(

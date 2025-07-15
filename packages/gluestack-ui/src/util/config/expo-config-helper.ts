@@ -2,13 +2,11 @@ import * as path from 'path';
 import fg from 'fast-glob';
 import * as fs from 'fs';
 import { config } from '../../config';
-import { _currDir, generateConfig, getFilePath, pathResolver } from '.';
+import { _currDir, getFilePath, pathResolver } from '.';
 import {
-  RawConfig,
   PROJECT_SHARED_IGNORE,
   ExpoResolvedConfig,
 } from './config-types';
-import { join, relative } from 'path';
 import { execSync } from 'child_process';
 import { ensureFilesPromise } from '..';
 import { commonInitialization } from '../init';
@@ -113,19 +111,19 @@ async function generateConfigExpoApp(permission: boolean) {
   const BabelConfigPath = await getFilePath(['babel.config.*']);
   const MetroConfigPath = await getFilePath(['metro.config.*']);
   const tsConfigPath = await getFilePath(['tsconfig.*']);
-  const gluestackConfig: RawConfig = {
-    tailwind: {
-      config: tailwindConfigPath.length
-        ? tailwindConfigPath
-        : 'tailwind.config.js',
-      css: globalCssPath.length ? globalCssPath : 'global.css',
-    },
-    app: {
-      entry: entryPath,
-      // write a function to get current components path
-      components: config.writableComponentsPath,
-    },
-  };
+  // const gluestackConfig: RawConfig = {
+  //   tailwind: {
+  //     config: tailwindConfigPath.length
+  //       ? tailwindConfigPath
+  //       : 'tailwind.config.js',
+  //     css: globalCssPath.length ? globalCssPath : 'global.css',
+  //   },
+  //   app: {
+  //     entry: entryPath,
+  //     // write a function to get current components path
+  //     components: config.writableComponentsPath,
+  //   },
+  // };
   const resolvedGluestackConfig = {
     tailwind: {
       config: tailwindConfigPath.length
@@ -144,7 +142,7 @@ async function generateConfigExpoApp(permission: boolean) {
       sdk50: await isExpoSDK50(_currDir),
     },
   };
-  await generateConfig(gluestackConfig);
+  // await generateConfig(gluestackConfig);
 
   const resolvedConfig = await resolvedExpoPaths(resolvedGluestackConfig);
   const filesTobeEnsured = [
