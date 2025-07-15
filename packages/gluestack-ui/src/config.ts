@@ -14,7 +14,6 @@ const config = {
   gluestackUIPattern: '@/components/ui/',
   templatesDir: 'packages/gluestack-ui/templates',
   packageManager: null as string | null,
-  // List of components that should never be added
   ignoreComponents: ['utils'] as readonly string[],
 };
 

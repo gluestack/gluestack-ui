@@ -50,7 +50,7 @@ export const init = new Command()
       const isTemplate = options.templateOnly;
       console.log('\n\x1b[1mWelcome to gluestack-ui!\x1b[0m\n');
       const cwd = process.cwd();
-      //if cwd doesn't have package.json file
+
       if (!fs.existsSync(path.join(cwd, 'package.json'))) {
         log.error(
           `\x1b[31mNo package.json found in the current directory. Please run this command in a directory with a package.json file.\x1b[0m`
@@ -58,7 +58,6 @@ export const init = new Command()
         process.exit(1);
       }
 
-      //if multiple package managers are used
       if (
         (options.useNpm && options.useYarn) ||
         (options.useNpm && options.usePnpm) ||
@@ -69,11 +68,10 @@ export const init = new Command()
         );
         process.exit(1);
       }
-      //define package manager
+
       getPackageMangerFlag(options);
-      //if path option is used
+
       if (options.path) {
-        // Check if the string starts with "/" or "."
         if (!isValidPath(options.path)) {
           log.error(
             `\x1b[31mInvalid path "${options.path}". Please provide a valid path for installing components.\x1b[0m`
@@ -82,15 +80,14 @@ export const init = new Command()
         }
         if (options.path !== config.writableComponentsPath) {
           await checkWritablePath(options.path);
-          //check this change with all project types
           config.writableComponentsPath = options.path;
         }
       }
-      // Detect project type
+
       const projectType = isTemplate
         ? options.projectType
         : await detectProjectType(cwd);
-      // Initialize the gluestack
+
       InitializeGlueStack({ projectType, isTemplate });
     } catch (err) {
       handleError(err);

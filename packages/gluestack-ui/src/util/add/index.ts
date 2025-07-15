@@ -46,7 +46,6 @@ const componentAdder = async ({
       const { components: additionalComponents } =
         await checkComponentDependencies(requestedComponents);
 
-      // Add additional components to the list
       const allComponentsToInstall = [
         ...new Set([...requestedComponents, ...additionalComponents]),
       ];
@@ -56,97 +55,96 @@ const componentAdder = async ({
           ? await isComponentInProject(allComponentsToInstall)
           : allComponentsToInstall;
       const count = updatedComponents.length;
-      await Promise.all(
-        updatedComponents.map(async (component) => {
-          const targetPath = join(
-            projectRootPath,
-            config.writableComponentsPath,
-            component
-          );
+      if (count === 0) {
+        log.step(`No new components to add.`);
+        return;
+      }
 
-          await writeComponent(component, targetPath);
-        })
-      )
-        .then(async () => {
-          let versionManager: string | null = findLockFileType();
-          if (!versionManager) {
-            versionManager = await promptVersionManager();
-          }
-          await installDependencies(updatedComponents, versionManager);
-          log.success(
-            `\x1b[32mDone!\x1b[0m Added new \x1b[1mgluestack-ui\x1b[0m ${
-              count === 1 ? 'component' : 'components'
-            } into project`
-          );
-        })
-        .catch((err) => {
-          log.error(`\x1b[31mError : ${(err as Error).message}\x1b[0m`);
-        });
+      log.step(`Adding ${count} component${count > 1 ? 's' : ''}:`);
+      console.log(
+        `${chalk.cyan('⏳')} ${updatedComponents
+          .map((component) => chalk.yellow(component))
+          .join(', ')}`
+      );
+
+      let versionManager: string | null =
+        config.packageManager || findLockFileType();
+      if (!versionManager) {
+        versionManager = await promptVersionManager();
+      }
+
+      await installDependencies(updatedComponents, versionManager);
+
+      for (const component of updatedComponents) {
+        const targetPath = join(
+          projectRootPath,
+          config.writableComponentsPath,
+          component
+        );
+        await writeComponent(component, targetPath);
+      }
+
+      log.success(
+        `\x1b[32mDone!\x1b[0m Added ${count} component${
+          count > 1 ? 's' : ''
+        } to the project.`
+      );
     }
-  } catch (err) {
-    throw new Error((err as Error).message);
+  } catch (error) {
+    log.error(`\x1b[31mError: ${(error as Error).message}\x1b[0m`);
   }
 };
 
 const isComponentInProject = async (
-  components: string[]
+  allComponentsToInstall: string[]
 ): Promise<string[]> => {
-  const alreadyExistingComponents: string[] = [];
-  let componentsToAdd: any = [];
-  for (const component of components) {
-    const pathToCheck = join(
-      projectRootPath,
-      config.writableComponentsPath,
-      component,
-      'index.tsx'
-    );
-    if (fs.existsSync(pathToCheck)) {
-      alreadyExistingComponents.push(component);
-    }
-  }
-  //confirm about the already existing components
-  if (
-    alreadyExistingComponents.length === 1 ||
-    alreadyExistingComponents.length > 1
-  ) {
-    const shouldContinue = await confirmOverride(
-      alreadyExistingComponents,
-      alreadyExistingComponents.length
-    );
+  const currentComponents = fs
+    .readdirSync(join(projectRootPath, config.writableComponentsPath))
+    .filter((item) => {
+      const itemPath = join(
+        projectRootPath,
+        config.writableComponentsPath,
+        item
+      );
+      return fs.statSync(itemPath).isDirectory();
+    });
 
-    //code to remove already existing components from the list
-    componentsToAdd = shouldContinue
-      ? components.filter(
-          (component) => !alreadyExistingComponents.includes(component)
-        )
-      : processTerminate('Installation aborted');
-    if (shouldContinue) {
-      componentsToAdd = components;
-    } else {
-      componentsToAdd = [];
-    }
-  } else {
-    componentsToAdd = components;
+  const existingComponents = allComponentsToInstall.filter((component) =>
+    currentComponents.includes(component)
+  );
+
+  if (existingComponents.length > 0) {
+    const shouldContinue = await confirm({
+      message: `\x1b[33mThe following components are already present in your project: ${existingComponents.join(
+        ', '
+      )}. Do you want to overwrite them?\x1b[0m`,
+    });
+
+    const componentsToAdd = shouldContinue
+      ? allComponentsToInstall
+      : allComponentsToInstall.filter(
+          (component) => !existingComponents.includes(component)
+        );
+    existingComponentsChecked = true;
+    return componentsToAdd;
   }
 
-  if (componentsToAdd.length === 0) log.error('No components to be added');
-  existingComponentsChecked = true;
-  return componentsToAdd;
+  return allComponentsToInstall;
 };
 
-const processTerminate = (message: string) => {
-  log.error(message);
-  process.exit(1);
-};
-
-const checkIfComponentIsValid = async (
-  components: string[]
-): Promise<boolean> => {
-  const componentList = await getAllComponents();
-  if (components.every((component) => componentList.includes(component)))
-    return true;
-  else return false;
-};
+async function checkIfComponentIsValid(components: string[]): Promise<boolean> {
+  try {
+    const allComponents = await getAllComponents();
+    return components.every((component) => allComponents.includes(component));
+  } catch (err) {
+    log.error(
+      `\x1b[31mError fetching available components: ${
+        (err as Error).message
+      }\x1b[0m`
+    );
+    return false;
+  }
+}
 
 const writeComponent = async (component: string, targetPath: string) => {
   try {
@@ -159,7 +157,6 @@ const writeComponent = async (component: string, targetPath: string) => {
       component
     );
 
-    // Copy only files from the root directory, excluding subdirectories and dependencies.json
     const files = await fs.readdir(sourcePath, { withFileTypes: true });
 
     for (const file of files) {
@@ -176,19 +173,4 @@ const writeComponent = async (component: string, targetPath: string) => {
   }
 };
 
-const confirmOverride = async (
-  component: string[],
-  existingCount: number
-): Promise<boolean | symbol> => {
-  const displayComponent = existingCount === 1 ? component[0] : 'Few';
-  const components = existingCount === 1 ? 'component' : 'components';
-  const shouldContinue = await confirm({
-    message: `\x1b[33mWARNING: ${
-      displayComponent[0].toUpperCase() + displayComponent.slice(1)
-    } ${components} already exists. Continuing with the installation may result in component replacement if changes are made. Please commit your changes before proceeding with the installation. Continue?\x1b[0m`,
-  });
-
-  return shouldContinue;
-};
-
-export { componentAdder, getAllComponents };
+export { componentAdder };

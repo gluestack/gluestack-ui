@@ -2,12 +2,7 @@ import * as path from 'path';
 import fg from 'fast-glob';
 import { pathExists, readFile, writeFile } from 'fs-extra';
 import { config } from '../../config';
-import {
-  findDirectory,
-  getFilePath,
-  pathResolver,
-  _currDir,
-} from '.';
+import { findDirectory, getFilePath, pathResolver, _currDir } from '.';
 import {
   RawConfig,
   NextResolvedConfig,
