@@ -51,7 +51,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@react-aria/checkbox": "3.2.1",
+    "@react-aria/checkbox": "^3.15.7",
     "@react-aria/utils": "^3.6.0",
     "@react-native-aria/toggle": "^0.2.11",
     "@react-native-aria/utils": "0.2.12",
