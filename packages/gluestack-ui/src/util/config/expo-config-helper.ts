@@ -34,16 +34,16 @@ async function getExpoProjectType(cwd: string): Promise<string | undefined> {
   const expoLayoutPath = fs.existsSync('app')
     ? 'app/_layout.*'
     : fs.existsSync('src/app')
-      ? 'src/app/_layout.*'
-      : '**/*_layout.*';
+    ? 'src/app/_layout.*'
+    : '**/*_layout.*';
 
   const isUsingExpoRouter = await getFilePath([expoLayoutPath]);
   const isUsingDefaultExpo = await getFilePath(['App.*']);
   return isUsingExpoRouter
     ? 'expo-router'
     : isUsingDefaultExpo
-      ? 'expo-default'
-      : undefined;
+    ? 'expo-default'
+    : undefined;
 }
 
 async function isExpoSDK50(cwd: string): Promise<boolean> {

@@ -197,10 +197,7 @@ async function addEssentialComponents(components: string[]) {
 }
 
 //update tailwind.config.js
-async function updateTailwindConfig(
-  resolvedConfig: RawConfig,
-  projectType: string
-) {
+async function updateTailwindConfig(resolvedConfig: any, projectType: string) {
   try {
     const templatesPath = getTemplatesPath();
     const tailwindConfigRootPath = join(templatesPath, 'tailwind.config.js');
@@ -272,7 +269,7 @@ async function updateTSConfig(
 }
 
 //update global.css
-async function updateGlobalCss(resolvedConfig: RawConfig): Promise<void> {
+async function updateGlobalCss(resolvedConfig: any): Promise<void> {
   try {
     const globalCSSPath = resolvedConfig.tailwind.css;
     const templatesPath = getTemplatesPath();
@@ -416,27 +413,6 @@ async function commonInitialization(
     permission && (await updateTSConfig(projectType, resolvedConfig));
     permission && (await updateGlobalCss(resolvedConfig));
     await updateTailwindConfig(resolvedConfig, projectType);
-
-    //function to update package.json script to implement darkMode in expo, will be removed later
-    if (projectType === config.expoProject) {
-      const packageJsonPath = join(_currDir, 'package.json');
-      const packageJson = JSON.parse(
-        await fs.readFile(packageJsonPath, 'utf8')
-      );
-      const devices = ['android', 'ios', 'web'];
-
-      //get existing value of scripts
-      devices.forEach((device) => {
-        const script = packageJson.scripts[device];
-        packageJson.scripts[device] = `DARK_MODE=media `.concat(script);
-      });
-
-      await fs.writeFile(
-        packageJsonPath,
-        JSON.stringify(packageJson, null, 2),
-        'utf8'
-      );
-    }
 
     // Automatically modify layout files to add GluestackUIProvider wrapper
     await modifyLayoutFilesAutomatically(
