@@ -135,7 +135,11 @@ const isComponentInProject = async (
 async function checkIfComponentIsValid(components: string[]): Promise<boolean> {
   try {
     const allComponents = await getAllComponents();
-    return components.every((component) => allComponents.includes(component));
+    // Allow gluestack-ui-provider to be added manually even though it's excluded from getAllComponents
+    const allowedComponents = [...allComponents, config.providerComponent];
+    return components.every((component) =>
+      allowedComponents.includes(component)
+    );
   } catch (err) {
     log.error(
       `\x1b[31mError fetching available components: ${

@@ -10,6 +10,7 @@ import {
   findLockFileType,
   installDependencies,
   promptVersionManager,
+  checkComponentDependencies,
 } from '..';
 import { getProjectBasedDependencies } from '../../dependencies';
 import { generateConfigNextApp } from '../config/next-config-helper';
@@ -61,6 +62,11 @@ const InitializeGlueStack = async ({
     console.log(`\n\x1b[1mInitializing gluestack-ui v2...\x1b[0m\n`);
     await cloneRepositoryAtRoot(join(_homeDir, config.gluestackDir));
     const inputComponent = [config.providerComponent];
+
+    // Check dependencies for the provider component
+    const { components: providerDependencies } =
+      await checkComponentDependencies(inputComponent);
+
     let additionalDependencies = await getProjectBasedDependencies(
       projectType,
       config.style
@@ -85,7 +91,10 @@ const InitializeGlueStack = async ({
     );
 
     await addProvider(isNextjs15);
-    await addEssentialComponents([]);
+
+    // Add provider dependencies (like toast) as essential components
+    await addEssentialComponents(providerDependencies);
+
     s.stop(`\x1b[32mProject configuration generated.\x1b[0m`);
     log.step(
       'Please refer the above link for more details --> \x1b[33mhttps://gluestack.io/ui/docs/home/overview/introduction \x1b[0m'
@@ -147,6 +156,10 @@ async function addProvider(isNextjs15: boolean | undefined) {
 
 async function addEssentialComponents(components: string[]) {
   try {
+    if (components.length === 0) {
+      return;
+    }
+
     for (const component of components) {
       const targetPath = join(
         _currDir,
@@ -175,10 +188,10 @@ async function addEssentialComponents(components: string[]) {
         }
       }
     }
-    log.step(`✅ Added essential components: ${components.join(', ')}`);
+    log.step(`✅ Added provider dependencies: ${components.join(', ')}`);
   } catch (err) {
     log.error(
-      `\x1b[31mError occurred while adding essential components.\x1b[0m`
+      `\x1b[31mError occurred while adding provider dependencies.\x1b[0m`
     );
     throw new Error((err as Error).message);
   }
