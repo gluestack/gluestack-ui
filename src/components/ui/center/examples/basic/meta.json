@@ -1,4 +1,5 @@
 {
+  "title": "Basic",
   "argTypes": {},
   "reactLive": {
     "Center": "@/components/ui/center",
