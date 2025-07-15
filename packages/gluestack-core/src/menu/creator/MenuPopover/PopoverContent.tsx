@@ -3,7 +3,7 @@ import { useKeyboardDismissable } from '@gluestack-ui-nightly/utils/aria';
 import { usePopover } from './PopoverContext';
 import { AccessibilityInfo, View } from 'react-native';
 import { mergeRefs, findNodeHandle } from '@gluestack-ui-nightly/utils/common';
-import { useOverlayPosition } from '@gluestack-ui-nightly/utils/aria';
+import { useOverlayPosition } from '../../../overlay/aria';
 
 const PopoverContent = forwardRef(
   ({ children, style, ...props }: any, ref: any) => {

@@ -6,8 +6,7 @@ import {
   Dimensions,
 } from 'react-native';
 import type { Placement, PositionProps } from '@react-types/overlays';
-//@ts-ignore
-import { isRTL } from '@gluestack-ui-nightly/utils/common';
+import { isRTL } from '@gluestack-ui-nightly/utils/aria';
 
 import { APPROX_STATUSBAR_HEIGHT } from './utils';
 const measureOffset = (ref: RefObject<any>) =>
@@ -70,8 +69,8 @@ const getArrowPropsWithStatusBarHeight = ({
   top,
   left,
 }: {
-  top: number;
-  left: number;
+  top?: number;
+  left?: number;
 }) => {
   let topWithStatusBarHeight = top;
 
@@ -81,7 +80,7 @@ const getArrowPropsWithStatusBarHeight = ({
   ) {
     topWithStatusBarHeight = top + APPROX_STATUSBAR_HEIGHT;
   } else {
-    topWithStatusBarHeight = undefined;
+    topWithStatusBarHeight = 0;
   }
 
   return {
@@ -210,6 +209,7 @@ function translateRTL(position: any) {
     return position.replace('start', 'right').replace('end', 'left');
   }
   return position.replace('start', 'left').replace('end', 'right');
+  return position;
 }
 
 interface Position {
