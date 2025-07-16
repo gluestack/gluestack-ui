@@ -12,7 +12,7 @@ import 'prismjs/components/prism-diff';
 import { ThemeContext } from '@/utils/context/theme-context';
 import './styles.css';
 import { Icon } from '@/components/ui/icon';
-import { CheckIcon, CopyIcon } from 'lucide-react-native';
+import { CheckIcon, CopyIcon } from 'lucide-react-native'
 // import * as prettier from 'prettier';
 // import prettierPluginBabel from 'prettier/plugins/babel';
 // import prettierPluginEstree from 'prettier/plugins/estree';
