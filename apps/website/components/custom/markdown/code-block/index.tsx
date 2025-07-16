@@ -13,12 +13,12 @@ import { ThemeContext } from '@/utils/context/theme-context';
 import './styles.css';
 import { Icon } from '@/components/ui/icon';
 import { CheckIcon, CopyIcon } from 'lucide-react-native';
-import * as prettier from 'prettier';
-import prettierPluginBabel from 'prettier/plugins/babel';
-import prettierPluginEstree from 'prettier/plugins/estree';
-import prettierPluginTypescript from 'prettier/plugins/typescript';
-import prettierPluginCSS from 'prettier/plugins/postcss';
-import prettierPluginHTML from 'prettier/plugins/html';
+// import * as prettier from 'prettier';
+// import prettierPluginBabel from 'prettier/plugins/babel';
+// import prettierPluginEstree from 'prettier/plugins/estree';
+// import prettierPluginTypescript from 'prettier/plugins/typescript';
+// import prettierPluginCSS from 'prettier/plugins/postcss';
+// import prettierPluginHTML from 'prettier/plugins/html';
 // Theme configurations
 const themes = {
   light: {
@@ -65,40 +65,40 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   className,
 }) => {
   const [copied, setCopied] = useState(false);
-  const [formattedCode, setFormattedCode] = useState(code);
+  // const [formattedCode, setFormattedCode] = useState(code);
   const codeRef = useRef<HTMLElement>(null);
   const { colorMode } = useContext(ThemeContext);
   const currentTheme = themes[colorMode as keyof typeof themes];
 
-  useEffect(() => {
-    const formatCode = async () => {
-      try {
-        const parser = language === 'tsx' ? 'typescript' : language;
-        const formatted = await prettier.format(code, {
-          parser,
-          plugins: [
-            prettierPluginBabel,
-            prettierPluginEstree,
-            prettierPluginTypescript,
-            prettierPluginCSS,
-            prettierPluginHTML,
-          ],
-          semi: true,
-          singleQuote: true,
-          trailingComma: 'es5',
-        });
-        setFormattedCode(formatted);
-      } catch (error) {
-        console.error('Error formatting code:', error);
-        setFormattedCode(code);
-      }
-    };
-    formatCode();
-  }, [code, language]);
+  // useEffect(() => {
+  //   const formatCode = async () => {
+  //     try {
+  //       const parser = language === 'tsx' ? 'typescript' : language;
+  //       const formatted = await prettier.format(code, {
+  //         parser,
+  //         plugins: [
+  //           prettierPluginBabel,
+  //           prettierPluginEstree,
+  //           prettierPluginTypescript,
+  //           prettierPluginCSS,
+  //           prettierPluginHTML,
+  //         ],
+  //         semi: true,
+  //         singleQuote: true,
+  //         trailingComma: 'es5',
+  //       });
+  //       setFormattedCode(formatted);
+  //     } catch (error) {
+  //       console.error('Error formatting code:', error);
+  //       setFormattedCode(code);
+  //     }
+  //   };
+  //   formatCode();
+  // }, [code, language]);
 
   useEffect(() => {
     Prism.highlightAll();
-  }, [formattedCode]);
+  }, [code]);
 
   const handleCopy = () => {
     if (codeRef.current) {
@@ -137,7 +137,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
         className={`language-${language} border border-outline-100 rounded-lg max-h-[400px] overflow-y-auto p-6 scrollbar-hide ${className}`}
         style={themeStyles}
       >
-        <code ref={codeRef}>{formattedCode}</code>
+        <code ref={codeRef}>{code}</code>
       </pre>
       <button
         onClick={handleCopy}
