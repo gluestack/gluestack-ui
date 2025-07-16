@@ -158,7 +158,7 @@ export const readJsonFile = (filePath: string): any => {
 
 export const deletePath = (path: string) => {
   if (fs.existsSync(path)) {
-    fs.rmSync(path, { recursive: true, force: true });
+    fs.rmdirSync(path, { recursive: true });
   }
 };
 
