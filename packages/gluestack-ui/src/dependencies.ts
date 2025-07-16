@@ -17,6 +17,8 @@ export interface Dependencies {
   [key: string]: ComponentConfig;
 }
 
+const _homeDir = os.homedir();
+
 const projectBasedDependencies: Dependencies = {
   nextjs: {
     dependencies: {
@@ -30,6 +32,8 @@ const projectBasedDependencies: Dependencies = {
       'react-native-svg': '^15.2.0',
       'dom-helpers': '^5.2.1',
       'react-stately': '^3.39.0',
+      '@gluestack-ui-nightly/core': '*',
+      '@gluestack-ui-nightly/utils': '*',
     },
     devDependencies: {
       '@types/react-native': '0.72.8',
@@ -49,6 +53,8 @@ const projectBasedDependencies: Dependencies = {
       '@legendapp/motion': '^2.3.0',
       'react-native-svg': '^15.2.0',
       'react-stately': '^3.39.0',
+      '@gluestack-ui-nightly/core': '*',
+      '@gluestack-ui-nightly/utils': '*',
     },
   },
   'react-native-cli': {
@@ -63,6 +69,8 @@ const projectBasedDependencies: Dependencies = {
       'react-native-svg': '^15.2.0',
       'react-stately': '^3.39.0',
       'react-native-reanimated': '^3.17.4',
+      '@gluestack-ui-nightly/core': '*',
+      '@gluestack-ui-nightly/utils': '*',
     },
     devDependencies: {
       'babel-plugin-module-resolver': '^5.0.0',
@@ -93,11 +101,13 @@ async function getProjectBasedDependencies(
   }
 }
 
-// Get dependencies for a component
+// Get dependencies for a component by reading its dependencies.json file
 const getComponentDependencies = async (
   componentName: string
 ): Promise<ComponentConfig> => {
   try {
+    const dependenciesPath = join(
+      _homeDir,
     const homeDir = os.homedir();
     const dependenciesPath = join(
       homeDir,
@@ -106,6 +116,16 @@ const getComponentDependencies = async (
       componentName,
       'dependencies.json'
     );
+
+    if (fs.existsSync(dependenciesPath)) {
+      const dependenciesContent = await fs.readJSON(dependenciesPath);
+      return {
+        dependencies: dependenciesContent.dependencies || {},
+        devDependencies: dependenciesContent.devDependencies || {},
+        additionalComponents: dependenciesContent.components || [],
+        hooks: dependenciesContent.hooks || [],
+      };
+    }
 
     // Check if dependencies.json exists
     if (fs.existsSync(dependenciesPath)) {
