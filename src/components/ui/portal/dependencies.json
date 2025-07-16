@@ -1,7 +1,5 @@
 {
   "dependencies": {},
   "devDependencies": {},
-  "components": [
-    "overlay"
-  ]
+  "components": []
 }

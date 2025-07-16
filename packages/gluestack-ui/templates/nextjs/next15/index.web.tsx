@@ -2,9 +2,9 @@
 'use client';
 import React, { useEffect, useLayoutEffect } from 'react';
 import { config } from './config';
-import { OverlayProvider } from '@/components/ui/overlay/creator';
-import { ToastProvider } from '@/components/ui/toast/creator';
-import { setFlushStyles } from '@/utils/gluestack-utils/nativewind-utils/flush';
+import { OverlayProvider } from '@gluestack-ui-nightly/core/overlay/creator';
+import { ToastProvider } from '@gluestack-ui-nightly/core/toast/creator';
+import { setFlushStyles } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { script } from './script';
 
 const variableStyleTagId = 'nativewind-style';
