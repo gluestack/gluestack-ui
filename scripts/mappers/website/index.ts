@@ -14,8 +14,8 @@ export default {
         docsOperations.copyComponentsDocs(component);
       }
       if (component === 'utils') {
-        // docsOperations.copyHooksDocs('use-break-point-value');
-        // docsOperations.copyHooksDocs('use-media-query');
+        docsOperations.copyHooksDocs('use-break-point-value');
+        docsOperations.copyHooksDocs('use-media-query');
       }
     }
   },
