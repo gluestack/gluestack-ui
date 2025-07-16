@@ -1,4 +1,3 @@
-import { log } from '@clack/prompts';
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 

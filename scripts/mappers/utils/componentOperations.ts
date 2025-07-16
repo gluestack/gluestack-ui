@@ -5,8 +5,6 @@ import * as fileOps from './fileOperations';
 export interface MapperConfig {
   sourcePath: string;
   destPath: string;
-  utilsSourcePath?: string;
-  utilsDestPath?: string;
   ignoreFiles?: string[];
 }
 
@@ -35,29 +33,6 @@ export const copyComponent = (component: string, config: MapperConfig) => {
     console.log(`✅ Copied component: ${component}`);
   } catch (error) {
     console.error(`❌ Error copying component ${component}:`, error);
-  }
-};
-
-let lastUtilsCopyTime = 0;
-const UTILS_COPY_DEBOUNCE = 5000; // 5 seconds
-
-export const copyUtils = (config: MapperConfig) => {
-  if (!config.utilsSourcePath || !config.utilsDestPath) {
-    return;
-  }
-
-  // Debounce utils copying to prevent excessive operations
-  const now = Date.now();
-  if (now - lastUtilsCopyTime < UTILS_COPY_DEBOUNCE) {
-    return;
-  }
-  lastUtilsCopyTime = now;
-
-  try {
-    fileOps.copyDir(config.utilsSourcePath, config.utilsDestPath);
-    console.log(`✅ Copied utils`);
-  } catch (error) {
-    console.error(`❌ Error copying utils:`, error);
   }
 };
 

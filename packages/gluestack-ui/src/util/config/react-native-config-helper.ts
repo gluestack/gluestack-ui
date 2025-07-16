@@ -1,8 +1,7 @@
-import { generateConfig, getFilePath, pathResolver } from '.';
-import { RawConfig, ReactNativeResolvedConfig } from './config-types';
-import { ensureFilesPromise, getRelativePath } from '..';
+import { getFilePath, pathResolver } from '.';
+import { ReactNativeResolvedConfig } from './config-types';
+import { ensureFilesPromise } from '..';
 import { config } from '../../config';
-import { join } from 'path';
 import { execSync } from 'child_process';
 import os from 'os';
 import { commonInitialization } from '../init';
@@ -66,18 +65,6 @@ async function generateConfigRNApp(permission: boolean) {
   const MetroConfigPath = await getFilePath(['metro.config.*']);
   const tsConfigPath = await getFilePath(['tsconfig.*']);
 
-  const gluestackConfig: RawConfig = {
-    tailwind: {
-      config: tailwindConfigPath.length
-        ? tailwindConfigPath
-        : 'tailwind.config.js',
-      css: globalCssPath.length ? globalCssPath : 'global.css',
-    },
-    app: {
-      entry: entryPath,
-      components: config.writableComponentsPath,
-    },
-  };
   const resolvedGluestackConfig = {
     tailwind: {
       config: tailwindConfigPath.length
@@ -95,7 +82,6 @@ async function generateConfigRNApp(permission: boolean) {
     },
   };
 
-  generateConfig(gluestackConfig);
   const resolvedConfig = await resolvedReactNativePaths(
     resolvedGluestackConfig
   );

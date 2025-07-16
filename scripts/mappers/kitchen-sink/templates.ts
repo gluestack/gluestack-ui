@@ -19,15 +19,12 @@ export const importTemplate = (imports: string[], importPath: string) => {
 export const wrappedComponentTemplate = (processedContent: string) => {
   return `
 import React from 'react';
-import { ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 export default function ComponentExamples() {
   return (
-    <SafeAreaView className="flex-1 bg-background-0">
-        <ScrollView className="bg-background-0 flex-1" contentContainerClassName="px-3 pb-6 web:flex-col">
+        <KeyboardAwareScrollView enableAutomaticScroll showsVerticalScrollIndicator={false} className='bg-background-0 flex-1 px-3 pb-6 web:flex-col md:max-w-[1230px] w-full mx-auto'>
       ${processedContent.trim()}
-        </ScrollView>
-    </SafeAreaView>
+        </KeyboardAwareScrollView>
   );
 }`;
 };

@@ -34,7 +34,9 @@ export function CodePreviewer({
 }) {
   // Initialize state with default values from args
   const [values, setValues] = useState<Record<string, any>>({});
-  const [compiledCode, setCompiledCode] = useState<any>();
+  const [compiledCode, setCompiledCode] = useState<string>('');
+  const [isReady, setIsReady] = useState(false);
+
   // Initialize values on component mount or when args change
   useEffect(() => {
     const initialValues: Record<string, any> = {};
@@ -45,11 +47,24 @@ export function CodePreviewer({
   }, [argTypes]);
 
   useEffect(() => {
-    const compiledCodetemp = Handlebars.compile(code);
-    if (values) {
-      setCompiledCode(compiledCodetemp(values));
+    try {
+      const compiledCodetemp = Handlebars.compile(code);
+      if (values && Object.keys(values).length > 0) {
+        const compiled = compiledCodetemp(values);
+        setCompiledCode(compiled);
+        setIsReady(true);
+      } else if (Object.keys(argTypes).length === 0) {
+        // If no argTypes, compile immediately
+        const compiled = compiledCodetemp({});
+        setCompiledCode(compiled);
+        setIsReady(true);
+      }
+    } catch (error) {
+      console.error('Error compiling code:', error);
+      setCompiledCode(code);
+      setIsReady(true);
     }
-  }, [values]);
+  }, [values, code, argTypes]);
 
   // Handle control value changes
   const handleChange = (name: string, value: any) => {
@@ -143,10 +158,12 @@ export function CodePreviewer({
     <Box className="flex flex-col w-full my-2">
       <Box className="-mb-2 border border-outline-100 rounded-t-lg flex-col flex w-full min-h-[200px] md:flex-row">
         <Box className="p-4 md:border-r border-outline-100 flex-1 flex items-center justify-center w-full ">
-          <LiveProvider code={compiledCode} scope={{ ...reactLive }}>
-            <LiveError />
-            <LivePreview className=" flex items-center justify-center  w-full" />
-          </LiveProvider>
+          {isReady && (
+            <LiveProvider code={compiledCode} scope={{ ...reactLive }}>
+              <LiveError />
+              <LivePreview className=" flex items-center justify-center  w-full" />
+            </LiveProvider>
+          )}
         </Box>
         {Object.keys(argTypes).length > 0 && (
           <Box className="p-4  border-b py-10  flex-1">
@@ -158,11 +175,13 @@ export function CodePreviewer({
           </Box>
         )}
       </Box>
-      <CodeBlock
-        code={importText.join('\n') + '\n\n' + compiledCode}
-        language="tsx"
-        className="rounded-b-lg rounded-t-none border-t-0"
-      />
+      {isReady && (
+        <CodeBlock
+          code={importText.join('\n') + '\n\n' + compiledCode}
+          language="tsx"
+          className="rounded-b-lg rounded-t-none border-t-0"
+        />
+      )}
     </Box>
   );
 }

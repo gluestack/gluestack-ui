@@ -3,7 +3,7 @@ import * as path from 'path';
 import fg from 'fast-glob';
 import { projectRootPath } from '..';
 import { config } from '../../config';
-import { RawConfig, PROJECT_SHARED_IGNORE } from './config-types';
+import { PROJECT_SHARED_IGNORE } from './config-types';
 
 const fileExtensions = ['.tsx', '.jsx', '.ts', '.js'];
 const possibleIndexFiles = ['_app', 'index', 'App'];
@@ -112,10 +112,10 @@ async function getFilePath(files: string[]) {
   return filePath[0];
 }
 
-async function generateConfig(resultConfig: RawConfig) {
-  const targetPath = path.resolve(projectRootPath, 'gluestack-ui.config.json');
-  fs.writeFileSync(targetPath, JSON.stringify(resultConfig, null, 2), 'utf8');
-}
+// async function generateConfig(resultConfig: RawConfig) {
+//   const targetPath = path.resolve(projectRootPath, 'gluestack-ui.config.json');
+//   fs.writeFileSync(targetPath, JSON.stringify(resultConfig, null, 2), 'utf8');
+// }
 
 async function generateMonoRepoConfig() {
   const componentPath = path.resolve(
@@ -139,7 +139,7 @@ async function generateMonoRepoConfig() {
 export {
   checkIfInitialized,
   getEntryPathAndComponentsPath,
-  generateConfig,
+  // generateConfig,
   getFilePath,
   getComponentsPath,
   generateMonoRepoConfig,
