@@ -1,21 +1,18 @@
 import os from 'os';
 import { config } from '../../config';
 import { promisify } from 'util';
+import path, { join } from 'path';
 import { execSync } from 'child_process';
 import path, { basename, join } from 'path';
 import { log, confirm, spinner } from '@clack/prompts';
-import fs, { copy, existsSync, writeFile } from 'fs-extra';
-import { RawConfig } from '../config/config-types';
-import {
-  checkIfInitialized,
-  generateMonoRepoConfig,
-  getEntryPathAndComponentsPath,
-} from '../config';
+import fs, { existsSync, writeFile } from 'fs-extra';
+import { checkIfInitialized, generateMonoRepoConfig } from '../config';
 import {
   cloneRepositoryAtRoot,
   findLockFileType,
   installDependencies,
   promptVersionManager,
+  checkComponentDependencies,
 } from '..';
 import { getProjectBasedDependencies } from '../../dependencies';
 import { generateConfigNextApp } from '../config/next-config-helper';
@@ -23,23 +20,10 @@ import { generateConfigExpoApp } from '../config/expo-config-helper';
 import { generateConfigRNApp } from '../config/react-native-config-helper';
 import { checkNextVersion } from '../check-next-version';
 import { readFile } from 'fs-extra';
-import {
-  modifyLayoutFile,
-  modifyLayoutFilesAutomatically,
-} from './modify-layout';
+import { modifyLayoutFilesAutomatically } from './modify-layout';
 
 const _currDir = process.cwd();
 const _homeDir = os.homedir();
-
-// Get package root directory
-const getPackageRoot = () => {
-  // When running from source
-  if (__dirname.includes('src')) {
-    return path.resolve(__dirname, '../../');
-  }
-  // When running from published package
-  return path.resolve(__dirname, '../');
-};
 
 // Get templates from GitHub repository
 const getTemplatesPath = () => {
@@ -79,6 +63,11 @@ const InitializeGlueStack = async ({
 
     console.log(`\n\x1b[1mInitializing gluestack-ui v2...\x1b[0m\n`);
     await cloneRepositoryAtRoot(join(_homeDir, config.gluestackDir));
+    const inputComponent = [config.providerComponent];
+
+    // Check dependencies for the provider component
+    const { components: providerDependencies } =
+      await checkComponentDependencies(inputComponent);
     const inputComponent = [config.providerComponent, 'overlay', 'toast'];
     let additionalDependencies = await getProjectBasedDependencies(
       projectType,
@@ -104,6 +93,10 @@ const InitializeGlueStack = async ({
     );
 
     await addProvider(isNextjs15);
+
+    // Add provider dependencies (like toast) as essential components
+    await addEssentialComponents(providerDependencies);
+
     await addEssentialComponents(['overlay', 'toast']);
     s.stop(`\x1b[32mProject configuration generated.\x1b[0m`);
     log.step(
@@ -133,6 +126,19 @@ async function addProvider(isNextjs15: boolean | undefined) {
     );
 
     await fs.ensureDir(targetPath);
+
+    // Copy only files from the root directory, excluding subdirectories and dependencies.json
+    const files = await fs.readdir(sourcePath, { withFileTypes: true });
+
+    for (const file of files) {
+      if (file.isFile() && file.name !== 'dependencies.json') {
+        await fs.copy(
+          join(sourcePath, file.name),
+          join(targetPath, file.name),
+          { overwrite: true }
+        );
+      }
+    }
     await fs.copy(sourcePath, targetPath, {
       overwrite: true,
       filter: (src: string) => {
@@ -179,6 +185,10 @@ async function addProvider(isNextjs15: boolean | undefined) {
 
 async function addEssentialComponents(components: string[]) {
   try {
+    if (components.length === 0) {
+      return;
+    }
+
     for (const component of components) {
       const targetPath = join(
         _currDir,
@@ -193,21 +203,19 @@ async function addEssentialComponents(components: string[]) {
       );
 
       await fs.ensureDir(targetPath);
-      await fs.copy(sourcePath, targetPath, {
-        overwrite: true,
-        filter: (src: string) => {
-          const relativePath = src.replace(sourcePath, '');
 
-          // Skip if the path starts with any of the ignored folders
-          for (const ignoreFolder of config.ignoreFolders) {
-            if (
-              relativePath.startsWith(`/${ignoreFolder}`) ||
-              relativePath.startsWith(`\\${ignoreFolder}`)
-            ) {
-              return false;
-            }
-          }
+      // Copy only files from the root directory, excluding subdirectories and dependencies.json
+      const files = await fs.readdir(sourcePath, { withFileTypes: true });
 
+      for (const file of files) {
+        if (file.isFile() && file.name !== 'dependencies.json') {
+          await fs.copy(
+            join(sourcePath, file.name),
+            join(targetPath, file.name),
+            { overwrite: true }
+          );
+        }
+      }
           // Skip dependencies.json file
           if (
             relativePath.includes('dependencies.json') ||
@@ -220,20 +228,17 @@ async function addEssentialComponents(components: string[]) {
         },
       });
     }
-    log.step(`✅ Added essential components: ${components.join(', ')}`);
+    log.step(`✅ Added provider dependencies: ${components.join(', ')}`);
   } catch (err) {
     log.error(
-      `\x1b[31mError occurred while adding essential components.\x1b[0m`
+      `\x1b[31mError occurred while adding provider dependencies.\x1b[0m`
     );
     throw new Error((err as Error).message);
   }
 }
 
 //update tailwind.config.js
-async function updateTailwindConfig(
-  resolvedConfig: RawConfig,
-  projectType: string
-) {
+async function updateTailwindConfig(resolvedConfig: any, projectType: string) {
   try {
     const templatesPath = getTemplatesPath();
     const tailwindConfigRootPath = join(templatesPath, 'tailwind.config.js');
@@ -297,13 +302,15 @@ async function updateTSConfig(
     await writeFileAsync(configPath, JSON.stringify(tsConfig, null, 2), 'utf8');
   } catch (err) {
     log.error(
-      `\x1b[31mError occurred while updating tsconfig.json: ${(err as Error).message}\x1b[0m`
+      `\x1b[31mError occurred while updating tsconfig.json: ${
+        (err as Error).message
+      }\x1b[0m`
     );
   }
 }
 
 //update global.css
-async function updateGlobalCss(resolvedConfig: RawConfig): Promise<void> {
+async function updateGlobalCss(resolvedConfig: any): Promise<void> {
   try {
     const globalCSSPath = resolvedConfig.tailwind.css;
     const templatesPath = getTemplatesPath();
@@ -333,25 +340,6 @@ async function updateGlobalCss(resolvedConfig: RawConfig): Promise<void> {
     }
   } catch (err) {
     log.error(`\x1b[31mError: ${err as Error}\x1b[0m`);
-  }
-}
-
-async function addUtils() {
-  try {
-    const targetPath = join(_currDir, config.writableUtilsPath);
-    const sourcePath = join(
-      _homeDir,
-      config.gluestackDir,
-      config.utilsResourcePath
-    );
-
-    await fs.ensureDir(targetPath);
-    await fs.copy(sourcePath, targetPath, {
-      overwrite: true,
-    });
-  } catch (err) {
-    log.error(`\x1b[31mError occurred while adding utils.\x1b[0m`);
-    throw new Error((err as Error).message);
   }
 }
 
@@ -463,33 +451,9 @@ async function commonInitialization(
 
     await fs.copy(nativewindEnvPath, join(_currDir, 'nativewind-env.d.ts'));
 
-    // Copy utils directory
-    await addUtils();
-
     permission && (await updateTSConfig(projectType, resolvedConfig));
     permission && (await updateGlobalCss(resolvedConfig));
     await updateTailwindConfig(resolvedConfig, projectType);
-
-    //function to update package.json script to implement darkMode in expo, will be removed later
-    if (projectType === config.expoProject) {
-      const packageJsonPath = join(_currDir, 'package.json');
-      const packageJson = JSON.parse(
-        await fs.readFile(packageJsonPath, 'utf8')
-      );
-      const devices = ['android', 'ios', 'web'];
-
-      //get existing value of scripts
-      devices.forEach((device) => {
-        const script = packageJson.scripts[device];
-        packageJson.scripts[device] = `DARK_MODE=media `.concat(script);
-      });
-
-      await fs.writeFile(
-        packageJsonPath,
-        JSON.stringify(packageJson, null, 2),
-        'utf8'
-      );
-    }
 
     // Automatically modify layout files to add GluestackUIProvider wrapper
     await modifyLayoutFilesAutomatically(
