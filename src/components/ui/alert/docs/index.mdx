@@ -10,7 +10,7 @@ pageDescription: gluestack-ui offers a responsive React Native Alert component w
 showHeader: true
 ---
 
-import ManualInstallationNote from '@/docs-components/manual-installation-note';
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -33,11 +33,24 @@ This is an illustration of **Alert** component.
 <br />
 ## Installation
 
+
+
+<Tabs>
+<TabItem label="CLI">
 ### Run the following command:
+ <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add alert`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into your project.
 
-<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add alert`} language="bash" />
+```tsx
+%%-- File: src/components/ui/alert/index.tsx --%%
+```
 
-<ManualInstallationNote />
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
 
 ## API Reference
 
