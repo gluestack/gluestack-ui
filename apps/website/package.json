@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui-nightly/core @gluestack-ui-nightly/utils && next build",
+    "build": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui-nightly/core@latest @gluestack-ui-nightly/utils@latest  && next build",
     "build:only": "next build",
     "start": "next start",
     "test": "jest"
@@ -13,6 +13,8 @@
     "@docsearch/react": "^3.9.0",
     "@expo/html-elements": "^0.12.5",
     "@expo/next-adapter": "^6.0.0",
+    "@gluestack-ui-nightly/core": "^1.0.6",
+    "@gluestack-ui-nightly/utils": "^0.1.13",
     "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
     "@legendapp/motion": "^2.4.0",
     "@mdx-js/loader": "^3.1.0",
@@ -64,5 +66,6 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+
   }
 }

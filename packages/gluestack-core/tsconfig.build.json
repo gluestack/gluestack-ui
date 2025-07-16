@@ -11,7 +11,6 @@
       "jsx": "preserve",
       "target": "es2015",
       "removeComments": true,
-      "importHelpers": true,
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
     },
