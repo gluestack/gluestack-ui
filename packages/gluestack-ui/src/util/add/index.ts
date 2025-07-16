@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import chalk from 'chalk';
 import os from 'os';
-import { basename, join, parse } from 'path';
+import { join } from 'path';
 import { log, confirm } from '@clack/prompts';
 import { config } from '../../config';
 import {
@@ -9,7 +9,6 @@ import {
   getAllComponents,
   installDependencies,
   projectRootPath,
-  removeHyphen,
   findLockFileType,
   promptVersionManager,
 } from '..';
@@ -25,9 +24,8 @@ const componentAdder = async ({
   componentArgs?: Array<string>;
 }) => {
   try {
-    const res = await sortComponentsAndHooks(componentArgs);
-    let componentsToAdd = res.components;
-    let hooksToAdd = res.hooks;
+    let componentsToAdd = componentArgs;
+
     if (componentsToAdd.length > 0 || addAll) {
       if (
         !addAll &&
@@ -45,6 +43,12 @@ const componentAdder = async ({
       let requestedComponents = addAll
         ? await getAllComponents()
         : componentsToAdd;
+      const { components: additionalComponents } =
+        await checkComponentDependencies(requestedComponents);
+
+      const allComponentsToInstall = [
+        ...new Set([...requestedComponents, ...additionalComponents]),
+      ];
 
       const { hooks, components: additionalComponents } =
         await checkComponentDependencies(requestedComponents);
@@ -66,6 +70,14 @@ const componentAdder = async ({
       }
 
       const updatedComponents =
+        !existingComponentsChecked && allComponentsToInstall.length
+          ? await isComponentInProject(allComponentsToInstall)
+          : allComponentsToInstall;
+      const count = updatedComponents.length;
+      if (count === 0) {
+        log.step(`No new components to add.`);
+        return;
+      }
         !existingComponentsChecked && uniqueComponents.length
           ? await isComponentInProject(uniqueComponents)
           : uniqueComponents;
@@ -170,40 +182,27 @@ const checkIfComponentIsValid = async (
   else return false;
 };
 
-const writeComponent = async (component: string, targetPath: string) => {
-  try {
-    await fs.ensureDir(targetPath);
-    await fs.copy(
-      join(
-        _homeDir,
-        config.gluestackDir,
-        config.componentsResourcePath,
-        component
-      ),
-      join(targetPath),
-      {
-        overwrite: true,
-        filter: (src: string) => {
-          const relativePath = src.replace(
-            join(
-              _homeDir,
-              config.gluestackDir,
-              config.componentsResourcePath,
-              component
-            ),
-            ''
-          );
+      log.step(`Adding ${count} component${count > 1 ? 's' : ''}:`);
+      console.log(
+        `${chalk.cyan('⏳')} ${updatedComponents
+          .map((component) => chalk.yellow(component))
+          .join(', ')}`
+      );
 
-          // Skip if the path starts with any of the ignored folders
-          for (const ignoreFolder of config.ignoreFolders) {
-            if (
-              relativePath.startsWith(`/${ignoreFolder}`) ||
-              relativePath.startsWith(`\\${ignoreFolder}`)
-            ) {
-              return false;
-            }
-          }
+      let versionManager: string | null =
+        config.packageManager || findLockFileType();
+      if (!versionManager) {
+        versionManager = await promptVersionManager();
+      }
 
+      await installDependencies(updatedComponents, versionManager);
+      for (const component of updatedComponents) {
+        const targetPath = join(
+          projectRootPath,
+          config.writableComponentsPath,
+          component
+        );
+        await writeComponent(component, targetPath);
           // Skip dependencies.json file
           if (
             relativePath === '/dependencies.json' ||
@@ -216,122 +215,98 @@ const writeComponent = async (component: string, targetPath: string) => {
           return true;
         },
       }
-    );
+
+      log.success(
+        `\x1b[32mDone!\x1b[0m Added ${count} component${
+          count > 1 ? 's' : ''
+        } to the project.`
+      );
+    }
   } catch (error) {
     log.error(`\x1b[31mError: ${(error as Error).message}\x1b[0m`);
   }
 };
 
-const confirmOverride = async (
-  component: string[],
-  existingCount: number
-): Promise<boolean | symbol> => {
-  const displayComponent = existingCount === 1 ? component[0] : 'Few';
-  const components = existingCount === 1 ? 'component' : 'components';
-  const shouldContinue = await confirm({
-    message: `\x1b[33mWARNING: ${
-      displayComponent[0].toUpperCase() + displayComponent.slice(1)
-    } ${components} already exists. Continuing with the installation may result in component replacement if changes are made. Please commit your changes before proceeding with the installation. Continue?\x1b[0m`,
-  });
+const isComponentInProject = async (
+  allComponentsToInstall: string[]
+): Promise<string[]> => {
+  const currentComponents = fs
+    .readdirSync(join(projectRootPath, config.writableComponentsPath))
+    .filter((item) => {
+      const itemPath = join(
+        projectRootPath,
+        config.writableComponentsPath,
+        item
+      );
+      return fs.statSync(itemPath).isDirectory();
+    });
 
-  return shouldContinue;
+  const existingComponents = allComponentsToInstall.filter((component) =>
+    currentComponents.includes(component)
+  );
+
+  if (existingComponents.length > 0) {
+    const shouldContinue = await confirm({
+      message: `\x1b[33mThe following components are already present in your project: ${existingComponents.join(
+        ', '
+      )}. Do you want to overwrite them?\x1b[0m`,
+    });
+
+    const componentsToAdd = shouldContinue
+      ? allComponentsToInstall
+      : allComponentsToInstall.filter(
+          (component) => !existingComponents.includes(component)
+        );
+    existingComponentsChecked = true;
+    return componentsToAdd;
+  }
+
+  return allComponentsToInstall;
 };
 
-const hookAdder = async (requestedHook: string[]) => {
+async function checkIfComponentIsValid(components: string[]): Promise<boolean> {
   try {
-    log.info(`\n\x1b[1mAdding new hook...\x1b[0m\n`);
-    await writeHook(requestedHook);
-    log.success(
-      `\x1b[32mDone!\x1b[0m Added new \x1b[1mgluestack-ui\x1b[0m hook into project`
+    const allComponents = await getAllComponents();
+    // Allow gluestack-ui-provider to be added manually even though it's excluded from getAllComponents
+    const allowedComponents = [...allComponents, config.providerComponent];
+    return components.every((component) =>
+      allowedComponents.includes(component)
     );
   } catch (err) {
-    log.error(`\x1b[31mError: ${(err as Error).message}\x1b[0m`);
-  }
-};
-
-const sortComponentsAndHooks = async (
-  inputNames: string[] | undefined
-): Promise<{ hooks: string[]; components: string[] }> => {
-  if (!inputNames || inputNames.length === 0) {
-    return { hooks: [], components: [] };
-  }
-
-  const hooksPath = join(
-    _homeDir,
-    config.gluestackDir,
-    config.hooksResourcePath
-  );
-  const hooksList = fs
-    .readdirSync(hooksPath)
-    .map((file) => removeHyphen(parse(file).name).toLowerCase());
-
-  const result = inputNames.reduce(
-    (acc, name) => {
-      const lowercaseName = name.toLowerCase();
-      if (hooksList.includes(lowercaseName)) {
-        acc.hooks.push(name);
-      } else {
-        acc.components.push(name);
-      }
-      return acc;
-    },
-    { hooks: [] as string[], components: [] as string[] }
-  );
-
-  return result;
-};
-
-const hookFileName = async (hook: string): Promise<string> => {
-  const hooksList = fs.readdirSync(
-    join(_homeDir, config.gluestackDir, config.hooksResourcePath)
-  );
-  let fileName = '';
-  hooksList.forEach((file) => {
-    if (removeHyphen(parse(file).name) == hook.toLowerCase()) {
-      fileName = basename(file);
-    }
-  });
-  return fileName;
-};
-const writeHook = async (hooksArray: string[]) => {
-  for (const hook of hooksArray) {
-    const fileName = await hookFileName(hook);
-    const utilsPath = join(
-      projectRootPath,
-      config.writableComponentsPath,
-      'utils',
-      fileName
+    log.error(
+      `\x1b[31mError fetching available components: ${
+        (err as Error).message
+      }\x1b[0m`
     );
-    const sourceFilePath = join(
+    return false;
+  }
+}
+
+const writeComponent = async (component: string, targetPath: string) => {
+  try {
+    await fs.ensureDir(targetPath);
+
+    const sourcePath = join(
       _homeDir,
       config.gluestackDir,
-      config.hooksResourcePath,
-      fileName
+      config.componentsResourcePath,
+      component
     );
-    if (fs.existsSync(utilsPath)) {
-      const shouldOverride = await confirmHookOverride(hook);
-      if (!shouldOverride) {
-        processTerminate('Installation aborted');
+
+    const files = await fs.readdir(sourcePath, { withFileTypes: true });
+
+    for (const file of files) {
+      if (file.isFile() && file.name !== 'dependencies.json') {
+        await fs.copy(
+          join(sourcePath, file.name),
+          join(targetPath, file.name),
+          { overwrite: true }
+        );
       }
     }
-
-    try {
-      await fs.ensureFile(utilsPath);
-      await fs.copy(sourceFilePath, utilsPath);
-    } catch (error) {
-      log.error(`Error adding hook ${hook}: ${(error as Error).message}`);
-    }
+  } catch (error) {
+    log.error(`\x1b[31mError: ${(error as Error).message}\x1b[0m`);
   }
 };
 
-const confirmHookOverride = async (hook: string): Promise<boolean | symbol> => {
-  const shouldContinue = await confirm({
-    message: `\x1b[33mWARNING: ${
-      hook[0].toUpperCase() + hook.slice(1)
-    } hook already exists. Continuing with the installation may result in hook replacement if changes are made. Please commit your changes before proceeding with the installation. Continue?\x1b[0m`,
-  });
-
-  return shouldContinue;
-};
-
-export { componentAdder, getAllComponents };
+export { componentAdder };
