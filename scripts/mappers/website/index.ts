@@ -22,16 +22,25 @@ export default {
   // this is for the non-component code and non-component docs sync
   nonComponent: function (filePath: string) {
     try {
-      // for the non-component code
-      // componentOperations.processNonComponentFile(filePath);
       // for the non-component docs
       if (filePath.includes('/docs/') || filePath.includes('\\docs\\')) {
         docsOperations.copyNonComponentDocs(filePath);
       }
       // for the docs components
-      componentOperations.copyDocsComponents(filePath);
-      // for the sidebar
-      componentOperations.processSidebarFile(filePath);
+      if (
+        filePath.includes('/docs-components/') ||
+        filePath.includes('\\docs-components\\')
+      ) {
+        componentOperations.copyDocsComponents(filePath);
+      }
+      // for the sidebar - only process if it's actually the sidebar.json file
+      if (
+        filePath === 'src/sidebar.json' ||
+        filePath.endsWith('/sidebar.json') ||
+        filePath.endsWith('\\sidebar.json')
+      ) {
+        componentOperations.processSidebarFile(filePath);
+      }
     } catch (error) {
       console.error(`Error processing non-component file ${filePath}:`, error);
     }

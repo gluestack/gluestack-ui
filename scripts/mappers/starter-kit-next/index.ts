@@ -5,6 +5,6 @@ export default {
     componentOperations.copyComponent(component, event);
   },
   nonComponent: function (path: string) {
-    componentOperations.processNonComponentFile(path);
+    // componentOperations.processNonComponentFile(path);
   },
 };
