@@ -1,5 +1,4 @@
 /* eslint-disable import/no-anonymous-default-export */
-import gluestackPlugin from './utils/gluestack-utils/nativewind-utils/tailwind-plugin';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -207,6 +206,5 @@ export default {
         'soft-4': '0px 0px 40px rgba(38, 38, 38, 0.1)',
       },
     },
-  },
-  plugins: [gluestackPlugin],
+  }
 };

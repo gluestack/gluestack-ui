@@ -13,17 +13,17 @@ export default {
       if (component !== 'gluestack-ui-provider' && component !== 'overlay') {
         docsOperations.copyComponentsDocs(component);
       }
-      if (component === 'utils') {
-        docsOperations.copyHooksDocs('use-break-point-value');
-        docsOperations.copyHooksDocs('use-media-query');
-      }
+      // if (component === 'utils') {
+      //   docsOperations.copyHooksDocs('use-break-point-value');
+      //   docsOperations.copyHooksDocs('use-media-query');
+      // }
     }
   },
   // this is for the non-component code and non-component docs sync
   nonComponent: function (filePath: string) {
     try {
       // for the non-component code
-      componentOperations.processNonComponentFile(filePath);
+      // componentOperations.processNonComponentFile(filePath);
       // for the non-component docs
       if (filePath.includes('/docs/') || filePath.includes('\\docs\\')) {
         docsOperations.copyNonComponentDocs(filePath);

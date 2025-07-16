@@ -1,7 +1,7 @@
 {
   "argTypes": {},
   "reactLive": {
-    "useBreakpointValue": "@/utils/gluestack-utils/hooks/use-break-point-value",
+    "useBreakpointValue": "@gluestack-ui-nightly/utils/hooks",
     "VStack": "@/components/ui/vstack",
     "Box": "@/components/ui/box",
     "Text": "@/components/ui/text"

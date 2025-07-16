@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "declaration": true,
+      "esModuleInterop": true,
+      "jsx": "preserve",
+      "lib": ["esnext", "dom"],
+      "module": "esnext",
+      "moduleResolution": "node",
+      "noImplicitAny": true,
+      "noEmit": true,
+      "strict": false,
+      "target": "esnext",
+      "skipLibCheck": true,
+      "paths": {
+        "@/*": ["src/*"],
+      }
+    },
+    "include": ["src", "../../src/components/ui/toast/creator"],
+    "exclude": ["lib", "node_modules"]
+  } 

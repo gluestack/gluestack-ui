@@ -24,3 +24,4 @@ expo-env.d.ts
 components/ui/
 utils/gluestack-utils/
 app/components/
+.yalc/

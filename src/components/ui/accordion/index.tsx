@@ -1,16 +1,16 @@
 'use client';
 import React from 'react';
-import { createAccordion } from '@/components/ui/accordion/creator';
+import { createAccordion } from '@gluestack-ui-nightly/core/accordion/creator';
 import { View, Pressable, Text, Platform, TextProps } from 'react-native';
-import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
+import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
+} from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { H3 } from '@expo/html-elements';
 import { cssInterop } from 'nativewind';
-import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui-nightly/core/icon/creator';
 
 const SCOPE = 'ACCORDION';
 /** Styles */

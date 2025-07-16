@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
-import { createPressable } from './creator';
+import { createPressable } from '@gluestack-ui-nightly/core/pressable/creator';
 import { Pressable as RNPressable } from 'react-native';
 
-import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
-import { withStyleContext } from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
+import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import { withStyleContext } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
 
 const UIPressable = createPressable({
   Root: withStyleContext(RNPressable),

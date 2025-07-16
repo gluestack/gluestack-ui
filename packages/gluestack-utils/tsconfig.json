@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+
+    "baseUrl": ".",
+    "declaration": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@common/*": ["src/common/*"],
+      "@aria/*": ["src/aria/*"],
+      "@nativewind-utils/*": ["src/nativewind-utils/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["lib", "node_modules"]
+} 

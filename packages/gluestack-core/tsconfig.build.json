@@ -1,0 +1,18 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "noEmit": false,
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true,
+      "outDir": "./lib/esm",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "jsx": "preserve",
+      "target": "es2015",
+      "removeComments": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+    },
+    "exclude": ["**/__tests__", "**/__fixtures__", "**/__mocks__"]
+  } 

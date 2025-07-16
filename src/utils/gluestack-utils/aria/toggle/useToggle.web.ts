@@ -15,7 +15,7 @@ import { filterDOMProps, mergeProps } from '@react-aria/utils';
 import { InputHTMLAttributes, RefObject } from 'react';
 import { ToggleState } from '@react-stately/toggle';
 import { useFocusable } from '@react-aria/focus';
-import { usePress } from '@/utils/gluestack-utils/aria/interactions';
+import { usePress } from '@gluestack-ui-nightly/utils/aria';
 
 export interface ToggleAria {
   /**

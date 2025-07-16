@@ -1,0 +1,26 @@
+{
+  "name": "@gluestack-nightly/ui-next-adapter",
+  "version": "1.0.0",
+  "description": "Next.js adapter for Gluestack-ui component library with React Native Web support",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build",
+    "clean": "rm -rf dist"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@types/node": "^24.0.12",
+    "typescript": "^5.8.3",
+    "next": "^15.0.0"
+  },
+  "peerDependencies": {
+    "next": ">=13.0.0"
+  }
+}

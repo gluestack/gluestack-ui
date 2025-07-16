@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import { ParentContext } from '@/utils/gluestack-utils/nativewind-utils/context';
-import { useParentContext } from '@/utils/gluestack-utils/nativewind-utils/context';
+import { ParentContext } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import { useParentContext } from '@gluestack-ui-nightly/utils/nativewind-utils';
 type WithStyleContextProps = {
   context?: any;
 };

@@ -10,10 +10,10 @@ import {
 import { ActionsheetContext } from './context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { FocusScope } from '@/utils/gluestack-utils/aria/focus';
-import { mergeRefs, findNodeHandle } from '@/utils/gluestack-utils/common';
-import { useDialog } from '@/utils/gluestack-utils/aria/dialog';
-import { usePreventScroll } from '@/utils/gluestack-utils/aria/overlays';
+import { FocusScope } from '@gluestack-ui-nightly/utils/aria';
+import { mergeRefs, findNodeHandle } from '@gluestack-ui-nightly/utils/common';
+import { useDialog } from '@gluestack-ui-nightly/utils/aria';
+import { usePreventScroll } from '@gluestack-ui-nightly/utils/aria';
 
 //dimentions not giving proper window height on web
 const windowHeight =
