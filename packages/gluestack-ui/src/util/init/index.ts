@@ -2,8 +2,6 @@ import os from 'os';
 import { config } from '../../config';
 import { promisify } from 'util';
 import path, { join } from 'path';
-import { execSync } from 'child_process';
-import path, { basename, join } from 'path';
 import { log, confirm, spinner } from '@clack/prompts';
 import fs, { existsSync, writeFile } from 'fs-extra';
 import { checkIfInitialized, generateMonoRepoConfig } from '../config';
@@ -68,7 +66,7 @@ const InitializeGlueStack = async ({
     // Check dependencies for the provider component
     const { components: providerDependencies } =
       await checkComponentDependencies(inputComponent);
-    const inputComponent = [config.providerComponent, 'overlay', 'toast'];
+
     let additionalDependencies = await getProjectBasedDependencies(
       projectType,
       config.style
@@ -97,7 +95,6 @@ const InitializeGlueStack = async ({
     // Add provider dependencies (like toast) as essential components
     await addEssentialComponents(providerDependencies);
 
-    await addEssentialComponents(['overlay', 'toast']);
     s.stop(`\x1b[32mProject configuration generated.\x1b[0m`);
     log.step(
       'Please refer the above link for more details --> \x1b[33mhttps://gluestack.io/ui/docs/home/overview/introduction \x1b[0m'
@@ -139,32 +136,6 @@ async function addProvider(isNextjs15: boolean | undefined) {
         );
       }
     }
-    await fs.copy(sourcePath, targetPath, {
-      overwrite: true,
-      filter: (src: string) => {
-        const relativePath = src.replace(sourcePath, '');
-
-        // Skip if the path starts with any of the ignored folders
-        for (const ignoreFolder of config.ignoreFolders) {
-          if (
-            relativePath.startsWith(`/${ignoreFolder}`) ||
-            relativePath.startsWith(`\\${ignoreFolder}`)
-          ) {
-            return false;
-          }
-        }
-
-        // Skip dependencies.json file
-        if (
-          relativePath.includes('dependencies.json') ||
-          basename(relativePath) === 'dependencies.json'
-        ) {
-          return false;
-        }
-
-        return true;
-      },
-    });
     if (isNextjs15) {
       const templatesPath = getTemplatesPath();
       const providerContent = await readFile(
@@ -216,17 +187,6 @@ async function addEssentialComponents(components: string[]) {
           );
         }
       }
-          // Skip dependencies.json file
-          if (
-            relativePath.includes('dependencies.json') ||
-            basename(relativePath) === 'dependencies.json'
-          ) {
-            return false;
-          }
-
-          return true;
-        },
-      });
     }
     log.step(`✅ Added provider dependencies: ${components.join(', ')}`);
   } catch (err) {

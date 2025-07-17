@@ -108,9 +108,6 @@ const getComponentDependencies = async (
   try {
     const dependenciesPath = join(
       _homeDir,
-    const homeDir = os.homedir();
-    const dependenciesPath = join(
-      homeDir,
       config.gluestackDir,
       config.componentsResourcePath,
       componentName,
@@ -127,77 +124,6 @@ const getComponentDependencies = async (
       };
     }
 
-    // Check if dependencies.json exists
-    if (fs.existsSync(dependenciesPath)) {
-      const dependenciesContent = await fs.readFile(dependenciesPath, 'utf-8');
-      
-      // Handle empty or whitespace-only files
-      if (!dependenciesContent.trim()) {
-        return {
-          dependencies: {},
-          devDependencies: {},
-          additionalComponents: [],
-          hooks: [],
-        };
-      }
-      
-      let parsedDependencies;
-      try {
-        parsedDependencies = JSON.parse(dependenciesContent);
-      } catch (parseError) {
-        console.warn(`Warning: Invalid JSON in dependencies.json for ${componentName}:`, parseError);
-        return {
-          dependencies: {},
-          devDependencies: {},
-          additionalComponents: [],
-          hooks: [],
-        };
-      }
-
-      // Show what was found in dependencies.json
-      const hasNpmDeps =
-        Object.keys(parsedDependencies.dependencies || {}).length > 0;
-      const hasDevDeps =
-        Object.keys(parsedDependencies.devDependencies || {}).length > 0;
-      const hasComponents = (parsedDependencies.components || []).length > 0;
-      const hasHooks = (parsedDependencies.hooks || []).length > 0;
-
-      if (hasNpmDeps || hasDevDeps || hasComponents || hasHooks) {
-        console.log(
-          `\n🔍 \x1b[33mFound dependencies for \x1b[1m${componentName}\x1b[0m\x1b[33m:\x1b[0m`
-        );
-
-        if (hasNpmDeps) {
-          console.log(
-            `   📦 NPM dependencies: ${Object.keys(parsedDependencies.dependencies).join(', ')}`
-          );
-        }
-        if (hasDevDeps) {
-          console.log(
-            `   🛠️  Dev dependencies: ${Object.keys(parsedDependencies.devDependencies).join(', ')}`
-          );
-        }
-        if (hasComponents) {
-          console.log(
-            `   🧩 Component dependencies: ${parsedDependencies.components.join(', ')}`
-          );
-        }
-        if (hasHooks) {
-          console.log(
-            `   🪝 Hook dependencies: ${parsedDependencies.hooks.join(', ')}`
-          );
-        }
-      }
-
-      return {
-        dependencies: parsedDependencies.dependencies || {},
-        devDependencies: parsedDependencies.devDependencies || {},
-        additionalComponents: parsedDependencies.components || [],
-        hooks: parsedDependencies.hooks || [],
-      };
-    }
-
-    // Return empty config if no dependencies.json exists
     return {
       dependencies: {},
       devDependencies: {},
@@ -205,10 +131,6 @@ const getComponentDependencies = async (
       hooks: [],
     };
   } catch (error) {
-    console.warn(
-      `Warning: Failed to read dependencies for ${componentName}:`,
-      error
-    );
     return {
       dependencies: {},
       devDependencies: {},
