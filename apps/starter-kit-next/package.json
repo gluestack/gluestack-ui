@@ -12,6 +12,7 @@
     "@expo/html-elements": "^0.10.1",
     "@gluestack-ui-nightly/core": "^1.0.6",
     "@gluestack-ui-nightly/utils": "^0.1.13",
+    "@gorhom/bottom-sheet": "^5.1.6",
     "@legendapp/motion": "^2.4.0",
     "dom-helpers": "^5.2.1",
     "nativewind": "^4.1.23",
