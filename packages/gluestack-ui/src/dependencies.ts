@@ -34,6 +34,7 @@ const projectBasedDependencies: Dependencies = {
       'react-stately': '^3.39.0',
       '@gluestack-ui-nightly/core': '*',
       '@gluestack-ui-nightly/utils': '*',
+      '@gluestack-nightly/ui-next-adapter': '*',
     },
     devDependencies: {
       '@types/react-native': '0.72.8',
