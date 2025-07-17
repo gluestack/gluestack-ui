@@ -10,7 +10,7 @@ pageDescription: A feature-rich React Native Input component – supports icons,
 showHeader: true
 ---
 
-import ManualInstallationNote from '@/docs-components/manual-installation-note';
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -31,11 +31,25 @@ This is an illustration of **Input** component.
 
 ## Installation
 
+<Tabs>
+<TabItem label="CLI">
 ### Run the following command:
-
 <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add input`} language="bash" />
 
-<ManualInstallationNote />
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/input/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
 
 ## API Reference
 

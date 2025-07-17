@@ -10,7 +10,7 @@ pageDescription: Improve user experience with a React Popover component—perfec
 showHeader: true
 ---
 
-import ManualInstallationNote from '@/docs-components/manual-installation-note';
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -33,11 +33,26 @@ This is an illustration of **Popover** component.
 <br />
 ## Installation
 
+<Tabs>
+<TabItem label="CLI">
 ### Run the following command:
-
 <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add popover`} language="bash" />
 
-<ManualInstallationNote />
+</TabItem>
+<TabItem label="Manual">
+> Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
+
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/popover/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
 
 ## API Reference
 
