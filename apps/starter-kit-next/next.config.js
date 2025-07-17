@@ -1,3 +1,7 @@
-const { withUIAdapter } = require('@gluestack-nightly/ui-next-adapter');
+import { withUIAdapter } from '@gluestack-nightly/ui-next-adapter';
 
-module.exports = withUIAdapter();
+const config = withUIAdapter({
+  // Your config with full type safety
+});
+
+export default config;
