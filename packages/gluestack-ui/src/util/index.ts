@@ -75,26 +75,6 @@ async function checkComponentDependencies(
           // Recursively process dependencies of this component
           await processComponent(additionalComponent);
         }
-  const visited = new Set<string>();
-  const toProcess = [...components];
-
-  while (toProcess.length > 0) {
-    const component = toProcess.shift()!;
-
-    // Skip if already processed
-    if (visited.has(component)) {
-      continue;
-    }
-    visited.add(component);
-
-    const dependencyConfig = await getComponentDependencies(component);
-
-    // Add additional components
-    dependencyConfig.additionalComponents?.forEach((additionalComponent) => {
-      if (!additionalDependencies.components.includes(additionalComponent)) {
-        additionalDependencies.components.push(additionalComponent);
-        // Add to processing queue for recursive dependency checking
-        toProcess.push(additionalComponent);
       }
     }
   };

@@ -50,25 +50,6 @@ const componentAdder = async ({
         ...new Set([...requestedComponents, ...additionalComponents]),
       ];
 
-      const { hooks, components: additionalComponents } =
-        await checkComponentDependencies(requestedComponents);
-      hooksToAdd = Array.from(hooks);
-
-      // Include additional components from dependencies.json files
-      const allComponents = [...requestedComponents, ...additionalComponents];
-      const uniqueComponents = Array.from(new Set(allComponents));
-
-      // Show user what additional components are being added
-      if (additionalComponents.length > 0) {
-        console.log(
-          `\n📦 \x1b[36mAdditional components found in dependencies:\x1b[0m`
-        );
-        additionalComponents.forEach((component) => {
-          console.log(`   • ${component}`);
-        });
-        console.log('');
-      }
-
       const updatedComponents =
         !existingComponentsChecked && allComponentsToInstall.length
           ? await isComponentInProject(allComponentsToInstall)
@@ -78,109 +59,6 @@ const componentAdder = async ({
         log.step(`No new components to add.`);
         return;
       }
-        !existingComponentsChecked && uniqueComponents.length
-          ? await isComponentInProject(uniqueComponents)
-          : uniqueComponents;
-      const count = updatedComponents.length;
-      await Promise.all(
-        updatedComponents.map(async (component) => {
-          const targetPath = join(
-            projectRootPath,
-            config.writableComponentsPath,
-            component
-          );
-
-          await writeComponent(component, targetPath);
-        })
-      )
-        .then(async () => {
-          let versionManager: string | null = findLockFileType();
-          if (!versionManager) {
-            versionManager = await promptVersionManager();
-          }
-          await installDependencies(updatedComponents, versionManager);
-
-          // Show summary of what was added
-          console.log(
-            `\n✅ \x1b[32mSuccessfully added ${count} component${count === 1 ? '' : 's'}:\x1b[0m`
-          );
-          updatedComponents.forEach((component) => {
-            console.log(`   • ${component}`);
-          });
-
-          log.success(
-            `\x1b[32mDone!\x1b[0m Added new \x1b[1mgluestack-ui\x1b[0m ${count === 1 ? 'component' : 'components'} into project`
-          );
-        })
-        .catch((err) => {
-          log.error(`\x1b[31mError : ${(err as Error).message}\x1b[0m`);
-        });
-    }
-    if (hooksToAdd.length > 0) await hookAdder(hooksToAdd);
-  } catch (err) {
-    throw new Error((err as Error).message);
-  }
-};
-
-const isComponentInProject = async (
-  components: string[]
-): Promise<string[]> => {
-  const alreadyExistingComponents: string[] = [];
-  let componentsToAdd: any = [];
-  for (const component of components) {
-    const pathToCheck = join(
-      projectRootPath,
-      config.writableComponentsPath,
-      component,
-      'index.tsx'
-    );
-    if (fs.existsSync(pathToCheck)) {
-      alreadyExistingComponents.push(component);
-    }
-  }
-  //confirm about the already existing components
-  if (
-    alreadyExistingComponents.length === 1 ||
-    alreadyExistingComponents.length > 1
-  ) {
-    const shouldContinue = await confirmOverride(
-      alreadyExistingComponents,
-      alreadyExistingComponents.length
-    );
-
-    //code to remove already existing components from the list
-    componentsToAdd = shouldContinue
-      ? components.filter(
-          (component) => !alreadyExistingComponents.includes(component)
-        )
-      : processTerminate('Installation aborted');
-    if (shouldContinue) {
-      componentsToAdd = components;
-    } else {
-      componentsToAdd = [];
-    }
-  } else {
-    componentsToAdd = components;
-  }
-
-  if (componentsToAdd.length === 0) log.error('No components to be added');
-  existingComponentsChecked = true;
-  return componentsToAdd;
-};
-
-const processTerminate = (message: string) => {
-  log.error(message);
-  process.exit(1);
-};
-
-const checkIfComponentIsValid = async (
-  components: string[]
-): Promise<boolean> => {
-  const componentList = await getAllComponents();
-  if (components.every((component) => componentList.includes(component)))
-    return true;
-  else return false;
-};
 
       log.step(`Adding ${count} component${count > 1 ? 's' : ''}:`);
       console.log(
@@ -196,6 +74,7 @@ const checkIfComponentIsValid = async (
       }
 
       await installDependencies(updatedComponents, versionManager);
+
       for (const component of updatedComponents) {
         const targetPath = join(
           projectRootPath,
@@ -203,17 +82,6 @@ const checkIfComponentIsValid = async (
           component
         );
         await writeComponent(component, targetPath);
-          // Skip dependencies.json file
-          if (
-            relativePath === '/dependencies.json' ||
-            relativePath === '\\dependencies.json' ||
-            relativePath === 'dependencies.json'
-          ) {
-            return false;
-          }
-
-          return true;
-        },
       }
 
       log.success(
