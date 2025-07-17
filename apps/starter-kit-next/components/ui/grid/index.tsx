@@ -6,14 +6,14 @@ import React, {
   useMemo,
   forwardRef,
 } from "react";
-import type { VariantProps } from "@/utils/gluestack-utils/nativewind-utils";
+import type { VariantProps } from "@gluestack-ui-nightly/utils/nativewind-utils";
 import { View, Dimensions, Platform, ViewProps } from "react-native";
 import { gridStyle, gridItemStyle } from "./styles";
 import { cssInterop } from "nativewind";
 import {
   useBreakpointValue,
   getBreakPointValue,
-} from "@/utils/gluestack-utils/hooks/use-break-point-value";
+} from "@gluestack-ui-nightly/utils/hooks";
 const { width: DEVICE_WIDTH } = Dimensions.get("window");
 const GridContext = createContext<any>({});
 function arrangeChildrenIntoRows({

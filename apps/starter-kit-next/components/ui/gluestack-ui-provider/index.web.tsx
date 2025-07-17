@@ -1,12 +1,11 @@
+// This is a Next.js 15 compatible version of the GluestackUIProvider
 'use client';
 import React, { useEffect, useLayoutEffect } from 'react';
 import { config } from './config';
-import { OverlayProvider } from '@/components/ui/overlay/creator';
-import { ToastProvider } from '@/components/ui/toast/creator';
-import { setFlushStyles } from '@/utils/gluestack-utils/nativewind-utils/flush';
+import { OverlayProvider } from '@gluestack-ui-nightly/core/overlay/creator';
+import { ToastProvider } from '@gluestack-ui-nightly/core/toast/creator';
+import { setFlushStyles } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { script } from './script';
-
-export type ModeType = 'light' | 'dark' | 'system';
 
 const variableStyleTagId = 'nativewind-style';
 const createStyle = (styleTagId: string) => {
@@ -23,7 +22,7 @@ export function GluestackUIProvider({
   mode = 'light',
   ...props
 }: {
-  mode?: ModeType;
+  mode?: 'light' | 'dark' | 'system';
   children?: React.ReactNode;
 }) {
   let cssVariablesWithMode = ``;
@@ -81,16 +80,8 @@ export function GluestackUIProvider({
   }, []);
 
   return (
-    <>
-      <script
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: `(${script.toString()})('${mode}')`,
-        }}
-      />
-      <OverlayProvider>
-        <ToastProvider>{props.children}</ToastProvider>
-      </OverlayProvider>
-    </>
+    <OverlayProvider>
+      <ToastProvider>{props.children}</ToastProvider>
+    </OverlayProvider>
   );
 }
