@@ -5,4 +5,3 @@ dist/
 .env*
 coverage/
 .nyc_output/
-src
