@@ -21,7 +21,8 @@ import {
   TableRow,
 } from '@/docs-components/table';
 import { InlineCode } from '@/docs-components/inline-code';
-import ManualInstallationNote from '@/docs-components/manual-installation-note';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
 
 # HStack
 
@@ -34,12 +35,24 @@ This is an illustration of **HStack** component.
 <br />
 ## Installation
 
+<Tabs>
+<TabItem label="CLI">
 ### Run the following command:
-
 <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add hstack`} language="bash" />
 
-<ManualInstallationNote />
+</TabItem>
+<TabItem label="Manual">
 
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/hstack/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
 ## API Reference
 
 To use this component in your project, include the following import statement in your file.
