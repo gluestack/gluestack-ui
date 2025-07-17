@@ -4,3 +4,5 @@ node_modules
 junit.xml
 dist
 components/
+.yalc
+yalc.lock
