@@ -18,6 +18,7 @@
     "@expo/vector-icons": "^14.1.0",
     "@gluestack-ui-nightly/core": "^1.0.6",
     "@gluestack-ui-nightly/utils": "^0.1.13",
+    "@gorhom/bottom-sheet": "^5.1.6",
     "@legendapp/motion": "^2.4.0",
     "@react-aria/utils": "^3.29.0",
     "@react-navigation/native": "^7.1.6",
