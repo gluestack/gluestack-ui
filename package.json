@@ -25,7 +25,7 @@
     "link-local": "cd packages/gluestack-utils && yarn dev && link-apps",
     "link-apps": "cd apps/website && yarn link @gluestack-utils-nightly/utils && cd ../kitchen-sink && yarn link @gluestack-utils-nightly/utils",
     "changeset": "changeset",
-    "version-packages": "changeset version",
+    "version": "changeset version",
     "release": "changeset publish",
     "changeset:status": "changeset status",
     "changeset:empty": "changeset --empty"
