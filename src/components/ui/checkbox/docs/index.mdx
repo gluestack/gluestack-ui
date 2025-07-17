@@ -10,7 +10,7 @@ pageDescription: Build interactive forms with a checkbox component for React & R
 showHeader: true
 ---
 
-import ManualInstallationNote from '@/docs-components/manual-installation-note';
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -33,11 +33,27 @@ This is an illustration of **Checkbox** component.
 <br />
 ## Installation
 
+<Tabs>
+<TabItem label="CLI">
 ### Run the following command:
-
 <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add checkbox`} language="bash" />
 
-<ManualInstallationNote />
+</TabItem>
+<TabItem label="Manual">
+
+
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/checkbox/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
 
 ## API Reference
 
