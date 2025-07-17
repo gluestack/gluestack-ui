@@ -1,5 +1,11 @@
 # create-gluecode
 
+## 2.0.7
+
+### Patch Changes
+
+- feat: implemented changeset on packages
+
 ## 2.0.6
 
 ### Patch Changes
