@@ -13,10 +13,10 @@ export default {
       if (component !== 'gluestack-ui-provider' && component !== 'overlay') {
         docsOperations.copyComponentsDocs(component);
       }
-      // if (component === 'utils') {
-      //   docsOperations.copyHooksDocs('use-break-point-value');
-      //   docsOperations.copyHooksDocs('use-media-query');
-      // }
+      if (component === 'utils') {
+        docsOperations.copyHooksDocs('use-break-point-value');
+        docsOperations.copyHooksDocs('use-media-query');
+      }
     }
   },
   // this is for the non-component code and non-component docs sync
