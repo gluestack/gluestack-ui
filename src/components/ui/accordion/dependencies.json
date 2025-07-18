@@ -3,8 +3,5 @@
     "@expo/html-elements": "^0.12.5"
   },
   "devDependencies": {},
-  "components": [
-    "icon",
-    "divider"
-  ]
+  "components": []
 }

@@ -1,7 +1,5 @@
 {
   "dependencies": {},
   "devDependencies": {},
-  "components": [
-    "form-control"
-  ]
+  "components": []
 }

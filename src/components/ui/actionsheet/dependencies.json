@@ -4,8 +4,5 @@
     "@expo/html-elements": "^0.12.5"
   },
   "devDependencies": {},
-  "components": [
-    "button",
-    "overlay"
-  ]
+  "components": []
 }
