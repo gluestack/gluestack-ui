@@ -4,7 +4,7 @@ gluestack-ui is a library of copy-pasteable components & patterns crafted with T
 
 [![GitHub stars](https://img.shields.io/github/stars/gluestack/gluestack-ui)](https://github.com/gluestack/gluestack-ui)
 
-[![NPM downloads](https://img.shields.io/npm/dw/@gluestack-ui/button?logo=npm&label=NPM%20downloads&cacheSeconds=3600)](https://www.npmjs.com/package/@gluestack-ui/button) [![Commits per month](https://img.shields.io/github/commit-activity/m/gluestack/gluestack-ui?label=Commits&logo=git)](https://github.com/gluestack/gluestack-ui/commits)
+[![NPM downloads](https://img.shields.io/npm/dw/@gluestack-ui/utils?logo=npm&label=NPM%20downloads&cacheSeconds=3600)](https://www.npmjs.com/package/@gluestack-ui/utils) [![Commits per month](https://img.shields.io/github/commit-activity/m/gluestack/gluestack-ui?label=Commits&logo=git)](https://github.com/gluestack/gluestack-ui/commits)
 
 [![Next.js Latest](https://github.com/gluestack/gluestack-ui/actions/workflows/next-latest.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-latest.yml)
 [![Next.js 14.x](https://github.com/gluestack/gluestack-ui/actions/workflows/next-14.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-14.yml)
