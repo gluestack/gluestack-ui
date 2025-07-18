@@ -542,7 +542,248 @@ Update dependencies in the appropriate configuration files:
 
 **Starter-Kits** - Update starter-kit-\* templates if needed.
 
-**gluestack-ui package** - Update `packages/gluestack-ui/src/dependencies.json` if needed.
+**gluestack-ui package** - Update `packages/gluestack-ui/src/dependencies.ts` if needed.
+
+## Updating Starter-Kits (Templates) for Shipment
+
+When your changes are ready to ship and you need to update the starter-kit templates, follow this comprehensive process to ensure all templates are properly updated and tested.
+
+### Understanding Starter-Kit Templates
+
+Starter-kit templates are located in `packages/gluestack-ui/templates/` and are used by the CLI to initialize new projects. These templates include:
+
+- **Next.js templates** (`templates/nextjs/`) - For Next.js projects
+- **Expo templates** (`templates/expo/`) - For Expo/React Native projects
+- **React Native CLI templates** (`templates/react-native-cli/`) - For React Native CLI projects
+- **Common templates** (`templates/common/`) - Shared configuration files
+
+### When to Update Starter-Kits
+
+Update starter-kit templates when:
+
+- ✅ Adding new components that require template-specific configuration
+- ✅ Updating dependencies that affect project initialization
+- ✅ Modifying configuration files (tailwind.config.js, babel.config.js, etc.)
+- ✅ Adding new project types or framework support
+- ✅ Updating provider components or essential dependencies
+- ✅ Changing initialization logic or file structure
+
+### Step-by-Step Update Process
+
+#### Step 1: Identify Required Changes
+
+1. **Review your component changes** and determine if they affect:
+   - Dependencies in `packages/gluestack-ui/src/dependencies.ts`
+   - Template configuration files
+   - Provider components or initialization logic
+   - Project-specific setup requirements
+
+2. **Check template usage** in the initialization code:
+   ```bash
+   # Review how templates are used
+   grep -r "templates" packages/gluestack-ui/src/
+   ```
+
+#### Step 2: Update Dependencies Configuration
+
+If your component requires new dependencies:
+
+1. **Update `packages/gluestack-ui/src/dependencies.ts`**:
+
+   ```typescript
+   // Add new dependencies to the appropriate project type
+   const projectBasedDependencies: Dependencies = {
+     nextjs: {
+       dependencies: {
+         // Add your new dependency here
+         'your-new-package': '^1.0.0',
+         // ... existing dependencies
+       },
+     },
+     expo: {
+       dependencies: {
+         // Add your new dependency here
+         'your-new-package': '^1.0.0',
+         // ... existing dependencies
+       },
+     },
+     // ... other project types
+   };
+   ```
+
+2. **Test dependency resolution**:
+   ```bash
+   cd packages/gluestack-ui
+   yarn build
+   ```
+
+#### Step 3: Update Template Files
+
+1. **For configuration changes** (tailwind, babel, etc.):
+
+   ```bash
+   # Update the appropriate template file
+   # Example: updating tailwind.config.js
+   cp your-updated-tailwind.config.js packages/gluestack-ui/templates/tailwind.config.js
+   ```
+
+2. **For project-specific templates**:
+
+   ```bash
+   # Update Next.js templates
+   # Update Expo templates
+   # Update React Native CLI templates
+   # Each project type may need different configurations
+   ```
+
+3. **For provider components**:
+   ```bash
+   # Update provider templates if needed
+   # Check packages/gluestack-ui/src/util/init/index.ts for provider logic
+   ```
+
+#### Step 4: Update Initialization Logic
+
+If your changes affect the initialization process:
+
+1. **Review `packages/gluestack-ui/src/util/init/index.ts`**:
+   - Check if new project types need support
+   - Update provider installation logic
+   - Modify configuration generation
+
+2. **Update configuration helpers**:
+   ```bash
+   # Update project-specific config helpers
+   packages/gluestack-ui/src/util/config/
+   ```
+
+#### Step 5: Test Template Updates
+
+1. **Test with local CLI**:
+
+   ```bash
+   # Build the CLI package
+   cd packages/gluestack-ui
+   yarn build
+
+   # Test initialization in a new directory
+   mkdir test-init && cd test-init
+   npm init -y
+   npx ../gluestack-ui/dist/index.js init --projectType nextjs
+   ```
+
+2. **Test all project types**:
+
+   ```bash
+   # Test Next.js initialization
+   npx ../gluestack-ui/dist/index.js init --projectType nextjs
+
+   # Test Expo initialization
+   npx ../gluestack-ui/dist/index.js init --projectType expo
+
+   # Test React Native CLI initialization
+   npx ../gluestack-ui/dist/index.js init --projectType react-native-cli
+   ```
+
+3. **Verify generated files**:
+   - Check that all dependencies are properly installed
+   - Verify configuration files are correctly generated
+   - Test component functionality in the initialized project
+
+#### Step 6: Update Documentation
+
+1. **Update CLI documentation** if new options or project types are added
+2. **Update template documentation** for any new configuration options
+3. **Update contributing guide** if the process changes
+
+### Template-Specific Considerations
+
+#### Next.js Templates
+
+- **Version-specific templates**: `templates/nextjs/next15/` for Next.js 15+
+- **Configuration files**: `next.config.js`, `postcss.config.js`
+- **Provider setup**: Web-specific provider components
+- **Dependencies**: React Native Web, DOM helpers
+
+#### Expo Templates
+
+- **Configuration files**: `metro.config.js`, `babel.config.js`
+- **Provider setup**: Native-specific provider components
+- **Dependencies**: React Native Safe Area Context, Expo HTML Elements
+
+#### React Native CLI Templates
+
+- **Configuration files**: `metro.config.js`, `babel.config.js`
+- **Provider setup**: Native-specific provider components
+- **Dependencies**: React Native Reanimated, React Native Safe Area Context
+
+### Testing Checklist
+
+Before shipping template updates:
+
+- [ ] All project types initialize successfully
+- [ ] Dependencies are correctly installed
+- [ ] Configuration files are properly generated
+- [ ] Provider components work as expected
+- [ ] Components function correctly in initialized projects
+- [ ] No breaking changes to existing functionality
+- [ ] Documentation is updated
+- [ ] CLI builds without errors
+
+### Common Template Update Scenarios
+
+#### Adding a New Component with Dependencies
+
+1. **Update dependencies.ts** with new package requirements
+2. **Test initialization** with the new component
+3. **Verify dependencies** are installed correctly
+4. **Update documentation** if needed
+
+#### Updating Configuration Files
+
+1. **Update template files** in `packages/gluestack-ui/templates/`
+2. **Test initialization** to ensure configs are applied
+3. **Verify functionality** in initialized projects
+
+#### Adding New Project Type Support
+
+1. **Add project type** to dependencies configuration
+2. **Create template files** for the new project type
+3. **Update initialization logic** to handle the new type
+4. **Test thoroughly** with the new project type
+
+### Troubleshooting Template Updates
+
+#### Initialization Fails
+
+1. **Check dependency versions** in `dependencies.ts`
+2. **Verify template files** exist and are correct
+3. **Test with minimal setup** to isolate issues
+4. **Check CLI build** for compilation errors
+
+#### Generated Files Incorrect
+
+1. **Review template copying logic** in init/index.ts
+2. **Check file paths** and template structure
+3. **Verify file permissions** and access rights
+4. **Test template file content** manually
+
+#### Dependencies Not Installed
+
+1. **Check dependencies.ts** configuration
+2. **Verify package manager** detection logic
+3. **Test installation process** manually
+4. **Check for version conflicts**
+
+### Best Practices
+
+- **Always test** template updates with multiple project types
+- **Maintain backward compatibility** when possible
+- **Document breaking changes** clearly
+- **Use semantic versioning** for template updates
+- **Test in clean environments** to avoid local state issues
+- **Keep templates minimal** and focused on essential setup
+- **Update examples** and documentation with template changes
 
 ### Advanced Features
 
