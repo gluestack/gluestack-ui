@@ -1,5 +1,11 @@
 # create-gluecode
 
+## 2.0.8
+
+### Patch Changes
+
+- fix: added expo/html-elements and react-native-safe-area-context to transpile packages in ui-next-adapter
+
 ## 2.0.7
 
 ### Patch Changes

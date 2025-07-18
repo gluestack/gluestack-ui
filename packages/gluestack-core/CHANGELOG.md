@@ -1,5 +1,13 @@
 # @gluestack-ui-nightly/core
 
+## 1.0.9
+
+### Patch Changes
+
+- fix: added expo/html-elements and react-native-safe-area-context to transpile packages in ui-next-adapter
+- Updated dependencies
+  - @gluestack-ui-nightly/utils@0.1.16
+
 ## 1.0.8
 
 ### Patch Changes
