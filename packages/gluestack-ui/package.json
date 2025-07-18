@@ -1,6 +1,6 @@
 {
   "name": "gluestack-ui-nightly",
-  "version": "0.7.27",
+  "version": "0.7.30",
   "main": "dist/index.js",
   "bin": {
     "gluestack-ui-nightly": "./dist/index.js"
@@ -43,6 +43,12 @@
     "fast-glob": "^3.3.2",
     "find-package-json": "^1.2.0",
     "fs-extra": "^11.1.0",
+    "jscodeshift": "^17.1.1",
+    "nativewind": "^4.1.23",
+    "prettier": "^3.3.2",
+    "react-aria": "^3.33.0",
+    "react-native-svg": "^15.2.0",
+    "recast": "^0.23.9",
     "simple-git": "^3.16.0",
     "zod": "^3.22.4"
   },
@@ -53,6 +59,10 @@
     "@types/node": "^18.16.16",
     "jest": "^29.5.0",
     "jest-junit": "^15.0.0",
+    "postcss": "^8.5.4",
+    "react-native": "^0.70.7",
+    "react-native-web": "^0.19.12",
+    "size-limit": "^8.2.4",
     "tslib": "^2.5.0",
     "typescript": "^5.0.4"
   }

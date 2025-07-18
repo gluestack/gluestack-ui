@@ -1,3 +1,8 @@
-const { withUIAdapter } = require('@gluestack-nightly/ui-next-adapter');
+import { withUIAdapter } from '@gluestack-nightly/ui-next-adapter';
 
-module.exports = withUIAdapter();
+const config = withUIAdapter({
+  // Your config with full type safety
+  transpilePackages: ['@gluestack-ui-nightly/core', '@gluestack-ui-nightly/utils'],
+});
+
+export default config;

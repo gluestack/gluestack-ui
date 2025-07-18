@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
-import { createButton } from './creator';
-import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
+import { createButton } from '@gluestack-ui-nightly/core/button/creator';
+import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@/utils/gluestack-utils/nativewind-utils/withStyleContext';
+} from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import type { VariantProps } from 'tailwind-variants';
-import { PrimitiveIcon, UIIcon } from '../icon/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui-nightly/core/icon/creator';
 
 const SCOPE = 'BUTTON';
 

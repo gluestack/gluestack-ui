@@ -48,7 +48,6 @@ const getAllComponents = async (): Promise<string[]> => {
 
 interface AdditionalDependencies {
   components: string[];
-  hooks: string[];
 }
 
 async function checkComponentDependencies(
@@ -56,38 +55,33 @@ async function checkComponentDependencies(
 ): Promise<AdditionalDependencies> {
   const additionalDependencies: AdditionalDependencies = {
     components: [],
-    hooks: [],
   };
 
-  const visited = new Set<string>();
-  const toProcess = [...components];
+  const processedComponents = new Set<string>();
 
-  while (toProcess.length > 0) {
-    const component = toProcess.shift()!;
-
-    // Skip if already processed
-    if (visited.has(component)) {
-      continue;
+  const processComponent = async (component: string) => {
+    if (processedComponents.has(component)) {
+      return;
     }
-    visited.add(component);
 
+    processedComponents.add(component);
     const dependencyConfig = await getComponentDependencies(component);
 
     // Add additional components
-    dependencyConfig.additionalComponents?.forEach((additionalComponent) => {
-      if (!additionalDependencies.components.includes(additionalComponent)) {
-        additionalDependencies.components.push(additionalComponent);
-        // Add to processing queue for recursive dependency checking
-        toProcess.push(additionalComponent);
+    if (dependencyConfig.additionalComponents) {
+      for (const additionalComponent of dependencyConfig.additionalComponents) {
+        if (!additionalDependencies.components.includes(additionalComponent)) {
+          additionalDependencies.components.push(additionalComponent);
+          // Recursively process dependencies of this component
+          await processComponent(additionalComponent);
+        }
       }
-    });
+    }
+  };
 
-    // Add hooks
-    dependencyConfig.hooks?.forEach((hook) => {
-      if (!additionalDependencies.hooks.includes(hook)) {
-        additionalDependencies.hooks.push(hook);
-      }
-    });
+  // Process all requested components
+  for (const component of components) {
+    await processComponent(component);
   }
 
   return additionalDependencies;
@@ -315,8 +309,14 @@ const installDependencies = async (
     };
     const { install, devFlag } = commands[versionManager];
 
-    const installCommand = `${install} ${generateInstallCommand(dependenciesToInstall.dependencies, '')}`;
-    const devInstallCommand = `${install} ${generateInstallCommand(dependenciesToInstall.devDependencies, devFlag)}`;
+    const installCommand = `${install} ${generateInstallCommand(
+      dependenciesToInstall.dependencies,
+      ''
+    )}`;
+    const devInstallCommand = `${install} ${generateInstallCommand(
+      dependenciesToInstall.devDependencies,
+      devFlag
+    )}`;
 
     const s = spinner();
     s.start(
@@ -367,7 +367,9 @@ const installDependencies = async (
     } catch (err) {
       s.stop(`\x1b[31mFailed to install dependencies.\x1b[0m`);
       log.error(
-        `\x1b[31mError installing dependencies: ${(err as Error).message}\x1b[0m`
+        `\x1b[31mError installing dependencies: ${
+          (err as Error).message
+        }\x1b[0m`
       );
       log.warning(`\x1b[33mPlease run the following commands manually:\x1b[0m`);
       if (Object.keys(dependenciesToInstall.dependencies).length > 0) {
@@ -550,6 +552,44 @@ async function ensureFilesPromise(filePaths: string[]): Promise<boolean> {
   }
 }
 
+const addIndexFile = (componentsDirectory: string, level = 0) => {
+  try {
+    const files = fs.readdirSync(componentsDirectory);
+
+    const exports = files
+      .filter(
+        (file) =>
+          file !== 'index.js' && file !== 'index.tsx' && file !== 'index.ts'
+      )
+      .map((file) => {
+        const stats = fs.statSync(`${componentsDirectory}/${file}`);
+        if (stats.isDirectory()) {
+          if (level === 0) {
+            addIndexFile(`${componentsDirectory}/${file}`, level + 1);
+          }
+          return `export * from './${file.split('.')[0]}';`;
+        } else {
+          return '';
+        }
+      })
+      .join('\n');
+    fs.writeFileSync(join(componentsDirectory, 'index.ts'), exports);
+  } catch (err) {
+    log.error(`\x1b[31mError: ${(err as Error).message}\x1b[0m`);
+  }
+};
+
+const pascalToDash = (str: string): string => {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+};
+
+const dashToPascal = (str: string): string => {
+  return str
+    .toLowerCase()
+    .replace(/-(.)/g, (_, group1) => group1.toUpperCase())
+    .replace(/(^|-)([a-z])/g, (_, _group1, group2) => group2.toUpperCase());
+};
+
 export {
   cloneRepositoryAtRoot,
   getAllComponents,
@@ -563,4 +603,7 @@ export {
   ensureFilesPromise,
   getPackageMangerFlag,
   checkComponentDependencies,
+  addIndexFile,
+  pascalToDash,
+  dashToPascal,
 };

@@ -1,7 +1,6 @@
 import path from 'path';
 import {
   processComponentChange,
-  copyUtils,
   copySpecialFile,
   MapperConfig,
 } from '../utils/componentOperations';
@@ -11,8 +10,6 @@ import { createAllComponentsTemplate } from './templates';
 const mapperConfig: MapperConfig = {
   sourcePath: path.resolve('src/components/ui'),
   destPath: path.resolve('apps/website/components/ui'),
-  utilsSourcePath: path.resolve('src/utils/gluestack-utils'),
-  utilsDestPath: path.resolve('apps/website/utils/gluestack-utils'),
   ignoreFiles: ['docs', 'examples', 'dependencies.json'],
 };
 
@@ -21,70 +18,47 @@ export const copyComponent = (component: string, event: string = 'added') => {
 };
 
 export const deleteComponentDocs = (component: string) => {
-  const websiteComponentPath = path.resolve(
-    'apps/website/components',
-    component
-  );
-  const websiteUiPath = path.resolve('apps/website/app/ui/docs', component);
+  const websitePath = path.resolve('apps/website/app/ui/docs/components');
+  const componentDocsPath = path.join(websitePath, component);
 
   try {
-    // Delete from docs/components
-    if (fileOps.pathExists(websiteComponentPath)) {
-      fileOps.deletePath(websiteComponentPath);
-      console.log(`✓ Deleted component docs from: ${websiteComponentPath}`);
+    if (fileOps.pathExists(componentDocsPath)) {
+      fileOps.deletePath(componentDocsPath);
+      console.log(`🗑️ Deleted component docs: ${component}`);
     }
-
-    // Delete from docs/app/ui/docs
-    if (fileOps.pathExists(websiteUiPath)) {
-      fileOps.deletePath(websiteUiPath);
-      console.log(`✓ Deleted component UI docs from: ${websiteUiPath}`);
-    }
-
-    console.log(`✅ Docs for ${component} deleted successfully`);
   } catch (error) {
-    console.error(`Error deleting docs for ${component}:`, error);
-  }
-};
-
-// export const processNonComponentFile = (srcPath: string) => {
-//   copyUtils(mapperConfig);
-// };
-
-export const copyDocsComponents = (filePath: string) => {
-  const packagesDir = path.resolve('src/docs-components');
-  const websiteDir = path.resolve('apps/website/components/docs-components');
-
-  try {
-    fileOps.copyDir(packagesDir, websiteDir);
-    console.log(`✅ Copied docs components`);
-  } catch (error) {
-    console.error(`❌ Error copying docs components:`, error);
+    console.error(`❌ Error deleting component docs ${component}:`, error);
   }
 };
 
 export const processSidebarFile = (filePath: string) => {
-  const sourceSidebarPath = path.resolve('src/sidebar.json');
-  const destSidebarPath = path.resolve('apps/website/sidebar.json');
+  const destPath = path.resolve('apps/website/sidebar.json');
   const allComponentsPath = path.resolve(
     'apps/website/components/page-components/all-components/index.tsx'
   );
-  // Read and parse the JSON file
-  const sidebar = fileOps.readJsonFile(sourceSidebarPath);
 
-  let components = getComponentsFromSidebar(sidebar).sort();
-  components = components.map(
-    (component: string) => component.replace('-', '') + 'Component'
-  );
-  const componentsNameList = getComponentsFromSidebar(sidebar).sort();
-  const componentMap = createComponentMap(components, componentsNameList);
-  const template = createAllComponentsTemplate(
-    components,
-    componentMap,
-    componentsNameList
-  );
-  // Proceed with copying the file
-  copySpecialFile(sourceSidebarPath, destSidebarPath);
-  fileOps.writeTextFile(allComponentsPath, template);
+  // Copy the sidebar file
+  copySpecialFile(filePath, destPath);
+
+  // Read and parse the JSON file to generate all components template
+  try {
+    const sidebar = fileOps.readJsonFile(filePath);
+    let components = getComponentsFromSidebar(sidebar).sort();
+    components = components.map(
+      (component: string) => component.replace('-', '') + 'Component'
+    );
+    const componentsNameList = getComponentsFromSidebar(sidebar).sort();
+    const componentMap = createComponentMap(components, componentsNameList);
+    const template = createAllComponentsTemplate(
+      components,
+      componentMap,
+      componentsNameList
+    );
+
+    fileOps.writeTextFile(allComponentsPath, template);
+  } catch (error) {
+    console.error('❌ Error processing sidebar file:', error);
+  }
 };
 
 const getComponentsFromSidebar = (sidebarData: any) => {
@@ -131,4 +105,16 @@ const createComponentMap = (
       .join('\n')}
   
   `;
+};
+
+export const copyDocsComponents = (filePath: string) => {
+  const packagesDir = path.resolve('src/docs-components');
+  const websiteDir = path.resolve('apps/website/components/docs-components');
+
+  try {
+    fileOps.copyDir(packagesDir, websiteDir);
+    console.log(`✅ Copied docs components`);
+  } catch (error) {
+    console.error(`❌ Error copying docs components:`, error);
+  }
 };

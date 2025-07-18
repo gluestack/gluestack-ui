@@ -1,5 +1,5 @@
-import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
-import { isWeb } from '@/utils/gluestack-utils/nativewind-utils/IsWeb';
+import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import { isWeb } from '@gluestack-ui-nightly/utils/nativewind-utils';
 
 const gridBaseStyle = isWeb
   ? 'grid grid-cols-12'

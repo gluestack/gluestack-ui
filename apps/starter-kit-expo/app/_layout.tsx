@@ -11,18 +11,13 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import { useColorScheme } from '@/components/useColorScheme';
 import { Slot } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from 'expo-router';
 
-// export const unstable_settings = {
-//   // Ensure that reloading on `/modal` keeps a back button present.
-//   initialRouteName: "gluestack",
-// };
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -42,15 +37,6 @@ export default function RootLayout() {
       SplashScreen.hideAsync();
     }
   }, [loaded]);
-
-  // useLayoutEffect(() => {
-  //   setStyleLoaded(true);
-  // }, [styleLoaded]);
-
-  // if (!loaded || !styleLoaded) {
-  //   return null;
-  // }
-
   return <RootLayoutNav />;
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { gridStyle, gridItemStyle } from './styles';
 
-import type { VariantProps } from '@/utils/gluestack-utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
 
 type IGridProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof gridStyle> & {

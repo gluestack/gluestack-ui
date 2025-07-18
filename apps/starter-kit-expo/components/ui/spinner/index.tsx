@@ -1,7 +1,7 @@
 'use client';
 import { ActivityIndicator } from 'react-native';
 import React from 'react';
-import { tva } from '@/utils/gluestack-utils/nativewind-utils/tva';
+import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 
 cssInterop(ActivityIndicator, {

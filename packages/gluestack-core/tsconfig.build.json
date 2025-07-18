@@ -12,7 +12,7 @@
       "target": "es2015",
       "removeComments": true,
       "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
+      "emitDecoratorMetadata": true
     },
     "exclude": ["**/__tests__", "**/__fixtures__", "**/__mocks__"]
   } 
