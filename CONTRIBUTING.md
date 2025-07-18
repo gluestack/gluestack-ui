@@ -13,11 +13,12 @@ We're thrilled to have you on this journey with us. Together, we can accelerate 
 2. [Project Architecture](#project-architecture)
 3. [Generated Files System](#generated-files-system)
 4. [Development Workflow](#development-workflow)
-5. [Creating Your First Component](#creating-your-first-component)
-6. [Documentation Guidelines](#documentation-guidelines)
-7. [Testing Your Changes](#testing-your-changes)
-8. [Contribution Guidelines](#contribution-guidelines)
-9. [Troubleshooting](#troubleshooting)
+5. [Local Package Development](#local-package-development)
+6. [Creating Your First Component](#creating-your-first-component)
+7. [Documentation Guidelines](#documentation-guidelines)
+8. [Testing Your Changes](#testing-your-changes)
+9. [Contribution Guidelines](#contribution-guidelines)
+10. [Troubleshooting](#troubleshooting)
 
 ## Getting Started
 
@@ -222,6 +223,250 @@ sidebar.json
 components/ui/
 ```
 
+## Local Package Development
+
+When contributing to gluestack-ui packages (`gluestack-utils`, `gluestack-core`, etc.), you'll need to set up local package linking to test your changes in the apps before publishing.
+
+### Package Linking System
+
+This project uses [yalc](https://github.com/wclr/yalc) for local package development, which provides a better alternative to `npm link` with more reliable dependency resolution.
+
+### Setting Up Local Package Development
+
+#### Prerequisites
+
+Ensure yalc is installed globally:
+
+```bash
+npm install -g yalc
+```
+
+#### Step 1: Link Packages for Development
+
+To start developing packages locally:
+
+```bash
+# Link all packages and set up watch mode
+yarn link:create
+
+# This command does the following:
+# 1. Links gluestack-utils package (builds, publishes to yalc, starts watch mode)
+# 2. Links gluestack-core package (builds, publishes to yalc, starts watch mode)
+```
+
+#### Step 2: Link Packages to Apps
+
+Link the locally published packages to your apps:
+
+```bash
+# Link packages to all apps (website + kitchen-sink)
+yarn link:apps
+
+# Or link to specific apps:
+yarn link:apps-website      # Link to website app only
+yarn link:apps-kitchen-sink # Link to kitchen-sink app only
+```
+
+#### Step 3: Start Development
+
+Now you can start your normal development workflow:
+
+```bash
+# In one terminal - watch for file changes and mapping
+yarn dev
+
+# In another terminal - start your app of choice
+cd apps/website && yarn dev
+# or
+cd apps/kitchen-sink && yarn dev
+```
+
+### Local Package Development Workflow
+
+#### Making Changes to Packages
+
+1. **Edit package source files** in `packages/gluestack-utils/` or `packages/gluestack-core/`
+2. **Changes are automatically rebuilt** and republished to yalc (watch mode)
+3. **Apps automatically pick up changes** through yalc linking
+4. **Test your changes** in the linked apps
+
+#### Package Structure
+
+```
+packages/
+├── gluestack-utils/         # Utility functions, hooks, and common code
+│   ├── src/
+│   │   ├── hooks/          # Reusable hooks
+│   │   ├── aria/           # Accessibility utilities
+│   │   ├── common/         # Common utility functions
+│   │   └── nativewind-utils/ # NativeWind specific utilities
+│   └── package.json
+│
+├── gluestack-core/          # Core component factories and creators
+│   ├── src/
+│   │   ├── accordion/      # Component-specific core logic
+│   │   ├── button/
+│   │   └── ...
+│   └── package.json
+│
+├── gluestack-ui/           # CLI package for component installation
+└── ui-next-adapter/        # Next.js adapter for React Native Web
+```
+
+### Working with Individual Packages
+
+#### For gluestack-utils
+
+When adding new utilities, hooks, or common functionality:
+
+```bash
+# Navigate to the package
+cd packages/gluestack-utils
+
+# Install dependencies
+yarn
+
+# Start development mode (if not already linked)
+yarn dev
+
+# Make your changes in src/
+# Changes will be automatically rebuilt and published to yalc
+```
+
+#### For gluestack-core
+
+When adding new component creators or core functionality:
+
+```bash
+# Navigate to the package
+cd packages/gluestack-core
+
+# Install dependencies
+yarn
+
+# Start development mode (if not already linked)
+yarn dev
+
+# Make your changes in src/
+# Changes will be automatically rebuilt and published to yalc
+```
+
+### Common Package Development Tasks
+
+#### Adding a New Utility Function
+
+1. **Create your utility** in `packages/gluestack-utils/src/`
+2. **Export it** from the appropriate index file
+3. **Test it** in a linked app
+4. **Add tests** if applicable
+
+#### Adding a New Component Core/Creator
+
+1. **Create component folder** in `packages/gluestack-core/src/`
+2. **Implement the core functionality**
+3. **Export from main index**
+4. **Use in UI components** in `src/components/ui/`
+
+#### Testing Package Changes
+
+```bash
+# Ensure packages are linked to apps
+yarn link:apps
+
+# Start apps to test changes
+cd apps/kitchen-sink && yarn dev
+cd apps/website && yarn dev
+```
+
+### Cleaning Up After Development
+
+When you're done with local package development:
+
+```bash
+# Unlink packages from apps
+yarn unlink:apps
+
+# This removes yalc links and cleans up node_modules
+# Apps will revert to using published package versions
+```
+
+### Package Development Commands Reference
+
+```bash
+# Setup commands
+yarn link:create              # Link and watch all packages
+yarn link:create-utils        # Link and watch gluestack-utils only
+yarn link:create-core         # Link and watch gluestack-core only
+
+# App linking commands
+yarn link:apps                # Link packages to all apps
+yarn link:apps-website        # Link packages to website app
+yarn link:apps-kitchen-sink   # Link packages to kitchen-sink app
+
+# Cleanup commands
+yarn unlink:apps              # Unlink packages from all apps
+yarn unlink:apps-website      # Unlink packages from website app
+yarn unlink:apps-kitchen-sink # Unlink packages from kitchen-sink app
+```
+
+### Troubleshooting Package Development
+
+#### Changes Not Reflecting in Apps
+
+1. **Check if packages are properly linked**:
+
+   ```bash
+   cd apps/website && yalc check
+   ```
+
+2. **Verify package watch mode is running**:
+
+   ```bash
+   # Should see build output when you make changes
+   ```
+
+3. **Re-link if needed**:
+   ```bash
+   yarn unlink:apps && yarn link:apps
+   ```
+
+#### Package Build Errors
+
+1. **Check TypeScript compilation**:
+
+   ```bash
+   cd packages/gluestack-utils && yarn build
+   ```
+
+2. **Verify dependencies are installed**:
+   ```bash
+   yarn
+   ```
+
+#### Yalc Issues
+
+1. **Clear yalc cache**:
+
+   ```bash
+   yalc clean
+   ```
+
+2. **Reset and re-link**:
+   ```bash
+   yarn unlink:apps
+   yarn link:create
+   yarn link:apps
+   ```
+
+### Best Practices for Package Development
+
+- **Always test package changes** in multiple apps before submitting
+- **Keep package interfaces stable** - avoid breaking changes
+- **Use semantic versioning** for package releases
+- **Document new APIs** thoroughly
+- **Add tests** for new functionality
+- **Clean up after development** to avoid confusion
+
 ## Creating Your First Component
 
 > Make sure you have set up your gluestack-ui development environment and have `yarn dev` running at root to watch for file changes.
@@ -255,21 +500,17 @@ src/components/ui/<component-name>/
 3. **Export** all the composable components from this file. Make sure the components are exported as named-exports.
 
 4. **Create creator functions** inside (`packages/gluestack-utils/<component-name>/creator/`):
-
    - All creator/factory functions for unstyled components should go here
    - Use this for creating base component factories that can be styled
 
 5. **Create ARIA hooks** inside (`packages/gluestack-utils/<component-name>/aria/`):
-
    - All accessibility-related code and ARIA hooks should go here
    - Include keyboard navigation, screen reader support, and other a11y features
 
 6. **Add component examples** inside (`src/components/ui/<component-name>/examples/`):
-
    - Create usage examples showing different variants and use cases
 
 7. **Add component documentation** inside (`src/components/ui/<component-name>/docs/`):
-
    - Include comprehensive documentation for the component
 
 8. **Export from main index** (`src/components/ui/index.tsx`):
@@ -299,7 +540,7 @@ src/components/ui/<component-name>/
 
 Update dependencies in the appropriate configuration files:
 
-**Starter-Kits** - Update starter-kit-* templates if needed.
+**Starter-Kits** - Update starter-kit-\* templates if needed.
 
 **gluestack-ui package** - Update `packages/gluestack-ui/src/dependencies.json` if needed.
 
@@ -339,7 +580,6 @@ src/components/ui/<component-name>/
 |     |- index.mdx
 
 ```
-
 
 ### Documentation Best Practices
 
@@ -401,8 +641,6 @@ Test starter templates to ensure:
 - Components work in fresh projects
 - Installation process is smooth
 - No missing dependencies
-
-
 
 ### Component Testing Checklist
 
