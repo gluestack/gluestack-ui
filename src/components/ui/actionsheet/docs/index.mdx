@@ -9,7 +9,7 @@ pageDescription: Discover the ActionSheet component for Expo, React & React Nati
 
 showHeader: true
 ---
-
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import ManualInstallationNote from '@/docs-components/manual-installation-note';
 import {
   Table,
@@ -31,14 +31,30 @@ This is an illustration of **ActionSheet** component.
 
 <br />
 ## Installation
-
-
-
+<Tabs>
+<TabItem label="CLI">
 ### Run the following command:
+  <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add actionsheet`} language="bash" />
 
-<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add actionsheet`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Install the following dependencies:
 
-<ManualInstallationNote />
+```bash
+npm i @expo/html-elements @legendapp/motion
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/actionsheet/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
 ## API Reference
 
 To use this component in your project, include the following import statement in your file.

@@ -3,9 +3,5 @@
     "@legendapp/motion": "^2.4.0"
   },
   "devDependencies": {},
-  "components": [
-    "icon",
-    "actionsheet",
-    "form-control"
-  ]
+  "components": []
 }

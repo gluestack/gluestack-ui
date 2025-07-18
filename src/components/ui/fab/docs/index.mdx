@@ -10,7 +10,7 @@ pageDescription: Improve your React Native app with the FAB component. Learn how
 showHeader: true
 ---
 
-import ManualInstallationNote from '@/docs-components/manual-installation-note';
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableHeader,
@@ -32,12 +32,24 @@ This is an illustration of **Fab** component.
 
 <br />
 ## Installation
-
+<Tabs>
+<TabItem label="CLI">
 ### Run the following command:
-  ```bash
-   npx gluestack-ui-nightly add fab
-  ```
-<ManualInstallationNote />
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add fab`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into your project.
+
+```ts
+%%-- File: src/components/ui/fab/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
 
 ## API Reference
 

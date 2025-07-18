@@ -3,7 +3,5 @@
     "@legendapp/motion": "^2.4.0"
   },
   "devDependencies": {},
-  "components": [
-    "button"
-  ]
+  "components": []
 }

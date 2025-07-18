@@ -22,7 +22,7 @@ import {
 } from '@/docs-components/table';
 import { InlineCode } from '@/docs-components/inline-code';
 import { AnatomyImage } from '@/docs-components/anatomy-image';
-import ManualInstallationNote from '@/docs-components/manual-installation-note';
+import { Tabs, TabItem } from '@/docs-components/tabs';
 
 # Switch
 
@@ -38,11 +38,28 @@ This is an illustration of **Switch** component.
 
 ## Installation
 
+<Tabs >
+  <TabItem label="CLI">
+     
 ### Run the following command:
-
 <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add switch`} language="bash" />
 
-<ManualInstallationNote />
+  </TabItem>
+  <TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/switch/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+
 
 ## API Reference
 

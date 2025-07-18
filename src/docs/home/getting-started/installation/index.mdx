@@ -91,43 +91,25 @@ Setup nativewind in your project following [NativeWind documentation](https://ww
 Install the dependencies and devDependencies of gluestack-ui in your project. This can be done using the following command:
 
 ```bash
-yarn add @expo/html-elements @legendapp/motion dom-helpers react-aria react-native-svg react-native-web react-stately tailwind-variants nativewind
-```
-
-```bash
-yarn add -D @react-native/assets-registry @types/react-native tailwindcss@3 postcss autoprefixer typescript
+yarn add @gluestack-ui-nightly/core @gluestack-ui-nightly/utils react-native-svg @gluestack-nightly/ui-next-adapter react-native-web react-native
 ```
 
 OR
 
 ```bash
-npm i @expo/html-elements @legendapp/motion dom-helpers react-aria react-native-svg react-native-web react-stately tailwind-variants nativewind
-```
-
-```bash
-npm i -D @react-native/assets-registry @types/react-native tailwindcss@3 postcss autoprefixer typescript
+npm i @gluestack-ui-nightly/core @gluestack-ui-nightly/utils react-native-svg @gluestack-nightly/ui-next-adapter react-native-web react-native
 ```
 
 For Next.js 14, it's recommended to use the `--legacy-peer-deps` flag due to peer dependency resolution issues.
 
 ```bash
-npm i @expo/html-elements @legendapp/motion dom-helpers react-aria react-native-svg react-native-web react-stately tailwind-variants nativewind --legacy-peer-deps
-```
-
-```bash
-npm i -D @react-native/assets-registry @types/react-native tailwindcss@3 postcss autoprefixer typescript --legacy-peer-deps
+npm i @gluestack-ui-nightly/core @gluestack-ui-nightly/utils react-native-svg @gluestack-nightly/ui-next-adapter react-native-web react-native --legacy-peer-deps
 ```
 
 >  **For React Native CLI:** Make sure to install `react-dom` as well as it is required by some of the Gluestack UI components. 
 
-### Step 3: Copy gluestack-utils
-
-Copy all the contents of the gluestack-utils folder from the <UtilsLink /> into your project's `@gluestack-ui-nightly/utils/` directory.
 
 ### Step 4: Copy required components
- 
- - Copy all the contents of the Overlay component folder from the{" "}<OverlayLink />{" "}into your project's `@/components/ui/overlay` directory.
- - Copy all the contents of the Toast component folder from the{" "}<ToastLink />{" "}(except docs and examples folder) into your project's `@/components/ui/toast` directory.
  - Copy all the contents of the GluestackUIProvider folder from the{" "}<GluestackUIProviderLink />{" "}into your project's `@/components/ui/gluestack-ui-provider` directory.
 
 ### Step 5: Update Configuration Files
@@ -158,15 +140,7 @@ Create a `components/ui` folder inside `src` folder and add path in `tsconfig.js
   }
 ```
 
-#### Step 5.3: Configure GluestackUIProvider
-
-To add config, create a `gluestack-ui-provider/config.ts` file in your `components/ui` folder and paste the following code.
-
-```ts
-%%-- File: src/components/ui/gluestack-ui-provider/config.ts --%%
-```
-
-#### Step 5.4: Configure GluestackUIProvider in project
+#### Step 5.3: Configure GluestackUIProvider in project
 Wrap your app with `GluestackUIProvider` in `App.tsx`.
 
 ```tsx

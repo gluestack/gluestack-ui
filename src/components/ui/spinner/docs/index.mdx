@@ -10,7 +10,7 @@ pageDescription: Enhance your UI with the gluestack-ui Spinner component. A Reac
 showHeader: true
 ---
 
-import ManualInstallationNote from '@/docs-components/manual-installation-note';
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableContainer,
@@ -35,11 +35,32 @@ This is an illustration of **Spinner** component.
 
 ## Installation
 
+<Tabs >
+  <TabItem label="CLI">
+
 ### Run the following command:
 
 <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add spinner`} language="bash" />
 
-<ManualInstallationNote />
+
+  </TabItem>
+  <TabItem label="Manual">
+
+
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/spinner/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+
+
 
 ## API Reference
 

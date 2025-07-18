@@ -10,7 +10,7 @@ pageDescription: Enhance your React Native app with a customizable Select dropdo
 showHeader: true
 ---
 
-import ManualInstallationNote from '@/docs-components/manual-installation-note';
+import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
   TableContainer,
@@ -35,11 +35,32 @@ This is an illustration of **Select** component.
 
 ## Installation
 
+<Tabs>
+  <TabItem label="CLI">
 ### Run the following command:
-
 <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add select`} language="bash" />
 
-<ManualInstallationNote />
+  </TabItem>
+  <TabItem label="Manual">
+
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @legendapp/motion
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/select/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
 
 ## API Reference
 
