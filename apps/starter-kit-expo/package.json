@@ -14,10 +14,10 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@expo/html-elements": "^0.10.1",
+    "@expo/html-elements": "^0.12.5",
     "@expo/vector-icons": "^14.1.0",
-    "@gluestack-ui-nightly/core": "^1.0.6",
-    "@gluestack-ui-nightly/utils": "^0.1.13",
+    "@gluestack-ui-nightly/core": "^1.0.8",
+    "@gluestack-ui-nightly/utils": "^0.1.15",
     "@gorhom/bottom-sheet": "^5.1.6",
     "@legendapp/motion": "^2.4.0",
     "@react-aria/utils": "^3.29.0",
@@ -32,6 +32,7 @@
     "expo-status-bar": "~2.2.3",
     "expo-system-ui": "~5.0.7",
     "expo-web-browser": "~14.1.6",
+    "lucide-react-native": "^0.510.0",
     "nativewind": "^4.1.23",
     "react": "19.0.0",
     "react-aria": "^3.41.1",
