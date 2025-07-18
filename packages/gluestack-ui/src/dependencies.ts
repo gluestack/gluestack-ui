@@ -24,9 +24,7 @@ const projectBasedDependencies: Dependencies = {
       nativewind: '^4.1.23',
       tailwindcss: '^3.4.17',
       'react-aria': '^3.33.0',
-      '@expo/html-elements': '^0.10.1',
       'tailwind-variants': '^0.1.20',
-      '@legendapp/motion': '^2.3.0',
       'react-native-svg': '^15.2.0',
       'dom-helpers': '^5.2.1',
       'react-stately': '^3.39.0',
@@ -34,8 +32,7 @@ const projectBasedDependencies: Dependencies = {
     devDependencies: {
       '@types/react-native': '0.72.8',
       autoprefixer: '^10.4.21',
-      postcss: '^8.5.4',
-      '@react-native/assets-registry': '^0.79.3',
+      postcss: '^8.5.4'
     },
   },
   expo: {
