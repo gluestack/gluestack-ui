@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "packages": {
+    "@gluestack-ui-nightly/utils": {
+      "signature": "396edac59c9ade1519eda069721320ca"
+    },
+    "@gluestack-ui-nightly/core": {
+      "signature": "6d41dc5d6fe9e651b320f6097dc943a7"
+    }
+  }
+}
