@@ -38,6 +38,8 @@ const defaultUIConfig: UIAdapterConfig = {
     'react-native-css-interop',
     '@gluestack-ui-nightly/core', // Replace with @gluestack-ui/core
     '@gluestack-ui-nightly/utils', // Replace with @gluestack-ui/utils
+    '@expo/html-elements',
+    'react-native-safe-area-context',
   ],
 };
 
@@ -158,6 +160,8 @@ export function validateUIConfig(config: NextConfig): boolean {
     'react-native-css-interop',
     '@gluestack-ui-nightly/core', // Replace with @gluestack-ui/core
     '@gluestack-ui-nightly/utils', // Replace with @gluestack-ui/utils
+    '@expo/html-elements',
+    'react-native-safe-area-context',
   ];
   const missingPackages = requiredPackages.filter(
     (pkg) => !config.transpilePackages?.includes(pkg)
