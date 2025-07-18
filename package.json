@@ -22,9 +22,9 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "build:website": "cd apps/website && yarn build",
-    "link:create": "yarn link:create-utils && yarn link:create-core",
-    "link:create-utils": "cd packages/gluestack-utils && yarn && yarn clean && yarn build && yalc publish",
-    "link:create-core": "cd packages/gluestack-core && yarn && yarn clean && yarn build && yalc publish",
+    "link:create": "concurrently \"yarn link:create-utils\" \"sleep 10 && yarn link:create-core\"",
+    "link:create-utils": "cd packages/gluestack-utils && yarn && yarn prepare && yalc publish && yarn dev",
+    "link:create-core": "cd packages/gluestack-core && yarn && yarn prepare && yalc publish && yarn dev",
     "link:apps": "yarn link:apps-website && yarn link:apps-kitchen-sink",
     "link:apps-website": "cd apps/website && yalc link @gluestack-ui-nightly/utils && yalc link @gluestack-ui-nightly/core",
     "link:apps-kitchen-sink": "cd apps/kitchen-sink && yalc link @gluestack-ui-nightly/utils && yalc link @gluestack-ui-nightly/core",
@@ -40,6 +40,7 @@
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
     "@tsconfig/react-native": "^3.0.5",
+    "concurrently": "^9.2.0",
     "lint-staged": "^15.2.2",
     "prettier": "^3.6.2"
   },
