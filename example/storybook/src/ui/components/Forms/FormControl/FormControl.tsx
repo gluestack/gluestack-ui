@@ -109,7 +109,7 @@ const FormControlBasic = ({ colorMode, ...props }) => {
             }),
           }}
         >
-          Must be atleast 6 characters.
+          Must be at least 6 characters.
         </FormControlHelperText>
       </FormControlHelper>
 
@@ -135,7 +135,7 @@ const FormControlBasic = ({ colorMode, ...props }) => {
             }),
           }}
         >
-          Atleast 6 characters are required.
+          At least 6 characters are required.
         </FormControlErrorText>
       </FormControlError>
     </FormControl>

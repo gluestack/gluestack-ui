@@ -72,7 +72,7 @@ const FormControlStory = ({ ...props }) => {
 
       <FormControlHelper>
         <FormControlHelperText>
-          Must be atleast 6 characters.
+          Must be at least 6 characters.
         </FormControlHelperText>
       </FormControlHelper>
 
@@ -84,7 +84,7 @@ const FormControlStory = ({ ...props }) => {
           />
         </FormControlErrorIcon>
         <FormControlErrorText>
-          Atleast 6 characters are required.
+          At least 6 characters are required.
         </FormControlErrorText>
       </FormControlError>
     </FormControl>

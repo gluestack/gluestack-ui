@@ -104,7 +104,7 @@ import { Input, InputField } from "@/components/ui/input";
 import { VStack } from "@/components/ui/vstack";
 import { AlertCircleIcon } from "@/components/ui/icon";
 import React from "react";
-	
+
 function App () {
         const [isInvalid, setIsInvalid] = React.useState(false);
         const [inputValue, setInputValue] = React.useState('12345');
@@ -131,13 +131,13 @@ function App () {
               </Input>
               <FormControlHelper>
                 <FormControlHelperText>
-                  Must be atleast 6 characters.
+                  Must be at least 6 characters.
                 </FormControlHelperText>
               </FormControlHelper>
               <FormControlError>
                 <FormControlErrorIcon as={AlertCircleIcon} />
                 <FormControlErrorText>
-                  Atleast 6 characters are required.
+                  At least 6 characters are required.
                 </FormControlErrorText>
               </FormControlError>
             </FormControl>
@@ -213,7 +213,7 @@ function App () {
   ```
 </>
     </Tabs.TabPanel>
-    <Tabs.TabPanel value="manual"> 
+    <Tabs.TabPanel value="manual">
 <>
 
 ### Step 1: Install the following dependencies:
@@ -224,8 +224,8 @@ npm i @gluestack-ui/form-control
 ### Step 2: Copy and paste the following code into your project.
 <CollapsibleCode>
 
-```jsx 
-%%-- File: core-components/nativewind/form-control/index.tsx --%% 
+```jsx
+%%-- File: core-components/nativewind/form-control/index.tsx --%%
 ```
 </CollapsibleCode>
 
@@ -431,7 +431,7 @@ import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/comp
 import { VStack } from "@/components/ui/vstack";
 import { CircleIcon } from "@/components/ui/icon";
 import React from "react";
-	
+
 function App () {
         const [values, setValues] = React.useState("Mango");
         return (
@@ -520,7 +520,7 @@ import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper,
 import { VStack } from "@/components/ui/vstack";
 import { CheckIcon } from "@/components/ui/icon";
 import React from "react";
-	
+
 function App() {
       const [values, setValues] = React.useState(['bits']);
         return (
@@ -605,7 +605,7 @@ The Textarea Component can be incorporated within the FormControl.
     metaData={{
       code: `import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText } from "@/components/ui/form-control";
 import { Textarea, TextareaInput } from "@/components/ui/textarea";
-	
+
 function Example() {
   return (
     <FormControl>
@@ -661,7 +661,7 @@ Error messages can be displayed using FormControl.
 import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from "@/components/ui/radio";
 import { VStack } from "@/components/ui/vstack";
 import { AlertCircleIcon, CircleIcon } from "@/components/ui/icon";
-	
+
 function Example() {
   return (
     <FormControl isInvalid>
@@ -748,7 +748,7 @@ Form Action Buttons can also be utilized in conjunction with FormControl.
       code: `import { Button, ButtonText } from "@/components/ui/button";
 import { FormControl } from "@/components/ui/form-control";
 import { HStack } from "@/components/ui/hstack";
-	
+
 function Example() {
   return (
     <HStack>
