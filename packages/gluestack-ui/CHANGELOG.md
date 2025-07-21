@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 0.7.31
+
+### Patch Changes
+
+- fix: added expo/html-elements and react-native-safe-area-context to transpile packages in ui-next-adapter
+
 ## 0.7.30
 
 ### Patch Changes
