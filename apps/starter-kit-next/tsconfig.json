@@ -43,7 +43,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "next.config.js",
+    "next.config.mjs",
     "nativewind-env.d.ts",
     "tailwind-variants.d.ts"
   ],
