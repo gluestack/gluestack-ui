@@ -1,5 +1,5 @@
 import { NextConfig } from 'next';
-
+import { DefinePlugin } from 'webpack';
 interface UIAdapterConfig {
   reactStrictMode?: boolean;
   typescript?: {
@@ -71,11 +71,10 @@ const uiWebpackConfig: WebpackConfig = (config, { isServer }) => {
   // Define global constants for Expo packages
   config.plugins = config.plugins || [];
   config.plugins.push(
-    new config.webpack.DefinePlugin({
-      __DEV__: JSON.stringify(process.env.NODE_ENV !== 'production'),
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-    })
-  );
+        new DefinePlugin({
+          __DEV__: JSON.stringify(process.env.NODE_ENV !== 'production'),
+        })
+      );
 
   return config;
 };

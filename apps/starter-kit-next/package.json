@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@expo/html-elements": "^0.12.5",
-    "@gluestack-nightly/ui-next-adapter": "^1.0.0",
+    "@gluestack-nightly/ui-next-adapter": "^1.0.31",
     "@gluestack-ui-nightly/core": "^1.0.8",
     "@gluestack-ui-nightly/utils": "^0.1.15",
     "@gorhom/bottom-sheet": "^5.1.6",
