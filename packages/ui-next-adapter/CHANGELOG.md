@@ -1,5 +1,11 @@
 # @gluestack-nightly/ui-next-adapter
 
+## 1.0.36
+
+### Patch Changes
+
+- chore: removed gluestack-style and added nativewind and react-native-css-interop
+
 ## 1.0.35
 
 ### Patch Changes
