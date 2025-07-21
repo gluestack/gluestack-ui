@@ -1,5 +1,17 @@
 # @gluestack-nightly/ui-next-adapter
 
+## 1.0.5
+
+### Patch Changes
+
+- fix: defined expo global constant **dev**
+
+## 1.0.4
+
+### Patch Changes
+
+- fix: defined global constants for expo **dev**
+
 ## 1.0.3
 
 ### Patch Changes
