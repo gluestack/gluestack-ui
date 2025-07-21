@@ -116,6 +116,12 @@ async function updateFileImports(filePath: string): Promise<boolean> {
     const importRegex = /from\s+['"](@gluestack-ui\/[^'"]+)['"]/g;
     
     newContent = newContent.replace(importRegex, (match, importPath) => {
+      // Special case for nativewind imports
+      if (importPath.startsWith('@gluestack-ui/nativewind/')) {
+        updated = true;
+        return `from '@gluestack-ui-nightly/utils/nativewind-utils'`;
+      }
+      
       // Extract component name from import path
       const componentName = importPath.replace('@gluestack-ui/', '');
       const newImportPath = `@gluestack-ui-nightly/core/${componentName}/creator`;
