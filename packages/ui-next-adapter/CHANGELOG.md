@@ -1,5 +1,11 @@
 # @gluestack-nightly/ui-next-adapter
 
+## 1.0.35
+
+### Patch Changes
+
+- fix: fixed next-adapter
+
 ## 1.0.31
 
 ### Patch Changes

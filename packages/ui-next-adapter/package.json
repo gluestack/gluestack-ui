@@ -1,27 +1,42 @@
 {
   "name": "@gluestack-nightly/ui-next-adapter",
-  "version": "1.0.31",
-  "description": "Next.js adapter for Gluestack-ui component library with React Native Web support",
+  "author": "gluestack",
+  "version": "1.0.35",
+  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "prepublishOnly": "npm run build",
-    "clean": "rm -rf dist"
-  },
   "files": [
-    "dist/",
-    "README.md",
-    "LICENSE"
+    "dist"
   ],
-  "devDependencies": {
-    "@types/node": "^24.0.12",
-    "next": "^15.0.0",
-    "typescript": "^5.8.3",
-    "webpack": "^5.0.0"
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "peerDependencies": {
-    "next": ">=13.0.0"
+    "react": ">=16",
+    "next": ">=13"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.27",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "dependencies": {
+    "find-yarn-workspace-root": "^2.0.0",
+    "fs-extra": "^11.1.0"
   }
 }
