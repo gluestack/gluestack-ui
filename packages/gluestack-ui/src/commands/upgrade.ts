@@ -59,6 +59,82 @@ function installPackages(packageManager: string): void {
   s.stop('New packages installed.');
 }
 
+// Update import statements in components/ui folder
+async function updateImports(): Promise<void> {
+  const s = spinner();
+  s.start('Updating import statements...');
+  
+  const componentsPath = path.join(process.cwd(), 'components', 'ui');
+  if (!fs.existsSync(componentsPath)) {
+    s.stop('No components/ui folder found.');
+    return;
+  }
+
+  let updatedFiles = 0;
+  
+  // Recursively find all TypeScript/JavaScript files
+  const files = await fs.readdir(componentsPath);
+  for (const file of files) {
+    const filePath = path.join(componentsPath, file);
+    const stat = await fs.stat(filePath);
+    
+    if (stat.isDirectory()) {
+      // Recursively process subdirectories
+      await processDirectory(filePath);
+    } else if (file.endsWith('.ts') || file.endsWith('.tsx') || file.endsWith('.js') || file.endsWith('.jsx')) {
+      const updated = await updateFileImports(filePath);
+      if (updated) updatedFiles++;
+    }
+  }
+  
+  s.stop(`Updated ${updatedFiles} files.`);
+}
+
+// Process a directory recursively
+async function processDirectory(dirPath: string): Promise<void> {
+  const files = await fs.readdir(dirPath);
+  for (const file of files) {
+    const filePath = path.join(dirPath, file);
+    const stat = await fs.stat(filePath);
+    
+    if (stat.isDirectory()) {
+      await processDirectory(filePath);
+    } else if (file.endsWith('.ts') || file.endsWith('.tsx') || file.endsWith('.js') || file.endsWith('.jsx')) {
+      await updateFileImports(filePath);
+    }
+  }
+}
+
+// Update imports in a single file
+async function updateFileImports(filePath: string): Promise<boolean> {
+  try {
+    const content = await fs.readFile(filePath, 'utf8');
+    let updated = false;
+    let newContent = content;
+    
+    // Regex to match imports from @gluestack-ui packages
+    const importRegex = /from\s+['"](@gluestack-ui\/[^'"]+)['"]/g;
+    
+    newContent = newContent.replace(importRegex, (match, importPath) => {
+      // Extract component name from import path
+      const componentName = importPath.replace('@gluestack-ui/', '');
+      const newImportPath = `@gluestack-ui-nightly/core/${componentName}/creator`;
+      updated = true;
+      return `from '${newImportPath}'`;
+    });
+    
+    if (updated) {
+      await fs.writeFile(filePath, newContent, 'utf8');
+      log.info(`Updated imports in: ${path.relative(process.cwd(), filePath)}`);
+    }
+    
+    return updated;
+  } catch (error) {
+    log.warning(`Failed to update file ${filePath}: ${error}`);
+    return false;
+  }
+}
+
 export const upgrade = new Command()
   .name('upgrade')
   .description('Upgrade from old gluestack packages to gluestack-ui-nightly')
@@ -87,8 +163,9 @@ export const upgrade = new Command()
       else if (fs.existsSync('bun.lockb')) packageManager = 'bun';
       removePackages(oldPackages, packageManager);
       installPackages(packageManager);
+      await updateImports();
       log.success('\x1b[32mUpgrade complete!\x1b[0m');
-      log.info('Update your imports to use @gluestack-ui-nightly/*');
+      log.info('All imports have been updated to use @gluestack-ui-nightly/*');
     } catch (err: any) {
       log.error((err && err.message) || String(err));
       process.exit(1);
