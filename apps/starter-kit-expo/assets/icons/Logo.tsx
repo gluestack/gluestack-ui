@@ -40,8 +40,8 @@ const YourSvgComponent = () => {
           y2="30.6386"
           gradientUnits="userSpaceOnUse"
         >
-          <Stop stopColor="#4AA9FF" />
-          <Stop offset="1" stopColor="#004282" />
+          <Stop stopColor="#121212" />
+          <Stop offset="1" stopColor="#111111" />
         </LinearGradient>
       </Defs>
     </Svg>

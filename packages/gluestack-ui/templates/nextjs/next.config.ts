@@ -1,8 +1,7 @@
-import { withUIAdapter } from '@gluestack-nightly/ui-next-adapter';
-import type { NextConfig } from 'next';
+import { withGluestackUI } from "@gluestack-nightly/ui-next-adapter";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: []
+};
 
-const config: NextConfig = withUIAdapter({
-  // Your config with full type safety
-});
-
-export default config;
+export default withGluestackUI(nextConfig);
