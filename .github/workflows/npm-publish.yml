@@ -9,7 +9,7 @@ on:
     paths: ['packages/**']
 
 env:
-  NODE_VERSION: '18'
+  NODE_VERSION: '20'
   REGISTRY_URL: 'https://registry.npmjs.org'
 
 jobs:
