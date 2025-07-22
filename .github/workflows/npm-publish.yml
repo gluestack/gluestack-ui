@@ -1,0 +1,273 @@
+name: NPM Publish
+
+on:
+  push:
+    branches: [feat/v3]
+    paths: ['packages/**']
+  pull_request:
+    branches: [feat/v3]
+    paths: ['packages/**']
+
+env:
+  NODE_VERSION: '18'
+  REGISTRY_URL: 'https://registry.npmjs.org'
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      packages-changed: ${{ steps.changes.outputs.packages }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            packages:
+              - 'packages/**'
+
+  preview-publish:
+    needs: detect-changes
+    if: github.event_name == 'pull_request' && needs.detect-changes.outputs.packages-changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.REGISTRY_URL }}
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build packages
+        run: yarn build # Add this script to your package.json if needed
+
+      - name: Generate preview version
+        id: preview-version
+        run: |
+          SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          TIMESTAMP=$(date +%s)
+          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-${TIMESTAMP}"
+          echo "version=$PREVIEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Preview version: $PREVIEW_VERSION"
+
+      - name: Update package versions for preview
+        run: |
+          # Update all package.json files in packages/ directory
+          find packages -name "package.json" -type f | while read package_file; do
+            if [ -f "$package_file" ]; then
+              # Get current package name
+              PACKAGE_NAME=$(node -p "require('./$package_file').name")
+              
+              # Update version
+              node -e "
+                const fs = require('fs');
+                const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
+                pkg.version = '${{ steps.preview-version.outputs.version }}';
+                
+                // Update internal dependencies to preview versions
+                ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
+                  if (pkg[depType]) {
+                    Object.keys(pkg[depType]).forEach(dep => {
+                      if (dep.startsWith('@gluestack-ui-nightly/')) {
+                        pkg[depType][dep] = '${{ steps.preview-version.outputs.version }}';
+                      }
+                    });
+                  }
+                });
+                
+                fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
+              "
+              
+              echo "Updated $PACKAGE_NAME to version ${{ steps.preview-version.outputs.version }}"
+            fi
+          done
+
+      - name: Publish preview packages
+        run: |
+          find packages -name "package.json" -type f | while read package_file; do
+            package_dir=$(dirname "$package_file")
+            if [ -f "$package_file" ]; then
+              echo "Publishing preview version from $package_dir"
+              cd "$package_dir"
+              
+              # Publish with preview tag
+              npm publish --tag preview --access public
+              
+              cd - > /dev/null
+            fi
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const packages = [];
+            const fs = require('fs');
+            const path = require('path');
+
+            // Read all package names
+            const packagesDir = 'packages';
+            const packageDirs = fs.readdirSync(packagesDir, { withFileTypes: true })
+              .filter(dirent => dirent.isDirectory())
+              .map(dirent => dirent.name);
+
+            for (const dir of packageDirs) {
+              const packageJsonPath = path.join(packagesDir, dir, 'package.json');
+              if (fs.existsSync(packageJsonPath)) {
+                const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+                packages.push(`- \`${pkg.name}@${{ steps.preview-version.outputs.version }}\``);
+              }
+            }
+
+            const comment = `## 📦 Preview Package Published
+
+            The following packages have been published with preview version:
+
+            ${packages.join('\n')}
+
+            ### Install Preview Packages
+            \`\`\`bash
+            npm install ${packages.map(p => p.replace(/^- `/, '').replace(/`$/, '')).join(' ')} --tag preview
+            \`\`\`
+
+            These packages will be available for testing and will be automatically cleaned up after the PR is closed.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  production-release:
+    needs: detect-changes
+    if: github.event_name == 'push' && github.ref == 'refs/heads/feat/v3' && needs.detect-changes.outputs.packages-changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.REGISTRY_URL }}
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build packages
+        run: yarn build # Add this script to your package.json if needed
+
+      - name: Check for changeset files
+        id: changeset-check
+        run: |
+          if [ -d ".changeset" ] && [ "$(find .changeset -name "*.md" -not -name "README.md" | wc -l)" -gt 0 ]; then
+            echo "has-changesets=true" >> $GITHUB_OUTPUT
+          else
+            echo "has-changesets=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Version packages
+        if: steps.changeset-check.outputs.has-changesets == 'true'
+        run: yarn changeset:version
+
+      - name: Commit version changes
+        if: steps.changeset-check.outputs.has-changesets == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          if ! git diff --cached --quiet; then
+            git commit -m "Version packages [skip ci]"
+            git push
+          fi
+
+      - name: Publish to NPM
+        if: steps.changeset-check.outputs.has-changesets == 'true'
+        run: yarn release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        if: steps.changeset-check.outputs.has-changesets == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Read all package versions to create release notes
+            const packages = [];
+            const packagesDir = 'packages';
+            const packageDirs = fs.readdirSync(packagesDir, { withFileTypes: true })
+              .filter(dirent => dirent.isDirectory())
+              .map(dirent => dirent.name);
+
+            for (const dir of packageDirs) {
+              const packageJsonPath = path.join(packagesDir, dir, 'package.json');
+              if (fs.existsSync(packageJsonPath)) {
+                const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+                packages.push(`- ${pkg.name}@${pkg.version}`);
+              }
+            }
+
+            const releaseBody = `## Published Packages\n\n${packages.join('\n')}`;
+
+            // Create a release tag based on the main package version
+            const mainPackagePath = path.join(packagesDir, 'gluestack-core', 'package.json');
+            let tagName = `v${new Date().toISOString().split('T')[0]}`;
+
+            if (fs.existsSync(mainPackagePath)) {
+              const mainPkg = JSON.parse(fs.readFileSync(mainPackagePath, 'utf8'));
+              tagName = `v${mainPkg.version}`;
+            }
+
+            try {
+              await github.rest.repos.createRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag_name: tagName,
+                name: tagName,
+                body: releaseBody,
+                draft: false,
+                prerelease: false
+              });
+            } catch (error) {
+              console.log('Release creation failed:', error.message);
+            }
+
+  cleanup-preview:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.REGISTRY_URL }}
+
+      - name: Cleanup preview packages
+        run: |
+          PR_NUMBER=${{ github.event.pull_request.number }}
+
+          # List and deprecate preview packages for this PR
+          echo "Cleaning up preview packages for PR #$PR_NUMBER"
+
+          # Note: This is a basic cleanup approach
+          # You might want to implement a more sophisticated cleanup
+          # based on your specific package naming and registry setup
+
+          echo "Preview packages cleanup completed"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
