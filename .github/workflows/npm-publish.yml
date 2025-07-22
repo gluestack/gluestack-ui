@@ -58,77 +58,94 @@ jobs:
 
       - name: Update package versions for preview
         run: |
-          # Get list of your actual package names from workspace
-          WORKSPACE_PACKAGES=$(node -e "
-            const fs = require('fs');
-            const rootPkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-            const packages = [];
+          # Update only your packages in packages/ directory (exclude node_modules)
+          for package_dir in packages/*/; do
+            package_file="${package_dir}package.json"
             
-            // Read all packages in packages/ directory
-            if (fs.existsSync('packages')) {
-              const dirs = fs.readdirSync('packages', { withFileTypes: true })
-                .filter(dirent => dirent.isDirectory())
-                .map(dirent => dirent.name);
-              
-              dirs.forEach(dir => {
-                const pkgPath = \`packages/\${dir}/package.json\`;
-                if (fs.existsSync(pkgPath)) {
-                  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
-                  packages.push(pkg.name);
-                }
-              });
-            }
+            # Skip if package.json doesn't exist or if it's in node_modules
+            if [ ! -f "$package_file" ] || [[ "$package_dir" == *"node_modules"* ]]; then
+              continue
+            fi
             
-            console.log(packages.join(','));
-          ")
-          
-          echo "Your packages: $WORKSPACE_PACKAGES"
-          
-          # Update only your packages in packages/ directory
-          find packages -name "package.json" -type f | while read package_file; do
-            if [ -f "$package_file" ]; then
-              # Get current package name
-              PACKAGE_NAME=$(node -p "require('./$package_file').name")
+            # Get current package name
+            PACKAGE_NAME=$(node -p "require('./$package_file').name")
+            
+            echo "Processing your package: $PACKAGE_NAME"
+            
+            # Get list of your workspace packages for internal dependency updates
+            WORKSPACE_PACKAGES=$(node -e "
+              const fs = require('fs');
+              const packages = [];
               
-              # Update version
-              node -e "
-                const fs = require('fs');
-                const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
-                const workspacePackages = '$WORKSPACE_PACKAGES'.split(',');
+              // Read all packages in packages/ directory
+              if (fs.existsSync('packages')) {
+                const dirs = fs.readdirSync('packages', { withFileTypes: true })
+                  .filter(dirent => dirent.isDirectory())
+                  .map(dirent => dirent.name);
                 
-                pkg.version = '${{ steps.preview-version.outputs.version }}';
-                
-                // Update internal dependencies to preview versions (only your packages)
-                ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
-                  if (pkg[depType]) {
-                    Object.keys(pkg[depType]).forEach(dep => {
-                      if (workspacePackages.includes(dep)) {
-                        pkg[depType][dep] = '${{ steps.preview-version.outputs.version }}';
-                      }
-                    });
+                dirs.forEach(dir => {
+                  const pkgPath = \`packages/\${dir}/package.json\`;
+                  if (fs.existsSync(pkgPath)) {
+                    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+                    packages.push(pkg.name);
                   }
                 });
-                
-                fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
-              "
+              }
               
-              echo "Updated $PACKAGE_NAME to version ${{ steps.preview-version.outputs.version }}"
-            fi
+              console.log(packages.join(','));
+            ")
+            
+            # Update version
+            node -e "
+              const fs = require('fs');
+              const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
+              const workspacePackages = '$WORKSPACE_PACKAGES'.split(',').filter(p => p);
+              
+              console.log('Updating package:', pkg.name);
+              console.log('Workspace packages:', workspacePackages);
+              
+              pkg.version = '${{ steps.preview-version.outputs.version }}';
+              
+              // Update internal dependencies to preview versions (only your packages)
+              ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
+                if (pkg[depType]) {
+                  Object.keys(pkg[depType]).forEach(dep => {
+                    if (workspacePackages.includes(dep)) {
+                      console.log(\`Updating internal dependency: \${dep}\`);
+                      pkg[depType][dep] = '${{ steps.preview-version.outputs.version }}';
+                    }
+                  });
+                }
+              });
+              
+              fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
+            "
+            
+            echo "✅ Updated $PACKAGE_NAME to version ${{ steps.preview-version.outputs.version }}"
           done
 
       - name: Publish preview packages
         run: |
-          find packages -name "package.json" -type f | while read package_file; do
-            package_dir=$(dirname "$package_file")
-            if [ -f "$package_file" ]; then
-              echo "Publishing preview version from $package_dir"
-              cd "$package_dir"
-              
-              # Publish with preview tag
-              npm publish --tag preview --access public
-              
-              cd - > /dev/null
+          # Publish only your packages (not node_modules dependencies)
+          for package_dir in packages/*/; do
+            package_file="${package_dir}package.json"
+            
+            # Skip if package.json doesn't exist or if it's in node_modules
+            if [ ! -f "$package_file" ] || [[ "$package_dir" == *"node_modules"* ]]; then
+              continue
             fi
+            
+            PACKAGE_NAME=$(node -p "require('./$package_file').name")
+            echo "📦 Publishing preview version of $PACKAGE_NAME from $package_dir"
+            
+            cd "$package_dir"
+            
+            # Publish with preview tag
+            npm publish --tag preview --access public
+            
+            cd - > /dev/null
+            
+            echo "✅ Successfully published $PACKAGE_NAME"
           done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
