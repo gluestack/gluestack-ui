@@ -81,13 +81,13 @@ export const BottomSheet = ({
   const handleOpen = useCallback(() => {
     bottomSheetRef.current?.snapToIndex(snapToIndex);
     setVisible(true);
-    onOpen && onOpen();
+    if (onOpen) onOpen();
   }, [onOpen, snapToIndex]);
 
   const handleClose = useCallback(() => {
     bottomSheetRef.current?.close();
     setVisible(false);
-    onClose && onClose();
+    if (onClose) onClose();
   }, [onClose]);
 
   return (
@@ -149,7 +149,7 @@ export const BottomSheetTrigger = ({
   return (
     <Pressable
       onPress={(e) => {
-        props.onPress && props.onPress(e);
+        if (props.onPress) props.onPress(e);
         handleOpen();
       }}
       {...props}

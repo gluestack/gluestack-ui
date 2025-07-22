@@ -256,7 +256,7 @@ const AccordionIcon = React.forwardRef<
       ref={ref}
       {...props}
       className={accordionIconStyle({
-        size,
+        size: size as 'sm' | 'md' | 'lg' | '2xs' | 'xs' | 'xl' | undefined,
         class: className,
         parentVariants: { size: parentSize },
       })}
