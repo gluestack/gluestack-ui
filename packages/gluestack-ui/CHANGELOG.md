@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 1.0.0
+
+### Major Changes
+
+- change the upgrade script
+
 ## 0.7.33
 
 ### Patch Changes
