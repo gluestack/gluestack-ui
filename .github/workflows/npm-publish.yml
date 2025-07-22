@@ -58,7 +58,33 @@ jobs:
 
       - name: Update package versions for preview
         run: |
-          # Update all package.json files in packages/ directory
+          # Get list of your actual package names from workspace
+          WORKSPACE_PACKAGES=$(node -e "
+            const fs = require('fs');
+            const rootPkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            const packages = [];
+            
+            // Read all packages in packages/ directory
+            if (fs.existsSync('packages')) {
+              const dirs = fs.readdirSync('packages', { withFileTypes: true })
+                .filter(dirent => dirent.isDirectory())
+                .map(dirent => dirent.name);
+              
+              dirs.forEach(dir => {
+                const pkgPath = \`packages/\${dir}/package.json\`;
+                if (fs.existsSync(pkgPath)) {
+                  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+                  packages.push(pkg.name);
+                }
+              });
+            }
+            
+            console.log(packages.join(','));
+          ")
+          
+          echo "Your packages: $WORKSPACE_PACKAGES"
+          
+          # Update only your packages in packages/ directory
           find packages -name "package.json" -type f | while read package_file; do
             if [ -f "$package_file" ]; then
               # Get current package name
@@ -68,13 +94,15 @@ jobs:
               node -e "
                 const fs = require('fs');
                 const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
+                const workspacePackages = '$WORKSPACE_PACKAGES'.split(',');
+                
                 pkg.version = '${{ steps.preview-version.outputs.version }}';
                 
-                // Update internal dependencies to preview versions
+                // Update internal dependencies to preview versions (only your packages)
                 ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
                   if (pkg[depType]) {
                     Object.keys(pkg[depType]).forEach(dep => {
-                      if (dep.startsWith('@gluestack-ui-nightly/')) {
+                      if (workspacePackages.includes(dep)) {
                         pkg[depType][dep] = '${{ steps.preview-version.outputs.version }}';
                       }
                     });
