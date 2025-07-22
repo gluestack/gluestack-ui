@@ -1,3 +1,4 @@
+# .github/workflows/npm-publish.yml
 name: NPM Publish
 
 on:
@@ -45,9 +46,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build packages
-        run: yarn build # Add this script to your package.json if needed
-
       - name: Generate preview version
         id: preview-version
         run: |
@@ -60,7 +58,33 @@ jobs:
 
       - name: Update package versions for preview
         run: |
-          # Update all package.json files in packages/ directory
+          # Get list of your actual package names from workspace
+          WORKSPACE_PACKAGES=$(node -e "
+            const fs = require('fs');
+            const rootPkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            const packages = [];
+            
+            // Read all packages in packages/ directory
+            if (fs.existsSync('packages')) {
+              const dirs = fs.readdirSync('packages', { withFileTypes: true })
+                .filter(dirent => dirent.isDirectory())
+                .map(dirent => dirent.name);
+              
+              dirs.forEach(dir => {
+                const pkgPath = \`packages/\${dir}/package.json\`;
+                if (fs.existsSync(pkgPath)) {
+                  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+                  packages.push(pkg.name);
+                }
+              });
+            }
+            
+            console.log(packages.join(','));
+          ")
+          
+          echo "Your packages: $WORKSPACE_PACKAGES"
+          
+          # Update only your packages in packages/ directory
           find packages -name "package.json" -type f | while read package_file; do
             if [ -f "$package_file" ]; then
               # Get current package name
@@ -70,13 +94,15 @@ jobs:
               node -e "
                 const fs = require('fs');
                 const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
+                const workspacePackages = '$WORKSPACE_PACKAGES'.split(',');
+                
                 pkg.version = '${{ steps.preview-version.outputs.version }}';
                 
-                // Update internal dependencies to preview versions
+                // Update internal dependencies to preview versions (only your packages)
                 ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
                   if (pkg[depType]) {
                     Object.keys(pkg[depType]).forEach(dep => {
-                      if (dep.startsWith('@gluestack-ui-nightly/')) {
+                      if (workspacePackages.includes(dep)) {
                         pkg[depType][dep] = '${{ steps.preview-version.outputs.version }}';
                       }
                     });
@@ -114,13 +140,13 @@ jobs:
             const packages = [];
             const fs = require('fs');
             const path = require('path');
-
+            
             // Read all package names
             const packagesDir = 'packages';
             const packageDirs = fs.readdirSync(packagesDir, { withFileTypes: true })
               .filter(dirent => dirent.isDirectory())
               .map(dirent => dirent.name);
-
+            
             for (const dir of packageDirs) {
               const packageJsonPath = path.join(packagesDir, dir, 'package.json');
               if (fs.existsSync(packageJsonPath)) {
@@ -128,20 +154,20 @@ jobs:
                 packages.push(`- \`${pkg.name}@${{ steps.preview-version.outputs.version }}\``);
               }
             }
-
+            
             const comment = `## 📦 Preview Package Published
-
+            
             The following packages have been published with preview version:
-
+            
             ${packages.join('\n')}
-
+            
             ### Install Preview Packages
             \`\`\`bash
             npm install ${packages.map(p => p.replace(/^- `/, '').replace(/`$/, '')).join(' ')} --tag preview
             \`\`\`
-
+            
             These packages will be available for testing and will be automatically cleaned up after the PR is closed.`;
-
+            
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -165,9 +191,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
-      - name: Build packages
-        run: yarn build # Add this script to your package.json if needed
 
       - name: Check for changeset files
         id: changeset-check
@@ -206,14 +229,14 @@ jobs:
           script: |
             const fs = require('fs');
             const path = require('path');
-
+            
             // Read all package versions to create release notes
             const packages = [];
             const packagesDir = 'packages';
             const packageDirs = fs.readdirSync(packagesDir, { withFileTypes: true })
               .filter(dirent => dirent.isDirectory())
               .map(dirent => dirent.name);
-
+            
             for (const dir of packageDirs) {
               const packageJsonPath = path.join(packagesDir, dir, 'package.json');
               if (fs.existsSync(packageJsonPath)) {
@@ -221,18 +244,18 @@ jobs:
                 packages.push(`- ${pkg.name}@${pkg.version}`);
               }
             }
-
+            
             const releaseBody = `## Published Packages\n\n${packages.join('\n')}`;
-
+            
             // Create a release tag based on the main package version
             const mainPackagePath = path.join(packagesDir, 'gluestack-core', 'package.json');
             let tagName = `v${new Date().toISOString().split('T')[0]}`;
-
+            
             if (fs.existsSync(mainPackagePath)) {
               const mainPkg = JSON.parse(fs.readFileSync(mainPackagePath, 'utf8'));
               tagName = `v${mainPkg.version}`;
             }
-
+            
             try {
               await github.rest.repos.createRelease({
                 owner: context.repo.owner,
@@ -260,14 +283,14 @@ jobs:
       - name: Cleanup preview packages
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
-
+          
           # List and deprecate preview packages for this PR
           echo "Cleaning up preview packages for PR #$PR_NUMBER"
-
+          
           # Note: This is a basic cleanup approach
           # You might want to implement a more sophisticated cleanup
           # based on your specific package naming and registry setup
-
+          
           echo "Preview packages cleanup completed"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

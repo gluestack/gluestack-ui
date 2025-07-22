@@ -189,25 +189,6 @@ const nextConfig = {
 export default withGluestackUI(nextConfig);
 ```
 
-## API Reference
-
-### `withUIAdapter(userConfig?: NextConfig): NextConfig`
-Main function that wraps your Next.js config with UI optimizations.
-
-### `createUIConfig(userConfig?: NextConfig): NextConfig`
-Alternative function with the same functionality as `withUIAdapter`.
-
-### `validateUIConfig(config: NextConfig): boolean`
-Validates that the configuration includes all required settings.
-
-### `defaultUIConfig`
-The default configuration object used by the adapter.
-
-### `uiWebpackConfig`
-The webpack configuration function for advanced users.
-
-### `uiTurbopackConfig`
-The Turbopack configuration object for advanced users.
 
 ## Contributing
 
@@ -216,5 +197,3 @@ Contributions are welcome! Please read our contributing guidelines and submit pu
 ## License
 
 MIT License - see LICENSE file for details.
-
-// test
