@@ -22,6 +22,15 @@ import { Pressable, Text } from 'react-native';
 import { cssInterop } from 'nativewind';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 
+// Enable className support for bottom sheet components
+cssInterop(GorhomBottomSheetBackdrop, { className: 'style' });
+cssInterop(BottomSheetHandle, { className: 'style' });
+cssInterop(GorhomBottomSheetView, { className: 'style' });
+cssInterop(GorhomBottomSheetInput, { className: 'style' });
+cssInterop(GorhomBottomSheetScrollView, { className: 'style' });
+cssInterop(GorhomBottomSheetFlatList, { className: 'style' });
+cssInterop(GorhomBottomSheetSectionList, { className: 'style' });
+
 const bottomSheetBackdropStyle = tva({
   base: 'absolute inset-0 flex-1 touch-none select-none bg-black opacity-0',
 });
@@ -164,7 +173,7 @@ export const BottomSheetBackdrop = ({
 }: Partial<IBottomSheetBackdrop> & { className?: string }) => {
   return (
     <GorhomBottomSheetBackdrop
-      // @ts-ignore
+      // @ts-expect-error - cssInterop enables className support
       className={bottomSheetBackdropStyle({
         className: className,
       })}
@@ -174,8 +183,6 @@ export const BottomSheetBackdrop = ({
     />
   );
 };
-
-cssInterop(GorhomBottomSheetBackdrop, { className: 'style' });
 
 type IBottomSheetDragIndicator = React.ComponentProps<typeof BottomSheetHandle>;
 
@@ -187,7 +194,7 @@ export const BottomSheetDragIndicator = ({
   return (
     <BottomSheetHandle
       {...props}
-      // @ts-ignore
+      // @ts-expect-error - cssInterop enables className support
       className={bottomSheetIndicatorStyle({
         className: className,
       })}
@@ -196,8 +203,6 @@ export const BottomSheetDragIndicator = ({
     </BottomSheetHandle>
   );
 };
-
-cssInterop(BottomSheetHandle, { className: 'style' });
 
 type IBottomSheetContent = React.ComponentProps<typeof GorhomBottomSheetView>;
 
@@ -221,7 +226,6 @@ export const BottomSheetContent = ({ ...props }: IBottomSheetContent) => {
     return (
       <GorhomBottomSheetView
         {...props}
-        // @ts-ignore
         {...keyDownHandlers}
         className={bottomSheetContentStyle({
           className: props.className,
@@ -238,7 +242,6 @@ export const BottomSheetContent = ({ ...props }: IBottomSheetContent) => {
   return (
     <GorhomBottomSheetView
       {...props}
-      // @ts-ignore
       {...keyDownHandlers}
       className={bottomSheetContentStyle({
         className: props.className,
@@ -248,8 +251,6 @@ export const BottomSheetContent = ({ ...props }: IBottomSheetContent) => {
     </GorhomBottomSheetView>
   );
 };
-
-cssInterop(GorhomBottomSheetView, { className: 'style' });
 
 export const BottomSheetItem = ({
   children,
