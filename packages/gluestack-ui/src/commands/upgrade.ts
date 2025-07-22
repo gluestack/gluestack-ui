@@ -46,6 +46,50 @@ function removePackages(packages: string[], packageManager: string): void {
   s.stop('Old packages removed.');
 }
 
+// Clean node_modules and reinstall dependencies
+function cleanAndReinstall(packageManager: string): void {
+  const s = spinner();
+  s.start('Cleaning node_modules and reinstalling dependencies...');
+  
+  const nodeModulesPath = path.join(process.cwd(), 'node_modules');
+  const lockFiles: { [key: string]: string } = {
+    npm: 'package-lock.json',
+    yarn: 'yarn.lock',
+    pnpm: 'pnpm-lock.yaml',
+    bun: 'bun.lockb'
+  };
+  
+  try {
+    // Remove node_modules
+    if (fs.existsSync(nodeModulesPath)) {
+      fs.removeSync(nodeModulesPath);
+    }
+    
+    // Remove lock file
+    const lockFile = lockFiles[packageManager];
+    if (lockFile && fs.existsSync(path.join(process.cwd(), lockFile))) {
+      fs.removeSync(path.join(process.cwd(), lockFile));
+    }
+    
+    // Reinstall all dependencies
+    const installCmds: { [key: string]: string } = { 
+      npm: 'npm install', 
+      yarn: 'yarn install', 
+      pnpm: 'pnpm install', 
+      bun: 'bun install' 
+    };
+    const installCmd = installCmds[packageManager];
+    
+    const result = spawnSync(installCmd, [], { cwd: process.cwd(), stdio: 'inherit', shell: true });
+    if (result.error || result.status !== 0) throw new Error('Failed to reinstall dependencies');
+    
+    s.stop('Dependencies reinstalled successfully.');
+  } catch (error) {
+    s.stop('Failed to clean and reinstall.');
+    throw error;
+  }
+}
+
 // Install new packages
 function installPackages(packageManager: string): void {
   const s = spinner();
@@ -168,6 +212,7 @@ export const upgrade = new Command()
       else if (fs.existsSync('pnpm-lock.yaml')) packageManager = 'pnpm';
       else if (fs.existsSync('bun.lockb')) packageManager = 'bun';
       removePackages(oldPackages, packageManager);
+      cleanAndReinstall(packageManager);
       installPackages(packageManager);
       await updateImports();
       log.success('\x1b[32mUpgrade complete!\x1b[0m');

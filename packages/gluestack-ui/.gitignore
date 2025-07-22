@@ -6,3 +6,4 @@ dist
 components/
 .yalc
 yalc.lock
+my-app/
