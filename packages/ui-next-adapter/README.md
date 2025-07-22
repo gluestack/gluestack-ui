@@ -14,12 +14,16 @@ pnpm add @gluestack-nightly/ui-next-adapter
 
 ## Quick Start
 
-Replace your complex `next.config.js` with a simple one-liner:
+Replace your complex `next.config.js` with a simple:
 
 ```javascript
-const { withUIAdapter } = require('@gluestack-nightly/ui-next-adapter');
+import { withGluestackUI } from "@gluestack-nightly/ui-next-adapter";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: []
+};
 
-module.exports = withUIAdapter();
+export default withGluestackUI(nextConfig);
 ```
 
 ## Usage with Existing Config
@@ -27,9 +31,9 @@ module.exports = withUIAdapter();
 If you have an existing Next.js configuration, just wrap it:
 
 ```javascript
-const { withUIAdapter } = require('@gluestack-nightly/ui-next-adapter');
+import { withGluestackUI } from '@gluestack-nightly/ui-next-adapter';
 
-module.exports = withUIAdapter({
+const nextConfig = {
   // Your existing Next.js config
   images: {
     domains: ['example.com'],
@@ -37,7 +41,9 @@ module.exports = withUIAdapter({
   env: {
     CUSTOM_KEY: 'my-value',
   },
-});
+};
+
+export default withGluestackUI(nextConfig);
 ```
 
 ## TypeScript Support
@@ -45,14 +51,14 @@ module.exports = withUIAdapter({
 The adapter includes full TypeScript support:
 
 ```typescript
-import { withUIAdapter } from '@gluestack-nightly/ui-next-adapter';
+import { withGluestackUI } from '@gluestack-nightly/ui-next-adapter';
 import type { NextConfig } from 'next';
 
-const config: NextConfig = withUIAdapter({
+const nextConfig: NextConfig = {
   // Your config with full type safety
-});
+};
 
-export default config;
+export default withGluestackUI(nextConfig);
 ```
 
 ## What's Included
@@ -73,9 +79,9 @@ The adapter automatically configures:
 Your custom webpack config will be merged with the UI adapter:
 
 ```javascript
-const { withUIAdapter } = require('@gluestack-nightly/ui-next-adapter');
+import { withGluestackUI } from '@gluestack-nightly/ui-next-adapter';
 
-module.exports = withUIAdapter({
+const nextConfig = {
   webpack: (config, { isServer }) => {
     // Your custom webpack modifications
     config.module.rules.push({
@@ -85,7 +91,9 @@ module.exports = withUIAdapter({
     
     return config;
   },
-});
+};
+
+export default withGluestackUI(nextConfig);
 ```
 
 ### Validation
@@ -93,29 +101,19 @@ module.exports = withUIAdapter({
 Check if your config is properly set up:
 
 ```javascript
-const { withUIAdapter, validateUIConfig } = require('@gluestack-nightly/ui-next-adapter');
+import { withGluestackUI, validateUIConfig } from '@gluestack-nightly/ui-next-adapter';
 
-const config = withUIAdapter({
+const nextConfig = {
   // your config
-});
+};
+
+const config = withGluestackUI(nextConfig);
 
 if (!validateUIConfig(config)) {
   console.log('Configuration needs attention');
 }
 
-module.exports = config;
-```
-
-### Alternative API
-
-For users who prefer a more explicit approach:
-
-```javascript
-const { createUIConfig } = require('@gluestack-nightly/ui-next-adapter');
-
-module.exports = createUIConfig({
-  // your Next.js config
-});
+export default config;
 ```
 
 ## Configuration Details
@@ -182,9 +180,13 @@ const nextConfig = {
 
 **After:**
 ```javascript
-const { withUIAdapter } = require('@gluestack-nightly/ui-next-adapter');
+import { withGluestackUI } from '@gluestack-nightly/ui-next-adapter';
 
-module.exports = withUIAdapter();
+const nextConfig = {
+  transpilePackages: []
+};
+
+export default withGluestackUI(nextConfig);
 ```
 
 ## API Reference
