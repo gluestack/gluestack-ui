@@ -1,18 +1,36 @@
-name: Publish Preview Packages
+name: Preview Package Publishing
 
 on:
   pull_request:
+    branches: [feat/v3]
     paths:
       - 'packages/**'
     types: [opened, synchronize, reopened]
 
-env:
-  NODE_VERSION: '20'
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 jobs:
-  detect-and-publish:
+  check-changes:
     runs-on: ubuntu-latest
+    outputs:
+      packages-changed: ${{ steps.changes.outputs.packages }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            packages:
+              - 'packages/**'
+
+  publish-preview:
+    needs: check-changes
+    if: needs.check-changes.outputs.packages-changed == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.publish.outputs.published }}
+      version: ${{ steps.publish.outputs.version }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,214 +39,204 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: 'https://registry.npmjs.org'
+          node-version: '20'
           cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Detect changed packages
-        id: changes
+      - name: Generate preview version
+        id: version
         run: |
-          # Get the base branch for comparison
-          BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
-          echo "Base branch: $BASE_BRANCH"
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}"
+          echo "version=${PREVIEW_VERSION}" >> $GITHUB_OUTPUT
+          echo "Generated preview version: ${PREVIEW_VERSION}"
 
-          # Get changed files in packages/
-          CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD | grep '^packages/' || true)
-          echo "Raw changed files: $CHANGED_FILES"
-
-          if [ -z "$CHANGED_FILES" ]; then
-            echo "No package changes detected"
-            exit 0
-          fi
-
-          # Extract unique package names
-          PACKAGES=$(echo "$CHANGED_FILES" | cut -d'/' -f1-2 | sort -u)
-          echo "Changed packages: $PACKAGES"
-
-          # Check for specific packages
-          if echo "$PACKAGES" | grep -q "packages/gluestack-utils"; then
-            echo "utils_changed=true" >> $GITHUB_OUTPUT
-            echo "gluestack-utils changes detected"
-          else
-            echo "utils_changed=false" >> $GITHUB_OUTPUT
-            echo "gluestack-utils changes NOT detected"
-          fi
-
-          if echo "$PACKAGES" | grep -q "packages/gluestack-core"; then
-            echo "core_changed=true" >> $GITHUB_OUTPUT
-            echo "gluestack-core changes detected"
-          else
-            echo "core_changed=false" >> $GITHUB_OUTPUT
-            echo "gluestack-core changes NOT detected"
-          fi
-
-          if echo "$PACKAGES" | grep -q "packages/gluestack-ui"; then
-            echo "ui_changed=true" >> $GITHUB_OUTPUT
-            echo "gluestack-ui changes detected"
-          else
-            echo "ui_changed=false" >> $GITHUB_OUTPUT
-            echo "gluestack-ui changes NOT detected"
-          fi
-
-          if echo "$PACKAGES" | grep -q "packages/create-gluestack"; then
-            echo "create_changed=true" >> $GITHUB_OUTPUT
-            echo "create-gluestack changes detected"
-          else
-            echo "create_changed=false" >> $GITHUB_OUTPUT
-            echo "create-gluestack changes NOT detected"
-          fi
-
-          if echo "$PACKAGES" | grep -q "packages/ui-next-adapter"; then
-            echo "adapter_changed=true" >> $GITHUB_OUTPUT
-            echo "ui-next-adapter changes detected"
-          else
-            echo "adapter_changed=false" >> $GITHUB_OUTPUT
-            echo "ui-next-adapter changes NOT detected"
-          fi
-
-      - name: Publish gluestack-utils
-        if: steps.changes.outputs.utils_changed == 'true'
+      - name: Update package versions
         run: |
-          cd packages/gluestack-utils
+          # Update all package.json files in packages/ directory
+          find packages -name "package.json" -type f | while read file; do
+            # Create backup
+            cp "$file" "$file.bak"
+            
+            # Update version using Node.js
+            node -e "
+              const fs = require('fs');
+              const pkg = JSON.parse(fs.readFileSync('$file', 'utf8'));
+              pkg.version = '${{ steps.version.outputs.version }}';
+              fs.writeFileSync('$file', JSON.stringify(pkg, null, 2) + '\n');
+            "
+            
+            echo "Updated version in $file to ${{ steps.version.outputs.version }}"
+          done
 
-          # Generate preview version
-          CURRENT_VERSION=$(node -p "require('./package.json').version")
-          PR_NUMBER=${{ github.event.number }}
-          SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
-          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-$(date +%s)"
-          PACKAGE_NAME=$(node -p "require('./package.json').name")
-
-          echo "Publishing $PACKAGE_NAME@$PREVIEW_VERSION"
-
-          # Update version
-          npm version $PREVIEW_VERSION --no-git-tag-version
-
-          # Build package
-          if [ -f "package.json" ] && grep -q '"build"' package.json; then
-            yarn build
-          fi
-          if [ -f "package.json" ] && grep -q '"prepare"' package.json; then
-            yarn prepare
-          fi
-
-          # Publish
-          npm publish --tag preview
-
-          # Comment on PR
-          echo "📦 **Preview package published for \`packages/gluestack-utils\`**" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
-          echo "npm install $PACKAGE_NAME@$PREVIEW_VERSION" >> $GITHUB_STEP_SUMMARY
-          echo "# or" >> $GITHUB_STEP_SUMMARY
-          echo "yarn add $PACKAGE_NAME@$PREVIEW_VERSION" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "This preview version will be available for testing until the PR is merged or closed." >> $GITHUB_STEP_SUMMARY
-        env:
-          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
-
-      - name: Publish gluestack-core
-        if: steps.changes.outputs.core_changed == 'true'
+      - name: Setup NPM authentication
         run: |
-          cd packages/gluestack-core
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
-          # Generate preview version
-          CURRENT_VERSION=$(node -p "require('./package.json').version")
-          PR_NUMBER=${{ github.event.number }}
-          SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
-          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-$(date +%s)"
-          PACKAGE_NAME=$(node -p "require('./package.json').name")
-
-          echo "Publishing $PACKAGE_NAME@$PREVIEW_VERSION"
-
-          # Update version
-          npm version $PREVIEW_VERSION --no-git-tag-version
-
-          # Build package
-          if [ -f "package.json" ] && grep -q '"build"' package.json; then
-            yarn build
-          fi
-          if [ -f "package.json" ] && grep -q '"prepare"' package.json; then
-            yarn prepare
-          fi
-
-          # Publish
-          npm publish --tag preview
-
-          # Comment on PR
-          echo "📦 **Preview package published for \`packages/gluestack-core\`**" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
-          echo "npm install $PACKAGE_NAME@$PREVIEW_VERSION" >> $GITHUB_STEP_SUMMARY
-          echo "# or" >> $GITHUB_STEP_SUMMARY
-          echo "yarn add $PACKAGE_NAME@$PREVIEW_VERSION" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "This preview version will be available for testing until the PR is merged or closed." >> $GITHUB_STEP_SUMMARY
-        env:
-          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
-
-      - name: Publish other packages
-        if: |
-          steps.changes.outputs.ui_changed == 'true' ||
-          steps.changes.outputs.create_changed == 'true' ||
-          steps.changes.outputs.adapter_changed == 'true'
+      - name: Publish preview packages
+        id: publish
         run: |
-          # Get the base branch for comparison
-          BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+          # Publish all packages in packages/ directory
+          PUBLISHED_PACKAGES=""
 
-          # Get changed files in packages/
-          CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD | grep '^packages/' || true)
+          find packages -name "package.json" -type f | while read file; do
+            PACKAGE_DIR=$(dirname "$file")
+            PACKAGE_NAME=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$file', 'utf8')).name)")
+            
+            echo "Publishing $PACKAGE_NAME from $PACKAGE_DIR..."
+            
+            cd "$PACKAGE_DIR"
+            
+            # Build if build script exists
+            if yarn run --list 2>/dev/null | grep -q "build"; then
+              echo "Building $PACKAGE_NAME..."
+              yarn build
+            fi
+            
+            # Publish with preview tag
+            npm publish --tag preview --access public
+            
+            if [ $? -eq 0 ]; then
+              echo "✅ Successfully published $PACKAGE_NAME@${{ steps.version.outputs.version }}"
+              PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@${{ steps.version.outputs.version }}"
+            else
+              echo "❌ Failed to publish $PACKAGE_NAME"
+              exit 1
+            fi
+            
+            cd - > /dev/null
+          done
 
-          # Extract unique package names
-          PACKAGES=$(echo "$CHANGED_FILES" | cut -d'/' -f1-2 | sort -u)
+          echo "published=true" >> $GITHUB_OUTPUT
+          echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
 
-          # Process each package (excluding utils and core which are handled separately)
-          echo "$PACKAGES" | while read -r package; do
-            if [ "$package" != "packages/gluestack-utils" ] && [ "$package" != "packages/gluestack-core" ]; then
-              echo "Processing package: $package"
-              
-              cd "$package"
-              
-              # Generate preview version
-              CURRENT_VERSION=$(node -p "require('./package.json').version")
-              PR_NUMBER=${{ github.event.number }}
-              SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
-              PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-$(date +%s)"
-              PACKAGE_NAME=$(node -p "require('./package.json').name")
-              
-              echo "Publishing $PACKAGE_NAME@$PREVIEW_VERSION"
-              
-              # Update version
-              npm version $PREVIEW_VERSION --no-git-tag-version
-              
-              # Build package
-              if [ -f "package.json" ] && grep -q '"build"' package.json; then
-                yarn build
-              fi
-              if [ -f "package.json" ] && grep -q '"prepare"' package.json; then
-                yarn prepare
-              fi
-              
-              # Publish
-              npm publish --tag preview
-              
-              # Comment on PR
-              echo "📦 **Preview package published for \`$package\`**" >> $GITHUB_STEP_SUMMARY
-              echo "" >> $GITHUB_STEP_SUMMARY
-              echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
-              echo "npm install $PACKAGE_NAME@$PREVIEW_VERSION" >> $GITHUB_STEP_SUMMARY
-              echo "# or" >> $GITHUB_STEP_SUMMARY
-              echo "yarn add $PACKAGE_NAME@$PREVIEW_VERSION" >> $GITHUB_STEP_SUMMARY
-              echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-              echo "" >> $GITHUB_STEP_SUMMARY
-              echo "This preview version will be available for testing until the PR is merged or closed." >> $GITHUB_STEP_SUMMARY
-              
-              cd ../..
+      - name: Restore package.json files
+        if: always()
+        run: |
+          # Restore original package.json files
+          find packages -name "package.json.bak" -type f | while read backup; do
+            original="${backup%.bak}"
+            mv "$backup" "$original"
+            echo "Restored $original"
+          done
+
+      - name: Comment on PR
+        if: steps.publish.outputs.published == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = `🚀 **Preview packages published successfully!**
+
+            **Version:** \`${{ steps.version.outputs.version }}\`
+            **Published packages:** ${{ steps.publish.outputs.packages }}
+
+            You can install these preview packages using:
+            \`\`\`bash
+            npm install <package-name>@${{ steps.version.outputs.version }}
+            # or
+            yarn add <package-name>@${{ steps.version.outputs.version }}
+            \`\`\`
+
+            **Note:** These are preview packages and should only be used for testing.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  trigger-vercel-preview:
+    needs: [check-changes, publish-preview]
+    if: needs.publish-preview.outputs.published == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Trigger Vercel Preview Deployments
+        id: deploy
+        run: |
+          # Parse project IDs from secrets
+          PROJECT_IDS='${{ secrets.VERCEL_PROJECT_IDS }}'
+          DEPLOYED_PROJECTS=""
+          DEPLOYMENT_URLS=""
+
+          echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"' | while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
+            echo "🚀 Deploying $PROJECT_NAME (ID: $PROJECT_ID)..."
+            
+            # Create deployment using Vercel API
+            RESPONSE=$(curl -s -X POST "https://api.vercel.com/v13/deployments" \
+              -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"name\": \"$PROJECT_NAME\",
+                \"project\": \"$PROJECT_ID\",
+                \"target\": \"preview\",
+                \"gitSource\": {
+                  \"type\": \"github\",
+                  \"ref\": \"${{ github.head_ref }}\",
+                  \"sha\": \"${{ github.sha }}\"
+                },
+                \"meta\": {
+                  \"githubCommitSha\": \"${{ github.sha }}\",
+                  \"githubCommitAuthorName\": \"${{ github.actor }}\",
+                  \"githubCommitMessage\": \"${{ github.event.pull_request.title }}\",
+                  \"packageVersion\": \"${{ needs.publish-preview.outputs.version }}\",
+                  \"githubPR\": \"${{ github.event.pull_request.number }}\"
+                }
+              }")
+            
+            # Extract deployment URL and ID
+            DEPLOYMENT_URL=$(echo "$RESPONSE" | jq -r '.url // empty')
+            DEPLOYMENT_ID=$(echo "$RESPONSE" | jq -r '.id // empty')
+            
+            if [ -n "$DEPLOYMENT_URL" ] && [ -n "$DEPLOYMENT_ID" ]; then
+              echo "✅ Successfully triggered deployment for $PROJECT_NAME"
+              echo "📍 Preview URL: https://$DEPLOYMENT_URL"
+              DEPLOYED_PROJECTS="$DEPLOYED_PROJECTS $PROJECT_NAME"
+              DEPLOYMENT_URLS="$DEPLOYMENT_URLS\\n- **$PROJECT_NAME**: https://$DEPLOYMENT_URL"
+            else
+              echo "❌ Failed to deploy $PROJECT_NAME"
+              echo "Response: $RESPONSE"
             fi
           done
-        env:
-          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+
+          # Save results for next step
+          echo "deployed_projects=$DEPLOYED_PROJECTS" >> $GITHUB_OUTPUT
+          echo -e "deployment_urls=$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
+
+      - name: Update PR with Vercel deployment info
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`;
+            const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
+
+            let comment = `🚀 **Vercel preview deployments triggered!**
+
+            **Package Version:** \`${{ needs.publish-preview.outputs.version }}\`
+
+            `;
+
+            if (deployedProjects) {
+              comment += `**Deployed Projects:**${deploymentUrls}
+              
+              ⏱️ Deployments are in progress. Check your Vercel dashboard for detailed status.`;
+            } else {
+              comment += `⚠️ No deployments were triggered. Please check the workflow logs.`;
+            }
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

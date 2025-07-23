@@ -1,94 +1,280 @@
-name: Publish Production Packages
+name: Production Package Publishing
 
 on:
   push:
-    branches:
-      - feat/v3
+    branches: [ feat/v3 ]
     paths:
       - 'packages/**'
 
-env:
-  NODE_VERSION: '20'
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 jobs:
-  detect-changes:
+  check-changes:
     runs-on: ubuntu-latest
     outputs:
-      packages: ${{ steps.changes.outputs.packages }}
-      has_changes: ${{ steps.changes.outputs.has_changes }}
+      packages-changed: ${{ steps.changes.outputs.packages }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
-      - name: Detect changed packages
-        id: changes
-        run: |
-          # Get changed files in the last commit
-          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep '^packages/' || true)
-          
-          if [ -z "$CHANGED_FILES" ]; then
-            echo "packages=[]" >> $GITHUB_OUTPUT
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-          
-          # Extract unique package names
-          PACKAGES=$(echo "$CHANGED_FILES" | cut -d'/' -f1-2 | sort -u | jq -R -s -c 'split("\n")[:-1]')
-          echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
-          echo "has_changes=true" >> $GITHUB_OUTPUT
-          echo "Changed packages: $PACKAGES"
 
-  release:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true'
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            packages:
+              - 'packages/**'
+
+  publish-production:
+    needs: check-changes
+    if: needs.check-changes.outputs.packages-changed == 'true'
     runs-on: ubuntu-latest
-    
+    outputs:
+      published: ${{ steps.publish.outputs.published }}
+      version: ${{ steps.publish.outputs.version }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: 'https://registry.npmjs.org'
+          node-version: '20'
           cache: 'yarn'
-      
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      
-      - name: Build all packages
+
+      - name: Setup NPM authentication
         run: |
-          for package in $(echo '${{ needs.detect-changes.outputs.packages }}' | jq -r '.[]'); do
-            echo "Building $package..."
-            cd $package
-            if [ -f "package.json" ] && grep -q '"build"' package.json; then
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Version packages with changesets
+        id: version
+        run: |
+          # Check if there are changesets to consume
+          if [ -d ".changeset" ] && [ "$(ls -A .changeset/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
+            echo "📝 Consuming changesets..."
+            yarn changeset:version
+            
+            # Check if any package.json was modified
+            if git diff --quiet; then
+              echo "No version changes needed"
+              echo "version_changed=false" >> $GITHUB_OUTPUT
+            else
+              echo "Version changes detected"
+              echo "version_changed=true" >> $GITHUB_OUTPUT
+              
+              # Get the new version from the first package (assuming monorepo versioning)
+              NEW_VERSION=$(node -e "
+                const fs = require('fs');
+                const packages = fs.readdirSync('packages');
+                for (const pkg of packages) {
+                  try {
+                    const pkgJson = JSON.parse(fs.readFileSync(\`packages/\${pkg}/package.json\`, 'utf8'));
+                    if (!pkgJson.private) {
+                      console.log(pkgJson.version);
+                      break;
+                    }
+                  } catch (e) {}
+                }
+              ")
+              echo "version=${NEW_VERSION}" >> $GITHUB_OUTPUT
+              
+              # Commit version changes
+              git config --local user.email "action@github.com"
+              git config --local user.name "GitHub Action"
+              git add .
+              git commit -m "Version packages [skip ci]"
+              git push
+            fi
+          else
+            echo "No changesets found, skipping versioning"
+            echo "version_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish packages
+        id: publish
+        if: steps.version.outputs.version_changed == 'true'
+        run: |
+          echo "🚀 Publishing packages..."
+          PUBLISHED_PACKAGES=""
+          
+          find packages -name "package.json" -type f | while read file; do
+            PACKAGE_DIR=$(dirname "$file")
+            PACKAGE_JSON=$(cat "$file")
+            PACKAGE_NAME=$(echo "$PACKAGE_JSON" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')).name)")
+            IS_PRIVATE=$(echo "$PACKAGE_JSON" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')).private || false)")
+            
+            if [ "$IS_PRIVATE" = "true" ]; then
+              echo "⏭️  Skipping private package: $PACKAGE_NAME"
+              continue
+            fi
+            
+            echo "📦 Publishing $PACKAGE_NAME from $PACKAGE_DIR..."
+            
+            cd "$PACKAGE_DIR"
+            
+            # Build if build script exists
+            if yarn run --list 2>/dev/null | grep -q "build"; then
+              echo "🔨 Building $PACKAGE_NAME..."
               yarn build
             fi
-            if [ -f "package.json" ] && grep -q '"prepare"' package.json; then
-              yarn prepare
+            
+            # Publish to latest tag
+            npm publish --access public
+            
+            if [ $? -eq 0 ]; then
+              PACKAGE_VERSION=$(node -e "console.log(JSON.parse(require('fs').readFileSync('package.json', 'utf8')).version)")
+              echo "✅ Successfully published $PACKAGE_NAME@$PACKAGE_VERSION"
+              PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$PACKAGE_VERSION"
+            else
+              echo "❌ Failed to publish $PACKAGE_NAME"
+              exit 1
             fi
+            
             cd - > /dev/null
           done
-      
-      - name: Create Release Pull Request or Publish
-        id: changesets
-        uses: changesets/action@v1
+          
+          echo "published=true" >> $GITHUB_OUTPUT
+          echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        if: steps.publish.outputs.published == 'true'
+        uses: actions/github-script@v7
         with:
-          publish: yarn release
-          version: yarn changeset:version
-          commit: 'chore: update package versions'
-          title: 'chore: release packages'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
-      
-      - name: Create release summary
-        if: steps.changesets.outputs.published == 'true'
+          script: |
+            const { execSync } = require('child_process');
+            
+            // Get latest tag
+            let latestTag;
+            try {
+              latestTag = execSync('git describe --tags --abbrev=0', { encoding: 'utf8' }).trim();
+            } catch (e) {
+              latestTag = '';
+            }
+            
+            // Generate changelog
+            let changelog = '## Changes\n\n';
+            if (latestTag) {
+              try {
+                const commits = execSync(`git log ${latestTag}..HEAD --oneline --no-merges`, { encoding: 'utf8' })
+                  .trim()
+                  .split('\n')
+                  .filter(line => line.length > 0)
+                  .map(line => `- ${line}`)
+                  .join('\n');
+                changelog += commits || 'No significant changes';
+              } catch (e) {
+                changelog += 'Unable to generate changelog';
+              }
+            } else {
+              changelog += 'Initial release';
+            }
+            
+            // Create release
+            const tagName = `v${{ steps.version.outputs.version }}`;
+            await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: tagName,
+              name: tagName,
+              body: changelog + '\n\n**Published packages:**\n${{ steps.publish.outputs.packages }}',
+              draft: false,
+              prerelease: false
+            });
+
+  trigger-vercel-production:
+    needs: [check-changes, publish-production]
+    if: needs.publish-production.outputs.published == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Trigger Vercel Production Deployments
+        id: deploy
         run: |
-          echo "## 🎉 Packages Published" >> $GITHUB_STEP_SUMMARY
-          echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | "- **\(.name)@\(.version)**"' >> $GITHUB_STEP_SUMMARY
+          # Parse project IDs from secrets
+          PROJECT_IDS='${{ secrets.VERCEL_PROJECT_IDS }}'
+          DEPLOYED_PROJECTS=""
+          DEPLOYMENT_URLS=""
+          
+          echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"' | while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
+            echo "🚀 Deploying $PROJECT_NAME to production (ID: $PROJECT_ID)..."
+            
+            # Create production deployment using Vercel API
+            RESPONSE=$(curl -s -X POST "https://api.vercel.com/v13/deployments" \
+              -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"name\": \"$PROJECT_NAME\",
+                \"project\": \"$PROJECT_ID\",
+                \"target\": \"production\",
+                \"gitSource\": {
+                  \"type\": \"github\",
+                  \"ref\": \"feat/v3\",
+                  \"sha\": \"${{ github.sha }}\"
+                },
+                \"meta\": {
+                  \"githubCommitSha\": \"${{ github.sha }}\",
+                  \"githubCommitAuthorName\": \"${{ github.actor }}\",
+                  \"packageVersion\": \"${{ needs.publish-production.outputs.version }}\",
+                  \"deploymentType\": \"production\"
+                }
+              }")
+            
+            # Extract deployment URL and ID
+            DEPLOYMENT_URL=$(echo "$RESPONSE" | jq -r '.url // empty')
+            DEPLOYMENT_ID=$(echo "$RESPONSE" | jq -r '.id // empty')
+            
+            if [ -n "$DEPLOYMENT_URL" ] && [ -n "$DEPLOYMENT_ID" ]; then
+              echo "✅ Successfully triggered production deployment for $PROJECT_NAME"
+              echo "📍 Production URL: https://$DEPLOYMENT_URL"
+              DEPLOYED_PROJECTS="$DEPLOYED_PROJECTS $PROJECT_NAME"
+              DEPLOYMENT_URLS="$DEPLOYMENT_URLS\\n- **$PROJECT_NAME**: https://$DEPLOYMENT_URL"
+            else
+              echo "❌ Failed to deploy $PROJECT_NAME to production"
+              echo "Response: $RESPONSE"
+            fi
+          done
+          
+          # Save results for GitHub release
+          echo "deployed_projects=$DEPLOYED_PROJECTS" >> $GITHUB_OUTPUT
+          echo -e "deployment_urls=$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
+
+      - name: Update GitHub Release with Deployment Info
+        if: steps.deploy.outputs.deployed_projects != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`;
+            const tagName = `v${{ needs.publish-production.outputs.version }}`;
+            
+            // Get the release
+            let release;
+            try {
+              release = await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag: tagName
+              });
+            } catch (error) {
+              console.log('Release not found, skipping deployment URL update');
+              return;
+            }
+            
+            // Update release body with deployment URLs
+            const updatedBody = release.data.body + 
+              '\n\n## 🚀 Deployment URLs\n' + 
+              deploymentUrls;
+            
+            await github.rest.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: release.data.id,
+              body: updatedBody
+            });
