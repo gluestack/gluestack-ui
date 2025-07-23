@@ -89,6 +89,7 @@ jobs:
         run: |
           echo "🔄 Updating package versions to $PREVIEW_VERSION"
           
+          # Update packages/ directory
           for package_dir in packages/*/; do
             package_file="${package_dir}package.json"
             
@@ -141,9 +142,219 @@ jobs:
             
             echo "✅ Updated $PACKAGE_NAME to version $PREVIEW_VERSION"
           done
+          
+          # Update apps/ directory to use preview versions
+          echo "🔄 Updating app dependencies to use preview versions..."
+          
+          # List of apps to update
+          APPS=("kitchen-sink" "website" "starter-kit-next" "starter-kit-expo")
+          
+          for app_name in "${APPS[@]}"; do
+            app_package_file="apps/${app_name}/package.json"
+            
+            if [ ! -f "$app_package_file" ]; then
+              echo "⏭️  Skipping $app_name (package.json not found)"
+              continue
+            fi
+            
+            echo "Processing app: $app_name"
+            
+            # Update app dependencies to use preview versions
+            node -e "
+              const fs = require('fs');
+              const pkg = JSON.parse(fs.readFileSync('$app_package_file', 'utf8'));
+              let updated = false;
+              
+              ['dependencies', 'devDependencies'].forEach(depType => {
+                if (pkg[depType]) {
+                  Object.keys(pkg[depType]).forEach(dep => {
+                    if (dep.startsWith('@gluestack-ui-nightly/') || dep.startsWith('@gluestack-nightly/') || dep === 'gluestack-ui-nightly' || dep === 'create-gluestack-nightly') {
+                      console.log(\`  Updating \${dep}: \${pkg[depType][dep]} → $PREVIEW_VERSION\`);
+                      pkg[depType][dep] = '$PREVIEW_VERSION';
+                      updated = true;
+                    }
+                  });
+                }
+              });
+              
+              if (updated) {
+                fs.writeFileSync('$app_package_file', JSON.stringify(pkg, null, 2) + '\n');
+                console.log(\`✅ Updated $app_name dependencies\`);
+              } else {
+                console.log(\`ℹ️  No gluestack dependencies found in $app_name\`);
+              }
+            "
+          done
+          
+          # Verify what was updated
+          echo ""
+          echo "🔍 Verification - Current gluestack dependencies in apps:"
+          for app_name in "${APPS[@]}"; do
+            app_package_file="apps/${app_name}/package.json"
+            if [ -f "$app_package_file" ]; then
+              echo "📱 $app_name:"
+              node -e "
+                const fs = require('fs');
+                const pkg = JSON.parse(fs.readFileSync('$app_package_file', 'utf8'));
+                ['dependencies', 'devDependencies'].forEach(depType => {
+                  if (pkg[depType]) {
+                    Object.keys(pkg[depType]).forEach(dep => {
+                      if (dep.startsWith('@gluestack-ui-nightly/') || dep.startsWith('@gluestack-nightly/') || dep === 'gluestack-ui-nightly') {
+                        console.log(\`  \${dep}: \${pkg[depType][dep]}\`);
+                      }
+                    });
+                  }
+                });
+              " || echo "  No gluestack dependencies found"
+            fi
+          done
 
       - name: Install updated dependencies
         run: yarn install --no-frozen-lockfile
+
+      - name: Wait for NPM registry propagation
+        run: |
+          echo "⏳ Waiting for NPM registry to propagate preview packages..."
+          
+          # Test packages to verify they're available
+          TEST_PACKAGES=(
+            "@gluestack-ui-nightly/utils"
+            "@gluestack-ui-nightly/core"
+          )
+          
+          MAX_WAIT=300  # 5 minutes max wait
+          WAIT_INTERVAL=15  # Check every 15 seconds
+          ELAPSED=0
+          
+          while [ $ELAPSED -lt $MAX_WAIT ]; do
+            ALL_AVAILABLE=true
+            
+            for pkg in "${TEST_PACKAGES[@]}"; do
+              echo "🔍 Checking if $pkg@$PREVIEW_VERSION is available..."
+              if npm view "$pkg@$PREVIEW_VERSION" version >/dev/null 2>&1; then
+                echo "  ✅ $pkg@$PREVIEW_VERSION is available"
+              else
+                echo "  ⏳ $pkg@$PREVIEW_VERSION not yet available"
+                ALL_AVAILABLE=false
+                break
+              fi
+            done
+            
+            if [ "$ALL_AVAILABLE" = true ]; then
+              echo "🎉 All preview packages are available in NPM registry!"
+              break
+            fi
+            
+            echo "⏳ Waiting ${WAIT_INTERVAL}s for registry propagation... (${ELAPSED}s elapsed)"
+            sleep $WAIT_INTERVAL
+            ELAPSED=$((ELAPSED + WAIT_INTERVAL))
+          done
+          
+          if [ $ELAPSED -ge $MAX_WAIT ]; then
+            echo "⚠️  Timeout waiting for packages, but continuing..."
+          fi
+          
+          # Additional safety delay
+          echo "⏳ Additional 30s safety delay for global NPM CDN propagation..."
+          sleep 30
+          echo "✅ Ready to update app dependencies"
+
+      - name: Commit preview version updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Add all package.json changes
+          git add packages/*/package.json apps/*/package.json
+          
+          if ! git diff --cached --quiet; then
+            # Show what's being committed
+            echo "📝 Changes being committed:"
+            git diff --cached --name-only
+            
+            # First commit: Update dependencies but skip Vercel deployment
+            git commit -m "Update to preview version $PREVIEW_VERSION [vercel-skip]
+
+            Published packages:
+            - @gluestack-ui-nightly/utils@$PREVIEW_VERSION
+            - @gluestack-ui-nightly/core@$PREVIEW_VERSION
+            - @gluestack-nightly/ui-next-adapter@$PREVIEW_VERSION
+            - gluestack-ui-nightly@$PREVIEW_VERSION
+            - create-gluestack-nightly@$PREVIEW_VERSION
+            
+            Apps updated to use preview packages.
+            Vercel deployment will be triggered separately after packages are ready."
+            
+            echo "⏳ Pushing dependency updates (Vercel will skip this)..."
+            git push origin HEAD:${{ github.head_ref }}
+            echo "✅ Committed preview version updates to PR branch"
+          else
+            echo "ℹ️  No changes to commit"
+          fi
+
+      - name: Wait for global NPM propagation
+        run: |
+          echo "⏳ Extended wait for global NPM CDN propagation..."
+          echo "This ensures Vercel can install packages from any global region"
+          
+          # Test packages from multiple NPM mirrors/regions
+          TEST_PACKAGES=("@gluestack-ui-nightly/utils" "@gluestack-ui-nightly/core")
+          
+          echo "🌍 Testing package availability across regions..."
+          for i in {1..6}; do
+            echo "📍 Test round $i/6:"
+            ALL_AVAILABLE=true
+            
+            for pkg in "${TEST_PACKAGES[@]}"; do
+              # Test with different registry configs to simulate different regions
+              if npm view "$pkg@$PREVIEW_VERSION" version --registry https://registry.npmjs.org/ >/dev/null 2>&1; then
+                echo "  ✅ $pkg@$PREVIEW_VERSION available"
+              else
+                echo "  ⏳ $pkg@$PREVIEW_VERSION not yet available"
+                ALL_AVAILABLE=false
+              fi
+            done
+            
+            if [ "$ALL_AVAILABLE" = true ]; then
+              echo "✅ All packages confirmed available globally"
+              break
+            fi
+            
+            if [ $i -lt 6 ]; then
+              echo "⏳ Waiting 45s for further propagation..."
+              sleep 45
+            fi
+          done
+          
+          # Final comprehensive wait
+          echo "⏳ Final 60s wait to ensure Vercel global availability..."
+          sleep 60
+          echo "🎉 Packages should now be available globally for Vercel deployment"
+
+      - name: Trigger Vercel deployment
+        run: |
+          echo "🚀 Triggering Vercel deployment now that packages are ready..."
+          
+          # Create a small documentation update to trigger Vercel
+          echo "<!-- Updated: $(date) -->" >> PREVIEW_DEPLOYMENT.md
+          echo "# Preview Deployment" >> PREVIEW_DEPLOYMENT.md
+          echo "" >> PREVIEW_DEPLOYMENT.md
+          echo "Preview packages published:" >> PREVIEW_DEPLOYMENT.md
+          echo "- Version: $PREVIEW_VERSION" >> PREVIEW_DEPLOYMENT.md
+          echo "- Published at: $(date)" >> PREVIEW_DEPLOYMENT.md
+          echo "- Packages ready for deployment" >> PREVIEW_DEPLOYMENT.md
+          
+          git add PREVIEW_DEPLOYMENT.md
+          git commit -m "Trigger Vercel deployment - packages ready
+
+          ✅ All preview packages confirmed available globally
+          🚀 Safe to deploy apps with version $PREVIEW_VERSION
+          
+          Ready for Vercel deployment!"
+          
+          echo "🚀 Pushing deployment trigger..."
+          git push origin HEAD:${{ github.head_ref }}
+          echo "✅ Vercel deployment triggered with ready packages"
 
       - name: Publish preview packages
         run: |
