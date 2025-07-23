@@ -46,7 +46,62 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Debug NPM permissions and scope
+      - name: Test NPM Token Permissions
+        run: |
+          echo "🔑 Testing NPM token permissions..."
+          
+          # Test basic access
+          echo "Current user: $(npm whoami)"
+          
+          # Test organization access
+          echo ""
+          echo "🏢 Testing organization access..."
+          
+          for org in "@gluestack-ui-nightly" "@gluestack-nightly"; do
+            echo "Testing $org:"
+            
+            if npm access list packages "$org" 2>/dev/null; then
+              echo "  ✅ Can list packages in $org"
+            else
+              echo "  ❌ Cannot list packages in $org"
+            fi
+            
+            if npm team ls "$org" 2>/dev/null; then
+              echo "  ✅ Can list teams in $org"
+            else
+              echo "  ❌ Cannot list teams in $org"
+            fi
+            
+            # Test if we're in the developers team
+            if npm team ls "$org:developers" 2>/dev/null | grep -q "$(npm whoami)"; then
+              echo "  ✅ Member of $org:developers team"
+            else
+              echo "  ❌ Not in $org:developers team"
+            fi
+            
+            echo ""
+          done
+          
+          # Test publish permissions on existing packages
+          echo "📦 Testing publish permissions..."
+          
+          TEST_PACKAGES=(
+            "@gluestack-ui-nightly/utils"
+            "@gluestack-ui-nightly/core"
+            "@gluestack-nightly/ui-next-adapter"
+          )
+          
+          for pkg in "${TEST_PACKAGES[@]}"; do
+            echo "Testing $pkg:"
+            if npm access list collaborators "$pkg" 2>/dev/null | grep -q "$(npm whoami)"; then
+              echo "  ✅ Has collaborator access to $pkg"
+            else
+              echo "  ❌ No collaborator access to $pkg"
+            fi
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        continue-on-error: true
         run: |
           echo "🔍 Debugging NPM setup..."
           
@@ -65,13 +120,32 @@ jobs:
           
           for scope in "${SCOPES[@]}"; do
             echo "Checking $scope organization..."
-            if npm access list packages "$scope" 2>/dev/null; then
-              echo "✅ Has access to $scope packages"
-            elif npm org ls "$scope" 2>/dev/null; then
-              echo "⚠️  $scope org exists but no package access"
+            
+            # Try multiple ways to check access
+            if npm access list packages "$scope" 2>/dev/null | grep -q .; then
+              echo "✅ Has package access to $scope"
+            elif npm org ls "$scope" 2>/dev/null | grep -q .; then
+              echo "⚠️  $scope org exists, checking member access..."
+              if npm team ls "$scope:developers" 2>/dev/null | grep -q "$(npm whoami)"; then
+                echo "✅ Member of $scope:developers"
+              else
+                echo "❓ Member status unclear for $scope"
+              fi
             else
-              echo "❌ $scope organization doesn't exist or no access"
-              echo "💡 Create organization at: https://www.npmjs.com/org/create"
+              # Final check - try to view a known package in the scope
+              if [[ "$scope" == "@gluestack-ui-nightly" ]]; then
+                if npm view "@gluestack-ui-nightly/utils" name >/dev/null 2>&1; then
+                  echo "✅ $scope exists (packages visible)"
+                else
+                  echo "❌ $scope not accessible"
+                fi
+              elif [[ "$scope" == "@gluestack-nightly" ]]; then
+                if npm view "@gluestack-nightly/ui-next-adapter" name >/dev/null 2>&1; then
+                  echo "✅ $scope exists (packages visible)"
+                else
+                  echo "❌ $scope not accessible"
+                fi
+              fi
             fi
           done
           
@@ -316,11 +390,20 @@ jobs:
                     SCOPE=$(echo "$PACKAGE_NAME" | cut -d'/' -f1)
                     echo "🔍 Checking access to $SCOPE organization..."
                     
+                    # Check if we can see the org at all
                     if npm access list packages "$SCOPE" >/dev/null 2>&1; then
                       echo "✅ Has access to $SCOPE"
                     else
-                      echo "❌ No access to $SCOPE organization"
-                      echo "💡 Need to create/join organization: ${SCOPE#@}"
+                      echo "❌ No publish access to $SCOPE organization"
+                      echo "💡 Contact package maintainers to get added to $SCOPE:"
+                      
+                      # Get maintainer info for existing packages
+                      if npm view "$PACKAGE_NAME" maintainers >/dev/null 2>&1; then
+                        echo "📧 Current maintainers:"
+                        npm view "$PACKAGE_NAME" maintainers --json 2>/dev/null | jq -r '.[] | "   - \(.name) <\(.email)>"' 2>/dev/null || npm view "$PACKAGE_NAME" maintainers
+                      fi
+                      
+                      echo "🔗 Or create your own org: https://www.npmjs.com/org/create"
                       cd - > /dev/null
                       continue
                     fi
