@@ -1,0 +1,72 @@
+name: Cleanup Preview Packages
+
+on:
+  pull_request:
+    types: [closed]
+  workflow_run:
+    workflows: ["Publish Production Packages"]
+    types: [completed]
+
+env:
+  NODE_VERSION: '20'
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  cleanup-preview:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.event.workflow_run.conclusion == 'success'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+      
+      - name: Get package names
+        id: packages
+        run: |
+          PACKAGES=$(find packages -name "package.json" -exec node -p "require('{}').name" \; | jq -R -s -c 'split("\n")[:-1]')
+          echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
+      
+      - name: Cleanup preview versions
+        run: |
+          for package in $(echo '${{ steps.packages.outputs.packages }}' | jq -r '.[]'); do
+            echo "Checking preview versions for $package..."
+            
+            # Get all preview versions
+            PREVIEW_VERSIONS=$(npm view $package versions --json | jq -r '.[]' | grep -E "0\.0\.0-pr-" || true)
+            
+            if [ -n "$PREVIEW_VERSIONS" ]; then
+              echo "Found preview versions for $package:"
+              echo "$PREVIEW_VERSIONS"
+              
+              # For closed PRs, clean up versions for this specific PR
+              if [ "${{ github.event_name }}" = "pull_request" ]; then
+                PR_NUMBER=${{ github.event.number }}
+                PR_VERSIONS=$(echo "$PREVIEW_VERSIONS" | grep "pr-${PR_NUMBER}-" || true)
+                
+                if [ -n "$PR_VERSIONS" ]; then
+                  echo "Cleaning up PR-specific versions..."
+                  for version in $PR_VERSIONS; do
+                    echo "Deprecating $package@$version"
+                    npm deprecate "$package@$version" "Preview version for closed PR #${PR_NUMBER}" || true
+                  done
+                fi
+              else
+                # For successful production releases, clean up old preview versions (keep last 10)
+                OLD_VERSIONS=$(echo "$PREVIEW_VERSIONS" | head -n -10)
+                if [ -n "$OLD_VERSIONS" ]; then
+                  echo "Cleaning up old preview versions..."
+                  for version in $OLD_VERSIONS; do
+                    echo "Deprecating $package@$version"
+                    npm deprecate "$package@$version" "Outdated preview version" || true
+                  done
+                fi
+              fi
+            fi
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}

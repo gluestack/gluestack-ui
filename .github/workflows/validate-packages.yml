@@ -1,0 +1,54 @@
+name: Validate Packages
+
+on:
+  pull_request:
+    paths:
+      - 'packages/**'
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'yarn'
+      
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      
+      - name: Validate package structure
+        run: |
+          for package_dir in packages/*/; do
+            if [ -f "$package_dir/package.json" ]; then
+              echo "Validating $package_dir..."
+              cd "$package_dir"
+              
+              # Check if package.json is valid
+              node -p "JSON.stringify(require('./package.json'), null, 2)" > /dev/null
+              
+              # Check if build script exists and works
+              if grep -q '"build"' package.json; then
+                echo "Running build for $package_dir..."
+                yarn build
+              fi
+              
+              # Check if prepare script exists and works
+              if grep -q '"prepare"' package.json; then
+                echo "Running prepare for $package_dir..."
+                yarn prepare
+              fi
+              
+              cd - > /dev/null
+            fi
+          done
+      
+      - name: Run changesets status
+        run: yarn changeset:status

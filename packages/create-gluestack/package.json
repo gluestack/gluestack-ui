@@ -10,6 +10,8 @@
   ],
   "scripts": {
     "build": "npx tsc",
+    "clean": "rm -rf dist",
+    "prepare": "yarn clean && yarn build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "npm run build",
     "changeset": "changeset",

@@ -16,14 +16,11 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
+    "prepare": "yarn clean && yarn build",
     "lint": "eslint src --ext .ts,.tsx",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run clean && npm run build"
-  },
-  "peerDependencies": {
-    "react": ">=16",
-    "next": ">=13"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",

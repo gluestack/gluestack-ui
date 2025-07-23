@@ -1,0 +1,94 @@
+name: Publish Production Packages
+
+on:
+  push:
+    branches:
+      - feat/v3
+    paths:
+      - 'packages/**'
+
+env:
+  NODE_VERSION: '20'
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.changes.outputs.packages }}
+      has_changes: ${{ steps.changes.outputs.has_changes }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Detect changed packages
+        id: changes
+        run: |
+          # Get changed files in the last commit
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep '^packages/' || true)
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "packages=[]" >> $GITHUB_OUTPUT
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          # Extract unique package names
+          PACKAGES=$(echo "$CHANGED_FILES" | cut -d'/' -f1-2 | sort -u | jq -R -s -c 'split("\n")[:-1]')
+          echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+          echo "Changed packages: $PACKAGES"
+
+  release:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
+      
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      
+      - name: Build all packages
+        run: |
+          for package in $(echo '${{ needs.detect-changes.outputs.packages }}' | jq -r '.[]'); do
+            echo "Building $package..."
+            cd $package
+            if [ -f "package.json" ] && grep -q '"build"' package.json; then
+              yarn build
+            fi
+            if [ -f "package.json" ] && grep -q '"prepare"' package.json; then
+              yarn prepare
+            fi
+            cd - > /dev/null
+          done
+      
+      - name: Create Release Pull Request or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: yarn release
+          version: yarn changeset:version
+          commit: 'chore: update package versions'
+          title: 'chore: release packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+      
+      - name: Create release summary
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          echo "## 🎉 Packages Published" >> $GITHUB_STEP_SUMMARY
+          echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | "- **\(.name)@\(.version)**"' >> $GITHUB_STEP_SUMMARY

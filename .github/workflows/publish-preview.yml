@@ -1,0 +1,234 @@
+name: Publish Preview Packages
+
+on:
+  pull_request:
+    paths:
+      - 'packages/**'
+    types: [opened, synchronize, reopened]
+
+env:
+  NODE_VERSION: '20'
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+jobs:
+  detect-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Detect changed packages
+        id: changes
+        run: |
+          # Get the base branch for comparison
+          BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+          echo "Base branch: $BASE_BRANCH"
+
+          # Get changed files in packages/
+          CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD | grep '^packages/' || true)
+          echo "Raw changed files: $CHANGED_FILES"
+
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No package changes detected"
+            exit 0
+          fi
+
+          # Extract unique package names
+          PACKAGES=$(echo "$CHANGED_FILES" | cut -d'/' -f1-2 | sort -u)
+          echo "Changed packages: $PACKAGES"
+
+          # Check for specific packages
+          if echo "$PACKAGES" | grep -q "packages/gluestack-utils"; then
+            echo "utils_changed=true" >> $GITHUB_OUTPUT
+            echo "gluestack-utils changes detected"
+          else
+            echo "utils_changed=false" >> $GITHUB_OUTPUT
+            echo "gluestack-utils changes NOT detected"
+          fi
+
+          if echo "$PACKAGES" | grep -q "packages/gluestack-core"; then
+            echo "core_changed=true" >> $GITHUB_OUTPUT
+            echo "gluestack-core changes detected"
+          else
+            echo "core_changed=false" >> $GITHUB_OUTPUT
+            echo "gluestack-core changes NOT detected"
+          fi
+
+          if echo "$PACKAGES" | grep -q "packages/gluestack-ui"; then
+            echo "ui_changed=true" >> $GITHUB_OUTPUT
+            echo "gluestack-ui changes detected"
+          else
+            echo "ui_changed=false" >> $GITHUB_OUTPUT
+            echo "gluestack-ui changes NOT detected"
+          fi
+
+          if echo "$PACKAGES" | grep -q "packages/create-gluestack"; then
+            echo "create_changed=true" >> $GITHUB_OUTPUT
+            echo "create-gluestack changes detected"
+          else
+            echo "create_changed=false" >> $GITHUB_OUTPUT
+            echo "create-gluestack changes NOT detected"
+          fi
+
+          if echo "$PACKAGES" | grep -q "packages/ui-next-adapter"; then
+            echo "adapter_changed=true" >> $GITHUB_OUTPUT
+            echo "ui-next-adapter changes detected"
+          else
+            echo "adapter_changed=false" >> $GITHUB_OUTPUT
+            echo "ui-next-adapter changes NOT detected"
+          fi
+
+      - name: Publish gluestack-utils
+        if: steps.changes.outputs.utils_changed == 'true'
+        run: |
+          cd packages/gluestack-utils
+
+          # Generate preview version
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          PR_NUMBER=${{ github.event.number }}
+          SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
+          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-$(date +%s)"
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+
+          echo "Publishing $PACKAGE_NAME@$PREVIEW_VERSION"
+
+          # Update version
+          npm version $PREVIEW_VERSION --no-git-tag-version
+
+          # Build package
+          if [ -f "package.json" ] && grep -q '"build"' package.json; then
+            yarn build
+          fi
+          if [ -f "package.json" ] && grep -q '"prepare"' package.json; then
+            yarn prepare
+          fi
+
+          # Publish
+          npm publish --tag preview
+
+          # Comment on PR
+          echo "📦 **Preview package published for \`packages/gluestack-utils\`**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
+          echo "npm install $PACKAGE_NAME@$PREVIEW_VERSION" >> $GITHUB_STEP_SUMMARY
+          echo "# or" >> $GITHUB_STEP_SUMMARY
+          echo "yarn add $PACKAGE_NAME@$PREVIEW_VERSION" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "This preview version will be available for testing until the PR is merged or closed." >> $GITHUB_STEP_SUMMARY
+        env:
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+
+      - name: Publish gluestack-core
+        if: steps.changes.outputs.core_changed == 'true'
+        run: |
+          cd packages/gluestack-core
+
+          # Generate preview version
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          PR_NUMBER=${{ github.event.number }}
+          SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
+          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-$(date +%s)"
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+
+          echo "Publishing $PACKAGE_NAME@$PREVIEW_VERSION"
+
+          # Update version
+          npm version $PREVIEW_VERSION --no-git-tag-version
+
+          # Build package
+          if [ -f "package.json" ] && grep -q '"build"' package.json; then
+            yarn build
+          fi
+          if [ -f "package.json" ] && grep -q '"prepare"' package.json; then
+            yarn prepare
+          fi
+
+          # Publish
+          npm publish --tag preview
+
+          # Comment on PR
+          echo "📦 **Preview package published for \`packages/gluestack-core\`**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
+          echo "npm install $PACKAGE_NAME@$PREVIEW_VERSION" >> $GITHUB_STEP_SUMMARY
+          echo "# or" >> $GITHUB_STEP_SUMMARY
+          echo "yarn add $PACKAGE_NAME@$PREVIEW_VERSION" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "This preview version will be available for testing until the PR is merged or closed." >> $GITHUB_STEP_SUMMARY
+        env:
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+
+      - name: Publish other packages
+        if: |
+          steps.changes.outputs.ui_changed == 'true' ||
+          steps.changes.outputs.create_changed == 'true' ||
+          steps.changes.outputs.adapter_changed == 'true'
+        run: |
+          # Get the base branch for comparison
+          BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+
+          # Get changed files in packages/
+          CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD | grep '^packages/' || true)
+
+          # Extract unique package names
+          PACKAGES=$(echo "$CHANGED_FILES" | cut -d'/' -f1-2 | sort -u)
+
+          # Process each package (excluding utils and core which are handled separately)
+          echo "$PACKAGES" | while read -r package; do
+            if [ "$package" != "packages/gluestack-utils" ] && [ "$package" != "packages/gluestack-core" ]; then
+              echo "Processing package: $package"
+              
+              cd "$package"
+              
+              # Generate preview version
+              CURRENT_VERSION=$(node -p "require('./package.json').version")
+              PR_NUMBER=${{ github.event.number }}
+              SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
+              PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-$(date +%s)"
+              PACKAGE_NAME=$(node -p "require('./package.json').name")
+              
+              echo "Publishing $PACKAGE_NAME@$PREVIEW_VERSION"
+              
+              # Update version
+              npm version $PREVIEW_VERSION --no-git-tag-version
+              
+              # Build package
+              if [ -f "package.json" ] && grep -q '"build"' package.json; then
+                yarn build
+              fi
+              if [ -f "package.json" ] && grep -q '"prepare"' package.json; then
+                yarn prepare
+              fi
+              
+              # Publish
+              npm publish --tag preview
+              
+              # Comment on PR
+              echo "📦 **Preview package published for \`$package\`**" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
+              echo "npm install $PACKAGE_NAME@$PREVIEW_VERSION" >> $GITHUB_STEP_SUMMARY
+              echo "# or" >> $GITHUB_STEP_SUMMARY
+              echo "yarn add $PACKAGE_NAME@$PREVIEW_VERSION" >> $GITHUB_STEP_SUMMARY
+              echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "This preview version will be available for testing until the PR is merged or closed." >> $GITHUB_STEP_SUMMARY
+              
+              cd ../..
+            fi
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
