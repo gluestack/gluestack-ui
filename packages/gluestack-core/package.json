@@ -2,9 +2,9 @@
   "name": "@gluestack-ui-nightly/core",
   "version": "1.0.9",
   "type": "module",
-  "main": "lib/esm/index.js",
-  "module": "lib/esm/index.js",
-  "types": "lib/esm/index.d.ts",
+  "main": "./lib/esm/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
   "license": "MIT",
   "sideEffects": false,
   "files": [
@@ -19,6 +19,11 @@
     "watch": "tsc -p tsconfig.build.json --watch",
     "dev": "nodemon --watch src --ext ts,tsx,js,jsx,json --exec 'yarn build && yalc push --private'",
     "prepare": "yarn clean && yarn build"
+  },
+  "typesVersions": {
+    "*": {
+      "*": ["./lib/esm/*"]
+    }
   },
   "exports": {
     ".": {

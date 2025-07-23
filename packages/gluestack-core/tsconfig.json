@@ -6,7 +6,7 @@
       "jsx": "preserve",
       "lib": ["esnext", "dom"],
       "module": "esnext",
-      "moduleResolution": "node",
+      "moduleResolution": "bundler",
       "noImplicitAny": true,
       "noEmit": true,
       "strict": false,
