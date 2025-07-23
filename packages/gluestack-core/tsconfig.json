@@ -16,6 +16,6 @@
         "@/*": ["src/*"],
       }
     },
-    "include": ["src", "../../src/components/ui/toast/creator"],
+    "include": ["src"],
     "exclude": ["lib", "node_modules"]
   } 

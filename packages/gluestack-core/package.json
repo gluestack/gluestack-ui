@@ -8,8 +8,7 @@
   "license": "MIT",
   "sideEffects": false,
   "files": [
-    "lib",
-    "src"
+    "lib"
   ],
   "publishConfig": {
     "access": "public"
@@ -130,9 +129,9 @@
       "import": "./lib/esm/actionsheet/creator/index.jsx",
       "types": "./lib/esm/actionsheet/creator/index.d.ts"
     },
-    "./alert-dialogue/creator": {
-      "import": "./lib/esm/alert-dialogue/creator/index.jsx",
-      "types": "./lib/esm/alert-dialogue/creator/index.d.ts"
+    "./alert-dialog/creator": {
+      "import": "./lib/esm/alert-dialog/creator/index.jsx",
+      "types": "./lib/esm/alert-dialog/creator/index.d.ts"
     },
     "./menu/creator": {
       "import": "./lib/esm/menu/creator/index.jsx",
@@ -157,88 +156,6 @@
     "./tooltip/creator": {
       "import": "./lib/esm/tooltip/creator/index.jsx",
       "types": "./lib/esm/tooltip/creator/index.d.ts"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      ".": [
-        "./lib/esm/index.d.ts"
-      ],
-      "./button/aria": [
-        "./lib/esm/button/aria/index.d.ts"
-      ],
-      "./button/creator": [
-        "./lib/esm/button/creator/index.d.ts"
-      ],
-      "./avatar/creator": [
-        "./lib/esm/avatar/creator/index.d.ts"
-      ],
-      "./icon/creator": [
-        "./lib/esm/icon/creator/index.d.ts"
-      ],
-      "./checkbox/creator": [
-        "./lib/esm/checkbox/creator/index.d.ts"
-      ],
-      "./checkbox/aria": [
-        "./lib/esm/checkbox/aria/index.d.ts"
-      ],
-      "./fab/creator": [
-        "./lib/esm/fab/creator/index.d.ts"
-      ],
-      "./form-control/creator": [
-        "./lib/esm/form-control/creator/index.d.ts"
-      ],
-      "./input/creator": [
-        "./lib/esm/input/creator/index.d.ts"
-      ],
-      "./image/creator": [
-        "./lib/esm/image/creator/index.d.ts"
-      ],
-      "./link/creator": [
-        "./lib/esm/link/creator/index.d.ts"
-      ],
-      "./pressable/creator": [
-        "./lib/esm/pressable/creator/index.d.ts"
-      ],
-      "./progress/creator": [
-        "./lib/esm/progress/creator/index.d.ts"
-      ],
-      "./radio/creator": [
-        "./lib/esm/radio/creator/index.d.ts"
-      ],
-      "./radio/aria": [
-        "./lib/esm/radio/aria/index.d.ts"
-      ],
-      "./select/creator": [
-        "./lib/esm/select/creator/index.d.ts"
-      ],
-      "./overlay/creator": [
-        "./lib/esm/overlay/creator/index.d.ts"
-      ],
-      "./actionsheet/creator": [
-        "./lib/esm/actionsheet/creator/index.d.ts"
-      ],
-      "./alert-dialogue/creator": [
-        "./lib/esm/alert-dialogue/creator/index.d.ts"
-      ],
-      "./menu/creator": [
-        "./lib/esm/menu/creator/index.d.ts"
-      ],
-      "./menu/aria": [
-        "./lib/esm/menu/aria/index.d.ts"
-      ],
-      "./modal/creator": [
-        "./lib/esm/modal/creator/index.d.ts"
-      ],
-      "./popover/creator": [
-        "./lib/esm/popover/creator/index.d.ts"
-      ],
-      "./toast/creator": [
-        "./lib/esm/toast/creator/index.d.ts"
-      ],
-      "./tooltip/creator": [
-        "./lib/esm/tooltip/creator/index.d.ts"
-      ]
     }
   },
   "dependencies": {
