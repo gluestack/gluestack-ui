@@ -2,71 +2,63 @@ name: Cleanup Preview Packages
 
 on:
   pull_request:
+    branches: [feat/v3]
     types: [closed]
-  workflow_run:
-    workflows: ["Publish Production Packages"]
-    types: [completed]
-
-env:
-  NODE_VERSION: '20'
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
-  cleanup-preview:
+  cleanup-preview-packages:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' || github.event.workflow_run.conclusion == 'success'
-    
+    if: github.event.pull_request.merged == false # Only cleanup if PR was closed without merging
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: 'https://registry.npmjs.org'
-      
-      - name: Get package names
-        id: packages
+          node-version: '18'
+
+      - name: Setup NPM authentication
         run: |
-          PACKAGES=$(find packages -name "package.json" -exec node -p "require('{}').name" \; | jq -R -s -c 'split("\n")[:-1]')
-          echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
-      
-      - name: Cleanup preview versions
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Cleanup preview packages
         run: |
-          for package in $(echo '${{ steps.packages.outputs.packages }}' | jq -r '.[]'); do
-            echo "Checking preview versions for $package..."
+          PR_NUMBER=${{ github.event.pull_request.number }}
+
+          # Find all packages in the packages directory
+          find packages -name "package.json" -type f | while read file; do
+            PACKAGE_NAME=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$file', 'utf8')).name)")
             
-            # Get all preview versions
-            PREVIEW_VERSIONS=$(npm view $package versions --json | jq -r '.[]' | grep -E "0\.0\.0-pr-" || true)
+            echo "🧹 Cleaning up preview versions for $PACKAGE_NAME..."
             
-            if [ -n "$PREVIEW_VERSIONS" ]; then
-              echo "Found preview versions for $package:"
-              echo "$PREVIEW_VERSIONS"
-              
-              # For closed PRs, clean up versions for this specific PR
-              if [ "${{ github.event_name }}" = "pull_request" ]; then
-                PR_NUMBER=${{ github.event.number }}
-                PR_VERSIONS=$(echo "$PREVIEW_VERSIONS" | grep "pr-${PR_NUMBER}-" || true)
-                
-                if [ -n "$PR_VERSIONS" ]; then
-                  echo "Cleaning up PR-specific versions..."
-                  for version in $PR_VERSIONS; do
-                    echo "Deprecating $package@$version"
-                    npm deprecate "$package@$version" "Preview version for closed PR #${PR_NUMBER}" || true
-                  done
+            # Get all versions with our PR pattern
+            VERSIONS=$(npm view "$PACKAGE_NAME" versions --json 2>/dev/null | jq -r ".[] | select(test(\"0\\.0\\.0-pr-${PR_NUMBER}-\"))" 2>/dev/null || echo "")
+            
+            if [ -n "$VERSIONS" ]; then
+              echo "$VERSIONS" | while read version; do
+                if [ -n "$version" ]; then
+                  echo "🗑️  Deprecating $PACKAGE_NAME@$version..."
+                  npm deprecate "$PACKAGE_NAME@$version" "Preview package for closed PR #${PR_NUMBER}" || echo "Failed to deprecate $PACKAGE_NAME@$version"
                 fi
-              else
-                # For successful production releases, clean up old preview versions (keep last 10)
-                OLD_VERSIONS=$(echo "$PREVIEW_VERSIONS" | head -n -10)
-                if [ -n "$OLD_VERSIONS" ]; then
-                  echo "Cleaning up old preview versions..."
-                  for version in $OLD_VERSIONS; do
-                    echo "Deprecating $package@$version"
-                    npm deprecate "$package@$version" "Outdated preview version" || true
-                  done
-                fi
-              fi
+              done
+            else
+              echo "ℹ️  No preview versions found for $PACKAGE_NAME"
             fi
           done
-        env:
-          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+
+      - name: Comment cleanup status
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = `🧹 **Preview package cleanup completed!**
+
+            All preview packages for PR #${{ github.event.pull_request.number }} have been deprecated.
+
+            These packages are no longer recommended for use and will be cleaned up automatically by npm.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
