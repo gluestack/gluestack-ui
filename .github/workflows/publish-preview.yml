@@ -35,6 +35,9 @@ jobs:
           PACKAGES=$(echo "$CHANGED_FILES" | cut -d'/' -f1-2 | sort -u | jq -R -s -c 'split("\n")[:-1]')
           echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
           echo "Changed packages: $PACKAGES"
+          echo "Raw changed files: $CHANGED_FILES"
+          echo "Package list for debugging:"
+          echo "$CHANGED_FILES" | cut -d'/' -f1-2 | sort -u
 
   publish-utils:
     needs: detect-changes
@@ -113,7 +116,9 @@ jobs:
 
   publish-core:
     needs: [detect-changes, publish-utils]
-    if: contains(fromJson(needs.detect-changes.outputs.packages), 'packages/gluestack-core')
+    if: |
+      contains(fromJson(needs.detect-changes.outputs.packages), 'packages/gluestack-core') &&
+      (needs.publish-utils.result == 'success' || needs.publish-utils.result == 'skipped')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -189,10 +194,10 @@ jobs:
   publish-other-packages:
     needs: [detect-changes, publish-core]
     if: |
-      needs.detect-changes.outputs.packages != '[]' && 
       (contains(fromJson(needs.detect-changes.outputs.packages), 'packages/gluestack-ui') || 
        contains(fromJson(needs.detect-changes.outputs.packages), 'packages/create-gluestack') ||
-       contains(fromJson(needs.detect-changes.outputs.packages), 'packages/ui-next-adapter'))
+       contains(fromJson(needs.detect-changes.outputs.packages), 'packages/ui-next-adapter')) &&
+      (needs.publish-core.result == 'success' || needs.publish-core.result == 'skipped')
     runs-on: ubuntu-latest
     strategy:
       matrix:
