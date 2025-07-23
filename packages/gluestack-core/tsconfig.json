@@ -6,7 +6,8 @@
       "jsx": "preserve",
       "lib": ["esnext", "dom"],
       "module": "esnext",
-      "moduleResolution": "node",
+      "moduleResolution": "bundler",
+      "allowSyntheticDefaultImports": true,
       "noImplicitAny": true,
       "noEmit": true,
       "strict": false,
@@ -16,6 +17,6 @@
         "@/*": ["src/*"],
       }
     },
-    "include": ["src", "../../src/components/ui/toast/creator"],
+    "include": ["src"],
     "exclude": ["lib", "node_modules"]
   } 

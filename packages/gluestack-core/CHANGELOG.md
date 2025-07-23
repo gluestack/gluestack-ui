@@ -1,5 +1,12 @@
 # @gluestack-ui-nightly/core
 
+## 1.1.0
+
+### Minor Changes
+
+- made the node to budler
+- change the node to bundler
+
 ## 1.0.8
 
 ### Patch Changes
