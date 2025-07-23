@@ -51,13 +51,50 @@ jobs:
         run: |
           SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
           PR_NUMBER=${{ github.event.pull_request.number }}
+          
+          # Generate a unique version using multiple entropy sources
           TIMESTAMP=$(date +%s)
-          RUN_NUMBER=${{ github.run_number }}
-          ATTEMPT=${{ github.run_attempt }}
-          # Make version more unique by including run info
-          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-${TIMESTAMP}-${RUN_NUMBER}-${ATTEMPT}"
+          NANO_TIME=$(date +%N)
+          RUN_ID="${{ github.run_id }}"
+          RUN_NUMBER="${{ github.run_number }}"
+          ATTEMPT="${{ github.run_attempt }}"
+          
+          # Create a unique identifier from multiple sources
+          UNIQUE_ID=$(echo "${TIMESTAMP}${NANO_TIME}${RUN_ID}${RUN_NUMBER}${ATTEMPT}$RANDOM" | sha256sum | cut -c1-12)
+          
+          # Create version string
+          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-${UNIQUE_ID}"
+          
+          # Verify uniqueness for main package
+          MAX_ATTEMPTS=5
+          ATTEMPT_COUNT=0
+          
+          while [ $ATTEMPT_COUNT -lt $MAX_ATTEMPTS ]; do
+            # Check if version exists for the main package
+            if npm view "@gluestack-ui-nightly/core@$PREVIEW_VERSION" version >/dev/null 2>&1; then
+              echo "⚠️  Version $PREVIEW_VERSION already exists, generating new one..."
+              ATTEMPT_COUNT=$((ATTEMPT_COUNT + 1))
+              # Add more entropy
+              EXTRA_RANDOM=$(echo "$RANDOM$RANDOM$(date +%N)" | sha256sum | cut -c1-8)
+              PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-${UNIQUE_ID}-${EXTRA_RANDOM}"
+            else
+              echo "✅ Version $PREVIEW_VERSION is unique"
+              break
+            fi
+          done
+          
+          if [ $ATTEMPT_COUNT -eq $MAX_ATTEMPTS ]; then
+            echo "🚨 Could not generate unique version after $MAX_ATTEMPTS attempts"
+            exit 1
+          fi
+          
           echo "version=$PREVIEW_VERSION" >> $GITHUB_OUTPUT
-          echo "Preview version: $PREVIEW_VERSION"
+          echo "📦 Final preview version: $PREVIEW_VERSION"
+
+      - name: Verify version uniqueness
+        run: |
+          echo "🔍 Final verification of version uniqueness..."
+          echo "Using version: ${{ steps.preview-version.outputs.version }}"
 
       - name: Update package versions for preview
         run: |
