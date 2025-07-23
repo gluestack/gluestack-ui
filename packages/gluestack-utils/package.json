@@ -31,30 +31,10 @@
       "types": "./lib/esm/common/index.d.ts"
     }
   },
-  "typesVersions": {
-    "*": {
-      ".": [
-        "./lib/esm/index.d.ts"
-      ],
-      "aria": [
-        "./lib/esm/aria/index.d.ts"
-      ],
-      "hooks": [
-        "./lib/esm/hooks/index.d.ts"
-      ],
-      "nativewind-utils": [
-        "./lib/esm/nativewind-utils/index.d.ts"
-      ],
-      "common": [
-        "./lib/esm/common/index.d.ts"
-      ]
-    }
-  },
   "sideEffects": false,
   "react-native": "src/index.ts",
   "source": "src/index.ts",
   "files": [
-    "src",
     "lib"
   ],
   "scripts": {
