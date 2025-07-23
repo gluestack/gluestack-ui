@@ -1,5 +1,11 @@
 # @gluestack-ui-nightly/core
 
+## 1.2.3
+
+### Patch Changes
+
+- change node back to bundler
+
 ## 1.2.2
 
 ### Patch Changes

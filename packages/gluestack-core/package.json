@@ -1,10 +1,11 @@
 {
   "name": "@gluestack-ui-nightly/core",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "type": "module",
   "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
+  "browser": "./lib/esm/index.js",
   "license": "MIT",
   "sideEffects": false,
   "files": [
@@ -105,78 +106,98 @@
   "exports": {
     ".": {
       "import": "./lib/esm/index.js",
-      "types": "./lib/esm/index.d.ts"
+      "types": "./lib/esm/index.d.ts",
+      "react-native": "./lib/esm/index.js"
     },
     "./button/aria": {
       "import": "./lib/esm/button/aria/index.js",
+      "react-native": "./lib/esm/button/aria/index.js",
       "types": "./lib/esm/button/aria/index.d.ts"
     },
     "./button/creator": {
       "import": "./lib/esm/button/creator/index.jsx",
+      "react-native": "./lib/esm/button/creator/index.jsx",
       "types": "./lib/esm/button/creator/index.d.ts"
     },
     "./accordion/aria": {
       "import": "./lib/esm/accordion/aria/index.js",
+      "react-native": "./lib/esm/accordion/aria/index.js",
       "types": "./lib/esm/accordion/aria/index.d.ts"
     },
     "./accordion/creator": {
       "import": "./lib/esm/accordion/creator/index.jsx",
+      "react-native": "./lib/esm/accordion/creator/index.jsx",
       "types": "./lib/esm/accordion/creator/index.d.ts"
     },
     "./alert/creator": {
       "import": "./lib/esm/alert/creator/index.jsx",
+      "react-native": "./lib/esm/alert/creator/index.jsx",
       "types": "./lib/esm/alert/creator/index.d.ts"
     },
     "./avatar/creator": {
       "import": "./lib/esm/avatar/creator/index.jsx",
+      "react-native": "./lib/esm/avatar/creator/index.jsx",
       "types": "./lib/esm/avatar/creator/index.d.ts"
     },
     "./icon/creator": {
       "import": "./lib/esm/icon/creator/index.jsx",
+      "react-native": "./lib/esm/icon/creator/index.jsx",
       "types": "./lib/esm/icon/creator/index.d.ts"
     },
     "./checkbox/creator": {
-      "import": "./lib/esm/checkbox/creator/index.js",
+      "import": "./lib/esm/checkbox/creator/index.js",  
+      "react-native": "./lib/esm/checkbox/creator/index.js",
       "types": "./lib/esm/checkbox/creator/index.d.ts"
     },
     "./checkbox/aria": {
       "import": "./lib/esm/checkbox/aria/index.js",
+      "react-native": "./lib/esm/checkbox/aria/index.js",
       "types": "./lib/esm/checkbox/aria/index.d.ts"
     },
     "./fab/creator": {
       "import": "./lib/esm/fab/creator/index.jsx",
+      "react-native": "./lib/esm/fab/creator/index.jsx",
       "types": "./lib/esm/fab/creator/index.d.ts"
     },
     "./form-control/creator": {
-      "import": "./lib/esm/form-control/creator/index.jsx",
+      "import": "./lib/esm/form-control/creator/index.jsx", 
+      "react-native": "./lib/esm/form-control/creator/index.jsx",
       "types": "./lib/esm/form-control/creator/index.d.ts"
     },
     "./input/creator": {
       "import": "./lib/esm/input/creator/index.jsx",
+      "react-native": "./lib/esm/input/creator/index.jsx",
       "types": "./lib/esm/input/creator/index.d.ts"
     },
     "./image/creator": {
       "import": "./lib/esm/image/creator/index.jsx",
+      "react-native": "./lib/esm/image/creator/index.jsx",
       "types": "./lib/esm/image/creator/index.d.ts"
     },
     "./link/creator": {
       "import": "./lib/esm/link/creator/index.jsx",
+
+      "react-native": "./lib/esm/link/creator/index.jsx",
       "types": "./lib/esm/link/creator/index.d.ts"
     },
     "./pressable/creator": {
       "import": "./lib/esm/pressable/creator/index.jsx",
+      "react-native": "./lib/esm/pressable/creator/index.jsx",
       "types": "./lib/esm/pressable/creator/index.d.ts"
     },
     "./progress/creator": {
       "import": "./lib/esm/progress/creator/index.jsx",
+      "react-native": "./lib/esm/progress/creator/index.jsx",
       "types": "./lib/esm/progress/creator/index.d.ts"
     },
     "./radio/creator": {
       "import": "./lib/esm/radio/creator/index.js",
+      "react-native": "./lib/esm/radio/creator/index.js",
       "types": "./lib/esm/radio/creator/index.d.ts"
     },
     "./radio/aria": {
       "import": "./lib/esm/radio/aria/index.js",
+      "react-native": "./lib/esm/radio/aria/index.js",
       "types": "./lib/esm/radio/aria/index.d.ts"
     },
     "./select/creator": {
@@ -185,58 +206,72 @@
     },
     "./overlay/creator": {
       "import": "./lib/esm/overlay/creator/index.jsx",
-      "types": "./lib/esm/overlay/creator/index.d.ts"
+      "types": "./lib/esm/overlay/creator/index.d.ts",
+      "react-native": "./lib/esm/overlay/creator/index.jsx"
     },
     "./switch/creator": {
       "import": "./lib/esm/switch/creator/index.jsx",
+      "react-native": "./lib/esm/switch/creator/index.jsx",
       "types": "./lib/esm/switch/creator/index.d.ts"
     },
     "./switch/aria": {
       "import": "./lib/esm/switch/aria/index.jsx",
+      "react-native": "./lib/esm/switch/aria/index.jsx",
       "types": "./lib/esm/switch/aria/index.d.ts"
     },
     "./textarea/creator": {
       "import": "./lib/esm/textarea/creator/index.jsx",
+      "react-native": "./lib/esm/textarea/creator/index.jsx",
       "types": "./lib/esm/textarea/creator/index.d.ts"
     },
     "./slider/creator": {
       "import": "./lib/esm/slider/creator/index.jsx",
+      "react-native": "./lib/esm/slider/creator/index.jsx",
       "types": "./lib/esm/slider/creator/index.d.ts"
     },
     "./slider/aria": {
       "import": "./lib/esm/slider/aria/index.jsx",
+      "react-native": "./lib/esm/slider/aria/index.jsx",
       "types": "./lib/esm/slider/aria/index.d.ts"
     },
     "./actionsheet/creator": {
       "import": "./lib/esm/actionsheet/creator/index.jsx",
+      "react-native": "./lib/esm/actionsheet/creator/index.jsx",  
       "types": "./lib/esm/actionsheet/creator/index.d.ts"
     },
     "./alert-dialog/creator": {
       "import": "./lib/esm/alert-dialog/creator/index.jsx",
+      "react-native": "./lib/esm/alert-dialog/creator/index.jsx",
       "types": "./lib/esm/alert-dialog/creator/index.d.ts"
     },
     "./menu/creator": {
       "import": "./lib/esm/menu/creator/index.jsx",
+      "react-native": "./lib/esm/menu/creator/index.jsx",
       "types": "./lib/esm/menu/creator/index.d.ts"
     },
     "./menu/aria": {
       "import": "./lib/esm/menu/aria/index.jsx",
+      "react-native": "./lib/esm/menu/aria/index.jsx",
       "types": "./lib/esm/menu/aria/index.d.ts"
     },
     "./modal/creator": {
       "import": "./lib/esm/modal/creator/index.jsx",
+      "react-native": "./lib/esm/modal/creator/index.jsx",
       "types": "./lib/esm/modal/creator/index.d.ts"
     },
     "./popover/creator": {
       "import": "./lib/esm/popover/creator/index.jsx",
+      "react-native": "./lib/esm/popover/creator/index.jsx",
       "types": "./lib/esm/popover/creator/index.d.ts"
     },
     "./toast/creator": {
       "import": "./lib/esm/toast/creator/index.jsx",
+      "react-native": "./lib/esm/toast/creator/index.jsx",
       "types": "./lib/esm/toast/creator/index.d.ts"
     },
     "./tooltip/creator": {
       "import": "./lib/esm/tooltip/creator/index.jsx",
+      "react-native": "./lib/esm/tooltip/creator/index.jsx",
       "types": "./lib/esm/tooltip/creator/index.d.ts"
     }
   },
