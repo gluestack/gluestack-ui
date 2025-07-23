@@ -242,7 +242,7 @@
     }
   },
   "dependencies": {
-    "@gluestack-ui-nightly/utils": "0.0.0-pr-3023-48030a4-b05c205f5bdf",
+    "@gluestack-ui-nightly/utils": "1.0.16",
     "react-native-svg": "^15.12.0"
   },
   "peerDependencies": {
