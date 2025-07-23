@@ -1,5 +1,17 @@
 # @gluestack-ui-nightly/utils
 
+## 1.0.18
+
+### Patch Changes
+
+- add react native exports
+
+## 1.0.17
+
+### Patch Changes
+
+- make proper type versions
+
 ## 0.1.16
 
 ### Patch Changes

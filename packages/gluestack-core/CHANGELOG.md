@@ -1,5 +1,11 @@
 # @gluestack-ui-nightly/core
 
+## 1.2.4
+
+### Patch Changes
+
+- add the react native imports
+
 ## 1.2.3
 
 ### Patch Changes

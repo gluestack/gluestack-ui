@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui-nightly/core",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "type": "module",
   "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
@@ -145,7 +145,7 @@
       "types": "./lib/esm/icon/creator/index.d.ts"
     },
     "./checkbox/creator": {
-      "import": "./lib/esm/checkbox/creator/index.js",  
+      "import": "./lib/esm/checkbox/creator/index.js",
       "react-native": "./lib/esm/checkbox/creator/index.js",
       "types": "./lib/esm/checkbox/creator/index.d.ts"
     },
@@ -160,7 +160,7 @@
       "types": "./lib/esm/fab/creator/index.d.ts"
     },
     "./form-control/creator": {
-      "import": "./lib/esm/form-control/creator/index.jsx", 
+      "import": "./lib/esm/form-control/creator/index.jsx",
       "react-native": "./lib/esm/form-control/creator/index.jsx",
       "types": "./lib/esm/form-control/creator/index.d.ts"
     },
@@ -176,7 +176,6 @@
     },
     "./link/creator": {
       "import": "./lib/esm/link/creator/index.jsx",
-
       "react-native": "./lib/esm/link/creator/index.jsx",
       "types": "./lib/esm/link/creator/index.d.ts"
     },
@@ -236,7 +235,7 @@
     },
     "./actionsheet/creator": {
       "import": "./lib/esm/actionsheet/creator/index.jsx",
-      "react-native": "./lib/esm/actionsheet/creator/index.jsx",  
+      "react-native": "./lib/esm/actionsheet/creator/index.jsx",
       "types": "./lib/esm/actionsheet/creator/index.d.ts"
     },
     "./alert-dialog/creator": {
