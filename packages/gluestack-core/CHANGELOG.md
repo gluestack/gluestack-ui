@@ -1,5 +1,17 @@
 # @gluestack-ui-nightly/core
 
+## 1.2.1
+
+### Patch Changes
+
+- change to bundler
+
+## 1.1.0
+
+### Minor Changes
+
+- make it to bundler
+
 ## 1.0.9
 
 ### Patch Changes
