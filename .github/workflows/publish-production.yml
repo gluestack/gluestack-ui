@@ -2,7 +2,7 @@ name: Production Package Publishing
 
 on:
   push:
-    branches: [feat/v3]
+    branches: [ feat/v3 ]
     paths:
       - 'packages/**'
 
@@ -38,7 +38,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'yarn'
 
       - name: Install dependencies
@@ -98,7 +98,7 @@ jobs:
         run: |
           echo "🚀 Publishing packages..."
           PUBLISHED_PACKAGES=""
-
+          
           find packages -name "package.json" -type f | while read file; do
             PACKAGE_DIR=$(dirname "$file")
             PACKAGE_JSON=$(cat "$file")
@@ -134,7 +134,7 @@ jobs:
             
             cd - > /dev/null
           done
-
+          
           echo "published=true" >> $GITHUB_OUTPUT
           echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
 
@@ -144,7 +144,7 @@ jobs:
         with:
           script: |
             const { execSync } = require('child_process');
-
+            
             // Get latest tag
             let latestTag;
             try {
@@ -152,7 +152,7 @@ jobs:
             } catch (e) {
               latestTag = '';
             }
-
+            
             // Generate changelog
             let changelog = '## Changes\n\n';
             if (latestTag) {
@@ -170,7 +170,7 @@ jobs:
             } else {
               changelog += 'Initial release';
             }
-
+            
             // Create release
             const tagName = `v${{ steps.version.outputs.version }}`;
             await github.rest.repos.createRelease({
@@ -188,18 +188,93 @@ jobs:
     if: needs.publish-production.outputs.published == 'true'
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Vercel Production Deployment
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Trigger Vercel Production Deployments
+        id: deploy
         run: |
-          curl -X POST "https://api.vercel.com/v1/integrations/deploy/${{ secrets.VERCEL_DEPLOY_HOOK_PRODUCTION }}" \
-            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "name": "production-release",
-              "source": "github-action",
-              "target": "production",
-              "meta": {
-                "githubCommitSha": "${{ github.sha }}",
-                "githubCommitAuthorName": "${{ github.actor }}",
-                "packageVersion": "${{ needs.publish-production.outputs.version }}"
-              }
-            }'
+          # Parse project IDs from secrets
+          PROJECT_IDS='${{ secrets.VERCEL_PROJECT_IDS }}'
+          DEPLOYED_PROJECTS=""
+          DEPLOYMENT_URLS=""
+          
+          echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"' | while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
+            echo "🚀 Deploying $PROJECT_NAME to production (ID: $PROJECT_ID)..."
+            
+            # Create production deployment using Vercel API
+            RESPONSE=$(curl -s -X POST "https://api.vercel.com/v13/deployments" \
+              -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"name\": \"$PROJECT_NAME\",
+                \"project\": \"$PROJECT_ID\",
+                \"target\": \"production\",
+                \"gitSource\": {
+                  \"type\": \"github\",
+                  \"ref\": \"feat/v3\",
+                  \"sha\": \"${{ github.sha }}\"
+                },
+                \"meta\": {
+                  \"githubCommitSha\": \"${{ github.sha }}\",
+                  \"githubCommitAuthorName\": \"${{ github.actor }}\",
+                  \"packageVersion\": \"${{ needs.publish-production.outputs.version }}\",
+                  \"deploymentType\": \"production\"
+                }
+              }")
+            
+            # Extract deployment URL and ID
+            DEPLOYMENT_URL=$(echo "$RESPONSE" | jq -r '.url // empty')
+            DEPLOYMENT_ID=$(echo "$RESPONSE" | jq -r '.id // empty')
+            
+            if [ -n "$DEPLOYMENT_URL" ] && [ -n "$DEPLOYMENT_ID" ]; then
+              echo "✅ Successfully triggered production deployment for $PROJECT_NAME"
+              echo "📍 Production URL: https://$DEPLOYMENT_URL"
+              DEPLOYED_PROJECTS="$DEPLOYED_PROJECTS $PROJECT_NAME"
+              DEPLOYMENT_URLS="$DEPLOYMENT_URLS\\n- **$PROJECT_NAME**: https://$DEPLOYMENT_URL"
+            else
+              echo "❌ Failed to deploy $PROJECT_NAME to production"
+              echo "Response: $RESPONSE"
+            fi
+          done
+          
+          # Save results for GitHub release
+          echo "deployed_projects=$DEPLOYED_PROJECTS" >> $GITHUB_OUTPUT
+          echo -e "deployment_urls=$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
+
+      - name: Update GitHub Release with Deployment Info
+        if: steps.deploy.outputs.deployed_projects != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`;
+            const tagName = `v${{ needs.publish-production.outputs.version }}`;
+            
+            // Get the release
+            let release;
+            try {
+              release = await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag: tagName
+              });
+            } catch (error) {
+              console.log('Release not found, skipping deployment URL update');
+              return;
+            }
+            
+            // Update release body with deployment URLs
+            const updatedBody = release.data.body + 
+              '\n\n## 🚀 Deployment URLs\n' + 
+              deploymentUrls;
+            
+            await github.rest.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: release.data.id,
+              body: updatedBody
+            });

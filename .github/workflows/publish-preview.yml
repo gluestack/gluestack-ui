@@ -39,7 +39,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'yarn'
 
       - name: Install dependencies
@@ -154,32 +154,85 @@ jobs:
     if: needs.publish-preview.outputs.published == 'true'
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Vercel Preview Deployment
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Trigger Vercel Preview Deployments
+        id: deploy
         run: |
-          curl -X POST "https://api.vercel.com/v1/integrations/deploy/${{ secrets.VERCEL_DEPLOY_HOOK_PREVIEW }}" \
-            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "name": "preview-with-packages",
-              "source": "github-action",
-              "meta": {
-                "githubCommitSha": "${{ github.sha }}",
-                "githubCommitAuthorName": "${{ github.actor }}",
-                "githubCommitMessage": "${{ github.event.pull_request.title }}",
-                "packageVersion": "${{ needs.publish-preview.outputs.version }}"
-              }
-            }'
+          # Parse project IDs from secrets
+          PROJECT_IDS='${{ secrets.VERCEL_PROJECT_IDS }}'
+          DEPLOYED_PROJECTS=""
+          DEPLOYMENT_URLS=""
+
+          echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"' | while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
+            echo "🚀 Deploying $PROJECT_NAME (ID: $PROJECT_ID)..."
+            
+            # Create deployment using Vercel API
+            RESPONSE=$(curl -s -X POST "https://api.vercel.com/v13/deployments" \
+              -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"name\": \"$PROJECT_NAME\",
+                \"project\": \"$PROJECT_ID\",
+                \"target\": \"preview\",
+                \"gitSource\": {
+                  \"type\": \"github\",
+                  \"ref\": \"${{ github.head_ref }}\",
+                  \"sha\": \"${{ github.sha }}\"
+                },
+                \"meta\": {
+                  \"githubCommitSha\": \"${{ github.sha }}\",
+                  \"githubCommitAuthorName\": \"${{ github.actor }}\",
+                  \"githubCommitMessage\": \"${{ github.event.pull_request.title }}\",
+                  \"packageVersion\": \"${{ needs.publish-preview.outputs.version }}\",
+                  \"githubPR\": \"${{ github.event.pull_request.number }}\"
+                }
+              }")
+            
+            # Extract deployment URL and ID
+            DEPLOYMENT_URL=$(echo "$RESPONSE" | jq -r '.url // empty')
+            DEPLOYMENT_ID=$(echo "$RESPONSE" | jq -r '.id // empty')
+            
+            if [ -n "$DEPLOYMENT_URL" ] && [ -n "$DEPLOYMENT_ID" ]; then
+              echo "✅ Successfully triggered deployment for $PROJECT_NAME"
+              echo "📍 Preview URL: https://$DEPLOYMENT_URL"
+              DEPLOYED_PROJECTS="$DEPLOYED_PROJECTS $PROJECT_NAME"
+              DEPLOYMENT_URLS="$DEPLOYMENT_URLS\\n- **$PROJECT_NAME**: https://$DEPLOYMENT_URL"
+            else
+              echo "❌ Failed to deploy $PROJECT_NAME"
+              echo "Response: $RESPONSE"
+            fi
+          done
+
+          # Save results for next step
+          echo "deployed_projects=$DEPLOYED_PROJECTS" >> $GITHUB_OUTPUT
+          echo -e "deployment_urls=$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
 
       - name: Update PR with Vercel deployment info
         uses: actions/github-script@v7
         with:
           script: |
-            const comment = `🔄 **Vercel preview deployment triggered!**
+            const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`;
+            const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
 
-            The preview deployment has been triggered with the newly published packages.
-            Check your Vercel dashboard for deployment status.
+            let comment = `🚀 **Vercel preview deployments triggered!**
 
-            **Package Version:** \`${{ needs.publish-preview.outputs.version }}\``;
+            **Package Version:** \`${{ needs.publish-preview.outputs.version }}\`
+
+            `;
+
+            if (deployedProjects) {
+              comment += `**Deployed Projects:**${deploymentUrls}
+              
+              ⏱️ Deployments are in progress. Check your Vercel dashboard for detailed status.`;
+            } else {
+              comment += `⚠️ No deployments were triggered. Please check the workflow logs.`;
+            }
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
