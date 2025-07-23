@@ -58,30 +58,52 @@ jobs:
             exit 1
           fi
           
-          # Check organization access
-          echo "🏢 Checking @gluestack-ui-nightly organization access..."
-          if npm access list packages @gluestack-ui-nightly 2>/dev/null; then
-            echo "✅ Has access to @gluestack-ui-nightly packages"
-          else
-            echo "❌ No access to @gluestack-ui-nightly org packages"
-            echo "💡 You may need to be added to the organization by:"
-            echo "   - sanchit.kumar@geekyants.com"
-            echo "   - ujjwal.aggarwal@geekyants.com"
-          fi
+          # Check organization access for different scopes
+          echo "🏢 Checking organization access..."
           
-          # Check specific package permissions
-          echo "📦 Checking individual package permissions..."
+          SCOPES=("@gluestack-ui-nightly" "@gluestack-nightly")
+          
+          for scope in "${SCOPES[@]}"; do
+            echo "Checking $scope organization..."
+            if npm access list packages "$scope" 2>/dev/null; then
+              echo "✅ Has access to $scope packages"
+            elif npm org ls "$scope" 2>/dev/null; then
+              echo "⚠️  $scope org exists but no package access"
+            else
+              echo "❌ $scope organization doesn't exist or no access"
+              echo "💡 Create organization at: https://www.npmjs.com/org/create"
+            fi
+          done
+          
+          # Check if packages exist and their current status
+          echo "📦 Checking existing packages..."
           PACKAGES=(
             "@gluestack-ui-nightly/utils"
             "@gluestack-ui-nightly/core" 
+            "gluestack-ui-nightly"
+            "create-gluestack-nightly"
+            "@gluestack-nightly/ui-next-adapter"
           )
           
           for package_name in "${PACKAGES[@]}"; do
-            echo "Checking permissions for $package_name..."
-            if npm access list collaborators "$package_name" 2>/dev/null; then
-              echo "✅ Has collaborator access to $package_name"
+            if npm view "$package_name" name >/dev/null 2>&1; then
+              LATEST_VERSION=$(npm view "$package_name" version 2>/dev/null)
+              PREVIEW_VERSION=$(npm view "$package_name@preview" version 2>/dev/null || echo "none")
+              echo "✅ $package_name exists (latest: $LATEST_VERSION, preview: $PREVIEW_VERSION)"
             else
-              echo "❌ No collaborator access to $package_name"
+              echo "🆕 $package_name - NEW (first time publish)"
+              
+              # For scoped packages, check org access
+              if [[ "$package_name" == @*/* ]]; then
+                SCOPE=$(echo "$package_name" | cut -d'/' -f1)
+                if npm access list packages "$SCOPE" >/dev/null 2>&1; then
+                  echo "   ✅ Has access to $SCOPE org"
+                else
+                  echo "   ❌ No access to $SCOPE org - WILL FAIL"
+                fi
+              else
+                echo "   ⚠️  Non-scoped package - check if name is available"
+              fi
             fi
           done
         env:
@@ -267,29 +289,59 @@ jobs:
                 # Publish with preview tag
                 echo "📤 Attempting to publish $PACKAGE_NAME@${{ steps.preview-version.outputs.version }}"
                 
+                # Check if the scope exists for scoped packages
+                if [[ "$PACKAGE_NAME" == @*/* ]]; then
+                  SCOPE=$(echo "$PACKAGE_NAME" | cut -d'/' -f1)
+                  echo "🔍 Checking if scope $SCOPE exists..."
+                  
+                  # Try to check if scope exists by looking for any package in it
+                  if ! npm search "$SCOPE" --json 2>/dev/null | grep -q "name"; then
+                    echo "⚠️  Scope $SCOPE might not exist or be accessible"
+                    echo "💡 Consider using @gluestack-ui-nightly scope instead"
+                    
+                    # Check if this should be in the main scope
+                    if [[ "$SCOPE" == "@gluestack-nightly" ]]; then
+                      echo "🔄 This package might belong in @gluestack-ui-nightly scope"
+                      echo "   Update packages/$(basename $package_dir)/package.json name field"
+                    fi
+                  fi
+                fi
+                
                 # Check if this is the first publish of this package
                 if ! npm view "$PACKAGE_NAME" name >/dev/null 2>&1; then
                   echo "🆕 First time publishing $PACKAGE_NAME"
-                  # For first publish, we may need to use different approach
+                  
+                  # For scoped packages, check if we have org access
+                  if [[ "$PACKAGE_NAME" == @*/* ]]; then
+                    SCOPE=$(echo "$PACKAGE_NAME" | cut -d'/' -f1)
+                    echo "🔍 Checking access to $SCOPE organization..."
+                    
+                    if npm access list packages "$SCOPE" >/dev/null 2>&1; then
+                      echo "✅ Has access to $SCOPE"
+                    else
+                      echo "❌ No access to $SCOPE organization"
+                      echo "💡 Need to create/join organization: ${SCOPE#@}"
+                      cd - > /dev/null
+                      continue
+                    fi
+                  fi
+                  
+                  # Attempt first-time publish
+                  echo "📤 Publishing new package $PACKAGE_NAME..."
                   if npm publish --tag preview --access public; then
                     echo "✅ Successfully published $PACKAGE_NAME (first time)"
                   else
                     echo "❌ Failed first-time publish for $PACKAGE_NAME"
-                    echo "🔍 Checking if scope @gluestack-ui-nightly exists..."
                     
-                    # Try to get org info
-                    if npm org ls @gluestack-ui-nightly >/dev/null 2>&1; then
-                      echo "✅ Organization @gluestack-ui-nightly exists"
-                    else
-                      echo "❌ Organization @gluestack-ui-nightly does not exist or no access"
-                      echo "💡 You may need to:"
-                      echo "   1. Create the @gluestack-ui-nightly organization on npmjs.com"
-                      echo "   2. Add your account as a member"
-                      echo "   3. Ensure your NPM token has access to this org"
+                    # For non-scoped packages, might be a naming conflict
+                    if [[ "$PACKAGE_NAME" != @*/* ]]; then
+                      echo "⚠️  Package name '$PACKAGE_NAME' might be taken or reserved"
+                      echo "💡 Try checking: npm view $PACKAGE_NAME"
+                      echo "💡 Consider using a scoped name like @your-org/$PACKAGE_NAME"
                     fi
                     
                     cd - > /dev/null
-                    continue  # Continue with other packages
+                    continue
                   fi
                 else
                   # Regular publish to existing package
