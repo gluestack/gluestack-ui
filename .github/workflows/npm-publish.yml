@@ -46,110 +46,12 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Test NPM Token Permissions
+      - name: Debug NPM and generate version
         run: |
           echo "🔑 Testing NPM token permissions..."
-          
-          # Test basic access
           echo "Current user: $(npm whoami)"
           
-          # Test organization access
-          echo ""
-          echo "🏢 Testing organization access..."
-          
-          for org in "@gluestack-ui-nightly" "@gluestack-nightly"; do
-            echo "Testing $org:"
-            
-            if npm access list packages "$org" 2>/dev/null; then
-              echo "  ✅ Can list packages in $org"
-            else
-              echo "  ❌ Cannot list packages in $org"
-            fi
-            
-            if npm team ls "$org" 2>/dev/null; then
-              echo "  ✅ Can list teams in $org"
-            else
-              echo "  ❌ Cannot list teams in $org"
-            fi
-            
-            # Test if we're in the developers team
-            if npm team ls "$org:developers" 2>/dev/null | grep -q "$(npm whoami)"; then
-              echo "  ✅ Member of $org:developers team"
-            else
-              echo "  ❌ Not in $org:developers team"
-            fi
-            
-            echo ""
-          done
-          
-          # Test publish permissions on existing packages
-          echo "📦 Testing publish permissions..."
-          
-          TEST_PACKAGES=(
-            "@gluestack-ui-nightly/utils"
-            "@gluestack-ui-nightly/core"
-            "@gluestack-nightly/ui-next-adapter"
-          )
-          
-          for pkg in "${TEST_PACKAGES[@]}"; do
-            echo "Testing $pkg:"
-            if npm access list collaborators "$pkg" 2>/dev/null | grep -q "$(npm whoami)"; then
-              echo "  ✅ Has collaborator access to $pkg"
-            else
-              echo "  ❌ No collaborator access to $pkg"
-            fi
-          done
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        continue-on-error: true
-        run: |
-          echo "🔍 Debugging NPM setup..."
-          
-          # Check if logged in
-          if npm whoami; then
-            echo "✅ Logged in as: $(npm whoami)"
-          else
-            echo "❌ Not logged in to NPM"
-            exit 1
-          fi
-          
-          # Check organization access for different scopes
-          echo "🏢 Checking organization access..."
-          
-          SCOPES=("@gluestack-ui-nightly" "@gluestack-nightly")
-          
-          for scope in "${SCOPES[@]}"; do
-            echo "Checking $scope organization..."
-            
-            # Try multiple ways to check access
-            if npm access list packages "$scope" 2>/dev/null | grep -q .; then
-              echo "✅ Has package access to $scope"
-            elif npm org ls "$scope" 2>/dev/null | grep -q .; then
-              echo "⚠️  $scope org exists, checking member access..."
-              if npm team ls "$scope:developers" 2>/dev/null | grep -q "$(npm whoami)"; then
-                echo "✅ Member of $scope:developers"
-              else
-                echo "❓ Member status unclear for $scope"
-              fi
-            else
-              # Final check - try to view a known package in the scope
-              if [[ "$scope" == "@gluestack-ui-nightly" ]]; then
-                if npm view "@gluestack-ui-nightly/utils" name >/dev/null 2>&1; then
-                  echo "✅ $scope exists (packages visible)"
-                else
-                  echo "❌ $scope not accessible"
-                fi
-              elif [[ "$scope" == "@gluestack-nightly" ]]; then
-                if npm view "@gluestack-nightly/ui-next-adapter" name >/dev/null 2>&1; then
-                  echo "✅ $scope exists (packages visible)"
-                else
-                  echo "❌ $scope not accessible"
-                fi
-              fi
-            fi
-          done
-          
-          # Check if packages exist and their current status
+          # Check existing packages
           echo "📦 Checking existing packages..."
           PACKAGES=(
             "@gluestack-ui-nightly/utils"
@@ -166,101 +68,45 @@ jobs:
               echo "✅ $package_name exists (latest: $LATEST_VERSION, preview: $PREVIEW_VERSION)"
             else
               echo "🆕 $package_name - NEW (first time publish)"
-              
-              # For scoped packages, check org access
-              if [[ "$package_name" == @*/* ]]; then
-                SCOPE=$(echo "$package_name" | cut -d'/' -f1)
-                if npm access list packages "$SCOPE" >/dev/null 2>&1; then
-                  echo "   ✅ Has access to $SCOPE org"
-                else
-                  echo "   ❌ No access to $SCOPE org - WILL FAIL"
-                fi
-              else
-                echo "   ⚠️  Non-scoped package - check if name is available"
-              fi
             fi
           done
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        continue-on-error: true
-
-      - name: Generate preview version
-        id: preview-version
-        run: |
+          
+          # Generate unique preview version
           SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
           PR_NUMBER=${{ github.event.pull_request.number }}
-          
-          # Generate a unique version using multiple entropy sources
           TIMESTAMP=$(date +%s)
           NANO_TIME=$(date +%N)
           RUN_ID="${{ github.run_id }}"
-          RUN_NUMBER="${{ github.run_number }}"
-          ATTEMPT="${{ github.run_attempt }}"
-          
-          # Create a unique identifier from multiple sources
-          UNIQUE_ID=$(echo "${TIMESTAMP}${NANO_TIME}${RUN_ID}${RUN_NUMBER}${ATTEMPT}$RANDOM" | sha256sum | cut -c1-12)
-          
-          # Create version string
+          UNIQUE_ID=$(echo "${TIMESTAMP}${NANO_TIME}${RUN_ID}$RANDOM" | sha256sum | cut -c1-12)
           PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-${UNIQUE_ID}"
           
-          # Verify uniqueness for main package
-          MAX_ATTEMPTS=5
-          ATTEMPT_COUNT=0
-          
-          while [ $ATTEMPT_COUNT -lt $MAX_ATTEMPTS ]; do
-            # Check if version exists for the main package
-            if npm view "@gluestack-ui-nightly/core@$PREVIEW_VERSION" version >/dev/null 2>&1; then
-              echo "⚠️  Version $PREVIEW_VERSION already exists, generating new one..."
-              ATTEMPT_COUNT=$((ATTEMPT_COUNT + 1))
-              # Add more entropy
-              EXTRA_RANDOM=$(echo "$RANDOM$RANDOM$(date +%N)" | sha256sum | cut -c1-8)
-              PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-${UNIQUE_ID}-${EXTRA_RANDOM}"
-            else
-              echo "✅ Version $PREVIEW_VERSION is unique"
-              break
-            fi
-          done
-          
-          if [ $ATTEMPT_COUNT -eq $MAX_ATTEMPTS ]; then
-            echo "🚨 Could not generate unique version after $MAX_ATTEMPTS attempts"
-            exit 1
-          fi
-          
-          echo "version=$PREVIEW_VERSION" >> $GITHUB_OUTPUT
-          echo "📦 Final preview version: $PREVIEW_VERSION"
-
-      - name: Verify version uniqueness
-        run: |
-          echo "🔍 Final verification of version uniqueness..."
-          echo "Using version: ${{ steps.preview-version.outputs.version }}"
+          echo "📦 Generated version: $PREVIEW_VERSION"
+          echo "PREVIEW_VERSION=$PREVIEW_VERSION" >> $GITHUB_ENV
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Update package versions for preview
         run: |
-          # Update only your packages in packages/ directory (exclude node_modules)
+          echo "🔄 Updating package versions to $PREVIEW_VERSION"
+          
           for package_dir in packages/*/; do
             package_file="${package_dir}package.json"
             
-            # Skip if package.json doesn't exist or if it's in node_modules
             if [ ! -f "$package_file" ] || [[ "$package_dir" == *"node_modules"* ]]; then
               continue
             fi
             
-            # Get current package name
             PACKAGE_NAME=$(node -p "require('./$package_file').name")
+            echo "Processing: $PACKAGE_NAME"
             
-            echo "Processing your package: $PACKAGE_NAME"
-            
-            # Get list of your workspace packages for internal dependency updates
+            # Get workspace packages for internal dependency updates
             WORKSPACE_PACKAGES=$(node -e "
               const fs = require('fs');
               const packages = [];
-              
-              // Read all packages in packages/ directory
               if (fs.existsSync('packages')) {
                 const dirs = fs.readdirSync('packages', { withFileTypes: true })
                   .filter(dirent => dirent.isDirectory())
                   .map(dirent => dirent.name);
-                
                 dirs.forEach(dir => {
                   const pkgPath = \`packages/\${dir}/package.json\`;
                   if (fs.existsSync(pkgPath)) {
@@ -269,28 +115,22 @@ jobs:
                   }
                 });
               }
-              
               console.log(packages.join(','));
             ")
             
-            # Update version
+            # Update version and internal dependencies
             node -e "
               const fs = require('fs');
               const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
               const workspacePackages = '$WORKSPACE_PACKAGES'.split(',').filter(p => p);
               
-              console.log('Updating package:', pkg.name);
-              console.log('Workspace packages:', workspacePackages);
+              pkg.version = '$PREVIEW_VERSION';
               
-              pkg.version = '${{ steps.preview-version.outputs.version }}';
-              
-              // Update internal dependencies to preview versions (only your packages)
               ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
                 if (pkg[depType]) {
                   Object.keys(pkg[depType]).forEach(dep => {
                     if (workspacePackages.includes(dep)) {
-                      console.log(\`Updating internal dependency: \${dep}\`);
-                      pkg[depType][dep] = '${{ steps.preview-version.outputs.version }}';
+                      pkg[depType][dep] = '$PREVIEW_VERSION';
                     }
                   });
                 }
@@ -299,232 +139,65 @@ jobs:
               fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
             "
             
-            echo "✅ Updated $PACKAGE_NAME to version ${{ steps.preview-version.outputs.version }}"
+            echo "✅ Updated $PACKAGE_NAME to version $PREVIEW_VERSION"
           done
 
       - name: Install updated dependencies
-        run: |
-          # Install dependencies to ensure internal packages are available for building
-          yarn install --no-frozen-lockfile
+        run: yarn install --no-frozen-lockfile
 
       - name: Publish preview packages
         run: |
-          # Create a log file to track published packages
+          echo "📦 Publishing packages in dependency order..."
           echo "" > /tmp/publish.log
           
-          # Publish packages in dependency order to avoid build issues
-          # First publish packages with no internal dependencies, then dependent packages
-          
-          # Define publish order based on your dependencies
-          # Adjust this array based on your actual dependency structure
-          PUBLISH_ORDER=(
-            "utils"
-            "core" 
-            "ui-next-adapter"
-            "gluestack-ui-nightly"
-            "create-gluestack-nightly"
-          )
+          # Publish in order: utils -> core -> others
+          PUBLISH_ORDER=("utils" "core" "ui-next-adapter" "gluestack-ui-nightly" "create-gluestack-nightly")
           
           for package_name in "${PUBLISH_ORDER[@]}"; do
-            # Find the directory for this package
             for package_dir in packages/*/; do
               package_file="${package_dir}package.json"
               
-              # Skip if package.json doesn't exist or if it's in node_modules
               if [ ! -f "$package_file" ] || [[ "$package_dir" == *"node_modules"* ]]; then
                 continue
               fi
               
-              # Check if this is the package we want to publish
               CURRENT_PACKAGE_DIR_NAME=$(basename "$package_dir")
               if [[ "$CURRENT_PACKAGE_DIR_NAME" == *"$package_name"* ]]; then
                 PACKAGE_NAME=$(node -p "require('./$package_file').name")
                 
-                # Check if this version already exists on NPM
-                VERSION_CHECK=$(npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version 2>/dev/null || echo "not-found")
-                if [ "$VERSION_CHECK" != "not-found" ]; then
-                  echo "⏭️  Version ${{ steps.preview-version.outputs.version }} of $PACKAGE_NAME already exists, skipping..."
+                # Check if already published
+                if npm view "$PACKAGE_NAME@$PREVIEW_VERSION" version >/dev/null 2>&1; then
+                  echo "⏭️  $PACKAGE_NAME@$PREVIEW_VERSION already exists, skipping..."
                   echo "✅ Skipped $PACKAGE_NAME (already published)" | tee -a /tmp/publish.log
                   break
                 fi
                 
-                echo "📦 Publishing preview version of $PACKAGE_NAME from $package_dir"
-                
+                echo "📤 Publishing $PACKAGE_NAME@$PREVIEW_VERSION"
                 cd "$package_dir"
                 
-                # Double-check before publishing
-                if npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version >/dev/null 2>&1; then
-                  echo "⏭️  Package was published by another process, skipping..."
-                  cd - > /dev/null
-                  echo "✅ Skipped $PACKAGE_NAME (race condition avoided)" | tee -a /tmp/publish.log
-                  break
-                fi
-                
-                # Publish with preview tag
-                echo "📤 Attempting to publish $PACKAGE_NAME@${{ steps.preview-version.outputs.version }}"
-                
-                # Check if the scope exists for scoped packages
-                if [[ "$PACKAGE_NAME" == @*/* ]]; then
-                  SCOPE=$(echo "$PACKAGE_NAME" | cut -d'/' -f1)
-                  echo "🔍 Checking if scope $SCOPE exists..."
-                  
-                  # Try to check if scope exists by looking for any package in it
-                  if ! npm search "$SCOPE" --json 2>/dev/null | grep -q "name"; then
-                    echo "⚠️  Scope $SCOPE might not exist or be accessible"
-                    echo "💡 Consider using @gluestack-ui-nightly scope instead"
-                    
-                    # Check if this should be in the main scope
-                    if [[ "$SCOPE" == "@gluestack-nightly" ]]; then
-                      echo "🔄 This package might belong in @gluestack-ui-nightly scope"
-                      echo "   Update packages/$(basename $package_dir)/package.json name field"
-                    fi
-                  fi
-                fi
-                
-                # Check if this is the first publish of this package
-                if ! npm view "$PACKAGE_NAME" name >/dev/null 2>&1; then
-                  echo "🆕 First time publishing $PACKAGE_NAME"
-                  
-                  # For scoped packages, check if we have org access
-                  if [[ "$PACKAGE_NAME" == @*/* ]]; then
-                    SCOPE=$(echo "$PACKAGE_NAME" | cut -d'/' -f1)
-                    echo "🔍 Checking access to $SCOPE organization..."
-                    
-                    # Check if we can see the org at all
-                    if npm access list packages "$SCOPE" >/dev/null 2>&1; then
-                      echo "✅ Has access to $SCOPE"
-                    else
-                      echo "❌ No publish access to $SCOPE organization"
-                      echo "💡 Contact package maintainers to get added to $SCOPE:"
-                      
-                      # Get maintainer info for existing packages
-                      if npm view "$PACKAGE_NAME" maintainers >/dev/null 2>&1; then
-                        echo "📧 Current maintainers:"
-                        npm view "$PACKAGE_NAME" maintainers --json 2>/dev/null | jq -r '.[] | "   - \(.name) <\(.email)>"' 2>/dev/null || npm view "$PACKAGE_NAME" maintainers
-                      fi
-                      
-                      echo "🔗 Or create your own org: https://www.npmjs.com/org/create"
-                      cd - > /dev/null
-                      continue
-                    fi
-                  fi
-                  
-                  # Attempt first-time publish
-                  echo "📤 Publishing new package $PACKAGE_NAME..."
-                  if npm publish --tag preview --access public; then
-                    echo "✅ Successfully published $PACKAGE_NAME (first time)"
-                  else
-                    echo "❌ Failed first-time publish for $PACKAGE_NAME"
-                    
-                    # For non-scoped packages, might be a naming conflict
-                    if [[ "$PACKAGE_NAME" != @*/* ]]; then
-                      echo "⚠️  Package name '$PACKAGE_NAME' might be taken or reserved"
-                      echo "💡 Try checking: npm view $PACKAGE_NAME"
-                      echo "💡 Consider using a scoped name like @your-org/$PACKAGE_NAME"
-                    fi
-                    
-                    cd - > /dev/null
-                    continue
-                  fi
+                if npm publish --tag preview --access public; then
+                  echo "✅ Successfully published $PACKAGE_NAME"
+                  echo "✅ Successfully published $PACKAGE_NAME" | tee -a /tmp/publish.log
+                  echo "$PACKAGE_NAME@$PREVIEW_VERSION" >> /tmp/published-packages.txt
                 else
-                  # Regular publish to existing package
-                  if npm publish --tag preview --access public; then
-                    echo "✅ Successfully published $PACKAGE_NAME"
+                  echo "❌ Failed to publish $PACKAGE_NAME"
+                  echo "🔍 Checking if published by another process..."
+                  if npm view "$PACKAGE_NAME@$PREVIEW_VERSION" version >/dev/null 2>&1; then
+                    echo "✅ Package appeared in registry, continuing..."
+                    echo "✅ Published by another process $PACKAGE_NAME" | tee -a /tmp/publish.log
                   else
-                    echo "❌ Failed to publish $PACKAGE_NAME"
-                    # Check if it was published by another process during our attempt
-                    if npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version >/dev/null 2>&1; then
-                      echo "✅ Package was published by another process, continuing..."
-                    else
-                      echo "🚨 Genuine publish failure for $PACKAGE_NAME"
-                      cd - > /dev/null
-                      continue  # Continue with other packages instead of failing
-                    fi
+                    echo "🚨 Genuine publish failure for $PACKAGE_NAME"
+                    echo "📋 Continuing with remaining packages..."
                   fi
                 fi
                 
                 cd - > /dev/null
-                
-                echo "✅ Successfully published $PACKAGE_NAME" | tee -a /tmp/publish.log
-                
-                # Track published package for cleanup
-                echo "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" >> /tmp/published-packages.txt
                 break
               fi
             done
           done
-          
-          # Publish any remaining packages that weren't in the ordered list
-          for package_dir in packages/*/; do
-            package_file="${package_dir}package.json"
-            
-            # Skip if package.json doesn't exist or if it's in node_modules
-            if [ ! -f "$package_file" ] || [[ "$package_dir" == *"node_modules"* ]]; then
-              continue
-            fi
-            
-            PACKAGE_NAME=$(node -p "require('./$package_file').name")
-            
-            # Check if already published by looking for success message in logs
-            if ! grep -q "Successfully published $PACKAGE_NAME\|Skipped $PACKAGE_NAME" /tmp/publish.log; then
-              # Check if this version already exists on NPM
-              VERSION_CHECK=$(npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version 2>/dev/null || echo "not-found")
-              if [ "$VERSION_CHECK" != "not-found" ]; then
-                echo "⏭️  Version ${{ steps.preview-version.outputs.version }} of $PACKAGE_NAME already exists, skipping..."
-                echo "✅ Skipped $PACKAGE_NAME (already published)" | tee -a /tmp/publish.log
-                continue
-              fi
-              
-              echo "📦 Publishing remaining package: $PACKAGE_NAME from $package_dir"
-              
-              cd "$package_dir"
-              
-              # Double-check before publishing
-              if npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version >/dev/null 2>&1; then
-                echo "⏭️  Package was published by another process, skipping..."
-                cd - > /dev/null
-                echo "✅ Skipped $PACKAGE_NAME (race condition avoided)" | tee -a /tmp/publish.log
-                continue
-              fi
-              
-              # Publish with preview tag  
-              echo "📤 Attempting to publish $PACKAGE_NAME@${{ steps.preview-version.outputs.version }}"
-              
-              # Check if this is the first publish of this package
-              if ! npm view "$PACKAGE_NAME" name >/dev/null 2>&1; then
-                echo "🆕 First time publishing $PACKAGE_NAME"
-                if npm publish --tag preview --access public; then
-                  echo "✅ Successfully published $PACKAGE_NAME (first time)"
-                else
-                  echo "❌ Failed first-time publish for $PACKAGE_NAME"
-                  cd - > /dev/null
-                  continue
-                fi
-              else
-                # Regular publish to existing package
-                if npm publish --tag preview --access public; then
-                  echo "✅ Successfully published $PACKAGE_NAME"
-                else
-                  echo "❌ Failed to publish $PACKAGE_NAME"
-                  # Check if it was published by another process during our attempt
-                  if npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version >/dev/null 2>&1; then
-                    echo "✅ Package was published by another process, continuing..."
-                  else
-                    echo "🚨 Genuine publish failure for $PACKAGE_NAME"
-                    cd - > /dev/null
-                    continue  # Continue with other packages instead of failing
-                  fi
-                fi
-              fi
-              
-              cd - > /dev/null
-              
-              echo "✅ Successfully published $PACKAGE_NAME" | tee -a /tmp/publish.log
-              
-              # Track published package for cleanup
-              echo "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" >> /tmp/published-packages.txt
-            fi
-          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Upload published packages list
         if: always()
@@ -533,28 +206,29 @@ jobs:
           name: published-packages-${{ github.event.pull_request.number }}
           path: /tmp/published-packages.txt
           retention-days: 7
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Comment on PR
+        if: always()
         uses: actions/github-script@v7
         with:
           script: |
-            const packages = [];
             const fs = require('fs');
             const path = require('path');
             
-            // Read all package names
+            const packages = [];
             const packagesDir = 'packages';
-            const packageDirs = fs.readdirSync(packagesDir, { withFileTypes: true })
-              .filter(dirent => dirent.isDirectory())
-              .map(dirent => dirent.name);
             
-            for (const dir of packageDirs) {
-              const packageJsonPath = path.join(packagesDir, dir, 'package.json');
-              if (fs.existsSync(packageJsonPath)) {
-                const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-                packages.push(`- \`${pkg.name}@${{ steps.preview-version.outputs.version }}\``);
+            if (fs.existsSync(packagesDir)) {
+              const packageDirs = fs.readdirSync(packagesDir, { withFileTypes: true })
+                .filter(dirent => dirent.isDirectory())
+                .map(dirent => dirent.name);
+              
+              for (const dir of packageDirs) {
+                const packageJsonPath = path.join(packagesDir, dir, 'package.json');
+                if (fs.existsSync(packageJsonPath)) {
+                  const pkg = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+                  packages.push(`- \`${pkg.name}@${process.env.PREVIEW_VERSION}\``);
+                }
               }
             }
             
@@ -566,7 +240,7 @@ jobs:
             
             ### Install Preview Packages
             \`\`\`bash
-            npm install ${packages.map(p => p.replace(/^- `/, '').replace(/`$/, '')).join(' ')} --tag preview
+            npm install ${packages.map(p => p.replace(/^- `/, '').replace(/`$/, '')).join(' ')}
             \`\`\`
             
             These packages will be available for testing and will be automatically cleaned up after the PR is closed.`;
@@ -633,7 +307,6 @@ jobs:
             const fs = require('fs');
             const path = require('path');
             
-            // Read all package versions to create release notes
             const packages = [];
             const packagesDir = 'packages';
             const packageDirs = fs.readdirSync(packagesDir, { withFileTypes: true })
@@ -650,7 +323,6 @@ jobs:
             
             const releaseBody = `## Published Packages\n\n${packages.join('\n')}`;
             
-            // Create a release tag based on the main package version
             const mainPackagePath = path.join(packagesDir, 'gluestack-core', 'package.json');
             let tagName = `v${new Date().toISOString().split('T')[0]}`;
             
@@ -694,112 +366,22 @@ jobs:
       - name: Cleanup preview packages
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
-          
           echo "Cleaning up preview packages for PR #$PR_NUMBER"
           
-          # First try to use the artifact list of published packages
           if [ -f "/tmp/published-packages.txt" ]; then
             echo "📋 Using published packages list from artifact"
             while IFS= read -r package_version; do
               if [ -n "$package_version" ]; then
-                echo "🗑️  Deprecating tracked package: $package_version"
-                package_name=$(echo "$package_version" | cut -d'@' -f1)
-                version=$(echo "$package_version" | cut -d'@' -f2)
-                
+                echo "🗑️  Deprecating: $package_version"
                 npm deprecate "$package_version" "Preview version for PR #$PR_NUMBER - no longer needed" 2>/dev/null || echo "Failed to deprecate $package_version"
                 npm unpublish "$package_version" 2>/dev/null && echo "🗑️  Unpublished $package_version" || echo "📦 Could not unpublish $package_version"
               fi
             done < /tmp/published-packages.txt
           else
-            echo "📋 No published packages list found, searching for packages..."
-            
-            # Fallback: List of your package names to clean up
-            PACKAGES=(
-              "create-gluestack-nightly"
-              "@gluestack-ui-nightly/core" 
-              "gluestack-ui-nightly"
-              "@gluestack-ui-nightly/utils"
-              "@gluestack-nightly/ui-next-adapter"
-            )
-            
-            for package_name in "${PACKAGES[@]}"; do
-              echo "🔍 Looking for preview versions of $package_name..."
-              
-              # Get all versions of the package
-              VERSIONS=$(npm view "$package_name" versions --json 2>/dev/null || echo "[]")
-              
-              if [ "$VERSIONS" = "[]" ]; then
-                echo "📦 No versions found for $package_name"
-                continue
-              fi
-              
-              # Find and deprecate preview versions for this PR
-              echo "$VERSIONS" | jq -r '.[]' 2>/dev/null | grep "pr-$PR_NUMBER" | while read version; do
-                if [ -n "$version" ]; then
-                  echo "🗑️  Deprecating $package_name@$version"
-                  npm deprecate "$package_name@$version" "Preview version for PR #$PR_NUMBER - no longer needed" 2>/dev/null || echo "Failed to deprecate $package_name@$version"
-                  npm unpublish "$package_name@$version" 2>/dev/null && echo "🗑️  Unpublished $package_name@$version" || echo "📦 Could not unpublish $package_name@$version"
-                fi
-              done
-            done
+            echo "📋 No published packages list found"
           fi
           
-          echo "✅ Preview packages cleanup completed for PR #$PR_NUMBER"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        continue-on-error: true
-
-  cleanup-on-failure:
-    if: failure() && github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    needs: [preview-publish]
-    steps:
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: ${{ env.REGISTRY_URL }}
-
-      - name: Cleanup failed preview packages
-        run: |
-          PR_NUMBER=${{ github.event.pull_request.number }}
-          SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
-          
-          echo "🚨 Cleaning up potentially published packages from failed workflow for PR #$PR_NUMBER"
-          
-          # List of your package names to clean up
-          PACKAGES=(
-            "create-gluestack-nightly"
-            "@gluestack-ui-nightly/core" 
-            "gluestack-ui-nightly"
-            "@gluestack-ui-nightly/utils"
-            "@gluestack-nightly/ui-next-adapter"
-          )
-          
-          for package_name in "${PACKAGES[@]}"; do
-            echo "🔍 Looking for recent preview versions of $package_name..."
-            
-            # Get all versions of the package
-            VERSIONS=$(npm view "$package_name" versions --json 2>/dev/null || echo "[]")
-            
-            if [ "$VERSIONS" = "[]" ]; then
-              echo "📦 No versions found for $package_name"
-              continue
-            fi
-            
-            # Find and deprecate preview versions for this PR and SHA
-            echo "$VERSIONS" | jq -r '.[]' 2>/dev/null | grep "pr-$PR_NUMBER-$SHORT_SHA" | while read version; do
-              if [ -n "$version" ]; then
-                echo "🗑️  Deprecating failed preview: $package_name@$version"
-                npm deprecate "$package_name@$version" "Failed preview version for PR #$PR_NUMBER - cleanup" 2>/dev/null || echo "Failed to deprecate $package_name@$version"
-                
-                # Try to unpublish if very recent
-                npm unpublish "$package_name@$version" 2>/dev/null && echo "🗑️  Unpublished $package_name@$version" || echo "📦 Could not unpublish $package_name@$version"
-              fi
-            done
-          done
-          
-          echo "✅ Failed preview packages cleanup completed"
+          echo "✅ Cleanup completed for PR #$PR_NUMBER"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         continue-on-error: true
