@@ -36,9 +36,163 @@ jobs:
           echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
           echo "Changed packages: $PACKAGES"
 
-  publish-preview:
+  publish-utils:
     needs: detect-changes
-    if: needs.detect-changes.outputs.packages != '[]'
+    if: contains(fromJson(needs.detect-changes.outputs.packages), 'packages/gluestack-utils')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Generate preview version
+        id: version
+        run: |
+          cd packages/gluestack-utils
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          PR_NUMBER=${{ github.event.number }}
+          SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
+          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-$(date +%s)"
+          echo "preview_version=$PREVIEW_VERSION" >> $GITHUB_OUTPUT
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "package_name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
+
+      - name: Update package version
+        run: |
+          cd packages/gluestack-utils
+          npm version ${{ steps.version.outputs.preview_version }} --no-git-tag-version
+
+      - name: Build package
+        run: |
+          cd packages/gluestack-utils
+          if [ -f "package.json" ] && grep -q '"build"' package.json; then
+            yarn build
+          fi
+          if [ -f "package.json" ] && grep -q '"prepare"' package.json; then
+            yarn prepare
+          fi
+
+      - name: Publish preview package
+        run: |
+          cd packages/gluestack-utils
+          npm publish --tag preview
+        env:
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const packageName = '${{ steps.version.outputs.package_name }}';
+            const previewVersion = '${{ steps.version.outputs.preview_version }}';
+
+            const body = `📦 **Preview package published for \`packages/gluestack-utils\`**
+
+            \`\`\`bash
+            npm install ${packageName}@${previewVersion}
+            # or
+            yarn add ${packageName}@${previewVersion}
+            \`\`\`
+
+            This preview version will be available for testing until the PR is merged or closed.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+
+  publish-core:
+    needs: [detect-changes, publish-utils]
+    if: contains(fromJson(needs.detect-changes.outputs.packages), 'packages/gluestack-core')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Generate preview version
+        id: version
+        run: |
+          cd packages/gluestack-core
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          PR_NUMBER=${{ github.event.number }}
+          SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
+          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-$(date +%s)"
+          echo "preview_version=$PREVIEW_VERSION" >> $GITHUB_OUTPUT
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          echo "package_name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
+
+      - name: Update package version
+        run: |
+          cd packages/gluestack-core
+          npm version ${{ steps.version.outputs.preview_version }} --no-git-tag-version
+
+      - name: Build package
+        run: |
+          cd packages/gluestack-core
+          if [ -f "package.json" ] && grep -q '"build"' package.json; then
+            yarn build
+          fi
+          if [ -f "package.json" ] && grep -q '"prepare"' package.json; then
+            yarn prepare
+          fi
+
+      - name: Publish preview package
+        run: |
+          cd packages/gluestack-core
+          npm publish --tag preview
+        env:
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const packageName = '${{ steps.version.outputs.package_name }}';
+            const previewVersion = '${{ steps.version.outputs.preview_version }}';
+
+            const body = `📦 **Preview package published for \`packages/gluestack-core\`**
+
+            \`\`\`bash
+            npm install ${packageName}@${previewVersion}
+            # or
+            yarn add ${packageName}@${previewVersion}
+            \`\`\`
+
+            This preview version will be available for testing until the PR is merged or closed.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+
+  publish-other-packages:
+    needs: [detect-changes, publish-core]
+    if: |
+      needs.detect-changes.outputs.packages != '[]' && 
+      (contains(fromJson(needs.detect-changes.outputs.packages), 'packages/gluestack-ui') || 
+       contains(fromJson(needs.detect-changes.outputs.packages), 'packages/create-gluestack') ||
+       contains(fromJson(needs.detect-changes.outputs.packages), 'packages/ui-next-adapter'))
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -57,7 +211,18 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Check if package should be published
+        id: should_publish
+        run: |
+          if [ "${{ matrix.package }}" = "packages/gluestack-utils" ] || [ "${{ matrix.package }}" = "packages/gluestack-core" ]; then
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+            echo "Skipping ${{ matrix.package }} as it's handled by a dedicated job"
+          else
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: Generate preview version
+        if: steps.should_publish.outputs.should_publish == 'true'
         id: version
         run: |
           cd ${{ matrix.package }}
@@ -70,11 +235,13 @@ jobs:
           echo "package_name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
 
       - name: Update package version
+        if: steps.should_publish.outputs.should_publish == 'true'
         run: |
           cd ${{ matrix.package }}
           npm version ${{ steps.version.outputs.preview_version }} --no-git-tag-version
 
       - name: Build package
+        if: steps.should_publish.outputs.should_publish == 'true'
         run: |
           cd ${{ matrix.package }}
           if [ -f "package.json" ] && grep -q '"build"' package.json; then
@@ -85,6 +252,7 @@ jobs:
           fi
 
       - name: Publish preview package
+        if: steps.should_publish.outputs.should_publish == 'true'
         run: |
           cd ${{ matrix.package }}
           npm publish --tag preview
@@ -92,6 +260,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
 
       - name: Comment on PR
+        if: steps.should_publish.outputs.should_publish == 'true'
         uses: actions/github-script@v7
         with:
           script: |
