@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build": "expo export --platform web --output-dir dist",
+    "build": "cd ../.. && node scripts/verify-packages.js && cd apps/starter-kit-expo && expo export --platform web --output-dir dist",
     "test": "jest --watchAll"
   },
   "jest": {
@@ -16,8 +16,8 @@
   "dependencies": {
     "@expo/html-elements": "^0.12.5",
     "@expo/vector-icons": "^14.1.0",
-    "@gluestack-ui-nightly/core": "^1.0.8",
-    "@gluestack-ui-nightly/utils": "^0.1.15",
+    "@gluestack-ui-nightly/core": "0.0.0-pr-3023-3e4251d-9b207618aa07",
+    "@gluestack-ui-nightly/utils": "0.0.0-pr-3023-3e4251d-9b207618aa07",
     "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
     "@legendapp/motion": "^2.4.0",
     "@react-aria/utils": "^3.29.0",

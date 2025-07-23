@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui-nightly/core@latest @gluestack-ui-nightly/utils@latest  && next build",
+    "build": "cd ../.. && yarn install && yarn sync:website && node scripts/verify-packages.js && cd apps/website && yarn add @gluestack-ui-nightly/core@latest @gluestack-ui-nightly/utils@latest  && next build",
     "build:only": "next build",
     "start": "next start",
     "test": "jest"

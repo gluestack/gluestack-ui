@@ -2,12 +2,14 @@
   "name": "@gluestack-nightly/ui-next-adapter",
   "author": "gluestack",
   "description": "Gluestack UI Next Adapter",
-  "version": "1.0.36",
+  "version": "0.0.0-pr-3023-3e4251d-9b207618aa07",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "engines": {
     "node": ">=16"
