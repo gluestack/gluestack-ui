@@ -1,6 +1,7 @@
 {
   "name": "@gluestack-nightly/ui-next-adapter",
   "author": "gluestack",
+  "description": "Gluestack UI Next Adapter",
   "version": "1.0.36",
   "license": "MIT",
   "main": "dist/index.js",
