@@ -46,6 +46,48 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Debug NPM permissions and scope
+        run: |
+          echo "🔍 Debugging NPM setup..."
+          
+          # Check if logged in
+          if npm whoami; then
+            echo "✅ Logged in as: $(npm whoami)"
+          else
+            echo "❌ Not logged in to NPM"
+            exit 1
+          fi
+          
+          # Check organization access
+          echo "🏢 Checking @gluestack-ui-nightly organization access..."
+          if npm access list packages @gluestack-ui-nightly 2>/dev/null; then
+            echo "✅ Has access to @gluestack-ui-nightly packages"
+          else
+            echo "❌ No access to @gluestack-ui-nightly org packages"
+            echo "💡 You may need to be added to the organization by:"
+            echo "   - sanchit.kumar@geekyants.com"
+            echo "   - ujjwal.aggarwal@geekyants.com"
+          fi
+          
+          # Check specific package permissions
+          echo "📦 Checking individual package permissions..."
+          PACKAGES=(
+            "@gluestack-ui-nightly/utils"
+            "@gluestack-ui-nightly/core" 
+          )
+          
+          for package_name in "${PACKAGES[@]}"; do
+            echo "Checking permissions for $package_name..."
+            if npm access list collaborators "$package_name" 2>/dev/null; then
+              echo "✅ Has collaborator access to $package_name"
+            else
+              echo "❌ No collaborator access to $package_name"
+            fi
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        continue-on-error: true
+
       - name: Generate preview version
         id: preview-version
         run: |
@@ -223,16 +265,46 @@ jobs:
                 fi
                 
                 # Publish with preview tag
-                if npm publish --tag preview --access public; then
-                  echo "✅ Successfully published $PACKAGE_NAME"
-                else
-                  echo "❌ Failed to publish $PACKAGE_NAME"
-                  # Check if it was published by another process during our attempt
-                  if npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version >/dev/null 2>&1; then
-                    echo "✅ Package was published by another process, continuing..."
+                echo "📤 Attempting to publish $PACKAGE_NAME@${{ steps.preview-version.outputs.version }}"
+                
+                # Check if this is the first publish of this package
+                if ! npm view "$PACKAGE_NAME" name >/dev/null 2>&1; then
+                  echo "🆕 First time publishing $PACKAGE_NAME"
+                  # For first publish, we may need to use different approach
+                  if npm publish --tag preview --access public; then
+                    echo "✅ Successfully published $PACKAGE_NAME (first time)"
                   else
-                    echo "🚨 Genuine publish failure for $PACKAGE_NAME"
-                    exit 1
+                    echo "❌ Failed first-time publish for $PACKAGE_NAME"
+                    echo "🔍 Checking if scope @gluestack-ui-nightly exists..."
+                    
+                    # Try to get org info
+                    if npm org ls @gluestack-ui-nightly >/dev/null 2>&1; then
+                      echo "✅ Organization @gluestack-ui-nightly exists"
+                    else
+                      echo "❌ Organization @gluestack-ui-nightly does not exist or no access"
+                      echo "💡 You may need to:"
+                      echo "   1. Create the @gluestack-ui-nightly organization on npmjs.com"
+                      echo "   2. Add your account as a member"
+                      echo "   3. Ensure your NPM token has access to this org"
+                    fi
+                    
+                    cd - > /dev/null
+                    continue  # Continue with other packages
+                  fi
+                else
+                  # Regular publish to existing package
+                  if npm publish --tag preview --access public; then
+                    echo "✅ Successfully published $PACKAGE_NAME"
+                  else
+                    echo "❌ Failed to publish $PACKAGE_NAME"
+                    # Check if it was published by another process during our attempt
+                    if npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version >/dev/null 2>&1; then
+                      echo "✅ Package was published by another process, continuing..."
+                    else
+                      echo "🚨 Genuine publish failure for $PACKAGE_NAME"
+                      cd - > /dev/null
+                      continue  # Continue with other packages instead of failing
+                    fi
                   fi
                 fi
                 
@@ -280,18 +352,33 @@ jobs:
                 continue
               fi
               
-              # Publish with preview tag
-              if npm publish --tag preview --access public; then
-                echo "✅ Successfully published $PACKAGE_NAME"
-              else
-                echo "❌ Failed to publish $PACKAGE_NAME"
-                # Check if it was published by another process during our attempt
-                if npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version >/dev/null 2>&1; then
-                  echo "✅ Package was published by another process, continuing..."
+              # Publish with preview tag  
+              echo "📤 Attempting to publish $PACKAGE_NAME@${{ steps.preview-version.outputs.version }}"
+              
+              # Check if this is the first publish of this package
+              if ! npm view "$PACKAGE_NAME" name >/dev/null 2>&1; then
+                echo "🆕 First time publishing $PACKAGE_NAME"
+                if npm publish --tag preview --access public; then
+                  echo "✅ Successfully published $PACKAGE_NAME (first time)"
                 else
-                  echo "🚨 Genuine publish failure for $PACKAGE_NAME"
+                  echo "❌ Failed first-time publish for $PACKAGE_NAME"
                   cd - > /dev/null
-                  continue  # Continue with other packages instead of failing
+                  continue
+                fi
+              else
+                # Regular publish to existing package
+                if npm publish --tag preview --access public; then
+                  echo "✅ Successfully published $PACKAGE_NAME"
+                else
+                  echo "❌ Failed to publish $PACKAGE_NAME"
+                  # Check if it was published by another process during our attempt
+                  if npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version >/dev/null 2>&1; then
+                    echo "✅ Package was published by another process, continuing..."
+                  else
+                    echo "🚨 Genuine publish failure for $PACKAGE_NAME"
+                    cd - > /dev/null
+                    continue  # Continue with other packages instead of failing
+                  fi
                 fi
               fi
               
