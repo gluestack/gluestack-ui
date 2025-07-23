@@ -2,7 +2,7 @@ name: Preview Package Publishing
 
 on:
   pull_request:
-    branches: [feat/v3]
+    branches: [ feat/v3 ]
     paths:
       - 'packages/**'
     types: [opened, synchronize, reopened]
@@ -56,8 +56,8 @@ jobs:
 
       - name: Update package versions
         run: |
-          # Update all package.json files in packages/ directory
-          find packages -name "package.json" -type f | while read file; do
+          # Update only root-level package.json files in packages/ directory (not node_modules)
+          find packages -maxdepth 2 -name "package.json" -not -path "*/node_modules/*" -type f | while read file; do
             # Create backup
             cp "$file" "$file.bak"
             
@@ -79,20 +79,27 @@ jobs:
       - name: Publish preview packages
         id: publish
         run: |
-          # Publish all packages in packages/ directory
+          # Publish only root-level packages in packages/ directory (not node_modules)
           PUBLISHED_PACKAGES=""
-
-          find packages -name "package.json" -type f | while read file; do
+          
+          find packages -maxdepth 2 -name "package.json" -not -path "*/node_modules/*" -type f | while read file; do
             PACKAGE_DIR=$(dirname "$file")
-            PACKAGE_NAME=$(node -e "console.log(JSON.parse(require('fs').readFileSync('$file', 'utf8')).name)")
+            PACKAGE_JSON=$(cat "$file")
+            PACKAGE_NAME=$(echo "$PACKAGE_JSON" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')).name)")
+            IS_PRIVATE=$(echo "$PACKAGE_JSON" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')).private || false)")
             
-            echo "Publishing $PACKAGE_NAME from $PACKAGE_DIR..."
+            if [ "$IS_PRIVATE" = "true" ]; then
+              echo "⏭️  Skipping private package: $PACKAGE_NAME"
+              continue
+            fi
+            
+            echo "📦 Publishing $PACKAGE_NAME from $PACKAGE_DIR..."
             
             cd "$PACKAGE_DIR"
             
             # Build if build script exists
             if yarn run --list 2>/dev/null | grep -q "build"; then
-              echo "Building $PACKAGE_NAME..."
+              echo "🔨 Building $PACKAGE_NAME..."
               yarn build
             fi
             
@@ -109,7 +116,7 @@ jobs:
             
             cd - > /dev/null
           done
-
+          
           echo "published=true" >> $GITHUB_OUTPUT
           echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
 
@@ -117,7 +124,7 @@ jobs:
         if: always()
         run: |
           # Restore original package.json files
-          find packages -name "package.json.bak" -type f | while read backup; do
+          find packages -maxdepth 2 -name "package.json.bak" -not -path "*/node_modules/*" -type f | while read backup; do
             original="${backup%.bak}"
             mv "$backup" "$original"
             echo "Restored $original"
@@ -129,19 +136,19 @@ jobs:
         with:
           script: |
             const comment = `🚀 **Preview packages published successfully!**
-
+            
             **Version:** \`${{ steps.version.outputs.version }}\`
             **Published packages:** ${{ steps.publish.outputs.packages }}
-
+            
             You can install these preview packages using:
             \`\`\`bash
             npm install <package-name>@${{ steps.version.outputs.version }}
             # or
             yarn add <package-name>@${{ steps.version.outputs.version }}
             \`\`\`
-
+            
             **Note:** These are preview packages and should only be used for testing.`;
-
+            
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -168,7 +175,7 @@ jobs:
           PROJECT_IDS='${{ secrets.VERCEL_PROJECT_IDS }}'
           DEPLOYED_PROJECTS=""
           DEPLOYMENT_URLS=""
-
+          
           echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"' | while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
             echo "🚀 Deploying $PROJECT_NAME (ID: $PROJECT_ID)..."
             
@@ -208,7 +215,7 @@ jobs:
               echo "Response: $RESPONSE"
             fi
           done
-
+          
           # Save results for next step
           echo "deployed_projects=$DEPLOYED_PROJECTS" >> $GITHUB_OUTPUT
           echo -e "deployment_urls=$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
@@ -219,13 +226,13 @@ jobs:
           script: |
             const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`;
             const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
-
+            
             let comment = `🚀 **Vercel preview deployments triggered!**
-
+            
             **Package Version:** \`${{ needs.publish-preview.outputs.version }}\`
-
+            
             `;
-
+            
             if (deployedProjects) {
               comment += `**Deployed Projects:**${deploymentUrls}
               
@@ -233,7 +240,7 @@ jobs:
             } else {
               comment += `⚠️ No deployments were triggered. Please check the workflow logs.`;
             }
-
+            
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

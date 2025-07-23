@@ -99,7 +99,7 @@ jobs:
           echo "🚀 Publishing packages..."
           PUBLISHED_PACKAGES=""
           
-          find packages -name "package.json" -type f | while read file; do
+          find packages -maxdepth 2 -name "package.json" -not -path "*/node_modules/*" -type f | while read file; do
             PACKAGE_DIR=$(dirname "$file")
             PACKAGE_JSON=$(cat "$file")
             PACKAGE_NAME=$(echo "$PACKAGE_JSON" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')).name)")
