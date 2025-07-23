@@ -171,6 +171,9 @@ jobs:
 
       - name: Publish preview packages
         run: |
+          # Create a log file to track published packages
+          echo "" > /tmp/publish.log
+          
           # Publish packages in dependency order to avoid build issues
           # First publish packages with no internal dependencies, then dependent packages
           
@@ -198,16 +201,47 @@ jobs:
               CURRENT_PACKAGE_DIR_NAME=$(basename "$package_dir")
               if [[ "$CURRENT_PACKAGE_DIR_NAME" == *"$package_name"* ]]; then
                 PACKAGE_NAME=$(node -p "require('./$package_file').name")
+                
+                # Check if this version already exists on NPM
+                VERSION_CHECK=$(npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version 2>/dev/null || echo "not-found")
+                if [ "$VERSION_CHECK" != "not-found" ]; then
+                  echo "⏭️  Version ${{ steps.preview-version.outputs.version }} of $PACKAGE_NAME already exists, skipping..."
+                  echo "✅ Skipped $PACKAGE_NAME (already published)" | tee -a /tmp/publish.log
+                  break
+                fi
+                
                 echo "📦 Publishing preview version of $PACKAGE_NAME from $package_dir"
                 
                 cd "$package_dir"
                 
+                # Double-check before publishing
+                if npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version >/dev/null 2>&1; then
+                  echo "⏭️  Package was published by another process, skipping..."
+                  cd - > /dev/null
+                  echo "✅ Skipped $PACKAGE_NAME (race condition avoided)" | tee -a /tmp/publish.log
+                  break
+                fi
+                
                 # Publish with preview tag
-                npm publish --tag preview --access public
+                if npm publish --tag preview --access public; then
+                  echo "✅ Successfully published $PACKAGE_NAME"
+                else
+                  echo "❌ Failed to publish $PACKAGE_NAME"
+                  # Check if it was published by another process during our attempt
+                  if npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version >/dev/null 2>&1; then
+                    echo "✅ Package was published by another process, continuing..."
+                  else
+                    echo "🚨 Genuine publish failure for $PACKAGE_NAME"
+                    exit 1
+                  fi
+                fi
                 
                 cd - > /dev/null
                 
-                echo "✅ Successfully published $PACKAGE_NAME"
+                echo "✅ Successfully published $PACKAGE_NAME" | tee -a /tmp/publish.log
+                
+                # Track published package for cleanup
+                echo "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" >> /tmp/published-packages.txt
                 break
               fi
             done
@@ -225,19 +259,58 @@ jobs:
             PACKAGE_NAME=$(node -p "require('./$package_file').name")
             
             # Check if already published by looking for success message in logs
-            if ! grep -q "Successfully published $PACKAGE_NAME" /tmp/publish.log 2>/dev/null; then
+            if ! grep -q "Successfully published $PACKAGE_NAME\|Skipped $PACKAGE_NAME" /tmp/publish.log; then
+              # Check if this version already exists on NPM
+              VERSION_CHECK=$(npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version 2>/dev/null || echo "not-found")
+              if [ "$VERSION_CHECK" != "not-found" ]; then
+                echo "⏭️  Version ${{ steps.preview-version.outputs.version }} of $PACKAGE_NAME already exists, skipping..."
+                echo "✅ Skipped $PACKAGE_NAME (already published)" | tee -a /tmp/publish.log
+                continue
+              fi
+              
               echo "📦 Publishing remaining package: $PACKAGE_NAME from $package_dir"
               
               cd "$package_dir"
               
+              # Double-check before publishing
+              if npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version >/dev/null 2>&1; then
+                echo "⏭️  Package was published by another process, skipping..."
+                cd - > /dev/null
+                echo "✅ Skipped $PACKAGE_NAME (race condition avoided)" | tee -a /tmp/publish.log
+                continue
+              fi
+              
               # Publish with preview tag
-              npm publish --tag preview --access public
+              if npm publish --tag preview --access public; then
+                echo "✅ Successfully published $PACKAGE_NAME"
+              else
+                echo "❌ Failed to publish $PACKAGE_NAME"
+                # Check if it was published by another process during our attempt
+                if npm view "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" version >/dev/null 2>&1; then
+                  echo "✅ Package was published by another process, continuing..."
+                else
+                  echo "🚨 Genuine publish failure for $PACKAGE_NAME"
+                  cd - > /dev/null
+                  continue  # Continue with other packages instead of failing
+                fi
+              fi
               
               cd - > /dev/null
               
-              echo "✅ Successfully published $PACKAGE_NAME"
+              echo "✅ Successfully published $PACKAGE_NAME" | tee -a /tmp/publish.log
+              
+              # Track published package for cleanup
+              echo "$PACKAGE_NAME@${{ steps.preview-version.outputs.version }}" >> /tmp/published-packages.txt
             fi
           done
+
+      - name: Upload published packages list
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-packages-${{ github.event.pull_request.number }}
+          path: /tmp/published-packages.txt
+          retention-days: 7
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
