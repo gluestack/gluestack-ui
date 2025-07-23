@@ -16,6 +16,7 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
+    "prepare": "yarn clean && yarn build",
     "lint": "eslint src --ext .ts,.tsx",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist",
