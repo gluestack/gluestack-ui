@@ -52,7 +52,10 @@ jobs:
           SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
           PR_NUMBER=${{ github.event.pull_request.number }}
           TIMESTAMP=$(date +%s)
-          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-${TIMESTAMP}"
+          RUN_NUMBER=${{ github.run_number }}
+          ATTEMPT=${{ github.run_attempt }}
+          # Make version more unique by including run info
+          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-${TIMESTAMP}-${RUN_NUMBER}-${ATTEMPT}"
           echo "version=$PREVIEW_VERSION" >> $GITHUB_OUTPUT
           echo "Preview version: $PREVIEW_VERSION"
 
@@ -339,8 +342,9 @@ jobs:
             }
 
   cleanup-preview:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    if: always() && github.event_name == 'pull_request' && (github.event.action == 'closed' || failure())
     runs-on: ubuntu-latest
+    needs: [preview-publish]
     steps:
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -348,17 +352,122 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: ${{ env.REGISTRY_URL }}
 
+      - name: Download published packages list
+        uses: actions/download-artifact@v4
+        with:
+          name: published-packages-${{ github.event.pull_request.number }}
+          path: /tmp/
+        continue-on-error: true
+
       - name: Cleanup preview packages
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
           
-          # List and deprecate preview packages for this PR
           echo "Cleaning up preview packages for PR #$PR_NUMBER"
           
-          # Note: This is a basic cleanup approach
-          # You might want to implement a more sophisticated cleanup
-          # based on your specific package naming and registry setup
+          # First try to use the artifact list of published packages
+          if [ -f "/tmp/published-packages.txt" ]; then
+            echo "📋 Using published packages list from artifact"
+            while IFS= read -r package_version; do
+              if [ -n "$package_version" ]; then
+                echo "🗑️  Deprecating tracked package: $package_version"
+                package_name=$(echo "$package_version" | cut -d'@' -f1)
+                version=$(echo "$package_version" | cut -d'@' -f2)
+                
+                npm deprecate "$package_version" "Preview version for PR #$PR_NUMBER - no longer needed" 2>/dev/null || echo "Failed to deprecate $package_version"
+                npm unpublish "$package_version" 2>/dev/null && echo "🗑️  Unpublished $package_version" || echo "📦 Could not unpublish $package_version"
+              fi
+            done < /tmp/published-packages.txt
+          else
+            echo "📋 No published packages list found, searching for packages..."
+            
+            # Fallback: List of your package names to clean up
+            PACKAGES=(
+              "create-gluestack-nightly"
+              "@gluestack-ui-nightly/core" 
+              "gluestack-ui-nightly"
+              "@gluestack-ui-nightly/utils"
+              "@gluestack-nightly/ui-next-adapter"
+            )
+            
+            for package_name in "${PACKAGES[@]}"; do
+              echo "🔍 Looking for preview versions of $package_name..."
+              
+              # Get all versions of the package
+              VERSIONS=$(npm view "$package_name" versions --json 2>/dev/null || echo "[]")
+              
+              if [ "$VERSIONS" = "[]" ]; then
+                echo "📦 No versions found for $package_name"
+                continue
+              fi
+              
+              # Find and deprecate preview versions for this PR
+              echo "$VERSIONS" | jq -r '.[]' 2>/dev/null | grep "pr-$PR_NUMBER" | while read version; do
+                if [ -n "$version" ]; then
+                  echo "🗑️  Deprecating $package_name@$version"
+                  npm deprecate "$package_name@$version" "Preview version for PR #$PR_NUMBER - no longer needed" 2>/dev/null || echo "Failed to deprecate $package_name@$version"
+                  npm unpublish "$package_name@$version" 2>/dev/null && echo "🗑️  Unpublished $package_name@$version" || echo "📦 Could not unpublish $package_name@$version"
+                fi
+              done
+            done
+          fi
           
-          echo "Preview packages cleanup completed"
+          echo "✅ Preview packages cleanup completed for PR #$PR_NUMBER"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        continue-on-error: true
+
+  cleanup-on-failure:
+    if: failure() && github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: [preview-publish]
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: ${{ env.REGISTRY_URL }}
+
+      - name: Cleanup failed preview packages
+        run: |
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          SHORT_SHA=$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)
+          
+          echo "🚨 Cleaning up potentially published packages from failed workflow for PR #$PR_NUMBER"
+          
+          # List of your package names to clean up
+          PACKAGES=(
+            "create-gluestack-nightly"
+            "@gluestack-ui-nightly/core" 
+            "gluestack-ui-nightly"
+            "@gluestack-ui-nightly/utils"
+            "@gluestack-nightly/ui-next-adapter"
+          )
+          
+          for package_name in "${PACKAGES[@]}"; do
+            echo "🔍 Looking for recent preview versions of $package_name..."
+            
+            # Get all versions of the package
+            VERSIONS=$(npm view "$package_name" versions --json 2>/dev/null || echo "[]")
+            
+            if [ "$VERSIONS" = "[]" ]; then
+              echo "📦 No versions found for $package_name"
+              continue
+            fi
+            
+            # Find and deprecate preview versions for this PR and SHA
+            echo "$VERSIONS" | jq -r '.[]' 2>/dev/null | grep "pr-$PR_NUMBER-$SHORT_SHA" | while read version; do
+              if [ -n "$version" ]; then
+                echo "🗑️  Deprecating failed preview: $package_name@$version"
+                npm deprecate "$package_name@$version" "Failed preview version for PR #$PR_NUMBER - cleanup" 2>/dev/null || echo "Failed to deprecate $package_name@$version"
+                
+                # Try to unpublish if very recent
+                npm unpublish "$package_name@$version" 2>/dev/null && echo "🗑️  Unpublished $package_name@$version" || echo "📦 Could not unpublish $package_name@$version"
+              fi
+            done
+          done
+          
+          echo "✅ Failed preview packages cleanup completed"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        continue-on-error: true
