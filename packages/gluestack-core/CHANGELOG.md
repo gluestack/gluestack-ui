@@ -1,5 +1,11 @@
 # @gluestack-ui-nightly/core
 
+## 1.2.2
+
+### Patch Changes
+
+- put type versions back
+
 ## 1.2.1
 
 ### Patch Changes

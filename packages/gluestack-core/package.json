@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui-nightly/core",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "type": "module",
   "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
@@ -22,32 +22,84 @@
   },
   "typesVersions": {
     "*": {
-      "actionsheet/creator": ["./lib/esm/actionsheet/creator/index.d.ts"],
-      "button/creator": ["./lib/esm/button/creator/index.d.ts"],
-      "accordion/creator": ["./lib/esm/accordion/creator/index.d.ts"],
-      "alert/creator": ["./lib/esm/alert/creator/index.d.ts"],
-      "avatar/creator": ["./lib/esm/avatar/creator/index.d.ts"],
-      "icon/creator": ["./lib/esm/icon/creator/index.d.ts"],
-      "checkbox/creator": ["./lib/esm/checkbox/creator/index.d.ts"],
-      "fab/creator": ["./lib/esm/fab/creator/index.d.ts"],
-      "form-control/creator": ["./lib/esm/form-control/creator/index.d.ts"],
-      "input/creator": ["./lib/esm/input/creator/index.d.ts"],
-      "image/creator": ["./lib/esm/image/creator/index.d.ts"],
-      "link/creator": ["./lib/esm/link/creator/index.d.ts"],
-      "pressable/creator": ["./lib/esm/pressable/creator/index.d.ts"],
-      "progress/creator": ["./lib/esm/progress/creator/index.d.ts"],
-      "radio/creator": ["./lib/esm/radio/creator/index.d.ts"],
-      "select/creator": ["./lib/esm/select/creator/index.d.ts"],
-      "overlay/creator": ["./lib/esm/overlay/creator/index.d.ts"],
-      "switch/creator": ["./lib/esm/switch/creator/index.d.ts"],
-      "textarea/creator": ["./lib/esm/textarea/creator/index.d.ts"],
-      "slider/creator": ["./lib/esm/slider/creator/index.d.ts"],
-      "alert-dialog/creator": ["./lib/esm/alert-dialog/creator/index.d.ts"],
-      "menu/creator": ["./lib/esm/menu/creator/index.d.ts"],
-      "modal/creator": ["./lib/esm/modal/creator/index.d.ts"],
-      "popover/creator": ["./lib/esm/popover/creator/index.d.ts"],
-      "toast/creator": ["./lib/esm/toast/creator/index.d.ts"],
-      "tooltip/creator": ["./lib/esm/tooltip/creator/index.d.ts"]
+      "actionsheet/creator": [
+        "./lib/esm/actionsheet/creator/index.d.ts"
+      ],
+      "button/creator": [
+        "./lib/esm/button/creator/index.d.ts"
+      ],
+      "accordion/creator": [
+        "./lib/esm/accordion/creator/index.d.ts"
+      ],
+      "alert/creator": [
+        "./lib/esm/alert/creator/index.d.ts"
+      ],
+      "avatar/creator": [
+        "./lib/esm/avatar/creator/index.d.ts"
+      ],
+      "icon/creator": [
+        "./lib/esm/icon/creator/index.d.ts"
+      ],
+      "checkbox/creator": [
+        "./lib/esm/checkbox/creator/index.d.ts"
+      ],
+      "fab/creator": [
+        "./lib/esm/fab/creator/index.d.ts"
+      ],
+      "form-control/creator": [
+        "./lib/esm/form-control/creator/index.d.ts"
+      ],
+      "input/creator": [
+        "./lib/esm/input/creator/index.d.ts"
+      ],
+      "image/creator": [
+        "./lib/esm/image/creator/index.d.ts"
+      ],
+      "link/creator": [
+        "./lib/esm/link/creator/index.d.ts"
+      ],
+      "pressable/creator": [
+        "./lib/esm/pressable/creator/index.d.ts"
+      ],
+      "progress/creator": [
+        "./lib/esm/progress/creator/index.d.ts"
+      ],
+      "radio/creator": [
+        "./lib/esm/radio/creator/index.d.ts"
+      ],
+      "select/creator": [
+        "./lib/esm/select/creator/index.d.ts"
+      ],
+      "overlay/creator": [
+        "./lib/esm/overlay/creator/index.d.ts"
+      ],
+      "switch/creator": [
+        "./lib/esm/switch/creator/index.d.ts"
+      ],
+      "textarea/creator": [
+        "./lib/esm/textarea/creator/index.d.ts"
+      ],
+      "slider/creator": [
+        "./lib/esm/slider/creator/index.d.ts"
+      ],
+      "alert-dialog/creator": [
+        "./lib/esm/alert-dialog/creator/index.d.ts"
+      ],
+      "menu/creator": [
+        "./lib/esm/menu/creator/index.d.ts"
+      ],
+      "modal/creator": [
+        "./lib/esm/modal/creator/index.d.ts"
+      ],
+      "popover/creator": [
+        "./lib/esm/popover/creator/index.d.ts"
+      ],
+      "toast/creator": [
+        "./lib/esm/toast/creator/index.d.ts"
+      ],
+      "tooltip/creator": [
+        "./lib/esm/tooltip/creator/index.d.ts"
+      ]
     }
   },
   "exports": {
@@ -189,7 +241,7 @@
     }
   },
   "dependencies": {
-    "@gluestack-ui-nightly/utils": "0.0.0-pr-3023-48030a4-b05c205f5bdf",
+    "@gluestack-ui-nightly/utils": "*",
     "react-native-svg": "^15.12.0"
   },
   "peerDependencies": {

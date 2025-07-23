@@ -7,7 +7,7 @@
       "sourceMap": true,
       "outDir": "./lib/esm",
       "module": "esnext",
-      "moduleResolution": "bundler",
+      "moduleResolution": "node",
       "jsx": "preserve",
       "target": "es2015",
       "removeComments": true,
