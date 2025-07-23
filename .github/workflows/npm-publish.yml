@@ -124,9 +124,56 @@ jobs:
             echo "✅ Updated $PACKAGE_NAME to version ${{ steps.preview-version.outputs.version }}"
           done
 
+      - name: Install updated dependencies
+        run: |
+          # Install dependencies to ensure internal packages are available for building
+          yarn install --no-frozen-lockfile
+
       - name: Publish preview packages
         run: |
-          # Publish only your packages (not node_modules dependencies)
+          # Publish packages in dependency order to avoid build issues
+          # First publish packages with no internal dependencies, then dependent packages
+          
+          # Define publish order based on your dependencies
+          # Adjust this array based on your actual dependency structure
+          PUBLISH_ORDER=(
+            "utils"
+            "core" 
+            "ui-next-adapter"
+            "gluestack-ui-nightly"
+            "create-gluestack-nightly"
+          )
+          
+          for package_name in "${PUBLISH_ORDER[@]}"; do
+            # Find the directory for this package
+            for package_dir in packages/*/; do
+              package_file="${package_dir}package.json"
+              
+              # Skip if package.json doesn't exist or if it's in node_modules
+              if [ ! -f "$package_file" ] || [[ "$package_dir" == *"node_modules"* ]]; then
+                continue
+              fi
+              
+              # Check if this is the package we want to publish
+              CURRENT_PACKAGE_DIR_NAME=$(basename "$package_dir")
+              if [[ "$CURRENT_PACKAGE_DIR_NAME" == *"$package_name"* ]]; then
+                PACKAGE_NAME=$(node -p "require('./$package_file').name")
+                echo "📦 Publishing preview version of $PACKAGE_NAME from $package_dir"
+                
+                cd "$package_dir"
+                
+                # Publish with preview tag
+                npm publish --tag preview --access public
+                
+                cd - > /dev/null
+                
+                echo "✅ Successfully published $PACKAGE_NAME"
+                break
+              fi
+            done
+          done
+          
+          # Publish any remaining packages that weren't in the ordered list
           for package_dir in packages/*/; do
             package_file="${package_dir}package.json"
             
@@ -136,16 +183,20 @@ jobs:
             fi
             
             PACKAGE_NAME=$(node -p "require('./$package_file').name")
-            echo "📦 Publishing preview version of $PACKAGE_NAME from $package_dir"
             
-            cd "$package_dir"
-            
-            # Publish with preview tag
-            npm publish --tag preview --access public
-            
-            cd - > /dev/null
-            
-            echo "✅ Successfully published $PACKAGE_NAME"
+            # Check if already published by looking for success message in logs
+            if ! grep -q "Successfully published $PACKAGE_NAME" /tmp/publish.log 2>/dev/null; then
+              echo "📦 Publishing remaining package: $PACKAGE_NAME from $package_dir"
+              
+              cd "$package_dir"
+              
+              # Publish with preview tag
+              npm publish --tag preview --access public
+              
+              cd - > /dev/null
+              
+              echo "✅ Successfully published $PACKAGE_NAME"
+            fi
           done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
