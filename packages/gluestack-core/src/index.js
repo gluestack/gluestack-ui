@@ -24,7 +24,7 @@ export * from './textarea/creator/index.js';
 export * from './slider/creator/index.js';
 export * from './slider/aria/index.js';
 export * from './actionsheet/creator/index.js';
-export * from './alert-dialogue/creator/index.js';
+export * from './alert-dialog/creator/index.js';
 export * from './menu/creator/index.js';
 export * from './menu/aria/index.js';
 export * from './modal/creator/index.js';

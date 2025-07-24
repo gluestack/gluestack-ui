@@ -185,11 +185,11 @@
       "require": "./lib/esm/actionsheet/creator/index.js",
       "default": "./lib/esm/actionsheet/creator/index.js"
     },
-    "./alert-dialogue/creator": {
-      "types": "./lib/esm/alert-dialogue/creator/index.d.ts",
-      "import": "./lib/esm/alert-dialogue/creator/index.js",
-      "require": "./lib/esm/alert-dialogue/creator/index.js",
-      "default": "./lib/esm/alert-dialogue/creator/index.js"
+    "./alert-dialog/creator": {
+      "types": "./lib/esm/alert-dialog/creator/index.d.ts",
+      "import": "./lib/esm/alert-dialog/creator/index.js",
+      "require": "./lib/esm/alert-dialog/creator/index.js",
+      "default": "./lib/esm/alert-dialog/creator/index.js"
     },
     "./menu/creator": {
       "types": "./lib/esm/menu/creator/index.d.ts",
@@ -312,8 +312,8 @@
       "actionsheet/creator": [
         "./lib/esm/actionsheet/creator/index.d.ts"
       ],
-      "alert-dialogue/creator": [
-        "./lib/esm/alert-dialogue/creator/index.d.ts"
+      "alert-dialog/creator": [
+        "./lib/esm/alert-dialog/creator/index.d.ts"
       ],
       "menu/creator": [
         "./lib/esm/menu/creator/index.d.ts"
