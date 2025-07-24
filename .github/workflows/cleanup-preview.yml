@@ -8,7 +8,8 @@ on:
 jobs:
   cleanup-preview-packages:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == false # Only cleanup if PR was closed without merging
+    # Run cleanup for all closed PRs (both merged and unmerged)
+    # This ensures preview packages are cleaned up regardless of merge status
     steps:
       - uses: actions/checkout@v4
 
