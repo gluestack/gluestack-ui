@@ -30,7 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       published: ${{ steps.publish.outputs.published }}
-      version: ${{ steps.publish.outputs.version }}
+      version: ${{ steps.version.outputs.version }}
+      packages: ${{ steps.publish.outputs.packages }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -52,24 +53,35 @@ jobs:
           SHORT_SHA=$(git rev-parse --short HEAD)
           PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}"
           echo "version=${PREVIEW_VERSION}" >> $GITHUB_OUTPUT
-          echo "Generated preview version: ${PREVIEW_VERSION}"
+          echo "🏷️  Generated preview version: ${PREVIEW_VERSION}"
 
       - name: Update package versions
         run: |
           # Update only root-level package.json files in packages/ directory (not node_modules)
-          find packages -maxdepth 2 -name "package.json" -not -path "*/node_modules/*" -type f | while read file; do
+          for package_dir in packages/*/; do
+            if [ ! -f "${package_dir}package.json" ]; then
+              continue
+            fi
+            
+            # Skip if it's a node_modules directory
+            if [[ "$package_dir" == *"/node_modules/"* ]]; then
+              continue
+            fi
+            
+            package_file="${package_dir}package.json"
+            
             # Create backup
-            cp "$file" "$file.bak"
+            cp "$package_file" "$package_file.bak"
             
             # Update version using Node.js
             node -e "
               const fs = require('fs');
-              const pkg = JSON.parse(fs.readFileSync('$file', 'utf8'));
+              const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
               pkg.version = '${{ steps.version.outputs.version }}';
-              fs.writeFileSync('$file', JSON.stringify(pkg, null, 2) + '\n');
+              fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
             "
             
-            echo "Updated version in $file to ${{ steps.version.outputs.version }}"
+            echo "✅ Updated version in $package_file to ${{ steps.version.outputs.version }}"
           done
 
       - name: Setup NPM authentication
@@ -79,55 +91,97 @@ jobs:
       - name: Publish preview packages
         id: publish
         run: |
-          # Publish only root-level packages in packages/ directory (not node_modules)
-          PUBLISHED_PACKAGES=""
+          # Create a temporary file to track published packages
+          PUBLISHED_PACKAGES_FILE=$(mktemp)
+          SUCCESS=false
 
-          find packages -maxdepth 2 -name "package.json" -not -path "*/node_modules/*" -type f | while read file; do
-            PACKAGE_DIR=$(dirname "$file")
-            PACKAGE_JSON=$(cat "$file")
-            PACKAGE_NAME=$(echo "$PACKAGE_JSON" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')).name)")
-            IS_PRIVATE=$(echo "$PACKAGE_JSON" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')).private || false)")
+          for package_dir in packages/*/; do
+            if [ ! -f "${package_dir}package.json" ]; then
+              continue
+            fi
+            
+            # Skip if it's a node_modules directory
+            if [[ "$package_dir" == *"/node_modules/"* ]]; then
+              continue
+            fi
+            
+            PACKAGE_JSON=$(cat "${package_dir}package.json")
+            PACKAGE_NAME=$(echo "$PACKAGE_JSON" | node -e "
+              try {
+                const pkg = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8'));
+                console.log(pkg.name || '');
+              } catch(e) { console.log(''); }
+            ")
+            IS_PRIVATE=$(echo "$PACKAGE_JSON" | node -e "
+              try {
+                const pkg = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8'));
+                console.log(pkg.private === true ? 'true' : 'false');
+              } catch(e) { console.log('false'); }
+            ")
+            
+            if [ -z "$PACKAGE_NAME" ]; then
+              echo "⏭️  Skipping package with no name in $package_dir"
+              continue
+            fi
             
             if [ "$IS_PRIVATE" = "true" ]; then
               echo "⏭️  Skipping private package: $PACKAGE_NAME"
               continue
             fi
             
-            echo "📦 Publishing $PACKAGE_NAME from $PACKAGE_DIR..."
+            echo "📦 Publishing $PACKAGE_NAME from $package_dir..."
             
-            cd "$PACKAGE_DIR"
+            cd "$package_dir"
             
             # Build if build script exists
-            if yarn run --list 2>/dev/null | grep -q "build"; then
+            if npm run --list 2>/dev/null | grep -q "\bbuild\b"; then
               echo "🔨 Building $PACKAGE_NAME..."
-              yarn build
+              npm run build
             fi
             
             # Publish with preview tag
-            npm publish --tag preview --access public
-            
-            if [ $? -eq 0 ]; then
+            if npm publish --tag preview --access public; then
               echo "✅ Successfully published $PACKAGE_NAME@${{ steps.version.outputs.version }}"
-              PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@${{ steps.version.outputs.version }}"
+              echo "$PACKAGE_NAME@${{ steps.version.outputs.version }}" >> "$PUBLISHED_PACKAGES_FILE"
+              SUCCESS=true
             else
               echo "❌ Failed to publish $PACKAGE_NAME"
+              cd - > /dev/null
+              rm -f "$PUBLISHED_PACKAGES_FILE"
               exit 1
             fi
             
             cd - > /dev/null
           done
 
-          echo "published=true" >> $GITHUB_OUTPUT
-          echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
+          if [ "$SUCCESS" = true ]; then
+            # Read all published packages into a single variable
+            PUBLISHED_PACKAGES=$(cat "$PUBLISHED_PACKAGES_FILE" | tr '\n' ' ' | sed 's/ $//')
+            echo "published=true" >> $GITHUB_OUTPUT
+            echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
+            echo "📋 Published packages: $PUBLISHED_PACKAGES"
+          else
+            echo "published=false" >> $GITHUB_OUTPUT
+            echo "❌ No packages were published"
+          fi
+
+          # Cleanup
+          rm -f "$PUBLISHED_PACKAGES_FILE"
 
       - name: Restore package.json files
         if: always()
         run: |
           # Restore original package.json files
-          find packages -maxdepth 2 -name "package.json.bak" -not -path "*/node_modules/*" -type f | while read backup; do
-            original="${backup%.bak}"
-            mv "$backup" "$original"
-            echo "Restored $original"
+          for package_dir in packages/*/; do
+            if [ ! -f "${package_dir}package.json.bak" ]; then
+              continue
+            fi
+            
+            backup_file="${package_dir}package.json.bak"
+            original_file="${package_dir}package.json"
+            
+            mv "$backup_file" "$original_file"
+            echo "✅ Restored $original_file"
           done
 
       - name: Comment on PR
@@ -135,19 +189,30 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const comment = `🚀 **Preview packages published successfully!**
+            const packages = `${{ steps.publish.outputs.packages }}`.trim();
+
+            if (!packages) {
+              console.log('No packages published, skipping comment');
+              return;
+            }
+
+            const comment = `## 🚀 Preview packages published!
 
             **Version:** \`${{ steps.version.outputs.version }}\`
-            **Published packages:** ${{ steps.publish.outputs.packages }}
 
-            You can install these preview packages using:
+            **Published packages:**
+            ${packages.split(' ').map(pkg => `- \`${pkg}\``).join('\n')}
+
+            **Install commands:**
             \`\`\`bash
+            # Install specific package
             npm install <package-name>@${{ steps.version.outputs.version }}
-            # or
+
+            # Or with yarn
             yarn add <package-name>@${{ steps.version.outputs.version }}
             \`\`\`
 
-            **Note:** These are preview packages and should only be used for testing.`;
+            > 💡 These are preview packages for testing only.`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
@@ -168,6 +233,13 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Debug outputs
+        run: |
+          echo "🔍 Debugging job outputs:"
+          echo "Published: ${{ needs.publish-preview.outputs.published }}"
+          echo "Version: ${{ needs.publish-preview.outputs.version }}"
+          echo "Packages: ${{ needs.publish-preview.outputs.packages }}"
+
       - name: Trigger Vercel Preview Deployments
         id: deploy
         run: |
@@ -175,6 +247,14 @@ jobs:
           PROJECT_IDS='${{ secrets.VERCEL_PROJECT_IDS }}'
           DEPLOYED_PROJECTS=""
           DEPLOYMENT_URLS=""
+          PACKAGE_VERSION="${{ needs.publish-preview.outputs.version }}"
+
+          echo "📦 Using package version: $PACKAGE_VERSION"
+
+          if [ -z "$PACKAGE_VERSION" ]; then
+            echo "❌ Package version is empty, cannot proceed with deployment"
+            exit 1
+          fi
 
           echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"' | while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
             echo "🚀 Deploying $PROJECT_NAME (ID: $PROJECT_ID)..."
@@ -197,9 +277,9 @@ jobs:
                   \"githubCommitSha\": \"${{ github.sha }}\",
                   \"githubCommitAuthorName\": \"${{ github.actor }}\",
                   \"githubCommitMessage\": \"${{ github.event.pull_request.title }}\",
-                  \"packageVersion\": \"${{ needs.publish-preview.outputs.version }}\",
                   \"githubPR\": \"${{ github.event.pull_request.number }}\",
-                  \"triggeredBy\": \"github-actions\"
+                  \"triggeredBy\": \"github-actions\",
+                  \"packageVersion\": \"$PACKAGE_VERSION\"
                 }
               }")
             
@@ -230,26 +310,44 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`;
+            const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`.trim();
             const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
+            const packageVersion = `${{ needs.publish-preview.outputs.version }}`;
 
-            let comment = `🚀 **Vercel preview deployments triggered!**
-
-            **Package Version:** \`${{ needs.publish-preview.outputs.version }}\`
-
-            `;
-
-            if (deployedProjects) {
-              comment += `**Deployed Projects:**${deploymentUrls}
+            if (!deployedProjects) {
+              const errorComment = `## ⚠️ Vercel deployment failed
               
-              ⏱️ Deployments are in progress. Check your Vercel dashboard for detailed status.`;
-            } else {
-              comment += `⚠️ No deployments were triggered. Please check the workflow logs.`;
+              **Package Version:** \`${packageVersion}\`
+              
+              No projects were deployed successfully. Please check the [workflow logs](${context.payload.repository.html_url}/actions/runs/${context.runId}) for details.
+              
+              **Possible issues:**
+              - Git not connected to Vercel projects
+              - Incorrect project IDs in VERCEL_PROJECT_IDS
+              - Vercel token permissions
+              `;
+              
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: errorComment
+              });
+              return;
             }
+
+            const successComment = `## 🚀 Vercel preview deployments successful!
+
+            **Package Version:** \`${packageVersion}\`
+
+            **Deployed Projects:**${deploymentUrls}
+
+            ⏱️ Deployments are building. Check your [Vercel dashboard](https://vercel.com/dashboard) for detailed status.
+            `;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: comment
+              body: successComment
             });
