@@ -519,14 +519,7 @@ jobs:
             if (!deployedProjects) {
               const errorComment = `## ⚠️ Vercel deployment failed
               
-              **Package Version:** \`${packageVersion}\`
-              
               No projects were deployed successfully. Please check the [workflow logs](${context.payload.repository.html_url}/actions/runs/${context.runId}) for details.
-              
-              **Possible issues:**
-              - Git not connected to Vercel projects
-              - Incorrect project IDs in VERCEL_PROJECT_IDS
-              - Vercel token permissions
               `;
               
               github.rest.issues.createComment({
