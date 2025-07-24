@@ -2,11 +2,11 @@ name: Expo Latest Nightly
 
 on:
   push:
-    branches: [ feat/v3 ]
+    branches: [feat/v3]
   pull_request:
-    branches: [ feat/v3 ]
+    branches: [feat/v3]
   schedule:
-    - cron: '0 0 * * *'  # Run daily at midnight UTC
+    - cron: '0 0 * * *' # Run daily at midnight UTC
 
 jobs:
   check-expo-version:
@@ -55,17 +55,3 @@ jobs:
         working-directory: test-app
         run: |
           npm run web & sleep 30
-  notify:
-    needs: test-expo-latest
-    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/feat/v3'
-    runs-on: macos-latest
-    steps:
-    - name: Slack Notification
-      uses: 8398a7/action-slack@v3
-      with:
-        status: ${{ job.status }}
-        text: 'Expo Latest Test: ${{ job.status }}'
-        fields: repo,commit,action,eventName
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

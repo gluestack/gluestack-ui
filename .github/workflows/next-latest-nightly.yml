@@ -81,18 +81,3 @@ jobs:
         run: |
           RESPONSE=$(curl -s http://localhost:3000)
           echo "$RESPONSE" | grep -q "Get started by editing" && echo "text found" || (echo "text not found" && exit 1)
-
-  notify:
-    needs: test-next-latest
-    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/feat/v3'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Slack Notification
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: 'Next.js Latest Test: ${{ job.status }}'
-          fields: repo,commit,action,eventName
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
