@@ -617,7 +617,6 @@ jobs:
             if [ -n "$DEPLOYMENT_URL" ] && [ -n "$DEPLOYMENT_ID" ]; then
               echo "✅ Successfully triggered deployment for $PROJECT_NAME"
               echo "📍 Preview URL: https://$DEPLOYMENT_URL"
-              echo "🔧 Using preview packages: $PACKAGE_NAMES"
               DEPLOYED_PROJECTS="$DEPLOYED_PROJECTS $PROJECT_NAME"
               DEPLOYMENT_URLS="$DEPLOYMENT_URLS\\n- **$PROJECT_NAME**: https://$DEPLOYMENT_URL"
             else
