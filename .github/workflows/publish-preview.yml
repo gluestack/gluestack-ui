@@ -2,7 +2,7 @@ name: Preview Package Publishing
 
 on:
   pull_request:
-    branches: [ feat/v3 ]
+    branches: [feat/v3]
     paths:
       - 'packages/**'
     types: [opened, synchronize, reopened]
@@ -55,7 +55,7 @@ jobs:
       - name: Update internal package references
         run: |
           echo "🔄 Updating internal package references to preview versions..."
-          
+
           # Update all package.json files to reference the preview versions of internal packages
           for package_dir in packages/*/; do
             if [ ! -f "${package_dir}package.json" ]; then
@@ -136,11 +136,11 @@ jobs:
           # Create a temporary file to track published packages
           PUBLISHED_PACKAGES_FILE=$(mktemp)
           SUCCESS=false
-          
+
           # Get packages in dependency order
           echo "📋 Determining package publish order..."
           PACKAGE_DIRS=$(find packages -maxdepth 1 -type d -name "*" | grep -v "^packages$" | sort)
-          
+
           for package_dir in $PACKAGE_DIRS; do
             if [ ! -f "${package_dir}/package.json" ]; then
               continue
@@ -200,7 +200,7 @@ jobs:
             
             cd - > /dev/null
           done
-          
+
           if [ "$SUCCESS" = true ]; then
             # Read all published packages into a single variable
             PUBLISHED_PACKAGES=$(cat "$PUBLISHED_PACKAGES_FILE" | tr '\n' ' ' | sed 's/ $//')
@@ -211,7 +211,7 @@ jobs:
             echo "published=false" >> $GITHUB_OUTPUT
             echo "❌ No packages were published successfully"
           fi
-          
+
           # Cleanup
           rm -f "$PUBLISHED_PACKAGES_FILE"
 
@@ -237,30 +237,30 @@ jobs:
         with:
           script: |
             const packages = `${{ steps.publish.outputs.packages }}`.trim();
-            
+
             if (!packages) {
               console.log('No packages published, skipping comment');
               return;
             }
-            
+
             const comment = `## 🚀 Preview packages published!
-            
+
             **Version:** \`${{ steps.version.outputs.version }}\`
-            
+
             **Published packages:**
             ${packages.split(' ').map(pkg => `- \`${pkg}\``).join('\n')}
-            
+
             **Install commands:**
             \`\`\`bash
             # Install specific package
             npm install <package-name>@${{ steps.version.outputs.version }}
-            
+
             # Or with yarn
             yarn add <package-name>@${{ steps.version.outputs.version }}
             \`\`\`
-            
+
             > 💡 These are preview packages for testing only.`;
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -295,14 +295,14 @@ jobs:
           DEPLOYED_PROJECTS=""
           DEPLOYMENT_URLS=""
           PACKAGE_VERSION="${{ needs.publish-preview.outputs.version }}"
-          
+
           echo "📦 Using package version: $PACKAGE_VERSION"
-          
+
           if [ -z "$PACKAGE_VERSION" ]; then
             echo "❌ Package version is empty, cannot proceed with deployment"
             exit 1
           fi
-          
+
           echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"' | while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
             echo "🚀 Deploying $PROJECT_NAME (ID: $PROJECT_ID)..."
             
@@ -313,7 +313,6 @@ jobs:
               -d "{
                 \"name\": \"$PROJECT_NAME\",
                 \"project\": \"$PROJECT_ID\",
-                \"target\": \"preview\",
                 \"gitSource\": {
                   \"type\": \"github\",
                   \"ref\": \"${{ github.head_ref }}\",
@@ -348,7 +347,7 @@ jobs:
               echo "Response: $RESPONSE"
             fi
           done
-          
+
           # Save results for next step
           echo "deployed_projects=$DEPLOYED_PROJECTS" >> $GITHUB_OUTPUT
           echo -e "deployment_urls=$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
@@ -360,7 +359,7 @@ jobs:
             const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`.trim();
             const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
             const packageVersion = `${{ needs.publish-preview.outputs.version }}`;
-            
+
             if (!deployedProjects) {
               const errorComment = `## ⚠️ Vercel deployment failed
               
@@ -382,16 +381,16 @@ jobs:
               });
               return;
             }
-            
+
             const successComment = `## 🚀 Vercel preview deployments successful!
-            
+
             **Package Version:** \`${packageVersion}\`
-            
+
             **Deployed Projects:**${deploymentUrls}
-            
+
             ⏱️ Deployments are building. Check your [Vercel dashboard](https://vercel.com/dashboard) for detailed status.
             `;
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
