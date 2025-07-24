@@ -557,7 +557,7 @@ jobs:
               for pkg_name in $PACKAGE_NAMES; do
                 VERSIONED_PACKAGES="$VERSIONED_PACKAGES $pkg_name@$PREVIEW_VERSION"
               done
-              INSTALL_COMMANDS="npm install$VERSIONED_PACKAGES --registry https://registry.npmjs.org/"
+              INSTALL_COMMANDS="npm install --registry https://registry.npmjs.org/"
               echo "🚀 Install command: $INSTALL_COMMANDS"
             fi
           fi
@@ -606,9 +606,9 @@ jobs:
           BUILD_COMMAND=""
           if [ -n "$INSTALL_COMMANDS" ]; then
             # Create a build command that first installs preview packages, then runs the normal build
-            BUILD_COMMAND="echo '🚀 Installing preview packages...' && $INSTALL_COMMANDS && echo '✅ Preview packages installed' && npm run build"
+            BUILD_COMMAND="echo '🚀 Installing preview packages...' && $INSTALL_COMMANDS && echo '✅ Preview packages installed' && npm run build:preview"
           else
-            BUILD_COMMAND="npm run build"
+            BUILD_COMMAND="npm run build:preview"
           fi
 
           echo "🔨 Build command: $BUILD_COMMAND"
