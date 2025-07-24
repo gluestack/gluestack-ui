@@ -1,4 +1,3 @@
-# .github/workflows/preview-publish.yml
 name: Preview Package Publishing
 
 on:
@@ -490,11 +489,11 @@ jobs:
               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
               -H "Content-Type: application/json" \
               -d "{
-                \"name\": \"$PROJECT_NAME-pr-${{ github.event.pull_request.number }}-${{ github.sha }}\",
+                \"name\": \"$PROJECT_NAME\",
                 \"project\": \"$PROJECT_ID\",
                 \"gitSource\": {
                   \"type\": \"github\",
-                  \"ref\": \"${{ github.sha }}\",
+                  \"ref\": \"${{ github.head_ref }}\",
                   \"sha\": \"${{ github.sha }}\",
                   \"repoId\": ${{ github.event.repository.id }}
                 },
@@ -631,11 +630,11 @@ jobs:
               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
               -H "Content-Type: application/json" \
               -d "{
-                \"name\": \"$PROJECT_NAME-pr-${{ github.event.pull_request.number }}-${{ github.sha }}\",
+                \"name\": \"$PROJECT_NAME\",
                 \"project\": \"$PROJECT_ID\",
                 \"gitSource\": {
                   \"type\": \"github\",
-                  \"ref\": \"${{ github.sha }}\",
+                  \"ref\": \"${{ github.head_ref }}\",
                   \"sha\": \"${{ github.sha }}\",
                   \"repoId\": ${{ github.event.repository.id }}
                 },
