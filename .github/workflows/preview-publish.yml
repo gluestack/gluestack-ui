@@ -507,7 +507,9 @@ jobs:
 
           # Save results for next step
           echo "deployed_projects=$DEPLOYED_PROJECTS" >> $GITHUB_OUTPUT
-          echo -e "deployment_urls=$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
+          echo "deployment_urls<<EOF" >> $GITHUB_OUTPUT
+          echo "$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Update PR with Vercel deployment info
         uses: actions/github-script@v7
