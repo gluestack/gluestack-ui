@@ -99,6 +99,46 @@ jobs:
           echo "🚀 Publishing packages..."
           PUBLISHED_PACKAGES=""
 
+          # Function to check if version exists on npm
+          check_npm_version() {
+            local package_name=$1
+            local version=$2
+            
+            # Check if version exists on npm
+            if npm view "$package_name@$version" version >/dev/null 2>&1; then
+              echo "true"
+            else
+              echo "false"
+            fi
+          }
+
+          # Function to get latest version from npm
+          get_npm_latest_version() {
+            local package_name=$1
+            
+            # Get latest version from npm
+            local latest_version=$(npm view "$package_name" version 2>/dev/null || echo "0.0.0")
+            echo "$latest_version"
+          }
+
+          # Function to increment version
+          increment_version() {
+            local version=$1
+            local increment_type=${2:-patch} # patch, minor, major
+            
+            node -e "
+              const semver = require('semver');
+              const version = '$version';
+              const incrementType = '$increment_type';
+              console.log(semver.inc(version, incrementType));
+            " 2>/dev/null || node -e "
+              const version = '$version';
+              const parts = version.split('.');
+              parts[2] = (parseInt(parts[2]) + 1).toString();
+              console.log(parts.join('.'));
+            "
+          }
+
           find packages -maxdepth 2 -name "package.json" -not -path "*/node_modules/*" -type f | while read file; do
             PACKAGE_DIR=$(dirname "$file")
             PACKAGE_JSON=$(cat "$file")
@@ -110,9 +150,50 @@ jobs:
               continue
             fi
             
-            echo "📦 Publishing $PACKAGE_NAME from $PACKAGE_DIR..."
+            echo "📦 Processing $PACKAGE_NAME from $PACKAGE_DIR..."
             
             cd "$PACKAGE_DIR"
+            
+            # Get current package version
+            CURRENT_VERSION=$(node -e "console.log(JSON.parse(require('fs').readFileSync('package.json', 'utf8')).version)")
+            echo "📋 Current version: $CURRENT_VERSION"
+            
+            # Check if version already exists on npm
+            VERSION_EXISTS=$(check_npm_version "$PACKAGE_NAME" "$CURRENT_VERSION")
+            
+            if [ "$VERSION_EXISTS" = "true" ]; then
+              echo "⚠️  Version $CURRENT_VERSION already exists on npm for $PACKAGE_NAME"
+              echo "🔄 Checking latest version on npm..."
+              
+              # Get latest version from npm
+              NPM_LATEST=$(get_npm_latest_version "$PACKAGE_NAME")
+              echo "📦 Latest version on npm: $NPM_LATEST"
+              
+              # Compare versions and update if needed
+              if [ "$CURRENT_VERSION" = "$NPM_LATEST" ]; then
+                echo "📈 Incrementing patch version..."
+                # Increment patch version
+                NEW_VERSION=$(increment_version "$CURRENT_VERSION" "patch")
+              else
+                echo "📈 Using next version after npm latest..."
+                # Use next version after npm latest
+                NEW_VERSION=$(increment_version "$NPM_LATEST" "patch")
+              fi
+              
+              echo "🔄 Updating package version to $NEW_VERSION..."
+              
+              # Update package.json version
+              node -e "
+                const fs = require('fs');
+                const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+                pkg.version = '$NEW_VERSION';
+                fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+              "
+              
+              # Update the version variable
+              CURRENT_VERSION=$NEW_VERSION
+              echo "✅ Updated to version: $CURRENT_VERSION"
+            fi
             
             # Build if build script exists
             if yarn run --list 2>/dev/null | grep -q "build"; then
@@ -121,15 +202,52 @@ jobs:
             fi
             
             # Publish to latest tag
-            npm publish --access public
+            echo "🚀 Publishing $PACKAGE_NAME@$CURRENT_VERSION..."
             
-            if [ $? -eq 0 ]; then
-              PACKAGE_VERSION=$(node -e "console.log(JSON.parse(require('fs').readFileSync('package.json', 'utf8')).version)")
-              echo "✅ Successfully published $PACKAGE_NAME@$PACKAGE_VERSION"
-              PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$PACKAGE_VERSION"
+            # Try to publish with better error handling
+            if npm publish --access public; then
+              echo "✅ Successfully published $PACKAGE_NAME@$CURRENT_VERSION"
+              PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$CURRENT_VERSION"
             else
-              echo "❌ Failed to publish $PACKAGE_NAME"
-              exit 1
+              PUBLISH_ERROR=$?
+              echo "❌ Failed to publish $PACKAGE_NAME@$CURRENT_VERSION (exit code: $PUBLISH_ERROR)"
+              
+              # Check if it's a version conflict error
+              if [ $PUBLISH_ERROR -eq 1 ]; then
+                echo "🔄 This might be a version conflict. Checking npm registry..."
+                NPM_LATEST=$(get_npm_latest_version "$PACKAGE_NAME")
+                echo "📦 Latest version on npm: $NPM_LATEST"
+                
+                if [ "$CURRENT_VERSION" = "$NPM_LATEST" ]; then
+                  echo "🔄 Version conflict detected. Incrementing version and retrying..."
+                  NEW_VERSION=$(increment_version "$CURRENT_VERSION" "patch")
+                  
+                  # Update package.json version
+                  node -e "
+                    const fs = require('fs');
+                    const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+                    pkg.version = '$NEW_VERSION';
+                    fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+                  "
+                  
+                  CURRENT_VERSION=$NEW_VERSION
+                  echo "🔄 Retrying publish with version $CURRENT_VERSION..."
+                  
+                  if npm publish --access public; then
+                    echo "✅ Successfully published $PACKAGE_NAME@$CURRENT_VERSION"
+                    PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$CURRENT_VERSION"
+                  else
+                    echo "❌ Failed to publish $PACKAGE_NAME@$CURRENT_VERSION after retry"
+                    exit 1
+                  fi
+                else
+                  echo "❌ Unexpected publish error for $PACKAGE_NAME"
+                  exit 1
+                fi
+              else
+                echo "❌ Unexpected publish error for $PACKAGE_NAME"
+                exit 1
+              fi
             fi
             
             cd - > /dev/null
@@ -137,6 +255,21 @@ jobs:
 
           echo "published=true" >> $GITHUB_OUTPUT
           echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
+
+      - name: Commit version updates
+        if: steps.publish.outputs.published == 'true'
+        run: |
+          # Check if there are any uncommitted changes (version updates)
+          if ! git diff --quiet; then
+            echo "📝 Committing version updates..."
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add .
+            git commit -m "Update package versions after npm conflict resolution [skip ci]"
+            git push
+          else
+            echo "✅ No version updates to commit"
+          fi
 
       - name: Create GitHub Release
         if: steps.publish.outputs.published == 'true'
