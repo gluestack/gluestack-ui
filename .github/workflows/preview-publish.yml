@@ -517,6 +517,71 @@ jobs:
           echo "📦 Using published package version: $PACKAGE_VERSION"
           echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
 
+      - name: Discover and prepare preview packages
+        id: prepare-packages
+        run: |
+          PREVIEW_VERSION="${{ needs.publish-preview.outputs.version }}"
+          PUBLISHED_PACKAGES="${{ needs.publish-preview.outputs.packages }}"
+
+          echo "🔍 Discovering preview packages to install..."
+          echo "📦 Preview version: $PREVIEW_VERSION"
+          echo "📋 Published packages: $PUBLISHED_PACKAGES"
+
+          # Create arrays to store package information
+          PACKAGE_NAMES=""
+          INSTALL_COMMANDS=""
+
+          # Parse published packages and extract package names
+          if [ -n "$PUBLISHED_PACKAGES" ]; then
+            echo "$PUBLISHED_PACKAGES" | tr ' ' '\n' | while read -r pkg_with_version; do
+              if [ -n "$pkg_with_version" ]; then
+                # Extract package name (everything before @version)
+                pkg_name=$(echo "$pkg_with_version" | sed 's/@[^@]*$//')
+                if [ -n "$pkg_name" ]; then
+                  echo "📦 Found package: $pkg_name"
+                  echo "$pkg_name" >> /tmp/package_names.txt
+                fi
+              fi
+            done
+          fi
+
+          # Read package names from temp file and create install commands
+          if [ -f /tmp/package_names.txt ]; then
+            PACKAGE_NAMES=$(cat /tmp/package_names.txt | tr '\n' ' ' | sed 's/ $//')
+            echo "📋 Package names: $PACKAGE_NAMES"
+            
+            # Create npm install command for all packages at once
+            if [ -n "$PACKAGE_NAMES" ]; then
+              # Convert space-separated names to @version format
+              VERSIONED_PACKAGES=""
+              for pkg_name in $PACKAGE_NAMES; do
+                VERSIONED_PACKAGES="$VERSIONED_PACKAGES $pkg_name@$PREVIEW_VERSION"
+              done
+              INSTALL_COMMANDS="npm install$VERSIONED_PACKAGES --registry https://registry.npmjs.org/"
+              echo "🚀 Install command: $INSTALL_COMMANDS"
+            fi
+          fi
+
+          # Save to GitHub outputs
+          echo "package_names=$PACKAGE_NAMES" >> $GITHUB_OUTPUT
+          echo "install_commands=$INSTALL_COMMANDS" >> $GITHUB_OUTPUT
+
+          # Also create a package.json override file for Vercel
+          cat > preview-packages.json << EOF
+          {
+            "previewPackages": {
+              "version": "$PREVIEW_VERSION",
+              "packages": [$(echo "$PACKAGE_NAMES" | sed 's/ /", "/g' | sed 's/^/"/; s/$/"/')]
+            }
+          }
+          EOF
+
+          echo "📄 Created preview-packages.json:"
+          cat preview-packages.json
+
+          # Cleanup
+          rm -f /tmp/package_names.txt
+
       - name: Trigger Vercel Preview Deployments
         id: deploy
         run: |
@@ -525,19 +590,34 @@ jobs:
           DEPLOYED_PROJECTS=""
           DEPLOYMENT_URLS=""
           PACKAGE_VERSION="${{ steps.version.outputs.version }}"
+          INSTALL_COMMANDS="${{ steps.prepare-packages.outputs.install_commands }}"
+          PACKAGE_NAMES="${{ steps.prepare-packages.outputs.package_names }}"
 
           echo "📦 Using version: $PACKAGE_VERSION"
+          echo "🔧 Install commands: $INSTALL_COMMANDS"
+          echo "📋 Package names: $PACKAGE_NAMES"
 
           if [ -z "$PACKAGE_VERSION" ]; then
             echo "❌ Version is empty, cannot proceed with deployment"
             exit 1
           fi
 
+          # Create build command that installs preview packages
+          BUILD_COMMAND=""
+          if [ -n "$INSTALL_COMMANDS" ]; then
+            # Create a build command that first installs preview packages, then runs the normal build
+            BUILD_COMMAND="echo '🚀 Installing preview packages...' && $INSTALL_COMMANDS && echo '✅ Preview packages installed' && npm run build"
+          else
+            BUILD_COMMAND="npm run build"
+          fi
+
+          echo "🔨 Build command: $BUILD_COMMAND"
+
           # Use process substitution to avoid subshell issues
           while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
             echo "🚀 Deploying $PROJECT_NAME (ID: $PROJECT_ID)..."
             
-            # Create deployment using Vercel API with Git source for code changes
+            # Create deployment using Vercel API with custom build command
             RESPONSE=$(curl -s -X POST "https://api.vercel.com/v13/deployments" \
               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
               -H "Content-Type: application/json" \
@@ -550,13 +630,19 @@ jobs:
                   \"sha\": \"${{ github.sha }}\",
                   \"repoId\": ${{ github.event.repository.id }}
                 },
+                \"buildCommand\": \"$BUILD_COMMAND\",
+                \"env\": {
+                  \"PREVIEW_PACKAGES_VERSION\": \"$PACKAGE_VERSION\",
+                  \"PREVIEW_PACKAGES_LIST\": \"$PACKAGE_NAMES\"
+                },
                 \"meta\": {
                   \"githubCommitSha\": \"${{ github.sha }}\",
                   \"githubCommitAuthorName\": \"${{ github.actor }}\",
                   \"githubCommitMessage\": \"${{ github.event.pull_request.title }}\",
                   \"githubPR\": \"${{ github.event.pull_request.number }}\",
                   \"triggeredBy\": \"github-actions\",
-                  \"packageVersion\": \"$PACKAGE_VERSION\"
+                  \"packageVersion\": \"$PACKAGE_VERSION\",
+                  \"previewPackages\": \"$PACKAGE_NAMES\"
                 }
               }")
             
@@ -568,6 +654,7 @@ jobs:
             if [ -n "$DEPLOYMENT_URL" ] && [ -n "$DEPLOYMENT_ID" ]; then
               echo "✅ Successfully triggered deployment for $PROJECT_NAME"
               echo "📍 Preview URL: https://$DEPLOYMENT_URL"
+              echo "🔧 Using preview packages: $PACKAGE_NAMES"
               DEPLOYED_PROJECTS="$DEPLOYED_PROJECTS $PROJECT_NAME"
               DEPLOYMENT_URLS="$DEPLOYMENT_URLS\\n- **$PROJECT_NAME**: https://$DEPLOYMENT_URL"
             else
@@ -592,6 +679,8 @@ jobs:
             const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`.trim();
             const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
             const packageVersion = `${{ steps.version.outputs.version }}`;
+            const packageNames = `${{ steps.prepare-packages.outputs.package_names }}`.trim();
+            const publishedPackages = `${{ needs.publish-preview.outputs.packages }}`.trim();
 
             if (!deployedProjects) {
               const errorComment = `## ⚠️ Vercel deployment failed
@@ -613,11 +702,14 @@ jobs:
             **Version:** \`${packageVersion}\`
             **Triggered by:** Package changes and publishing
 
-            **Projects triggered for preview:**${deploymentUrls}
+            **Preview packages installed:**
+            ${publishedPackages.split(' ').map(pkg => `- \`${pkg}\``).join('\n')}
 
-            ⏱️ Deployments are building. Check your [Vercel dashboard](https://vercel.com/dashboard) for detailed status.
+            **Projects deployed with preview packages:**${deploymentUrls}
 
-            > 💡 These are preview deployments for testing only.
+            ⏱️ Deployments are building with the preview packages. Check your [Vercel dashboard](https://vercel.com/dashboard) for detailed status.
+
+            > 💡 These deployments automatically install and use the published preview packages for testing.
             `;
 
             github.rest.issues.createComment({
@@ -658,6 +750,49 @@ jobs:
           echo "🚀 Generated deployment version: $PACKAGE_VERSION"
           echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
 
+      - name: Check for existing preview packages
+        id: check-packages
+        run: |
+          echo "🔍 Checking for existing preview packages that might be relevant..."
+
+          # Look for any @gluestack-ui-nightly packages in package.json files
+          FOUND_PACKAGES=""
+
+          # Search in common locations for package.json files
+          for search_dir in "." "apps" "examples" "demos"; do
+            if [ -d "$search_dir" ]; then
+              find "$search_dir" -name "package.json" -not -path "*/node_modules/*" 2>/dev/null | while read -r pkg_file; do
+                if [ -f "$pkg_file" ]; then
+                  # Extract @gluestack-ui-nightly dependencies
+                  deps=$(node -e "
+                    try {
+                      const pkg = JSON.parse(require('fs').readFileSync('$pkg_file', 'utf8'));
+                      const allDeps = {...(pkg.dependencies || {}), ...(pkg.devDependencies || {}), ...(pkg.peerDependencies || {})};
+                      const gluestackDeps = Object.keys(allDeps).filter(dep => dep.startsWith('@gluestack-ui-nightly/'));
+                      console.log(gluestackDeps.join(' '));
+                    } catch(e) { console.log(''); }
+                  " 2>/dev/null)
+                  
+                  if [ -n "$deps" ]; then
+                    echo "📦 Found @gluestack-ui-nightly packages in $pkg_file: $deps"
+                    echo "$deps" >> /tmp/all_packages.txt
+                  fi
+                fi
+              done
+            fi
+          done
+
+          # Get unique package names
+          if [ -f /tmp/all_packages.txt ]; then
+            UNIQUE_PACKAGES=$(cat /tmp/all_packages.txt | tr ' ' '\n' | sort -u | tr '\n' ' ' | sed 's/ $//')
+            echo "📋 Unique packages found: $UNIQUE_PACKAGES"
+            echo "packages=$UNIQUE_PACKAGES" >> $GITHUB_OUTPUT
+            rm -f /tmp/all_packages.txt
+          else
+            echo "ℹ️  No @gluestack-ui-nightly packages found in project"
+            echo "packages=" >> $GITHUB_OUTPUT
+          fi
+
       - name: Trigger Vercel Preview Deployments
         id: deploy
         run: |
@@ -666,13 +801,26 @@ jobs:
           DEPLOYED_PROJECTS=""
           DEPLOYMENT_URLS=""
           PACKAGE_VERSION="${{ steps.version.outputs.version }}"
+          EXISTING_PACKAGES="${{ steps.check-packages.outputs.packages }}"
 
           echo "📦 Using version: $PACKAGE_VERSION"
+          echo "📋 Existing packages: $EXISTING_PACKAGES"
 
           if [ -z "$PACKAGE_VERSION" ]; then
             echo "❌ Version is empty, cannot proceed with deployment"
             exit 1
           fi
+
+          # Create build command - use standard build since no new packages were published
+          BUILD_COMMAND="npm run build"
+
+          # If we found existing packages, we could optionally try to update them to latest
+          if [ -n "$EXISTING_PACKAGES" ]; then
+            echo "ℹ️  Found existing @gluestack-ui-nightly packages, using standard build"
+            echo "📋 Existing packages will use their current versions"
+          fi
+
+          echo "🔨 Build command: $BUILD_COMMAND"
 
           # Use process substitution to avoid subshell issues
           while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
@@ -691,13 +839,18 @@ jobs:
                   \"sha\": \"${{ github.sha }}\",
                   \"repoId\": ${{ github.event.repository.id }}
                 },
+                \"buildCommand\": \"$BUILD_COMMAND\",
+                \"env\": {
+                  \"DEPLOYMENT_TYPE\": \"other-files-only\"
+                },
                 \"meta\": {
                   \"githubCommitSha\": \"${{ github.sha }}\",
                   \"githubCommitAuthorName\": \"${{ github.actor }}\",
                   \"githubCommitMessage\": \"${{ github.event.pull_request.title }}\",
                   \"githubPR\": \"${{ github.event.pull_request.number }}\",
                   \"triggeredBy\": \"github-actions\",
-                  \"packageVersion\": \"$PACKAGE_VERSION\"
+                  \"packageVersion\": \"$PACKAGE_VERSION\",
+                  \"deploymentType\": \"other-files-only\"
                 }
               }")
             
@@ -733,6 +886,7 @@ jobs:
             const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`.trim();
             const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
             const packageVersion = `${{ steps.version.outputs.version }}`;
+            const existingPackages = `${{ steps.check-packages.outputs.packages }}`.trim();
 
             if (!deployedProjects) {
               const errorComment = `## ⚠️ Vercel deployment failed
@@ -749,16 +903,21 @@ jobs:
               return;
             }
 
+            let packageInfo = '';
+            if (existingPackages) {
+              packageInfo = `\n**Existing packages detected:**\n${existingPackages.split(' ').map(pkg => `- \`${pkg}\` (using current version)`).join('\n')}\n`;
+            }
+
             const successComment = `## 🚀 Vercel preview deployments triggered successfully!
 
             **Version:** \`${packageVersion}\`
-            **Triggered by:** Other file changes (no packages published)
+            **Triggered by:** Other file changes (no packages published)${packageInfo}
 
             **Projects triggered for preview:**${deploymentUrls}
 
             ⏱️ Deployments are building. Check your [Vercel dashboard](https://vercel.com/dashboard) for detailed status.
 
-            > 💡 These are preview deployments for testing only.
+            > 💡 These are preview deployments for testing code changes only.
             `;
 
             github.rest.issues.createComment({
