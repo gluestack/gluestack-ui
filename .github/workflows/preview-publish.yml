@@ -1,4 +1,4 @@
-name: Preview Package Publishing V1
+name: Preview Package Publishing
 
 on:
   pull_request:
