@@ -490,11 +490,11 @@ jobs:
               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
               -H "Content-Type: application/json" \
               -d "{
-                \"name\": \"$PROJECT_NAME\",
+                \"name\": \"$PROJECT_NAME-pr-${{ github.event.pull_request.number }}-${{ github.sha }}\",
                 \"project\": \"$PROJECT_ID\",
                 \"gitSource\": {
                   \"type\": \"github\",
-                  \"ref\": \"${{ github.head_ref }}\",
+                  \"ref\": \"${{ github.sha }}\",
                   \"sha\": \"${{ github.sha }}\",
                   \"repoId\": ${{ github.event.repository.id }}
                 },
@@ -631,11 +631,11 @@ jobs:
               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
               -H "Content-Type: application/json" \
               -d "{
-                \"name\": \"$PROJECT_NAME\",
+                \"name\": \"$PROJECT_NAME-pr-${{ github.event.pull_request.number }}-${{ github.sha }}\",
                 \"project\": \"$PROJECT_ID\",
                 \"gitSource\": {
                   \"type\": \"github\",
-                  \"ref\": \"${{ github.head_ref }}\",
+                  \"ref\": \"${{ github.sha }}\",
                   \"sha\": \"${{ github.sha }}\",
                   \"repoId\": ${{ github.event.repository.id }}
                 },
