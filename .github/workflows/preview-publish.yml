@@ -406,15 +406,6 @@ jobs:
             **Published packages:**
             ${packages.split(' ').map(pkg => `- \`${pkg}\``).join('\n')}
 
-            **Install commands:**
-            \`\`\`bash
-            # Install specific package
-            npm install <package-name>@${{ steps.version.outputs.version }}
-
-            # Or with yarn
-            yarn add <package-name>@${{ steps.version.outputs.version }}
-            \`\`\`
-
             > 💡 These are preview packages for testing only.`;
 
             github.rest.issues.createComment({
@@ -534,13 +525,15 @@ jobs:
               return;
             }
 
-            const successComment = `## 🚀 Vercel preview deployments successful!
+            const successComment = `## 🚀 Vercel preview deployments Triggered successfully!
 
             **Package Version:** \`${packageVersion}\`
 
-            **Deployed Projects:**${deploymentUrls}
+            **Project Triggered for Preview:**${deploymentUrls}
 
             ⏱️ Deployments are building. Check your [Vercel dashboard](https://vercel.com/dashboard) for detailed status.
+
+            > 💡 These are preview Deployments for testing only.
             `;
 
             github.rest.issues.createComment({
