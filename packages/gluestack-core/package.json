@@ -24,220 +24,313 @@
   },
   "exports": {
     ".": {
+      "types": "./lib/esm/index.d.ts",
       "import": "./lib/esm/index.js",
-      "types": "./lib/esm/index.d.ts"
+      "require": "./lib/esm/index.js",
+      "default": "./lib/esm/index.js"
     },
     "./button/aria": {
+      "types": "./lib/esm/button/aria/index.d.ts",
       "import": "./lib/esm/button/aria/index.js",
-      "types": "./lib/esm/button/aria/index.d.ts"
+      "require": "./lib/esm/button/aria/index.js",
+      "default": "./lib/esm/button/aria/index.js"
     },
     "./button/creator": {
-      "import": "./lib/esm/button/creator/index.jsx",
-      "types": "./lib/esm/button/creator/index.d.ts"
+      "types": "./lib/esm/button/creator/index.d.ts",
+      "import": "./lib/esm/button/creator/index.js",
+      "require": "./lib/esm/button/creator/index.js",
+      "default": "./lib/esm/button/creator/index.js"
     },
     "./accordion/aria": {
+      "types": "./lib/esm/accordion/aria/index.d.ts",
       "import": "./lib/esm/accordion/aria/index.js",
-      "types": "./lib/esm/accordion/aria/index.d.ts"
+      "require": "./lib/esm/accordion/aria/index.js",
+      "default": "./lib/esm/accordion/aria/index.js"
     },
     "./accordion/creator": {
-      "import": "./lib/esm/accordion/creator/index.jsx",
-      "types": "./lib/esm/accordion/creator/index.d.ts"
+      "types": "./lib/esm/accordion/creator/index.d.ts",
+      "import": "./lib/esm/accordion/creator/index.js",
+      "require": "./lib/esm/accordion/creator/index.js",
+      "default": "./lib/esm/accordion/creator/index.js"
     },
     "./alert/creator": {
-      "import": "./lib/esm/alert/creator/index.jsx",
-      "types": "./lib/esm/alert/creator/index.d.ts"
+      "types": "./lib/esm/alert/creator/index.d.ts",
+      "import": "./lib/esm/alert/creator/index.js",
+      "require": "./lib/esm/alert/creator/index.js",
+      "default": "./lib/esm/alert/creator/index.js"
     },
     "./avatar/creator": {
-      "import": "./lib/esm/avatar/creator/index.jsx",
-      "types": "./lib/esm/avatar/creator/index.d.ts"
+      "types": "./lib/esm/avatar/creator/index.d.ts",
+      "import": "./lib/esm/avatar/creator/index.js",
+      "require": "./lib/esm/avatar/creator/index.js",
+      "default": "./lib/esm/avatar/creator/index.js"
     },
     "./icon/creator": {
-      "import": "./lib/esm/icon/creator/index.jsx",
-      "types": "./lib/esm/icon/creator/index.d.ts"
+      "types": "./lib/esm/icon/creator/index.d.ts",
+      "import": "./lib/esm/icon/creator/index.js",
+      "require": "./lib/esm/icon/creator/index.js",
+      "default": "./lib/esm/icon/creator/index.js"
     },
     "./checkbox/creator": {
+      "types": "./lib/esm/checkbox/creator/index.d.ts",
       "import": "./lib/esm/checkbox/creator/index.js",
-      "types": "./lib/esm/checkbox/creator/index.d.ts"
+      "require": "./lib/esm/checkbox/creator/index.js",
+      "default": "./lib/esm/checkbox/creator/index.js"
     },
     "./checkbox/aria": {
+      "types": "./lib/esm/checkbox/aria/index.d.ts",
       "import": "./lib/esm/checkbox/aria/index.js",
-      "types": "./lib/esm/checkbox/aria/index.d.ts"
+      "require": "./lib/esm/checkbox/aria/index.js",
+      "default": "./lib/esm/checkbox/aria/index.js"
     },
     "./fab/creator": {
-      "import": "./lib/esm/fab/creator/index.jsx",
-      "types": "./lib/esm/fab/creator/index.d.ts"
+      "types": "./lib/esm/fab/creator/index.d.ts",
+      "import": "./lib/esm/fab/creator/index.js",
+      "require": "./lib/esm/fab/creator/index.js",
+      "default": "./lib/esm/fab/creator/index.js"
     },
     "./form-control/creator": {
-      "import": "./lib/esm/form-control/creator/index.jsx",
-      "types": "./lib/esm/form-control/creator/index.d.ts"
+      "types": "./lib/esm/form-control/creator/index.d.ts",
+      "import": "./lib/esm/form-control/creator/index.js",
+      "require": "./lib/esm/form-control/creator/index.js",
+      "default": "./lib/esm/form-control/creator/index.js"
     },
     "./input/creator": {
-      "import": "./lib/esm/input/creator/index.jsx",
-      "types": "./lib/esm/input/creator/index.d.ts"
+      "types": "./lib/esm/input/creator/index.d.ts",
+      "import": "./lib/esm/input/creator/index.js",
+      "require": "./lib/esm/input/creator/index.js",
+      "default": "./lib/esm/input/creator/index.js"
     },
     "./image/creator": {
-      "import": "./lib/esm/image/creator/index.jsx",
-      "types": "./lib/esm/image/creator/index.d.ts"
+      "types": "./lib/esm/image/creator/index.d.ts",
+      "import": "./lib/esm/image/creator/index.js",
+      "require": "./lib/esm/image/creator/index.js",
+      "default": "./lib/esm/image/creator/index.js"
     },
     "./link/creator": {
-      "import": "./lib/esm/link/creator/index.jsx",
-      "types": "./lib/esm/link/creator/index.d.ts"
+      "types": "./lib/esm/link/creator/index.d.ts",
+      "import": "./lib/esm/link/creator/index.js",
+      "require": "./lib/esm/link/creator/index.js",
+      "default": "./lib/esm/link/creator/index.js"
     },
     "./pressable/creator": {
-      "import": "./lib/esm/pressable/creator/index.jsx",
-      "types": "./lib/esm/pressable/creator/index.d.ts"
+      "types": "./lib/esm/pressable/creator/index.d.ts",
+      "import": "./lib/esm/pressable/creator/index.js",
+      "require": "./lib/esm/pressable/creator/index.js",
+      "default": "./lib/esm/pressable/creator/index.js"
     },
     "./progress/creator": {
-      "import": "./lib/esm/progress/creator/index.jsx",
-      "types": "./lib/esm/progress/creator/index.d.ts"
+      "types": "./lib/esm/progress/creator/index.d.ts",
+      "import": "./lib/esm/progress/creator/index.js",
+      "require": "./lib/esm/progress/creator/index.js",
+      "default": "./lib/esm/progress/creator/index.js"
     },
     "./radio/creator": {
+      "types": "./lib/esm/radio/creator/index.d.ts",
       "import": "./lib/esm/radio/creator/index.js",
-      "types": "./lib/esm/radio/creator/index.d.ts"
+      "require": "./lib/esm/radio/creator/index.js",
+      "default": "./lib/esm/radio/creator/index.js"
     },
     "./radio/aria": {
+      "types": "./lib/esm/radio/aria/index.d.ts",
       "import": "./lib/esm/radio/aria/index.js",
-      "types": "./lib/esm/radio/aria/index.d.ts"
+      "require": "./lib/esm/radio/aria/index.js",
+      "default": "./lib/esm/radio/aria/index.js"
     },
     "./select/creator": {
+      "types": "./lib/esm/select/creator/index.d.ts",
       "import": "./lib/esm/select/creator/index.js",
-      "types": "./lib/esm/select/creator/index.d.ts"
+      "require": "./lib/esm/select/creator/index.js",
+      "default": "./lib/esm/select/creator/index.js"
     },
     "./overlay/creator": {
-      "import": "./lib/esm/overlay/creator/index.jsx",
-      "types": "./lib/esm/overlay/creator/index.d.ts"
+      "types": "./lib/esm/overlay/creator/index.d.ts",
+      "import": "./lib/esm/overlay/creator/index.js",
+      "require": "./lib/esm/overlay/creator/index.js",
+      "default": "./lib/esm/overlay/creator/index.js"
     },
     "./switch/creator": {
-      "import": "./lib/esm/switch/creator/index.jsx",
-      "types": "./lib/esm/switch/creator/index.d.ts"
+      "types": "./lib/esm/switch/creator/index.d.ts",
+      "import": "./lib/esm/switch/creator/index.js",
+      "require": "./lib/esm/switch/creator/index.js",
+      "default": "./lib/esm/switch/creator/index.js"
     },
     "./switch/aria": {
-      "import": "./lib/esm/switch/aria/index.jsx",
-      "types": "./lib/esm/switch/aria/index.d.ts"
+      "types": "./lib/esm/switch/aria/index.d.ts",
+      "import": "./lib/esm/switch/aria/index.js",
+      "require": "./lib/esm/switch/aria/index.js",
+      "default": "./lib/esm/switch/aria/index.js"
     },
     "./textarea/creator": {
-      "import": "./lib/esm/textarea/creator/index.jsx",
-      "types": "./lib/esm/textarea/creator/index.d.ts"
+      "types": "./lib/esm/textarea/creator/index.d.ts",
+      "import": "./lib/esm/textarea/creator/index.js",
+      "require": "./lib/esm/textarea/creator/index.js",
+      "default": "./lib/esm/textarea/creator/index.js"
     },
     "./slider/creator": {
-      "import": "./lib/esm/slider/creator/index.jsx",
-      "types": "./lib/esm/slider/creator/index.d.ts"
+      "types": "./lib/esm/slider/creator/index.d.ts",
+      "import": "./lib/esm/slider/creator/index.js",
+      "require": "./lib/esm/slider/creator/index.js",
+      "default": "./lib/esm/slider/creator/index.js"
     },
     "./slider/aria": {
-      "import": "./lib/esm/slider/aria/index.jsx",
-      "types": "./lib/esm/slider/aria/index.d.ts"
+      "types": "./lib/esm/slider/aria/index.d.ts",
+      "import": "./lib/esm/slider/aria/index.js",
+      "require": "./lib/esm/slider/aria/index.js",
+      "default": "./lib/esm/slider/aria/index.js"
     },
     "./actionsheet/creator": {
-      "import": "./lib/esm/actionsheet/creator/index.jsx",
-      "types": "./lib/esm/actionsheet/creator/index.d.ts"
+      "types": "./lib/esm/actionsheet/creator/index.d.ts",
+      "import": "./lib/esm/actionsheet/creator/index.js",
+      "require": "./lib/esm/actionsheet/creator/index.js",
+      "default": "./lib/esm/actionsheet/creator/index.js"
     },
     "./alert-dialogue/creator": {
-      "import": "./lib/esm/alert-dialogue/creator/index.jsx",
-      "types": "./lib/esm/alert-dialogue/creator/index.d.ts"
+      "types": "./lib/esm/alert-dialogue/creator/index.d.ts",
+      "import": "./lib/esm/alert-dialogue/creator/index.js",
+      "require": "./lib/esm/alert-dialogue/creator/index.js",
+      "default": "./lib/esm/alert-dialogue/creator/index.js"
     },
     "./menu/creator": {
-      "import": "./lib/esm/menu/creator/index.jsx",
-      "types": "./lib/esm/menu/creator/index.d.ts"
+      "types": "./lib/esm/menu/creator/index.d.ts",
+      "import": "./lib/esm/menu/creator/index.js",
+      "require": "./lib/esm/menu/creator/index.js",
+      "default": "./lib/esm/menu/creator/index.js"
     },
     "./menu/aria": {
-      "import": "./lib/esm/menu/aria/index.jsx",
-      "types": "./lib/esm/menu/aria/index.d.ts"
+      "types": "./lib/esm/menu/aria/index.d.ts",
+      "import": "./lib/esm/menu/aria/index.js",
+      "require": "./lib/esm/menu/aria/index.js",
+      "default": "./lib/esm/menu/aria/index.js"
     },
     "./modal/creator": {
-      "import": "./lib/esm/modal/creator/index.jsx",
-      "types": "./lib/esm/modal/creator/index.d.ts"
+      "types": "./lib/esm/modal/creator/index.d.ts",
+      "import": "./lib/esm/modal/creator/index.js",
+      "require": "./lib/esm/modal/creator/index.js",
+      "default": "./lib/esm/modal/creator/index.js"
     },
     "./popover/creator": {
-      "import": "./lib/esm/popover/creator/index.jsx",
-      "types": "./lib/esm/popover/creator/index.d.ts"
+      "types": "./lib/esm/popover/creator/index.d.ts",
+      "import": "./lib/esm/popover/creator/index.js",
+      "require": "./lib/esm/popover/creator/index.js",
+      "default": "./lib/esm/popover/creator/index.js"
     },
     "./toast/creator": {
-      "import": "./lib/esm/toast/creator/index.jsx",
-      "types": "./lib/esm/toast/creator/index.d.ts"
+      "types": "./lib/esm/toast/creator/index.d.ts",
+      "import": "./lib/esm/toast/creator/index.js",
+      "require": "./lib/esm/toast/creator/index.js",
+      "default": "./lib/esm/toast/creator/index.js"
     },
     "./tooltip/creator": {
-      "import": "./lib/esm/tooltip/creator/index.jsx",
-      "types": "./lib/esm/tooltip/creator/index.d.ts"
-    }
+      "types": "./lib/esm/tooltip/creator/index.d.ts",
+      "import": "./lib/esm/tooltip/creator/index.js",
+      "require": "./lib/esm/tooltip/creator/index.js",
+      "default": "./lib/esm/tooltip/creator/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "typesVersions": {
     "*": {
       ".": [
         "./lib/esm/index.d.ts"
       ],
-      "./button/aria": [
+      "button/aria": [
         "./lib/esm/button/aria/index.d.ts"
       ],
-      "./button/creator": [
+      "button/creator": [
         "./lib/esm/button/creator/index.d.ts"
       ],
-      "./avatar/creator": [
+      "accordion/aria": [
+        "./lib/esm/accordion/aria/index.d.ts"
+      ],
+      "accordion/creator": [
+        "./lib/esm/accordion/creator/index.d.ts"
+      ],
+      "alert/creator": [
+        "./lib/esm/alert/creator/index.d.ts"
+      ],
+      "avatar/creator": [
         "./lib/esm/avatar/creator/index.d.ts"
       ],
-      "./icon/creator": [
+      "icon/creator": [
         "./lib/esm/icon/creator/index.d.ts"
       ],
-      "./checkbox/creator": [
+      "checkbox/creator": [
         "./lib/esm/checkbox/creator/index.d.ts"
       ],
-      "./checkbox/aria": [
+      "checkbox/aria": [
         "./lib/esm/checkbox/aria/index.d.ts"
       ],
-      "./fab/creator": [
+      "fab/creator": [
         "./lib/esm/fab/creator/index.d.ts"
       ],
-      "./form-control/creator": [
+      "form-control/creator": [
         "./lib/esm/form-control/creator/index.d.ts"
       ],
-      "./input/creator": [
+      "input/creator": [
         "./lib/esm/input/creator/index.d.ts"
       ],
-      "./image/creator": [
+      "image/creator": [
         "./lib/esm/image/creator/index.d.ts"
       ],
-      "./link/creator": [
+      "link/creator": [
         "./lib/esm/link/creator/index.d.ts"
       ],
-      "./pressable/creator": [
+      "pressable/creator": [
         "./lib/esm/pressable/creator/index.d.ts"
       ],
-      "./progress/creator": [
+      "progress/creator": [
         "./lib/esm/progress/creator/index.d.ts"
       ],
-      "./radio/creator": [
+      "radio/creator": [
         "./lib/esm/radio/creator/index.d.ts"
       ],
-      "./radio/aria": [
+      "radio/aria": [
         "./lib/esm/radio/aria/index.d.ts"
       ],
-      "./select/creator": [
+      "select/creator": [
         "./lib/esm/select/creator/index.d.ts"
       ],
-      "./overlay/creator": [
+      "overlay/creator": [
         "./lib/esm/overlay/creator/index.d.ts"
       ],
-      "./actionsheet/creator": [
+      "switch/creator": [
+        "./lib/esm/switch/creator/index.d.ts"
+      ],
+      "switch/aria": [
+        "./lib/esm/switch/aria/index.d.ts"
+      ],
+      "textarea/creator": [
+        "./lib/esm/textarea/creator/index.d.ts"
+      ],
+      "slider/creator": [
+        "./lib/esm/slider/creator/index.d.ts"
+      ],
+      "slider/aria": [
+        "./lib/esm/slider/aria/index.d.ts"
+      ],
+      "actionsheet/creator": [
         "./lib/esm/actionsheet/creator/index.d.ts"
       ],
-      "./alert-dialogue/creator": [
+      "alert-dialogue/creator": [
         "./lib/esm/alert-dialogue/creator/index.d.ts"
       ],
-      "./menu/creator": [
+      "menu/creator": [
         "./lib/esm/menu/creator/index.d.ts"
       ],
-      "./menu/aria": [
+      "menu/aria": [
         "./lib/esm/menu/aria/index.d.ts"
       ],
-      "./modal/creator": [
+      "modal/creator": [
         "./lib/esm/modal/creator/index.d.ts"
       ],
-      "./popover/creator": [
+      "popover/creator": [
         "./lib/esm/popover/creator/index.d.ts"
       ],
-      "./toast/creator": [
+      "toast/creator": [
         "./lib/esm/toast/creator/index.d.ts"
       ],
-      "./tooltip/creator": [
+      "tooltip/creator": [
         "./lib/esm/tooltip/creator/index.d.ts"
       ]
     }
