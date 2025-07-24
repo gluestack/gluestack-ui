@@ -3,29 +3,29 @@ name: Production Package Publishing
 on:
   push:
     branches: [feat/v3]
-    paths:
-      - 'packages/**'
 
 jobs:
-  check-changes:
+  check-changesets:
     runs-on: ubuntu-latest
     outputs:
-      packages-changed: ${{ steps.changes.outputs.packages }}
+      has-changesets: ${{ steps.check-changesets.outputs.has-changesets }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          filters: |
-            packages:
-              - 'packages/**'
+      - name: Check for changesets
+        id: check-changesets
+        run: |
+          if [ -d ".changeset" ] && [ "$(ls -A .changeset/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
+            echo "has-changesets=true" >> $GITHUB_OUTPUT
+          else
+            echo "has-changesets=false" >> $GITHUB_OUTPUT
+          fi
 
   publish-production:
-    needs: check-changes
-    if: needs.check-changes.outputs.packages-changed == 'true'
+    needs: check-changesets
+    if: needs.check-changesets.outputs.has-changesets == 'true'
     runs-on: ubuntu-latest
     outputs:
       published: ${{ steps.publish.outputs.published }}
@@ -317,7 +317,7 @@ jobs:
             });
 
   trigger-vercel-production:
-    needs: [check-changes, publish-production]
+    needs: [check-changesets, publish-production]
     if: needs.publish-production.outputs.published == 'true'
     runs-on: ubuntu-latest
     steps:
