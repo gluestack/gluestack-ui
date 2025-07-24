@@ -9,7 +9,8 @@
   "sideEffects": false,
   "files": [
     "lib",
-    "src"
+    "README.md",
+    "LICENSE"
   ],
   "publishConfig": {
     "access": "public"
@@ -19,7 +20,7 @@
     "build": "tsc -p tsconfig.build.json",
     "watch": "tsc -p tsconfig.build.json --watch",
     "dev": "nodemon --watch src --ext ts,tsx,js,jsx,json --exec 'yarn build && yalc push --private'",
-    "prepare": "yarn clean && yarn build"
+    "prepare": "npm run clean && npm run build"
   },
   "exports": {
     ".": {
