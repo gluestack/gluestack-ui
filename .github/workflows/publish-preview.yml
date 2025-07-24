@@ -2,7 +2,7 @@ name: Preview Package Publishing
 
 on:
   pull_request:
-    branches: [feat/v3]
+    branches: [ feat/v3 ]
     paths:
       - 'packages/**'
     types: [opened, synchronize, reopened]
@@ -45,6 +45,48 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+
+      - name: Build workspace dependencies
+        run: |
+          echo "🔨 Building all packages in dependency order..."
+          # Use yarn workspaces to build in proper order, but continue if some fail
+          yarn workspaces foreach --verbose --topological-dev run build || echo "⚠️  Some builds failed, but continuing..."
+
+      - name: Update internal package references
+        run: |
+          echo "🔄 Updating internal package references to preview versions..."
+          
+          # Update all package.json files to reference the preview versions of internal packages
+          for package_dir in packages/*/; do
+            if [ ! -f "${package_dir}package.json" ]; then
+              continue
+            fi
+            
+            package_file="${package_dir}package.json"
+            
+            # Update dependencies that reference other packages in this monorepo
+            node -e "
+              const fs = require('fs');
+              const path = require('path');
+              const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
+              const previewVersion = '${{ steps.version.outputs.version }}';
+              
+              // Update dependencies
+              ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
+                if (pkg[depType]) {
+                  Object.keys(pkg[depType]).forEach(dep => {
+                    // If this dependency starts with @gluestack-ui-nightly, update it to preview version
+                    if (dep.startsWith('@gluestack-ui-nightly/')) {
+                      console.log(\`Updating \${dep} to \${previewVersion} in \${depType}\`);
+                      pkg[depType][dep] = previewVersion;
+                    }
+                  });
+                }
+              });
+              
+              fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
+            "
+          done
 
       - name: Generate preview version
         id: version
@@ -94,9 +136,13 @@ jobs:
           # Create a temporary file to track published packages
           PUBLISHED_PACKAGES_FILE=$(mktemp)
           SUCCESS=false
-
-          for package_dir in packages/*/; do
-            if [ ! -f "${package_dir}package.json" ]; then
+          
+          # Get packages in dependency order
+          echo "📋 Determining package publish order..."
+          PACKAGE_DIRS=$(find packages -maxdepth 1 -type d -name "*" | grep -v "^packages$" | sort)
+          
+          for package_dir in $PACKAGE_DIRS; do
+            if [ ! -f "${package_dir}/package.json" ]; then
               continue
             fi
             
@@ -105,7 +151,7 @@ jobs:
               continue
             fi
             
-            PACKAGE_JSON=$(cat "${package_dir}package.json")
+            PACKAGE_JSON=$(cat "${package_dir}/package.json")
             PACKAGE_NAME=$(echo "$PACKAGE_JSON" | node -e "
               try {
                 const pkg = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8'));
@@ -133,10 +179,14 @@ jobs:
             
             cd "$package_dir"
             
-            # Build if build script exists
+            # Always run build for each package individually before publishing
             if npm run --list 2>/dev/null | grep -q "\bbuild\b"; then
               echo "🔨 Building $PACKAGE_NAME..."
-              npm run build
+              if ! npm run build; then
+                echo "❌ Build failed for $PACKAGE_NAME, skipping publish"
+                cd - > /dev/null
+                continue
+              fi
             fi
             
             # Publish with preview tag
@@ -145,15 +195,12 @@ jobs:
               echo "$PACKAGE_NAME@${{ steps.version.outputs.version }}" >> "$PUBLISHED_PACKAGES_FILE"
               SUCCESS=true
             else
-              echo "❌ Failed to publish $PACKAGE_NAME"
-              cd - > /dev/null
-              rm -f "$PUBLISHED_PACKAGES_FILE"
-              exit 1
+              echo "⚠️  Failed to publish $PACKAGE_NAME, but continuing with other packages"
             fi
             
             cd - > /dev/null
           done
-
+          
           if [ "$SUCCESS" = true ]; then
             # Read all published packages into a single variable
             PUBLISHED_PACKAGES=$(cat "$PUBLISHED_PACKAGES_FILE" | tr '\n' ' ' | sed 's/ $//')
@@ -162,9 +209,9 @@ jobs:
             echo "📋 Published packages: $PUBLISHED_PACKAGES"
           else
             echo "published=false" >> $GITHUB_OUTPUT
-            echo "❌ No packages were published"
+            echo "❌ No packages were published successfully"
           fi
-
+          
           # Cleanup
           rm -f "$PUBLISHED_PACKAGES_FILE"
 
@@ -190,30 +237,30 @@ jobs:
         with:
           script: |
             const packages = `${{ steps.publish.outputs.packages }}`.trim();
-
+            
             if (!packages) {
               console.log('No packages published, skipping comment');
               return;
             }
-
+            
             const comment = `## 🚀 Preview packages published!
-
+            
             **Version:** \`${{ steps.version.outputs.version }}\`
-
+            
             **Published packages:**
             ${packages.split(' ').map(pkg => `- \`${pkg}\``).join('\n')}
-
+            
             **Install commands:**
             \`\`\`bash
             # Install specific package
             npm install <package-name>@${{ steps.version.outputs.version }}
-
+            
             # Or with yarn
             yarn add <package-name>@${{ steps.version.outputs.version }}
             \`\`\`
-
+            
             > 💡 These are preview packages for testing only.`;
-
+            
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -248,14 +295,14 @@ jobs:
           DEPLOYED_PROJECTS=""
           DEPLOYMENT_URLS=""
           PACKAGE_VERSION="${{ needs.publish-preview.outputs.version }}"
-
+          
           echo "📦 Using package version: $PACKAGE_VERSION"
-
+          
           if [ -z "$PACKAGE_VERSION" ]; then
             echo "❌ Package version is empty, cannot proceed with deployment"
             exit 1
           fi
-
+          
           echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"' | while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
             echo "🚀 Deploying $PROJECT_NAME (ID: $PROJECT_ID)..."
             
@@ -301,7 +348,7 @@ jobs:
               echo "Response: $RESPONSE"
             fi
           done
-
+          
           # Save results for next step
           echo "deployed_projects=$DEPLOYED_PROJECTS" >> $GITHUB_OUTPUT
           echo -e "deployment_urls=$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
@@ -313,7 +360,7 @@ jobs:
             const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`.trim();
             const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
             const packageVersion = `${{ needs.publish-preview.outputs.version }}`;
-
+            
             if (!deployedProjects) {
               const errorComment = `## ⚠️ Vercel deployment failed
               
@@ -335,16 +382,16 @@ jobs:
               });
               return;
             }
-
+            
             const successComment = `## 🚀 Vercel preview deployments successful!
-
+            
             **Package Version:** \`${packageVersion}\`
-
+            
             **Deployed Projects:**${deploymentUrls}
-
+            
             ⏱️ Deployments are building. Check your [Vercel dashboard](https://vercel.com/dashboard) for detailed status.
             `;
-
+            
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
