@@ -1,5 +1,11 @@
 # @gluestack-ui-nightly/core
 
+## 1.0.10
+
+### Patch Changes
+
+- 25f0909: chore: testing Github Actions Workflow
+
 ## 1.0.9
 
 ### Patch Changes
