@@ -1,3 +1,4 @@
+# .github/workflows/preview-publish.yml
 name: Preview Package Publishing
 
 on:
@@ -40,53 +41,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
           cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
-      - name: Build workspace dependencies
-        run: |
-          echo "🔨 Building all packages in dependency order..."
-          # Use yarn workspaces to build in proper order, but continue if some fail
-          yarn workspaces foreach --verbose --topological-dev run build || echo "⚠️  Some builds failed, but continuing..."
-
-      - name: Update internal package references
-        run: |
-          echo "🔄 Updating internal package references to preview versions..."
-
-          # Update all package.json files to reference the preview versions of internal packages
-          for package_dir in packages/*/; do
-            if [ ! -f "${package_dir}package.json" ]; then
-              continue
-            fi
-            
-            package_file="${package_dir}package.json"
-            
-            # Update dependencies that reference other packages in this monorepo
-            node -e "
-              const fs = require('fs');
-              const path = require('path');
-              const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
-              const previewVersion = '${{ steps.version.outputs.version }}';
-              
-              // Update dependencies
-              ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
-                if (pkg[depType]) {
-                  Object.keys(pkg[depType]).forEach(dep => {
-                    // If this dependency starts with @gluestack-ui-nightly, update it to preview version
-                    if (dep.startsWith('@gluestack-ui-nightly/')) {
-                      console.log(\`Updating \${dep} to \${previewVersion} in \${depType}\`);
-                      pkg[depType][dep] = previewVersion;
-                    }
-                  });
-                }
-              });
-              
-              fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
-            "
-          done
 
       - name: Generate preview version
         id: version
@@ -126,39 +85,78 @@ jobs:
             echo "✅ Updated version in $package_file to ${{ steps.version.outputs.version }}"
           done
 
+      - name: Update internal package references
+        run: |
+          echo "🔄 Updating internal package references to preview versions..."
+
+          # Update all package.json files to reference the preview versions of internal packages
+          for package_dir in packages/*/; do
+            if [ ! -f "${package_dir}package.json" ]; then
+              continue
+            fi
+            
+            package_file="${package_dir}package.json"
+            
+            # Update dependencies that reference other packages in this monorepo
+            node -e "
+              const fs = require('fs');
+              const path = require('path');
+              const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
+              const previewVersion = '${{ steps.version.outputs.version }}';
+              
+              // Update dependencies
+              ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
+                if (pkg[depType]) {
+                  Object.keys(pkg[depType]).forEach(dep => {
+                    // If this dependency starts with @gluestack-ui-nightly, update it to preview version
+                    if (dep.startsWith('@gluestack-ui-nightly/')) {
+                      console.log(\`Updating \${dep} to \${previewVersion} in \${depType}\`);
+                      pkg[depType][dep] = previewVersion;
+                    }
+                  });
+                }
+              });
+              
+              fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
+            "
+          done
+
       - name: Setup NPM authentication
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
-      - name: Publish preview packages
+      - name: Publish packages in correct order
         id: publish
         run: |
           # Create a temporary file to track published packages
           PUBLISHED_PACKAGES_FILE=$(mktemp)
           SUCCESS=false
 
-          # Get packages in dependency order
-          echo "📋 Determining package publish order..."
-          PACKAGE_DIRS=$(find packages -maxdepth 1 -type d -name "*" | grep -v "^packages$" | sort)
+          echo "🚀 STARTING EXPLICIT PACKAGE PUBLISHING ORDER"
+          echo "===================================================="
 
-          for package_dir in $PACKAGE_DIRS; do
+          # Function to publish a single package
+          publish_package() {
+            local package_dir="$1"
+            local step_name="$2"
+            
+            echo ""
+            echo "[$step_name] Attempting to publish: $package_dir"
+            
             if [ ! -f "${package_dir}/package.json" ]; then
-              continue
+              echo "[$step_name] ❌ No package.json found in $package_dir"
+              return 1
             fi
             
-            # Skip if it's a node_modules directory
-            if [[ "$package_dir" == *"/node_modules/"* ]]; then
-              continue
-            fi
-            
-            PACKAGE_JSON=$(cat "${package_dir}/package.json")
-            PACKAGE_NAME=$(echo "$PACKAGE_JSON" | node -e "
+            # Get package info
+            local PACKAGE_JSON=$(cat "${package_dir}/package.json")
+            local PACKAGE_NAME=$(echo "$PACKAGE_JSON" | node -e "
               try {
                 const pkg = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8'));
                 console.log(pkg.name || '');
               } catch(e) { console.log(''); }
             ")
-            IS_PRIVATE=$(echo "$PACKAGE_JSON" | node -e "
+            local IS_PRIVATE=$(echo "$PACKAGE_JSON" | node -e "
               try {
                 const pkg = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8'));
                 console.log(pkg.private === true ? 'true' : 'false');
@@ -166,50 +164,165 @@ jobs:
             ")
             
             if [ -z "$PACKAGE_NAME" ]; then
-              echo "⏭️  Skipping package with no name in $package_dir"
-              continue
+              echo "[$step_name] ⏭️  Skipping: No package name found"
+              return 1
             fi
             
             if [ "$IS_PRIVATE" = "true" ]; then
-              echo "⏭️  Skipping private package: $PACKAGE_NAME"
-              continue
+              echo "[$step_name] ⏭️  Skipping: Private package ($PACKAGE_NAME)"
+              return 1
             fi
             
-            echo "📦 Publishing $PACKAGE_NAME from $package_dir..."
+            echo "[$step_name] 📦 Publishing: $PACKAGE_NAME"
             
             cd "$package_dir"
             
-            # Always run build for each package individually before publishing
+            # Install dependencies first to get latest preview packages
+            echo "[$step_name] 📥 Installing dependencies..."
+            npm install || echo "⚠️  Install had issues, but continuing..."
+            
+            # Build the package
             if npm run --list 2>/dev/null | grep -q "\bbuild\b"; then
-              echo "🔨 Building $PACKAGE_NAME..."
+              echo "[$step_name] 🔨 Building $PACKAGE_NAME..."
               if ! npm run build; then
-                echo "❌ Build failed for $PACKAGE_NAME, skipping publish"
+                echo "[$step_name] ❌ Build failed for $PACKAGE_NAME"
                 cd - > /dev/null
-                continue
+                return 1
               fi
             fi
             
             # Publish with preview tag
+            echo "[$step_name] 🚀 Publishing to npm..."
             if npm publish --tag preview --access public; then
-              echo "✅ Successfully published $PACKAGE_NAME@${{ steps.version.outputs.version }}"
+              echo "[$step_name] ✅ SUCCESS: Published $PACKAGE_NAME@${{ steps.version.outputs.version }}"
               echo "$PACKAGE_NAME@${{ steps.version.outputs.version }}" >> "$PUBLISHED_PACKAGES_FILE"
-              SUCCESS=true
+              
+              # Small delay to ensure npm registry has the package
+              echo "[$step_name] ⏳ Waiting 5 seconds for npm propagation..."
+              sleep 5
+              cd - > /dev/null
+              return 0
             else
-              echo "⚠️  Failed to publish $PACKAGE_NAME, but continuing with other packages"
+              echo "[$step_name] ❌ FAILED to publish $PACKAGE_NAME"
+              cd - > /dev/null
+              return 1
             fi
-            
-            cd - > /dev/null
+          }
+
+          # STEP 1: Publish utils package FIRST
+          echo ""
+          echo "🔧 STEP 1: PUBLISHING UTILS PACKAGE"
+          echo "===================================="
+          UTILS_PUBLISHED=false
+
+          # Try common utils directory names
+          for utils_dir in "packages/gluestack-utils" "packages/utils" "packages/gluestack-ui-utils"; do
+            if [ -d "$utils_dir" ]; then
+              echo "Found utils directory: $utils_dir"
+              if publish_package "$utils_dir" "UTILS"; then
+                SUCCESS=true
+                UTILS_PUBLISHED=true
+                break
+              fi
+            fi
           done
+
+          # If not found by directory, search by package name
+          if [ "$UTILS_PUBLISHED" = false ]; then
+            echo "Searching for utils package by name..."
+            for dir in packages/*/; do
+              if [ -f "${dir}package.json" ]; then
+                pkg_name=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync('${dir}package.json')).name || '') } catch(e) { console.log('') }")
+                if [[ "$pkg_name" == *"@gluestack-ui-nightly/utils"* ]]; then
+                  echo "Found utils package by name: $dir → $pkg_name"
+                  if publish_package "$dir" "UTILS"; then
+                    SUCCESS=true
+                    UTILS_PUBLISHED=true
+                    break
+                  fi
+                fi
+              fi
+            done
+          fi
+
+          if [ "$UTILS_PUBLISHED" = false ]; then
+            echo "❌ CRITICAL: Utils package not found or failed to publish!"
+          fi
+
+          # STEP 2: Publish core package SECOND  
+          echo ""
+          echo "🏗️  STEP 2: PUBLISHING CORE PACKAGE"
+          echo "==================================="
+          CORE_PUBLISHED=false
+
+          # Try common core directory names
+          for core_dir in "packages/gluestack-core" "packages/core" "packages/gluestack-ui-core"; do
+            if [ -d "$core_dir" ]; then
+              echo "Found core directory: $core_dir"
+              if publish_package "$core_dir" "CORE"; then
+                SUCCESS=true
+                CORE_PUBLISHED=true
+                break
+              fi
+            fi
+          done
+
+          # If not found by directory, search by package name
+          if [ "$CORE_PUBLISHED" = false ]; then
+            echo "Searching for core package by name..."
+            for dir in packages/*/; do
+              if [ -f "${dir}package.json" ]; then
+                pkg_name=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync('${dir}package.json')).name || '') } catch(e) { console.log('') }")
+                if [[ "$pkg_name" == *"@gluestack-ui-nightly/core"* ]]; then
+                  echo "Found core package by name: $dir → $pkg_name"
+                  if publish_package "$dir" "CORE"; then
+                    SUCCESS=true
+                    CORE_PUBLISHED=true
+                    break
+                  fi
+                fi
+              fi
+            done
+          fi
+
+          # STEP 3: Publish all other packages LAST
+          echo ""
+          echo "📦 STEP 3: PUBLISHING OTHER PACKAGES"
+          echo "===================================="
+
+          for dir in packages/*/; do
+            if [ -f "${dir}package.json" ]; then
+              pkg_name=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync('${dir}package.json')).name || '') } catch(e) { console.log('') }")
+              
+              # Skip if it's utils or core (already published)
+              if [[ "$pkg_name" == *"utils"* ]] || [[ "$pkg_name" == *"core"* ]]; then
+                echo "⏭️  Skipping already processed: $pkg_name"
+                continue
+              fi
+              
+              echo "Found other package: $dir → $pkg_name"
+              if publish_package "$dir" "OTHER"; then
+                SUCCESS=true
+              fi
+            fi
+          done
+
+          echo ""
+          echo "📊 PUBLISHING SUMMARY"
+          echo "===================="
+          echo "Utils published: $UTILS_PUBLISHED"
+          echo "Core published: $CORE_PUBLISHED"
 
           if [ "$SUCCESS" = true ]; then
             # Read all published packages into a single variable
             PUBLISHED_PACKAGES=$(cat "$PUBLISHED_PACKAGES_FILE" | tr '\n' ' ' | sed 's/ $//')
             echo "published=true" >> $GITHUB_OUTPUT
             echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
+            echo "✅ FINAL RESULT: SUCCESS"
             echo "📋 Published packages: $PUBLISHED_PACKAGES"
           else
             echo "published=false" >> $GITHUB_OUTPUT
-            echo "❌ No packages were published successfully"
+            echo "❌ FINAL RESULT: FAILED - No packages were published successfully"
           fi
 
           # Cleanup
@@ -278,7 +391,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
 
       - name: Debug outputs
         run: |
