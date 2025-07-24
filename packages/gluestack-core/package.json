@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui-nightly/core",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "type": "module",
   "main": "lib/esm/index.js",
   "module": "lib/esm/index.js",
