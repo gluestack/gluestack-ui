@@ -2,7 +2,7 @@ name: Preview Package Publishing
 
 on:
   pull_request:
-    branches: [ feat/v3 ]
+    branches: [feat/v3]
     paths:
       - 'packages/**'
     types: [opened, synchronize, reopened]
@@ -81,7 +81,7 @@ jobs:
         run: |
           # Publish only root-level packages in packages/ directory (not node_modules)
           PUBLISHED_PACKAGES=""
-          
+
           find packages -maxdepth 2 -name "package.json" -not -path "*/node_modules/*" -type f | while read file; do
             PACKAGE_DIR=$(dirname "$file")
             PACKAGE_JSON=$(cat "$file")
@@ -116,7 +116,7 @@ jobs:
             
             cd - > /dev/null
           done
-          
+
           echo "published=true" >> $GITHUB_OUTPUT
           echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
 
@@ -136,19 +136,19 @@ jobs:
         with:
           script: |
             const comment = `🚀 **Preview packages published successfully!**
-            
+
             **Version:** \`${{ steps.version.outputs.version }}\`
             **Published packages:** ${{ steps.publish.outputs.packages }}
-            
+
             You can install these preview packages using:
             \`\`\`bash
             npm install <package-name>@${{ steps.version.outputs.version }}
             # or
             yarn add <package-name>@${{ steps.version.outputs.version }}
             \`\`\`
-            
+
             **Note:** These are preview packages and should only be used for testing.`;
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -175,11 +175,11 @@ jobs:
           PROJECT_IDS='${{ secrets.VERCEL_PROJECT_IDS }}'
           DEPLOYED_PROJECTS=""
           DEPLOYMENT_URLS=""
-          
+
           echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"' | while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
             echo "🚀 Deploying $PROJECT_NAME (ID: $PROJECT_ID)..."
             
-            # Create deployment using Vercel API
+            # Create deployment using Vercel API with Git source for code changes
             RESPONSE=$(curl -s -X POST "https://api.vercel.com/v13/deployments" \
               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
               -H "Content-Type: application/json" \
@@ -190,20 +190,23 @@ jobs:
                 \"gitSource\": {
                   \"type\": \"github\",
                   \"ref\": \"${{ github.head_ref }}\",
-                  \"sha\": \"${{ github.sha }}\"
+                  \"sha\": \"${{ github.sha }}\",
+                  \"repoId\": ${{ github.event.repository.id }}
                 },
                 \"meta\": {
                   \"githubCommitSha\": \"${{ github.sha }}\",
                   \"githubCommitAuthorName\": \"${{ github.actor }}\",
                   \"githubCommitMessage\": \"${{ github.event.pull_request.title }}\",
                   \"packageVersion\": \"${{ needs.publish-preview.outputs.version }}\",
-                  \"githubPR\": \"${{ github.event.pull_request.number }}\"
+                  \"githubPR\": \"${{ github.event.pull_request.number }}\",
+                  \"triggeredBy\": \"github-actions\"
                 }
               }")
             
             # Extract deployment URL and ID
             DEPLOYMENT_URL=$(echo "$RESPONSE" | jq -r '.url // empty')
             DEPLOYMENT_ID=$(echo "$RESPONSE" | jq -r '.id // empty')
+            ERROR_MESSAGE=$(echo "$RESPONSE" | jq -r '.error.message // empty')
             
             if [ -n "$DEPLOYMENT_URL" ] && [ -n "$DEPLOYMENT_ID" ]; then
               echo "✅ Successfully triggered deployment for $PROJECT_NAME"
@@ -212,10 +215,13 @@ jobs:
               DEPLOYMENT_URLS="$DEPLOYMENT_URLS\\n- **$PROJECT_NAME**: https://$DEPLOYMENT_URL"
             else
               echo "❌ Failed to deploy $PROJECT_NAME"
+              if [ -n "$ERROR_MESSAGE" ]; then
+                echo "Error: $ERROR_MESSAGE"
+              fi
               echo "Response: $RESPONSE"
             fi
           done
-          
+
           # Save results for next step
           echo "deployed_projects=$DEPLOYED_PROJECTS" >> $GITHUB_OUTPUT
           echo -e "deployment_urls=$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
@@ -226,13 +232,13 @@ jobs:
           script: |
             const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`;
             const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
-            
+
             let comment = `🚀 **Vercel preview deployments triggered!**
-            
+
             **Package Version:** \`${{ needs.publish-preview.outputs.version }}\`
-            
+
             `;
-            
+
             if (deployedProjects) {
               comment += `**Deployed Projects:**${deploymentUrls}
               
@@ -240,7 +246,7 @@ jobs:
             } else {
               comment += `⚠️ No deployments were triggered. Please check the workflow logs.`;
             }
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

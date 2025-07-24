@@ -2,7 +2,7 @@ name: Production Package Publishing
 
 on:
   push:
-    branches: [ feat/v3 ]
+    branches: [feat/v3]
     paths:
       - 'packages/**'
 
@@ -98,7 +98,7 @@ jobs:
         run: |
           echo "🚀 Publishing packages..."
           PUBLISHED_PACKAGES=""
-          
+
           find packages -maxdepth 2 -name "package.json" -not -path "*/node_modules/*" -type f | while read file; do
             PACKAGE_DIR=$(dirname "$file")
             PACKAGE_JSON=$(cat "$file")
@@ -134,7 +134,7 @@ jobs:
             
             cd - > /dev/null
           done
-          
+
           echo "published=true" >> $GITHUB_OUTPUT
           echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
 
@@ -144,7 +144,7 @@ jobs:
         with:
           script: |
             const { execSync } = require('child_process');
-            
+
             // Get latest tag
             let latestTag;
             try {
@@ -152,7 +152,7 @@ jobs:
             } catch (e) {
               latestTag = '';
             }
-            
+
             // Generate changelog
             let changelog = '## Changes\n\n';
             if (latestTag) {
@@ -170,7 +170,7 @@ jobs:
             } else {
               changelog += 'Initial release';
             }
-            
+
             // Create release
             const tagName = `v${{ steps.version.outputs.version }}`;
             await github.rest.repos.createRelease({
@@ -202,11 +202,11 @@ jobs:
           PROJECT_IDS='${{ secrets.VERCEL_PROJECT_IDS }}'
           DEPLOYED_PROJECTS=""
           DEPLOYMENT_URLS=""
-          
+
           echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"' | while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
             echo "🚀 Deploying $PROJECT_NAME to production (ID: $PROJECT_ID)..."
             
-            # Create production deployment using Vercel API
+            # Create production deployment using Vercel API with Git source for code changes
             RESPONSE=$(curl -s -X POST "https://api.vercel.com/v13/deployments" \
               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
               -H "Content-Type: application/json" \
@@ -217,19 +217,22 @@ jobs:
                 \"gitSource\": {
                   \"type\": \"github\",
                   \"ref\": \"feat/v3\",
-                  \"sha\": \"${{ github.sha }}\"
+                  \"sha\": \"${{ github.sha }}\",
+                  \"repoId\": ${{ github.event.repository.id }}
                 },
                 \"meta\": {
                   \"githubCommitSha\": \"${{ github.sha }}\",
                   \"githubCommitAuthorName\": \"${{ github.actor }}\",
                   \"packageVersion\": \"${{ needs.publish-production.outputs.version }}\",
-                  \"deploymentType\": \"production\"
+                  \"deploymentType\": \"production\",
+                  \"triggeredBy\": \"github-actions\"
                 }
               }")
             
             # Extract deployment URL and ID
             DEPLOYMENT_URL=$(echo "$RESPONSE" | jq -r '.url // empty')
             DEPLOYMENT_ID=$(echo "$RESPONSE" | jq -r '.id // empty')
+            ERROR_MESSAGE=$(echo "$RESPONSE" | jq -r '.error.message // empty')
             
             if [ -n "$DEPLOYMENT_URL" ] && [ -n "$DEPLOYMENT_ID" ]; then
               echo "✅ Successfully triggered production deployment for $PROJECT_NAME"
@@ -238,10 +241,13 @@ jobs:
               DEPLOYMENT_URLS="$DEPLOYMENT_URLS\\n- **$PROJECT_NAME**: https://$DEPLOYMENT_URL"
             else
               echo "❌ Failed to deploy $PROJECT_NAME to production"
+              if [ -n "$ERROR_MESSAGE" ]; then
+                echo "Error: $ERROR_MESSAGE"
+              fi
               echo "Response: $RESPONSE"
             fi
           done
-          
+
           # Save results for GitHub release
           echo "deployed_projects=$DEPLOYED_PROJECTS" >> $GITHUB_OUTPUT
           echo -e "deployment_urls=$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
@@ -253,7 +259,7 @@ jobs:
           script: |
             const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`;
             const tagName = `v${{ needs.publish-production.outputs.version }}`;
-            
+
             // Get the release
             let release;
             try {
@@ -266,12 +272,12 @@ jobs:
               console.log('Release not found, skipping deployment URL update');
               return;
             }
-            
+
             // Update release body with deployment URLs
             const updatedBody = release.data.body + 
               '\n\n## 🚀 Deployment URLs\n' + 
               deploymentUrls;
-            
+
             await github.rest.repos.updateRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
