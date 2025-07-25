@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx gluestack-ui-nightly add --all && next build",
-    "build:preview": "npx gluestack-ui-nightly add --all && yarn add @gluestack-ui-nightly/core@preview @gluestack-ui-nightly/utils@preview && next build",
+    "build": "next build",
+    "build:preview": "yarn add @gluestack-ui-nightly/core@preview @gluestack-ui-nightly/utils@preview && next build",
     "start": "next start",
     "lint": "next lint"
   },
