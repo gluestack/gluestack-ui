@@ -103,6 +103,41 @@ function installPackages(packageManager: string): void {
   s.stop('New packages installed.');
 }
 
+// Update registry.tsx file in app folder (Next.js 15)
+async function updateRegistryFile(): Promise<void> {
+  const s = spinner();
+  s.start('Updating registry.tsx...');
+  
+  const registryPath = path.join(process.cwd(), 'app', 'registry.tsx');
+  if (!fs.existsSync(registryPath)) {
+    s.stop('No app/registry.tsx found.');
+    return;
+  }
+
+  try {
+    const content = await fs.readFile(registryPath, 'utf8');
+    let updated = false;
+    let newContent = content;
+    
+    // Replace the flush import
+    const flushImportRegex = /import\s+\{\s*flush\s*\}\s+from\s+['"]@gluestack-ui\/nativewind-utils\/flush['"];?\s*/g;
+    if (flushImportRegex.test(newContent)) {
+      newContent = newContent.replace(flushImportRegex, `import { flush } from "@gluestack-ui-nightly/utils/nativewind-utils";\n`);
+      updated = true;
+    }
+    
+    if (updated) {
+      await fs.writeFile(registryPath, newContent, 'utf8');
+      log.info(`Updated app/registry.tsx`);
+    }
+    
+    s.stop('Registry file updated.');
+  } catch (error) {
+    s.stop('Failed to update registry file.');
+    log.warning(`Failed to update app/registry.tsx: ${error}`);
+  }
+}
+
 // Update tailwind.config.ts file to remove old gluestack plugin
 async function updateTailwindConfig(): Promise<void> {
   const s = spinner();
@@ -126,19 +161,19 @@ async function updateTailwindConfig(): Promise<void> {
       updated = true;
     }
     
-          // Remove the plugin from the plugins array
-      const pluginRegex = /plugins:\s*\[([^\]]*gluestackPlugin[^\]]*)\]/g;
-      newContent = newContent.replace(pluginRegex, (match, pluginsContent) => {
-        // Remove gluestackPlugin from the plugins array
-        const updatedPlugins = pluginsContent
-          .split(',')
-          .map((plugin: string) => plugin.trim())
-          .filter((plugin: string) => !plugin.includes('gluestackPlugin'))
-          .join(', ');
-        
-        updated = true;
-        return `plugins: [${updatedPlugins}]`;
-      });
+    // Remove the plugin from the plugins array
+    const pluginRegex = /plugins:\s*\[([^\]]*gluestackPlugin[^\]]*)\]/g;
+    newContent = newContent.replace(pluginRegex, (match, pluginsContent) => {
+      // Remove gluestackPlugin from the plugins array
+      const updatedPlugins = pluginsContent
+        .split(',')
+        .map((plugin: string) => plugin.trim())
+        .filter((plugin: string) => !plugin.includes('gluestackPlugin'))
+        .join(', ');
+      
+      updated = true;
+      return `plugins: [${updatedPlugins}]`;
+    });
     
     // Clean up empty plugins array
     newContent = newContent.replace(/plugins:\s*\[\s*\]/g, 'plugins: []');
@@ -267,7 +302,7 @@ export const upgrade = new Command()
       installPackages(packageManager);
       removePackages(oldPackages, packageManager);
       cleanAndReinstall(packageManager);
-
+      await updateRegistryFile();
       await updateImports();
       log.success('\x1b[32mUpgrade complete!\x1b[0m');
       log.info('All imports have been updated to use @gluestack-ui-nightly/*');
