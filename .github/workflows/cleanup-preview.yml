@@ -104,12 +104,8 @@ jobs:
               [ -n "$version" ] && echo "  - $version"
             done
             
-            # Filter versions using jq - try multiple patterns
-            echo "🎯 Testing regex pattern: ^0\\.0\\.0-pr-${PR_NUMBER}-[a-f0-9]+$"
-            PREVIEW_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r ".[]? | select(test(\"^0\\.0\\.0-pr-${PR_NUMBER}-[a-f0-9]+$\"))" 2>/dev/null || echo "")
-            
-            # Also try a broader pattern for debugging
-            BROADER_PREVIEW_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r ".[]? | select(test(\"0\\.0\\.0-pr-${PR_NUMBER}\"))" 2>/dev/null || echo "")
+            # Filter versions using broader pattern that catches all PR versions
+            PREVIEW_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r ".[]? | select(test(\"0\\.0\\.0-pr-${PR_NUMBER}\"))" 2>/dev/null || echo "")
             
             if [ -n "$PREVIEW_VERSIONS" ]; then
               echo "📦 Found preview versions for $PACKAGE_NAME:"
@@ -127,47 +123,7 @@ jobs:
                 fi
               done
             else
-              echo "ℹ️  No preview versions found with exact pattern for $PACKAGE_NAME"
-              
-              # Check broader pattern results
-              if [ -n "$BROADER_PREVIEW_VERSIONS" ]; then
-                echo "🔍 Found versions with broader pattern (0.0.0-pr-${PR_NUMBER}):"
-                echo "$BROADER_PREVIEW_VERSIONS" | while read version; do
-                  if [ -n "$version" ] && [ "$version" != "null" ]; then
-                    echo "  - $version (attempting to deprecate anyway)"
-                    echo "🗑️  Deprecating $PACKAGE_NAME@$version..."
-                    
-                    if npm deprecate "$PACKAGE_NAME@$version" "Preview package for closed PR #${PR_NUMBER}"; then
-                      echo "✅ Successfully deprecated $PACKAGE_NAME@$version"
-                      CLEANUP_COUNT=$((CLEANUP_COUNT + 1))
-                    else
-                      echo "⚠️  Failed to deprecate $PACKAGE_NAME@$version"
-                    fi
-                  fi
-                done
-              else
-                # Debug: Show what versions are available that might be related
-                echo "🔍 Checking for any PR-related versions..."
-                PR_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r ".[]? | select(test(\"pr-${PR_NUMBER}\"))" 2>/dev/null || echo "")
-                if [ -n "$PR_VERSIONS" ]; then
-                  echo "🔍 Found versions containing 'pr-${PR_NUMBER}':"
-                  echo "$PR_VERSIONS" | while read version; do
-                    if [ -n "$version" ] && [ "$version" != "null" ]; then
-                      echo "  - $version (attempting to deprecate)"
-                      echo "🗑️  Deprecating $PACKAGE_NAME@$version..."
-                      
-                      if npm deprecate "$PACKAGE_NAME@$version" "Preview package for closed PR #${PR_NUMBER}"; then
-                        echo "✅ Successfully deprecated $PACKAGE_NAME@$version"
-                        CLEANUP_COUNT=$((CLEANUP_COUNT + 1))
-                      else
-                        echo "⚠️  Failed to deprecate $PACKAGE_NAME@$version"
-                      fi
-                    fi
-                  done
-                else
-                  echo "🔍 No versions found containing 'pr-${PR_NUMBER}'"
-                fi
-              fi
+              echo "ℹ️  No preview versions found for $PACKAGE_NAME"
             fi
           done
 
