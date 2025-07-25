@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "build": "expo export --platform web --output-dir dist",
+    "build:preview": "yarn add @gluestack-ui-nightly/core@preview @gluestack-ui-nightly/utils@preview && expo export --platform web --output-dir dist",
     "test": "jest --watchAll"
   },
   "jest": {
