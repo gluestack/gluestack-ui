@@ -1,5 +1,10 @@
 # @gluestack-ui-nightly/core
 
+## 1.2.7
+
+### Patch Changes
+
+- bd7a48d: chore:test
 
 ## 1.2.6
 
@@ -44,8 +49,6 @@
 ## 1.1.0
 
 ### Minor Changes
-
-
 
 ## 1.0.9
 
