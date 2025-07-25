@@ -27,9 +27,6 @@ jobs:
     needs: check-changesets
     if: needs.check-changesets.outputs.has-changesets == 'true'
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      packages: write
     outputs:
       published: ${{ steps.publish.outputs.published }}
       version: ${{ steps.publish.outputs.version }}
@@ -37,7 +34,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -257,116 +253,23 @@ jobs:
             cd - > /dev/null
           done
 
-          # Save final versions for the update step
           echo "published=true" >> $GITHUB_OUTPUT
           echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
 
-          # Create a temporary file with published versions for the next step
-          echo "$PUBLISHED_PACKAGES" > published_versions.txt
-
-      - name: Update and Commit Package Versions
+      - name: Commit version updates
         if: steps.publish.outputs.published == 'true'
         run: |
-          # Pull latest changes to ensure we have the most recent state
-          git pull origin feat/v3
-
-          echo "📝 Updating package.json files with latest versions..."
-
-          # Function to get latest version from npm
-          get_npm_latest_version() {
-            local package_name=$1
-            local latest_version=$(npm view "$package_name" version 2>/dev/null || echo "0.0.0")
-            echo "$latest_version"
-          }
-
-          # Function to update package.json version
-          update_package_version() {
-            local package_dir=$1
-            local package_name=$2
-            
-            echo "🔄 Checking $package_name for version updates..."
-            
-            # Get current version from package.json
-            local current_version=$(node -e "
-              const fs = require('fs');
-              const pkg = JSON.parse(fs.readFileSync('$package_dir/package.json', 'utf8'));
-              console.log(pkg.version);
-            ")
-            
-            # Get latest version from npm
-            local npm_latest=$(get_npm_latest_version "$package_name")
-            
-            echo "📦 Current version: $current_version"
-            echo "📦 NPM latest version: $npm_latest"
-            
-            # Update if npm version is newer
-            if [ "$npm_latest" != "$current_version" ] && [ "$npm_latest" != "0.0.0" ]; then
-              echo "🔄 Updating $package_name from $current_version to $npm_latest..."
-              
-              # Update package.json version
-              node -e "
-                const fs = require('fs');
-                const pkg = JSON.parse(fs.readFileSync('$package_dir/package.json', 'utf8'));
-                pkg.version = '$npm_latest';
-                fs.writeFileSync('$package_dir/package.json', JSON.stringify(pkg, null, 2) + '\n');
-              "
-              
-              echo "✅ Updated $package_name to version $npm_latest"
-            else
-              echo "✅ $package_name is already at latest version ($current_version)"
-            fi
-          }
-
-          # Process all packages
-          find packages -maxdepth 2 -name "package.json" -not -path "*/node_modules/*" -type f | while read file; do
-            PACKAGE_DIR=$(dirname "$file")
-            PACKAGE_JSON=$(cat "$file")
-            PACKAGE_NAME=$(echo "$PACKAGE_JSON" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')).name)")
-            IS_PRIVATE=$(echo "$PACKAGE_JSON" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')).private || false)")
-            
-            if [ "$IS_PRIVATE" = "true" ]; then
-              echo "⏭️  Skipping private package: $PACKAGE_NAME"
-              continue
-            fi
-            
-            update_package_version "$PACKAGE_DIR" "$PACKAGE_NAME"
-          done
-
-          # Also check root package.json if it exists and has a version
-          if [ -f "package.json" ]; then
-            ROOT_PACKAGE_JSON=$(cat "package.json")
-            ROOT_PACKAGE_NAME=$(echo "$ROOT_PACKAGE_JSON" | node -e "
-              const pkg = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8'));
-              console.log(pkg.name || '');
-            ")
-            
-            if [ -n "$ROOT_PACKAGE_NAME" ]; then
-              ROOT_IS_PRIVATE=$(echo "$ROOT_PACKAGE_JSON" | node -e "
-                const pkg = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8'));
-                console.log(pkg.private || false);
-              ")
-              
-              if [ "$ROOT_IS_PRIVATE" != "true" ]; then
-                update_package_version "." "$ROOT_PACKAGE_NAME"
-              fi
-            fi
-          fi
-
-          # Check if there are any uncommitted changes
+          # Check if there are any uncommitted changes (version updates)
           if ! git diff --quiet; then
-            echo "📝 Committing updated package versions..."
+            echo "📝 Committing version updates..."
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git add .
-            git commit -m "Update package.json files with latest npm versions [skip ci]"
+            git commit -m "Update package versions after npm conflict resolution [skip ci]"
             git push
-            echo "✅ Successfully committed and pushed updated package versions"
           else
-            echo "✅ No package version updates needed"
+            echo "✅ No version updates to commit"
           fi
-
-          # Clean up temporary files
-          rm -f published_versions.txt
 
       - name: Create GitHub Release
         if: steps.publish.outputs.published == 'true'
@@ -417,12 +320,8 @@ jobs:
     needs: [check-changesets, publish-production]
     if: needs.publish-production.outputs.published == 'true'
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
