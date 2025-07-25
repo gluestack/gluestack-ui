@@ -1,1 +1,1 @@
-export * from './lib/esm/aria/index.js';
+export * from './lib/esm/aria';

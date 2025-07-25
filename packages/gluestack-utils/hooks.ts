@@ -1,1 +1,1 @@
-export * from './lib/esm/hooks/index.js';
+export * from './lib/esm/hooks';

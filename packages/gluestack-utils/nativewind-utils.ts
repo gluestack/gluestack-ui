@@ -1,1 +1,1 @@
-export * from './lib/esm/nativewind-utils/index.js';
+export * from './lib/esm/nativewind-utils';

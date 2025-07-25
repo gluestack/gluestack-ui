@@ -1,1 +1,1 @@
-export * from './lib/esm/common/index.js';
+export * from './lib/esm/common';

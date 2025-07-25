@@ -16,10 +16,7 @@ modules.forEach(module => {
   // Check if the source directory exists
   if (fs.existsSync(srcPath)) {
     // Create barrel file pointing to source
-    const content = `export * from './src/${module}/index';`;
+    const content = `export * from './lib/esm/${module}';`;
     fs.writeFileSync(barrelPath, content);
-    console.log(`Created: ${barrelPath}`);
   }
 });
-
-console.log('Barrel exports generated successfully!'); 
