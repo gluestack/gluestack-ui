@@ -17,5 +17,5 @@
       }
     },
     "include": ["src"],
-    "exclude": ["lib", "node_modules"]
+    "exclude": ["lib", "node_modules", "**/*.ts"]
   } 

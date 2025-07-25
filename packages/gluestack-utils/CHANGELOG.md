@@ -1,5 +1,11 @@
 # @gluestack-ui-nightly/utils
 
+## 1.0.19
+
+### Patch Changes
+
+- created the barrel files
+
 ## 1.0.18
 
 ### Patch Changes

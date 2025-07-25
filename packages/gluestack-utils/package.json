@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui-nightly/utils",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "Utility functions and hooks for gluestack-ui",
   "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
@@ -26,37 +26,13 @@
       ]
     }
   },
-  "exports": {
-    ".": {
-      "import": "./lib/esm/index.js",
-      "types": "./lib/esm/index.d.ts",
-      "react-native": "./src/index.ts"
-    },
-    "./hooks": {
-      "import": "./lib/esm/hooks/index.js",
-      "types": "./lib/esm/hooks/index.d.ts",
-      "react-native": "./src/hooks/index.ts"
-    },
-    "./aria": {
-      "import": "./lib/esm/aria/index.js",
-      "types": "./lib/esm/aria/index.d.ts",
-      "react-native": "./src/aria/index.ts"
-    },
-    "./nativewind-utils": {
-      "import": "./lib/esm/nativewind-utils/index.js",
-      "types": "./lib/esm/nativewind-utils/index.d.ts",
-      "react-native": "./src/nativewind-utils/index.ts"
-    },
-    "./common": {
-      "import": "./lib/esm/common/index.js",
-      "types": "./lib/esm/common/index.d.ts",
-      "react-native": "./src/common/index.ts"
-    }
-  },
   "sideEffects": false,
   "files": [
     "lib",
-    "src"
+    "nativewind-utils.ts",
+    "aria.ts",
+    "common.ts",
+    "hooks.ts"
   ],
   "scripts": {
     "clean": "rm -rf lib",
