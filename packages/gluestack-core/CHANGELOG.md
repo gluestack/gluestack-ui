@@ -1,16 +1,51 @@
 # @gluestack-ui-nightly/core
 
-## 1.0.12
+
+## 1.2.6
 
 ### Patch Changes
 
-- 133c8c8: chore: test
+- added barrel packages
+- Updated dependencies
+  - @gluestack-ui-nightly/utils@1.0.20
 
-## 1.0.10
+## 1.2.5
 
 ### Patch Changes
 
-- 25f0909: chore: testing Github Actions Workflow
+- created the barrel files
+- Updated dependencies
+  - @gluestack-ui-nightly/utils@1.0.19
+
+## 1.2.4
+
+### Patch Changes
+
+- add the react native imports
+
+## 1.2.3
+
+### Patch Changes
+
+- change node back to bundler
+
+## 1.2.2
+
+### Patch Changes
+
+- put type versions back
+
+## 1.2.1
+
+### Patch Changes
+
+- change to bundler
+
+## 1.1.0
+
+### Minor Changes
+
+
 
 ## 1.0.9
 

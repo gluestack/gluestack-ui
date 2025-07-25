@@ -1,14 +1,42 @@
 {
   "name": "@gluestack-ui-nightly/core",
-  "version": "1.0.12",
-  "type": "module",
-  "main": "lib/esm/index.js",
-  "module": "lib/esm/index.js",
-  "types": "lib/esm/index.d.ts",
+  "version": "1.2.6",
+  "main": "./lib/esm/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "browser": "./lib/esm/index.js",
+  "source": "./src/index.ts",
+
   "license": "MIT",
   "sideEffects": false,
   "files": [
     "lib",
+    "accordion",
+    "actionsheet",
+    "alert",
+    "alert-dialog",
+    "avatar",
+    "button",
+    "checkbox",
+    "fab",
+    "form-control",
+    "icon",
+    "image",
+    "input",
+    "link",
+    "menu",
+    "modal",
+    "overlay",
+    "popover",
+    "pressable",
+    "progress",
+    "radio",
+    "select",
+    "slider",
+    "switch",
+    "textarea",
+    "toast",
+    "tooltip",
     "README.md",
     "LICENSE"
   ],
@@ -17,217 +45,10 @@
   },
   "scripts": {
     "clean": "rm -rf lib",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "node ./scripts/generate-barrel-exports.js && tsc -p tsconfig.build.json",
     "watch": "tsc -p tsconfig.build.json --watch",
     "dev": "nodemon --watch src --ext ts,tsx,js,jsx,json --exec 'yarn build && yalc push --private'",
     "prepare": "npm run clean && npm run build"
-  },
-  "exports": {
-    ".": {
-      "types": "./lib/esm/index.d.ts",
-      "import": "./lib/esm/index.js",
-      "require": "./lib/esm/index.js",
-      "default": "./lib/esm/index.js"
-    },
-    "./button/aria": {
-      "types": "./lib/esm/button/aria/index.d.ts",
-      "import": "./lib/esm/button/aria/index.js",
-      "require": "./lib/esm/button/aria/index.js",
-      "default": "./lib/esm/button/aria/index.js"
-    },
-    "./button/creator": {
-      "types": "./lib/esm/button/creator/index.d.ts",
-      "import": "./lib/esm/button/creator/index.js",
-      "require": "./lib/esm/button/creator/index.js",
-      "default": "./lib/esm/button/creator/index.js"
-    },
-    "./accordion/aria": {
-      "types": "./lib/esm/accordion/aria/index.d.ts",
-      "import": "./lib/esm/accordion/aria/index.js",
-      "require": "./lib/esm/accordion/aria/index.js",
-      "default": "./lib/esm/accordion/aria/index.js"
-    },
-    "./accordion/creator": {
-      "types": "./lib/esm/accordion/creator/index.d.ts",
-      "import": "./lib/esm/accordion/creator/index.js",
-      "require": "./lib/esm/accordion/creator/index.js",
-      "default": "./lib/esm/accordion/creator/index.js"
-    },
-    "./alert/creator": {
-      "types": "./lib/esm/alert/creator/index.d.ts",
-      "import": "./lib/esm/alert/creator/index.js",
-      "require": "./lib/esm/alert/creator/index.js",
-      "default": "./lib/esm/alert/creator/index.js"
-    },
-    "./avatar/creator": {
-      "types": "./lib/esm/avatar/creator/index.d.ts",
-      "import": "./lib/esm/avatar/creator/index.js",
-      "require": "./lib/esm/avatar/creator/index.js",
-      "default": "./lib/esm/avatar/creator/index.js"
-    },
-    "./icon/creator": {
-      "types": "./lib/esm/icon/creator/index.d.ts",
-      "import": "./lib/esm/icon/creator/index.js",
-      "require": "./lib/esm/icon/creator/index.js",
-      "default": "./lib/esm/icon/creator/index.js"
-    },
-    "./checkbox/creator": {
-      "types": "./lib/esm/checkbox/creator/index.d.ts",
-      "import": "./lib/esm/checkbox/creator/index.js",
-      "require": "./lib/esm/checkbox/creator/index.js",
-      "default": "./lib/esm/checkbox/creator/index.js"
-    },
-    "./checkbox/aria": {
-      "types": "./lib/esm/checkbox/aria/index.d.ts",
-      "import": "./lib/esm/checkbox/aria/index.js",
-      "require": "./lib/esm/checkbox/aria/index.js",
-      "default": "./lib/esm/checkbox/aria/index.js"
-    },
-    "./fab/creator": {
-      "types": "./lib/esm/fab/creator/index.d.ts",
-      "import": "./lib/esm/fab/creator/index.js",
-      "require": "./lib/esm/fab/creator/index.js",
-      "default": "./lib/esm/fab/creator/index.js"
-    },
-    "./form-control/creator": {
-      "types": "./lib/esm/form-control/creator/index.d.ts",
-      "import": "./lib/esm/form-control/creator/index.js",
-      "require": "./lib/esm/form-control/creator/index.js",
-      "default": "./lib/esm/form-control/creator/index.js"
-    },
-    "./input/creator": {
-      "types": "./lib/esm/input/creator/index.d.ts",
-      "import": "./lib/esm/input/creator/index.js",
-      "require": "./lib/esm/input/creator/index.js",
-      "default": "./lib/esm/input/creator/index.js"
-    },
-    "./image/creator": {
-      "types": "./lib/esm/image/creator/index.d.ts",
-      "import": "./lib/esm/image/creator/index.js",
-      "require": "./lib/esm/image/creator/index.js",
-      "default": "./lib/esm/image/creator/index.js"
-    },
-    "./link/creator": {
-      "types": "./lib/esm/link/creator/index.d.ts",
-      "import": "./lib/esm/link/creator/index.js",
-      "require": "./lib/esm/link/creator/index.js",
-      "default": "./lib/esm/link/creator/index.js"
-    },
-    "./pressable/creator": {
-      "types": "./lib/esm/pressable/creator/index.d.ts",
-      "import": "./lib/esm/pressable/creator/index.js",
-      "require": "./lib/esm/pressable/creator/index.js",
-      "default": "./lib/esm/pressable/creator/index.js"
-    },
-    "./progress/creator": {
-      "types": "./lib/esm/progress/creator/index.d.ts",
-      "import": "./lib/esm/progress/creator/index.js",
-      "require": "./lib/esm/progress/creator/index.js",
-      "default": "./lib/esm/progress/creator/index.js"
-    },
-    "./radio/creator": {
-      "types": "./lib/esm/radio/creator/index.d.ts",
-      "import": "./lib/esm/radio/creator/index.js",
-      "require": "./lib/esm/radio/creator/index.js",
-      "default": "./lib/esm/radio/creator/index.js"
-    },
-    "./radio/aria": {
-      "types": "./lib/esm/radio/aria/index.d.ts",
-      "import": "./lib/esm/radio/aria/index.js",
-      "require": "./lib/esm/radio/aria/index.js",
-      "default": "./lib/esm/radio/aria/index.js"
-    },
-    "./select/creator": {
-      "types": "./lib/esm/select/creator/index.d.ts",
-      "import": "./lib/esm/select/creator/index.js",
-      "require": "./lib/esm/select/creator/index.js",
-      "default": "./lib/esm/select/creator/index.js"
-    },
-    "./overlay/creator": {
-      "types": "./lib/esm/overlay/creator/index.d.ts",
-      "import": "./lib/esm/overlay/creator/index.js",
-      "require": "./lib/esm/overlay/creator/index.js",
-      "default": "./lib/esm/overlay/creator/index.js"
-    },
-    "./switch/creator": {
-      "types": "./lib/esm/switch/creator/index.d.ts",
-      "import": "./lib/esm/switch/creator/index.js",
-      "require": "./lib/esm/switch/creator/index.js",
-      "default": "./lib/esm/switch/creator/index.js"
-    },
-    "./switch/aria": {
-      "types": "./lib/esm/switch/aria/index.d.ts",
-      "import": "./lib/esm/switch/aria/index.js",
-      "require": "./lib/esm/switch/aria/index.js",
-      "default": "./lib/esm/switch/aria/index.js"
-    },
-    "./textarea/creator": {
-      "types": "./lib/esm/textarea/creator/index.d.ts",
-      "import": "./lib/esm/textarea/creator/index.js",
-      "require": "./lib/esm/textarea/creator/index.js",
-      "default": "./lib/esm/textarea/creator/index.js"
-    },
-    "./slider/creator": {
-      "types": "./lib/esm/slider/creator/index.d.ts",
-      "import": "./lib/esm/slider/creator/index.js",
-      "require": "./lib/esm/slider/creator/index.js",
-      "default": "./lib/esm/slider/creator/index.js"
-    },
-    "./slider/aria": {
-      "types": "./lib/esm/slider/aria/index.d.ts",
-      "import": "./lib/esm/slider/aria/index.js",
-      "require": "./lib/esm/slider/aria/index.js",
-      "default": "./lib/esm/slider/aria/index.js"
-    },
-    "./actionsheet/creator": {
-      "types": "./lib/esm/actionsheet/creator/index.d.ts",
-      "import": "./lib/esm/actionsheet/creator/index.js",
-      "require": "./lib/esm/actionsheet/creator/index.js",
-      "default": "./lib/esm/actionsheet/creator/index.js"
-    },
-    "./alert-dialog/creator": {
-      "types": "./lib/esm/alert-dialog/creator/index.d.ts",
-      "import": "./lib/esm/alert-dialog/creator/index.js",
-      "require": "./lib/esm/alert-dialog/creator/index.js",
-      "default": "./lib/esm/alert-dialog/creator/index.js"
-    },
-    "./menu/creator": {
-      "types": "./lib/esm/menu/creator/index.d.ts",
-      "import": "./lib/esm/menu/creator/index.js",
-      "require": "./lib/esm/menu/creator/index.js",
-      "default": "./lib/esm/menu/creator/index.js"
-    },
-    "./menu/aria": {
-      "types": "./lib/esm/menu/aria/index.d.ts",
-      "import": "./lib/esm/menu/aria/index.js",
-      "require": "./lib/esm/menu/aria/index.js",
-      "default": "./lib/esm/menu/aria/index.js"
-    },
-    "./modal/creator": {
-      "types": "./lib/esm/modal/creator/index.d.ts",
-      "import": "./lib/esm/modal/creator/index.js",
-      "require": "./lib/esm/modal/creator/index.js",
-      "default": "./lib/esm/modal/creator/index.js"
-    },
-    "./popover/creator": {
-      "types": "./lib/esm/popover/creator/index.d.ts",
-      "import": "./lib/esm/popover/creator/index.js",
-      "require": "./lib/esm/popover/creator/index.js",
-      "default": "./lib/esm/popover/creator/index.js"
-    },
-    "./toast/creator": {
-      "types": "./lib/esm/toast/creator/index.d.ts",
-      "import": "./lib/esm/toast/creator/index.js",
-      "require": "./lib/esm/toast/creator/index.js",
-      "default": "./lib/esm/toast/creator/index.js"
-    },
-    "./tooltip/creator": {
-      "types": "./lib/esm/tooltip/creator/index.d.ts",
-      "import": "./lib/esm/tooltip/creator/index.js",
-      "require": "./lib/esm/tooltip/creator/index.js",
-      "default": "./lib/esm/tooltip/creator/index.js"
-    },
-    "./package.json": "./package.json"
   },
   "typesVersions": {
     "*": {
@@ -297,11 +118,11 @@
       "switch/creator": [
         "./lib/esm/switch/creator/index.d.ts"
       ],
-      "switch/aria": [
-        "./lib/esm/switch/aria/index.d.ts"
-      ],
       "textarea/creator": [
         "./lib/esm/textarea/creator/index.d.ts"
+      ],
+      "switch/aria": [
+        "./lib/esm/switch/aria/index.d.ts"
       ],
       "slider/creator": [
         "./lib/esm/slider/creator/index.d.ts"
@@ -336,7 +157,7 @@
     }
   },
   "dependencies": {
-    "@gluestack-ui-nightly/utils": "1.0.16",
+    "@gluestack-ui-nightly/utils": "*",
     "react-native-svg": "^15.12.0"
   },
   "peerDependencies": {
