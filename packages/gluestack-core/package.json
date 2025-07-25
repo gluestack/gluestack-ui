@@ -11,7 +11,6 @@
   "sideEffects": false,
   "files": [
     "lib",
-
     "accordion",
     "actionsheet",
     "alert",
@@ -37,7 +36,7 @@
     "switch",
     "textarea",
     "toast",
-    "tooltip"
+    "tooltip",
     "README.md",
     "LICENSE"
   ],
@@ -122,20 +121,8 @@
       "textarea/creator": [
         "./lib/esm/textarea/creator/index.d.ts"
       ],
-      "slider/creator": [
-        "./lib/esm/slider/creator/index.d.ts"
-      ],
-      "alert-dialog/creator": [
-        "./lib/esm/alert-dialog/creator/index.d.ts"
-      ],
-      "menu/creator": [
-        "./lib/esm/menu/creator/index.d.ts"
-      ],
       "switch/aria": [
         "./lib/esm/switch/aria/index.d.ts"
-      ],
-      "textarea/creator": [
-        "./lib/esm/textarea/creator/index.d.ts"
       ],
       "slider/creator": [
         "./lib/esm/slider/creator/index.d.ts"
