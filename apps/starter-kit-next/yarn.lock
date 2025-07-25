@@ -234,7 +234,7 @@
   dependencies:
     tslib "^2.8.0"
 
-"@gluestack-nightly/ui-next-adapter@^1.0.36":
+"@gluestack-nightly/ui-next-adapter@1.0.36":
   version "1.0.36"
   resolved "https://registry.npmjs.org/@gluestack-nightly/ui-next-adapter/-/ui-next-adapter-1.0.36.tgz#e327f0d8d237fdbd1b946288c7824c0b8736e8f3"
   integrity sha512-b+jCuxmtMCJXoDJfnodLhY6SougYLVVNkNCi4YG+Zkes3IvIJVkU35ZeKIQWiLmD5zH+PZOJ/tpCHqCehZDXmg==
@@ -242,7 +242,7 @@
     find-yarn-workspace-root "^2.0.0"
     fs-extra "^11.1.0"
 
-"@gluestack-ui-nightly/core@^1.0.8":
+"@gluestack-ui-nightly/core@1.0.9":
   version "1.0.9"
   resolved "https://registry.npmjs.org/@gluestack-ui-nightly/core/-/core-1.0.9.tgz#08359a05f0b82d815c15eb23b1f4bf4564fc8e2e"
   integrity sha512-sXkeFxPq6rtq3uMSLNZaVoVPp5bPOQTFrV1eKb59amjz555k/JDgbXbeTS1CwZGNr76LaJbEg34+BawgIgmKLw==
@@ -250,7 +250,7 @@
     "@gluestack-ui-nightly/utils" "*"
     react-native-svg "^15.12.0"
 
-"@gluestack-ui-nightly/utils@*", "@gluestack-ui-nightly/utils@^0.1.15":
+"@gluestack-ui-nightly/utils@*":
   version "0.1.16"
   resolved "https://registry.npmjs.org/@gluestack-ui-nightly/utils/-/utils-0.1.16.tgz#a1d0a825483a49496061b2ad546fb39e06f78888"
   integrity sha512-23ADKc1msn8ST2pQNfc8nPpM8HyFFi01cKN2MTmj6LMMJUzmBMJxPa3jOE66IQUuowO7V0ZQ5G8+mvJrTB+H3w==
@@ -260,7 +260,17 @@
     react-stately "^3.39.0"
     tailwind-variants "0.1.14"
 
-"@gorhom/bottom-sheet@^5.1.6":
+"@gluestack-ui-nightly/utils@1.0.16":
+  version "1.0.16"
+  resolved "https://registry.npmjs.org/@gluestack-ui-nightly/utils/-/utils-1.0.16.tgz#d5e616a4efb0d009a535e764dae9fd62d85202e8"
+  integrity sha512-e4uX0TKrfDDKt/Mtpq2pxw4mJC//dsCqKVaRJ1n7cixzJmQvbbFmSdCB/Wa9G7cIo3zPWVoACt/MXl7BrlhJQw==
+  dependencies:
+    dom-helpers "^6.0.1"
+    react-aria "^3.41.1"
+    react-stately "^3.39.0"
+    tailwind-variants "0.1.14"
+
+"@gorhom/bottom-sheet@^5.0.0-alpha.11":
   version "5.1.6"
   resolved "https://registry.npmjs.org/@gorhom/bottom-sheet/-/bottom-sheet-5.1.6.tgz#92365894ae4d4eefdbaa577408cfaf62463a9490"
   integrity sha512-0b5tQj4fTaZAjST1PnkCp0p7d8iRqMezibTcqc8Kkn3N23Vn6upORNTD1fH0bLfwRt6e0WnZ7DjAmq315lrcKQ==
