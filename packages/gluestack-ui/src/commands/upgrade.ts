@@ -97,10 +97,62 @@ function installPackages(packageManager: string): void {
   const cmds: { [key: string]: string } = { npm: 'npm install', yarn: 'yarn add', pnpm: 'pnpm i', bun: 'bun add' };
   const cmd = cmds[packageManager];
   if (!cmd) throw new Error('Unsupported package manager');
-  const pkgs = ['@gluestack-ui-nightly/core@*', '@gluestack-ui-nightly/utils@*', 'react-native-svg@15.12.0'];
+  const pkgs = ['@gluestack-ui-nightly/core@*', '@gluestack-ui-nightly/utils@*', 'react-native-svg@15.12.0','@gluestack-nightly/ui-next-adapter@*'];
   const result = spawnSync(cmd, pkgs, { cwd: process.cwd(), stdio: 'inherit', shell: true });
   if (result.error || result.status !== 0) throw new Error('Failed to install new packages');
   s.stop('New packages installed.');
+}
+
+// Update tailwind.config.ts file to remove old gluestack plugin
+async function updateTailwindConfig(): Promise<void> {
+  const s = spinner();
+  s.start('Updating tailwind.config.ts...');
+  
+  const tailwindConfigPath = path.join(process.cwd(), 'tailwind.config.ts');
+  if (!fs.existsSync(tailwindConfigPath)) {
+    s.stop('No tailwind.config.ts found.');
+    return;
+  }
+
+  try {
+    const content = await fs.readFile(tailwindConfigPath, 'utf8');
+    let updated = false;
+    let newContent = content;
+    
+    // Remove the import statement
+    const importRegex = /import\s+gluestackPlugin\s+from\s+['"]@gluestack-ui\/nativewind-utils\/tailwind-plugin['"];?\s*/g;
+    if (importRegex.test(newContent)) {
+      newContent = newContent.replace(importRegex, '');
+      updated = true;
+    }
+    
+          // Remove the plugin from the plugins array
+      const pluginRegex = /plugins:\s*\[([^\]]*gluestackPlugin[^\]]*)\]/g;
+      newContent = newContent.replace(pluginRegex, (match, pluginsContent) => {
+        // Remove gluestackPlugin from the plugins array
+        const updatedPlugins = pluginsContent
+          .split(',')
+          .map((plugin: string) => plugin.trim())
+          .filter((plugin: string) => !plugin.includes('gluestackPlugin'))
+          .join(', ');
+        
+        updated = true;
+        return `plugins: [${updatedPlugins}]`;
+      });
+    
+    // Clean up empty plugins array
+    newContent = newContent.replace(/plugins:\s*\[\s*\]/g, 'plugins: []');
+    
+    if (updated) {
+      await fs.writeFile(tailwindConfigPath, newContent, 'utf8');
+      log.info(`Updated tailwind.config.ts`);
+    }
+    
+    s.stop('Tailwind config updated.');
+  } catch (error) {
+    s.stop('Failed to update tailwind config.');
+    log.warning(`Failed to update tailwind.config.ts: ${error}`);
+  }
 }
 
 // Update import statements in components/ui folder
@@ -211,9 +263,11 @@ export const upgrade = new Command()
       if (fs.existsSync('yarn.lock')) packageManager = 'yarn';
       else if (fs.existsSync('pnpm-lock.yaml')) packageManager = 'pnpm';
       else if (fs.existsSync('bun.lockb')) packageManager = 'bun';
+      await updateTailwindConfig();
       installPackages(packageManager);
       removePackages(oldPackages, packageManager);
       cleanAndReinstall(packageManager);
+
       await updateImports();
       log.success('\x1b[32mUpgrade complete!\x1b[0m');
       log.info('All imports have been updated to use @gluestack-ui-nightly/*');
