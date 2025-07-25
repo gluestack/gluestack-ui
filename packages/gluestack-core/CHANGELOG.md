@@ -1,5 +1,6 @@
 # @gluestack-ui-nightly/core
 
+
 ## 1.2.6
 
 ### Patch Changes
@@ -44,7 +45,7 @@
 
 ### Minor Changes
 
-- make it to bundler
+
 
 ## 1.0.9
 

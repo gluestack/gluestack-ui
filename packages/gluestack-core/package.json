@@ -6,11 +6,12 @@
   "types": "./lib/esm/index.d.ts",
   "browser": "./lib/esm/index.js",
   "source": "./src/index.ts",
-  "react-native": "./src/index.ts",
+
   "license": "MIT",
   "sideEffects": false,
   "files": [
     "lib",
+
     "accordion",
     "actionsheet",
     "alert",
@@ -37,6 +38,8 @@
     "textarea",
     "toast",
     "tooltip"
+    "README.md",
+    "LICENSE"
   ],
   "publishConfig": {
     "access": "public"
@@ -46,15 +49,21 @@
     "build": "tsc -p tsconfig.build.json",
     "watch": "tsc -p tsconfig.build.json --watch",
     "dev": "nodemon --watch src --ext ts,tsx,js,jsx,json --exec 'yarn build && yalc push --private'",
-    "prepare": "yarn clean && yarn build"
+    "prepare": "npm run clean && npm run build"
   },
   "typesVersions": {
     "*": {
-      "actionsheet/creator": [
-        "./lib/esm/actionsheet/creator/index.d.ts"
+      ".": [
+        "./lib/esm/index.d.ts"
+      ],
+      "button/aria": [
+        "./lib/esm/button/aria/index.d.ts"
       ],
       "button/creator": [
         "./lib/esm/button/creator/index.d.ts"
+      ],
+      "accordion/aria": [
+        "./lib/esm/accordion/aria/index.d.ts"
       ],
       "accordion/creator": [
         "./lib/esm/accordion/creator/index.d.ts"
@@ -70,6 +79,9 @@
       ],
       "checkbox/creator": [
         "./lib/esm/checkbox/creator/index.d.ts"
+      ],
+      "checkbox/aria": [
+        "./lib/esm/checkbox/aria/index.d.ts"
       ],
       "fab/creator": [
         "./lib/esm/fab/creator/index.d.ts"
@@ -95,6 +107,9 @@
       "radio/creator": [
         "./lib/esm/radio/creator/index.d.ts"
       ],
+      "radio/aria": [
+        "./lib/esm/radio/aria/index.d.ts"
+      ],
       "select/creator": [
         "./lib/esm/select/creator/index.d.ts"
       ],
@@ -115,6 +130,30 @@
       ],
       "menu/creator": [
         "./lib/esm/menu/creator/index.d.ts"
+      ],
+      "switch/aria": [
+        "./lib/esm/switch/aria/index.d.ts"
+      ],
+      "textarea/creator": [
+        "./lib/esm/textarea/creator/index.d.ts"
+      ],
+      "slider/creator": [
+        "./lib/esm/slider/creator/index.d.ts"
+      ],
+      "slider/aria": [
+        "./lib/esm/slider/aria/index.d.ts"
+      ],
+      "actionsheet/creator": [
+        "./lib/esm/actionsheet/creator/index.d.ts"
+      ],
+      "alert-dialog/creator": [
+        "./lib/esm/alert-dialog/creator/index.d.ts"
+      ],
+      "menu/creator": [
+        "./lib/esm/menu/creator/index.d.ts"
+      ],
+      "menu/aria": [
+        "./lib/esm/menu/aria/index.d.ts"
       ],
       "modal/creator": [
         "./lib/esm/modal/creator/index.d.ts"

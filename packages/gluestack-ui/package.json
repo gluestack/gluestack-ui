@@ -1,6 +1,6 @@
 {
   "name": "gluestack-ui-nightly",
-  "version": "0.7.32",
+  "version": "0.7.33",
   "main": "dist/index.js",
   "bin": {
     "gluestack-ui-nightly": "./dist/index.js"
@@ -29,7 +29,8 @@
     "start": "tsc --watch",
     "watch": "tsc --watch",
     "build": "tsc",
-    "prepare": "tsc",
+    "clean": "rm -rf dist",
+    "prepare": "yarn clean && yarn build",
     "test": "echo 'Test passed'",
     "changeset": "changeset",
     "version": "changeset version",

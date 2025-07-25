@@ -22,15 +22,6 @@ import { Pressable, Text } from 'react-native';
 import { cssInterop } from 'nativewind';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 
-// Enable className support for bottom sheet components
-cssInterop(GorhomBottomSheetBackdrop, { className: 'style' });
-cssInterop(BottomSheetHandle, { className: 'style' });
-cssInterop(GorhomBottomSheetView, { className: 'style' });
-cssInterop(GorhomBottomSheetInput, { className: 'style' });
-cssInterop(GorhomBottomSheetScrollView, { className: 'style' });
-cssInterop(GorhomBottomSheetFlatList, { className: 'style' });
-cssInterop(GorhomBottomSheetSectionList, { className: 'style' });
-
 const bottomSheetBackdropStyle = tva({
   base: 'absolute inset-0 flex-1 touch-none select-none bg-black opacity-0',
 });
@@ -52,7 +43,7 @@ const bottomSheetItemStyle = tva({
 
 const BottomSheetContext = createContext<{
   visible: boolean;
-  bottomSheetRef: React.RefObject<GorhomBottomSheet | null>;
+  bottomSheetRef: React.RefObject<GorhomBottomSheet>;
   handleClose: () => void;
   handleOpen: () => void;
 }>({
@@ -81,13 +72,13 @@ export const BottomSheet = ({
   const handleOpen = useCallback(() => {
     bottomSheetRef.current?.snapToIndex(snapToIndex);
     setVisible(true);
-    if (onOpen) onOpen();
+    onOpen && onOpen();
   }, [onOpen, snapToIndex]);
 
   const handleClose = useCallback(() => {
     bottomSheetRef.current?.close();
     setVisible(false);
-    if (onClose) onClose();
+    onClose && onClose();
   }, [onClose]);
 
   return (
@@ -149,7 +140,7 @@ export const BottomSheetTrigger = ({
   return (
     <Pressable
       onPress={(e) => {
-        if (props.onPress) props.onPress(e);
+        props.onPress && props.onPress(e);
         handleOpen();
       }}
       {...props}
@@ -173,7 +164,7 @@ export const BottomSheetBackdrop = ({
 }: Partial<IBottomSheetBackdrop> & { className?: string }) => {
   return (
     <GorhomBottomSheetBackdrop
-      // @ts-expect-error - cssInterop enables className support
+      // @ts-ignore
       className={bottomSheetBackdropStyle({
         className: className,
       })}
@@ -183,6 +174,8 @@ export const BottomSheetBackdrop = ({
     />
   );
 };
+
+cssInterop(GorhomBottomSheetBackdrop, { className: 'style' });
 
 type IBottomSheetDragIndicator = React.ComponentProps<typeof BottomSheetHandle>;
 
@@ -194,7 +187,7 @@ export const BottomSheetDragIndicator = ({
   return (
     <BottomSheetHandle
       {...props}
-      // @ts-expect-error - cssInterop enables className support
+      // @ts-ignore
       className={bottomSheetIndicatorStyle({
         className: className,
       })}
@@ -203,6 +196,8 @@ export const BottomSheetDragIndicator = ({
     </BottomSheetHandle>
   );
 };
+
+cssInterop(BottomSheetHandle, { className: 'style' });
 
 type IBottomSheetContent = React.ComponentProps<typeof GorhomBottomSheetView>;
 
@@ -226,6 +221,7 @@ export const BottomSheetContent = ({ ...props }: IBottomSheetContent) => {
     return (
       <GorhomBottomSheetView
         {...props}
+        // @ts-ignore
         {...keyDownHandlers}
         className={bottomSheetContentStyle({
           className: props.className,
@@ -242,6 +238,7 @@ export const BottomSheetContent = ({ ...props }: IBottomSheetContent) => {
   return (
     <GorhomBottomSheetView
       {...props}
+      // @ts-ignore
       {...keyDownHandlers}
       className={bottomSheetContentStyle({
         className: props.className,
@@ -251,6 +248,8 @@ export const BottomSheetContent = ({ ...props }: IBottomSheetContent) => {
     </GorhomBottomSheetView>
   );
 };
+
+cssInterop(GorhomBottomSheetView, { className: 'style' });
 
 export const BottomSheetItem = ({
   children,
