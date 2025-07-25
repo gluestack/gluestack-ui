@@ -1,5 +1,11 @@
 # @gluestack-ui-nightly/core
 
+## 1.0.12
+
+### Patch Changes
+
+- 133c8c8: chore: test
+
 ## 1.0.10
 
 ### Patch Changes
