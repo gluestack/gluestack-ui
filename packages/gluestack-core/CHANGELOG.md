@@ -1,5 +1,13 @@
 # @gluestack-ui-nightly/core
 
+## 1.2.6
+
+### Patch Changes
+
+- added barrel packages
+- Updated dependencies
+  - @gluestack-ui-nightly/utils@1.0.20
+
 ## 1.2.5
 
 ### Patch Changes

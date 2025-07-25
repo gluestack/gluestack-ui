@@ -1,5 +1,11 @@
 # @gluestack-ui-nightly/utils
 
+## 1.0.20
+
+### Patch Changes
+
+- added barrel packages
+
 ## 1.0.19
 
 ### Patch Changes
