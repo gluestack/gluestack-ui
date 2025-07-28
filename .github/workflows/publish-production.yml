@@ -6,7 +6,6 @@ on:
     paths-ignore:
       - '**/package-lock.json'
       - '**/yarn.lock'
-      - '.changeset/**'
 
 jobs:
   check-changesets:
