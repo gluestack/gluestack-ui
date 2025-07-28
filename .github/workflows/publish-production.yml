@@ -8,7 +8,58 @@ on:
       - '**/yarn.lock'
 
 jobs:
+  check-automation:
+    runs-on: ubuntu-latest
+    outputs:
+      should-skip: ${{ steps.check-automation.outputs.should-skip }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if triggered by automation
+        id: check-automation
+        run: |
+          # Get the latest commit message and author
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          COMMIT_AUTHOR=$(git log -1 --pretty=%an)
+
+          echo "Commit message: $COMMIT_MESSAGE"
+          echo "Commit author: $COMMIT_AUTHOR"
+
+          # Skip if commit message contains [skip ci] or [ci skip]
+          if echo "$COMMIT_MESSAGE" | grep -q "\[skip ci\]"; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: [skip ci] found in commit message"
+            exit 0
+          fi
+
+          if echo "$COMMIT_MESSAGE" | grep -q "\[ci skip\]"; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: [ci skip] found in commit message"
+            exit 0
+          fi
+
+          # Skip if commit author is GitHub Action
+          if [ "$COMMIT_AUTHOR" = "GitHub Action" ]; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: commit by GitHub Action"
+            exit 0
+          fi
+
+          # Skip if commit message starts with automated version update pattern
+          if echo "$COMMIT_MESSAGE" | grep -q "^chore: update package versions to"; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: automated version update commit"
+            exit 0
+          fi
+
+          echo "should-skip=false" >> $GITHUB_OUTPUT
+          echo "✅ Proceeding with workflow"
+
   check-changesets:
+    needs: check-automation
+    if: needs.check-automation.outputs.should-skip != 'true'
     runs-on: ubuntu-latest
     outputs:
       has-changesets: ${{ steps.check-changesets.outputs.has-changesets }}
@@ -27,8 +78,8 @@ jobs:
           fi
 
   publish-production:
-    needs: check-changesets
-    if: needs.check-changesets.outputs.has-changesets == 'true'
+    needs: [check-automation, check-changesets]
+    if: needs.check-automation.outputs.should-skip != 'true' && needs.check-changesets.outputs.has-changesets == 'true'
     runs-on: ubuntu-latest
     outputs:
       published: ${{ steps.publish.outputs.published }}
@@ -446,21 +497,57 @@ jobs:
               changelog += 'Initial release';
             }
 
-            // Create release
+            // Check if release already exists and create or update accordingly
             const tagName = `v${{ steps.version.outputs.version }}`;
-            await github.rest.repos.createRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag_name: tagName,
-              name: tagName,
-              body: changelog + '\n\n**Published packages:**\n${{ steps.publish.outputs.packages }}',
-              draft: false,
-              prerelease: false
-            });
+            const releaseBody = changelog + '\n\n**Published packages:**\n${{ steps.publish.outputs.packages }}';
+
+            try {
+              // Try to get existing release
+              const existingRelease = await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag: tagName
+              });
+
+              console.log(`Release ${tagName} already exists, updating it...`);
+              
+              // Update existing release
+              await github.rest.repos.updateRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: existingRelease.data.id,
+                name: tagName,
+                body: releaseBody,
+                draft: false,
+                prerelease: false
+              });
+
+              console.log(`✅ Updated existing release ${tagName}`);
+            } catch (error) {
+              if (error.status === 404) {
+                // Release doesn't exist, create it
+                console.log(`Creating new release ${tagName}...`);
+                
+                await github.rest.repos.createRelease({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  tag_name: tagName,
+                  name: tagName,
+                  body: releaseBody,
+                  draft: false,
+                  prerelease: false
+                });
+
+                console.log(`✅ Created new release ${tagName}`);
+              } else {
+                // Re-throw other errors
+                throw error;
+              }
+            }
 
   trigger-vercel-production:
-    needs: [check-changesets, publish-production]
-    if: needs.publish-production.outputs.published == 'true'
+    needs: [check-automation, check-changesets, publish-production]
+    if: needs.check-automation.outputs.should-skip != 'true' && needs.publish-production.outputs.published == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
