@@ -126,20 +126,37 @@ jobs:
               echo "Version changes detected"
               echo "version_changed=true" >> $GITHUB_OUTPUT
               
-              # Get the new version from the first package (assuming monorepo versioning)
-              NEW_VERSION=$(node -e "
-                const fs = require('fs');
-                const packages = fs.readdirSync('packages');
-                for (const pkg of packages) {
+              # Get the new version from the packages that were actually modified by changesets
+              MODIFIED_PACKAGES=$(git diff --name-only HEAD~1 | grep "packages/.*/package.json" || true)
+              
+              if [ -z "$MODIFIED_PACKAGES" ]; then
+                echo "No modified package.json files found, falling back to first non-private package"
+                NEW_VERSION=$(node -e "
+                  const fs = require('fs');
+                  const packages = fs.readdirSync('packages');
+                  for (const pkg of packages) {
+                    try {
+                      const pkgJson = JSON.parse(fs.readFileSync(\`packages/\${pkg}/package.json\`, 'utf8'));
+                      if (!pkgJson.private) {
+                        console.log(pkgJson.version);
+                        break;
+                      }
+                    } catch (e) {}
+                  }
+                ")
+              else
+                echo "📋 Getting version from modified packages: $MODIFIED_PACKAGES"
+                # Get version from the first modified package
+                FIRST_MODIFIED=$(echo "$MODIFIED_PACKAGES" | head -n1)
+                NEW_VERSION=$(node -e "
                   try {
-                    const pkgJson = JSON.parse(fs.readFileSync(\`packages/\${pkg}/package.json\`, 'utf8'));
-                    if (!pkgJson.private) {
-                      console.log(pkgJson.version);
-                      break;
-                    }
-                  } catch (e) {}
-                }
-              ")
+                    const pkg = JSON.parse(require('fs').readFileSync('$FIRST_MODIFIED', 'utf8'));
+                    console.log(pkg.version || '');
+                  } catch(e) { console.log(''); }
+                ")
+              fi
+              
+              echo "📋 Using version: $NEW_VERSION"
               echo "version=${NEW_VERSION}" >> $GITHUB_OUTPUT
             fi
           else
