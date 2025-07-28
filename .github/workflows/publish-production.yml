@@ -348,47 +348,70 @@ jobs:
 
       - name: Create PR for version updates
         if: steps.publish.outputs.published == 'true'
-        run: |
-          # Check if there are any changes to commit
-          if git diff --quiet; then
-            echo "No changes to commit, skipping PR creation"
-            exit 0
-          fi
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN_PAT }} # Use PAT instead of default token
+          script: |
+            const { execSync } = require('child_process');
 
-          # Create a new branch for the PR
-          BRANCH_NAME="update-package-versions-$(date +%s)"
-          COMMIT_MESSAGE="chore: update package versions to ${{ steps.version.outputs.version }} [skip ci]"
+            // Check if there are any changes to commit
+            try {
+              const status = execSync('git status --porcelain', { encoding: 'utf8' });
+              if (!status.trim()) {
+                console.log('No changes to commit, skipping PR creation');
+                return;
+              }
+            } catch (e) {
+              console.log('Error checking git status:', e.message);
+              return;
+            }
 
-          # Configure git
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+            // Create a new branch for the PR
+            const branchName = `update-package-versions-${Date.now()}`;
+            const commitMessage = `chore: update package versions to ${{ steps.version.outputs.version }} [skip ci]`;
 
-          # Create new branch
-          git checkout -b "$BRANCH_NAME"
-
-          # Add and commit changes
-          git add .
-          git commit -m "$COMMIT_MESSAGE"
-
-          # Push the branch
-          git push origin "$BRANCH_NAME"
-
-          # Create PR using GitHub CLI
-          gh pr create \
-            --title "chore: update package versions to ${{ steps.version.outputs.version }}" \
-            --body "## 📦 Package Version Updates
-
-          This PR updates package versions in consuming projects to use the newly published packages.
-
-          **Published packages:**
-          ${{ steps.publish.outputs.packages }}
-
-          **New version:** \`${{ steps.version.outputs.version }}\`
-
-          > ⚠️ **Do not auto-merge this PR** - Review the changes before merging.
-          > This PR was created automatically by the GitHub Actions workflow." \
-            --head "$BRANCH_NAME" \
-            --base "feat/v3"
+            try {
+              // Configure git
+              execSync('git config --local user.email "action@github.com"');
+              execSync('git config --local user.name "GitHub Action"');
+              
+              // Create new branch
+              execSync(`git checkout -b ${branchName}`);
+              
+              // Add and commit changes
+              execSync('git add .');
+              execSync(`git commit -m "${commitMessage}"`);
+              
+              // Push the branch
+              execSync(`git push origin ${branchName}`);
+              
+              // Create PR
+              const pr = await github.rest.pulls.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `chore: update package versions to ${{ steps.version.outputs.version }}`,
+                body: `## 📦 Package Version Updates
+                
+                This PR updates package versions in consuming projects to use the newly published packages.
+                
+                **Published packages:**
+                ${{ steps.publish.outputs.packages }}
+                
+                **New version:** \`${{ steps.version.outputs.version }}\`
+                
+                > ⚠️ **Do not auto-merge this PR** - Review the changes before merging.
+                > This PR was created automatically by the GitHub Actions workflow.
+                `,
+                head: branchName,
+                base: 'feat/v3',
+                draft: false
+              });
+              
+              console.log(`✅ Created PR #${pr.data.number}: ${pr.data.html_url}`);
+              
+            } catch (error) {
+              console.error('Error creating PR:', error.message);
+            }
 
       - name: Create GitHub Release
         if: steps.publish.outputs.published == 'true'
