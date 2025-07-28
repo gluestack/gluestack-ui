@@ -105,7 +105,32 @@ jobs:
             done
             
             # Filter versions using simplified pattern that catches all PR versions
-            PREVIEW_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r ".[]? | select(test(\"pr-${PR_NUMBER}-\"))" 2>/dev/null || echo "")
+            echo "🔍 Filtering versions for pattern: pr-${PR_NUMBER}-"
+            
+            # Primary method: Use jq with proper variable substitution
+            PREVIEW_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r --arg pr_num "$PR_NUMBER" '.[] | select(test("pr-" + $pr_num + "-"))' 2>/dev/null || echo "")
+            
+            # Fallback method: Use grep if jq fails or returns empty
+            if [ -z "$PREVIEW_VERSIONS" ]; then
+              echo "🔄 Trying fallback method with grep..."
+              PREVIEW_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r '.[]' 2>/dev/null | grep "pr-${PR_NUMBER}-" || echo "")
+            fi
+            
+            # Debug: Show what was found
+            if [ -n "$PREVIEW_VERSIONS" ]; then
+              PREVIEW_COUNT=$(echo "$PREVIEW_VERSIONS" | wc -l)
+              echo "✅ Found $PREVIEW_COUNT preview version(s) matching pattern"
+            else
+              echo "❌ No preview versions found matching pattern pr-${PR_NUMBER}-"
+              # Additional debugging: show if any PR versions exist at all
+              ANY_PR_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r '.[] | select(test("pr-[0-9]+-"))' 2>/dev/null || echo "")
+              if [ -n "$ANY_PR_VERSIONS" ]; then
+                echo "🔍 Found other PR versions (for debugging):"
+                echo "$ANY_PR_VERSIONS" | head -3 | while read version; do
+                  [ -n "$version" ] && echo "  - $version"
+                done
+              fi
+            fi
             
             if [ -n "$PREVIEW_VERSIONS" ]; then
               echo "📦 Found preview versions for $PACKAGE_NAME:"
