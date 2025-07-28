@@ -11,6 +11,7 @@ jobs:
     outputs:
       packages-changed: ${{ steps.changes.outputs.packages }}
       other-files-changed: ${{ steps.changes.outputs.other }}
+      changed-packages: ${{ steps.detect-changed-packages.outputs.changed-packages }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -41,6 +42,74 @@ jobs:
               - 'scripts/**'
               - 'templates/**'
               - '!packages/**'
+
+      - name: Detect changed packages
+        id: detect-changed-packages
+        if: steps.changes.outputs.packages == 'true'
+        run: |
+          echo "🔍 Detecting which packages have changed..."
+
+          # Get the base branch for comparison
+          BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+          echo "📋 Comparing against base branch: $BASE_BRANCH"
+
+          # Get list of changed files
+          CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD)
+          echo "📝 Changed files:"
+          echo "$CHANGED_FILES"
+
+          # Initialize array for changed packages
+          CHANGED_PACKAGES=""
+
+          # Check each package directory
+          for package_dir in packages/*/; do
+            if [ ! -d "$package_dir" ]; then
+              continue
+            fi
+            
+            # Get package name from package.json
+            if [ -f "${package_dir}package.json" ]; then
+              PACKAGE_NAME=$(node -e "
+                try {
+                  const pkg = JSON.parse(require('fs').readFileSync('${package_dir}package.json', 'utf8'));
+                  console.log(pkg.name || '');
+                } catch(e) {
+                  console.log('');
+                }
+              ")
+              
+              if [ -n "$PACKAGE_NAME" ]; then
+                # Check if any files in this package have changed
+                PACKAGE_CHANGED=false
+                
+                # Check if package.json itself changed
+                if echo "$CHANGED_FILES" | grep -q "^${package_dir}package.json$"; then
+                  echo "📦 Package $PACKAGE_NAME changed (package.json modified)"
+                  PACKAGE_CHANGED=true
+                fi
+                
+                # Check if any source files in this package changed
+                if echo "$CHANGED_FILES" | grep -q "^${package_dir}"; then
+                  echo "📦 Package $PACKAGE_NAME changed (source files modified)"
+                  PACKAGE_CHANGED=true
+                fi
+                
+                if [ "$PACKAGE_CHANGED" = true ]; then
+                  if [ -n "$CHANGED_PACKAGES" ]; then
+                    CHANGED_PACKAGES="$CHANGED_PACKAGES $PACKAGE_NAME"
+                  else
+                    CHANGED_PACKAGES="$PACKAGE_NAME"
+                  fi
+                  echo "✅ Added $PACKAGE_NAME to changed packages list"
+                else
+                  echo "⏭️  Package $PACKAGE_NAME unchanged, skipping"
+                fi
+              fi
+            fi
+          done
+
+          echo "📋 Final list of changed packages: $CHANGED_PACKAGES"
+          echo "changed-packages=$CHANGED_PACKAGES" >> $GITHUB_OUTPUT
 
   publish-preview:
     needs: check-changes
@@ -75,7 +144,11 @@ jobs:
 
       - name: Update package versions
         run: |
-          # Update only root-level package.json files in packages/ directory (not node_modules)
+          # Get the list of changed packages
+          CHANGED_PACKAGES="${{ needs.check-changes.outputs.changed-packages }}"
+          echo "📦 Updating versions for changed packages: $CHANGED_PACKAGES"
+
+          # Update only the changed packages
           for package_dir in packages/*/; do
             if [ ! -f "${package_dir}package.json" ]; then
               continue
@@ -86,78 +159,116 @@ jobs:
               continue
             fi
             
-            package_file="${package_dir}package.json"
+            # Get package name
+            PACKAGE_NAME=$(node -e "
+              try {
+                const pkg = JSON.parse(require('fs').readFileSync('${package_dir}package.json', 'utf8'));
+                console.log(pkg.name || '');
+              } catch(e) {
+                console.log('');
+              }
+            ")
             
-            # Create backup
-            cp "$package_file" "$package_file.bak"
-            
-            # Update version using Node.js
-            node -e "
-              const fs = require('fs');
-              const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
-              pkg.version = '${{ steps.version.outputs.version }}';
-              fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
-            "
-            
-            echo "✅ Updated version in $package_file to ${{ steps.version.outputs.version }}"
+            # Check if this package is in the changed packages list
+            if echo "$CHANGED_PACKAGES" | grep -q "$PACKAGE_NAME"; then
+              package_file="${package_dir}package.json"
+              
+              # Create backup
+              cp "$package_file" "$package_file.bak"
+              
+              # Update version using Node.js
+              node -e "
+                const fs = require('fs');
+                const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
+                pkg.version = '${{ steps.version.outputs.version }}';
+                fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
+              "
+              
+              echo "✅ Updated version in $package_file to ${{ steps.version.outputs.version }}"
+            else
+              echo "⏭️  Skipping unchanged package: $PACKAGE_NAME"
+            fi
           done
 
       - name: Update internal package references
         run: |
           echo "🔄 Updating internal package references to preview versions..."
 
-          # Update all package.json files to reference the preview versions of internal packages
+          # Get the list of changed packages
+          CHANGED_PACKAGES="${{ needs.check-changes.outputs.changed-packages }}"
+          echo "📦 Updating references for changed packages: $CHANGED_PACKAGES"
+
+          # Update only the changed packages' dependencies
           for package_dir in packages/*/; do
             if [ ! -f "${package_dir}package.json" ]; then
               continue
             fi
             
-            package_file="${package_dir}package.json"
-            
-            # Update dependencies that reference other packages in this monorepo
-            node -e "
-              const fs = require('fs');
-              const path = require('path');
-              const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
-              const previewVersion = '${{ steps.version.outputs.version }}';
-              let changed = false;
-              
-              // Update dependencies
-              ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
-                if (pkg[depType]) {
-                  Object.keys(pkg[depType]).forEach(dep => {
-                    // If this dependency starts with @gluestack-ui-nightly, update it to preview version
-                    if (dep.startsWith('@gluestack-ui-nightly/')) {
-                      console.log(\`Updating \${dep} from \${pkg[depType][dep]} to \${previewVersion} in \${depType}\`);
-                      pkg[depType][dep] = previewVersion;
-                      changed = true;
-                    }
-                  });
-                }
-              });
-              
-              if (changed) {
-                fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
-                console.log('✅ Updated dependencies in $package_file');
-              } else {
-                console.log('ℹ️  No internal dependencies found in $package_file');
+            # Get package name
+            PACKAGE_NAME=$(node -e "
+              try {
+                const pkg = JSON.parse(require('fs').readFileSync('${package_dir}package.json', 'utf8'));
+                console.log(pkg.name || '');
+              } catch(e) {
+                console.log('');
               }
-            "
+            ")
+            
+            # Check if this package is in the changed packages list
+            if echo "$CHANGED_PACKAGES" | grep -q "$PACKAGE_NAME"; then
+              package_file="${package_dir}package.json"
+              
+              # Update dependencies that reference other packages in this monorepo
+              node -e "
+                const fs = require('fs');
+                const path = require('path');
+                const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
+                const previewVersion = '${{ steps.version.outputs.version }}';
+                let changed = false;
+                
+                // Update dependencies
+                ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
+                  if (pkg[depType]) {
+                    Object.keys(pkg[depType]).forEach(dep => {
+                      // If this dependency starts with @gluestack-ui-nightly, update it to preview version
+                      if (dep.startsWith('@gluestack-ui-nightly/')) {
+                        console.log(\`Updating \${dep} from \${pkg[depType][dep]} to \${previewVersion} in \${depType}\`);
+                        pkg[depType][dep] = previewVersion;
+                        changed = true;
+                      }
+                    });
+                  }
+                });
+                
+                if (changed) {
+                  fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
+                  console.log('✅ Updated dependencies in $package_file');
+                } else {
+                  console.log('ℹ️  No internal dependencies found in $package_file');
+                }
+              "
+            else
+              echo "⏭️  Skipping unchanged package: $PACKAGE_NAME"
+            fi
           done
 
       - name: Setup NPM authentication
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
-      - name: Publish packages in correct order
+      - name: Publish changed packages
         id: publish
         run: |
+          # Get the list of changed packages
+          CHANGED_PACKAGES="${{ needs.check-changes.outputs.changed-packages }}"
+          echo "📦 Publishing only changed packages: $CHANGED_PACKAGES"
+
           # Create a temporary file to track published packages
           PUBLISHED_PACKAGES_FILE=$(mktemp)
           SUCCESS=false
 
-          echo "🚀 STARTING EXPLICIT PACKAGE PUBLISHING ORDER"
-          echo "===================================================="
+          echo "🚀 STARTING SELECTIVE PACKAGE PUBLISHING"
+          echo "=========================================="
 
           # Function to publish a single package
           publish_package() {
@@ -322,100 +433,52 @@ jobs:
             fi
           }
 
-          # STEP 1: Publish utils package FIRST
+          # Publish changed packages in dependency order
           echo ""
-          echo "🔧 STEP 1: PUBLISHING UTILS PACKAGE"
-          echo "===================================="
-          UTILS_PUBLISHED=false
+          echo "📦 PUBLISHING CHANGED PACKAGES"
+          echo "=============================="
 
-          # Try common utils directory names
-          for utils_dir in "packages/gluestack-utils" "packages/utils" "packages/gluestack-ui-utils"; do
-            if [ -d "$utils_dir" ]; then
-              echo "Found utils directory: $utils_dir"
-              if publish_package "$utils_dir" "UTILS"; then
-                SUCCESS=true
-                UTILS_PUBLISHED=true
-                break
-              fi
-            fi
-          done
-
-          # If not found by directory, search by package name
-          if [ "$UTILS_PUBLISHED" = false ]; then
-            echo "Searching for utils package by name..."
-            for dir in packages/*/; do
-              if [ -f "${dir}package.json" ]; then
-                pkg_name=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync('${dir}package.json')).name || '') } catch(e) { console.log('') }")
-                if [[ "$pkg_name" == *"@gluestack-ui-nightly/utils"* ]]; then
-                  echo "Found utils package by name: $dir → $pkg_name"
-                  if publish_package "$dir" "UTILS"; then
-                    SUCCESS=true
-                    UTILS_PUBLISHED=true
-                    break
-                  fi
-                fi
-              fi
-            done
-          fi
-
-          if [ "$UTILS_PUBLISHED" = false ]; then
-            echo "❌ CRITICAL: Utils package not found or failed to publish!"
-          fi
-
-          # STEP 2: Publish core package SECOND  
-          echo ""
-          echo "🏗️  STEP 2: PUBLISHING CORE PACKAGE"
-          echo "==================================="
-          CORE_PUBLISHED=false
-
-          # Try common core directory names
-          for core_dir in "packages/gluestack-core" "packages/core" "packages/gluestack-ui-core"; do
-            if [ -d "$core_dir" ]; then
-              echo "Found core directory: $core_dir"
-              if publish_package "$core_dir" "CORE"; then
-                SUCCESS=true
-                CORE_PUBLISHED=true
-                break
-              fi
-            fi
-          done
-
-          # If not found by directory, search by package name
-          if [ "$CORE_PUBLISHED" = false ]; then
-            echo "Searching for core package by name..."
-            for dir in packages/*/; do
-              if [ -f "${dir}package.json" ]; then
-                pkg_name=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync('${dir}package.json')).name || '') } catch(e) { console.log('') }")
-                if [[ "$pkg_name" == *"@gluestack-ui-nightly/core"* ]]; then
-                  echo "Found core package by name: $dir → $pkg_name"
-                  if publish_package "$dir" "CORE"; then
-                    SUCCESS=true
-                    CORE_PUBLISHED=true
-                    break
-                  fi
-                fi
-              fi
-            done
-          fi
-
-          # STEP 3: Publish all other packages LAST
-          echo ""
-          echo "📦 STEP 3: PUBLISHING OTHER PACKAGES"
-          echo "===================================="
-
+          # First, publish utils packages (if changed)
           for dir in packages/*/; do
             if [ -f "${dir}package.json" ]; then
               pkg_name=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync('${dir}package.json')).name || '') } catch(e) { console.log('') }")
               
-              # Skip if it's utils or core (already published)
-              if [[ "$pkg_name" == *"utils"* ]] || [[ "$pkg_name" == *"core"* ]]; then
-                echo "⏭️  Skipping already processed: $pkg_name"
-                continue
+              # Check if this package is in the changed packages list and is a utils package
+              if echo "$CHANGED_PACKAGES" | grep -q "$pkg_name" && [[ "$pkg_name" == *"utils"* ]]; then
+                echo "Found changed utils package: $dir → $pkg_name"
+                if publish_package "$dir" "UTILS"; then
+                  SUCCESS=true
+                fi
               fi
+            fi
+          done
+
+          # Second, publish core packages (if changed)
+          for dir in packages/*/; do
+            if [ -f "${dir}package.json" ]; then
+              pkg_name=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync('${dir}package.json')).name || '') } catch(e) { console.log('') }")
               
-              echo "Found other package: $dir → $pkg_name"
-              if publish_package "$dir" "OTHER"; then
-                SUCCESS=true
+              # Check if this package is in the changed packages list and is a core package
+              if echo "$CHANGED_PACKAGES" | grep -q "$pkg_name" && [[ "$pkg_name" == *"core"* ]]; then
+                echo "Found changed core package: $dir → $pkg_name"
+                if publish_package "$dir" "CORE"; then
+                  SUCCESS=true
+                fi
+              fi
+            fi
+          done
+
+          # Finally, publish all other changed packages
+          for dir in packages/*/; do
+            if [ -f "${dir}package.json" ]; then
+              pkg_name=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync('${dir}package.json')).name || '') } catch(e) { console.log('') }")
+              
+              # Check if this package is in the changed packages list and is not utils or core
+              if echo "$CHANGED_PACKAGES" | grep -q "$pkg_name" && [[ "$pkg_name" != *"utils"* ]] && [[ "$pkg_name" != *"core"* ]]; then
+                echo "Found changed other package: $dir → $pkg_name"
+                if publish_package "$dir" "OTHER"; then
+                  SUCCESS=true
+                fi
               fi
             fi
           done
@@ -423,8 +486,7 @@ jobs:
           echo ""
           echo "📊 PUBLISHING SUMMARY"
           echo "===================="
-          echo "Utils published: $UTILS_PUBLISHED"
-          echo "Core published: $CORE_PUBLISHED"
+          echo "Changed packages: $CHANGED_PACKAGES"
 
           if [ "$SUCCESS" = true ]; then
             # Read all published packages into a single variable
@@ -463,6 +525,7 @@ jobs:
         with:
           script: |
             const packages = `${{ steps.publish.outputs.packages }}`.trim();
+            const changedPackages = `${{ needs.check-changes.outputs.changed-packages }}`.trim();
 
             if (!packages) {
               console.log('No packages published, skipping comment');
@@ -472,11 +535,12 @@ jobs:
             const comment = `## 🚀 Preview packages published!
 
             **Version:** \`${{ steps.version.outputs.version }}\`
+            **Changed packages:** \`${changedPackages}\`
 
             **Published packages:**
             ${packages.split(' ').map(pkg => `- \`${pkg}\``).join('\n')}
 
-            > 💡 These are preview packages for testing only.`;
+            > 💡 These are preview packages for testing only. Only packages that were actually changed have been published.`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
