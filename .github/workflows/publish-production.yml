@@ -89,12 +89,60 @@ jobs:
             echo "version_changed=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Get packages to publish
+        id: packages-to-publish
+        if: steps.version.outputs.version_changed == 'true'
+        run: |
+          echo "🔍 Identifying packages that need to be published..."
+
+          # Get list of modified package.json files (these are the ones that were versioned by changesets)
+          MODIFIED_PACKAGES=$(git diff --name-only HEAD~1 | grep "packages/.*/package.json" || true)
+
+          if [ -z "$MODIFIED_PACKAGES" ]; then
+            echo "❌ No modified package.json files found"
+            echo "packages_to_publish=" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+          echo " Modified packages:"
+          echo "$MODIFIED_PACKAGES"
+
+          # Extract package directories and names
+          PACKAGE_DIRS=""
+          PACKAGE_NAMES=""
+
+          while IFS= read -r pkg_file; do
+            if [ -n "$pkg_file" ]; then
+              PACKAGE_DIR=$(dirname "$pkg_file")
+              PACKAGE_NAME=$(node -e "
+                try {
+                  const pkg = JSON.parse(require('fs').readFileSync('$pkg_file', 'utf8'));
+                  console.log(pkg.name || '');
+                } catch(e) { console.log(''); }
+              ")
+              
+              if [ -n "$PACKAGE_NAME" ]; then
+                PACKAGE_DIRS="$PACKAGE_DIRS $PACKAGE_DIR"
+                PACKAGE_NAMES="$PACKAGE_NAMES $PACKAGE_NAME"
+                echo "✅ Will publish: $PACKAGE_NAME from $PACKAGE_DIR"
+              fi
+            fi
+          done <<< "$MODIFIED_PACKAGES"
+
+          echo "packages_to_publish=$PACKAGE_NAMES" >> $GITHUB_OUTPUT
+          echo "package_dirs=$PACKAGE_DIRS" >> $GITHUB_OUTPUT
+
       - name: Publish packages
         id: publish
         if: steps.version.outputs.version_changed == 'true'
         run: |
           echo "🚀 Publishing packages..."
           PUBLISHED_PACKAGES=""
+          PACKAGE_DIRS="${{ steps.packages-to-publish.outputs.package_dirs }}"
+          PACKAGE_NAMES="${{ steps.packages-to-publish.outputs.packages_to_publish }}"
+
+          echo "📦 Packages to publish: $PACKAGE_NAMES"
+          echo "📁 Package directories: $PACKAGE_DIRS"
 
           # Function to check if version exists on npm
           check_npm_version() {
@@ -133,9 +181,14 @@ jobs:
             "
           }
 
-          find packages -maxdepth 2 -name "package.json" -not -path "*/node_modules/*" -type f | while read file; do
-            PACKAGE_DIR=$(dirname "$file")
-            PACKAGE_JSON=$(cat "$file")
+          # Publish only the packages that were versioned by changesets
+          for package_dir in $PACKAGE_DIRS; do
+            if [ ! -d "$package_dir" ]; then
+              echo "⚠️  Package directory not found: $package_dir"
+              continue
+            fi
+            
+            PACKAGE_JSON=$(cat "$package_dir/package.json")
             PACKAGE_NAME=$(echo "$PACKAGE_JSON" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')).name)")
             IS_PRIVATE=$(echo "$PACKAGE_JSON" | node -e "console.log(JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')).private || false)")
             
@@ -144,9 +197,9 @@ jobs:
               continue
             fi
             
-            echo "📦 Processing $PACKAGE_NAME from $PACKAGE_DIR..."
+            echo "📦 Processing $PACKAGE_NAME from $package_dir..."
             
-            cd "$PACKAGE_DIR"
+            cd "$package_dir"
             
             # Get current package version
             CURRENT_VERSION=$(node -e "console.log(JSON.parse(require('fs').readFileSync('package.json', 'utf8')).version)")
@@ -244,7 +297,7 @@ jobs:
           PACKAGE_NAMES=$(echo "$PUBLISHED_PACKAGES" | sed 's/@[^ ]*//g')
 
           echo "📦 Published packages: $PACKAGE_NAMES"
-          echo "�� Published version: $PUBLISHED_VERSION"
+          echo "📋 Published version: $PUBLISHED_VERSION"
 
           # Update package.json files in apps/ and other consuming directories
           find . -name "package.json" -not -path "*/node_modules/*" -not -path "./packages/*" | while read -r pkg_file; do
@@ -295,69 +348,47 @@ jobs:
 
       - name: Create PR for version updates
         if: steps.publish.outputs.published == 'true'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const { execSync } = require('child_process');
+        run: |
+          # Check if there are any changes to commit
+          if git diff --quiet; then
+            echo "No changes to commit, skipping PR creation"
+            exit 0
+          fi
 
-            // Check if there are any changes to commit
-            try {
-              const status = execSync('git status --porcelain', { encoding: 'utf8' });
-              if (!status.trim()) {
-                console.log('No changes to commit, skipping PR creation');
-                return;
-              }
-            } catch (e) {
-              console.log('Error checking git status:', e.message);
-              return;
-            }
+          # Create a new branch for the PR
+          BRANCH_NAME="update-package-versions-$(date +%s)"
+          COMMIT_MESSAGE="chore: update package versions to ${{ steps.version.outputs.version }} [skip ci]"
 
-            // Create a new branch for the PR
-            const branchName = `update-package-versions-${Date.now()}`;
-            const commitMessage = `chore: update package versions to ${{ steps.version.outputs.version }} [skip ci]`;
+          # Configure git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
 
-            try {
-              // Configure git
-              execSync('git config --local user.email "action@github.com"');
-              execSync('git config --local user.name "GitHub Action"');
-              
-              // Create new branch
-              execSync(`git checkout -b ${branchName}`);
-              
-              // Add and commit changes
-              execSync('git add .');
-              execSync(`git commit -m "${commitMessage}"`);
-              
-              // Push the branch
-              execSync(`git push origin ${branchName}`);
-              
-              // Create PR
-              const pr = await github.rest.pulls.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title: `chore: update package versions to ${{ steps.version.outputs.version }}`,
-                body: `## 📦 Package Version Updates
-                
-                This PR updates package versions in consuming projects to use the newly published packages.
-                
-                **Published packages:**
-                ${{ steps.publish.outputs.packages }}
-                
-                **New version:** \`${{ steps.version.outputs.version }}\`
-                
-                > ⚠️ **Do not auto-merge this PR** - Review the changes before merging.
-                > This PR was created automatically by the GitHub Actions workflow.
-                `,
-                head: branchName,
-                base: 'feat/v3',
-                draft: false
-              });
-              
-              console.log(`✅ Created PR #${pr.data.number}: ${pr.data.html_url}`);
-              
-            } catch (error) {
-              console.error('Error creating PR:', error.message);
-            }
+          # Create new branch
+          git checkout -b "$BRANCH_NAME"
+
+          # Add and commit changes
+          git add .
+          git commit -m "$COMMIT_MESSAGE"
+
+          # Push the branch
+          git push origin "$BRANCH_NAME"
+
+          # Create PR using GitHub CLI
+          gh pr create \
+            --title "chore: update package versions to ${{ steps.version.outputs.version }}" \
+            --body "## 📦 Package Version Updates
+
+          This PR updates package versions in consuming projects to use the newly published packages.
+
+          **Published packages:**
+          ${{ steps.publish.outputs.packages }}
+
+          **New version:** \`${{ steps.version.outputs.version }}\`
+
+          > ⚠️ **Do not auto-merge this PR** - Review the changes before merging.
+          > This PR was created automatically by the GitHub Actions workflow." \
+            --head "$BRANCH_NAME" \
+            --base "feat/v3"
 
       - name: Create GitHub Release
         if: steps.publish.outputs.published == 'true'
