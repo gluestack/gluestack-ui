@@ -82,8 +82,8 @@ jobs:
             echo "📌 Current published version: $CURRENT_VERSION"
             
             # Get all versions with our PR pattern (including the short SHA)
-            # Pattern: 0.0.0-pr-{PR_NUMBER}-{SHORT_SHA}
-            echo "🔍 Searching for versions matching pattern: 0.0.0-pr-${PR_NUMBER}-*"
+            # Pattern: pr-{PR_NUMBER}-{SHORT_SHA}
+            echo "🔍 Searching for versions matching pattern: pr-${PR_NUMBER}-*"
             
             # First, get all versions
             echo "📋 Fetching all versions for $PACKAGE_NAME..."
@@ -104,8 +104,8 @@ jobs:
               [ -n "$version" ] && echo "  - $version"
             done
             
-            # Filter versions using broader pattern that catches all PR versions
-            PREVIEW_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r ".[]? | select(test(\"0\\.0\\.0-pr-${PR_NUMBER}\"))" 2>/dev/null || echo "")
+            # Filter versions using simplified pattern that catches all PR versions
+            PREVIEW_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r ".[]? | select(test(\"pr-${PR_NUMBER}-\"))" 2>/dev/null || echo "")
             
             if [ -n "$PREVIEW_VERSIONS" ]; then
               echo "📦 Found preview versions for $PACKAGE_NAME:"
