@@ -1,5 +1,17 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 0.7.34
+
+### Patch Changes
+
+- add the upgrade command
+
+## 0.7.32
+
+### Patch Changes
+
+- add the react native svg to cli
+
 ## 0.7.31
 
 ### Patch Changes

@@ -23,6 +23,6 @@
       "@nativewind-utils/*": ["src/nativewind-utils/*"]
     }
   },
-  "include": ["src"],
-  "exclude": ["lib", "node_modules"]
+      "include": ["src"],
+    "exclude": ["lib", "node_modules", "*.ts"]
 } 
