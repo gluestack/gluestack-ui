@@ -446,17 +446,53 @@ jobs:
               changelog += 'Initial release';
             }
 
-            // Create release
+            // Check if release already exists and create or update accordingly
             const tagName = `v${{ steps.version.outputs.version }}`;
-            await github.rest.repos.createRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag_name: tagName,
-              name: tagName,
-              body: changelog + '\n\n**Published packages:**\n${{ steps.publish.outputs.packages }}',
-              draft: false,
-              prerelease: false
-            });
+            const releaseBody = changelog + '\n\n**Published packages:**\n${{ steps.publish.outputs.packages }}';
+
+            try {
+              // Try to get existing release
+              const existingRelease = await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag: tagName
+              });
+
+              console.log(`Release ${tagName} already exists, updating it...`);
+              
+              // Update existing release
+              await github.rest.repos.updateRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: existingRelease.data.id,
+                name: tagName,
+                body: releaseBody,
+                draft: false,
+                prerelease: false
+              });
+
+              console.log(`✅ Updated existing release ${tagName}`);
+            } catch (error) {
+              if (error.status === 404) {
+                // Release doesn't exist, create it
+                console.log(`Creating new release ${tagName}...`);
+                
+                await github.rest.repos.createRelease({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  tag_name: tagName,
+                  name: tagName,
+                  body: releaseBody,
+                  draft: false,
+                  prerelease: false
+                });
+
+                console.log(`✅ Created new release ${tagName}`);
+              } else {
+                // Re-throw other errors
+                throw error;
+              }
+            }
 
   trigger-vercel-production:
     needs: [check-changesets, publish-production]
