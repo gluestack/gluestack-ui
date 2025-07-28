@@ -3,6 +3,10 @@ name: Production Package Publishing
 on:
   push:
     branches: [feat/v3]
+    paths-ignore:
+      - '**/package-lock.json'
+      - '**/yarn.lock'
+      - '.changeset/**'
 
 jobs:
   check-changesets:
@@ -30,6 +34,7 @@ jobs:
     outputs:
       published: ${{ steps.publish.outputs.published }}
       version: ${{ steps.publish.outputs.version }}
+      packages: ${{ steps.publish.outputs.packages }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -79,13 +84,6 @@ jobs:
                 }
               ")
               echo "version=${NEW_VERSION}" >> $GITHUB_OUTPUT
-              
-              # Commit version changes
-              git config --local user.email "action@github.com"
-              git config --local user.name "GitHub Action"
-              git add .
-              git commit -m "Version packages [skip ci]"
-              git push
             fi
           else
             echo "No changesets found, skipping versioning"
@@ -104,7 +102,6 @@ jobs:
             local package_name=$1
             local version=$2
             
-            # Check if version exists on npm
             if npm view "$package_name@$version" version >/dev/null 2>&1; then
               echo "true"
             else
@@ -115,8 +112,6 @@ jobs:
           # Function to get latest version from npm
           get_npm_latest_version() {
             local package_name=$1
-            
-            # Get latest version from npm
             local latest_version=$(npm view "$package_name" version 2>/dev/null || echo "0.0.0")
             echo "$latest_version"
           }
@@ -124,7 +119,7 @@ jobs:
           # Function to increment version
           increment_version() {
             local version=$1
-            local increment_type=${2:-patch} # patch, minor, major
+            local increment_type=${2:-patch}
             
             node -e "
               const semver = require('semver');
@@ -165,18 +160,14 @@ jobs:
               echo "⚠️  Version $CURRENT_VERSION already exists on npm for $PACKAGE_NAME"
               echo "🔄 Checking latest version on npm..."
               
-              # Get latest version from npm
               NPM_LATEST=$(get_npm_latest_version "$PACKAGE_NAME")
               echo "📦 Latest version on npm: $NPM_LATEST"
               
-              # Compare versions and update if needed
               if [ "$CURRENT_VERSION" = "$NPM_LATEST" ]; then
                 echo "📈 Incrementing patch version..."
-                # Increment patch version
                 NEW_VERSION=$(increment_version "$CURRENT_VERSION" "patch")
               else
                 echo "📈 Using next version after npm latest..."
-                # Use next version after npm latest
                 NEW_VERSION=$(increment_version "$NPM_LATEST" "patch")
               fi
               
@@ -190,7 +181,6 @@ jobs:
                 fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
               "
               
-              # Update the version variable
               CURRENT_VERSION=$NEW_VERSION
               echo "✅ Updated to version: $CURRENT_VERSION"
             fi
@@ -204,7 +194,6 @@ jobs:
             # Publish to latest tag
             echo "🚀 Publishing $PACKAGE_NAME@$CURRENT_VERSION..."
             
-            # Try to publish with better error handling
             if npm publish --access public; then
               echo "✅ Successfully published $PACKAGE_NAME@$CURRENT_VERSION"
               PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$CURRENT_VERSION"
@@ -212,36 +201,25 @@ jobs:
               PUBLISH_ERROR=$?
               echo "❌ Failed to publish $PACKAGE_NAME@$CURRENT_VERSION (exit code: $PUBLISH_ERROR)"
               
-              # Check if it's a version conflict error
               if [ $PUBLISH_ERROR -eq 1 ]; then
-                echo "🔄 This might be a version conflict. Checking npm registry..."
-                NPM_LATEST=$(get_npm_latest_version "$PACKAGE_NAME")
-                echo "📦 Latest version on npm: $NPM_LATEST"
+                echo "🔄 Version conflict detected. Incrementing version and retrying..."
+                NEW_VERSION=$(increment_version "$CURRENT_VERSION" "patch")
                 
-                if [ "$CURRENT_VERSION" = "$NPM_LATEST" ]; then
-                  echo "🔄 Version conflict detected. Incrementing version and retrying..."
-                  NEW_VERSION=$(increment_version "$CURRENT_VERSION" "patch")
-                  
-                  # Update package.json version
-                  node -e "
-                    const fs = require('fs');
-                    const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-                    pkg.version = '$NEW_VERSION';
-                    fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
-                  "
-                  
-                  CURRENT_VERSION=$NEW_VERSION
-                  echo "🔄 Retrying publish with version $CURRENT_VERSION..."
-                  
-                  if npm publish --access public; then
-                    echo "✅ Successfully published $PACKAGE_NAME@$CURRENT_VERSION"
-                    PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$CURRENT_VERSION"
-                  else
-                    echo "❌ Failed to publish $PACKAGE_NAME@$CURRENT_VERSION after retry"
-                    exit 1
-                  fi
+                node -e "
+                  const fs = require('fs');
+                  const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+                  pkg.version = '$NEW_VERSION';
+                  fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+                "
+                
+                CURRENT_VERSION=$NEW_VERSION
+                echo "🔄 Retrying publish with version $CURRENT_VERSION..."
+                
+                if npm publish --access public; then
+                  echo "✅ Successfully published $PACKAGE_NAME@$CURRENT_VERSION"
+                  PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$CURRENT_VERSION"
                 else
-                  echo "❌ Unexpected publish error for $PACKAGE_NAME"
+                  echo "❌ Failed to publish $PACKAGE_NAME@$CURRENT_VERSION after retry"
                   exit 1
                 fi
               else
@@ -256,20 +234,131 @@ jobs:
           echo "published=true" >> $GITHUB_OUTPUT
           echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
 
-      - name: Commit version updates
+      - name: Update package versions in consuming projects
         if: steps.publish.outputs.published == 'true'
         run: |
-          # Check if there are any uncommitted changes (version updates)
-          if ! git diff --quiet; then
-            echo "📝 Committing version updates..."
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git add .
-            git commit -m "Update package versions after npm conflict resolution [skip ci]"
-            git push
-          else
-            echo "✅ No version updates to commit"
-          fi
+          echo "🔄 Updating package versions in consuming projects..."
+          PUBLISHED_VERSION="${{ steps.version.outputs.version }}"
+          PUBLISHED_PACKAGES="${{ steps.publish.outputs.packages }}"
+
+          # Extract package names from published packages
+          PACKAGE_NAMES=$(echo "$PUBLISHED_PACKAGES" | sed 's/@[^ ]*//g')
+
+          echo "📦 Published packages: $PACKAGE_NAMES"
+          echo "�� Published version: $PUBLISHED_VERSION"
+
+          # Update package.json files in apps/ and other consuming directories
+          find . -name "package.json" -not -path "*/node_modules/*" -not -path "./packages/*" | while read -r pkg_file; do
+            echo "📝 Checking $pkg_file..."
+            
+            # Check if this package.json uses any of our published packages
+            HAS_DEPENDENCIES=false
+            
+            for pkg_name in $PACKAGE_NAMES; do
+              if grep -q "\"$pkg_name\"" "$pkg_file"; then
+                HAS_DEPENDENCIES=true
+                break
+              fi
+            done
+            
+            if [ "$HAS_DEPENDENCIES" = "true" ]; then
+              echo "📝 Updating dependencies in $pkg_file..."
+              
+              # Update dependencies to use the new version
+              node -e "
+                const fs = require('fs');
+                const pkg = JSON.parse(fs.readFileSync('$pkg_file', 'utf8'));
+                const newVersion = '$PUBLISHED_VERSION';
+                const packageNames = '$PACKAGE_NAMES'.split(' ');
+                let changed = false;
+                
+                ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
+                  if (pkg[depType]) {
+                    packageNames.forEach(pkgName => {
+                      if (pkg[depType][pkgName]) {
+                        console.log(\`Updating \${pkgName} from \${pkg[depType][pkgName]} to \${newVersion} in \${depType}\`);
+                        pkg[depType][pkgName] = newVersion;
+                        changed = true;
+                      }
+                    });
+                  }
+                });
+                
+                if (changed) {
+                  fs.writeFileSync('$pkg_file', JSON.stringify(pkg, null, 2) + '\n');
+                  console.log('✅ Updated $pkg_file');
+                } else {
+                  console.log('ℹ️  No updates needed in $pkg_file');
+                }
+              "
+            fi
+          done
+
+      - name: Create PR for version updates
+        if: steps.publish.outputs.published == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { execSync } = require('child_process');
+
+            // Check if there are any changes to commit
+            try {
+              const status = execSync('git status --porcelain', { encoding: 'utf8' });
+              if (!status.trim()) {
+                console.log('No changes to commit, skipping PR creation');
+                return;
+              }
+            } catch (e) {
+              console.log('Error checking git status:', e.message);
+              return;
+            }
+
+            // Create a new branch for the PR
+            const branchName = `update-package-versions-${Date.now()}`;
+            const commitMessage = `chore: update package versions to ${{ steps.version.outputs.version }} [skip ci]`;
+
+            try {
+              // Configure git
+              execSync('git config --local user.email "action@github.com"');
+              execSync('git config --local user.name "GitHub Action"');
+              
+              // Create new branch
+              execSync(`git checkout -b ${branchName}`);
+              
+              // Add and commit changes
+              execSync('git add .');
+              execSync(`git commit -m "${commitMessage}"`);
+              
+              // Push the branch
+              execSync(`git push origin ${branchName}`);
+              
+              // Create PR
+              const pr = await github.rest.pulls.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `chore: update package versions to ${{ steps.version.outputs.version }}`,
+                body: `## 📦 Package Version Updates
+                
+                This PR updates package versions in consuming projects to use the newly published packages.
+                
+                **Published packages:**
+                ${{ steps.publish.outputs.packages }}
+                
+                **New version:** \`${{ steps.version.outputs.version }}\`
+                
+                > ⚠️ **Do not auto-merge this PR** - Review the changes before merging.
+                > This PR was created automatically by the GitHub Actions workflow.
+                `,
+                head: branchName,
+                base: 'feat/v3',
+                draft: false
+              });
+              
+              console.log(`✅ Created PR #${pr.data.number}: ${pr.data.html_url}`);
+              
+            } catch (error) {
+              console.error('Error creating PR:', error.message);
+            }
 
       - name: Create GitHub Release
         if: steps.publish.outputs.published == 'true'
@@ -339,7 +428,7 @@ jobs:
           echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"' | while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
             echo "🚀 Deploying $PROJECT_NAME to production (ID: $PROJECT_ID)..."
             
-            # Create production deployment using Vercel API with Git source for code changes
+            # Create production deployment using Vercel API
             RESPONSE=$(curl -s -X POST "https://api.vercel.com/v13/deployments" \
               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
               -H "Content-Type: application/json" \
