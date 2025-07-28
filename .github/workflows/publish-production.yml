@@ -20,6 +20,13 @@ jobs:
       - name: Check if triggered by automation
         id: check-automation
         run: |
+          # Skip if actor is github-actions or dependabot
+          if [[ "${{ github.actor }}" == "github-actions[bot]" ]] || [[ "${{ github.actor }}" == "dependabot[bot]" ]] || [[ "${{ github.actor }}" == "github-actions" ]]; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: triggered by automated actor (${{ github.actor }})"
+            exit 0
+          fi
+
           # Get the latest commit message and author
           COMMIT_MESSAGE=$(git log -1 --pretty=%B)
           COMMIT_AUTHOR=$(git log -1 --pretty=%an)
@@ -40,10 +47,10 @@ jobs:
             exit 0
           fi
 
-          # Skip if commit author is GitHub Action
-          if [ "$COMMIT_AUTHOR" = "GitHub Action" ]; then
+          # Skip if commit author is automated
+          if [[ "$COMMIT_AUTHOR" == *"github-actions"* ]] || [[ "$COMMIT_AUTHOR" == *"GitHub Action"* ]] || [[ "$COMMIT_AUTHOR" == *"dependabot"* ]]; then
             echo "should-skip=true" >> $GITHUB_OUTPUT
-            echo "🚫 Skipping workflow: commit by GitHub Action"
+            echo "🚫 Skipping workflow: commit by automated author ($COMMIT_AUTHOR)"
             exit 0
           fi
 
