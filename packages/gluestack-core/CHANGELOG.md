@@ -4,6 +4,12 @@
 
 ### Patch Changes
 
+- resolved image types
+
+## 1.2.7
+
+### Patch Changes
+
 - bd7a48d: chore:test
 
 ## 1.2.6
