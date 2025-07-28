@@ -2,7 +2,7 @@
   "name": "@gluestack-nightly/ui-next-adapter",
   "author": "gluestack",
   "description": "Gluestack UI Next Adapter",
-  "version": "1.0.40",
+  "version": "1.0.43",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
