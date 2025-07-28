@@ -1,7 +1,8 @@
 import React from 'react';
 import type { ImageSourcePropType } from 'react-native';
+
 export interface IImageProps {
-  source?: ImageSourcePropType | string;
+  source?: ImageSourcePropType | string ;
   alt?: string;
 }
 

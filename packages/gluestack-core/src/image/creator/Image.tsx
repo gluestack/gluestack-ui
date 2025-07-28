@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 
 export const Image = (StyledImage: any) =>
   forwardRef(({ ...props }: any, ref?: any) => {
-    // Assuming props is an object with a 'source' property
+    // Handle different source formats
     let source = props.source;
 
     if (!source) {
@@ -11,16 +11,21 @@ export const Image = (StyledImage: any) =>
     }
 
     if (typeof source === 'number') {
-      // Handle case where source is a number
-      source = { uri: source };
+      // Handle case where source is a number (require() result)
+      source = source; // Pass the number directly to React Native
     } else if (typeof source === 'object') {
-      if (!source.uri) {
+      if (source.uri) {
+        if (typeof source.uri === 'number') {
+          // Handle case where uri is a require() result
+          source = source.uri;
+        } else {
+          // Regular object with uri string
+          source = source;
+        }
+      } else {
         // Check if source.uri is not defined or falsy
         source = {
           uri: source.default ? source.default.src : source,
-          // If so, set source to an object with a 'uri' property
-          // Use a ternary operator to check if source.default exists,
-          // and if so, use its 'src' property, otherwise, use the original source
         };
       }
     } else if (typeof source === 'string') {
