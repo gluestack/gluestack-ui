@@ -1,5 +1,12 @@
 # @gluestack-nightly/ui-next-adapter
 
+## 1.0.40
+
+### Patch Changes
+
+- 634c9ad: chore: test
+- 867296d: chore: testing updated github actions workflow
+
 ## 1.0.39
 
 ### Patch Changes
