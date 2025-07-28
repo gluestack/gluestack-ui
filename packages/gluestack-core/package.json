@@ -6,7 +6,6 @@
   "types": "./lib/esm/index.d.ts",
   "browser": "./lib/esm/index.js",
   "source": "./src/index.ts",
-
   "license": "MIT",
   "sideEffects": false,
   "files": [

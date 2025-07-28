@@ -1,5 +1,11 @@
 # @gluestack-nightly/ui-next-adapter
 
+## 1.0.39
+
+### Patch Changes
+
+- bd7a48d: chore:test
+
 ## 1.0.37
 
 ### Patch Changes

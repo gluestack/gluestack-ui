@@ -38,10 +38,10 @@ export default function Home() {
         <Box className="flex flex-1 items-center mx-5 lg:my-24 lg:mx-32 py-safe">
           <Box className="gap-10 base:flex-col sm:flex-row justify-between sm:w-[80%] md:flex-1">
             <Box className="bg-background-template py-2 px-6 rounded-full items-center flex-column md:flex-row md:self-start">
-              <Text className="text-white font-normal">
+              <Text className="text-white font-medium">
                 Get started by editing
               </Text>
-              <Text className="text-white font-medium ml-2">./App.tsx</Text>
+              <Text className="text-white font-medium ml-2">./App.tsx or ./app/index.tsx (or whatever entry point you have)</Text>
             </Box>
             <Button
               size="md"
