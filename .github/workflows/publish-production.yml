@@ -361,6 +361,16 @@ jobs:
           echo "published=true" >> $GITHUB_OUTPUT
           echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
 
+          # Update the version output to reflect the actual published version
+          # Extract the version from the first published package
+          if [ -n "$PUBLISHED_PACKAGES" ]; then
+            ACTUAL_VERSION=$(echo "$PUBLISHED_PACKAGES" | tr ' ' '\n' | grep '@' | sed 's/.*@//' | head -n1)
+            echo "📋 Setting actual published version: $ACTUAL_VERSION"
+            echo "version=$ACTUAL_VERSION" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️  No published packages found, keeping original version"
+          fi
+
       - name: Update package versions in consuming projects
         if: steps.publish.outputs.published == 'true'
         run: |
