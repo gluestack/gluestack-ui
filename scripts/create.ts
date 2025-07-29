@@ -3,22 +3,36 @@ import fs from 'fs';
 import { text, log, isCancel, cancel } from '@clack/prompts';
 
 const create = (componentName: string) => {
-  const componentPath = path.join(process.cwd(), 'src', 'components','ui', componentName);
+  const componentPath = path.join(
+    process.cwd(),
+    'src',
+    'components',
+    'ui',
+    componentName
+  );
   fs.mkdirSync(componentPath, { recursive: true });
-  fs.writeFileSync(path.join(componentPath, 'index.tsx'), copyPastableTemplate(componentName));
-  log.success(`✅ Component '${componentName}' created successfully at: ${componentPath}`);
+  fs.writeFileSync(
+    path.join(componentPath, 'index.tsx'),
+    copyPastableTemplate(componentName)
+  );
+  log.success(
+    `✅ Component '${componentName}' created successfully at: ${componentPath}`
+  );
 };
 
-const copyPastableTemplate = (componentName:string) => {
-    return `
-export default ${componentName} = () => {
+const copyPastableTemplate = (componentName: string) => {
+  return `
+import { View, Text } from 'react-native';
+
+export default function ${componentName.toUpperCase()} () {
   return (
     <View>
       <Text>${componentName}</Text>
     </View>
   );
 };
-`
+`;
+};
 const promptForComponentName = async (): Promise<string> => {
   const componentName = await text({
     message: 'Enter component name:',
