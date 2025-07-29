@@ -1,14 +1,24 @@
 import path from 'path';
 import fs from 'fs';
-import { text, log, isCancel, cancel } from '../packages/gluestack-ui/node_modules/@clack/prompts';
+import { text, log, isCancel, cancel } from '@clack/prompts';
 
 const create = (componentName: string) => {
-  const componentPath = path.join(process.cwd(), 'src', 'components', componentName);
+  const componentPath = path.join(process.cwd(), 'src', 'components','ui', componentName);
   fs.mkdirSync(componentPath, { recursive: true });
-  fs.writeFileSync(path.join(componentPath, 'index.tsx'), `export * from './${componentName}';`);
+  fs.writeFileSync(path.join(componentPath, 'index.tsx'), copyPastableTemplate(componentName));
   log.success(`✅ Component '${componentName}' created successfully at: ${componentPath}`);
 };
 
+const copyPastableTemplate = (componentName:string) => {
+    return `
+export default ${componentName} = () => {
+  return (
+    <View>
+      <Text>${componentName}</Text>
+    </View>
+  );
+};
+`
 const promptForComponentName = async (): Promise<string> => {
   const componentName = await text({
     message: 'Enter component name:',

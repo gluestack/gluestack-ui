@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
+    "@clack/prompts": "^0.11.0",
     "chokidar": "^4.0.3",
     "solito": "^4.4.1",
     "ts-node": "^10.9.2",
