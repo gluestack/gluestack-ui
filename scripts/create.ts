@@ -103,7 +103,7 @@ const validComponentName = async (componentName: string): Promise<boolean> => {
   return true;
 };
 
-const create = async (componentName: string, componentType: string, isRSC: boolean = false) => {
+const create = async (componentName: string, componentType: string, isRSC: boolean = false, needsCreator: boolean = false) => {
   const componentPath = path.join(
     process.cwd(),
     'src',
@@ -120,6 +120,25 @@ const create = async (componentName: string, componentType: string, isRSC: boole
     path.join(componentPath, 'index.tsx'),
     copyPastableTemplate(componentName, componentType, isRSC)
   );
+  
+  // Create creator directory and file if needed
+  if (needsCreator) {
+
+    const creatorPath = path.join(
+    process.cwd(),
+    'packages',
+    'gluestack-core',
+    'src',
+    componentName
+  );
+    fs.mkdirSync(creatorPath, { recursive: true });
+    fs.writeFileSync(
+      path.join(creatorPath, 'index.tsx'),
+      creatorTemplate(componentName)
+    );
+    log.success(`✅ Creator directory created at: ${creatorPath}`);
+  }
+  
   // Create docs directory and file
   const docsPath = path.join(componentPath, 'docs');
   fs.mkdirSync(docsPath, { recursive: true });
@@ -163,6 +182,17 @@ export function ${componentName.charAt(0).toUpperCase() + componentName.slice(1)
       <Text>${componentName} - ${componentType}</Text>
     </View>
   );
+};
+`;
+};
+
+const creatorTemplate = (componentName: string) => {
+  return `
+// Creator functionality for ${componentName.charAt(0).toUpperCase() + componentName.slice(1)} component
+// Add your creator logic here
+
+export const create${componentName.charAt(0).toUpperCase() + componentName.slice(1)} = () => {
+  // Implementation here
 };
 `;
 };
@@ -346,10 +376,25 @@ const promptForComponentName = async (): Promise<string> => {
   } while (true);
 };
 
+const promptForCreator = async (): Promise<boolean> => {
+  const needsCreator = await confirm({
+    message: 'Does this component need a creator function?',
+    initialValue: false,
+  });
+
+  if (isCancel(needsCreator)) {
+    cancel('Operation cancelled.');
+    process.exit(0);
+  }
+
+  return needsCreator as boolean;
+};
+
 const main = async () => {
   let componentName = process.argv[2];
   let componentType = process.argv[3];
   let isRSC = process.argv[4] === '--rsc';
+  let needsCreator = false;
 
   if (!componentName) {
     log.info('No component name provided. Please enter one:');
@@ -380,7 +425,14 @@ const main = async () => {
     process.exit(1);
   }
 
-  await create(componentName, componentType, isRSC);
+  if (process.argv[4] === '--creator' || process.argv[5] === '--creator') {
+    needsCreator = true;
+  } else if (!process.argv[4] || process.argv[4] === '--rsc' || process.argv[4] === '--no-rsc') {
+    log.info('Creator functionality not specified. Please confirm:');
+    needsCreator = await promptForCreator();
+  }
+
+  await create(componentName, componentType, isRSC, needsCreator);
 };
 
 main().catch((error) => {
