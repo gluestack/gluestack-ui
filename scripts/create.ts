@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import { text, log, isCancel, cancel, select } from '@clack/prompts';
+import { text, log, isCancel, cancel, select, confirm } from '@clack/prompts';
 
 const readSidebar = async () => {
   try {
@@ -15,7 +15,7 @@ const readSidebar = async () => {
   }
 };
 
-const updateSidebar = async (componentName: string, componentType: string) => {
+const updateSidebar = async (componentName: string, componentType: string, isRSC: boolean = false) => {
   try {
     const sidebarJson = await readSidebar();
     if (!sidebarJson) return false;
@@ -32,8 +32,8 @@ const updateSidebar = async (componentName: string, componentType: string) => {
     // Find the specific category subsection
     const categoryKey = componentType.toLowerCase().replace(/\s+/g, '-');
     const targetSubsection = componentsSection.subsections.find(
-      (subsection: any) =>
-        subsection.type === 'heading' &&
+      (subsection: any) => 
+        subsection.type === 'heading' && 
         subsection.title.toLowerCase().replace(/\s+/g, '-') === categoryKey
     );
 
@@ -43,12 +43,17 @@ const updateSidebar = async (componentName: string, componentType: string) => {
     }
 
     // Add the new component to the category
-    const newComponent = {
+    const newComponent: any = {
       title: componentName.charAt(0).toUpperCase() + componentName.slice(1),
       path: `/ui/docs/components/${componentName.toLowerCase()}`,
       url: `https://i.imgur.com/iLgtAcF.png`,
       darkUrl: `https://i.imgur.com/or5K0UG.png`,
     };
+
+    // Add RSC tag if component is RSC
+    if (isRSC) {
+      newComponent.tags = ['rsc'];
+    }
 
     // Initialize items array if it doesn't exist
     if (!targetSubsection.items) {
@@ -63,7 +68,7 @@ const updateSidebar = async (componentName: string, componentType: string) => {
     fs.writeFileSync(sidebarPath, JSON.stringify(sidebarJson, null, 2));
 
     log.success(
-      `✅ Component '${componentName}' added to sidebar in '${componentType}' category`
+      `✅ Component '${componentName}' added to sidebar in '${componentType}' category${isRSC ? ' with RSC tag' : ''}`
     );
     return true;
   } catch (error) {
@@ -79,7 +84,7 @@ const validComponentName = async (componentName: string): Promise<boolean> => {
   const componentsSection = sidebarJson.navigation.sections.find(
     (section: any) => section.title === 'Components'
   );
-
+  
   if (!componentsSection || !componentsSection.subsections) {
     return false;
   }
@@ -98,7 +103,7 @@ const validComponentName = async (componentName: string): Promise<boolean> => {
   return true;
 };
 
-const create = async (componentName: string, componentType: string) => {
+const create = async (componentName: string, componentType: string, isRSC: boolean = false) => {
   const componentPath = path.join(
     process.cwd(),
     'src',
@@ -106,14 +111,14 @@ const create = async (componentName: string, componentType: string) => {
     'ui',
     componentName
   );
-
+  
   // Create component directory
   fs.mkdirSync(componentPath, { recursive: true });
-
+  
   // Create component file
   fs.writeFileSync(
     path.join(componentPath, 'index.tsx'),
-    copyPastableTemplate(componentName, componentType)
+    copyPastableTemplate(componentName, componentType, isRSC)
   );
   // Create docs directory and file
   const docsPath = path.join(componentPath, 'docs');
@@ -143,12 +148,14 @@ const create = async (componentName: string, componentType: string) => {
   );
 
   // Update sidebar.json
-  await updateSidebar(componentName, componentType);
+  await updateSidebar(componentName, componentType, isRSC);
 };
 
-const copyPastableTemplate = (componentName: string, componentType: string) => {
+const copyPastableTemplate = (componentName: string, componentType: string, isRSC: boolean = false) => {
+  const rscComment = isRSC ? '\n// This component is a React Server Component' : '';
+  
   return `
-import { View, Text } from 'react-native';
+import { View, Text } from 'react-native';${rscComment}
 
 export function ${componentName.charAt(0).toUpperCase() + componentName.slice(1)}() {
   return (
@@ -171,6 +178,7 @@ const metaTemplate = (componentName: string, componentType: string) => {
 }
 `;
 };
+
 const handlebarsTemplate = (componentName: string, componentType: string) => {
   return `
   function Example() {
@@ -286,9 +294,23 @@ const promptForComponentType = async (): Promise<string> => {
   return selectedType as string;
 };
 
+const promptForRSC = async (): Promise<boolean> => {
+  const isRSC = await confirm({
+    message: 'Is this a React Server Component (RSC)?',
+    initialValue: false,
+  });
+
+  if (isCancel(isRSC)) {
+    cancel('Operation cancelled.');
+    process.exit(0);
+  }
+
+  return isRSC as boolean;
+};
+
 const promptForComponentName = async (): Promise<string> => {
   let componentName: string | symbol;
-
+  
   do {
     componentName = await text({
       message: 'Enter component name:',
@@ -309,11 +331,13 @@ const promptForComponentName = async (): Promise<string> => {
     }
 
     const trimmedName = componentName.trim();
-
+    
     // Check if component already exists
     const isValid = await validComponentName(trimmedName);
     if (!isValid) {
-      log.error(`❌ Component '${trimmedName}' already exists in the sidebar`);
+      log.error(
+        `❌ Component '${trimmedName}' already exists in the sidebar`
+      );
       log.info('Please enter a different component name:');
       continue;
     }
@@ -325,6 +349,7 @@ const promptForComponentName = async (): Promise<string> => {
 const main = async () => {
   let componentName = process.argv[2];
   let componentType = process.argv[3];
+  let isRSC = process.argv[4] === '--rsc';
 
   if (!componentName) {
     log.info('No component name provided. Please enter one:');
@@ -345,12 +370,17 @@ const main = async () => {
     componentType = await promptForComponentType();
   }
 
+  if (!isRSC && process.argv[4] !== '--no-rsc') {
+    log.info('RSC status not specified. Please confirm:');
+    isRSC = await promptForRSC();
+  }
+
   if (!componentName) {
     log.error('❌ Component name is required');
     process.exit(1);
   }
 
-  await create(componentName, componentType);
+  await create(componentName, componentType, isRSC);
 };
 
 main().catch((error) => {
