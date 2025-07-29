@@ -32,8 +32,8 @@ const updateSidebar = async (componentName: string, componentType: string) => {
     // Find the specific category subsection
     const categoryKey = componentType.toLowerCase().replace(/\s+/g, '-');
     const targetSubsection = componentsSection.subsections.find(
-      (subsection: any) => 
-        subsection.type === 'heading' && 
+      (subsection: any) =>
+        subsection.type === 'heading' &&
         subsection.title.toLowerCase().replace(/\s+/g, '-') === categoryKey
     );
 
@@ -47,7 +47,7 @@ const updateSidebar = async (componentName: string, componentType: string) => {
       title: componentName.charAt(0).toUpperCase() + componentName.slice(1),
       path: `/ui/docs/components/${componentName.toLowerCase()}`,
       url: `https://i.imgur.com/iLgtAcF.png`,
-      darkUrl: `https://i.imgur.com/or5K0UG.png`
+      darkUrl: `https://i.imgur.com/or5K0UG.png`,
     };
 
     // Initialize items array if it doesn't exist
@@ -62,7 +62,9 @@ const updateSidebar = async (componentName: string, componentType: string) => {
     const sidebarPath = path.join(process.cwd(), 'src', 'sidebar.json');
     fs.writeFileSync(sidebarPath, JSON.stringify(sidebarJson, null, 2));
 
-    log.success(`✅ Component '${componentName}' added to sidebar in '${componentType}' category`);
+    log.success(
+      `✅ Component '${componentName}' added to sidebar in '${componentType}' category`
+    );
     return true;
   } catch (error) {
     log.error(`Error updating sidebar.json: ${error}`);
@@ -77,7 +79,7 @@ const validComponentName = async (componentName: string): Promise<boolean> => {
   const componentsSection = sidebarJson.navigation.sections.find(
     (section: any) => section.title === 'Components'
   );
-  
+
   if (!componentsSection || !componentsSection.subsections) {
     return false;
   }
@@ -104,24 +106,38 @@ const create = async (componentName: string, componentType: string) => {
     'ui',
     componentName
   );
-  
+
   // Create component directory
   fs.mkdirSync(componentPath, { recursive: true });
-  
-  // Create docs directory and file
-  const docsPath = path.join(componentPath, 'docs');
-  fs.mkdirSync(docsPath, { recursive: true });
-  fs.writeFileSync(
-    path.join(docsPath, 'index.mdx'),
-    copyPastableTemplate(componentName, componentType)
-  );
-  
+
   // Create component file
   fs.writeFileSync(
     path.join(componentPath, 'index.tsx'),
     copyPastableTemplate(componentName, componentType)
   );
-  
+  // Create docs directory and file
+  const docsPath = path.join(componentPath, 'docs');
+  fs.mkdirSync(docsPath, { recursive: true });
+  fs.writeFileSync(
+    path.join(docsPath, 'index.mdx'),
+    docsTemplate(componentName, componentType)
+  );
+  // Create component example file
+  const examplesPath = path.join(componentPath, 'examples');
+  fs.mkdirSync(examplesPath, { recursive: true });
+  const basicExamplePath = path.join(examplesPath, 'basic');
+  fs.mkdirSync(basicExamplePath, { recursive: true });
+  fs.writeFileSync(
+    path.join(basicExamplePath, 'meta.json'),
+    metaTemplate(componentName, componentType)
+  );
+  fs.writeFileSync(
+    path.join(basicExamplePath, 'template.handlebars'),
+    handlebarsTemplate(componentName, componentType)
+  );
+
+  // Create component example file
+
   log.success(
     `✅ Component '${componentName}' created successfully at: ${componentPath}`
   );
@@ -141,6 +157,50 @@ export default function ${componentName.charAt(0).toUpperCase() + componentName.
     </View>
   );
 };
+`;
+};
+
+const metaTemplate = (componentName: string, componentType: string) => {
+  return `
+{
+  "title": "Basic",
+  "argTypes": {},
+  "reactLive": {
+    "${componentName.toUpperCase()}": "@/components/ui/${componentName}"
+  }
+}
+`;
+};
+const handlebarsTemplate = (componentName: string, componentType: string) => {
+  return `
+  function Example() {
+  return (
+    <${componentName.toUpperCase()}/>
+  )
+}
+  `;
+};
+
+const docsTemplate = (componentName: string, componentType: string) => {
+  return `
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+# ${componentName.toUpperCase()}
+
+
+This is an illustration of **${componentName.toUpperCase()}** component.
+
+/// {Example:basic} ///
 `;
 };
 
@@ -192,7 +252,7 @@ const promptForComponentType = async (): Promise<string> => {
 
 const promptForComponentName = async (): Promise<string> => {
   let componentName: string | symbol;
-  
+
   do {
     componentName = await text({
       message: 'Enter component name:',
@@ -213,7 +273,7 @@ const promptForComponentName = async (): Promise<string> => {
     }
 
     const trimmedName = componentName.trim();
-    
+
     // Check if component already exists
     const isValid = await validComponentName(trimmedName);
     if (!isValid) {
@@ -237,7 +297,9 @@ const main = async () => {
     // Validate component name if provided as argument
     const isValid = await validComponentName(componentName);
     if (!isValid) {
-      log.error(`❌ Component '${componentName}' already exists in the sidebar`);
+      log.error(
+        `❌ Component '${componentName}' already exists in the sidebar`
+      );
       process.exit(1);
     }
   }
