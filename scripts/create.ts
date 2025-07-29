@@ -182,8 +182,9 @@ const handlebarsTemplate = (componentName: string, componentType: string) => {
 };
 
 const docsTemplate = (componentName: string, componentType: string) => {
-  return `
-import {
+  const componentNamePascal = componentName.charAt(0).toUpperCase() + componentName.slice(1);
+  
+  return `import {
   Table,
   TableHeader,
   TableCell,
@@ -195,12 +196,43 @@ import { InlineCode } from '@/docs-components/inline-code';
 import { AnatomyImage } from '@/docs-components/anatomy-image';
 import { Tabs, TabItem } from '@/docs-components/tabs';
 
-# ${componentName.charAt(0).toUpperCase() + componentName.slice(1)}
+# ${componentNamePascal}
 
-
-This is an illustration of **${componentName.charAt(0).toUpperCase() + componentName.slice(1)}** component.
+This is an illustration of **${componentNamePascal}** component.
 
 /// {Example:basic} ///
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={\`\${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add ${componentName}\`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into your project.
+
+\`\`\`tsx
+%%-- File: src/components/ui/${componentName}/index.tsx --%%
+\`\`\`
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+\`\`\`ts
+import { ${componentNamePascal} } from '@/components/ui/${componentName}';
+\`\`\`
+
+\`\`\`ts
+export default () => <${componentNamePascal} />;
+\`\`\`
 `;
 };
 
