@@ -20,7 +20,7 @@
     "build": "yarn build:packages",
     "build:packages": "yarn workspaces foreach -pt run build",
     "build:website": "cd apps/website && yarn build",
-    "link:create": "concurrently \"yarn link:create-utils\" \"sleep 10 && yarn link:create-core\"",
+    "link:create": "concurrently \"yarn link:create-utils\" \"sleep 15 && yarn link:create-core\"",
     "link:create-utils": "cd packages/gluestack-utils && yarn && yarn prepare && yalc publish && yarn dev",
     "link:create-core": "cd packages/gluestack-core && yarn && yarn prepare && yalc publish && yarn dev",
     "link:apps": "yarn link:apps-website && yarn link:apps-kitchen-sink",
