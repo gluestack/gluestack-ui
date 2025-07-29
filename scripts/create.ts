@@ -185,10 +185,10 @@ const docsTemplate = (componentName: string, componentType: string) => {
   const componentNamePascal = componentName.charAt(0).toUpperCase() + componentName.slice(1);
   
   return `
-  ---
-  title: gluestack-ui ${componentNamePascal} Component
-  ---
-  import {
+---
+title: gluestack-ui ${componentNamePascal} Component
+---
+import {
   Table,
   TableHeader,
   TableCell,
