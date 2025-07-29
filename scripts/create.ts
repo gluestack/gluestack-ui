@@ -1,38 +1,46 @@
 import path from 'path';
 import fs from 'fs';
-import readline from 'readline';
+import { text, log, isCancel, cancel } from '../packages/gluestack-ui/node_modules/@clack/prompts';
 
 const create = (componentName: string) => {
   const componentPath = path.join(process.cwd(), 'src', 'components', componentName);
   fs.mkdirSync(componentPath, { recursive: true });
   fs.writeFileSync(path.join(componentPath, 'index.tsx'), `export * from './${componentName}';`);
-  console.log(`✅ Component '${componentName}' created successfully at: ${componentPath}`);
+  log.success(`✅ Component '${componentName}' created successfully at: ${componentPath}`);
 };
 
-const promptForComponentName = (): Promise<string> => {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+const promptForComponentName = async (): Promise<string> => {
+  const componentName = await text({
+    message: 'Enter component name:',
+    placeholder: 'myComponent',
+    validate: (value: string) => {
+      if (!value || value.trim() === '') {
+        return 'Component name is required';
+      }
+      if (!/^[a-z][a-zA-Z0-9]*$/.test(value)) {
+        return 'Component name must start with lowercase letter and contain only letters and numbers';
+      }
+    },
   });
 
-  return new Promise((resolve) => {
-    rl.question('Enter component name: ', (componentName) => {
-      rl.close();
-      resolve(componentName.trim());
-    });
-  });
+  if (isCancel(componentName)) {
+    cancel('Operation cancelled.');
+    process.exit(0);
+  }
+
+  return componentName.trim();
 };
 
 const main = async () => {
   let componentName = process.argv[2];
 
   if (!componentName) {
-    console.log('No component name provided. Please enter one:');
+    log.info('No component name provided. Please enter one:');
     componentName = await promptForComponentName();
   }
 
   if (!componentName) {
-    console.error('❌ Component name is required');
+    log.error('❌ Component name is required');
     process.exit(1);
   }
 
@@ -40,6 +48,6 @@ const main = async () => {
 };
 
 main().catch((error) => {
-  console.error('❌ Error creating component:', error);
+  log.error(`❌ Error creating component: ${error}`);
   process.exit(1);
 });
