@@ -1,5 +1,11 @@
 # @gluestack-ui-nightly/core
 
+## 1.2.10
+
+### Patch Changes
+
+- fix image not working with require
+
 ## 1.2.7
 
 ### Patch Changes
