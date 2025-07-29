@@ -1,8 +1,47 @@
 import path from 'path';
 import fs from 'fs';
-import { text, log, isCancel, cancel } from '@clack/prompts';
+import { text, log, isCancel, cancel, select } from '@clack/prompts';
 
-const create = (componentName: string) => {
+const readSidebar = async () => {
+  try {
+    const sidebar = fs.readFileSync(
+      path.join(process.cwd(), 'src', 'sidebar.json'),
+      'utf8'
+    );
+    return JSON.parse(sidebar);
+  } catch (error) {
+    log.error(`Error reading sidebar.json: ${error}`);
+    return null;
+  }
+};
+
+const validComponentName = async (componentName: string): Promise<boolean> => {
+  const sidebarJson = await readSidebar();
+  if (!sidebarJson) return false;
+
+  const componentsSection = sidebarJson.navigation.sections.find(
+    (section: any) => section.title === 'Components'
+  );
+  
+  if (!componentsSection || !componentsSection.subsections) {
+    return false;
+  }
+
+  // Check all component names across all categories
+  for (const subsection of componentsSection.subsections) {
+    if (subsection.type === 'heading' && subsection.items) {
+      for (const item of subsection.items) {
+        if (item.title.toLowerCase() === componentName.toLowerCase()) {
+          return false; // Component already exists
+        }
+      }
+    }
+  }
+
+  return true; // Component name is valid and doesn't exist
+};
+
+const create = (componentName: string, componentType: string) => {
   const componentPath = path.join(
     process.cwd(),
     'src',
@@ -10,57 +49,144 @@ const create = (componentName: string) => {
     'ui',
     componentName
   );
+  
+  // Create component directory
   fs.mkdirSync(componentPath, { recursive: true });
+  
+  // Create docs directory and file
+  const docsPath = path.join(componentPath, 'docs');
+  fs.mkdirSync(docsPath, { recursive: true });
+  fs.writeFileSync(
+    path.join(docsPath, 'index.mdx'),
+    copyPastableTemplate(componentName, componentType)
+  );
+  
+  // Create component file
   fs.writeFileSync(
     path.join(componentPath, 'index.tsx'),
-    copyPastableTemplate(componentName)
+    copyPastableTemplate(componentName, componentType)
   );
+  
   log.success(
     `✅ Component '${componentName}' created successfully at: ${componentPath}`
   );
 };
 
-const copyPastableTemplate = (componentName: string) => {
+const copyPastableTemplate = (componentName: string, componentType: string) => {
   return `
 import { View, Text } from 'react-native';
 
-export default function ${componentName.toUpperCase()} () {
+export default function ${componentName.charAt(0).toUpperCase() + componentName.slice(1)}() {
   return (
     <View>
-      <Text>${componentName}</Text>
+      <Text>${componentName} - ${componentType}</Text>
     </View>
   );
 };
 `;
 };
-const promptForComponentName = async (): Promise<string> => {
-  const componentName = await text({
-    message: 'Enter component name:',
-    placeholder: 'myComponent',
-    validate: (value: string) => {
-      if (!value || value.trim() === '') {
-        return 'Component name is required';
-      }
-      if (!/^[a-z][a-zA-Z0-9]*$/.test(value)) {
-        return 'Component name must start with lowercase letter and contain only letters and numbers';
-      }
-    },
+
+const readComponentTypes = async () => {
+  const sidebarJson = await readSidebar();
+  if (!sidebarJson) return [];
+
+  // Find the Components section
+  const componentsSection = sidebarJson.navigation.sections.find(
+    (section: any) => section.title === 'Components'
+  );
+
+  if (!componentsSection || !componentsSection.subsections) {
+    return [];
+  }
+
+  // Extract component categories (headings) from subsections
+  const componentTypes = componentsSection.subsections
+    .filter((subsection: any) => subsection.type === 'heading')
+    .map((subsection: any) => ({
+      value: subsection.title.toLowerCase().replace(/\s+/g, '-'),
+      label: subsection.title,
+      hint: `${subsection.items?.length || 0} components`,
+    }));
+
+  return componentTypes;
+};
+
+const promptForComponentType = async (): Promise<string> => {
+  const componentTypes = await readComponentTypes();
+
+  if (componentTypes.length === 0) {
+    log.warn('No component types found in sidebar.json');
+    return 'custom';
+  }
+
+  const selectedType = await select({
+    message: 'What type of component do you want to create?',
+    options: componentTypes,
   });
 
-  if (isCancel(componentName)) {
+  if (isCancel(selectedType)) {
     cancel('Operation cancelled.');
     process.exit(0);
   }
 
-  return componentName.trim();
+  return selectedType as string;
+};
+
+const promptForComponentName = async (): Promise<string> => {
+  let componentName: string | symbol;
+  
+  do {
+    componentName = await text({
+      message: 'Enter component name:',
+      placeholder: 'myComponent',
+      validate: (value: string) => {
+        if (!value || value.trim() === '') {
+          return 'Component name is required';
+        }
+        if (!/^[a-z][a-zA-Z0-9]*$/.test(value)) {
+          return 'Component name must start with lowercase letter and contain only letters and numbers';
+        }
+      },
+    });
+
+    if (isCancel(componentName)) {
+      cancel('Operation cancelled.');
+      process.exit(0);
+    }
+
+    const trimmedName = componentName.trim();
+    
+    // Check if component already exists
+    const isValid = await validComponentName(trimmedName);
+    if (!isValid) {
+      log.error(`❌ Component '${trimmedName}' already exists in the sidebar`);
+      log.info('Please enter a different component name:');
+      continue;
+    }
+
+    return trimmedName;
+  } while (true);
 };
 
 const main = async () => {
   let componentName = process.argv[2];
+  let componentType = process.argv[3];
 
   if (!componentName) {
     log.info('No component name provided. Please enter one:');
     componentName = await promptForComponentName();
+  } else {
+    // Validate component name if provided as argument
+    const isValid = await validComponentName(componentName);
+    if (!isValid) {
+      log.error(`❌ Component '${componentName}' already exists in the sidebar`);
+      process.exit(1);
+    }
+  }
+
+  if (!componentType) {
+    log.info('No component type provided. Please select one:');
+    componentType = await promptForComponentType();
   }
 
   if (!componentName) {
@@ -68,7 +194,7 @@ const main = async () => {
     process.exit(1);
   }
 
-  create(componentName);
+  create(componentName, componentType);
 };
 
 main().catch((error) => {
