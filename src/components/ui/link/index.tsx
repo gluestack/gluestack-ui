@@ -1,5 +1,5 @@
 'use client';
-import { createLink } from './creator';
+import { createLink } from '@gluestack-ui-nightly/core/link/creator';
 import { Pressable } from 'react-native';
 import { Text } from 'react-native';
 
