@@ -103,7 +103,7 @@ const validComponentName = async (componentName: string): Promise<boolean> => {
   return true;
 };
 
-const create = async (componentName: string, componentType: string, isRSC: boolean = false, needsCreator: boolean = false) => {
+const create = async (componentName: string, componentType: string, isRSC: boolean = false, needsCreator: boolean = false, needsAria: boolean = false) => {
   const componentPath = path.join(
     process.cwd(),
     'src',
@@ -120,7 +120,17 @@ const create = async (componentName: string, componentType: string, isRSC: boole
     path.join(componentPath, 'index.tsx'),
     copyPastableTemplate(componentName, componentType, isRSC)
   );
-  
+
+  // Create aria directory and file if needed
+  if (needsAria) {
+    const ariaPath = path.join(process.cwd(), 'packages', 'gluestack-core', 'src', componentName, 'aria');
+    fs.mkdirSync(ariaPath, { recursive: true });
+    fs.writeFileSync(
+      path.join(ariaPath, 'index.tsx'),
+      ariaTemplate(componentName)
+    );
+  }
+
   // Create creator directory and file if needed
   if (needsCreator) {
 
@@ -129,7 +139,8 @@ const create = async (componentName: string, componentType: string, isRSC: boole
     'packages',
     'gluestack-core',
     'src',
-    componentName
+    componentName,
+    'creator'
   );
     fs.mkdirSync(creatorPath, { recursive: true });
     fs.writeFileSync(
@@ -194,6 +205,13 @@ const creatorTemplate = (componentName: string) => {
 export const create${componentName.charAt(0).toUpperCase() + componentName.slice(1)} = () => {
   // Implementation here
 };
+`;
+};
+
+const ariaTemplate = (componentName: string) => {
+  return `
+// Aria functionality for ${componentName.charAt(0).toUpperCase() + componentName.slice(1)} component
+// Add your aria logic here
 `;
 };
 
@@ -390,11 +408,26 @@ const promptForCreator = async (): Promise<boolean> => {
   return needsCreator as boolean;
 };
 
+const promptForAria = async (): Promise<boolean> => {
+  const needsAria = await confirm({
+    message: 'Does this component need aria functionality?',
+    initialValue: false,
+  });
+
+  if (isCancel(needsAria)) {
+    cancel('Operation cancelled.');
+    process.exit(0);
+  }
+
+  return needsAria as boolean;
+};
+
 const main = async () => {
   let componentName = process.argv[2];
   let componentType = process.argv[3];
   let isRSC = process.argv[4] === '--rsc';
   let needsCreator = false;
+  let needsAria = false;
 
   if (!componentName) {
     log.info('No component name provided. Please enter one:');
@@ -432,7 +465,14 @@ const main = async () => {
     needsCreator = await promptForCreator();
   }
 
-  await create(componentName, componentType, isRSC, needsCreator);
+  if (process.argv[4] === '--aria' || process.argv[5] === '--aria') {
+    needsAria = true;
+  } else if (!process.argv[5] || process.argv[5] === '--rsc' || process.argv[6] === '--no-rsc') {
+    log.info('Aria functionality not specified. Please confirm:');
+    needsAria = await promptForAria();
+  }
+
+  await create(componentName, componentType, isRSC, needsCreator, needsAria);
 };
 
 main().catch((error) => {
