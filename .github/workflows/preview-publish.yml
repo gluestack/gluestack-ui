@@ -377,19 +377,24 @@ jobs:
             
             # Force install the specific preview version of utils if this is core package
             if [[ "$PACKAGE_NAME" == *"core"* ]]; then
-              echo "[$step_name] 🎯 Force installing preview utils package..."
-              echo "[$step_name] 📦 Attempting to install: @gluestack-ui-nightly/utils@${{ steps.version.outputs.version }}"
+              echo "[$step_name] 🎯 Installing utils package for core package..."
+              echo "[$step_name] 📦 First attempting to install preview version: @gluestack-ui-nightly/utils@${{ steps.version.outputs.version }}"
               
-              # Capture npm install output for better error reporting
+              # First try to install the specific preview version
               if npm install @gluestack-ui-nightly/utils@${{ steps.version.outputs.version }} --no-save --registry https://registry.npmjs.org/ 2>&1; then
-                echo "[$step_name] ✅ Utils package installed successfully"
+                echo "[$step_name] ✅ Preview utils package installed successfully"
               else
-                echo "[$step_name] ⚠️  Utils install had issues, but continuing..."
-                echo "[$step_name] 🔍 Checking if utils package is available on npm registry..."
-                if npm view @gluestack-ui-nightly/utils@${{ steps.version.outputs.version }} version >/dev/null 2>&1; then
-                  echo "[$step_name] ✅ Utils package is available on npm registry"
+                echo "[$step_name] ⚠️  Preview version not available, trying latest public version..."
+                
+                # Fall back to latest public version if preview version doesn't exist
+                if npm install @gluestack-ui-nightly/utils --no-save --registry https://registry.npmjs.org/ 2>&1; then
+                  echo "[$step_name] ✅ Latest utils package installed successfully as fallback"
+                  
+                  # Show which version was installed
+                  INSTALLED_VERSION=$(node -e "try { console.log(require('./node_modules/@gluestack-ui-nightly/utils/package.json').version) } catch(e) { console.log('unknown') }")
+                  echo "[$step_name] 📦 Installed utils version: $INSTALLED_VERSION"
                 else
-                  echo "[$step_name] ❌ Utils package NOT found on npm registry"
+                  echo "[$step_name] ❌ Failed to install both preview and latest utils package"
                   echo "[$step_name] 🔍 Available versions:"
                   npm view @gluestack-ui-nightly/utils versions --json 2>/dev/null || echo "[$step_name] Could not fetch available versions"
                 fi
