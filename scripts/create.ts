@@ -15,6 +15,61 @@ const readSidebar = async () => {
   }
 };
 
+const updateSidebar = async (componentName: string, componentType: string) => {
+  try {
+    const sidebarJson = await readSidebar();
+    if (!sidebarJson) return false;
+
+    // Find the Components section
+    const componentsSection = sidebarJson.navigation.sections.find(
+      (section: any) => section.title === 'Components'
+    );
+
+    if (!componentsSection || !componentsSection.subsections) {
+      return false;
+    }
+
+    // Find the specific category subsection
+    const categoryKey = componentType.toLowerCase().replace(/\s+/g, '-');
+    const targetSubsection = componentsSection.subsections.find(
+      (subsection: any) => 
+        subsection.type === 'heading' && 
+        subsection.title.toLowerCase().replace(/\s+/g, '-') === categoryKey
+    );
+
+    if (!targetSubsection) {
+      log.warn(`Category '${componentType}' not found in sidebar`);
+      return false;
+    }
+
+    // Add the new component to the category
+    const newComponent = {
+      title: componentName.charAt(0).toUpperCase() + componentName.slice(1),
+      path: `/ui/docs/components/${componentName.toLowerCase()}`,
+      url: `https://i.imgur.com/iLgtAcF.png`,
+      darkUrl: `https://i.imgur.com/or5K0UG.png`
+    };
+
+    // Initialize items array if it doesn't exist
+    if (!targetSubsection.items) {
+      targetSubsection.items = [];
+    }
+
+    // Add the component to the end of the category
+    targetSubsection.items.push(newComponent);
+
+    // Write the updated sidebar back to file
+    const sidebarPath = path.join(process.cwd(), 'src', 'sidebar.json');
+    fs.writeFileSync(sidebarPath, JSON.stringify(sidebarJson, null, 2));
+
+    log.success(`✅ Component '${componentName}' added to sidebar in '${componentType}' category`);
+    return true;
+  } catch (error) {
+    log.error(`Error updating sidebar.json: ${error}`);
+    return false;
+  }
+};
+
 const validComponentName = async (componentName: string): Promise<boolean> => {
   const sidebarJson = await readSidebar();
   if (!sidebarJson) return false;
@@ -41,7 +96,7 @@ const validComponentName = async (componentName: string): Promise<boolean> => {
   return true; // Component name is valid and doesn't exist
 };
 
-const create = (componentName: string, componentType: string) => {
+const create = async (componentName: string, componentType: string) => {
   const componentPath = path.join(
     process.cwd(),
     'src',
@@ -70,6 +125,9 @@ const create = (componentName: string, componentType: string) => {
   log.success(
     `✅ Component '${componentName}' created successfully at: ${componentPath}`
   );
+
+  // Update sidebar.json
+  await updateSidebar(componentName, componentType);
 };
 
 const copyPastableTemplate = (componentName: string, componentType: string) => {
@@ -194,7 +252,7 @@ const main = async () => {
     process.exit(1);
   }
 
-  create(componentName, componentType);
+  await create(componentName, componentType);
 };
 
 main().catch((error) => {
