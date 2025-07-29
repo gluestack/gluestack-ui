@@ -93,7 +93,7 @@ const validComponentName = async (componentName: string): Promise<boolean> => {
     }
   }
 
-  return true; // Component name is valid and doesn't exist
+  return true;
 };
 
 const create = async (componentName: string, componentType: string) => {
