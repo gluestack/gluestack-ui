@@ -150,7 +150,7 @@ const copyPastableTemplate = (componentName: string, componentType: string) => {
   return `
 import { View, Text } from 'react-native';
 
-export default function ${componentName.charAt(0).toUpperCase() + componentName.slice(1)}() {
+export function ${componentName.charAt(0).toUpperCase() + componentName.slice(1)}() {
   return (
     <View>
       <Text>${componentName} - ${componentType}</Text>
