@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Text, View } from 'react-native';
-import { PrimitiveIcon, UIIcon } from '@/components/ui/icon/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui-nightly/core/icon/creator';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
 import {
   withStyleContext,
