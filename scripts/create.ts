@@ -166,7 +166,7 @@ const metaTemplate = (componentName: string, componentType: string) => {
   "title": "Basic",
   "argTypes": {},
   "reactLive": {
-    "${componentName.toUpperCase()}": "@/components/ui/${componentName}"
+    "${componentName.charAt(0).toUpperCase() + componentName.slice(1)}": "@/components/ui/${componentName}"
   }
 }
 `;
@@ -175,7 +175,7 @@ const handlebarsTemplate = (componentName: string, componentType: string) => {
   return `
   function Example() {
   return (
-    <${componentName.toUpperCase()}/>
+    <${componentName.charAt(0).toUpperCase() + componentName.slice(1)}/>
   )
 }
   `;
@@ -195,10 +195,10 @@ import { InlineCode } from '@/docs-components/inline-code';
 import { AnatomyImage } from '@/docs-components/anatomy-image';
 import { Tabs, TabItem } from '@/docs-components/tabs';
 
-# ${componentName.toUpperCase()}
+# ${componentName.charAt(0).toUpperCase() + componentName.slice(1)}
 
 
-This is an illustration of **${componentName.toUpperCase()}** component.
+This is an illustration of **${componentName.charAt(0).toUpperCase() + componentName.slice(1)}** component.
 
 /// {Example:basic} ///
 `;
