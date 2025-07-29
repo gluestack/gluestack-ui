@@ -36,7 +36,8 @@
     "changeset:version": "changeset version",
     "release": "changeset publish",
     "changeset:status": "changeset status",
-    "changeset:empty": "changeset --empty"
+    "changeset:empty": "changeset --empty",
+    "create:component": "tsx scripts/create.ts"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
