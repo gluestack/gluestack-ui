@@ -7,6 +7,7 @@ type ISkeletonProps = React.ComponentProps<typeof View> &
   VariantProps<typeof skeletonStyle> & {
     isLoaded?: boolean;
     startColor?: string;
+    speed?: number | string;
   };
 
 type ISkeletonTextProps = React.ComponentProps<typeof View> &
@@ -34,7 +35,7 @@ const Skeleton = forwardRef<
   const pulseAnim = new Animated.Value(1);
   const customTimingFunction = Easing.bezier(0.4, 0, 0.6, 1);
   const fadeDuration = 0.6;
-  const animationDuration = (fadeDuration * 10000) / speed; // Convert seconds to milliseconds
+  const animationDuration = (fadeDuration * 10000) / Number(speed); // Convert seconds to milliseconds
 
   const pulse = Animated.sequence([
     Animated.timing(pulseAnim, {

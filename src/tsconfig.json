@@ -12,7 +12,6 @@
 
     "paths": {
       "@/*": ["./*"],
-      "@/utils/*": ["./utils/*"],
       "@/components/*": ["./components/*"],
       "@/docs-components/*": ["./docs-components/*"]
     }
@@ -22,6 +21,8 @@
     "**/scripts/**",
     "**/node_modules/**",
     "**/dist/**",
-    "**/.next/**"
+    "**/.next/**",
+    "**/docs/**",
+    "**/docs-components/**"
   ]
 }
