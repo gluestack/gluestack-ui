@@ -115,6 +115,13 @@ This repository uses a **source-to-destination** file generation system where:
 │   ├── docs-components/         # Documentation components source
 │   └── sidebar.json            # Sidebar configuration source
 |
+├── packages/
+|   └── create-gluestack      # CLI for gluestack's create command
+│   └── gluestack-ui          # CLI for gluestack's add, init, upgrade command
+│   └── gluestack-utils       # Utils related files
+│   └── gluestack-core        # Components creator and aria
+│   └── ui-next-adapter       # gluestack/ui-next-adapter for NextJs
+|
 ├── scripts/                     # Mapper scripts
 │   └── mappers/                # Individual app mappers
 |
@@ -199,6 +206,19 @@ yarn sync
 
 # Run specific mapper with sync
 yarn sync:starter-kit-next
+
+
+# Build local package using yalc and create its link and watch for file changes
+yarn link:create
+
+# Link local packages in apps
+yarn link:apps
+
+# Initialize a new component for contribution
+yarn create:component
+
+# Cleanup of local packages in apps
+yarn unlink:apps
 ```
 
 ### Gitignore Configuration
@@ -407,6 +427,9 @@ yarn link:apps-kitchen-sink   # Link packages to kitchen-sink app
 yarn unlink:apps              # Unlink packages from all apps
 yarn unlink:apps-website      # Unlink packages from website app
 yarn unlink:apps-kitchen-sink # Unlink packages from kitchen-sink app
+
+# Component development commands
+yarn create:component         # Initialize a new component for contribution
 ```
 
 ### Troubleshooting Package Development
@@ -477,6 +500,143 @@ yarn unlink:apps-kitchen-sink # Unlink packages from kitchen-sink app
    - Follow the setup instructions above
    - Verify all apps are properly synced with `yarn sync`
    - Ensure `yarn dev` is running to watch for file changes
+
+### Setting Up Local Package Development
+
+Before creating your first component, you'll need to set up local package development to test your changes effectively:
+
+#### Step 1: Link Packages for Development
+
+```bash
+# Link all packages and set up watch mode
+yarn link:create
+
+# This command:
+# - Builds gluestack-utils and gluestack-core packages
+# - Publishes them to yalc for local development
+# - Starts watch mode to automatically rebuild on changes
+```
+
+#### Step 2: Link Packages to Apps
+
+```bash
+# Link packages to all apps (website + kitchen-sink)
+yarn link:apps
+
+# Or link to specific apps:
+yarn link:apps-website      # Link to website app only
+yarn link:apps-kitchen-sink # Link to kitchen-sink app only
+```
+
+#### Step 3: Verify Setup
+
+After linking, you can verify the setup:
+
+```bash
+# Check if packages are properly linked
+cd apps/website && yalc check
+cd apps/kitchen-sink && yalc check
+```
+
+### Using the Component Creation Script
+
+The `yarn create:component` command helps you initialize a new component with the proper structure:
+
+```bash
+# Initialize a new component for contribution
+yarn create:component
+
+# This will prompt you for:
+# - Component name (in kebab-case)
+# - Component type (basic, complex, etc.)
+# - Whether to include examples and documentation
+```
+
+#### What the Script Creates
+
+The `create:component` script automatically generates:
+
+1. **Component folder structure** in `src/components/ui/<component-name>/`
+2. **Basic component template** with proper TypeScript types
+3. **Example files** in `examples/` directory
+4. **Documentation template** in `docs/` directory
+5. **Export statements** for the component
+
+### Component Development Workflow
+
+#### Step 1: Create Your Component
+
+```bash
+# Create a new component
+yarn create:component
+
+# Follow the prompts to set up your component
+```
+
+#### Step 2: Develop Your Component
+
+1. **Edit your component** in `src/components/ui/<component-name>/`
+2. **Create your component's creator & aria (if any)** in `packages/gluestack-core`
+3. **Add examples** in the `examples/` directory
+4. **Write documentation** in the `docs/` directory
+5. **Update your component in sidebar.json file** in `src/sidebar.json`
+5. **Test changes** in real-time as they sync to apps
+
+#### Step 3: Test Your Component
+
+```bash
+# Start the kitchen-sink app to test your component
+cd apps/kitchen-sink && yarn dev
+
+# Or test in the website app for documentation
+cd apps/website && yarn dev
+```
+
+#### Step 4: Clean Up After Development
+
+When you're done developing:
+
+```bash
+# Unlink packages from apps
+yarn unlink:apps
+
+# This removes yalc links and cleans up node_modules
+# Apps will revert to using published package versions
+```
+
+### Troubleshooting Component Development
+
+#### Changes Not Reflecting
+
+If your component changes aren't showing up in the apps:
+
+```bash
+# Check if packages are properly linked
+cd apps/website && yalc check
+
+# Re-link if needed
+yarn unlink:apps && yarn link:apps
+```
+
+#### Package Build Errors
+
+```bash
+# Check if packages are building correctly
+cd packages/gluestack-utils && yarn build
+cd packages/gluestack-core && yarn build
+```
+
+#### Yalc Issues
+
+```bash
+# Clear yalc cache if needed
+yalc clean
+
+# Reset and re-link
+yarn unlink:apps
+yarn link:create
+yarn link:apps
+```
 
 ### Step 1: Create the Core Component
 
