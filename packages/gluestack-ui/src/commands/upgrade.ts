@@ -203,6 +203,55 @@ async function updateTailwindConfig(): Promise<void> {
   }
 }
 
+// Update Next.js config files
+async function updateNextConfig(): Promise<void> {
+  const s = spinner();
+  s.start('Updating Next.js config files...');
+  
+  const nextConfigPaths = [
+    path.join(process.cwd(), 'next.config.ts'),
+    path.join(process.cwd(), 'next.config.js'),
+    path.join(process.cwd(), 'next.config.mjs')
+  ];
+  
+  let updatedFiles = 0;
+  
+  for (const configPath of nextConfigPaths) {
+    if (!fs.existsSync(configPath)) {
+      continue;
+    }
+
+    try {
+      const content = await fs.readFile(configPath, 'utf8');
+      let updated = false;
+      let newContent = content;
+      
+      // Replace the old import statement
+      const importRegex = /import\s+\{\s*withGluestackUI\s*\}\s+from\s+['"]@gluestack\/ui-next-adapter['"];?\s*/g;
+      if (importRegex.test(newContent)) {
+        newContent = newContent.replace(importRegex, `import { withGluestackUI } from "@gluestack-nightly/ui-next-adapter";\n`);
+        updated = true;
+      }
+      
+      if (updated) {
+        await fs.writeFile(configPath, newContent, 'utf8');
+        const fileName = path.basename(configPath);
+        log.info(`Updated ${fileName}`);
+        updatedFiles++;
+      }
+    } catch (error) {
+      const fileName = path.basename(configPath);
+      log.warning(`Failed to update ${fileName}: ${error}`);
+    }
+  }
+  
+  if (updatedFiles > 0) {
+    s.stop('Next.js config files updated.');
+  } else {
+    s.stop('No Next.js config files found or updated.');
+  }
+}
+
 // Update import statements in components/ui folder
 async function updateImports(): Promise<void> {
   const s = spinner();
@@ -316,6 +365,7 @@ export const upgrade = new Command()
       removePackages(oldPackages, packageManager);
       cleanAndReinstall(packageManager);
       await updateRegistryFile();
+      await updateNextConfig();
       await updateImports();
       log.success('\x1b[32mUpgrade complete!\x1b[0m');
       log.info('All imports have been updated to use @gluestack-ui-nightly/*');
