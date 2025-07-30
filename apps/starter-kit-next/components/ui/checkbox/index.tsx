@@ -1,6 +1,6 @@
 'use client';
-  import React from 'react';
-  import { createCheckbox } from '@gluestack-ui-nightly/core/checkbox/creator';
+import React from 'react';
+import { createCheckbox } from '@gluestack-ui-nightly/core/checkbox/creator';
 import { View, Pressable, Text, Platform } from 'react-native';
 import type { TextProps, ViewProps } from 'react-native';
 import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
@@ -219,8 +219,8 @@ const CheckboxIcon = React.forwardRef<
         parentVariants: {
           size: parentSize,
         },
+        size: size as any,
         class: className,
-        size,
       })}
       {...props}
       ref={ref}

@@ -200,7 +200,7 @@ const SliderThumb = React.forwardRef<
         parentVariants: {
           size: parentSize,
         },
-        size,
+        size: size as any,
         class: className,
       })}
     />

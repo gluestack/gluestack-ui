@@ -1,0 +1,8 @@
+
+{
+  "title": "Basic",
+  "argTypes": {},
+  "reactLive": {
+    "Text1": "@/components/ui/text1"
+  }
+}
