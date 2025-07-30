@@ -1,0 +1,19 @@
+{
+  "name": "@internal/gluestack-ui-src",
+  "version": "0.0.0-dev",
+  "private": true,
+  "description": "Development environment for gluestack-ui components (not for distribution)",
+  "dependencies": {
+    "@expo/html-elements": "^0.12.5",
+    "@gluestack-ui-nightly/core": "*",
+    "@gluestack-ui-nightly/utils": "*",
+    "@legendapp/motion": "^2.4.0",
+    "nativewind": "^4.1.23",
+    "react": "^18",
+    "react-native": "^0.79.2",
+    "tailwind-variants": "^0.2.1"
+  },
+  "scripts": {
+    "note": "echo 'This package.json is for development only. Components are copied to apps, not executed from here.'"
+  }
+}
