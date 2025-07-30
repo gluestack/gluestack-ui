@@ -24,4 +24,7 @@ expo-env.d.ts
 components/ui/
 utils/gluestack-utils/
 app/components/
+
+# Yalc (for local development)
 .yalc/
+yalc.lock
