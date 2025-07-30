@@ -1,5 +1,17 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 0.7.38
+
+### Patch Changes
+
+- next config
+
+## 0.7.36
+
+### Patch Changes
+
+- add functionality to change the next next config
+
 ## 0.7.34
 
 ### Patch Changes
