@@ -7,6 +7,7 @@
     "@expo/html-elements": "^0.12.5",
     "@gluestack-ui-nightly/core": "*",
     "@gluestack-ui-nightly/utils": "*",
+    "@gorhom/bottom-sheet": "^5.1.8",
     "@legendapp/motion": "^2.4.0",
     "nativewind": "^4.1.23",
     "react": "^18",
@@ -15,5 +16,10 @@
   },
   "scripts": {
     "note": "echo 'This package.json is for development only. Components are copied to apps, not executed from here.'"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.9",
+    "@types/react-native": "^0.73.0",
+    "typescript": "^5.8.3"
   }
 }
