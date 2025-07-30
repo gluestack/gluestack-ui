@@ -37,19 +37,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "b3529931-c47f-4970-aa9f-de2f59c05f07"
-      }
-    },
-    "owner": "gluestack",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/b3529931-c47f-4970-aa9f-de2f59c05f07"
     }
   }
 }

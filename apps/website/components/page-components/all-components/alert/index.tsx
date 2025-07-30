@@ -8,12 +8,12 @@ export default function Example() {
   return (
     <ComponentPreviewer
       code={`function Example() {
-  return (
-    <Alert action="{{action}}" variant="{{variant}}">
-      <AlertIcon as={InfoIcon} />
-      <AlertText>Description of alert!</AlertText>
-    </Alert>
-  )
+return (
+<Alert action="{{action}}" variant="{{variant}}">
+  <AlertIcon as={InfoIcon} />
+  <AlertText>Description of alert!</AlertText>
+</Alert>
+)
 }`}
       argTypes={{
   "variant": {

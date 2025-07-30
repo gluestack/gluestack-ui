@@ -193,14 +193,14 @@ const MenuItemLabel = React.forwardRef<
     <UIMenu.ItemLabel
       ref={ref}
       className={menuItemLabelStyle({
-        isTruncated,
-        bold,
-        underline,
-        strikeThrough,
-        size,
-        sub,
-        italic,
-        highlight,
+        isTruncated: isTruncated as boolean,
+        bold: bold as boolean,
+        underline: underline as boolean,
+        strikeThrough: strikeThrough as boolean,
+        size: size as any,
+        sub: sub as boolean,
+        italic: italic as boolean,
+        highlight: highlight as boolean,
         class: className,
       })}
       {...props}

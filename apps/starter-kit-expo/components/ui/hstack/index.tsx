@@ -10,7 +10,11 @@ const HStack = React.forwardRef<React.ComponentRef<typeof View>, IHStackProps>(
   function HStack({ className, space, reversed, ...props }, ref) {
     return (
       <View
-        className={hstackStyle({ space, reversed, class: className })}
+        className={hstackStyle({
+          space: space as any,
+          reversed: reversed as boolean,
+          class: className,
+        })}
         {...props}
         ref={ref}
       />
