@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
+    "@clack/prompts": "^0.11.0",
     "chokidar": "^4.0.3",
     "solito": "^4.4.1",
     "ts-node": "^10.9.2",
@@ -38,7 +39,8 @@
     "changeset:version": "changeset version",
     "release": "changeset publish",
     "changeset:status": "changeset status",
-    "changeset:empty": "changeset --empty"
+    "changeset:empty": "changeset --empty",
+    "create:component": "tsx scripts/create.ts"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
