@@ -108,7 +108,7 @@ const AvatarBadge = React.forwardRef<
         parentVariants: {
           size: parentSize,
         },
-        size,
+        size: size as any,
         class: className,
       })}
     />
@@ -133,7 +133,7 @@ const AvatarFallbackText = React.forwardRef<
         parentVariants: {
           size: parentSize,
         },
-        size,
+        size: size as any,
         class: className,
       })}
     />
