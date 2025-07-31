@@ -234,10 +234,10 @@
   dependencies:
     tslib "^2.8.0"
 
-"@gluestack-nightly/ui-next-adapter@1.0.36":
-  version "1.0.36"
-  resolved "https://registry.npmjs.org/@gluestack-nightly/ui-next-adapter/-/ui-next-adapter-1.0.36.tgz#e327f0d8d237fdbd1b946288c7824c0b8736e8f3"
-  integrity sha512-b+jCuxmtMCJXoDJfnodLhY6SougYLVVNkNCi4YG+Zkes3IvIJVkU35ZeKIQWiLmD5zH+PZOJ/tpCHqCehZDXmg==
+"@gluestack-nightly/ui-next-adapter@^1.0.47":
+  version "1.0.47"
+  resolved "https://registry.npmjs.org/@gluestack-nightly/ui-next-adapter/-/ui-next-adapter-1.0.47.tgz#2b9a5edcf965291dfa780cf51b8c340fe95edf87"
+  integrity sha512-MVlhRN/hX0s2GSWBt8vTEMUmNOWjXfME8BN5e8JoTloPVDvGMlHgGjwnOelU+HaenLeVpWfTkP+KveRdFwtVQQ==
   dependencies:
     find-yarn-workspace-root "^2.0.0"
     fs-extra "^11.1.0"
