@@ -393,7 +393,7 @@ jobs:
                 echo "[$step_name] ⚠️  Preview version not available, trying latest public version..."
                 
                 # Fall back to latest public version if preview version doesn't exist
-                if npm install @gluestack-ui-nightly/utils --no-save --registry https://registry.npmjs.org/ 2>&1; then
+                if npm install @gluestack-ui-nightly/utils@latest --no-save --registry https://registry.npmjs.org/ 2>&1; then
                   echo "[$step_name] ✅ Latest utils package installed successfully as fallback"
                   
                   # Show which version was installed
@@ -625,7 +625,7 @@ jobs:
             **Failed Step:** Build and publish packages
             **Run URL:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-            Please check the workflow logs for detailed error information.
+            Please check the workflow logs for detailed error information.`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
