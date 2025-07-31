@@ -161,7 +161,21 @@ jobs:
           done
 
           echo "📋 Final list of changed packages: $CHANGED_PACKAGES"
-          echo "changed-packages=$CHANGED_PACKAGES" >> $GITHUB_OUTPUT
+
+          # Add dependent packages to the list if they're needed
+          echo "🔗 Checking for dependent packages that need to be published..."
+          EXPANDED_PACKAGES="$CHANGED_PACKAGES"
+
+          # If core package is changed, ensure utils is also included
+          if echo "$CHANGED_PACKAGES" | grep -q "@gluestack-ui-nightly/core"; then
+            if ! echo "$CHANGED_PACKAGES" | grep -q "@gluestack-ui-nightly/utils"; then
+              echo "📦 Adding utils package as dependency of core package"
+              EXPANDED_PACKAGES="$EXPANDED_PACKAGES @gluestack-ui-nightly/utils"
+            fi
+          fi
+
+          echo "📋 Expanded list with dependencies: $EXPANDED_PACKAGES"
+          echo "changed-packages=$EXPANDED_PACKAGES" >> $GITHUB_OUTPUT
 
   publish-preview:
     needs: check-changes
@@ -200,7 +214,7 @@ jobs:
           CHANGED_PACKAGES="${{ needs.check-changes.outputs.changed-packages }}"
           echo "📦 Updating versions for changed packages: $CHANGED_PACKAGES"
 
-          # Update only the changed packages
+          # Update packages in the expanded list (includes dependencies)
           for package_dir in packages/*/; do
             if [ ! -f "${package_dir}package.json" ]; then
               continue
@@ -250,7 +264,7 @@ jobs:
           CHANGED_PACKAGES="${{ needs.check-changes.outputs.changed-packages }}"
           echo "📦 Updating references for changed packages: $CHANGED_PACKAGES"
 
-          # Update only the changed packages' dependencies
+          # Update packages in the expanded list (includes dependencies)
           for package_dir in packages/*/; do
             if [ ! -f "${package_dir}package.json" ]; then
               continue
@@ -379,7 +393,7 @@ jobs:
             
             # Install dependencies first to get latest preview packages
             echo "[$step_name] 📥 Installing dependencies (fresh install)..."
-            npm install --no-package-lock --registry https://registry.npmjs.org/ || echo "⚠️  Install had issues, but continuing..."
+            npm install --no-package-lock --legacy-peer-deps --registry https://registry.npmjs.org/ || echo "⚠️  Install had issues, but continuing..."
             
             # Force install the specific preview version of utils if this is core package
             if [[ "$PACKAGE_NAME" == *"core"* ]]; then
@@ -387,13 +401,13 @@ jobs:
               echo "[$step_name] 📦 First attempting to install preview version: @gluestack-ui-nightly/utils@${{ steps.version.outputs.version }}"
               
               # First try to install the specific preview version
-              if npm install @gluestack-ui-nightly/utils@${{ steps.version.outputs.version }} --no-save --registry https://registry.npmjs.org/ 2>&1; then
+              if npm install @gluestack-ui-nightly/utils@${{ steps.version.outputs.version }} --no-save --legacy-peer-deps --registry https://registry.npmjs.org/ 2>&1; then
                 echo "[$step_name] ✅ Preview utils package installed successfully"
               else
                 echo "[$step_name] ⚠️  Preview version not available, trying latest public version..."
                 
                 # Fall back to latest public version if preview version doesn't exist
-                if npm install @gluestack-ui-nightly/utils@latest --no-save --registry https://registry.npmjs.org/ 2>&1; then
+                if npm install @gluestack-ui-nightly/utils@latest --no-save --legacy-peer-deps --registry https://registry.npmjs.org/ 2>&1; then
                   echo "[$step_name] ✅ Latest utils package installed successfully as fallback"
                   
                   # Show which version was installed
