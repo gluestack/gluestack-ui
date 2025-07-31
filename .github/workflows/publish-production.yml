@@ -113,6 +113,9 @@ jobs:
       - name: Version packages with changesets
         id: version
         run: |
+          set -e          # Exit on any error
+          set -o pipefail # Exit on pipeline errors
+
           # Check if there are changesets to consume
           if [ -d ".changeset" ] && [ "$(ls -A .changeset/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
             echo "📝 Consuming changesets..."
@@ -168,13 +171,17 @@ jobs:
         id: packages-to-publish
         if: steps.version.outputs.version_changed == 'true'
         run: |
+          set -e          # Exit on any error
+          set -o pipefail # Exit on pipeline errors
+
           echo "🔍 Identifying packages that need to be published..."
 
           # Get list of modified package.json files (these are the ones that were versioned by changesets)
           MODIFIED_PACKAGES=$(git diff --name-only HEAD~1 | grep "packages/.*/package.json" || true)
 
           if [ -z "$MODIFIED_PACKAGES" ]; then
-            echo "❌ No modified package.json files found"
+            echo "❌ CRITICAL: No modified package.json files found"
+            echo "::error::No packages were modified by changesets"
             echo "packages_to_publish=" >> $GITHUB_OUTPUT
             exit 1
           fi
@@ -211,6 +218,9 @@ jobs:
         id: publish
         if: steps.version.outputs.version_changed == 'true'
         run: |
+          set -e          # Exit on any error
+          set -o pipefail # Exit on pipeline errors
+
           echo "🚀 Publishing packages..."
           PUBLISHED_PACKAGES=""
           PACKAGE_DIRS="${{ steps.packages-to-publish.outputs.package_dirs }}"
@@ -372,11 +382,13 @@ jobs:
                   echo "✅ Successfully published $PACKAGE_NAME@$CURRENT_VERSION"
                   PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$CURRENT_VERSION"
                 else
-                  echo "❌ Failed to publish $PACKAGE_NAME@$CURRENT_VERSION after retry"
+                  echo "❌ CRITICAL: Failed to publish $PACKAGE_NAME@$CURRENT_VERSION after retry"
+                  echo "::error::npm publish failed for $PACKAGE_NAME after retry"
                   exit 1
                 fi
               else
-                echo "❌ Unexpected publish error for $PACKAGE_NAME"
+                echo "❌ CRITICAL: Unexpected publish error for $PACKAGE_NAME"
+                echo "::error::Unexpected npm publish error for $PACKAGE_NAME"
                 exit 1
               fi
             fi

@@ -75,6 +75,9 @@ jobs:
 
       - name: Cleanup preview packages
         run: |
+          set -e          # Exit on any error
+          set -o pipefail # Exit on pipeline errors
+
           PR_NUMBER=${{ github.event.pull_request.number }}
           CLEANUP_COUNT=0
 
