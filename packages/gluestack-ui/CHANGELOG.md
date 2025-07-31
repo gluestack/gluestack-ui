@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 0.7.39
+
+### Patch Changes
+
+- fix: made dependencies correct
+
 ## 0.7.38
 
 ### Patch Changes
