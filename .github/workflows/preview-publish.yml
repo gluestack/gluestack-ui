@@ -4,6 +4,7 @@ on:
   pull_request:
     branches: [feat/v3]
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 jobs:
   check-automation:
