@@ -290,17 +290,22 @@ jobs:
                 const path = require('path');
                 const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
                 const previewVersion = '${{ steps.version.outputs.version }}';
+                const changedPackages = '$CHANGED_PACKAGES'.split(' ').filter(p => p.trim());
                 let changed = false;
+                
+                console.log('Changed packages for reference update:', changedPackages);
                 
                 // Update dependencies
                 ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
                   if (pkg[depType]) {
                     Object.keys(pkg[depType]).forEach(dep => {
-                      // If this dependency starts with @gluestack-ui-nightly, update it to preview version
-                      if (dep.startsWith('@gluestack-ui-nightly/')) {
+                      // Only update if this dependency starts with @gluestack-ui-nightly AND is in the changed packages list
+                      if (dep.startsWith('@gluestack-ui-nightly/') && changedPackages.includes(dep)) {
                         console.log(\`Updating \${dep} from \${pkg[depType][dep]} to \${previewVersion} in \${depType}\`);
                         pkg[depType][dep] = previewVersion;
                         changed = true;
+                      } else if (dep.startsWith('@gluestack-ui-nightly/')) {
+                        console.log(\`Skipping \${dep} - not in changed packages list\`);
                       }
                     });
                   }
@@ -310,7 +315,7 @@ jobs:
                   fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
                   console.log('✅ Updated dependencies in $package_file');
                 } else {
-                  console.log('ℹ️  No internal dependencies found in $package_file');
+                  console.log('ℹ️  No internal dependencies to update found in $package_file');
                 }
               "
             else
@@ -392,95 +397,129 @@ jobs:
             echo "[$step_name] 🧹 Cleaning existing dependencies..."
             rm -rf node_modules package-lock.json yarn.lock || echo "Cleanup had issues, continuing..."
             
+            # Check if this package has internal dependencies that need to be available
+            echo "[$step_name] 🔍 Checking for internal dependencies..."
+            INTERNAL_DEPS=$(node -e "
+              try {
+                const pkg = JSON.parse(require('fs').readFileSync('package.json', 'utf8'));
+                const allDeps = {...(pkg.dependencies || {}), ...(pkg.devDependencies || {})};
+                const internalDeps = Object.keys(allDeps).filter(dep => dep.startsWith('@gluestack-ui-nightly/'));
+                console.log(internalDeps.join(' '));
+              } catch(e) { console.log(''); }
+            ")
+            
+            if [ -n "$INTERNAL_DEPS" ]; then
+              echo "[$step_name] 📦 Found internal dependencies: $INTERNAL_DEPS"
+              
+              # Check if any of these deps are using preview versions
+              for dep in $INTERNAL_DEPS; do
+                VERSION=$(node -e "
+                  try {
+                    const pkg = JSON.parse(require('fs').readFileSync('package.json', 'utf8'));
+                    const allDeps = {...(pkg.dependencies || {}), ...(pkg.devDependencies || {})};
+                    console.log(allDeps['$dep'] || '');
+                  } catch(e) { console.log(''); }
+                ")
+                
+                if [[ "$VERSION" == *"pr-"* ]]; then
+                  echo "[$step_name] ⏳ Preview dependency detected: $dep@$VERSION"
+                  echo "[$step_name] 📡 Checking if $dep@$VERSION is available on npm..."
+                  
+                  # Try to check if the package is available, with retries
+                  for i in {1..5}; do
+                    if npm view "$dep@$VERSION" version >/dev/null 2>&1; then
+                      echo "[$step_name] ✅ $dep@$VERSION confirmed available"
+                      break
+                    else
+                      echo "[$step_name] ⏳ $dep@$VERSION not yet available, waiting 10 seconds... (attempt $i/5)"
+                      sleep 10
+                    fi
+                  done
+                fi
+              done
+            else
+              echo "[$step_name] ℹ️  No internal dependencies found"
+            fi
+            
             # Install dependencies first to get latest preview packages
             echo "[$step_name] 📥 Installing dependencies (fresh install)..."
-            npm install --no-package-lock --legacy-peer-deps --registry https://registry.npmjs.org/ || echo "⚠️  Install had issues, but continuing..."
             
-            # Handle workspace dependencies for core package
-            echo "[$step_name] 🔍 Debug: Package name is: $PACKAGE_NAME"
-            echo "[$step_name] 🔍 Debug: Checking if package name contains 'core'..."
-            if [[ "$PACKAGE_NAME" == *"core"* ]]; then
-              echo "[$step_name] 🎯 Setting up utils dependency for core package..."
+            # Try npm install with retries to handle registry propagation delays
+            INSTALL_SUCCESS=false
+            for i in {1..3}; do
+              echo "[$step_name] 📥 Install attempt $i/3..."
+              if npm install --no-package-lock --legacy-peer-deps --registry https://registry.npmjs.org/; then
+                echo "[$step_name] ✅ Dependencies installed successfully"
+                INSTALL_SUCCESS=true
+                break
+              else
+                echo "[$step_name] ⚠️  Install attempt $i failed"
+                if [ $i -lt 3 ]; then
+                  echo "[$step_name] ⏳ Waiting 15 seconds before retry..."
+                  sleep 15
+                fi
+              fi
+            done
+            
+            if [ "$INSTALL_SUCCESS" = false ]; then
+              echo "[$step_name] ❌ All install attempts failed, but continuing with fallback handling..."
+            fi
+            
+            # Handle fallback for internal dependencies if npm install failed
+            if [ "$INSTALL_SUCCESS" = false ] && [[ "$PACKAGE_NAME" == *"core"* ]]; then
+              echo "[$step_name] 🎯 Handling fallback for core package dependencies..."
               
-              # Check if we're in a workspace and utils is being published too
-              echo "[$step_name] 🔍 Debug: CHANGED_PACKAGES inside function: [$CHANGED_PACKAGES]"
+              # Check if utils is in changed packages and provide fallback
               UTILS_IN_CHANGED=$(echo "$CHANGED_PACKAGES" | grep -o "@gluestack-ui-nightly/utils" || echo "")
-              echo "[$step_name] 🔍 Debug: Utils in changed packages: [$UTILS_IN_CHANGED]"
-              
               if [ -n "$UTILS_IN_CHANGED" ]; then
-                echo "[$step_name] 📦 Utils package was published, using published version"
+                echo "[$step_name] 📦 Setting up workspace utils as fallback..."
                 
-                # Wait a bit more to ensure npm registry has the package available
-                echo "[$step_name] ⏳ Waiting 30 seconds for npm registry propagation..."
-                sleep 30
+                # Create a proper copy instead of symlink to avoid module resolution issues
+                mkdir -p node_modules/@gluestack-ui-nightly/
+                rm -rf node_modules/@gluestack-ui-nightly/utils
                 
-                # Install the published utils package explicitly
-                echo "[$step_name] 📥 Installing published utils package..."
-                if npm install "@gluestack-ui-nightly/utils@${{ steps.version.outputs.version }}" --no-save --legacy-peer-deps; then
-                  echo "[$step_name] ✅ Published utils package installed successfully"
-                else
-                  echo "[$step_name] ⚠️  Failed to install published utils package, falling back to workspace utils"
-                  
-                  # Fallback to workspace utils with improved setup
-                  echo "[$step_name] 📦 Using workspace utils package as fallback"
-                  
-                  # Create a proper copy instead of symlink to avoid module resolution issues
-                  mkdir -p node_modules/@gluestack-ui-nightly/
-                  rm -rf node_modules/@gluestack-ui-nightly/utils
-                  
-                  # Build utils package first if not already built
-                  cd "../gluestack-utils"
-                  if [ ! -d "lib" ] || [ ! -f "lib/esm/index.js" ]; then
-                    echo "[$step_name] 🔨 Building utils package dependency..."
-                    if npm run build 2>&1; then
-                      echo "[$step_name] ✅ Utils package built successfully"
-                    else
-                      echo "[$step_name] ❌ Failed to build utils package"
-                      cd - > /dev/null
-                      exit 1
-                    fi
+                # Build utils package first if not already built
+                cd "../gluestack-utils"
+                if [ ! -d "lib" ] || [ ! -f "lib/esm/index.js" ]; then
+                  echo "[$step_name] 🔨 Building utils package dependency..."
+                  if npm run build 2>&1; then
+                    echo "[$step_name] ✅ Utils package built successfully"
                   else
-                    echo "[$step_name] ✅ Utils package already built, skipping build"
-                  fi
-                  cd - > /dev/null
-                  
-                  # Copy workspace utils to node_modules instead of symlinking
-                  echo "[$step_name] 📁 Copying workspace utils package..."
-                  cp -r "../gluestack-utils" node_modules/@gluestack-ui-nightly/utils
-                  
-                  # Verify the copy worked
-                  if [ -f "node_modules/@gluestack-ui-nightly/utils/package.json" ]; then
-                    echo "[$step_name] ✅ Workspace utils package copied successfully"
-                  else
-                    echo "[$step_name] ❌ Failed to copy workspace utils package"
+                    echo "[$step_name] ❌ Failed to build utils package"
+                    cd - > /dev/null
                     exit 1
                   fi
-                fi
-              else
-                echo "[$step_name] ℹ️  Utils package not in changed packages, using existing dependency"
-              fi
-              
-              # Verify utils package is available
-              if [ -f "node_modules/@gluestack-ui-nightly/utils/package.json" ]; then
-                UTILS_VERSION=$(node -e "try { console.log(require('./node_modules/@gluestack-ui-nightly/utils/package.json').version) } catch(e) { console.log('unknown') }")
-                echo "[$step_name] 📦 Utils version available: $UTILS_VERSION"
-                
-                # Verify barrel exports exist
-                if [ -f "node_modules/@gluestack-ui-nightly/utils/aria.ts" ] && [ -f "node_modules/@gluestack-ui-nightly/utils/common.ts" ] && [ -f "node_modules/@gluestack-ui-nightly/utils/hooks.ts" ]; then
-                  echo "[$step_name] ✅ Utils barrel exports found"
                 else
-                  echo "[$step_name] ⚠️  Some utils barrel exports not found, checking lib structure..."
-                  ls -la "node_modules/@gluestack-ui-nightly/utils/" 2>/dev/null || echo "[$step_name] Could not list utils directory"
-                  ls -la "node_modules/@gluestack-ui-nightly/utils/lib/esm/" 2>/dev/null || echo "[$step_name] Could not list utils lib/esm directory"
+                  echo "[$step_name] ✅ Utils package already built, skipping build"
                 fi
+                cd - > /dev/null
                 
-                echo "[$step_name] ✅ Utils package is ready for build"
-              else
-                echo "[$step_name] ❌ Utils package not found in node_modules"
-                exit 1
+                # Copy workspace utils to node_modules instead of symlinking
+                echo "[$step_name] 📁 Copying workspace utils package..."
+                cp -r "../gluestack-utils" node_modules/@gluestack-ui-nightly/utils
+                
+                # Verify the copy worked
+                if [ -f "node_modules/@gluestack-ui-nightly/utils/package.json" ]; then
+                  echo "[$step_name] ✅ Workspace utils package copied successfully"
+                else
+                  echo "[$step_name] ❌ Failed to copy workspace utils package"
+                  exit 1
+                fi
               fi
-            else
-              echo "[$step_name] ℹ️  Package is not core, skipping utils dependency setup"
+            fi
+            
+            # Verify internal dependencies are available
+            if [ -n "$INTERNAL_DEPS" ]; then
+              echo "[$step_name] 🔍 Verifying internal dependencies are available..."
+              for dep in $INTERNAL_DEPS; do
+                if [ -f "node_modules/$dep/package.json" ]; then
+                  DEP_VERSION=$(node -e "try { console.log(require('./node_modules/$dep/package.json').version) } catch(e) { console.log('unknown') }")
+                  echo "[$step_name] ✅ $dep@$DEP_VERSION available"
+                else
+                  echo "[$step_name] ❌ $dep not found in node_modules"
+                  exit 1
+                fi
+              done
             fi
             
             # Build the package
