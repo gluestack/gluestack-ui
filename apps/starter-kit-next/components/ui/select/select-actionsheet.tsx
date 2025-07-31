@@ -351,11 +351,11 @@ const ActionsheetItemText = React.forwardRef<
     <UIActionsheet.ItemText
       className={actionsheetItemTextStyle({
         class: className,
-        isTruncated,
-        bold,
-        underline,
-        strikeThrough,
-        size,
+        isTruncated: isTruncated as boolean,
+        bold: bold as boolean,
+        underline: underline as boolean,
+        strikeThrough: strikeThrough as boolean,
+        size: size as any,
       })}
       ref={ref}
       {...props}
@@ -499,14 +499,14 @@ const ActionsheetSectionHeaderText = React.forwardRef<
     <UIActionsheet.SectionHeaderText
       className={actionsheetSectionHeaderTextStyle({
         class: className,
-        isTruncated,
-        bold,
-        underline,
-        strikeThrough,
-        size,
-        sub,
-        italic,
-        highlight,
+        isTruncated: isTruncated as boolean,
+        bold: bold as boolean,
+        underline: underline as boolean,
+        strikeThrough: strikeThrough as boolean,
+        size: size as any,
+        sub: sub as boolean,
+        italic: italic as boolean,
+        highlight: highlight as boolean,
       })}
       ref={ref}
       {...props}

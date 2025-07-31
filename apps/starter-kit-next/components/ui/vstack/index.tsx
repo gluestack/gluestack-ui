@@ -11,7 +11,11 @@ const VStack = React.forwardRef<React.ComponentRef<typeof View>, IVStackProps>(
   function VStack({ className, space, reversed, ...props }, ref) {
     return (
       <View
-        className={vstackStyle({ space, reversed, class: className })}
+        className={vstackStyle({
+          space: space as any,
+          reversed: reversed as boolean,
+          class: className,
+        })}
         {...props}
         ref={ref}
       />

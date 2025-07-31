@@ -203,7 +203,7 @@ const RadioIcon = React.forwardRef<
         parentVariants: {
           size: parentSize,
         },
-        size,
+        size: size as any,
         class: className,
       })}
       ref={ref}
