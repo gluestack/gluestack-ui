@@ -326,9 +326,14 @@ const ButtonText = React.forwardRef<
           size: parentSize,
           action: parentAction,
         },
-        variant,
-        size,
-        action,
+        variant: variant as 'link' | 'outline' | 'solid' | undefined,
+        size: size as any,
+        action: action as
+          | 'primary'
+          | 'secondary'
+          | 'positive'  
+          | 'negative'
+          | undefined,
         class: className,
       })}
     />
@@ -385,7 +390,7 @@ const ButtonIcon = React.forwardRef<
           variant: parentVariant,
           action: parentAction,
         },
-        size,
+        size: size as any,
         class: className,
       })}
       ref={ref}
@@ -414,9 +419,9 @@ const ButtonGroup = React.forwardRef<
       <UIButton.Group
         className={buttonGroupStyle({
           class: className,
-          space,
-          isAttached,
-          flexDirection,
+          space: space as any,
+          isAttached: isAttached as boolean,
+          flexDirection: flexDirection as any,
         })}
         {...props}
         ref={ref}

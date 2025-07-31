@@ -229,7 +229,7 @@ const SelectIcon = React.forwardRef<
     <UISelect.Icon
       className={selectIconStyle({
         class: className,
-        size,
+        size: size as any,
         parentVariants: {
           size: parentSize,
         },
