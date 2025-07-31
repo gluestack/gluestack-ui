@@ -276,17 +276,22 @@ jobs:
                 const path = require('path');
                 const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
                 const previewVersion = '${{ steps.version.outputs.version }}';
+                const changedPackages = '$CHANGED_PACKAGES'.split(' ').filter(p => p.trim());
                 let changed = false;
+                
+                console.log('📋 Changed packages:', changedPackages);
                 
                 // Update dependencies
                 ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
                   if (pkg[depType]) {
                     Object.keys(pkg[depType]).forEach(dep => {
-                      // If this dependency starts with @gluestack-ui-nightly, update it to preview version
-                      if (dep.startsWith('@gluestack-ui-nightly/')) {
+                      // Only update if this dependency is also in the changed packages list
+                      if (dep.startsWith('@gluestack-ui-nightly/') && changedPackages.includes(dep)) {
                         console.log(\`Updating \${dep} from \${pkg[depType][dep]} to \${previewVersion} in \${depType}\`);
                         pkg[depType][dep] = previewVersion;
                         changed = true;
+                      } else if (dep.startsWith('@gluestack-ui-nightly/')) {
+                        console.log(\`Skipping \${dep} - not in changed packages list\`);
                       }
                     });
                   }
@@ -296,7 +301,7 @@ jobs:
                   fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
                   console.log('✅ Updated dependencies in $package_file');
                 } else {
-                  console.log('ℹ️  No internal dependencies found in $package_file');
+                  console.log('ℹ️  No internal dependencies to update in $package_file');
                 }
               "
             else
@@ -379,7 +384,7 @@ jobs:
             
             # Install dependencies first to get latest preview packages
             echo "[$step_name] 📥 Installing dependencies (fresh install)..."
-            npm install --no-package-lock --registry https://registry.npmjs.org/ || echo "⚠️  Install had issues, but continuing..."
+            npm install --no-package-lock --legacy-peer-deps --registry https://registry.npmjs.org/ || echo "⚠️  Install had issues, but continuing..."
             
             # Force install the specific preview version of utils if this is core package
             if [[ "$PACKAGE_NAME" == *"core"* ]]; then
@@ -387,13 +392,13 @@ jobs:
               echo "[$step_name] 📦 First attempting to install preview version: @gluestack-ui-nightly/utils@${{ steps.version.outputs.version }}"
               
               # First try to install the specific preview version
-              if npm install @gluestack-ui-nightly/utils@${{ steps.version.outputs.version }} --no-save --registry https://registry.npmjs.org/ 2>&1; then
+              if npm install @gluestack-ui-nightly/utils@${{ steps.version.outputs.version }} --no-save --legacy-peer-deps --registry https://registry.npmjs.org/ 2>&1; then
                 echo "[$step_name] ✅ Preview utils package installed successfully"
               else
                 echo "[$step_name] ⚠️  Preview version not available, trying latest public version..."
                 
                 # Fall back to latest public version if preview version doesn't exist
-                if npm install @gluestack-ui-nightly/utils@latest --no-save --registry https://registry.npmjs.org/ 2>&1; then
+                if npm install @gluestack-ui-nightly/utils@latest --no-save --legacy-peer-deps --registry https://registry.npmjs.org/ 2>&1; then
                   echo "[$step_name] ✅ Latest utils package installed successfully as fallback"
                   
                   # Show which version was installed
