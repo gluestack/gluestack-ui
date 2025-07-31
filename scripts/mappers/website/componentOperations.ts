@@ -18,17 +18,31 @@ export const copyComponent = (component: string, event: string = 'added') => {
 };
 
 export const deleteComponentDocs = (component: string) => {
-  const websitePath = path.resolve('apps/website/app/ui/docs/components');
-  const componentDocsPath = path.join(websitePath, component);
-
-  try {
-    if (fileOps.pathExists(componentDocsPath)) {
-      fileOps.deletePath(componentDocsPath);
-      console.log(`🗑️ Deleted component docs: ${component}`);
+  const paths = [
+    {
+      path: path.join(path.resolve('apps/website/app/ui/docs/components'), component),
+      label: 'component docs'
+    },
+    {
+      path: path.join(path.resolve('apps/website/components/page-components/all-components'), component),
+      label: 'component example'
+    },
+    {
+      path: path.join(path.resolve('apps/website/components/ui'), component),
+      label: 'component'
     }
-  } catch (error) {
-    console.error(`❌ Error deleting component docs ${component}:`, error);
-  }
+  ];
+
+  paths.forEach(({ path: componentPath, label }) => {
+    try {
+      if (fileOps.pathExists(componentPath)) {
+        fileOps.deletePath(componentPath);
+        console.log(`🗑️ Deleted ${label}: ${component}`);
+      }
+    } catch (error) {
+      console.error(`❌ Error deleting ${label} ${component}:`, error);
+    }
+  });
 };
 
 export const processSidebarFile = (filePath: string) => {

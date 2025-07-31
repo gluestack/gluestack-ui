@@ -2,9 +2,20 @@ import path from 'path';
 import * as fileOps from '../utils/fileOperations';
 import * as templateGen from './templateGenerator';
 
-export const copyComponentsDocs = (component: string) => {
+export const copyComponentsDocs = (component: string, event: string) => {
   const sourcePath = path.resolve('src/components/ui');
   const kitchenSinkPath = path.resolve('apps/kitchen-sink/app/components');
+
+  if (event === 'removed') {
+    const destPath = path.join(kitchenSinkPath, component);
+    if (!fileOps.pathExists(destPath)) {
+      console.log(`No docs found for ${component}  ${destPath}`);
+      return;
+    }
+    fileOps.deletePath(destPath);
+    console.log(`Docs for ${component} removed`);
+    return;
+  }
 
   try {
     // Find docs files in the component folder
