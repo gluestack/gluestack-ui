@@ -97,7 +97,7 @@ function installPackages(packageManager: string): void {
   const cmds: { [key: string]: string } = { npm: 'npm install', yarn: 'yarn add', pnpm: 'pnpm i', bun: 'bun add' };
   const cmd = cmds[packageManager];
   if (!cmd) throw new Error('Unsupported package manager');
-  const pkgs = ['@gluestack-ui-nightly/core@*', '@gluestack-ui-nightly/utils@*', 'react-native-svg@15.12.0','@gluestack-nightly/ui-next-adapter@*'];
+  const pkgs = ['@gluestack-ui-nightly/core@latest', '@gluestack-ui-nightly/utils@latest', 'react-native-svg@15.12.0','@gluestack-nightly/ui-next-adapter@latest'];
   const result = spawnSync(cmd, pkgs, { cwd: process.cwd(), stdio: 'inherit', shell: true });
   if (result.error || result.status !== 0) throw new Error('Failed to install new packages');
   s.stop('New packages installed.');
