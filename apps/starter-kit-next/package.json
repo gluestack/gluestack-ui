@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:preview": "next build",
+    "build:preview": "yarn add @gluestack-ui-nightly/utils@preview @gluestack-ui-nightly/core@preview && next build",
     "start": "next start",
     "lint": "next lint"
   },

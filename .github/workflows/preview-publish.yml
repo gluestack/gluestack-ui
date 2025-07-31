@@ -407,57 +407,78 @@ jobs:
               UTILS_IN_CHANGED=$(echo "$CHANGED_PACKAGES" | grep -o "@gluestack-ui-nightly/utils" || echo "")
               echo "[$step_name] 🔍 Debug: Utils in changed packages: [$UTILS_IN_CHANGED]"
               
-              # Always use workspace utils for core package builds to avoid npm dependency issues
-              echo "[$step_name] 📦 Using workspace utils package for reliable build"
-              
-              # Create a symlink to the workspace utils package
-              mkdir -p node_modules/@gluestack-ui-nightly/
-              
-              # Remove any existing utils installation
-              rm -rf node_modules/@gluestack-ui-nightly/utils
-              
-              # Build utils package first if not already built
-              cd "../gluestack-utils"
-              if [ ! -d "lib" ] || [ ! -f "lib/esm/index.js" ]; then
-                echo "[$step_name] 🔨 Building utils package dependency..."
-                if npm run build 2>&1; then
-                  echo "[$step_name] ✅ Utils package built successfully"
+              if [ -n "$UTILS_IN_CHANGED" ]; then
+                echo "[$step_name] 📦 Utils package was published, using published version"
+                
+                # Wait a bit more to ensure npm registry has the package available
+                echo "[$step_name] ⏳ Waiting 30 seconds for npm registry propagation..."
+                sleep 30
+                
+                # Install the published utils package explicitly
+                echo "[$step_name] 📥 Installing published utils package..."
+                if npm install "@gluestack-ui-nightly/utils@${{ steps.version.outputs.version }}" --no-save --legacy-peer-deps; then
+                  echo "[$step_name] ✅ Published utils package installed successfully"
                 else
-                  echo "[$step_name] ❌ Failed to build utils package"
+                  echo "[$step_name] ⚠️  Failed to install published utils package, falling back to workspace utils"
+                  
+                  # Fallback to workspace utils with improved setup
+                  echo "[$step_name] 📦 Using workspace utils package as fallback"
+                  
+                  # Create a proper copy instead of symlink to avoid module resolution issues
+                  mkdir -p node_modules/@gluestack-ui-nightly/
+                  rm -rf node_modules/@gluestack-ui-nightly/utils
+                  
+                  # Build utils package first if not already built
+                  cd "../gluestack-utils"
+                  if [ ! -d "lib" ] || [ ! -f "lib/esm/index.js" ]; then
+                    echo "[$step_name] 🔨 Building utils package dependency..."
+                    if npm run build 2>&1; then
+                      echo "[$step_name] ✅ Utils package built successfully"
+                    else
+                      echo "[$step_name] ❌ Failed to build utils package"
+                      cd - > /dev/null
+                      exit 1
+                    fi
+                  else
+                    echo "[$step_name] ✅ Utils package already built, skipping build"
+                  fi
                   cd - > /dev/null
-                  exit 1
+                  
+                  # Copy workspace utils to node_modules instead of symlinking
+                  echo "[$step_name] 📁 Copying workspace utils package..."
+                  cp -r "../gluestack-utils" node_modules/@gluestack-ui-nightly/utils
+                  
+                  # Verify the copy worked
+                  if [ -f "node_modules/@gluestack-ui-nightly/utils/package.json" ]; then
+                    echo "[$step_name] ✅ Workspace utils package copied successfully"
+                  else
+                    echo "[$step_name] ❌ Failed to copy workspace utils package"
+                    exit 1
+                  fi
                 fi
               else
-                echo "[$step_name] ✅ Utils package already built, skipping build"
+                echo "[$step_name] ℹ️  Utils package not in changed packages, using existing dependency"
               fi
-              cd - > /dev/null
               
-              # Create symlink to workspace utils
-              ln -sf "$(pwd)/../gluestack-utils" node_modules/@gluestack-ui-nightly/utils
-              
-              echo "[$step_name] ✅ Linked workspace utils package"
-              
-              # Verify the link works
+              # Verify utils package is available
               if [ -f "node_modules/@gluestack-ui-nightly/utils/package.json" ]; then
                 UTILS_VERSION=$(node -e "try { console.log(require('./node_modules/@gluestack-ui-nightly/utils/package.json').version) } catch(e) { console.log('unknown') }")
-                echo "[$step_name] 📦 Linked utils version: $UTILS_VERSION"
-                echo "[$step_name] ✅ Workspace utils package linked successfully"
+                echo "[$step_name] 📦 Utils version available: $UTILS_VERSION"
+                
+                # Verify barrel exports exist
+                if [ -f "node_modules/@gluestack-ui-nightly/utils/aria.ts" ] && [ -f "node_modules/@gluestack-ui-nightly/utils/common.ts" ] && [ -f "node_modules/@gluestack-ui-nightly/utils/hooks.ts" ]; then
+                  echo "[$step_name] ✅ Utils barrel exports found"
+                else
+                  echo "[$step_name] ⚠️  Some utils barrel exports not found, checking lib structure..."
+                  ls -la "node_modules/@gluestack-ui-nightly/utils/" 2>/dev/null || echo "[$step_name] Could not list utils directory"
+                  ls -la "node_modules/@gluestack-ui-nightly/utils/lib/esm/" 2>/dev/null || echo "[$step_name] Could not list utils lib/esm directory"
+                fi
+                
+                echo "[$step_name] ✅ Utils package is ready for build"
               else
-                echo "[$step_name] ❌ Failed to link workspace utils package"
-                echo "[$step_name] 🔍 Debug: Checking symlink target..."
-                ls -la node_modules/@gluestack-ui-nightly/ || echo "[$step_name] Directory doesn't exist"
+                echo "[$step_name] ❌ Utils package not found in node_modules"
                 exit 1
               fi
-              
-              # Verify barrel exports exist
-              if [ -f "node_modules/@gluestack-ui-nightly/utils/aria.ts" ]; then
-                echo "[$step_name] ✅ Utils barrel exports found"
-              else
-                echo "[$step_name] ⚠️  Utils barrel exports not found, checking lib structure..."
-                ls -la "node_modules/@gluestack-ui-nightly/utils/" 2>/dev/null || echo "[$step_name] Could not list utils directory"
-              fi
-              
-              echo "[$step_name] ✅ Utils package is ready for build"
             else
               echo "[$step_name] ℹ️  Package is not core, skipping utils dependency setup"
             fi
