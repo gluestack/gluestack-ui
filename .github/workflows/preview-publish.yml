@@ -449,7 +449,7 @@ jobs:
             INSTALL_SUCCESS=false
             for i in {1..3}; do
               echo "[$step_name] 📥 Install attempt $i/3..."
-              if npm install --no-package-lock --legacy-peer-deps --registry https://registry.npmjs.org/; then
+              if npm install --no-package-lock --legacy-peer-deps --ignore-scripts --registry https://registry.npmjs.org/; then
                 echo "[$step_name] ✅ Dependencies installed successfully"
                 INSTALL_SUCCESS=true
                 break
