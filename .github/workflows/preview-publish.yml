@@ -491,8 +491,8 @@ jobs:
               echo "$PACKAGE_NAME@${{ steps.version.outputs.version }}" >> "$PUBLISHED_PACKAGES_FILE"
               
               # Longer delay to ensure npm registry has the package
-              echo "[$step_name] ⏳ Waiting 15 seconds for npm propagation..."
-              sleep 15
+              echo "[$step_name] ⏳ Waiting5 seconds for npm propagation..."
+              sleep 5
               
               # Verify the package is available on npm registry
               echo "[$step_name] 🔍 Verifying package availability on npm..."
@@ -501,8 +501,8 @@ jobs:
                   echo "[$step_name] ✅ Package confirmed available on npm registry"
                   break
                 else
-                  echo "[$step_name] ⏳ Package not yet available, waiting 10 more seconds... (attempt $i/6)"
-                  sleep 10
+                  echo "[$step_name] ⏳ Package not yet available, waiting 5 more seconds... (attempt $i/6)"
+                  sleep 5
                 fi
               done
               
