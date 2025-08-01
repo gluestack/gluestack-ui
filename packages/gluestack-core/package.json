@@ -44,7 +44,7 @@
   },
   "scripts": {
     "clean": "rm -rf lib",
-    "build": "node ./scripts/generate-barrel-exports.js && tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json",
     "watch": "tsc -p tsconfig.build.json --watch",
     "dev": "nodemon --watch src --ext ts,tsx,js,jsx,json --exec 'yarn build && yalc push --private'",
     "prepare": "npm run clean && npm run build"
