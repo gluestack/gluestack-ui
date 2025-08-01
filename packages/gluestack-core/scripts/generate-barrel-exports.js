@@ -48,6 +48,8 @@ components.forEach((component) => {
       // Create barrel file
       const content = `export * from '../lib/esm/${component}/${subdir}';`;
       fs.writeFileSync(barrelPath, content);
+
     }
   });
 });
+
