@@ -432,8 +432,8 @@ jobs:
                       echo "[$step_name] ✅ $dep@$VERSION confirmed available"
                       break
                     else
-                      echo "[$step_name] ⏳ $dep@$VERSION not yet available, waiting 10 seconds... (attempt $i/5)"
-                      sleep 10
+                      echo "[$step_name] ⏳ $dep@$VERSION not yet available, waiting 5 seconds... (attempt $i/5)"
+                      sleep 5
                     fi
                   done
                 fi
@@ -444,18 +444,6 @@ jobs:
             
             # Install dependencies
             echo "[$step_name] 📥 Installing dependencies..."
-            
-            # Wait a bit longer for npm registry propagation
-            echo "[$step_name] ⏳ Waiting 30 seconds for npm registry propagation..."
-            sleep 30
-            
-            # Install dependencies without running scripts to avoid build issues
-            if npm install --no-package-lock --legacy-peer-deps --ignore-scripts --registry https://registry.npmjs.org/; then
-              echo "[$step_name] ✅ Dependencies installed successfully"
-            else
-              echo "[$step_name] ❌ Failed to install dependencies"
-              exit 1
-            fi
             
             # Build the package
             if npm run --list 2>/dev/null | grep -q "\bbuild\b"; then
