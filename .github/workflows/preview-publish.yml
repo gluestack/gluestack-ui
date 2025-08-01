@@ -442,93 +442,19 @@ jobs:
               echo "[$step_name] ℹ️  No internal dependencies found"
             fi
             
-            # Install dependencies first to get latest preview packages
-            echo "[$step_name] 📥 Installing dependencies (fresh install)..."
+            # Install dependencies
+            echo "[$step_name] 📥 Installing dependencies..."
             
-            # Try npm install with retries to handle registry propagation delays
-            INSTALL_SUCCESS=false
-            for i in {1..3}; do
-              echo "[$step_name] 📥 Install attempt $i/3..."
-              if npm install --no-package-lock --legacy-peer-deps --ignore-scripts --registry https://registry.npmjs.org/; then
-                echo "[$step_name] ✅ Dependencies installed successfully"
-                INSTALL_SUCCESS=true
-                break
-              else
-                echo "[$step_name] ⚠️  Install attempt $i failed"
-                if [ $i -lt 3 ]; then
-                  echo "[$step_name] ⏳ Waiting 15 seconds before retry..."
-                  sleep 15
-                fi
-              fi
-            done
+            # Wait a bit longer for npm registry propagation
+            echo "[$step_name] ⏳ Waiting 30 seconds for npm registry propagation..."
+            sleep 30
             
-            if [ "$INSTALL_SUCCESS" = false ]; then
-              echo "[$step_name] ❌ All install attempts failed, but continuing with fallback handling..."
-            fi
-            
-            # Handle fallback for internal dependencies if npm install failed
-            if [ "$INSTALL_SUCCESS" = false ] && [[ "$PACKAGE_NAME" == *"core"* ]]; then
-              echo "[$step_name] 🎯 Handling fallback for core package dependencies..."
-              
-              # Check if utils is in changed packages and provide fallback
-              UTILS_IN_CHANGED=$(echo "$CHANGED_PACKAGES" | grep -o "@gluestack-ui-nightly/utils" || echo "")
-              if [ -n "$UTILS_IN_CHANGED" ]; then
-                echo "[$step_name] 📦 Setting up workspace utils as fallback..."
-                
-                # Create a proper copy instead of symlink to avoid module resolution issues
-                mkdir -p node_modules/@gluestack-ui-nightly/
-                rm -rf node_modules/@gluestack-ui-nightly/utils
-                
-                # Build utils package first if not already built
-                cd "../gluestack-utils"
-                if [ ! -d "lib" ] || [ ! -f "lib/esm/index.js" ]; then
-                  echo "[$step_name] 🔨 Building utils package dependency..."
-                  if npm run build 2>&1; then
-                    echo "[$step_name] ✅ Utils package built successfully"
-                  else
-                    echo "[$step_name] ❌ Failed to build utils package"
-                    cd - > /dev/null
-                    exit 1
-                  fi
-                else
-                  echo "[$step_name] ✅ Utils package already built, skipping build"
-                fi
-                cd - > /dev/null
-                
-                # Copy workspace utils to node_modules instead of symlinking
-                echo "[$step_name] 📁 Copying workspace utils package..."
-                cp -r "../gluestack-utils" node_modules/@gluestack-ui-nightly/utils
-                
-                # Update the copied package.json to have the correct preview version
-                if [ -f "node_modules/@gluestack-ui-nightly/utils/package.json" ]; then
-                  echo "[$step_name] 🔄 Updating copied utils package version to preview version..."
-                  node -e "
-                    const fs = require('fs');
-                    const pkgPath = 'node_modules/@gluestack-ui-nightly/utils/package.json';
-                    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
-                    pkg.version = '${{ steps.version.outputs.version }}';
-                    fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
-                  "
-                  echo "[$step_name] ✅ Workspace utils package copied and version updated successfully"
-                else
-                  echo "[$step_name] ❌ Failed to copy workspace utils package"
-                  exit 1
-                fi
-              fi
-            fi
-            
-            # Verify internal dependencies are available
-            if [ -n "$INTERNAL_DEPS" ]; then
-              echo "[$step_name] 🔍 Verifying internal dependencies are available..."
-              for dep in $INTERNAL_DEPS; do
-                if [ -f "node_modules/$dep/package.json" ]; then
-                  DEP_VERSION=$(node -e "try { console.log(require('./node_modules/$dep/package.json').version) } catch(e) { console.log('unknown') }")
-                  echo "[$step_name] ✅ $dep@$DEP_VERSION available"
-                else
-                  echo "[$step_name] ❌ $dep not found in node_modules"
-                  exit 1
-                fi
-              done
+            # Install dependencies without running scripts to avoid build issues
+            if npm install --no-package-lock --legacy-peer-deps --ignore-scripts --registry https://registry.npmjs.org/; then
+              echo "[$step_name] ✅ Dependencies installed successfully"
+            else
+              echo "[$step_name] ❌ Failed to install dependencies"
+              exit 1
             fi
             
             # Build the package
