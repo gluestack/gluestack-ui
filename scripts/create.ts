@@ -77,6 +77,62 @@ const updateSidebar = async (componentName: string, componentType: string, isRSC
   }
 };
 
+const updatePackageJson = async (componentName: string, needsCreator: boolean = false, needsAria: boolean = false) => {
+  try {
+    const packageJsonPath = path.join(process.cwd(), 'packages', 'gluestack-core', 'package.json');
+    
+    if (!fs.existsSync(packageJsonPath)) {
+      log.warn('package.json not found in gluestack-core package');
+      return false;
+    }
+
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+
+    // Add component to files array if it doesn't exist
+    if (!packageJson.files.includes(componentName)) {
+      packageJson.files.push(componentName);
+      packageJson.files.sort(); // Keep files array sorted
+    }
+
+    // Add typesVersions entries if creator or aria is needed
+    if (needsCreator || needsAria) {
+      if (!packageJson.typesVersions) {
+        packageJson.typesVersions = { "*": {} };
+      }
+      if (!packageJson.typesVersions["*"]) {
+        packageJson.typesVersions["*"] = {};
+      }
+
+      const typesVersions = packageJson.typesVersions["*"];
+
+      // Add creator entry
+      if (needsCreator) {
+        const creatorKey = `${componentName}/creator`;
+        const creatorPath = `./lib/esm/${componentName}/creator/index.d.ts`;
+        typesVersions[creatorKey] = [creatorPath];
+      }
+
+      // Add aria entry
+      if (needsAria) {
+        const ariaKey = `${componentName}/aria`;
+        const ariaPath = `./lib/esm/${componentName}/aria/index.d.ts`;
+        typesVersions[ariaKey] = [ariaPath];
+      }
+    }
+
+    // Write the updated package.json back to file
+    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
+
+    log.success(
+      `✅ Component '${componentName}' added to package.json${needsCreator ? ' with creator types' : ''}${needsAria ? ' with aria types' : ''}`
+    );
+    return true;
+  } catch (error) {
+    log.error(`Error updating package.json: ${error}`);
+    return false;
+  }
+};
+
 const validComponentName = async (componentName: string): Promise<boolean> => {
   const sidebarJson = await readSidebar();
   if (!sidebarJson) return false;
@@ -129,25 +185,55 @@ const create = async (componentName: string, componentType: string, isRSC: boole
       path.join(ariaPath, 'index.tsx'),
       ariaTemplate(componentName)
     );
+
+    // Create root-level aria.ts file for re-export
+    const rootAriaPath = path.join(
+      process.cwd(),
+      'packages',
+      'gluestack-core',
+      componentName
+    );
+    fs.mkdirSync(rootAriaPath, { recursive: true });
+    fs.writeFileSync(
+      path.join(rootAriaPath, 'aria.ts'),
+      `export * from '../lib/esm/${componentName}/aria';`
+    );
+    
+    log.success(`✅ Aria directory created at: ${ariaPath}`);
+    log.success(`✅ Root aria.ts file created at: ${rootAriaPath}/aria.ts`);
   }
 
   // Create creator directory and file if needed
   if (needsCreator) {
-
     const creatorPath = path.join(
-    process.cwd(),
-    'packages',
-    'gluestack-core',
-    'src',
-    componentName,
-    'creator'
-  );
+      process.cwd(),
+      'packages',
+      'gluestack-core',
+      'src',
+      componentName,
+      'creator'
+    );
     fs.mkdirSync(creatorPath, { recursive: true });
     fs.writeFileSync(
       path.join(creatorPath, 'index.tsx'),
       creatorTemplate(componentName)
     );
+
+    // Create root-level creator.ts file for re-export
+    const rootCreatorPath = path.join(
+      process.cwd(),
+      'packages',
+      'gluestack-core',
+      componentName
+    );
+    fs.mkdirSync(rootCreatorPath, { recursive: true });
+    fs.writeFileSync(
+      path.join(rootCreatorPath, 'creator.ts'),
+      `export * from '../lib/esm/${componentName}/creator';`
+    );
+    
     log.success(`✅ Creator directory created at: ${creatorPath}`);
+    log.success(`✅ Root creator.ts file created at: ${rootCreatorPath}/creator.ts`);
   }
   
   // Create docs directory and file
@@ -179,6 +265,11 @@ const create = async (componentName: string, componentType: string, isRSC: boole
 
   // Update sidebar.json
   await updateSidebar(componentName, componentType, isRSC);
+  
+  // Update package.json if creator or aria functionality was added
+  if (needsCreator || needsAria) {
+    await updatePackageJson(componentName, needsCreator, needsAria);
+  }
 };
 
 const copyPastableTemplate = (componentName: string, componentType: string, isRSC: boolean = false) => {
