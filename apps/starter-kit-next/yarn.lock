@@ -242,28 +242,18 @@
     find-yarn-workspace-root "^2.0.0"
     fs-extra "^11.1.0"
 
-"@gluestack-ui-nightly/core@^1.2.10":
-  version "1.2.10"
-  resolved "https://registry.npmjs.org/@gluestack-ui-nightly/core/-/core-1.2.10.tgz#2be465638e2098fb54c9a5274258ee430973f568"
-  integrity sha512-ilHiV/vifimZ+1Vo8PIJ8hnMgO7xosEDKl+YwELlVeaAUFBOeN+kj0jEERJy6NxKBEVZeW7lGYFaJ01fw4xDkg==
+"@gluestack-ui-nightly/core@^0.0.0-pr-3079-edd54ba29-1754032671":
+  version "0.0.0-pr-3079-edd54ba29-1754032671"
+  resolved "https://registry.npmjs.org/@gluestack-ui-nightly/core/-/core-0.0.0-pr-3079-edd54ba29-1754032671.tgz#eb6d21fadfaab6d84a50453526232d70a7766053"
+  integrity sha512-+D8ML9qzp5ftOlCMgg9cMJRM8ZHtMlIl29S693+96IlGu+wAgLhMzuhiM0Yf6NLC36/kMABVmxF+ZK5aXmKZ7g==
   dependencies:
-    "@gluestack-ui-nightly/utils" "*"
+    "@gluestack-ui-nightly/utils" "0.0.0-pr-3079-edd54ba29-1754032671"
     react-native-svg "^15.12.0"
 
-"@gluestack-ui-nightly/utils@*":
-  version "0.1.16"
-  resolved "https://registry.npmjs.org/@gluestack-ui-nightly/utils/-/utils-0.1.16.tgz#a1d0a825483a49496061b2ad546fb39e06f78888"
-  integrity sha512-23ADKc1msn8ST2pQNfc8nPpM8HyFFi01cKN2MTmj6LMMJUzmBMJxPa3jOE66IQUuowO7V0ZQ5G8+mvJrTB+H3w==
-  dependencies:
-    dom-helpers "^6.0.1"
-    react-aria "^3.41.1"
-    react-stately "^3.39.0"
-    tailwind-variants "0.1.14"
-
-"@gluestack-ui-nightly/utils@^1.0.23":
-  version "1.0.23"
-  resolved "https://registry.npmjs.org/@gluestack-ui-nightly/utils/-/utils-1.0.23.tgz#365a114b6bf643712f28c0342962e87e805ae3fa"
-  integrity sha512-Kk9oXlpPlhRAy+a3xwsHxDWpbEfxYF5vXTaaaMBm/zi+rIT3i/6MOarT6s77hr4mhX4iYN85ANFxophmtDj7jQ==
+"@gluestack-ui-nightly/utils@0.0.0-pr-3079-edd54ba29-1754032671", "@gluestack-ui-nightly/utils@^0.0.0-pr-3079-edd54ba29-1754032671":
+  version "0.0.0-pr-3079-edd54ba29-1754032671"
+  resolved "https://registry.npmjs.org/@gluestack-ui-nightly/utils/-/utils-0.0.0-pr-3079-edd54ba29-1754032671.tgz#f5dfb4ea5c76a9dc8f025faa20ec1001eb2a5d7a"
+  integrity sha512-LQb9r/2NTjFhtKZMeIAkSIcWeXVoc+ibNrryAzDiZ0uTWVGyFciUB69ovHVVqI/vz1Bpz9lgNMHbU3X+rde4mQ==
   dependencies:
     dom-helpers "^6.0.1"
     react-aria "^3.41.1"
