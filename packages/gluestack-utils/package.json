@@ -9,6 +9,28 @@
   "publishConfig": {
     "access": "public"
   },
+  "exports": {
+    ".": {
+      "types": "./lib/esm/index.d.ts",
+      "default": "./lib/esm/index.js"
+    },
+    "./aria": {
+      "types": "./lib/esm/aria/index.d.ts",
+      "default": "./lib/esm/aria/index.js"
+    },
+    "./hooks": {
+      "types": "./lib/esm/hooks/index.d.ts",
+      "default": "./lib/esm/hooks/index.js"
+    },
+    "./common": {
+      "types": "./lib/esm/common/index.d.ts",
+      "default": "./lib/esm/common/index.js"
+    },
+    "./nativewind-utils": {
+      "types": "./lib/esm/nativewind-utils/index.d.ts",
+      "default": "./lib/esm/nativewind-utils/index.js"
+    }
+  },
   "typesVersions": {
     "*": {
       "hooks": [
