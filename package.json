@@ -21,7 +21,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,mdx}\"",
     "build": "yarn build:packages",
-    "build:packages": "yarn workspaces foreach -pt run build",
+    "build:packages": "yarn workspaces run build",
     "build:website": "cd apps/website && yarn build",
     "link:create": "concurrently \"yarn link:create-utils\" \"sleep 15 && yarn link:create-core\"",
     "link:create-utils": "cd packages/gluestack-utils && yarn && yarn prepare && yalc publish && yarn dev",

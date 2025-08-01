@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Text } from '@/components/ui';
+import { Text } from '@/components/ui/text';
 
 async function fetchGitHubStars() {
   const owner = 'gluestack';

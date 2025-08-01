@@ -9,6 +9,28 @@
   "publishConfig": {
     "access": "public"
   },
+  "exports": {
+    ".": {
+      "types": "./lib/esm/index.d.ts",
+      "default": "./lib/esm/index.js"
+    },
+    "./aria": {
+      "types": "./lib/esm/aria/index.d.ts",
+      "default": "./lib/esm/aria/index.js"
+    },
+    "./hooks": {
+      "types": "./lib/esm/hooks/index.d.ts",
+      "default": "./lib/esm/hooks/index.js"
+    },
+    "./common": {
+      "types": "./lib/esm/common/index.d.ts",
+      "default": "./lib/esm/common/index.js"
+    },
+    "./nativewind-utils": {
+      "types": "./lib/esm/nativewind-utils/index.d.ts",
+      "default": "./lib/esm/nativewind-utils/index.js"
+    }
+  },
   "typesVersions": {
     "*": {
       "hooks": [
@@ -48,11 +70,11 @@
     "tailwindcss": ">=3.0.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.0",
+    "@types/react": "^18.3.0",
     "@types/react-native": "^0.72.0",
     "concurrently": "^9.2.0",
     "nodemon": "^3.1.10",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-native": "^0.72.0",
     "react-native-web": "^0.19.0",
     "tailwindcss": "^3.3.0",
