@@ -204,7 +204,8 @@ jobs:
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
           SHORT_SHA=$(git rev-parse --short HEAD)
-          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}"
+          TIMESTAMP=$(date +%s)
+          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-${TIMESTAMP}"
           echo "version=${PREVIEW_VERSION}" >> $GITHUB_OUTPUT
           echo "🏷️  Generated preview version: ${PREVIEW_VERSION}"
 
@@ -953,7 +954,8 @@ jobs:
           # Generate a version for deployment tracking when no packages were published
           PR_NUMBER=${{ github.event.pull_request.number }}
           SHORT_SHA=$(git rev-parse --short HEAD)
-          PACKAGE_VERSION="deploy-${PR_NUMBER}-${SHORT_SHA}"
+          TIMESTAMP=$(date +%s)
+          PACKAGE_VERSION="deploy-${PR_NUMBER}-${SHORT_SHA}-${TIMESTAMP}"
           echo "🚀 Generated deployment version: $PACKAGE_VERSION"
           echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
 
