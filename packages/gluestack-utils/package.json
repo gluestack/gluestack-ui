@@ -9,6 +9,13 @@
   "publishConfig": {
     "access": "public"
   },
+  "exports": {
+    ".": "./lib/esm/index.js",
+    "./aria": "./lib/esm/aria/index.js",
+    "./hooks": "./lib/esm/hooks/index.js",
+    "./common": "./lib/esm/common/index.js",
+    "./nativewind-utils": "./lib/esm/nativewind-utils/index.js"
+  },
   "typesVersions": {
     "*": {
       "hooks": [
