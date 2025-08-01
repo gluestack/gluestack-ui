@@ -8,7 +8,9 @@ const getComponents = () => {
     console.log('src directory not found');
     return [];
   }
-  
+  console.log(fs.readdirSync(srcPath, { withFileTypes: true })
+  .filter(dirent => dirent.isDirectory())
+  .map(dirent => dirent.name))
   return fs.readdirSync(srcPath, { withFileTypes: true })
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name);
@@ -26,14 +28,12 @@ const getSubdirs = (componentPath) => {
 };
 
 const components = getComponents();
-console.log('Found components:', components);
 
 // Create barrel files for each component and subdir
 components.forEach(component => {
   const componentSrcPath = path.join(__dirname, '..', 'src', component);
   const subdirs = getSubdirs(componentSrcPath);
-  
-  console.log(`Component ${component} has subdirs:`, subdirs);
+  console.log(subdirs)
   
   subdirs.forEach(subdir => {
     const srcPath = path.join(componentSrcPath, subdir);
@@ -50,9 +50,8 @@ components.forEach(component => {
       // Create barrel file
       const content = `export * from '../lib/esm/${component}/${subdir}';`;
       fs.writeFileSync(barrelPath, content);
-      console.log(`Created barrel file: ${barrelPath}`);
+
     }
   });
 });
 
-console.log('Barrel export generation completed!');
