@@ -499,9 +499,17 @@ jobs:
                 echo "[$step_name] 📁 Copying workspace utils package..."
                 cp -r "../gluestack-utils" node_modules/@gluestack-ui-nightly/utils
                 
-                # Verify the copy worked
+                # Update the copied package.json to have the correct preview version
                 if [ -f "node_modules/@gluestack-ui-nightly/utils/package.json" ]; then
-                  echo "[$step_name] ✅ Workspace utils package copied successfully"
+                  echo "[$step_name] 🔄 Updating copied utils package version to preview version..."
+                  node -e "
+                    const fs = require('fs');
+                    const pkgPath = 'node_modules/@gluestack-ui-nightly/utils/package.json';
+                    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+                    pkg.version = '${{ steps.version.outputs.version }}';
+                    fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');
+                  "
+                  echo "[$step_name] ✅ Workspace utils package copied and version updated successfully"
                 else
                   echo "[$step_name] ❌ Failed to copy workspace utils package"
                   exit 1
