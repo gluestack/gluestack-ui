@@ -50,8 +50,34 @@ export const Newsletter = ({
   useEffect(() => {
     if (newsletterAvatarData.length > 0) {
       const firstAvatar = newsletterAvatarData[0];
-      const remainingAvatars = shuffleArray(newsletterAvatarData.slice(1));
-      setAvatars([firstAvatar, ...remainingAvatars.slice(0, 4)]);
+
+      // Always include avatars at indices 6 and 7 if they exist
+      const requiredAvatars = [];
+      if (newsletterAvatarData[5])
+        requiredAvatars.push(newsletterAvatarData[5]);
+      if (newsletterAvatarData[6])
+        requiredAvatars.push(newsletterAvatarData[6]);
+
+      // Get remaining avatars (excluding index 0, 6, and 7)
+      const excludedIndices = new Set([0, 5, 6]);
+      const otherAvatars = newsletterAvatarData.filter(
+        (_, index) => !excludedIndices.has(index)
+      );
+
+      // Shuffle the remaining avatars
+      const shuffledOthers = shuffleArray([...otherAvatars]);
+
+      // Combine required avatars with shuffled others to fill up to 4 slots
+      const remainingSlots = 4 - requiredAvatars.length;
+      const additionalAvatars = shuffledOthers.slice(0, remainingSlots);
+
+      // Shuffle the position of required + additional avatars
+      const allRemainingAvatars = shuffleArray([
+        ...requiredAvatars,
+        ...additionalAvatars,
+      ]);
+
+      setAvatars([firstAvatar, ...allRemainingAvatars]);
     }
   }, [newsletterAvatarData]);
 
