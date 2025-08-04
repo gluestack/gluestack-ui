@@ -107,7 +107,7 @@ export default function withGluestackUI(nextConfig: any = {}) {
   // Turbopack configuration
   const turboConfig = {
     resolveAlias: {
-      ...(nextConfig.experimental?.turbo?.resolveAlias || {}),
+      ...(nextConfig.turbopack?.resolveAlias || {}),
       'react-native': 'react-native-web',
     },
     resolveExtensions: [
@@ -125,34 +125,24 @@ export default function withGluestackUI(nextConfig: any = {}) {
       '.tsx',
       '.json',
     ],
-    rules: [
-      ...(nextConfig.experimental?.turbo?.rules || []),
-      {
-        test: /\.(ttf|otf|woff|woff2)$/,
-        use: [{
-          loader: 'builtin:file-loader',
-          options: {
-            name: 'static/fonts/[name].[hash].[ext]',
-          },
-        }],
+    rules: {
+      ...(nextConfig.turbopack?.rules || {}),
+      '*.{ttf,otf,woff,woff2}': {
+        loaders: ['builtin:file-loader'],
+        as: '*.js',
       },
-    ],
-    // Turbopack environment variables
-    env: {
-      ...(nextConfig.experimental?.turbo?.env || {}),
-      __DEV__: process.env['NODE_ENV'] !== 'production',
-      'process.env.REACT_NATIVE_WEB': 'true',
     },
   };
 
   return {
     ...baseConfig,
+    turbopack: {
+      ...nextConfig.turbopack,
+      ...turboConfig,
+    },
+    // Keep experimental for any other experimental features
     experimental: {
       ...nextConfig.experimental,
-      turbo: {
-        ...nextConfig.experimental?.turbo,
-        ...turboConfig,
-      },
     },
     webpack: (config: any, context: any) => {
       // Apply existing webpack config if any
@@ -160,64 +150,59 @@ export default function withGluestackUI(nextConfig: any = {}) {
         config = nextConfig.webpack(config, context);
       }
 
-      // Only apply webpack-specific configurations when not using Turbopack
-      // Turbopack detection: context.nextRuntime is undefined for webpack
-      const isTurbopack = context.nextRuntime === 'nodejs' && process.env['TURBOPACK'];
-      
-      if (!isTurbopack) {
-        // Set up React Native Web alias
-        config.resolve = config.resolve || {};
-        config.resolve.alias = {
-          ...(config.resolve.alias || {}),
-          'react-native$': 'react-native-web',
-        };
+      // Always apply these configurations for webpack
+      // Set up React Native Web alias
+      config.resolve = config.resolve || {};
+      config.resolve.alias = {
+        ...(config.resolve.alias || {}),
+        'react-native': 'react-native-web',
+      };
 
-        // Add web-specific extensions first
-        config.resolve.extensions = [
-          '.next15.js',
-          '.next15.ts',
-          '.next15.tsx',
-          '.next15.jsx',
-          '.web.js',
-          '.web.jsx',
-          '.web.ts',
-          '.web.tsx',
-          ...config.resolve.extensions,
-        ];
+      // Add web-specific extensions first
+      config.resolve.extensions = [
+        '.next15.js',
+        '.next15.ts',
+        '.next15.tsx',
+        '.next15.jsx',
+        '.web.js',
+        '.web.jsx',
+        '.web.ts',
+        '.web.tsx',
+        ...config.resolve.extensions,
+      ];
 
-        // Handle font files
-        config.module = config.module || {};
-        config.module.rules = config.module.rules || [];
+      // Handle font files
+      config.module = config.module || {};
+      config.module.rules = config.module.rules || [];
 
-        config.module.rules.push({
-          test: /\.(ttf|otf|woff|woff2)$/,
-          use: {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              fallback: 'file-loader',
-            },
+      config.module.rules.push({
+        test: /\.(ttf|otf|woff|woff2)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            fallback: 'file-loader',
           },
-        });
+        },
+      });
 
-        // Add fallbacks for Node.js modules that might be missing in browser
-        config.resolve.fallback = {
-          ...(config.resolve.fallback || {}),
-          'react-native-safe-area-context': false,
-          'fs': false,
-          'path': false,
-        };
+      // Add fallbacks for Node.js modules that might be missing in browser
+      config.resolve.fallback = {
+        ...(config.resolve.fallback || {}),
+        'react-native-safe-area-context': false,
+        'fs': false,
+        'path': false,
+      };
 
-        // Define environment variables for React Native compatibility
-        const { DefinePlugin } = require('webpack');
-        config.plugins = config.plugins || [];
-        config.plugins.push(
-          new DefinePlugin({
-            '__DEV__': JSON.stringify(process.env['NODE_ENV'] !== 'production'),
-            'process.env.REACT_NATIVE_WEB': JSON.stringify('true'),
-          })
-        );
-      }
+      // Define environment variables for React Native compatibility
+      const { DefinePlugin } = require('webpack');
+      config.plugins = config.plugins || [];
+      config.plugins.push(
+        new DefinePlugin({
+          '__DEV__': JSON.stringify(process.env['NODE_ENV'] !== 'production'),
+          'process.env.REACT_NATIVE_WEB': JSON.stringify('true'),
+        })
+      );
 
       return config;
     },
