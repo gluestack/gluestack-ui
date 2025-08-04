@@ -59,7 +59,14 @@ We're thrilled to have you on this journey with us. Together, we can accelerate 
 
 Before contributing, ensure you understand:
 
-- How the source-to-destination system works
+- How the source-to-destination system works:
+  - **Source files** are maintained in the `src/` directory (single source of truth)
+  - **Mapper scripts** automatically copy and sync files to destination projects in `apps/`
+  - **Generated files** in destination projects are gitignored to prevent accidental commits
+  - All UI components in `src/components/ui/` are automatically synced to all apps
+  - Documentation components and sidebar config are synced only to the website app
+  - Use `yarn dev` to watch for changes and auto-sync, or `yarn sync` for one-time sync
+  - **Never edit generated files** in `apps/*/components/ui/` - always edit source files in `src/`
 - Project architecture and component organization
 - Development workflow and testing approach
 
@@ -580,7 +587,7 @@ yarn create:component
 3. **Add examples** in the `examples/` directory
 4. **Write documentation** in the `docs/` directory
 5. **Update your component in sidebar.json file** in `src/sidebar.json`
-5. **Test changes** in real-time as they sync to apps
+6. **Test changes** in real-time as they sync to apps
 
 #### Step 3: Test Your Component
 
