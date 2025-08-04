@@ -1,5 +1,12 @@
 # @gluestack-nightly/ui-next-adapter
 
+## 1.0.48
+
+### Patch Changes
+
+- bb5c274: fix: updated turbopack config
+- 5b23a71: feat: addded support for turbopack
+
 ## 1.0.45
 
 ### Patch Changes
