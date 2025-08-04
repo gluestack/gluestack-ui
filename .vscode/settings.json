@@ -1,0 +1,58 @@
+{
+  "tailwindCSS.includeLanguages": {
+    "typescript": "html",
+    "typescriptreact": "html",
+    "javascript": "html",
+    "javascriptreact": "html"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    // Standard className patterns
+    ["className\\s*=\\s*[\"'`]([^\"'`]*)[\"'`]", "([^\"'`]*)"],
+    ["class\\s*=\\s*[\"'`]([^\"'`]*)[\"'`]", "([^\"'`]*)"],
+    
+    // TVA patterns (your tva() calls)
+    ["tva\\(\\s*{[^}]*base:\\s*[\"'`]([^\"'`]*)[\"'`]", "([^\"'`]*)"],
+    ["[\"'`]([^\"'`]*)[\"'`]\\s*:", "([^\"'`]*)"],
+    
+    // Class utility functions
+    ["cn\\(([^)]*)\\)", "\"([^\"]*)\""],
+    ["classNames\\(([^)]*)\\)", "\"([^\"]*)\""],
+    ["clsx\\(([^)]*)\\)", "\"([^\"]*)\""],
+    
+    // Gluestack style functions
+    ["Style\\(\\s*{[^}]*class:\\s*[\"'`]([^\"'`]*)[\"'`]", "([^\"'`]*)"],
+    ["class:\\s*[\"'`]([^\"'`]*)[\"'`]", "([^\"'`]*)"],
+    
+    // Template literals
+    ["className\\s*=\\s*`([^`]*)`", "([^`]*)"],
+    ["class\\s*=\\s*`([^`]*)`", "([^`]*)"]
+  ],
+  "tailwindCSS.files.exclude": [
+    "**/.git/**",
+    "**/node_modules/**",
+    "**/.next/**",
+    "**/.nuxt/**",
+    "**/dist/**",
+    "**/build/**"
+  ],
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.validate": true,
+  "tailwindCSS.lint.cssConflict": "warning",
+  "tailwindCSS.lint.invalidApply": "error",
+  "tailwindCSS.lint.invalidScreen": "error",
+  "tailwindCSS.lint.invalidVariant": "error",
+  "tailwindCSS.lint.invalidConfigPath": "error",
+  "tailwindCSS.lint.invalidTailwindDirective": "error",
+  "tailwindCSS.lint.recommendedVariantOrder": "warning",
+  "tailwindCSS.classAttributes": [
+    "class", 
+    "className", 
+    "class:list", 
+    "classList", 
+    "ngClass"
+  ],
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "editor.autoClosingQuotes": "always"
+}

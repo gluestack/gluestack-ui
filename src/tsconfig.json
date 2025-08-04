@@ -24,5 +24,11 @@
     "**/.next/**",
     "**/docs/**",
     "**/docs-components/**"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "nativewind-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
   ]
 }
