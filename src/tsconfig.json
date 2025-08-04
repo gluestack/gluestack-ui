@@ -23,7 +23,6 @@
     "**/dist/**",
     "**/.next/**",
     "**/docs/**",
-    "**/docs-components/**"
   ],
   "include": [
     "next-env.d.ts",
