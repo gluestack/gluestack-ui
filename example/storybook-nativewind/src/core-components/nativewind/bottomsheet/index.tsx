@@ -100,7 +100,12 @@ export const BottomSheetPortal = ({
   handleComponent: DragIndicator,
   backdropComponent: BackDrop,
   ...props
-}: Partial<IBottomSheetProps> & {
+}: Partial<IBottomSheetProps & {
+    handleClassName: string
+    containerClassName: string
+    backgroundClassName: string
+    handleIndicatorClassName: string
+  }> & {
   defaultIsOpen?: boolean;
   snapToIndex?: number;
   snapPoints: string[];
@@ -288,6 +293,13 @@ export const BottomSheetFlatList = GorhomBottomSheetFlatList;
 export const BottomSheetSectionList = GorhomBottomSheetSectionList;
 export const BottomSheetTextInput = GorhomBottomSheetInput;
 
+cssInterop(GorhomBottomSheet, {
+  className: 'style',
+  handleClassName: 'handleStyle',
+  containerClassName: 'containerStyle',
+  backgroundClassName: 'backgroundStyle',
+  handleIndicatorClassName: 'handleIndicatorStyle',
+})
 cssInterop(GorhomBottomSheetInput, { className: 'style' });
 cssInterop(GorhomBottomSheetScrollView, { className: 'style' });
 cssInterop(GorhomBottomSheetFlatList, { className: 'style' });
