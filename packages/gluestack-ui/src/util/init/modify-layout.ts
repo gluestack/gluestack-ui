@@ -100,10 +100,17 @@ async function modifyNextJsLayout(
   const cssImportPath = getCssImportPath(cssPath);
   const providerImportPath = `@/${componentsPath}/gluestack-ui-provider`;
 
-  // For Next.js 15, also import the registry
-  const registryImport = isNextjs15
-    ? `import StyledJsxRegistry from './registry';\n`
-    : '';
+  // Determine if this is App Router or Pages Router
+  const isAppRouter =
+    content.includes('export default function RootLayout') ||
+    content.includes('export default function Layout');
+  const isPagesRouter = content.includes('export default function App');
+
+  // For Next.js 15, only import the registry for App Router
+  const registryImport =
+    isNextjs15 && isAppRouter
+      ? `import StyledJsxRegistry from './registry';\n`
+      : '';
 
   let imports = `import '${cssImportPath}';\nimport { GluestackUIProvider } from '${providerImportPath}';\n${registryImport}`;
 
@@ -111,10 +118,7 @@ async function modifyNextJsLayout(
   let modifiedContent = addImportsToFile(content, imports);
 
   // Wrap the children with provider
-  if (
-    content.includes('export default function RootLayout') ||
-    content.includes('export default function Layout')
-  ) {
+  if (isAppRouter) {
     // App Router layout
     const providerWrapper = isNextjs15
       ? `<StyledJsxRegistry>\n          <GluestackUIProvider mode="light">\n            {children}\n          </GluestackUIProvider>\n        </StyledJsxRegistry>`
@@ -124,8 +128,9 @@ async function modifyNextJsLayout(
       /(\s*{children}\s*)/g,
       `\n        ${providerWrapper}\n        `
     );
-  } else if (content.includes('export default function App')) {
-    // Pages Router _app.tsx
+  } else if (isPagesRouter) {
+    // Pages Router _app.tsx - no StyledJsxRegistry needed here
+    // For Pages Router, registry code should be handled in _document.tsx instead
     modifiedContent = modifiedContent.replace(
       /(<Component\s+{\.\.\.pageProps}\s*\/>)/g,
       `<GluestackUIProvider mode="light">\n        $1\n      </GluestackUIProvider>`
