@@ -18,11 +18,7 @@
   },
   "exclude": [
     "**/babel.config.js",
-    "**/scripts/**",
     "**/node_modules/**",
-    "**/dist/**",
-    "**/.next/**",
-    "**/docs/**",
   ],
   "include": [
     "next-env.d.ts",

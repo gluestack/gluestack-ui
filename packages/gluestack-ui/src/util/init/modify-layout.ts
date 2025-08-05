@@ -2,7 +2,10 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import { log } from '@clack/prompts';
 import { config } from '../../config';
-import { getEntryPathAndComponentsPath as getEntryConfig } from '../config';
+import {
+  getEntryPathAndComponentsPath as getEntryConfig,
+  getFilePath,
+} from '../config';
 
 interface LayoutModificationOptions {
   layoutPath: string;
@@ -97,10 +100,17 @@ async function modifyNextJsLayout(
   const cssImportPath = getCssImportPath(cssPath);
   const providerImportPath = `@/${componentsPath}/gluestack-ui-provider`;
 
-  // For Next.js 15, also import the registry
-  const registryImport = isNextjs15
-    ? `import StyledJsxRegistry from './registry';\n`
-    : '';
+  // Determine if this is App Router or Pages Router
+  const isAppRouter =
+    content.includes('export default function RootLayout') ||
+    content.includes('export default function Layout');
+  const isPagesRouter = content.includes('export default function App');
+
+  // For Next.js 15, only import the registry for App Router
+  const registryImport =
+    isNextjs15 && isAppRouter
+      ? `import StyledJsxRegistry from './registry';\n`
+      : '';
 
   let imports = `import '${cssImportPath}';\nimport { GluestackUIProvider } from '${providerImportPath}';\n${registryImport}`;
 
@@ -108,10 +118,7 @@ async function modifyNextJsLayout(
   let modifiedContent = addImportsToFile(content, imports);
 
   // Wrap the children with provider
-  if (
-    content.includes('export default function RootLayout') ||
-    content.includes('export default function Layout')
-  ) {
+  if (isAppRouter) {
     // App Router layout
     const providerWrapper = isNextjs15
       ? `<StyledJsxRegistry>\n          <GluestackUIProvider mode="light">\n            {children}\n          </GluestackUIProvider>\n        </StyledJsxRegistry>`
@@ -121,8 +128,9 @@ async function modifyNextJsLayout(
       /(\s*{children}\s*)/g,
       `\n        ${providerWrapper}\n        `
     );
-  } else if (content.includes('export default function App')) {
-    // Pages Router _app.tsx
+  } else if (isPagesRouter) {
+    // Pages Router _app.tsx - no StyledJsxRegistry needed here
+    // For Pages Router, registry code should be handled in _document.tsx instead
     modifiedContent = modifiedContent.replace(
       /(<Component\s+{\.\.\.pageProps}\s*\/>)/g,
       `<GluestackUIProvider mode="light">\n        $1\n      </GluestackUIProvider>`
@@ -289,7 +297,7 @@ export async function modifyLayoutFilesAutomatically(
     }
 
     // Determine CSS path based on project type
-    const cssPath = getCSSPathForProject(projectType, resolvedConfig);
+    const cssPath = await getCSSPathForProject(projectType, resolvedConfig);
 
     // Check if this is Next.js 15
     const isNextjs15 = projectType === 'nextjs' && (await checkForNextjs15());
@@ -319,15 +327,25 @@ export async function modifyLayoutFilesAutomatically(
 /**
  * Get CSS path based on project type and resolved config
  */
-function getCSSPathForProject(
+async function getCSSPathForProject(
   projectType: string,
   resolvedConfig: any
-): string {
+): Promise<string> {
   if (resolvedConfig?.app?.globalCssPath) {
     return resolvedConfig.app.globalCssPath;
   }
 
-  // Default CSS paths for different project types
+  // Try to detect existing CSS files in the project
+  const detectedCssPath = await getFilePath([
+    '**/*globals.css',
+    '**/*global.css',
+  ]);
+
+  if (detectedCssPath) {
+    return detectedCssPath;
+  }
+
+  // Fallback to default CSS paths for different project types
   switch (projectType) {
     case config.nextJsProject:
       return 'app/globals.css';
