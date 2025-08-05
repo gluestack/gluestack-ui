@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 0.7.40
+
+### Patch Changes
+
+- 2587745: fix: enhance layout modification logic for Next.js by distinguishing between App Router and Pages Router
+
 ## 0.7.39
 
 ### Patch Changes
