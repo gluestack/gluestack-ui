@@ -46,13 +46,13 @@ const FormControlDemo = () => {
       </Input>
       <FormControlHelper>
         <FormControlHelperText>
-          Must be atleast 6 characters.
+          Must be at least 6 characters.
         </FormControlHelperText>
       </FormControlHelper>
       <FormControlError>
         <FormControlErrorIcon as={AlertCircleIcon} />
         <FormControlErrorText>
-          Atleast 6 characters are required.
+          At least 6 characters are required.
         </FormControlErrorText>
       </FormControlError>
     </FormControl>

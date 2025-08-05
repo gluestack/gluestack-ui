@@ -286,17 +286,14 @@ async function updateGlobalCss(resolvedConfig: any): Promise<void> {
     );
     const existingContent = await fs.readFile(globalCSSPath, 'utf8');
 
-    // Check if @import "tailwindcss"; exists and replace it with globalcss content
-    if (existingContent.includes('@import "tailwindcss";')) {
-      const updatedContent = existingContent.replace(
-        '@import "tailwindcss";',
-        globalCSSContent.trim()
-      );
-      await fs.writeFile(globalCSSPath, updatedContent, 'utf8');
-    } else if (existingContent.includes(globalCSSContent)) {
+    if (existingContent.includes(globalCSSContent)) {
       return;
     } else {
-      await fs.appendFile(globalCSSPath, globalCSSContent.toString(), 'utf8');
+      await fs.appendFile(
+        globalCSSPath,
+        globalCSSContent.toString(), // Convert buffer to string
+        'utf8'
+      );
     }
   } catch (err) {
     log.error(`\x1b[31mError: ${err as Error}\x1b[0m`);

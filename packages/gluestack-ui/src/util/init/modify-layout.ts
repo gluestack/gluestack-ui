@@ -2,7 +2,10 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import { log } from '@clack/prompts';
 import { config } from '../../config';
-import { getEntryPathAndComponentsPath as getEntryConfig } from '../config';
+import {
+  getEntryPathAndComponentsPath as getEntryConfig,
+  getFilePath,
+} from '../config';
 
 interface LayoutModificationOptions {
   layoutPath: string;
@@ -289,7 +292,7 @@ export async function modifyLayoutFilesAutomatically(
     }
 
     // Determine CSS path based on project type
-    const cssPath = getCSSPathForProject(projectType, resolvedConfig);
+    const cssPath = await getCSSPathForProject(projectType, resolvedConfig);
 
     // Check if this is Next.js 15
     const isNextjs15 = projectType === 'nextjs' && (await checkForNextjs15());
@@ -319,15 +322,25 @@ export async function modifyLayoutFilesAutomatically(
 /**
  * Get CSS path based on project type and resolved config
  */
-function getCSSPathForProject(
+async function getCSSPathForProject(
   projectType: string,
   resolvedConfig: any
-): string {
+): Promise<string> {
   if (resolvedConfig?.app?.globalCssPath) {
     return resolvedConfig.app.globalCssPath;
   }
 
-  // Default CSS paths for different project types
+  // Try to detect existing CSS files in the project
+  const detectedCssPath = await getFilePath([
+    '**/*globals.css',
+    '**/*global.css',
+  ]);
+
+  if (detectedCssPath) {
+    return detectedCssPath;
+  }
+
+  // Fallback to default CSS paths for different project types
   switch (projectType) {
     case config.nextJsProject:
       return 'app/globals.css';
