@@ -10,7 +10,7 @@ import { Pressable } from '@/components/ui/pressable';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { Box } from '@/components/ui/box';
-
+import { Menu, MenuItem } from '@/components/ui/menu';
 import Image from 'next/image';
 import GluestackLogo from '@/public/svg/gluestack_logo.svg';
 import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';
@@ -120,19 +120,47 @@ const Header = ({
                 {colorMode === 'dark' ? (
                   <Image
                     alt="gluestack-ui logo"
-                    className={'w-44 h-[28px] '}
+                    className={'h-[20px] w-auto'}
                     src={GluestackLogoDark}
                     priority
                   />
                 ) : (
                   <Image
                     alt="gluestack-ui logo"
-                    className={'w-44 h-[28px] '}
+                    className={'h-[20px] w-auto'}
                     src={GluestackLogo}
                     priority
                   />
                 )}
               </Link>
+              <Menu
+                placement="bottom"
+                offset={18}
+                trigger={({ ...triggerProps }) => {
+                  return (
+                    <Pressable
+                      {...triggerProps}
+                      className="flex-row items-center"
+                    >
+                      {/* <ButtonText>v3</ButtonText> */}
+                      <Text className="font-jakarta font-bold text-typography-800 text-sm">
+                        v3
+                      </Text>
+                      <Icon as={ChevronDownIcon} className="w-3 h-3 ml-1" />
+                    </Pressable>
+                  );
+                }}
+              >
+                <MenuItem className="min-w-fit px-5 py-2">v3</MenuItem>
+                <MenuItem
+                  className="min-w-fit px-5 py-2"
+                  onPress={() => {
+                    window.open('https://v2.gluestack.io', '_blank');
+                  }}
+                >
+                  v2
+                </MenuItem>
+              </Menu>
               <Divider
                 orientation="vertical"
                 className="h-[20px] hidden sm:flex lg:hidden xl:flex"
