@@ -5,11 +5,11 @@ A streamlined Next.js configuration adapter for Gluestack-ui component library t
 ## Installation
 
 ```bash
-npm install @gluestack-nightly/ui-next-adapter
+npm install @gluestack/ui-next-adapter
 # or
-yarn add @gluestack-nightly/ui-next-adapter
+yarn add @gluestack/ui-next-adapter
 # or
-pnpm add @gluestack-nightly/ui-next-adapter
+pnpm add @gluestack/ui-next-adapter
 ```
 
 ## Quick Start
@@ -17,10 +17,10 @@ pnpm add @gluestack-nightly/ui-next-adapter
 Replace your complex `next.config.js` with a simple:
 
 ```javascript
-import { withGluestackUI } from "@gluestack-nightly/ui-next-adapter";
+import { withGluestackUI } from '@gluestack/ui-next-adapter';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: []
+  transpilePackages: [],
 };
 
 export default withGluestackUI(nextConfig);
@@ -31,7 +31,7 @@ export default withGluestackUI(nextConfig);
 If you have an existing Next.js configuration, just wrap it:
 
 ```javascript
-import { withGluestackUI } from '@gluestack-nightly/ui-next-adapter';
+import { withGluestackUI } from '@gluestack/ui-next-adapter';
 
 const nextConfig = {
   // Your existing Next.js config
@@ -51,7 +51,7 @@ export default withGluestackUI(nextConfig);
 The adapter includes full TypeScript support:
 
 ```typescript
-import { withGluestackUI } from '@gluestack-nightly/ui-next-adapter';
+import { withGluestackUI } from '@gluestack/ui-next-adapter';
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
@@ -79,7 +79,7 @@ The adapter automatically configures:
 Your custom webpack config will be merged with the UI adapter:
 
 ```javascript
-import { withGluestackUI } from '@gluestack-nightly/ui-next-adapter';
+import { withGluestackUI } from '@gluestack/ui-next-adapter';
 
 const nextConfig = {
   webpack: (config, { isServer }) => {
@@ -88,7 +88,7 @@ const nextConfig = {
       test: /\.svg$/,
       use: '@svgr/webpack',
     });
-    
+
     return config;
   },
 };
@@ -101,7 +101,7 @@ export default withGluestackUI(nextConfig);
 Check if your config is properly set up:
 
 ```javascript
-import { withGluestackUI, validateUIConfig } from '@gluestack-nightly/ui-next-adapter';
+import { withGluestackUI, validateUIConfig } from '@gluestack/ui-next-adapter';
 
 const nextConfig = {
   // your config
@@ -121,22 +121,26 @@ export default config;
 The adapter handles these configurations automatically:
 
 ### Webpack Extensions Priority
+
 1. `.next15.js`, `.next15.jsx`, `.next15.ts`, `.next15.tsx`
 2. `.web.js`, `.web.jsx`, `.web.ts`, `.web.tsx`
 3. `.js`, `.jsx`, `.ts`, `.tsx`
 4. `.json`, `.mjs`
 
 ### Transpiled Packages
+
 - `react-native-web`
 - `nativewind`
 - `react-native-css-interop`
 
 ### Aliases
+
 - `react-native` → `react-native-web`
 
 ## Troubleshooting
 
 ### Build Errors
+
 The adapter sets `ignoreBuildErrors: true` for TypeScript and ESLint by default. If you want stricter builds:
 
 ```javascript
@@ -151,6 +155,7 @@ module.exports = withUIAdapter({
 ```
 
 ### Missing Dependencies
+
 Make sure you have the required peer dependencies:
 
 ```bash
@@ -160,6 +165,7 @@ npm install react-native-web nativewind react-native-css-interop
 ## Migration from Manual Config
 
 **Before:**
+
 ```javascript
 const nextConfig = {
   reactStrictMode: true,
@@ -173,22 +179,26 @@ const nextConfig = {
     // ... lots more config
     return config;
   },
-  transpilePackages: ['react-native-web', 'nativewind', 'react-native-css-interop'],
+  transpilePackages: [
+    'react-native-web',
+    'nativewind',
+    'react-native-css-interop',
+  ],
   // ... even more config
 };
 ```
 
 **After:**
+
 ```javascript
-import { withGluestackUI } from '@gluestack-nightly/ui-next-adapter';
+import { withGluestackUI } from '@gluestack/ui-next-adapter';
 
 const nextConfig = {
-  transpilePackages: []
+  transpilePackages: [],
 };
 
 export default withGluestackUI(nextConfig);
 ```
-
 
 ## Contributing
 

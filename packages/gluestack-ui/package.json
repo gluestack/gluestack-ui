@@ -1,9 +1,9 @@
 {
-  "name": "gluestack-ui-nightly",
+  "name": "gluestack-ui",
   "version": "0.7.39",
   "main": "dist/index.js",
   "bin": {
-    "gluestack-ui-nightly": "./dist/index.js"
+    "gluestack-ui": "./dist/index.js"
   },
   "publishConfig": {
     "access": "public"

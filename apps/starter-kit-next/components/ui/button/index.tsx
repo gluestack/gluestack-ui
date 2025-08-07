@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
-import { createButton } from '@gluestack-ui-nightly/core/button/creator';
-import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import { createButton } from '@gluestack-ui/core/button/creator';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@gluestack-ui-nightly/utils/nativewind-utils';
+} from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import type { VariantProps } from 'tailwind-variants';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui-nightly/core/icon/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'BUTTON';
 
@@ -331,7 +331,7 @@ const ButtonText = React.forwardRef<
         action: action as
           | 'primary'
           | 'secondary'
-          | 'positive'  
+          | 'positive'
           | 'negative'
           | undefined,
         class: className,

@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
-import { useHover } from '@gluestack-ui-nightly/utils/aria';
+import { useHover } from '@gluestack-ui/utils/aria';
 import { useToggleState } from '@react-stately/toggle';
 import { useFormControlContext } from '../../form-control/creator';
-import { mergeRefs } from '@gluestack-ui-nightly/utils/common';
+import { mergeRefs } from '@gluestack-ui/utils/common';
 export function Switch(StyledSwitch: any) {
   return forwardRef(
     (

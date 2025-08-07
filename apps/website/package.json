@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui-nightly/core@latest @gluestack-ui-nightly/utils@latest  && next build",
-    "build:preview": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui-nightly/core@preview @gluestack-ui-nightly/utils@preview  && next build",
+    "build": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui/core@latest @gluestack-ui/utils@latest  && next build",
+    "build:preview": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui/core@preview @gluestack-ui/utils@preview  && next build",
     "build:only": "next build",
     "start": "next start",
     "test": "jest"

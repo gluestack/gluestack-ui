@@ -1,4 +1,4 @@
-import { withGluestackUI } from "@gluestack-nightly/ui-next-adapter";
+import { withGluestackUI } from '@gluestack/ui-next-adapter';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -7,7 +7,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  transpilePackages: []
+  transpilePackages: [],
 };
 
 export default withGluestackUI(nextConfig);

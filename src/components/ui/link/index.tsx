@@ -1,12 +1,12 @@
 'use client';
-import { createLink } from '@gluestack-ui-nightly/core/link/creator';
+import { createLink } from '@gluestack-ui/core/link/creator';
 import { Pressable } from 'react-native';
 import { Text } from 'react-native';
 
-import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
-import { withStyleContext } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 import React from 'react';
 export const UILink = createLink({

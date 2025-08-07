@@ -49,7 +49,7 @@ const InitializeGlueStack = async ({
     const initializeStatus = await checkIfInitialized(_currDir);
     if (initializeStatus) {
       log.info(
-        `\x1b[33mgluestack-ui is already initialized in the project, use 'npx gluestack-ui-nightly help' command to continue\x1b[0m`
+        `\x1b[33mgluestack-ui is already initialized in the project, use 'npx gluestack-ui help' command to continue\x1b[0m`
       );
       process.exit(1);
     }
@@ -59,7 +59,7 @@ const InitializeGlueStack = async ({
       ? true
       : await overrideWarning(filesToOverride(projectType));
 
-    console.log(`\n\x1b[1mInitializing gluestack-ui v2...\x1b[0m\n`);
+    console.log(`\n\x1b[1mInitializing gluestack-ui v3...\x1b[0m\n`);
     await cloneRepositoryAtRoot(join(_homeDir, config.gluestackDir));
     const inputComponent = [config.providerComponent];
 
@@ -100,7 +100,7 @@ const InitializeGlueStack = async ({
       'Please refer the above link for more details --> \x1b[33mhttps://gluestack.io/ui/docs/home/overview/introduction \x1b[0m'
     );
     log.success(
-      `\x1b[32mDone!\x1b[0m Initialized \x1b[1mgluestack-ui v2\x1b[0m in the project`
+      `\x1b[32mDone!\x1b[0m Initialized \x1b[1mgluestack-ui v3\x1b[0m in the project`
     );
   } catch (err) {
     log.error(`\x1b[31mError occured in init. (${err as Error})\x1b[0m`);

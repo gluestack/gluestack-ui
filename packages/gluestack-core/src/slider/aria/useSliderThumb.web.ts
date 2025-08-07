@@ -20,7 +20,7 @@ import { SliderState } from '@react-stately/slider';
 import { useFocusable } from '@react-aria/focus';
 import { useLabel } from '@react-aria/label';
 import { useMove } from './useMove';
-import { isRTL } from '@gluestack-ui-nightly/utils/aria';
+import { isRTL } from '@gluestack-ui/utils/aria';
 
 interface SliderThumbAria {
   /** Props for the root thumb element; handles the dragging motion. */
@@ -97,7 +97,15 @@ export function useSliderThumb(
       currentPosition.current = null;
       state.setThumbDragging(index, true);
     },
-    onMove({ deltaX, deltaY, pointerType }: { deltaX: number; deltaY: number; pointerType: string }) {
+    onMove({
+      deltaX,
+      deltaY,
+      pointerType,
+    }: {
+      deltaX: number;
+      deltaY: number;
+      pointerType: string;
+    }) {
       let size = isVertical ? trackLayout.height : trackLayout.width;
 
       if (currentPosition.current == null) {

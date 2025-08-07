@@ -6,7 +6,7 @@ import {
   Dimensions,
 } from 'react-native';
 import type { Placement, PositionProps } from '@react-types/overlays';
-import { isRTL } from '@gluestack-ui-nightly/utils/aria';
+import { isRTL } from '@gluestack-ui/utils/aria';
 
 import { APPROX_STATUSBAR_HEIGHT } from './utils';
 const measureOffset = (ref: RefObject<any>) =>

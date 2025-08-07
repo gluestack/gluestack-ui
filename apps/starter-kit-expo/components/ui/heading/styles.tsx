@@ -1,5 +1,5 @@
-import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
-import { isWeb } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { isWeb } from '@gluestack-ui/utils/nativewind-utils';
 const baseStyle = isWeb
   ? 'font-sans tracking-sm bg-transparent border-0 box-border display-inline list-none margin-0 padding-0 position-relative text-start no-underline whitespace-pre-wrap word-wrap-break-word'
   : '';

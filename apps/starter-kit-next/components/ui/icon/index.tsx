@@ -1,14 +1,14 @@
 import React from 'react';
-import { createIcon } from '@gluestack-ui-nightly/core/icon/creator';
+import { createIcon } from '@gluestack-ui/core/icon/creator';
 import { Path } from 'react-native-svg';
-import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
   PrimitiveIcon,
   IPrimitiveIcon,
   Svg,
-} from '@gluestack-ui-nightly/core/icon/creator';
+} from '@gluestack-ui/core/icon/creator';
 
 export const UIIcon = createIcon({
   Root: PrimitiveIcon,

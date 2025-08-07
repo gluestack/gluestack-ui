@@ -13,8 +13,8 @@
 import { getItemCount } from '@react-stately/collections';
 import { Key, RefObject } from 'react';
 import { isFocusVisible, useKeyboard } from '@react-aria/interactions';
-import { useHover, usePress } from '@gluestack-ui-nightly/utils/aria';
-import { mapDomPropsToRN } from '@gluestack-ui-nightly/utils/aria';
+import { useHover, usePress } from '@gluestack-ui/utils/aria';
+import { mapDomPropsToRN } from '@gluestack-ui/utils/aria';
 import { mergeProps, useSlotId } from '@react-aria/utils';
 import { PressEvent } from '@react-types/shared';
 import { TreeState } from '@react-stately/tree';

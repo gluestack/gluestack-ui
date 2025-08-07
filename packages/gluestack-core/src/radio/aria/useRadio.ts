@@ -2,9 +2,9 @@ import type { AriaRadioProps } from '@react-types/radio';
 import { mergeProps } from '@react-aria/utils';
 import type { RefObject } from 'react';
 import type { RadioGroupState } from '@react-stately/radio';
-import { usePress } from '@gluestack-ui-nightly/utils/aria';
+import { usePress } from '@gluestack-ui/utils/aria';
 import type { AccessibilityProps } from 'react-native';
-import { getLabel } from '@gluestack-ui-nightly/utils/aria';
+import { getLabel } from '@gluestack-ui/utils/aria';
 
 export interface RadioAriaProps extends AriaRadioProps, AccessibilityProps {
   /**

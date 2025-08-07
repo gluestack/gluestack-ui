@@ -68,7 +68,7 @@ const Header = () => {
             className="h-5 w-5 rounded-sm lg:h-6 lg:w-6 xl:h-7 xl:w-7"
           />
           <Text className="font-medium text-sm lg:text-base xl:text-lg text-typography-900">
-            Powered by gluestack-ui v2
+            Powered by gluestack-ui v3
           </Text>
         </HStack>
         <Heading className="mb-2 xl:mb-[18px] text-4xl lg:text-5xl xl:text-[56px]">
@@ -101,25 +101,28 @@ export default function ComponentList() {
   const handleComponentPress = (componentPath: string) => {
     // Use Expo Router's built-in navigation state check
     const targetPath = `components/${componentPath}`;
-    
+
     // Prevent navigation if we're already on the target path or if navigation is in progress
     if (pathname.includes(targetPath)) {
       return;
     }
-    
+
     // Use replace instead of push to prevent stack accumulation on rapid clicks
     router.push(`/components/${componentPath}` as any);
   };
 
   // Filter out bottomsheet components and components without paths
-  const filteredComponents = components.map(category => ({
-    ...category,
-    components: category.components.filter(component => 
-      component.path && 
-      !component.name.toLowerCase().includes('bottomsheet') &&
-      !component.path.toLowerCase().includes('bottomsheet')
-    )
-  })).filter(category => category.components.length > 0);
+  const filteredComponents = components
+    .map((category) => ({
+      ...category,
+      components: category.components.filter(
+        (component) =>
+          component.path &&
+          !component.name.toLowerCase().includes('bottomsheet') &&
+          !component.path.toLowerCase().includes('bottomsheet')
+      ),
+    }))
+    .filter((category) => category.components.length > 0);
 
   return (
     <SafeAreaView className="flex-1 bg-background-0">

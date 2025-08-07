@@ -1,14 +1,14 @@
 'use client';
-import { createSlider } from '@gluestack-ui-nightly/core/slider/creator';
+import { createSlider } from '@gluestack-ui/core/slider/creator';
 import { Pressable } from 'react-native';
 import { View } from 'react-native';
 import React from 'react';
-import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@gluestack-ui-nightly/utils/nativewind-utils';
-import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
+} from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 
 const SCOPE = 'SLIDER';

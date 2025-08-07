@@ -48,7 +48,7 @@ Overlay: Modal, Popover, Tooltip, Menu
 - Enhanced performance and developer experience in v2
 
 # Installation
-CLI method: npx gluestack-ui-nightly add [component-name]
+CLI method: npx gluestack-ui add [component-name]
 Manual: Copy-paste components directly from documentation
 Package: @gluestack-ui/nativewind-utils for styling utilities
 

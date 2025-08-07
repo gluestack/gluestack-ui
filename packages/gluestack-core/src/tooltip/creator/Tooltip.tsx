@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react';
-import { useControllableState } from '@gluestack-ui-nightly/utils/hooks';
-import { useKeyboardDismissable } from '@gluestack-ui-nightly/utils/aria';
+import { useControllableState } from '@gluestack-ui/utils/hooks';
+import { useKeyboardDismissable } from '@gluestack-ui/utils/aria';
 import { TooltipProvider } from './context';
 import type { ITooltipProps } from './types';
-import { useId } from '@gluestack-ui-nightly/utils/aria';
+import { useId } from '@gluestack-ui/utils/aria';
 import { Platform } from 'react-native';
 import { Overlay } from '../../overlay/creator';
-import { composeEventHandlers } from '@gluestack-ui-nightly/utils/common';
+import { composeEventHandlers } from '@gluestack-ui/utils/common';
 
 function Tooltip<StyledTooltipProp>(
   StyledTooltip: React.ComponentType<StyledTooltipProp>

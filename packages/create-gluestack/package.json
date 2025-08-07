@@ -1,9 +1,9 @@
 {
-  "name": "create-gluestack-nightly",
+  "name": "create-gluestack",
   "version": "2.0.10",
   "main": "./dist/index.js",
   "bin": {
-    "create-gluestack-nightly": "./dist/index.js"
+    "create-gluestack": "./dist/index.js"
   },
   "files": [
     "dist"
