@@ -43,7 +43,7 @@ You can find detailed documentation for each component, including a list of prop
 To get started with **gluestack-ui v2**, you must have an existing Next.js or Expo project. Then, simply run the following command:
 
 ```bash
-npx gluestack-ui-nightly init
+npx gluestack-ui init
 ```
 
 For detailed installation instructions, visit the [gluestack-ui v2 installation guide](https://gluestack.io/ui/docs/home/getting-started/installation).

@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import { useKeyboardBottomInset } from '@gluestack-ui-nightly/utils/hooks';
+import { useKeyboardBottomInset } from '@gluestack-ui/utils/hooks';
 import { Overlay } from '../../overlay/creator';
 import React from 'react';
 import { Platform, SafeAreaView, View } from 'react-native';

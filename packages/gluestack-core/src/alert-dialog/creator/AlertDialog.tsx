@@ -7,7 +7,7 @@ import type { IAlertDialogProps } from './types';
 import {
   useControllableState,
   useKeyboardBottomInset,
-} from '@gluestack-ui-nightly/utils/hooks';
+} from '@gluestack-ui/utils/hooks';
 
 export const AlertDialog = <T,>(StyledAlertDialog: React.ComponentType<T>) =>
   forwardRef(

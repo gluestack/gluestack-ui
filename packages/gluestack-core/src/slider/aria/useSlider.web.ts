@@ -5,7 +5,7 @@ import React, { useRef } from 'react';
 import { setInteractionModality } from '@react-aria/interactions';
 import { SliderState } from '@react-stately/slider';
 import { useLabel } from '@react-aria/label';
-import { mapDomPropsToRN, isRTL } from '@gluestack-ui-nightly/utils/aria';
+import { mapDomPropsToRN, isRTL } from '@gluestack-ui/utils/aria';
 import { useMove } from './useMove';
 
 interface MoveEvent {

@@ -1,8 +1,8 @@
 import React, { forwardRef, useContext } from 'react';
 import { AccordionItemContext } from './Context';
-import { useHover, usePress } from '@gluestack-ui-nightly/utils/aria';
-import { useFocusRing, useFocus } from '@gluestack-ui-nightly/utils/aria';
-import { composeEventHandlers } from '@gluestack-ui-nightly/utils/common';
+import { useHover, usePress } from '@gluestack-ui/utils/aria';
+import { useFocusRing, useFocus } from '@gluestack-ui/utils/aria';
+import { composeEventHandlers } from '@gluestack-ui/utils/common';
 import { Platform } from 'react-native';
 
 export const AccordionTrigger = (StyledAccordionTrigger: any) =>

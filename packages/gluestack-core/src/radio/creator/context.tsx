@@ -1,5 +1,5 @@
 import React from 'react';
-import { ariaAttr } from '@gluestack-ui-nightly/utils/common';
+import { ariaAttr } from '@gluestack-ui/utils/common';
 
 export type IFormControlContext = Omit<
   ReturnType<typeof useRadioContextProvider>,

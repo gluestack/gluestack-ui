@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { SliderContext } from './Context';
 import { Platform } from 'react-native';
-import { mergeRefs } from '@gluestack-ui-nightly/utils/common';
+import { mergeRefs } from '@gluestack-ui/utils/common';
 
 function SliderFilledTrack<StyledSliderFilledTrack>(
   StyledSliderFilledTrack: React.ComponentType<StyledSliderFilledTrack>

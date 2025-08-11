@@ -1,7 +1,7 @@
 import React, { forwardRef, useContext } from 'react';
 import { CheckboxProvider } from './CheckboxProvider';
-import { useFocusRing } from '@gluestack-ui-nightly/utils/aria';
-import { useHover } from '@gluestack-ui-nightly/utils/aria';
+import { useFocusRing } from '@gluestack-ui/utils/aria';
+import { useHover } from '@gluestack-ui/utils/aria';
 import { useToggleState } from '@react-stately/toggle';
 import { useCheckbox, useCheckboxGroupItem } from '../aria';
 import { CheckboxGroupContext } from './CheckboxGroup';
@@ -9,7 +9,7 @@ import {
   combineContextAndProps,
   mergeRefs,
   stableHash,
-} from '@gluestack-ui-nightly/utils/common';
+} from '@gluestack-ui/utils/common';
 import { useFormControlContext } from '../../form-control/creator';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 
@@ -46,9 +46,11 @@ export const Checkbox = (StyledCheckbox: any) =>
       combinedProps['aria-label'] || combinedProps.value || 'Checkbox';
 
     const mergedRef = mergeRefs([ref, _ref]);
-    
-    let groupItemInputProps: { inputProps: { onChange?: () => void } } = { inputProps: {} };
-    
+
+    let groupItemInputProps: { inputProps: { onChange?: () => void } } = {
+      inputProps: {},
+    };
+
     if (checkboxGroupContext?.state) {
       try {
         groupItemInputProps = useCheckboxGroupItem(
@@ -62,11 +64,14 @@ export const Checkbox = (StyledCheckbox: any) =>
           mergedRef
         );
       } catch (error) {
-        console.warn('CheckboxGroupItem hook failed, falling back to standalone checkbox:', error);
+        console.warn(
+          'CheckboxGroupItem hook failed, falling back to standalone checkbox:',
+          error
+        );
         groupItemInputProps = { inputProps: {} };
       }
     }
-    
+
     const standaloneCheckboxProps = useCheckbox(
       {
         ...combinedProps,
@@ -78,10 +83,10 @@ export const Checkbox = (StyledCheckbox: any) =>
     );
 
     // Use group props if available and valid, otherwise use standalone
-  
-    const { inputProps: finalInputProps } = 
-      (checkboxGroupContext?.state && groupItemInputProps.inputProps?.onChange) 
-        ? groupItemInputProps 
+
+    const { inputProps: finalInputProps } =
+      checkboxGroupContext?.state && groupItemInputProps.inputProps?.onChange
+        ? groupItemInputProps
         : standaloneCheckboxProps;
 
     const inputProps = React.useMemo(

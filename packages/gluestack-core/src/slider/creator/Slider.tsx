@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { useSliderState } from '@react-stately/slider';
-import { useLayout } from '@gluestack-ui-nightly/utils/hooks';
+import { useLayout } from '@gluestack-ui/utils/hooks';
 import type { ISliderProps } from './types';
 import { SliderContext } from './Context';
 import { useSlider } from '../aria';

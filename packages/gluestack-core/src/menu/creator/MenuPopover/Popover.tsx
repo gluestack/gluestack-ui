@@ -1,8 +1,8 @@
 import React from 'react';
-import { useControllableState } from '@gluestack-ui-nightly/utils/hooks';
+import { useControllableState } from '@gluestack-ui/utils/hooks';
 import { Overlay } from '../../../overlay/creator';
 import { PopoverProvider } from './PopoverContext';
-import { FocusScope as FocusScopeAria } from '@gluestack-ui-nightly/utils/aria';
+import { FocusScope as FocusScopeAria } from '@gluestack-ui/utils/aria';
 import { PopoverContent } from './PopoverContent';
 import { MenuContext } from '../MenuContext';
 export const Popover = ({

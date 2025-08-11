@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
-import { useKeyboardDismissable } from '@gluestack-ui-nightly/utils/aria';
+import { useKeyboardDismissable } from '@gluestack-ui/utils/aria';
 import { usePopover } from './PopoverContext';
 import { AccessibilityInfo, View } from 'react-native';
-import { mergeRefs, findNodeHandle } from '@gluestack-ui-nightly/utils/common';
+import { mergeRefs, findNodeHandle } from '@gluestack-ui/utils/common';
 import { useOverlayPosition } from '../../../overlay/aria';
 
 const PopoverContent = forwardRef(

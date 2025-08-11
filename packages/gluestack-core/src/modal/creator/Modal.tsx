@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import {
   useControllableState,
   useKeyboardBottomInset,
-} from '@gluestack-ui-nightly/utils/hooks';
+} from '@gluestack-ui/utils/hooks';
 import { ModalContext } from './Context';
 import { Overlay } from '../../overlay/creator';
 

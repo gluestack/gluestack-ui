@@ -49,7 +49,7 @@ const InitializeGlueStack = async ({
     const initializeStatus = await checkIfInitialized(_currDir);
     if (initializeStatus) {
       log.info(
-        `\x1b[33mgluestack-ui is already initialized in the project, use 'npx gluestack-ui-nightly help' command to continue\x1b[0m`
+        `\x1b[33mgluestack-ui is already initialized in the project, use 'npx gluestack-ui help' command to continue\x1b[0m`
       );
       process.exit(1);
     }
