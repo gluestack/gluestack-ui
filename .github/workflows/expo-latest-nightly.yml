@@ -1,4 +1,4 @@
-name: Expo Latest Nightly
+name: Expo Latest v3
 
 on:
   push:
