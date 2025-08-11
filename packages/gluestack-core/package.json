@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/core",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0-alpha.1",
   "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
