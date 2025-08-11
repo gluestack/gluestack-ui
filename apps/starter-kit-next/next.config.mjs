@@ -1,4 +1,4 @@
-import { withGluestackUI } from '@gluestack-nightly/ui-next-adapter';
+import { withGluestackUI } from '@gluestack/ui-next-adapter';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {

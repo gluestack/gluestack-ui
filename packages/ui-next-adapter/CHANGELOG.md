@@ -1,4 +1,4 @@
-# @gluestack-nightly/ui-next-adapter
+# @gluestack/ui-next-adapter
 
 ## 1.0.48
 

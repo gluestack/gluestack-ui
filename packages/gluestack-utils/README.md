@@ -1,13 +1,13 @@
-# @gluestack-ui-nightly/utils
+# @gluestack-ui/utils
 
 A collection of utility functions and hooks for gluestack-ui components.
 
 ## Installation
 
 ```sh
-npm install @gluestack-ui-nightly/utils
+npm install @gluestack-ui/utils
 # or
-yarn add @gluestack-ui-nightly/utils
+yarn add @gluestack-ui/utils
 ```
 
 ## Features
@@ -20,8 +20,11 @@ yarn add @gluestack-ui-nightly/utils
 ## Usage
 
 ```tsx
-import { useControllableState, useKeyboardDismissable } from '@gluestack-ui-nightly/utils/hooks';
-import { mergeRefs, stableHash } from '@gluestack-ui-nightly/utils/common';
+import {
+  useControllableState,
+  useKeyboardDismissable,
+} from '@gluestack-ui/utils/hooks';
+import { mergeRefs, stableHash } from '@gluestack-ui/utils/common';
 
 // Use hooks
 const [value, setValue] = useControllableState({
@@ -34,4 +37,4 @@ const combinedRef = mergeRefs(ref1, ref2);
 
 ## License
 
-MIT 
+MIT

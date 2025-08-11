@@ -1,4 +1,4 @@
-# @gluestack-ui-nightly/utils
+# @gluestack-ui/utils
 
 ## 1.0.20
 

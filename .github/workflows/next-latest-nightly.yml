@@ -113,7 +113,7 @@ jobs:
 
       - name: Create Next.js project from create-command
         run: |
-          npx create-gluestack-nightly@latest test-app --starter-kit-next
+          npx create-gluestack@latest test-app --starter-kit-next
           cd test-app
 
       - name: Build Next.js app

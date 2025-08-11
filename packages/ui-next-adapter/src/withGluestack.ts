@@ -6,7 +6,7 @@ import {
 import findWorkspaceRoot from 'find-yarn-workspace-root';
 
 const gluestackDeps = [
-  '@gluestack-ui-nightly',
+  '@gluestack-ui',
   '@gluestack-ui',
   '@react-native-aria',
   '@gluestack',

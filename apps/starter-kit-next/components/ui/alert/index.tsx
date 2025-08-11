@@ -1,15 +1,15 @@
 'use client';
-import { createAlert } from '@gluestack-ui-nightly/core/alert/creator';
+import { createAlert } from '@gluestack-ui/core/alert/creator';
 import { View, Text } from 'react-native';
-import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@gluestack-ui-nightly/utils/nativewind-utils';
+} from '@gluestack-ui/utils/nativewind-utils';
 import React from 'react';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@gluestack-ui-nightly/utils/nativewind-utils';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui-nightly/core/icon/creator';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'ALERT';
 

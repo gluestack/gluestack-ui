@@ -167,10 +167,10 @@ jobs:
           EXPANDED_PACKAGES="$CHANGED_PACKAGES"
 
           # If core package is changed, ensure utils is also included
-          if echo "$CHANGED_PACKAGES" | grep -q "@gluestack-ui-nightly/core"; then
-            if ! echo "$CHANGED_PACKAGES" | grep -q "@gluestack-ui-nightly/utils"; then
+          if echo "$CHANGED_PACKAGES" | grep -q "@gluestack-ui/core"; then
+            if ! echo "$CHANGED_PACKAGES" | grep -q "@gluestack-ui/utils"; then
               echo "📦 Adding utils package as dependency of core package"
-              EXPANDED_PACKAGES="$EXPANDED_PACKAGES @gluestack-ui-nightly/utils"
+              EXPANDED_PACKAGES="$EXPANDED_PACKAGES @gluestack-ui/utils"
             fi
           fi
 
@@ -300,12 +300,12 @@ jobs:
                 ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
                   if (pkg[depType]) {
                     Object.keys(pkg[depType]).forEach(dep => {
-                      // Only update if this dependency starts with @gluestack-ui-nightly AND is in the changed packages list
-                      if (dep.startsWith('@gluestack-ui-nightly/') && changedPackages.includes(dep)) {
+                      // Only update if this dependency starts with @gluestack-ui AND is in the changed packages list
+                      if (dep.startsWith('@gluestack-ui/') && changedPackages.includes(dep)) {
                         console.log(\`Updating \${dep} from \${pkg[depType][dep]} to \${previewVersion} in \${depType}\`);
                         pkg[depType][dep] = previewVersion;
                         changed = true;
-                      } else if (dep.startsWith('@gluestack-ui-nightly/')) {
+                      } else if (dep.startsWith('@gluestack-ui/')) {
                         console.log(\`Skipping \${dep} - not in changed packages list\`);
                       }
                     });
@@ -404,7 +404,7 @@ jobs:
               try {
                 const pkg = JSON.parse(require('fs').readFileSync('package.json', 'utf8'));
                 const allDeps = {...(pkg.dependencies || {}), ...(pkg.devDependencies || {})};
-                const internalDeps = Object.keys(allDeps).filter(dep => dep.startsWith('@gluestack-ui-nightly/'));
+                const internalDeps = Object.keys(allDeps).filter(dep => dep.startsWith('@gluestack-ui/'));
                 console.log(internalDeps.join(' '));
               } catch(e) { console.log(''); }
             ")
@@ -886,7 +886,7 @@ jobs:
         run: |
           echo "🔍 Checking for existing preview packages that might be relevant..."
 
-          # Look for any @gluestack-ui-nightly packages in package.json files
+          # Look for any @gluestack-ui packages in package.json files
           FOUND_PACKAGES=""
 
           # Search in common locations for package.json files
@@ -894,18 +894,18 @@ jobs:
             if [ -d "$search_dir" ]; then
               find "$search_dir" -name "package.json" -not -path "*/node_modules/*" 2>/dev/null | while read -r pkg_file; do
                 if [ -f "$pkg_file" ]; then
-                  # Extract @gluestack-ui-nightly dependencies
+                  # Extract @gluestack-ui dependencies
                   deps=$(node -e "
                     try {
                       const pkg = JSON.parse(require('fs').readFileSync('$pkg_file', 'utf8'));
                       const allDeps = {...(pkg.dependencies || {}), ...(pkg.devDependencies || {}), ...(pkg.peerDependencies || {})};
-                      const gluestackDeps = Object.keys(allDeps).filter(dep => dep.startsWith('@gluestack-ui-nightly/'));
+                      const gluestackDeps = Object.keys(allDeps).filter(dep => dep.startsWith('@gluestack-ui/'));
                       console.log(gluestackDeps.join(' '));
                     } catch(e) { console.log(''); }
                   " 2>/dev/null)
                   
                   if [ -n "$deps" ]; then
-                    echo "📦 Found @gluestack-ui-nightly packages in $pkg_file: $deps"
+                    echo "📦 Found @gluestack-ui packages in $pkg_file: $deps"
                     echo "$deps" >> /tmp/all_packages.txt
                   fi
                 fi
@@ -920,7 +920,7 @@ jobs:
             echo "packages=$UNIQUE_PACKAGES" >> $GITHUB_OUTPUT
             rm -f /tmp/all_packages.txt
           else
-            echo "ℹ️  No @gluestack-ui-nightly packages found in project"
+            echo "ℹ️  No @gluestack-ui packages found in project"
             echo "packages=" >> $GITHUB_OUTPUT
           fi
 
@@ -947,7 +947,7 @@ jobs:
 
           # If we found existing packages, we could optionally try to update them to latest
           if [ -n "$EXISTING_PACKAGES" ]; then
-            echo "ℹ️  Found existing @gluestack-ui-nightly packages, using standard build"
+            echo "ℹ️  Found existing @gluestack-ui packages, using standard build"
             echo "📋 Existing packages will use their current versions"
           fi
 

@@ -5,13 +5,13 @@ To use create-gluestack, you can run the following commands:
 - Initialize Expo and Nextjs projects with **gluestack-ui -**.
 
 ```bash
-   npm create gluestack-nightly
+   npm create gluestack
 ```
 
 or
 
 ```bash
-   npx create-gluestack-nightly@latest
+   npx create-gluestack@alpha
 ```
 
 ## Contributing

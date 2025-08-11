@@ -9,7 +9,9 @@ import simpleGit from 'simple-git';
 function isOldGluestackPackage(pkg: string): boolean {
   return (
     !pkg.includes('nightly') &&
-    (pkg.startsWith('@gluestack-ui') || pkg.startsWith('gluestack') || pkg.startsWith('@gluestack'))
+    (pkg.startsWith('@gluestack-ui') ||
+      pkg.startsWith('gluestack') ||
+      pkg.startsWith('@gluestack'))
   );
 }
 
@@ -38,11 +40,21 @@ function removePackages(packages: string[], packageManager: string): void {
   if (!packages.length) return;
   const s = spinner();
   s.start('Removing old gluestack packages...');
-  const cmds: { [key: string]: string } = { npm: 'npm uninstall', yarn: 'yarn remove', pnpm: 'pnpm remove', bun: 'bun remove' };
+  const cmds: { [key: string]: string } = {
+    npm: 'npm uninstall',
+    yarn: 'yarn remove',
+    pnpm: 'pnpm remove',
+    bun: 'bun remove',
+  };
   const cmd = cmds[packageManager];
   if (!cmd) throw new Error('Unsupported package manager');
-  const result = spawnSync(cmd, packages, { cwd: process.cwd(), stdio: 'inherit', shell: true });
-  if (result.error || result.status !== 0) throw new Error('Failed to remove packages');
+  const result = spawnSync(cmd, packages, {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+    shell: true,
+  });
+  if (result.error || result.status !== 0)
+    throw new Error('Failed to remove packages');
   s.stop('Old packages removed.');
 }
 
@@ -50,39 +62,44 @@ function removePackages(packages: string[], packageManager: string): void {
 function cleanAndReinstall(packageManager: string): void {
   const s = spinner();
   s.start('Cleaning node_modules and reinstalling dependencies...');
-  
+
   const nodeModulesPath = path.join(process.cwd(), 'node_modules');
   const lockFiles: { [key: string]: string } = {
     npm: 'package-lock.json',
     yarn: 'yarn.lock',
     pnpm: 'pnpm-lock.yaml',
-    bun: 'bun.lockb'
+    bun: 'bun.lockb',
   };
-  
+
   try {
     // Remove node_modules
     if (fs.existsSync(nodeModulesPath)) {
       fs.removeSync(nodeModulesPath);
     }
-    
+
     // Remove lock file
     const lockFile = lockFiles[packageManager];
     if (lockFile && fs.existsSync(path.join(process.cwd(), lockFile))) {
       fs.removeSync(path.join(process.cwd(), lockFile));
     }
-    
+
     // Reinstall all dependencies
-    const installCmds: { [key: string]: string } = { 
-      npm: 'npm install', 
-      yarn: 'yarn install', 
-      pnpm: 'pnpm install', 
-      bun: 'bun install' 
+    const installCmds: { [key: string]: string } = {
+      npm: 'npm install',
+      yarn: 'yarn install',
+      pnpm: 'pnpm install',
+      bun: 'bun install',
     };
     const installCmd = installCmds[packageManager];
-    
-    const result = spawnSync(installCmd, [], { cwd: process.cwd(), stdio: 'inherit', shell: true });
-    if (result.error || result.status !== 0) throw new Error('Failed to reinstall dependencies');
-    
+
+    const result = spawnSync(installCmd, [], {
+      cwd: process.cwd(),
+      stdio: 'inherit',
+      shell: true,
+    });
+    if (result.error || result.status !== 0)
+      throw new Error('Failed to reinstall dependencies');
+
     s.stop('Dependencies reinstalled successfully.');
   } catch (error) {
     s.stop('Failed to clean and reinstall.');
@@ -93,13 +110,28 @@ function cleanAndReinstall(packageManager: string): void {
 // Install new packages
 function installPackages(packageManager: string): void {
   const s = spinner();
-  s.start('Installing @gluestack-ui-nightly/core and @gluestack-ui-nightly/utils...');
-  const cmds: { [key: string]: string } = { npm: 'npm install', yarn: 'yarn add', pnpm: 'pnpm i', bun: 'bun add' };
+  s.start('Installing @gluestack-ui/core and @gluestack-ui/utils...');
+  const cmds: { [key: string]: string } = {
+    npm: 'npm install',
+    yarn: 'yarn add',
+    pnpm: 'pnpm i',
+    bun: 'bun add',
+  };
   const cmd = cmds[packageManager];
   if (!cmd) throw new Error('Unsupported package manager');
-  const pkgs = ['@gluestack-ui-nightly/core@latest', '@gluestack-ui-nightly/utils@latest', 'react-native-svg@15.12.0','@gluestack-nightly/ui-next-adapter@latest'];
-  const result = spawnSync(cmd, pkgs, { cwd: process.cwd(), stdio: 'inherit', shell: true });
-  if (result.error || result.status !== 0) throw new Error('Failed to install new packages');
+  const pkgs = [
+    '@gluestack-ui/core@alpha',
+    '@gluestack-ui/utils@alpha',
+    'react-native-svg@15.12.0',
+    '@gluestack/ui-next-adapter@alpha',
+  ];
+  const result = spawnSync(cmd, pkgs, {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+    shell: true,
+  });
+  if (result.error || result.status !== 0)
+    throw new Error('Failed to install new packages');
   s.stop('New packages installed.');
 }
 
@@ -107,7 +139,7 @@ function installPackages(packageManager: string): void {
 async function updateRegistryFile(): Promise<void> {
   const s = spinner();
   s.start('Updating registry.tsx...');
-  
+
   const registryPath = path.join(process.cwd(), 'app', 'registry.tsx');
   if (!fs.existsSync(registryPath)) {
     s.stop('No app/registry.tsx found.');
@@ -118,19 +150,23 @@ async function updateRegistryFile(): Promise<void> {
     const content = await fs.readFile(registryPath, 'utf8');
     let updated = false;
     let newContent = content;
-    
+
     // Replace the flush import
-    const flushImportRegex = /import\s+\{\s*flush\s*\}\s+from\s+['"]@gluestack-ui\/nativewind-utils\/flush['"];?\s*/g;
+    const flushImportRegex =
+      /import\s+\{\s*flush\s*\}\s+from\s+['"]@gluestack-ui\/nativewind-utils\/flush['"];?\s*/g;
     if (flushImportRegex.test(newContent)) {
-      newContent = newContent.replace(flushImportRegex, `import { flush } from "@gluestack-ui-nightly/utils/nativewind-utils";\n`);
+      newContent = newContent.replace(
+        flushImportRegex,
+        `import { flush } from "@gluestack-ui/utils/nativewind-utils";\n`
+      );
       updated = true;
     }
-    
+
     if (updated) {
       await fs.writeFile(registryPath, newContent, 'utf8');
       log.info(`Updated app/registry.tsx`);
     }
-    
+
     s.stop('Registry file updated.');
   } catch (error) {
     s.stop('Failed to update registry file.');
@@ -142,14 +178,14 @@ async function updateRegistryFile(): Promise<void> {
 async function updateTailwindConfig(): Promise<void> {
   const s = spinner();
   s.start('Updating tailwind config files...');
-  
+
   const tailwindConfigPaths = [
     path.join(process.cwd(), 'tailwind.config.ts'),
-    path.join(process.cwd(), 'tailwind.config.js')
+    path.join(process.cwd(), 'tailwind.config.js'),
   ];
-  
+
   let updatedAny = false;
-  
+
   for (const tailwindConfigPath of tailwindConfigPaths) {
     if (!fs.existsSync(tailwindConfigPath)) {
       continue;
@@ -159,14 +195,15 @@ async function updateTailwindConfig(): Promise<void> {
       const content = await fs.readFile(tailwindConfigPath, 'utf8');
       let updated = false;
       let newContent = content;
-      
+
       // Remove the import statement
-      const importRegex = /import\s+gluestackPlugin\s+from\s+['"]@gluestack-ui\/nativewind-utils\/tailwind-plugin['"];?\s*/g;
+      const importRegex =
+        /import\s+gluestackPlugin\s+from\s+['"]@gluestack-ui\/nativewind-utils\/tailwind-plugin['"];?\s*/g;
       if (importRegex.test(newContent)) {
         newContent = newContent.replace(importRegex, '');
         updated = true;
       }
-      
+
       // Remove the plugin from the plugins array
       const pluginRegex = /plugins:\s*\[([^\]]*gluestackPlugin[^\]]*)\]/g;
       newContent = newContent.replace(pluginRegex, (match, pluginsContent) => {
@@ -176,14 +213,14 @@ async function updateTailwindConfig(): Promise<void> {
           .map((plugin: string) => plugin.trim())
           .filter((plugin: string) => !plugin.includes('gluestackPlugin'))
           .join(', ');
-        
+
         updated = true;
         return `plugins: [${updatedPlugins}]`;
       });
-      
+
       // Clean up empty plugins array
       newContent = newContent.replace(/plugins:\s*\[\s*\]/g, 'plugins: []');
-      
+
       if (updated) {
         await fs.writeFile(tailwindConfigPath, newContent, 'utf8');
         const fileName = path.basename(tailwindConfigPath);
@@ -195,7 +232,7 @@ async function updateTailwindConfig(): Promise<void> {
       log.warning(`Failed to update ${fileName}: ${error}`);
     }
   }
-  
+
   if (updatedAny) {
     s.stop('Tailwind config files updated.');
   } else {
@@ -207,15 +244,15 @@ async function updateTailwindConfig(): Promise<void> {
 async function updateNextConfig(): Promise<void> {
   const s = spinner();
   s.start('Updating Next.js config files...');
-  
+
   const nextConfigPaths = [
     path.join(process.cwd(), 'next.config.ts'),
     path.join(process.cwd(), 'next.config.js'),
-    path.join(process.cwd(), 'next.config.mjs')
+    path.join(process.cwd(), 'next.config.mjs'),
   ];
-  
+
   let updatedFiles = 0;
-  
+
   for (const configPath of nextConfigPaths) {
     if (!fs.existsSync(configPath)) {
       continue;
@@ -225,14 +262,18 @@ async function updateNextConfig(): Promise<void> {
       const content = await fs.readFile(configPath, 'utf8');
       let updated = false;
       let newContent = content;
-      
+
       // Replace the old import statement
-      const importRegex = /import\s+\{\s*withGluestackUI\s*\}\s+from\s+['"]@gluestack\/ui-next-adapter['"];?\s*/g;
+      const importRegex =
+        /import\s+\{\s*withGluestackUI\s*\}\s+from\s+['"]@gluestack\/ui-next-adapter['"];?\s*/g;
       if (importRegex.test(newContent)) {
-        newContent = newContent.replace(importRegex, `import { withGluestackUI } from "@gluestack-nightly/ui-next-adapter";\n`);
+        newContent = newContent.replace(
+          importRegex,
+          `import { withGluestackUI } from "@gluestack/ui-next-adapter";\n`
+        );
         updated = true;
       }
-      
+
       if (updated) {
         await fs.writeFile(configPath, newContent, 'utf8');
         const fileName = path.basename(configPath);
@@ -244,7 +285,7 @@ async function updateNextConfig(): Promise<void> {
       log.warning(`Failed to update ${fileName}: ${error}`);
     }
   }
-  
+
   if (updatedFiles > 0) {
     s.stop('Next.js config files updated.');
   } else {
@@ -256,7 +297,7 @@ async function updateNextConfig(): Promise<void> {
 async function updateImports(): Promise<void> {
   const s = spinner();
   s.start('Updating import statements...');
-  
+
   const componentsPath = path.join(process.cwd(), 'components', 'ui');
   if (!fs.existsSync(componentsPath)) {
     s.stop('No components/ui folder found.');
@@ -264,22 +305,27 @@ async function updateImports(): Promise<void> {
   }
 
   let updatedFiles = 0;
-  
+
   // Recursively find all TypeScript/JavaScript files
   const files = await fs.readdir(componentsPath);
   for (const file of files) {
     const filePath = path.join(componentsPath, file);
     const stat = await fs.stat(filePath);
-    
+
     if (stat.isDirectory()) {
       // Recursively process subdirectories
       await processDirectory(filePath);
-    } else if (file.endsWith('.ts') || file.endsWith('.tsx') || file.endsWith('.js') || file.endsWith('.jsx')) {
+    } else if (
+      file.endsWith('.ts') ||
+      file.endsWith('.tsx') ||
+      file.endsWith('.js') ||
+      file.endsWith('.jsx')
+    ) {
       const updated = await updateFileImports(filePath);
       if (updated) updatedFiles++;
     }
   }
-  
+
   s.stop(`Updated ${updatedFiles} files.`);
 }
 
@@ -289,10 +335,15 @@ async function processDirectory(dirPath: string): Promise<void> {
   for (const file of files) {
     const filePath = path.join(dirPath, file);
     const stat = await fs.stat(filePath);
-    
+
     if (stat.isDirectory()) {
       await processDirectory(filePath);
-    } else if (file.endsWith('.ts') || file.endsWith('.tsx') || file.endsWith('.js') || file.endsWith('.jsx')) {
+    } else if (
+      file.endsWith('.ts') ||
+      file.endsWith('.tsx') ||
+      file.endsWith('.js') ||
+      file.endsWith('.jsx')
+    ) {
       await updateFileImports(filePath);
     }
   }
@@ -304,29 +355,29 @@ async function updateFileImports(filePath: string): Promise<boolean> {
     const content = await fs.readFile(filePath, 'utf8');
     let updated = false;
     let newContent = content;
-    
+
     // Regex to match imports from @gluestack-ui packages
     const importRegex = /from\s+['"](@gluestack-ui\/[^'"]+)['"]/g;
-    
+
     newContent = newContent.replace(importRegex, (match, importPath) => {
       // Special case for nativewind-utils imports
       if (importPath.startsWith('@gluestack-ui/nativewind-utils')) {
         updated = true;
-        return `from '@gluestack-ui-nightly/utils/nativewind-utils'`;
+        return `from '@gluestack-ui/utils/nativewind-utils'`;
       }
-      
+
       // Extract component name from import path
       const componentName = importPath.replace('@gluestack-ui/', '');
-      const newImportPath = `@gluestack-ui-nightly/core/${componentName}/creator`;
+      const newImportPath = `@gluestack-ui/core/${componentName}/creator`;
       updated = true;
       return `from '${newImportPath}'`;
     });
-    
+
     if (updated) {
       await fs.writeFile(filePath, newContent, 'utf8');
       log.info(`Updated imports in: ${path.relative(process.cwd(), filePath)}`);
     }
-    
+
     return updated;
   } catch (error) {
     log.warning(`Failed to update file ${filePath}: ${error}`);
@@ -348,7 +399,9 @@ export const upgrade = new Command()
       log.info('Found old packages:');
       oldPackages.forEach((pkg: string) => log.info('  - ' + pkg));
       if (await hasUncommittedChanges()) {
-        log.warning('You have uncommitted git changes. Please commit before upgrading.');
+        log.warning(
+          'You have uncommitted git changes. Please commit before upgrading.'
+        );
         const proceed = await confirm({ message: 'Continue anyway?' });
         if (isCancel(proceed) || !proceed) {
           cancel('Upgrade cancelled.');
@@ -368,9 +421,9 @@ export const upgrade = new Command()
       await updateNextConfig();
       await updateImports();
       log.success('\x1b[32mUpgrade complete!\x1b[0m');
-      log.info('All imports have been updated to use @gluestack-ui-nightly/*');
+      log.info('All imports have been updated to use @gluestack-ui/*');
     } catch (err: any) {
       log.error((err && err.message) || String(err));
       process.exit(1);
     }
-  }); 
+  });

@@ -628,17 +628,17 @@
   dependencies:
     tslib "^2.8.0"
 
-"@gluestack-ui-nightly/core@^1.1.0":
+"@gluestack-ui/core@^1.1.0":
   version "1.1.0"
-  resolved "https://registry.npmjs.org/@gluestack-ui-nightly/core/-/core-1.1.0.tgz#dd40a06a54d67e452a637cd6cbc99ebbf03f9018"
+  resolved "https://registry.npmjs.org/@gluestack-ui/core/-/core-1.1.0.tgz#dd40a06a54d67e452a637cd6cbc99ebbf03f9018"
   integrity sha512-yYJJjEgfHJTO3s/8WZsibmr5fkO6TtLZw11qUVzvmovjURrw4pl0IZGVo2/Ij1Pr+1EGW9rMpJBmU6Nmgy1veg==
   dependencies:
-    "@gluestack-ui-nightly/utils" "*"
+    "@gluestack-ui/utils" "*"
     react-native-svg "^15.12.0"
 
-"@gluestack-ui-nightly/utils@*", "@gluestack-ui-nightly/utils@^0.2.0":
+"@gluestack-ui/utils@*", "@gluestack-ui/utils@^0.2.0":
   version "0.2.0"
-  resolved "https://registry.npmjs.org/@gluestack-ui-nightly/utils/-/utils-0.2.0.tgz#c5090b9f7b689334019133c75f6c65f40596c256"
+  resolved "https://registry.npmjs.org/@gluestack-ui/utils/-/utils-0.2.0.tgz#c5090b9f7b689334019133c75f6c65f40596c256"
   integrity sha512-sD7/U4/QZJaW5FQbSoVxDTwI4UfTun3VZI4urBtYsAF//F7TI12sPHBaVbkpUo4/wTzmLGfOowOPZHdnbPxiTQ==
   dependencies:
     dom-helpers "^6.0.1"

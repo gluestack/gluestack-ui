@@ -1,4 +1,4 @@
-# @gluestack-ui-nightly/core
+# @gluestack-ui/core
 
 ## 1.2.10
 
@@ -24,7 +24,7 @@
 
 - added barrel packages
 - Updated dependencies
-  - @gluestack-ui-nightly/utils@1.0.20
+  - @gluestack-ui/utils@1.0.20
 
 ## 1.2.5
 
@@ -32,7 +32,7 @@
 
 - created the barrel files
 - Updated dependencies
-  - @gluestack-ui-nightly/utils@1.0.19
+  - @gluestack-ui/utils@1.0.19
 
 ## 1.2.4
 
@@ -68,7 +68,7 @@
 
 - fix: added expo/html-elements and react-native-safe-area-context to transpile packages in ui-next-adapter
 - Updated dependencies
-  - @gluestack-ui-nightly/utils@0.1.16
+  - @gluestack-ui/utils@0.1.16
 
 ## 1.0.8
 
@@ -82,4 +82,4 @@
 
 - feat: implemented changeset on packages
 - Updated dependencies
-  - @gluestack-ui-nightly/utils@0.1.15
+  - @gluestack-ui/utils@0.1.15

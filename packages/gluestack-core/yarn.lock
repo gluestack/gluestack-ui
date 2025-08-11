@@ -708,9 +708,9 @@
   dependencies:
     tslib "^2.8.0"
 
-"@gluestack-ui-nightly/utils@^0.1.10":
+"@gluestack-ui/utils@^0.1.10":
   version "0.1.10"
-  resolved "https://registry.npmjs.org/@gluestack-ui-nightly/utils/-/utils-0.1.10.tgz#2573cc5e4b316e35d5b4541a4a3bd72c9556ec41"
+  resolved "https://registry.npmjs.org/@gluestack-ui/utils/-/utils-0.1.10.tgz#2573cc5e4b316e35d5b4541a4a3bd72c9556ec41"
   integrity sha512-NnveT8tVC/R5oPOQS0br8rP/PPql56Qp4t+DMfL0hj82kwrc5cF6s5UMMsPXmyI2Fp+A0KVr4GOhOC5sUALz0g==
   dependencies:
     dom-helpers "^6.0.1"

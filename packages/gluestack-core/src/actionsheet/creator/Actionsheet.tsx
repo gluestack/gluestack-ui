@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Platform } from 'react-native';
-import { useControllableState } from '@gluestack-ui-nightly/utils/hooks';
+import { useControllableState } from '@gluestack-ui/utils/hooks';
 import { Overlay } from '../../overlay/creator';
 import { ActionsheetContext } from './context';
 import { StyleSheet } from 'react-native';

@@ -10,9 +10,9 @@ import {
 import { ActionsheetContext } from './context';
 import { ActionsheetContentProvider } from './ActionsheetContentContext';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
-import { FocusScope } from '@gluestack-ui-nightly/utils/aria';
-import { mergeRefs, findNodeHandle } from '@gluestack-ui-nightly/utils/common';
-import { useDialog } from '@gluestack-ui-nightly/utils/aria';
+import { FocusScope } from '@gluestack-ui/utils/aria';
+import { mergeRefs, findNodeHandle } from '@gluestack-ui/utils/common';
+import { useDialog } from '@gluestack-ui/utils/aria';
 import { usePreventScroll } from '../../overlay/aria';
 
 //dimentions not giving proper window height on web

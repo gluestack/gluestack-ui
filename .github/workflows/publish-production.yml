@@ -325,23 +325,23 @@ jobs:
             # Install utils dependency if this is core package
             if [[ "$PACKAGE_NAME" == *"core"* ]]; then
               echo "🎯 Installing utils package for core package..."
-              echo "📦 Attempting to install latest utils package: @gluestack-ui-nightly/utils"
+              echo "📦 Attempting to install latest utils package: @gluestack-ui/utils"
               
               # First try to install the latest public version
-              if npm install @gluestack-ui-nightly/utils --no-save --registry https://registry.npmjs.org/ 2>&1; then
+              if npm install @gluestack-ui/utils --no-save --registry https://registry.npmjs.org/ 2>&1; then
                 echo "✅ Utils package installed successfully"
                 
                 # Show which version was installed
-                INSTALLED_VERSION=$(node -e "try { console.log(require('./node_modules/@gluestack-ui-nightly/utils/package.json').version) } catch(e) { console.log('unknown') }")
+                INSTALLED_VERSION=$(node -e "try { console.log(require('./node_modules/@gluestack-ui/utils/package.json').version) } catch(e) { console.log('unknown') }")
                 echo "📦 Installed utils version: $INSTALLED_VERSION"
               else
                 echo "⚠️ Failed to install utils package, but continuing..."
                 echo "🔍 Available versions:"
-                npm view @gluestack-ui-nightly/utils versions --json 2>/dev/null || echo "Could not fetch available versions"
+                npm view @gluestack-ui/utils versions --json 2>/dev/null || echo "Could not fetch available versions"
               fi
               
               # Verify utils package is available in node_modules
-              if [ -d "./node_modules/@gluestack-ui-nightly/utils" ]; then
+              if [ -d "./node_modules/@gluestack-ui/utils" ]; then
                 echo "✅ Utils package verified in node_modules"
               else
                 echo "⚠️ Utils package not found in node_modules, build may fail"

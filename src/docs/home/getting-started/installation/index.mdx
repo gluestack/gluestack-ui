@@ -10,7 +10,12 @@ pageDescription: Quickly set up gluestack-ui, the ultimate UI components library
 showHeader: false
 ---
 
-import { UtilsLink, OverlayLink, ToastLink, GluestackUIProviderLink } from './utils-link';
+import {
+  UtilsLink,
+  OverlayLink,
+  ToastLink,
+  GluestackUIProviderLink,
+} from './utils-link';
 import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
   Table,
@@ -72,11 +77,17 @@ Ensure you have the following prerequisites installed on your project to use glu
 
 Go to your project, and use the `init` command at the root of your project to add `GluestackUIProvider` and essential components (`icon`, `overlay`, `toast`) to your project.
 
-<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} init`} language="bash" />
+<CodeBlock
+  code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} init`}
+  language="bash"
+/>
 
 Your project is now ready to use **gluestack-ui** components. To add gluestack-ui components to your project using the CLI, refer to the above command or use the [CLI guide](/ui/docs/home/getting-started/cli).
 
-<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add box`} language="bash" />
+<CodeBlock
+  code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add box`}
+  language="bash"
+/>
 
 If you encounter issues during the CLI installation, refer to the manual installation guide available.
 
@@ -91,31 +102,32 @@ Setup nativewind in your project following [NativeWind documentation](https://ww
 Install the dependencies and devDependencies of gluestack-ui in your project. This can be done using the following command:
 
 ```bash
-yarn add @gluestack-ui-nightly/core @gluestack-ui-nightly/utils react-native-svg @gluestack-nightly/ui-next-adapter react-native-web react-native
+yarn add @gluestack-ui/core @gluestack-ui/utils react-native-svg @gluestack/ui-next-adapter react-native-web react-native
 ```
 
 OR
 
 ```bash
-npm i @gluestack-ui-nightly/core @gluestack-ui-nightly/utils react-native-svg @gluestack-nightly/ui-next-adapter react-native-web react-native
+npm i @gluestack-ui/core @gluestack-ui/utils react-native-svg @gluestack/ui-next-adapter react-native-web react-native
 ```
 
 For Next.js 14, it's recommended to use the `--legacy-peer-deps` flag due to peer dependency resolution issues.
 
 ```bash
-npm i @gluestack-ui-nightly/core @gluestack-ui-nightly/utils react-native-svg @gluestack-nightly/ui-next-adapter react-native-web react-native --legacy-peer-deps
+npm i @gluestack-ui/core @gluestack-ui/utils react-native-svg @gluestack/ui-next-adapter react-native-web react-native --legacy-peer-deps
 ```
 
->  **For React Native CLI:** Make sure to install `react-dom` as well as it is required by some of the Gluestack UI components. 
-
+> **For React Native CLI:** Make sure to install `react-dom` as well as it is required by some of the Gluestack UI components.
 
 ### Step 4: Copy required components
- - Copy all the contents of the GluestackUIProvider folder from the{" "}<GluestackUIProviderLink />{" "}into your project's `@/components/ui/gluestack-ui-provider` directory.
+
+- Copy all the contents of the GluestackUIProvider folder from the{" "}<GluestackUIProviderLink />{" "}into your project's `@/components/ui/gluestack-ui-provider` directory.
 
 ### Step 5: Update Configuration Files
+
 You need to update the following configuration files in the root of your project. Replace the content of each file with the provided code blocks below. If a file does not exist, create it manually.
 
-> **(For Expo/React Native)** Make sure `global.css` is in the project root. If not, update its path in `metro.config.js` and  `app/layout.tsx`.
+> **(For Expo/React Native)** Make sure `global.css` is in the project root. If not, update its path in `metro.config.js` and `app/layout.tsx`.
 
 #### Step 5.1: Update Tailwind configuration
 
@@ -141,15 +153,18 @@ Create a `components/ui` folder inside `src` folder and add path in `tsconfig.js
 ```
 
 #### Step 5.3: Configure GluestackUIProvider in project
+
 Wrap your app with `GluestackUIProvider` in `App.tsx`.
 
 ```tsx
 // App.tsx
-import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import "@/global.css"; // Make sure this path is correct
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import '@/global.css'; // Make sure this path is correct
 
 export default function App() {
-  return <GluestackUIProvider>{/* Add your app code here */}</GluestackUIProvider>;
+  return (
+    <GluestackUIProvider>{/* Add your app code here */}</GluestackUIProvider>
+  );
 }
 ```
 
@@ -203,6 +218,7 @@ export default function RootLayout({
 <TabItem label="Page Router">
 
 Wrap your app with `GluestackUIProvider` in `App.tsx`.
+
 ```tsx
 // App.tsx
 export default function App() {
@@ -210,7 +226,6 @@ export default function App() {
     <GluestackUIProvider>{/* Add your app code here */}</GluestackUIProvider>
   );
 }
-
 ```
 
 For Page Router we will add `registry` code in `_document.tsx` file.
@@ -249,7 +264,6 @@ export default Document;
 
 </TabItem>
 </Tabs>
-
 
 ## Common issues
 
