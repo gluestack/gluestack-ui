@@ -2,6 +2,23 @@ import path from 'path';
 import fs from 'fs';
 import { text, log, isCancel, cancel, select, confirm } from '@clack/prompts';
 
+// Name helpers
+const isKebabCaseName = (name: string): boolean => {
+  return /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/.test(name);
+};
+
+const toPascalCase = (kebab: string): string => {
+  return kebab
+    .split('-')
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join('');
+};
+
+const normalizeForComparison = (name: string): string => {
+  return name.toLowerCase().replace(/-/g, '');
+};
+
 const readSidebar = async () => {
   try {
     const sidebar = fs.readFileSync(
@@ -44,7 +61,7 @@ const updateSidebar = async (componentName: string, componentType: string, isRSC
 
     // Add the new component to the category
     const newComponent: any = {
-      title: componentName.charAt(0).toUpperCase() + componentName.slice(1),
+      title: toPascalCase(componentName),
       path: `/ui/docs/components/${componentName.toLowerCase()}`,
       url: `https://i.imgur.com/iLgtAcF.png`,
       darkUrl: `https://i.imgur.com/or5K0UG.png`,
@@ -146,11 +163,23 @@ const validComponentName = async (componentName: string): Promise<boolean> => {
   }
 
   // Check all component names across all categories
+  const inputNormalized = normalizeForComparison(componentName);
   for (const subsection of componentsSection.subsections) {
     if (subsection.type === 'heading' && subsection.items) {
       for (const item of subsection.items) {
-        if (item.title.toLowerCase() === componentName.toLowerCase()) {
+        // Compare against title ignoring hyphens/case
+        if (
+          typeof item.title === 'string' &&
+          normalizeForComparison(item.title) === inputNormalized
+        ) {
           return false; // Component already exists
+        }
+        // Compare against path slug if available
+        if (typeof item.path === 'string') {
+          const slug = (item.path.split('/').pop() || '').toLowerCase();
+          if (normalizeForComparison(slug) === inputNormalized) {
+            return false; // Component already exists
+          }
         }
       }
     }
@@ -274,11 +303,12 @@ const create = async (componentName: string, componentType: string, isRSC: boole
 
 const copyPastableTemplate = (componentName: string, componentType: string, isRSC: boolean = false) => {
   const rscComment = isRSC ? '\n// This component is a React Server Component' : '';
+  const componentNamePascal = toPascalCase(componentName);
   
   return `
 import { View, Text } from 'react-native';${rscComment}
 
-export function ${componentName.charAt(0).toUpperCase() + componentName.slice(1)}() {
+export function ${componentNamePascal}() {
   return (
     <View>
       <Text>${componentName} - ${componentType}</Text>
@@ -289,47 +319,51 @@ export function ${componentName.charAt(0).toUpperCase() + componentName.slice(1)
 };
 
 const creatorTemplate = (componentName: string) => {
+  const componentNamePascal = toPascalCase(componentName);
   return `
-// Creator functionality for ${componentName.charAt(0).toUpperCase() + componentName.slice(1)} component
+// Creator functionality for ${componentNamePascal} component
 // Add your creator logic here
 
-export const create${componentName.charAt(0).toUpperCase() + componentName.slice(1)} = () => {
+export const create${componentNamePascal} = () => {
   // Implementation here
 };
 `;
 };
 
 const ariaTemplate = (componentName: string) => {
+  const componentNamePascal = toPascalCase(componentName);
   return `
-// Aria functionality for ${componentName.charAt(0).toUpperCase() + componentName.slice(1)} component
+// Aria functionality for ${componentNamePascal} component
 // Add your aria logic here
 `;
 };
 
 const metaTemplate = (componentName: string, componentType: string) => {
+  const componentNamePascal = toPascalCase(componentName);
   return `
 {
   "title": "Basic",
   "argTypes": {},
   "reactLive": {
-    "${componentName.charAt(0).toUpperCase() + componentName.slice(1)}": "@/components/ui/${componentName}"
+    "${componentNamePascal}": "@/components/ui/${componentName}"
   }
 }
 `;
 };
 
 const handlebarsTemplate = (componentName: string, componentType: string) => {
+  const componentNamePascal = toPascalCase(componentName);
   return `
   function Example() {
   return (
-    <${componentName.charAt(0).toUpperCase() + componentName.slice(1)}/>
+    <${componentNamePascal}/>
   )
 }
   `;
 };
 
 const docsTemplate = (componentName: string, componentType: string) => {
-  const componentNamePascal = componentName.charAt(0).toUpperCase() + componentName.slice(1);
+  const componentNamePascal = toPascalCase(componentName);
   
   return `
 ---
@@ -453,13 +487,13 @@ const promptForComponentName = async (): Promise<string> => {
   do {
     componentName = await text({
       message: 'Enter component name:',
-      placeholder: 'myComponent',
+      placeholder: 'my-component',
       validate: (value: string) => {
         if (!value || value.trim() === '') {
           return 'Component name is required';
         }
-        if (!/^[a-z][a-zA-Z0-9]*$/.test(value)) {
-          return 'Component name must start with lowercase letter and contain only letters and numbers';
+        if (!isKebabCaseName(value.trim())) {
+          return 'Component name must be lowercase, e.g., my-component';
         }
       },
     });
@@ -469,7 +503,7 @@ const promptForComponentName = async (): Promise<string> => {
       process.exit(0);
     }
 
-    const trimmedName = componentName.trim();
+    const trimmedName = (componentName as string).trim();
     
     // Check if component already exists
     const isValid = await validComponentName(trimmedName);
@@ -525,6 +559,12 @@ const main = async () => {
     componentName = await promptForComponentName();
   } else {
     // Validate component name if provided as argument
+    if (!isKebabCaseName(componentName)) {
+      log.error(
+        `❌ Invalid component name '${componentName}'. Use kebab-case (e.g., action-sheet).`
+      );
+      process.exit(1);
+    }
     const isValid = await validComponentName(componentName);
     if (!isValid) {
       log.error(

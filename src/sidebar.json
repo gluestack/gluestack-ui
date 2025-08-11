@@ -548,6 +548,10 @@
                 "path": "/ui/docs/guides/more/upgrade-to-v2"
               },
               {
+                "title": "Upgrade to v3",
+                "path": "/ui/docs/guides/more/upgrade-to-v3"
+              },
+              {
                 "title": "FAQs",
                 "path": "/ui/docs/guides/more/faqs"
               },
