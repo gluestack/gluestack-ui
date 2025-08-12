@@ -155,7 +155,11 @@ const Header = ({
                 <MenuItem
                   className="min-w-fit px-5 py-2"
                   onPress={() => {
-                    window.open('https://v2.gluestack.io', '_blank');
+                    window.open(
+                      `${process.env.NEXT_PUBLIC_GLUESTACK_UI_V2_URL}` ||
+                        'https://v2.gluestack.io',
+                      '_blank'
+                    );
                   }}
                 >
                   v2
