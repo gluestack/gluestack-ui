@@ -119,7 +119,7 @@ jobs:
           # Check if there are changesets to consume
           if [ -d ".changeset" ] && [ "$(ls -A .changeset/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
             echo "📝 Consuming changesets..."
-            yarn changeset version --snapshot alpha
+            yarn changeset version
 
             
             # Check if any package.json was modified
