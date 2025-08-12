@@ -8,6 +8,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Fab } from '@/components/ui/fab';
 import { Text } from '@/components/ui/text';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 export const ColorModeContext = React.createContext({});
 
 const capitalize = (str: string) => {
@@ -48,6 +49,7 @@ export default function RootLayout() {
           />
       <ColorModeContext.Provider value={{ colorMode }}>
         <GluestackUIProvider mode={colorMode}>
+          <GestureHandlerRootView>
           <Stack
             screenOptions={{
               headerStyle: {
@@ -77,6 +79,7 @@ export default function RootLayout() {
               }}
             />
           </Stack>
+          </GestureHandlerRootView>
           <Fab
             className="bottom-10 sm:right-10 right-6 p-4 z-0"
             onPress={handleColorMode}

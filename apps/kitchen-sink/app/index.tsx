@@ -115,9 +115,9 @@ export default function ComponentList() {
   const filteredComponents = components.map(category => ({
     ...category,
     components: category.components.filter(component => 
-      component.path && 
-      !component.name.toLowerCase().includes('bottomsheet') &&
-      !component.path.toLowerCase().includes('bottomsheet')
+      component.path 
+      // !component.name.toLowerCase().includes('bottomsheet') &&
+      // !component.path.toLowerCase().includes('bottomsheet')
     )
   })).filter(category => category.components.length > 0);
 

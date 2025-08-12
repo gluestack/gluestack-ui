@@ -1,0 +1,15 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "BottomSheet": "@/components/ui/bottomsheet",
+    "BottomSheetBackdrop": "@/components/ui/bottomsheet",
+    "BottomSheetHandle": "@/components/ui/bottomsheet",
+    "BottomSheetView": "@/components/ui/bottomsheet",
+    "Box": "@/components/ui/box",
+    "Text": "@/components/ui/text",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "useRef": "react",
+    "useCallback": "react"
+  }
+}
