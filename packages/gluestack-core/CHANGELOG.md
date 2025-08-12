@@ -1,5 +1,11 @@
 # @gluestack-ui/core
 
+## 3.0.0
+
+### Patch Changes
+
+- chore: changed utils dependency to alpha version
+
 ## 1.2.10
 
 ### Patch Changes
