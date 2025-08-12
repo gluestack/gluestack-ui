@@ -119,7 +119,14 @@ jobs:
           # Check if there are changesets to consume
           if [ -d ".changeset" ] && [ "$(ls -A .changeset/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
             echo "📝 Consuming changesets..."
-            yarn changeset version
+            # Handle pre-release mode if .changeset/pre.json exists
+            if [ -f ".changeset/pre.json" ]; then
+              echo "📦 Pre-release mode detected, using changeset version"
+              yarn changeset:version
+            else
+              echo "📦 Standard release mode, using changeset version"
+              yarn changeset:version
+            fi
 
             
             # Check if any package.json was modified
@@ -329,7 +336,7 @@ jobs:
               echo "📦 Attempting to install latest utils package: @gluestack-ui/utils"
               
               # First try to install the latest public version
-              if npm install @gluestack-ui/utils --no-save --registry https://registry.npmjs.org/ 2>&1; then
+              if npm install @gluestack-ui/utils@alpha --no-save --registry https://registry.npmjs.org/ 2>&1; then
                 echo "✅ Utils package installed successfully"
                 
                 # Show which version was installed
