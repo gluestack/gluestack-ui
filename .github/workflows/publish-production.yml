@@ -106,6 +106,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Build all packages
+        run: yarn build:packages
+
       - name: Setup NPM authentication
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
@@ -330,37 +333,24 @@ jobs:
               echo "✅ Updated to version: $CURRENT_VERSION"
             fi
             
-            # Install utils dependency if this is core package
+            # Verify workspace dependencies for core package
             if [[ "$PACKAGE_NAME" == *"core"* ]]; then
-              echo "🎯 Installing utils package for core package..."
-              echo "📦 Attempting to install latest utils package: @gluestack-ui/utils"
-              
-              # First try to install the latest public version
-              if npm install @gluestack-ui/utils@alpha --no-save --registry https://registry.npmjs.org/ 2>&1; then
-                echo "✅ Utils package installed successfully"
-                
-                # Show which version was installed
-                INSTALLED_VERSION=$(node -e "try { console.log(require('./node_modules/@gluestack-ui/utils/package.json').version) } catch(e) { console.log('unknown') }")
-                echo "📦 Installed utils version: $INSTALLED_VERSION"
-              else
-                echo "⚠️ Failed to install utils package, but continuing..."
-                echo "🔍 Available versions:"
-                npm view @gluestack-ui/utils versions --json 2>/dev/null || echo "Could not fetch available versions"
-              fi
+              echo "🎯 Verifying workspace dependencies for core package..."
               
               # Verify utils package is available in node_modules
               if [ -d "./node_modules/@gluestack-ui/utils" ]; then
                 echo "✅ Utils package verified in node_modules"
+                INSTALLED_VERSION=$(node -e "try { console.log(require('./node_modules/@gluestack-ui/utils/package.json').version) } catch(e) { console.log('unknown') }")
+                echo "📦 Utils version in node_modules: $INSTALLED_VERSION"
               else
-                echo "⚠️ Utils package not found in node_modules, build may fail"
+                echo "❌ Utils package not found in node_modules"
+                echo "::error::Utils package not found in node_modules for core package"
+                exit 1
               fi
             fi
             
-            # Build if build script exists
-            if yarn run --list 2>/dev/null | grep -q "build"; then
-              echo "🔨 Building $PACKAGE_NAME..."
-              yarn build
-            fi
+            # Skip individual build since all packages are built upfront
+            echo "✅ $PACKAGE_NAME already built in previous step"
             
             # Publish to latest tag
             echo "🚀 Publishing $PACKAGE_NAME@$CURRENT_VERSION..."
