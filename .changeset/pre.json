@@ -8,5 +8,7 @@
     "@gluestack-ui/utils": "3.0.0-alpha.1",
     "@gluestack/ui-next-adapter": "3.0.0-alpha.1"
   },
-  "changesets": []
+  "changesets": [
+    "stale-news-wave"
+  ]
 }
