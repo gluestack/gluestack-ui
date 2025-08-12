@@ -9,6 +9,7 @@
     "@gluestack/ui-next-adapter": "3.0.0-alpha.1"
   },
   "changesets": [
+    "beige-lights-shop",
     "stale-news-wave"
   ]
 }
