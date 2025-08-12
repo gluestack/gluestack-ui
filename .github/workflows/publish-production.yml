@@ -357,7 +357,7 @@ jobs:
             # Publish to latest tag
             echo "🚀 Publishing $PACKAGE_NAME@$CURRENT_VERSION..."
             
-            if npm publish --access public; then
+            if npm publish --tag alpha --access public; then
               echo "✅ Successfully published $PACKAGE_NAME@$CURRENT_VERSION"
               PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$CURRENT_VERSION"
             else
@@ -378,7 +378,7 @@ jobs:
                 CURRENT_VERSION=$NEW_VERSION
                 echo "🔄 Retrying publish with version $CURRENT_VERSION..."
                 
-                if npm publish --access public; then
+                if npm publish --tag alpha --access public; then
                   echo "✅ Successfully published $PACKAGE_NAME@$CURRENT_VERSION"
                   PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$CURRENT_VERSION"
                 else
