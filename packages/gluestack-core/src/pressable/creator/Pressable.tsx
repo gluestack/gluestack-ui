@@ -1,8 +1,8 @@
-import { useFocusRing, useFocus } from '@gluestack-ui-nightly/utils/aria';
+import { useFocusRing, useFocus } from '@gluestack-ui/utils/aria';
 import React, { forwardRef } from 'react';
 import type { PressableProps } from 'react-native';
-import { useHover, usePress } from '@gluestack-ui-nightly/utils/aria';
-import { composeEventHandlers } from '@gluestack-ui-nightly/utils/common';
+import { useHover, usePress } from '@gluestack-ui/utils/aria';
+import { composeEventHandlers } from '@gluestack-ui/utils/common';
 
 function Pressable<T>(StyledPressable: React.ComponentType<T>) {
   return forwardRef(

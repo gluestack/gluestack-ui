@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import { SelectContext } from './SelectContext';
-import { useHover } from '@gluestack-ui-nightly/utils/aria';
-import { useControllableState } from '@gluestack-ui-nightly/utils/hooks';
+import { useHover } from '@gluestack-ui/utils/aria';
+import { useControllableState } from '@gluestack-ui/utils/hooks';
 import { useFormControlContext } from '../../form-control/creator';
-import { useFocusRing } from '@gluestack-ui-nightly/utils/aria';
+import { useFocusRing } from '@gluestack-ui/utils/aria';
 
 export const Select = (StyledSelect: any) =>
   forwardRef(

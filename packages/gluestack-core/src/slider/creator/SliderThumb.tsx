@@ -3,11 +3,11 @@ import { Platform } from 'react-native';
 import { useSliderThumb } from '../aria';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { SliderContext } from './Context';
-import { useHover } from '@gluestack-ui-nightly/utils/aria';
-import { mergeRefs } from '@gluestack-ui-nightly/utils/common';
+import { useHover } from '@gluestack-ui/utils/aria';
+import { mergeRefs } from '@gluestack-ui/utils/common';
 import type { ISliderThumbProps } from './types';
-import { useFocusRing, useFocus } from '@gluestack-ui-nightly/utils/aria';
-import { composeEventHandlers } from '@gluestack-ui-nightly/utils/common';
+import { useFocusRing, useFocus } from '@gluestack-ui/utils/aria';
+import { composeEventHandlers } from '@gluestack-ui/utils/common';
 
 const positionMap = new Map([
   ['horizontal true', 'right'],

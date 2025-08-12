@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
-import { useHover, usePress } from '@gluestack-ui-nightly/utils/aria';
-import { useFocusRing, useFocus } from '@gluestack-ui-nightly/utils/aria';
-import { composeEventHandlers } from '@gluestack-ui-nightly/utils/common';
+import { useHover, usePress } from '@gluestack-ui/utils/aria';
+import { useFocusRing, useFocus } from '@gluestack-ui/utils/aria';
+import { composeEventHandlers } from '@gluestack-ui/utils/common';
 
 function Fab<StyledFab>(StyledFab: React.ComponentType<StyledFab>) {
   return forwardRef(

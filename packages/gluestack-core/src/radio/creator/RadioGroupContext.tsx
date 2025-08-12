@@ -1,4 +1,4 @@
-import { createContext } from '@gluestack-ui-nightly/utils/common';
+import { createContext } from '@gluestack-ui/utils/common';
 
 export const [RadioGroupProvider, useRadioGroup] =
   createContext<any>('RadioGroupContext');

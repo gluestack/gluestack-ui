@@ -387,7 +387,7 @@ async function updateFileImports(filePath: string): Promise<boolean> {
 
 export const upgrade = new Command()
   .name('upgrade')
-  .description('Upgrade from old gluestack packages to gluestack-ui-nightly')
+  .description('Upgrade from old gluestack packages to gluestack-ui')
   .action(async () => {
     try {
       log.info('\n\x1b[1mGluestack UI Upgrade\x1b[0m');

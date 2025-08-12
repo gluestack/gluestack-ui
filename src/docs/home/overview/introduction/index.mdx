@@ -10,40 +10,166 @@ import { GithubLink } from './githubLink';
 
 Customizable components and patterns for React, Next.js & React Native.
 
-**gluestack-ui v2** offers customizable, beautifully designed components for your projects. Unlike traditional libraries, it's not a pre-packaged dependency. Choose the components you need and copy-paste them directly into your React, Next.js & React Native projects.
+**gluestack-ui v3** offers customizable, beautifully designed components for your projects. Unlike traditional libraries, it's not a pre-packaged dependency. Choose the components you need and copy-paste them directly into your React, Next.js & React Native projects.
 
-## Why gluestack-ui v2?
+## Why gluestack-ui v3?
 
-### Motivation for v2
+### Evolution to v3
 
-**gluestack-ui v2** is a major upgrade designed to meet the needs of modern developers by enhancing performance, improving the developer experience, and offering greater flexibility. Here's why we're excited to release v2:
+**gluestack-ui v3** represents a major evolution in our approach to universal component development. Building on the foundation of v2, v3 introduces a revolutionary source-to-destination architecture that ensures consistency across all platforms while maintaining maximum flexibility.
 
-- **Performance Optimization**: gluestack-ui v2 is lightweight and efficient, ensuring fast load times and smooth performance across all devices.
-- **Enhanced Developer Experience**: The simplified, intuitive API and comprehensive documentation reduce the learning curve, allowing developers to get up to speed quickly and build exceptional user interfaces.
-- **Moving Away from Bundled Libraries**: Avoid unnecessary bloat by selecting only the components you need and copying content directly from the documentation.
-- **No Extra Dependencies**: gluestack-ui v2 minimizes additional dependencies, making your projects leaner and easier to maintain.
-- **RSC Compatible Components**: Optimize your applications with React Server Components, reducing client-side JavaScript and improving performance.
-- **ClassName Support**: Utilize Tailwind's intuitive className utility classes with NativeWind's robust styling engine for unparalleled customization.
-- **Maximum Customization**: Gain complete control over your design with easy-to-integrate and customizable components, patterns, and screens.
-- **No Default Primary Color**: Start with a non-opinionated design, as gluestack-ui v2 uses a default primary gray color that can be easily adjusted to fit your preferences.
+#### What's New in v3
 
-### Key Features of gluestack-ui v2
+- **Source-to-Destination Architecture** *(contribution change)*: All components are maintained in a single source of truth (`src/` directory) and automatically synced across all project templates and examples
+- **Enhanced Package System** *(contribution change)*: Modular packages (`gluestack-core`, `gluestack-utils`, `ui-next-adapter`) for better maintainability and extensibility  
+- **Improved Developer Experience** *(contribution change)*: Streamlined development workflow with automated file synchronization and hot reloading
+- **Advanced Component Creation** *(contribution change)*: New CLI tools and scripts for rapid component development and contribution
+- **Better Documentation Integration** *(contribution change)*: Seamless integration between component source code and documentation
+- **Enhanced Testing Infrastructure** *(contribution change)*: Comprehensive testing across multiple starter templates and applications
 
-- **Consistency**: gluestack-ui provides a consistent design language across different platforms, making it easier to build interfaces that look and feel the same on all devices.
-- **Accessibility**: gluestack-ui v2 aims to provide a set of accessible components that work across different platforms and devices. The components have accessibility features such as ARIA attributes, keyboard navigation, and focus management.
-- **Ease of Use**: gluestack-ui v2 components are designed to be easily customizable. They have clear and concise APIs that make integration into existing projects simple.
-- **Predefined Patterns**: Benefit from a variety of predefined patterns that ensure design consistency and streamline development.
-- **Theming Tokens**: gluestack-ui takes a config file in the GluestackUIProvider, which contains theme tokens, aliases, component themes, etc., to help with the project requirements. You can install and import the config as a module. See more about theming.
+### Key Features of gluestack-ui v3
 
-## Why use gluestack-ui v2, when we already have NativeBase?
+- **Universal Consistency**: Components work identically across React, Next.js, and React Native with a single codebase
+- **Copy-Paste Philosophy**: No heavy dependencies—just copy the components you need directly into your project
+- **Advanced Accessibility**: Built-in ARIA support and accessibility features across all components
+- **Tailwind Integration**: Full support for Tailwind CSS classes with NativeWind for React Native
+- **TypeScript First**: Complete TypeScript support with comprehensive type definitions
+- **Performance Optimized**: Lightweight components with minimal runtime overhead
+- **RSC Compatible**: Full React Server Components support for Next.js applications
+- **Theming System**: Powerful theming capabilities with CSS variables and design tokens
+- **No Vendor Lock-in**: Own your components completely—no external dependencies to worry about
+
+### Core Benefits
+
+- **Consistency**: Unified design language across all platforms and devices
+- **Flexibility**: Complete control over component behavior and styling
+- **Performance**: Optimized for both web and mobile with minimal bundle size
+- **Maintainability**: Single source of truth reduces duplication and maintenance overhead
+- **Developer Experience**: Intuitive APIs and comprehensive tooling for rapid development
+- **Community-Driven**: Open architecture that encourages community contributions and customization
+
+## Architecture Overview *(contribution change)*
+
+gluestack-ui v3 uses a sophisticated source-to-destination system:
+
+### Source Files (`src/`) *(contribution change)*
+- **`components/ui/`** - Core UI components (Button, Input, Modal, etc.)
+- **`docs-components/`** - Documentation-specific components  
+- **`sidebar.json`** - Documentation sidebar configuration
+
+### Package System (`packages/`) *(contribution change)*
+- **`gluestack-ui/`** - Main CLI package for component installation
+- **`gluestack-core/`** - Component creators and ARIA functionality
+- **`gluestack-utils/`** - Shared utility functions and hooks
+- **`ui-next-adapter/`** - Next.js adapter for React Native Web support
+- **`create-gluestack/`** - Project initialization tool
+
+### Applications (`apps/`) *(contribution change)*
+- **`website/`** - Documentation website (gluestack-ui.com)
+- **`kitchen-sink/`** - Component showcase & testing environment
+- **`starter-kit-next/`** - Next.js starter template
+- **`starter-kit-expo/`** - Expo starter template
+
+## Migration from Previous Versions
+
+### From v2 to v3
+
+#### What's Changed (Minimal Breaking Changes):
+
+**gluestack-ui v3** maintains API compatibility with v2 while introducing significant architectural improvements:
+
+- **Package structure changes** to @gluestack-ui/core and @gluestack-ui/utils
+- **Import path updates** for creator function
+- **ARIA dependencies** moved from react-native-aria to @gluestack-ui/core
+- **Enhanced Next.js adapter**
+- **Better compatibility** with Expo SDK 53 and Next.js 15
+
+#### What Stays the Same:
+- **Component APIs** remain exactly the same
+- **Styling system** unchanged
+- **Theming configurations** continue to work
+- **Copy-paste philosophy** maintained
+
+### Migration Benefits
+
+- **Seamless Upgrade**: Simple upgrade process with `npx gluestack-ui upgrade` command.
+- **Minimal code changes** (only import paths)
+- **Enhanced stability** and bug fixes
+- **Future-ready foundation**
+- **Improved developer experience** (contribution change)
+- **Community Support**: Active community and comprehensive migration resources
+
+We've prepared a comprehensive migration guide to help you transition smoothly from v2 to v3, including automated migration tools and detailed instructions.
+
+## Why Choose gluestack-ui v3?
+
+### vs. Traditional UI Libraries
+
+Unlike component libraries that force you into their ecosystem:
+- **Full Customization**: Modify components to fit your exact needs
+- **No Bundle Bloat**: Only include components you actually use
+- **Universal Compatibility**: Works across React, Next.js, and React Native
+
+### vs. Building from Scratch
+
+Instead of reinventing the wheel:
+- **Production-Ready**: Battle-tested components used by thousands of developers
+- **Accessibility Built-in**: ARIA compliance and keyboard navigation included
+- **Design System**: Consistent design tokens and theming system
+- **Community Support**: Active community and regular updates
+
+### vs. Platform-Specific Solutions
+
+Rather than maintaining separate web and mobile component libraries:
+- **Single Codebase**: Write once, run everywhere
+- **Consistent UX**: Identical behavior across all platforms
+- **Shared Knowledge**: Team members can work across platforms
+- **Reduced Maintenance**: One component system to maintain
+
+## Getting Started
+
+### Quick Start
+
+#### Step 1: **Initialize a new project**:
+   ```bash
+   npx create-gluestack@alpha my-app
+   ```
+
+#### Step 2: **Add components to existing project**:
+   ```bash
+   npx gluestack-ui@alpha init
+   npx gluestack-ui@alpha add button
+   ```
+
+#### Step 3: **Start building**:
+   ```tsx
+   import { Button, ButtonText } from '@/components/ui/button'
+   
+   export default function App() {
+     return (
+       <Button>
+         <ButtonText>Get Started</ButtonText>
+       </Button>
+     )
+   }
+   ```
+
+### Supported Frameworks
+
+- **Next.js** - Optimized for Next.js 13+ with App Router
+- **React Native CLI** - Native mobile development with React Native CLI
+- **Expo** - Complete Expo SDK compatibility
+- **Monorepos** - Full support for monorepo architectures
+
+## Why use gluestack-ui v3, when we already have NativeBase?
 
 **gluestack-ui** was originally part of NativeBase, but it has since evolved into a standalone library with significantly improved performance. It prioritizes performance and is optimized for even complex applications with many elements.
 
 We have also shifted from prop-based APIs in NativeBase to compound APIs because that provides a more cohesive, robust and consistent interface for developers.
 
-## Why use gluestack-ui v2, when we already have gluestack-ui v1?
+## Why use gluestack-ui v3/v2, when we already have gluestack-ui v1?
 
-**gluestack-ui v2** is a major upgrade from **v1**, designed to address the evolving needs of modern developers. With enhanced performance, improved developer experience, and greater flexibility, gluestack-ui v2 offers several advantages over its predecessor:
+**gluestack-ui v3/v2** is a major upgrade from **v1**, designed to address the evolving needs of modern developers. With enhanced performance, improved developer experience, and greater flexibility, gluestack-ui v2 offers several advantages over its predecessor:
 
 - **Modular Approach**: Avoid unnecessary bloat by selecting and using only the components you need.
 - **Simple Integration**: Easily integrate components by copying and pasting code snippets directly into your project files.
@@ -56,8 +182,8 @@ We have also shifted from prop-based APIs in NativeBase to compound APIs because
 Existing **gluestack-ui v1** users will continue to have access to their current version, but we highly encourage upgrading to gluestack-ui v2 to take advantage of the new features and improvements. Here's what you can expect:
 
 - **Continued Support**: We will provide maintenance and support for gluestack-ui v1 for a limited time to ensure a smooth transition.
-- **Migration Guide**: We have prepared a comprehensive migration guide to help you seamlessly transition from v1 to v2. The guide includes detailed instructions, code examples, and best practices to ease the process. Link to migration guide.
-- **Enhanced Features**: By upgrading to v2, you will benefit from improved performance, better developer experience, and more customization options.
+- **Migration Guide**: We have prepared a comprehensive migration guide to help you seamlessly transition from v1 to v2. The guide includes detailed instructions, code examples, and best practices to ease the process. [Link to migration guide](/ui/docs/guides/more/upgrade-to-v2).
+- **Enhanced Features**: By upgrading to v3/v2, you will benefit from improved performance, better developer experience, and more customization options.
 - **Community and Documentation**: Extensive documentation and an active community will support you through the upgrade process and beyond.
 - **Codemod Tool**: Additionally, we've developed a codemod tool to assist with the transition, streamlining the process and reducing manual effort. You can find instructions on how to install the codemod tool in our documentation [here](/ui/docs/home/overview/upgrade-to-v2).
 
@@ -65,7 +191,7 @@ We are committed to making the transition to gluestack-ui v2 as smooth and benef
 
 ## Future Considerations
 
-gluestack-ui is committed to continuously expanding its library of components to meet the needs of developers. We plan to add more components to the library, such as navigation, combo box, and grid. Apart from that, we are actively working on improving the performance of the styling library using techniques such as bundler-plugins, tree flattening, and more.
+gluestack-ui is committed to continuously expanding its library of components to meet the needs of developers. We plan to add more components to the library, such as date-time picker, bottom sheet, and more. Apart from that, we are actively working on improving the performance of the styling library using techniques such as bundler-plugins, tree flattening, and more.
 
 ## Community
 
@@ -103,4 +229,15 @@ Stay updated about our company and collaborate on enterprise-level projects.
 
 Explore 30+ components for React, Next.js & React Native [See All](/ui/docs/components/all-components).
 
-> Note: Upgrade to v2 [Click here](/ui/docs/guides/more/upgrade-to-v2).
+## Contributing
+
+gluestack-ui v3 is built by the community, for the community. We welcome contributions of all kinds:
+
+- **Component Development**: Help build new components or improve existing ones
+- **Documentation**: Improve guides, examples, and API documentation  
+- **Bug Reports**: Help us identify and fix issues
+- **Feature Requests**: Suggest new features and improvements
+
+Ready to build amazing universal apps? Let's get started! 🚀
+
+> Note: Upgrade to v3 [Click here](/ui/docs/guides/more/upgrade-to-v3).

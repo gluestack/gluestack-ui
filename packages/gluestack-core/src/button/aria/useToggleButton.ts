@@ -2,7 +2,7 @@
 import { ButtonAria, useButton } from './useButton';
 import type { ToggleState } from '@react-stately/toggle';
 import { chain, mergeProps } from '@react-aria/utils';
-import type { PressEvents } from '@gluestack-ui-nightly/utils/aria';
+import type { PressEvents } from '@gluestack-ui/utils/aria';
 import type { PressableProps } from 'react-native';
 
 export type AriaButtonProps = PressableProps &

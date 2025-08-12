@@ -1,5 +1,5 @@
 ---
-title: Manual Migration to gluestack-ui-nightly | gluestack-ui
+title: Manual Migration to gluestack-ui v3 | gluestack-ui
 description: Complete manual migration guide from gluestack-ui v2 to gluestack-ui v3. Step-by-step instructions for upgrading packages, updating configurations, and transforming your codebase.
 ---
 
@@ -14,14 +14,14 @@ import {
 import { Tabs, TabItem } from '@/docs-components/tabs';
 import { InlineCode } from '@/docs-components/inline-code';
 
-# Manual Migration to gluestack-ui-nightly
+# Manual Migration to gluestack-ui v3
 <br/>
 If you have a simple Next.js or Expo project using Gluestack, you can upgrade directly by running:
-<CodeBlock code="npx gluestack-ui-nightly upgrade" language="bash" />
+<CodeBlock code="npx gluestack-ui upgrade" language="bash" />
 
 For monorepos, please follow the manual installation guide instead.
 
-This guide provides detailed manual steps to migrate from legacy gluestack-ui packages to the new gluestack-ui-nightly v3 ecosystem. Follow these steps carefully to ensure a smooth transition with minimal issues.
+This guide provides detailed manual steps to migrate from legacy gluestack-ui packages to the new gluestack-ui v3 ecosystem. Follow these steps carefully to ensure a smooth transition with minimal issues.
 
 We’ll be releasing an official Gluestack monorepo template soon to make the process even easier.
 
@@ -123,7 +123,7 @@ const nextConfig = {
 export default withGluestackUI(nextConfig);`} language="typescript" />
 
 **After:**
-<CodeBlock code={`import { withGluestackUI } from '@gluestack-nightly/ui-next-adapter';
+<CodeBlock code={`import { withGluestackUI } from '@gluestack/ui-next-adapter';
 
 const nextConfig = {
   // ... your config
@@ -139,24 +139,24 @@ If you have an `app/registry.tsx` file, update the flush import:
 <CodeBlock code={`import { flush } from '@gluestack-ui/nativewind-utils/flush';`} language="typescript" />
 
 **After:**
-<CodeBlock code={`import { flush } from '@gluestack-ui-nightly/utils/nativewind-utils';`} language="typescript" />
+<CodeBlock code={`import { flush } from '@gluestack-ui/utils/nativewind-utils';`} language="typescript" />
 
 ## Step 4: Install New Packages
 
-Install the new gluestack-ui-nightly packages:
+Install the new gluestack-ui v3 packages:
 
 <Tabs>
 <TabItem label="npm">
-<CodeBlock code="npm install @gluestack-ui-nightly/core@latest @gluestack-ui-nightly/utils@latest react-native-svg@15.12.0 @gluestack-nightly/ui-next-adapter@latest" language="bash" />
+<CodeBlock code="npm install @gluestack-ui/core@latest @gluestack-ui/utils@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
 </TabItem>
 <TabItem label="yarn">
-<CodeBlock code="yarn add @gluestack-ui-nightly/core@latest @gluestack-ui-nightly/utils@latest react-native-svg@15.12.0 @gluestack-nightly/ui-next-adapter@latest" language="bash" />
+<CodeBlock code="yarn add @gluestack-ui/core@latest @gluestack-ui/utils@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
 </TabItem>
 <TabItem label="pnpm">
-<CodeBlock code="pnpm i @gluestack-ui-nightly/core@latest @gluestack-ui-nightly/utils@latest react-native-svg@15.12.0 @gluestack-nightly/ui-next-adapter@latest" language="bash" />
+<CodeBlock code="pnpm i @gluestack-ui/core@latest @gluestack-ui/utils@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
 </TabItem>
 <TabItem label="bun">
-<CodeBlock code="bun add @gluestack-ui-nightly/core@latest @gluestack-ui-nightly/utils@latest react-native-svg@15.12.0 @gluestack-nightly/ui-next-adapter@latest" language="bash" />
+<CodeBlock code="bun add @gluestack-ui/core@latest @gluestack-ui/utils@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
 </TabItem>
 </Tabs>
 
@@ -208,8 +208,8 @@ import { createRadio } from '@gluestack-ui/radio';`} language="typescript" />
 
 **After:**
 <CodeBlock code={`
-import { createButton } from '@gluestack-ui-nightly/core/button/creator';
-import { createRadio } from '@gluestack-ui-nightly/core/radio/creator';`} language="typescript" />
+import { createButton } from '@gluestack-ui/core/button/creator';
+import { createRadio } from '@gluestack-ui/core/radio/creator';`} language="typescript" />
 
 ### Transform Utility Imports
 <br/>
@@ -218,8 +218,8 @@ import { createRadio } from '@gluestack-ui-nightly/core/radio/creator';`} langua
 import { tva } from '@gluestack-ui/nativewind-utils/tva';`} language="typescript" />
 
 **After:**
-<CodeBlock code={`import { flush } from '@gluestack-ui-nightly/utils/nativewind-utils';
-import { tva } from '@gluestack-ui-nightly/utils/nativewind-utils';`} language="typescript" />
+<CodeBlock code={`import { flush } from '@gluestack-ui/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';`} language="typescript" />
 
 ## Step 7: Update Component Usage Patterns
 
@@ -240,7 +240,7 @@ Use these patterns to transform your imports:
         <InlineCode>{`from '@gluestack-ui/[component]'`}</InlineCode>
       </TableCell>
       <TableCell>
-        <InlineCode>{`from '@gluestack-ui-nightly/core/[component]/creator'`}</InlineCode>
+        <InlineCode>{`from '@gluestack-ui/core/[component]/creator'`}</InlineCode>
       </TableCell>
     </TableRow>
     <TableRow>
@@ -248,7 +248,7 @@ Use these patterns to transform your imports:
         <InlineCode>{`from '@gluestack-ui/nativewind-utils/[utility]'`}</InlineCode>
       </TableCell>
       <TableCell>
-        <InlineCode>{`from '@gluestack-ui-nightly/utils/nativewind-utils'`}</InlineCode>
+        <InlineCode>{`from '@gluestack-ui/utils/nativewind-utils'`}</InlineCode>
       </TableCell>
     </TableRow>
     <TableRow>
@@ -256,7 +256,7 @@ Use these patterns to transform your imports:
         <InlineCode>{`from '@gluestack/ui-next-adapter'`}</InlineCode>
       </TableCell>
       <TableCell>
-        <InlineCode>{`from '@gluestack-nightly/ui-next-adapter'`}</InlineCode>
+        <InlineCode>{`from '@gluestack/ui-next-adapter'`}</InlineCode>
       </TableCell>
     </TableRow>
   </TableBody>
@@ -328,7 +328,7 @@ If components don't work at runtime:
 
 #### Step2: Commit your changes**:
    <CodeBlock code={`git add .
-   git commit -m "Migrate to gluestack-ui-nightly packages"`} language="bash" />
+   git commit -m "Migrate to gluestack-ui v3 packages"`} language="bash" />
 
 3. **Test thoroughly**: Run your test suite and manually test key features
 
@@ -374,7 +374,7 @@ Use this checklist to track your migration progress:
 
 - **Package Management**
   - Removed all legacy gluestack packages
-  - Installed new gluestack-nightly packages
+  - Installed new gluestack packages
   - Performed clean installation
 
 - **Configuration Updates**
@@ -406,7 +406,7 @@ After successful migration:
 1. **Update your team**: Inform team members about the migration
 2. **Update documentation**: Revise any project-specific documentation
 3. **Monitor for issues**: Keep an eye on the application for any unexpected behavior
-4. **Stay updated**: Follow gluestack-ui-nightly releases for future updates
+4. **Stay updated**: Follow gluestack-ui releases for future updates
 
 ## Support
 

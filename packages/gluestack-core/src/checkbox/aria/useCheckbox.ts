@@ -2,7 +2,7 @@ import type { RefObject } from 'react';
 import type { ToggleState } from '@react-stately/toggle';
 import { mergeProps } from '@react-aria/utils';
 import type { AccessibilityProps } from 'react-native';
-import { useToggle } from '@gluestack-ui-nightly/utils/aria';
+import { useToggle } from '@gluestack-ui/utils/aria';
 import { AriaCheckboxProps } from '@react-types/checkbox';
 
 export interface CheckboxAria extends AccessibilityProps {

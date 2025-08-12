@@ -20,19 +20,19 @@ To use the gluestack-ui CLI, you can run the following commands:
 - **Initialize gluestack-ui -** This command sets up the gluestack-ui library in your project.
 
 ```
-    npx gluestack-ui-nightly init
+    npx gluestack-ui init
 ```
 
 - **Add a component or a Hook -** Replace `<component-name>` with the name of the component or a hook you want to add to your project. You can also use a special flag `--all` which will add all the components to your project.
 
 ```
-    npx gluestack-ui-nightly add <component-name>
+    npx gluestack-ui add <component-name>
 ```
 
 - **Get help -** This command provides help and information about using the gluestack-ui CLI.
 
 ```
-    npx gluestack-ui-nightly help
+    npx gluestack-ui help
 ```
 
 ## Contributing

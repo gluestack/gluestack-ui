@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import { AlertDialogContext } from './Context';
-import { useHover, usePress } from '@gluestack-ui-nightly/utils/aria';
-import { composeEventHandlers } from '@gluestack-ui-nightly/utils/common';
-import { useFocusRing, useFocus } from '@gluestack-ui-nightly/utils/aria';
+import { useHover, usePress } from '@gluestack-ui/utils/aria';
+import { composeEventHandlers } from '@gluestack-ui/utils/common';
+import { useFocusRing, useFocus } from '@gluestack-ui/utils/aria';
 // @ts-ignore
 
 const AlertDialogCloseButton = (StyledAlertDialogCloseButton: any) =>

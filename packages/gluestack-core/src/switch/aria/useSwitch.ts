@@ -13,7 +13,7 @@
 import type { AriaSwitchProps } from '@react-types/switch';
 import type { RefObject } from 'react';
 import type { ToggleState } from '@react-stately/toggle';
-import { useToggle } from '@gluestack-ui-nightly/utils/aria';
+import { useToggle } from '@gluestack-ui/utils/aria';
 import type { AccessibilityProps, AccessibilityRole } from 'react-native';
 import { mergeProps } from '@react-aria/utils';
 

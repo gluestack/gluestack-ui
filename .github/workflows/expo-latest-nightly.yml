@@ -1,4 +1,4 @@
-name: Expo Latest Nightly
+name: Expo Latest v3
 
 on:
   push:
@@ -106,8 +106,8 @@ jobs:
       - name: Install gluestack-ui
         working-directory: test-app
         run: |
-          npx gluestack-ui-nightly init --template-only --projectType expo
-          npx gluestack-ui-nightly add --all
+          npx gluestack-ui@alpha init --template-only --projectType expo
+          npx gluestack-ui@alpha add --all
           npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css
       - name: Start Expo web app
         working-directory: test-app
