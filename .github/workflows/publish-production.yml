@@ -112,20 +112,20 @@ jobs:
       - name: Verify workspace dependencies
         run: |
           echo "🔍 Verifying workspace dependencies..."
-          
+
           # Check if utils package is built
           if [ ! -d "packages/gluestack-utils/lib" ]; then
             echo "❌ Utils package not built"
             exit 1
           fi
-          
+
           # Check if core package can find utils package
           cd packages/gluestack-core
           if [ ! -d "node_modules/@gluestack-ui/utils" ]; then
             echo "❌ Utils package not found in core package node_modules"
             exit 1
           fi
-          
+
           echo "✅ Workspace dependencies verified"
 
       - name: Setup NPM authentication
@@ -371,10 +371,10 @@ jobs:
             # Skip individual build since all packages are built upfront
             echo "✅ $PACKAGE_NAME already built in previous step"
             
-            # Publish to latest tag
+            # Publish to npm with alpha tag
             echo "🚀 Publishing $PACKAGE_NAME@$CURRENT_VERSION..."
             
-            if yarn changeset publish --tag alpha --access public; then
+            if npm publish --tag alpha --access public; then
               echo "✅ Successfully published $PACKAGE_NAME@$CURRENT_VERSION"
               PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$CURRENT_VERSION"
             else
@@ -395,7 +395,7 @@ jobs:
                 CURRENT_VERSION=$NEW_VERSION
                 echo "🔄 Retrying publish with version $CURRENT_VERSION..."
                 
-                if yarn changeset publish --tag alpha --access public; then
+                if npm publish --tag alpha --access public; then
                   echo "✅ Successfully published $PACKAGE_NAME@$CURRENT_VERSION"
                   PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$CURRENT_VERSION"
                 else
