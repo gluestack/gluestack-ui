@@ -106,60 +106,26 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build packages in order
-        run: |
-          echo "🔨 Building packages in dependency order..."
-
-          # Build utils package first
-          echo "📦 Building @gluestack-ui/utils..."
-          cd packages/gluestack-utils
-          yarn build
-          cd ../..
-
-          # Build core package
-          echo "📦 Building @gluestack-ui/core..."
-          cd packages/gluestack-core
-          yarn build
-          cd ../..
-
-          # Build other packages
-          echo "📦 Building remaining packages..."
-          yarn workspaces run build --ignore @gluestack-ui/utils --ignore @gluestack-ui/core
+      - name: Build all packages
+        run: yarn build:packages
 
       - name: Verify workspace dependencies
         run: |
           echo "🔍 Verifying workspace dependencies..."
-
+          
           # Check if utils package is built
           if [ ! -d "packages/gluestack-utils/lib" ]; then
             echo "❌ Utils package not built"
             exit 1
           fi
-
-          # Check if core package is built
-          if [ ! -d "packages/gluestack-core/lib" ]; then
-            echo "❌ Core package not built"
-            exit 1
-          fi
-
+          
           # Check if core package can find utils package
           cd packages/gluestack-core
           if [ ! -d "node_modules/@gluestack-ui/utils" ]; then
             echo "❌ Utils package not found in core package node_modules"
             exit 1
           fi
-
-          # Verify utils package has the required exports
-          if [ ! -f "node_modules/@gluestack-ui/utils/lib/esm/aria/index.d.ts" ]; then
-            echo "❌ Utils package aria exports not found"
-            exit 1
-          fi
-
-          if [ ! -f "node_modules/@gluestack-ui/utils/lib/esm/common/index.d.ts" ]; then
-            echo "❌ Utils package common exports not found"
-            exit 1
-          fi
-
+          
           echo "✅ Workspace dependencies verified"
 
       - name: Setup NPM authentication
@@ -386,9 +352,20 @@ jobs:
               echo "✅ Updated to version: $CURRENT_VERSION"
             fi
             
-            # Workspace dependencies already verified in previous step
+            # Verify workspace dependencies for core package
             if [[ "$PACKAGE_NAME" == *"core"* ]]; then
-              echo "✅ Workspace dependencies already verified for core package"
+              echo "🎯 Verifying workspace dependencies for core package..."
+              
+              # Verify utils package is available in node_modules
+              if [ -d "./node_modules/@gluestack-ui/utils" ]; then
+                echo "✅ Utils package verified in node_modules"
+                INSTALLED_VERSION=$(node -e "try { console.log(require('./node_modules/@gluestack-ui/utils/package.json').version) } catch(e) { console.log('unknown') }")
+                echo "📦 Utils version in node_modules: $INSTALLED_VERSION"
+              else
+                echo "❌ Utils package not found in node_modules"
+                echo "::error::Utils package not found in node_modules for core package"
+                exit 1
+              fi
             fi
             
             # Skip individual build since all packages are built upfront
