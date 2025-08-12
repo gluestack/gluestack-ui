@@ -4,6 +4,14 @@
 
 ### Patch Changes
 
+- 45eca19: chore: test
+- bd5efa7: chore: test
+- chore: test
+
+## 3.0.0
+
+### Patch Changes
+
 - chore: changed utils dependency to alpha version
 
 ## 1.2.10
