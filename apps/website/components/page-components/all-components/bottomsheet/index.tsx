@@ -41,7 +41,7 @@ export default function Example() {
   const renderHandle = useCallback(
     (props: any) => (
       <BottomSheetHandle
-        className="h-20 bg-red-200 rounded-t-xl items-center justify-center"
+        className="h-20 bg-red-800 rounded-t-xl items-center justify-center"
         {...props}
       >
         <Box className="h-2 w-8 rounded-xl bg-blue-400" />
@@ -51,7 +51,7 @@ export default function Example() {
   );
 
   return (
-    <Box className="bg-background-200 w-screen min-h-screen">
+    <Box className="bg-background-200 flex-1">
       <Box className="flex-1 justify-center items-center p-6">
         <Text className="text-typography-900 text-xl font-bold mb-4">
           Bottom Sheet Demo
@@ -83,7 +83,7 @@ export default function Example() {
       
       <BottomSheet
         ref={bottomSheetRef}
-        index={1}
+        index={-1}
         onChange={handleSheetChanges}
         backdropComponent={renderBackdrop}
         handleComponent={renderHandle}

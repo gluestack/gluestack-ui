@@ -14,47 +14,29 @@ import { useContext } from 'react';
 import { ThemeContext, ThemeProvider } from '@/utils/context/theme-context';
 import CanonicalLink from '@/components/custom/canonical/CanonicalLink';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-if (typeof window !== 'undefined') {
-  // Polyfill global for browser
-  if (typeof (globalThis as any).global === 'undefined') {
-    (globalThis as any).global = window;
-  }
+// if (typeof window !== 'undefined') {
+//   // Polyfill global for browser
+//   if (typeof (globalThis as any).global === 'undefined') {
+//     (globalThis as any).global = window;
+//   }
 
-  // Polyfill for nativeFabricUIManager
-  if (typeof (globalThis as any).global !== 'undefined' && !(globalThis as any).global.nativeFabricUIManager) {
-    ((globalThis as any).global as any).nativeFabricUIManager = null;
-  }
+//   // Polyfill for nativeFabricUIManager
+//   if (typeof (globalThis as any).global !== 'undefined' && !(globalThis as any).global.nativeFabricUIManager) {
+//     ((globalThis as any).global as any).nativeFabricUIManager = null;
+//   }
 
-  // Polyfill for __DEV__
-  if (typeof (globalThis as any).__DEV__ === 'undefined') {
-    (globalThis as any).__DEV__ = process.env.NODE_ENV !== 'production';
-  }
+//   // Polyfill for __DEV__
+//   if (typeof (globalThis as any).__DEV__ === 'undefined') {
+//     (globalThis as any).__DEV__ = process.env.NODE_ENV !== 'production';
+//   }
 
-  // Polyfill for _WORKLET
-  if (typeof (globalThis as any)._WORKLET === 'undefined') {
-    (globalThis as any)._WORKLET = false;
-  }
+//   // Polyfill for _WORKLET
+//   if (typeof (globalThis as any)._WORKLET === 'undefined') {
+//     (globalThis as any)._WORKLET = false;
+//   }
 
-  // Polyfill for _setGlobalConsoleOverride
-  if (typeof (globalThis as any)._setGlobalConsoleOverride === 'undefined') {
-    (globalThis as any)._setGlobalConsoleOverride = () => {};
-  }
-
-  // Polyfill for _log
-  if (typeof (globalThis as any)._log === 'undefined') {
-    (globalThis as any)._log = () => {};
-  }
-
-  // Polyfill for _scheduleOnJS
-  if (typeof (globalThis as any)._scheduleOnJS === 'undefined') {
-    (globalThis as any)._scheduleOnJS = (callback: any) => callback();
-  }
-
-  // Polyfill for _scheduleOnUI
-  if (typeof (globalThis as any)._scheduleOnUI === 'undefined') {
-    (globalThis as any)._scheduleOnUI = (callback: any) => callback();
-  }
-}
+  
+// }
 // Configure fonts with local fallbacks and optimized loading
 const inter = Inter({
   subsets: ['latin'],
