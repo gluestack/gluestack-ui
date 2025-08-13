@@ -163,23 +163,24 @@ function Card1() {
               </Text>
               <HStack className="flex-wrap gap-2.5">
                 <Link
-                  href="https://github.com/gluestack/gluestack-ui-starter-kits/tree/main/next"
+                  href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/apps/starter-kit-next`}
                   isExternal
                   className="rounded-lg bg-secondary-0"
                 >
                   <Next />
                 </Link>
                 <Link
-                  href="https://github.com/gluestack/gluestack-ui-starter-kits/tree/main/expo-app"
+                  href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/apps/starter-kit-expo`}
                   isExternal
                   className="rounded-lg bg-secondary-0"
                 >
                   <Expo1 />
                 </Link>
                 <Link
-                  href="https://github.com/gluestack/gluestack-ui-starter-kits/tree/main/universal"
+                  href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/apps/starter-kit-universal`}
                   isExternal
                   className="rounded-lg bg-secondary-0"
+                  disabled // disabled until we make a new universal starter kit
                 >
                   <Unitools />
                 </Link>
