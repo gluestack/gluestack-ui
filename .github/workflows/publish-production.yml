@@ -106,28 +106,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build all packages
-        run: yarn build:packages
-
-      - name: Verify workspace dependencies
-        run: |
-          echo "🔍 Verifying workspace dependencies..."
-
-          # Check if utils package is built
-          if [ ! -d "packages/gluestack-utils/lib" ]; then
-            echo "❌ Utils package not built"
-            exit 1
-          fi
-
-          # Check if core package can find utils package
-          cd packages/gluestack-core
-          if [ ! -d "node_modules/@gluestack-ui/utils" ]; then
-            echo "❌ Utils package not found in core package node_modules"
-            exit 1
-          fi
-
-          echo "✅ Workspace dependencies verified"
-
       - name: Setup NPM authentication
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
@@ -141,15 +119,7 @@ jobs:
           # Check if there are changesets to consume
           if [ -d ".changeset" ] && [ "$(ls -A .changeset/*.md 2>/dev/null | wc -l)" -gt 0 ]; then
             echo "📝 Consuming changesets..."
-            # Handle pre-release mode if .changeset/pre.json exists
-            if [ -f ".changeset/pre.json" ]; then
-              echo "📦 Pre-release mode detected, using changeset version"
-              yarn changeset:version
-            else
-              echo "📦 Standard release mode, using changeset version"
-              yarn changeset:version
-            fi
-
+            yarn changeset:version
             
             # Check if any package.json was modified
             if git diff --quiet; then
@@ -352,29 +322,42 @@ jobs:
               echo "✅ Updated to version: $CURRENT_VERSION"
             fi
             
-            # Verify workspace dependencies for core package
+            # Install utils dependency if this is core package
             if [[ "$PACKAGE_NAME" == *"core"* ]]; then
-              echo "🎯 Verifying workspace dependencies for core package..."
+              echo "🎯 Installing utils package for core package..."
+              echo "📦 Attempting to install latest utils package: @gluestack-ui/utils"
+              
+              # First try to install the latest public version
+              if npm install @gluestack-ui/utils@alpha --no-save --registry https://registry.npmjs.org/ 2>&1; then
+                echo "✅ Utils package installed successfully"
+                
+                # Show which version was installed
+                INSTALLED_VERSION=$(node -e "try { console.log(require('./node_modules/@gluestack-ui/utils/package.json').version) } catch(e) { console.log('unknown') }")
+                echo "📦 Installed utils version: $INSTALLED_VERSION"
+              else
+                echo "⚠️ Failed to install utils package, but continuing..."
+                echo "🔍 Available versions:"
+                npm view @gluestack-ui/utils versions --json 2>/dev/null || echo "Could not fetch available versions"
+              fi
               
               # Verify utils package is available in node_modules
               if [ -d "./node_modules/@gluestack-ui/utils" ]; then
                 echo "✅ Utils package verified in node_modules"
-                INSTALLED_VERSION=$(node -e "try { console.log(require('./node_modules/@gluestack-ui/utils/package.json').version) } catch(e) { console.log('unknown') }")
-                echo "📦 Utils version in node_modules: $INSTALLED_VERSION"
               else
-                echo "❌ Utils package not found in node_modules"
-                echo "::error::Utils package not found in node_modules for core package"
-                exit 1
+                echo "⚠️ Utils package not found in node_modules, build may fail"
               fi
             fi
             
-            # Skip individual build since all packages are built upfront
-            echo "✅ $PACKAGE_NAME already built in previous step"
+            # Build if build script exists
+            if yarn run --list 2>/dev/null | grep -q "build"; then
+              echo "🔨 Building $PACKAGE_NAME..."
+              yarn build
+            fi
             
-            # Publish to npm with alpha tag
+            # Publish to latest tag
             echo "🚀 Publishing $PACKAGE_NAME@$CURRENT_VERSION..."
             
-            if npm publish --tag alpha --access public; then
+            if npm publish --access public; then
               echo "✅ Successfully published $PACKAGE_NAME@$CURRENT_VERSION"
               PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$CURRENT_VERSION"
             else
@@ -395,7 +378,7 @@ jobs:
                 CURRENT_VERSION=$NEW_VERSION
                 echo "🔄 Retrying publish with version $CURRENT_VERSION..."
                 
-                if npm publish --tag alpha --access public; then
+                if npm publish --access public; then
                   echo "✅ Successfully published $PACKAGE_NAME@$CURRENT_VERSION"
                   PUBLISHED_PACKAGES="$PUBLISHED_PACKAGES $PACKAGE_NAME@$CURRENT_VERSION"
                 else

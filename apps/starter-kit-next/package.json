@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@expo/html-elements": "^0.12.5",
-    "@gluestack/ui-next-adapter": "alpha",
-    "@gluestack-ui/core": "alpha",
-    "@gluestack-ui/utils": "alpha",
+    "@gluestack/ui-next-adapter": "3.0.0-alpha.0",
+    "@gluestack-ui/core": "3.0.0-alpha.5",
+    "@gluestack-ui/utils": "3.0.0-alpha.1",
     "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
     "@legendapp/motion": "^2.4.0",
     "dom-helpers": "^5.2.1",
