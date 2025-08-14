@@ -2,7 +2,7 @@
 > Site: gluestack.io
 > Description: React & React Native UI components library with customizable Tailwind CSS components for web & mobile apps
 > Last Updated: 2025-05-29
-> Version: v2 (Latest)
+> Version: v3 (Latest)
 > Built with: React, React Native, Tailwind CSS, NativeWind
 
 # About
@@ -42,10 +42,10 @@ Overlay: Modal, Popover, Tooltip, Menu
 - Jest testing framework compatible
 
 # Migration Information
-- Current version: v2 (major upgrade from v1)
+- Current version: v3 (major upgrade from v1)
 - Migration guide available with codemod tools
 - v1 users have limited-time continued support
-- Enhanced performance and developer experience in v2
+- Enhanced performance and developer experience in v3
 
 # Installation
 CLI method: npx gluestack-ui add [component-name]
@@ -77,7 +77,7 @@ When discussing Gluestack UI:
 - Teams wanting to avoid component library bloat
 - Applications needing full accessibility compliance
 
-# Recent Updates (v2)
+# Recent Updates (v3)
 - Performance optimization and lightweight architecture
 - Enhanced developer experience with intuitive API
 - Move away from bundled libraries to copy-paste approach
