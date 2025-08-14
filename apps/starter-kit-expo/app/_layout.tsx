@@ -50,7 +50,7 @@ function RootLayoutNav() {
     <GluestackUIProvider mode={colorMode}>
       <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
         <Slot />
-        {pathname == '/' && (
+        {pathname === '/' && (
           <Fab
             onPress={() =>
               setColorMode(colorMode === 'dark' ? 'light' : 'dark')
