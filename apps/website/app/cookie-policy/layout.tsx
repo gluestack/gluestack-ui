@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: 'https://gluestack.io/cookie-policy',
     images: [
       {
-        url: 'https://gluestack.io/images/og-image.png',
+        url: 'https://nightly.gluestack.io/images/og-image.png',
         alt: 'Understand how and why cookies and other technologies may be stored on and accessed from your device when you use our services.',
       },
     ],
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
       'Understand how and why cookies and other technologies may be stored on and accessed from your device when you use our services.',
     images: [
       {
-        url: 'https://gluestack.io/images/og-image.png',
+        url: 'https://nightly.gluestack.io/images/og-image.png',
         alt: 'Understand how and why cookies and other technologies may be stored on and accessed from your device when you use our services.',
       },
     ],

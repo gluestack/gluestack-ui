@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     url: 'https://gluestack.io/terms-of-service',
     images: [
       {
-        url: 'https://gluestack.io/images/og-image.png',
+        url: 'https://nightly.gluestack.io/images/og-image.png',
       },
     ],
   },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description: 'Terms of Service for gluestack',
     images: [
       {
-        url: 'https://gluestack.io/images/og-image.png',
+        url: 'https://nightly.gluestack.io/images/og-image.png',
         alt: 'Terms of Service for gluestack',
       },
     ],
