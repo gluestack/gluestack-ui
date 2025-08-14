@@ -92,7 +92,7 @@ export function Meta({ pageTitle, description, ogImgUrl, ogUrl }: any) {
       />
       <meta
         name="og:image"
-        content={ogImgUrl || 'https://gluestack.io/images/og-image.png'}
+        content={ogImgUrl || 'https://nightly.gluestack.io/images/og-image.png'}
       />
 
       <meta name="twitter:site" content="@gluestackio" />
@@ -103,7 +103,7 @@ export function Meta({ pageTitle, description, ogImgUrl, ogUrl }: any) {
       />
       <meta
         name="twitter:image"
-        content="https://gluestack.io/images/og-image.png"
+        content="https://nightly.gluestack.io/images/og-image.png"
       />
 
       <meta

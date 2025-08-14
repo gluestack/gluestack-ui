@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: 'https://gluestack.io/blogs',
     images: [
       {
-        url: 'https://gluestack.io/images/og-image.png',
+        url: 'https://nightly.gluestack.io/images/og-image.png',
         alt: 'Blogs | gluestack',
       },
     ],
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
       'Welcome to gluestack blogs. Here we share in-house experiments, tips on the gluestack library, application development insights, and our opinions on trending industry insights.',
     images: [
       {
-        url: 'https://gluestack.io/images/og-image.png',
+        url: 'https://nightly.gluestack.io/images/og-image.png',
         alt: 'Welcome to gluestack blogs. Here we share in-house experiments, tips on the gluestack library, application development insights, and our opinions on trending industry insights.',
       },
     ],
