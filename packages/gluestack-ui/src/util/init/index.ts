@@ -68,12 +68,8 @@ const InitializeGlueStack = async ({
       projectType,
       config.style
     );
-    const versionManager = await getPackageManager();
-    await installDependencies(
-      inputComponent,
-      versionManager,
-      additionalDependencies
-    );
+    await installDependencies(inputComponent, additionalDependencies);
+    
     const s = spinner();
     s.start(
       '⏳ Generating project configuration. This might take a couple of minutes...'

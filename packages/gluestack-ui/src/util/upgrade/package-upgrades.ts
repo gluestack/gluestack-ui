@@ -82,7 +82,7 @@ export async function installPackages() {
   const s = spinner();
   s.start('Installing @gluestack-ui/core and @gluestack-ui/utils...');
 
-  await installDependencies([], null, v3UpgradeDependencies);
+  await installDependencies([], v3UpgradeDependencies);
 
   s.stop('New packages installed.');
 }

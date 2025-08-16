@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import { _currDir, getFilePath, pathResolver } from '.';
 import { PROJECT_SHARED_IGNORE, ExpoResolvedConfig } from './config-types';
 import { execSync } from 'child_process';
-import { ensureFilesPromise } from '..';
+import { ensureFilesPromise } from '../file-operations';
 import { commonInitialization } from '../init';
 import { ProjectType } from '../../dependencies';
 

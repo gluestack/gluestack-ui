@@ -1,8 +1,4 @@
-import {
-  confirm,
-  isCancel,
-  cancel,
-} from '@clack/prompts';
+import { confirm, isCancel, cancel } from '@clack/prompts';
 
 export async function getConfirmation(message: string): Promise<boolean> {
   const confirmInput = await confirm({
