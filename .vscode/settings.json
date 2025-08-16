@@ -54,9 +54,5 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "editor.autoClosingQuotes": "always",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  "editor.autoClosingQuotes": "always"
 }
