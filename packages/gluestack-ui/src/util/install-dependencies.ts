@@ -74,14 +74,10 @@ const generateInstallCommand = (
 
 export const installDependencies = async (
   input: string[] | string,
-  versionManagerArg: PackageManager | null,
   additionalDependencies?: ComponentConfig | undefined
 ): Promise<void> => {
   try {
-    const versionManager: PackageManager = await getPackageManager(
-      {},
-      versionManagerArg
-    );
+    const versionManager: PackageManager = await getPackageManager();
 
     await ensureLegacyPeerDeps(versionManager);
 

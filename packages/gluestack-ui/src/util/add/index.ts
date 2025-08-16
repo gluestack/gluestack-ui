@@ -64,9 +64,7 @@ const componentAdder = async ({
           .join(', ')}`
       );
 
-      const versionManager = await getPackageManager();
-
-      await installDependencies(updatedComponents, versionManager);
+      await installDependencies(updatedComponents);
 
       for (const component of updatedComponents) {
         const targetPath = join(
