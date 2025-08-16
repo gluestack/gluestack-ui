@@ -1,15 +1,12 @@
 import * as path from 'path';
 import fg from 'fast-glob';
 import * as fs from 'fs';
-import { config } from '../../config';
 import { _currDir, getFilePath, pathResolver } from '.';
-import {
-  PROJECT_SHARED_IGNORE,
-  ExpoResolvedConfig,
-} from './config-types';
+import { PROJECT_SHARED_IGNORE, ExpoResolvedConfig } from './config-types';
 import { execSync } from 'child_process';
 import { ensureFilesPromise } from '..';
 import { commonInitialization } from '../init';
+import { ProjectType } from '../../dependencies';
 
 // expo project type initialization
 async function getExpoProjectType(cwd: string): Promise<string | undefined> {
@@ -32,16 +29,16 @@ async function getExpoProjectType(cwd: string): Promise<string | undefined> {
   const expoLayoutPath = fs.existsSync('app')
     ? 'app/_layout.*'
     : fs.existsSync('src/app')
-    ? 'src/app/_layout.*'
-    : '**/*_layout.*';
+      ? 'src/app/_layout.*'
+      : '**/*_layout.*';
 
   const isUsingExpoRouter = await getFilePath([expoLayoutPath]);
   const isUsingDefaultExpo = await getFilePath(['App.*']);
   return isUsingExpoRouter
     ? 'expo-router'
     : isUsingDefaultExpo
-    ? 'expo-default'
-    : undefined;
+      ? 'expo-default'
+      : undefined;
 }
 
 async function isExpoSDK50(cwd: string): Promise<boolean> {
@@ -94,7 +91,7 @@ async function initNatiwindExpoApp(
     execSync('npx expo install babel-plugin-module-resolver', {
       stdio: 'inherit',
     });
-    await commonInitialization(config.expoProject, resolvedConfig, permission);
+    await commonInitialization(ProjectType.expo, resolvedConfig, permission);
   } catch (err) {
     throw new Error((err as Error).message);
   }

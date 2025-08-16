@@ -9,9 +9,10 @@ import {
   PROJECT_SHARED_IGNORE,
 } from './config-types';
 import { join } from 'path';
-import { ensureFilesPromise } from '..';
 import { commonInitialization } from '../init';
 import os from 'os';
+import { ProjectType } from '../../dependencies';
+import { ensureFilesPromise } from '../file-operations';
 
 const _homeDir = os.homedir();
 
@@ -90,11 +91,7 @@ async function initNatiwindNextApp(
       await writeFile(resolvedConfig.app.registry, registryContent, 'utf8');
     }
 
-    await commonInitialization(
-      config.nextJsProject,
-      resolvedConfig,
-      permission
-    );
+    await commonInitialization(ProjectType.nextjs, resolvedConfig, permission);
   } catch (err) {
     throw new Error((err as Error).message);
   }

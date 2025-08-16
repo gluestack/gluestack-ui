@@ -5,20 +5,17 @@ import path, { join } from 'path';
 import { log, confirm, spinner } from '@clack/prompts';
 import fs, { existsSync, writeFile } from 'fs-extra';
 import { checkIfInitialized, generateMonoRepoConfig } from '../config';
-import {
-  cloneRepositoryAtRoot,
-  findLockFileType,
-  installDependencies,
-  promptVersionManager,
-  checkComponentDependencies,
-} from '..';
-import { getProjectBasedDependencies } from '../../dependencies';
+import { getProjectBasedDependencies, ProjectType } from '../../dependencies';
 import { generateConfigNextApp } from '../config/next-config-helper';
 import { generateConfigExpoApp } from '../config/expo-config-helper';
 import { generateConfigRNApp } from '../config/react-native-config-helper';
 import { checkNextVersion } from '../check-next-version';
 import { readFile } from 'fs-extra';
 import { modifyLayoutFilesAutomatically } from './modify-layout';
+import { cloneRepositoryAtRoot } from '../clone-repository-at-root';
+import { checkComponentDependencies } from '../check-component-dependencies';
+import { getPackageManager } from '../package-managers';
+import { installDependencies } from '../install-dependencies';
 
 const _currDir = process.cwd();
 const _homeDir = os.homedir();
@@ -71,10 +68,7 @@ const InitializeGlueStack = async ({
       projectType,
       config.style
     );
-    let versionManager: string | null = findLockFileType();
-    if (!versionManager) {
-      versionManager = await promptVersionManager();
-    }
+    const versionManager = await getPackageManager();
     await installDependencies(
       inputComponent,
       versionManager,
@@ -251,7 +245,7 @@ async function updateTSConfig(
     tsConfig.compilerOptions.paths = tsConfig.compilerOptions.paths || {};
 
     // Next.js project specific configuration
-    if (projectType === config.nextJsProject) {
+    if (projectType === ProjectType.nextjs) {
       tsConfig.compilerOptions.jsxImportSource = 'nativewind';
     }
     updatePaths(tsConfig.compilerOptions.paths, '@/*', ['./*']);
@@ -436,13 +430,13 @@ async function generateProjectConfigAndInit(
   let resolvedConfig; // Initialize with a default value
   if (projectType !== 'library') {
     switch (projectType) {
-      case config.nextJsProject:
+      case ProjectType.nextjs:
         await generateConfigNextApp(permission, isNextjs15);
         break;
-      case config.expoProject:
+      case ProjectType.expo:
         await generateConfigExpoApp(permission);
         break;
-      case config.reactNativeCLIProject:
+      case ProjectType.reactNative:
         await generateConfigRNApp(permission);
         break;
       default:
@@ -458,7 +452,7 @@ async function generateProjectConfigAndInit(
 //files to override in the project directory data
 const filesToOverride = (projectType: string) => {
   switch (projectType) {
-    case config.nextJsProject:
+    case ProjectType.nextjs:
       return [
         'next.config.*',
         'tailwind.config.*',
@@ -466,7 +460,7 @@ const filesToOverride = (projectType: string) => {
         'globals.css',
         'tsconfig.json',
       ];
-    case config.expoProject:
+    case ProjectType.expo:
       return [
         'babel.config.js',
         'metro.config.js',
@@ -474,7 +468,7 @@ const filesToOverride = (projectType: string) => {
         'global.css',
         'tsconfig.json',
       ];
-    case config.reactNativeCLIProject:
+    case ProjectType.reactNative:
       return [
         'babel.config.js',
         'metro.config.js',

@@ -13,14 +13,32 @@ export interface ComponentConfig {
   hooks?: string[];
 }
 
-export interface Dependencies {
-  [key: string]: ComponentConfig;
-}
+export type Dependencies = Record<ProjectType, ComponentConfig>;
 
 const _homeDir = os.homedir();
 
+export enum ProjectType {
+  nextjs = 'nextjs',
+  expo = 'expo',
+  reactNative = 'react-native-cli',
+  library = 'library',
+}
+
+export function isProjectType(
+  projectType: unknown
+): projectType is ProjectType {
+  return (
+    typeof projectType === 'string' &&
+    Object.values(ProjectType).includes(projectType as ProjectType)
+  );
+}
+
 const projectBasedDependencies: Dependencies = {
-  'nextjs': {
+  [ProjectType.library]: {
+    dependencies: {},
+    devDependencies: {},
+  },
+  [ProjectType.nextjs]: {
     dependencies: {
       'react-native-web': '^0.19.12',
       'nativewind': '^4.1.23',
@@ -43,7 +61,7 @@ const projectBasedDependencies: Dependencies = {
       '@react-native/assets-registry': '^0.79.3',
     },
   },
-  'expo': {
+  [ProjectType.expo]: {
     dependencies: {
       'nativewind': '^4.1.23',
       'tailwindcss': '^3.4.17',
@@ -58,7 +76,7 @@ const projectBasedDependencies: Dependencies = {
       '@gluestack-ui/utils': 'alpha',
     },
   },
-  'react-native-cli': {
+  [ProjectType.reactNative]: {
     dependencies: {
       'nativewind': '^4.1.23',
       'tailwindcss': '^3.4.17',
@@ -87,8 +105,8 @@ async function getProjectBasedDependencies(
   try {
     if (
       style === config.nativeWindRootPath &&
-      projectType &&
-      projectType !== 'library'
+      isProjectType(projectType) &&
+      projectType !== ProjectType.library
     ) {
       return {
         dependencies: projectBasedDependencies[projectType].dependencies,
