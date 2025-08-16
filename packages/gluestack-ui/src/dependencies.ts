@@ -159,4 +159,17 @@ const getComponentDependencies = async (
   }
 };
 
-export { getComponentDependencies, getProjectBasedDependencies };
+const v3UpgradeDependencies = {
+  dependencies: {
+    '@gluestack-ui/core': '3.0.0-alpha.5',
+    '@gluestack-ui/utils': '3.0.0-alpha.1',
+    '@gluestack/ui-next-adapter': '3.0.0-alpha.0',
+    'react-native-svg': '^15.12.0',
+  },
+};
+
+export {
+  getComponentDependencies,
+  getProjectBasedDependencies,
+  v3UpgradeDependencies,
+};

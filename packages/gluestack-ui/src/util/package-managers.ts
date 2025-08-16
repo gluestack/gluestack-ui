@@ -148,7 +148,7 @@ export function savePackageManagerFromOptions(options: PackageManagerOptions) {
  * this will use the option requested by the user.
  * @returns The package manager to use for the project
  */
-export const getPackageManager = async (): Promise<PackageManager | null> => {
+export const getPackageManager = async (): Promise<PackageManager> => {
   let result =
     (config.packageManager as PackageManager | null) ||
     (await promptVersionManager());
