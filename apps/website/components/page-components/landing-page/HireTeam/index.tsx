@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import GeekyantsLogo from '@public/svg/geekyants-logo.svg';
+import GeekyantsLogo from '@/public/svg/geekyants-logo.svg';
 import { Button, ButtonText } from '@/components/ui/button';
 
 const index = () => {
