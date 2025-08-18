@@ -34,7 +34,7 @@ import { Banner } from './NativeBaseRedirectBanner';
 import { ThemeContext } from '@/utils/context/theme-context';
 import { useContext } from 'react';
 import MCPServer from './MCPServer';
-
+import HireTeam from './HireTeam';
 const App = ({ referrer }: { referrer: string }) => {
   const { colorMode, setColorMode } = useContext(ThemeContext);
   useErrorShortcut();
@@ -135,7 +135,9 @@ const App = ({ referrer }: { referrer: string }) => {
             <Inspiration />
             <Newsletter newsletterAvatarData={developersData} />
             <MeetCreators geekyantsLink="https://geekyants.com/hire-react-native-developers?utm_source=gluestack.io&utm_medium=referral&utm_campaign=partner_site" />
+          <HireTeam />
           </VStack>
+          {/* GeekyAnts Hire Team Banner */}
         </Box>
 
         <Footer />
