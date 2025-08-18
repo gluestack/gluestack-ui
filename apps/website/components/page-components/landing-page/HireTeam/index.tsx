@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import GeekyantsLogo from '@/public/svg/geekyants-logo.svg';
+import GeekyantsLogo from '@public/svg/geekyants-logo.svg';
 import { Button, ButtonText } from '@/components/ui/button';
 
 const index = () => {
   return (
-    <section className="mt-[120px] bg-gradient-to-r from-[#000000] to-[#161616] py-16 px-8 md:px-8 lg:px-40 2xl:px-96 rounded-xl  shadow-2xl">
+    <section className="mt-[120px] bg-gradient-to-r from-[#000000] to-[#161616] py-16 px-8  rounded-xl shadow-2xl">
       <div className="text-left">
         {/* Logo */}
         <div className="flex items-center mb-8">
@@ -23,7 +23,7 @@ const index = () => {
         </h2>
 
         {/* Description */}
-        <p className="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl">
+        <p className="text-gray-300 text-lg md:text-xl mb-8">
           Work with our solutions partner - GeekyAnts, with 15+ years of
           experience and 600+ global clients.
         </p>
