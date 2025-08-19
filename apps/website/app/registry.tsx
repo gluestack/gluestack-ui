@@ -1,14 +1,10 @@
-'use client';
-
-import React, { useRef, useState } from 'react';
-import { useServerInsertedHTML } from 'next/navigation';
-import { StyleRegistry, createStyleRegistry } from 'styled-jsx';
-// eslint-disable-next-line @next/next/no-document-import-in-page
-import { Main } from 'next/document';
-// @ts-ignore
-import { AppRegistry } from 'react-native-web';
-import { flush as themeFlush } from '@/components/utils/flush';
-import { flush } from '@gluestack-ui/nativewind-utils/flush';
+"use client";
+import React, { useRef, useState } from "react";
+import { useServerInsertedHTML } from "next/navigation";
+import { StyleRegistry, createStyleRegistry } from "styled-jsx";
+// @ts-expect-error : AppRegistry is defined in react-native-web but its type is not defined
+import { AppRegistry } from "react-native-web";
+import { flush } from "@gluestack-ui/utils/nativewind-utils";
 
 export default function StyledJsxRegistry({
   children,
@@ -21,16 +17,11 @@ export default function StyledJsxRegistry({
   const isServerInserted = useRef(false);
 
   useServerInsertedHTML(() => {
-    AppRegistry.registerComponent('Main', () => Main);
-    const { getStyleElement } = AppRegistry.getApplication('Main');
+    AppRegistry.registerComponent("Main", () => "main");
+    const { getStyleElement } = AppRegistry.getApplication("Main");
     if (!isServerInserted.current) {
       isServerInserted.current = true;
-      const styles = [
-        getStyleElement(),
-        jsxStyleRegistry.styles(),
-        flush(),
-        themeFlush(),
-      ];
+      const styles = [getStyleElement(), jsxStyleRegistry.styles(), flush()];
       jsxStyleRegistry.flush();
       return <>{styles}</>;
     }
