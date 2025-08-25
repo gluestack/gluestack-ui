@@ -195,6 +195,8 @@ jobs:
         with:
           node-version: '20'
           cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
+          always-auth: true
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -324,9 +326,19 @@ jobs:
             fi
           done
 
+      - name: Verify NPM token availability
+        run: |
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "::error::NPM_TOKEN is not set or not available in this context.\nThis often happens for pull_request events from forks where secrets are not exposed.\nSkipping publish."
+            exit 1
+          fi
+
       - name: Setup NPM authentication
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          npm config set //registry.npmjs.org/:_authToken "${{ secrets.NPM_TOKEN }}"
+          npm config set registry "https://registry.npmjs.org"
+          npm whoami || { echo "::error::npm authentication failed. Check NPM_TOKEN permissions."; exit 1; }
 
       - name: Publish changed packages
         id: publish
