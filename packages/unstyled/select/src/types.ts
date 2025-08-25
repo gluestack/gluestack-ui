@@ -21,6 +21,7 @@ export interface ISelectProps {
 
 export interface ISelectItemProps {
   label: string;
+  description: string;
   value: string;
   isDisabled?: boolean;
 }
@@ -83,8 +84,11 @@ export type ISelectComponentType<
     ISelectItemProps &
       React.PropsWithoutRef<SelectItemProps> &
       React.RefAttributes<SelectItemProps> & {
-        textStyle?: {
-          [K in keyof SelectItemTextProps]?: SelectItemTextProps[K];
+        labelTextStyle?: {
+            [K in keyof SelectItemTextProps]?: SelectItemTextProps[K];
+        };
+        descriptionTextStyle?: {
+            [K in keyof SelectItemTextProps]?: SelectItemTextProps[K];
         };
       }
   >;
