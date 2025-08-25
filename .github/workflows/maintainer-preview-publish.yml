@@ -7,6 +7,8 @@ on:
         description: PR number to publish preview packages for
         required: true
         type: number
+  pull_request_target:
+    types: [labeled]
 
 permissions:
   contents: read
@@ -16,7 +18,17 @@ jobs:
   publish-preview-for-pr:
     name: Publish preview packages for PR
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request_target' || contains(join(github.event.pull_request.labels.*.name, ' '), 'preview-publish')
     steps:
+      - name: Determine PR number
+        id: pr
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request_target" ]; then
+            echo "number=${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
+          else
+            echo "number=${{ inputs.pr_number }}" >> $GITHUB_OUTPUT
+          fi
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -24,7 +36,7 @@ jobs:
 
       - name: Fetch PR ref and checkout
         run: |
-          PR_NUMBER=${{ inputs.pr_number }}
+          PR_NUMBER=${{ steps.pr.outputs.number }}
           echo "Fetching PR #$PR_NUMBER refs..."
           git fetch origin "+refs/pull/${PR_NUMBER}/merge:refs/remotes/origin/pr/${PR_NUMBER}/merge" 
           if git show-ref --verify --quiet "refs/remotes/origin/pr/${PR_NUMBER}/merge"; then
@@ -64,7 +76,7 @@ jobs:
       - name: Generate preview version
         id: version
         run: |
-          PR_NUMBER=${{ inputs.pr_number }}
+          PR_NUMBER=${{ steps.pr.outputs.number }}
           SHORT_SHA=$(git rev-parse --short HEAD)
           TIMESTAMP=$(date +%s)
           PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-${TIMESTAMP}"
@@ -76,7 +88,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          BASE_BRANCH=$(gh pr view ${{ inputs.pr_number }} --json baseRefName -q .baseRefName || echo "main")
+          BASE_BRANCH=$(gh pr view ${{ steps.pr.outputs.number }} --json baseRefName -q .baseRefName || echo "main")
           echo "Base branch: $BASE_BRANCH"
           git fetch origin $BASE_BRANCH
           CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD)
@@ -165,7 +177,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const pr = Number(`${{ inputs.pr_number }}`);
+            const pr = Number(`${{ steps.pr.outputs.number }}`);
             const version = `${{ steps.version.outputs.version }}`;
             const published = `${{ steps.publish.outputs.packages }}`.trim();
             const success = Boolean(published);
