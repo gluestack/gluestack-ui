@@ -1,8 +1,8 @@
 import type { TVA } from '../types';
-import type { TVConfig } from 'tailwind-variants/dist/config';
 import { deepMergeObjects } from '../utils/deepMerge';
-// @ts-ignore
-import { tv } from 'tailwind-variants';
+import { tv, defaultConfig } from 'tailwind-variants';
+
+type TVConfig = typeof defaultConfig;
 
 const tvatemp = (
   options: {
