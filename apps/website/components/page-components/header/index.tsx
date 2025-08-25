@@ -436,11 +436,11 @@ const Header = ({
               </Pressable>
 
               <Link
-                href="https://geekyants.com/hire?utm_source=gluestack.io&utm_medium=referral&utm_campaign=partner_site"
+                href="https://rapidnative.com/?utm_source=gluestack.io&utm_medium=banner_docs&utm_campaign=brand-awareness"
                 className="bg-primary-500 px-4 py-1.5 xl:flex hidden rounded"
               >
                 <Text className="text-sm text-typography-0">
-                  Hire React Native Experts
+                  Prompt to React Native UI
                 </Text>
               </Link>
 
