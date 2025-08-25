@@ -73,8 +73,8 @@ export interface PackageManagerOptions {
   useNpm?: boolean;
 }
 
-//checking from cwd
-export function findLockFileType(): PackageManager | null {
+// checking from cwd
+function findLockFileType(): PackageManager | null {
   const lockFiles: { [key: string]: PackageManager } = {
     'package-lock.json': PackageManager.npm,
     'yarn.lock': PackageManager.yarn,
@@ -151,6 +151,7 @@ export function savePackageManagerFromOptions(options: PackageManagerOptions) {
 export const getPackageManager = async (): Promise<PackageManager> => {
   let result =
     (config.packageManager as PackageManager | null) ||
+    findLockFileType() ||
     (await promptVersionManager());
 
   config.packageManager = result;
