@@ -1,6 +1,3 @@
-/* eslint-disable @next/next/next-script-for-ga */
-/* eslint-disable @next/next/no-page-custom-font */
-'use client';
 import {
   Inter,
   Roboto,
@@ -9,10 +6,8 @@ import {
   Space_Mono,
 } from 'next/font/google';
 import './globals.css';
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-import { useContext } from 'react';
-import { ThemeContext, ThemeProvider } from '@/utils/context/theme-context';
 import CanonicalLink from '@/components/custom/canonical/CanonicalLink';
+import Provider from './provider';
 
 // Configure fonts with local fallbacks and optimized loading
 const inter = Inter({
@@ -104,22 +99,15 @@ const spaceMono = Space_Mono({
   adjustFontFallback: true,
 });
 
-function ThemeWrapper({ children }: { children: React.ReactNode }) {
-  const { colorMode } = useContext(ThemeContext);
-  return <GluestackUIProvider mode={colorMode}>{children}</GluestackUIProvider>;
-}
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { colorMode } = useContext(ThemeContext);
   return (
     <html
       lang="en"
       className={`${plusJakartaSans.variable} ${roboto.variable} ${sourceCodePro.variable} ${inter.className} ${spaceMono.variable}`}
-      data-theme-id={colorMode}
     >
       <head>
         {/* Preconnect to Google Fonts domains with higher priority */}
@@ -159,9 +147,7 @@ export default function RootLayout({
         {/* End Google Tag Manager */}
       </head>
       <body className={inter.className}>
-        <ThemeProvider>
-          <ThemeWrapper>{children}</ThemeWrapper>
-        </ThemeProvider>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

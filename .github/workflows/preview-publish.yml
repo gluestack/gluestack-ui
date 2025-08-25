@@ -4,7 +4,14 @@ on:
   pull_request:
     branches: [feat/v3]
     types: [opened, synchronize, reopened]
+  pull_request_target:
+    branches: [feat/v3]
+    types: [labeled]
   workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
   check-automation:
@@ -56,8 +63,60 @@ jobs:
           echo "should-skip=false" >> $GITHUB_OUTPUT
           echo "✅ Workflow will proceed"
 
-  check-changes:
+  check-permissions:
     needs: check-automation
+    if: needs.check-automation.outputs.should-skip != 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      can-publish: ${{ steps.check.outputs.can-publish }}
+      is-fork: ${{ steps.check.outputs.is-fork }}
+      pr-number: ${{ steps.check.outputs.pr-number }}
+    steps:
+      - name: Check publishing permissions
+        id: check
+        run: |
+          # Determine PR number based on event type
+          if [ "${{ github.event_name }}" = "pull_request_target" ]; then
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+            HEAD_REPO="${{ github.event.pull_request.head.repo.full_name }}"
+            BASE_REPO="${{ github.repository }}"
+            HAS_LABEL="${{ contains(github.event.pull_request.labels.*.name, 'preview-publish') }}"
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+            HEAD_REPO="${{ github.event.pull_request.head.repo.full_name }}"
+            BASE_REPO="${{ github.repository }}"
+            HAS_LABEL="false"
+          else
+            # workflow_dispatch - assume same repo
+            PR_NUMBER=""
+            HEAD_REPO="${{ github.repository }}"
+            BASE_REPO="${{ github.repository }}"
+            HAS_LABEL="false"
+          fi
+
+          echo "pr-number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          
+          # Check if PR is from a fork
+          if [ "$HEAD_REPO" != "$BASE_REPO" ]; then
+            echo "is-fork=true" >> $GITHUB_OUTPUT
+            echo "🔀 PR from fork detected ($HEAD_REPO -> $BASE_REPO)"
+            
+            # For forks, only allow publishing if manually triggered by maintainer with label
+            if [ "${{ github.event_name }}" = "pull_request_target" ] && [ "$HAS_LABEL" = "true" ]; then
+              echo "can-publish=true" >> $GITHUB_OUTPUT
+              echo "✅ Manual publish triggered by maintainer for fork PR"
+            else
+              echo "can-publish=false" >> $GITHUB_OUTPUT
+              echo "❌ Fork PR cannot publish automatically (security restriction)"
+            fi
+          else
+            echo "is-fork=false" >> $GITHUB_OUTPUT
+            echo "can-publish=true" >> $GITHUB_OUTPUT
+            echo "✅ Same repo PR can publish"
+          fi
+
+  check-changes:
+    needs: [check-automation, check-permissions]
     if: needs.check-automation.outputs.should-skip != 'true'
     runs-on: ubuntu-latest
     outputs:
@@ -68,6 +127,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # For pull_request_target, we need to checkout the PR's code
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.ref }}
 
       - uses: dorny/paths-filter@v2
         id: changes
@@ -102,8 +163,13 @@ jobs:
           echo "🔍 Detecting which packages have changed..."
 
           # Get the base branch for comparison
-          BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
-          echo "📋 Comparing against base branch: $BASE_BRANCH"
+          if [ "${{ github.event_name }}" = "pull_request_target" ]; then
+            BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+            echo "📋 Comparing against base branch: $BASE_BRANCH (pull_request_target)"
+          else
+            BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+            echo "📋 Comparing against base branch: $BASE_BRANCH (pull_request)"
+          fi
 
           # Get list of changed files
           CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD)
@@ -177,9 +243,43 @@ jobs:
           echo "📋 Expanded list with dependencies: $EXPANDED_PACKAGES"
           echo "changed-packages=$EXPANDED_PACKAGES" >> $GITHUB_OUTPUT
 
+  comment-on-fork-pr:
+    needs: [check-permissions, check-changes]
+    if: |
+      needs.check-permissions.outputs.is-fork == 'true' && 
+      needs.check-permissions.outputs.can-publish == 'false' && 
+      needs.check-changes.outputs.packages-changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment on fork PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = ${{ needs.check-permissions.outputs.pr-number }};
+            const comment = `## 🔀 Fork PR Detected
+            
+            This PR is from a fork, so preview packages cannot be published automatically for security reasons.
+            
+            **For maintainers:** If you want to test this PR with preview packages:
+            1. Add the \`preview-publish\` label to this PR to trigger publishing
+            2. Or use the "Maintainer Preview Publish" workflow manually
+            
+            **For contributors:** Your PR can still be reviewed and tested. The automated tests and builds will still run normally.
+            
+            > 💡 This is a standard security measure to protect repository secrets.`;
+
+            github.rest.issues.createComment({
+              issue_number: prNumber || context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
   publish-preview:
-    needs: check-changes
-    if: needs.check-changes.outputs.packages-changed == 'true'
+    needs: [check-permissions, check-changes]
+    if: |
+      needs.check-changes.outputs.packages-changed == 'true' && 
+      needs.check-permissions.outputs.can-publish == 'true'
     runs-on: ubuntu-latest
     outputs:
       published: ${{ steps.publish.outputs.published }}
@@ -189,12 +289,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # For pull_request_target, we need to checkout the PR's code
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
+          always-auth: true
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -202,12 +306,30 @@ jobs:
       - name: Generate preview version
         id: version
         run: |
-          PR_NUMBER=${{ github.event.pull_request.number }}
+          PR_NUMBER="${{ needs.check-permissions.outputs.pr-number }}"
+          if [ -z "$PR_NUMBER" ]; then
+            PR_NUMBER="manual"
+          fi
           SHORT_SHA=$(git rev-parse --short HEAD)
           TIMESTAMP=$(date +%s)
           PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-${TIMESTAMP}"
           echo "version=${PREVIEW_VERSION}" >> $GITHUB_OUTPUT
           echo "🏷️  Generated preview version: ${PREVIEW_VERSION}"
+
+      - name: Verify NPM token availability
+        run: |
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "::error::NPM_TOKEN is not set or not available."
+            echo "::error::This should not happen for same-repo PRs or approved fork PRs."
+            exit 1
+          fi
+
+      - name: Setup NPM authentication
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          npm config set //registry.npmjs.org/:_authToken "${{ secrets.NPM_TOKEN }}"
+          npm config set registry "https://registry.npmjs.org"
+          npm whoami || { echo "::error::npm authentication failed. Check NPM_TOKEN permissions."; exit 1; }
 
       - name: Update package versions
         run: |
@@ -324,10 +446,6 @@ jobs:
             fi
           done
 
-      - name: Setup NPM authentication
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-
       - name: Publish changed packages
         id: publish
         run: |
@@ -442,9 +560,6 @@ jobs:
               echo "[$step_name] ℹ️  No internal dependencies found"
             fi
             
-            # Install dependencies
-            echo "[$step_name] 📥 Installing dependencies..."
-            
             # Build the package
             if npm run --list 2>/dev/null | grep -q "\bbuild\b"; then
               echo "[$step_name] 🔨 Building $PACKAGE_NAME..."
@@ -491,7 +606,7 @@ jobs:
               echo "$PACKAGE_NAME@${{ steps.version.outputs.version }}" >> "$PUBLISHED_PACKAGES_FILE"
               
               # Longer delay to ensure npm registry has the package
-              echo "[$step_name] ⏳ Waiting5 seconds for npm propagation..."
+              echo "[$step_name] ⏳ Waiting 5 seconds for npm propagation..."
               sleep 5
               
               # Verify the package is available on npm registry
@@ -611,10 +726,17 @@ jobs:
           script: |
             const packages = `${{ steps.publish.outputs.packages }}`.trim();
             const changedPackages = `${{ needs.check-changes.outputs.changed-packages }}`.trim();
+            const prNumber = ${{ needs.check-permissions.outputs.pr-number }};
+            const isFork = ${{ needs.check-permissions.outputs.is-fork }};
 
             if (!packages) {
               console.log('No packages published, skipping comment');
               return;
+            }
+
+            let forkNotice = '';
+            if (isFork === true) {
+              forkNotice = `\n> 🔀 **Fork PR**: This preview was published by a maintainer for testing purposes.`;
             }
 
             const comment = `## 🚀 Preview packages published!
@@ -625,10 +747,10 @@ jobs:
             **Published packages:**
             ${packages.split(' ').map(pkg => `- \`${pkg}\``).join('\n')}
 
-            > 💡 These are preview packages for testing only. Only packages that were actually changed have been published.`;
+            > 💡 These are preview packages for testing only. Only packages that were actually changed have been published.${forkNotice}`;
 
             github.rest.issues.createComment({
-              issue_number: context.issue.number,
+              issue_number: prNumber || context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: comment
@@ -639,6 +761,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            const prNumber = ${{ needs.check-permissions.outputs.pr-number }};
             const comment = `## ❌ Preview package publishing failed!
 
             **Workflow:** \`${{ github.workflow }}\`
@@ -648,21 +771,26 @@ jobs:
             Please check the workflow logs for detailed error information.`;
 
             github.rest.issues.createComment({
-              issue_number: context.issue.number,
+              issue_number: prNumber || context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: comment
             });
 
   trigger-vercel-preview-with-packages:
-    needs: [check-changes, publish-preview]
-    if: needs.check-changes.outputs.packages-changed == 'true' && needs.publish-preview.outputs.published == 'true'
+    needs: [check-permissions, check-changes, publish-preview]
+    if: |
+      needs.check-changes.outputs.packages-changed == 'true' && 
+      needs.publish-preview.outputs.published == 'true'
     runs-on: ubuntu-latest
     outputs:
       deployed_projects: ${{ steps.deploy.outputs.deployed_projects }}
       deployment_urls: ${{ steps.deploy.outputs.deployment_urls }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # For pull_request_target, we need to checkout the PR's code
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -759,8 +887,8 @@ jobs:
                 \"project\": \"$PROJECT_ID\",
                 \"gitSource\": {
                   \"type\": \"github\",
-                  \"ref\": \"${{ github.head_ref }}\",
-                  \"sha\": \"${{ github.sha }}\",
+                  \"ref\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.ref || github.head_ref }}\",
+                  \"sha\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}\",
                   \"repoId\": ${{ github.event.repository.id }}
                 },
                 \"buildCommand\": \"$BUILD_COMMAND\",
@@ -768,13 +896,14 @@ jobs:
                   \"PREVIEW_PACKAGES_VERSION\": \"$PACKAGE_VERSION\"
                 },
                 \"meta\": {
-                  \"githubCommitSha\": \"${{ github.sha }}\",
+                  \"githubCommitSha\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}\",
                   \"githubCommitAuthorName\": \"${{ github.actor }}\",
-                  \"githubCommitMessage\": \"${{ github.event.pull_request.title }}\",
-                  \"githubPR\": \"${{ github.event.pull_request.number }}\",
+                  \"githubCommitMessage\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.title || github.event.head_commit.message }}\",
+                  \"githubPR\": \"${{ needs.check-permissions.outputs.pr-number }}\",
                   \"triggeredBy\": \"github-actions\",
                   \"packageVersion\": \"$PACKAGE_VERSION\",
-                  \"previewPackages\": \"$PACKAGE_NAMES\"
+                  \"previewPackages\": \"$PACKAGE_NAMES\",
+                  \"isForkPR\": \"${{ needs.check-permissions.outputs.is-fork }}\"
                 }
               }")
             
@@ -811,6 +940,8 @@ jobs:
             const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
             const packageVersion = `${{ steps.version.outputs.version }}`;
             const publishedPackages = `${{ needs.publish-preview.outputs.packages }}`.trim();
+            const prNumber = ${{ needs.check-permissions.outputs.pr-number }};
+            const isFork = ${{ needs.check-permissions.outputs.is-fork }};
 
             if (!deployedProjects) {
               const errorComment = `## ⚠️ Vercel deployment failed
@@ -819,12 +950,17 @@ jobs:
               `;
               
               github.rest.issues.createComment({
-                issue_number: context.issue.number,
+                issue_number: prNumber || context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 body: errorComment
               });
               return;
+            }
+
+            let forkNotice = '';
+            if (isFork === true) {
+              forkNotice = `\n> 🔀 **Fork PR**: These deployments were triggered by a maintainer for testing purposes.`;
             }
 
             const successComment = `## 🚀 Vercel preview deployments triggered successfully!
@@ -839,25 +975,31 @@ jobs:
 
             ⏱️ Deployments are building. Check your [Vercel dashboard](https://vercel.com/dashboard) for detailed status.
 
-            > 💡 These deployments will use the preview packages specified in your project's package.json files.
+            > 💡 These deployments will use the preview packages specified in your project's package.json files.${forkNotice}
             `;
 
             github.rest.issues.createComment({
-              issue_number: context.issue.number,
+              issue_number: prNumber || context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: successComment
             });
 
   trigger-vercel-preview-other-files:
-    needs: check-changes
-    if: needs.check-changes.outputs.other-files-changed == 'true' && needs.check-changes.outputs.packages-changed == 'false'
+    needs: [check-permissions, check-changes]
+    if: |
+      needs.check-changes.outputs.other-files-changed == 'true' && 
+      needs.check-changes.outputs.packages-changed == 'false' && 
+      needs.check-permissions.outputs.can-publish == 'true'
     runs-on: ubuntu-latest
     outputs:
       deployed_projects: ${{ steps.deploy.outputs.deployed_projects }}
       deployment_urls: ${{ steps.deploy.outputs.deployment_urls }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # For pull_request_target, we need to checkout the PR's code
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -874,7 +1016,10 @@ jobs:
         id: version
         run: |
           # Generate a version for deployment tracking when no packages were published
-          PR_NUMBER=${{ github.event.pull_request.number }}
+          PR_NUMBER="${{ needs.check-permissions.outputs.pr-number }}"
+          if [ -z "$PR_NUMBER" ]; then
+            PR_NUMBER="manual"
+          fi
           SHORT_SHA=$(git rev-parse --short HEAD)
           TIMESTAMP=$(date +%s)
           PACKAGE_VERSION="deploy-${PR_NUMBER}-${SHORT_SHA}-${TIMESTAMP}"
@@ -966,8 +1111,8 @@ jobs:
                 \"project\": \"$PROJECT_ID\",
                 \"gitSource\": {
                   \"type\": \"github\",
-                  \"ref\": \"${{ github.head_ref }}\",
-                  \"sha\": \"${{ github.sha }}\",
+                  \"ref\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.ref || github.head_ref }}\",
+                  \"sha\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}\",
                   \"repoId\": ${{ github.event.repository.id }}
                 },
                 \"buildCommand\": \"$BUILD_COMMAND\",
@@ -975,13 +1120,14 @@ jobs:
                   \"DEPLOYMENT_TYPE\": \"other-files-only\"
                 },
                 \"meta\": {
-                  \"githubCommitSha\": \"${{ github.sha }}\",
+                  \"githubCommitSha\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}\",
                   \"githubCommitAuthorName\": \"${{ github.actor }}\",
-                  \"githubCommitMessage\": \"${{ github.event.pull_request.title }}\",
-                  \"githubPR\": \"${{ github.event.pull_request.number }}\",
+                  \"githubCommitMessage\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.title || github.event.head_commit.message }}\",
+                  \"githubPR\": \"${{ needs.check-permissions.outputs.pr-number }}\",
                   \"triggeredBy\": \"github-actions\",
                   \"packageVersion\": \"$PACKAGE_VERSION\",
-                  \"deploymentType\": \"other-files-only\"
+                  \"deploymentType\": \"other-files-only\",
+                  \"isForkPR\": \"${{ needs.check-permissions.outputs.is-fork }}\"
                 }
               }")
             
@@ -1018,6 +1164,8 @@ jobs:
             const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
             const packageVersion = `${{ steps.version.outputs.version }}`;
             const existingPackages = `${{ steps.check-packages.outputs.packages }}`.trim();
+            const prNumber = ${{ needs.check-permissions.outputs.pr-number }};
+            const isFork = ${{ needs.check-permissions.outputs.is-fork }};
 
             if (!deployedProjects) {
               const errorComment = `## ⚠️ Vercel deployment failed
@@ -1026,7 +1174,7 @@ jobs:
               `;
               
               github.rest.issues.createComment({
-                issue_number: context.issue.number,
+                issue_number: prNumber || context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 body: errorComment
@@ -1039,6 +1187,11 @@ jobs:
               packageInfo = `\n**Existing packages detected:**\n${existingPackages.split(' ').map(pkg => `- \`${pkg}\` (using current version)`).join('\n')}\n`;
             }
 
+            let forkNotice = '';
+            if (isFork === true) {
+              forkNotice = `\n> 🔀 **Fork PR**: These deployments were triggered by a maintainer for testing purposes.`;
+            }
+
             const successComment = `## 🚀 Vercel preview deployments triggered successfully!
 
             **Version:** \`${packageVersion}\`
@@ -1048,11 +1201,11 @@ jobs:
 
             ⏱️ Deployments are building. Check your [Vercel dashboard](https://vercel.com/dashboard) for detailed status.
 
-            > 💡 These are preview deployments for testing code changes only.
+            > 💡 These are preview deployments for testing code changes only.${forkNotice}
             `;
 
             github.rest.issues.createComment({
-              issue_number: context.issue.number,
+              issue_number: prNumber || context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: successComment
