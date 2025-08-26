@@ -1,5 +1,4 @@
 import { deepMergeObjects } from '../utils/deepMerge';
-// @ts-ignore
 import { tv } from 'tailwind-variants';
 const tvatemp = (
   options,
