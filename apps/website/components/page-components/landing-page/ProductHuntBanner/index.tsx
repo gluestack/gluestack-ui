@@ -15,7 +15,7 @@ const ProductHuntBanner = ({
   return (
     <Box className="sticky top-[53px] md:top-[60px] z-20">
       <div className="w-full bg-gradient-to-r from-orange-500 via-orange-600 to-red-600">
-        <div className="mx-auto max-w-[85%] px-2 sm:px-2">
+        <div className="mx-auto w-[85%] max-w-[1440px] px-2 sm:px-2">
           <div className="flex items-center justify-between gap-3 py-2 md:py-2.5">
             <a
               href="https://www.producthunt.com/products/gluestack?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-gluestack&#0045;v3"
