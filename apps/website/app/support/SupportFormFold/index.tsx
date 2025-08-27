@@ -1,5 +1,6 @@
 'use client';
-import { useEffect } from 'react';
+import { useState } from 'react';
+import type React from 'react';
 import NextImage from 'next/image';
 import { HStack } from '@/components/ui/hstack';
 import { Heading } from '@/components/ui/heading';
@@ -14,30 +15,50 @@ const data = [
 ];
 
 const SupportFormFold = () => {
-  const url = '//js.hsforms.net/forms/embed/v2.js';
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = url;
-    script.async = true;
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    query: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+  const QUERY_MIN_LENGTH = 20;
 
-    document.body.appendChild(script);
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-    script.addEventListener('load', () => {
-      if ((window as any).hbspt) {
-        (window as any).hbspt.forms.create({
-          region: 'na1',
-          portalId: '22599506',
-          formId: '98f32a32-f91f-448a-a278-462553b0f478',
-          target: '#formcss',
-          redirectUrl: '/thank-you',
-        });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage(null);
+
+    try {
+      const res = await fetch('/api/ticket', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (data.status === 'success') {
+        setMessage('✅ Thank you! We’ll get back to you soon.');
+        setForm({ name: '', email: '', company: '', query: '' });
+      } else {
+        setMessage('⚠️ Something went wrong. Please try again.');
       }
-    });
-  }, []);
+    } catch (err) {
+      setMessage('❌ Failed to submit. Please try again later.');
+    }
+    setLoading(false);
+  };
 
   return (
     <Box className="pt-20 mt-56 xl:mt-24">
       <Box className="items-center lg:flex-row">
+        {/* Left Content */}
         <VStack className="justify-center mb-16 sm:mx-auto lg:w-[60%] lg:pr-2 lg:mb-0 max-w-[1000px]">
           <Heading className="font-bold leading-[48px] max-w-[750px] my-0 text-4xl md:text-6xl md:leading-[72px] lg:mx-0 text-typography-900">
             How Can We Help?
@@ -58,7 +79,7 @@ const SupportFormFold = () => {
                   width={20}
                   height={20}
                   className="w-5 h-5"
-                  alt={item.name + 'image'}
+                  alt={item.name + ' image'}
                 />
                 <Text className="text-typography-700 text-xl leading-7 font-medium">
                   {item.name}
@@ -71,11 +92,108 @@ const SupportFormFold = () => {
           </Box>
         </VStack>
 
-        <Box className="flex-1 relative rounded-xl overflow-hidden border border-outline-50">
-          <Text className="text-2xl leading-8 font-medium absolute top-[42px] left-[42px] text-white">
+        {/* Right Form */}
+        <Box className="flex-1 relative rounded-xl overflow-hidden border border-outline-50 bg-background-50 p-8">
+          <Text className="text-2xl leading-8 font-medium mb-6 text-typography-900">
             Contact gluestack Support
           </Text>
-          <div className="px-5 pt-4 pb-5" id="formcss" />
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <Box>
+              <Text className="text-sm mb-1 text-typography-700">
+                Full name{' '}
+                <Text className="text-typography-500">(optional)</Text>
+              </Text>
+              <input
+                name="name"
+                placeholder="e.g., Jane Doe"
+                value={form.name}
+                onChange={handleChange}
+                aria-label="Full name"
+                className="w-full rounded-md border border-outline-200 px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
+              />
+              <Text className="text-xs mt-1 text-typography-600">
+                Helps us personalize our reply.
+              </Text>
+            </Box>
+
+            <Box>
+              <Text className="text-sm mb-1 text-typography-700">
+                Work email <Text className="text-danger-600">*</Text>
+              </Text>
+              <input
+                name="email"
+                type="email"
+                placeholder="e.g., jane@company.com"
+                required
+                value={form.email}
+                onChange={handleChange}
+                aria-label="Email address"
+                className="w-full rounded-md border border-outline-200 px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
+              />
+              <Text className="text-xs mt-1 text-typography-600">
+                We’ll only use this to contact you about this request.
+              </Text>
+            </Box>
+
+            <Box>
+              <Text className="text-sm mb-1 text-typography-700">
+                Company <Text className="text-typography-500">(optional)</Text>
+              </Text>
+              <input
+                name="company"
+                placeholder="e.g., Acme Inc."
+                value={form.company}
+                onChange={handleChange}
+                aria-label="Company"
+                className="w-full rounded-md border border-outline-200 px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
+              />
+              <Text className="text-xs mt-1 text-typography-600">
+                Useful if you’re on a team plan or enterprise.
+              </Text>
+            </Box>
+
+            <Box>
+              <Text className="text-sm mb-1 text-typography-700">
+                How can we help? <Text className="text-danger-600">*</Text>
+              </Text>
+              <textarea
+                name="query"
+                placeholder="Briefly describe the issue or question. Include steps to reproduce, expected vs. actual behavior, error messages, links, versions, or environment details if relevant."
+                required
+                value={form.query}
+                onChange={handleChange}
+                aria-label="Your message"
+                className="w-full min-h-[140px] rounded-md border border-outline-200 px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
+              />
+              <HStack className="items-center justify-between mt-1">
+                <Text className="text-xs text-typography-600">
+                  Tip: More context helps us resolve your issue faster.
+                </Text>
+                <Text className="text-xs text-typography-600">
+                  {form.query.length}/{1000}
+                </Text>
+              </HStack>
+              {form.query.length > 0 &&
+                form.query.length < QUERY_MIN_LENGTH && (
+                  <Text className="text-xs mt-1 text-danger-600">
+                    Please add a bit more detail (
+                    {QUERY_MIN_LENGTH - form.query.length} more characters).
+                  </Text>
+                )}
+            </Box>
+
+            <button
+              type="submit"
+              disabled={loading || form.query.length < QUERY_MIN_LENGTH}
+              className="inline-flex items-center justify-center rounded-md bg-primary-600 px-4 py-2 hover:bg-primary-700 disabled:opacity-50 text-typography-0"
+            >
+              {loading ? 'Submitting…' : 'Submit request'}
+            </button>
+            <Text className="text-xs text-typography-600">
+              Our team typically replies within 1–2 business days.
+            </Text>
+            {message && <Text className="mt-2">{message}</Text>}
+          </form>
         </Box>
       </Box>
     </Box>
