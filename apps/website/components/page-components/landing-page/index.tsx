@@ -42,7 +42,7 @@ const RapidNativeBanner = () => {
     <Link
       href="https://rapidnative.com/?utm_source=gluestack.io&utm_medium=banner&utm_campaign=brand-awareness"
       target="_blank"
-      className="absolute top-20 left-1/2 -translate-x-1/2 z-10 w-full max-w-[620px]"
+      className="absolute top-5 left-1/2 -translate-x-1/2 z-10 w-full max-w-[620px]"
     >
       <HStack className="bg-primary-500/90 backdrop-blur-sm rounded-full px-4 sm:px-8 py-2.5 sm:py-3.5 items-center justify-center gap-2 sm:gap-3 hover:bg-primary-600/95 transition-all duration-200 shadow-sm mx-auto">
         <Text className="text-sm sm:text-base font-medium text-typography-0 text-center">
@@ -67,7 +67,7 @@ const App = ({ referrer }: { referrer: string }) => {
         <Box className="items-center justify-center">
           <VStack className="w-[85%] max-w-[1440px] justify-center self-center">
             <RapidNativeBanner />
-            <VStack className="mx-auto max-w-[900px] pt-[200px] w-full my-0 items-center justify-center self-center">
+            <VStack className="mx-auto max-w-[900px] pt-[80px] sm:pt-[120px] w-full my-0 items-center justify-center self-center">
               <Banner referrer={referrer} />
               <Box className="flex w-full items-start sm:items-center mt-[50px] sm:mt-0">
                 <AwardBadge />

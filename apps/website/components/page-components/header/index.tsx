@@ -106,11 +106,11 @@ const Header = ({
   ];
 
   return (
-    <Box className="w-full bg-white/60 dark:bg-background-0/60 sticky top-0 z-10 border-outline-200 border-b">
+    <Box className="w-full bg-white/60 dark:bg-background-0/60 sticky top-0 z-10 border-outline-200 border-b h-[53px] md:h-[60px]">
       {/* @ts-ignore */}
-      <Nav className="py-2.5 items-center backdrop-blur">
+      <Nav className="py-2.5 items-center backdrop-blur h-full">
         <Box
-          className={`flex-row items-center justify-between w-[85%] lg:mx-[180px] mx-5 ${
+          className={`flex-row items-center justify-between w-[85%] lg:mx-[180px] mx-5 h-full ${
             pathname?.includes('/ui/docs/') ? 'w-[100%] px-5' : 'max-w-[1440px]'
           }`}
         >
