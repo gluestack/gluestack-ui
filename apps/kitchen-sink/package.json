@@ -10,7 +10,7 @@
     "ios": "DARK_MODE=media expo start --ios",
     "web": "DARK_MODE=media expo start --web",
     "lint": "expo lint",
-    "build": "cd ../.. && yarn install && yarn sync:kitchen-sink && cd apps/kitchen-sink && yarn add @gluestack-ui/utils@3.0.0-alpha.1 @gluestack-ui/core@3.0.0-alpha.5 && expo export --platform web --output-dir dist",
+    "build": "cd ../.. && yarn install && yarn sync:kitchen-sink && cd apps/kitchen-sink && yarn add @gluestack-ui/utils@latest @gluestack-ui/core@latest && expo export --platform web --output-dir dist",
     "build:preview": "cd ../.. && yarn install && yarn sync:kitchen-sink && cd apps/kitchen-sink && yarn add @gluestack-ui/utils@preview @gluestack-ui/core@preview && expo export --platform web --output-dir dist"
   },
   "dependencies": {
