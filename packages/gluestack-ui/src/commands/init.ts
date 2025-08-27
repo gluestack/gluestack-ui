@@ -4,14 +4,12 @@ import { handleError } from '../util/handle-error';
 import { log } from '@clack/prompts';
 import { InitializeGlueStack } from '../util/init';
 import { config } from '../config';
-import {
-  checkWritablePath,
-  detectProjectType,
-  getPackageMangerFlag,
-  isValidPath,
-} from '../util';
+
 import path from 'path';
 import fs from 'fs';
+import { savePackageManagerFromOptions } from '../util/package-managers';
+import { checkWritablePath, isValidPath } from '../util/file-operations';
+import { detectProjectType } from '../util/project-type';
 
 const initOptionsSchema = z.object({
   useNpm: z.boolean(),
@@ -58,18 +56,8 @@ export const init = new Command()
         process.exit(1);
       }
 
-      if (
-        (options.useNpm && options.useYarn) ||
-        (options.useNpm && options.usePnpm) ||
-        (options.useYarn && options.usePnpm)
-      ) {
-        log.error(
-          `\x1b[31mMultiple package managers selected. Please select only one package manager.\x1b[0m`
-        );
-        process.exit(1);
-      }
-
-      getPackageMangerFlag(options);
+      // If a package manager was set in options, save it to the config.
+      savePackageManagerFromOptions(options);
 
       if (options.path) {
         if (!isValidPath(options.path)) {

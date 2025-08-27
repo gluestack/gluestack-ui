@@ -6,14 +6,15 @@ import { handleError } from '../util/handle-error';
 import { log } from '@clack/prompts';
 import { componentAdder } from '../util/add';
 import { config } from '../config';
-import {
-  checkWritablePath,
-  cloneRepositoryAtRoot,
-  getPackageMangerFlag,
-  isValidPath,
-  projectRootPath,
-} from '../util';
+
 import { checkIfInitialized, getComponentsPath } from '../util/config';
+import { projectRootPath } from '../util/package-json-path';
+import { cloneRepositoryAtRoot } from '../util/clone-repository-at-root';
+import { isValidPath, checkWritablePath } from '../util/file-operations';
+import {
+  getPackageManager,
+  savePackageManagerFromOptions,
+} from '../util/package-managers';
 
 const _homeDir = os.homedir();
 
@@ -69,19 +70,10 @@ export const add = new Command()
         );
         process.exit(1);
       }
-      //if multiple package managers are used
-      if (
-        (options.useNpm && options.useYarn) ||
-        (options.useNpm && options.usePnpm) ||
-        (options.useYarn && options.usePnpm)
-      ) {
-        log.error(
-          `\x1b[31mMultiple package managers selected. Please select only one package manager.\x1b[0m`
-        );
-        process.exit(1);
-      }
-      //define package manager
-      getPackageMangerFlag(options);
+
+      // If a package manager was set in options, save it to the config.
+      savePackageManagerFromOptions(options);
+
       //function to get current path where GUIProvider is located
       const currWritablePath = await getComponentsPath(projectRootPath);
       if (currWritablePath) {

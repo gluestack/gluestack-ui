@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import fg from 'fast-glob';
-import { projectRootPath } from '..';
+import { projectRootPath } from '../package-json-path';
 import { config } from '../../config';
 import { PROJECT_SHARED_IGNORE } from './config-types';
 

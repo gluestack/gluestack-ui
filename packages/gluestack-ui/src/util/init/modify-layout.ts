@@ -2,10 +2,8 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import { log } from '@clack/prompts';
 import { config } from '../../config';
-import {
-  getEntryPathAndComponentsPath as getEntryConfig,
-  getFilePath,
-} from '../config';
+import { getFilePath } from '../config';
+import { ProjectType } from '../../dependencies';
 
 interface LayoutModificationOptions {
   layoutPath: string;
@@ -347,11 +345,11 @@ async function getCSSPathForProject(
 
   // Fallback to default CSS paths for different project types
   switch (projectType) {
-    case config.nextJsProject:
+    case ProjectType.nextjs:
       return 'app/globals.css';
-    case config.expoProject:
+    case ProjectType.expo:
       return 'global.css';
-    case config.reactNativeCLIProject:
+    case ProjectType.reactNative:
       return 'global.css';
     default:
       return 'global.css';
