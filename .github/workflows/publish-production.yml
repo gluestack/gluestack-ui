@@ -328,7 +328,7 @@ jobs:
               echo "📦 Attempting to install latest utils package: @gluestack-ui/utils"
               
               # First try to install the latest public version
-              if npm install @gluestack-ui/utils@alpha --no-save --registry https://registry.npmjs.org/ 2>&1; then
+              if npm install @gluestack-ui/utils --no-save --registry https://registry.npmjs.org/ 2>&1; then
                 echo "✅ Utils package installed successfully"
                 
                 # Show which version was installed
