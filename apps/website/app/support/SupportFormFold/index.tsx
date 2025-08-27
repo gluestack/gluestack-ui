@@ -1,11 +1,11 @@
 'use client';
-import { Box } from '@/components/ui/box';
+import { useEffect } from 'react';
+import NextImage from 'next/image';
 import { HStack } from '@/components/ui/hstack';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
-import NextImage from 'next/image';
-import { useEffect } from 'react';
+import { Box } from '@/components/ui/box';
 
 const data = [
   { icon: '/images/contact-us/technical.svg', name: 'Technical Issues' },
@@ -23,14 +23,13 @@ const SupportFormFold = () => {
     document.body.appendChild(script);
 
     script.addEventListener('load', () => {
-      // @ts-ignore
-      if (window.hbspt) {
-        // @ts-ignore
-        window.hbspt.forms.create({
+      if ((window as any).hbspt) {
+        (window as any).hbspt.forms.create({
           region: 'na1',
           portalId: '22599506',
           formId: '98f32a32-f91f-448a-a278-462553b0f478',
           target: '#formcss',
+          redirectUrl: '/thank-you',
         });
       }
     });
@@ -76,7 +75,6 @@ const SupportFormFold = () => {
           <Text className="text-2xl leading-8 font-medium absolute top-[42px] left-[42px] text-white">
             Contact gluestack Support
           </Text>
-
           <div className="px-5 pt-4 pb-5" id="formcss" />
         </Box>
       </Box>
