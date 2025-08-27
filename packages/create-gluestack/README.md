@@ -11,7 +11,7 @@ To use create-gluestack, you can run the following commands:
 or
 
 ```bash
-   npx create-gluestack@alpha
+   npx create-gluestack
 ```
 
 ## Contributing
