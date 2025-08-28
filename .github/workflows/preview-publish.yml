@@ -2,10 +2,10 @@ name: Preview Package Publishing
 
 on:
   pull_request:
-    branches: [feat/v3]
+    branches: [main]
     types: [opened, synchronize, reopened]
   pull_request_target:
-    branches: [feat/v3]
+    branches: [main]
     types: [labeled]
   workflow_dispatch:
 
