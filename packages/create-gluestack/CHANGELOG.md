@@ -1,5 +1,11 @@
 # create-gluecode
 
+## 3.0.1
+
+### Patch Changes
+
+- 319114d: fix: fixed github branch ref from feat/v3 to main
+
 ## 3.0.0
 
 ## 2.0.8
