@@ -110,6 +110,11 @@ export default function withGluestackUI(nextConfig: any = {}) {
       ...(nextConfig.turbopack?.resolveAlias || {}),
       'react-native': 'react-native-web',
     },
+    define: {
+      // Ensure __DEV__ is available when using Turbopack (no webpack DefinePlugin there)
+      '__DEV__': JSON.stringify(process.env['NODE_ENV'] !== 'production'),
+      'process.env.REACT_NATIVE_WEB': JSON.stringify('true'),
+    },
     resolveExtensions: [
       '.next15.js',
       '.next15.ts',

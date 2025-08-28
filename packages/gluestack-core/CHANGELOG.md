@@ -1,5 +1,13 @@
 # @gluestack-ui/core
 
+## 3.0.2
+
+### Patch Changes
+
+- chore: re release
+- Updated dependencies
+  - @gluestack-ui/utils@3.0.2
+
 ## 3.0.0
 
 ### Patch Changes
