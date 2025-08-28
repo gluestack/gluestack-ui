@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     url: 'https://gluestack.io/',
     images: [
       {
-        url: 'https://nightly.gluestack.io/images/og-image.png',
+        url: 'https://gluestack.io/images/og-image.png',
         alt: 'gluestack: React & React Native Components & Patterns',
       },
     ],
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
       'Copy-paste universal, accessible and beautifully designed components & patterns crafted with Tailwind CSS (NativeWind) for React Native, Next.js, Expo & React.',
     images: [
       {
-        url: 'https://nightly.gluestack.io/images/og-image.png',
+        url: 'https://gluestack.io/images/og-image.png',
         alt: 'Copy-paste universal, accessible and beautifully designed components & patterns crafted with Tailwind CSS (NativeWind) for React Native, Next.js, Expo & React.',
       },
     ],

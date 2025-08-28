@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 3.0.1
+
+### Patch Changes
+
+- 319114d: fix: fixed github branch ref from feat/v3 to main
+
 ## 3.0.0
 
 ## 0.7.40

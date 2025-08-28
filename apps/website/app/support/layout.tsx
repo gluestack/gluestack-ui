@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: 'https://gluestack.io/support',
     images: [
       {
-        url: 'https://nightly.gluestack.io/images/og-image.png',
+        url: 'https://gluestack.io/images/og-image.png',
       },
     ],
   },
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
       'If you are facing issues while using gluestack tools, please ask here for support.',
     images: [
       {
-        url: 'https://nightly.gluestack.io/images/og-image.png',
+        url: 'https://gluestack.io/images/og-image.png',
         alt: 'If you are facing issues while using gluestack tools, please ask here for support.',
       },
     ],
