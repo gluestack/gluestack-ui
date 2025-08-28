@@ -2,7 +2,7 @@ name: Cleanup Preview Packages
 
 on:
   pull_request:
-    branches: [feat/v3]
+    branches: [main]
     types: [closed]
 
 jobs:
