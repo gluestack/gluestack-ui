@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     url: 'https://gluestack.io/privacy-policy',
     images: [
       {
-        url: 'https://nightly.gluestack.io/images/og-image.png',
+        url: 'https://gluestack.io/images/og-image.png',
       },
     ],
     locale: 'en_US',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
       'Explore our Privacy Policy to understand how we prioritize and protect your data while providing an exceptional user experience.',
     images: [
       {
-        url: 'https://nightly.gluestack.io/images/og-image.png',
+        url: 'https://gluestack.io/images/og-image.png',
         alt: 'Explore our Privacy Policy to understand how we prioritize and protect your data while providing an exceptional user experience.',
       },
     ],
