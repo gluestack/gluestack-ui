@@ -120,10 +120,10 @@ function installPackages(packageManager: string): void {
   const cmd = cmds[packageManager];
   if (!cmd) throw new Error('Unsupported package manager');
   const pkgs = [
-    '@gluestack-ui/core@3.0.0-alpha.5',
-    '@gluestack-ui/utils@3.0.0-alpha.1',
+    '@gluestack-ui/core@3.0.0',
+    '@gluestack-ui/utils@3.0.0',
     'react-native-svg@15.12.0',
-    '@gluestack/ui-next-adapter@3.0.0-alpha.0',
+    '@gluestack/ui-next-adapter@3.0.0',
   ];
   const result = spawnSync(cmd, pkgs, {
     cwd: process.cwd(),

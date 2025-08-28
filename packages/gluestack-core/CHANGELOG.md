@@ -1,5 +1,13 @@
 # @gluestack-ui/core
 
+## 3.0.0
+
+### Patch Changes
+
+- 292f5a3: chore: test
+- 3f65e0b: chore: test
+- 948a342: chore: test
+
 ## 3.0.0-alpha.4
 
 ### Patch Changes

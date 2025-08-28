@@ -1,5 +1,7 @@
 # @gluestack-ui/utils
 
+## 3.0.0
+
 ## 1.0.20
 
 ### Patch Changes

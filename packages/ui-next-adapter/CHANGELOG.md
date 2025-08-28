@@ -1,5 +1,7 @@
 # @gluestack/ui-next-adapter
 
+## 3.0.0
+
 ## 1.0.48
 
 ### Patch Changes
