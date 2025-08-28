@@ -1,0 +1,451 @@
+---
+title: gluestack-ui CheckBox Component | Checkbox Installation in React Native
+
+description: Build interactive forms with a checkbox component for React & React Native. Features include hover, focus, disabled states, and multiple checkbox selection.
+
+pageTitle: Checkbox
+
+pageDescription: Build interactive forms with a checkbox component for React & React Native. Features include hover, focus, disabled states, and multiple checkbox selection.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Checkbox
+
+Build interactive forms with a checkbox component for React & React Native. Features include hover, focus, disabled states, and multiple checkbox selection.
+
+This is an illustration of **Checkbox** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add checkbox`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i lucide-react-native
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/checkbox/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Checkbox } from '@/components/ui/checkbox';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/qjGDZ6d.png"
+  webUrl="https://i.imgur.com/tN9jjW3.png"
+  classNameStyle="aspect-[513/388] md:aspect-[736/228]"
+/>
+
+```jsx
+export default () => (
+  <CheckboxGroup>
+    <Checkbox>
+      <CheckboxIndicator>
+        <CheckboxIcon />
+      </CheckboxIndicator>
+      <CheckboxLabel />
+    </Checkbox>
+  </CheckboxGroup>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Checkbox
+
+Contains all Checkbox related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>value</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          The value to be used in the checkbox input. This is the value that
+          will be returned on form submission.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onChange</InlineCode>
+        </TableCell>
+        <TableCell>(value: boolean) => void</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Function called when the state of the checkbox changes.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>defaultIsChecked</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>If true, the checkbox will be initially checked.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isChecked</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          When true, the checkbox will be checked. You'll need to pass onChange
+          to update it's value (since it's now controlled).
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set disable to the checkbox.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isInvalid</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set invalid to the checkbox.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isReadOnly</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set read-only to the checkbox.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isHovered</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set hover to the checkbox.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isFocusVisible</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          To manually set focus visible state to the checkbox.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isIndeterminate</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set indeterminate to the checkbox.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### CheckboxIndicator
+
+Contains all indicators related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### CheckboxIcon
+
+Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](/style/docs/api/as-forwarder) component.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>forceMount</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          Forces mounting when more control is needed, useful for animations
+          with React libraries.
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### CheckboxLabel
+
+Contains all Label related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### CheckboxGroup
+
+Contains all Group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>value</InlineCode>
+        </TableCell>
+        <TableCell>string[]</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>The value of the checkbox group.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onChange</InlineCode>
+        </TableCell>
+        <TableCell>{`(values: Array<string>) => void`}</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          The callback fired when any children Checkbox is checked or unchecked.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set disable to the checkbox.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isInvalid</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set invalid to the checkbox.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isReadOnly</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set read-only to the checkbox.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+
+### Accessibility
+
+We have outlined the various features that ensure the Checkbox component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/).
+
+#### Keyboard
+
+- `Tab`: Moves focus to the next focusable element.
+- `Shift + Tab`: Moves focus to the previous focusable element.
+- `Space`: To check or uncheck focused checkbox.
+
+#### Screen Reader
+
+- VoiceOver: When the checkbox is focused, the screen reader will announce it's a checkbox and it's current state (check or uncheck) and it's label.
+
+#### Focus Management
+
+- The `onFocus` and `onBlur` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
+
+#### States
+
+- In error state, `aria-invalid` will be passed to indicate that the radio input has an error, and providing support for an `aria-errormessage` to describe the error in more detail.
+- In disabled state, `aria-hidden` will be passed to make radio input not focusable.
+- In required state, `aria-required` will be passed to indicate that the radio input is required.
+
+### Props
+
+Checkbox component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props).
+
+#### Checkbox
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Value</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>lg | md | sm</TableCell>
+        <TableCell>md</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
+
+### Data Attributes Table
+
+Component receives states as props as boolean values, which are applied as `data-*` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>State</TableHeaderCell>
+        <TableHeaderCell>Data Attribute</TableHeaderCell>
+        <TableHeaderCell>Values</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>hover</InlineCode>
+        </TableCell>
+        <TableCell>data-hover</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>active</InlineCode>
+        </TableCell>
+        <TableCell>data-active</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>disabled</InlineCode>
+        </TableCell>
+        <TableCell>data-disabled</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>focusVisible</InlineCode>
+        </TableCell>
+        <TableCell>data-focus-visible</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>invalid</InlineCode>
+        </TableCell>
+        <TableCell>data-invalid</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>checked</InlineCode>
+        </TableCell>
+        <TableCell>data-checked</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:multiple-checkbox} ///
+
+/// {Example:horizontal} ///
+
+/// {Example:help-text} ///
+
+/// {Example:form-control} ///
+
+/// {Example:label-left} ///
+
+/// {Example:controlled} ///
+
+/// {Example:uncontrolled} ///
+
+/// {Example:checkbox-group} ///

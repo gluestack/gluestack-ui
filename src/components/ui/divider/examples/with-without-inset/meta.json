@@ -1,0 +1,12 @@
+{
+  "title": "With & Without Inset",
+  "description": "A Divider component used with or without inset adds visual hierarchy and distinction by creating a dividing line either with or without indentation, providing options for organizing and structuring content within a user interface.",
+  "argTypes": {},
+  "reactLive": {
+    "Divider": "@/components/ui/divider",
+    "VStack": "@/components/ui/vstack",
+    "HStack": "@/components/ui/hstack",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button"
+  }
+}

@@ -1,0 +1,257 @@
+---
+title: gluestack-ui Text Component | Installation, Usage, and API
+
+description: Enhance your app with gluestack-ui's Text component—an adaptable React Native text area with multiple styles, sizes, and formatting options for seamless UI design.
+
+pageTitle: Text
+
+pageDescription: Enhance your app with gluestack-ui's Text component—an adaptable React Native text area with multiple styles, sizes, and formatting options for seamless UI design.
+
+showHeader: true
+
+tag: RSC
+---
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+# Text
+
+Enhance your app with gluestack-ui's Text component—an adaptable React Native text area with multiple styles, sizes, and formatting options for seamless UI design.
+
+This is an illustration of **Text** component.
+/// {Example:basic} ///
+
+<br />
+
+## Installation
+
+<Tabs>
+  <TabItem label="CLI">
+     
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add text`} language="bash" />
+
+  </TabItem>
+  <TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into index.tsx in your project.
+
+```jsx
+%%-- File: src/components/ui/text/index.tsx --%%
+```
+
+> Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2(optional): Copy and paste the following code into index.web.tsx in your project.
+
+```jsx
+%%-- File: src/components/ui/text/index.web.tsx --%%
+```
+
+### Step 3: Copy and paste the following code into styles.tsx in your project.
+
+```jsx
+%%-- File: src/components/ui/text/styles.tsx --%%
+```
+
+### Step 4: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Text } from '@/components/ui/text';
+```
+
+```ts
+export default () => <Text />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Text
+
+<p>{`Renders a <span /> on web and a Text on native.`}</p>
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Platform</TableHeaderCell>
+          <TableHeaderCell>Output</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>{`Web`}</InlineCode>
+          </TableCell>
+          <TableCell>{`<span />`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>Native</InlineCode>
+          </TableCell>
+          <TableCell>{`<Text />`}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Props
+
+Text component is created using `Text` component from react-native on native and `span` html element on web. It accepts the following props:
+
+#### Text
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Value</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isTruncated</InlineCode>
+          </TableCell>
+          <TableCell>true</TableCell>
+          <TableCell>false</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>bold</InlineCode>
+          </TableCell>
+          <TableCell>true</TableCell>
+          <TableCell>false</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>underline</InlineCode>
+          </TableCell>
+          <TableCell>true</TableCell>
+          <TableCell>false</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>strikeThrough</InlineCode>
+          </TableCell>
+          <TableCell>true</TableCell>
+          <TableCell>false</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>sub</InlineCode>
+          </TableCell>
+          <TableCell>true</TableCell>
+          <TableCell>false</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>italic</InlineCode>
+          </TableCell>
+          <TableCell>true</TableCell>
+          <TableCell>false</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>highlight</InlineCode>
+          </TableCell>
+          <TableCell>true</TableCell>
+          <TableCell>false</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>size</InlineCode>
+          </TableCell>
+          <TableCell>2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl</TableCell>
+          <TableCell>md</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+/// {Example:sizes} ///
+Text component also accepts some shorthands for basic quick styling.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>bold</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>Used to make the text bold.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isTruncated</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>If true, it will render an ellipsis when the text exceeds the width of the viewport or maxWidth set.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>italic</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>Used to make the text italic.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>underline</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>Used underline the text.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>strikeThrough</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>A horizontal line through the center of the text.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>highlight</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>Used to highlight the text with a yellow background.</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>

@@ -1,0 +1,49 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "isDisabled": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
+    },
+    "isReadOnly": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
+    },
+    "isRequired": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
+    },
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg"],
+      "defaultValue": "md"
+    }
+  },
+  "reactLive": {
+    "FormControl": "@/components/ui/form-control",
+    "FormControlLabel": "@/components/ui/form-control",
+    "FormControlError": "@/components/ui/form-control",
+    "FormControlErrorText": "@/components/ui/form-control",
+    "FormControlErrorIcon": "@/components/ui/form-control",
+    "FormControlHelper": "@/components/ui/form-control",
+    "FormControlHelperText": "@/components/ui/form-control",
+    "FormControlLabelText": "@/components/ui/form-control",
+    "AlertCircleIcon": "@/components/ui/icon",
+    "Input": "@/components/ui/input",
+    "InputField": "@/components/ui/input",
+    "InputIcon": "@/components/ui/input",
+    "InputSlot": "@/components/ui/input",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "ButtonSpinner": "@/components/ui/button",
+    "VStack": "@/components/ui/vstack"
+  }
+}

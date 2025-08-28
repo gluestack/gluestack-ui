@@ -1,0 +1,224 @@
+import { Box, } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Image } from '@/components/ui/image';
+import { Heading } from '@/components/ui/heading';
+import { TOC } from '@/components/page-components/blogs-page/TOC';
+
+<Text className="text-sm pt-2">December 5, 2024</Text>
+
+# Troubleshooting Common Issues with NativeWind (and Why You Should Try gluestack-ui)
+
+<br />
+<HStack className="gap-3 items-center">
+
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source={{ uri: "https://avatars.githubusercontent.com/u/66306233?v=4" }}
+      alt="Viraj Joshi"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-typography-900">Viraj Joshi</Text>
+    <Text className="text-sm">Co-author of gluestack-ui</Text>
+  </Box>
+</HStack>
+
+<br />
+
+NativeWind has revolutionized how developers style React Native apps by bringing the power of Tailwind CSS to the ecosystem. However, as powerful as it is, setting up and troubleshooting NativeWind can sometimes be challenging.
+
+What if there was a way to skip the hassle and dive straight into building your app? That’s where **gluestack-ui** comes in!
+
+**gluestack-ui** is a ready-to-use component library built on top of NativeWind. It’s not just a library—it’s a productivity booster. With an integrated CLI tool, **gluestack-ui** handles all the tedious setup for you, so you can focus on what truly matters: building your app.
+
+But if you're currently using NativeWind, here are solutions to common issues you might encounter—and why gluestack-ui could save you time and effort.
+
+## NativeWind Styling is Not Working?
+
+### 1. Check Versions
+
+NativeWind depends on `react-native-css-interop`. Version mismatches between these packages often cause styling issues. Run the following command to check the installed version:
+
+```bash
+npm list react-native-css-interop
+```
+
+When you use **gluestack-ui**, version conflicts are automatically resolved by its CLI during setup.
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/troubleshootingcli.png',
+  }}
+  className="w-full h-[140px]"
+  resizeMode="contain"
+  alt="image"
+/>
+<br />
+
+### 2. Check `tailwind.config.*`
+
+The `content` property in your `tailwind.config.js` must correctly include all paths for components and screens to ensure Tailwind classes are applied. Misconfigurations here often lead to styling issues.
+
+Refer to the [Tailwind CSS Content Configuration](https://tailwindcss.com/docs/installation) for more details.
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/troubleshootingtailwind.png',
+  }}
+  className="w-full h-[480px]"
+  resizeMode="contain"
+  alt="image"
+/>
+<br />
+
+### 3. React Native Web Styles Overriding Tailwind Classes?
+
+If you’re using React Native Web and find its styles overriding your Tailwind classes, add the `important: 'html'` setting to your `tailwind.config.js`.
+
+```jsx
+module.exports = {
+  important: 'html',
+  // other configurations
+};
+```
+
+**gluestack-ui CLI** ensures that this configuration is pre-applied, eliminating this step for you.
+
+## Issues with Expo
+
+### 1. Add Babel Preset
+
+NativeWind requires specific Babel presets to work seamlessly. Add the following to your Babel configuration (`babel.config.js`):
+
+```jsx
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: [
+      ['babel-preset-expo', { jsxImportSource: 'nativewind' }],
+      'nativewind/babel',
+    ],
+  };
+};
+```
+
+No need to worry about these configurations if you’re using **gluestack-ui**—it’s all handled for you by the CLI tool.
+
+---
+
+### 2. Update `metro.config.js`
+
+Your `metro.config.js` should be wrapped with the `withNativeWind` function, and it must point to the correct CSS file for Tailwind directives (`global.css`):
+
+```jsx
+const { getDefaultConfig } = require('expo/metro-config');
+const { withNativeWind } = require('nativewind/metro');
+
+const config = getDefaultConfig(__dirname);
+
+module.exports = withNativeWind(config, { input: './global.css' });
+```
+
+With **gluestack-ui**, this configuration is automatically generated.
+
+---
+
+### 3. Import Correct CSS File
+
+Make sure the file containing Tailwind directives (e.g., `global.css`) is imported in your `_layout` or root file (`App.*`):
+
+```jsx
+// app/_layout.tsx or App.tsx
+
+import '../global.css';
+```
+
+---
+
+## NativeWind + Next.js
+
+### 1. Ensure `jsxImportSource`
+
+NativeWind requires the `jsxImportSource` to be set to `nativewind`.
+
+- For Babel, update `babel.config.js`:
+
+```json
+plugins: [
+  [
+    "@babel/plugin-transform-react-jsx",
+    {
+      runtime: "automatic",
+      importSource: "nativewind",
+    },
+  ],
+];
+```
+
+- For SWC, update `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "jsxImportSource": "nativewind"
+  }
+}
+```
+
+When using **gluestack-ui**, this configuration is automatically added for you.
+
+---
+
+### 2. Add Transpiled Packages
+
+To work with `react-native-web`, add `nativewind` and `react-native-css-interop` to the `transpilePackages` array in `next.config.js`:
+
+```json
+const nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: ["nativewind", "react-native-css-interop"],
+};
+```
+
+The **gluestack-ui CLI** ensures these settings are correctly applied.
+
+---
+
+### 3. Next.js 15 Compatibility
+
+Next.js 15 uses React 19, which `react-native-web` currently doesn’t support. To resolve this, follow the steps outlined in the [gluestack-ui installation guide](https://gluestack.io/ui/docs/home/getting-started/installation). The guide provides a patch to make `react-native-web` compatible with React 19.
+
+## Why gluestack-ui?
+
+While NativeWind is excellent, setting it up can take time—especially if you’re new to Tailwind or React Native. **gluestack-ui** simplifies this process by:
+
+- **Preconfigured Setup**: Its CLI tool configures NativeWind and related settings automatically.
+- **Prebuilt Components**: Get access to a library of pre-styled, customizable components.
+- **Cross-Platform Support**: Build universal apps faster without worrying about setup complexities.
+
+Save time, reduce friction, and get started on your next project with **gluestack-ui**. [Learn More](https://gluestack.io/ui).
+
+<TOC
+  items={[
+    {
+      id: 'nativewind-styling-is-not-working',
+      title: 'NativeWind Styling is Not Working?',
+    },
+    {
+      id: 'issues-with-expo',
+      title: 'Issues with Expo',
+    },
+    {
+      id: 'nativewind-nextjs',
+      title: 'NativeWind + Next.js',
+    },
+    {
+      id: 'why-gluestack-ui',
+      title: 'Why gluestack-ui?',
+    },
+  ]}
+/>

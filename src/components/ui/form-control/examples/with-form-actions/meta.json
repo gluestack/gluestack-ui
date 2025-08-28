@@ -1,0 +1,11 @@
+{
+  "title": "Form Control with Form Actions",
+  "description": "Form Action Buttons can also be utilized in conjunction with FormControl.",
+  "argTypes": {},
+  "reactLive": {
+    "FormControl": "@/components/ui/form-control",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "HStack": "@/components/ui/hstack"
+  }
+}

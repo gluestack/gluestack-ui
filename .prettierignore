@@ -1,2 +1,33 @@
+# Dependencies
 node_modules
-*.mdx
+.pnp
+.pnp.js
+
+# Build outputs
+.next
+out
+build
+dist
+lib
+coverage
+
+# Cache
+.turbo
+.vercel
+.idea
+.expo
+
+# Misc
+.DS_Store
+*.pem
+.env*
+.yarn
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts 

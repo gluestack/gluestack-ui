@@ -1,0 +1,75 @@
+---
+title: gluestack-ui Spinner Component | React Native & Shadcn Spinner Installation
+
+description: Enhance your UI with the gluestack-ui Spinner component. A React Native spinner with ShadCN styling for smooth loading indicators. Optimize your spinner UI design with ease.
+
+pageTitle: Spinner
+
+pageDescription: Enhance your UI with the gluestack-ui Spinner component. A React Native spinner with ShadCN styling for smooth loading indicators. Optimize your spinner UI design with ease.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableContainer,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableText,
+  TableHeaderCell,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Spinner
+
+Enhance your UI with the gluestack-ui Spinner component. A React Native spinner with ShadCN styling for smooth loading indicators. Optimize your spinner UI design with ease.
+
+This is an illustration of **Spinner** component.
+/// {Example:basic} ///
+
+<br />
+
+## Installation
+
+<Tabs >
+  <TabItem label="CLI">
+
+### Run the following command:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add spinner`} language="bash" />
+
+
+  </TabItem>
+  <TabItem label="Manual">
+
+
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/spinner/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Spinner } from '@/components/ui/spinner';
+```
+
+```jsx
+export default () => <Spinner />;
+```

@@ -1,0 +1,121 @@
+import { Box, } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Image } from '@/components/ui/image';
+import { Heading } from '@/components/ui/heading';
+import { TOC } from '@/components/page-components/blogs-page/TOC';
+
+<Text className="text-sm pt-2">August 14, 2024</Text>
+
+# gluestack-ui v2.0 Design Kit
+
+<br />
+
+<HStack className="gap-3 items-center">
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source={{ uri: 'https://avatars.githubusercontent.com/u/82362151?v=4' }}
+      alt="tanishab@geekyants.com"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-typography-900">
+      Tanisha Biswas
+    </Text>
+    <Text className="text-sm text-typography-500">Product Designer</Text>
+  </Box>
+</HStack>
+
+<br />
+
+## Introduction
+
+Step into design efficiency and collaboration with the [gluestack-ui v2.0 Design Kit](https://www.figma.com/community/file/1358053104938234615)! We're genuinely thrilled to introduce you to our latest innovation.
+
+In today's fast-paced digital landscape, design teams face constant challenges in maintaining consistency, responsiveness, and collaboration across diverse projects. We've experienced these challenges firsthand, so we embarked on a journey to create a solution that not only streamlines our workflows but empowers designers everywhere to achieve their full potential.
+
+<br />
+<Image
+  source={{ uri: '/images/blogs/cover3.png' }}
+  className="w-full h-[420px]"
+  resizeMode="contain"
+/>
+
+<br />
+
+The gluestack Figma Kit isn't just another set of design assets—it's a comprehensive toolkit meticulously crafted to enhance every aspect of the design process. From concept to execution, our kit is designed to elevate your projects with efficiency, flexibility, and style.
+
+Join us as we delve into the features, insights, and unique perspectives behind the gluestack Figma Kit.
+
+## Challenges Faced
+
+In our pursuit of creating the gluestack Figma Kit, we encountered significant challenges in building a robust component library that serves as the foundation for different design systems. Here are two key hurdles we faced:
+
+<br />
+**Ensuring Compatibility Across Design Systems:**
+
+One of our primary challenges was ensuring the seamless integration of our component library with various design systems. Adapting our components to fit diverse branding without compromising functionality or aesthetics proved to be a daunting task for our users. Users had to ensure that it aligned with the platform's existing color palette, typography, and branding guidelines. This required extensive customization and fine-tuning to ensure consistency with the overall design language while still maintaining the core functionality of the button component.
+
+Hence, the gluestack plugin was created. This plugin empowers users to make foundational changes to the gluestack Kit effortlessly. Updating color tokens, linking text styles, or changing font families is now a breeze, thanks to the plugin's intuitive interface and seamless integration with Figma.
+
+<br />
+**Maintaining Cohesion Amidst Design Variations and Components:**
+
+Another challenge we faced was maintaining cohesion across our component library while accommodating design system-specific variations. Ensuring that these variations remained consistent with the overall design language and didn't diverge too far from the standard posed a significant challenge.
+
+This challenge led to an internal experiment of Dynamic height vs. Fixed height for form control components. Through extensive research and testing, [we explored the pros and cons of each approach and documented our findings](https://twitter.com/tanisha__biswas/status/1667127340353171457).
+
+Ultimately, we decided to implement the fixed height approach by default in the gluestack Figma Kit to ensure that all form control components maintain consistency in appearance and layout. However, we understand that every design system has unique requirements and preferences. That's why the gluestack Kit is designed to be 100% customizable. If you prefer a dynamic height approach or any other customization, you can tailor the kit to your specific needs effortlessly.
+
+## What is included?
+
+We recognized that gluestack serves as the foundation for many design systems. We prioritized ease of customization to ensure users can fully leverage the Figma file. Many design decisions in gluestack are intentionally kept generic to accommodate various use cases.
+
+<br />
+
+This is also why we chose a black-and-white palette—to ensure the default designs do not influence your branding decisions. Customization with the gluestack Figma kit is easy for the following reasons:
+
+- **Color Tokens**: Color tokens in Figma provide a systematic way to manage and use colors in your design projects. They ensure consistency and simplify updates by defining a centralized set of color values reusable throughout the project. Our kit includes an extended color palette added as styles, semantic colors as variable collections, and a set of fixed colors that remain unchanged across modes.
+- **Text Tokens**: Text tokens in Figma enable you to define and manage consistent text properties like font, size, line spacing, and color. Our Figma UI Kit features two main foundation components, **Text** and **Heading**, with various sizes and font weights. You can easily customize these styles and typography properties to align with your brand.
+- **Shadow Tokens**: Shadow tokens, also known as effect styles, allow you to define and manage effects such as drop shadows, strokes, blurs, and images. Our kit includes two primary shadows, **Hard** and **Soft**, covering different light source directions and intensities.
+- **Components**: Components in Figma are reusable design elements that ensure consistent and efficient designs. They can represent UI elements, icons, buttons, or any visual elements you want to reuse. Our Figma UI Kit includes around 23 components with instances mapped in compound components, enabling you to design screens effortlessly with common primitive components.
+- **Additional Examples**: We’ve added more components and their use cases in the latest version. These examples demonstrate how components can be customized to meet user needs.
+
+  <br />
+  <br />
+  <Image
+    source={{ uri: '/images/blogs/figma_2.png' }}
+    className="w-full h-[440px]"
+    resizeMode="contain"
+  />
+
+<br />
+## Future Roadmap
+
+With the release of v2, the gluestack design team is actively expanding the collection of components and introducing new features based on community feedback. Expect incremental additions of patterns and screens to the file. We believe this Figma kit will empower you to make quick design decisions, thanks to the solid foundational work already in place.
+
+Download your [kit now](https://www.figma.com/community/file/1358053104938234615)!
+
+For any queries, join our [Discord channel](https://discord.com/invite/95qQ84nf6f).
+
+<TOC
+  items={[
+    {
+      id: 'introduction',
+      title: 'Introduction',
+    },
+    {
+      id: 'challenges-faced',
+      title: 'Challenges Faced',
+    },
+    {
+      id: 'what-is-included',
+      title: 'What is included?',
+    },
+    {
+      id: 'future-roadmap',
+      title: 'Future Roadmap',
+    },
+  ]}
+/>

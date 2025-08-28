@@ -1,0 +1,19 @@
+{
+  "title": "AlertDialog with icon + cta",
+  "argTypes": {},
+  "reactLive": {
+    "AlertDialog": "@/components/ui/alert-dialog",
+    "AlertDialogContent": "@/components/ui/alert-dialog",
+    "AlertDialogFooter": "@/components/ui/alert-dialog",
+    "AlertDialogBody": "@/components/ui/alert-dialog",
+    "AlertDialogBackdrop": "@/components/ui/alert-dialog",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Text": "@/components/ui/text",
+    "Heading": "@/components/ui/heading",
+    "Icon": "@/components/ui/icon",
+    "VStack": "@/components/ui/vstack",
+    "Box": "@/components/ui/box",
+    "UploadCloud": "lucide-react-native"
+  }
+}

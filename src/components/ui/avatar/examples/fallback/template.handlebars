@@ -1,0 +1,14 @@
+function Example() {
+  return (
+    <HStack space="md">
+      <Avatar size="md">
+        <AvatarFallbackText>John Doe</AvatarFallbackText>
+        <AvatarImage
+          source=\\{{
+            uri: 'https://wrong-url',
+          }}
+        />
+      </Avatar>
+    </HStack>
+  );
+} 

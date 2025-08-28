@@ -1,0 +1,264 @@
+---
+title: gluestack-ui Fab Component | React Native Fab Installation, Usage & API
+
+description: Improve your React Native app with the FAB component. Learn how to implement a React Native FAB button using gluestack-ui for a smooth UI experience.
+
+pageTitle: Fab
+
+pageDescription: Improve your React Native app with the FAB component. Learn how to implement a React Native FAB button using gluestack-ui for a smooth UI experience.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Fab
+
+Improve your React Native app with the FAB component. Learn how to implement a React Native FAB button using gluestack-ui for a smooth UI experience.
+
+This is an illustration of **Fab** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add fab`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into your project.
+
+```ts
+%%-- File: src/components/ui/fab/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Fab, FabLabel, FabIcon } from '@/components/ui/fab';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/sVSTRfB.png"
+  webUrl="https://i.imgur.com/olpBoZg.png"
+  classNameStyle="aspect-[513/358] md:aspect-[736/242]"
+/>
+
+```ts
+export default () => (
+  <Fab>
+    <FabLabel />
+    <FabIcon />
+  </Fab>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Fab
+
+Contains all fab related layout style props and actions.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>placement</InlineCode>
+        </TableCell>
+        <TableCell>
+          "top left" | "top right" | "bottom left" | "bottom right" | "top
+          center" | "bottom center"
+        </TableCell>
+        <TableCell>"bottom right"</TableCell>
+        <TableCell>Placement of the Fab</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isHovered</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set hover to the fab.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isPressed</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set pressable state to the fab.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isFocused</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set focused state to the fab.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
+        <TableCell>bool</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set disable to the fab.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### FabLabel
+
+Contains all text related layout style props and actions.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### FabIcon
+
+Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](/style/docs/api/as-forwarder) component.
+
+### Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
+
+### Accessibility
+
+We have outlined the various features that ensure the Fab component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/)
+
+#### Keyboard
+
+- `Tab`: Moves focus to the next focusable element.
+- `Shift + Tab`: Moves focus to the previous focusable element.
+- `Enter`: Triggers the fab's action.
+
+#### Screen Reader
+
+- VoiceOver: When the fab is focused, the screen reader will announce the fab's label and its current state.
+
+#### Focus Management
+
+- The `onFocus` and `onBlur` props manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
+
+### Dependencies
+
+The following are the lists of all the libraries and packages the component relies on. This information will help you ensure that your project has all the necessary dependencies installed to use the component.
+
+- `@gluestack-ui/utils`
+- `@react-native-aria/focus`
+- `@react-native-aria/interactions`
+
+### Props
+
+Fab component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props).
+
+### Data Attributes Table
+
+Component receives states as props as boolean values, which are applied as `data-*` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>State</TableHeaderCell>
+        <TableHeaderCell>Data Attribute</TableHeaderCell>
+        <TableHeaderCell>Values</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>focus</InlineCode>
+        </TableCell>
+        <TableCell>data-focus</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>focusVisible</InlineCode>
+        </TableCell>
+        <TableCell>data-focus-visible</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### Fab
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Value</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>sm | md | lg</TableCell>
+        <TableCell>md</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>placement</InlineCode>
+        </TableCell>
+        <TableCell>
+          top right | top left | bottom right | bottom left | top center |
+          bottom center
+        </TableCell>
+        <TableCell>bottom right</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:with-icon} ///
+
+/// {Example:with-icon-text} ///
+
+/// {Example:placement} ///
+
+/// {Example:custom-placement} ///

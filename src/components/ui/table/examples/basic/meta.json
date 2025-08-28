@@ -1,0 +1,13 @@
+{
+  "title": "Basic",
+  "argTypes": {},
+  "reactLive": {
+    "Table": "@/components/ui/table",
+    "TableBody": "@/components/ui/table",
+    "TableHeader": "@/components/ui/table",
+    "TableRow": "@/components/ui/table",
+    "TableHead": "@/components/ui/table",
+    "TableData": "@/components/ui/table",
+    "TableFooter": "@/components/ui/table"
+  }
+}

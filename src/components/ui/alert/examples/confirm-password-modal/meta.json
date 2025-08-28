@@ -1,0 +1,21 @@
+{
+  "title": "Alert on confirm password modal",
+  "argTypes": {},
+  "reactLive": {
+    "Alert": "@/components/ui/alert",
+    "AlertText": "@/components/ui/alert",
+    "AlertIcon": "@/components/ui/alert",
+    "VStack": "@/components/ui/vstack",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Heading": "@/components/ui/heading",
+    "Input": "@/components/ui/input",
+    "InputField": "@/components/ui/input",
+    "InputIcon": "@/components/ui/input",
+    "InputSlot": "@/components/ui/input",
+    "Text": "@/components/ui/text",
+    "EyeIcon": "@/components/ui/icon",
+    "EyeOffIcon": "@/components/ui/icon",
+    "InfoIcon": "@/components/ui/icon"
+  }
+}

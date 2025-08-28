@@ -1,0 +1,17 @@
+{
+  "title": "FAB with Icon",
+  "description": "A Fab component with an icon adds a visually striking and easily recognizable button that triggers a specific action or function within a user interface.",
+  "argTypes": {},
+  "reactLive": {
+    "Fab": "@/components/ui/fab",
+    "FabIcon": "@/components/ui/fab",
+    "Box": "@/components/ui/box",
+    "VStack": "@/components/ui/vstack",
+    "HStack": "@/components/ui/hstack",
+    "Avatar": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "EditIcon": "@/components/ui/icon"
+  }
+}

@@ -1,0 +1,277 @@
+---
+title: gluestack-ui Menu Component | React Native Menu Installation, Usage & API
+
+description: Build a user-friendly interface with gluestack-ui menu component in React & React Native, designed for easy navigation and accessibility.
+
+pageTitle: Menu
+
+pageDescription: Build a user-friendly interface with gluestack-ui menu component in React & React Native, designed for easy navigation and accessibility.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Menu
+
+Build a user-friendly interface with gluestack-ui menu component in React & React Native, designed for easy navigation and accessibility.
+
+This is an illustration of **Menu** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add menu`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+> Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @legendapp/motion
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/menu/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  Menu,
+  MenuItem,
+  MenuItemLabel,
+  MenuSeparator,
+} from '@/components/ui/menu';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/ychqRCR.png"
+  webUrl="https://i.imgur.com/42xE2oh.png"
+  classNameStyle="aspect-[513/477] md:aspect-[736/317]"
+/>
+
+```ts
+export default () => (
+  <Menu>
+    <MenuItem>
+      <MenuItemLabel />
+    </MenuItem>
+    <MenuSeparator />
+  </Menu>
+);
+```
+
+> Note: The immediate parent of **MenuItem** must be **Menu**. There should be no higher-order component (HOC) between them.
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Menu
+
+Contains all menu related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>trigger</InlineCode>
+      </TableCell>
+      <TableCell>
+        {'(_props: any, state: { open: boolean; }) => Element'}
+      </TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        Function that returns a React Element. This element will be used as a
+        Trigger for the Menu
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>placement</InlineCode>
+      </TableCell>
+      <TableCell>
+        "bottom" | "top" | "right" | "left" | "top left" | "top right" | "bottom
+        left" | "bottom right" | "right top" | "right bottom" | "left top" |
+        "left bottom"
+      </TableCell>
+      <TableCell>bottom left</TableCell>
+      <TableCell>Menu placement</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>defaultIsOpen</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>If true, the menu will be opened by default</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onOpen</InlineCode>
+      </TableCell>
+      <TableCell>{'() => void'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        This function will be invoked when the menu is opened
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onClose</InlineCode>
+      </TableCell>
+      <TableCell>{'() => void'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>This function will be invoked when menu is closed</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isOpen</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>
+        Whether the menu is opened. Useful for controlling the open state
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>offset</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The additional offset applied along the main axis</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>crossOffset</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The additional offset applied along the cross axis</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>disabledKeys</InlineCode>
+      </TableCell>
+      <TableCell>string[]</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Item keys in this collection will be disabled</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>closeOnSelect</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>Whether menu is closed after option is selected</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>selectedKeys</InlineCode>
+      </TableCell>
+      <TableCell>{"'all' | Iterable<Key>"}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        The currently selected keys in the collection (controlled)
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>selectionMode</InlineCode>
+      </TableCell>
+      <TableCell>{"'none' | 'single' | 'multiple'"}</TableCell>
+      <TableCell>none</TableCell>
+      <TableCell>
+        The type of selection that is allowed in the collection
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onSelectionChange</InlineCode>
+      </TableCell>
+      <TableCell>{"(keys: 'all' | Iterable<Key>) => void"}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Handler that is called when the selection changes</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+#### MenuItemLabel
+
+Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### MenuSeparator
+
+Contains all view related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Features
+
+- Keyboard support for actions
+- Support for hover, focus and active states
+
+### Accessibility
+
+We have outlined the various features that ensure the Menu component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [MENU WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
+
+#### Keyboard
+
+- `Space`: Opens/closes the menu
+- `Enter`: Opens/closes the menu
+- `Arrow Down`: Moves focus to the next focusable element
+- `Arrow Up`: Moves focus to the previous focusable element
+- `Esc`: Closes the menu and moves focus to menuTrigger
+
+#### Screen Reader
+
+- VoiceOver: When the menu is opened, the screen reader will say, Menu item group with 4 items. You are currently on a menu item group. To select this menu item, press Control + Option + Space. To close the menu, press Escape.
+
+#### States
+
+- `aria-labelledby` identifies the element that labels the current element.
+- `aria-label` defines a string value that labels the current element.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:with-tag} ///
+
+/// {Example:with-selection} ///

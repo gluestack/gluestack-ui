@@ -1,0 +1,9 @@
+{
+  "title": "Text Sizes",
+  "description": "Text component comes in different sizes, such as `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, `5xl`, and `6xl` allowing users to adjust the button size based on their design needs.",
+  "argTypes": {},
+  "reactLive": {
+    "Center": "@/components/ui/center",
+    "Text": "@/components/ui/text"
+  }
+}

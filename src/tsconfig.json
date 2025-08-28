@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipLibCheck": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "noEmit": true,
+
+    "paths": {
+      "@/*": ["./*"],
+      "@/components/*": ["./components/*"],
+      "@/docs-components/*": ["./docs-components/*"]
+    }
+  },
+  "exclude": [
+    "**/babel.config.js",
+    "**/node_modules/**",
+  ],
+  "include": [
+    "next-env.d.ts",
+    "nativewind-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Responsive Grids",
+  "description": "You can pass different grid-cols-* and col-span-* values at different breakpoints to create a more responsive layout.",
+  "argTypes": {},
+  "reactLive": {
+    "Grid": "@/components/ui/grid",
+    "GridItem": "@/components/ui/grid",
+    "Text": "@/components/ui/text"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Basic",
+  "argTypes": {},
+  "reactLive": {
+    "Skeleton": "@/components/ui/skeleton",
+    "SkeletonText": "@/components/ui/skeleton",
+    "Box": "@/components/ui/box",
+    "HStack": "@/components/ui/hstack"
+  }
+}

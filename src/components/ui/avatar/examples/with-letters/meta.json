@@ -1,0 +1,15 @@
+{
+  "title": "Avatar with letters",
+  "description": "An Avatar component with text displays a stylized representation of a user or entity alongside accompanying text, providing a visual and textual identification within a user interface.",
+  "argTypes": {},
+  "reactLive": {
+    "Avatar": "@/components/ui/avatar",
+    "AvatarBadge": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "Heading": "@/components/ui/heading",
+    "HStack": "@/components/ui/hstack",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "variant": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["solid", "outline"],
+      "defaultValue": "solid"
+    },
+    "action": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["error", "warning", "success", "info", "muted"],
+      "defaultValue": "muted"
+    },
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg"],
+      "defaultValue": "lg"
+    }
+  },
+  "reactLive": {
+    "Badge": "@/components/ui/badge",
+    "BadgeText": "@/components/ui/badge",
+    "BadgeIcon": "@/components/ui/badge",
+    "GlobeIcon": "@/components/ui/icon"
+  }
+}

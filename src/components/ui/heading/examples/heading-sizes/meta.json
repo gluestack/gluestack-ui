@@ -1,0 +1,9 @@
+{
+  "title": "Heading Sizes",
+  "description": "Heading component offers a range of sizes, including `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl`, and `5xl`, allowing users to customize the size of the heading according to their design requirements.",
+  "argTypes": {},
+  "reactLive": {
+    "Heading": "@/components/ui/heading",
+    "Center": "@/components/ui/center"
+  }
+}

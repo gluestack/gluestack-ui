@@ -1,0 +1,16 @@
+{
+  "title": "Checkbox Group",
+  "description": "The checkbox group component allows users to group checkbox and display them in a horizontal or vertical row for better visual representation and functionality.",
+  "componentName": "Checkbox",
+  "argTypes": {},
+  "reactLive": {
+    "Checkbox": "@/components/ui/checkbox",
+    "CheckboxGroup": "@/components/ui/checkbox",
+    "CheckboxIndicator": "@/components/ui/checkbox",
+    "CheckboxIcon": "@/components/ui/checkbox",
+    "CheckboxLabel": "@/components/ui/checkbox",
+    "VStack": "@/components/ui/vstack",
+    "Center": "@/components/ui/center",
+    "CheckIcon": "@/components/ui/icon"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Multiple Radio",
+  "description": "Radio buttons provide a mutually exclusive selection mechanism, allowing users to choose a single option from a set of related choices.",
+  "argTypes": {},
+  "reactLive": {
+    "Center": "@/components/ui/center",
+    "VStack": "@/components/ui/vstack",
+    "Radio": "@/components/ui/radio",
+    "RadioGroup": "@/components/ui/radio",
+    "RadioIcon": "@/components/ui/radio",
+    "RadioIndicator": "@/components/ui/radio",
+    "RadioLabel": "@/components/ui/radio",
+    "CircleIcon": "@/components/ui/icon"
+  }
+}

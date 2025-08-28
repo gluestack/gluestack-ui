@@ -1,0 +1,286 @@
+---
+title: Accordion Component | gluestack-ui | Installation, Usage & API
+
+description: Explore gluestack's Accordion component for Expo, next.js, React & React Native. Build sleek, interactive accordions with ease.
+
+pageTitle: Accordion
+
+pageDescription: Explore gluestack's Accordion component for Expo, next.js, React & React Native. Build sleek, interactive accordions with ease.
+
+showHeader: true
+---
+import ManualInstallationNote from '@/docs-components/manual-installation-note';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+# Accordion
+
+Explore gluestack's Accordion component for Expo, next.js, React & React Native. Build sleek, interactive accordions with ease.
+
+This is an illustration of **Accordion** component.
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add accordion`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @expo/html-elements
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/accordion/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionTrigger,
+  AccordionTitleText,
+  AccordionContent,
+  AccordionContentText,
+  AccordionIcon,
+} from '@/components/ui/accordion';
+```
+
+```ts
+export default () => (
+  <Accordion>
+    <AccordionItem>
+      <AccordionHeader>
+        <AccordionTrigger>
+          <AccordionTitleText />
+          <AccordionIcon />
+        </AccordionTrigger>
+      </AccordionHeader>
+      <AccordionContent>
+        <AccordionContentText />
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Accordion
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<br />
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>type</InlineCode>
+        </TableCell>
+        <TableCell>"single" | "multiple"</TableCell>
+        <TableCell>"single"</TableCell>
+        <TableCell>
+          Determines whether one or multiple items can be opened at the same
+          time.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isCollapsible</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>true</TableCell>
+        <TableCell>
+          When type is "single" or "multiple", allows closing content when
+          clicking trigger for an open item.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>defaultValue</InlineCode>
+        </TableCell>
+        <TableCell>string[]</TableCell>
+        <TableCell>[]</TableCell>
+        <TableCell>
+          The value of the item to expand when initially rendered when type is
+          "single" or "multiple".
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>value</InlineCode>
+        </TableCell>
+        <TableCell>string[]</TableCell>
+        <TableCell>[]</TableCell>
+        <TableCell>
+          The controlled value of the item to expand when type is "single" or
+          "multiple".
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onValueChange</InlineCode>
+        </TableCell>
+        <TableCell>function</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Event handler called when the expanded state of an item changes and
+          type is "single" or "multiple".
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          When true, prevents the user from interacting with the accordion and
+          all its items.
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+#### AccordionItem
+
+Contains all the parts of a collapsible section.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>value</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          The controlled value of the item to expand when type is "single" or
+          "multiple". Must be used in conjunction with onValueChange. This is a
+          mandatory prop.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          When true, prevents the user from interacting with the accordion and
+          all its items.
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+#### AccordionHeader
+
+Wraps an `Accordion.Trigger`. It inherits all the properties of @expo/html-elements's [H3](https://www.npmjs.com/package/@expo/html-elements#h3) on web and It inherits all the properties of react native's [View](https://reactnative.dev/docs/view) on native. Use the as prop to update it to the appropriate heading level for your page.
+
+#### AccordionTrigger
+
+Toggles the collapsed state of its associated item. It inherits all the properties of react native's [Pressable](https://reactnative.dev/docs/pressable). It should be nested inside of an `Accordion.Header`.
+
+#### AccordionTitleText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### AccordionIcon
+
+Contains all Icon related layout style props and actions.It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AccordionContent
+
+Contains all the collapsible content for an item. It inherits all the properties of React Native [View](https://reactnative.dev/docs/view) component.
+
+#### AccordionContentText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+### Accessibility
+
+Adheres to the Accordion [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/).
+
+We have outlined the various features that ensure the Accordion component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+- Header is h3 tag on web.
+- aria-expanded is "true" when the Accordion Content is visible, otherwise false.
+- role is set to "region" for the currently expanded accordion panel.
+- aria-controls points to the id of the Accordion Content.
+- aria-labelledby references the accordion header button that expands and collapses the region.
+
+### Keyboard Interactions
+
+- `Space` - When focus is on an Accordion.Trigger of a collapsed section, expands the section.
+- `Enter` - When focus is on an Accordion.Trigger of a collapsed section, expands the section.
+- `Tab` - Moves focus to the next focusable element.
+- `Shift + Tab` - Moves focus to the previous focusable element.
+
+### Screen Reader
+
+- VoiceOver: When the Accordion Item is focused, the screen reader will announce the Accordion's title text and the state of the Accordion trigger (expanded or collapsed).
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:customized-component} ///
+
+/// {Example:rounded-corners} ///
+
+/// {Example:disabled-item} ///
+
+/// {Example:default-value} ///
+
+/// {Example:nested-components} ///
+
+/// {Example:controlled-accordion} ///

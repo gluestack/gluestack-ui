@@ -1,0 +1,19 @@
+{
+  "title": "Input with FormControl",
+  "description": "The Input component integrates with an icon and a button, providing users with a comprehensive login window inside a FormControl component.",
+  "argTypes": {},
+  "reactLive": {
+    "Input": "@/components/ui/input",
+    "InputField": "@/components/ui/input",
+    "InputIcon": "@/components/ui/input",
+    "InputSlot": "@/components/ui/input",
+    "FormControl": "@/components/ui/form-control",
+    "VStack": "@/components/ui/vstack",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "EyeIcon": "@/components/ui/icon",
+    "EyeOffIcon": "@/components/ui/icon"
+  }
+}

@@ -1,0 +1,28 @@
+function Example() {
+  return (
+    <FormControl>
+      <VStack space="sm">
+        <Heading size="sm">Sign up for newsletters</Heading>
+        <Checkbox>
+          <CheckboxIndicator>
+            <CheckboxIcon as={CheckIcon}/>
+          </CheckboxIndicator>
+          <CheckboxLabel>Daily Bits</CheckboxLabel>
+        </Checkbox>
+        <Checkbox>
+          <CheckboxIndicator>
+            <CheckboxIcon as={CheckIcon}/>
+          </CheckboxIndicator>
+          <CheckboxLabel>Event Updates</CheckboxLabel>
+        </Checkbox>
+        <Checkbox>
+          <CheckboxIndicator>
+            <CheckboxIcon as={CheckIcon}/>
+          </CheckboxIndicator>
+          <CheckboxLabel>Sponsorship</CheckboxLabel>
+        </Checkbox>
+        <Text size="sm">Subscribe to newsletters for updates</Text>
+      </VStack>
+    </FormControl>
+  );
+} 

@@ -1,0 +1,162 @@
+---
+title: gluestack-ui VStack Component | Installation, Usage, and API
+
+description: Use the gluestack-ui VStack component to arrange elements vertically with customizable spacing. Simplify layout design with VStack React Native for seamless UIs.
+
+pageTitle: VStack
+
+pageDescription: Use the gluestack-ui VStack component to arrange elements vertically with customizable spacing. Simplify layout design with VStack React Native for seamless UIs.
+
+showHeader: true
+
+tag: RSC
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# VStack
+
+Use the gluestack-ui VStack component to arrange elements vertically with customizable spacing. Simplify layout design with VStack React Native for seamless UIs.
+
+This is an illustration of **VStack** component.
+
+/// {Example:basic} ///
+
+<br />
+
+## Installation
+
+<Tabs>
+  <TabItem label="CLI">
+     
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add vstack`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+
+### Step 1: Copy and paste the following code into index.tsx in your project.
+
+```jsx
+%%-- File: src/components/ui/vstack/index.tsx --%%
+```
+
+> Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2(optional): Copy and paste the following code into index.web.tsx in your project.
+
+```jsx
+%%-- File: src/components/ui/vstack/index.web.tsx --%%
+```
+
+### Step 3: Copy and paste the following code into styles.tsx in your project.
+
+```jsx
+%%-- File: src/components/ui/vstack/styles.tsx --%%
+```
+
+### Step 4: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { VStack } from '@/components/ui/vstack';
+```
+
+```ts
+export default () => <VStack />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### VStack
+
+<p>{`Renders a <div /> on web and a View on native.`}</p>
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Platform</TableHeaderCell>
+          <TableHeaderCell>Output</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>{`Web`}</InlineCode>
+          </TableCell>
+          <TableCell>{`<div />`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>Native</InlineCode>
+          </TableCell>
+          <TableCell>{`<View />`}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Accessibility
+
+The accessibility of a VStack is primarily determined by the accessibility information of the components it contains. When you pass an accessible component inside a VStack, its accessibility attributes, such as labels and hints, will be utilized by assistive technologies like screen readers.
+
+In essence, the VStack acts as a container that inherits and propagates the accessibility attributes of its child views.
+
+### Props
+
+#### VStack
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>space</InlineCode>
+          </TableCell>
+          <TableCell>string</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>It sets the space between children. By default there is no space between the VStack items.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>reversed</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, it places the VStack items in reverse direction.</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:reversed} ///

@@ -1,0 +1,277 @@
+---
+title: gluestack-ui Textarea Component | React Native Textarea Installation
+
+description: Easily integrate a React & React Native Textarea component with multi-line input. Customize size, state, and accessibility for seamless UI.
+
+pageTitle: Textarea
+
+pageDescription: Easily integrate a React & React Native Textarea component with multi-line input. Customize size, state, and accessibility for seamless UI.
+
+showHeader: true
+---
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+# TextArea
+
+Easily integrate a React & React Native Textarea component with multi-line input. Customize size, state, and accessibility for seamless UI.
+
+This is an illustration of **TextArea** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+<Tabs>
+  <TabItem label="CLI">
+     
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add textarea`} language="bash" />
+
+  </TabItem>
+  <TabItem label="Manual">
+
+
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/textarea/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Textarea } from '@/components/ui/textarea';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/PRakWVb.png"
+  webUrl="https://i.imgur.com/MWi9UNn.png"
+  classNameStyle="aspect-[513/299] md:aspect-[736/227]"
+/>
+
+```ts
+export default () => (
+  <Textarea>
+    <TextareaInput />
+  </Textarea>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Textarea
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>size</InlineCode>
+          </TableCell>
+          <TableCell>'sm' | 'md' | 'lg' | 'xl'</TableCell>
+          <TableCell>'md'</TableCell>
+          <TableCell>Changes the size of the Input Text</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isInvalid</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the input displays an error state.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isDisabled</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the input is disabled and cannot be edited.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isHovered</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the input displays a hover state.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isFocused</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the input displays a focus state.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isRequired</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>If true, sets aria-required="true" on the input.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isReadOnly</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>If true, the input value cannot be edited.</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+**Descendants Styling Props**
+Props to style child components.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Sx Prop</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>{`_input`}</InlineCode>
+          </TableCell>
+          <TableCell>Prop to style TextareaInput Component</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+#### TextareaInput
+
+Contains all TextInput related layout style props and actions.
+It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput) component.
+
+### Accessibility
+
+We have outlined the various features that ensure the Textarea component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+#### Keyboard
+
+- setting the aria-label and aria-hint
+
+#### Screen Reader
+
+- VoiceOver: accessible and aria-label props to describe the input's purpose
+- `aria-traits` and `aria-hint` for the various states of the input, such as "double tap to edit"
+
+### Props
+
+Textarea component is created using TextInput component from react-native. It extends all the props supported by [React Native Text Input](https://reactnative.dev/docs/textinput#props) and the props mentioned below.
+
+#### Textarea
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Value</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>size</InlineCode>
+          </TableCell>
+          <TableCell>xl | lg | md | sm</TableCell>
+          <TableCell>md</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Data Attributes Table
+
+Component receives states as props as boolean values, which are applied as `data-*` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>State</TableHeaderCell>
+          <TableHeaderCell>Data Attribute</TableHeaderCell>
+          <TableHeaderCell>Values</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>hover</InlineCode>
+          </TableCell>
+          <TableCell>data-hover</TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>focus</InlineCode>
+          </TableCell>
+          <TableCell>data-focus</TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>disabled</InlineCode>
+          </TableCell>
+          <TableCell>data-disabled</TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>invalid</InlineCode>
+          </TableCell>
+          <TableCell>data-invalid</TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:form-control} ///

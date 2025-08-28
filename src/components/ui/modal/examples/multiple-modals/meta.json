@@ -1,0 +1,23 @@
+{
+  "title": "Multiple Modals",
+  "description": "A user interface featuring multiple modal components that allow for layered interaction and context-specific information display.",
+  "reactLive": {
+    "Modal": "@/components/ui/modal",
+    "ModalBackdrop": "@/components/ui/modal",
+    "ModalContent": "@/components/ui/modal",
+    "ModalHeader": "@/components/ui/modal",
+    "ModalBody": "@/components/ui/modal",
+    "ModalFooter": "@/components/ui/modal",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "ButtonIcon": "@/components/ui/button",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "HStack": "@/components/ui/hstack",
+    "Input": "@/components/ui/input",
+    "InputField": "@/components/ui/input",
+    "Link": "@/components/ui/link",
+    "LinkText": "@/components/ui/link",
+    "ArrowLeftIcon": "@/components/ui/icon"
+  }
+}

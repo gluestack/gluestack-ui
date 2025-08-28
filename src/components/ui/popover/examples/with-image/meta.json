@@ -1,0 +1,18 @@
+{
+  "title": "Popover with Image",
+  "argsTypes": {},
+  "reactLive": {
+    "Popover": "@/components/ui/popover",
+    "PopoverBackdrop": "@/components/ui/popover",
+    "PopoverContent": "@/components/ui/popover",
+    "PopoverBody": "@/components/ui/popover",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "Input": "@/components/ui/input",
+    "InputField": "@/components/ui/input",
+    "Image": "@/components/ui/image"
+  }
+}

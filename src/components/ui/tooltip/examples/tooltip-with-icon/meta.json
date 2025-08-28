@@ -1,0 +1,18 @@
+{
+  "title": "Tooltip with Icon",
+  "description": "A tooltip component with an icon is a user interface element that provides contextual information or explanatory text when the user hovers over or interacts with an icon.",
+  "argTypes": {},
+  "reactLive": {
+    "Avatar": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "HStack": "@/components/ui/hstack",
+    "Tooltip": "@/components/ui/tooltip",
+    "TooltipContent": "@/components/ui/tooltip",
+    "Text": "@/components/ui/text",
+    "Box": "@/components/ui/box",
+    "Heading": "@/components/ui/heading",
+    "EditIcon": "@/components/ui/icon",
+    "Command": "lucide-react-native",
+    "Icon": "@/components/ui/icon"
+  }
+}

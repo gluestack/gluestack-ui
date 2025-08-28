@@ -1,0 +1,17 @@
+{
+  "title": "Avatar with Icon",
+  "description": "An Avatar component with an icon combines a graphical symbol or icon with a user or entity representation, providing a visually appealing and easily recognizable identification within a user interface.",
+  "argTypes": {},
+  "reactLive": {
+    "Avatar": "@/components/ui/avatar",
+    "AvatarBadge": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "Heading": "@/components/ui/heading",
+    "HStack": "@/components/ui/hstack",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "Icon": "@/components/ui/icon",
+    "User": "lucide-react-native"
+  }
+}

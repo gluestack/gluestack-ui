@@ -1,0 +1,294 @@
+---
+title: gluestack-ui Drawer Component | React Native Drawer Installation
+
+description: Implement a responsive Drawer component in React & React Native for navigation and content display. Learn how to install, customize, and integrate it into your project.
+
+pageTitle: Drawer
+
+pageDescription: Implement a responsive Drawer component in React & React Native for navigation and content display. Learn how to install, customize, and integrate it into your project.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Drawer
+
+Implement a responsive Drawer component in React & React Native for navigation and content display. Learn how to install, customize, and integrate it into your project.
+
+This is an illustration of **Drawer** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add drawer`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+
+
+
+
+
+> Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @legendapp/motion
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```ts
+%%-- File: src/components/ui/drawer/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  Drawer,
+  DrawerBackdrop,
+  DrawerContent,
+  DrawerHeader,
+  DrawerCloseButton,
+  DrawerBody,
+  DrawerFooter,
+} from '@/components/ui/drawer';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/B85zgqr.png"
+  webUrl="https://i.imgur.com/paN7mix.png"
+  classNameStyle="aspect-[420/958] md:aspect-[1198/663]"
+/>
+
+```jsx
+export default () => (
+  <Drawer>
+    <DrawerBackdrop />
+    <DrawerContent>
+      <DrawerHeader>
+        <DrawerCloseButton></DrawerCloseButton>
+      </DrawerHeader>
+      <DrawerBody />
+      <DrawerFooter />
+    </DrawerContent>
+  </Drawer>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Drawer
+
+Contains all View related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isOpen</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          If true, the drawer will open. Useful for controllable state behavior.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onClose</InlineCode>
+        </TableCell>
+        <TableCell>() => any</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Callback invoked when the drawer is closed.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>defaultIsOpen</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Specifies the default open state of the Drawer</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>initialFocusRef</InlineCode>
+        </TableCell>
+        <TableCell>{`React.RefObject<any>`}</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          The ref of element to receive focus when the drawer opens.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>finalFocusRef</InlineCode>
+        </TableCell>
+        <TableCell>{`React.RefObject<any>`}</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          The ref of element to receive focus when the drawer closes
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>avoidKeyboard</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>If true, the Drawer will avoid the keyboard.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>closeOnOverlayClick</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          If true, the Drawer will close when the overlay is clicked.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isKeyboardDismissable</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>If true, the keyboard can dismiss the Drawer</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>children</InlineCode>
+        </TableCell>
+        <TableCell>any</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>The content to display inside the Drawer</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### DrawerBackdrop
+
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+
+#### DrawerContent
+
+It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>focusable</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>If true, Drawer Content will be focusable.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### DrawerHeader
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### DrawerCloseButton
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### DrawerBody
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component
+
+#### DrawerFooter
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Props
+
+Modal component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Modal
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Value</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>xs | sm | md | lg | full</TableCell>
+        <TableCell>sm</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>anchor</InlineCode>
+        </TableCell>
+        <TableCell>left | right | top | bottom</TableCell>
+        <TableCell>left</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+///{Example:filter} ///
+
+///{Example:sidebar-menu} ///

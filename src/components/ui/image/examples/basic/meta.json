@@ -1,0 +1,15 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["2xs", "xs", "sm", "md", "lg", "xl", "2xl"],
+      "defaultValue": "xl"
+    }
+  },
+  "reactLive": {
+    "Image": "@/components/ui/image"
+  }
+}

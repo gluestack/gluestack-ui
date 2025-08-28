@@ -1,0 +1,42 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["xs", "sm", "md", "lg", "full"],
+      "defaultValue": "md"
+    },
+    "placement": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "top",
+        "bottom",
+        "left",
+        "right",
+        "bottom left",
+        "bottom right",
+        "top left",
+        "top right",
+        "left bottom",
+        "left right",
+        "right bottom",
+        "right top"
+      ],
+      "defaultValue": "bottom"
+    }
+  },
+  "reactLive": {
+    "Popover": "@/components/ui/popover",
+    "PopoverBackdrop": "@/components/ui/popover",
+    "PopoverArrow": "@/components/ui/popover",
+    "PopoverBody": "@/components/ui/popover",
+    "PopoverContent": "@/components/ui/popover",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Text": "@/components/ui/text"
+  }
+}

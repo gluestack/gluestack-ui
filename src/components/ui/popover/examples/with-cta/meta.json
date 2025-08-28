@@ -1,0 +1,26 @@
+{
+  "title": "Popover with CTA",
+  "argsTypes": {},
+  "reactLive": {
+    "Pressable": "@/components/ui/pressable",
+    "Popover": "@/components/ui/popover",
+    "PopoverBackdrop": "@/components/ui/popover",
+    "PopoverContent": "@/components/ui/popover",
+    "PopoverBody": "@/components/ui/popover",
+    "PopoverFooter": "@/components/ui/popover",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "ButtonIcon": "@/components/ui/button",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "Checkbox": "@/components/ui/checkbox",
+    "CheckboxGroup": "@/components/ui/checkbox",
+    "CheckboxIndicator": "@/components/ui/checkbox",
+    "CheckboxLabel": "@/components/ui/checkbox",
+    "CheckboxIcon": "@/components/ui/checkbox",
+    "CheckIcon": "@/components/ui/icon",
+    "ArrowRightIcon": "@/components/ui/icon",
+    "ChevronRightIcon": "@/components/ui/icon"
+  }
+}

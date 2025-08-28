@@ -1,0 +1,16 @@
+{
+  "title": "Table with caption",
+  "description": "This is an example of a Table component with a caption.",
+  "argTypes": {},
+  "reactLive": {
+    "Table": "@/components/ui/table",
+    "TableBody": "@/components/ui/table",
+    "TableHeader": "@/components/ui/table",
+    "TableRow": "@/components/ui/table",
+    "TableHead": "@/components/ui/table",
+    "TableData": "@/components/ui/table",
+    "TableFooter": "@/components/ui/table",
+    "TableCaption": "@/components/ui/table",
+    "Box": "@/components/ui/box"
+  }
+}

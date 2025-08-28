@@ -1,0 +1,19 @@
+{
+  "title": "Tooltip with Heading",
+  "description": "A tooltip component with an avatar is a user interface element that displays a small pop-up box of additional information when the user hovers over or interacts with an avatar or an icon.",
+  "argTypes": {},
+  "reactLive": {
+    "Avatar": "@/components/ui/avatar",
+    "AvatarGroup": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "HStack": "@/components/ui/hstack",
+    "Tooltip": "@/components/ui/tooltip",
+    "TooltipContent": "@/components/ui/tooltip",
+    "TooltipText": "@/components/ui/tooltip",
+    "Text": "@/components/ui/text",
+    "Box": "@/components/ui/box",
+    "Heading": "@/components/ui/heading",
+    "VStack": "@/components/ui/vstack",
+    "Center": "@/components/ui/center"
+  }
+}

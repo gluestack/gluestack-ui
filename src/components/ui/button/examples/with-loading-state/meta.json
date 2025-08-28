@@ -1,0 +1,10 @@
+{
+  "title": "Button with Loading State",
+  "description": "A loading button is a type of button component that provides visual feedback to the user during an action that takes some time to complete. It typically displays an animated loading icon or spinner indicating the action is in progress.",
+  "argTypes": {},
+  "reactLive": {
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "ButtonSpinner": "@/components/ui/button"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Menu with Tag",
+  "argTypes": {},
+  "reactLive": {
+    "Menu": "@/components/ui/menu",
+    "MenuItem": "@/components/ui/menu",
+    "MenuItemLabel": "@/components/ui/menu",
+    "MenuSeparator": "@/components/ui/menu",
+    "Button": "@/components/ui/button",
+    "ButtonIcon": "@/components/ui/button",
+    "MenuIcon": "@/components/ui/icon",
+    "Badge": "@/components/ui/badge",
+    "BadgeText": "@/components/ui/badge"
+  }
+}

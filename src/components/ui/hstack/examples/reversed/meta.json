@@ -1,0 +1,9 @@
+{
+  "title": "HStack Reversed",
+  "description": "HStack component with the reversed prop reverses the order of horizontally stacked elements, allowing for customized layouts and visual arrangements of content within a user interface.",
+  "argTypes": {},
+  "reactLive": {
+    "HStack": "@/components/ui/hstack",
+    "Box": "@/components/ui/box"
+  }
+}

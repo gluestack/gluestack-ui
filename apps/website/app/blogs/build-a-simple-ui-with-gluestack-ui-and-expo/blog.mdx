@@ -1,0 +1,477 @@
+import { Box, } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Heading } from '@/components/ui/heading';
+import { Image } from '@/components/ui/image';
+import { TOC } from '@/components/page-components/blogs-page/TOC';
+
+<Text className="text-sm pt-2">March 12, 2025</Text>
+
+# Build a Simple UI with gluestack-ui and Expo
+
+<HStack className="gap-3 items-center">
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source="https://avatars.githubusercontent.com/u/59024657?v=4"
+      alt="rajatchaudhary@geekyants.com"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-typography-900">
+      Rajat Chaudhary
+    </Text>
+    <Text className="text-sm">Building gluestack-ui</Text>
+  </Box>
+</HStack>
+
+<br />
+
+## Introduction
+
+Creating polished and consistent user interfaces for mobile apps can be challenging, but with gluestack-ui's extensive component library integrated with Expo, you can build professional UIs with minimal effort.
+
+In this quick guide, we'll walk you through creating a simple yet functional UI using gluestack-ui and Expo.
+
+You'll learn -
+
+- How to set up your Expo project.
+- Initialize **gluestack-ui** in the project.
+- Build a basic user interface with **gluestack-ui** components.
+- Add functionality to the interface.
+- Customize the components to fit your design.
+
+## Step 1: Set Up Your Expo Project
+
+Let's get started by creating a new Expo project:
+
+### 1. Create the Expo project:
+
+```jsx
+npx create-expo-app@latest -t
+```
+
+### 2. Navigate into the project directory:
+
+```bash
+ cd [project_name]
+```
+
+### 3. Start the development server:
+
+```bash
+npm start
+```
+
+This sets up your basic Expo app, and you can now move to integrate gluestack-ui.
+
+## Step 2: Initialize gluestack-ui
+
+Now that we have the expo project set up, let's initialize gluestack-ui:
+
+1. Run the initialization command:
+
+```bash
+npx gluestack-ui init
+```
+
+The init command adds the necessary `gluestack-ui.config.json` file, includes the `GluestackUIProvider`, installs dependencies, and configures below files for your project.
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuiinit.png',
+  }}
+  className="w-full h-[520px] rounded-lg"
+  resizeMode="contain"
+/>
+<br />
+
+#### - **metro.config.js**
+
+---
+
+This file is added to integrate NativeWind with our Expo project. This configuration ensures that NativeWind styles are properly processed and bundled with our application, enabling the use of Tailwind CSS classes in our project.
+
+<br />
+#### - **babel.config.js** ___ This updated configuration modifies this file by
+integrating NativeWind for styling and sets up module resolution for easier
+imports. Here's what changes:
+
+a. The `babel-preset-expo` now includes a `jsxImportSource: "nativewind"` option.
+b. A new preset `"nativewind/babel"` is added to the presets array.
+c. A `module-resolver` plugin is introduced with a root directory set to `"./"` and an alias `"@"` pointing to the root.
+
+These modifications enable you to use NativeWind's styling capabilities and simplify your import statements using the `@` alias.
+
+<br />
+#### - tsconfig.js ___ Modify this file by adding the paths configuration under
+compilerOptions. This new setting creates an alias @ that points to the root
+directory of our project.
+<br />
+#### - **tailwind.config.js** ___ This file is extensive and sets up your
+Tailwind CSS configuration for use with gluestack-ui. It includes a custom color
+palette, font settings, and other theme extensions. This configuration allows
+you to use gluestack-ui's predefined design tokens and extend them with your own
+custom styles, ensuring a consistent look and feel across your application.
+<br />
+#### - **global.css** ___ This file is a standard entry point for Tailwind CSS
+directives. This file ensures that Tailwind's base styles, component classes,
+and utility classes are properly imported and available throughout your
+application.
+<br />
+#### - **gluestack-ui-provider** ___ This command creates a
+`gluestack-ui-provider` folder within your project's `components/ui` directory.
+This folder is crucial for setting up the theming and provider infrastructure
+for your gluestack-ui components. It contains four key files:
+
+a. `config.ts`:
+This file defines color schemes variables for light and dark modes using NativeWind's `vars` function. It sets up a comprehensive color palette for primary, secondary, tertiary, and semantic colors, ensuring consistent theming across your application.
+b. `index.tsx`:
+The main provider component for Native devices. It sets up the `GluestackUIProvider`, managing color schemes (light, dark, or system), integrating with NativeWind, and including providers for overlay and toast functionalities.
+c. `index.web.tsx`:
+A web-specific version of the `GluestackUIProvider`. It handles CSS variables for theming, manages system-level dark mode preferences, and ensures proper hydration in server-side rendering scenarios. It also injects a script for theme switching without causing unstyled content flashes.
+d. `script.ts`:
+Exports a function that applies the correct theme class to the document root element. It handles manual theme selection and system preferences, ensuring the appropriate theme is applied immediately, even before React hydration on the client side.
+
+<br />
+#### - **entry file (of your project)** ___ Modifies this file by importing
+`global.css` at the top, \*\*\*\*Additionally, the entire application is now
+wrapped with the `GluestackUIProvider` component. These changes ensure that your
+entire application has access to gluestack-ui's theming capabilities and
+Tailwind CSS utilities, providing a consistent and customizable design system
+throughout our expo project.
+<br />
+#### - **.npmrc** ___ This file ensures that all required packages can be
+installed without version conflicts.
+<br />
+### Add gluestack-ui components:
+
+```bash
+npx gluestack-ui add [component_name]
+```
+
+This will install and configure the component that gluestack-ui provides for your project.
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuisingle.png',
+  }}
+  className="w-full h-[480px] rounded-lg"
+  resizeMode="contain"
+/>
+<br />
+
+## Step 3: Build a Simple UI
+
+Let's create a simple UI using some of the gluestack-ui components.
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuilogin.png',
+  }}
+  className="w-full h-[340px] rounded-lg"
+  resizeMode="contain"
+/>
+<br />
+
+### Open App.tsx and update it with the following code:
+
+```jsx
+const App = () => {
+  const [showPassword, setShowPassword] = React.useState(false);
+  return (
+    <GluestackUIProvider>
+      <Center className="flex-1 p-6">
+        <VStack className="rounded-xl border border-outline-200 bg-background-0 p-6 w-full max-w-[336px]">
+          <Heading>Log in</Heading>
+          <Text className="mt-2">Login to start using gluestack</Text>
+
+          <Text className="mt-4">Email</Text>
+          <Input>
+            <InputField type="text" placeholder="Enter your email" />
+          </Input>
+
+          <Text className="mt-6">Password</Text>
+          <Input>
+            <InputField
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Enter your password"
+            />
+            <InputSlot
+              onPress={() => setShowPassword(!showPassword)}
+              className="mr-3"
+            >
+              <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
+            </InputSlot>
+          </Input>
+
+          <HStack className="justify-between my-5">
+            <Checkbox value={''} size="sm">
+              <CheckboxIndicator>
+                <CheckboxIcon as={CheckIcon} />
+              </CheckboxIndicator>
+              <CheckboxLabel>Remember me</CheckboxLabel>
+            </Checkbox>
+
+            <Button variant="link" size="sm">
+              <ButtonText className="underline underline-offset-1">
+                Forgot Password?
+              </ButtonText>
+            </Button>
+          </HStack>
+
+          <Button className="w-full" size="sm">
+            <ButtonText>Log in</ButtonText>
+          </Button>
+        </VStack>
+      </Center>
+    </GluestackUIProvider>
+  );
+};
+```
+
+### Run the App:
+
+```bash
+npm start
+```
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuioutput.png',
+  }}
+  className="w-full h-[500px] rounded-lg"
+  resizeMode="contain"
+/>
+<br />
+
+## Step 4: Adding Functionality
+
+1. Update `App.tsx` with **form validation** and **state management**:
+
+```jsx
+const App = () => {
+  const [isInvalid, setIsInvalid] = React.useState(false);
+  const [emailInput, setEmailInput] = React.useState('');
+  const [passwordInput, setPasswordInput] = React.useState('');
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleLogin = () => {
+    if (passwordInput?.length < 6) {
+      setIsInvalid(true);
+    } else {
+      setIsInvalid(false);
+      setEmailInput('');
+      setPasswordInput('');
+    }
+  };
+  return (
+    <GluestackUIProvider>
+      <Center className="flex-1 p-6">
+        <VStack className="rounded-xl border border-outline-200 bg-background-0 p-6 w-full max-w-[336px]">
+          <Heading>Log in</Heading>
+          <Text className="mt-2">Login to start using gluestack</Text>
+          <FormControl className="w-full mt-4">
+            <FormControlLabel>
+              <FormControlLabelText>Email</FormControlLabelText>
+            </FormControlLabel>
+            <Input>
+              <InputField
+                type="text"
+                placeholder="Enter your email"
+                value={emailInput}
+                //@ts-ignore
+                // onChange={(e) => setEmailInput(e.target.value)}
+                onChangeText={setEmailInput}
+              />
+            </Input>
+          </FormControl>
+          <FormControl isInvalid={isInvalid} className="mt-6 w-full">
+            <FormControlLabel>
+              <FormControlLabelText>Password</FormControlLabelText>
+            </FormControlLabel>
+            <Input>
+              <InputField
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Enter your password"
+                value={passwordInput}
+                //@ts-ignore
+                // onChange={(e) => setPasswordInput(e.target.value)}
+                onChangeText={setPasswordInput}
+              />
+              <InputSlot
+                onPress={() => setShowPassword(!showPassword)}
+                className="mr-3"
+              >
+                <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
+              </InputSlot>
+            </Input>
+
+            <FormControlHelper>
+              <FormControlHelperText>
+                Must be at least 6 characters.
+              </FormControlHelperText>
+            </FormControlHelper>
+
+            <FormControlError>
+              <FormControlErrorIcon as={AlertCircleIcon} />
+              <FormControlErrorText size="sm">
+                At least 6 characters are required.
+              </FormControlErrorText>
+            </FormControlError>
+          </FormControl>
+
+          <HStack className="justify-between my-5">
+            <Checkbox value={''} size="sm">
+              <CheckboxIndicator>
+                <CheckboxIcon as={CheckIcon} />
+              </CheckboxIndicator>
+              <CheckboxLabel>Remember me</CheckboxLabel>
+            </Checkbox>
+
+            <Button variant="link" size="sm">
+              <ButtonText className="underline underline-offset-1">
+                Forgot Password?
+              </ButtonText>
+            </Button>
+          </HStack>
+          <Button className="w-full" size="sm" onPress={handleLogin}>
+            <ButtonText>Log in</ButtonText>
+          </Button>
+        </VStack>
+      </Center>
+    </GluestackUIProvider>
+  );
+};
+```
+
+### Run the app to see the changes:
+
+```bash
+npm start
+```
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuifunctionality.png',
+  }}
+  className="w-full h-[500px] rounded-lg"
+  resizeMode="contain"
+/>
+<br />
+
+## Step 5: Customize Your Components
+
+Now, let's customize the components by tweaking their default `classNames`.
+
+### Customizing the Button:
+
+Add a new rounded variant to make the button rounded in `components/ui/button/index.tsx`
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuicustomize.png',
+  }}
+  className="w-full h-[180px] rounded-lg"
+  resizeMode="contain"
+/>
+<br />
+
+Usage:-
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuicustomize1.png',
+  }}
+  className="w-full h-[180px] rounded-lg"
+  resizeMode="contain"
+/>
+<br />
+
+### Modify the 'config' file to update primary color values:
+
+Before:
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuioldconfig.png',
+  }}
+  className="w-full h-[580px] rounded-lg"
+  resizeMode="contain"
+/>
+<br />
+
+After:
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuinewconfig.png',
+  }}
+  className="w-full h-[580px] rounded-lg"
+  resizeMode="contain"
+/>
+<br />
+
+Result:
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/simpleuifinaloutput.png',
+  }}
+  className="w-full h-[480px] rounded-lg"
+  resizeMode="contain"
+/>
+<br />
+
+## Conclusion
+
+In just a few steps, you've built a simple Expo project, initialized gluestack-ui, added a full suite of UI components, and customized them to match your style. This guide demonstrates how quickly you can create a functional and visually appealing UI using gluestack-ui and Expo.
+
+Feel free to experiment with other styles or components to see how easily gluestack-ui can be customized to fit your app's design. You can now expand your project by exploring more gluestack-ui components and features!
+
+For more detailed documentation, check out the official [gluestack-ui docs](https://gluestack.io/).
+
+Do tell us about your experiments on our [Discord channel](https://discord.com/invite/V5SU7HZSAQ) .
+Happy Building!
+
+<TOC
+  items={[
+    {
+      id: 'introduction',
+      title: 'Introduction',
+    },
+    {
+      id: 'step-1-set-up-your-expo-project',
+      title: 'Step 1: Set Up Your Expo Project',
+    },
+    {
+      id: 'step-2-initialize-gluestack-ui',
+      title: 'Step 2: Initialize gluestack-ui',
+    },
+    {
+      id: 'step-3-build-a-simple-ui',
+      title: 'Step 3: Build a Simple UI',
+    },
+    {
+      id: 'step-4-adding-functionality',
+      title: 'Step 4: Adding Functionality',
+    },
+    {
+      id: 'step-5-customize-your-components',
+      title: 'Step 5: Customize Your Components',
+    },
+    {
+      id: 'conclusion',
+      title: 'Conclusion',
+    },
+  ]}
+/>

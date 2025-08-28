@@ -1,0 +1,24 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["xs", "sm", "md", "lg", "xl", "2xl"],
+      "defaultValue": "md"
+    },
+    "orientation": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["horizontal", "vertical"],
+      "defaultValue": "horizontal"
+    }
+  },
+  "reactLive": {
+    "Progress": "@/components/ui/progress",
+    "ProgressFilledTrack": "@/components/ui/progress",
+    "Center": "@/components/ui/center"
+  }
+}

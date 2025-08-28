@@ -1,0 +1,63 @@
+pre[class*="language-"] {
+  background: var(--prism-background) !important;
+  color: var(--prism-text) !important;
+  font-size: var(--prism-font-size, 14px) !important;
+  line-height: var(--prism-line-height, 24px) !important;
+  font-family: var(--prism-font-family, 'var(--font-mono-space-mono)') !important;
+  font-weight: var(--prism-font-weight, 500) !important;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--prism-comment) !important;
+}
+
+.token.punctuation {
+  color: var(--prism-punctuation) !important;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: var(--prism-number) !important;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: var(--prism-string) !important;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: var(--prism-operator) !important;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: var(--prism-keyword) !important;
+}
+
+.token.function,
+.token.class-name {
+  color: var(--prism-function) !important;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: var(--prism-text) !important;
+} 

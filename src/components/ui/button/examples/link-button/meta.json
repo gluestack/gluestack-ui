@@ -1,0 +1,11 @@
+{
+  "title": "Link Button",
+  "description": "A button with a link combines the interactive behavior of a button component with the ability to navigate to a specified URL, providing a clickable element for users to access external resources or internal pages.",
+  "argTypes": {},
+  "reactLive": {
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "ButtonIcon": "@/components/ui/button",
+    "ArrowUpIcon": "@/components/ui/icon"
+  }
+}

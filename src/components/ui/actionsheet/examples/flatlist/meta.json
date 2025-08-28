@@ -1,0 +1,17 @@
+{
+  "title": "FlatList",
+  "description": "The Actionsheet with Flat List is a variation of the Actionsheet component that displays a flat list of options. It's commonly used in apps for a simple and straightforward display of options to the user.",
+  "argTypes": {},
+  "reactLive": {
+    "Actionsheet": "@/components/ui/actionsheet",
+    "ActionsheetBackdrop": "@/components/ui/actionsheet",
+    "ActionsheetContent": "@/components/ui/actionsheet",
+    "ActionsheetDragIndicator": "@/components/ui/actionsheet",
+    "ActionsheetDragIndicatorWrapper": "@/components/ui/actionsheet",
+    "ActionsheetItem": "@/components/ui/actionsheet",
+    "ActionsheetItemText": "@/components/ui/actionsheet",
+    "ActionsheetFlatList": "@/components/ui/actionsheet",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button"
+  }
+}

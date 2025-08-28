@@ -1,0 +1,15 @@
+{
+  "title": "Onboarding Message",
+  "reactLive": {
+    "Modal": "@/components/ui/modal",
+    "ModalBackdrop": "@/components/ui/modal",
+    "ModalContent": "@/components/ui/modal",
+    "ModalBody": "@/components/ui/modal",
+    "ModalFooter": "@/components/ui/modal",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "Image": "@/components/ui/image"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Placement",
+  "description": "A Fab component with placement options allows for flexible positioning of the button within a user interface, enabling convenient and intuitive access to key actions or functionalities in various locations.",
+  "argTypes": {},
+  "reactLive": {
+    "Fab": "@/components/ui/fab",
+    "FabIcon": "@/components/ui/fab",
+    "Box": "@/components/ui/box",
+    "VStack": "@/components/ui/vstack",
+    "Checkbox": "@/components/ui/checkbox",
+    "CheckboxIndicator": "@/components/ui/checkbox",
+    "CheckboxLabel": "@/components/ui/checkbox",
+    "CheckboxIcon": "@/components/ui/checkbox",
+    "Text": "@/components/ui/text",
+    "AddIcon": "@/components/ui/icon",
+    "CheckIcon": "@/components/ui/icon"
+  }
+}

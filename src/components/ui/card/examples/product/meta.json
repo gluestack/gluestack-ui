@@ -1,0 +1,15 @@
+{
+  "title": "Product Card",
+  "description": "This example illustrates a card showcasing a product",
+  "argTypes": {},
+  "reactLive": {
+    "Box": "@/components/ui/box",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Card": "@/components/ui/card",
+    "Heading": "@/components/ui/heading",
+    "Image": "@/components/ui/image",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack"
+  }
+}

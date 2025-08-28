@@ -1,0 +1,156 @@
+---
+title: gluestack-ui Progress Component | React Native Progress Bar Installation
+
+description: Enhance your app with a responsive Progress component. gluestack-ui offers a React Native progress bar for tracking steps, ensuring a smooth progress bar UI experience.
+
+pageTitle: Progress
+
+pageDescription: Enhance your app with a responsive Progress component. gluestack-ui offers a React Native progress bar for tracking steps, ensuring a smooth progress bar UI experience.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Progress
+
+Enhance your app with a responsive Progress component. gluestack-ui offers a React Native progress bar for tracking steps, ensuring a smooth progress bar UI experience.
+
+This is an illustration of **Progress** component.
+/// {Example:basic} ///
+
+<br />
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add progress`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/progress/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Progress, ProgressFilledTrack } from '@/components/ui/progress';
+```
+
+```ts
+export default () => (
+  <Progress>
+    <ProgressFilledTrack />
+  </Progress>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Progress
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>value</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>It is used to set the progress of the progress bar</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### ProgressFilledTrack
+
+It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Accessibility
+
+We have outlined the various features that ensure the Fab component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [WAI-ARIA design pattern](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/progressbar_role).
+
+#### Keyboard
+
+- Tab: Moves focus to the next focusable element.
+
+#### Screen Reader
+
+- VoiceOver: When the Progress is focused, the screen reader will announce it's a progress and it's current progress indicator.
+
+### Props
+
+Progress component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props).
+
+#### Progress
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Name</TableHeaderCell>
+      <TableHeaderCell>Value</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
+      <TableCell>xs | sm | md | lg | xl | 2xl</TableCell>
+      <TableCell>md</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>orientation</InlineCode>
+      </TableCell>
+      <TableCell>vertical | horizontal</TableCell>
+      <TableCell>horizontal</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:value} ///
+
+/// {Example:color} ///
+
+/// {Example:custom} ///

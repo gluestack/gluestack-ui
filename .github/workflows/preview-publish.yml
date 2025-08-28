@@ -1,0 +1,1212 @@
+name: Preview Package Publishing
+
+on:
+  pull_request:
+    branches: [feat/v3]
+    types: [opened, synchronize, reopened]
+  pull_request_target:
+    branches: [feat/v3]
+    types: [labeled]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check-automation:
+    runs-on: ubuntu-latest
+    outputs:
+      should-skip: ${{ steps.check-automation.outputs.should-skip }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if triggered by automation
+        id: check-automation
+        run: |
+          # Skip if actor is github-actions or dependabot
+          if [[ "${{ github.actor }}" == "github-actions[bot]" ]] || [[ "${{ github.actor }}" == "dependabot[bot]" ]] || [[ "${{ github.actor }}" == "github-actions" ]]; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: triggered by automated actor (${{ github.actor }})"
+            exit 0
+          fi
+
+          # Get the latest commit message and author
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          COMMIT_AUTHOR=$(git log -1 --pretty=%an)
+
+          echo "Commit message: $COMMIT_MESSAGE"
+          echo "Commit author: $COMMIT_AUTHOR"
+
+          # Skip if commit message contains [skip ci] or [ci skip]
+          if echo "$COMMIT_MESSAGE" | grep -q "\[skip ci\]"; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: [skip ci] found in commit message"
+            exit 0
+          fi
+
+          if echo "$COMMIT_MESSAGE" | grep -q "\[ci skip\]"; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: [ci skip] found in commit message"
+            exit 0
+          fi
+
+          # Skip if commit author is automated
+          if [[ "$COMMIT_AUTHOR" == *"github-actions"* ]] || [[ "$COMMIT_AUTHOR" == *"GitHub Action"* ]] || [[ "$COMMIT_AUTHOR" == *"dependabot"* ]]; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: commit by automated author ($COMMIT_AUTHOR)"
+            exit 0
+          fi
+
+          echo "should-skip=false" >> $GITHUB_OUTPUT
+          echo "✅ Workflow will proceed"
+
+  check-permissions:
+    needs: check-automation
+    if: needs.check-automation.outputs.should-skip != 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      can-publish: ${{ steps.check.outputs.can-publish }}
+      is-fork: ${{ steps.check.outputs.is-fork }}
+      pr-number: ${{ steps.check.outputs.pr-number }}
+    steps:
+      - name: Check publishing permissions
+        id: check
+        run: |
+          # Determine PR number based on event type
+          if [ "${{ github.event_name }}" = "pull_request_target" ]; then
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+            HEAD_REPO="${{ github.event.pull_request.head.repo.full_name }}"
+            BASE_REPO="${{ github.repository }}"
+            HAS_LABEL="${{ contains(github.event.pull_request.labels.*.name, 'preview-publish') }}"
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+            HEAD_REPO="${{ github.event.pull_request.head.repo.full_name }}"
+            BASE_REPO="${{ github.repository }}"
+            HAS_LABEL="false"
+          else
+            # workflow_dispatch - assume same repo
+            PR_NUMBER=""
+            HEAD_REPO="${{ github.repository }}"
+            BASE_REPO="${{ github.repository }}"
+            HAS_LABEL="false"
+          fi
+
+          echo "pr-number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          
+          # Check if PR is from a fork
+          if [ "$HEAD_REPO" != "$BASE_REPO" ]; then
+            echo "is-fork=true" >> $GITHUB_OUTPUT
+            echo "🔀 PR from fork detected ($HEAD_REPO -> $BASE_REPO)"
+            
+            # For forks, only allow publishing if manually triggered by maintainer with label
+            if [ "${{ github.event_name }}" = "pull_request_target" ] && [ "$HAS_LABEL" = "true" ]; then
+              echo "can-publish=true" >> $GITHUB_OUTPUT
+              echo "✅ Manual publish triggered by maintainer for fork PR"
+            else
+              echo "can-publish=false" >> $GITHUB_OUTPUT
+              echo "❌ Fork PR cannot publish automatically (security restriction)"
+            fi
+          else
+            echo "is-fork=false" >> $GITHUB_OUTPUT
+            echo "can-publish=true" >> $GITHUB_OUTPUT
+            echo "✅ Same repo PR can publish"
+          fi
+
+  check-changes:
+    needs: [check-automation, check-permissions]
+    if: needs.check-automation.outputs.should-skip != 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      packages-changed: ${{ steps.changes.outputs.packages }}
+      other-files-changed: ${{ steps.changes.outputs.other }}
+      changed-packages: ${{ steps.detect-changed-packages.outputs.changed-packages }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # For pull_request_target, we need to checkout the PR's code
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.ref }}
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            packages:
+              - 'packages/**'
+            other:
+              - 'apps/**'
+              - 'src/**'
+              - 'docs/**'
+              - 'components/**'
+              - 'public/**'
+              - '*.md'
+              - '*.json'
+              - '*.js'
+              - '*.ts'
+              - '*.tsx'
+              - '*.css'
+              - '*.scss'
+              - '*.html'
+              - '*.yml'
+              - '*.yaml'
+              - 'scripts/**'
+              - 'templates/**'
+              - '!packages/**'
+
+      - name: Detect changed packages
+        id: detect-changed-packages
+        if: steps.changes.outputs.packages == 'true'
+        run: |
+          echo "🔍 Detecting which packages have changed..."
+
+          # Get the base branch for comparison
+          if [ "${{ github.event_name }}" = "pull_request_target" ]; then
+            BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+            echo "📋 Comparing against base branch: $BASE_BRANCH (pull_request_target)"
+          else
+            BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+            echo "📋 Comparing against base branch: $BASE_BRANCH (pull_request)"
+          fi
+
+          # Get list of changed files
+          CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD)
+          echo "📝 Changed files:"
+          echo "$CHANGED_FILES"
+
+          # Initialize array for changed packages
+          CHANGED_PACKAGES=""
+
+          # Check each package directory
+          for package_dir in packages/*/; do
+            if [ ! -d "$package_dir" ]; then
+              continue
+            fi
+            
+            # Get package name from package.json
+            if [ -f "${package_dir}package.json" ]; then
+              PACKAGE_NAME=$(node -e "
+                try {
+                  const pkg = JSON.parse(require('fs').readFileSync('${package_dir}package.json', 'utf8'));
+                  console.log(pkg.name || '');
+                } catch(e) {
+                  console.log('');
+                }
+              ")
+              
+              if [ -n "$PACKAGE_NAME" ]; then
+                # Check if any files in this package have changed
+                PACKAGE_CHANGED=false
+                
+                # Check if package.json itself changed
+                if echo "$CHANGED_FILES" | grep -q "^${package_dir}package.json$"; then
+                  echo "📦 Package $PACKAGE_NAME changed (package.json modified)"
+                  PACKAGE_CHANGED=true
+                fi
+                
+                # Check if any source files in this package changed
+                if echo "$CHANGED_FILES" | grep -q "^${package_dir}"; then
+                  echo "📦 Package $PACKAGE_NAME changed (source files modified)"
+                  PACKAGE_CHANGED=true
+                fi
+                
+                if [ "$PACKAGE_CHANGED" = true ]; then
+                  if [ -n "$CHANGED_PACKAGES" ]; then
+                    CHANGED_PACKAGES="$CHANGED_PACKAGES $PACKAGE_NAME"
+                  else
+                    CHANGED_PACKAGES="$PACKAGE_NAME"
+                  fi
+                  echo "✅ Added $PACKAGE_NAME to changed packages list"
+                else
+                  echo "⏭️  Package $PACKAGE_NAME unchanged, skipping"
+                fi
+              fi
+            fi
+          done
+
+          echo "📋 Final list of changed packages: $CHANGED_PACKAGES"
+
+          # Add dependent packages to the list if they're needed
+          echo "🔗 Checking for dependent packages that need to be published..."
+          EXPANDED_PACKAGES="$CHANGED_PACKAGES"
+
+          # If core package is changed, ensure utils is also included
+          if echo "$CHANGED_PACKAGES" | grep -q "@gluestack-ui/core"; then
+            if ! echo "$CHANGED_PACKAGES" | grep -q "@gluestack-ui/utils"; then
+              echo "📦 Adding utils package as dependency of core package"
+              EXPANDED_PACKAGES="$EXPANDED_PACKAGES @gluestack-ui/utils"
+            fi
+          fi
+
+          echo "📋 Expanded list with dependencies: $EXPANDED_PACKAGES"
+          echo "changed-packages=$EXPANDED_PACKAGES" >> $GITHUB_OUTPUT
+
+  comment-on-fork-pr:
+    needs: [check-permissions, check-changes]
+    if: |
+      needs.check-permissions.outputs.is-fork == 'true' && 
+      needs.check-permissions.outputs.can-publish == 'false' && 
+      needs.check-changes.outputs.packages-changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment on fork PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = ${{ needs.check-permissions.outputs.pr-number }};
+            const comment = `## 🔀 Fork PR Detected
+            
+            This PR is from a fork, so preview packages cannot be published automatically for security reasons.
+            
+            **For maintainers:** If you want to test this PR with preview packages:
+            1. Add the \`preview-publish\` label to this PR to trigger publishing
+            2. Or use the "Maintainer Preview Publish" workflow manually
+            
+            **For contributors:** Your PR can still be reviewed and tested. The automated tests and builds will still run normally.
+            
+            > 💡 This is a standard security measure to protect repository secrets.`;
+
+            github.rest.issues.createComment({
+              issue_number: prNumber || context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  publish-preview:
+    needs: [check-permissions, check-changes]
+    if: |
+      needs.check-changes.outputs.packages-changed == 'true' && 
+      needs.check-permissions.outputs.can-publish == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.publish.outputs.published }}
+      version: ${{ steps.version.outputs.version }}
+      packages: ${{ steps.publish.outputs.packages }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # For pull_request_target, we need to checkout the PR's code
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
+          always-auth: true
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Generate preview version
+        id: version
+        run: |
+          PR_NUMBER="${{ needs.check-permissions.outputs.pr-number }}"
+          if [ -z "$PR_NUMBER" ]; then
+            PR_NUMBER="manual"
+          fi
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          TIMESTAMP=$(date +%s)
+          PREVIEW_VERSION="0.0.0-pr-${PR_NUMBER}-${SHORT_SHA}-${TIMESTAMP}"
+          echo "version=${PREVIEW_VERSION}" >> $GITHUB_OUTPUT
+          echo "🏷️  Generated preview version: ${PREVIEW_VERSION}"
+
+      - name: Verify NPM token availability
+        run: |
+          if [ -z "${{ secrets.NPM_TOKEN }}" ]; then
+            echo "::error::NPM_TOKEN is not set or not available."
+            echo "::error::This should not happen for same-repo PRs or approved fork PRs."
+            exit 1
+          fi
+
+      - name: Setup NPM authentication
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          npm config set //registry.npmjs.org/:_authToken "${{ secrets.NPM_TOKEN }}"
+          npm config set registry "https://registry.npmjs.org"
+          npm whoami || { echo "::error::npm authentication failed. Check NPM_TOKEN permissions."; exit 1; }
+
+      - name: Update package versions
+        run: |
+          # Get the list of changed packages
+          CHANGED_PACKAGES="${{ needs.check-changes.outputs.changed-packages }}"
+          echo "📦 Updating versions for changed packages: $CHANGED_PACKAGES"
+
+          # Update packages in the expanded list (includes dependencies)
+          for package_dir in packages/*/; do
+            if [ ! -f "${package_dir}package.json" ]; then
+              continue
+            fi
+            
+            # Skip if it's a node_modules directory
+            if [[ "$package_dir" == *"/node_modules/"* ]]; then
+              continue
+            fi
+            
+            # Get package name
+            PACKAGE_NAME=$(node -e "
+              try {
+                const pkg = JSON.parse(require('fs').readFileSync('${package_dir}package.json', 'utf8'));
+                console.log(pkg.name || '');
+              } catch(e) {
+                console.log('');
+              }
+            ")
+            
+            # Check if this package is in the changed packages list
+            if echo "$CHANGED_PACKAGES" | grep -q "$PACKAGE_NAME"; then
+              package_file="${package_dir}package.json"
+              
+              # Create backup
+              cp "$package_file" "$package_file.bak"
+              
+              # Update version using Node.js
+              node -e "
+                const fs = require('fs');
+                const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
+                pkg.version = '${{ steps.version.outputs.version }}';
+                fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
+              "
+              
+              echo "✅ Updated version in $package_file to ${{ steps.version.outputs.version }}"
+            else
+              echo "⏭️  Skipping unchanged package: $PACKAGE_NAME"
+            fi
+          done
+
+      - name: Update internal package references
+        run: |
+          echo "🔄 Updating internal package references to preview versions..."
+
+          # Get the list of changed packages
+          CHANGED_PACKAGES="${{ needs.check-changes.outputs.changed-packages }}"
+          echo "📦 Updating references for changed packages: $CHANGED_PACKAGES"
+
+          # Update packages in the expanded list (includes dependencies)
+          for package_dir in packages/*/; do
+            if [ ! -f "${package_dir}package.json" ]; then
+              continue
+            fi
+            
+            # Get package name
+            PACKAGE_NAME=$(node -e "
+              try {
+                const pkg = JSON.parse(require('fs').readFileSync('${package_dir}package.json', 'utf8'));
+                console.log(pkg.name || '');
+              } catch(e) {
+                console.log('');
+              }
+            ")
+            
+            # Check if this package is in the changed packages list
+            if echo "$CHANGED_PACKAGES" | grep -q "$PACKAGE_NAME"; then
+              package_file="${package_dir}package.json"
+              
+              # Update dependencies that reference other packages in this monorepo
+              node -e "
+                const fs = require('fs');
+                const path = require('path');
+                const pkg = JSON.parse(fs.readFileSync('$package_file', 'utf8'));
+                const previewVersion = '${{ steps.version.outputs.version }}';
+                const changedPackages = '$CHANGED_PACKAGES'.split(' ').filter(p => p.trim());
+                let changed = false;
+                
+                console.log('Changed packages for reference update:', changedPackages);
+                
+                // Update dependencies
+                ['dependencies', 'devDependencies', 'peerDependencies'].forEach(depType => {
+                  if (pkg[depType]) {
+                    Object.keys(pkg[depType]).forEach(dep => {
+                      // Only update if this dependency starts with @gluestack-ui AND is in the changed packages list
+                      if (dep.startsWith('@gluestack-ui/') && changedPackages.includes(dep)) {
+                        console.log(\`Updating \${dep} from \${pkg[depType][dep]} to \${previewVersion} in \${depType}\`);
+                        pkg[depType][dep] = previewVersion;
+                        changed = true;
+                      } else if (dep.startsWith('@gluestack-ui/')) {
+                        console.log(\`Skipping \${dep} - not in changed packages list\`);
+                      }
+                    });
+                  }
+                });
+                
+                if (changed) {
+                  fs.writeFileSync('$package_file', JSON.stringify(pkg, null, 2) + '\n');
+                  console.log('✅ Updated dependencies in $package_file');
+                } else {
+                  console.log('ℹ️  No internal dependencies to update found in $package_file');
+                }
+              "
+            else
+              echo "⏭️  Skipping unchanged package: $PACKAGE_NAME"
+            fi
+          done
+
+      - name: Publish changed packages
+        id: publish
+        run: |
+          set -e          # Exit on any error
+          set -o pipefail # Exit on pipeline errors
+
+          # Get the list of changed packages
+          CHANGED_PACKAGES="${{ needs.check-changes.outputs.changed-packages }}"
+          echo "📦 Publishing only changed packages: $CHANGED_PACKAGES"
+          echo "🔍 Debug: Full changed packages list: [$CHANGED_PACKAGES]"
+
+          # Create a temporary file to track published packages
+          PUBLISHED_PACKAGES_FILE=$(mktemp)
+          SUCCESS=false
+
+          echo "🚀 STARTING SELECTIVE PACKAGE PUBLISHING"
+          echo "=========================================="
+
+          # Function to publish a single package
+          publish_package() {
+            local package_dir="$1"
+            local step_name="$2"
+            
+            echo ""
+            echo "[$step_name] Attempting to publish: $package_dir"
+            
+            if [ ! -f "${package_dir}/package.json" ]; then
+              echo "[$step_name] ❌ CRITICAL: No package.json found in $package_dir"
+              echo "::error::Missing package.json in $package_dir"
+              exit 1
+            fi
+            
+            # Get package info
+            local PACKAGE_JSON=$(cat "${package_dir}/package.json")
+            local PACKAGE_NAME=$(echo "$PACKAGE_JSON" | node -e "
+              try {
+                const pkg = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8'));
+                console.log(pkg.name || '');
+              } catch(e) { console.log(''); }
+            ")
+            local IS_PRIVATE=$(echo "$PACKAGE_JSON" | node -e "
+              try {
+                const pkg = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8'));
+                console.log(pkg.private === true ? 'true' : 'false');
+              } catch(e) { console.log('false'); }
+            ")
+            
+            if [ -z "$PACKAGE_NAME" ]; then
+              echo "[$step_name] ❌ CRITICAL: No package name found in $package_dir"
+              echo "::error::Invalid package.json - no name field in $package_dir"
+              exit 1
+            fi
+            
+            if [ "$IS_PRIVATE" = "true" ]; then
+              echo "[$step_name] ⏭️  Skipping: Private package ($PACKAGE_NAME)"
+              return 1
+            fi
+            
+            echo "[$step_name] 📦 Publishing: $PACKAGE_NAME"
+            
+            cd "$package_dir"
+            
+            # Clear npm cache to avoid workspace resolution issues
+            echo "[$step_name] 🗑️  Clearing npm cache..."
+            npm cache clean --force || echo "Cache clean failed, continuing..."
+            
+            # Remove existing node_modules and package-lock.json to ensure fresh install
+            echo "[$step_name] 🧹 Cleaning existing dependencies..."
+            rm -rf node_modules package-lock.json yarn.lock || echo "Cleanup had issues, continuing..."
+            
+            # Check if this package has internal dependencies that need to be available
+            echo "[$step_name] 🔍 Checking for internal dependencies..."
+            INTERNAL_DEPS=$(node -e "
+              try {
+                const pkg = JSON.parse(require('fs').readFileSync('package.json', 'utf8'));
+                const allDeps = {...(pkg.dependencies || {}), ...(pkg.devDependencies || {})};
+                const internalDeps = Object.keys(allDeps).filter(dep => dep.startsWith('@gluestack-ui/'));
+                console.log(internalDeps.join(' '));
+              } catch(e) { console.log(''); }
+            ")
+            
+            if [ -n "$INTERNAL_DEPS" ]; then
+              echo "[$step_name] 📦 Found internal dependencies: $INTERNAL_DEPS"
+              
+              # Check if any of these deps are using preview versions
+              for dep in $INTERNAL_DEPS; do
+                VERSION=$(node -e "
+                  try {
+                    const pkg = JSON.parse(require('fs').readFileSync('package.json', 'utf8'));
+                    const allDeps = {...(pkg.dependencies || {}), ...(pkg.devDependencies || {})};
+                    console.log(allDeps['$dep'] || '');
+                  } catch(e) { console.log(''); }
+                ")
+                
+                if [[ "$VERSION" == *"pr-"* ]]; then
+                  echo "[$step_name] ⏳ Preview dependency detected: $dep@$VERSION"
+                  echo "[$step_name] 📡 Checking if $dep@$VERSION is available on npm..."
+                  
+                  # Try to check if the package is available, with retries
+                  for i in {1..5}; do
+                    if npm view "$dep@$VERSION" version >/dev/null 2>&1; then
+                      echo "[$step_name] ✅ $dep@$VERSION confirmed available"
+                      break
+                    else
+                      echo "[$step_name] ⏳ $dep@$VERSION not yet available, waiting 5 seconds... (attempt $i/5)"
+                      sleep 5
+                    fi
+                  done
+                fi
+              done
+            else
+              echo "[$step_name] ℹ️  No internal dependencies found"
+            fi
+            
+            # Build the package
+            if npm run --list 2>/dev/null | grep -q "\bbuild\b"; then
+              echo "[$step_name] 🔨 Building $PACKAGE_NAME..."
+              echo "[$step_name] 📋 Available scripts:"
+              npm run --list 2>/dev/null | grep -E "^(  [a-z]+|  [a-z]+:)" || echo "[$step_name] No scripts found"
+              
+              # Capture build output for better error reporting
+              if npm run build 2>&1; then
+                echo "[$step_name] ✅ Build completed successfully for $PACKAGE_NAME"
+              else
+                echo "[$step_name] ❌ Build failed for $PACKAGE_NAME"
+                echo "[$step_name] 🔍 Build error details:"
+                echo "[$step_name] - Exit code: $?"
+                echo "[$step_name] - Current directory: $(pwd)"
+                echo "[$step_name] - Package.json exists: $([ -f "package.json" ] && echo "Yes" || echo "No")"
+                echo "[$step_name] - Node modules exist: $([ -d "node_modules" ] && echo "Yes" || echo "No")"
+                
+                # Check for common build issues
+                if [ ! -f "package.json" ]; then
+                  echo "[$step_name] ❌ CRITICAL: package.json not found in $(pwd)"
+                fi
+                
+                if [ ! -d "node_modules" ]; then
+                  echo "[$step_name] ❌ CRITICAL: node_modules not found in $(pwd)"
+                fi
+                
+                # Show package.json dependencies if available
+                if [ -f "package.json" ]; then
+                  echo "[$step_name] 📋 Package dependencies:"
+                  node -e "try { const pkg = JSON.parse(require('fs').readFileSync('package.json')); console.log('Dependencies:', Object.keys(pkg.dependencies || {}).length); console.log('DevDependencies:', Object.keys(pkg.devDependencies || {}).length); } catch(e) { console.log('Could not parse package.json'); }" 2>/dev/null || echo "[$step_name] Could not analyze package.json"
+                fi
+                
+                cd - > /dev/null
+                exit 1
+              fi
+            else
+              echo "[$step_name] ℹ️  No build script found for $PACKAGE_NAME, skipping build step"
+            fi
+            
+            # Publish with preview tag
+            echo "[$step_name] 🚀 Publishing to npm..."
+            if npm publish --tag preview --access public; then
+              echo "[$step_name] ✅ SUCCESS: Published $PACKAGE_NAME@${{ steps.version.outputs.version }}"
+              echo "$PACKAGE_NAME@${{ steps.version.outputs.version }}" >> "$PUBLISHED_PACKAGES_FILE"
+              
+              # Longer delay to ensure npm registry has the package
+              echo "[$step_name] ⏳ Waiting 5 seconds for npm propagation..."
+              sleep 5
+              
+              # Verify the package is available on npm registry
+              echo "[$step_name] 🔍 Verifying package availability on npm..."
+              for i in {1..6}; do
+                if npm view "$PACKAGE_NAME@${{ steps.version.outputs.version }}" version >/dev/null 2>&1; then
+                  echo "[$step_name] ✅ Package confirmed available on npm registry"
+                  break
+                else
+                  echo "[$step_name] ⏳ Package not yet available, waiting 5 more seconds... (attempt $i/6)"
+                  sleep 5
+                fi
+              done
+              
+              cd - > /dev/null
+              return 0
+            else
+              echo "[$step_name] ❌ CRITICAL: FAILED to publish $PACKAGE_NAME"
+              echo "::error::npm publish failed for $PACKAGE_NAME"
+              cd - > /dev/null
+              exit 1
+            fi
+          }
+
+          # Publish changed packages in dependency order
+          echo ""
+          echo "📦 PUBLISHING CHANGED PACKAGES"
+          echo "=============================="
+
+          # First, publish utils packages (if changed)
+          for dir in packages/*/; do
+            if [ -f "${dir}package.json" ]; then
+              pkg_name=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync('${dir}package.json')).name || '') } catch(e) { console.log('') }")
+              
+              # Check if this package is in the changed packages list and is a utils package
+              if echo "$CHANGED_PACKAGES" | grep -q "$pkg_name" && [[ "$pkg_name" == *"utils"* ]]; then
+                echo "Found changed utils package: $dir → $pkg_name"
+                if publish_package "$dir" "UTILS"; then
+                  SUCCESS=true
+                fi
+              fi
+            fi
+          done
+
+          # Second, publish core packages (if changed)
+          for dir in packages/*/; do
+            if [ -f "${dir}package.json" ]; then
+              pkg_name=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync('${dir}package.json')).name || '') } catch(e) { console.log('') }")
+              
+              # Check if this package is in the changed packages list and is a core package
+              if echo "$CHANGED_PACKAGES" | grep -q "$pkg_name" && [[ "$pkg_name" == *"core"* ]]; then
+                echo "Found changed core package: $dir → $pkg_name"
+                if publish_package "$dir" "CORE"; then
+                  SUCCESS=true
+                fi
+              fi
+            fi
+          done
+
+          # Finally, publish all other changed packages
+          for dir in packages/*/; do
+            if [ -f "${dir}package.json" ]; then
+              pkg_name=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync('${dir}package.json')).name || '') } catch(e) { console.log('') }")
+              
+              # Check if this package is in the changed packages list and is not utils or core
+              if echo "$CHANGED_PACKAGES" | grep -q "$pkg_name" && [[ "$pkg_name" != *"utils"* ]] && [[ "$pkg_name" != *"core"* ]]; then
+                echo "Found changed other package: $dir → $pkg_name"
+                if publish_package "$dir" "OTHER"; then
+                  SUCCESS=true
+                fi
+              fi
+            fi
+          done
+
+          echo ""
+          echo "📊 PUBLISHING SUMMARY"
+          echo "===================="
+          echo "Changed packages: $CHANGED_PACKAGES"
+
+          if [ "$SUCCESS" = true ]; then
+            # Read all published packages into a single variable
+            PUBLISHED_PACKAGES=$(cat "$PUBLISHED_PACKAGES_FILE" | tr '\n' ' ' | sed 's/ $//')
+            echo "published=true" >> $GITHUB_OUTPUT
+            echo "packages=$PUBLISHED_PACKAGES" >> $GITHUB_OUTPUT
+            echo "✅ FINAL RESULT: SUCCESS"
+            echo "📋 Published packages: $PUBLISHED_PACKAGES"
+          else
+            echo "published=false" >> $GITHUB_OUTPUT
+            echo "❌ FINAL RESULT: FAILED - No packages were published successfully"
+            echo "::error::No packages were published successfully"
+            exit 1
+          fi
+
+          # Cleanup
+          rm -f "$PUBLISHED_PACKAGES_FILE"
+
+      - name: Restore package.json files
+        if: always()
+        run: |
+          # Restore original package.json files
+          for package_dir in packages/*/; do
+            if [ ! -f "${package_dir}package.json.bak" ]; then
+              continue
+            fi
+            
+            backup_file="${package_dir}package.json.bak"
+            original_file="${package_dir}package.json"
+            
+            mv "$backup_file" "$original_file"
+            echo "✅ Restored $original_file"
+          done
+
+      - name: Comment on PR Success
+        if: steps.publish.outputs.published == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const packages = `${{ steps.publish.outputs.packages }}`.trim();
+            const changedPackages = `${{ needs.check-changes.outputs.changed-packages }}`.trim();
+            const prNumber = ${{ needs.check-permissions.outputs.pr-number }};
+            const isFork = ${{ needs.check-permissions.outputs.is-fork }};
+
+            if (!packages) {
+              console.log('No packages published, skipping comment');
+              return;
+            }
+
+            let forkNotice = '';
+            if (isFork === true) {
+              forkNotice = `\n> 🔀 **Fork PR**: This preview was published by a maintainer for testing purposes.`;
+            }
+
+            const comment = `## 🚀 Preview packages published!
+
+            **Version:** \`${{ steps.version.outputs.version }}\`
+            **Changed packages:** \`${changedPackages}\`
+
+            **Published packages:**
+            ${packages.split(' ').map(pkg => `- \`${pkg}\``).join('\n')}
+
+            > 💡 These are preview packages for testing only. Only packages that were actually changed have been published.${forkNotice}`;
+
+            github.rest.issues.createComment({
+              issue_number: prNumber || context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+      - name: Comment on PR Failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = ${{ needs.check-permissions.outputs.pr-number }};
+            const comment = `## ❌ Preview package publishing failed!
+
+            **Workflow:** \`${{ github.workflow }}\`
+            **Failed Step:** Build and publish packages
+            **Run URL:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            Please check the workflow logs for detailed error information.`;
+
+            github.rest.issues.createComment({
+              issue_number: prNumber || context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  trigger-vercel-preview-with-packages:
+    needs: [check-permissions, check-changes, publish-preview]
+    if: |
+      needs.check-changes.outputs.packages-changed == 'true' && 
+      needs.publish-preview.outputs.published == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      deployed_projects: ${{ steps.deploy.outputs.deployed_projects }}
+      deployment_urls: ${{ steps.deploy.outputs.deployment_urls }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # For pull_request_target, we need to checkout the PR's code
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Debug outputs
+        run: |
+          echo "🔍 Debugging job outputs:"
+          echo "Published: ${{ needs.publish-preview.outputs.published }}"
+          echo "Version: ${{ needs.publish-preview.outputs.version }}"
+          echo "Packages: ${{ needs.publish-preview.outputs.packages }}"
+          echo "Packages changed: ${{ needs.check-changes.outputs.packages-changed }}"
+          echo "Other files changed: ${{ needs.check-changes.outputs.other-files-changed }}"
+
+      - name: Generate version for deployment
+        id: version
+        run: |
+          # Use the published package version
+          PACKAGE_VERSION="${{ needs.publish-preview.outputs.version }}"
+          echo "📦 Using published package version: $PACKAGE_VERSION"
+          echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Discover and prepare preview packages
+        id: prepare-packages
+        run: |
+          PREVIEW_VERSION="${{ needs.publish-preview.outputs.version }}"
+          PUBLISHED_PACKAGES="${{ needs.publish-preview.outputs.packages }}"
+
+          echo "🔍 Discovering preview packages..."
+          echo "📦 Preview version: $PREVIEW_VERSION"
+          echo "📋 Published packages: $PUBLISHED_PACKAGES"
+
+          # Parse published packages and extract package names
+          PACKAGE_NAMES=""
+          if [ -n "$PUBLISHED_PACKAGES" ]; then
+            echo "$PUBLISHED_PACKAGES" | tr ' ' '\n' | while read -r pkg_with_version; do
+              if [ -n "$pkg_with_version" ]; then
+                # Extract package name (everything before @version)
+                pkg_name=$(echo "$pkg_with_version" | sed 's/@[^@]*$//')
+                if [ -n "$pkg_name" ]; then
+                  echo "📦 Found package: $pkg_name"
+                  echo "$pkg_name" >> /tmp/package_names.txt
+                fi
+              fi
+            done
+          fi
+
+          # Read package names from temp file
+          if [ -f /tmp/package_names.txt ]; then
+            PACKAGE_NAMES=$(cat /tmp/package_names.txt | tr '\n' ' ' | sed 's/ $//')
+            echo "📋 Package names: $PACKAGE_NAMES"
+          fi
+
+          # Save to GitHub outputs
+          echo "package_names=$PACKAGE_NAMES" >> $GITHUB_OUTPUT
+
+          # Cleanup
+          rm -f /tmp/package_names.txt
+
+      - name: Trigger Vercel Preview Deployments
+        id: deploy
+        run: |
+          # Parse project IDs from secrets
+          PROJECT_IDS='${{ secrets.VERCEL_PROJECT_IDS }}'
+          DEPLOYED_PROJECTS=""
+          DEPLOYMENT_URLS=""
+          PACKAGE_VERSION="${{ steps.version.outputs.version }}"
+          PACKAGE_NAMES="${{ steps.prepare-packages.outputs.package_names }}"
+
+          echo "📦 Using version: $PACKAGE_VERSION"
+          echo "📋 Package names: $PACKAGE_NAMES"
+
+          if [ -z "$PACKAGE_VERSION" ]; then
+            echo "❌ Version is empty, cannot proceed with deployment"
+            exit 1
+          fi
+
+          # Use standard build command since packages are already specified in package.json
+          BUILD_COMMAND="npm run build:preview"
+
+          echo "🔨 Build command: $BUILD_COMMAND"
+
+          # Use process substitution to avoid subshell issues
+          while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
+            echo "🚀 Deploying $PROJECT_NAME (ID: $PROJECT_ID)..."
+            
+            # Create deployment using Vercel API with standard build command
+            RESPONSE=$(curl -s -X POST "https://api.vercel.com/v13/deployments" \
+              -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"name\": \"$PROJECT_NAME\",
+                \"project\": \"$PROJECT_ID\",
+                \"gitSource\": {
+                  \"type\": \"github\",
+                  \"ref\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.ref || github.head_ref }}\",
+                  \"sha\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}\",
+                  \"repoId\": ${{ github.event.repository.id }}
+                },
+                \"buildCommand\": \"$BUILD_COMMAND\",
+                \"env\": {
+                  \"PREVIEW_PACKAGES_VERSION\": \"$PACKAGE_VERSION\"
+                },
+                \"meta\": {
+                  \"githubCommitSha\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}\",
+                  \"githubCommitAuthorName\": \"${{ github.actor }}\",
+                  \"githubCommitMessage\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.title || github.event.head_commit.message }}\",
+                  \"githubPR\": \"${{ needs.check-permissions.outputs.pr-number }}\",
+                  \"triggeredBy\": \"github-actions\",
+                  \"packageVersion\": \"$PACKAGE_VERSION\",
+                  \"previewPackages\": \"$PACKAGE_NAMES\",
+                  \"isForkPR\": \"${{ needs.check-permissions.outputs.is-fork }}\"
+                }
+              }")
+            
+            # Extract deployment URL and ID
+            DEPLOYMENT_URL=$(echo "$RESPONSE" | jq -r '.url // empty')
+            DEPLOYMENT_ID=$(echo "$RESPONSE" | jq -r '.id // empty')
+            ERROR_MESSAGE=$(echo "$RESPONSE" | jq -r '.error.message // empty')
+            
+            if [ -n "$DEPLOYMENT_URL" ] && [ -n "$DEPLOYMENT_ID" ]; then
+              echo "✅ Successfully triggered deployment for $PROJECT_NAME"
+              echo "📍 Preview URL: https://$DEPLOYMENT_URL"
+              DEPLOYED_PROJECTS="$DEPLOYED_PROJECTS $PROJECT_NAME"
+              DEPLOYMENT_URLS="$DEPLOYMENT_URLS\\n- **$PROJECT_NAME**: https://$DEPLOYMENT_URL"
+            else
+              echo "❌ Failed to deploy $PROJECT_NAME"
+              if [ -n "$ERROR_MESSAGE" ]; then
+                echo "Error: $ERROR_MESSAGE"
+              fi
+              echo "Response: $RESPONSE"
+            fi
+          done < <(echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"')
+
+          # Save results for next step
+          echo "deployed_projects=$DEPLOYED_PROJECTS" >> $GITHUB_OUTPUT
+          echo "deployment_urls<<EOF" >> $GITHUB_OUTPUT
+          echo "$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Update PR with Vercel deployment info
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`.trim();
+            const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
+            const packageVersion = `${{ steps.version.outputs.version }}`;
+            const publishedPackages = `${{ needs.publish-preview.outputs.packages }}`.trim();
+            const prNumber = ${{ needs.check-permissions.outputs.pr-number }};
+            const isFork = ${{ needs.check-permissions.outputs.is-fork }};
+
+            if (!deployedProjects) {
+              const errorComment = `## ⚠️ Vercel deployment failed
+              
+              No projects were deployed successfully. Please check the [workflow logs](${context.payload.repository.html_url}/actions/runs/${context.runId}) for details.
+              `;
+              
+              github.rest.issues.createComment({
+                issue_number: prNumber || context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: errorComment
+              });
+              return;
+            }
+
+            let forkNotice = '';
+            if (isFork === true) {
+              forkNotice = `\n> 🔀 **Fork PR**: These deployments were triggered by a maintainer for testing purposes.`;
+            }
+
+            const successComment = `## 🚀 Vercel preview deployments triggered successfully!
+
+            **Version:** \`${packageVersion}\`
+            **Triggered by:** Package changes and publishing
+
+            **Preview packages published:**
+            ${publishedPackages.split(' ').map(pkg => `- \`${pkg}\``).join('\n')}
+
+            **Projects deployed:**${deploymentUrls}
+
+            ⏱️ Deployments are building. Check your [Vercel dashboard](https://vercel.com/dashboard) for detailed status.
+
+            > 💡 These deployments will use the preview packages specified in your project's package.json files.${forkNotice}
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: prNumber || context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: successComment
+            });
+
+  trigger-vercel-preview-other-files:
+    needs: [check-permissions, check-changes]
+    if: |
+      needs.check-changes.outputs.other-files-changed == 'true' && 
+      needs.check-changes.outputs.packages-changed == 'false' && 
+      needs.check-permissions.outputs.can-publish == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      deployed_projects: ${{ steps.deploy.outputs.deployed_projects }}
+      deployment_urls: ${{ steps.deploy.outputs.deployment_urls }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # For pull_request_target, we need to checkout the PR's code
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Debug outputs
+        run: |
+          echo "🔍 Debugging job outputs:"
+          echo "Packages changed: ${{ needs.check-changes.outputs.packages-changed }}"
+          echo "Other files changed: ${{ needs.check-changes.outputs.other-files-changed }}"
+
+      - name: Generate version for deployment
+        id: version
+        run: |
+          # Generate a version for deployment tracking when no packages were published
+          PR_NUMBER="${{ needs.check-permissions.outputs.pr-number }}"
+          if [ -z "$PR_NUMBER" ]; then
+            PR_NUMBER="manual"
+          fi
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          TIMESTAMP=$(date +%s)
+          PACKAGE_VERSION="deploy-${PR_NUMBER}-${SHORT_SHA}-${TIMESTAMP}"
+          echo "🚀 Generated deployment version: $PACKAGE_VERSION"
+          echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check for existing preview packages
+        id: check-packages
+        run: |
+          echo "🔍 Checking for existing preview packages that might be relevant..."
+
+          # Look for any @gluestack-ui packages in package.json files
+          FOUND_PACKAGES=""
+
+          # Search in common locations for package.json files
+          for search_dir in "." "apps" "examples" "demos"; do
+            if [ -d "$search_dir" ]; then
+              find "$search_dir" -name "package.json" -not -path "*/node_modules/*" 2>/dev/null | while read -r pkg_file; do
+                if [ -f "$pkg_file" ]; then
+                  # Extract @gluestack-ui dependencies
+                  deps=$(node -e "
+                    try {
+                      const pkg = JSON.parse(require('fs').readFileSync('$pkg_file', 'utf8'));
+                      const allDeps = {...(pkg.dependencies || {}), ...(pkg.devDependencies || {}), ...(pkg.peerDependencies || {})};
+                      const gluestackDeps = Object.keys(allDeps).filter(dep => dep.startsWith('@gluestack-ui/'));
+                      console.log(gluestackDeps.join(' '));
+                    } catch(e) { console.log(''); }
+                  " 2>/dev/null)
+                  
+                  if [ -n "$deps" ]; then
+                    echo "📦 Found @gluestack-ui packages in $pkg_file: $deps"
+                    echo "$deps" >> /tmp/all_packages.txt
+                  fi
+                fi
+              done
+            fi
+          done
+
+          # Get unique package names
+          if [ -f /tmp/all_packages.txt ]; then
+            UNIQUE_PACKAGES=$(cat /tmp/all_packages.txt | tr ' ' '\n' | sort -u | tr '\n' ' ' | sed 's/ $//')
+            echo "📋 Unique packages found: $UNIQUE_PACKAGES"
+            echo "packages=$UNIQUE_PACKAGES" >> $GITHUB_OUTPUT
+            rm -f /tmp/all_packages.txt
+          else
+            echo "ℹ️  No @gluestack-ui packages found in project"
+            echo "packages=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger Vercel Preview Deployments
+        id: deploy
+        run: |
+          # Parse project IDs from secrets
+          PROJECT_IDS='${{ secrets.VERCEL_PROJECT_IDS }}'
+          DEPLOYED_PROJECTS=""
+          DEPLOYMENT_URLS=""
+          PACKAGE_VERSION="${{ steps.version.outputs.version }}"
+          EXISTING_PACKAGES="${{ steps.check-packages.outputs.packages }}"
+
+          echo "📦 Using version: $PACKAGE_VERSION"
+          echo "📋 Existing packages: $EXISTING_PACKAGES"
+
+          if [ -z "$PACKAGE_VERSION" ]; then
+            echo "❌ Version is empty, cannot proceed with deployment"
+            exit 1
+          fi
+
+          # Create build command - use standard build since no new packages were published
+          BUILD_COMMAND="npm run build"
+
+          # If we found existing packages, we could optionally try to update them to latest
+          if [ -n "$EXISTING_PACKAGES" ]; then
+            echo "ℹ️  Found existing @gluestack-ui packages, using standard build"
+            echo "📋 Existing packages will use their current versions"
+          fi
+
+          echo "🔨 Build command: $BUILD_COMMAND"
+
+          # Use process substitution to avoid subshell issues
+          while IFS=':' read -r PROJECT_NAME PROJECT_ID; do
+            echo "🚀 Deploying $PROJECT_NAME (ID: $PROJECT_ID)..."
+            
+            # Create deployment using Vercel API with Git source for code changes
+            RESPONSE=$(curl -s -X POST "https://api.vercel.com/v13/deployments" \
+              -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"name\": \"$PROJECT_NAME\",
+                \"project\": \"$PROJECT_ID\",
+                \"gitSource\": {
+                  \"type\": \"github\",
+                  \"ref\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.ref || github.head_ref }}\",
+                  \"sha\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}\",
+                  \"repoId\": ${{ github.event.repository.id }}
+                },
+                \"buildCommand\": \"$BUILD_COMMAND\",
+                \"env\": {
+                  \"DEPLOYMENT_TYPE\": \"other-files-only\"
+                },
+                \"meta\": {
+                  \"githubCommitSha\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}\",
+                  \"githubCommitAuthorName\": \"${{ github.actor }}\",
+                  \"githubCommitMessage\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.title || github.event.head_commit.message }}\",
+                  \"githubPR\": \"${{ needs.check-permissions.outputs.pr-number }}\",
+                  \"triggeredBy\": \"github-actions\",
+                  \"packageVersion\": \"$PACKAGE_VERSION\",
+                  \"deploymentType\": \"other-files-only\",
+                  \"isForkPR\": \"${{ needs.check-permissions.outputs.is-fork }}\"
+                }
+              }")
+            
+            # Extract deployment URL and ID
+            DEPLOYMENT_URL=$(echo "$RESPONSE" | jq -r '.url // empty')
+            DEPLOYMENT_ID=$(echo "$RESPONSE" | jq -r '.id // empty')
+            ERROR_MESSAGE=$(echo "$RESPONSE" | jq -r '.error.message // empty')
+            
+            if [ -n "$DEPLOYMENT_URL" ] && [ -n "$DEPLOYMENT_ID" ]; then
+              echo "✅ Successfully triggered deployment for $PROJECT_NAME"
+              echo "📍 Preview URL: https://$DEPLOYMENT_URL"
+              DEPLOYED_PROJECTS="$DEPLOYED_PROJECTS $PROJECT_NAME"
+              DEPLOYMENT_URLS="$DEPLOYMENT_URLS\\n- **$PROJECT_NAME**: https://$DEPLOYMENT_URL"
+            else
+              echo "❌ Failed to deploy $PROJECT_NAME"
+              if [ -n "$ERROR_MESSAGE" ]; then
+                echo "Error: $ERROR_MESSAGE"
+              fi
+              echo "Response: $RESPONSE"
+            fi
+          done < <(echo "$PROJECT_IDS" | jq -r 'to_entries[] | "\(.key):\(.value)"')
+
+          # Save results for next step
+          echo "deployed_projects=$DEPLOYED_PROJECTS" >> $GITHUB_OUTPUT
+          echo "deployment_urls<<EOF" >> $GITHUB_OUTPUT
+          echo "$DEPLOYMENT_URLS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Update PR with Vercel deployment info
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const deploymentUrls = `${{ steps.deploy.outputs.deployment_urls }}`.trim();
+            const deployedProjects = `${{ steps.deploy.outputs.deployed_projects }}`.trim();
+            const packageVersion = `${{ steps.version.outputs.version }}`;
+            const existingPackages = `${{ steps.check-packages.outputs.packages }}`.trim();
+            const prNumber = ${{ needs.check-permissions.outputs.pr-number }};
+            const isFork = ${{ needs.check-permissions.outputs.is-fork }};
+
+            if (!deployedProjects) {
+              const errorComment = `## ⚠️ Vercel deployment failed
+              
+              No projects were deployed successfully. Please check the [workflow logs](${context.payload.repository.html_url}/actions/runs/${context.runId}) for details.
+              `;
+              
+              github.rest.issues.createComment({
+                issue_number: prNumber || context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: errorComment
+              });
+              return;
+            }
+
+            let packageInfo = '';
+            if (existingPackages) {
+              packageInfo = `\n**Existing packages detected:**\n${existingPackages.split(' ').map(pkg => `- \`${pkg}\` (using current version)`).join('\n')}\n`;
+            }
+
+            let forkNotice = '';
+            if (isFork === true) {
+              forkNotice = `\n> 🔀 **Fork PR**: These deployments were triggered by a maintainer for testing purposes.`;
+            }
+
+            const successComment = `## 🚀 Vercel preview deployments triggered successfully!
+
+            **Version:** \`${packageVersion}\`
+            **Triggered by:** Other file changes (no packages published)${packageInfo}
+
+            **Projects triggered for preview:**${deploymentUrls}
+
+            ⏱️ Deployments are building. Check your [Vercel dashboard](https://vercel.com/dashboard) for detailed status.
+
+            > 💡 These are preview deployments for testing code changes only.${forkNotice}
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: prNumber || context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: successComment
+            });

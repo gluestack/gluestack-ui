@@ -1,0 +1,16 @@
+{
+  "title": "Custom Placement",
+  "description": "A Fab component with custom placement allows for flexible positioning of the button according to specific design requirements or user interface preferences, providing tailored and intuitive access to key actions or functionalities.",
+  "argTypes": {},
+  "reactLive": {
+    "Fab": "@/components/ui/fab",
+    "FabIcon": "@/components/ui/fab",
+    "Box": "@/components/ui/box",
+    "VStack": "@/components/ui/vstack",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "Image": "@/components/ui/image",
+    "Link": "@/components/ui/link",
+    "ShoppingCartIcon": "lucide-react-native"
+  }
+}

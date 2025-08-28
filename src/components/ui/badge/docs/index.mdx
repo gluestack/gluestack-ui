@@ -1,0 +1,145 @@
+---
+title: gluestack-ui Badge Component | Installation, Usage, and API
+
+description: Enhance your app with gluestack-ui's Badge component. A versatile React Native badge with multiple variants for clear status indicators in your badges component.
+
+pageTitle: Badge
+
+pageDescription: Enhance your app with gluestack-ui's Badge component. A versatile React Native badge with multiple variants for clear status indicators in your badges component.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Badge
+
+Display status indicators with the Badge component. Perfect for notifications, labels, and status tags in your React Native app.
+
+This is an illustration of **Badge** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add badge`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/badge/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Badge } from '@/components/ui/badge';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/l1rzVbp.png"
+  webUrl="https://i.imgur.com/H735cuy.png"
+  classNameStyle="aspect-[513/341] md:aspect-[736/225]"
+/>
+
+```ts
+export default () => (
+  <Badge>
+    <BadgeText />
+    <BadgeIcon />
+  </Badge>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Badge
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### BadgeText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### BadgeIcon
+
+Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](/style/docs/api/as-forwarder) component.
+
+### Props
+
+Badge component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props).
+
+#### Badge
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>action</InlineCode>
+      </TableCell>
+      <TableCell>error | warning | success | info | muted</TableCell>
+      <TableCell>success</TableCell>
+      <TableCell>Determines the color scheme of the badge.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>variant</InlineCode>
+      </TableCell>
+      <TableCell>solid | outline</TableCell>
+      <TableCell>solid</TableCell>
+      <TableCell>Determines the visual style of the badge.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
+      <TableCell>sm | md | lg</TableCell>
+      <TableCell>md</TableCell>
+      <TableCell>Determines the size of the badge.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:with-avatar} ///
+
+/// {Example:composition} ///

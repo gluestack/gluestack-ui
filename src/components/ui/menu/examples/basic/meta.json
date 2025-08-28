@@ -1,0 +1,37 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "placement": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "top",
+        "bottom",
+        "left",
+        "right",
+        "top start",
+        "top end",
+        "bottom start",
+        "bottom end",
+        "left start",
+        "left end",
+        "right start",
+        "right end"
+      ],
+      "defaultValue": "top"
+    }
+  },
+  "reactLive": {
+    "Menu": "@/components/ui/menu",
+    "MenuItem": "@/components/ui/menu",
+    "MenuItemLabel": "@/components/ui/menu",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Icon": "@/components/ui/icon",
+    "AddIcon": "@/components/ui/icon",
+    "GlobeIcon": "@/components/ui/icon",
+    "PlayIcon": "@/components/ui/icon",
+    "SettingsIcon": "@/components/ui/icon"
+  }
+}

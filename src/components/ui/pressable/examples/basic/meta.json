@@ -1,0 +1,8 @@
+{
+  "title": "Basic",
+  "argTypes": {},
+  "reactLive": {
+    "Pressable": "@/components/ui/pressable",
+    "Text": "@/components/ui/text"
+  }
+}

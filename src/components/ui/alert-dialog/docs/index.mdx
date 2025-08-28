@@ -1,0 +1,285 @@
+---
+title: gluestack-ui AlertDialog Component | React Native Dialog Installation
+
+description: Build seamless React Native dialogs with the AlertDialog component. Enhance user engagement with smooth and responsive modal prompts.
+
+pageTitle: AlertDialog
+
+pageDescription: Build seamless React Native dialogs with the AlertDialog component. Enhance user engagement with smooth and responsive modal prompts.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# AlertDialog
+
+Build seamless React Native dialogs with the AlertDialog component. Enhance user engagement with smooth and responsive modal prompts.
+
+This is an illustration of **AlertDialog** component.
+
+/// {Example:basic} ///
+
+<br />
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+  <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add alert-dialog`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @legendapp/motion
+```
+
+
+### Step 2: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/alert-dialog/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
+} from '@/components/ui/alert-dialog';
+```
+
+```ts
+export default () => (
+  export default () => (
+  <AlertDialog>
+    <AlertDialogBackdrop />
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogCloseButton />
+      </AlertDialogHeader>
+      <AlertDialogBody />
+      <AlertDialogFooter />
+    </AlertDialogContent>
+  </AlertDialog>
+);
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### AlertDialog
+
+Contains all alert dialog related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isOpen</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          If true, the alert-dialog will open. Useful for controllable state
+          behavior.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onClose</InlineCode>
+        </TableCell>
+        <TableCell>() => any</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Callback invoked when the alert-dialog is closed.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>useRNModal</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          If true, renders react-native native modal. (Only works in
+          react-native)
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>defaultIsOpen</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          Specifies the default open state of the AlertDialog
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>initialFocusRef</InlineCode>
+        </TableCell>
+        <TableCell>{`React.RefObject<any>`}</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          The ref of element to receive focus when the alert-dialog opens.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>finalFocusRef</InlineCode>
+        </TableCell>
+        <TableCell>{`React.RefObject<any>`}</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          The ref of element to receive focus when the alert-dialog closes.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>avoidKeyboard</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>If true, the AlertDialog will avoid the keyboard.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>closeOnOverlayClick</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>true</TableCell>
+        <TableCell>
+          If true, the AlertDialog will close when the overlay is clicked.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isKeyboardDismissable</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>true</TableCell>
+        <TableCell>If true, the keyboard can dismiss the AlertDialog</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### AlertDialogBackdrop
+
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+
+#### AlertDialogContent
+
+It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
+
+#### AlertDialogCloseButton
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+#### AlertDialogHeader
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AlertDialogBody
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AlertDialogFooter
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component
+
+### Features
+
+- Keyboard support for actions.
+
+### Accessibility
+
+We have outlined the various features that ensure the AlertDialog component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/) which follows the [WAI-ARIA Alert and Message Dialogs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/).
+
+#### Keyboard
+
+- `Tab`:
+  - Moves focus to the next tabbable element inside the dialog.
+  - If focus is on the last tabbable element inside the dialog, moves focus to the first tabbable element inside the dialog.
+- `Shift + Tab`:
+  - Moves focus to the previous tabbable element inside the dialog.
+  - If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.
+- `Escape`: Closes the dialog.
+
+#### Screen Reader
+
+- VoiceOver: When the button is focused, the screen reader will announce the button's label and provide instructions on how to click it. When the alert dialog is triggered, the screen reader will read its content.
+
+#### States
+
+- When the alert dialog is triggered, `aria-modal="true"` is added to the alert dialog content. This attribute informs assistive technologies that the windows underneath the current alert dialog are not available for interaction(inert).
+
+### Props
+
+AlertDialog component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), and the props mentioned below.
+
+#### AlertDialog
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Value</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>xs | sm | md | lg | full</TableCell>
+        <TableCell>md</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:with-image} ///
+
+/// {Example:with-icons-cta} ///
+
+/// {Example:with-delete} ///

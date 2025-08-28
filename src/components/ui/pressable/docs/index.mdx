@@ -1,0 +1,119 @@
+---
+title: gluestack-ui Pressable Component | Pressable React Native Installation
+
+description: Simplify interactive UI with the Pressable component in React Native. Manage hover, pressed, and focus events efficiently. Install now and improve your mobile app responsiveness!
+
+pageTitle: Pressable
+
+pageDescription: Simplify interactive UI with the Pressable component in React Native. Manage hover, pressed, and focus events efficiently. Install now and improve your mobile app responsiveness!
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Pressable
+
+Simplify interactive UI with the Pressable component in React Native. Manage hover, pressed, and focus events efficiently. Install now and improve your mobile app responsiveness!
+
+This is an illustration of **Pressable** component.
+/// {Example:basic} ///
+
+<br />
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add pressable`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/pressable/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Pressable } from '@/components/ui/pressable';
+```
+
+```ts
+export default () => <Pressable />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Pressable
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+### Data Attributes Table
+
+Component receives states as props as boolean values, which are applied as `data-*` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>State</TableHeaderCell>
+        <TableHeaderCell>Data Attribute</TableHeaderCell>
+        <TableHeaderCell>Values</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>disabled</InlineCode>
+        </TableCell>
+        <TableCell>data-disabled</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>focusVisible</InlineCode>
+        </TableCell>
+        <TableCell>data-focus-visible</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:with-states} ///

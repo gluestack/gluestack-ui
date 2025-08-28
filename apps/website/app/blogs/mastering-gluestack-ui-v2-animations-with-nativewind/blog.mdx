@@ -1,0 +1,197 @@
+import { Box } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Image } from '@/components/ui/image';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { TOC } from '@/components/page-components/blogs-page/TOC';
+
+<Text className="text-sm pt-2">November 22, 2024</Text>
+
+# Mastering gluestack-ui v2 Animations with NativeWind: A Step-by-Step Guide
+
+<HStack className="gap-3 items-center">
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source={{ uri: 'https://avatars.githubusercontent.com/u/62778911?v=4' }}
+      alt="sravan"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-typography-900">
+      Sravan Kumar Velangi
+    </Text>
+    <Text className="text-sm">Building gluestack-ui</Text>
+  </Box>
+</HStack>
+
+<br />
+
+Animations play a crucial role in enhancing the user experience, and with gluestack-ui you have several flexible options to bring your UI to life. We’ll walk through the basic structure of animations, look into the four available methods for animating with gluestack-ui, and guide you step-by-step to create dynamic and smooth animations using one of the four available options for animating with gluestack ui ie.., **gluestack-ui v2 animation with NativeWind/ TailwindCSS only**.
+
+## Animation Structure
+
+Every animation we make behind the scenes performs the entire animation process in three consecutive key states.
+
+The animation process is divided into three key states:
+
+- **Initial State**: The starting point of the element before animation.
+- **Transition State**: The actual animation, where the element changes.
+- **Final State**: The ending state, where the animation completes.
+
+Let’s consider an example of how we see all three states as a process ;
+
+```jsx
+<Animated.View
+  initial={{ scale: 0.5 }}
+  animate={{ scale: 1 }}
+  transition={{ type: 'timing', duration: 500 }}
+/>
+```
+
+This example shows how an element's size increases from 50% to 100% over 500 milliseconds.
+
+Using gluestack-ui we have multiple animating options based on the use case and the level of complexity, customization, and control. We need different animating aspects while making our animation. We pick the right animation option for us.
+
+## Animation options in gluestack ui v2:
+
+1. **Legend Motion** (Default with gluestack-ui)
+2. **Moti** (Can be added to the gluestack-ui animation plugin)
+3. **React Native Reanimated** (Can be integrated for smoother animations)
+4. **TailwindCSS/NativeWind** (Use basic animations without extra plugins)
+
+Let’s say,
+
+- You want to make a very basic animation and you don’t want to write separate animation code syntax and maintain it (ie., You want your codebase to be similar for animation as well using the classNames syntax like gluestack-ui v2). Then you should go with the 4th option (animating with NativeWind).
+- You need to add moderately basic animation for my website and you don’t want to install any new package that will decrease your website performance then you would animate using the default gluestack-ui plugin only. (ie., choosing options 1 & 2). But the animation syntax will vary with your whole codebase (ie., syntax that supports Moti or Legend Motion).
+- You need to make an animation that is much complex and you need to have control over every aspect of the animation & more functional tweaking, then you should go with the 3rd option (ie., using react native reanimated)
+
+Let’s get our hands dirty by building this animation,
+
+<br />
+
+<div className="max-w-3xl mx-auto rounded-lg overflow-hidden shadow-xl bg-gray-900">
+  <video className="w-full aspect-video focus:outline-none" controls>
+    <source
+      src="https://gluestack.github.io/public-blog-video-assets/AnimationBlog.mp4"
+      type="video/mp4"
+    />
+  </video>
+</div>
+
+<br />
+
+For making this guide more clear, We can divide entire animation into three segments. We write animation code for each segment separately and run all these segments at a time to make the animation look more natural and desired.
+
+## Animation steps in gluestack ui v2:
+
+**Step 1: Left Bar Animation**
+
+**Step 2: Icon Rotation**
+
+**Step 3: Right Icon & Bottom Animation**
+
+## Animation Setup
+
+We'll use the `isAnimated` state to toggle animations. Define the properties you want to animate in the `tailwind.config.ts` file:
+
+```ts
+transitionProperty: {
+  width: "width",
+  height: "height",
+  radius: "borderRadius",
+},
+```
+
+We can add a custom animation property here, that will add this fade effect as the opacity of the item goes fro `0%` to `100%` in only 1 second with a ease in behaviour.
+
+For custom animations, add keyframes (In tailwind):
+
+```ts
+keyframes: {
+    appear: {
+      '0%': { opacity:'0%' },
+      '100%': { opacity: '100%' },
+    }
+},
+animation: {
+    appear: 'appear 1s ease-in-out',
+}
+```
+
+### Step 1: Animating Width (**Left Bar Animation)**
+
+Change the width dynamically based on `isAnimated`:
+
+```jsx
+<Box
+  className={
+    'flex flex-row' + isAnimated
+      ? 'w-[200px]'
+      : 'w-[450px]' + 'transition-width duration-300 ease-in-out'
+  }
+>
+  {isAnimated ? <Text>Create</Text> : <Text>Guilds</Text>}
+</Box>
+```
+
+By toggling the width property, you control the animation.
+
+### Step 2: Animating Rotation (**Icon Rotation)**
+
+Handle the rotation of an icon with a simple press:
+
+```jsx
+<Pressable onPress={() => setIsAnimated(!isAnimated)}>
+  <Box className={isAnimated ? 'rotate-45' : 'rotate-0'}>
+    <Icon as={PlusIcon} />
+  </Box>
+</Pressable>
+```
+
+### Step 3: Animating Opacity and Width (**Right Icon & Bottom Animation)**
+
+Control both width and opacity during the animation:
+
+```jsx
+<Box
+  className={
+    isAnimated
+      ? 'w-[180px] opacity-100'
+      : 'w-[0px] opacity-0' + 'transition-opacity duration-300'
+  }
+>
+  <Text>Guilds</Text>
+</Box>
+```
+
+This gives a smooth fade and size change effect when triggered.
+
+With these steps, you can create smooth, dynamic animations using gluestack-ui v2.
+
+We will have more guides for you in the future to help you create beautiful applications using the component library that gluestack-ui v2 has to offer.
+
+Do tell us about your experiments on our [Discord channel](https://discord.com/invite/V5SU7HZSAQ) .
+
+Happy Building!
+
+<TOC
+  items={[
+    {
+      id: 'animation-structure',
+      title: 'Animation Structure',
+    },
+    {
+      id: 'animation-options-in-gluestack-ui-v2',
+      title: 'Animation Options in gluestack ui v2',
+    },
+    {
+      id: 'animation-steps-in-gluestack-ui-v2',
+      title: 'Animation Steps in gluestack ui v2',
+    },
+    {
+      id: 'animation-setup',
+      title: 'Animation Setup',
+    },
+  ]}
+/>

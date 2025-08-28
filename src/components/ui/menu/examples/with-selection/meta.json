@@ -1,0 +1,16 @@
+{
+  "title": "Menu with Selection",
+  "argTypes": {},
+  "reactLive": {
+    "Menu": "@/components/ui/menu",
+    "MenuItem": "@/components/ui/menu",
+    "MenuItemLabel": "@/components/ui/menu",
+    "MenuSeparator": "@/components/ui/menu",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Icon": "@/components/ui/icon",
+    "SettingsIcon": "@/components/ui/icon",
+    "HelpCircleIcon": "@/components/ui/icon",
+    "MessageCircleIcon": "@/components/ui/icon"
+  }
+}
