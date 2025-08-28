@@ -1,0 +1,31 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "isDisabled": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
+    },
+    "isInvalid": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
+    },
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg"],
+      "defaultValue": "md"
+    }
+  },
+  "reactLive": {
+    "Checkbox": "@/components/ui/checkbox",
+    "CheckboxIndicator": "@/components/ui/checkbox",
+    "CheckboxLabel": "@/components/ui/checkbox",
+    "CheckIcon": "@/components/ui/icon",
+    "CheckboxIcon": "@/components/ui/checkbox"
+  }
+}

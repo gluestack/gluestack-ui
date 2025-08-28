@@ -1,0 +1,229 @@
+name: Cleanup Preview Packages
+
+on:
+  pull_request:
+    branches: [feat/v3]
+    types: [closed]
+
+jobs:
+  check-automation:
+    runs-on: ubuntu-latest
+    outputs:
+      should-skip: ${{ steps.check-automation.outputs.should-skip }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if triggered by automation
+        id: check-automation
+        run: |
+          # Skip if actor is github-actions or dependabot
+          if [[ "${{ github.actor }}" == "github-actions[bot]" ]] || [[ "${{ github.actor }}" == "dependabot[bot]" ]] || [[ "${{ github.actor }}" == "github-actions" ]]; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: triggered by automated actor (${{ github.actor }})"
+            exit 0
+          fi
+
+          # Get the latest commit message and author
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          COMMIT_AUTHOR=$(git log -1 --pretty=%an)
+
+          echo "Commit message: $COMMIT_MESSAGE"
+          echo "Commit author: $COMMIT_AUTHOR"
+
+          # Skip if commit message contains [skip ci] or [ci skip]
+          if echo "$COMMIT_MESSAGE" | grep -q "\[skip ci\]"; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: [skip ci] found in commit message"
+            exit 0
+          fi
+
+          if echo "$COMMIT_MESSAGE" | grep -q "\[ci skip\]"; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: [ci skip] found in commit message"
+            exit 0
+          fi
+
+          # Skip if commit author is automated
+          if [[ "$COMMIT_AUTHOR" == *"github-actions"* ]] || [[ "$COMMIT_AUTHOR" == *"GitHub Action"* ]] || [[ "$COMMIT_AUTHOR" == *"dependabot"* ]]; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: commit by automated author ($COMMIT_AUTHOR)"
+            exit 0
+          fi
+
+          echo "should-skip=false" >> $GITHUB_OUTPUT
+          echo "✅ Workflow will proceed"
+
+  cleanup-preview-packages:
+    needs: check-automation
+    if: needs.check-automation.outputs.should-skip != 'true'
+    runs-on: ubuntu-latest
+    # Run cleanup for all closed PRs (both merged and unmerged)
+    # This ensures preview packages are cleaned up regardless of merge status
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup NPM authentication
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Cleanup preview packages
+        run: |
+          set -e          # Exit on any error
+          set -o pipefail # Exit on pipeline errors
+
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          CLEANUP_COUNT=0
+
+          echo "🧹 Starting cleanup for PR #${PR_NUMBER}"
+          echo "============================================="
+
+          # Find all packages in the packages directory
+          find packages -name "package.json" -type f | while read file; do
+            echo ""
+            echo "📦 Processing: $file"
+            
+            # Extract package name safely
+            PACKAGE_NAME=$(node -e "
+              try {
+                const pkg = JSON.parse(require('fs').readFileSync('$file', 'utf8'));
+                console.log(pkg.name || '');
+              } catch(e) {
+                console.log('');
+              }
+            ")
+            
+            # Skip if package name is empty, null, or private
+            if [ -z "$PACKAGE_NAME" ] || [ "$PACKAGE_NAME" = "null" ]; then
+              echo "ℹ️  Skipping: No package name found in $file"
+              continue
+            fi
+            
+            # Check if package is private
+            IS_PRIVATE=$(node -e "
+              try {
+                const pkg = JSON.parse(require('fs').readFileSync('$file', 'utf8'));
+                console.log(pkg.private === true ? 'true' : 'false');
+              } catch(e) {
+                console.log('false');
+              }
+            ")
+            
+            if [ "$IS_PRIVATE" = "true" ]; then
+              echo "ℹ️  Skipping: Private package ($PACKAGE_NAME)"
+              continue
+            fi
+            
+            echo "🧹 Cleaning up preview versions for: $PACKAGE_NAME"
+            
+            # Check if package exists on npm registry
+            echo "🔍 Checking if $PACKAGE_NAME exists on npm registry..."
+            if ! npm view "$PACKAGE_NAME" version >/dev/null 2>&1; then
+              echo "ℹ️  Package $PACKAGE_NAME not found on npm registry"
+              continue
+            fi
+            
+            echo "✅ Package $PACKAGE_NAME found on npm registry"
+            
+            # Get current published version for reference
+            CURRENT_VERSION=$(npm view "$PACKAGE_NAME" version 2>/dev/null)
+            echo "📌 Current published version: $CURRENT_VERSION"
+            
+            # Get all versions with our PR pattern (including the short SHA)
+            # Pattern: pr-{PR_NUMBER}-{SHORT_SHA}
+            echo "🔍 Searching for versions matching pattern: pr-${PR_NUMBER}-*"
+            
+            # First, get all versions
+            echo "📋 Fetching all versions for $PACKAGE_NAME..."
+            ALL_VERSIONS=$(npm view "$PACKAGE_NAME" versions --json 2>/dev/null)
+            
+            if [ $? -ne 0 ] || [ -z "$ALL_VERSIONS" ] || [ "$ALL_VERSIONS" = "null" ]; then
+              echo "ℹ️  No versions found for $PACKAGE_NAME"
+              continue
+            fi
+            
+            # Show total version count for debugging
+            VERSION_COUNT=$(echo "$ALL_VERSIONS" | jq '. | length' 2>/dev/null || echo "0")
+            echo "📊 Total versions available: $VERSION_COUNT"
+            
+            # Show recent versions for debugging (last 5)
+            echo "🔍 Recent versions (for debugging):"
+            echo "$ALL_VERSIONS" | jq -r '.[-5:] | .[]' 2>/dev/null | while read version; do
+              [ -n "$version" ] && echo "  - $version"
+            done
+            
+            # Filter versions using simplified pattern that catches all PR versions
+            echo "🔍 Filtering versions for pattern: pr-${PR_NUMBER}-"
+            
+            # Primary method: Use jq with proper variable substitution
+            PREVIEW_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r --arg pr_num "$PR_NUMBER" '.[] | select(test("pr-" + $pr_num + "-"))' 2>/dev/null || echo "")
+            
+            # Fallback method: Use grep if jq fails or returns empty
+            if [ -z "$PREVIEW_VERSIONS" ]; then
+              echo "🔄 Trying fallback method with grep..."
+              PREVIEW_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r '.[]' 2>/dev/null | grep "pr-${PR_NUMBER}-" || echo "")
+            fi
+            
+            # Debug: Show what was found
+            if [ -n "$PREVIEW_VERSIONS" ]; then
+              PREVIEW_COUNT=$(echo "$PREVIEW_VERSIONS" | wc -l)
+              echo "✅ Found $PREVIEW_COUNT preview version(s) matching pattern"
+            else
+              echo "❌ No preview versions found matching pattern pr-${PR_NUMBER}-"
+              # Additional debugging: show if any PR versions exist at all
+              ANY_PR_VERSIONS=$(echo "$ALL_VERSIONS" | jq -r '.[] | select(test("pr-[0-9]+-"))' 2>/dev/null || echo "")
+              if [ -n "$ANY_PR_VERSIONS" ]; then
+                echo "🔍 Found other PR versions (for debugging):"
+                echo "$ANY_PR_VERSIONS" | head -3 | while read version; do
+                  [ -n "$version" ] && echo "  - $version"
+                done
+              fi
+            fi
+            
+            if [ -n "$PREVIEW_VERSIONS" ]; then
+              echo "📦 Found preview versions for $PACKAGE_NAME:"
+              echo "$PREVIEW_VERSIONS" | while read version; do
+                if [ -n "$version" ] && [ "$version" != "null" ]; then
+                  echo "  - $version"
+                  echo "🗑️  Deprecating $PACKAGE_NAME@$version..."
+                  
+                  if npm deprecate "$PACKAGE_NAME@$version" "Preview package for closed PR #${PR_NUMBER}"; then
+                    echo "✅ Successfully deprecated $PACKAGE_NAME@$version"
+                    CLEANUP_COUNT=$((CLEANUP_COUNT + 1))
+                  else
+                    echo "⚠️  Failed to deprecate $PACKAGE_NAME@$version"
+                  fi
+                fi
+              done
+            else
+              echo "ℹ️  No preview versions found for $PACKAGE_NAME"
+            fi
+          done
+
+          echo ""
+          echo "🏁 Cleanup completed!"
+          echo "====================="
+          echo "Processed packages in: packages/"
+
+      - name: Comment cleanup status
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = `🧹 **Preview package cleanup completed!**
+
+            All preview packages for PR #${{ github.event.pull_request.number }} have been deprecated.
+
+            These packages are no longer recommended for use and will be cleaned up automatically by npm.`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

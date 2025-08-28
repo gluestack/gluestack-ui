@@ -1,0 +1,9 @@
+{
+  "title": "VStack Reversed",
+  "description": "A VStack component with the reversed prop reverses the order of vertically stacked elements, enabling customized vertical layouts and visual arrangements of content within a user interface.",
+  "argTypes": {},
+  "reactLive": {
+    "Box": "@/components/ui/box",
+    "VStack": "@/components/ui/vstack"
+  }
+}

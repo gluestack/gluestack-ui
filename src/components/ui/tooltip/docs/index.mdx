@@ -1,0 +1,282 @@
+---
+title: gluestack-ui Tooltip Component | React Native Tooltip Installation
+
+description: Create an intuitive UI using the gluestack-ui Tooltip component in React & React Native. Add hints & tooltips seamlessly.
+
+pageTitle: Tooltip
+
+pageDescription: Create an intuitive UI using the gluestack-ui Tooltip component in React & React Native. Add hints & tooltips seamlessly.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Tooltip
+
+Create an intuitive UI using the gluestack-ui Tooltip component in React & React Native. Add hints & tooltips seamlessly.
+
+This is an illustration of **Tooltip** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+
+### Run the following command:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add tooltip`} language="bash" />
+
+
+</TabItem>
+<TabItem label="Manual">
+
+
+
+> Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @legendapp/motion
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/tooltip/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Tooltip } from '@/components/ui/tooltip';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/ORGCmyK.png"
+  webUrl="https://i.imgur.com/O8BeXgi.png"
+  classNameStyle="aspect-[513/242] md:aspect-[736/170]"
+/>
+
+```ts
+export default () => (
+  <Tooltip>
+    <TooltipContent>
+      <TooltipText />
+    </TooltipContent>
+  </Tooltip>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Tooltip
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isOpen</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>
+        Whether the tooltip is opened. Useful for controlling the open state.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isDisabled</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>Whether the tooltip is disabled.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>defaultIsOpen</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>If true, the popover will be opened by default.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onOpen</InlineCode>
+      </TableCell>
+      <TableCell>() => void</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>
+        This function will be invoked when the tooltip is opened.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onClose</InlineCode>
+      </TableCell>
+      <TableCell>() => void</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        This function will be invoked when tooltip is closed. It will also be
+        called when the user attempts to close the tooltip via Escape key or
+        backdrop press.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>openDelay</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>0</TableCell>
+      <TableCell>Duration in ms to wait till displaying the tooltip.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>closeDelay</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>0</TableCell>
+      <TableCell>Duration in ms to wait till hiding the tooltip.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>placement</InlineCode>
+      </TableCell>
+      <TableCell>
+        "bottom" | "top" | "right" | "left" | "top left" | "top right" | "bottom
+        left" | "bottom right" | "right top" | "right bottom" | "left top" |
+        "left bottom"
+      </TableCell>
+      <TableCell>bottom left</TableCell>
+      <TableCell>Tooltip placement</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>children</InlineCode>
+      </TableCell>
+      <TableCell>any</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The content to display inside the tooltip.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>closeOnClick</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>Whether tooltip should be closed on Trigger click.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>trigger</InlineCode>
+      </TableCell>
+      <TableCell>() => any</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        Function that returns a React Element. This element will be used as a
+        Trigger for the tooltip.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>offset</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>10</TableCell>
+      <TableCell>Distance between the trigger and the tooltip.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>crossOffset</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        The additional offset applied along the cross axis between the element
+        and its trigger element.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>shouldOverlapWithTrigger</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>
+        Determines whether tooltip content should overlap with the trigger.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>shouldFlip</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>
+        Whether the element should flip its orientation (e.g. top to bottom or
+        left to right) when there is insufficient room for it to render
+        completely.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>closeOnOverlayClick</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>Closes tooltip when clicked outside.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### TooltipText
+
+Contains all text related layout style props and actions. It inherits all the properties of React Native's Text component.
+
+#### TooltipContent
+
+Contains all backdrop related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Accessibility
+
+We have outlined the various features that ensure the Tooltip component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres to the [ WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/).
+
+### Examples
+
+/// {Example:tooltip-with-heading} ///
+
+/// {Example:tooltip-with-icon} ///

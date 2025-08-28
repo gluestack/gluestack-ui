@@ -1,0 +1,9 @@
+{
+  "title": "Color Scheme",
+  "description": "A Spinner component with a color scheme enhances visual appeal by incorporating distinct colors, adding a touch of customization and style to the spinner element within a user interface.",
+  "argTypes": {},
+  "reactLive": {
+    "Spinner": "@/components/ui/spinner",
+    "VStack": "@/components/ui/vstack"
+  }
+}

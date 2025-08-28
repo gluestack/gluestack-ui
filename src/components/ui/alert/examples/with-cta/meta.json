@@ -1,0 +1,13 @@
+{
+  "title": "Alert with CTA",
+  "argTypes": {},
+  "reactLive": {
+    "Alert": "@/components/ui/alert",
+    "AlertText": "@/components/ui/alert",
+    "VStack": "@/components/ui/vstack",
+    "Icon": "@/components/ui/icon",
+    "CloseIcon": "@/components/ui/icon",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button"
+  }
+}

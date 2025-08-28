@@ -1,0 +1,10 @@
+{
+  "title": "SVG & Custom Icons",
+  "description": "We can directly create Icon using `createIcon` function exported from `@/components/ui/icon` and use it by passing it in `as` prop in `Icon` component.\n\nCreateIcon function takes viewBox, d, path etc as parameters. We can use svgs from other icon libraries like fluent, react-icons etc.\n\n**Notes to remember while using createIcon function**\n\n- Pass svg props such as `viewBox` in `createIcon` directly.\n- Copy the svg code without the SVG tag directly into the function argument `Path` or `D` or whichever prop justifies your svg.\n- Replace HTML SVG tags (e.g., `<path>`, `<rect>` etc) with the corresponding React Native SVG components (e.g., `<Path>`, `<Rect>` etc) for native.\n- For any color property (i.e. fill, stroke etc), if you want to override that color, pass \"currentColor\" instead of a colorCode or className.\n\non Web:\n`<path fill=\"#FF0000\" d=\"M10 10L20 20\" />`\n\non Native:\n`<Path fill=\"currentColor\" d=\"M10 10L20 20\" />`",
+  "argTypes": {},
+  "reactLive": {
+    "Icon": "@/components/ui/icon",
+    "createIcon": "@/components/ui/icon",
+    "Path": "react-native-svg"
+  }
+}

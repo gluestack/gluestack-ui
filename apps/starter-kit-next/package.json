@@ -1,0 +1,47 @@
+{
+  "name": "starter-kit-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:preview": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@expo/html-elements": "^0.12.5",
+    "@gluestack/ui-next-adapter": "3.0.0",
+    "@gluestack-ui/core": "3.0.0",
+    "@gluestack-ui/utils": "3.0.0",
+    "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
+    "@legendapp/motion": "^2.4.0",
+    "dom-helpers": "^5.2.1",
+    "lucide-react-native": "^0.510.0",
+    "nativewind": "^4.1.23",
+    "next": "15.3.3",
+    "react": "^19.0.0",
+    "react-aria": "^3.41.1",
+    "react-dom": "^19.0.0",
+    "react-native-svg": "^15.12.0",
+    "react-native-web": "^0.20.0",
+    "react-stately": "^3.39.0",
+    "tailwind-variants": "^0.1.20"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@react-native/assets-registry": "^0.79.5",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/react-native": "^0.72.8",
+    "autoprefixer": "^10.4.21",
+    "babel-plugin-react-native-web": "^0.20.0",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.3",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5"
+  }
+}

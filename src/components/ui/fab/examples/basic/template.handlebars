@@ -1,0 +1,16 @@
+function Example() {
+  return (
+    <Box className="h-[230px] w-60 bg-background-50 rounded-md">
+      <Fab
+        size="{{size}}"
+        placement="{{placement}}"
+        isHovered={ {{isHovered}} }
+        isDisabled={ {{isDisabled}} }
+        isPressed={ {{isPressed}} }
+      >
+        <FabIcon as={AddIcon} />
+        <FabLabel>Quick start</FabLabel>
+      </Fab>
+    </Box>
+  )
+}

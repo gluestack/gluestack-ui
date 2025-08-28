@@ -1,0 +1,434 @@
+import { Box } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Image } from '@/components/ui/image';
+import { TOC } from '@/components/page-components/blogs-page/TOC';
+
+<Text className="text-sm pt-2">January 30, 2025</Text>
+
+# Creating a Color Palette from Scratch: A Practical Guide for Design Systems
+
+<HStack className="gap-3 items-center">
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source={{
+        uri: 'https://pbs.twimg.com/profile_images/1755143257229541377/tcB6c2VV_400x400.jpg',
+      }}
+      alt="pranavmv@geekyants.com"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-typography-900">Pranav MV</Text>
+    <Text className="text-sm">Product Designer</Text>
+  </Box>
+</HStack>
+
+<br />
+
+## Introduction
+
+Crafting the perfect color palette is a crucial step in building a cohesive and visually appealing design system. Whether you're building a new product or refreshing an existing one, a well-thought-out color system ensures consistency, reinforces brand identity, and maintains accessibility across your application. In this practical guide, we'll walk you through the process of creating a color palette from scratch. By the end, you'll have the knowledge and tools to start building your own custom color system for your next project.
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/variablescolorpalette.png',
+  }}
+  className="h-[450px] w-full"
+  resizeMode="contain"
+/>
+<br />
+
+## Why a Color Palette Matters
+
+1. **Consistency**: Maintains visual harmony across your application. Prevents color inconsistencies between different components and screens, ensuring a professional, unified look.
+2. **Brand Identity**: Reinforces your brand's visual language. A consistent color palette helps users instantly recognize your product and builds trust through familiar visual cues.
+3. **Accessibility**: Helps maintain readable contrast ratios. A well-planned color system ensures your interface remains usable for all users, including those with visual impairments.
+4. **Efficiency**: Speeds up the design process with predefined colors. Having standardized colors eliminates repeated decision-making and accelerates both design and development workflows.
+5. **Flexibility**: Allows for easy theme switching (e.g., light to dark mode). A systematic palette makes it simpler to adapt your interface for different contexts while maintaining visual consistency.
+
+## Anatomy of a Color Palette
+
+Before diving into creation, let's understand how a modern color palette is structured. Think of it as a color spectrum centered around your primary brand color, with systematic variations that get progressively lighter and darker to support different interface needs. A color scale consists of three main components: the primary color (your brand color), shades (darker variations), and tints (lighter variations).
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/framescolorpalette.png',
+  }}
+  className="w-full h-[140px]"
+  resizeMode="contain"
+/>
+<br />
+
+## Understanding Naming and Numbering in a Color Palette
+
+When creating a design system, having a clear and consistent way to name and number your colors is crucial. Just like a well-organized filing system, a structured color naming and numbering convention makes it easy for everyone—designers, developers, and other team members—to find and use the right colors. Let's break down how modern design systems organize their color palettes.
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/framesbrowncolorpalette.png',
+  }}
+  className="w-full h-[140px]"
+  resizeMode="contain"
+/>
+<br />
+
+## Color Numbering Convention
+
+A numeric color scale is a systematic way of organizing colors in your design system, ranging from darkest to lightest variations. Let's understand how this numbering system works:
+
+**Base-500 System:** The numbering system runs from 50 to 900, where your primary base color is always designated as 500, acting as the midpoint of your scale.
+
+- **Higher numbers (600-900)** create progressively darker shades
+- **Lower numbers (400-50)** create progressively lighter tints
+
+**Why These Numbers?**
+This numbering convention comes from CSS font weights, making it intuitive for designers and developers. For developers, this translates to CSS variables like this (technical implication):
+
+```css
+:root {
+  --blue-50: hsl(210, 100%, 98%); /* Lightest */
+  --blue-100: hsl(210, 100%, 95%);
+  --blue-200: hsl(210, 100%, 90%);
+  --blue-300: hsl(210, 100%, 85%);
+  --blue-400: hsl(210, 100%, 70%);
+  --blue-500: hsl(210, 100%, 50%); /* Primary */
+  --blue-600: hsl(210, 100%, 45%);
+  --blue-700: hsl(210, 100%, 40%);
+  --blue-800: hsl(210, 100%, 35%);
+  --blue-900: hsl(210, 100%, 30%); /* Darkest */
+  --blue-950: hsl(210, 100%, 25%); /* Extra dark for dark mode */
+}
+```
+
+## Why this system of color naming and numbering works
+
+1. **For Designers:**
+   - Predictable progression of color values
+   - Easy to maintain visual hierarchy
+   - Consistent with familiar font-weight conventions
+   - Supports both light and dark modes effectively
+2. **For Developers:**
+   - Logical naming convention
+   - Easy to implement programmatically
+   - Supports design tokens and theming
+   - Scales well in component libraries
+
+## The gluestack ui's Color Palette
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/semanticcolorpalette.png',
+  }}
+  className="w-full h-[340px]"
+  resizeMode="contain"
+/>
+<br />
+
+At gluestack-ui, we've developed a comprehensive and adaptable color system that forms the foundation of our design language. Our color palette is thoughtfully structured to support both light and dark modes while maintaining accessibility and visual harmony. Let's explore our color tokens and their purposes:
+
+**Primary Colors**
+The foundation of our brand identity. Used for key interactive elements like primary buttons, important actions, and brand accents. These colors are designed to stand out while maintaining accessibility.
+
+**Secondary Colors**
+Supporting colors that complement our primary palette. Found in secondary actions, supporting UI elements, and alternative interactive components, providing balance to our primary colors.
+
+**Tertiary Colors**
+Additional colors for less prominent interface elements. These create visual interest in decorative features and subtle accents while maintaining proper hierarchy.
+
+**Typography Colors**
+A specialized set of colors optimized for text readability across different contexts, from headings to body text. Each shade ensures proper contrast and legibility.
+
+**Background Colors**
+Colors that create hierarchy and depth in our interfaces. Used in page backgrounds, cards, modals, and popovers to establish distinct visual layers.
+
+**Border Colors**
+Subtle colors for creating boundaries and divisions. These define component edges and create visual structure without drawing unnecessary attention.
+
+**Success Colors**
+Green-based colors that indicate positive actions, completions, and successful operations.
+
+**Error Colors**
+Red-based colors for highlighting problems, errors, and destructive actions.
+
+**Warning Colors**
+Orange/Yellow-based colors that alert users to potential issues or require attention.
+
+**Info Colors**
+Blue-based colors used for general information, help content, and neutral messaging.
+
+**Indicator Colors**
+Colors for notification badges, status indicators, and special states that need to grab attention quickly.
+
+Insight: Each color we have a range of values from 0 to 950, with specific color values for both light and dark modes, ensuring consistency and accessibility across our interface.
+
+## Crafting Your Color Palette: A Step-by-Step Guide
+
+### Method 1: Manual Color Palette Creation
+
+**Step 1: Choose Your Base Color**
+
+Select your primary color (color.500) that aligns with your brand.
+
+**Step 2: Generate Shades and Tints**
+
+Use the HSL (Hue, Saturation, Lightness) color system:
+**For darker shades (600-900):**
+
+- Keep Hue unchanged
+- Decrease Saturation and Lightness by 10% each step
+
+**For lighter tints (400-100):**
+
+- Keep Hue unchanged
+- Increase Saturation and Lightness by 10% each step
+
+**Step 3: Create Dark Mode Variations**
+
+Flip the arrangement of your color shades. Lightest shade (100) in light mode becomes darkest (900) in dark mode.
+
+**Step 4: Repeat for Other Color Tokens**
+
+Apply the same process for secondary, tertiary, and other color tokens.
+
+<br />
+<Image
+  source={{
+    uri: 'https://gluestack.github.io/public-blog-video-assets/framesbigcolorpalette.png',
+  }}
+  className="w-full h-[340px]"
+  resizeMode="contain"
+/>
+<br />
+
+Here's an example demonstrating this method, showing how a warm brown/tan color palette
+translates between light and dark modes. Notice how each color block includes its HSL values, allowing you to see exactly how the Hue remains constant while Saturation and Lightness are adjusted to create the full range of shades.
+
+### Method 2: Automated Color Palette Creation
+
+For a more efficient approach to creating color palettes, we'll explore two powerful Figma plugins that automate the process while maintaining professional quality and accessibility standards.
+
+**1. Foundation Color Generator**
+
+This plugin generates a complete color system from a single base color.
+
+<br />
+<Image
+  source={{
+    uri: "https://gluestack.github.io/public-blog-video-assets/Do's&Dont'scolorpalette.png",
+  }}
+  className="w-full h-[340px]"
+  resizeMode="contain"
+/>
+<br />
+
+**How to use:**
+
+1. Install the plugin in Figma
+2. Input your primary color
+3. Generate the palette with variations and accessibility recommendations
+4. Export your color tokens with one click
+5. Add the generated color styles directly to your Figma files global styles
+
+**2. Material Theme Builder**
+
+This official plugin from Material Design 3 creates a comprehensive theme based on your brand colors.
+
+<br />
+<Image
+  source={{
+    uri: "https://gluestack.github.io/public-blog-video-assets/Do'scolorpalette.png",
+  }}
+  className="w-full h-[340px]"
+  resizeMode="contain"
+/>
+<br />
+
+**How to use:**
+
+1. Install the plugin in Figma
+2. Input your brand colors or upload an image
+3. Generate a complete Material Design theme with color styles
+4. Synchronize with your design system with a single click
+5. You can also export tokens in various formats (CSS, JSON, SCSS)
+
+Both plugins offer efficient ways to generate professional color palettes, but they serve slightly different needs:
+
+- Foundation Color Generator is great for quick, single-color based systems
+- Material Theme Builder is ideal for more comprehensive design systems following Material Design principles
+
+## Testing and Refining Your Color Palette
+
+Whether you've created your palette manually or used automated tools, thorough testing and refinement is crucial. Here's a comprehensive guide to validate and perfect your color system:
+
+### 1. Basic Validation
+
+Start by testing your colors in simple UI layouts:
+
+- Create a basic component library (buttons, cards, text)
+- Test all color combinations for text and backgrounds
+- Check if your color hierarchy is clear and intuitive
+- Verify that interactive elements are easily identifiable
+
+### 2. Accessibility Testing
+
+Ensure your colors meet accessibility standards:
+
+- Use Figma's "Contrast" plugin to check text/background combinations
+- Verify WCAG compliance: 4.5:1 ratio for normal text, 3:1 for large text
+- Test with common color blindness types using "Able" or "Stark" plugins
+- Ensure critical information isn't conveyed by color alone
+
+### 3. UI Element Testing
+
+Apply your palette to common UI patterns:
+
+- Primary and secondary buttons
+- Form elements and input fields
+- Alert and notification components
+- Navigation elements
+- Cards and containers
+- Modal overlays
+- Links and interactive elements
+
+### 4. Typography Pairing
+
+Test your colors with different typography:
+
+- Try various font weights with your color scales
+- Check readability of all text sizes
+- Verify heading hierarchy is clear
+- Test long-form content readability
+- Check link colors in different contexts
+
+### 5. Layout Testing
+
+Create sample layouts to validate your palette:
+
+- Landing pages
+- Content-heavy pages
+- Form layouts
+- Dashboard interfaces
+- Error states and empty states
+- Modal and overlay combinations
+
+### 6. Dark Mode Validation
+
+If you support dark mode:
+
+- Verify color contrast in both modes
+- Check for eye strain with bright colors
+- Ensure consistent hierarchy
+- Test transitions between modes
+- Validate readability in both themes
+
+### 7. Real-world Testing
+
+Test your palette in various conditions:
+
+- Different screen types (OLED, LCD)
+- Various device sizes
+- Different lighting conditions
+- Multiple browsers
+- Different zoom levels
+
+### 8. Iterative Refinement
+
+Based on testing results:
+
+- Adjust color values for better contrast
+- Fine-tune saturation levels
+- Add or modify color steps as needed
+- Document color modifications
+- Update color tokens accordingly
+
+Insight: Remember - Testing should be an iterative process. Take time to validate each adjustment and don't hesitate to make changes based on real usage feedback.
+
+## Some Best Practices for Color Palette Creation
+
+### Documentation and Organization
+
+Keep comprehensive documentation of your color system, including color purposes, usage guidelines, and example use cases. Having clear, well-organized documentation helps team members understand and implement colors consistently across your product.
+
+### Semantic and Brand Colors
+
+Maintain a clear distinction between your brand colors and semantic colors (success, error, warning). This separation ensures that users can easily understand interface cues while preserving your brand identity. If your brand color might cause confusion (like using orange as a brand color), create separate scales for warnings or notifications.
+
+### Color Values and Variations
+
+Ensure meaningful and noticeable differences between your color scales. When creating variations, maintain consistent HSL adjustments (typically 10% increments), and don't hesitate to add minor steps (like 950, 750) when you need subtle variations for specific use cases.
+
+### Accessibility Considerations
+
+Test your color palette thoroughly against WCAG accessibility guidelines, ensuring sufficient contrast for text and interactive elements. Your colors should work well for all users, including those with color vision deficiencies, and maintain readability across both light and dark backgrounds.
+
+### Implementation Tips
+
+Use clear naming conventions like asterisks for primary colors (Blue 500\*) and the "A" prefix for saturated alternatives (Blue A500). These small but important details make your color system more intuitive and easier to implement across your product.
+
+### Cross-Platform Considerations
+
+Test your colors across different devices, screens, and operating systems to ensure consistency. Remember that colors can appear differently under various conditions, so verify your palette maintains its effectiveness across all platforms and environments.
+
+### Maintenance and Scalability
+
+Treat your color system as a living document that evolves with your product. Regular reviews, updates, and refinements based on real usage help maintain an effective and scalable color system that grows with your needs.
+
+## Conclusion:
+
+Creating a robust color system is a crucial step in developing a cohesive and accessible design language. Whether you choose the manual approach for full control or leverage automated tools for efficiency, the key is to create a system that is both visually appealing and functionally sound.
+
+We encourage you to start experimenting with these methods today. Begin by selecting your base color and generating a few shades. Apply them to some basic UI elements and see how they work together. Remember, building a great color system is an iterative process, so don't be afraid to refine and adjust as you go.
+
+Share your color palette creations with the gluestack-ui community - we'd love to see what you come up with!
+
+Happy designing!
+
+<TOC
+  items={[
+    {
+      id: 'introduction',
+      title: 'Introduction',
+    },
+    {
+      id: 'why-a-color-palette-matters',
+      title: 'Why a Color Palette Matters',
+    },
+    {
+      id: 'understanding-naming-and-numbering-in-a-color-palette',
+      title: 'Understanding Naming and Numbering in a Color Palette',
+    },
+    {
+      id: 'color-numbering-convention',
+      title: 'Color Numbering Convention',
+    },
+    {
+      id: 'why-this-system-of-color-naming-and-numbering-works',
+      title: 'Why this system of color naming and numbering works',
+    },
+    {
+      id: "the-gluestack-ui's-color-palette",
+      title: "The gluestack ui's Color Palette",
+    },
+    {
+      id: 'crafting-your-color-palette:-a-step-by-step-guide',
+      title: 'Crafting Your Color Palette: A Step-by-Step Guide',
+    },
+    {
+      id: 'testing-and-refining-your-color-palette',
+      title: 'Testing and Refining Your Color Palette',
+    },
+    {
+      id: 'some-best-practices-for-color-palette-creation',
+      title: 'Some Best Practices for Color Palette Creation',
+    },
+    {
+      id: 'conclusion',
+      title: 'Conclusion',
+    },
+  ]}
+/>

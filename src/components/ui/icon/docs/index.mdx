@@ -1,0 +1,120 @@
+---
+title: gluestack-ui Icon Component | Installation, Usage & API
+
+description: Use gluestack-ui Icon component to enhance your web and mobile app with scalable component icons. A must-have React Native icon library for modern development!
+
+pageTitle: Icon
+
+pageDescription: Use gluestack-ui Icon component to enhance your web and mobile app with scalable component icons. A must-have React Native icon library for modern development!
+
+showHeader: true
+
+tag: RSC
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Icon
+
+Use gluestack-ui Icon component to enhance your web and mobile app with scalable component icons. A must-have React Native icon library for modern development!
+
+This is an illustration of **Icon** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add icon`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/icon/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Icon } from '@/components/ui/icon';
+```
+
+```ts
+export default () => <Icon as={} />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Icon
+
+Pre built icons provided by gluestack-ui inherits all the properties of React Native SVG's [Svg](https://github.com/software-mansion/react-native-svg/tree/main/Example) on native and [svg](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg) html element on web.
+
+The Icon components inherits all the properties that third party library provides and can be directly applied as props.
+
+### Features
+
+- support of props on any svg icon
+
+### Accessibility
+
+We have outlined the various features that ensure the Icon component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+Role: img is passed
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>2xs | xs | sm | md | lg | xl</TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>The size of the icon.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:all-icons} ///
+
+/// {Example:lucide} ///
+
+/// {Example:custom} ///

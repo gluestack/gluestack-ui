@@ -1,0 +1,612 @@
+import path from 'path';
+import fs from 'fs';
+import { text, log, isCancel, cancel, select, confirm } from '@clack/prompts';
+
+// Name helpers
+const isKebabCaseName = (name: string): boolean => {
+  return /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/.test(name);
+};
+
+const toPascalCase = (kebab: string): string => {
+  return kebab
+    .split('-')
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join('');
+};
+
+const normalizeForComparison = (name: string): string => {
+  return name.toLowerCase().replace(/-/g, '');
+};
+
+const readSidebar = async () => {
+  try {
+    const sidebar = fs.readFileSync(
+      path.join(process.cwd(), 'src', 'sidebar.json'),
+      'utf8'
+    );
+    return JSON.parse(sidebar);
+  } catch (error) {
+    log.error(`Error reading sidebar.json: ${error}`);
+    return null;
+  }
+};
+
+const updateSidebar = async (componentName: string, componentType: string, isRSC: boolean = false) => {
+  try {
+    const sidebarJson = await readSidebar();
+    if (!sidebarJson) return false;
+
+    // Find the Components section
+    const componentsSection = sidebarJson.navigation.sections.find(
+      (section: any) => section.title === 'Components'
+    );
+
+    if (!componentsSection || !componentsSection.subsections) {
+      return false;
+    }
+
+    // Find the specific category subsection
+    const categoryKey = componentType.toLowerCase().replace(/\s+/g, '-');
+    const targetSubsection = componentsSection.subsections.find(
+      (subsection: any) => 
+        subsection.type === 'heading' && 
+        subsection.title.toLowerCase().replace(/\s+/g, '-') === categoryKey
+    );
+
+    if (!targetSubsection) {
+      log.warn(`Category '${componentType}' not found in sidebar`);
+      return false;
+    }
+
+    // Add the new component to the category
+    const newComponent: any = {
+      title: toPascalCase(componentName),
+      path: `/ui/docs/components/${componentName.toLowerCase()}`,
+      url: `https://i.imgur.com/iLgtAcF.png`,
+      darkUrl: `https://i.imgur.com/or5K0UG.png`,
+    };
+
+    // Add RSC tag if component is RSC
+    if (isRSC) {
+      newComponent.tags = ['rsc'];
+    }
+
+    // Initialize items array if it doesn't exist
+    if (!targetSubsection.items) {
+      targetSubsection.items = [];
+    }
+
+    // Add the component to the end of the category
+    targetSubsection.items.push(newComponent);
+
+    // Write the updated sidebar back to file
+    const sidebarPath = path.join(process.cwd(), 'src', 'sidebar.json');
+    fs.writeFileSync(sidebarPath, JSON.stringify(sidebarJson, null, 2));
+
+    log.success(
+      `✅ Component '${componentName}' added to sidebar in '${componentType}' category${isRSC ? ' with RSC tag' : ''}`
+    );
+    return true;
+  } catch (error) {
+    log.error(`Error updating sidebar.json: ${error}`);
+    return false;
+  }
+};
+
+const updatePackageJson = async (componentName: string, needsCreator: boolean = false, needsAria: boolean = false) => {
+  try {
+    const packageJsonPath = path.join(process.cwd(), 'packages', 'gluestack-core', 'package.json');
+    
+    if (!fs.existsSync(packageJsonPath)) {
+      log.warn('package.json not found in gluestack-core package');
+      return false;
+    }
+
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+
+    // Add component to files array if it doesn't exist
+    if (!packageJson.files.includes(componentName)) {
+      packageJson.files.push(componentName);
+      packageJson.files.sort(); // Keep files array sorted
+    }
+
+    // Add typesVersions entries if creator or aria is needed
+    if (needsCreator || needsAria) {
+      if (!packageJson.typesVersions) {
+        packageJson.typesVersions = { "*": {} };
+      }
+      if (!packageJson.typesVersions["*"]) {
+        packageJson.typesVersions["*"] = {};
+      }
+
+      const typesVersions = packageJson.typesVersions["*"];
+
+      // Add creator entry
+      if (needsCreator) {
+        const creatorKey = `${componentName}/creator`;
+        const creatorPath = `./lib/esm/${componentName}/creator/index.d.ts`;
+        typesVersions[creatorKey] = [creatorPath];
+      }
+
+      // Add aria entry
+      if (needsAria) {
+        const ariaKey = `${componentName}/aria`;
+        const ariaPath = `./lib/esm/${componentName}/aria/index.d.ts`;
+        typesVersions[ariaKey] = [ariaPath];
+      }
+    }
+
+    // Write the updated package.json back to file
+    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
+
+    log.success(
+      `✅ Component '${componentName}' added to package.json${needsCreator ? ' with creator types' : ''}${needsAria ? ' with aria types' : ''}`
+    );
+    return true;
+  } catch (error) {
+    log.error(`Error updating package.json: ${error}`);
+    return false;
+  }
+};
+
+const validComponentName = async (componentName: string): Promise<boolean> => {
+  const sidebarJson = await readSidebar();
+  if (!sidebarJson) return false;
+
+  const componentsSection = sidebarJson.navigation.sections.find(
+    (section: any) => section.title === 'Components'
+  );
+  
+  if (!componentsSection || !componentsSection.subsections) {
+    return false;
+  }
+
+  // Check all component names across all categories
+  const inputNormalized = normalizeForComparison(componentName);
+  for (const subsection of componentsSection.subsections) {
+    if (subsection.type === 'heading' && subsection.items) {
+      for (const item of subsection.items) {
+        // Compare against title ignoring hyphens/case
+        if (
+          typeof item.title === 'string' &&
+          normalizeForComparison(item.title) === inputNormalized
+        ) {
+          return false; // Component already exists
+        }
+        // Compare against path slug if available
+        if (typeof item.path === 'string') {
+          const slug = (item.path.split('/').pop() || '').toLowerCase();
+          if (normalizeForComparison(slug) === inputNormalized) {
+            return false; // Component already exists
+          }
+        }
+      }
+    }
+  }
+
+  return true;
+};
+
+const create = async (componentName: string, componentType: string, isRSC: boolean = false, needsCreator: boolean = false, needsAria: boolean = false) => {
+  const componentPath = path.join(
+    process.cwd(),
+    'src',
+    'components',
+    'ui',
+    componentName
+  );
+  
+  // Create component directory
+  fs.mkdirSync(componentPath, { recursive: true });
+  
+  // Create component file
+  fs.writeFileSync(
+    path.join(componentPath, 'index.tsx'),
+    copyPastableTemplate(componentName, componentType, isRSC)
+  );
+
+  // Create aria directory and file if needed
+  if (needsAria) {
+    const ariaPath = path.join(process.cwd(), 'packages', 'gluestack-core', 'src', componentName, 'aria');
+    fs.mkdirSync(ariaPath, { recursive: true });
+    fs.writeFileSync(
+      path.join(ariaPath, 'index.tsx'),
+      ariaTemplate(componentName)
+    );
+
+    // Create root-level aria.ts file for re-export
+    const rootAriaPath = path.join(
+      process.cwd(),
+      'packages',
+      'gluestack-core',
+      componentName
+    );
+    fs.mkdirSync(rootAriaPath, { recursive: true });
+    fs.writeFileSync(
+      path.join(rootAriaPath, 'aria.ts'),
+      `export * from '../lib/esm/${componentName}/aria';`
+    );
+    
+    log.success(`✅ Aria directory created at: ${ariaPath}`);
+    log.success(`✅ Root aria.ts file created at: ${rootAriaPath}/aria.ts`);
+  }
+
+  // Create creator directory and file if needed
+  if (needsCreator) {
+    const creatorPath = path.join(
+      process.cwd(),
+      'packages',
+      'gluestack-core',
+      'src',
+      componentName,
+      'creator'
+    );
+    fs.mkdirSync(creatorPath, { recursive: true });
+    fs.writeFileSync(
+      path.join(creatorPath, 'index.tsx'),
+      creatorTemplate(componentName)
+    );
+
+    // Create root-level creator.ts file for re-export
+    const rootCreatorPath = path.join(
+      process.cwd(),
+      'packages',
+      'gluestack-core',
+      componentName
+    );
+    fs.mkdirSync(rootCreatorPath, { recursive: true });
+    fs.writeFileSync(
+      path.join(rootCreatorPath, 'creator.ts'),
+      `export * from '../lib/esm/${componentName}/creator';`
+    );
+    
+    log.success(`✅ Creator directory created at: ${creatorPath}`);
+    log.success(`✅ Root creator.ts file created at: ${rootCreatorPath}/creator.ts`);
+  }
+  
+  // Create docs directory and file
+  const docsPath = path.join(componentPath, 'docs');
+  fs.mkdirSync(docsPath, { recursive: true });
+  fs.writeFileSync(
+    path.join(docsPath, 'index.mdx'),
+    docsTemplate(componentName, componentType)
+  );
+  // Create component example file
+  const examplesPath = path.join(componentPath, 'examples');
+  fs.mkdirSync(examplesPath, { recursive: true });
+  const basicExamplePath = path.join(examplesPath, 'basic');
+  fs.mkdirSync(basicExamplePath, { recursive: true });
+  fs.writeFileSync(
+    path.join(basicExamplePath, 'meta.json'),
+    metaTemplate(componentName, componentType)
+  );
+  fs.writeFileSync(
+    path.join(basicExamplePath, 'template.handlebars'),
+    handlebarsTemplate(componentName, componentType)
+  );
+
+  // Create component example file
+
+  log.success(
+    `✅ Component '${componentName}' created successfully at: ${componentPath}`
+  );
+
+  // Update sidebar.json
+  await updateSidebar(componentName, componentType, isRSC);
+  
+  // Update package.json if creator or aria functionality was added
+  if (needsCreator || needsAria) {
+    await updatePackageJson(componentName, needsCreator, needsAria);
+  }
+};
+
+const copyPastableTemplate = (componentName: string, componentType: string, isRSC: boolean = false) => {
+  const rscComment = isRSC ? '\n// This component is a React Server Component' : '';
+  const componentNamePascal = toPascalCase(componentName);
+  
+  return `
+import { View, Text } from 'react-native';${rscComment}
+
+export function ${componentNamePascal}() {
+  return (
+    <View>
+      <Text>${componentName} - ${componentType}</Text>
+    </View>
+  );
+};
+`;
+};
+
+const creatorTemplate = (componentName: string) => {
+  const componentNamePascal = toPascalCase(componentName);
+  return `
+// Creator functionality for ${componentNamePascal} component
+// Add your creator logic here
+
+export const create${componentNamePascal} = () => {
+  // Implementation here
+};
+`;
+};
+
+const ariaTemplate = (componentName: string) => {
+  const componentNamePascal = toPascalCase(componentName);
+  return `
+// Aria functionality for ${componentNamePascal} component
+// Add your aria logic here
+`;
+};
+
+const metaTemplate = (componentName: string, componentType: string) => {
+  const componentNamePascal = toPascalCase(componentName);
+  return `
+{
+  "title": "Basic",
+  "argTypes": {},
+  "reactLive": {
+    "${componentNamePascal}": "@/components/ui/${componentName}"
+  }
+}
+`;
+};
+
+const handlebarsTemplate = (componentName: string, componentType: string) => {
+  const componentNamePascal = toPascalCase(componentName);
+  return `
+  function Example() {
+  return (
+    <${componentNamePascal}/>
+  )
+}
+  `;
+};
+
+const docsTemplate = (componentName: string, componentType: string) => {
+  const componentNamePascal = toPascalCase(componentName);
+  
+  return `
+---
+title: gluestack-ui ${componentNamePascal} Component
+---
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+# ${componentNamePascal}
+
+This is an illustration of **${componentNamePascal}** component.
+
+/// {Example:basic} ///
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={\`\${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add ${componentName}\`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into your project.
+
+\`\`\`tsx
+%%-- File: src/components/ui/${componentName}/index.tsx --%%
+\`\`\`
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+\`\`\`ts
+import { ${componentNamePascal} } from '@/components/ui/${componentName}';
+\`\`\`
+
+\`\`\`ts
+export default () => <${componentNamePascal} />;
+\`\`\`
+`;
+};
+
+const readComponentTypes = async () => {
+  const sidebarJson = await readSidebar();
+  if (!sidebarJson) return [];
+
+  // Find the Components section
+  const componentsSection = sidebarJson.navigation.sections.find(
+    (section: any) => section.title === 'Components'
+  );
+
+  if (!componentsSection || !componentsSection.subsections) {
+    return [];
+  }
+
+  // Extract component categories (headings) from subsections
+  const componentTypes = componentsSection.subsections
+    .filter((subsection: any) => subsection.type === 'heading')
+    .map((subsection: any) => ({
+      value: subsection.title.toLowerCase().replace(/\s+/g, '-'),
+      label: subsection.title,
+      hint: `${subsection.items?.length || 0} components`,
+    }));
+
+  return componentTypes;
+};
+
+const promptForComponentType = async (): Promise<string> => {
+  const componentTypes = await readComponentTypes();
+
+  if (componentTypes.length === 0) {
+    log.warn('No component types found in sidebar.json');
+    return 'custom';
+  }
+
+  const selectedType = await select({
+    message: 'What type of component do you want to create?',
+    options: componentTypes,
+  });
+
+  if (isCancel(selectedType)) {
+    cancel('Operation cancelled.');
+    process.exit(0);
+  }
+
+  return selectedType as string;
+};
+
+const promptForRSC = async (): Promise<boolean> => {
+  const isRSC = await confirm({
+    message: 'Is this a React Server Component (RSC)?',
+    initialValue: false,
+  });
+
+  if (isCancel(isRSC)) {
+    cancel('Operation cancelled.');
+    process.exit(0);
+  }
+
+  return isRSC as boolean;
+};
+
+const promptForComponentName = async (): Promise<string> => {
+  let componentName: string | symbol;
+  
+  do {
+    componentName = await text({
+      message: 'Enter component name:',
+      placeholder: 'my-component',
+      validate: (value: string) => {
+        if (!value || value.trim() === '') {
+          return 'Component name is required';
+        }
+        if (!isKebabCaseName(value.trim())) {
+          return 'Component name must be lowercase, e.g., my-component';
+        }
+      },
+    });
+
+    if (isCancel(componentName)) {
+      cancel('Operation cancelled.');
+      process.exit(0);
+    }
+
+    const trimmedName = (componentName as string).trim();
+    
+    // Check if component already exists
+    const isValid = await validComponentName(trimmedName);
+    if (!isValid) {
+      log.error(
+        `❌ Component '${trimmedName}' already exists in the sidebar`
+      );
+      log.info('Please enter a different component name:');
+      continue;
+    }
+
+    return trimmedName;
+  } while (true);
+};
+
+const promptForCreator = async (): Promise<boolean> => {
+  const needsCreator = await confirm({
+    message: 'Does this component need a creator function?',
+    initialValue: false,
+  });
+
+  if (isCancel(needsCreator)) {
+    cancel('Operation cancelled.');
+    process.exit(0);
+  }
+
+  return needsCreator as boolean;
+};
+
+const promptForAria = async (): Promise<boolean> => {
+  const needsAria = await confirm({
+    message: 'Does this component need aria functionality?',
+    initialValue: false,
+  });
+
+  if (isCancel(needsAria)) {
+    cancel('Operation cancelled.');
+    process.exit(0);
+  }
+
+  return needsAria as boolean;
+};
+
+const main = async () => {
+  let componentName = process.argv[2];
+  let componentType = process.argv[3];
+  let isRSC = process.argv[4] === '--rsc';
+  let needsCreator = false;
+  let needsAria = false;
+
+  if (!componentName) {
+    log.info('No component name provided. Please enter one:');
+    componentName = await promptForComponentName();
+  } else {
+    // Validate component name if provided as argument
+    if (!isKebabCaseName(componentName)) {
+      log.error(
+        `❌ Invalid component name '${componentName}'. Use kebab-case (e.g., action-sheet).`
+      );
+      process.exit(1);
+    }
+    const isValid = await validComponentName(componentName);
+    if (!isValid) {
+      log.error(
+        `❌ Component '${componentName}' already exists in the sidebar`
+      );
+      process.exit(1);
+    }
+  }
+
+  if (!componentType) {
+    log.info('No component type provided. Please select one:');
+    componentType = await promptForComponentType();
+  }
+
+  if (!isRSC && process.argv[4] !== '--no-rsc') {
+    log.info('RSC status not specified. Please confirm:');
+    isRSC = await promptForRSC();
+  }
+
+  if (!componentName) {
+    log.error('❌ Component name is required');
+    process.exit(1);
+  }
+
+  if (process.argv[4] === '--creator' || process.argv[5] === '--creator') {
+    needsCreator = true;
+  } else if (!process.argv[4] || process.argv[4] === '--rsc' || process.argv[4] === '--no-rsc') {
+    log.info('Creator functionality not specified. Please confirm:');
+    needsCreator = await promptForCreator();
+  }
+
+  if (process.argv[4] === '--aria' || process.argv[5] === '--aria') {
+    needsAria = true;
+  } else if (!process.argv[5] || process.argv[5] === '--rsc' || process.argv[6] === '--no-rsc') {
+    log.info('Aria functionality not specified. Please confirm:');
+    needsAria = await promptForAria();
+  }
+
+  await create(componentName, componentType, isRSC, needsCreator, needsAria);
+};
+
+main().catch((error) => {
+  log.error(`❌ Error creating component: ${error}`);
+  process.exit(1);
+});

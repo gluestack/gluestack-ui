@@ -1,0 +1,14 @@
+node_modules
+src
+.git
+.gitignore
+.npmrc
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.changeset
+__tests__
+.yalc
+yalc.lock

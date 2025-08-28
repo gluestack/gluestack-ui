@@ -1,0 +1,8 @@
+{
+  "title": "Basic",
+  "argTypes": {},
+  "reactLive": {
+    "Grid": "@/components/ui/grid",
+    "GridItem": "@/components/ui/grid"
+  }
+}

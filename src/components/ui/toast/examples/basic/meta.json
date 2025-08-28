@@ -1,0 +1,27 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "action": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["success", "info", "warning", "error", "muted"],
+      "defaultValue": "muted"
+    },
+    "variant": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["solid", "outline"],
+      "defaultValue": "solid"
+    }
+  },
+  "reactLive": {
+    "Toast": "@/components/ui/toast",
+    "ToastTitle": "@/components/ui/toast",
+    "ToastDescription": "@/components/ui/toast",
+    "useToast": "@/components/ui/toast",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button"
+  }
+}

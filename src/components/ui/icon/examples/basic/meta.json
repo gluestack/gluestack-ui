@@ -1,0 +1,16 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["xs", "sm", "md", "lg", "xl"],
+      "defaultValue": "lg"
+    }
+  },
+  "reactLive": {
+    "Icon": "@/components/ui/icon",
+    "EditIcon": "@/components/ui/icon"
+  }
+}

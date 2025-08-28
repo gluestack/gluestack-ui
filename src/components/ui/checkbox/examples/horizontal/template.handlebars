@@ -1,0 +1,29 @@
+function Example() {
+  const [values, setValues] = React.useState(["Illustration"]);
+  return (
+    <CheckboxGroup value={values} onChange={(keys) => {
+      setValues(keys)
+    }}>
+      <HStack space="2xl">
+        <Checkbox value="Illustration">
+          <CheckboxIndicator>
+            <CheckboxIcon as={CheckIcon}/>
+          </CheckboxIndicator>
+          <CheckboxLabel>Illustration</CheckboxLabel>
+        </Checkbox>
+        <Checkbox value="Animation">
+          <CheckboxIndicator>
+            <CheckboxIcon as={CheckIcon}/>
+          </CheckboxIndicator>
+          <CheckboxLabel>Animation</CheckboxLabel>
+        </Checkbox>
+        <Checkbox value="Typography">
+          <CheckboxIndicator>
+            <CheckboxIcon as={CheckIcon}/>
+          </CheckboxIndicator>
+          <CheckboxLabel>Typography</CheckboxLabel>
+        </Checkbox>
+      </HStack>
+    </CheckboxGroup>
+  );
+} 

@@ -1,0 +1,51 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg"],
+      "defaultValue": "sm"
+    },
+    "placement": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "top left",
+        "top center",
+        "top right",
+        "bottom left",
+        "bottom center",
+        "bottom right"
+      ],
+      "defaultValue": "bottom right"
+    },
+    "isHovered": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
+    },
+    "isDisabled": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
+    },
+    "isPressed": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
+    }
+  },
+  "reactLive": {
+    "Box": "@/components/ui/box",
+    "Fab": "@/components/ui/fab",
+    "FabIcon": "@/components/ui/fab",
+    "FabLabel": "@/components/ui/fab",
+    "AddIcon": "@/components/ui/icon"
+  }
+}

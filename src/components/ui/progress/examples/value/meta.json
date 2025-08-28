@@ -1,0 +1,10 @@
+{
+  "title": "Value",
+  "description": "Progress component with value",
+  "reactLive": {
+    "Progress": "@/components/ui/progress",
+    "ProgressFilledTrack": "@/components/ui/progress",
+    "VStack": "@/components/ui/vstack",
+    "Text": "@/components/ui/text"
+  }
+}

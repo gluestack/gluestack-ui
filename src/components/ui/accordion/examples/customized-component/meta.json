@@ -1,0 +1,18 @@
+{
+  "title": "Customized Component",
+  "description": "The following example demonstrates how easily you can customize the Accordion component to suit your needs.",
+  "argTypes": {},
+  "reactLive": {
+    "Accordion": "@/components/ui/accordion",
+    "AccordionItem": "@/components/ui/accordion",
+    "AccordionHeader": "@/components/ui/accordion",
+    "AccordionTrigger": "@/components/ui/accordion",
+    "AccordionTitleText": "@/components/ui/accordion",
+    "AccordionContent": "@/components/ui/accordion",
+    "AccordionContentText": "@/components/ui/accordion",
+    "AccordionIcon": "@/components/ui/accordion",
+    "Divider": "@/components/ui/divider",
+    "ChevronDownIcon": "@/components/ui/icon",
+    "ChevronUpIcon": "@/components/ui/icon"
+  }
+}

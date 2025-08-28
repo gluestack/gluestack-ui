@@ -1,0 +1,17 @@
+{
+  "title": "FAB with Icon and Text",
+  "description": "A Fab component with an icon and text combines a visual icon with accompanying text to create a prominent and descriptive button that triggers a specific action or function within a user interface.",
+  "argTypes": {},
+  "reactLive": {
+    "Fab": "@/components/ui/fab",
+    "FabIcon": "@/components/ui/fab",
+    "FabLabel": "@/components/ui/fab",
+    "Box": "@/components/ui/box",
+    "VStack": "@/components/ui/vstack",
+    "HStack": "@/components/ui/hstack",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "Divider": "@/components/ui/divider",
+    "SearchIcon": "@/components/ui/icon"
+  }
+}

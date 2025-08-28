@@ -1,0 +1,51 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg"],
+      "defaultValue": "md"
+    },
+    "variant": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["filled", "unfilled"],
+      "defaultValue": "filled"
+    },
+    "type": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["single", "multiple"],
+      "defaultValue": "single"
+    },
+    "isCollapsible": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": true
+    },
+    "isDisabled": {
+      "control": {
+        "type": "boolean"
+      },
+      "defaultValue": false
+    }
+  },
+  "reactLive": {
+    "Accordion": "@/components/ui/accordion",
+    "AccordionItem": "@/components/ui/accordion",
+    "AccordionHeader": "@/components/ui/accordion",
+    "AccordionTrigger": "@/components/ui/accordion",
+    "AccordionTitleText": "@/components/ui/accordion",
+    "AccordionContent": "@/components/ui/accordion",
+    "AccordionContentText": "@/components/ui/accordion",
+    "AccordionIcon": "@/components/ui/accordion",
+    "Divider": "@/components/ui/divider",
+    "ChevronDownIcon": "@/components/ui/icon",
+    "ChevronUpIcon": "@/components/ui/icon"
+  }
+}

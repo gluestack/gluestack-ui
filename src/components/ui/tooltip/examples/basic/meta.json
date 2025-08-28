@@ -1,0 +1,32 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "placement": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "top",
+        "top left",
+        "top right",
+        "bottom",
+        "bottom left",
+        "bottom right",
+        "left",
+        "left top",
+        "left bottom",
+        "right",
+        "right top",
+        "right bottom"
+      ],
+      "defaultValue": "top"
+    }
+  },
+  "reactLive": {
+    "Tooltip": "@/components/ui/tooltip",
+    "TooltipContent": "@/components/ui/tooltip",
+    "TooltipText": "@/components/ui/tooltip",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button"
+  }
+}

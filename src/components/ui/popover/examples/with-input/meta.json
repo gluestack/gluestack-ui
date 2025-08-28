@@ -1,0 +1,25 @@
+{
+  "title": "Popover with InputField",
+  "argsTypes": {},
+  "reactLive": {
+    "Popover": "@/components/ui/popover",
+    "PopoverBackdrop": "@/components/ui/popover",
+    "PopoverContent": "@/components/ui/popover",
+    "PopoverHeader": "@/components/ui/popover",
+    "PopoverBody": "@/components/ui/popover",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "ButtonIcon": "@/components/ui/button",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "HStack": "@/components/ui/hstack",
+    "VStack": "@/components/ui/vstack",
+    "Input": "@/components/ui/input",
+    "InputField": "@/components/ui/input",
+    "Avatar": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "ShareIcon": "@/components/ui/icon",
+    "ChevronDownIcon": "@/components/ui/icon"
+  }
+}

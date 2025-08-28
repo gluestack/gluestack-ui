@@ -1,0 +1,197 @@
+---
+title: gluestack-ui Link Component | React Native Link Installation
+
+description: Enhance navigation with a React Native link component. Seamless UI link design for intuitive user experiences. Learn more!
+
+pageTitle: Link
+
+pageDescription: Enhance navigation with a React Native link component. Seamless UI link design for intuitive user experiences. Learn more!
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Link
+
+Enhance navigation with a React Native link component. Seamless UI link design for intuitive user experiences. Learn more!
+
+This is an illustration of **Link** component.
+
+/// {Example:basic} ///
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add link`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/link/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Link } from '@/components/ui/link';
+```
+
+```ts
+export default () => (
+  <Link>
+    <LinkText />
+  </Link>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Link
+
+Contains all link related layout style props and actions.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<a />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<Pressable />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Props
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>href</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>URL that should be opened on Link press</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onPress</InlineCode>
+        </TableCell>
+        <TableCell>(event?: GestureResponderEvent) => any</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Callback that will be invoked on Link press</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isExternal</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>If true, link will be opened in new tab on web</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isHovered</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>When true, the link displays a hover state</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isFocusVisible</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set focus visible state to the link</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>
+          xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl
+        </TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>The size of the link</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Features
+
+- Keyboard support for actions
+- Support for hover and focus states
+- Option to add your styles or use the default styles
+
+### Accessibility
+
+We have outlined the various features that ensure the Link component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/link/).
+
+#### Keyboard
+
+- `Tab`: Moves focus to the next focusable element
+- `Enter`: Users should be able to open a link
+
+#### Screen Reader
+
+- VoiceOver: When a link receives focus, screen readers should announce a descriptive link name
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:default} ///
+
+/// {Example:with-icon} ///

@@ -1,0 +1,15 @@
+{
+  "title": "Controlled",
+  "description": "The Radio components can be used with a controlled state, enabling precise management of the selected option through external state management.",
+  "argTypes": {},
+  "reactLive": {
+    "Center": "@/components/ui/center",
+    "VStack": "@/components/ui/vstack",
+    "Radio": "@/components/ui/radio",
+    "RadioGroup": "@/components/ui/radio",
+    "RadioIcon": "@/components/ui/radio",
+    "RadioIndicator": "@/components/ui/radio",
+    "RadioLabel": "@/components/ui/radio",
+    "CircleIcon": "@/components/ui/icon"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "title": "SectionList",
+  "description": "The Actionsheet with SectionList is a variation of the Actionsheet component that displays a sectioned list of options. It's commonly used in apps to organize options into different categories or sections for better readability and navigation.",
+  "argTypes": {},
+  "reactLive": {
+    "Actionsheet": "@/components/ui/actionsheet",
+    "ActionsheetBackdrop": "@/components/ui/actionsheet",
+    "ActionsheetContent": "@/components/ui/actionsheet",
+    "ActionsheetDragIndicator": "@/components/ui/actionsheet",
+    "ActionsheetDragIndicatorWrapper": "@/components/ui/actionsheet",
+    "ActionsheetItem": "@/components/ui/actionsheet",
+    "ActionsheetItemText": "@/components/ui/actionsheet",
+    "ActionsheetSectionList": "@/components/ui/actionsheet",
+    "ActionsheetSectionHeaderText": "@/components/ui/actionsheet",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button"
+  }
+}

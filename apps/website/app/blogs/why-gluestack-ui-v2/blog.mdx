@@ -1,0 +1,154 @@
+import { Box, } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Image } from '@/components/ui/image';
+import { Heading } from '@/components/ui/heading';
+import { TOC } from '@/components/page-components/blogs-page/TOC';
+
+<Text className="text-sm pt-2">July 23, 2024</Text>
+
+# Why we built gluestack-ui v2?
+
+<HStack className="gap-3 items-center">
+
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source={{ uri: "https://avatars.githubusercontent.com/u/9393975?v=4" }}
+      alt="suraj@geekyants.com"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-typography-900">Suraj Ahmed</Text>
+    <Text className="text-sm">Building gluestack-ui</Text>
+  </Box>
+</HStack>
+
+<br />
+
+We are thrilled to introduce gluestack-ui v2. It is a significant upgrade of our UI component library and will empower developers by streamlineing the creation of beautiful, responsive user interfaces across web and mobile.
+
+But why did we build gluestack-ui v2?
+
+We were motivated by the pulse of the community and a drive to solve real-developer problems.
+
+## Addressing Developer Needs and Feedback
+
+**Listening to Our Community**
+
+We heard your challenges with existing UI libraries – from bloated dependencies to limited customization options.
+
+With gluestack-ui v2, we aimed to address these pain points head-on.
+
+We did this by offering a modular architecture and seamless integration with Tailwind CSS through NativeWind, empowering developers to tailor their UI components precisely to project requirements.
+
+## Modular Approach with Copy-Pastable Components
+
+**Simplifying Integration**
+
+In gluestack-ui v2 we are shifting from a bundled library to a modular architecture.
+
+What does that mean? Unlike v1, where components came as part of a large package, v2 allows developers to copy and paste only the components they need.
+
+This approach minimizes unnecessary dependencies, reduces bundle sizes, and simplifies the integration process. Now, you can include only the required components in your project, ensuring optimal performance and code efficiency.
+
+## Enhancing Performance and Efficiency
+
+**Optimized for Speed and Scalability**
+
+In today's fast-paced digital landscape, performance is non-negotiable. gluestack-ui v2 shines in this aspect.
+
+By leveraging React Server Components (RSC) to enable server-side rendering, we have, significantly improved initial load times and SEO while reducing client-side JavaScript execution
+
+This enhancement boosts application performance and enhances the overall user experience, ensuring that applications built with gluestack-ui are responsive and performant across devices.
+
+## Promoting Accessibility and Inclusivity
+
+**Designing for Everyone**
+
+Accessibility is at the core of gluestack-ui v2. We understand the importance of creating applications that are usable by all individuals, regardless of their abilities or assistive technologies.
+
+Each component in gluestack-ui v2 is meticulously designed and tested to ensure full operability, keyboard navigation, screen-reader compatibility, and optimal color contrast.
+
+## Empowering Customization and Design Consistency
+
+**Tailored to Your Creative Vision**
+
+We wanted to empower developers and designers alike to create cohesive design systems that reflect their brand identity and creative vision.
+
+gluestack-ui does this by integrating with Tailwind CSS and the availability of a comprehensive Figma UI Kit. The result is unparalleled flexibility and consistency in UI design.
+
+Whether you' are building a sleek web application or a robust mobile interface, gluestack-ui v2 equips you with the tools to achieve stunning visual results while maintaining usability and accessibility standards.
+
+## Streamlined Development Workflow
+
+**Tools for Efficiency**
+
+Developers need tools that streamline their workflow and enhance productivity. That's why gluestack-ui v2 includes a CLI tool for quick project setup and configuration, alongside a VSCode extension for seamless integration within your preferred IDE.
+
+These tools not only simplify development tasks but also foster collaboration and consistency across teams, enabling faster iteration and delivery of high-quality applications.
+
+## Enhanced Developer Experience with Classnames
+
+**Simplified Styling with NativeWind**
+
+gluestack-ui v2 introduces a user-friendly approach to styling with NativeWind, leveraging classnames that align with Tailwind CSS conventions.
+
+This approach reduces the learning curve for developers familiar with Tailwind, allowing them to apply styles effortlessly and maintain design consistency throughout their applications. By embracing classnames, gluestack-ui v2 enhances developer productivity and empowers teams to focus on building innovative features without the complexity of traditional CSS methodologies.
+
+## Future-Proofing and Innovation
+
+**Continuously Evolving**
+
+The journey to gluestack-ui v2 is just the beginning. We're committed to continuous improvement and innovation, driven by our passion for empowering developers with cutting-edge tools and technologies.
+
+## Join Us on this Exciting Journey
+
+**Community-Centric Development**
+
+gluestack-ui v2 is not just a product – it's a collaborative effort with our community of developers, designers, and innovators.
+
+We invite you to explore gluestack-ui v2, provide feedback, and join us in shaping the future of UI development. Together, let's build intuitive, accessible, and visually compelling applications that make a positive impact in the digital world.
+
+Visit [gluestack.io](https://gluestack.io) to learn more about gluestack-ui v2, try out the latest version, and join our community.
+
+<TOC
+  items={[
+    {
+      id: 'addressing-developer-needs-and-feedback',
+      title: 'Addressing Developer Needs and Feedback',
+    },
+    {
+      id: 'modular-approach-with-copy-pastable-components',
+      title: 'Modular Approach with Copy-Pastable Components',
+    },
+    {
+      id: 'enhancing-performance-and-efficiency',
+      title: 'Enhancing Performance and Efficiency',
+    },
+    {
+      id: 'promoting-accessibility-and-inclusivity',
+      title: 'Promoting Accessibility and Inclusivity',
+    },
+    {
+      id: 'empowering-customization-and-design-consistency',
+      title: 'Empowering Customization and Design Consistency',
+    },
+    {
+      id: 'streamlined-development-workflow',
+      title: 'Streamlined Development Workflow',
+    },
+    {
+      id: 'enhanced-developer-experience-with-classnames',
+      title: 'Enhanced Developer Experience with Classnames',
+    },
+    {
+      id: 'future-proofing-and-innovation',
+      title: 'Future-Proofing and Innovation',
+    },
+    {
+      id: 'join-us-on-this-exciting-journey',
+      title: 'Join Us on this Exciting Journey',
+    },
+  ]}
+/>

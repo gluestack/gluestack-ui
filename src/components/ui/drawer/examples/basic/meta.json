@@ -1,0 +1,34 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg", "full"],
+      "defaultValue": "sm"
+    },
+    "anchor": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["left", "right", "top", "bottom"],
+      "defaultValue": "left"
+    }
+  },
+  "reactLive": {
+    "Drawer": "@/components/ui/drawer",
+    "DrawerBackdrop": "@/components/ui/drawer",
+    "DrawerContent": "@/components/ui/drawer",
+    "DrawerHeader": "@/components/ui/drawer",
+    "DrawerBody": "@/components/ui/drawer",
+    "DrawerFooter": "@/components/ui/drawer",
+    "DrawerCloseButton": "@/components/ui/drawer",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "Icon": "@/components/ui/icon",
+    "CloseIcon": "@/components/ui/icon"
+  }
+}

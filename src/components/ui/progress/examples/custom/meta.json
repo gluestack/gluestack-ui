@@ -1,0 +1,11 @@
+{
+  "title": "Custom",
+  "description": "You can customize the progress bar. Below is the example where we have change the theme of progress bar.",
+  "reactLive": {
+    "Progress": "@/components/ui/progress",
+    "ProgressFilledTrack": "@/components/ui/progress",
+    "VStack": "@/components/ui/vstack",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text"
+  }
+}

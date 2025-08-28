@@ -1,0 +1,15 @@
+{
+  "title": "Uncontrolled",
+  "description": "An uncontrolled component utilizes a checkbox component, providing a simpler implementation where the checkbox state is managed internally, without explicit control from external sources.",
+  "componentName": "Checkbox",
+  "argTypes": {},
+  "reactLive": {
+    "Checkbox": "@/components/ui/checkbox",
+    "CheckboxGroup": "@/components/ui/checkbox",
+    "CheckboxIndicator": "@/components/ui/checkbox",
+    "CheckboxIcon": "@/components/ui/checkbox",
+    "CheckboxLabel": "@/components/ui/checkbox",
+    "VStack": "@/components/ui/vstack",
+    "CheckIcon": "@/components/ui/icon"
+  }
+}

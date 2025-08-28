@@ -1,0 +1,24 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "variant": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["elevated", "outline", "ghost", "filled"],
+      "defaultValue": "elevated"
+    },
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg"],
+      "defaultValue": "md"
+    }
+  },
+  "reactLive": {
+    "Card": "@/components/ui/card",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text"
+  }
+}

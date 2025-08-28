@@ -1,0 +1,168 @@
+---
+title: gluestack-ui Avatar Component | Avatar Installation, Usage & API
+
+description: Enhance your UI with our React Native Avatar component. Explore gluestack's-ui Avatar for seamless design and customization. Check out the docs to add an Avatar component to your app!
+
+pageTitle: Avatar
+
+pageDescription: Enhance your UI with our React Native Avatar component. Explore gluestack's-ui Avatar for seamless design and customization. Check out the docs to add an Avatar component to your app!
+
+showHeader: true
+---
+
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+
+# Avatar
+
+Enhance your UI with our React Native Avatar component. Explore gluestack's-ui Avatar for seamless design and customization. Check out the docs to add an Avatar component to your app!
+
+This is an illustration of **Avatar** component.
+
+/// {Example:basic} ///
+
+<br />
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add avatar`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/avatar/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  Avatar,
+  AvatarBadge,
+  AvatarFallbackText,
+  AvatarImage,
+} from '@/components/ui/avatar';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/UWyUCue.png"
+  webUrl="https://i.imgur.com/MUsrjdt.png"
+  classNameStyle="aspect-[513/369] md:aspect-[736/209]"
+/>
+
+> IOS: It is highly recommended to use `<AvatarFallbackText />` before `<AvatarImage />` to avoid indexing issues in IOS.
+
+```ts
+export default () => (
+  <AvatarGroup>
+    <Avatar>
+      <AvatarFallbackText />
+      <AvatarImage />
+      <AvatarBadge />
+    </Avatar>
+  </AvatarGroup>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Avatar
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AvatarGroup
+
+It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AvatarImage
+
+It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image) component.
+
+#### AvatarFallbackText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### AvatarBadge
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Features
+
+- Returns a fallback to FallbackText if given an invalid image source.
+
+### Props
+
+Avatar component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Avatar
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
+      <TableCell>xs | sm | md | lg | xl | 2xl</TableCell>
+      <TableCell>md</TableCell>
+      <TableCell>Determines the size of the avatar.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:with-letters} ///
+
+/// {Example:with-icons} ///
+
+/// {Example:with-image} ///
+
+/// {Example:group} ///
+
+> To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<AvatarGroup>`
+
+/// {Example:group-without-badge} ///
+
+/// {Example:group-with-badge} ///
+
+/// {Example:custom} ///
+
+/// {Example:fallback} ///

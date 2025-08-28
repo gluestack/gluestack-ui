@@ -1,0 +1,16 @@
+{
+  "title": "Card with Image",
+  "description": "This is an example of a Card component with an image.",
+  "argTypes": {},
+  "reactLive": {
+    "Card": "@/components/ui/card",
+    "Text": "@/components/ui/text",
+    "Image": "@/components/ui/image",
+    "Heading": "@/components/ui/heading",
+    "Link": "@/components/ui/link",
+    "LinkText": "@/components/ui/link",
+    "HStack": "@/components/ui/hstack",
+    "Icon": "@/components/ui/icon",
+    "ArrowRightIcon": "@/components/ui/icon"
+  }
+}

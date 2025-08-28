@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@gorhom/bottom-sheet": "^5.0.0-alpha.11"
+  },
+  "devDependencies": {},
+  "components": []
+}

@@ -1,0 +1,17 @@
+{
+  "title": "AlertDialog with Image",
+  "argTypes": {},
+  "reactLive": {
+    "AlertDialog": "@/components/ui/alert-dialog",
+    "AlertDialogContent": "@/components/ui/alert-dialog",
+    "AlertDialogBody": "@/components/ui/alert-dialog",
+    "AlertDialogBackdrop": "@/components/ui/alert-dialog",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Text": "@/components/ui/text",
+    "Heading": "@/components/ui/heading",
+    "Box": "@/components/ui/box",
+    "Image": "@/components/ui/image",
+    "VStack": "@/components/ui/vstack"
+  }
+}

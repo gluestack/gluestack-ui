@@ -1,0 +1,18 @@
+{
+  "title": "Toast in note talking platform",
+  "argTypes": {},
+  "reactLive": {
+    "Toast": "@/components/ui/toast",
+    "ToastTitle": "@/components/ui/toast",
+    "ToastDescription": "@/components/ui/toast",
+    "useToast": "@/components/ui/toast",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Pressable": "@/components/ui/pressable",
+    "Icon": "@/components/ui/icon",
+    "CloseIcon": "@/components/ui/icon",
+    "HelpCircleIcon": "@/components/ui/icon",
+    "HStack": "@/components/ui/hstack",
+    "VStack": "@/components/ui/vstack"
+  }
+}

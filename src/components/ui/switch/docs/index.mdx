@@ -1,0 +1,206 @@
+---
+title: gluestack-ui Switch Component | React Native Switch Installation, Usage & API
+
+description: Enhance your UI with a sleek Switch Component. Built on React Native, it's customizable and accessible. Perfect for toggling options seamlessly.
+
+pageTitle: Switch
+
+pageDescription: Enhance your UI with a sleek Switch Component. Built on React Native, it's customizable and accessible. Perfect for toggling options seamlessly.
+
+showHeader: true
+---
+
+import {
+  Table,
+  TableContainer,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableText,
+  TableHeaderCell,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+# Switch
+
+Enhance your UI with a sleek Switch Component. Built on React Native, it's customizable and accessible. Perfect for toggling options seamlessly.
+
+> The current component is functioning as expected, but we have decided to rebuild it entirely to align with our vision and enhance its performance. It is primarily based on React Native, and while we have made minimal modifications so far, our upcoming rebuild will involve significant changes to ensure it closely matches our desired structure and meets our objectives.
+
+This is an illustration of **Switch** component.
+
+/// {Example:basic} ///
+
+<br />
+
+## Installation
+
+<Tabs >
+  <TabItem label="CLI">
+     
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add switch`} language="bash" />
+
+  </TabItem>
+  <TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/switch/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Switch } from '@/components/ui/switch';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/p6ndTjn.png"
+  webUrl="https://i.imgur.com/rDy1AOi.png"
+  classNameStyle="aspect-[513/298] md:aspect-[736/182]"
+/>
+
+```ts
+export default () => <Switch />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Switch
+
+Contains all switch related layout style props and actions.
+It inherits all the properties of React Native's [Switch](https://reactnative.dev/docs/switch) component.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isDisabled</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the switch is disabled and cannot be toggled</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isInvalid</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the switch displays an error state.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isRequired</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, sets aria-required="true" on the switch.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isHovered</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, the switch displays a hover state.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>value</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>The value of the switch. If true the switch will be turned on.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>defaultValue</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>The defaultValue of the switch. If true the switch will be turned on initially.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>onToggle</InlineCode>
+          </TableCell>
+          <TableCell>{`() => any`}</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>Callback to be invoked when switch value is changed.</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Accessibility
+
+We have outlined the various features that ensure the Button component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/switch/).
+
+#### Keyboard
+
+- `Tab`: Moves focus to the next focusable element.
+- `Space`: Triggers the switch's action.
+
+### Screen Reader
+
+- VoiceOver: When the switch is focused, the screen reader will announce the switch's action and its current state.
+
+### Props
+
+Switch component is created using Switch component from react-native. It extends all the props supported by [React Native Switch](https://reactnative.dev/docs/switch#props).
+
+#### Switch
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Value</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>size</InlineCode>
+          </TableCell>
+          <TableCell>sm | md | lg</TableCell>
+          <TableCell>md</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+> Note: These props are exclusively applicable when utilizing the default configuration of gluestack-ui/config. If you are using a custom theme, these props may not be available.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:with-label} ///
+
+/// {Example:checked-state} ///

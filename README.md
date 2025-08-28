@@ -21,7 +21,7 @@ gluestack-ui is a library of copy-pasteable components & patterns crafted with T
 
 ## Introduction
 
-**gluestack-ui v2** offers customizable, beautifully designed components for your projects. Unlike traditional libraries, it's not a pre-packaged dependency. Choose the components you need and copy-paste them directly into your React, Next.js & React Native projects.
+**gluestack-ui v3** offers customizable, beautifully designed components for your projects. Unlike traditional libraries, it's not a pre-packaged dependency. Choose the components you need and copy-paste them directly into your React, Next.js & React Native projects.
 
 ## Documentation
 
@@ -38,15 +38,15 @@ You can find detailed documentation for each component, including a list of prop
 - **Frequent updates:** We are constantly working on improving the library and adding new components. Follow us on GitHub to stay up-to-date on the latest releases and features.
 - **Community support:** Need help using the library or have a suggestion for a new feature? Join our [Discord](https://discord.com/invite/95qQ84nf6f) channel to connect with the community and get support.
 
-## Installing **gluestack-ui v2**
+## Installing **gluestack-ui v3**
 
-To get started with **gluestack-ui v2**, you must have an existing Next.js or Expo project. Then, simply run the following command:
+To get started with **gluestack-ui v3**, you must have an existing Next.js or Expo project. Then, simply run the following command:
 
 ```bash
 npx gluestack-ui init
 ```
 
-For detailed installation instructions, visit the [gluestack-ui v2 installation guide](https://gluestack.io/ui/docs/home/getting-started/installation).
+For detailed installation instructions, visit the [gluestack-ui v3 installation guide](https://gluestack.io/ui/docs/home/getting-started/installation).
 
 ## Tech Stack
 

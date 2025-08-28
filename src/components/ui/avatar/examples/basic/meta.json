@@ -1,0 +1,18 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["xs", "sm", "md", "lg", "xl", "2xl"],
+      "defaultValue": "md"
+    }
+  },
+  "reactLive": {
+    "Avatar": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "AvatarBadge": "@/components/ui/avatar"
+  }
+}

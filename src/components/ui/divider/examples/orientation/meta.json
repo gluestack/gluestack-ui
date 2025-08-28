@@ -1,0 +1,13 @@
+{
+  "title": "Orientation",
+  "description": "A Divider component with a specified divider orientation allows for clear visual separation of content, either horizontally or vertically, providing a structured and organized layout within a user interface.",
+  "argTypes": {},
+  "reactLive": {
+    "Divider": "@/components/ui/divider",
+    "VStack": "@/components/ui/vstack",
+    "HStack": "@/components/ui/hstack",
+    "Text": "@/components/ui/text",
+    "Box": "@/components/ui/box",
+    "Heading": "@/components/ui/heading"
+  }
+}

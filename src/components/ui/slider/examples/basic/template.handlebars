@@ -1,0 +1,18 @@
+function Example() {
+  return (
+    <Center className="w-[300px] h-[150px]">
+      <Slider
+        defaultValue={30}
+        size="{{size}}"
+        orientation="{{orientation}}"
+        isDisabled={ {{isDisabled}} }
+        isReversed={ {{isReversed}} }
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+    </Center>
+  )
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Sidebar Menu",
+  "argTypes": {},
+  "reactLive": {
+    "Drawer": "@/components/ui/drawer",
+    "DrawerBackdrop": "@/components/ui/drawer",
+    "DrawerContent": "@/components/ui/drawer",
+    "DrawerHeader": "@/components/ui/drawer",
+    "DrawerBody": "@/components/ui/drawer",
+    "DrawerFooter": "@/components/ui/drawer",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "ButtonIcon": "@/components/ui/button",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "Pressable": "@/components/ui/pressable",
+    "Divider": "@/components/ui/divider",
+    "Avatar": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "Icon": "@/components/ui/icon",
+    "User": "lucide-react-native",
+    "Home": "lucide-react-native",
+    "ShoppingCart": "lucide-react-native",
+    "Wallet": "lucide-react-native",
+    "LogOut": "lucide-react-native"
+  }
+}

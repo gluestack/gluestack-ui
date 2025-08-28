@@ -1,0 +1,17 @@
+{
+  "title": "Form Control",
+  "description": "A checkbox component integrated with form control enhances the user experience by enabling easy selection and submission of options within a structured input context.",
+  "componentName": "Checkbox",
+  "argTypes": {},
+  "reactLive": {
+    "Checkbox": "@/components/ui/checkbox",
+    "CheckboxIndicator": "@/components/ui/checkbox",
+    "CheckboxIcon": "@/components/ui/checkbox",
+    "CheckboxLabel": "@/components/ui/checkbox",
+    "FormControl": "@/components/ui/form-control",
+    "VStack": "@/components/ui/vstack",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "CheckIcon": "@/components/ui/icon"
+  }
+}

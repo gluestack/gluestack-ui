@@ -1,0 +1,14 @@
+{
+  "args": {},
+  "reactLive": {
+    "useMediaQuery": "@gluestack-ui/utils/hooks",
+    "Box": "@/components/ui/box",
+    "Text": "@/components/ui/text",
+    "Icon": "@/components/ui/icon",
+    "Laptop": "lucide-react-native",
+    "Tablet": "lucide-react-native",
+    "Smartphone": "lucide-react-native",
+    "Tv": "lucide-react-native",
+    "Heading": "@/components/ui/heading"
+  }
+}

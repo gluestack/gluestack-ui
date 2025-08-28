@@ -1,0 +1,120 @@
+---
+title: CLI | gluestack-ui | The Essential CLI Tool for UI Components
+
+description: A powerful CLI tool for seamlessly adding gluestack-ui components to your React Native projects. Simplify your workflow with an intuitive CLI UI for fast development..
+---
+
+# CLI
+
+The gluestack-ui CLI is a tool that simplifies integrating the gluestack-ui into your project. It provides commands for initialising and adding components to your project.
+
+>  Installation using gluestack-ui CLI in Expo projects supports for Expo SDK 50 and above. For Expo SDK < 49, please refer to the manual installation guide [here](https://gluestack.io/ui/docs/home/getting-started/installation).
+
+- Currently we are working on support for Windows OS. For now, we recommend using the manual installation guide to avoid any issues.
+
+## Init
+
+Use init command to set up your project.
+
+The init command adds the necessary `gluestack-ui.config.json` file, includes the `GluestackUIProvider` and essential components (`icon`, `overlay`, `toast`), installs dependencies, and configures above files for your project.
+
+- `metro.config.js`
+- `babel.config.js`
+- `next.config.js` ( for Next.js)
+- `tailwind.config.js`
+- `global.css` (for Tailwind CSS)
+- `ts.config.json`
+- entry file (for your project)
+
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} init`} language="bash" />
+
+
+> Note: If you wish to make changes to your project manually, you can refer to the [installation](/ui/docs/home/getting-started/installation) guide.
+
+### Options:
+
+- `--path <path>`: Specifies the directory path where you want to add the GluestackUIProvider component. By default, it creates the component in the `components/ui` directory within your project's root.
+
+- `--use-<package>`: This flag specifies the package manager to use when initializing gluestack-ui. Supported options are npm (default), yarn, bun, and pnpm. Replace `<package>` with your preferred package manager.
+
+<CodeBlock code={`Usage: ${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} init [options] \n \n initialize your gluestack-ui and install dependencies \n \n Options: \n   --path <path>    Path to add GluestackUIProvider, defaults to components/ui in the current directory.`} language="bash" />
+
+## Add
+
+Use the `add` command to add components and their dependencies to your project:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add [component]`} language="bash" />
+
+### Options:
+
+- `--all`: This flag can be used to add all available components from gluestack-ui to your project.
+- `--path <path>`: Specifies the directory path where you want to add the component. By default, it will add the component to the same directory where the GluestackUIProvider is located.
+
+
+<CodeBlock code={`Usage: ${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add [component] [options] \n \n add component to your project \n \n Options: \n   --all          Adds all existing components from gluestack-ui \n   --path <path>  Path to add components, defaults to the directory where GluestackUIProvider is located. \n   --use-npm      Set npm as the project's package manager, default \n   --use-yarn     Set yarn as the project's package manager \n   --use-bun      Set bun as the project's package manager \n   --use-pnpm     Set pnpm as the project's package manager, currently not supported in react-native-cli projects.`} language="bash" />
+
+
+## gluestack-ui.config.json
+
+Configuration for your project.
+
+The `gluestack-ui.config.json` file holds the configuration for your project. It helps the CLI understand how your project is set up and add components accordingly.
+
+> Note : The gluestack-ui.config.json file is optional. It is only required if you use the CLI to add components to your project. If you prefer to manually copy and paste components, this file is not needed.
+
+Manual creation of gluestack-ui.config.json file is not necessary. It will be automatically generated upon executing the following command:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} init`} language="bash" />
+
+## tailwind
+
+### tailwind.config
+
+Path to where your `tailwind.config.js` file is located.
+
+```bash
+{
+  "tailwind": {
+    "config": "tailwind.config.js",
+  }
+}
+```
+
+### tailwind.css
+
+Path to the CSS file (`global.css`) where Tailwind styles are likely imported into your project.
+
+```bash
+{
+  "tailwind": {
+    "css": "global.css"
+  }
+}
+```
+
+## app
+
+### app.entry
+
+Path to your project's entry file
+
+```bash
+{
+  "app": {
+    "entry": "app/_layout.tsx",
+  }
+}
+```
+
+### app.components
+
+Specifies the directory path where the `GluestackUIProvider` component is located.
+
+```bash
+{
+  "app": {
+    "components": "components/ui",
+  }
+}
+```

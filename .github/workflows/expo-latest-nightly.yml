@@ -1,15 +1,73 @@
-name: Expo Latest Nightly
+name: Expo Latest v3
 
 on:
   push:
-    branches: [ feat/v3 ]
+    branches: [feat/v3]
   pull_request:
-    branches: [ feat/v3 ]
+    branches: [feat/v3]
   schedule:
-    - cron: '0 0 * * *'  # Run daily at midnight UTC
+    - cron: '0 0 * * *' # Run daily at midnight UTC
 
 jobs:
+  check-automation:
+    runs-on: ubuntu-latest
+    outputs:
+      should-skip: ${{ steps.check-automation.outputs.should-skip }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if triggered by automation
+        id: check-automation
+        run: |
+          # Skip automation check for scheduled runs
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            echo "should-skip=false" >> $GITHUB_OUTPUT
+            echo "✅ Scheduled run - workflow will proceed"
+            exit 0
+          fi
+
+          # Skip if actor is github-actions or dependabot
+          if [[ "${{ github.actor }}" == "github-actions[bot]" ]] || [[ "${{ github.actor }}" == "dependabot[bot]" ]] || [[ "${{ github.actor }}" == "github-actions" ]]; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: triggered by automated actor (${{ github.actor }})"
+            exit 0
+          fi
+
+          # Get the latest commit message and author
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          COMMIT_AUTHOR=$(git log -1 --pretty=%an)
+
+          echo "Commit message: $COMMIT_MESSAGE"
+          echo "Commit author: $COMMIT_AUTHOR"
+
+          # Skip if commit message contains [skip ci] or [ci skip]
+          if echo "$COMMIT_MESSAGE" | grep -q "\[skip ci\]"; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: [skip ci] found in commit message"
+            exit 0
+          fi
+
+          if echo "$COMMIT_MESSAGE" | grep -q "\[ci skip\]"; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: [ci skip] found in commit message"
+            exit 0
+          fi
+
+          # Skip if commit author is automated
+          if [[ "$COMMIT_AUTHOR" == *"github-actions"* ]] || [[ "$COMMIT_AUTHOR" == *"GitHub Action"* ]] || [[ "$COMMIT_AUTHOR" == *"dependabot"* ]]; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: commit by automated author ($COMMIT_AUTHOR)"
+            exit 0
+          fi
+
+          echo "should-skip=false" >> $GITHUB_OUTPUT
+          echo "✅ Workflow will proceed"
+
   check-expo-version:
+    needs: check-automation
+    if: needs.check-automation.outputs.should-skip != 'true'
     runs-on: macos-latest
     outputs:
       should_run: ${{ steps.check.outputs.should_run }}
@@ -27,8 +85,8 @@ jobs:
             echo "should_run=false" >> $GITHUB_OUTPUT
           fi
   test-expo-latest:
-    needs: check-expo-version
-    if: ${{ needs.check-expo-version.outputs.should_run == 'true' || github.event_name == 'push' || github.event_name == 'pull_request' }}
+    needs: [check-automation, check-expo-version]
+    if: ${{ needs.check-automation.outputs.should-skip != 'true' && (needs.check-expo-version.outputs.should_run == 'true' || github.event_name == 'push' || github.event_name == 'pull_request') }}
     runs-on: macos-latest
     name: Expo latest
     steps:
@@ -48,24 +106,10 @@ jobs:
       - name: Install gluestack-ui
         working-directory: test-app
         run: |
-          npx gluestack-ui-nightly init --template-only --projectType expo
-          npx gluestack-ui-nightly add --all
+          npx gluestack-ui init --template-only --projectType expo
+          npx gluestack-ui add --all
           npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css
       - name: Start Expo web app
         working-directory: test-app
         run: |
           npm run web & sleep 30
-  notify:
-    needs: test-expo-latest
-    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/feat/v3'
-    runs-on: macos-latest
-    steps:
-    - name: Slack Notification
-      uses: 8398a7/action-slack@v3
-      with:
-        status: ${{ job.status }}
-        text: 'Expo Latest Test: ${{ job.status }}'
-        fields: repo,commit,action,eventName
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

@@ -1,0 +1,29 @@
+{
+  "name": "@internal/gluestack-ui-src",
+  "version": "0.0.0-dev",
+  "private": true,
+  "description": "Development environment for gluestack-ui components (not for distribution)",
+  "dependencies": {
+    "@expo/html-elements": "^0.12.5",
+    "@gluestack-ui/core": "*",
+    "@gluestack-ui/utils": "*",
+    "@gorhom/bottom-sheet": "^5.1.8",
+    "@legendapp/motion": "^2.4.0",
+    "nativewind": "^4.1.23",
+    "react": "^18",
+    "react-native": "^0.79.2",
+    "react-native-reanimated": "^4.0.1",
+    "react-native-safe-area-context": "5.4.0",
+    "tailwind-variants": "^0.2.1"
+  },
+  "scripts": {
+    "note": "echo 'This package.json is for development only. Components are copied to apps, not executed from here.'"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.9",
+    "@types/react-native": "^0.73.0",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3"
+  }
+}

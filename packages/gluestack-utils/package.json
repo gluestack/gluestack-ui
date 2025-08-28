@@ -1,0 +1,102 @@
+{
+  "name": "@gluestack-ui/utils",
+  "version": "3.0.0",
+  "description": "Utility functions and hooks for gluestack-ui",
+  "main": "./lib/esm/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "source": "./src/index.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./lib/esm/index.d.ts",
+      "default": "./lib/esm/index.js"
+    },
+    "./aria": {
+      "types": "./lib/esm/aria/index.d.ts",
+      "default": "./lib/esm/aria/index.js"
+    },
+    "./hooks": {
+      "types": "./lib/esm/hooks/index.d.ts",
+      "default": "./lib/esm/hooks/index.js"
+    },
+    "./common": {
+      "types": "./lib/esm/common/index.d.ts",
+      "default": "./lib/esm/common/index.js"
+    },
+    "./nativewind-utils": {
+      "types": "./lib/esm/nativewind-utils/index.d.ts",
+      "default": "./lib/esm/nativewind-utils/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "hooks": [
+        "./lib/esm/hooks/index.d.ts"
+      ],
+      "aria": [
+        "./lib/esm/aria/index.d.ts"
+      ],
+      "nativewind-utils": [
+        "./lib/esm/nativewind-utils/index.d.ts"
+      ],
+      "common": [
+        "./lib/esm/common/index.d.ts"
+      ]
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "lib",
+    "nativewind-utils.ts",
+    "aria.ts",
+    "common.ts",
+    "hooks.ts"
+  ],
+  "scripts": {
+    "clean": "rm -rf lib",
+    "build": "node ./scripts/generate-barrel-exports.js && tsc -p tsconfig.build.json",
+    "watch": "tsc -p tsconfig.build.json --watch",
+    "dev": "nodemon --watch src --ext ts,tsx,js,jsx,json --exec 'yarn build && yalc push --private'",
+    "prepare": "yarn clean && yarn build",
+    "watch:push": "concurrently \"tsc -p tsconfig.build.json --watch\" \"yalc publish --watch --push\""
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.64.0",
+    "react-native-web": ">=0.19.0",
+    "tailwindcss": ">=3.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-native": "^0.72.0",
+    "concurrently": "^9.2.0",
+    "nodemon": "^3.1.10",
+    "react": "^18.3.1",
+    "react-native": "^0.72.0",
+    "react-native-web": "^0.19.0",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "dom-helpers": "^6.0.1",
+    "react-aria": "^3.41.1",
+    "react-stately": "^3.39.0",
+    "tailwind-variants": "0.1.14"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "expo",
+    "nextjs",
+    "cross-platform",
+    "utilities",
+    "hooks",
+    "aria"
+  ]
+}

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://gluestack.io
+
+# Sitemaps
+Sitemap: https://gluestack.io/sitemap.xml

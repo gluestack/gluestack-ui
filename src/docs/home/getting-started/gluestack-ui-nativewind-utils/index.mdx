@@ -1,0 +1,38 @@
+---
+title: gluestack-ui/nativewind utils | Build with NativeWind Components
+description: gluestack-ui/nativewind-utils provides a collection of utility functions for your gluestack-ui components. A must-have NativeWind UI library for faster and smoother UI development.
+---
+
+# @gluestack-ui/nativewind-utils
+
+[@gluestack-ui/nativewind-utils](https://www.npmjs.com/package/@gluestack-ui/nativewind-utils) provides a collection of utility functions for seamless integration of gluestack-ui and nativewind.
+
+### tva (Tailwind Variant Authority)
+
+The `tva` function serves as a wrapper around [Tailwind Variant](https://www.tailwind-variants.org/), extending its functionality.
+
+In addition to the default Tailwind variant, it introduces support for `parentVariant` and `parentCompoundVariant`.
+
+### VariantProps Utility
+
+The `VariantProps` utility allows for easy extraction of variants from a component.
+
+### flush
+
+This function facilitates server-side rendering (SSR) by flushing out any styles generated during the process. This ensures that these styles are properly added to the HTML document.
+
+### withStates
+
+`withStates` is a Higher Order Component (HOC) designed to incorporate state-based styling into gluestack-ui components on native devices.
+
+### withStyleContext
+
+`withStyleContext` is a HOC that creates a React context with a defined scope.
+
+### withStyleContextAndStates
+
+This single HOC combines the functionality of both `withStyleContext` and `withStates`.
+
+### useStyleContext
+
+`useStyleContext` is a hook used to consume the context created by `withStyleContext` and `withStyleContextAndStates`.

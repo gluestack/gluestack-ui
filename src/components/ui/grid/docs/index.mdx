@@ -1,0 +1,207 @@
+---
+title: gluestack-ui Grid Component | React Native Grid Installation, Usage, and API
+
+description: Create responsive layouts with the gluestack-ui Grid component. A flexible React Native grid layout for seamless UI design in web and mobile apps with rows and columns.
+
+pageTitle: Grid
+
+pageDescription: Create responsive layouts with the gluestack-ui Grid component. A flexible React Native grid layout for seamless UI design in web and mobile apps with rows and columns.
+
+showHeader: true
+
+tag: alpha RSC
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Grid
+
+Discover a powerful Grid component for React & React Native with customizable layout and behavior. Perfect for creating responsive grid layouts in your UI design.
+
+This is an illustration of **Grid** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add grid`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/grid/index.tsx --%%
+```
+
+> Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2(optional): Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/grid/index.web.tsx --%%
+```
+
+### Step 3: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/grid/styles.tsx --%%
+```
+
+### Step 4: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Grid, GridItem } from '@/components/ui/grid';
+```
+
+```ts
+export default () => (
+  <Grid>
+    <GridItem />
+  </Grid>
+);
+```
+
+> Note: Our responsive grid component is based on a 12-column grid layout. It follows the CSS **grid system** on the web and **flexbox layout** on native devices. Since the grid layout is only supported on the web, passing the grid-cols and col-span classNames inside \_extra is **recommended** for the grid component to work effortlessly on both web and native. Our grid component currently does not support rowSpan.
+
+> Note: The immediate parent of **GridItem** must be **Grid**. There should be no higher-order component (HOC) between them.
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+### Grid
+
+<p>{`Renders a <div /> on web and a View on native.`}</p>
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<div />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<View />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### Props
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>_extra</InlineCode>
+        </TableCell>
+        <TableCell>object</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Accepts grid-cols-* className. Value for * can range from 1 to 12. Default value is grid-cols-12.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### GridItem
+
+<p>{`Renders a <div /> on web and a View on native.`}</p>
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<div />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<View />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### Props
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>_extra</InlineCode>
+        </TableCell>
+        <TableCell>object</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Accepts col-span-* className. Value for * can range from 1 to 12. Default value is col-span-1.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:gap-between-items} ///
+
+/// {Example:row-column-gaps} ///
+
+/// {Example:nested-grids} ///
+
+/// {Example:responsive-grids} ///
+
+#### Why we introduced \_extra prop?
+
+Grid Layout is not supported in native. In order to make our component universal, we introduced the `_extra` prop to pass the grid classnames to the grid component. We use the `_extra` prop to pass the grid classnames to the grid component & extract the neccessary styles from the provided classname. This approach provides a SSR friendly solution for responsiveness.

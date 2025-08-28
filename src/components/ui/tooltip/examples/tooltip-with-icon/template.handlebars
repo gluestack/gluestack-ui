@@ -1,0 +1,32 @@
+function App(){
+          return (
+            <Box className="h-96 justify-center">
+              <Tooltip
+                  placement="top"
+                  trigger={(triggerProps) => {
+                    return (
+                    <Avatar size="md" {...triggerProps} className="bg-primary-600">
+                      <Icon as={EditIcon} size="sm" className="text-white"/>
+                    </Avatar>
+                    )
+                  }}
+              >
+                <TooltipContent
+                className="bg-background-50 rounded-md"
+                >
+                  <Box className="p-2.5">
+                    <Text size="sm">New message</Text>
+                    <HStack space="xs" className="p-1 ml-3">
+                          <Avatar size="xs" className="bg-gray-500 rounded">
+                              <Icon as={Command} className="text-typography-0"/>
+                          </Avatar>
+                          <Avatar size="xs" className="bg-gray-500 rounded">
+                            <AvatarFallbackText>N</AvatarFallbackText>
+                          </Avatar>
+                    </HStack>
+                  </Box>
+                </TooltipContent>
+              </Tooltip>
+            </Box>
+        );
+        }

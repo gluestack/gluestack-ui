@@ -1,0 +1,18 @@
+{
+  "title": "Disabled item",
+  "description": "You can disable an item by setting the isDisabled prop to true. This will prevent the user from interacting with the item and its content. You can also disable the whole accordion by setting the isDisabled prop to true on the Accordion component.",
+  "argTypes": {},
+  "reactLive": {
+    "Accordion": "@/components/ui/accordion",
+    "AccordionItem": "@/components/ui/accordion",
+    "AccordionHeader": "@/components/ui/accordion",
+    "AccordionTrigger": "@/components/ui/accordion",
+    "AccordionTitleText": "@/components/ui/accordion",
+    "AccordionContent": "@/components/ui/accordion",
+    "AccordionContentText": "@/components/ui/accordion",
+    "AccordionIcon": "@/components/ui/accordion",
+    "Divider": "@/components/ui/divider",
+    "AddIcon": "@/components/ui/icon",
+    "RemoveIcon": "@/components/ui/icon"
+  }
+}

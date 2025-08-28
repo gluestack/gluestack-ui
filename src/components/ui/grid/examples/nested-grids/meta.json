@@ -1,0 +1,10 @@
+{
+  "title": "Nested Grids",
+  "description": "The following example depicts how easily you can nest grids to create complex layouts with multiple levels of nesting.",
+  "argTypes": {},
+  "reactLive": {
+    "Grid": "@/components/ui/grid",
+    "GridItem": "@/components/ui/grid",
+    "Text": "@/components/ui/text"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Rounded corners",
+  "description": "The borderRadius prop can be used to create rounded corners for both the Accordion and AccordionItem components.",
+  "argTypes": {},
+  "reactLive": {
+    "Accordion": "@/components/ui/accordion",
+    "AccordionItem": "@/components/ui/accordion",
+    "AccordionHeader": "@/components/ui/accordion",
+    "AccordionTrigger": "@/components/ui/accordion",
+    "AccordionTitleText": "@/components/ui/accordion",
+    "AccordionContent": "@/components/ui/accordion",
+    "AccordionContentText": "@/components/ui/accordion",
+    "AccordionIcon": "@/components/ui/accordion",
+    "Divider": "@/components/ui/divider",
+    "AddIcon": "@/components/ui/icon",
+    "RemoveIcon": "@/components/ui/icon"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Setting the gap between grid items",
+  "description": "Use the gap-* utilities to change the gap between both rows and columns in grid.",
+  "argTypes": {},
+  "reactLive": {
+    "Grid": "@/components/ui/grid",
+    "GridItem": "@/components/ui/grid",
+    "Text": "@/components/ui/text"
+  }
+}

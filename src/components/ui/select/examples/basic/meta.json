@@ -1,0 +1,32 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "variant": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["underlined", "outline", "rounded"],
+      "defaultValue": "outline"
+    },
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg", "xl"],
+      "defaultValue": "md"
+    }
+  },
+  "reactLive": {
+    "Select": "@/components/ui/select",
+    "SelectTrigger": "@/components/ui/select",
+    "SelectInput": "@/components/ui/select",
+    "SelectIcon": "@/components/ui/select",
+    "SelectPortal": "@/components/ui/select",
+    "SelectBackdrop": "@/components/ui/select",
+    "SelectContent": "@/components/ui/select",
+    "SelectDragIndicator": "@/components/ui/select",
+    "SelectDragIndicatorWrapper": "@/components/ui/select",
+    "SelectItem": "@/components/ui/select",
+    "ChevronDownIcon": "@/components/ui/icon"
+  }
+}

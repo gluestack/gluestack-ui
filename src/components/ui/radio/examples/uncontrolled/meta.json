@@ -1,0 +1,15 @@
+{
+  "title": "Uncontrolled",
+  "description": "The Radio components can be used with either a ref or no state, providing an uncontrolled state where the selected option is managed internally.",
+  "argTypes": {},
+  "reactLive": {
+    "Center": "@/components/ui/center",
+    "VStack": "@/components/ui/vstack",
+    "Radio": "@/components/ui/radio",
+    "RadioGroup": "@/components/ui/radio",
+    "RadioIcon": "@/components/ui/radio",
+    "RadioIndicator": "@/components/ui/radio",
+    "RadioLabel": "@/components/ui/radio",
+    "CircleIcon": "@/components/ui/icon"
+  }
+}

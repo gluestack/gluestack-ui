@@ -1,0 +1,22 @@
+{
+  "title": "Invite Friends to Project",
+  "reactLive": {
+    "Modal": "@/components/ui/modal",
+    "ModalBackdrop": "@/components/ui/modal",
+    "ModalContent": "@/components/ui/modal",
+    "ModalHeader": "@/components/ui/modal",
+    "ModalCloseButton": "@/components/ui/modal",
+    "ModalBody": "@/components/ui/modal",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "Icon": "@/components/ui/icon",
+    "CloseIcon": "@/components/ui/icon",
+    "CopyIcon": "@/components/ui/icon",
+    "Input": "@/components/ui/input",
+    "InputField": "@/components/ui/input",
+    "Pressable": "@/components/ui/pressable"
+  }
+}

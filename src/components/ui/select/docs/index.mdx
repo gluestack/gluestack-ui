@@ -1,0 +1,455 @@
+---
+title: gluestack-ui Select Component | Select React Native Installation, Usage & API
+
+description: Enhance your React Native app with a customizable Select dropdown component. Supports accessibility, animations, and flexible styling for a smooth user experience.
+
+pageTitle: Select
+
+pageDescription: Enhance your React Native app with a customizable Select dropdown component. Supports accessibility, animations, and flexible styling for a smooth user experience.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableContainer,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableText,
+  TableHeaderCell,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Select
+
+Enhance your React Native app with a customizable Select dropdown component. Supports accessibility, animations, and flexible styling for a smooth user experience.
+
+This is an illustration of **Select** component.
+/// {Example:basic} ///
+
+<br />
+
+## Installation
+
+<Tabs>
+  <TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add select`} language="bash" />
+
+  </TabItem>
+  <TabItem label="Manual">
+
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @legendapp/motion
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/select/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectItem,
+} from '@/components/ui/select';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/g0lTtcB.png"
+  webUrl="https://i.imgur.com/cX9uCot.png"
+  classNameStyle="aspect-[513/397] md:aspect-[736/237]"
+/>
+
+```ts
+export default () => (
+  <Select>
+    <SelectTrigger>
+      <SelectInput />
+      <SelectIcon as={IconComponent} />
+    </SelectTrigger>
+    <SelectPortal>
+      <SelectBackdrop />
+      <SelectContent>
+        <SelectDragIndicatorWrapper>
+          <SelectDragIndicator />
+        </SelectDragIndicatorWrapper>
+        <SelectItem />
+      </SelectContent>
+    </SelectPortal>
+  </Select>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Select
+
+Contains all Select related layout style and high-level select props.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+> Note: Please note that this select component renders as an Actionsheet on `iOS` and `Android` devices for a native feel. On `web`, it behaves like a regular select element and renders the default HTML options.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isDisabled</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, the select is disabled and cannot be edited.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isInvalid</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, the select displays an error state.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isRequired</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, sets aria-required="true" on the input.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isHovered</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, the select displays a hover state.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isFocusVisible</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, the focus ring of select will be visible.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isFocused</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, the select displays a focus state.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>closeOnOverlayClick</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, the select will close when the overlay is clicked.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>selectedValue</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>{`Sets the currently selected option value, allowing the component to render with the corresponding option pre-selected.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>initialLabel</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>{`Sets the initial selected Label for a select component.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>defaultValue</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>{`Sets the initial selected option value for a select component.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onOpen</InlineCode>
+      </TableCell>
+      <TableCell>{`() => any`}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>{`Callback to be invoked when Select Dropdown or Actionsheet is opened.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onValueChange</InlineCode>
+      </TableCell>
+      <TableCell>{`() => any`}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>{`Callback to be invoked when Select value is changed.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onClose</InlineCode>
+      </TableCell>
+      <TableCell>{`() => any`}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>{`Callback to be invoked when Select Dropdown or Actionsheet is closed.`}</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+> Note: Please note that if you want to use `initialLabel` prop, then you also need to pass `defaultValue` or `selectedValue` prop, to select the option value for a select component.
+
+#### SelectTrigger
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+#### SelectInput
+
+It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput) component.
+
+#### SelectIcon
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+#### SelectPortal
+
+It is internally mapped wth gluestack-ui's [Actionsheet](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+> Note: If **snapPoints** are not provided to `SelectPortal`, then it's essential to set **maxHeight** to `SelectContent`.
+
+#### SelectBackdrop
+
+It is internally mapped wth gluestack-ui's [ActionsheetBackdrop](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+
+#### SelectContent
+
+It is internally mapped wth gluestack-ui's [ActionsheetContent](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. With this ActionSheet component, you have the flexibility to use any declarative animation library that suits your needs.
+
+#### SelectDragIndicatorWrapper
+
+It is internally mapped wth gluestack-ui's [ActionsheetDragIndicatorWrapper](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### SelectDragIndicator
+
+It is internally mapped wth gluestack-ui's [ActionsheetDragIndicator](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### SelectItem
+
+It internally uses gluestack-ui's [ActionsheetItem](https://ui.gluestack.io/docs/components/disclosure/actionsheet) and [Actionsheet.ItemText](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isDisabled</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>{`When true, its disabled state activates.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>label</InlineCode>
+          </TableCell>
+          <TableCell>string</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>{`setting label that displays to the user.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>value</InlineCode>
+          </TableCell>
+          <TableCell>string</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>{`The value to be used for the item. This is the value that will be returned on form submission.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>textStyle</InlineCode>
+          </TableCell>
+          <TableCell>inherits all the properties of react native text</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>{`This prop only works on native.`}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+#### SelectScrollView
+
+It is internally mapped wth gluestack-ui's [Actionsheet.ScrollView](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [ScrollView](https://reactnative.dev/docs/scrollview#props) component.
+
+#### SelectVirtualizedList
+
+It is internally mapped wth gluestack-ui's [Actionsheet.VirtualizedList](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [VirtualizedList](https://reactnative.dev/docs/virtualizedlist#props) component.
+
+#### SelectFlatList
+
+It is internally mapped wth gluestack-ui's [Actionsheet.FlatList](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [FlatList](https://reactnative.dev/docs/flatlist#props) component.
+
+#### SelectSectionList
+
+It is internally mapped wth gluestack-ui's [Actionsheet.SectionList](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [SectionList](https://reactnative.dev/docs/sectionlist#props) component.
+
+#### SelectSectionHeaderText
+
+It is internally mapped wth gluestack-ui's [Actionsheet.SectionHeaderText](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+### Features
+
+- Support for native and web platforms separately.
+- Support for passing custom trigger.
+
+### Accessibility
+
+We have outlined the various features that ensure the Select component is accessible to all users, including those with disabilities.These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://react-spectrum.adobe.com/react-aria/Selecthtml).
+
+#### Keyboard
+
+- `Tab + Space`: Triggers the select's action.
+
+#### Screen Reader
+
+- VoiceOver: When the select is focused, the screen reader will announce the select content.
+
+### Props
+
+Select component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props) and the props mentioned below.
+
+#### Select
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Value</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>size</InlineCode>
+          </TableCell>
+          <TableCell>sm | md | lg | xl</TableCell>
+          <TableCell>md</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>variant</InlineCode>
+          </TableCell>
+          <TableCell>underlined | outline | rounded</TableCell>
+          <TableCell>outline</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Data Attributes Table
+
+Component receives states as props as boolean values, which are applied as `data-*` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>State</TableHeaderCell>
+          <TableHeaderCell>Data Attribute</TableHeaderCell>
+          <TableHeaderCell>Values</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>hover</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>data-hover</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+         <TableRow>
+          <TableCell>
+            <InlineCode>disabled</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>data-disabled</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>focus</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>data-focus</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>invalid</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>data-invalid</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+/// {Example:select-form-controlled} ///

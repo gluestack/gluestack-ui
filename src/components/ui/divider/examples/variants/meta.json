@@ -1,0 +1,12 @@
+{
+  "title": "Variants",
+  "description": "A Divider component with different layouts offers versatile options for visually dividing content in various arrangements, such as horizontal or vertical orientations, enabling flexible and visually appealing designs for organizing and structuring elements within a user interface.",
+  "argTypes": {},
+  "reactLive": {
+    "Divider": "@/components/ui/divider",
+    "VStack": "@/components/ui/vstack",
+    "HStack": "@/components/ui/hstack",
+    "Text": "@/components/ui/text",
+    "Heading": "@/components/ui/heading"
+  }
+}

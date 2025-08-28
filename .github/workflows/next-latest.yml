@@ -2,14 +2,72 @@ name: Next.js Latest
 
 on:
   push:
-    branches: [main, master]
+    branches: [feat/v3]
   pull_request:
-    branches: [main, master]
+    branches: [feat/v3]
   schedule:
     - cron: '0 0 * * *' # Run daily at midnight UTC
 
 jobs:
+  check-automation:
+    runs-on: ubuntu-latest
+    outputs:
+      should-skip: ${{ steps.check-automation.outputs.should-skip }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if triggered by automation
+        id: check-automation
+        run: |
+          # Skip automation check for scheduled runs
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            echo "should-skip=false" >> $GITHUB_OUTPUT
+            echo "✅ Scheduled run - workflow will proceed"
+            exit 0
+          fi
+
+          # Skip if actor is github-actions or dependabot
+          if [[ "${{ github.actor }}" == "github-actions[bot]" ]] || [[ "${{ github.actor }}" == "dependabot[bot]" ]] || [[ "${{ github.actor }}" == "github-actions" ]]; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: triggered by automated actor (${{ github.actor }})"
+            exit 0
+          fi
+
+          # Get the latest commit message and author
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          COMMIT_AUTHOR=$(git log -1 --pretty=%an)
+
+          echo "Commit message: $COMMIT_MESSAGE"
+          echo "Commit author: $COMMIT_AUTHOR"
+
+          # Skip if commit message contains [skip ci] or [ci skip]
+          if echo "$COMMIT_MESSAGE" | grep -q "\[skip ci\]"; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: [skip ci] found in commit message"
+            exit 0
+          fi
+
+          if echo "$COMMIT_MESSAGE" | grep -q "\[ci skip\]"; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: [ci skip] found in commit message"
+            exit 0
+          fi
+
+          # Skip if commit author is automated
+          if [[ "$COMMIT_AUTHOR" == *"github-actions"* ]] || [[ "$COMMIT_AUTHOR" == *"GitHub Action"* ]] || [[ "$COMMIT_AUTHOR" == *"dependabot"* ]]; then
+            echo "should-skip=true" >> $GITHUB_OUTPUT
+            echo "🚫 Skipping workflow: commit by automated author ($COMMIT_AUTHOR)"
+            exit 0
+          fi
+
+          echo "should-skip=false" >> $GITHUB_OUTPUT
+          echo "✅ Workflow will proceed"
+
   check-next-version:
+    needs: check-automation
+    if: needs.check-automation.outputs.should-skip != 'true'
     runs-on: ubuntu-latest
     outputs:
       should_run: ${{ steps.check.outputs.should_run }}
@@ -30,8 +88,8 @@ jobs:
           fi
 
   test-next-latest:
-    needs: check-next-version
-    if: ${{ needs.check-next-version.outputs.should_run == 'true' || github.event_name == 'push' || github.event_name == 'pull_request' }}
+    needs: [check-automation, check-next-version]
+    if: ${{ needs.check-automation.outputs.should-skip != 'true' && (needs.check-next-version.outputs.should_run == 'true' || github.event_name == 'push' || github.event_name == 'pull_request') }}
     runs-on: ubuntu-latest
     name: Next.js latest
     steps:
@@ -81,18 +139,3 @@ jobs:
         run: |
           RESPONSE=$(curl -s http://localhost:3000)
           echo "$RESPONSE" | grep -q "Get started by editing" && echo "text found" || (echo "text not found" && exit 1)
-
-  notify:
-    needs: test-next-latest
-    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Slack Notification
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: 'Next.js Latest Test: ${{ job.status }}'
-          fields: repo,commit,action,eventName
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

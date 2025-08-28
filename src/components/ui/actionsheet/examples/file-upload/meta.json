@@ -1,0 +1,27 @@
+{
+  "title": "File Upload with Actionsheet",
+  "argTypes": {},
+  "reactLive": {
+    "Actionsheet": "@/components/ui/actionsheet",
+    "ActionsheetBackdrop": "@/components/ui/actionsheet",
+    "ActionsheetContent": "@/components/ui/actionsheet",
+    "ActionsheetDragIndicator": "@/components/ui/actionsheet",
+    "ActionsheetDragIndicatorWrapper": "@/components/ui/actionsheet",
+    "ActionsheetItem": "@/components/ui/actionsheet",
+    "ActionsheetItemText": "@/components/ui/actionsheet",
+    "ActionsheetSectionList": "@/components/ui/actionsheet",
+    "ActionsheetSectionHeaderText": "@/components/ui/actionsheet",
+    "ButtonGroup": "@/components/ui/button",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "HStack": "@/components/ui/hstack",
+    "VStack": "@/components/ui/vstack",
+    "Box": "@/components/ui/box",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "Icon": "@/components/ui/icon",
+    "CloseIcon": "@/components/ui/icon",
+    "UploadCloud": "lucide-react-native",
+    "Pressable": "@/components/ui/pressable"
+  }
+}

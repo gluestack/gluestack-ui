@@ -1,0 +1,241 @@
+---
+title: gluestack-ui Heading Component | Installation, Usage, and API
+
+description: Explore the gluestack-ui Heading Component with installation steps, API reference, and usage examples. Customize React Native headings with different sizes and styles easily for your projects.
+
+pageTitle: Heading
+
+pageDescription: Explore the gluestack-ui Heading Component with installation steps, API reference, and usage examples. Customize React Native headings with different sizes and styles easily for your projects.
+
+showHeader: true
+
+tag: RSC
+---
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+# Heading
+
+Explore the gluestack-ui Heading Component with installation steps, API reference, and usage examples. Customize React Native headings with different sizes and styles easily for your projects.
+
+This is an illustration of **Heading** component.
+/// {Example:basic} ///
+
+## Installation
+
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add heading`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into index.tsx in your project.
+
+```jsx
+%%-- File: src/components/ui/heading/index.tsx --%%
+```
+
+> Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2(optional): Copy and paste the following code into index.web.tsx in your project.
+
+```jsx
+%%-- File: src/components/ui/heading/index.web.tsx --%%
+```
+
+### Step 3: Copy and paste the following code into styles.tsx in your project.
+
+```jsx
+%%-- File: src/components/ui/heading/styles.tsx --%%
+```
+
+### Step 4: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { Heading } from '@/components/ui/heading';
+```
+
+```jsx
+export default () => <Heading />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Heading
+
+Heading renders a heading element with a range of sizes and semantic meanings. It offers a variety of props to customize the appearance of the heading.
+
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Size</TableHeaderCell>
+      <TableHeaderCell>Web Element</TableHeaderCell>
+      <TableHeaderCell>Native (@expo-html/elements)</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>5xl, 4xl, 3xl</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`<h1 />`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>H1</InlineCode>
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>2xl</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`<h2 />`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>H2</InlineCode>
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>xl</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`<h3 />`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>H3</InlineCode>
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>lg</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`<h4 />`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>H4</InlineCode>
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>md</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`<h5 />`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>H5</InlineCode>
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>sm, xs</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`<h6 />`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>H6</InlineCode>
+      </TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+### Props
+
+#### Heading
+
+Heading component is created using Heading component from @expo/html-elements on native. It extends all the props supported by [Expo HTML Heading Elements](https://www.npmjs.com/package/@expo/html-elements/v/0.0.5) and the props mentioned below.
+
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Name</TableHeaderCell>
+      <TableHeaderCell>Value</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isTruncated</InlineCode>
+      </TableCell>
+      <TableCell>true | false</TableCell>
+      <TableCell>false</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>bold</InlineCode>
+      </TableCell>
+      <TableCell>true | false</TableCell>
+      <TableCell>false</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>underline</InlineCode>
+      </TableCell>
+      <TableCell>true | false</TableCell>
+      <TableCell>false</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>strikeThrough</InlineCode>
+      </TableCell>
+      <TableCell>true | false</TableCell>
+      <TableCell>false</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>sub</InlineCode>
+      </TableCell>
+      <TableCell>true | false</TableCell>
+      <TableCell>false</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>italic</InlineCode>
+      </TableCell>
+      <TableCell>true | false</TableCell>
+      <TableCell>false</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>highlight</InlineCode>
+      </TableCell>
+      <TableCell>true | false</TableCell>
+      <TableCell>false</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
+      <TableCell>5xl | 4xl | 3xl | 2xl | xl | lg | md | sm | xs</TableCell>
+      <TableCell>md</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:heading-sizes} ///

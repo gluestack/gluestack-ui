@@ -1,0 +1,15 @@
+{
+  "title": "Horizontal",
+  "description": "Radio buttons can be used horizontally.",
+  "argTypes": {},
+  "reactLive": {
+    "Center": "@/components/ui/center",
+    "HStack": "@/components/ui/hstack",
+    "Radio": "@/components/ui/radio",
+    "RadioGroup": "@/components/ui/radio",
+    "RadioIcon": "@/components/ui/radio",
+    "RadioIndicator": "@/components/ui/radio",
+    "RadioLabel": "@/components/ui/radio",
+    "CircleIcon": "@/components/ui/icon"
+  }
+}

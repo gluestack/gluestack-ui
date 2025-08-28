@@ -1,0 +1,12 @@
+{
+  "title": "Link with Icon",
+  "argTypes": {},
+  "reactLive": {
+    "Link": "@/components/ui/link",
+    "LinkText": "@/components/ui/link",
+    "HStack": "@/components/ui/hstack",
+    "Text": "@/components/ui/text",
+    "Icon": "@/components/ui/icon",
+    "ArrowUpRight": "lucide-react-native"
+  }
+}

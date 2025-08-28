@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@legendapp/motion": "^2.4.0",
+    "@expo/html-elements": "^0.12.5"
+  },
+  "devDependencies": {},
+  "components": []
+}

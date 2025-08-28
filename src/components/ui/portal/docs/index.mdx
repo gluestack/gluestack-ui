@@ -1,0 +1,143 @@
+---
+title: gluestack-ui Portal Component | React Portal Installation, Usage & API
+
+description: Learn how to use the Portal component in React and React Native to render content outside the DOM hierarchy. Explore installation, API reference, and props.
+
+pageTitle: Portal
+
+pageDescription: Learn how to use the Portal component in React and React Native to render content outside the DOM hierarchy. Explore installation, API reference, and props.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Portal
+
+Learn how to use the Portal component in React and React Native to render content outside the DOM hierarchy. Explore installation, API reference, and props.
+
+This is an illustration of **Portal** component.
+
+/// {Example:basic} ///
+
+<br />
+
+> Note: The portal component renders its children outside the parent component's DOM hierarchy. However, it is important to note that the portal component is created using React context. This means that the portal component will not work if the parent component is not wrapped in a `GluestackUIProvider` or `OverlayProvider`.
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add portal`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/portal/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Portal } from '@/components/ui/portal';
+```
+
+```ts
+export default () => <Portal />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Portal
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isOpen</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>If true, the portal will open.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isKeyboardDismissable</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>If true, the keyboard can dismiss the portal.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>useRNModal</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>If true, renders react-native native modal.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>useRNModalOnAndroid</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>
+        If true, renders react-native native modal only in android.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onRequestClose</InlineCode>
+      </TableCell>
+      <TableCell>{`((event: NativeSyntheticEvent<any>) => void) | undefined`}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        Callback is called when the user taps the hardware back button on
+        Android or the menu button on Apple TV. This is required on Apple TV and
+        Android. Only applicable when `useRNModal` is true.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>animationPreset</InlineCode>
+      </TableCell>
+      <TableCell>"fade" | "slide" | "none"</TableCell>
+      <TableCell>"fade"</TableCell>
+      <TableCell>The animation preset for the portal.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+> Note: The portal component can be used to create a modal, popover, menu, tooltip, or any other component that needs to be rendered outside the parent component's DOM hierarchy. However, We recommend using our components like `Modal`, `Popover`, `Menu`, `Tooltip` for these use cases since they handle all the accessibility.

@@ -1,0 +1,121 @@
+---
+title: gluestack-ui Divider Component | React Native Divider Installation
+
+description: gluestack-ui's Divider component ensures a well-structured interface. Use the Divider component for clean content separation in your design with flexible orientation options.
+
+pageTitle: Divider
+
+pageDescription: gluestack-ui's Divider component ensures a well-structured interface. Use the Divider component for clean content separation in your design with flexible orientation options.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Divider
+
+gluestack-ui's Divider component ensures a well-structured interface. Use the Divider component for clean content separation in your design with flexible orientation options.
+
+This is an illustration of **Divider** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add divider`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/divider/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Divider } from '@/components/ui/divider';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/WAEtXS7.png"
+  webUrl="https://i.imgur.com/4Nl0JfM.png"
+  classNameStyle="aspect-[513/239] md:aspect-[736/167]"
+/>
+
+```jsx
+export default () => <Divider />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Divider
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Props
+
+Divider component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Divider
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Value</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>orientation</InlineCode>
+        </TableCell>
+        <TableCell>vertical | horizontal</TableCell>
+        <TableCell>horizontal</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:variants} ///
+
+/// {Example:orientation} ///
+
+/// {Example:with-without-inset} ///
+
+/// {Example:content-within} ///

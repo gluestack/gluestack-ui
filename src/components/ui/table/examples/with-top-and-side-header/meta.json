@@ -1,0 +1,15 @@
+{
+  "title": "Table with top and side header",
+  "description": "This example illustrates a table component with a top and a side header.",
+  "argTypes": {},
+  "reactLive": {
+    "Table": "@/components/ui/table",
+    "TableBody": "@/components/ui/table",
+    "TableHeader": "@/components/ui/table",
+    "TableRow": "@/components/ui/table",
+    "TableHead": "@/components/ui/table",
+    "TableData": "@/components/ui/table",
+    "TableFooter": "@/components/ui/table",
+    "Box": "@/components/ui/box"
+  }
+}

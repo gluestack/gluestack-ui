@@ -1,0 +1,24 @@
+function Example() {
+  return (
+    <VStack space="2xl">
+      <HStack space="md">
+        <Avatar className='bg-indigo-600'>
+          <Icon as={User} size="lg" className="stroke-white" />
+        </Avatar>
+        <VStack>
+          <Heading size="sm">Ronald Richards</Heading>
+          <Text size="sm">Nursing Assistant</Text>
+        </VStack>
+      </HStack>
+      <HStack space="md">
+        <Avatar className='bg-pink-600'>
+          <Icon as={User} size="lg" className="stroke-white" />
+        </Avatar>
+        <VStack>
+          <Heading size="sm">Kevin James</Heading>
+          <Text size="sm">Web Designer</Text>
+        </VStack>
+      </HStack>
+    </VStack>
+  );
+} 

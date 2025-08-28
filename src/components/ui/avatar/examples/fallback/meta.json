@@ -1,0 +1,12 @@
+{
+  "title": "Fallback",
+  "description": "Fallback text is shown when the image fails to load, the image is not available or the provided image url is not correct.",
+  "argTypes": {},
+  "reactLive": {
+    "Avatar": "@/components/ui/avatar",
+    "AvatarBadge": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "HStack": "@/components/ui/hstack"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Delete Post",
+  "reactLive": {
+    "Modal": "@/components/ui/modal",
+    "ModalBackdrop": "@/components/ui/modal",
+    "ModalContent": "@/components/ui/modal",
+    "ModalHeader": "@/components/ui/modal",
+    "ModalBody": "@/components/ui/modal",
+    "ModalFooter": "@/components/ui/modal",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text",
+    "Icon": "@/components/ui/icon",
+    "Box": "@/components/ui/box",
+    "TrashIcon": "@/components/ui/icon"
+  }
+}

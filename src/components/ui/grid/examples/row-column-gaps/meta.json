@@ -1,0 +1,10 @@
+{
+  "title": "Changing row and column gaps independently",
+  "description": "Use the gap-x-* and gap-y-* utilities to change the gap between columns and rows independently.",
+  "argTypes": {},
+  "reactLive": {
+    "Grid": "@/components/ui/grid",
+    "GridItem": "@/components/ui/grid",
+    "Text": "@/components/ui/text"
+  }
+}

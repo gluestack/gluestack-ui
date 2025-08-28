@@ -1,0 +1,215 @@
+---
+title: gluestack-ui Input Component | React Native Input Installation
+
+description: A feature-rich React Native Input component – supports icons, validation, and styling options for seamless user input in your mobile app.
+
+pageTitle: Input
+
+pageDescription: A feature-rich React Native Input component – supports icons, validation, and styling options for seamless user input in your mobile app.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Input
+
+A feature-rich React Native Input component – supports icons, validation, and styling options for seamless user input in your mobile app.
+
+This is an illustration of **Input** component.
+
+/// {Example:basic} ///
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add input`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/input/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Input } from '@/components/ui/input';
+```
+
+```ts
+export default () => (
+  <Input>
+    <InputField />
+    <InputSlot>
+      <InputIcon>{/* Some Icon Component */}</InputIcon>
+    </InputSlot>
+  </Input>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Input
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<input />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<TextInput />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Props
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isInvalid</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>When true, the input displays an error state</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          When true, the input is disabled and cannot be edited
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isHovered</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>When true, the input displays a hover state</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isFocused</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>When true, the input displays a focus state</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isRequired</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>If true, sets aria-required="true" on the input</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isReadOnly</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>If true, the input value cannot be edited</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>xl | lg | md | sm</TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>The size of the input</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>variant</InlineCode>
+        </TableCell>
+        <TableCell>underlined | outline | rounded</TableCell>
+        <TableCell>outline</TableCell>
+        <TableCell>The variant of the input</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
+
+### Accessibility
+
+We have outlined the various features that ensure the Input component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [WAI-ARIA design pattern](https://www.w3.org/TR/wai-aria-1.2/#textbox).
+
+#### Keyboard
+
+- Setting the `aria-label` and `aria-hint` to help users understand the purpose and function of the Input
+
+#### Screen Reader
+
+- Compatible with screen readers such as VoiceOver and Talk-back.
+- The `accessible` and `aria-label` props to provide descriptive information about the Input
+- Setting `aria-traits` and `aria-hint` to provide contextual information about the various states of the Input, such as "double tap to edit".
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:with-form-control} ///
+
+/// {Example:with-icons} ///

@@ -1,0 +1,189 @@
+---
+title: gluestack-ui FormControl Component | React FormControl Installation
+
+description: Enhance form usability with FormControl components in React. Manage validation, disabled states, and more. Easy integration for seamless form handling.
+
+pageTitle: FormControl
+
+pageDescription: Enhance form usability with FormControl components in React. Manage validation, disabled states, and more. Easy integration for seamless form handling.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# FormControl
+
+Enhance form usability with FormControl components in React. Manage validation, disabled states, and more. Easy integration for seamless form handling.
+
+This is an illustration of **FormControl** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add form-control`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/form-control/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { FormControl } from '@/components/ui/form-control';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/qDJSDGA.png"
+  webUrl="https://i.imgur.com/jbkdJ4q.png"
+  classNameStyle="aspect-[513/534] md:aspect-[736/378]"
+/>
+
+```ts
+export default () => (
+  <FormControl>
+    <FormControlLabel>
+      <FormControlLabelText />
+    </FormControlLabel>
+    <FormControlHelper>
+      <FormControlHelperText />
+    </FormControlHelper>
+    <FormControlError>
+      <FormControlErrorIcon />
+      <FormControlErrorText />
+    </FormControlError>
+  </FormControl>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### FormControl
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isInvalid</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>When true, invalid state.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isRequired</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>If true, astrick gets activated.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>Disabled state true.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isReadOnly</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set read-only state.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### FormControlLabel
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### FormControlLabelText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### FormControlHelper
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### FormControlHelperText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### FormControlError
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### FormControlErrorIcon
+
+It inherits all the properties of gluestack Style's [AsForwarder](/style/docs/api/as-forwarder) component.
+
+#### FormControlErrorText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+### Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:with-radio} ///
+
+/// {Example:with-checkbox} ///
+
+/// {Example:with-error} ///
+
+/// {Example:with-textarea} ///
+
+/// {Example:with-form-actions} ///

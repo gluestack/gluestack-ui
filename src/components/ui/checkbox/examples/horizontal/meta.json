@@ -1,0 +1,15 @@
+{
+  "title": "Horizontal",
+  "description": "A horizontal component incorporating a checkbox allows for intuitive and space-efficient selection of multiple options within a linear layout.",
+  "componentName": "Checkbox",
+  "argTypes": {},
+  "reactLive": {
+    "Checkbox": "@/components/ui/checkbox",
+    "CheckboxGroup": "@/components/ui/checkbox",
+    "CheckboxIndicator": "@/components/ui/checkbox",
+    "CheckboxIcon": "@/components/ui/checkbox",
+    "CheckboxLabel": "@/components/ui/checkbox",
+    "HStack": "@/components/ui/hstack",
+    "CheckIcon": "@/components/ui/icon"
+  }
+}

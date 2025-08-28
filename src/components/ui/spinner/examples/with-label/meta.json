@@ -1,0 +1,10 @@
+{
+  "title": "Spinner with Label",
+  "description": "A Spinner component with a label provides informative text or a label alongside the spinner, offering descriptive context and improving user understanding and interaction with the spinner element within a user interface.",
+  "argTypes": {},
+  "reactLive": {
+    "Spinner": "@/components/ui/spinner",
+    "HStack": "@/components/ui/hstack",
+    "Text": "@/components/ui/text"
+  }
+}

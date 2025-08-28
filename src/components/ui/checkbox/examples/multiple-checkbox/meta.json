@@ -1,0 +1,15 @@
+{
+  "title": "Multiple Checkbox",
+  "description": "Checkbox provide a mutually exclusive selection mechanism, allowing users to choose a multiple option from a set of related choices.",
+  "componentName": "Checkbox",
+  "argTypes": {},
+  "reactLive": {
+    "Checkbox": "@/components/ui/checkbox",
+    "CheckboxGroup": "@/components/ui/checkbox",
+    "CheckboxIndicator": "@/components/ui/checkbox",
+    "CheckboxIcon": "@/components/ui/checkbox",
+    "CheckboxLabel": "@/components/ui/checkbox",
+    "VStack": "@/components/ui/vstack",
+    "CheckIcon": "@/components/ui/icon"
+  }
+}

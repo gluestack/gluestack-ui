@@ -1,0 +1,6 @@
+{
+  "argTypes": {},
+  "reactLive": {
+    "Image": "@/components/ui/image"
+  }
+}

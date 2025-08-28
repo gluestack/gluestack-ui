@@ -1,0 +1,31 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["small", "large"],
+      "defaultValue": "large"
+    },
+    "color": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "red",
+        "blue",
+        "green",
+        "black",
+        "orange",
+        "purple",
+        "yellow",
+        "grey"
+      ],
+      "defaultValue": "grey"
+    }
+  },
+  "reactLive": {
+    "Spinner": "@/components/ui/spinner"
+  }
+}

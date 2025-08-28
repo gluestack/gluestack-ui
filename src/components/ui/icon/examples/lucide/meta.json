@@ -1,0 +1,13 @@
+{
+  "title": "Lucide Icons (Recommended)",
+  "description": "[Lucide](https://lucide.dev/docs/lucide-react-native) is an open source icon library for displaying icons for react-native. `gluestack-ui` provides an easy integration with lucide icons.",
+  "argTypes": {},
+  "reactLive": {
+    "Icon": "@/components/ui/icon",
+    "VStack": "@/components/ui/vstack",
+    "Camera": "lucide-react-native",
+    "ChromeIcon": "lucide-react-native",
+    "InstagramIcon": "lucide-react-native",
+    "FacebookIcon": "lucide-react-native"
+  }
+}

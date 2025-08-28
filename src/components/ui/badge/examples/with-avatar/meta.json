@@ -1,0 +1,18 @@
+{
+  "title": "Badge with Avatar",
+  "description": "An example of the Badge component being used with the Avatar component to display badges alongside user avatars for enhanced visual representation or identification.",
+  "argTypes": {},
+  "reactLive": {
+    "Avatar": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "Badge": "@/components/ui/badge",
+    "BadgeIcon": "@/components/ui/badge",
+    "BadgeText": "@/components/ui/badge",
+    "Heading": "@/components/ui/heading",
+    "HStack": "@/components/ui/hstack",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "BadgeCheckIcon": "lucide-react-native"
+  }
+}

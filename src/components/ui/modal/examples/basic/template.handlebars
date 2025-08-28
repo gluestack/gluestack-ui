@@ -1,0 +1,51 @@
+ function Example() {
+  const [showModal, setShowModal] = React.useState(false);
+  return (
+    <>
+      <Button onPress={() => setShowModal(true)}>
+        <ButtonText>Open Modal</ButtonText>
+      </Button>
+      <Modal
+        isOpen={showModal}
+        onClose={() => {
+          setShowModal(false);
+        }}
+        size="{{size}}"
+      >
+        <ModalBackdrop />
+        <ModalContent>
+          <ModalHeader>
+            <Heading size="lg">Modal Title</Heading>
+            <ModalCloseButton>
+              <Icon as={CloseIcon} />
+            </ModalCloseButton>
+          </ModalHeader>
+          <ModalBody>
+            <Text>
+              This is the modal body. You can add any content here.
+            </Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              variant="outline"
+              action="secondary"
+              className="mr-3"
+              onPress={() => {
+                setShowModal(false);
+              }}
+            >
+              <ButtonText>Cancel</ButtonText>
+            </Button>
+            <Button
+              onPress={() => {
+                setShowModal(false);
+              }}
+            >
+              <ButtonText>Save</ButtonText>
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+}

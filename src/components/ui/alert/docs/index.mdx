@@ -1,0 +1,135 @@
+---
+title: gluestack-ui Alert Component | React Native Alert Installation & API
+
+description: gluestack-ui offers a responsive React Native Alert component with multiple styles. Easily integrate alerts into your UI with customizable React Native alert styles.
+
+pageTitle: Alert
+
+pageDescription: gluestack-ui offers a responsive React Native Alert component with multiple styles. Easily integrate alerts into your UI with customizable React Native alert styles.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Alert
+
+gluestack-ui offers a responsive React Native Alert component with multiple styles. Easily integrate alerts into your UI with customizable React Native alert styles.
+
+This is an illustration of **Alert** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+ <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add alert`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/alert/index.tsx --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/gdI4o2w.png"
+  webUrl="https://i.imgur.com/f8hHiIJ.png"
+  classNameStyle="aspect-[513/375] md:aspect-[736/259]"
+/>
+
+```ts
+export default () => (
+  <Alert>
+    <AlertIcon />
+    <AlertText />
+  </Alert>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Alert
+
+Contains all alert related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>action</InlineCode>
+        </TableCell>
+        <TableCell>error | warning | success | info | muted</TableCell>
+        <TableCell>info</TableCell>
+        <TableCell>Determines the color scheme of the alert.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>variant</InlineCode>
+        </TableCell>
+        <TableCell>solid | outline</TableCell>
+        <TableCell>solid</TableCell>
+        <TableCell>Determines the visual style of the alert.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### AlertIcon
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AlertText
+
+Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:with-cta} ///
+
+/// {Example:cloud-sync} ///
+
+/// {Example:warning-alert} ///
+
+/// {Example:confirm-password-modal} ///
