@@ -2,7 +2,7 @@ name: Production Package Publishing
 
 on:
   push:
-    branches: [feat/v3]
+    branches: [main]
     paths-ignore:
       - '**/package-lock.json'
       - '**/yarn.lock'
@@ -526,7 +526,7 @@ jobs:
                 > This PR was created automatically by the GitHub Actions workflow.
                 `,
                 head: branchName,
-                base: 'feat/v3',
+                base: 'main',
                 draft: false
               });
               
@@ -650,7 +650,7 @@ jobs:
                 \"target\": \"production\",
                 \"gitSource\": {
                   \"type\": \"github\",
-                  \"ref\": \"feat/v3\",
+                  \"ref\": \"main\",
                   \"sha\": \"${{ github.sha }}\",
                   \"repoId\": ${{ github.event.repository.id }}
                 },

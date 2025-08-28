@@ -1085,7 +1085,7 @@ Before submitting your component:
 
 The process of proposing a change to `gluestack/gluestack-ui` can be summarized as follows:
 
-1. **Create a feature branch** from `feat/v3`
+1. **Create a feature branch** from `main`
 2. **Make your changes** in source files only
 3. **Test thoroughly** using kitchen-sink and website apps
 4. **Update documentation** if needed

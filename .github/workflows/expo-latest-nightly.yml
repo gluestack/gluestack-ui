@@ -2,9 +2,9 @@ name: Expo Latest v3
 
 on:
   push:
-    branches: [feat/v3]
+    branches: [main]
   pull_request:
-    branches: [feat/v3]
+    branches: [main]
   schedule:
     - cron: '0 0 * * *' # Run daily at midnight UTC
 
