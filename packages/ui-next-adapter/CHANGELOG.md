@@ -1,5 +1,11 @@
 # @gluestack/ui-next-adapter
 
+## 3.0.1
+
+### Patch Changes
+
+- fix: turbopack dev environment fix
+
 ## 3.0.0
 
 ## 1.0.48
