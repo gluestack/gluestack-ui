@@ -1,10 +1,10 @@
 import { getFilePath, pathResolver } from '.';
 import { ReactNativeResolvedConfig } from './config-types';
-import { ensureFilesPromise } from '..';
-import { config } from '../../config';
 import { execSync } from 'child_process';
 import os from 'os';
 import { commonInitialization } from '../init';
+import { ProjectType } from '../../dependencies';
+import { ensureFilesPromise } from '../file-operations';
 
 //react-native project type initialization
 async function resolvedReactNativePaths(
@@ -43,7 +43,7 @@ async function initNatiwindRNApp(
 ) {
   try {
     await commonInitialization(
-      config.reactNativeCLIProject,
+      ProjectType.reactNative,
       resolvedConfig,
       permission
     );

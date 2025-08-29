@@ -4,14 +4,11 @@ import os from 'os';
 import { join } from 'path';
 import { log, confirm } from '@clack/prompts';
 import { config } from '../../config';
-import {
-  checkComponentDependencies,
-  getAllComponents,
-  installDependencies,
-  projectRootPath,
-  findLockFileType,
-  promptVersionManager,
-} from '..';
+import { getAllComponents } from '../get-components';
+import { checkComponentDependencies } from '../check-component-dependencies';
+import { getPackageManager } from '../package-managers';
+import { installDependencies } from '../install-dependencies';
+import { projectRootPath } from '../package-json-path';
 
 const _homeDir = os.homedir();
 let existingComponentsChecked: boolean = false;
@@ -67,13 +64,7 @@ const componentAdder = async ({
           .join(', ')}`
       );
 
-      let versionManager: string | null =
-        config.packageManager || findLockFileType();
-      if (!versionManager) {
-        versionManager = await promptVersionManager();
-      }
-
-      await installDependencies(updatedComponents, versionManager);
+      await installDependencies(updatedComponents);
 
       for (const component of updatedComponents) {
         const targetPath = join(
