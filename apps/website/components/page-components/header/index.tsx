@@ -21,6 +21,7 @@ import AppLaunchKitLogoDark from '@/public/icon/logo/app-launch-kit/light-mode.s
 import StarterKitLogo from '@/public/icon/logo/gluestack/logo-dark.svg';
 import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
 import AppMarketLogo from '@/public/icon/logo/theappmarket/appmarket-logo.svg';
+import RapidNativelogo from '@/public/icon/logo/rapidnative/logo.png';
 
 import NextLink from 'next/link';
 import { Nav } from '@expo/html-elements';
@@ -63,6 +64,46 @@ const Header = ({
 
   const dropdownOptions = [
     {
+      href: 'https://rapidnative.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
+      logo: {
+        light: RapidNativelogo,
+        dark: RapidNativelogo,
+      },
+      title: 'RapidNative',
+      description: 'Generate native apps instantly with AI prompts.',
+      badge: {
+        text: 'PAID',
+        action: 'info',
+      },
+    },
+    // {
+    //   href: 'https://pro.gluestack.io/',
+    //   logo: {
+    //     light: AppLaunchKitLogo,
+    //     dark: AppLaunchKitLogoDark,
+    //   },
+    //   title: 'AppLaunchKit',
+    //   description: 'Fullstack Universal Template for Android, iOS and Web',
+    //   badge: {
+    //     text: 'PAID',
+    //     action: 'info',
+    //   },
+    // },
+    {
+      href: 'https://theappmarket.io',
+      logo: {
+        light: AppMarketLogo,
+        dark: AppMarketLogo,
+      },
+      title: 'theappmarket',
+      description:
+        'Transform your app idea into reality with our production-ready, cross-platform free and premium React Native templates and UI kits, built with Expo, gluestack (NativeWind), and TypeScript.',
+      badge: {
+        text: 'PAID',
+        action: 'info',
+      },
+    },
+    {
       href: 'https://applaunchk.it/',
       logo: {
         light: AppLaunchKitLogo,
@@ -87,20 +128,6 @@ const Header = ({
       badge: {
         text: 'FREE',
         action: 'success',
-      },
-    },
-    {
-      href: 'https://theappmarket.io',
-      logo: {
-        light: AppMarketLogo,
-        dark: AppMarketLogo,
-      },
-      title: 'theappmarket',
-      description:
-        'Transform your app idea into reality with our production-ready, cross-platform free and premium React Native templates and UI kits, built with Expo, gluestack (NativeWind), and TypeScript.',
-      badge: {
-        text: 'PAID',
-        action: 'info',
       },
     },
   ];
