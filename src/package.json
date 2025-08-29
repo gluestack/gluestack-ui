@@ -5,8 +5,6 @@
   "description": "Development environment for gluestack-ui components (not for distribution)",
   "dependencies": {
     "@expo/html-elements": "^0.12.5",
-    "@gluestack-ui/core": "*",
-    "@gluestack-ui/utils": "*",
     "@gorhom/bottom-sheet": "^5.1.8",
     "@legendapp/motion": "^2.4.0",
     "nativewind": "^4.1.23",

@@ -1,5 +1,5 @@
 import type { TVA } from '../types';
-import type { TVConfig } from 'tailwind-variants/dist/config.d.ts';
+import type { TVConfig } from 'tailwind-variants/dist/config';
 import { deepMergeObjects } from '../utils/deepMerge';
 // @ts-ignore
 import { tv } from 'tailwind-variants';

@@ -21,7 +21,16 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@/docs-components/*": ["./components/docs-components/*"]
+      "@/docs-components/*": ["./components/docs-components/*"],
+      "@/utils/*": [
+        "./utils/*"
+      ],
+      "@/components/*": [
+        "./components/*"
+      ],
+      "tailwind.config": [
+        "./tailwind.config.js"
+      ]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "__tests__/website.test.js"],

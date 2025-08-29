@@ -45,3 +45,6 @@ yarn-error.log*
 
 .yarn
 .yarnrc.yml
+
+.yalc/
+yalc.lock

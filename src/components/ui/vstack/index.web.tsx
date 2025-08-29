@@ -11,7 +11,7 @@ const VStack = React.forwardRef<React.ComponentRef<'div'>, IVStackProps>(
     return (
       <div
         className={vstackStyle({
-          space: space as any,
+          space,
           reversed: reversed as boolean,
           class: className,
         })}
