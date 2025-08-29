@@ -1,5 +1,11 @@
 # @gluestack-ui/utils
 
+## 3.0.3
+
+### Patch Changes
+
+- chore: fixed tva types
+
 ## 3.0.2
 
 ### Patch Changes
