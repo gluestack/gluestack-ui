@@ -40,7 +40,7 @@ const MappedHeading = memo(
           return (
             <H1
               className={headingStyle({
-                size: size as any,
+                size,
                 isTruncated: isTruncated as boolean,
                 bold: bold as boolean,
                 underline: underline as boolean,
@@ -59,7 +59,7 @@ const MappedHeading = memo(
           return (
             <H2
               className={headingStyle({
-                size: size as any,
+                size,
                 isTruncated: isTruncated as boolean,
                 bold: bold as boolean,
                 underline: underline as boolean,
@@ -78,7 +78,7 @@ const MappedHeading = memo(
           return (
             <H3
               className={headingStyle({
-                size: size as any,
+                size,
                 isTruncated: isTruncated as boolean,
                 bold: bold as boolean,
                 underline: underline as boolean,
@@ -97,7 +97,7 @@ const MappedHeading = memo(
           return (
             <H4
               className={headingStyle({
-                size: size as any,
+                size,
                 isTruncated: isTruncated as boolean,
                 bold: bold as boolean,
                 underline: underline as boolean,
@@ -116,7 +116,7 @@ const MappedHeading = memo(
           return (
             <H5
               className={headingStyle({
-                size: size as any,
+                size,
                 isTruncated: isTruncated as boolean,
                 bold: bold as boolean,
                 underline: underline as boolean,
@@ -136,7 +136,7 @@ const MappedHeading = memo(
           return (
             <H6
               className={headingStyle({
-                size: size as any,
+                size,
                 isTruncated: isTruncated as boolean,
                 bold: bold as boolean,
                 underline: underline as boolean,
@@ -155,7 +155,7 @@ const MappedHeading = memo(
           return (
             <H4
               className={headingStyle({
-                size: size as any,
+                size,
                 isTruncated: isTruncated as boolean,
                 bold: bold as boolean,
                 underline: underline as boolean,
@@ -194,7 +194,7 @@ const Heading = memo(
       return (
         <AsComp
           className={headingStyle({
-            size: size as any,
+            size,
             isTruncated: isTruncated as boolean,
             bold: bold as boolean,
             underline: underline as boolean,
