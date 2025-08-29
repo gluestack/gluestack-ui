@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 3.0.2
+
+### Patch Changes
+
+- fix: updated logic to modify globals.css on init
+
 ## 3.0.1
 
 ### Patch Changes
