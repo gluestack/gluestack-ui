@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@expo/html-elements": "^0.12.5",
-    "@gluestack/ui-next-adapter": "3.0.1",
+    "@gluestack/ui-next-adapter": "3.0.2",
     "@gluestack-ui/core": "3.0.2",
     "@gluestack-ui/utils": "3.0.2",
     "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
