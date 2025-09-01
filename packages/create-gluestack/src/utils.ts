@@ -2,16 +2,42 @@ import templatesMap from './data.js';
 import { existsSync, rmSync, renameSync, readdirSync } from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
+import * as readline from 'readline';
 
 const { gitRepo, branch } = templatesMap;
+
+// Helper function to prompt user for input
+function promptUser(question: string): Promise<string> {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  return new Promise((resolve) => {
+    rl.question(question, (answer) => {
+      rl.close();
+      resolve(answer.toLowerCase().trim());
+    });
+  });
+}
 
 async function cloneProject(projectName: string, templateName: string) {
   const dirPath = path.join(process.cwd(), projectName);
   if (existsSync(dirPath)) {
     console.log(`Folder already exists with name: ${projectName}`);
-    console.log('Overwriding the existing folder...\n');
-    // Delete directory recursively
-    rmSync(projectName, { recursive: true, force: true });
+    
+    const userChoice = await promptUser(
+      'Do you want to override the existing folder? (yes/no | y/n): '
+    );
+    
+    if (userChoice === 'yes' || userChoice === 'y') {
+      console.log('Overriding the existing folder...\n');
+      // Delete directory recursively
+      rmSync(projectName, { recursive: true, force: true });
+    } else {
+      console.log('Operation cancelled. Please choose a different project name.');
+      process.exit(0);
+    }
   }
 
   try {
