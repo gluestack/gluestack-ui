@@ -280,24 +280,123 @@ async function updateGlobalCss(resolvedConfig: any): Promise<void> {
     const templateCSSFile =
       cssFileName === 'globals.css' ? 'globals.css' : 'global.css';
 
-    const globalCSSContent = await fs.readFile(
+    const templateContent = await fs.readFile(
       join(templatesPath, 'common', templateCSSFile),
       'utf8'
     );
-    const existingContent = await fs.readFile(globalCSSPath, 'utf8');
 
-    if (existingContent.includes(globalCSSContent)) {
+    // Read existing content
+    let existingContent = '';
+    try {
+      existingContent = await fs.readFile(globalCSSPath, 'utf8');
+    } catch (error) {
+      // File doesn't exist, create it with template content
+      await fs.writeFile(globalCSSPath, templateContent, 'utf8');
       return;
+    }
+
+    // Clean and normalize the existing content
+    let updatedContent = cleanAndNormalizeCss(existingContent, templateContent);
+
+    // Only write if content has changed
+    if (updatedContent !== existingContent) {
+      await fs.writeFile(globalCSSPath, updatedContent, 'utf8');
+      log.info(`✅ Updated ${cssFileName} with Tailwind directives`);
     } else {
-      await fs.appendFile(
-        globalCSSPath,
-        globalCSSContent.toString(), // Convert buffer to string
-        'utf8'
-      );
+      log.info(`${cssFileName} already contains proper Tailwind directives`);
     }
   } catch (err) {
-    log.error(`\x1b[31mError: ${err as Error}\x1b[0m`);
+    log.error(`\x1b[31mError updating global CSS: ${(err as Error).message}\x1b[0m`);
   }
+}
+
+function cleanAndNormalizeCss(existingContent: string, templateContent: string): string {
+  // Split content into lines for easier processing
+  let lines = existingContent.split('\n');
+  
+  // Remove old tailwindcss import if it exists
+  lines = lines.filter(line => 
+    !line.trim().match(/^@import\s+["']tailwindcss["'];?\s*$/i)
+  );
+
+  // Check if any of the required tailwind directives exist
+  const requiredDirectives = [
+    '@tailwind base;',
+    '@tailwind components;', 
+    '@tailwind utilities;'
+  ];
+
+  const existingDirectives = new Set<string>();
+  
+  // Find existing tailwind directives and their positions
+  const directiveLines: number[] = [];
+  
+  lines.forEach((line, index) => {
+    const trimmedLine = line.trim();
+    requiredDirectives.forEach(directive => {
+      const directiveWithoutSemicolon = directive.replace(';', '');
+      if (
+        trimmedLine === directive ||
+        trimmedLine === directiveWithoutSemicolon ||
+        trimmedLine === directive.replace(';', '') + ' '
+      ) {
+        existingDirectives.add(directive);
+        directiveLines.push(index);
+      }
+    });
+  });
+
+  // If all directives already exist, return original content
+  if (existingDirectives.size === requiredDirectives.length) {
+    return lines.join('\n');
+  }
+
+  // Remove existing tailwind directive lines to avoid duplicates
+  lines = lines.filter((_, index) => !directiveLines.includes(index));
+
+  // Find the best position to insert tailwind directives
+  let insertPosition = 0;
+  
+  // Look for existing imports to insert after them
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (line.startsWith('@import') || line.startsWith('@charset')) {
+      insertPosition = i + 1;
+    } else if (line.length > 0 && !line.startsWith('/*') && !line.startsWith('*')) {
+      // Found first non-comment, non-import line
+      break;
+    }
+  }
+
+  // Insert the template content (tailwind directives) at the appropriate position
+  const templateLines = templateContent.split('\n').filter(line => line.trim());
+  
+  // Insert template lines
+  lines.splice(insertPosition, 0, ...templateLines);
+
+  // Clean up multiple consecutive empty lines
+  const cleanedLines: string[] = [];
+  let consecutiveEmptyLines = 0;
+  
+  for (const line of lines) {
+    if (line.trim() === '') {
+      consecutiveEmptyLines++;
+      if (consecutiveEmptyLines <= 1) { // Allow max 1 consecutive empty line
+        cleanedLines.push(line);
+      }
+    } else {
+      consecutiveEmptyLines = 0;
+      cleanedLines.push(line);
+    }
+  }
+
+  // Ensure there's a newline at the end
+  let result = cleanedLines.join('\n');
+  if (!result.endsWith('\n') && result.length > 0) {
+    result += '\n';
+  }
+
+  return result;
 }
 
 async function commonInitialization(

@@ -31,6 +31,15 @@ export async function modifyLayoutFile(
     }
 
     const content = await fs.readFile(layoutPath, 'utf8');
+
+    // Check if already modified
+    if (isLayoutAlreadyWrapped(content)) {
+      log.info(
+        `Layout file already contains GluestackUIProvider setup: ${path.basename(layoutPath)}`
+      );
+      return;
+    }
+
     const isTypeScript =
       layoutPath.endsWith('.tsx') || layoutPath.endsWith('.ts');
 
@@ -68,15 +77,23 @@ export async function modifyLayoutFile(
     if (modifiedContent !== content) {
       await fs.writeFile(layoutPath, modifiedContent, 'utf8');
       log.success(`✅ Modified layout file: ${path.basename(layoutPath)}`);
-    } else {
-      log.info(
-        `Layout file already contains GluestackUIProvider setup: ${path.basename(layoutPath)}`
-      );
     }
   } catch (error) {
     log.error(`Error modifying layout file: ${(error as Error).message}`);
     throw error;
   }
+}
+
+/**
+ * Check if layout is already wrapped with GluestackUIProvider
+ */
+function isLayoutAlreadyWrapped(content: string): boolean {
+  return (
+    content.includes('GluestackUIProvider') &&
+    (content.includes('<GluestackUIProvider') ||
+      content.includes('GluestackUIProvider>')) &&
+    content.includes('gluestack-ui-provider')
+  );
 }
 
 /**
@@ -89,14 +106,6 @@ async function modifyNextJsLayout(
   isTypeScript: boolean,
   isNextjs15?: boolean
 ): Promise<string> {
-  // Check if already modified
-  if (
-    content.includes('GluestackUIProvider') &&
-    content.includes('gluestack-ui-provider')
-  ) {
-    return content;
-  }
-
   const cssImportPath = getCssImportPath(cssPath);
   const providerImportPath = `@/${componentsPath}/gluestack-ui-provider`;
 
@@ -109,15 +118,21 @@ async function modifyNextJsLayout(
   // For Next.js 15, only import the registry for App Router
   const registryImport =
     isNextjs15 && isAppRouter
-      ? `import StyledJsxRegistry from './registry';\n`
+      ? `import StyledJsxRegistry from './registry';`
       : '';
 
-  let imports = `import '${cssImportPath}';\nimport { GluestackUIProvider } from '${providerImportPath}';\n${registryImport}`;
+  let imports = [
+    `import '${cssImportPath}';`,
+    `import { GluestackUIProvider } from '${providerImportPath}';`,
+    registryImport,
+  ]
+    .filter(Boolean)
+    .join('\n');
 
   // Add imports at the top (after existing imports)
   let modifiedContent = addImportsToFile(content, imports);
 
-  // Wrap the children with provider
+  // Wrap the children with provider (only if not already wrapped)
   if (isAppRouter) {
     // App Router layout
     const providerWrapper = isNextjs15
@@ -130,7 +145,6 @@ async function modifyNextJsLayout(
     );
   } else if (isPagesRouter) {
     // Pages Router _app.tsx - no StyledJsxRegistry needed here
-    // For Pages Router, registry code should be handled in _document.tsx instead
     modifiedContent = modifiedContent.replace(
       /(<Component\s+{\.\.\.pageProps}\s*\/>)/g,
       `<GluestackUIProvider mode="light">\n        $1\n      </GluestackUIProvider>`
@@ -149,18 +163,13 @@ async function modifyExpoLayout(
   componentsPath: string,
   isTypeScript: boolean
 ): Promise<string> {
-  // Check if already modified
-  if (
-    content.includes('GluestackUIProvider') &&
-    content.includes('gluestack-ui-provider')
-  ) {
-    return content;
-  }
-
   const cssImportPath = getCssImportPath(cssPath);
   const providerImportPath = `@/${componentsPath}/gluestack-ui-provider`;
 
-  const imports = `import { GluestackUIProvider } from '${providerImportPath}';\nimport '${cssImportPath}';`;
+  const imports = [
+    `import { GluestackUIProvider } from '${providerImportPath}';`,
+    `import '${cssImportPath}';`,
+  ].join('\n');
 
   // Add imports at the top
   let modifiedContent = addImportsToFile(content, imports);
@@ -196,18 +205,13 @@ async function modifyReactNativeLayout(
   componentsPath: string,
   isTypeScript: boolean
 ): Promise<string> {
-  // Check if already modified
-  if (
-    content.includes('GluestackUIProvider') &&
-    content.includes('gluestack-ui-provider')
-  ) {
-    return content;
-  }
-
   const cssImportPath = getCssImportPath(cssPath);
   const providerImportPath = `@/${componentsPath}/gluestack-ui-provider`;
 
-  const imports = `import { GluestackUIProvider } from '${providerImportPath}';\nimport '${cssImportPath}';`;
+  const imports = [
+    `import { GluestackUIProvider } from '${providerImportPath}';`,
+    `import '${cssImportPath}';`,
+  ].join('\n');
 
   // Add imports at the top
   let modifiedContent = addImportsToFile(content, imports);
@@ -229,29 +233,84 @@ async function modifyReactNativeLayout(
 }
 
 /**
- * Add imports to the top of the file after existing imports
+ * Enhanced addImportsToFile function to prevent duplicate imports
  */
 function addImportsToFile(content: string, newImports: string): string {
-  // Find the last import statement
+  // Split new imports into individual import statements
+  const newImportLines = newImports.split('\n').filter(line => line.trim());
+  
+  // Find existing imports
   const importRegex = /^import\s+.*?;?\s*$/gm;
-  const imports = content.match(importRegex);
+  const existingImports = content.match(importRegex) || [];
+  
+  // Check which imports already exist to avoid duplicates
+  const importsToAdd: string[] = [];
+  
+  newImportLines.forEach(newImport => {
+    const newImportTrimmed = newImport.trim();
+    
+    // Skip empty lines
+    if (!newImportTrimmed) return;
+    
+    // Extract the import path for comparison
+    const importPathMatch = newImportTrimmed.match(/from\s+['"]([^'"]+)['"]/);
+    const importPath = importPathMatch ? importPathMatch[1] : '';
+    
+    // For CSS imports, check the import path directly
+    const isCssImport = newImportTrimmed.match(/^import\s+['"][^'"]+['"];?\s*$/);
+    
+    // Extract imported items for more precise matching
+    const importItemsMatch = newImportTrimmed.match(/import\s+(.+?)\s+from/);
+    const importItems = importItemsMatch ? importItemsMatch[1].trim() : '';
+    
+    // Check if this import already exists
+    const isDuplicate = existingImports.some(existingImport => {
+      const existingPathMatch = existingImport.match(/from\s+['"]([^'"]+)['"]/);
+      const existingPath = existingPathMatch ? existingPathMatch[1] : '';
+      
+      // For CSS imports, just compare paths
+      if (isCssImport) {
+        const existingIsCssImport = existingImport.match(/^import\s+['"][^'"]+['"];?\s*$/);
+        return existingIsCssImport && existingPath === importPath;
+      }
+      
+      const existingItemsMatch = existingImport.match(/import\s+(.+?)\s+from/);
+      const existingItems = existingItemsMatch ? existingItemsMatch[1].trim() : '';
+      
+      // Check if same path and similar import structure
+      return existingPath === importPath && (
+        existingItems === importItems ||
+        (importItems.includes('GluestackUIProvider') && existingItems.includes('GluestackUIProvider')) ||
+        (importItems.includes('StyledJsxRegistry') && existingItems.includes('StyledJsxRegistry'))
+      );
+    });
+    
+    if (!isDuplicate) {
+      importsToAdd.push(newImportTrimmed);
+    }
+  });
 
-  if (imports) {
+  // If no new imports to add, return original content
+  if (importsToAdd.length === 0) {
+    return content;
+  }
+
+  if (existingImports.length > 0) {
     // Find the position after the last import
-    const lastImport = imports[imports.length - 1];
+    const lastImport = existingImports[existingImports.length - 1];
     const lastImportIndex = content.indexOf(lastImport) + lastImport.length;
 
     // Insert new imports after the last existing import
     return (
       content.slice(0, lastImportIndex) +
       '\n' +
-      newImports +
+      importsToAdd.join('\n') +
       '\n' +
       content.slice(lastImportIndex)
     );
   } else {
     // No existing imports, add at the top
-    return newImports + '\n' + content;
+    return importsToAdd.join('\n') + '\n' + content;
   }
 }
 

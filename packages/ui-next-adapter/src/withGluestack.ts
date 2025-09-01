@@ -110,11 +110,6 @@ export default function withGluestackUI(nextConfig: any = {}) {
       ...(nextConfig.turbopack?.resolveAlias || {}),
       'react-native': 'react-native-web',
     },
-    define: {
-      // Ensure __DEV__ is available when using Turbopack (no webpack DefinePlugin there)
-      '__DEV__': JSON.stringify(process.env['NODE_ENV'] !== 'production'),
-      'process.env.REACT_NATIVE_WEB': JSON.stringify('true'),
-    },
     resolveExtensions: [
       '.next15.js',
       '.next15.ts',
@@ -148,6 +143,22 @@ export default function withGluestackUI(nextConfig: any = {}) {
     // Keep experimental for any other experimental features
     experimental: {
       ...nextConfig.experimental,
+    },
+    // Add env variables that work for both Webpack and Turbopack
+    env: {
+      ...nextConfig.env,
+      DEV: process.env['NODE_ENV'] !== 'production' ? 'true' : 'false',
+      REACT_NATIVE_WEB: 'true',
+    },
+    // Add compiler options for Turbopack (always include to ensure compatibility)
+    compiler: {
+      ...nextConfig.compiler,
+      // Define global variables for Turbopack (similar to Webpack's DefinePlugin)
+      define: {
+        ...(nextConfig.compiler?.define || {}),
+        '__DEV__': process.env['NODE_ENV'] !== 'production' ? 'true' : 'false',
+        'DEV': process.env['NODE_ENV'] !== 'production' ? 'true' : 'false',
+      },
     },
     webpack: (config: any, context: any) => {
       // Apply existing webpack config if any
@@ -199,15 +210,26 @@ export default function withGluestackUI(nextConfig: any = {}) {
         'path': false,
       };
 
-      // Define environment variables for React Native compatibility
+      // Check if existing DefinePlugin already defines these variables
       const { DefinePlugin } = require('webpack');
-      config.plugins = config.plugins || [];
-      config.plugins.push(
-        new DefinePlugin({
-          '__DEV__': JSON.stringify(process.env['NODE_ENV'] !== 'production'),
-          'process.env.REACT_NATIVE_WEB': JSON.stringify('true'),
-        })
+      const hasExistingDefines = config.plugins?.some((plugin: any) => 
+        plugin instanceof DefinePlugin && 
+        (plugin.definitions?.DEV !== undefined || plugin.definitions?.__DEV__ !== undefined)
       );
+
+      // Only add DefinePlugin if variables aren't already defined
+      if (!hasExistingDefines) {
+        config.plugins = config.plugins || [];
+        config.plugins.push(
+          new DefinePlugin({
+            '__DEV__': JSON.stringify(process.env['NODE_ENV'] !== 'production'),
+            'DEV': JSON.stringify(process.env['NODE_ENV'] !== 'production'),
+            'process.env.__DEV__': JSON.stringify(process.env['NODE_ENV'] !== 'production'),
+            'process.env.DEV': JSON.stringify(process.env['NODE_ENV'] !== 'production'),
+            'process.env.REACT_NATIVE_WEB': JSON.stringify('true'),
+          })
+        );
+      }
 
       return config;
     },
