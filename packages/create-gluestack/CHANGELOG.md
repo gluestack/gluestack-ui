@@ -1,5 +1,11 @@
 # create-gluecode
 
+## 3.0.2
+
+### Patch Changes
+
+- feat: added prompt to ask user if they want to replace existing dir with same name
+
 ## 3.0.1
 
 ### Patch Changes
