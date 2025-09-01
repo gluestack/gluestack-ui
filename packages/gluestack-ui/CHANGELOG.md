@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 3.0.3
+
+### Patch Changes
+
+- feat: change the upgrade command for custom components/ui folder structure
+
 ## 3.0.2
 
 ### Patch Changes

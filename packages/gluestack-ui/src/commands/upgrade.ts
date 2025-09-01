@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { log, spinner, confirm, isCancel, cancel } from '@clack/prompts';
+import { log, spinner, confirm, isCancel, cancel,text } from '@clack/prompts';
 import fs from 'fs-extra';
 import path from 'path';
 import { spawnSync } from 'child_process';
@@ -298,10 +298,29 @@ async function updateImports(): Promise<void> {
   const s = spinner();
   s.start('Updating import statements...');
 
-  const componentsPath = path.join(process.cwd(), 'components', 'ui');
+  let componentsPath = path.join(process.cwd(), 'components', 'ui');
   if (!fs.existsSync(componentsPath)) {
     s.stop('No components/ui folder found.');
-    return;
+    const customPath = await text({
+      message: 'Please provide the path to your components folder (relative to project root):',
+      placeholder: 'e.g., src/components, lib/components, app/components',
+      validate: (value) => {
+        if (!value) return 'Path is required';
+        const fullPath = path.join(process.cwd(), value);
+        if (!fs.existsSync(fullPath)) {
+          return `Path "${value}" does not exist`;
+        }
+        return;
+      }
+    });
+
+    if (isCancel(customPath)) {
+      cancel('Upgrade cancelled.');
+      process.exit(0);
+    }
+
+    componentsPath = path.join(process.cwd(), customPath);
+    s.start('Updating import statements...');
   }
 
   let updatedFiles = 0;
