@@ -1,5 +1,11 @@
 # @gluestack/ui-next-adapter
 
+## 3.0.2
+
+### Patch Changes
+
+- chore: fixed next adapter to work with turbopack
+
 ## 3.0.1
 
 ### Patch Changes
