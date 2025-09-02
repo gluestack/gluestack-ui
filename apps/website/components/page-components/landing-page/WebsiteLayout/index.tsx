@@ -46,10 +46,10 @@ function WebsiteLayout({
         isOpenSidebar={isOpenSidebar}
         setIsOpenSidebar={setIsOpenSidebar}
       />
-      {/* <ProductHuntBanner
+      <ProductHuntBanner
         showPHBanner={showPHBanner}
         setShowPHBanner={setShowPHBanner}
-      />{' '} */}
+      />
       {/* Remove this later */}
       <Box className={` ${isOpenSidebar ? 'opacity-0' : 'opacity-100'} `}>
         {children}

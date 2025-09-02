@@ -17,6 +17,7 @@ import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';
 import { MenuIcon, MoonIcon, SunIcon, X } from 'lucide-react-native';
 
 import AppLaunchKitLogo from '@/public/icon/logo/app-launch-kit/dark-mode.svg';
+import GluestackProLogo from '@/public/icon/logo/gluestack-pro/logo.svg';
 import AppLaunchKitLogoDark from '@/public/icon/logo/app-launch-kit/light-mode.svg';
 import StarterKitLogo from '@/public/icon/logo/gluestack/logo-dark.svg';
 import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
@@ -76,19 +77,19 @@ const Header = ({
         action: 'info',
       },
     },
-    // {
-    //   href: 'https://pro.gluestack.io/',
-    //   logo: {
-    //     light: AppLaunchKitLogo,
-    //     dark: AppLaunchKitLogoDark,
-    //   },
-    //   title: 'AppLaunchKit',
-    //   description: 'Fullstack Universal Template for Android, iOS and Web',
-    //   badge: {
-    //     text: 'PAID',
-    //     action: 'info',
-    //   },
-    // },
+    {
+      href: 'https://pro.gluestack.io/',
+      logo: {
+        light: GluestackProLogo,
+        dark: GluestackProLogo,
+      },
+      title: 'Gluestack Pro (Preview)',
+      description: 'Premium React Native templates that just work.',
+      badge: {
+        text: 'PAID',
+        action: 'info',
+      },
+    },
     {
       href: 'https://theappmarket.io',
       logo: {
