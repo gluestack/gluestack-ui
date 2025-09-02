@@ -95,7 +95,7 @@ jobs:
           fi
 
           echo "pr-number=$PR_NUMBER" >> $GITHUB_OUTPUT
-          
+
           # Check if PR is from a fork
           if [ "$HEAD_REPO" != "$BASE_REPO" ]; then
             echo "is-fork=true" >> $GITHUB_OUTPUT
@@ -257,15 +257,15 @@ jobs:
           script: |
             const prNumber = ${{ needs.check-permissions.outputs.pr-number }};
             const comment = `## 🔀 Fork PR Detected
-            
+
             This PR is from a fork, so preview packages cannot be published automatically for security reasons.
-            
+
             **For maintainers:** If you want to test this PR with preview packages:
             1. Add the \`preview-publish\` label to this PR to trigger publishing
             2. Or use the "Maintainer Preview Publish" workflow manually
-            
+
             **For contributors:** Your PR can still be reviewed and tested. The automated tests and builds will still run normally.
-            
+
             > 💡 This is a standard security measure to protect repository secrets.`;
 
             github.rest.issues.createComment({
@@ -898,7 +898,7 @@ jobs:
                 \"meta\": {
                   \"githubCommitSha\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}\",
                   \"githubCommitAuthorName\": \"${{ github.actor }}\",
-                  \"githubCommitMessage\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.title || github.event.head_commit.message }}\",
+                  \"githubCommitMessage\": \"${{ (github.event_name == 'pull_request_target' && github.event.pull_request.title) || github.event.head_commit.message || github.sha }}\",
                   \"githubPR\": \"${{ needs.check-permissions.outputs.pr-number }}\",
                   \"triggeredBy\": \"github-actions\",
                   \"packageVersion\": \"$PACKAGE_VERSION\",
@@ -1122,7 +1122,7 @@ jobs:
                 \"meta\": {
                   \"githubCommitSha\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}\",
                   \"githubCommitAuthorName\": \"${{ github.actor }}\",
-                  \"githubCommitMessage\": \"${{ github.event_name == 'pull_request_target' && github.event.pull_request.title || github.event.head_commit.message }}\",
+                  \"githubCommitMessage\": \"${{ (github.event_name == 'pull_request_target' && github.event.pull_request.title) || github.event.head_commit.message || github.sha }}\",
                   \"githubPR\": \"${{ needs.check-permissions.outputs.pr-number }}\",
                   \"triggeredBy\": \"github-actions\",
                   \"packageVersion\": \"$PACKAGE_VERSION\",
