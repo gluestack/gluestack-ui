@@ -27,7 +27,7 @@ const Text = React.forwardRef<React.ComponentRef<'span'>, ITextProps>(
           bold: bold as boolean,
           underline: underline as boolean,
           strikeThrough: strikeThrough as boolean,
-          size: size as any,
+          size,
           sub: sub as boolean,
           italic: italic as boolean,
           highlight: highlight as boolean,

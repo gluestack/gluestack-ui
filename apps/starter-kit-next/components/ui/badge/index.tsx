@@ -198,7 +198,7 @@ const BadgeIcon = React.forwardRef<
           size: parentSize,
           action: parentAction,
         },
-        size: size as any,
+        size,
         class: className,
       })}
       {...props}

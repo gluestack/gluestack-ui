@@ -356,7 +356,7 @@ const ActionsheetItemText = React.forwardRef<
         bold: Boolean(bold),
         underline: Boolean(underline),
         strikeThrough: Boolean(strikeThrough),
-        size: size as any,
+        size,
       })}
       ref={ref}
       {...props}
@@ -504,7 +504,7 @@ const ActionsheetSectionHeaderText = React.forwardRef<
         bold: Boolean(bold),
         underline: Boolean(underline),
         strikeThrough: Boolean(strikeThrough),
-        size: size as any,
+        size,
         sub: Boolean(sub),
         italic: Boolean(italic),
         highlight: Boolean(highlight),

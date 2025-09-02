@@ -177,7 +177,7 @@ const AlertDialogContent = React.forwardRef<
         parentVariants: {
           size: parentSize,
         },
-        size: size as any,
+        size,
         class: className,
       })}
     />
