@@ -7,6 +7,24 @@ import BlogsPageLayout from '@/components/page-components/blogs-page/BlogsPageLa
 
 const blogs = [
   {
+    title: 'gluestack v3 release',
+    cover: '/images/blogs/banner-1.png',
+    slug: 'gluestack-v3-release',
+    published_at: {
+      start: '2025-09-03T00:00:00Z',
+    },
+    reading_time: 3,
+    author: [
+      {
+        id: 10,
+        avatar_url: 'https://avatars.githubusercontent.com/u/230149282?v=4',
+        email: '',
+        name: 'Paridhi Tulsian',
+        occupation: 'Digital Marketing Lead',
+      },
+    ],
+  },
+  {
     title: 'Build a Simple UI with gluestack-ui and Expo',
     cover:
       'https://gluestack.github.io/public-blog-video-assets/simpleuicover.png',
@@ -162,6 +180,7 @@ const blogs = [
   {
     title: 'Why we built gluestack-ui v2',
     cover: '/images/blogs/cover1.png',
+    
     slug: 'why-gluestack-ui-v2',
     published_at: {
       start: '2024-07-23T00:00:00Z',
@@ -194,19 +213,24 @@ const blogs = [
         occupation: 'Building gluestack-ui',
       },
     ],
-  },
+  }
 ];
 
 const Blogs = () => {
+  const sortedBlogs = [...blogs].sort((a, b) => {
+    const aTime = new Date(a.published_at?.start ?? 0).getTime();
+    const bTime = new Date(b.published_at?.start ?? 0).getTime();
+    return bTime - aTime; // latest first
+  });
   return (
     <BlogsPageLayout>
       <Heading className="text-4xl lg:text-5xl my-6 pt-4 text-typography-950">
         Latest posts
       </Heading>
       <Box>
-        {blogs &&
-          blogs.map((blog: any, index: number) => {
-            return <BlogListItem key={blog.id} blog={blog} />;
+        {sortedBlogs &&
+          sortedBlogs.map((blog: any, index: number) => {
+            return <BlogListItem key={blog.slug} blog={blog} />;
           })}
       </Box>
     </BlogsPageLayout>

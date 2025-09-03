@@ -1,0 +1,187 @@
+import { Box, } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Image } from '@/components/ui/image';
+import { Heading } from '@/components/ui/heading';
+import { TOC } from '@/components/page-components/blogs-page/TOC';
+import { BlogQuote } from '@/components/custom/blog-quote';
+
+<Text className="text-sm pt-2">September 3, 2025</Text>
+
+# Announcing gluestack UI v3: The Universal React & React Native Component Library
+
+<HStack className="gap-3 items-center">
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source={{ uri: 'https://avatars.githubusercontent.com/u/230149282?v=4' }}
+      alt="paridhi"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-typography-900">Paridhi Tulsian</Text>
+    <Text className="text-sm">Digital Marketing Lead</Text>
+  </Box>
+</HStack>
+
+<br />
+
+<Image
+source={require('@/public/images/blogs/twitter-banner.png')} 
+className="h-[450px] w-full"
+resizeMode="contain"/>
+
+<Text className="text-sm font-medium font-mono leading-normal">
+After months of development, feedback, and testing, we’re thrilled to launch gluestack UI v3 — the next major evolution of our React Native and React component library (formerly NativeBase).
+
+This release is packed with performance improvements, accessibility upgrades, and a refined developer experience. It also introduces a brand-new Source-to-Destination architecture for contributors, ensuring gluestack remains easy to maintain and extend.
+
+Whether you’re an existing gluestack ui user, a React/React Native developer exploring new tools, or an engineering leader evaluating cross-platform UI frameworks, gluestack v3 empowers you to build faster, with more control, and without vendor lock-in.
+
+</Text>
+
+ ## What's New in gluestack v3
+
+<Image
+source={require('@/public/images/blogs/v3-banner.png')} 
+className="h-[450px] w-full"
+resizeMode="contain"/>
+
+### 1. Blazing-Fast Performance and Leaner Build
+
+Performance was one of the biggest goals of gluestack v3:
+- Reduced default CSS/JS footprint
+- Faster initial render times
+- Support for Next.js Turbopack → smaller production bundles & lightning-fast rebuilds
+- Continued support for React Server Components (RSC)
+These optimizations mean apps built with gluestack v3 load faster, hydrate quicker, and stay lightweight.
+
+### 2. New Source-to-Destination Architecture (for Contributors)
+
+One of the most significant changes in v3 is behind the scenes.
+
+The Source-to-Destination architecture is designed to make life easier for contributors and maintainers:
+
+- All components are maintained in a single `src/` directory.
+- A single command automatically syncs them to starter kits, docs, and examples.
+- Contributors now have a single source of truth, making pull requests, bug fixes, and documentation updates more reliable.
+
+For everyday developers using gluestack v3, nothing changes. You still copy, paste, and own your components. The contributor-focused architecture simply ensures gluestack can scale with community contributions while keeping your workflow simple.
+
+### 3. Universal Compatibility
+
+gluestack v3 is fully aligned with modern React and React Native tooling:
+
+- Next.js 15 + React Server Components
+- Expo SDK 53 + React Native CLI
+- Monorepo compatibility out of the box
+
+It’s a future-ready UI toolkit designed for web and mobile.
+
+### 4. Improved Developer Experience
+
+Developer workflows are now faster and easier:
+
+- TypeScript-first tooling with strong types and full definitions
+- New CLI commands for initialization, upgrading, and file synchronization
+- Hot reloading for instant feedback
+- Cleaner docs, faster navigation, and better search
+
+```bash
+ # Upgrade existing projects:
+npx gluestack-ui upgrade
+```
+
+### 5. Theming and Customization
+
+gluestack v3 continues to make your design system first-class:
+
+- Updated default theme for better contrast and modern visuals
+- Dynamic theming → light, dark, or fully custom
+- Tailwind (NativeWind v4.1) integration for consistent styling across platforms
+- Instant theme propagation with CSS variables (web) & context (native)
+
+Your components, your code, your style — with zero vendor lock-in.
+
+### Accessibility by Default
+
+Accessibility is non-negotiable in gluestack v3:
+
+- ARIA roles & WCAG compliance
+- Keyboard navigation support
+- Screen reader optimizations
+- Accessible defaults across form controls, menus, modals, and more
+
+### Expanded Component Library
+## How to migrate from gluestack ui v2?
+
+Upgrading from v2 to v3 is designed to be painless:
+
+- APIs remain the same
+- Theming stays intact
+- Only import paths and configs change
+
+**30+ updated components**, including:
+
+- Buttons, Inputs, Avatars
+- Complex patterns: Select, Toasts
+- New: Accordion, expanded IconButton variants
+
+Thanks to modular architecture, you only include what you use — avoiding bundle bloat.
+
+```bash
+npx gluestack-ui@latest upgrade
+```
+
+This one command updates your components and configuration files (e.g. Tailwind, Next.js). For most apps, that’s all you’ll need.
+
+## Why gluestack v3 Matters
+
+- **For Developers**: Cross-platform components, copy–paste ownership, faster DX.
+- **For Teams**: Consistent theming, fewer silos between web & mobile engineers.
+- **For Leaders**: Reduced complexity, production-ready accessibility, long-term maintainability.
+
+gluestack v3 is more than a UI library — it’s a future-proof universal UI toolkit.
+
+## Getting Started
+
+### New Projects
+```bash
+npx gluestack-ui@latest init
+npx gluestack-ui@latest add --all
+```
+<Image
+source={require('@/public/images/blogs/ph-banner.png')} 
+className="h-[450px] w-full"
+resizeMode="contain"/>
+
+When we first built gluestack ui, the vision was simple: empower everyone to build faster.
+
+With gluestack v3, we’re taking that vision further: giving developers speed and ownership, while ensuring contributors can grow the ecosystem sustainably.
+
+Try gluestack v3 now: [gluestack.io/ui/docs](https://gluestack.io/ui/docs)
+
+Support the launch on [Product Hunt](https://www.producthunt.com/products/gluestack?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-gluestack-v3)
+
+Together, we’re building the future of universal UI development.
+
+<TOC
+  items={[
+    {
+      id: "what's-new-in-gluestack-v3",
+      title: "What's New in gluestack-ui v3",
+    },
+    {
+      id: 'how-to-migrate-from-gluestack-ui-v2?',
+      title: 'How to migrate from gluestack ui v2?',
+    },
+    {
+      id: 'why-gluestack-v3-matters',
+      title: 'Why gluestack v3 Matters',
+    },
+    {
+      id: 'getting-started',
+      title: 'Getting Started',
+    },
+  ]}
+/>
