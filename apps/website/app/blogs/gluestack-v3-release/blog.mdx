@@ -1,0 +1,139 @@
+import { Box, } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Image } from '@/components/ui/image';
+import { Heading } from '@/components/ui/heading';
+import { TOC } from '@/components/page-components/blogs-page/TOC';
+import { BlogQuote } from '@/components/custom/blog-quote';
+
+<Text className="text-sm pt-2">September 3, 2025</Text>
+
+# Announcing gluestack UI v3: The Universal React & React Native Component Library
+
+<HStack className="gap-3 items-center">
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source={{ uri: 'https://avatars.githubusercontent.com/u/66306233?v=4' }}
+      alt="viraj"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-typography-900">Viraj Joshi</Text>
+    <Text className="text-sm">Co-author of gluestack-ui</Text>
+  </Box>
+</HStack>
+
+<br />
+
+<Text className="text-sm font-medium font-mono leading-normal">
+After months of hard work, countless iterations, and testing across platforms, we are thrilled to announce the **stable release of gluestack-ui v2**! This marks a significant milestone in our journey to empower developers with a seamless and efficient UI development experience.
+
+With gluestack-ui v2, we’ve made some groundbreaking changes, eliminated unnecessary complexity, and aligned closely with the latest in React Native and Tailwind ecosystems.
+
+Here’s what you can look forward to in this release:
+
+</Text>
+
+## ✨ What’s New in gluestack-ui v2
+
+### **90% Reduction in CSS File Size**
+
+We’ve optimized the library to dramatically reduce the CSS footprint, ensuring faster load times and smoother performance, especially for large-scale projects.
+
+### **600+ Lines of Code and Wrappers Removed**
+
+We’ve significantly reduced boilerplate code, making gluestack-ui leaner and cleaner. This also means easier debugging and better maintainability for your projects.
+
+### **Support for Data Attributes Without HOCs**
+
+Previously, using data attributes required wrapping components with higher-order components (HOCs). Now, data attributes are supported natively, simplifying how you work with state-driven styles and interactions.
+
+### **Compatible with NativeWind v4.1**
+
+gluestack-ui is now fully aligned with the **latest NativeWind v4.1** release, bringing the best of Tailwind CSS to React Native. Expect enhanced features, better performance, and seamless integration.
+
+### **Expo RSC (React Server Components) Compatibility**
+
+gluestack-ui components are now compatible with **Expo React Server Components (RSC)**. This ensures optimal server-side rendering performance and smoother hydration on the client side, making your applications even more responsive.
+
+### **Improved TypeScript Support**
+
+We’ve significantly improved TypeScript support, ensuring better type definitions, autocomplete, and developer experience. Type errors are easier to spot, making your workflows smoother and more efficient.
+
+## 🎉 **Why This Matters**
+
+gluestack-ui v2 is built to make your life easier as a developer. Whether you’re building universal apps or optimizing for performance, this release addresses critical pain points and sets a new standard for React Native UI libraries.
+
+By aligning with the latest standards and reducing complexity, we aim to provide a fast, flexible, and future-proof foundation.
+
+## 📦 **Getting Started with gluestack-ui v2**
+
+### Simple Setup with Our Powerful CLI
+
+Getting started has never been easier. Set up your project in seconds with our intuitive CLI:
+
+To initialize the project:
+
+```bash
+ npx gluestack-ui init
+```
+
+<br />
+
+To add all the components:
+
+```bash
+ npx gluestack-ui add --all
+```
+
+If you’re using an alpha version, follow this detailed guide 👉🏻 [Change Log of Components](https://geekyants.notion.site/Change-log-of-components-13c1684eb34980ec9a3cd651a83452a7)
+
+## 🚀 **The Journey Ahead**
+
+<BlogQuote
+  quote="This is just the beginning of gluestack-ui v2. As always, we will keep evolving with the ever-changing landscape of JavaScript! Expect frequent updates, enhancements, and exciting features shortly!"
+  authorName="Sanket Sahu"
+  authorTitle="Creator of gluestack-ui"
+  authorImage="https://avatars.githubusercontent.com/u/1733433?v=4"
+  authorInitials="SS"
+/>
+
+### **We’d Love to Hear from You!**
+
+Have questions, or feedback, or want to showcase what you’re building with gluestack-ui v2? Join the conversation on [GitHub](https://github.com/gluestack/gluestack-ui), [Twitter](https://twitter.com/gluestack), or our [Discord community](https://discord.com/invite/V5SU7HZSAQ).
+
+Let’s continue building amazing things together!
+
+---
+
+Happy coding,
+
+The gluestack-ui Team
+
+### Known Issue
+
+Grid is not working with react native 0.76 (Expo SDK 52). This issue is from the react-native side, we have raised an issue on the `react-native` repo.
+
+Issues with the latest version of `react-native-svg`. Currently working with specific version `15.2.0`
+
+<TOC
+  items={[
+    {
+      id: 'whats-new-in-gluestack-ui-v2',
+      title: 'What’s New in gluestack-ui v2',
+    },
+    {
+      id: 'why-this-matters',
+      title: 'Why This Matters',
+    },
+    {
+      id: 'getting-started-with-gluestack-ui-v2',
+      title: 'Getting Started with gluestack-ui v2',
+    },
+    {
+      id: 'the-journey-ahead',
+      title: 'The Journey Ahead',
+    },
+  ]}
+/>
