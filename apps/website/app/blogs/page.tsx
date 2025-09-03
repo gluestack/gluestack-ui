@@ -199,7 +199,6 @@ const blogs = [
   {
     title: 'Why we built gluestack-ui v2',
     cover: '/images/blogs/cover1.png',
-
     slug: 'why-gluestack-ui-v2',
     published_at: {
       start: '2024-07-23T00:00:00Z',
