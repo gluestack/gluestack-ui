@@ -45,7 +45,7 @@ export const TOC = ({ items }: { items: Item[] }) => {
     if (currentSection) {
       // Get the text content of the heading and convert it to an ID
       const headingText = (currentSection as HTMLElement).textContent || '';
-      const headingId = headingText.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const headingId = headingText.toLowerCase().replace(/[^a-z0-9?']+/g, '-');
 
       // Find the matching TOC item
       const matchingItem = items.find(
@@ -67,7 +67,7 @@ export const TOC = ({ items }: { items: Item[] }) => {
       const htmlElement = section as HTMLElement;
       if (!htmlElement.id) {
         const headingText = htmlElement.textContent || '';
-        const headingId = headingText.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        const headingId = headingText.toLowerCase().replace(/\s+/g, '-');
         htmlElement.id = headingId;
       }
     });
