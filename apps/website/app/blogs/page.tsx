@@ -195,6 +195,24 @@ const blogs = [
       },
     ],
   },
+  {
+    title: 'gluestack v3 release',
+    cover: '/images/blogs/cover2.png',
+    slug: 'gluestack-v3-release',
+    published_at: {
+      start: '2024-07-23T00:00:00Z',
+    },
+    reading_time: 6,
+    author: [
+      {
+        id: 1,
+        avatar_url: 'https://avatars.githubusercontent.com/u/9393975?v=4',
+        email: '',
+        name: 'Paridhi Tulsian',
+        occupation: 'Building gluestack-ui',
+      },
+    ],
+  },
 ];
 
 const Blogs = () => {
