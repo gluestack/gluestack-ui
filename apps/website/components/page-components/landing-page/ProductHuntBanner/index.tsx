@@ -13,7 +13,7 @@ const ProductHuntBanner = ({
 }: ProductHuntBannerProps) => {
   if (!showPHBanner) return null;
   return (
-    <Box className="sticky top-[53px] md:top-[60px] z-20">
+    <Box className="sticky top-[53px] md:top-[60px] z-[5]">
       <div className="w-full bg-gradient-to-r from-orange-500 via-orange-600 to-red-600">
         <div className="mx-auto w-[85%] max-w-[1440px] px-2 sm:px-2">
           <div className="flex items-center justify-between gap-3 py-2 md:py-2.5">
