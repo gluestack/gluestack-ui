@@ -63,6 +63,24 @@ const blogs = [
     ],
   },
   {
+    title: 'gluestack v3 release',
+    cover: '/images/blogs/banner-1.png',
+    slug: 'gluestack-v3-release',
+    published_at: {
+      start: '2025-09-03T00:00:00Z',
+    },
+    reading_time: 3,
+    author: [
+      {
+        id: 10,
+        avatar_url: 'https://avatars.githubusercontent.com/u/230149282?v=4',
+        email: '',
+        name: 'Paridhi Tulsian',
+        occupation: 'Digital Marketing Lead',
+      },
+    ],
+  },
+  {
     title: 'Build a Simple UI with gluestack-ui and Expo',
     cover:
       'https://gluestack.github.io/public-blog-video-assets/simpleuicover.png',
