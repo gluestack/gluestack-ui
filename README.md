@@ -1,3 +1,5 @@
+gluestack v3 is here!
+Our biggest release yet is live today — with a new Source-to-Destination architecture for contributors, Next.js 15 + RSC support, Expo SDK 53, TypeScript-first tooling, performance upgrades, and more.
 # gluestack-ui: React & React Native Components & Patterns
 
 gluestack-ui is a library of copy-pasteable components & patterns crafted with Tailwind CSS (NativeWind).
@@ -7,13 +9,11 @@ gluestack-ui is a library of copy-pasteable components & patterns crafted with T
 [![NPM downloads](https://img.shields.io/npm/dw/@gluestack-ui/utils?logo=npm&label=NPM%20downloads&cacheSeconds=3600)](https://www.npmjs.com/package/@gluestack-ui/utils) [![Commits per month](https://img.shields.io/github/commit-activity/m/gluestack/gluestack-ui?label=Commits&logo=git)](https://github.com/gluestack/gluestack-ui/commits)
 
 [![Next.js Latest](https://github.com/gluestack/gluestack-ui/actions/workflows/next-latest.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-latest.yml)
-[![Next.js 14.x](https://github.com/gluestack/gluestack-ui/actions/workflows/next-14.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-14.yml)
-[![Next.js 13.x](https://github.com/gluestack/gluestack-ui/actions/workflows/next-13.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-13.yml)
 [![Expo Latest](https://github.com/gluestack/gluestack-ui/actions/workflows/expo-latest.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/expo-latest.yml)
 
 <h3 align="center">
   <a href="https://github.com/gluestack/gluestack-ui">
-    <img src="https://raw.githubusercontent.com/gluestack/gluestack-ui/main/assets/gluestack-banner.png" alt="gluestack-ui logo" >
+    <img src="https://raw.githubusercontent.com/gluestack/gluestack-ui/main/apps/website/public/images/og-image.png" alt="gluestack-ui logo" >
   </a>
   <br>
   <br>
