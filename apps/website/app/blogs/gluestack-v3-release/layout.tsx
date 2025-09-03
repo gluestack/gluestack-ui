@@ -2,24 +2,24 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'gluestack v2 stable release with NativeWind v4.1 support | gluestack',
-  description: 'gluestack v2 stable release with NativeWind v4.1 support.',
+  title: 'gluestack v3 – Universal React & React Native Component Library',
+  description: 'Introducing gluestack v3: a universal React & React Native component library with Next.js 15, Expo SDK 53, and TypeScript-first tooling. Optimized for performance, accessibility, and contributor scalability with a new Source-to-Destination architecture.',
   openGraph: {
     images: [
       {
-        url: 'https://gluestack.github.io/public-blog-video-assets/stable-release-v2-min.png',
+        url: 'https://gluestack.io/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'gluestack v2 stable release with NativeWind v4.1 support',
+        alt: 'gluestack v3 is here 🚀 Universal React & React Native Components',
       },
     ],
   },
   twitter: {
     images: {
-      url: 'https://gluestack.github.io/public-blog-video-assets/stable-release-v2-min.png',
+      url: 'https://gluestack.io/images/og-image.png',
       width: 1200,
       height: 630,
-      alt: 'gluestack v2 stable release with NativeWind v4.1 support',
+      alt: 'gluestack v3 is here 🚀 Universal React & React Native Components',
     },
   },
 };
