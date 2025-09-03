@@ -189,13 +189,6 @@ const Header = ({
                   v2
                 </MenuItem>
               </Menu>
-              <Divider
-                orientation="vertical"
-                className="h-[20px] hidden sm:flex lg:hidden xl:flex"
-              />
-              <Text className="text-sm text-typography-700 hidden sm:flex lg:hidden xl:flex">
-                Formerly NativeBase
-              </Text>
             </HStack>
           </HStack>
 
@@ -460,11 +453,11 @@ const Header = ({
               </Pressable>
               {!pathname.includes('/docs') ? (
                 <Link
-                  href="https://geekyants.com/hire?utm_source=gluestack.io&utm_medium=referral&utm_campaign=partner_site"
+                  href="/ui/docs"
                   className="bg-primary-500 px-4 py-1.5 xl:flex hidden rounded"
                 >
                   <Text className="text-sm text-typography-0">
-                    Hire React Native Experts
+                    Get Started
                   </Text>
                 </Link>
               ) : (
