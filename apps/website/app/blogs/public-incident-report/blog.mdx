@@ -1,0 +1,560 @@
+import { AlertTriangle, Shield, Clock, Users, Package, Network, FileText, CheckCircle } from 'lucide-react'
+import { Box } from "@/components/ui/box"
+
+# React Native ARIA & gluestack-ui Security Incident Report
+
+<div className="flex items-center gap-4 mb-8 p-4 border border-red-600 shadow-soft-1 shadow-red-500 rounded-lg">
+  <AlertTriangle className="h-6 w-6 text-red-600" />
+  <div>
+    <div className="flex items-center gap-4 text-sm text-typography-600">
+      <span><strong>Incident ID:</strong> RN-ARIA-2025-001</span>
+      <span><strong>Date Published:</strong> September 4, 2025</span>
+      <span><strong>Incident Date:</strong> June 6-8, 2025</span>
+    </div>
+    <div className="flex items-center gap-4 mt-2">
+      <span className="px-2 py-1 bg-red-100 text-red-800 text-xs rounded">High Severity</span>
+      <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Resolved</span>
+    </div>
+  </div>
+</div>
+
+## Executive Summary
+
+<div className="bg-background-50 border-l-4 border-blue-400 shadow-soft-1 shadow-blue-400 p-4 mb-6">
+  <div className="flex items-start">
+    <Shield className="h-5 w-5 text-blue-400 mt-0.5 mr-3 flex-shrink-0" />
+    <div>
+      <p className="text-blue-800">
+        <strong>Bottom Line:</strong> While the attack was significant in scope, the impact to end users was minimal due to the frontend-only nature of React Native ARIA libraries and swift response actions. No system-level compromises have been confirmed based on current analysis.
+      </p>
+    </div>
+  </div>
+</div>
+
+On June 6, 2025, the React Native ARIA and gluestack-ui npm packages were compromised in a sophisticated supply chain attack that affected **17 packages with over 1 million combined weekly downloads**. A threat actor gained unauthorized access to publishing credentials and injected Remote Access Trojan (RAT) malware into widely-used JavaScript packages. The incident was contained within 48 hours, with immediate remediation actions taken to protect the ecosystem.
+
+### Impact Overview
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+  <div className="p-4 bg-background-50 rounded-lg shadow-soft-2">
+    <Package className="h-8 w-8 text-typography-600 mb-2" />
+    <div className="text-2xl font-bold text-typography-900">17</div>
+    <div className="text-sm text-typography-600">Packages Compromised</div>
+  </div>
+  <div className="p-4 bg-background-50 rounded-lg shadow-soft-2">
+    <Users className="h-8 w-8 text-typography-600 mb-2" />
+    <div className="text-2xl font-bold text-typography-900">1M+</div>
+    <div className="text-sm text-typography-600">Weekly Downloads</div>
+  </div>
+  <div className="p-4 bg-background-50 rounded-lg shadow-soft-2">
+    <Clock className="h-8 w-8 text-typography-600 mb-2" />
+    <div className="text-2xl font-bold text-typography-900">17</div>
+    <div className="text-sm text-typography-600">Hours Exposure</div>
+  </div>
+</div>
+
+---
+
+## Incident Timeline
+
+<div>
+
+### June 6, 2025
+
+<div className="flex items-start space-x-4">
+  <div className="bg-red-100 rounded-full p-2 flex-shrink-0">
+    <AlertTriangle className="h-4 w-4 text-red-600" />
+  </div>
+  <div>
+    <h4 className="font-semibold text-typography-900">21:33 GMT - Initial Compromise</h4>
+      - Version 0.2.10 of `@react-native-aria/focus` published with malicious code
+      - First package compromised after 8 months of inactivity
+      - Previous version 0.2.9 released October 18, 2023
+  </div>
+</div>
+
+### June 7, 2025
+<div className="space-y-4 mb-6">
+<div className="flex items-start space-x-4">
+  <div className="bg-red-100 rounded-full p-2 flex-shrink-0">
+    <AlertTriangle className="h-4 w-4 text-red-600" />
+  </div>
+  <div>
+    <h4 className="font-semibold text-typography-900">00:37-00:48 GMT - Attack Escalation</h4>
+    <p className="text-sm text-typography-600 mb-2">8 additional packages compromised in rapid succession:</p>
+    <div className="bg-background-50 p-3 rounded text-xs font-mono">
+      @react-native-aria/utils (0.2.13)<br/>
+      @react-native-aria/overlays (0.3.16)<br/>
+      @react-native-aria/interactions (0.2.17)<br/>
+      @react-native-aria/toggle (0.2.12)<br/>
+      @react-native-aria/switch (0.2.5)<br/>
+      @react-native-aria/checkbox (0.2.11)<br/>
+      @react-native-aria/radio (0.2.14)<br/>
+      @react-native-aria/button (0.2.11)
+    </div>
+  </div>
+</div>
+
+<div className="flex items-start space-x-4">
+  <div className="bg-red-100 rounded-full p-2 flex-shrink-0">
+    <AlertTriangle className="h-4 w-4 text-red-600" />
+  </div>
+  <div>
+    <h4 className="font-semibold text-typography-900">14:28-14:46 GMT - Second Wave</h4>
+    <p className="text-sm text-typography-600 mb-2">7 additional packages targeted:</p>
+    <div className="bg-background-50 p-3 rounded text-xs font-mono">
+      @react-native-aria/menu (0.2.16)<br/>
+      @react-native-aria/listbox (0.2.10)<br/>
+      @react-native-aria/combobox (0.2.8)<br/>
+      @react-native-aria/disclosure (0.2.9)<br/>
+      @react-native-aria/slider (0.2.13)<br/>
+      @react-native-aria/separator (0.2.7)<br/>
+      @gluestack-ui/utils (0.1.16, 0.1.17)
+    </div>
+  </div>
+</div>
+</div>
+### June 8, 2025
+
+<div className="flex items-start space-x-4">
+  <div className="bg-green-100 rounded-full p-2 flex-shrink-0">
+    <CheckCircle className="h-4 w-4 text-green-600" />
+  </div>
+  <div>
+    <h4 className="font-semibold text-typography-900">Early Morning - Discovery and Response</h4>
+      - Aikido Security identifies and reports the compromise
+      - `@react-native-aria/tabs` (0.2.14) discovered to be compromised
+  </div>
+</div>
+
+<div className="flex items-start space-x-4">
+  <div className="bg-green-100 rounded-full p-2 flex-shrink-0">
+    <Shield className="h-4 w-4 text-green-600" />
+  </div>
+  <div>
+    <h4 className="font-semibold text-typography-900">01:22 GMT - Immediate Containment</h4>
+      - All compromised package versions marked as deprecated on npm
+      - Compromised access tokens revoked
+      - GitHub repository access restricted
+  </div>
+</div>
+
+### June 9, 2025
+
+<div className="flex items-start space-x-4">
+  <div className="bg-blue-100 rounded-full p-2 flex-shrink-0">
+    <FileText className="h-4 w-4 text-blue-600" />
+  </div>
+  <div>
+    <h4 className="font-semibold text-typography-900">Public Disclosure</h4>
+      - Public security incident disclosure
+      - Full technical analysis published
+      - Coordinated response with npm security team
+  </div>
+</div>
+
+</div>
+
+---
+
+## Technical Analysis
+
+### Attack Vector
+
+<div className="border border-yellow-600 rounded-lg p-4 mb-6 shadow-soft-1 shadow-yellow-500">
+  <div className="flex items-start">
+    <AlertTriangle className="h-5 w-5 text-yellow-600 mt-0.5 mr-3 flex-shrink-0" />
+    <div>
+      <h4 className="text-yellow-600 font-semibold">Root Cause</h4>
+      <p className="text-yellow-700">
+        The compromise occurred through a leaked npm access token belonging to an authorized maintainer. 
+        The token lacked two-factor authentication protection.
+      </p>
+    </div>
+  </div>
+</div>
+
+The threat actor was able to:
+
+1. **Publish malicious versions** of existing packages
+2. **Inject obfuscated RAT code** into legitimate libraries  
+3. **Establish C&C infrastructure** for remote access
+4. **Deploy persistence mechanisms** on compromised systems
+
+### Malicious Payload Analysis
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+  <div>
+    <h4 className="font-semibold mb-3">Obfuscation Techniques</h4>
+      - **Whitespace-based hiding:** Pushed malicious content off-screen
+      - **JavaScript obfuscation:** Heavy encoding to evade detection
+      - **File padding:** Obscured malicious modifications
+  </div>
+  <div>
+    <h4 className="font-semibold mb-3">RAT Capabilities</h4>
+      - **Command execution** on infected systems
+      - **File operations:** Upload/download functionality
+      - **System reconnaissance** and metadata harvesting
+      - **Persistence mechanisms** via fake Python directories
+  </div>
+</div>
+
+### Command & Control Infrastructure
+
+<div className="bg-background-50 p-4 rounded-lg mb-6">
+  <h4 className="font-semibold mb-3 flex items-center">
+    <Network className="h-4 w-4 mr-2" />
+    C2 Servers
+  </h4>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <p className="text-sm font-medium text-typography-700">Primary Infrastructure</p>
+      <code className="text-xs bg-background-100 p-2 rounded block mt-1">
+        136.0.9.8:3306<br/>
+        136.0.9.8:27017
+      </code>
+    </div>
+    <div>
+      <p className="text-sm font-medium text-typography-700">Secondary Infrastructure</p>
+      <code className="text-xs bg-background-100 p-2 rounded block mt-1">
+        85.239.62.36:3306<br/>
+        85.239.62.36:27017
+      </code>
+    </div>
+  </div>
+</div>
+
+### New Malware Capabilities
+
+The attackers enhanced their RAT with two new commands:
+
+<div className="space-y-4 mb-6">
+  <div className="border border-gray-200 rounded-lg p-4">
+    <code className="text-sm font-bold text-blue-600">ss_info</code>
+    <p className="text-sm text-typography-600 mt-1">Harvests system metadata including OS info, Node.js version, script paths, and runtime context</p>
+  </div>
+  
+  <div className="border border-gray-200 rounded-lg p-4">
+    <code className="text-sm font-bold text-blue-600">ss_ip</code>
+    <p className="text-sm text-typography-600 mt-1">Retrieves public IP address information via external API calls to <code>ip-api.com</code></p>
+  </div>
+</div>
+
+---
+
+## Impact Assessment
+
+### Scope of Compromise
+
+<div className="border border-red-600 rounded-lg p-4 mb-6 shadow-soft-1 shadow-red-500">
+  <h4 className="font-semibold text-red-600 mb-2">Attack Scale</h4>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+    <div>
+      <span className="font-medium text-red-600">Packages:</span>
+      <span className="text-red-500"> 17 compromised</span>
+    </div>
+    <div>
+      <span className="font-medium text-red-600">Downloads:</span>
+      <span className="text-red-500"> 1,020,000+ weekly</span>
+    </div>
+    <div>
+      <span className="font-medium text-red-600">Exposure:</span>
+      <span className="text-red-500"> ~17 hours</span>
+    </div>
+  </div>
+</div>
+
+### Risk Mitigation Factors
+
+<div className="border border-green-600 rounded-lg p-4 mb-6 shadow-soft-1 shadow-green-500">
+  <h4 className="font-semibold text-green-600 mb-3">Why Impact Was Limited</h4>
+  <div className="space-y-2 text-sm text-green-500">
+    <div className="flex items-start">
+      <CheckCircle className="h-4 w-4 mt-0.5 mr-2 flex-shrink-0" />
+      <span><strong className='text-green-600'>Frontend-only libraries:</strong> React Native ARIA packages execute in browser/mobile contexts, not CLI or post-install scripts</span>
+    </div>
+    <div className="flex items-start">
+      <CheckCircle className="h-4 w-4 mt-0.5 mr-2 flex-shrink-0" />
+      <span><strong className='text-green-600'>Limited execution context:</strong> Malicious code requires specific runtime conditions to activate</span>
+    </div>
+    <div className="flex items-start">
+      <CheckCircle className="h-4 w-4 mt-0.5 mr-2 flex-shrink-0" />
+      <span><strong className='text-green-600'>Rapid containment:</strong> Swift response limited exposure window significantly</span>
+    </div>
+  </div>
+</div>
+
+### Confirmed Impact
+
+- ✅ **No confirmed system-level compromises** reported
+- ✅ **No evidence of successful data exfiltration**  
+- ✅ **No reports of operational disruption** from affected users
+
+---
+
+## Indicators of Compromise (IoCs)
+
+### Compromised Package Versions
+
+<div className="bg-background-50 p-4 rounded-lg mb-6">
+  <h4 className="font-semibold mb-3">Check Your Dependencies</h4>
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div>
+      <p className="text-sm font-medium mb-2">React Native ARIA Packages</p>
+      <div className="text-xs font-mono bg-background-100 p-3 rounded max-h-48 overflow-y-auto">
+        @react-native-aria/focus@0.2.10<br/>
+        @react-native-aria/utils@0.2.13<br/>
+        @react-native-aria/overlays@0.3.16<br/>
+        @react-native-aria/interactions@0.2.17<br/>
+        @react-native-aria/toggle@0.2.12<br/>
+        @react-native-aria/switch@0.2.5<br/>
+        @react-native-aria/checkbox@0.2.11<br/>
+        @react-native-aria/radio@0.2.14<br/>
+        @react-native-aria/button@0.2.11<br/>
+        @react-native-aria/menu@0.2.16<br/>
+        @react-native-aria/listbox@0.2.10<br/>
+        @react-native-aria/tabs@0.2.14<br/>
+        @react-native-aria/combobox@0.2.8<br/>
+        @react-native-aria/disclosure@0.2.9<br/>
+        @react-native-aria/slider@0.2.13<br/>
+        @react-native-aria/separator@0.2.7
+      </div>
+    </div>
+    <div>
+      <p className="text-sm font-medium mb-2">GlueStack Packages</p>
+      <div className="text-xs font-mono bg-background-100 p-3 rounded">
+        @gluestack-ui/utils@0.1.16<br/>
+        @gluestack-ui/utils@0.1.17
+      </div>
+    </div>
+  </div>
+</div>
+
+### Network Indicators
+
+<div className="border border-yellow-600 rounded-lg p-4 mb-6 shadow-soft-1 shadow-yellow-500">
+  <h4 className="font-semibold text-yellow-600 mb-3">Monitor for These IPs</h4>
+  <div className="grid grid-cols-2 gap-4">
+    <div className="text-sm font-mono bg-background-50 p-3 rounded">
+      136.0.9.8:3306<br/>
+      136.0.9.8:27017
+    </div>
+    <div className="text-sm font-mono bg-background-50 p-3 rounded">
+      85.239.62.36:3306<br/>
+      85.239.62.36:27017
+    </div>
+  </div>
+</div>
+
+### File System Indicators
+
+<div className="border border-red-600 rounded-lg p-4 mb-6 shadow-soft-1 shadow-red-500">
+  <h4 className="font-semibold text-red-600 mb-2">Windows Persistence Path</h4>
+  <code className="text-sm bg-background-50 p-2 rounded block">
+    %LOCALAPPDATA%\Programs\Python\Python3127
+  </code>
+  <p className="text-xs text-red-600 mt-2">
+    If you find any files in this location, your system may be compromised.
+  </p>
+</div>
+
+---
+
+## User Recommendations
+
+### Immediate Actions Required
+
+<div className="space-y-6 mb-6">
+
+<div className="border border-blue-600 rounded-lg p-4 shadow-soft-1 shadow-blue-500">
+  <h3 className="font-semibold text-blue-700 mb-3">1. Audit Package Dependencies</h3>
+  <div className="bg-background-50 p-3 rounded text-sm font-mono mb-3">
+    ##### Check for compromised packages<br/>
+    npm list @react-native-aria/focus@0.2.10<br/>
+    npm list @gluestack-ui/utils@0.1.16<br/>
+    npm list @gluestack-ui/utils@0.1.17<br/><br/>
+    ##### Run security audit<br/>
+    npm audit --audit-level moderate
+  </div>
+  <ul className="text-sm space-y-1">
+    <li>• Check <code>package-lock.json</code> and <code>yarn.lock</code> files</li>
+    <li>• Review dependency trees for affected packages</li>
+    <li>• Use package manager audit tools</li>
+  </ul>
+</div>
+
+<div className="border border-green-600 rounded-lg p-4 shadow-soft-1 shadow-green-500">
+  <h4 className="font-semibold text-green-700 mb-3">2. Update to Safe Versions</h4>
+  <div className="bg-background-50 p-3 rounded text-sm font-mono mb-3">
+    ##### Update all affected packages<br/>
+    npm update @react-native-aria/*<br/>
+    npm update @gluestack-ui/*<br/><br/>
+    ##### Verify package integrity<br/>
+    npm audit signatures
+  </div>
+  <ul className="text-sm space-y-1">
+    <li>• Update to latest verified versions immediately</li>
+    <li>• Verify package integrity using npm checksums</li>
+    <li>• Test applications after updates</li>
+  </ul>
+</div>
+
+<div className="border border-yellow-600 rounded-lg p-4 shadow-soft-1 shadow-yellow-500">
+  <h4 className="font-semibold text-yellow-700 mb-3">3. Security Assessment</h4>
+  <ul className="text-sm space-y-1">
+    <li>• Review firewall logs for connections to identified C2 servers</li>
+    <li>• Scan systems for files in suspicious Python directory paths</li>
+    <li>• Monitor for unusual network traffic or system behavior</li>
+    <li>• Consider running endpoint detection tools</li>
+  </ul>
+</div>
+
+</div>
+
+---
+
+## Response Actions
+
+### Immediate Response (June 8, 2025)
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+  
+<div className="space-y-4">
+  <h4 className="font-semibold">Access Control</h4>
+  <div className="space-y-2 text-sm">
+    <div className="flex items-center">
+      <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+      <span>Revoked all compromised npm access tokens</span>
+    </div>
+    <div className="flex items-center">
+      <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+      <span>Removed npm publishing access for affected accounts</span>
+    </div>
+    <div className="flex items-center">
+      <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+      <span>Revoked GitHub access for non-essential contributors</span>
+    </div>
+  </div>
+</div>
+
+<div className="space-y-4">
+  <h4 className="font-semibold">Package Management</h4>
+  <div className="space-y-2 text-sm">
+    <div className="flex items-center">
+      <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+      <span>Deprecated all compromised package versions</span>
+    </div>
+    <div className="flex items-center">
+      <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+      <span>Updated latest tags to safe versions</span>
+    </div>
+    <div className="flex items-center">
+      <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+      <span>Published clean replacement versions</span>
+    </div>
+  </div>
+</div>
+
+</div>
+
+### Ongoing Security Improvements
+
+<div className="border border-blue-600 rounded-lg p-4 mb-6 shadow-soft-1 shadow-blue-500">
+  <h4 className="font-semibold text-blue-700 mb-3">Enhanced Security Measures</h4>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+    <div>
+      <p className="font-medium mb-2">Technical Controls</p>
+        - Mandatory 2FA for all publishing
+        - Verified commit signing requirements
+        - Automated security scanning
+        - Enhanced access logging
+    </div>
+    <div>
+      <p className="font-medium mb-2">Process Controls</p>
+        - Pull request-based workflow
+        - Mandatory code review gates
+        - Controlled release pipelines
+        - Regular security training
+    </div>
+  </div>
+</div>
+
+---
+
+## Prevention Measures
+
+### Technical Controls
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+  <div className="p-4 border rounded-lg">
+    <Shield className="h-6 w-6 text-blue-600 mb-2" />
+    <h5 className="font-semibold text-sm">Authentication</h5>
+    <p className="text-xs text-typography-600">Mandatory 2FA for all publishing and repository access</p>
+  </div>
+  <div className="p-4 border rounded-lg">
+    <FileText className="h-6 w-6 text-green-600 mb-2" />
+    <h5 className="font-semibold text-sm">Code Integrity</h5>
+    <p className="text-xs text-typography-600">Cryptographic signing and continuous security scanning</p>
+  </div>
+  <div className="p-4 border rounded-lg">
+    <Network className="h-6 w-6 text-purple-600 mb-2" />
+    <h5 className="font-semibold text-sm">Monitoring</h5>
+    <p className="text-xs text-typography-600">AI-powered detection and threat intelligence integration</p>
+  </div>
+</div>
+
+---
+
+## Acknowledgments
+
+<div className="border border-green-600 rounded-lg p-4 mb-6 shadow-soft-1 shadow-green-500">
+  <h4 className="font-semibold text-green-700 mb-3">Special Thanks</h4>
+  <div className="text-sm text-green-600 space-y-1">
+    <p>• <strong>Aikido Security</strong> - For discovering and responsibly disclosing the compromise</p>
+    <p>• <strong>npm Security Team</strong> - For rapid response and coordination</p>
+    <p>• <strong>Security Community</strong> - For ongoing vigilance and support</p>
+    <p>• <strong>React Native ARIA Users</strong> - For patience during remediation</p>
+  </div>
+</div>
+
+---
+
+## Contact Information
+
+<div className="space-y-4 mb-6">
+    <Box className=''>
+    <span className="font-semibold block">General Support: </span>
+    <a href="mailto:support@gluestack.io" className="text-blue-500 text-sm">support@gluestack.io</a>
+    </Box>
+    <Box className=''>
+    <span className="font-semibold">GitHub: </span>
+    <a href="https://github.com/gluestack/gluestack-ui" className="text-blue-500 text-sm">Repository</a>
+    </Box>
+</div>
+
+---
+
+## CVE Information
+
+<div className="border border-gray-200 rounded-lg p-4 mb-6">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+    <div>
+      <span className="font-medium">CVE ID:</span>
+      <span className="ml-2 text-typography-600">CVE-2025-XXXX (Pending)</span>
+    </div>
+    <div>
+      <span className="font-medium">CVSS Score:</span>
+      <span className="ml-2 text-red-600">7.8 (High)</span>
+    </div>
+    <div>
+      <span className="font-medium">CWE:</span>
+      <span className="ml-2 text-typography-600">CWE-506</span>
+    </div>
+  </div>
+</div>
+
+---
+
+<div className="mt-8 p-4 bg-background-50 border-l-4 border-gray-400 text-sm text-typography-600">
+  <p><em>This report represents our current understanding of the incident based on available evidence. We will update this document as additional information becomes available.</em></p>
+</div>
