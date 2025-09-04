@@ -44,6 +44,25 @@ const blogs = [
     ],
   },
   {
+    title: 'React Native ARIA & gluestack-ui Security Incident Report',
+    cover:
+      'https://gluestack.github.io/public-blog-video-assets/simpleuicover.png',
+    slug: 'public-incident-report',
+    published_at: {
+      start: '2025-09-03T00:00:00Z',
+    },
+    reading_time: 6,
+    author: [
+      {
+        id: 11,
+        avatar_url: 'https://avatars.githubusercontent.com/u/101696945?v=4',
+        email: '',
+        name: 'Sanchit Kumar',
+        occupation: 'Building gluestack-ui',
+      },
+    ],
+  },
+  {
     title: 'Build a Simple UI with gluestack-ui and Expo',
     cover:
       'https://gluestack.github.io/public-blog-video-assets/simpleuicover.png',
