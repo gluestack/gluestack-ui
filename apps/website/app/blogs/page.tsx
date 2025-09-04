@@ -9,7 +9,7 @@ const blogs = [
   {
     title: 'React Native ARIA & gluestack-ui Security Incident Report',
     cover:
-      'https://gluestack.github.io/public-blog-video-assets/simpleuicover.png',
+      '/images/blogs/rn-aria-incident-report.png',
     slug: 'public-incident-report',
     published_at: {
       start: '2025-09-03T00:00:00Z',
@@ -23,42 +23,20 @@ const blogs = [
         name: 'Sanchit Kumar',
         occupation: 'Building gluestack-ui',
       },
-    ],
-  },
-  {
-    title: 'gluestack v3 release',
-    cover: '/images/blogs/banner-1.png',
-    slug: 'gluestack-v3-release',
-    published_at: {
-      start: '2025-09-03T00:00:00Z',
-    },
-    reading_time: 3,
-    author: [
       {
-        id: 10,
-        avatar_url: 'https://avatars.githubusercontent.com/u/230149282?v=4',
+        id: 14,
+        avatar_url: 'https://avatars.githubusercontent.com/u/98085611?v=4',
         email: '',
-        name: 'Paridhi Tulsian',
-        occupation: 'Digital Marketing Lead',
-      },
-    ],
-  },
-  {
-    title: 'React Native ARIA & gluestack-ui Security Incident Report',
-    cover:
-      'https://gluestack.github.io/public-blog-video-assets/simpleuicover.png',
-    slug: 'public-incident-report',
-    published_at: {
-      start: '2025-09-03T00:00:00Z',
-    },
-    reading_time: 6,
-    author: [
-      {
-        id: 11,
-        avatar_url: 'https://avatars.githubusercontent.com/u/101696945?v=4',
-        email: '',
-        name: 'Sanchit Kumar',
+        name: 'Ujjwal Aggarwal',
         occupation: 'Building gluestack-ui',
+      },
+      {
+        id: 12,
+        avatar_url:
+          'https://avatars.githubusercontent.com/u/120183344?s=200&v=4',
+        email: '',
+        name: 'Gluestack Support Team',
+        occupation: 'Support Team',
       },
     ],
   },
@@ -236,7 +214,7 @@ const blogs = [
   {
     title: 'Why we built gluestack-ui v2',
     cover: '/images/blogs/cover1.png',
-    
+
     slug: 'why-gluestack-ui-v2',
     published_at: {
       start: '2024-07-23T00:00:00Z',
@@ -269,7 +247,7 @@ const blogs = [
         occupation: 'Building gluestack-ui',
       },
     ],
-  }
+  },
 ];
 
 const Blogs = () => {
