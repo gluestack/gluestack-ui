@@ -166,10 +166,10 @@ export default function NewsletterModal({
                   ) : (
                     <>
                       <ButtonText className="font-medium leading-normal">
-                        Subscribe Newsletter
+                        Subscribe
                       </ButtonText>
                       <ButtonIcon
-                        className="w-[18px] h-[18px] ml-1"
+                        className="w-[18px] h-[18px]"
                         as={ArrowRightIcon}
                       />
                     </>
