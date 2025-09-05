@@ -2,7 +2,7 @@ import { CodeBlock } from '@/components/custom/markdown/code-block';
 import React from 'react';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
-import { Link } from '@/components/ui/link';
+import Link from 'next/link';
 interface CodeProps {
   children: string;
   className?: string;
