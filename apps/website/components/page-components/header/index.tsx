@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react';
 import { Badge, BadgeText } from '@/components/ui/badge';
 import { Divider } from '@/components/ui/divider';
 import { HStack } from '@/components/ui/hstack';
-import { Icon, ChevronUpIcon, ChevronDownIcon } from '@/components/ui/icon';
+import { Icon, ChevronUpIcon, ChevronDownIcon,CloseIcon } from '@/components/ui/icon';
 import { Link } from '@/components/ui/link';
 import { Pressable } from '@/components/ui/pressable';
 import { Text } from '@/components/ui/text';
@@ -16,6 +16,7 @@ import GluestackLogo from '@/public/svg/gluestack_logo.svg';
 import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';
 import { MenuIcon, MoonIcon, SunIcon, X } from 'lucide-react-native';
 
+import NewsletterModal from './NewsLetterModal';
 import AppLaunchKitLogo from '@/public/icon/logo/app-launch-kit/dark-mode.svg';
 import GluestackProLogo from '@/public/icon/logo/gluestack-pro/logo.svg';
 import AppLaunchKitLogoDark from '@/public/icon/logo/app-launch-kit/light-mode.svg';
@@ -30,6 +31,7 @@ import { ThemeContext } from '@/utils/context/theme-context';
 import { usePathname } from 'next/navigation';
 import { UiDocSearch } from './Docsearch';
 import { LayoutContext } from '@/components/custom/layout/LayoutContext';
+import { Button, ButtonText } from '@/components/ui/button';
 
 // Updated Header component with internal state management
 const Header = ({
@@ -62,6 +64,8 @@ const Header = ({
   const handleSidebarToggle = () => {
     setIsOpenSidebar(!isOpenSidebar);
   };
+
+  const [showModal, setShowModal] = React.useState(false);
 
   const dropdownOptions = [
     {
@@ -456,19 +460,28 @@ const Header = ({
                   href="/ui/docs"
                   className="bg-primary-500 px-4 py-1.5 xl:flex hidden rounded"
                 >
-                  <Text className="text-sm text-typography-0">
-                    Get Started
-                  </Text>
+                  <Text className="text-sm text-typography-0">Get Started</Text>
                 </Link>
               ) : (
-                <Link
-                  href="https://rapidnative.com/?utm_source=gluestack.io&utm_medium=banner_docs&utm_campaign=brand-awareness"
-                  className="bg-primary-500 px-4 py-1.5 xl:flex hidden rounded"
-                >
-                  <Text className="text-sm text-typography-0">
-                    Prompt to React Native UI
-                  </Text>
-                </Link>
+                <HStack className="gap-3">
+                  <Link
+                    onPress={() => setShowModal(true)}
+                    className="border border-outline-200 px-4 py-1.5 xl:flex hidden rounded"
+                  >
+                    <Text className="text-sm text-typography-900">
+                      Get Updates
+                    </Text>
+                  </Link>
+                 <NewsletterModal showModal={showModal} setShowModal={setShowModal}/>
+                  <Link
+                    href="https://rapidnative.com/?utm_source=gluestack.io&utm_medium=banner_docs&utm_campaign=brand-awareness"
+                    className="bg-primary-500 px-4 py-1.5 xl:flex hidden rounded"
+                  >
+                    <Text className="text-sm text-typography-0">
+                      Prompt to React Native UI
+                    </Text>
+                  </Link>
+                </HStack>
               )}
 
               {/* Mobile Menu Button */}
