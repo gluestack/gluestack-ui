@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Box } from '@/components/ui/box';
 import { ArrowRightIcon, MailIcon } from '@/components/ui/icon';
-import { Spinner } from '@/components/ui/spinner';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
 import { Input, InputIcon, InputField } from '@/components/ui/input';
@@ -82,7 +81,6 @@ export const Newsletter = ({
   }, [newsletterAvatarData]);
 
   const makeRequestToServer = async () => {
-    console.log(email)
     try {
       setLoading(true);
       setError(false);
@@ -179,7 +177,7 @@ export const Newsletter = ({
             onPress={subscribeToNewsLetter}
           >
             {loading ? (
-             <ButtonText className="text-red-500">loading</ButtonText>
+             <ButtonText>loading</ButtonText>
             ) : (
               <>
                 <ButtonText className="font-medium leading-normal">

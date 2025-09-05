@@ -1,12 +1,8 @@
 // app/api/listmonk/route.ts
 export async function POST(request: Request) {
     try {
-      console.log("🔥 LISTMONK API CALLED!");
-      
       const body = await request.json();
       const { email, name } = body;
-      
-      console.log("📧 Received data:", { email, name });
   
       if (!email) {
         return Response.json(
@@ -14,12 +10,11 @@ export async function POST(request: Request) {
           { status: 400 }
         );
       }
-  
       const listmonkConfig = {
         baseUrl: process.env.LISTMONK_BASE_URL || 'http://localhost:9000',
         username: process.env.LISTMONK_API_USERNAME || 'api_username',
         accessToken: process.env.LISTMONK_ACCESS_TOKEN || 'access_token',
-        defaultListId:  parseInt(process.env.LISTMONK_DEFAULT_LIST_ID || '1'),
+        defaultListId:  parseInt(process.env.LISTMONK_DEFAULT_LIST_ID||'1'),
       };
   
       const subscriberData = {
@@ -33,8 +28,6 @@ export async function POST(request: Request) {
         `${listmonkConfig.username}:${listmonkConfig.accessToken}`
       ).toString('base64');
   
-      console.log("🌐 Making request to:", `${listmonkConfig.baseUrl}/api/subscribers`);
-  
       const response = await fetch(`${listmonkConfig.baseUrl}/api/subscribers`, {
         method: 'POST',
         headers: {
@@ -45,8 +38,6 @@ export async function POST(request: Request) {
       });
   
       const responseText = await response.text();
-      console.log("📋 Response status:", response.status);
-      console.log("📋 Response body:", responseText);
   
       if (!response.ok) {
         console.error("❌ Listmonk error:", responseText);
