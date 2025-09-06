@@ -2,7 +2,8 @@
 import { useKeyboardBottomInset } from '@gluestack-ui/utils/hooks';
 import { Overlay } from '../../overlay/creator';
 import React from 'react';
-import { Platform, SafeAreaView, View } from 'react-native';
+import { Platform, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { ToastContext } from './ToastContext';
 import type { IToast, ToastPlacement } from './types';
