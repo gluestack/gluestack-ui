@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Box } from '@/components/ui/box';
 import { ArrowRightIcon, MailIcon } from '@/components/ui/icon';
-import { Spinner } from '@/components/ui/spinner';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
 import { Input, InputIcon, InputField } from '@/components/ui/input';
@@ -82,23 +81,41 @@ export const Newsletter = ({
   }, [newsletterAvatarData]);
 
   const makeRequestToServer = async () => {
-    setLoading(true);
-    const res = await axios.post('/api/newsletter-subscribe', { email: email });
-    if (res.status === 200) {
-      setSuccess(true);
+    try {
+      setLoading(true);
       setError(false);
-      setLoading(false);
       setErrorMessage('');
-      setEmail('');
-    } else {
+  
+      const response = await axios.post('/api/listmonk', { 
+       
+        email: email,
+        name: '' // You can add a name field to your form if needed
+      });
+  
+      if (response.status === 200) {
+        setSuccess(true);
+        setError(false);
+        setErrorMessage('');
+        setEmail('');
+      }
+    } catch (error: any) {
       setError(true);
       setSuccess(false);
-      setLoading(false);
-      setErrorMessage('Error in subscribing!');
+      
+      // Handle different error cases based on status code
+      if (error.response?.status === 409) {
+        setErrorMessage('This email is already subscribed!');
+      } else if (error.response?.status === 400) {
+        setErrorMessage('Please enter a valid email address!');
+      } else {
+        setErrorMessage(error.response?.data?.message || 'Error subscribing to newsletter. Please try again!');
+      }
+      
       setEmail('');
+    } finally {
+      setLoading(false);
     }
   };
-
   const subscribeToNewsLetter = (e: any) => {
     e.preventDefault();
     if (email === '') {
@@ -160,7 +177,7 @@ export const Newsletter = ({
             onPress={subscribeToNewsLetter}
           >
             {loading ? (
-              <Spinner size="small" color="color-[#A3A3A3]" />
+             <ButtonText>loading</ButtonText>
             ) : (
               <>
                 <ButtonText className="font-medium leading-normal">
