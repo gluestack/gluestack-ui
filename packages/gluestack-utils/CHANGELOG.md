@@ -1,5 +1,11 @@
 # @gluestack-ui/utils
 
+## 3.0.4
+
+### Patch Changes
+
+- fix: tva config
+
 ## 3.0.3
 
 ### Patch Changes
