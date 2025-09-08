@@ -237,54 +237,65 @@ async function modifyReactNativeLayout(
  */
 function addImportsToFile(content: string, newImports: string): string {
   // Split new imports into individual import statements
-  const newImportLines = newImports.split('\n').filter(line => line.trim());
-  
+  const newImportLines = newImports.split('\n').filter((line) => line.trim());
+
   // Find existing imports
   const importRegex = /^import\s+.*?;?\s*$/gm;
   const existingImports = content.match(importRegex) || [];
-  
+
   // Check which imports already exist to avoid duplicates
   const importsToAdd: string[] = [];
-  
-  newImportLines.forEach(newImport => {
+  const cssBareImportRegex = /^import\s+['"]([^'\"]+)['"];?\s*$/;
+
+  newImportLines.forEach((newImport) => {
     const newImportTrimmed = newImport.trim();
-    
+
     // Skip empty lines
     if (!newImportTrimmed) return;
-    
+
     // Extract the import path for comparison
     const importPathMatch = newImportTrimmed.match(/from\s+['"]([^'"]+)['"]/);
     const importPath = importPathMatch ? importPathMatch[1] : '';
-    
+
     // For CSS imports, check the import path directly
-    const isCssImport = newImportTrimmed.match(/^import\s+['"][^'"]+['"];?\s*$/);
-    
+    const isCssImport = cssBareImportRegex.test(newImportTrimmed);
+    const newCssPath = isCssImport
+      ? newImportTrimmed.match(cssBareImportRegex)?.[1] || ''
+      : '';
+
     // Extract imported items for more precise matching
     const importItemsMatch = newImportTrimmed.match(/import\s+(.+?)\s+from/);
     const importItems = importItemsMatch ? importItemsMatch[1].trim() : '';
-    
+
     // Check if this import already exists
-    const isDuplicate = existingImports.some(existingImport => {
+    const isDuplicate = existingImports.some((existingImport) => {
       const existingPathMatch = existingImport.match(/from\s+['"]([^'"]+)['"]/);
       const existingPath = existingPathMatch ? existingPathMatch[1] : '';
-      
+
       // For CSS imports, just compare paths
       if (isCssImport) {
-        const existingIsCssImport = existingImport.match(/^import\s+['"][^'"]+['"];?\s*$/);
-        return existingIsCssImport && existingPath === importPath;
+        const existingCssMatch = existingImport.match(cssBareImportRegex);
+        const existingIsCssImport = Boolean(existingCssMatch);
+        const existingCssPath = existingCssMatch ? existingCssMatch[1] : '';
+        return existingIsCssImport && existingCssPath === newCssPath;
       }
-      
+
       const existingItemsMatch = existingImport.match(/import\s+(.+?)\s+from/);
-      const existingItems = existingItemsMatch ? existingItemsMatch[1].trim() : '';
-      
+      const existingItems = existingItemsMatch
+        ? existingItemsMatch[1].trim()
+        : '';
+
       // Check if same path and similar import structure
-      return existingPath === importPath && (
-        existingItems === importItems ||
-        (importItems.includes('GluestackUIProvider') && existingItems.includes('GluestackUIProvider')) ||
-        (importItems.includes('StyledJsxRegistry') && existingItems.includes('StyledJsxRegistry'))
+      return (
+        existingPath === importPath &&
+        (existingItems === importItems ||
+          (importItems.includes('GluestackUIProvider') &&
+            existingItems.includes('GluestackUIProvider')) ||
+          (importItems.includes('StyledJsxRegistry') &&
+            existingItems.includes('StyledJsxRegistry')))
       );
     });
-    
+
     if (!isDuplicate) {
       importsToAdd.push(newImportTrimmed);
     }
