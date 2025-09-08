@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 3.0.4
+
+### Patch Changes
+
+- fix: fixed global.css imports
+
 ## 3.0.3
 
 ### Patch Changes
