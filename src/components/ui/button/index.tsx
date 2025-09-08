@@ -420,8 +420,8 @@ const ButtonGroup = React.forwardRef<
         className={buttonGroupStyle({
           class: className,
           space,
-          isAttached: isAttached as boolean,
-          flexDirection: flexDirection as any,
+          isAttached,
+          flexDirection,
         })}
         {...props}
         ref={ref}
