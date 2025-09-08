@@ -82,7 +82,7 @@ const Header = ({
       },
     },
     {
-      href: 'https://pro.gluestack.io/',
+      href: 'https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation',
       logo: {
         light: GluestackProLogo,
         dark: GluestackProLogo,
