@@ -1,5 +1,17 @@
 # @gluestack-ui/utils
 
+## 3.0.6
+
+### Patch Changes
+
+- chore: try to figure out types issue
+
+## 3.0.5
+
+### Patch Changes
+
+- chore: updated tsconfig
+
 ## 3.0.4
 
 ### Patch Changes

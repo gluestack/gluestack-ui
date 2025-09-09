@@ -17,8 +17,8 @@
   "dependencies": {
     "@expo/html-elements": "^0.12.5",
     "@expo/vector-icons": "^14.1.0",
-    "@gluestack-ui/core": "3.0.2",
-    "@gluestack-ui/utils": "3.0.2",
+    "@gluestack-ui/core": "^3.0.4",
+    "@gluestack-ui/utils": "^3.0.5",
     "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
     "@legendapp/motion": "^2.4.0",
     "@react-aria/utils": "^3.29.0",
