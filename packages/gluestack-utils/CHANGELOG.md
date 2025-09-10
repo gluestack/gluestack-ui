@@ -1,5 +1,11 @@
 # @gluestack-ui/utils
 
+## 3.0.7
+
+### Patch Changes
+
+- chore: bumped version
+
 ## 3.0.3
 
 ### Patch Changes
