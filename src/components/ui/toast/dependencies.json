@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "@legendapp/motion": "^2.4.0"
+    "@legendapp/motion": "^2.4.0",
+    "react-native-safe-area-context": "^5.6.1"
   },
   "devDependencies": {},
   "components": []

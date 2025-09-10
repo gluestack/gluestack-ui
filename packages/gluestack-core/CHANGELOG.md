@@ -1,5 +1,11 @@
 # @gluestack-ui/core
 
+## 3.0.6
+
+### Patch Changes
+
+- chore: version bump
+
 ## 3.0.2
 
 ### Patch Changes
