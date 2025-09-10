@@ -37,7 +37,7 @@ export type TVA = {
       ES extends undefined ? {} : ES
     >,
     EV extends TVVariants<ES, B, E['variants'], ES> = E['variants'],
-    ES extends TVSlots = E['slots'] extends TVSlots ? E['slots'] : undefined,
+    ES extends TVSlots = E['slots'] extends TVSlots ? E['slots'] : undefined
   >(
     options: {
       /**
@@ -94,7 +94,7 @@ export type TVReturnType<
   EV extends TVVariants<ES>,
   ES extends TVSlots,
   // @ts-expect-error
-  E extends TVReturnType = undefined,
+  E extends TVReturnType = undefined
 > = {
   (
     props?: TVProps<V, S, C, EV, ES> & {
@@ -125,7 +125,7 @@ type HasSlots<S extends TVSlots, ES extends TVSlots> = S extends undefined
 
 type TVSlotsWithBase<
   S extends TVSlots,
-  B extends ClassValue,
+  B extends ClassValue
 > = B extends undefined ? keyof S : keyof S | TVBaseName;
 
 type TVBaseName = 'base';

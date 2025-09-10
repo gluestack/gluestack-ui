@@ -1136,28 +1136,18 @@
   dependencies:
     tslib "^2.8.0"
 
-"@gluestack-ui/core@^1.2.10":
-  version "1.2.10"
-  resolved "https://registry.npmjs.org/@gluestack-ui/core/-/core-1.2.10.tgz#2be465638e2098fb54c9a5274258ee430973f568"
-  integrity sha512-ilHiV/vifimZ+1Vo8PIJ8hnMgO7xosEDKl+YwELlVeaAUFBOeN+kj0jEERJy6NxKBEVZeW7lGYFaJ01fw4xDkg==
+"@gluestack-ui/core@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.npmjs.org/@gluestack-ui/core/-/core-3.0.4.tgz#426eea6cd2aebd5e3c11c30fe4231cb4d6260e11"
+  integrity sha512-Xai2E/iumjtVTVM/0klYcdfDAuS3fOJNOIvl8aU4x45bv2EH0aS/iGhAMiU1C1SQDY3uVn8fck4FFJaJNuEAfg==
   dependencies:
-    "@gluestack-ui/utils" "*"
+    "@gluestack-ui/utils" "^3.0.5"
     react-native-svg "^15.12.0"
 
-"@gluestack-ui/utils@*":
-  version "0.1.16"
-  resolved "https://registry.npmjs.org/@gluestack-ui/utils/-/utils-0.1.16.tgz#a1d0a825483a49496061b2ad546fb39e06f78888"
-  integrity sha512-23ADKc1msn8ST2pQNfc8nPpM8HyFFi01cKN2MTmj6LMMJUzmBMJxPa3jOE66IQUuowO7V0ZQ5G8+mvJrTB+H3w==
-  dependencies:
-    dom-helpers "^6.0.1"
-    react-aria "^3.41.1"
-    react-stately "^3.39.0"
-    tailwind-variants "0.1.14"
-
-"@gluestack-ui/utils@^1.0.23":
-  version "1.0.23"
-  resolved "https://registry.npmjs.org/@gluestack-ui/utils/-/utils-1.0.23.tgz#365a114b6bf643712f28c0342962e87e805ae3fa"
-  integrity sha512-Kk9oXlpPlhRAy+a3xwsHxDWpbEfxYF5vXTaaaMBm/zi+rIT3i/6MOarT6s77hr4mhX4iYN85ANFxophmtDj7jQ==
+"@gluestack-ui/utils@^3.0.5":
+  version "3.0.5"
+  resolved "https://registry.npmjs.org/@gluestack-ui/utils/-/utils-3.0.5.tgz#22b553d9e9586269673bfb8bfb324686d1860b1a"
+  integrity sha512-3CxHP7c5OVOw37FRKP4RFmQtOhYeTXFkZAevU44Aql0HIi1NjTnYXc3WJhuW9cBhKJsYbV0dzKkMKIWZ1fS8Gg==
   dependencies:
     dom-helpers "^6.0.1"
     react-aria "^3.41.1"

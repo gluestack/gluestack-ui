@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/utils",
-  "version": "3.0.3",
+  "version": "3.0.6",
   "description": "Utility functions and hooks for gluestack-ui",
   "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
@@ -95,8 +95,12 @@
     "expo",
     "nextjs",
     "cross-platform",
-    "utilities",
+    "utils",
     "hooks",
-    "aria"
+    "aria",
+    "nativewind",
+    "gluestack-ui",
+    "universal",
+    "typescript"
   ]
 }
