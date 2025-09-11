@@ -21,7 +21,7 @@ type ThemeContextType = {
 };
 
 const ThemeContext = createContext<ThemeContextType>({
-  colorMode: 'light',
+  colorMode: 'dark',
   setColorMode: () => {},
   themeMode: 'example',
   setThemeMode: () => {},
@@ -29,7 +29,7 @@ const ThemeContext = createContext<ThemeContextType>({
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [colorMode, setColorMode] = useState<'light' | 'dark' | 'system'>(
-    'light'
+    'dark'
   );
   const [themeMode, setThemeMode] = useState<ThemeMode>('example');
   const [mounted, setMounted] = useState(false);
