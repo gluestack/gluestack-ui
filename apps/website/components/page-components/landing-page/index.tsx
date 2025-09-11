@@ -21,7 +21,6 @@ import Fold2 from './Fold2';
 import BadgeComponent from './BadgeComponent';
 import { developersData } from './Newsletter/data';
 import AwardBadge from './AwardBadge';
-import MadeWithGluestack from './MadeWithGluestack';
 import NextLink from 'next/link';
 import { SocialMediaGridTestimonial } from './Testimonials';
 import { Moon, Sun } from 'lucide-react-native';
@@ -165,7 +164,6 @@ const App = ({ referrer }: { referrer: string }) => {
 
         <Footer />
         <BadgeComponent />
-        <MadeWithGluestack />
         <Box className="fixed bottom-0 right-0 min-[992px]:hidden ">
           <Fab
             onPress={() =>
