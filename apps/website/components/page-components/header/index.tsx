@@ -2,9 +2,8 @@
 
 import React, { useContext, useState } from 'react';
 import { Badge, BadgeText } from '@/components/ui/badge';
-import { Divider } from '@/components/ui/divider';
 import { HStack } from '@/components/ui/hstack';
-import { Icon, ChevronUpIcon, ChevronDownIcon,CloseIcon } from '@/components/ui/icon';
+import { Icon, ChevronUpIcon, ChevronDownIcon } from '@/components/ui/icon';
 import { Link } from '@/components/ui/link';
 import { Pressable } from '@/components/ui/pressable';
 import { Text } from '@/components/ui/text';

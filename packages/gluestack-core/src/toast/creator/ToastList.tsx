@@ -3,7 +3,7 @@ import { useKeyboardBottomInset } from '@gluestack-ui/utils/hooks';
 import { Overlay } from '../../overlay/creator';
 import React from 'react';
 import { Platform, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { ToastContext } from './ToastContext';
 import type { IToast, ToastPlacement } from './types';
@@ -92,58 +92,57 @@ export const ToastList = () => {
             >
               {toastInfo[position].map((toast: IToast) => {
                 return (
-                  <SafeAreaView
-                    style={{ pointerEvents: 'box-none' }}
-                    key={toast.id}
-                  >
-                    <OverlayAnimatePresence
-                      visible={visibleToasts[toast.id]}
-                      AnimatePresence={AnimatePresence}
-                      onExit={() => {
-                        removeToast(toast.id);
-                        toast.config?.onCloseComplete &&
-                          toast.config?.onCloseComplete();
-                      }}
-                    >
-                      <AnimationView
-                        initial={{
-                          opacity: 0,
-                          y: transitionConfig[position],
+                  <SafeAreaProvider key={toast.id}>
+                    <SafeAreaView style={{ pointerEvents: 'box-none' }}>
+                      <OverlayAnimatePresence
+                        visible={visibleToasts[toast.id]}
+                        AnimatePresence={AnimatePresence}
+                        onExit={() => {
+                          removeToast(toast.id);
+                          toast.config?.onCloseComplete &&
+                            toast.config?.onCloseComplete();
                         }}
-                        animate={{
-                          opacity: 1,
-                          y: 0,
-                        }}
-                        exit={{
-                          opacity: 0,
-                          y: transitionConfig[position],
-                        }}
-                        transition={{
-                          type: 'timing',
-                          duration: 150,
-                        }}
-                        key={toast.id}
-                        {...toast.config?.containerStyle}
-                        style={{ pointerEvents: 'box-none' }}
                       >
-                        <View
-                          style={{
-                            bottom:
-                              [
-                                'bottom',
-                                'bottom-left',
-                                'bottom-right',
-                              ].includes(position) &&
-                              toast.config?.avoidKeyboard
-                                ? bottomInset
-                                : undefined,
+                        <AnimationView
+                          initial={{
+                            opacity: 0,
+                            y: transitionConfig[position],
                           }}
+                          animate={{
+                            opacity: 1,
+                            y: 0,
+                          }}
+                          exit={{
+                            opacity: 0,
+                            y: transitionConfig[position],
+                          }}
+                          transition={{
+                            type: 'timing',
+                            duration: 150,
+                          }}
+                          key={toast.id}
+                          {...toast.config?.containerStyle}
+                          style={{ pointerEvents: 'box-none' }}
                         >
-                          {toast.component}
-                        </View>
-                      </AnimationView>
-                    </OverlayAnimatePresence>
-                  </SafeAreaView>
+                          <View
+                            style={{
+                              bottom:
+                                [
+                                  'bottom',
+                                  'bottom-left',
+                                  'bottom-right',
+                                ].includes(position) &&
+                                toast.config?.avoidKeyboard
+                                  ? bottomInset
+                                  : undefined,
+                            }}
+                          >
+                            {toast.component}
+                          </View>
+                        </AnimationView>
+                      </OverlayAnimatePresence>
+                    </SafeAreaView>
+                  </SafeAreaProvider>
                 );
               })}
             </View>
