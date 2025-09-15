@@ -43,7 +43,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <div
         // @ts-ignore
         ref={docsLayoutRef}
-        className="bg-white dark:bg-black overflow-auto w-screen h-dvh scrollbar-hide"
+        className="bg-white dark:bg-black overflow-auto w-screen h-dvh scrollbar-hide fixed top-0"
         //to add handler to the container on scroll and update the active tab
         id="layout-content"
         style={{
