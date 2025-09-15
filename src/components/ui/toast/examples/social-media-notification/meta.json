@@ -7,6 +7,13 @@
     "ToastDescription": "@/components/ui/toast",
     "useToast": "@/components/ui/toast",
     "Button": "@/components/ui/button",
-    "ButtonText": "@/components/ui/button"
+    "ButtonText": "@/components/ui/button",
+    "Avatar": "@/components/ui/avatar",
+    "AvatarImage": "@/components/ui/avatar",
+    "AvatarFallbackText": "@/components/ui/avatar",
+    "HStack": "@/components/ui/hstack",
+    "VStack": "@/components/ui/vstack",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text"
   }
 }

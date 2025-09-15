@@ -2,9 +2,8 @@
 
 import React, { useContext, useState } from 'react';
 import { Badge, BadgeText } from '@/components/ui/badge';
-import { Divider } from '@/components/ui/divider';
 import { HStack } from '@/components/ui/hstack';
-import { Icon, ChevronUpIcon, ChevronDownIcon,CloseIcon } from '@/components/ui/icon';
+import { Icon, ChevronUpIcon, ChevronDownIcon } from '@/components/ui/icon';
 import { Link } from '@/components/ui/link';
 import { Pressable } from '@/components/ui/pressable';
 import { Text } from '@/components/ui/text';
@@ -31,7 +30,6 @@ import { ThemeContext } from '@/utils/context/theme-context';
 import { usePathname } from 'next/navigation';
 import { UiDocSearch } from './Docsearch';
 import { LayoutContext } from '@/components/custom/layout/LayoutContext';
-import { Button, ButtonText } from '@/components/ui/button';
 
 // Updated Header component with internal state management
 const Header = ({
@@ -172,9 +170,8 @@ const Header = ({
                   return (
                     <Pressable
                       {...triggerProps}
-                      className="flex-row items-center"
+                      className="flex-row items-center pb-0.5"
                     >
-                      {/* <ButtonText>v3</ButtonText> */}
                       <Text className="font-jakarta font-bold text-typography-800 text-sm">
                         v3
                       </Text>

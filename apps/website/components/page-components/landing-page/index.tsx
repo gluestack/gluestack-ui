@@ -29,7 +29,6 @@ import useErrorShortcut from './SentryTestComponent';
 import AnimatedStars from '@/components/page-components/landing-page/AnimatedGithubCount';
 import Kitchensink from './Kitchensink';
 import VadimStream from './VadimStream';
-import { Banner } from './NativeBaseRedirectBanner';
 import { ThemeContext } from '@/utils/context/theme-context';
 import { useContext } from 'react';
 import MCPServer from './MCPServer';
@@ -67,7 +66,6 @@ const App = ({ referrer }: { referrer: string }) => {
           <VStack className="w-[85%] max-w-[1440px] justify-center self-center">
             <RapidNativeBanner />
             <VStack className="mx-auto max-w-[900px] pt-[80px] sm:pt-[120px] w-full my-0 items-center justify-center self-center">
-              <Banner referrer={referrer} />
               <Box className="flex w-full items-start sm:items-center mt-[50px] sm:mt-0">
                 <AwardBadge />
               </Box>
