@@ -33,40 +33,20 @@ export type IIconComponentType<IconProps> = React.ForwardRefExoticComponent<
   IIconProps & IconProps
 >;
 
-const ChildPath = ({
-  element,
-  fill,
-  stroke: pathStroke,
-  parentFill,
-  parentStroke,
-}: any) => {
-  const pathStrokeColor =
-    pathStroke !== undefined && pathStroke !== null
-      ? pathStroke
-      : parentStroke || '';
-  const fillColor =
-    fill !== undefined && fill !== null ? fill : parentFill || '';
+const ChildPath = ({ element, fill, stroke: pathStroke }: any) => {
+  const pathStrokeColor = pathStroke || '';
+  const fillColor = fill || '';
 
   if (!element) {
     return null;
   }
 
   if (element.type === React.Fragment) {
-    const children = element.props?.children;
-    const mapped = React.Children.map(children, (child: any, i: number) => (
-      <ChildPath
-        key={child?.key ?? i}
-        element={child}
-        parentFill={parentFill}
-        parentStroke={parentStroke}
-        {...child?.props}
-      />
-    ));
-    return <>{mapped}</>;
+    return element;
   }
 
   return React.cloneElement(element, {
-    fill: fillColor ? fillColor : 'none',
+    fill: fillColor ? fillColor : 'currentColor',
     stroke: pathStrokeColor,
   });
 };
@@ -80,7 +60,7 @@ export function createIcon<IconProps>({
   const IconTemp = forwardRef((props: any, ref?: any) => {
     let children = path;
     if (d && (!path || Object.keys(path).length === 0)) {
-      children = <path fill="none" d={d} />;
+      children = <path fill="currentColor" d={d} />;
     }
 
     const finalProps = {
@@ -132,8 +112,6 @@ export function createIcon<IconProps>({
               <ChildPath
                 key={child?.key ?? i}
                 element={child}
-                parentFill={resolvedProps?.fill}
-                parentStroke={stroke}
                 {...child?.props}
               />
             ))}

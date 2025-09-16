@@ -58,7 +58,6 @@ export const PrimitiveIcon = React.forwardRef<
       return (
         <AsComp
           ref={ref}
-          fill="none"
           {...props}
           style={style}
           {...sizeProps}
@@ -67,14 +66,7 @@ export const PrimitiveIcon = React.forwardRef<
       );
     }
     return (
-      <Svg
-        ref={ref}
-        height={height}
-        width={width}
-        fill="none"
-        {...colorProps}
-        {...props}
-      />
+      <Svg ref={ref} height={height} width={width} {...colorProps} {...props} />
     );
   }
 );

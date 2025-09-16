@@ -1,5 +1,29 @@
 # @gluestack-ui/core
 
+## 3.0.10
+
+### Patch Changes
+
+- chore: added react-native-safe-area-context to peer deps
+
+## 3.0.9
+
+### Patch Changes
+
+- fix: fixed icon component fill isssues
+
+## 3.0.8
+
+### Patch Changes
+
+- chore: removed dependencies and and added to peer deps
+
+## 3.0.7
+
+### Patch Changes
+
+- fix: fixed safe-area issue in toast
+
 ## 3.0.6
 
 ### Patch Changes
