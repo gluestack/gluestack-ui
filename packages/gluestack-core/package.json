@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/core",
   "description": "Universal UI components for React Native, Expo, and Next.js",
-  "version": "3.0.8",
+  "version": "3.0.10",
   "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
@@ -161,7 +161,8 @@
     "react": ">=16.8.0",
     "react-native": ">=0.64.0",
     "react-native-svg": ">=12.0.0",
-    "react-native-web": ">=0.19.0"
+    "react-native-web": ">=0.19.0",
+    "react-native-safe-area-context": ">=4.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.0",
@@ -169,7 +170,8 @@
     "react": "^18.3.1",
     "react-native": "^0.72.0",
     "react-native-web": "^0.19.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "react-native-safe-area-context": ">=4.0.0"
   },
   "engines": {
     "node": ">=18"
@@ -182,7 +184,5 @@
     "cross-platform",
     "ui-components"
   ],
-  "dependencies": {
-    "react-native-safe-area-context": "^5.6.1"
-  }
+  "dependencies": {}
 }
