@@ -1,5 +1,11 @@
 # @gluestack-ui/core
 
+## 3.0.8
+
+### Patch Changes
+
+- chore: removed dependencies and and added to peer deps
+
 ## 3.0.7
 
 ### Patch Changes
