@@ -10,7 +10,71 @@ import { GithubLink } from './githubLink';
 
 Customizable components and patterns for React, Next.js & React Native.
 
-**gluestack-ui v3** offers customizable, beautifully designed components for your projects. Unlike traditional libraries, it's not a pre-packaged dependency. Choose the components you need and copy-paste them directly into your React, Next.js & React Native projects.
+**gluestack-ui** offers customizable, beautifully designed components for your projects. Unlike traditional libraries, it's not a pre-packaged dependency. Choose the components you need and copy-paste them directly into your React, Next.js & React Native projects.
+
+## gluestack-ui philosophy
+
+### Why gluestack-ui exists
+- **Problem:** Traditional UI libraries often force developers into rigid patterns, heavy dependencies, or platform-specific implementations.
+
+- **Solution:** Gluestack promotes a universal, modular, and copy-paste approach that lets developers own their UI components completely.
+
+### Goals & Non-Goals
+
+#### Our goals
+
+- **Universal Consistency:** One codebase, same behavior across React, Next.js, and React Native.
+
+- **Developer Ownership:** Copy-paste components, modify freely, avoid vendor lock-in.
+
+- **Performance & Accessibility:** Lightweight, optimized, and accessible components by default.
+
+- **Community-Driven:** Open architecture encouraging contributions and experimentation.
+
+#### Non-goals
+
+**We don't aim to**
+- Create another monolithic UI library with hundreds of pre-styled components
+- Provide opinionated design themes that limit creative freedom
+- Replace platform-specific optimizations with lowest-common-denominator solutions
+- Build a proprietary styling system that requires learning new APIs
+- Create dependencies that become bottlenecks for your project's evolution
+
+### How gluestack-ui works
+
+- **Source-to-Destination Architecture:** Maintain a single source of truth for components that automatically syncs across projects.
+
+- **Copy-Paste Components:** Grab only what you need—no heavy dependencies required.
+
+- **Theming & Tailwind Integration:** Flexible styling system that works for web & mobile.
+
+- **TypeScript & RSC Ready:** Modern architecture for type safety and server-rendered apps.
+
+### Design 101
+
+- **Atomic, Composable Components:** Each component is small, reusable, and composable into more complex UIs.
+
+- **Compound Components:** Components with sub-components (e.g., 
+`<Button>`
+`<ButtonText>`Click Me`</ButtonText>`
+`</Button>`
+), allowing more flexible layouts.
+
+- **Accessibility by Default:** ARIA support baked in, keyboard navigable.
+
+- **Minimal Runtime Overhead:** Lightweight runtime ensures high performance.
+
+### Code 101
+
+- **Copy-Paste Philosophy:** No “magical imports.” You copy the component directly into your codebase.
+
+- **Fully Customizable:** You can override styles, props, and behavior easily.
+
+- **Single Source of Truth:** All component logic lives in src/ for maintainability and easy updates.
+
+- **Integration Ready:** Works out-of-the-box with Tailwind, NativeWind, and Next.js RSC.
+
+This philosophy guides every decision in gluestack-ui's development, from API design to documentation structure, ensuring that developers have the tools they need to build exceptional user experiences without compromise.
 
 ## Why gluestack-ui v3?
 
@@ -65,7 +129,7 @@ gluestack-ui v3 uses a sophisticated source-to-destination system:
 - **`create-gluestack/`** - Project initialization tool
 
 ### Applications (`apps/`) *(contribution change)*
-- **`website/`** - Documentation website (gluestack-ui.com)
+- **`website/`** - Documentation website (gluestack.io)
 - **`kitchen-sink/`** - Component showcase & testing environment
 - **`starter-kit-next/`** - Next.js starter template
 - **`starter-kit-expo/`** - Expo starter template
@@ -205,7 +269,7 @@ Get involved with the community, ask questions, and share tips, join our Discord
 
 To receive updates on new primitives, announcements, blog posts, and tips on using the library.
 
-[Follow gluestack on Twitter](https://twitter.com/gluestack)
+[Follow gluestack-ui on Twitter](https://twitter.com/gluestack)
 
 ### GitHub
 
