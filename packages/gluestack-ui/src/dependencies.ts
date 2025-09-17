@@ -32,8 +32,8 @@ const projectBasedDependencies: Dependencies = {
       'react-native-svg': '^15.2.0',
       'dom-helpers': '^5.2.1',
       'react-stately': '^3.39.0',
-      '@gluestack-ui/core': '^3.0.0',
-      '@gluestack-ui/utils': '^3.0.0',
+      '@gluestack-ui/core': '^3.0.10',
+      '@gluestack-ui/utils': '^3.0.7',
       '@gluestack/ui-next-adapter': '^3.0.0',
     },
     devDependencies: {
@@ -54,8 +54,8 @@ const projectBasedDependencies: Dependencies = {
       '@legendapp/motion': '^2.3.0',
       'react-native-svg': '^15.2.0',
       'react-stately': '^3.39.0',
-      '@gluestack-ui/core': '^3.0.0',
-      '@gluestack-ui/utils': '^3.0.0',
+      '@gluestack-ui/core': '^3.0.10',
+      '@gluestack-ui/utils': '^3.0.7',
     },
   },
   'react-native-cli': {
@@ -70,8 +70,8 @@ const projectBasedDependencies: Dependencies = {
       'react-native-svg': '^15.2.0',
       'react-stately': '^3.39.0',
       'react-native-reanimated': '^3.17.4',
-      '@gluestack-ui/core': '^3.0.0',
-      '@gluestack-ui/utils': '^3.0.0',
+      '@gluestack-ui/core': '^3.0.10',
+      '@gluestack-ui/utils': '^3.0.7',
     },
     devDependencies: {
       'babel-plugin-module-resolver': '^5.0.0',
