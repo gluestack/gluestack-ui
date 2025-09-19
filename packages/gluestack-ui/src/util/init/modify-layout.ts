@@ -253,24 +253,24 @@ function addImportsToFile(content: string, newImports: string): string {
     if (!newImportTrimmed) return;
     
     // Extract the import path for comparison
-    const importPathMatch = newImportTrimmed.match(/from\s+['"]([^'"]+)['"]/);
-    const importPath = importPathMatch ? importPathMatch[1] : '';
+    const importPathMatch = newImportTrimmed.match(/from\s+['"]([^'"]+)['"]|import\s+['"]([^'"]+)['"]/);
+    const importPath = importPathMatch ? (importPathMatch[1] || importPathMatch[2]) : '';
     
-    // For CSS imports, check the import path directly
-    const isCssImport = newImportTrimmed.match(/^import\s+['"][^'"]+['"];?\s*$/);
+    // For CSS imports, check the import path directly - FIXED REGEX
+    const isCssImport = newImportTrimmed.match(/^import\s+['"][^'"]*\.(css|scss|sass|less)['"];?\s*$/);
     
-    // Extract imported items for more precise matching
+    // Extract imported items for more precise matching (only for non-CSS imports)
     const importItemsMatch = newImportTrimmed.match(/import\s+(.+?)\s+from/);
     const importItems = importItemsMatch ? importItemsMatch[1].trim() : '';
     
     // Check if this import already exists
     const isDuplicate = existingImports.some(existingImport => {
-      const existingPathMatch = existingImport.match(/from\s+['"]([^'"]+)['"]/);
-      const existingPath = existingPathMatch ? existingPathMatch[1] : '';
+      const existingPathMatch = existingImport.match(/from\s+['"]([^'"]+)['"]|import\s+['"]([^'"]+)['"]/);
+      const existingPath = existingPathMatch ? (existingPathMatch[1] || existingPathMatch[2]) : '';
       
       // For CSS imports, just compare paths
       if (isCssImport) {
-        const existingIsCssImport = existingImport.match(/^import\s+['"][^'"]+['"];?\s*$/);
+        const existingIsCssImport = existingImport.match(/^import\s+['"][^'"]*\.(css|scss|sass|less)['"];?\s*$/);
         return existingIsCssImport && existingPath === importPath;
       }
       
