@@ -136,8 +136,8 @@ async function modifyNextJsLayout(
   if (isAppRouter) {
     // App Router layout
     const providerWrapper = isNextjs15
-      ? `<StyledJsxRegistry>\n          <GluestackUIProvider mode="light">\n            {children}\n          </GluestackUIProvider>\n        </StyledJsxRegistry>`
-      : `<GluestackUIProvider mode="light">\n            {children}\n          </GluestackUIProvider>`;
+      ? `<StyledJsxRegistry>\n          <GluestackUIProvider mode="dark">\n            {children}\n          </GluestackUIProvider>\n        </StyledJsxRegistry>`
+      : `<GluestackUIProvider mode="dark">\n            {children}\n          </GluestackUIProvider>`;
 
     modifiedContent = modifiedContent.replace(
       /(\s*{children}\s*)/g,
@@ -147,7 +147,7 @@ async function modifyNextJsLayout(
     // Pages Router _app.tsx - no StyledJsxRegistry needed here
     modifiedContent = modifiedContent.replace(
       /(<Component\s+{\.\.\.pageProps}\s*\/>)/g,
-      `<GluestackUIProvider mode="light">\n        $1\n      </GluestackUIProvider>`
+      `<GluestackUIProvider mode="dark">\n        $1\n      </GluestackUIProvider>`
     );
   }
 
@@ -178,7 +178,7 @@ async function modifyExpoLayout(
   if (content.includes('<Slot />')) {
     modifiedContent = modifiedContent.replace(
       /(\s*<Slot\s*\/>\s*)/g,
-      `\n    <GluestackUIProvider mode="light">\n      <Slot />\n    </GluestackUIProvider>\n    `
+      `\n    <GluestackUIProvider mode="dark">\n      <Slot />\n    </GluestackUIProvider>\n    `
     );
   } else if (content.includes('return (')) {
     // Find the main return statement and wrap its content
@@ -188,7 +188,7 @@ async function modifyExpoLayout(
         if (content.trim().startsWith('<GluestackUIProvider')) {
           return match; // Already wrapped
         }
-        return `${returnPart}\n    <GluestackUIProvider mode="light">\n      ${content.trim()}\n    </GluestackUIProvider>\n  ${closingPart}`;
+        return `${returnPart}\n    <GluestackUIProvider mode="dark">\n      ${content.trim()}\n    </GluestackUIProvider>\n  ${closingPart}`;
       }
     );
   }
@@ -224,7 +224,7 @@ async function modifyReactNativeLayout(
         if (content.trim().startsWith('<GluestackUIProvider')) {
           return match; // Already wrapped
         }
-        return `${returnPart}\n    <GluestackUIProvider mode="light">\n      ${content.trim()}\n    </GluestackUIProvider>\n  ${closingPart}`;
+        return `${returnPart}\n    <GluestackUIProvider mode="dark">\n      ${content.trim()}\n    </GluestackUIProvider>\n  ${closingPart}`;
       }
     );
   }
@@ -253,24 +253,24 @@ function addImportsToFile(content: string, newImports: string): string {
     if (!newImportTrimmed) return;
     
     // Extract the import path for comparison
-    const importPathMatch = newImportTrimmed.match(/from\s+['"]([^'"]+)['"]/);
-    const importPath = importPathMatch ? importPathMatch[1] : '';
+    const importPathMatch = newImportTrimmed.match(/from\s+['"]([^'"]+)['"]|import\s+['"]([^'"]+)['"]/);
+    const importPath = importPathMatch ? (importPathMatch[1] || importPathMatch[2]) : '';
     
-    // For CSS imports, check the import path directly
-    const isCssImport = newImportTrimmed.match(/^import\s+['"][^'"]+['"];?\s*$/);
+    // For CSS imports, check the import path directly - FIXED REGEX
+    const isCssImport = newImportTrimmed.match(/^import\s+['"][^'"]*\.(css|scss|sass|less)['"];?\s*$/);
     
-    // Extract imported items for more precise matching
+    // Extract imported items for more precise matching (only for non-CSS imports)
     const importItemsMatch = newImportTrimmed.match(/import\s+(.+?)\s+from/);
     const importItems = importItemsMatch ? importItemsMatch[1].trim() : '';
     
     // Check if this import already exists
     const isDuplicate = existingImports.some(existingImport => {
-      const existingPathMatch = existingImport.match(/from\s+['"]([^'"]+)['"]/);
-      const existingPath = existingPathMatch ? existingPathMatch[1] : '';
+      const existingPathMatch = existingImport.match(/from\s+['"]([^'"]+)['"]|import\s+['"]([^'"]+)['"]/);
+      const existingPath = existingPathMatch ? (existingPathMatch[1] || existingPathMatch[2]) : '';
       
       // For CSS imports, just compare paths
       if (isCssImport) {
-        const existingIsCssImport = existingImport.match(/^import\s+['"][^'"]+['"];?\s*$/);
+        const existingIsCssImport = existingImport.match(/^import\s+['"][^'"]*\.(css|scss|sass|less)['"];?\s*$/);
         return existingIsCssImport && existingPath === importPath;
       }
       
