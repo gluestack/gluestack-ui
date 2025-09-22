@@ -1,5 +1,11 @@
 # @gluestack/ui-next-adapter
 
+## 3.0.3
+
+### Patch Changes
+
+- feat: updated packages to transpile react-native-safe-area-context
+
 ## 3.0.2
 
 ### Patch Changes
