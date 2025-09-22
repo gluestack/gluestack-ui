@@ -1,6 +1,6 @@
 {
   "name": "gluestack-ui",
-  "version": "3.0.5",
+  "version": "3.0.7",
   "main": "dist/index.js",
   "bin": {
     "gluestack-ui": "./dist/index.js"

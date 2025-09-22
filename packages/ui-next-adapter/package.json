@@ -1,7 +1,7 @@
 {
   "name": "@gluestack/ui-next-adapter",
   "author": "gluestack",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

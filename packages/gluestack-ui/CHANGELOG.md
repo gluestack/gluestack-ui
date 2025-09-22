@@ -1,5 +1,17 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 3.0.7
+
+### Patch Changes
+
+- feat: updated deps
+
+## 3.0.6
+
+### Patch Changes
+
+- fix: fixed global.css import
+
 ## 3.0.5
 
 ### Patch Changes

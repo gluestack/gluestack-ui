@@ -21,6 +21,7 @@ const reactNativeDeps = [
   'react-native-web',
   'react-native-svg',
   'react-native-css-interop',
+  'react-native-safe-area-context'
 ];
 
 export default function withGluestackUI(nextConfig: any = {}) {
