@@ -5,7 +5,7 @@ import { HStack } from '@/components/ui/hstack';
 
 export const Note = ({ children, ...props }: any) => {
   return (
-    <Box className="p-4 flex border-1 border-outline-100 border rounded-md mb-6">
+    <Box className="p-4 flex border-1 border-outline-100 border rounded-md mb-6 mt-8">
       <HStack className="w-full items-center justify-start flex" space="md">
         <Box className="flex justify-center items-center h-14 w-14 rounded-full bg-background-50">
           <svg
