@@ -32,48 +32,48 @@ export const docsComponents = {
   h1: (props: any) => (
     <Heading
       size="3xl"
-      className="font-bold text-4xl text-typography-950 mt-2 mb-2.5 font-jakarta"
+      className="font-semibold text-4xl text-typography-900 mt-8 mb-6 font-geist-sans tracking-tight"
       {...props}
     />
   ),
   h2: (props: any) => (
     <Heading
       size="2xl"
-      className="text-2xl font-bold text-typography-900 mt-3 mb-1.5 font-jakarta"
+      className="text-2xl font-semibold text-typography-800 mt-8 mb-4 font-geist-sans"
       {...props}
     />
   ),
   h3: (props: any) => (
     <Heading
       size="xl"
-      className="text-xl font-bold text-typography-900 mt-3 mb-1.5 font-jakarta"
+      className="text-xl font-semibold text-typography-800 mt-6 mb-3 font-geist-sans"
       {...props}
     />
   ),
   h4: (props: any) => (
     <Heading
       size="lg"
-      className="text-lg font-bold text-typography-900 mt-3 mb-1.5 font-jakarta"
+      className="text-lg font-semibold text-typography-800 mt-5 mb-2 font-geist-sans"
       {...props}
     />
   ),
   h5: (props: any) => (
     <Heading
       size="md"
-      className="text-md font-bold text-typography-900 mt-2.5 mb-1.5 font-jakarta"
+      className="text-md font-semibold text-typography-800 mt-4 mb-2 font-geist-sans"
       {...props}
     />
   ),
   p: (props: any) => (
-    <Text className="block mb-6 text-typography-800 font-inter" {...props} />
+    <Text className="block text-typography-700 font-geist-sans leading-relaxed [&:not(:first-child)]:mt-6 [&:not(:last-child)]:mb-6" {...props} />
   ),
 
   // Define paragraph styles
-  ul: (props: any) => <UL {...props} className="w-full mb-3" />,
-  ol: (props: any) => <OL {...props} className="mb-3" />,
+  ul: (props: any) => <UL {...props} className="w-full ml-4" />,
+  ol: (props: any) => <OL {...props} className="" />,
   li: (props: any) => {
     return (
-      <LI {...props} className="w-full ">
+      <LI {...props} className="w-full leading-relaxed">
         {props?.children}
       </LI>
     );
@@ -94,7 +94,7 @@ export const docsComponents = {
     const code = children?.props?.children || '';
     const language =
       children?.props?.className?.replace('language-', '') || 'jsx';
-    return <CodeBlock code={code} language={language} />;
+    return <CodeBlock code={code} language={language}/>;
   },
   code: (props: any) => {
     return <InlineCode {...props} />;

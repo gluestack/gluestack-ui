@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Box } from '@/components/ui/box';

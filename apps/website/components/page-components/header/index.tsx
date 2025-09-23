@@ -172,7 +172,7 @@ const Header = ({
                       {...triggerProps}
                       className="flex-row items-center pb-0.5"
                     >
-                      <Text className="font-jakarta font-bold text-typography-800 text-sm">
+                      <Text className="font-geist-sans font-bold text-typography-800 text-sm">
                         v3
                       </Text>
                       <Icon as={ChevronDownIcon} className="w-3 h-3 ml-1" />
