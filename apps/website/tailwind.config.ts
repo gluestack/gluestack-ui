@@ -187,6 +187,8 @@ export default {
         'code': ['var(--font-source-code-pro)'],
         'inter': ['var(--font-inter)'],
         'space-mono': ['var(--font-space-mono)'],
+        'geist-sans': ['var(--font-geist-sans)'],
+        'geist-mono': ['var(--font-geist-mono)'],
       },
       fontWeight: {
         extrablack: '950',
@@ -206,5 +208,5 @@ export default {
         'soft-4': '0px 0px 40px rgba(38, 38, 38, 0.1)',
       },
     },
-  }
+  },
 };
