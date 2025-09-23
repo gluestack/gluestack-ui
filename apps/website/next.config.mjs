@@ -760,6 +760,19 @@ const redirects = [
 ];
 
 const nextConfig = withExpo({
+  async headers() {
+    return [
+      {
+        source: '/(.*)', // apply to all routes
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow', // same options as meta tag
+          },
+        ],
+      },
+    ];
+  },
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
