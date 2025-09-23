@@ -51,7 +51,7 @@ const ResponsiveSidebarLink = ({
 
   if (item.type === 'heading') {
     return (
-      <div className="font-bold text-typography-900 py-2 pl-3 my-2 mt-4 uppercase font-jakarta">
+      <div className="font-bold text-typography-900 py-2 pl-3 my-2 mt-4 uppercase font-geist-sans">
         {item.title}
       </div>
     );
