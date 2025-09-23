@@ -17,8 +17,6 @@ const CookiePolicy = () => {
           <Text className="mb-4">Effective Date: 12/23/2022</Text>
           <Heading
             className="text-4xl lg:text-5xl mt-0"
-            color="$textDark50"
-            lineHeight="$5xl"
           >
             COOKIE POLICY
           </Heading>
