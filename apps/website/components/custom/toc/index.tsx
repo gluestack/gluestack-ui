@@ -1,3 +1,4 @@
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 interface HeadingItem {
@@ -35,6 +36,8 @@ export const TOC: React.FC = () => {
   const [headings, setHeadings] = useState<HeadingItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
   const [scrollProgress, setScrollProgress] = useState<number>(0);
+
+  const pathname = usePathname();
 
   useEffect(() => {
     // Grab h1–h5
@@ -102,7 +105,7 @@ export const TOC: React.FC = () => {
     handleScroll(); // Initial call
 
     return () => scrollContainer.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   if (headings.length === 0) return null;
 
@@ -156,7 +159,7 @@ export const TOC: React.FC = () => {
               `}
             >
               {/* Text content */}
-              <span className="truncate leading-relaxed">{item.text}</span>
+              <span className=" leading-relaxed">{item.text}</span>
             </a>
 
             {/* Children - always show, no complex animations */}
@@ -185,7 +188,7 @@ export const TOC: React.FC = () => {
         </div>
 
         {/* Progress bar */}
-        <div className="relative h-1 bg-border rounded-full overflow-hidden">
+        <div className="relative h-1 bg-outline-100 rounded-full overflow-hidden">
           <div
             className="absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-300 ease-out bg-background-500"
             style={{
@@ -196,7 +199,7 @@ export const TOC: React.FC = () => {
       </div>
 
       {/* Table of contents */}
-      <nav className="space-y-0">{renderItems(headings)}</nav>
+      <nav className="space-y-0 w-[250px]">{renderItems(headings)}</nav>
     </div>
   );
 };
