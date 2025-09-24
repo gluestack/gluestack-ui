@@ -21,8 +21,8 @@ export default function BlogsPageLayout({
       <BadgeComponent />
       <Box className={pathname === '/blogs' ? 'w-full' : 'xl:w-[70%]'}>
         <BadgeComponent />
-        <Footer />
       </Box>
+      <Footer />
     </WebsiteLayout>
   );
 }
