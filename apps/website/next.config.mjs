@@ -3,14 +3,13 @@ import withPlugins from 'next-compose-plugins';
 import createMDX from '@next/mdx';
 import { withExpo } from '@expo/next-adapter';
 import remarkPrism from 'remark-prism';
+import rehypeSlug from 'rehype-slug';
+import remarkToc from 'remark-toc';
 import { redirects, oldRedirects } from './redirects.js';
 
 const nextConfig = withExpo({
   async redirects() {
-    return [
-      ...redirects,
-      ...oldRedirects,
-    ];
+    return [...redirects, ...oldRedirects];
   },
   async headers() {
     return [
@@ -91,7 +90,8 @@ const nextConfig = withExpo({
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkPrism],
+    remarkPlugins: [remarkPrism, remarkToc],
+    rehypePlugins: [rehypeSlug],
   },
 });
 
