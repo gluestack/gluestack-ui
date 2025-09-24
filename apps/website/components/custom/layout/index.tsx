@@ -31,6 +31,12 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     pathname.includes('docs/components/all-components') ||
     pathname.includes('overview/quick-start');
 
+  const tocLayout =
+    fluidLayout ||
+    pathname.includes('docs/mcp-server') ||
+    pathname.includes('guides/tutorials') ||
+    pathname.includes('/guides/more/releases') ||
+    pathname.includes('guides/more/discord-faqs');
   // Reset scroll position when pathname changes
   useEffect(() => {
     const layoutElement = docsLayoutRef.current;
@@ -58,18 +64,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             fluidLayout ? '' : 'lg:ml-36 md:w-[85%]'
           }`}
         >
-          <div
-            className={`w-[250px] hidden lg:flex z-0 ${
-              fluidLayout ? 'ml-8' : ''
-            }`}
-          >
+          <div className="w-[250px] hidden lg:flex z-0">
             <Sidebar />
           </div>
-          <div className='ml-auto hidden xl:flex z-0 top-[60px]'>
-            <TOC />
-          </div>
 
-          <div className="flex-1 md:items-center md:w-[85%] mx-auto">
+          <div className="flex-1 md:items-center md:w-[60%] lg:[85%] mx-auto px-4 md:px-6 lg:px-8">
             {/* <ComponentIntro
             display={fluidLayout ? "flex" : "none"}
             sidebarItems={sidebars}
@@ -80,13 +79,13 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           /> */}
 
             <div
-              className={`flex-1 flex-row sidebar-hide ${isOpenSidebar ? 'hidden' : ''}`}
+              className={`flex-1 flex-row sidebar-hide shrink ${isOpenSidebar ? 'hidden' : ''}`}
             >
               <MDXProvider components={useMDXComponents({})}>
                 <div
                   className={`px-4 md:px-0 ${fluidLayout ? 'max-w-[92%] mx-auto' : 'max-w-[736px] 2xl:mx-auto'} ${pathname.includes('overview/quick-start') || pathname.includes('docs/apps') ? '2xl:max-w-[1280px]' : ''}`}
                 >
-                  <LayoutContent className="flex md:min-w-[736px] lg:min-w-[662px] xl:min-w-[598px] 2xl:min-w-[736px] h-full w-full mx-auto flex-col scroll-smooth">
+                  <LayoutContent className="flex h-full w-full mx-auto flex-col scroll-smooth">
                     {children}
                     <EditPageOnGithubLink sidebarItems={sidebarData} />
                     <PrevNextButtons sidebarItems={sidebarData} />
@@ -95,6 +94,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               </MDXProvider>
             </div>
           </div>
+          {!tocLayout && (
+            <div className="ml-8 w-[250px] hidden min-[1180px]:flex z-0 shrink-0">
+              <TOC />
+            </div>
+          )}
         </div>
         <Box className="fixed bottom-0 right-0 min-[992px]:hidden ">
           <Fab
