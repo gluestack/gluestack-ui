@@ -16,6 +16,7 @@ import { Box } from '@/components/ui/box';
 import { Fab, FabIcon } from '@/components/ui/fab';
 import { MoonIcon, SunIcon } from '@/components/ui/icon';
 import { ThemeContext } from '@/utils/context/theme-context';
+import { TOC } from '../toc';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { colorMode, setColorMode } = useContext(ThemeContext);
@@ -63,6 +64,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             }`}
           >
             <Sidebar />
+          </div>
+          <div className='ml-auto hidden xl:flex z-0 top-[60px]'>
+            <TOC />
           </div>
 
           <div className="flex-1 md:items-center md:w-[85%] mx-auto">
