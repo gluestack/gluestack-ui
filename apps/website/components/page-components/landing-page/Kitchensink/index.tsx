@@ -115,7 +115,7 @@ const Kitchensink = () => {
         <Box className="flex-1 sm:mt-10  sm:p-10 aspect-[5/3] md:aspect-[604/411]">
           <Image
             alt="kitchensink image"
-            src="/assets/kitchensink.png"
+            src="/assets/kitchensink-app.webp"
             fill
             sizes="100vw"
             unoptimized
