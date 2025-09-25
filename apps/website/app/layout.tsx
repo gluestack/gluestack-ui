@@ -5,6 +5,8 @@ import {
   Source_Code_Pro,
   Space_Mono,
 } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import './globals.css';
 import CanonicalLink from '@/components/custom/canonical/CanonicalLink';
 import Provider from './provider';
@@ -107,9 +109,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plusJakartaSans.variable} ${roboto.variable} ${sourceCodePro.variable} ${inter.className} ${spaceMono.variable}`}
+      className={`${plusJakartaSans.variable} ${roboto.variable} ${sourceCodePro.variable} ${inter.className} ${spaceMono.variable} ${GeistMono.className} ${GeistSans.className}`}
     >
       <head>
+        <meta name="robots" content="index, follow" />
         {/* Preconnect to Google Fonts domains with higher priority */}
         <link
           rel="preconnect"
@@ -146,7 +149,7 @@ export default function RootLayout({
         />
         {/* End Google Tag Manager */}
       </head>
-      <body className={inter.className}>
+      <body className={GeistSans.className}>
         <Provider>{children}</Provider>
       </body>
     </html>

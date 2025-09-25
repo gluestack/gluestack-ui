@@ -1,21 +1,20 @@
-'use client';
-import { Box } from '@/components/ui/box';
-import WebsiteLayout from '@/components/page-components/landing-page/WebsiteLayout';
-import BadgeComponent from '@/components/page-components/landing-page/BadgeComponent';
-import Footer from '@/components/page-components/landing-page/Footer';
-
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Hire Experts | gluestack-ui | GeekyAnts React Native Experts',
+  description:
+    'Hire GeekyAnts experts for your gluestack-ui and React Native projects. Get professional support, custom development, and UI/UX expertise from the team behind gluestack-ui.',
+  openGraph: {
+    title: 'Hire Experts | gluestack-ui | GeekyAnts React Native Experts',
+    description:
+      'Hire GeekyAnts experts for your gluestack-ui and React Native projects. Get professional support, custom development, and UI/UX expertise from the team behind gluestack-ui.',
+    siteName: 'gluestack',
+    url: 'https://gluestack.io/experts',
+  },
+};
 export default function ExpertLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <WebsiteLayout applyBgImage={true}>
-      <Box className="justify-center self-center mx-auto max-w-[1440px] w-[85%]">
-        <Box className="">{children}</Box>
-      </Box>
-      <BadgeComponent />
-      <Footer />
-    </WebsiteLayout>
-  );
+  return <>{children}</>;
 }

@@ -14,6 +14,54 @@ import {
 import { Tabs, TabItem } from '@/docs-components/tabs';
 import { InlineCode } from '@/docs-components/inline-code';
 
+# Upgrade to gluestack-ui v3
+
+## Why gluestack-ui v3?
+
+### Evolution to v3
+
+**gluestack-ui v3** represents a major evolution in our approach to universal component development. Building on the foundation of v2, v3 introduces a revolutionary source-to-destination architecture that ensures consistency across all platforms while maintaining maximum flexibility.
+
+#### What's New in v3
+
+- **Source-to-Destination Architecture** *(contribution change)*: All components are maintained in a single source of truth (`src/` directory) and automatically synced across all project templates and examples
+- **Enhanced Package System** *(contribution change)*: Modular packages (`gluestack-core`, `gluestack-utils`, `ui-next-adapter`) for better maintainability and extensibility  
+- **Improved Developer Experience** *(contribution change)*: Streamlined development workflow with automated file synchronization and hot reloading
+- **Advanced Component Creation** *(contribution change)*: New CLI tools and scripts for rapid component development and contribution
+- **Better Documentation Integration** *(contribution change)*: Seamless integration between component source code and documentation
+- **Enhanced Testing Infrastructure** *(contribution change)*: Comprehensive testing across multiple starter templates and applications
+
+## Migration from Previous Versions
+
+### From v2 to v3
+
+#### What's Changed (Minimal Breaking Changes):
+
+**gluestack-ui v3** maintains API compatibility with v2 while introducing significant architectural improvements:
+
+- **Package structure changes** to @gluestack-ui/core and @gluestack-ui/utils
+- **Import path updates** for creator function
+- **ARIA dependencies** moved from react-native-aria to @gluestack-ui/core
+- **Enhanced Next.js adapter**
+- **Better compatibility** with Expo SDK 53 and Next.js 15
+
+#### What Stays the Same:
+- **Component APIs** remain exactly the same
+- **Styling system** unchanged
+- **Theming configurations** continue to work
+- **Copy-paste philosophy** maintained
+
+### Migration Benefits
+
+- **Seamless Upgrade**: Simple upgrade process with `npx gluestack-ui@latest upgrade` command.
+- **Minimal code changes** (only import paths)
+- **Enhanced stability** and bug fixes
+- **Future-ready foundation**
+- **Improved developer experience** (contribution change)
+- **Community Support**: Active community and comprehensive migration resources
+
+We've prepared a comprehensive migration guide to help you transition smoothly from v2 to v3, including automated migration tools and detailed instructions.
+
 # Manual Migration to gluestack-ui v3
 <br/>
 If you have a simple Next.js or Expo project using Gluestack, you can upgrade directly by running:

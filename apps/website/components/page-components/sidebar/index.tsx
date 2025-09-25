@@ -41,7 +41,7 @@ const SidebarSection = ({ section }: { section: Section }) => {
   return (
     <div className="flex gap-2 py-2 mb-2">
       <span
-        className={`text-typography-950 font-bold pl-3 uppercase font-jakarta`}
+        className={`text-typography-950 font-bold pl-3 uppercase font-geist-sans`}
       >
         {section.title}
       </span>
@@ -56,7 +56,7 @@ const SidebarLink = ({ item }: { item: NavigationItem }) => {
   if (item.type === 'heading') {
     return (
       <div
-        className={`font-bold text-typography-900 py-2 pl-3 my-2 mt-4 uppercase font-jakarta`}
+        className={`font-bold text-typography-900 py-2 pl-3 my-2 mt-4 uppercase font-geist-sans`}
       >
         {item.title}
       </div>

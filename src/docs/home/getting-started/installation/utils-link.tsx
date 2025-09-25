@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/components/ui/link';
 import { InlineCode } from '@/docs-components/inline-code';
 export function UtilsLink() {
   return (

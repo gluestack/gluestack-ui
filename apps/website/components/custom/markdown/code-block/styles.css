@@ -3,7 +3,7 @@ pre[class*="language-"] {
   color: var(--prism-text) !important;
   font-size: var(--prism-font-size, 14px) !important;
   line-height: var(--prism-line-height, 24px) !important;
-  font-family: var(--prism-font-family, 'var(--font-mono-space-mono)') !important;
+  font-family: var(--prism-font-family, 'var(--font-geist-mono)') !important;
   font-weight: var(--prism-font-weight, 500) !important;
 }
 

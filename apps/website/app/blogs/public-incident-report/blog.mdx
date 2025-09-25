@@ -1,7 +1,54 @@
 import { AlertTriangle, Shield, Clock, Users, Package, Network, FileText, CheckCircle } from 'lucide-react'
 import { Box } from "@/components/ui/box"
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Image } from '@/components/ui/image';
+
+<Text className="text-sm pt-2">September 4, 2025</Text>
 
 # React Native ARIA & gluestack-ui Security Incident Report
+<HStack className="gap-12 items-center">
+<HStack className="gap-3 items-center">
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source={{ uri: 'https://avatars.githubusercontent.com/u/101696945?v=4' }}
+      alt="sanchit"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-typography-900">Sanchit Kumar</Text>
+    <Text className="text-sm">Building gluestack-ui</Text>
+  </Box>
+</HStack>
+<HStack className="gap-3 items-center">
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source={{ uri: 'https://avatars.githubusercontent.com/u/98085611?v=4' }}
+      alt="ujjwal"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-typography-900">Ujjwal Aggarwal</Text>
+    <Text className="text-sm">Building gluestack-ui</Text>
+  </Box>
+</HStack>
+<HStack className="gap-3 items-center">
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source={{ uri: 'https://avatars.githubusercontent.com/u/120183344?s=200&v=4' }}
+      alt="gluestack support team"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-typography-900">Gluestack Support Team</Text>
+    <Text className="text-sm">Support Team</Text>
+  </Box>
+</HStack>
+</HStack>
+<br />
 
 <div className="flex items-center gap-4 mb-8 p-4 border border-red-600 shadow-soft-1 shadow-red-500 rounded-lg">
   <AlertTriangle className="h-6 w-6 text-red-600" />
