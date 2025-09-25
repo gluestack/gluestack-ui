@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description:
       'A powerful React & React Native component library with customizable Tailwind UI components & patterns. Works seamlessly with shadcn React Native for web & mobile apps!',
     siteName: 'gluestack',
-    // url: 'https://gluestack.io/',
+    url: 'https://gluestack.io/',
     images: [
       {
         url: 'https://gluestack.io/images/og-image.png',
