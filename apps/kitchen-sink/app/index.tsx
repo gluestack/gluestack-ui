@@ -68,7 +68,7 @@ const Header = () => {
             className="h-5 w-5 rounded-sm lg:h-6 lg:w-6 xl:h-7 xl:w-7"
           />
           <Text className="font-medium text-sm lg:text-base xl:text-lg text-typography-900">
-            Powered by gluestack-ui v2
+            Powered by gluestack-ui v3
           </Text>
         </HStack>
         <Heading className="mb-2 xl:mb-[18px] text-4xl lg:text-5xl xl:text-[56px]">
