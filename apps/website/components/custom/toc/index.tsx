@@ -1,5 +1,5 @@
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface HeadingItem {
   id: string;
@@ -38,6 +38,18 @@ export const TOC: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   const pathname = usePathname();
+
+  const tocRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  useEffect(() => {
+    const activeEl = tocRefs.current[activeId];
+    if (activeEl) {
+      activeEl.scrollIntoView({
+        block: 'nearest',
+        inline: 'nearest',
+        behavior: 'smooth',
+      });
+    }
+  }, [activeId]);
 
   useEffect(() => {
     // Grab h1–h5
@@ -146,6 +158,9 @@ export const TOC: React.FC = () => {
         return (
           <li key={item.id} className="relative">
             <a
+              ref={(el) => {
+                tocRefs.current[item.id] = el;
+              }}
               href={`#${item.id}`}
               onClick={handleClick(item.id)}
               className={`
