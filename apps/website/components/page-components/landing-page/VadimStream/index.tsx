@@ -98,6 +98,7 @@ const VadimStream = () => {
             src="https://www.youtube.com/embed/FBXUPJ9_Xl0?enablejsapi=1"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
+            loading='lazy'
           />
         </Box>
         <Box className="flex-1 border border-outline-200 rounded-lg overflow-hidden aspect-video">
@@ -108,6 +109,7 @@ const VadimStream = () => {
             src="https://www.youtube.com/embed/9ErkOcDWJxI?enablejsapi=1"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
+            loading="lazy"
           />
         </Box>
       </HStack>

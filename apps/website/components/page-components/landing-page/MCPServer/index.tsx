@@ -95,6 +95,7 @@ const VadimStream = () => {
           src="https://www.youtube.com/embed/5lSvkESJgmY"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
+          loading='lazy'
         />
       </Box>
     </Box>
