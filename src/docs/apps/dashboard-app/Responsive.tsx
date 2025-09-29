@@ -178,6 +178,7 @@ function Responsiveness({
               borderBottomLeftRadius: 16,
               borderBottomRightRadius: 16,
             }}
+            loading='lazy'
           />
         </Box>
       </Resizable>
