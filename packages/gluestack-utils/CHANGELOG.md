@@ -1,5 +1,17 @@
 # @gluestack-ui/utils
 
+## 3.0.10
+
+### Patch Changes
+
+- fix: tried to fix type issue
+
+## 3.0.9
+
+### Patch Changes
+
+- fix: tried to fix type issue
+
 ## 3.0.8
 
 ### Patch Changes

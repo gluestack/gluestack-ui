@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/utils",
-  "version": "3.0.8",
+  "version": "3.0.10",
   "description": "Utility functions and hooks for gluestack-ui",
   "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
@@ -84,7 +84,7 @@
     "dom-helpers": "^6.0.1",
     "react-aria": "^3.41.1",
     "react-stately": "^3.39.0",
-    "tailwind-variants": "0.1.14"
+    "tailwind-variants": "0.1.20"
   },
   "engines": {
     "node": ">=18"
