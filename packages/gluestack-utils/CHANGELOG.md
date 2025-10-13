@@ -1,5 +1,29 @@
 # @gluestack-ui/utils
 
+## 3.0.11
+
+### Patch Changes
+
+- fix: fixed type inference issue with size, variant, space and other props
+
+## 3.0.10
+
+### Patch Changes
+
+- fix: tried to fix type issue
+
+## 3.0.9
+
+### Patch Changes
+
+- fix: tried to fix type issue
+
+## 3.0.8
+
+### Patch Changes
+
+- fix: added missing export of cn
+
 ## 3.0.7
 
 ### Patch Changes
