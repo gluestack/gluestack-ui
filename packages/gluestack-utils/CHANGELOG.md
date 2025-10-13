@@ -1,5 +1,11 @@
 # @gluestack-ui/utils
 
+## 3.0.8
+
+### Patch Changes
+
+- fix: added missing export of cn
+
 ## 3.0.7
 
 ### Patch Changes
