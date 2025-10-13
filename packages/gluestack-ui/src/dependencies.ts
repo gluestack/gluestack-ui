@@ -33,7 +33,7 @@ const projectBasedDependencies: Dependencies = {
       'dom-helpers': '^5.2.1',
       'react-stately': '^3.39.0',
       '@gluestack-ui/core': '^3.0.10',
-      '@gluestack-ui/utils': '^3.0.7',
+      '@gluestack-ui/utils': '^3.0.11',
       '@gluestack/ui-next-adapter': '^3.0.3',
       "react-native-safe-area-context": "^5.6.1",
       'react-native-reanimated': '~4.1.0',
@@ -60,7 +60,7 @@ const projectBasedDependencies: Dependencies = {
       'react-native-svg': '^15.13.0',
       'react-stately': '^3.39.0',
       '@gluestack-ui/core': '^3.0.10',
-      '@gluestack-ui/utils': '^3.0.7',
+      '@gluestack-ui/utils': '^3.0.11',
     },
   },
   'react-native-cli': {
@@ -77,7 +77,7 @@ const projectBasedDependencies: Dependencies = {
       'react-native-reanimated': '~4.1.0',
       'react-native-worklets': '^0.5.1',
       '@gluestack-ui/core': '^3.0.10',
-      '@gluestack-ui/utils': '^3.0.7',
+      '@gluestack-ui/utils': '^3.0.11',
     },
     devDependencies: {
       'babel-plugin-module-resolver': '^5.0.0',

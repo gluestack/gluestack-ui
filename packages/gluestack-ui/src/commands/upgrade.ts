@@ -121,7 +121,7 @@ function installPackages(packageManager: string): void {
   if (!cmd) throw new Error('Unsupported package manager');
   const pkgs = [
     '@gluestack-ui/core@3.0.10',
-    '@gluestack-ui/utils@3.0.7',
+    '@gluestack-ui/utils@3.0.11',
     'react-native-svg@15.13.0',
     '@gluestack/ui-next-adapter@3.0.3',
   ];

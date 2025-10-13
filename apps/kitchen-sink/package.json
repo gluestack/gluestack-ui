@@ -17,7 +17,7 @@
     "@expo/html-elements": "^0.10.1",
     "@expo/vector-icons": "^15.0.2",
     "@gluestack-ui/core": "^3.0.10",
-    "@gluestack-ui/utils": "^3.0.7",
+    "@gluestack-ui/utils": "^3.0.11",
     "@legendapp/motion": "^2.4.0",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
