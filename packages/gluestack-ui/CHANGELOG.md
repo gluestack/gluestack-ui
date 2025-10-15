@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 3.0.8
+
+### Patch Changes
+
+- fix: fixed duplicate imports bug in upgrade cli
+
 ## 3.0.7
 
 ### Patch Changes
