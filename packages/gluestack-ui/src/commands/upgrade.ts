@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { log, spinner, confirm, isCancel, cancel,text } from '@clack/prompts';
+import { log, spinner, confirm, isCancel, cancel, text } from '@clack/prompts';
 import fs from 'fs-extra';
 import path from 'path';
 import { spawnSync } from 'child_process';
@@ -302,7 +302,8 @@ async function updateImports(): Promise<void> {
   if (!fs.existsSync(componentsPath)) {
     s.stop('No components/ui folder found.');
     const customPath = await text({
-      message: 'Please provide the path to your components folder (relative to project root):',
+      message:
+        'Please provide the path to your components folder (relative to project root):',
       placeholder: 'e.g., src/components, lib/components, app/components',
       validate: (value) => {
         if (!value) return 'Path is required';
@@ -311,7 +312,7 @@ async function updateImports(): Promise<void> {
           return `Path "${value}" does not exist`;
         }
         return;
-      }
+      },
     });
 
     if (isCancel(customPath)) {
@@ -383,6 +384,18 @@ async function updateFileImports(filePath: string): Promise<boolean> {
       if (importPath.startsWith('@gluestack-ui/nativewind-utils')) {
         updated = true;
         return `from '@gluestack-ui/utils/nativewind-utils'`;
+      }
+
+      // Check if it's a utils import (already in correct format)
+      if (importPath.startsWith('@gluestack-ui/utils/')) {
+        // Already in the correct format, don't modify
+        return match;
+      }
+
+      // Check if already upgraded (contains /core/ and ends with /creator)
+      if (importPath.includes('/core/') && importPath.endsWith('/creator')) {
+        // Already in the new format, don't modify
+        return match;
       }
 
       // Extract component name from import path
