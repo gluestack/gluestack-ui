@@ -1,0 +1,51 @@
+function App() {
+  const [showActionsheet, setShowActionsheet] = React.useState(false);
+  const [preference, setPreference] = React.useState('all');
+  const [tempPreference, setTempPreference] = React.useState('all');
+  
+  const handleClose = () => {
+    setPreference(tempPreference);
+    setShowActionsheet(false);
+  };
+
+  const options = [
+    { value: 'all', label: 'All Notifications' },
+    { value: 'mentions', label: 'Mentions Only' },
+    { value: 'off', label: 'Off' },
+  ];
+
+  return (
+    <>
+      <VStack space="md">
+        <Text>Current: {options.find(o => o.value === preference)?.label}</Text>
+        <Button onPress={() => {
+          setTempPreference(preference);
+          setShowActionsheet(true);
+        }}>
+          <ButtonText>Change Preference</ButtonText>
+        </Button>
+      </VStack>
+      <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <ActionsheetBackdrop />
+        <ActionsheetContent>
+          <ActionsheetDragIndicatorWrapper>
+            <ActionsheetDragIndicator />
+          </ActionsheetDragIndicatorWrapper>
+          <VStack className="w-full p-4" space="xl">
+            <Heading size="lg">Preferences</Heading>
+            <RadioGroup value={tempPreference} onChange={setTempPreference} className="gap-4">
+              {options.map((option) => (
+                <Radio key={option.value} value={option.value} className="justify-between">
+                  <RadioLabel>{option.label}</RadioLabel>
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                </Radio>
+              ))}
+            </RadioGroup>
+          </VStack>
+        </ActionsheetContent>
+      </Actionsheet>
+    </>
+  );
+}
