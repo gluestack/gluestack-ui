@@ -149,4 +149,18 @@ Gonna be my standard from now on.`,
     logoDark: '/icon/social/dark-twitter.svg',
     link: 'https://x.com/0xdlk/status/1852568421155701037',
   },
+
+  {
+    id: 9,
+    profileURI: 'https://pbs.twimg.com/profile_images/1757503775957540864/LM0xnwx9_400x400.jpg',
+    authorName: 'Adeola Emmanuel Morren',
+    profileName: '@Adeola13',
+    isVerified: false,
+    timestamp: '9:22 PM',
+    date: 'Oct 21, 2025',
+    testimonialContent: `Just coming to say thank you here. Coming off from a react tailwind background got lured into using Tamagui which was a disaster (skill issue I’ll admit) but then using Gluestack was as if I could breathe again. What a fresh air and great DX experience for one who hates mobile 😄`,
+    logoLight: '/icon/social/twitter.svg',
+    logoDark: '/icon/social/dark-twitter.svg',
+    link: 'https://x.com/Adeola13/status/1980663584251343346',
+  },
 ];
