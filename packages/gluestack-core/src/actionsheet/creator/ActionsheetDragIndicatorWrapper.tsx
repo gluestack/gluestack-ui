@@ -15,7 +15,12 @@ export function ActionsheetDragIndicatorWrapper<T>(
       contentSheetHeight,
     } = useActionsheetContent('ActionsheetContentContext');
 
-    const handleCloseRef = React.useRef(null);
+    // Keep handleClose ref updated to avoid capturing stale state
+    const handleCloseRef = React.useRef(handleClose);
+    React.useEffect(() => {
+      handleCloseRef.current = handleClose;
+    }, [handleClose]);
+
     const panResponder = React.useRef(
       PanResponder.create({
         onStartShouldSetPanResponder: () => true,
@@ -37,7 +42,7 @@ export function ActionsheetDragIndicatorWrapper<T>(
                 toValue: { x: 0, y: contentSheetHeight.current },
                 duration: 200,
                 useNativeDriver: true,
-              }).start(handleClose);
+              }).start(() => handleCloseRef.current());
             } else {
               Animated.spring(pan, {
                 toValue: { x: 0, y: 0 },
@@ -54,7 +59,7 @@ export function ActionsheetDragIndicatorWrapper<T>(
                 toValue: { x: 0, y: contentSheetHeightWithSnapPoint },
                 duration: 200,
                 useNativeDriver: true,
-              }).start(handleClose);
+              }).start(() => handleCloseRef.current());
             } else {
               Animated.spring(pan, {
                 toValue: { x: 0, y: 0 },
