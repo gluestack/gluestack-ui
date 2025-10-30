@@ -446,8 +446,14 @@ export const upgrade = new Command()
       else if (fs.existsSync('pnpm-lock.yaml')) packageManager = 'pnpm';
       else if (fs.existsSync('bun.lockb')) packageManager = 'bun';
       await updateTailwindConfig();
+      // Do not remove packages that we want to keep/install
+      const retainSet = new Set(['@gluestack-ui/core', '@gluestack-ui/utils']);
+      const packagesToRemove = oldPackages.filter(
+        (pkg: string) => !retainSet.has(pkg)
+      );
+      // Remove old packages first, then install required ones
+      removePackages(packagesToRemove, packageManager);
       installPackages(packageManager);
-      removePackages(oldPackages, packageManager);
       cleanAndReinstall(packageManager);
       await updateRegistryFile();
       await updateNextConfig();
