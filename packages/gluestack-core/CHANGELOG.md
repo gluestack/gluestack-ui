@@ -1,5 +1,11 @@
 # @gluestack-ui/core
 
+## 3.0.12
+
+### Patch Changes
+
+- fix: fixed actionsheet stale state while closing through drag
+
 ## 3.0.11
 
 ### Patch Changes
