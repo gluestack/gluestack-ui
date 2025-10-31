@@ -3,7 +3,7 @@ import { useKeyboardBottomInset } from '@gluestack-ui/utils/hooks';
 import { Overlay } from '../../overlay/creator';
 import React from 'react';
 import { Platform, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { initialWindowMetrics, SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { ToastContext } from './ToastContext';
 import type { IToast, ToastPlacement } from './types';
@@ -92,7 +92,7 @@ export const ToastList = () => {
             >
               {toastInfo[position].map((toast: IToast) => {
                 return (
-                  <SafeAreaProvider key={toast.id}>
+                  <SafeAreaProvider key={toast.id} initialMetrics={initialWindowMetrics}>
                     <SafeAreaView style={{ pointerEvents: 'box-none' }}>
                       <OverlayAnimatePresence
                         visible={visibleToasts[toast.id]}

@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 3.0.9
+
+### Patch Changes
+
+- fix: update the upgrade flow to avoid uninstalling @gluestack-ui/core and @gluestack-ui/utils
+
 ## 3.0.8
 
 ### Patch Changes

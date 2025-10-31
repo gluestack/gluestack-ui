@@ -1,5 +1,11 @@
 # @gluestack-ui/core
 
+## 3.0.11
+
+### Patch Changes
+
+- fix: added initialwindowmetrics to safeareaprovider
+
 ## 3.0.10
 
 ### Patch Changes
