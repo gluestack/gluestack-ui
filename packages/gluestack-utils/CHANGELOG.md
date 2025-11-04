@@ -1,5 +1,11 @@
 # @gluestack-ui/utils
 
+## 3.0.12
+
+### Patch Changes
+
+- feat: added MIT license
+
 ## 3.0.11
 
 ### Patch Changes
