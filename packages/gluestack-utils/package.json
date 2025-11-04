@@ -1,7 +1,8 @@
 {
   "name": "@gluestack-ui/utils",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "description": "Utility functions and hooks for gluestack-ui",
+  "license": "MIT",
   "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
