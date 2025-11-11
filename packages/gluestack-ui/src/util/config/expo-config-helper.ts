@@ -7,7 +7,6 @@ import {
   PROJECT_SHARED_IGNORE,
   ExpoResolvedConfig,
 } from './config-types';
-import { execSync } from 'child_process';
 import { ensureFilesPromise } from '..';
 import { commonInitialization } from '../init';
 
@@ -91,9 +90,6 @@ async function initNatiwindExpoApp(
   permission: boolean
 ) {
   try {
-    execSync('npx expo install babel-plugin-module-resolver', {
-      stdio: 'inherit',
-    });
     await commonInitialization(config.expoProject, resolvedConfig, permission);
   } catch (err) {
     throw new Error((err as Error).message);

@@ -62,6 +62,9 @@ const projectBasedDependencies: Dependencies = {
       '@gluestack-ui/core': '^3.0.10',
       '@gluestack-ui/utils': '^3.0.11',
     },
+    devDependencies: {
+      'babel-plugin-module-resolver': '^5.0.0',
+    },
   },
   'react-native-cli': {
     dependencies: {
