@@ -34,7 +34,7 @@ const ProductHuntBanner = ({
               We're live on Product Hunt!
               <span className="hidden lg:inline">
                 {' '}
-                · If you like gluestack, please support us.
+                · If you like gluestack-ui pro, please support us.
               </span>
             </p>
             <HStack className="gap-2">
