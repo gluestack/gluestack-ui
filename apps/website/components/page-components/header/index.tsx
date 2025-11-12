@@ -82,11 +82,11 @@ const Header = ({
     {
       href: 'https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation',
       logo: {
-        light: GluestackProLogo,
-        dark: GluestackProLogo,
+        light: StarterKitLogo,
+        dark: StarterKitLogoDark,
       },
-      title: 'Gluestack Pro (Preview)',
-      description: 'Premium React Native templates that just work.',
+      title: 'gluestack-ui pro',
+      description: 'The only React Native templateyou’ll ever need.',
       badge: {
         text: 'PAID',
         action: 'info',
@@ -452,6 +452,16 @@ const Header = ({
                   )}
                 </Box>
               </Pressable>
+              {!pathname.includes('/docs') && (
+                <Link
+                  href="https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=banner_docs&utm_campaign=brand-awareness"
+                  className="border border-outline-200 px-4 py-1.5 xl:flex hidden rounded"
+                >
+                  <Text className="text-sm text-typography-900">
+                    gluestack-ui pro
+                  </Text>
+                </Link>
+              )}
               {!pathname.includes('/docs') ? (
                 <Link
                   href="/ui/docs"
@@ -469,7 +479,10 @@ const Header = ({
                       Get Updates
                     </Text>
                   </Link>
-                 <NewsletterModal showModal={showModal} setShowModal={setShowModal}/>
+                  <NewsletterModal
+                    showModal={showModal}
+                    setShowModal={setShowModal}
+                  />
                   <Link
                     href="https://rapidnative.com/?utm_source=gluestack.io&utm_medium=banner_docs&utm_campaign=brand-awareness"
                     className="bg-primary-500 px-4 py-1.5 xl:flex hidden rounded"

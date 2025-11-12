@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box } from '@/components/ui/box';
 import Header from '@/components/page-components/header';
 import ResponsiveSidebar from '@/components/page-components/landing-page/ResponsiveSidebar';
-// import ProductHuntBanner from '../ProductHuntBanner';
+import ProductHuntBanner from '../ProductHuntBanner';
 
 function WebsiteLayout({
   children,
@@ -11,7 +11,7 @@ function WebsiteLayout({
   children: any;
 }) {
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
-  // const [showPHBanner, setShowPHBanner] = useState(true);
+  const [showPHBanner, setShowPHBanner] = useState(true);
   useEffect(() => {
     if (isOpenSidebar) {
       document.body.style.overflow = 'hidden';
@@ -46,10 +46,10 @@ function WebsiteLayout({
         isOpenSidebar={isOpenSidebar}
         setIsOpenSidebar={setIsOpenSidebar}
       />
-      {/* <ProductHuntBanner
+      <ProductHuntBanner
         showPHBanner={showPHBanner}
         setShowPHBanner={setShowPHBanner}
-      /> */}
+      />
       {/* Remove this later */}
       <Box className={` ${isOpenSidebar ? 'opacity-0' : 'opacity-100'} `}>
         {children}
