@@ -18,14 +18,14 @@ const ProductHuntBanner = ({
         <div className="mx-auto w-[85%] max-w-[1440px] px-2 sm:px-2">
           <div className="flex items-center justify-between gap-3 py-2 md:py-2.5">
             <a
-              href="https://www.producthunt.com/products/gluestack?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-gluestack&#0045;v3"
+              href="https://www.producthunt.com/products/gluestack-ui-pro?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-gluestack&#0045;ui&#0045;pro"
               target="_blank"
               rel="noopener noreferrer"
               className="shrink-0 inline-flex"
             >
               <img
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1009919&theme=light&t=1756285092927"
-                alt="gluestack&#0032;v3 Product Hunt featured badge"
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1036836&theme=light&t=1762942861229"
+                alt="gluestack&#0032;ui&#0032;pro Product Hunt featured badge"
                 width="110"
                 className="h-6 md:h-7 w-auto"
               />
