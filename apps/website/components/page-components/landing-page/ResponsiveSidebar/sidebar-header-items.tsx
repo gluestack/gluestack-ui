@@ -163,11 +163,86 @@ export const headerItems: SidebarSectionProps[] = [
     title: 'Products',
     items: [
       {
+        title: 'RapidNative',
+        link: 'https://rapidnative.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
+        logo: (
+          <Image
+            alt="RapidNative logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/rapidnative/logo.png')}
+          />
+        ),
+        logoDark: (
+          <Image
+            alt="RapidNative logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/rapidnative/logo.png')}
+          />
+        ),
+        badge: (
+          <Badge size="md" variant="solid" action="info">
+            <BadgeText>PAID</BadgeText>
+          </Badge>
+        ),
+      },
+      {
+        title: 'gluestack-ui pro',
+        link: 'https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation',
+        logo: (
+          <Image
+            alt="gluestack-ui pro logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/gluestack/logo-dark.svg')}
+          />
+        ),
+        logoDark: (
+          <Image
+            alt="gluestack-ui pro logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/gluestack/logo-light.svg')}
+          />
+        ),
+        badge: (
+          <Badge size="md" variant="solid" action="info">
+            <BadgeText>PAID</BadgeText>
+          </Badge>
+        ),
+      },
+      {
+        title: 'theappmarket',
+        link: 'https://theappmarket.io',
+        logo: (
+          <Image
+            alt="theappmarket logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/theappmarket/appmarket-logo.svg')}
+          />
+        ),
+        logoDark: (
+          <Image
+            alt="theappmarket logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/theappmarket/appmarket-logo.svg')}
+          />
+        ),
+        badge: (
+          <Badge size="md" variant="solid" action="info">
+            <BadgeText>PAID</BadgeText>
+          </Badge>
+        ),
+      },
+      {
         title: 'AppLaunchKit',
         link: 'https://applaunchk.it/',
         logo: (
           <Image
-            alt="dark mode"
+            alt="AppLaunchKit logo"
             className="w-5 h-5"
             size="md"
             source={require('@/public/icon/logo/app-launch-kit/dark-mode.svg')}
@@ -175,7 +250,7 @@ export const headerItems: SidebarSectionProps[] = [
         ),
         logoDark: (
           <Image
-            alt="light mode"
+            alt="AppLaunchKit logo"
             className="w-5 h-5"
             size="md"
             source={require('@/public/icon/logo/app-launch-kit/light-mode.svg')}
@@ -192,7 +267,7 @@ export const headerItems: SidebarSectionProps[] = [
         link: 'https://github.com/gluestack/gluestack-ui-starter-kits/',
         logo: (
           <Image
-            alt="dark mode"
+            alt="Starter Kit logo"
             className="w-5 h-5"
             size="md"
             source={require('@/public/icon/logo/gluestack/logo-dark.svg')}
@@ -200,7 +275,7 @@ export const headerItems: SidebarSectionProps[] = [
         ),
         logoDark: (
           <Image
-            alt="dark mode"
+            alt="Starter Kit logo"
             className="w-5 h-5"
             size="md"
             source={require('@/public/icon/logo/gluestack/logo-light.svg')}
@@ -209,31 +284,6 @@ export const headerItems: SidebarSectionProps[] = [
         badge: (
           <Badge size="md" variant="solid" action="success">
             <BadgeText>FREE</BadgeText>
-          </Badge>
-        ),
-      },
-      {
-        title: 'theappmarket',
-        link: 'https://theappmarket.io',
-        logo: (
-          <Image
-            alt="dark mode"
-            className="w-5 h-5"
-            size="md"
-            source={require('@/public/icon/logo/theappmarket/appmarket-logo.svg')}
-          />
-        ),
-        logoDark: (
-          <Image
-            alt="dark mode"
-            className="w-5 h-5"
-            size="md"
-            source={require('@/public/icon/logo/theappmarket/appmarket-logo.svg')}
-          />
-        ),
-        badge: (
-          <Badge size="md" variant="solid" action="info">
-            <BadgeText>PAID</BadgeText>
           </Badge>
         ),
       },
