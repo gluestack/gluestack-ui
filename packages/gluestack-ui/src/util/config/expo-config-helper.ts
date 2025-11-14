@@ -3,10 +3,7 @@ import fg from 'fast-glob';
 import * as fs from 'fs';
 import { config } from '../../config';
 import { _currDir, getFilePath, pathResolver } from '.';
-import {
-  PROJECT_SHARED_IGNORE,
-  ExpoResolvedConfig,
-} from './config-types';
+import { PROJECT_SHARED_IGNORE, ExpoResolvedConfig } from './config-types';
 import { execSync } from 'child_process';
 import { ensureFilesPromise } from '..';
 import { commonInitialization } from '../init';
@@ -32,16 +29,16 @@ async function getExpoProjectType(cwd: string): Promise<string | undefined> {
   const expoLayoutPath = fs.existsSync('app')
     ? 'app/_layout.*'
     : fs.existsSync('src/app')
-    ? 'src/app/_layout.*'
-    : '**/*_layout.*';
+      ? 'src/app/_layout.*'
+      : '**/*_layout.*';
 
   const isUsingExpoRouter = await getFilePath([expoLayoutPath]);
   const isUsingDefaultExpo = await getFilePath(['App.*']);
   return isUsingExpoRouter
     ? 'expo-router'
     : isUsingDefaultExpo
-    ? 'expo-default'
-    : undefined;
+      ? 'expo-default'
+      : undefined;
 }
 
 async function isExpoSDK50(cwd: string): Promise<boolean> {
@@ -91,9 +88,21 @@ async function initNatiwindExpoApp(
   permission: boolean
 ) {
   try {
-    execSync('npx expo install babel-plugin-module-resolver', {
-      stdio: 'inherit',
-    });
+    // Use the configured package manager instead of hardcoded npx expo install
+    const packageManager = config.packageManager || 'npm';
+    const commands: { [key: string]: string } = {
+      npm: 'npm install babel-plugin-module-resolver',
+      yarn: 'yarn add babel-plugin-module-resolver',
+      pnpm: 'pnpm add babel-plugin-module-resolver',
+      bun: 'bun add babel-plugin-module-resolver',
+    };
+
+    const installCommand = commands[packageManager];
+    if (installCommand) {
+      execSync(installCommand, {
+        stdio: 'inherit',
+      });
+    }
     await commonInitialization(config.expoProject, resolvedConfig, permission);
   } catch (err) {
     throw new Error((err as Error).message);
