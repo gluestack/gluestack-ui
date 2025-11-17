@@ -183,6 +183,10 @@ module.exports = {
           light: '#FBFBFB',
           dark: '#181719',
         },
+        accent: {
+          DEFAULT: 'rgb(var(--color-accent)/<alpha-value>)',
+          foreground: 'rgb(var(--color-accent-foreground)/<alpha-value>)',
+        },
         indicator: {
           primary: 'rgb(var(--color-indicator-primary)/<alpha-value>)',
           info: 'rgb(var(--color-indicator-info)/<alpha-value>)',
@@ -201,6 +205,9 @@ module.exports = {
           800: 'rgb(var(--color-brand-800)/<alpha-value>)',
           900: 'rgb(var(--color-brand-900)/<alpha-value>)',
           950: 'rgb(var(--color-brand-950)/<alpha-value>)',
+        },
+        input: {
+          DEFAULT: 'rgb(var(--color-input)/<alpha-value>)',
         },
       },
       border: 'hsl(var(--border))',

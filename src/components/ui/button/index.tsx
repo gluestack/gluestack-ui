@@ -46,7 +46,7 @@ const buttonStyle = tva({
         'border bg-background shadow-xs data-[hover=true]:bg-accent data-[hover=true]:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
       secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
       ghost:
-        'data-[hover=true]:bg-accent data-[hover=true]:text-accent-foreground dark:hover:bg-accent/50',
+        'data-[hover=true]:bg-accent  dark:hover:bg-accent/50',
       link: 'text-primary underline-offset-4 data-[hover=true]:underline',
     },
     size: {
@@ -67,7 +67,7 @@ const buttonTextStyle = tva({
         'text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
       secondary: 'text-secondary-foreground',
       ghost:
-        'text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
+        'data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
       link: 'text-primary data-[hover=true]:underline data-[active=true]:underline',
     },
     size: {

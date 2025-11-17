@@ -184,6 +184,9 @@ export const config = {
     '--color-border': '212 212 212',
     '--color-input': '212 212 212',
     '--color-ring': '212 212 212',
+
+    '--color-accent': '247 247 247',
+    '--color-accent-foreground': '52 52 52',
   }),
   'dark': vars({
     '--color-primary-0': '166 166 166',
