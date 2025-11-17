@@ -217,6 +217,8 @@ export const config = {
     '--color-secondary-800': '135 135 135',
     '--color-secondary-900': '150 150 150',
     '--color-secondary-950': '164 164 164',
+    '--color-secondary': '39 39 42',
+    '--color-secondary-foreground': '250 250 250',
 
     /* Tertiary */
     '--color-tertiary-0': '84 49 18',
@@ -356,6 +358,6 @@ export const config = {
     '--color-brand-900': '220 252 231',
     '--color-brand-950': '240 253 244',
   }),
-
+  '--color-border': '228 228 231',
   '--color-foreground': '250 250 250',
 };

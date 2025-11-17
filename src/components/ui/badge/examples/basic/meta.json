@@ -5,23 +5,11 @@
       "control": {
         "type": "select"
       },
-      "options": ["solid", "outline"],
-      "defaultValue": "solid"
-    },
-    "action": {
-      "control": {
-        "type": "select"
-      },
-      "options": ["error", "warning", "success", "info", "muted"],
-      "defaultValue": "muted"
-    },
-    "size": {
-      "control": {
-        "type": "select"
-      },
-      "options": ["sm", "md", "lg"],
-      "defaultValue": "lg"
+      "options": ["default", "secondary", "destructive", "outline"],
+      "defaultValue": "default"
     }
+   
+   
   },
   "reactLive": {
     "Badge": "@/components/ui/badge",

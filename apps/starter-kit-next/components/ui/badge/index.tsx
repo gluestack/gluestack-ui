@@ -14,42 +14,27 @@ import { Svg } from 'react-native-svg';
 const SCOPE = 'BADGE';
 
 const badgeStyle = tva({
-  base: 'flex-row items-center rounded-sm data-[disabled=true]:opacity-50 px-2 py-1',
+  base: 'flex-row items-center justify-center rounded-full border px-2 py-0.5 w-fit shrink-0 gap-1 overflow-hidden transition-colors focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
   variants: {
-    action: {
-      error: 'bg-background-error border-error-300',
-      warning: 'bg-background-warning border-warning-300',
-      success: 'bg-background-success border-success-300',
-      info: 'bg-background-info border-info-300',
-      muted: 'bg-background-muted border-background-300',
-    },
     variant: {
-      solid: '',
-      outline: 'border',
-    },
-    size: {
-      sm: '',
-      md: '',
-      lg: '',
+      default: 'border-transparent bg-primary',
+      secondary: 'border-transparent bg-secondary',
+      destructive:
+        'border-transparent bg-destructive focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+      outline: 'border border-border',
     },
   },
 });
 
 const badgeTextStyle = tva({
-  base: 'text-typography-700 font-body font-normal tracking-normal uppercase',
+  base: 'text-xs font-medium whitespace-nowrap',
 
   parentVariants: {
-    action: {
-      error: 'text-error-600',
-      warning: 'text-warning-600',
-      success: 'text-success-600',
-      info: 'text-info-600',
-      muted: 'text-background-800',
-    },
-    size: {
-      sm: 'text-2xs',
-      md: 'text-xs',
-      lg: 'text-sm',
+    variant: {
+      default: 'text-primary-foreground',
+      secondary: 'text-secondary-foreground',
+      destructive: 'text-white',
+      outline: 'text-foreground',
     },
   },
   variants: {
@@ -78,19 +63,13 @@ const badgeTextStyle = tva({
 });
 
 const badgeIconStyle = tva({
-  base: 'fill-none',
+  base: 'fill-none h-3 w-3 pointer-events-none',
   parentVariants: {
-    action: {
-      error: 'text-error-600',
-      warning: 'text-warning-600',
-      success: 'text-success-600',
-      info: 'text-info-600',
-      muted: 'text-background-800',
-    },
-    size: {
-      sm: 'h-3 w-3',
-      md: 'h-3.5 w-3.5',
-      lg: 'h-4 w-4',
+    variant: {
+      default: 'text-primary-foreground',
+      secondary: 'text-secondary-foreground',
+      destructive: 'text-white',
+      outline: 'text-foreground',
     },
   },
 });
@@ -114,20 +93,16 @@ type IBadgeProps = React.ComponentPropsWithoutRef<typeof ContextView> &
   VariantProps<typeof badgeStyle>;
 function Badge({
   children,
-  action = 'muted',
-  variant = 'solid',
-  size = 'md',
+  variant = 'default',
   className,
   ...props
 }: { className?: string } & IBadgeProps) {
   return (
     <ContextView
-      className={badgeStyle({ action, variant, class: className })}
+      className={badgeStyle({ variant, class: className })}
       {...props}
       context={{
-        action,
         variant,
-        size,
       }}
     >
       {children}
@@ -141,17 +116,15 @@ type IBadgeTextProps = React.ComponentPropsWithoutRef<typeof Text> &
 const BadgeText = React.forwardRef<
   React.ComponentRef<typeof Text>,
   IBadgeTextProps
->(function BadgeText({ children, className, size, ...props }, ref) {
-  const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
+>(function BadgeText({ children, className, ...props }, ref) {
+  const { variant: parentVariant } = useStyleContext(SCOPE);
   return (
     <Text
       ref={ref}
       className={badgeTextStyle({
         parentVariants: {
-          size: parentSize,
-          action: parentAction,
+          variant: parentVariant,
         },
-        size,
         class: className,
       })}
       {...props}
@@ -168,7 +141,7 @@ const BadgeIcon = React.forwardRef<
   React.ComponentRef<typeof Svg>,
   IBadgeIconProps
 >(function BadgeIcon({ className, size, ...props }, ref) {
-  const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
+  const { variant: parentVariant } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
     return (
@@ -195,10 +168,8 @@ const BadgeIcon = React.forwardRef<
     <UIIcon
       className={badgeIconStyle({
         parentVariants: {
-          size: parentSize,
-          action: parentAction,
+          variant: parentVariant,
         },
-        size,
         class: className,
       })}
       {...props}
