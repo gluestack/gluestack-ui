@@ -1267,21 +1267,6 @@
   dependencies:
     tslib "^2.8.0"
 
-"@gluestack-ui/core@^3.0.12":
-  version "3.0.12"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/core/-/core-3.0.12.tgz#e8ec8aca7d960979b54b8ae24346e01ded86f1fa"
-  integrity sha512-TyNjDUJrZF/FTqcSEPBR87wZQ3yvbWuTjn0tG5AFYzYfMCw0IpfTigmzoajN9KHensN0xNwHoAkXKaHlhy11yQ==
-
-"@gluestack-ui/utils@^3.0.12":
-  version "3.0.12"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-3.0.12.tgz#528b1443465a8f3e71d99d1e2ef46767f8f4a21b"
-  integrity sha512-3nuyw11zpcuux2gJkM00ZLTgSv/0AeGfW3X7mgTzJRHMQp0LMao7d+aRDN4CRG2oZqndEzGGZoqHBLNejOhbXA==
-  dependencies:
-    dom-helpers "^6.0.1"
-    react-aria "^3.41.1"
-    react-stately "^3.39.0"
-    tailwind-variants "0.1.20"
-
 "@humanfs/core@^0.19.1":
   version "0.19.1"
   resolved "https://registry.yarnpkg.com/@humanfs/core/-/core-0.19.1.tgz#17c55ca7d426733fe3c561906b8173c336b40a77"
@@ -8521,7 +8506,7 @@ tailwind-merge@^1.14.0:
   resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-1.14.0.tgz#e677f55d864edc6794562c63f5001f45093cdb8b"
   integrity sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==
 
-tailwind-variants@0.1.20, tailwind-variants@^0.1.20:
+tailwind-variants@^0.1.20:
   version "0.1.20"
   resolved "https://registry.yarnpkg.com/tailwind-variants/-/tailwind-variants-0.1.20.tgz#8aaed9094be0379a438641a42d588943e44c5fcd"
   integrity sha512-AMh7x313t/V+eTySKB0Dal08RHY7ggYK0MSn/ad8wKWOrDUIzyiWNayRUm2PIJ4VRkvRnfNuyRuKbLV3EN+ewQ==
