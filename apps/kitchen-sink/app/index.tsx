@@ -162,7 +162,6 @@ export default function ComponentList() {
         renderItem={renderCategoryItem}
         ListHeaderComponent={<Header />}
         keyExtractor={(item) => item.category}
-        contentContainerStyle={{ paddingVertical: 20 }}
         showsVerticalScrollIndicator={false}
         removeClippedSubviews={true}
         maxToRenderPerBatch={3}
