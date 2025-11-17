@@ -2,7 +2,7 @@
 import { vars } from 'nativewind';
 
 export const config = {
-  light: vars({
+  'light': vars({
     '--color-primary-0': '179 179 179',
     '--color-primary-50': '153 153 153',
     '--color-primary-100': '128 128 128',
@@ -15,6 +15,9 @@ export const config = {
     '--color-primary-800': '13 13 13',
     '--color-primary-900': '10 10 10',
     '--color-primary-950': '8 8 8',
+    //new tokens form schadcn
+    '--color-primary': '23 23 23',
+    '--color-primary-foreground': '250 250 250',
 
     /* Secondary  */
     '--color-secondary-0': '253 253 253',
@@ -29,6 +32,8 @@ export const config = {
     '--color-secondary-800': '177 177 177',
     '--color-secondary-900': '165 164 164',
     '--color-secondary-950': '157 157 157',
+    '--color-secondary': '245 245 245',
+    '--color-secondary-foreground': '23 23 23',
 
     /* Tertiary */
     '--color-tertiary-0': '255 250 245',
@@ -153,8 +158,34 @@ export const config = {
     '--color-indicator-primary': '55 55 55',
     '--color-indicator-info': '83 153 236',
     '--color-indicator-error': '185 28 28',
+
+    /* Brand - Custom Token Example */
+    '--color-brand-0': '240 253 244',
+    '--color-brand-50': '220 252 231',
+    '--color-brand-100': '187 247 208',
+    '--color-brand-200': '134 239 172',
+    '--color-brand-300': '74 222 128',
+    '--color-brand-400': '34 197 94',
+    '--color-brand-500': '22 163 74',
+    '--color-brand-600': '21 128 61',
+    '--color-brand-700': '22 101 52',
+    '--color-brand-800': '20 83 45',
+    '--color-brand-900': '20 83 45',
+    '--color-brand-950': '5 46 22',
+
+    '--color-muted': '0 0 0',
+    '--color-muted-foreground': '115 115 115',
+
+    '--color-destructive': '220 38 38',
+    '--color-destructive-foreground': '255 255 255',
+
+    '--color-foreground': '99 99 99',
+
+    '--color-border': '212 212 212',
+    '--color-input': '212 212 212',
+    '--color-ring': '212 212 212',
   }),
-  dark: vars({
+  'dark': vars({
     '--color-primary-0': '166 166 166',
     '--color-primary-50': '175 175 175',
     '--color-primary-100': '186 186 186',
@@ -167,6 +198,8 @@ export const config = {
     '--color-primary-800': '253 253 253',
     '--color-primary-900': '254 249 249',
     '--color-primary-950': '253 252 252',
+    '--color-primary-foreground': '23 23 23',
+    '--color-primary': '255 245 245',
 
     /* Secondary  */
     '--color-secondary-0': '20 20 20',
@@ -305,5 +338,21 @@ export const config = {
     '--color-indicator-primary': '247 247 247',
     '--color-indicator-info': '161 199 245',
     '--color-indicator-error': '232 70 69',
+
+    /* Brand - Custom Token Example */
+    '--color-brand-0': '5 46 22',
+    '--color-brand-50': '20 83 45',
+    '--color-brand-100': '20 83 45',
+    '--color-brand-200': '22 101 52',
+    '--color-brand-300': '21 128 61',
+    '--color-brand-400': '22 163 74',
+    '--color-brand-500': '34 197 94',
+    '--color-brand-600': '74 222 128',
+    '--color-brand-700': '134 239 172',
+    '--color-brand-800': '187 247 208',
+    '--color-brand-900': '220 252 231',
+    '--color-brand-950': '240 253 244',
   }),
+
+  '--color-foreground': '250 250 250',
 };

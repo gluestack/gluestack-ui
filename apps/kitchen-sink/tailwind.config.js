@@ -1,5 +1,3 @@
-
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: process.env.DARK_MODE ? process.env.DARK_MODE : 'class',
@@ -15,13 +13,18 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /(bg|border|text|stroke|fill)-(primary|secondary|tertiary|error|success|warning|info|typography|outline|background|indicator)-(0|50|100|200|300|400|500|600|700|800|900|950|white|gray|black|error|warning|muted|success|info|light|dark|primary)/,
+        /(bg|border|text|stroke|fill)-(primary|secondary|tertiary|error|success|warning|info|typography|outline|background|indicator|brand)-(0|50|100|200|300|400|500|600|700|800|900|950|white|gray|black|error|warning|muted|success|info|light|dark|primary|foreground)/,
+    },
+    {
+      pattern:
+        /(bg|border|text|stroke|fill)-(primary|secondary|tertiary|error|success|warning|info|typography|outline|background|indicator|brand)$/,
     },
   ],
   theme: {
     extend: {
       colors: {
         primary: {
+          DEFAULT: 'rgb(var(--color-primary)/<alpha-value>)',
           0: 'rgb(var(--color-primary-0)/<alpha-value>)',
           50: 'rgb(var(--color-primary-50)/<alpha-value>)',
           100: 'rgb(var(--color-primary-100)/<alpha-value>)',
@@ -34,6 +37,14 @@ module.exports = {
           800: 'rgb(var(--color-primary-800)/<alpha-value>)',
           900: 'rgb(var(--color-primary-900)/<alpha-value>)',
           950: 'rgb(var(--color-primary-950)/<alpha-value>)',
+          foreground: 'rgb(var(--color-primary-foreground)/<alpha-value>)',
+        },
+        destructive: {
+          DEFAULT: 'rgb(var(--color-destructive)/<alpha-value>)',
+          foreground: 'rgb(var(--color-destructive-foreground)/<alpha-value>)',
+        },
+        input: {
+          DEFAULT: 'rgb(var(--color-input)/<alpha-value>)',
         },
         secondary: {
           0: 'rgb(var(--color-secondary-0)/<alpha-value>)',
@@ -48,6 +59,8 @@ module.exports = {
           800: 'rgb(var(--color-secondary-800)/<alpha-value>)',
           900: 'rgb(var(--color-secondary-900)/<alpha-value>)',
           950: 'rgb(var(--color-secondary-950)/<alpha-value>)',
+          DEFAULT: 'rgb(var(--color-secondary)/<alpha-value>)',
+          foreground: 'rgb(var(--color-secondary-foreground)/<alpha-value>)',
         },
         tertiary: {
           50: 'rgb(var(--color-tertiary-50)/<alpha-value>)',
@@ -175,15 +188,32 @@ module.exports = {
           info: 'rgb(var(--color-indicator-info)/<alpha-value>)',
           error: 'rgb(var(--color-indicator-error)/<alpha-value>)',
         },
+        brand: {
+          0: 'rgb(var(--color-brand-0)/<alpha-value>)',
+          50: 'rgb(var(--color-brand-50)/<alpha-value>)',
+          100: 'rgb(var(--color-brand-100)/<alpha-value>)',
+          200: 'rgb(var(--color-brand-200)/<alpha-value>)',
+          300: 'rgb(var(--color-brand-300)/<alpha-value>)',
+          400: 'rgb(var(--color-brand-400)/<alpha-value>)',
+          500: 'rgb(var(--color-brand-500)/<alpha-value>)',
+          600: 'rgb(var(--color-brand-600)/<alpha-value>)',
+          700: 'rgb(var(--color-brand-700)/<alpha-value>)',
+          800: 'rgb(var(--color-brand-800)/<alpha-value>)',
+          900: 'rgb(var(--color-brand-900)/<alpha-value>)',
+          950: 'rgb(var(--color-brand-950)/<alpha-value>)',
+        },
       },
+      border: 'hsl(var(--border))',
+      input: 'hsl(var(--input))',
+      ring: 'hsl(var(--ring))',
       fontFamily: {
-        heading: undefined,
-        body: undefined,
-        mono: undefined,
-        jakarta: ['var(--font-plus-jakarta-sans)'],
-        roboto: ['var(--font-roboto)'],
-        code: ['var(--font-source-code-pro)'],
-        inter: ['var(--font-inter)'],
+        'heading': undefined,
+        'body': undefined,
+        'mono': undefined,
+        'jakarta': ['var(--font-plus-jakarta-sans)'],
+        'roboto': ['var(--font-roboto)'],
+        'code': ['var(--font-source-code-pro)'],
+        'inter': ['var(--font-inter)'],
         'space-mono': ['var(--font-space-mono)'],
       },
       fontWeight: {
@@ -204,5 +234,5 @@ module.exports = {
         'soft-4': '0px 0px 40px rgba(38, 38, 38, 0.1)',
       },
     },
-  }
+  },
 };

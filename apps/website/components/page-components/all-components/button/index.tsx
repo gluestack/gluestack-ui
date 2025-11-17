@@ -7,7 +7,7 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Button variant="{{variant}}" size="{{size}}" action="{{action}}">
+    <Button variant="{{variant}}" size="{{size}}">
         <ButtonText>Click me</ButtonText>
     </Button>
   )
@@ -18,35 +18,25 @@ export default function Example() {
       "type": "select"
     },
     "options": [
-      "solid",
+      "default",
+      "destructive",
       "outline",
+      "secondary",
+      "ghost",
       "link"
     ],
-    "defaultValue": "solid"
-  },
-  "action": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "primary",
-      "secondary",
-      "positive",
-      "negative"
-    ],
-    "defaultValue": "primary"
+    "defaultValue": "default"
   },
   "size": {
     "control": {
       "type": "select"
     },
     "options": [
-      "xs",
+      "default",
       "sm",
-      "md",
       "lg"
     ],
-    "defaultValue": "md"
+    "defaultValue": "default"
   }
 }}
       reactLive={{ Button, ButtonText }}
