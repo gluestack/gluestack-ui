@@ -122,9 +122,7 @@ const Header = React.memo(() => {
   return (
     <HStack className="bg-background-50/50 w-full mx-auto justify-between mb-5">
       <VStack className="w-full  md:max-w-[630px] lg:max-w-[400px] xl:max-w-[480px] mx-5 md:ml-8 mb-8 mt-10 lg:my-[44px] xl:ml-[80px] flex-1">
-        <Box
-          className="rounded-full border border-outline-100 dark:border-outline-200/50 py-4 px-5 mb-7 md:mb-9 lg:mb-[80px] xl:mb-[132px] items-center native:max-w-[250px] w-fit flex-row gap-2"
-        >
+        <Box className="rounded-full border border-outline-100 dark:border-outline-200/50 py-4 px-5 mb-7 md:mb-9 lg:mb-[80px] xl:mb-[132px] items-center native:max-w-[250px] w-fit flex-row gap-2">
           <Image
             source={{
               uri:
@@ -224,7 +222,7 @@ export default function ComponentList() {
         updateCellsBatchingPeriod={50}
         initialNumToRender={2}
         windowSize={5}
-        contentContainerClassName='gap-5'
+        contentContainerClassName="gap-5"
       />
     </SafeAreaView>
   );
