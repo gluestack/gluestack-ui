@@ -23,6 +23,55 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        foreground: 'rgb(var(--foreground) / <alpha-value>)',
+        card: {
+          DEFAULT: 'rgb(var(--card) / <alpha-value>)',
+          foreground: 'rgb(var(--card-foreground) / <alpha-value>)',
+        },
+        popover: {
+          DEFAULT: 'rgb(var(--popover) / <alpha-value>)',
+          foreground: 'rgb(var(--popover-foreground) / <alpha-value>)',
+        },
+        muted: {
+          DEFAULT: 'rgb(var(--muted) / <alpha-value>)',
+          foreground: 'rgb(var(--muted-foreground) / <alpha-value>)',
+        },
+        destructive: {
+          DEFAULT: 'rgb(var(--destructive) / <alpha-value>)',
+        },
+        border: 'rgb(var(--border))',
+        input: 'rgb(var(--input))',
+        ring: 'rgb(var(--ring) / <alpha-value>)',
+
+        // Chart colors
+        chart: {
+          1: 'rgb(var(--chart-1) / <alpha-value>)',
+          2: 'rgb(var(--chart-2) / <alpha-value>)',
+          3: 'rgb(var(--chart-3) / <alpha-value>)',
+          4: 'rgb(var(--chart-4) / <alpha-value>)',
+          5: 'rgb(var(--chart-5) / <alpha-value>)',
+        },
+
+        // Sidebar colors
+        sidebar: {
+          'DEFAULT': 'rgb(var(--sidebar) / <alpha-value>)',
+          'foreground': 'rgb(var(--sidebar-foreground) / <alpha-value>)',
+          'primary': 'rgb(var(--sidebar-primary) / <alpha-value>)',
+          'primary-foreground':
+            'rgb(var(--sidebar-primary-foreground) / <alpha-value>)',
+          'accent': 'rgb(var(--sidebar-accent) / <alpha-value>)',
+          'accent-foreground':
+            'rgb(var(--sidebar-accent-foreground) / <alpha-value>)',
+          'border': 'rgb(var(--sidebar-border))',
+          'ring': 'rgb(var(--sidebar-ring) / <alpha-value>)',
+        },
+
+        /* ===================================
+         * GLUESTACK UI TOKENS (original)
+         * ===================================
+         * These are the ORIGINAL Gluestack design tokens
+         * Keep these for Gluestack components to work
+         */
         primary: {
           DEFAULT: 'rgb(var(--color-primary)/<alpha-value>)',
           0: 'rgb(var(--color-primary-0)/<alpha-value>)',
@@ -39,16 +88,7 @@ module.exports = {
           950: 'rgb(var(--color-primary-950)/<alpha-value>)',
           foreground: 'rgb(var(--color-primary-foreground)/<alpha-value>)',
         },
-        destructive: {
-          DEFAULT: 'rgb(var(--color-destructive)/<alpha-value>)',
-          foreground: 'rgb(var(--color-destructive-foreground)/<alpha-value>)',
-        },
-        input: {
-          DEFAULT: 'rgb(var(--color-input)/<alpha-value>)',
-        },
-        foreground: {
-          DEFAULT: 'rgb(var(--color-foreground)/<alpha-value>)',
-        },
+
         secondary: {
           0: 'rgb(var(--color-secondary-0)/<alpha-value>)',
           50: 'rgb(var(--color-secondary-50)/<alpha-value>)',
@@ -211,9 +251,6 @@ module.exports = {
           950: 'rgb(var(--color-brand-950)/<alpha-value>)',
         },
       },
-      border: 'hsl(var(--border))',
-      input: 'hsl(var(--input))',
-      ring: 'hsl(var(--ring))',
       fontFamily: {
         'heading': undefined,
         'body': undefined,

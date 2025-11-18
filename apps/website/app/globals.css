@@ -2,129 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --radius: 0.625rem;
+    /* RGB format for cross-platform compatibility */
+    --background: 255 255 255;
+    --foreground: 10 10 10;
+    --card: 255 255 255;
+    --card-foreground: 10 10 10;
+    --popover: 255 255 255;
+    --popover-foreground: 10 10 10;
+    --primary: 24 24 24;
+    --primary-foreground: 250 250 250;
+    --secondary: 245 245 245;
+    --secondary-foreground: 24 24 24;
+    --muted: 245 245 245;
+    --muted-foreground: 115 115 115;
+    --accent: 245 245 245;
+    --accent-foreground: 24 24 24;
+    --destructive: 220 38 38;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 163 163 163;
+    --chart-1: 234 88 12;
+    --chart-2: 59 130 246;
+    --chart-3: 99 102 241;
+    --chart-4: 250 204 21;
+    --chart-5: 251 146 60;
+    --sidebar: 250 250 250;
+    --sidebar-foreground: 10 10 10;
+    --sidebar-primary: 24 24 24;
+    --sidebar-primary-foreground: 250 250 250;
+    --sidebar-accent: 245 245 245;
+    --sidebar-accent-foreground: 24 24 24;
+    --sidebar-border: 229 229 229;
+    --sidebar-ring: 163 163 163;
   }
-}
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .dark {
+    /* RGB format for cross-platform compatibility */
+    --background: 18 18 18;
+    --foreground: 250 250 250;
+    --card: 24 24 24;
+    --card-foreground: 250 250 250;
+    --popover: 24 24 24;
+    --popover-foreground: 250 250 250;
+    --primary: 229 229 229;
+    --primary-foreground: 24 24 24;
+    --secondary: 39 39 39;
+    --secondary-foreground: 250 250 250;
+    --muted: 39 39 39;
+    --muted-foreground: 163 163 163;
+    --accent: 39 39 39;
+    --accent-foreground: 250 250 250;
+    --destructive: 239 68 68;
+    --border: 255 255 255 / 0.1;
+    --input: 255 255 255 / 0.15;
+    --ring: 115 115 115;
+    --chart-1: 124 58 237;
+    --chart-2: 34 197 94;
+    --chart-3: 251 191 36;
+    --chart-4: 217 70 239;
+    --chart-5: 239 68 68;
+    --sidebar: 24 24 24;
+    --sidebar-foreground: 250 250 250;
+    --sidebar-primary: 124 58 237;
+    --sidebar-primary-foreground: 250 250 250;
+    --sidebar-accent: 39 39 39;
+    --sidebar-accent-foreground: 250 250 250;
+    --sidebar-border: 255 255 255 / 0.1;
+    --sidebar-ring: 115 115 115;
   }
-}
-
-
-/**
-  Follows the setup for react-native-web:
-  https://necolas.github.io/react-native-web/docs/setup/#root-element
-  Plus additional React Native scroll and text parity styles for various
-  browsers.
-  Force Next-generated DOM elements to fill their parent's height
-**/
-  html, body, #__next {
-    width: 100%;
-    /* To smooth any scrolling behavior */
-    -webkit-overflow-scrolling: touch;
-    margin: 0px;
-    padding: 0px;
-    /* Allows content to fill the viewport and go beyond the bottom */
-    min-height: 100%;
-}
-
-#__next {
-    flex-shrink: 0;
-    flex-basis: auto;
-    flex-direction: column;
-    flex-grow: 1;
-    display: flex;
-    flex: 1;
-}
-
-html {
-    /* Prevent text size change on orientation change https://gist.github.com/tfausak/2222823#file-ios-8-web-app-html-L138 */
-    -webkit-text-size-adjust: 100%;
-    height: 100%;
-}
-
-body {
-    display: flex;
-    /* Allows you to scroll below the viewport; default value is visible */
-    overflow-y: auto;
-    overscroll-behavior-y: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -ms-overflow-style: scrollbar;
-}
-
-#tab-list::-webkit-scrollbar {
-  display: none;
-  height: 2px;
-}
-
-#tab-list {
-  scrollbar-gutter: stable both-edge;
-}
-
-/* Works on Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 6px;
-  height: 8px;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-*::-webkit-scrollbar-corner {
-  background: transparent;
-}
-*::-webkit-scrollbar-thumb {
-  background-color: transparent;
-  /* border-radius: 20px;
-  border: 3px solid transparent; */
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-#heading-tabs::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-#heading-tabs {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-.light ::-webkit-scrollbar-thumb {
-  background-color: transparent;
-  /* border-radius: 20px; */
-  /* border: 3px solid transparent; */
-}
-.dark ::-webkit-scrollbar-thumb {
-  background-color: transparent;
-  /* border-radius: 20px; */
-  /* border: 3px solid transparent; */
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-/* For IE, Edge and Firefox */
-.scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }
