@@ -17,12 +17,10 @@ export default function Example() {
       code={`function Example() {
   return (
     <Accordion
-      size="{{size}}"
-      variant="{{variant}}"
-      type="{{type}}"
-      isCollapsible={ {{isCollapsible}} }
-      isDisabled={ {{isDisabled}} }
-      className="m-5 w-[90%] border border-outline-200"
+      type="single"
+      isCollapsible={ true }
+      isDisabled={ false }
+      className="m-5 w-[90%]"
     >
       <AccordionItem value="a">
         <AccordionHeader>
@@ -81,51 +79,7 @@ export default function Example() {
     </Accordion>
   )
 }`}
-      argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  },
-  "variant": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "filled",
-      "unfilled"
-    ],
-    "defaultValue": "filled"
-  },
-  "type": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "single",
-      "multiple"
-    ],
-    "defaultValue": "single"
-  },
-  "isCollapsible": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": true
-  },
-  "isDisabled": {
-    "control": {
-      "type": "boolean"
-    },
-    "defaultValue": false
-  }
-}}
+      argTypes={{}}
       reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, ChevronDownIcon, ChevronUpIcon }}
     />
   );
