@@ -33,7 +33,7 @@ const CustomBackButton = () => {
 };
 
 export default function RootLayout() {
-  const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
+  const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('dark');
   const pathname = usePathname();
   const handleColorMode = () => {
     setColorMode((prevMode: string) =>
@@ -42,14 +42,16 @@ export default function RootLayout() {
   };
   return (
     <>
-          <StatusBar
-            style="auto" //android
-            backgroundColor={`${colorMode == 'light' ? '#F6F6F6' : '#272625'}`}
-          />
+      <StatusBar
+        style="auto" //android
+        backgroundColor={`${colorMode == 'light' ? '#F6F6F6' : '#272625'}`}
+      />
       <ColorModeContext.Provider value={{ colorMode }}>
         <GluestackUIProvider mode={colorMode}>
           <Stack
             screenOptions={{
+              animation: 'slide_from_right',
+              animationMatchesGesture: true,
               headerStyle: {
                 backgroundColor: colorMode === 'light' ? '#FFFFFF' : '#000',
               },

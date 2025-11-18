@@ -8,13 +8,15 @@ import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { getAllComponents } from '@/utils/getComponents';
 import { usePathname, useRouter } from 'expo-router';
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useMemo, useCallback } from 'react';
 import { FlatList, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ColorModeContext } from './_layout';
 
 const components = getAllComponents();
-const ComponentCard = ({ component, onPress }: any) => {
+
+// Memoized ComponentCard to prevent unnecessary re-renders
+const ComponentCard = React.memo(({ component, onPress }: any) => {
   const { colorMode }: any = useContext(ColorModeContext);
   return (
     <Pressable
@@ -46,8 +48,10 @@ const ComponentCard = ({ component, onPress }: any) => {
       </HStack>
     </Pressable>
   );
-};
-const Header = () => {
+});
+
+// Memoized Header to prevent unnecessary re-renders
+const Header = React.memo(() => {
   const { colorMode }: any = useContext(ColorModeContext);
   return (
     <HStack className="bg-background-50 w-full mx-auto justify-between">
@@ -80,35 +84,38 @@ const Header = () => {
       </VStack>
       <VStack className="hidden lg:flex flex-1 max-h-[510px] h-full aspect-[1075/510]">
         <Image
-          source={{
-            uri:
-              colorMode === 'light'
-                ? 'https://i.imgur.com/sxY9qxx.png'
-                : 'https://i.imgur.com/icZHMep.png',
-          }}
+          source={
+            colorMode === 'light'
+              ? require('../assets/images/header-light.webp')
+              : require('../assets/images/header-dark.webp')
+          }
           alt="header_image"
           className="h-full w-full"
         />
       </VStack>
     </HStack>
   );
-};
+});
 export default function ComponentList() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleComponentPress = (componentPath: string) => {
-    // Use Expo Router's built-in navigation state check
-    const targetPath = `components/${componentPath}`;
+  // Memoize handleComponentPress to prevent unnecessary re-creations
+  const handleComponentPress = useCallback(
+    (componentPath: string) => {
+      // Use Expo Router's built-in navigation state check
+      const targetPath = `components/${componentPath}`;
 
-    // Prevent navigation if we're already on the target path or if navigation is in progress
-    if (pathname.includes(targetPath)) {
-      return;
-    }
+      // Prevent navigation if we're already on the target path or if navigation is in progress
+      if (pathname.includes(targetPath)) {
+        return;
+      }
 
-    // Use replace instead of push to prevent stack accumulation on rapid clicks
-    router.push(`/components/${componentPath}` as any);
-  };
+      // Use replace instead of push to prevent stack accumulation on rapid clicks
+      router.push(`/components/${componentPath}` as any);
+    },
+    [pathname, router]
+  );
 
   // Filter out bottomsheet components and components without paths
   const filteredComponents = useMemo(
@@ -127,32 +134,36 @@ export default function ComponentList() {
     []
   );
 
-  const renderCategoryItem = ({ item: category }: any) => (
-    <Box className="mt-4 border-b border-outline-100 pb-8 px-5 md:px-20">
-      <Heading size="lg" className="text-typography-900 mb-4">
-        {category.category}
-      </Heading>
-      <Grid
-        className="gap-5"
-        _extra={{
-          className: 'grid-cols-2 md:grid-cols-4 xl:grid-cols-6',
-        }}
-      >
-        {category.components.map((component: any) => (
-          <GridItem
-            _extra={{
-              className: 'col-span-1',
-            }}
-            key={component.name}
-          >
-            <ComponentCard
-              component={component}
-              onPress={() => handleComponentPress(component.path!)}
-            />
-          </GridItem>
-        ))}
-      </Grid>
-    </Box>
+  // Memoize renderCategoryItem to prevent unnecessary re-creations
+  const renderCategoryItem = useCallback(
+    ({ item: category }: any) => (
+      <Box className="mt-4 border-b border-outline-100 pb-8 px-5 md:px-20">
+        <Heading size="lg" className="text-typography-900 mb-4">
+          {category.category}
+        </Heading>
+        <Grid
+          className="gap-5"
+          _extra={{
+            className: 'grid-cols-2 md:grid-cols-4 xl:grid-cols-6',
+          }}
+        >
+          {category.components.map((component: any) => (
+            <GridItem
+              _extra={{
+                className: 'col-span-1',
+              }}
+              key={component.name}
+            >
+              <ComponentCard
+                component={component}
+                onPress={() => handleComponentPress(component.path!)}
+              />
+            </GridItem>
+          ))}
+        </Grid>
+      </Box>
+    ),
+    [handleComponentPress]
   );
 
   return (
