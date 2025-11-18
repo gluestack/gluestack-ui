@@ -23,15 +23,15 @@ const accordionItemStyle = tva({
 });
 
 const accordionTitleTextStyle = tva({
-  base: 'text-typography-900 font-medium flex-1 text-left text-sm',
+  base: 'text-foreground font-medium flex-1 text-left text-sm',
 });
 
 const accordionIconStyle = tva({
-  base: 'text-typography-900 fill-none h-[16px] w-[16px]',
+  base: 'text-muted-foreground fill-none h-[16px] w-[16px]',
 });
 
 const accordionContentTextStyle = tva({
-  base: 'text-typography-700 text-sm font-normal ',
+  base: 'text-foreground text-sm font-normal ',
 });
 
 const accordionHeaderStyle = tva({

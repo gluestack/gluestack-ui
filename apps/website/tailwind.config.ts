@@ -49,6 +49,10 @@ module.exports = {
         foreground: {
           DEFAULT: 'rgb(var(--color-foreground)/<alpha-value>)',
         },
+        muted: {
+          DEFAULT: 'rgb(var(--color-muted)/<alpha-value>)',
+          foreground: 'rgb(var(--color-muted-foreground)/<alpha-value>)',
+        },
         secondary: {
           0: 'rgb(var(--color-secondary-0)/<alpha-value>)',
           50: 'rgb(var(--color-secondary-50)/<alpha-value>)',
@@ -195,6 +199,9 @@ module.exports = {
           primary: 'rgb(var(--color-indicator-primary)/<alpha-value>)',
           info: 'rgb(var(--color-indicator-info)/<alpha-value>)',
           error: 'rgb(var(--color-indicator-error)/<alpha-value>)',
+        },
+        border: {
+          DEFAULT: 'rgb(var(--color-border)/<alpha-value>)',
         },
         brand: {
           0: 'rgb(var(--color-brand-0)/<alpha-value>)',

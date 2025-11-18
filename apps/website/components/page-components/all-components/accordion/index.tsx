@@ -49,7 +49,7 @@ export default function Example() {
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-      <Divider />
+      <Divider className="bg-border" />
       <AccordionItem value="b">
         <AccordionHeader>
           <AccordionTrigger>

@@ -182,7 +182,7 @@ export const config = {
 
     '--color-foreground': '9 9 11',
 
-    '--color-border': '228 228 231',
+    '--color-border': '229 229 229',
     '--color-input': '229 229 229',
     '--color-ring': '212 212 212',
 
@@ -365,5 +365,9 @@ export const config = {
 
     '--color-accent': '38 38 38',
     '--color-accent-foreground': '250 250 250',
+
+    '--color-muted': '250 250 250',
+    '--color-muted-foreground': '161 161 161',
+
   }),
 };
