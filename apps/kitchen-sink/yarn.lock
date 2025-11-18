@@ -1497,6 +1497,18 @@
   resolved "https://registry.yarnpkg.com/@legendapp/tools/-/tools-2.0.1.tgz#995fe6cb3e2398b939f645505aa8e1abc84bd07f"
   integrity sha512-Kxt0HWvWElRK6oybHRzcYxdgaKGwuaiRNreS7usW7QuHXRIHaH4yMcW2YNRG4DHE5fpefv+Bno/BohQcCE4FaA==
 
+"@lottiefiles/dotlottie-react@^0.17.7":
+  version "0.17.7"
+  resolved "https://registry.npmjs.org/@lottiefiles/dotlottie-react/-/dotlottie-react-0.17.7.tgz#a8188494b3df181bdd040f61a1caf05835c1ef30"
+  integrity sha512-A6wO3zqkDx/t0ULfctcr1Bmb1f1hc4zUV3NcbKQOsBGAOIx1vABV/fRabFYElvbJl9lmOR24yMh//Z0fvvJV+Q==
+  dependencies:
+    "@lottiefiles/dotlottie-web" "0.56.0"
+
+"@lottiefiles/dotlottie-web@0.56.0":
+  version "0.56.0"
+  resolved "https://registry.npmjs.org/@lottiefiles/dotlottie-web/-/dotlottie-web-0.56.0.tgz#30805035885d8ce43927c7007962736002b2e442"
+  integrity sha512-bWHRIGzjZs3Hjkz0JRsCMX2ya9a1tGU4atdrlfM3UoN0iamsDE64kSCMfGuchCwGAxg0xEh84CkF+SVV1NU9ow==
+
 "@napi-rs/wasm-runtime@^0.2.11":
   version "0.2.12"
   resolved "https://registry.yarnpkg.com/@napi-rs/wasm-runtime/-/wasm-runtime-0.2.12.tgz#3e78a8b96e6c33a6c517e1894efbd5385a7cb6f2"
@@ -6355,6 +6367,11 @@ loose-envify@^1.0.0, loose-envify@^1.4.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+lottie-react-native@^7.3.4:
+  version "7.3.4"
+  resolved "https://registry.npmjs.org/lottie-react-native/-/lottie-react-native-7.3.4.tgz#774bc028e2b93dd88cd87ab84ac51a1c3e015cad"
+  integrity sha512-XUh7eGFb7ID8JRdU6U4N4cYQeYmjtdQRvd8ZXJ6xrdSsn5gZD0c79ITOREPcwJg4YupBFHgyV1GXdAHQP+KYUQ==
 
 lru-cache@^10.0.1, lru-cache@^10.2.0:
   version "10.4.3"

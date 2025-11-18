@@ -15,7 +15,7 @@ import React, {
   useMemo,
   useRef,
 } from 'react';
-import { Animated, FlatList, Pressable } from 'react-native';
+import { Animated, FlatList, Platform, Pressable } from 'react-native';
 import { ColorModeContext } from './_layout';
 
 const components = getAllComponents();
@@ -25,7 +25,7 @@ const ComponentCard = React.memo(({ component, onPress }: any) => {
   const { colorMode }: any = useContext(ColorModeContext);
   return (
     <Pressable
-      className={`flex-1 rounded-xl border border-outline-100 dark:border-outline-200/50 p-4 w-full h-full sm:gap-2 gap-1 flex flex-col lg:p-4 ${
+      className={`flex-1 rounded-xl border border-outline-100 p-4 w-full h-full sm:gap-2 gap-1 flex flex-col lg:p-4 ${
         colorMode === 'light'
           ? 'lg:shadow-[0px_0px_4.374px_0px_rgba(38,38,38,0.10)] data-[hover=true]:lg:border data-[hover=true]:border-outline-100'
           : 'lg:shadow-soft-1 lg:border border-outline-50 data-[hover=true]:border-outline-200'
@@ -65,13 +65,13 @@ const AnimatedCategoryItem = React.memo(
       Animated.parallel([
         Animated.timing(fadeAnim, {
           toValue: 1,
-          duration: 600,
+          duration: 300,
           delay: index * 100,
           useNativeDriver: true,
         }),
         Animated.timing(translateY, {
           toValue: 0,
-          duration: 600,
+          duration: 300,
           delay: index * 100,
           useNativeDriver: true,
         }),
@@ -86,7 +86,7 @@ const AnimatedCategoryItem = React.memo(
         }}
       >
         <Box className="pb-8 px-5 md:px-20 gap-1">
-          <Heading size="lg" className="text-typography-900 mb-4">
+          <Heading size="lg" className="text-typography-600 mb-4">
             {category.category}
           </Heading>
           <Grid
@@ -119,9 +119,9 @@ const AnimatedCategoryItem = React.memo(
 const Header = React.memo(() => {
   const { colorMode }: any = useContext(ColorModeContext);
   return (
-    <HStack className="bg-background-50 w-full mx-auto justify-between mb-5 rounded-b-[44px]     web:rounded-b-3xl">
-      <VStack className="w-full  md:max-w-[630px] lg:max-w-[400px] xl:max-w-[480px] mx-5 md:ml-8 mb-8 mt-2 lg:my-[44px] xl:ml-[80px] flex-1">
-        <Box className="rounded-full border border-outline-100 dark:border-outline-200/50 py-4 px-5 mb-7 md:mb-9 lg:mb-[80px] xl:mb-[132px] items-center native:max-w-[250px] w-fit flex-row gap-2">
+    <HStack className="bg-background-50 w-full mx-auto justify-between mb-5 web:rounded-b-3xl rounded-b-[28px] pt-safe">
+      <VStack className="w-full  md:max-w-[630px] lg:max-w-[400px] xl:max-w-[480px] mx-5 md:ml-8 mb-3 mt-6 lg:my-[44px] xl:ml-[80px] flex-1 px-1">
+        {/* <Box className="rounded-full border border-outline-100 dark:border-outline-200/50 py-4 px-5 mb-7 md:mb-9 lg:mb-[80px] xl:mb-[132px] items-center native:max-w-[250px] w-fit flex-row gap-2">
           <Image
             source={{
               uri:
@@ -135,7 +135,7 @@ const Header = React.memo(() => {
           <Text className="font-medium text-sm lg:text-base xl:text-lg text-typography-900">
             Powered by gluestack-ui v3
           </Text>
-        </Box>
+        </Box> */}
         <Heading className="mb-2 xl:mb-[18px] text-4xl lg:text-5xl xl:text-[56px]">
           Kitchensink app
         </Heading>
@@ -209,11 +209,12 @@ export default function ComponentList() {
   );
 
   return (
-    <Box className="flex-1 bg-background-0 py-safe">
+    <Box className="flex-1 bg-background-0 pb-safe">
       <FlatList
         data={filteredComponents}
         renderItem={renderCategoryItem}
         ListHeaderComponent={<Header />}
+        stickyHeaderIndices={Platform.OS!="web"?[0]:[]}
         keyExtractor={(item) => item.category}
         showsVerticalScrollIndicator={false}
         removeClippedSubviews={true}

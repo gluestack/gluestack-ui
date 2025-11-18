@@ -4,12 +4,15 @@ import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { Pressable } from 'react-native';
 import { ChevronLeftIcon, SunIcon, MoonIcon } from '@/components/ui/icon';
 import { Icon } from '@/components/ui/icon';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Fab } from '@/components/ui/fab';
 import { Text } from '@/components/ui/text';
+import { SplashScreen } from '@/components/custom/splash-screen';
+import * as SplashScreenExpo from 'expo-splash-screen';
 export const ColorModeContext = React.createContext({});
 
+SplashScreenExpo.preventAutoHideAsync();
 const capitalize = (str: string) => {
   return str
     .replace(/components\/(.*?)\/index/, '$1')
@@ -33,13 +36,29 @@ const CustomBackButton = () => {
 };
 
 export default function RootLayout() {
-  const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('dark');
+  const [isReady, setIsReady] = useState(false);
+  const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
   const pathname = usePathname();
   const handleColorMode = () => {
     setColorMode((prevMode: string) =>
       prevMode === 'light' ? 'dark' : 'light'
     );
   };
+  useEffect(() => {
+    // Hide the native splash screen immediately
+    SplashScreenExpo.hideAsync();
+
+    // Simulate loading time - replace with actual initialization logic
+    const timer = setTimeout(() => {
+      setIsReady(true);
+    }, 1800); // Show splash screen for 1.8 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!isReady) {
+    return <SplashScreen />;
+  }
   return (
     <>
       <StatusBar
