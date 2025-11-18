@@ -35,7 +35,7 @@ cssInterop(PrimitiveIcon, {
   },
 });
 const buttonStyle = tva({
-  base: 'group/button rounded flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2',
+  base: 'group/button rounded-md flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2',
   variants: {
     variant: {
       default:
@@ -43,10 +43,10 @@ const buttonStyle = tva({
       destructive:
         'bg-destructive text-white data-[hover=true]:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
       outline:
-        'border bg-background shadow-xs data-[hover=true]:bg-accent data-[hover=true]:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
-      secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        'border border-input bg-background shadow-xs data-[hover=true]:bg-accent data-[hover=true]:text-accent-foreground dark:bg-input/5 dark:border-input/15 dark:hover:bg-input/7',
+      secondary: 'bg-secondary text-secondary-foreground data-[hover=true]:bg-secondary/80',
       ghost:
-        'data-[hover=true]:bg-accent  dark:hover:bg-accent/50',
+        'data-[hover=true]:bg-accent  dark:data-[hover=true]:bg-accent/50',
       link: 'text-primary underline-offset-4 data-[hover=true]:underline',
     },
     size: {
@@ -67,7 +67,7 @@ const buttonTextStyle = tva({
         'text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
       secondary: 'text-secondary-foreground',
       ghost:
-        'data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
+        'text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
       link: 'text-primary data-[hover=true]:underline data-[active=true]:underline',
     },
     size: {

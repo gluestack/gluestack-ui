@@ -46,6 +46,9 @@ module.exports = {
         input: {
           DEFAULT: 'rgb(var(--color-input)/<alpha-value>)',
         },
+        foreground: {
+          DEFAULT: 'rgb(var(--color-foreground)/<alpha-value>)',
+        },
         secondary: {
           0: 'rgb(var(--color-secondary-0)/<alpha-value>)',
           50: 'rgb(var(--color-secondary-50)/<alpha-value>)',
@@ -175,6 +178,7 @@ module.exports = {
           800: 'rgb(var(--color-background-800)/<alpha-value>)',
           900: 'rgb(var(--color-background-900)/<alpha-value>)',
           950: 'rgb(var(--color-background-950)/<alpha-value>)',
+          DEFAULT: 'rgb(var(--color-background)/<alpha-value>)',
           error: 'rgb(var(--color-background-error)/<alpha-value>)',
           warning: 'rgb(var(--color-background-warning)/<alpha-value>)',
           muted: 'rgb(var(--color-background-muted)/<alpha-value>)',
@@ -182,6 +186,10 @@ module.exports = {
           info: 'rgb(var(--color-background-info)/<alpha-value>)',
           light: '#FBFBFB',
           dark: '#181719',
+        },
+        accent: {
+          DEFAULT: 'rgb(var(--color-accent)/<alpha-value>)',
+          foreground: 'rgb(var(--color-accent-foreground)/<alpha-value>)',
         },
         indicator: {
           primary: 'rgb(var(--color-indicator-primary)/<alpha-value>)',
@@ -215,6 +223,12 @@ module.exports = {
         'code': ['var(--font-source-code-pro)'],
         'inter': ['var(--font-inter)'],
         'space-mono': ['var(--font-space-mono)'],
+      },
+      borderRadius: {
+        sm: '6px', // calc(0.625rem - 4px) = 6px
+        md: '8px', // calc(0.625rem - 2px) = 8px
+        lg: '10px', // 0.625rem = 10px
+        xl: '14px', // calc(0.625rem + 4px) = 14px
       },
       fontWeight: {
         extrablack: '950',

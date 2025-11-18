@@ -210,7 +210,6 @@ module.exports = {
           900: 'rgb(var(--color-brand-900)/<alpha-value>)',
           950: 'rgb(var(--color-brand-950)/<alpha-value>)',
         },
-       
       },
       border: 'hsl(var(--border))',
       input: 'hsl(var(--input))',
@@ -224,6 +223,12 @@ module.exports = {
         'code': ['var(--font-source-code-pro)'],
         'inter': ['var(--font-inter)'],
         'space-mono': ['var(--font-space-mono)'],
+      },
+      borderRadius: {
+        sm: '6px', // calc(0.625rem - 4px) = 6px
+        md: '8px', // calc(0.625rem - 2px) = 8px
+        lg: '10px', // 0.625rem = 10px
+        xl: '14px', // calc(0.625rem + 4px) = 14px
       },
       fontWeight: {
         extrablack: '950',
