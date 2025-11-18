@@ -8,8 +8,14 @@ import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { getAllComponents } from '@/utils/getComponents';
 import { usePathname, useRouter } from 'expo-router';
-import React, { useContext, useMemo, useCallback } from 'react';
-import { FlatList, Pressable } from 'react-native';
+import React, {
+  useContext,
+  useMemo,
+  useCallback,
+  useRef,
+  useEffect,
+} from 'react';
+import { FlatList, Pressable, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ColorModeContext } from './_layout';
 
@@ -20,14 +26,14 @@ const ComponentCard = React.memo(({ component, onPress }: any) => {
   const { colorMode }: any = useContext(ColorModeContext);
   return (
     <Pressable
-      className={`flex-1 rounded-xl bg-background-0 w-full h-full sm:gap-2 gap-1 flex flex-col lg:p-4 ${
+      className={`flex-1 rounded-xl border border-outline-100 dark:border-outline-200/50 p-4 w-full h-full sm:gap-2 gap-1 flex flex-col lg:p-4 ${
         colorMode === 'light'
           ? 'lg:shadow-[0px_0px_4.374px_0px_rgba(38,38,38,0.10)] data-[hover=true]:lg:border data-[hover=true]:border-outline-100'
           : 'lg:shadow-soft-1 lg:border border-outline-50 data-[hover=true]:border-outline-200'
       }`}
       onPress={onPress}
     >
-      <Box className="rounded-lg bg-background-50 px-3 lg:px-6 py-[14px] lg:py-7 aspect-[17/12]">
+      <Box className="rounded-lg  px-3 lg:px-6 py-[14px] lg:py-7 aspect-[17/12]">
         <Image
           source={{
             uri: colorMode === 'light' ? component.url : component.darkUrl,
@@ -50,15 +56,74 @@ const ComponentCard = React.memo(({ component, onPress }: any) => {
   );
 });
 
+// Animated wrapper for category items
+const AnimatedCategoryItem = React.memo(
+  ({ category, handleComponentPress, index }: any) => {
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+    const translateY = useRef(new Animated.Value(30)).current;
+
+    useEffect(() => {
+      Animated.parallel([
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 600,
+          delay: index * 100,
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateY, {
+          toValue: 0,
+          duration: 600,
+          delay: index * 100,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }, []);
+
+    return (
+      <Animated.View
+        style={{
+          opacity: fadeAnim,
+          transform: [{ translateY }],
+        }}
+      >
+        <Box className="pb-8 px-5 md:px-20 gap-1">
+          <Heading size="lg" className="text-typography-900 mb-4">
+            {category.category}
+          </Heading>
+          <Grid
+            className="gap-5"
+            _extra={{
+              className: 'grid-cols-2 md:grid-cols-4 xl:grid-cols-6',
+            }}
+          >
+            {category.components.map((component: any) => (
+              <GridItem
+                _extra={{
+                  className: 'col-span-1',
+                }}
+                key={component.name}
+              >
+                <ComponentCard
+                  component={component}
+                  onPress={() => handleComponentPress(component.path!)}
+                />
+              </GridItem>
+            ))}
+          </Grid>
+        </Box>
+      </Animated.View>
+    );
+  }
+);
+
 // Memoized Header to prevent unnecessary re-renders
 const Header = React.memo(() => {
   const { colorMode }: any = useContext(ColorModeContext);
   return (
-    <HStack className="bg-background-50 w-full mx-auto justify-between">
+    <HStack className="bg-background-50/50 w-full mx-auto justify-between mb-5">
       <VStack className="w-full  md:max-w-[630px] lg:max-w-[400px] xl:max-w-[480px] mx-5 md:ml-8 mb-8 mt-10 lg:my-[44px] xl:ml-[80px] flex-1">
-        <HStack
-          className="rounded-full bg-background-0 py-4 px-5 mb-7 md:mb-9 lg:mb-[80px] xl:mb-[132px] items-center native:max-w-[250px] w-fit"
-          space="sm"
+        <Box
+          className="rounded-full border border-outline-100 dark:border-outline-200/50 py-4 px-5 mb-7 md:mb-9 lg:mb-[80px] xl:mb-[132px] items-center native:max-w-[250px] w-fit flex-row gap-2"
         >
           <Image
             source={{
@@ -73,11 +138,11 @@ const Header = React.memo(() => {
           <Text className="font-medium text-sm lg:text-base xl:text-lg text-typography-900">
             Powered by gluestack-ui v3
           </Text>
-        </HStack>
+        </Box>
         <Heading className="mb-2 xl:mb-[18px] text-4xl lg:text-5xl xl:text-[56px]">
           Kitchensink app
         </Heading>
-        <Text className="text-sm lg:text-base xl:text-lg">
+        <Text className="text-sm lg:text-base xl:text-lg text-typography-500 mb-4">
           Kitchensink is a comprehensive demo app showcasing all the gluestack
           components in action. It includes buttons, forms, icons and much more!
         </Text>
@@ -136,32 +201,12 @@ export default function ComponentList() {
 
   // Memoize renderCategoryItem to prevent unnecessary re-creations
   const renderCategoryItem = useCallback(
-    ({ item: category }: any) => (
-      <Box className="mt-4 border-b border-outline-100 pb-8 px-5 md:px-20">
-        <Heading size="lg" className="text-typography-900 mb-4">
-          {category.category}
-        </Heading>
-        <Grid
-          className="gap-5"
-          _extra={{
-            className: 'grid-cols-2 md:grid-cols-4 xl:grid-cols-6',
-          }}
-        >
-          {category.components.map((component: any) => (
-            <GridItem
-              _extra={{
-                className: 'col-span-1',
-              }}
-              key={component.name}
-            >
-              <ComponentCard
-                component={component}
-                onPress={() => handleComponentPress(component.path!)}
-              />
-            </GridItem>
-          ))}
-        </Grid>
-      </Box>
+    ({ item: category, index }: any) => (
+      <AnimatedCategoryItem
+        category={category}
+        handleComponentPress={handleComponentPress}
+        index={index}
+      />
     ),
     [handleComponentPress]
   );
@@ -179,6 +224,7 @@ export default function ComponentList() {
         updateCellsBatchingPeriod={50}
         initialNumToRender={2}
         windowSize={5}
+        contentContainerClassName='gap-5'
       />
     </SafeAreaView>
   );

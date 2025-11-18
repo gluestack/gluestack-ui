@@ -50,7 +50,7 @@ export default function RootLayout() {
         <GluestackUIProvider mode={colorMode}>
           <Stack
             screenOptions={{
-              animation: 'slide_from_right',
+              animation: 'none',
               animationMatchesGesture: true,
               headerStyle: {
                 backgroundColor: colorMode === 'light' ? '#FFFFFF' : '#000',
