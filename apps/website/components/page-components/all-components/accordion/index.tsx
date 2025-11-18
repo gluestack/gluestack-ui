@@ -20,7 +20,7 @@ export default function Example() {
       type="single"
       isCollapsible={ true }
       isDisabled={ false }
-      className="m-5 w-[90%]"
+      className=" w-[90%]"
     >
       <AccordionItem value="a">
         <AccordionHeader>
@@ -32,9 +32,9 @@ export default function Example() {
                     How do I place an order?
                   </AccordionTitleText>
                   {isExpanded ? (
-                    <AccordionIcon as={ChevronUpIcon} className="ml-3" />
+                    <AccordionIcon as={ChevronUpIcon}  />
                   ) : (
-                    <AccordionIcon as={ChevronDownIcon} className="ml-3" />
+                    <AccordionIcon as={ChevronDownIcon} />
                   )}
                 </>
               )
@@ -60,9 +60,9 @@ export default function Example() {
                     What payment methods do you accept?
                   </AccordionTitleText>
                   {isExpanded ? (
-                    <AccordionIcon as={ChevronUpIcon} className="ml-3" />
+                    <AccordionIcon as={ChevronUpIcon}  />
                   ) : (
-                    <AccordionIcon as={ChevronDownIcon} className="ml-3" />
+                    <AccordionIcon as={ChevronDownIcon} />
                   )}
                 </>
               )
