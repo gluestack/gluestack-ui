@@ -9,14 +9,13 @@ import { VStack } from '@/components/ui/vstack';
 import { getAllComponents } from '@/utils/getComponents';
 import { usePathname, useRouter } from 'expo-router';
 import React, {
-  useContext,
-  useMemo,
   useCallback,
-  useRef,
+  useContext,
   useEffect,
+  useMemo,
+  useRef,
 } from 'react';
-import { FlatList, Pressable, Animated } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Animated, FlatList, Pressable } from 'react-native';
 import { ColorModeContext } from './_layout';
 
 const components = getAllComponents();
@@ -43,7 +42,7 @@ const ComponentCard = React.memo(({ component, onPress }: any) => {
         />
       </Box>
       <HStack className="justify-between px-1.5 mt-1">
-        <Text className="text-typography-900 font-medium sm:text-base text-sm lg:text-xl">
+        <Text className="text-typography-900 font-medium sm:text-base text-sm ">
           {component.name}
         </Text>
         <Icon
@@ -120,8 +119,8 @@ const AnimatedCategoryItem = React.memo(
 const Header = React.memo(() => {
   const { colorMode }: any = useContext(ColorModeContext);
   return (
-    <HStack className="bg-background-50/50 w-full mx-auto justify-between mb-5">
-      <VStack className="w-full  md:max-w-[630px] lg:max-w-[400px] xl:max-w-[480px] mx-5 md:ml-8 mb-8 mt-10 lg:my-[44px] xl:ml-[80px] flex-1">
+    <HStack className="bg-background-50 w-full mx-auto justify-between mb-5 rounded-b-[44px]     web:rounded-b-3xl">
+      <VStack className="w-full  md:max-w-[630px] lg:max-w-[400px] xl:max-w-[480px] mx-5 md:ml-8 mb-8 mt-2 lg:my-[44px] xl:ml-[80px] flex-1">
         <Box className="rounded-full border border-outline-100 dark:border-outline-200/50 py-4 px-5 mb-7 md:mb-9 lg:mb-[80px] xl:mb-[132px] items-center native:max-w-[250px] w-fit flex-row gap-2">
           <Image
             source={{
@@ -210,7 +209,7 @@ export default function ComponentList() {
   );
 
   return (
-    <SafeAreaView className="flex-1 bg-background-0">
+    <Box className="flex-1 bg-background-0 py-safe">
       <FlatList
         data={filteredComponents}
         renderItem={renderCategoryItem}
@@ -224,6 +223,6 @@ export default function ComponentList() {
         windowSize={5}
         contentContainerClassName="gap-5"
       />
-    </SafeAreaView>
+    </Box>
   );
 }
