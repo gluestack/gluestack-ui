@@ -218,9 +218,6 @@ module.exports = {
           950: 'rgb(var(--color-brand-950)/<alpha-value>)',
         },
       },
-      border: 'hsl(var(--border))',
-      input: 'hsl(var(--input))',
-      ring: 'hsl(var(--ring))',
       fontFamily: {
         'heading': undefined,
         'body': undefined,

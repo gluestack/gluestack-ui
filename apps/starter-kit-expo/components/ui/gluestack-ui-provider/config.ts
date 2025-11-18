@@ -360,7 +360,7 @@ export const config = {
     '--color-brand-950': '240 253 244',
 
     '--color-input': '255 255 255',
-    '--color-border': '255 255 255 /10',
+    '--color-border': '255 255 255',
     '--color-foreground': '250 250 250',
 
     '--color-accent': '38 38 38',
