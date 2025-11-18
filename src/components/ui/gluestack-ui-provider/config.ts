@@ -2,7 +2,7 @@
 import { vars } from 'nativewind';
 
 export const config = {
-  'light': vars({
+  light: vars({
     '--color-primary-0': '179 179 179',
     '--color-primary-50': '153 153 153',
     '--color-primary-100': '128 128 128',
@@ -146,6 +146,7 @@ export const config = {
     '--color-background-800': '65 64 64',
     '--color-background-900': '39 38 37',
     '--color-background-950': '18 18 18',
+    '--color-background': '255 255 255',
 
     /* Background Special */
     '--color-background-error': '254 241 241',
@@ -179,16 +180,16 @@ export const config = {
     '--color-destructive': '220 38 38',
     '--color-destructive-foreground': '255 255 255',
 
-    '--color-foreground': '99 99 99',
+    '--color-foreground': '9 9 11',
 
-    '--color-border': '212 212 212',
-    '--color-input': '212 212 212',
+    '--color-border': '228 228 231',
+    '--color-input': '229 229 229',
     '--color-ring': '212 212 212',
 
     '--color-accent': '247 247 247',
     '--color-accent-foreground': '52 52 52',
   }),
-  'dark': vars({
+  dark: vars({
     '--color-primary-0': '166 166 166',
     '--color-primary-50': '175 175 175',
     '--color-primary-100': '186 186 186',
@@ -217,7 +218,7 @@ export const config = {
     '--color-secondary-800': '135 135 135',
     '--color-secondary-900': '150 150 150',
     '--color-secondary-950': '164 164 164',
-    '--color-secondary': '39 39 42',
+    '--color-secondary': '38 38 38',
     '--color-secondary-foreground': '250 250 250',
 
     /* Tertiary */
@@ -357,7 +358,12 @@ export const config = {
     '--color-brand-800': '187 247 208',
     '--color-brand-900': '220 252 231',
     '--color-brand-950': '240 253 244',
+
+    '--color-input': '255 255 255',
+    '--color-border': '255 255 255 /10',
+    '--color-foreground': '250 250 250',
+
+    '--color-accent': '38 38 38',
+    '--color-accent-foreground': '250 250 250',
   }),
-  '--color-border': '228 228 231',
-  '--color-foreground': '250 250 250',
 };

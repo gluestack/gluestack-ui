@@ -46,6 +46,9 @@ module.exports = {
         input: {
           DEFAULT: 'rgb(var(--color-input)/<alpha-value>)',
         },
+        foreground: {
+          DEFAULT: 'rgb(var(--color-foreground)/<alpha-value>)',
+        },
         secondary: {
           0: 'rgb(var(--color-secondary-0)/<alpha-value>)',
           50: 'rgb(var(--color-secondary-50)/<alpha-value>)',
@@ -175,6 +178,7 @@ module.exports = {
           800: 'rgb(var(--color-background-800)/<alpha-value>)',
           900: 'rgb(var(--color-background-900)/<alpha-value>)',
           950: 'rgb(var(--color-background-950)/<alpha-value>)',
+          DEFAULT: 'rgb(var(--color-background)/<alpha-value>)',
           error: 'rgb(var(--color-background-error)/<alpha-value>)',
           warning: 'rgb(var(--color-background-warning)/<alpha-value>)',
           muted: 'rgb(var(--color-background-muted)/<alpha-value>)',
@@ -206,9 +210,7 @@ module.exports = {
           900: 'rgb(var(--color-brand-900)/<alpha-value>)',
           950: 'rgb(var(--color-brand-950)/<alpha-value>)',
         },
-        input: {
-          DEFAULT: 'rgb(var(--color-input)/<alpha-value>)',
-        },
+       
       },
       border: 'hsl(var(--border))',
       input: 'hsl(var(--input))',
