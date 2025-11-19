@@ -5,6 +5,7 @@
 @layer base {
   :root {
     --radius: 0.625rem;
+
     /* RGB format for cross-platform compatibility */
     --background: 255 255 255;
     --foreground: 10 10 10;
@@ -20,7 +21,7 @@
     --muted-foreground: 115 115 115;
     --accent: 245 245 245;
     --accent-foreground: 24 24 24;
-    --destructive: 220 38 38;
+    --destructive: 231 0 11;
     --border: 229 229 229;
     --input: 229 229 229;
     --ring: 163 163 163;
@@ -41,6 +42,7 @@
 
   .dark {
     /* RGB format for cross-platform compatibility */
+    --border: 243 0 255;
     --background: 18 18 18;
     --foreground: 250 250 250;
     --card: 24 24 24;
@@ -55,7 +57,7 @@
     --muted-foreground: 163 163 163;
     --accent: 39 39 39;
     --accent-foreground: 250 250 250;
-    --destructive: 239 68 68;
+    --destructive: 255 100 103;
     --border: 255 255 255 / 0.1;
     --input: 255 255 255 / 0.15;
     --ring: 115 115 115;

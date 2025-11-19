@@ -23,7 +23,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-      
         foreground: 'rgb(var(--foreground) / <alpha-value>)',
         card: {
           DEFAULT: 'rgb(var(--card) / <alpha-value>)',
@@ -43,7 +42,7 @@ module.exports = {
         border: 'rgb(var(--border))',
         input: 'rgb(var(--input))',
         ring: 'rgb(var(--ring) / <alpha-value>)',
-
+        white: 'rgb(255 255 255)',
         // Chart colors
         chart: {
           1: 'rgb(var(--chart-1) / <alpha-value>)',
@@ -89,7 +88,7 @@ module.exports = {
           950: 'rgb(var(--color-primary-950)/<alpha-value>)',
           foreground: 'rgb(var(--color-primary-foreground)/<alpha-value>)',
         },
-       
+
         secondary: {
           0: 'rgb(var(--color-secondary-0)/<alpha-value>)',
           50: 'rgb(var(--color-secondary-50)/<alpha-value>)',
