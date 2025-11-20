@@ -9,9 +9,9 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Alert action="{{action}}" variant="{{variant}}">
+    <Alert variant="{{variant}}">
       <AlertIcon as={InfoIcon} />
-      <AlertText>Description of alert!</AlertText>
+      <AlertText>You can add components to your app using the cli.</AlertText>
     </Alert>
   )
 }`}
@@ -21,23 +21,10 @@ export default function Example() {
       "type": "select"
     },
     "options": [
-      "solid",
-      "outline"
+      "default",
+      "destructive"
     ],
-    "defaultValue": "outline"
-  },
-  "action": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "success",
-      "info",
-      "error",
-      "warning",
-      "muted"
-    ],
-    "defaultValue": "muted"
+    "defaultValue": "default"
   }
 }}
       reactLive={{ Alert, AlertText, AlertIcon, InfoIcon }}

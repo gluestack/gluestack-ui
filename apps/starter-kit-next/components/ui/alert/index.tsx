@@ -14,76 +14,27 @@ import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 const SCOPE = 'ALERT';
 
 const alertStyle = tva({
-  base: 'items-center py-3 px-4 rounded-md flex-row gap-2 border-outline-100',
-
+  base: 'relative w-full rounded-lg border px-4 py-3 flex-row gap-3 items-start',
   variants: {
-    action: {
-      error: 'bg-background-error',
-      warning: 'bg-background-warning',
-      success: 'bg-background-success',
-      info: 'bg-background-info',
-      muted: 'bg-background-muted',
-    },
-
     variant: {
-      solid: '',
-      outline: 'border bg-background-0',
+      default: 'bg-card border-border',
+      destructive: 'bg-card border-border',
     },
   },
 });
 
 const alertTextStyle = tva({
-  base: 'font-normal font-body',
-
-  variants: {
-    isTruncated: {
-      true: 'web:truncate',
-    },
-    bold: {
-      true: 'font-bold',
-    },
-    underline: {
-      true: 'underline',
-    },
-    strikeThrough: {
-      true: 'line-through',
-    },
-    size: {
-      '2xs': 'text-2xs',
-      'xs': 'text-xs',
-      'sm': 'text-sm',
-      'md': 'text-base',
-      'lg': 'text-lg',
-      'xl': 'text-xl',
-      '2xl': 'text-2xl',
-      '3xl': 'text-3xl',
-      '4xl': 'text-4xl',
-      '5xl': 'text-5xl',
-      '6xl': 'text-6xl',
-    },
-    sub: {
-      true: 'text-xs',
-    },
-    italic: {
-      true: 'italic',
-    },
-    highlight: {
-      true: 'bg-yellow-500',
-    },
-  },
+  base: 'font-medium tracking-tight text-sm flex-1',
   parentVariants: {
-    action: {
-      error: 'text-error-800',
-      warning: 'text-warning-800',
-      success: 'text-success-800',
-      info: 'text-info-800',
-      muted: 'text-background-800',
+    variant: {
+      default: 'text-card-foreground',
+      destructive: 'text-destructive',
     },
   },
 });
 
 const alertIconStyle = tva({
-  base: 'fill-none',
+  base: 'fill-none translate-y-0.5',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -95,12 +46,9 @@ const alertIconStyle = tva({
     },
   },
   parentVariants: {
-    action: {
-      error: 'text-error-800',
-      warning: 'text-warning-800',
-      success: 'text-success-800',
-      info: 'text-info-800',
-      muted: 'text-background-800',
+    variant: {
+      default: 'text-card-foreground',
+      destructive: 'text-destructive',
     },
   },
 });
@@ -131,14 +79,11 @@ type IAlertProps = Omit<
   VariantProps<typeof alertStyle>;
 
 const Alert = React.forwardRef<React.ComponentRef<typeof UIAlert>, IAlertProps>(
-  function Alert(
-    { className, variant = 'solid', action = 'muted', ...props },
-    ref
-  ) {
+  function Alert({ className, variant = 'default', ...props }, ref) {
     return (
       <UIAlert
-        className={alertStyle({ action, variant, class: className })}
-        context={{ variant, action }}
+        className={alertStyle({ variant, class: className })}
+        context={{ variant }}
         ref={ref}
         {...props}
       />
@@ -152,36 +97,14 @@ type IAlertTextProps = React.ComponentPropsWithoutRef<typeof UIAlert.Text> &
 const AlertText = React.forwardRef<
   React.ComponentRef<typeof UIAlert.Text>,
   IAlertTextProps
->(function AlertText(
-  {
-    className,
-    isTruncated,
-    bold,
-    underline,
-    strikeThrough,
-    size = 'md',
-    sub,
-    italic,
-    highlight,
-    ...props
-  },
-  ref
-) {
-  const { action: parentAction } = useStyleContext(SCOPE);
+>(function AlertText({ className, ...props }, ref) {
+  const { variant: parentVariant } = useStyleContext(SCOPE);
   return (
     <UIAlert.Text
       className={alertTextStyle({
-        isTruncated,
-        bold,
-        underline,
-        strikeThrough,
-        size,
-        sub,
-        italic,
-        highlight,
         class: className,
         parentVariants: {
-          action: parentAction,
+          variant: parentVariant,
         },
       })}
       {...props}
@@ -199,8 +122,8 @@ type IAlertIconProps = React.ComponentPropsWithoutRef<typeof UIAlert.Icon> &
 const AlertIcon = React.forwardRef<
   React.ComponentRef<typeof UIAlert.Icon>,
   IAlertIconProps
->(function AlertIcon({ className, size = 'md', ...props }, ref) {
-  const { action: parentAction } = useStyleContext(SCOPE);
+>(function AlertIcon({ className, size = 'sm', ...props }, ref) {
+  const { variant: parentVariant } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
     return (
@@ -227,7 +150,7 @@ const AlertIcon = React.forwardRef<
     <UIAlert.Icon
       className={alertIconStyle({
         parentVariants: {
-          action: parentAction,
+          variant: parentVariant,
         },
         size,
         class: className,
