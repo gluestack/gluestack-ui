@@ -16,7 +16,7 @@ export const config = {
 
     /* Focus Ring Indicator  */
 
-    '--muted': '0 0 0',
+    '--muted': '245 245 245',
     '--muted-foreground': '115 115 115',
 
     '--destructive': '220 38 38',
@@ -50,7 +50,7 @@ export const config = {
     '--accent': '38 38 38',
     '--accent-foreground': '250 250 250',
 
-    '--muted': '250 250 250',
+    '--muted': '38 38 38',
     '--muted-foreground': '161 161 161',
   }),
 };

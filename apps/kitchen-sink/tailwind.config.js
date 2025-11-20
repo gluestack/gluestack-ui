@@ -23,7 +23,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        foreground: 'rgb(var(--foreground) / <alpha-value>)',
+        foreground: 'rgb(var(--foreground)/<alpha-value>)',
         card: {
           DEFAULT: 'rgb(var(--card) / <alpha-value>)',
           foreground: 'rgb(var(--card-foreground) / <alpha-value>)',
