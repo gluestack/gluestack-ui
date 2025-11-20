@@ -7,6 +7,7 @@ export const config = {
     '--primary': '23 23 23',
     '--primary-foreground': '250 250 250',
 
+    '--card': '255 255 255',
     /* Secondary  */
 
     '--secondary': '245 245 245',
@@ -19,7 +20,7 @@ export const config = {
     '--muted': '245 245 245',
     '--muted-foreground': '115 115 115',
 
-    '--destructive': '220 38 38',
+    '--destructive': '231 0 11',
     '--destructive-foreground': '255 255 255',
 
     '--foreground': '10 10 10',
@@ -35,11 +36,13 @@ export const config = {
     '--primary-foreground': '23 23 23',
     '--primary': '255 245 245',
 
+    '--card': '23 23 23',
     '--foreground': '250 250 250',
 
     '--secondary': '38 38 38',
     '--secondary-foreground': '250 250 250',
 
+    '--destructive': '255 100 103',
     /* Error */
 
     '--background': '255 255 255',

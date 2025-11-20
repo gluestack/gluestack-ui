@@ -17,8 +17,8 @@ const alertStyle = tva({
   base: 'relative w-full rounded-lg border px-4 py-3 flex-row gap-3 items-start',
   variants: {
     variant: {
-      default: 'bg-card border-border',
-      destructive: 'bg-card border-border',
+      default: 'bg-card border-border  dark:border-input/10',
+      destructive: 'bg-card border-border  dark:border-input/10',
     },
   },
 });
