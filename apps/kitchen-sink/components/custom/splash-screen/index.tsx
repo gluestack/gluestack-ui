@@ -15,8 +15,8 @@ export const SplashScreen = () => {
         autoPlay
         loop={false}
         source={require('@/assets/animations/splash_animation.json')}
-        style={{ width: 800, height: 800 }}
-        speed={1.2}
+        style={{ width: 600, height: 600 }}
+        speed={1}
       />
     </Box>
   );

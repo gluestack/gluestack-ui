@@ -8,85 +8,77 @@ import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { getAllComponents } from '@/utils/getComponents';
 import { usePathname, useRouter } from 'expo-router';
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-} from 'react';
-import { Animated, FlatList, Platform, Pressable } from 'react-native';
+import React, { useCallback, useContext, useMemo } from 'react';
+import { FlatList, Platform, Pressable } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import { LinearGradient } from 'expo-linear-gradient';
 import { ColorModeContext } from './_layout';
+import { BlurView } from 'expo-blur';
 
 const components = getAllComponents();
+const AnimatedHeading = Animated.createAnimatedComponent(Heading);
+const AnimatedText = Animated.createAnimatedComponent(Text);
 
 // Memoized ComponentCard to prevent unnecessary re-renders
 const ComponentCard = React.memo(({ component, onPress }: any) => {
   const { colorMode }: any = useContext(ColorModeContext);
+  const gradientColors =
+    colorMode === 'light'
+      ? ['#E6E6E600', '#E6E6E680']
+      : ['#F2E8FF00', '#F2E8FF1A'];
+
   return (
     <Pressable
-      className={`flex-1 rounded-xl border border-outline-100 p-4 w-full h-full sm:gap-2 gap-1 flex flex-col lg:p-4 ${
+      className={`flex-1 rounded-xl border-outline-100 border-[0.5px] w-full h-full ${
         colorMode === 'light'
           ? 'lg:shadow-[0px_0px_4.374px_0px_rgba(38,38,38,0.10)] data-[hover=true]:lg:border data-[hover=true]:border-outline-100'
           : 'lg:shadow-soft-1 lg:border border-outline-50 data-[hover=true]:border-outline-200'
       }`}
       onPress={onPress}
     >
-      <Box className="rounded-lg  px-3 lg:px-6 py-[14px] lg:py-7 aspect-[17/12]">
+      <Box className="rounded-xl p-4 aspect-[17/12]">
         <Image
           source={{
             uri: colorMode === 'light' ? component.url : component.darkUrl,
           }}
           alt={`${component.title} image`}
-          className={`w-full h-full rounded lg:rounded-md shadow-[0px_0px_1.998px_0px_rgba(38,38,38,0.10)]`}
+          className={`w-full h-full rounded-xl shadow-[0px_0px_1.998px_0px_rgba(38,38,38,0.10)]`}
+          resizeMode="cover"
+          // Android-specific optimizations
+          fadeDuration={0}
         />
       </Box>
-      <HStack className="justify-between px-1.5 mt-1">
-        <Text className="text-typography-900 font-medium sm:text-base text-sm ">
-          {component.name}
-        </Text>
-        <Icon
-          as={ChevronRightIcon}
-          size="sm"
-          className="text-background-400 lg:hidden"
-        />
-      </HStack>
+      <LinearGradient
+        colors={gradientColors as any}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        style={{ borderRadius: 12 }}
+      >
+        <HStack className="justify-between p-4 mt-1">
+          <Text className="text-typography-700 font-medium sm:text-base text-sm ">
+            {component.name}
+          </Text>
+          <Icon
+            as={ChevronRightIcon}
+            size="sm"
+            className="text-background-400 lg:hidden"
+          />
+        </HStack>
+      </LinearGradient>
     </Pressable>
   );
 });
+ComponentCard.displayName = 'ComponentCard';
 
 // Animated wrapper for category items
 const AnimatedCategoryItem = React.memo(
   ({ category, handleComponentPress, index }: any) => {
-    const fadeAnim = useRef(new Animated.Value(0)).current;
-    const translateY = useRef(new Animated.Value(30)).current;
-
-    useEffect(() => {
-      Animated.parallel([
-        Animated.timing(fadeAnim, {
-          toValue: 1,
-          duration: 300,
-          delay: index * 100,
-          useNativeDriver: true,
-        }),
-        Animated.timing(translateY, {
-          toValue: 0,
-          duration: 300,
-          delay: index * 100,
-          useNativeDriver: true,
-        }),
-      ]).start();
-    }, []);
-
     return (
       <Animated.View
-        style={{
-          opacity: fadeAnim,
-          transform: [{ translateY }],
-        }}
+        entering={FadeInDown.duration(500).delay((index + 5) * 100)}
       >
-        <Box className="pb-8 px-5 md:px-20 gap-1">
-          <Heading size="lg" className="text-typography-600 mb-4">
+        <Box className="pb-8 px-5 md:px-20 gap-1 mt-6">
+          <Heading size="md" className="text-typography-800 mb-4">
             {category.category}
           </Heading>
           <Grid
@@ -114,50 +106,62 @@ const AnimatedCategoryItem = React.memo(
     );
   }
 );
+AnimatedCategoryItem.displayName = 'AnimatedCategoryItem';
 
 // Memoized Header to prevent unnecessary re-renders
 const Header = React.memo(() => {
   const { colorMode }: any = useContext(ColorModeContext);
+  const gradientColors =
+    colorMode === 'light'
+      ? ['#E6E6E600', '#E6E6E680']
+      : ['#27262500', '#272625CC'];
+
   return (
-    <HStack className="bg-background-50 w-full mx-auto justify-between mb-5 web:rounded-b-3xl rounded-b-[28px] pt-safe">
-      <VStack className="w-full  md:max-w-[630px] lg:max-w-[400px] xl:max-w-[480px] mx-5 md:ml-8 mb-3 mt-6 lg:my-[44px] xl:ml-[80px] flex-1 px-1">
-        {/* <Box className="rounded-full border border-outline-100 dark:border-outline-200/50 py-4 px-5 mb-7 md:mb-9 lg:mb-[80px] xl:mb-[132px] items-center native:max-w-[250px] w-fit flex-row gap-2">
-          <Image
-            source={{
-              uri:
+    <LinearGradient
+      colors={gradientColors as any}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      style={{ width: '100%', borderRadius: 28, overflow: 'hidden' }}
+    >
+      <BlurView
+        intensity={90}
+        tint={colorMode === 'light' ? 'light' : 'dark'}
+        experimentalBlurMethod="dimezisBlurView"
+      >
+        <HStack className="w-full mx-auto justify-between web:rounded-b-3xl rounded-b-[28px] pt-safe mb-1">
+          <VStack className="w-full  md:max-w-[630px] lg:max-w-[400px] xl:max-w-[480px] mx-4 md:ml-8 mt-8 lg:my-[44px] xl:ml-[80px] flex-1 px-1">
+            <AnimatedHeading
+              entering={FadeInDown.duration(300)}
+              className="mb-2 xl:mb-[18px] text-3xl lg:text-5xl xl:text-[56px]"
+            >
+              Kitchensink app
+            </AnimatedHeading>
+            <AnimatedText
+              entering={FadeInDown.duration(300).delay(200)}
+              className="text-sm lg:text-base xl:text-lg text-typography-500 mb-4"
+            >
+              Kitchensink is a comprehensive demo app showcasing all the
+              gluestack components in action. It includes buttons, forms, icons
+              and much more!
+            </AnimatedText>
+          </VStack>
+          <VStack className="hidden lg:flex flex-1 max-h-[510px] h-full aspect-[1075/510]">
+            <Image
+              source={
                 colorMode === 'light'
-                  ? 'https://i.imgur.com/9bvua6C.png'
-                  : 'https://i.imgur.com/EUqtUMu.png',
-            }}
-            alt="logo_image"
-            className="h-5 w-5 rounded-sm lg:h-6 lg:w-6 xl:h-7 xl:w-7"
-          />
-          <Text className="font-medium text-sm lg:text-base xl:text-lg text-typography-900">
-            Powered by gluestack-ui v3
-          </Text>
-        </Box> */}
-        <Heading className="mb-2 xl:mb-[18px] text-4xl lg:text-5xl xl:text-[56px]">
-          Kitchensink app
-        </Heading>
-        <Text className="text-sm lg:text-base xl:text-lg text-typography-500 mb-4">
-          Kitchensink is a comprehensive demo app showcasing all the gluestack
-          components in action. It includes buttons, forms, icons and much more!
-        </Text>
-      </VStack>
-      <VStack className="hidden lg:flex flex-1 max-h-[510px] h-full aspect-[1075/510]">
-        <Image
-          source={
-            colorMode === 'light'
-              ? require('../assets/images/header-light.webp')
-              : require('../assets/images/header-dark.webp')
-          }
-          alt="header_image"
-          className="h-full w-full"
-        />
-      </VStack>
-    </HStack>
+                  ? require('../assets/images/header-light.webp')
+                  : require('../assets/images/header-dark.webp')
+              }
+              alt="header_image"
+              className="h-full w-full"
+            />
+          </VStack>
+        </HStack>
+      </BlurView>
+    </LinearGradient>
   );
 });
+Header.displayName = 'Header';
 export default function ComponentList() {
   const router = useRouter();
   const pathname = usePathname();
@@ -208,21 +212,28 @@ export default function ComponentList() {
     [handleComponentPress]
   );
 
+  // Stable keyExtractor to ensure consistent list keys
+  const keyExtractor = useCallback(
+    (item: any) => `category-${item.category}`,
+    []
+  );
+
   return (
     <Box className="flex-1 bg-background-0 pb-safe">
       <FlatList
         data={filteredComponents}
         renderItem={renderCategoryItem}
         ListHeaderComponent={<Header />}
-        stickyHeaderIndices={Platform.OS!="web"?[0]:[]}
-        keyExtractor={(item) => item.category}
+        stickyHeaderIndices={Platform.OS != 'web' ? [0] : []}
+        keyExtractor={keyExtractor}
         showsVerticalScrollIndicator={false}
-        removeClippedSubviews={true}
-        maxToRenderPerBatch={3}
-        updateCellsBatchingPeriod={50}
-        initialNumToRender={2}
-        windowSize={5}
-        contentContainerClassName="gap-5"
+        // Android-specific optimizations (keeping animations intact)
+        removeClippedSubviews={Platform.OS === 'android'}
+        maxToRenderPerBatch={Platform.OS === 'android' ? 2 : 3}
+        updateCellsBatchingPeriod={Platform.OS === 'android' ? 100 : 50}
+        initialNumToRender={Platform.OS === 'android' ? 1 : 2}
+        windowSize={Platform.OS === 'android' ? 3 : 5}
+        contentContainerClassName="gap-6"
       />
     </Box>
   );

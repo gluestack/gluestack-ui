@@ -1,4 +1,4 @@
-import { Stack, usePathname, useRouter } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import '../global.css';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { Pressable } from 'react-native';
@@ -38,7 +38,6 @@ const CustomBackButton = () => {
 export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
   const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
-  const pathname = usePathname();
   const handleColorMode = () => {
     setColorMode((prevMode: string) =>
       prevMode === 'light' ? 'dark' : 'light'
@@ -51,7 +50,7 @@ export default function RootLayout() {
     // Simulate loading time - replace with actual initialization logic
     const timer = setTimeout(() => {
       setIsReady(true);
-    }, 1800); // Show splash screen for 1.8 seconds
+    }, 1000); // Show splash screen for 1.8 seconds
 
     return () => clearTimeout(timer);
   }, []);
@@ -68,7 +67,7 @@ export default function RootLayout() {
       <ColorModeContext.Provider value={{ colorMode }}>
         <GluestackUIProvider mode={colorMode}>
           <Stack
-            screenOptions={{
+            screenOptions={({ route }) => ({
               animation: 'none',
               headerStyle: {
                 backgroundColor: colorMode === 'light' ? '#FFFFFF' : '#000',
@@ -79,14 +78,15 @@ export default function RootLayout() {
               },
               headerLeft: ({ canGoBack }) =>
                 canGoBack ? <CustomBackButton /> : null,
-              headerTitle: (props) => {
+              headerTitle: () => {
+                const screenName = route.name || '';
                 return (
                   <Text className="text-typography-900 text-xl font-bold">
-                    {capitalize(pathname.split('/').pop() || '')}
+                    {capitalize(screenName)}
                   </Text>
                 );
               },
-            }}
+            })}
           >
             <Stack.Screen
               name="index"
