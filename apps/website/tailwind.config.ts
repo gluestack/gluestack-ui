@@ -73,7 +73,8 @@ module.exports = {
          * Keep these for Gluestack components to work
          */
         primary: {
-          DEFAULT: 'rgb(var(--color-primary)/<alpha-value>)',
+          DEFAULT: 'var(--primary)',
+          90: 'var(--primary-90)',
           0: 'rgb(var(--color-primary-0)/<alpha-value>)',
           50: 'rgb(var(--color-primary-50)/<alpha-value>)',
           100: 'rgb(var(--color-primary-100)/<alpha-value>)',

@@ -9,10 +9,7 @@ import {
 } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
-import {
-  PrimitiveIcon,
-  UIIcon,
-} from '@gluestack-ui/core/icon/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 const SCOPE = 'BUTTON';
 const Root = withStyleContext(Pressable, SCOPE);
 const UIButton = createButton({
@@ -41,12 +38,12 @@ const buttonStyle = tva({
       default:
         'bg-primary text-primary-foreground data-[hover=true]:bg-primary/90 data-[active=true]:bg-primary/90',
       destructive:
-        'bg-destructive text-white data-[hover=true]:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+        'bg-destructive  data-[hover=true]:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
       outline:
-        'border border-input bg-background shadow-xs data-[hover=true]:bg-accent data-[hover=true]:text-accent-foreground dark:bg-input/5 dark:border-input/15 dark:hover:bg-input/7',
-      secondary: 'bg-secondary text-secondary-foreground data-[hover=true]:bg-secondary/80',
-      ghost:
-        'data-[hover=true]:bg-accent  dark:data-[hover=true]:bg-accent/50',
+        'border border-border bg-background shadow-xs data-[hover=true]:bg-accent data-[hover=true]:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input',
+      secondary:
+        'bg-secondary text-secondary-foreground data-[hover=true]:bg-secondary/80',
+      ghost: 'data-[hover=true]:bg-accent  dark:data-[hover=true]:bg-accent/50',
       link: 'text-primary underline-offset-4 data-[hover=true]:underline',
     },
     size: {
@@ -62,7 +59,7 @@ const buttonTextStyle = tva({
   parentVariants: {
     variant: {
       default: 'text-primary-foreground',
-      destructive: 'text-destructive-foreground',
+      destructive: 'text-white',
       outline:
         'text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
       secondary: 'text-secondary-foreground',

@@ -8,4 +8,7 @@ const yalcPath = path.resolve(os.homedir(), '.yalc');
 if (fs.existsSync(yalcPath)) {
   config.watchFolders = [yalcPath];
 }
-module.exports = withNativeWind(config, { input: './global.css' });
+module.exports = withNativeWind(config, {
+  input: './global.css',
+  inlineRem: 16,
+});

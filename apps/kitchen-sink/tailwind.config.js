@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: process.env.DARK_MODE ? process.env.DARK_MODE : 'class',
+  darkMode: 'class',
   content: [
     './app/**/*.{html,js,jsx,ts,tsx,mdx}',
     './components/**/*.{html,js,jsx,ts,tsx,mdx}',
@@ -23,57 +23,58 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        foreground: 'rgb(var(--foreground) / <alpha-value>)',
+        // Shadcn tokens - RGBA format (no rgb() wrapper needed)
+        foreground: 'var(--foreground)',
+        background: 'var(--background)',
         card: {
-          DEFAULT: 'rgb(var(--card) / <alpha-value>)',
-          foreground: 'rgb(var(--card-foreground) / <alpha-value>)',
+          DEFAULT: 'var(--card)',
+          foreground: 'var(--card-foreground)',
         },
         popover: {
-          DEFAULT: 'rgb(var(--popover) / <alpha-value>)',
-          foreground: 'rgb(var(--popover-foreground) / <alpha-value>)',
+          DEFAULT: 'var(--popover)',
+          foreground: 'var(--popover-foreground)',
         },
         muted: {
-          DEFAULT: 'rgb(var(--muted) / <alpha-value>)',
-          foreground: 'rgb(var(--muted-foreground) / <alpha-value>)',
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)',
         },
         destructive: {
-          DEFAULT: 'rgb(var(--destructive) / <alpha-value>)',
+          DEFAULT: 'var(--destructive)',
+          foreground: 'var(--destructive-foreground)',
         },
-        border: 'rgb(var(--border))',
-        input: 'rgb(var(--input))',
-        ring: 'rgb(var(--ring) / <alpha-value>)',
+        border: 'var(--border)',
+        input: 'var(--input)',
+        ring: 'var(--ring)',
 
         // Chart colors
         chart: {
-          1: 'rgb(var(--chart-1) / <alpha-value>)',
-          2: 'rgb(var(--chart-2) / <alpha-value>)',
-          3: 'rgb(var(--chart-3) / <alpha-value>)',
-          4: 'rgb(var(--chart-4) / <alpha-value>)',
-          5: 'rgb(var(--chart-5) / <alpha-value>)',
+          1: 'var(--chart-1)',
+          2: 'var(--chart-2)',
+          3: 'var(--chart-3)',
+          4: 'var(--chart-4)',
+          5: 'var(--chart-5)',
         },
 
         // Sidebar colors
         sidebar: {
-          'DEFAULT': 'rgb(var(--sidebar) / <alpha-value>)',
-          'foreground': 'rgb(var(--sidebar-foreground) / <alpha-value>)',
-          'primary': 'rgb(var(--sidebar-primary) / <alpha-value>)',
-          'primary-foreground':
-            'rgb(var(--sidebar-primary-foreground) / <alpha-value>)',
-          'accent': 'rgb(var(--sidebar-accent) / <alpha-value>)',
-          'accent-foreground':
-            'rgb(var(--sidebar-accent-foreground) / <alpha-value>)',
-          'border': 'rgb(var(--sidebar-border))',
-          'ring': 'rgb(var(--sidebar-ring) / <alpha-value>)',
+          'DEFAULT': 'var(--sidebar)',
+          'foreground': 'var(--sidebar-foreground)',
+          'primary': 'var(--sidebar-primary)',
+          'primary-foreground': 'var(--sidebar-primary-foreground)',
+          'accent': 'var(--sidebar-accent)',
+          'accent-foreground': 'var(--sidebar-accent-foreground)',
+          'border': 'var(--sidebar-border)',
+          'ring': 'var(--sidebar-ring)',
         },
 
         /* ===================================
-         * GLUESTACK UI TOKENS (original)
+         * GLUESTACK UI TOKENS - RGB format (for Expo/Native)
          * ===================================
-         * These are the ORIGINAL Gluestack design tokens
-         * Keep these for Gluestack components to work
+         * Using RGB format without rgb() wrapper
+         * Works with NativeWind vars() at build time
          */
         primary: {
-          DEFAULT: 'rgb(var(--color-primary)/<alpha-value>)',
+          DEFAULT: '(var(--primary)/<alpha-value>)',
           0: 'rgb(var(--color-primary-0)/<alpha-value>)',
           50: 'rgb(var(--color-primary-50)/<alpha-value>)',
           100: 'rgb(var(--color-primary-100)/<alpha-value>)',
@@ -86,7 +87,7 @@ module.exports = {
           800: 'rgb(var(--color-primary-800)/<alpha-value>)',
           900: 'rgb(var(--color-primary-900)/<alpha-value>)',
           950: 'rgb(var(--color-primary-950)/<alpha-value>)',
-          foreground: 'rgb(var(--color-primary-foreground)/<alpha-value>)',
+          foreground: 'rgb(var(--primary-foreground)/<alpha-value>)',
         },
 
         secondary: {

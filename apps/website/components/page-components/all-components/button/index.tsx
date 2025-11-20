@@ -8,7 +8,7 @@ export default function Example() {
       code={`function Example() {
   return (
     <Button variant="{{variant}}" size="{{size}}">
-        <ButtonText>Click me</ButtonText>
+        <ButtonText>Button</ButtonText>
     </Button>
   )
 }`}

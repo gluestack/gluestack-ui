@@ -1,174 +1,271 @@
-import { Box } from '@/components/ui/box';
-import { Grid, GridItem } from '@/components/ui/grid';
-import { Heading } from '@/components/ui/heading';
-import { HStack } from '@/components/ui/hstack';
-import { ChevronRightIcon, Icon } from '@/components/ui/icon';
-import { Image } from '@/components/ui/image';
-import { Text } from '@/components/ui/text';
-import { VStack } from '@/components/ui/vstack';
-import { getAllComponents } from '@/utils/getComponents';
-import { usePathname, useRouter } from 'expo-router';
-import React, { useContext, useMemo } from 'react';
-import { FlatList, Pressable } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { ColorModeContext } from './_layout';
+import { Dimensions, SafeAreaView, View, Text } from 'react-native';
+import React from 'react';
+import Animated, {
+  Extrapolation,
+  interpolate,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+  useDerivedValue,
+} from 'react-native-reanimated';
+import { Button, ButtonText } from '../components/ui/button';
 
-const components = getAllComponents();
-const ComponentCard = ({ component, onPress }: any) => {
-  const { colorMode }: any = useContext(ColorModeContext);
+const buttonVariants = [
+  {
+    variant: 'default' as const,
+    size: 'default' as const,
+    title: 'Default Button',
+    id: 1,
+  },
+  {
+    variant: 'destructive' as const,
+    size: 'default' as const,
+    title: 'Destructive Button',
+    id: 2,
+  },
+  {
+    variant: 'outline' as const,
+    size: 'lg' as const,
+    title: 'Outline Button',
+    id: 3,
+  },
+  {
+    variant: 'secondary' as const,
+    size: 'default' as const,
+    title: 'Secondary Button',
+    id: 4,
+  },
+  {
+    variant: 'ghost' as const,
+    size: 'default' as const,
+    title: 'Ghost Button',
+    id: 5,
+  },
+  {
+    variant: 'link' as const,
+    size: 'lg' as const,
+    title: 'Link Button',
+    id: 6,
+  },
+];
+
+interface ButtonVariantData {
+  variant:
+    | 'default'
+    | 'destructive'
+    | 'outline'
+    | 'secondary'
+    | 'ghost'
+    | 'link';
+  size: 'default' | 'sm' | 'lg' | 'icon';
+  title: string;
+  id: number;
+}
+
+interface ButtonComponentProps {
+  data: ButtonVariantData;
+  scrollX: Animated.SharedValue<number>;
+  index: number;
+}
+
+const { width, height } = Dimensions.get('window');
+
+const ITEM_WIDTH = width * 0.7;
+const ITEM_HEIGHT = height * 0.5;
+const SPACING = 20;
+
+const ButtonComponent = ({ data, scrollX, index }: ButtonComponentProps) => {
+  const animation = useAnimatedStyle(() => {
+    const inputRange = [
+      (index - 1) * (ITEM_WIDTH + SPACING),
+      index * (ITEM_WIDTH + SPACING),
+      (index + 1) * (ITEM_WIDTH + SPACING),
+    ];
+
+    const scale = interpolate(
+      scrollX.value,
+      inputRange,
+      [0.7, 1, 0.7],
+      Extrapolation.CLAMP
+    );
+
+    const opacity = interpolate(
+      scrollX.value,
+      inputRange,
+      [0.5, 1, 0.5],
+      Extrapolation.CLAMP
+    );
+
+    return {
+      transform: [{ scale }],
+      opacity,
+    };
+  });
+
   return (
-    <Pressable
-      className={`flex-1 rounded-xl bg-background-0 w-full h-full sm:gap-2 gap-1 flex flex-col lg:p-4 ${
-        colorMode === 'light'
-          ? 'lg:shadow-[0px_0px_4.374px_0px_rgba(38,38,38,0.10)] data-[hover=true]:lg:border data-[hover=true]:border-outline-100'
-          : 'lg:shadow-soft-1 lg:border border-outline-50 data-[hover=true]:border-outline-200'
-      }`}
-      onPress={onPress}
+    <Animated.View
+      style={[
+        {
+          width: ITEM_WIDTH,
+          height: ITEM_HEIGHT,
+          marginHorizontal: SPACING / 2,
+          borderRadius: 20,
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: 20,
+        },
+        animation,
+      ]}
     >
-      <Box className="rounded-lg bg-background-50 px-3 lg:px-6 py-[14px] lg:py-7 aspect-[17/12]">
-        <Image
-          source={{
-            uri: colorMode === 'light' ? component.url : component.darkUrl,
-          }}
-          alt={`${component.title} image`}
-          className={`w-full h-full rounded lg:rounded-md shadow-[0px_0px_1.998px_0px_rgba(38,38,38,0.10)]`}
-        />
-      </Box>
-      <HStack className="justify-between px-1.5 mt-1">
-        <Text className="text-typography-900 font-medium sm:text-base text-sm lg:text-xl">
-          {component.name}
-        </Text>
-        <Icon
-          as={ChevronRightIcon}
-          size="sm"
-          className="text-background-400 lg:hidden"
-        />
-      </HStack>
-    </Pressable>
+      <Button variant={data.variant} size={data.size}>
+        <ButtonText>{data.title}</ButtonText>
+      </Button>
+    </Animated.View>
   );
 };
-const Header = () => {
-  const { colorMode }: any = useContext(ColorModeContext);
+
+const Indicator = ({
+  scrollX,
+  index,
+}: {
+  scrollX: Animated.SharedValue<number>;
+  index: number;
+}) => {
+  const animatedStyle = useAnimatedStyle(() => {
+    const inputRange = [
+      (index - 1) * (ITEM_WIDTH + SPACING),
+      index * (ITEM_WIDTH + SPACING),
+      (index + 1) * (ITEM_WIDTH + SPACING),
+    ];
+
+    const scale = interpolate(
+      scrollX.value,
+      inputRange,
+      [0.8, 1.3, 0.8],
+      Extrapolation.CLAMP
+    );
+
+    const opacity = interpolate(
+      scrollX.value,
+      inputRange,
+      [0.4, 1, 0.4],
+      Extrapolation.CLAMP
+    );
+
+    return {
+      transform: [{ scale }],
+      opacity,
+    };
+  });
+
   return (
-    <HStack className="bg-background-50 w-full mx-auto justify-between">
-      <VStack className="w-full  md:max-w-[630px] lg:max-w-[400px] xl:max-w-[480px] mx-5 md:ml-8 mb-8 mt-10 lg:my-[44px] xl:ml-[80px] flex-1">
-        <HStack
-          className="rounded-full bg-background-0 py-4 px-5 mb-7 md:mb-9 lg:mb-[80px] xl:mb-[132px] items-center native:max-w-[250px] w-fit"
-          space="sm"
+    <Animated.View
+      style={[
+        {
+          width: 10,
+          height: 10,
+          borderRadius: 5,
+          backgroundColor: '#fff',
+          marginHorizontal: 5,
+        },
+        animatedStyle,
+      ]}
+    />
+  );
+};
+
+const Index = () => {
+  const scrollX = useSharedValue<number>(0);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    scrollX.value = event.contentOffset.x;
+  });
+
+  const currentIndex = useDerivedValue(() => {
+    return Math.round(scrollX.value / (ITEM_WIDTH + SPACING));
+  });
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      const index = Math.round(scrollX.value / (ITEM_WIDTH + SPACING));
+      setActiveIndex(index);
+    }, 100);
+    return () => clearInterval(interval);
+  }, [scrollX]);
+
+  return (
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <View style={{ flex: 1, justifyContent: 'center', width: width }}>
+        {/* Current Variant Label */}
+        <View
+          style={{
+            position: 'absolute',
+            top: 50,
+            alignSelf: 'center',
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            borderRadius: 20,
+            zIndex: 10,
+          }}
         >
-          <Image
-            source={{
-              uri:
-                colorMode === 'light'
-                  ? 'https://i.imgur.com/9bvua6C.png'
-                  : 'https://i.imgur.com/EUqtUMu.png',
+          <Text
+          className='text-typography-950'
+            style={{
+            
+              fontSize: 18,
+              fontWeight: 'bold',
+              textTransform: 'capitalize',
             }}
-            alt="logo_image"
-            className="h-5 w-5 rounded-sm lg:h-6 lg:w-6 xl:h-7 xl:w-7"
-          />
-          <Text className="font-medium text-sm lg:text-base xl:text-lg text-typography-900">
-            Powered by gluestack-ui v3
-          </Text>
-        </HStack>
-        <Heading className="mb-2 xl:mb-[18px] text-4xl lg:text-5xl xl:text-[56px]">
-          Kitchensink app
-        </Heading>
-        <Text className="text-sm lg:text-base xl:text-lg">
-          Kitchensink is a comprehensive demo app showcasing all the gluestack
-          components in action. It includes buttons, forms, icons and much more!
-        </Text>
-      </VStack>
-      <VStack className="hidden lg:flex flex-1 max-h-[510px] h-full aspect-[1075/510]">
-        <Image
-          source={{
-            uri:
-              colorMode === 'light'
-                ? 'https://i.imgur.com/sxY9qxx.png'
-                : 'https://i.imgur.com/icZHMep.png',
-          }}
-          alt="header_image"
-          className="h-full w-full"
-        />
-      </VStack>
-    </HStack>
-  );
-};
-export default function ComponentList() {
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const handleComponentPress = (componentPath: string) => {
-    // Use Expo Router's built-in navigation state check
-    const targetPath = `components/${componentPath}`;
-
-    // Prevent navigation if we're already on the target path or if navigation is in progress
-    if (pathname.includes(targetPath)) {
-      return;
-    }
-
-    // Use replace instead of push to prevent stack accumulation on rapid clicks
-    router.push(`/components/${componentPath}` as any);
-  };
-
-  // Filter out bottomsheet components and components without paths
-  const filteredComponents = useMemo(
-    () =>
-      components
-        .map((category) => ({
-          ...category,
-          components: category.components.filter(
-            (component) =>
-              component.path &&
-              !component.name.toLowerCase().includes('bottomsheet') &&
-              !component.path.toLowerCase().includes('bottomsheet')
-          ),
-        }))
-        .filter((category) => category.components.length > 0),
-    []
-  );
-
-  const renderCategoryItem = ({ item: category }: any) => (
-    <Box className="mt-4 border-b border-outline-100 pb-8 px-5 md:px-20">
-      <Heading size="lg" className="text-typography-900 mb-4">
-        {category.category}
-      </Heading>
-      <Grid
-        className="gap-5"
-        _extra={{
-          className: 'grid-cols-2 md:grid-cols-4 xl:grid-cols-6',
-        }}
-      >
-        {category.components.map((component: any) => (
-          <GridItem
-            _extra={{
-              className: 'col-span-1',
-            }}
-            key={component.name}
           >
-            <ComponentCard
-              component={component}
-              onPress={() => handleComponentPress(component.path!)}
-            />
-          </GridItem>
-        ))}
-      </Grid>
-    </Box>
-  );
+            {buttonVariants[activeIndex]?.variant || 'Default'} Variant
+          </Text>
+        </View>
 
-  return (
-    <SafeAreaView className="flex-1 bg-background-0">
-      <FlatList
-        data={filteredComponents}
-        renderItem={renderCategoryItem}
-        ListHeaderComponent={<Header />}
-        keyExtractor={(item) => item.category}
-        showsVerticalScrollIndicator={false}
-        removeClippedSubviews={true}
-        maxToRenderPerBatch={3}
-        updateCellsBatchingPeriod={50}
-        initialNumToRender={2}
-        windowSize={5}
-      />
+        <Animated.FlatList
+          data={buttonVariants}
+          renderItem={({ item, index }) => (
+            <ButtonComponent
+              key={item.id}
+              index={index}
+              data={item}
+              scrollX={scrollX}
+            />
+          )}
+          keyExtractor={(item) => item.id.toString()}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          onScroll={scrollHandler}
+          scrollEventThrottle={16}
+          snapToInterval={ITEM_WIDTH + SPACING}
+          decelerationRate="fast"
+          contentContainerStyle={{
+            paddingHorizontal: (width - ITEM_WIDTH) / 2 - SPACING / 2,
+          }}
+        />
+
+        {/* Dot Indicators */}
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 30,
+          }}
+        >
+          {buttonVariants.map((_, index) => (
+            <Indicator key={index} scrollX={scrollX} index={index} />
+          ))}
+        </View>
+      </View>
     </SafeAreaView>
   );
-}
+};
+
+export default Index;
