@@ -10,11 +10,8 @@ import {
 import { cssInterop } from 'nativewind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
-
 const SCOPE = 'BUTTON';
-
 const Root = withStyleContext(Pressable, SCOPE);
-
 const UIButton = createButton({
   Root: Root,
   Text,
@@ -22,7 +19,6 @@ const UIButton = createButton({
   Spinner: ActivityIndicator,
   Icon: UIIcon,
 });
-
 cssInterop(PrimitiveIcon, {
   className: {
     target: 'style',
@@ -35,224 +31,69 @@ cssInterop(PrimitiveIcon, {
     },
   },
 });
-
 const buttonStyle = tva({
-  base: 'group/button rounded bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2',
+  base: 'rounded-md flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2',
   variants: {
-    action: {
-      primary:
-        'bg-primary-500 data-[hover=true]:bg-primary-600 data-[active=true]:bg-primary-700 border-primary-300 data-[hover=true]:border-primary-400 data-[active=true]:border-primary-500 data-[focus-visible=true]:web:ring-indicator-info',
-      secondary:
-        'bg-secondary-500 border-secondary-300 data-[hover=true]:bg-secondary-600 data-[hover=true]:border-secondary-400 data-[active=true]:bg-secondary-700 data-[active=true]:border-secondary-700 data-[focus-visible=true]:web:ring-indicator-info',
-      positive:
-        'bg-success-500 border-success-300 data-[hover=true]:bg-success-600 data-[hover=true]:border-success-400 data-[active=true]:bg-success-700 data-[active=true]:border-success-500 data-[focus-visible=true]:web:ring-indicator-info',
-      negative:
-        'bg-error-500 border-error-300 data-[hover=true]:bg-error-600 data-[hover=true]:border-error-400 data-[active=true]:bg-error-700 data-[active=true]:border-error-500 data-[focus-visible=true]:web:ring-indicator-info',
+    variant: {
       default:
-        'bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
-    },
-    variant: {
-      link: 'px-0',
+        'bg-primary text-primary-foreground data-[hover=true]:bg-primary/90 data-[active=true]:bg-primary/90',
+      destructive:
+        'bg-destructive  data-[hover=true]:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
       outline:
-        'bg-transparent border data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
-      solid: '',
+        'border border-border bg-background shadow-xs data-[hover=true]:bg-accent data-[hover=true]:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input',
+      secondary:
+        'bg-secondary text-secondary-foreground data-[hover=true]:bg-secondary/80',
+      ghost: 'data-[hover=true]:bg-accent  dark:data-[hover=true]:bg-accent/50',
+      link: 'text-primary underline-offset-4 data-[hover=true]:underline',
     },
-
     size: {
-      xs: 'px-3.5 h-8',
-      sm: 'px-4 h-9',
-      md: 'px-5 h-10',
-      lg: 'px-6 h-11',
-      xl: 'px-7 h-12',
+      default: 'h-9 px-4 py-2',
+      sm: 'h-8 rounded-md px-3 text-xs',
+      lg: 'h-10 rounded-md px-8',
+      icon: 'h-9 w-9',
     },
   },
-  compoundVariants: [
-    {
-      action: 'primary',
-      variant: 'link',
-      class:
-        'px-0 bg-transparent data-[hover=true]:bg-transparent data-[active=true]:bg-transparent',
-    },
-    {
-      action: 'secondary',
-      variant: 'link',
-      class:
-        'px-0 bg-transparent data-[hover=true]:bg-transparent data-[active=true]:bg-transparent',
-    },
-    {
-      action: 'positive',
-      variant: 'link',
-      class:
-        'px-0 bg-transparent data-[hover=true]:bg-transparent data-[active=true]:bg-transparent',
-    },
-    {
-      action: 'negative',
-      variant: 'link',
-      class:
-        'px-0 bg-transparent data-[hover=true]:bg-transparent data-[active=true]:bg-transparent',
-    },
-    {
-      action: 'primary',
-      variant: 'outline',
-      class:
-        'bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
-    },
-    {
-      action: 'secondary',
-      variant: 'outline',
-      class:
-        'bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
-    },
-    {
-      action: 'positive',
-      variant: 'outline',
-      class:
-        'bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
-    },
-    {
-      action: 'negative',
-      variant: 'outline',
-      class:
-        'bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
-    },
-  ],
 });
-
 const buttonTextStyle = tva({
-  base: 'text-typography-0 font-semibold web:select-none',
+  base: 'web:select-none font-medium',
   parentVariants: {
-    action: {
-      primary:
-        'text-primary-600 data-[hover=true]:text-primary-600 data-[active=true]:text-primary-700',
-      secondary:
-        'text-typography-500 data-[hover=true]:text-typography-600 data-[active=true]:text-typography-700',
-      positive:
-        'text-success-600 data-[hover=true]:text-success-600 data-[active=true]:text-success-700',
-      negative:
-        'text-error-600 data-[hover=true]:text-error-600 data-[active=true]:text-error-700',
-    },
     variant: {
-      link: 'data-[hover=true]:underline data-[active=true]:underline',
-      outline: '',
-      solid:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
+      default: 'text-primary-foreground',
+      destructive: 'text-white',
+      outline:
+        'text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
+      secondary: 'text-secondary-foreground',
+      ghost:
+        'text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
+      link: 'text-primary data-[hover=true]:underline data-[active=true]:underline',
     },
     size: {
-      xs: 'text-xs',
-      sm: 'text-sm',
-      md: 'text-base',
-      lg: 'text-lg',
-      xl: 'text-xl',
+      default: 'text-sm',
+      sm: 'text-xs',
+      lg: 'text-sm',
+      icon: 'text-sm',
     },
   },
-  parentCompoundVariants: [
-    {
-      variant: 'solid',
-      action: 'primary',
-      class:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'secondary',
-      class:
-        'text-typography-800 data-[hover=true]:text-typography-800 data-[active=true]:text-typography-800',
-    },
-    {
-      variant: 'solid',
-      action: 'positive',
-      class:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'negative',
-      class:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
-    },
-    {
-      variant: 'outline',
-      action: 'primary',
-      class:
-        'text-primary-500 data-[hover=true]:text-primary-500 data-[active=true]:text-primary-500',
-    },
-    {
-      variant: 'outline',
-      action: 'secondary',
-      class:
-        'text-typography-500 data-[hover=true]:text-primary-600 data-[active=true]:text-typography-700',
-    },
-    {
-      variant: 'outline',
-      action: 'positive',
-      class:
-        'text-primary-500 data-[hover=true]:text-primary-500 data-[active=true]:text-primary-500',
-    },
-    {
-      variant: 'outline',
-      action: 'negative',
-      class:
-        'text-primary-500 data-[hover=true]:text-primary-500 data-[active=true]:text-primary-500',
-    },
-  ],
 });
-
 const buttonIconStyle = tva({
-  base: 'fill-none',
+  base: 'fill-none pointer-events-none shrink-0',
   parentVariants: {
     variant: {
-      link: 'data-[hover=true]:underline data-[active=true]:underline',
-      outline: '',
-      solid:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
+      default: 'text-primary-foreground',
+      destructive: 'text-destructive-foreground',
+      outline: 'text-foreground',
+      secondary: 'text-secondary-foreground',
+      ghost: 'text-foreground',
+      link: 'text-primary',
     },
     size: {
-      xs: 'h-3.5 w-3.5',
+      default: 'h-4 w-4',
       sm: 'h-4 w-4',
-      md: 'h-[18px] w-[18px]',
-      lg: 'h-[18px] w-[18px]',
-      xl: 'h-5 w-5',
-    },
-    action: {
-      primary:
-        'text-primary-600 data-[hover=true]:text-primary-600 data-[active=true]:text-primary-700',
-      secondary:
-        'text-typography-500 data-[hover=true]:text-typography-600 data-[active=true]:text-typography-700',
-      positive:
-        'text-success-600 data-[hover=true]:text-success-600 data-[active=true]:text-success-700',
-
-      negative:
-        'text-error-600 data-[hover=true]:text-error-600 data-[active=true]:text-error-700',
+      lg: 'h-4 w-4',
+      icon: 'h-4 w-4',
     },
   },
-  parentCompoundVariants: [
-    {
-      variant: 'solid',
-      action: 'primary',
-      class:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'secondary',
-      class:
-        'text-typography-800 data-[hover=true]:text-typography-800 data-[active=true]:text-typography-800',
-    },
-    {
-      variant: 'solid',
-      action: 'positive',
-      class:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
-    },
-    {
-      variant: 'solid',
-      action: 'negative',
-      class:
-        'text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0',
-    },
-  ],
 });
-
 const buttonGroupStyle = tva({
   base: '',
   variants: {
@@ -277,66 +118,47 @@ const buttonGroupStyle = tva({
     },
   },
 });
-
 type IButtonProps = Omit<
   React.ComponentPropsWithoutRef<typeof UIButton>,
   'context'
 > &
   VariantProps<typeof buttonStyle> & { className?: string };
-
 const Button = React.forwardRef<
   React.ElementRef<typeof UIButton>,
   IButtonProps
->(
-  (
-    { className, variant = 'solid', size = 'md', action = 'primary', ...props },
-    ref
-  ) => {
-    return (
-      <UIButton
-        ref={ref}
-        {...props}
-        className={buttonStyle({ variant, size, action, class: className })}
-        context={{ variant, size, action }}
-      />
-    );
-  }
-);
-
+>(({ className, variant = 'default', size = 'default', ...props }, ref) => {
+  return (
+    <UIButton
+      ref={ref}
+      {...props}
+      className={buttonStyle({ variant, size, class: className })}
+      context={{ variant, size }}
+    />
+  );
+});
 type IButtonTextProps = React.ComponentPropsWithoutRef<typeof UIButton.Text> &
   VariantProps<typeof buttonTextStyle> & { className?: string };
-
 const ButtonText = React.forwardRef<
   React.ElementRef<typeof UIButton.Text>,
   IButtonTextProps
->(({ className, variant, size, action, ...props }, ref) => {
-  const {
-    variant: parentVariant,
-    size: parentSize,
-    action: parentAction,
-  } = useStyleContext(SCOPE);
-
+>(({ className, size, ...props }, ref) => {
+  const { size: parentSize, variant: parentVariant } = useStyleContext(SCOPE);
   return (
     <UIButton.Text
       ref={ref}
       {...props}
       className={buttonTextStyle({
         parentVariants: {
-          variant: parentVariant,
           size: parentSize,
-          action: parentAction,
+          variant: parentVariant,
         },
-        variant,
         size,
-        action,
         class: className,
       })}
     />
   );
 });
-
 const ButtonSpinner = UIButton.Spinner;
-
 type IButtonIcon = React.ComponentPropsWithoutRef<typeof UIButton.Icon> &
   VariantProps<typeof buttonIconStyle> & {
     className?: string | undefined;
@@ -344,17 +166,11 @@ type IButtonIcon = React.ComponentPropsWithoutRef<typeof UIButton.Icon> &
     height?: number;
     width?: number;
   };
-
 const ButtonIcon = React.forwardRef<
   React.ElementRef<typeof UIButton.Icon>,
   IButtonIcon
 >(({ className, size, ...props }, ref) => {
-  const {
-    variant: parentVariant,
-    size: parentSize,
-    action: parentAction,
-  } = useStyleContext(SCOPE);
-
+  const { size: parentSize, variant: parentVariant } = useStyleContext(SCOPE);
   if (typeof size === 'number') {
     return (
       <UIButton.Icon
@@ -383,7 +199,6 @@ const ButtonIcon = React.forwardRef<
         parentVariants: {
           size: parentSize,
           variant: parentVariant,
-          action: parentAction,
         },
         size,
         class: className,
@@ -392,10 +207,8 @@ const ButtonIcon = React.forwardRef<
     />
   );
 });
-
 type IButtonGroupProps = React.ComponentPropsWithoutRef<typeof UIButton.Group> &
   VariantProps<typeof buttonGroupStyle>;
-
 const ButtonGroup = React.forwardRef<
   React.ElementRef<typeof UIButton.Group>,
   IButtonGroupProps
@@ -424,11 +237,9 @@ const ButtonGroup = React.forwardRef<
     );
   }
 );
-
 Button.displayName = 'Button';
 ButtonText.displayName = 'ButtonText';
 ButtonSpinner.displayName = 'ButtonSpinner';
 ButtonIcon.displayName = 'ButtonIcon';
 ButtonGroup.displayName = 'ButtonGroup';
-
 export { Button, ButtonText, ButtonSpinner, ButtonIcon, ButtonGroup };

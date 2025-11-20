@@ -5,22 +5,23 @@
       "control": {
         "type": "select"
       },
-      "options": ["solid", "outline", "link"],
-      "defaultValue": "solid"
+      "options": [
+        "default",
+        "destructive",
+        "outline",
+        "secondary",
+        "ghost",
+        "link"
+      ],
+      "defaultValue": "default"
     },
-    "action": {
-      "control": {
-        "type": "select"
-      },
-      "options": ["primary", "secondary", "positive", "negative"],
-      "defaultValue": "primary"
-    },
+
     "size": {
       "control": {
         "type": "select"
       },
-      "options": ["xs", "sm", "md", "lg"],
-      "defaultValue": "md"
+      "options": ["default", "sm", "lg"],
+      "defaultValue": "default"
     }
   },
   "reactLive": {
