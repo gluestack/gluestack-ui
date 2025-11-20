@@ -22,7 +22,7 @@ export const config = {
     '--destructive': '220 38 38',
     '--destructive-foreground': '255 255 255',
 
-    '--foreground': '9 9 11',
+    '--foreground': '10 10 10',
 
     '--border': '229 229 229',
     '--input': '229 229 229',
@@ -35,7 +35,7 @@ export const config = {
     '--primary-foreground': '23 23 23',
     '--primary': '255 245 245',
 
-    /* Secondary  */
+    '--foreground': '250 250 250',
 
     '--secondary': '38 38 38',
     '--secondary-foreground': '250 250 250',
@@ -44,14 +44,13 @@ export const config = {
 
     '--background': '255 255 255',
 
-    '--color-input': '255 255 255',
-    '--color-border': '255 255 255',
-    '--color-foreground': '250 250 250',
+    '--input': '255 255 255',
+    '--border': '255 255 255',
 
-    '--color-accent': '38 38 38',
-    '--color-accent-foreground': '250 250 250',
+    '--accent': '38 38 38',
+    '--accent-foreground': '250 250 250',
 
-    '--color-muted': '250 250 250',
-    '--color-muted-foreground': '161 161 161',
+    '--muted': '250 250 250',
+    '--muted-foreground': '161 161 161',
   }),
 };
