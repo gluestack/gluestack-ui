@@ -21,7 +21,7 @@ const badgeStyle = tva({
       secondary: 'border-transparent bg-secondary',
       destructive:
         'border-transparent bg-destructive dark:bg-destructive/60',
-      outline: 'border-border bg-transparent',
+      outline: 'border-border dark:border-border/10 bg-transparent',
     },
   },
 });
