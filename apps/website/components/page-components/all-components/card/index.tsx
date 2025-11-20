@@ -8,7 +8,7 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Card size="{{size}}" variant="{{variant}}" className="m-3">
+    <Card className="w-80">
       <Heading size="md" className="mb-1">
         Quick Start
       </Heading>
@@ -16,31 +16,7 @@ export default function Example() {
     </Card>
   )
 }`}
-      argTypes={{
-  "variant": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "elevated",
-      "outline",
-      "ghost",
-      "filled"
-    ],
-    "defaultValue": "elevated"
-  },
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  }
-}}
+      argTypes={{}}
       reactLive={{ Card, Heading, Text }}
     />
   );
