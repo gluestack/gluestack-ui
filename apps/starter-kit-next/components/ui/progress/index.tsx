@@ -20,105 +20,23 @@ cssInterop(UIProgress, { className: 'style' });
 cssInterop(UIProgress.FilledTrack, { className: 'style' });
 
 const progressStyle = tva({
-  base: 'bg-background-300 rounded-full w-full',
+  base: 'bg-primary/20 relative h-2 w-full overflow-hidden rounded-full',
   variants: {
     orientation: {
-      horizontal: 'w-full',
-      vertical: 'h-full',
-    },
-    size: {
-      'xs': 'h-1',
-      'sm': 'h-2',
-      'md': 'h-3',
-      'lg': 'h-4',
-      'xl': 'h-5',
-      '2xl': 'h-6',
+      horizontal: 'w-full h-2',
+      vertical: 'h-full w-2 justify-end',
     },
   },
-  compoundVariants: [
-    {
-      orientation: 'vertical',
-      size: 'xs',
-      class: 'h-full w-1 justify-end',
-    },
-    {
-      orientation: 'vertical',
-      size: 'sm',
-      class: 'h-full w-2 justify-end',
-    },
-    {
-      orientation: 'vertical',
-      size: 'md',
-      class: 'h-full w-3 justify-end',
-    },
-    {
-      orientation: 'vertical',
-      size: 'lg',
-      class: 'h-full w-4 justify-end',
-    },
-
-    {
-      orientation: 'vertical',
-      size: 'xl',
-      class: 'h-full w-5 justify-end',
-    },
-    {
-      orientation: 'vertical',
-      size: '2xl',
-      class: 'h-full w-6 justify-end',
-    },
-  ],
 });
 
 const progressFilledTrackStyle = tva({
-  base: 'bg-primary-500 rounded-full',
-  parentVariants: {
+  base: 'bg-primary  transition-all',
+  variants: {
     orientation: {
-      horizontal: 'w-full',
-      vertical: 'h-full',
-    },
-    size: {
-      'xs': 'h-1',
-      'sm': 'h-2',
-      'md': 'h-3',
-      'lg': 'h-4',
-      'xl': 'h-5',
-      '2xl': 'h-6',
+      horizontal: 'h-full',
+      vertical: 'w-full',
     },
   },
-  parentCompoundVariants: [
-    {
-      orientation: 'vertical',
-      size: 'xs',
-      class: 'h-full w-1',
-    },
-    {
-      orientation: 'vertical',
-      size: 'sm',
-      class: 'h-full w-2',
-    },
-    {
-      orientation: 'vertical',
-      size: 'md',
-      class: 'h-full w-3',
-    },
-    {
-      orientation: 'vertical',
-      size: 'lg',
-      class: 'h-full w-4',
-    },
-
-    {
-      orientation: 'vertical',
-      size: 'xl',
-      class: 'h-full w-5',
-    },
-    {
-      orientation: 'vertical',
-      size: '2xl',
-      class: 'h-full w-6',
-    },
-  ],
 });
 
 type IProgressProps = VariantProps<typeof progressStyle> &
@@ -130,15 +48,15 @@ const Progress = React.forwardRef<
   React.ComponentRef<typeof UIProgress>,
   IProgressProps
 >(function Progress(
-  { className, size = 'md', orientation = 'horizontal', ...props },
+  { className, orientation = 'horizontal', ...props },
   ref
 ) {
   return (
     <UIProgress
       ref={ref}
       {...props}
-      className={progressStyle({ size, orientation, class: className })}
-      context={{ size, orientation }}
+      className={progressStyle({ orientation, class: className })}
+      context={{ orientation }}
       orientation={orientation}
     />
   );
@@ -148,17 +66,13 @@ const ProgressFilledTrack = React.forwardRef<
   React.ComponentRef<typeof UIProgress.FilledTrack>,
   IProgressFilledTrackProps
 >(function ProgressFilledTrack({ className, ...props }, ref) {
-  const { size: parentSize, orientation: parentOrientation } =
-    useStyleContext(SCOPE);
+  const { orientation: parentOrientation } = useStyleContext(SCOPE);
 
   return (
     <UIProgress.FilledTrack
       ref={ref}
       className={progressFilledTrackStyle({
-        parentVariants: {
-          size: parentSize,
-          orientation: parentOrientation,
-        },
+        orientation: parentOrientation,
         class: className,
       })}
       {...props}
