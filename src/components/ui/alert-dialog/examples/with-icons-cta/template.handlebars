@@ -13,30 +13,27 @@ function Example() {
             className=""
             contentContainerClassName="flex-row gap-4"
           >
-            <Box className="h-10 min-[350px]:h-14 w-12 min-[350px]:w-14 rounded-full bg-background-50 items-center justify-center">
+            <Box className="h-10 min-[350px]:h-14 w-12 min-[350px]:w-14 rounded-full bg-muted items-center justify-center">
               <Icon
                 as={UploadCloud}
-                className="stroke-background-900"
-                size="xl"
+                className="stroke-foreground h-6 w-6"
               />
             </Box>
             <VStack className="gap-1">
-              <Heading size="md" className="text-typography-950 font-semibold">
+              <Heading className="text-foreground font-semibold text-lg">
                 Cloud storage full!
               </Heading>
-              <Text size="sm">You have used up all the storage you have.</Text>
+              <Text className="text-sm text-muted-foreground">You have used up all the storage you have.</Text>
             </VStack>
           </AlertDialogBody>
           <AlertDialogFooter>
             <Button
               variant="outline"
-              action="secondary"
               onPress={handleClose}
-              size="sm"
             >
               <ButtonText>Cancel</ButtonText>
             </Button>
-            <Button size="sm" onPress={handleClose}>
+            <Button onPress={handleClose}>
               <ButtonText>Upgrade Storage</ButtonText>
             </Button>
           </AlertDialogFooter>

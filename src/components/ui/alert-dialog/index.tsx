@@ -2,10 +2,7 @@
 import React from 'react';
 import { createAlertDialog } from '@gluestack-ui/core/alert-dialog/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  withStyleContext,
-  useStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
+import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
@@ -49,46 +46,28 @@ cssInterop(AnimatedPressable, { className: 'style' });
 
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
-  parentVariants: {
-    size: {
-      xs: '',
-      sm: '',
-      md: '',
-      lg: '',
-      full: '',
-    },
-  },
 });
 
 const alertDialogContentStyle = tva({
-  base: 'bg-background-0 rounded-lg overflow-hidden border border-outline-100 p-6',
-  parentVariants: {
-    size: {
-      xs: 'w-[60%] max-w-[360px]',
-      sm: 'w-[70%] max-w-[420px]',
-      md: 'w-[80%] max-w-[510px]',
-      lg: 'w-[90%] max-w-[640px]',
-      full: 'w-full',
-    },
-  },
+  base: 'bg-background rounded-lg border shadow-lg p-6 gap-4 w-full max-w-[calc(100%-2rem)] sm:max-w-lg',
 });
 
 const alertDialogCloseButtonStyle = tva({
-  base: 'group/alert-dialog-close-button z-10 rounded-sm p-2 data-[focus-visible=true]:bg-background-100 web:cursor-pointer outline-0',
+  base: 'group/alert-dialog-close-button z-10 rounded-sm p-2 data-[focus-visible=true]:bg-accent web:cursor-pointer outline-0',
 });
 
 const alertDialogHeaderStyle = tva({
-  base: 'justify-between items-center flex-row',
+  base: 'flex-col gap-2 text-center sm:text-left',
 });
 
 const alertDialogFooterStyle = tva({
-  base: 'flex-row justify-end items-center gap-3',
+  base: 'flex-col-reverse gap-2 sm:flex-row sm:justify-end',
 });
 
 const alertDialogBodyStyle = tva({ base: '' });
 
 const alertDialogBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default',
 });
 
 type IAlertDialogProps = React.ComponentPropsWithoutRef<
@@ -129,13 +108,13 @@ type IAlertDialogBackdropProps = React.ComponentPropsWithoutRef<
 const AlertDialog = React.forwardRef<
   React.ComponentRef<typeof UIAccessibleAlertDialog>,
   IAlertDialogProps
->(function AlertDialog({ className, size = 'md', ...props }, ref) {
+>(function AlertDialog({ className, ...props }, ref) {
   return (
     <UIAccessibleAlertDialog
       ref={ref}
       {...props}
       className={alertDialogStyle({ class: className })}
-      context={{ size }}
+      context={{}}
       pointerEvents="box-none"
     />
   );
@@ -144,15 +123,13 @@ const AlertDialog = React.forwardRef<
 const AlertDialogContent = React.forwardRef<
   React.ComponentRef<typeof UIAccessibleAlertDialog.Content>,
   IAlertDialogContentProps
->(function AlertDialogContent({ className, size, ...props }, ref) {
-  const { size: parentSize } = useStyleContext(SCOPE);
-
+>(function AlertDialogContent({ className, ...props }, ref) {
   return (
     <UIAccessibleAlertDialog.Content
       pointerEvents="auto"
       ref={ref}
       initial={{
-        scale: 0.9,
+        scale: 0.95,
         opacity: 0,
       }}
       animate={{
@@ -160,26 +137,15 @@ const AlertDialogContent = React.forwardRef<
         opacity: 1,
       }}
       exit={{
-        scale: 0.9,
+        scale: 0.95,
         opacity: 0,
       }}
       transition={{
-        type: 'spring',
-        damping: 18,
-        stiffness: 250,
-        opacity: {
-          type: 'timing',
-          duration: 250,
-        },
+        type: 'timing',
+        duration: 200,
       }}
       {...props}
-      className={alertDialogContentStyle({
-        parentVariants: {
-          size: parentSize,
-        },
-        size,
-        class: className,
-      })}
+      className={alertDialogContentStyle({ class: className })}
     />
   );
 });
@@ -255,19 +221,14 @@ const AlertDialogBackdrop = React.forwardRef<
         opacity: 0,
       }}
       animate={{
-        opacity: 0.5,
+        opacity: 1,
       }}
       exit={{
         opacity: 0,
       }}
       transition={{
-        type: 'spring',
-        damping: 18,
-        stiffness: 250,
-        opacity: {
-          type: 'timing',
-          duration: 250,
-        },
+        type: 'timing',
+        duration: 200,
       }}
       {...props}
       className={alertDialogBackdropStyle({
