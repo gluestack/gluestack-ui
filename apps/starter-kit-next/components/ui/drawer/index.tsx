@@ -81,7 +81,7 @@ const drawerBackdropStyle = tva({
 });
 
 const drawerContentStyle = tva({
-  base: 'bg-background overflow-scroll shadow-xl p-6 absolute web:pointer-events-auto',
+  base: 'bg-background overflow-scroll shadow-md p-6 absolute web:pointer-events-auto',
   parentVariants: {
     size: {
       sm: 'w-1/4',
