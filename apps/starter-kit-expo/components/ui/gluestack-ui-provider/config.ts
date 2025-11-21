@@ -14,7 +14,8 @@ export const config = {
     '--secondary-foreground': '23 23 23',
 
     '--background': '255 255 255',
-
+    '--popover': '255 255 255',
+    '--popover-foreground': '10 10 10',
     /* Focus Ring Indicator  */
 
     '--muted': '245 245 245',
@@ -38,7 +39,8 @@ export const config = {
 
     '--card': '23 23 23',
     '--foreground': '250 250 250',
-
+'--popover': '23 23 23',
+    '--popover-foreground': '250 250 250',
     '--secondary': '38 38 38',
     '--secondary-foreground': '250 250 250',
 

@@ -50,7 +50,7 @@ const popoverStyle = tva({
 });
 
 const popoverArrowStyle = tva({
-  base: 'bg-background z-[1] border absolute overflow-hidden h-3.5 w-3.5 border-border dark:border-border/10',
+  base: 'bg-popover z-[1] border absolute overflow-hidden h-3.5 w-3.5 border-border dark:border-border/10',
   variants: {
     placement: {
       'top left':
@@ -90,19 +90,19 @@ const popoverCloseButtonStyle = tva({
 });
 
 const popoverContentStyle = tva({
-  base: 'bg-background rounded-lg overflow-hidden border border-border dark:border-border/10 shadow-md p-4 w-full max-w-xs web:pointer-events-auto',
+  base: 'bg-popover text-popover-foreground rounded-lg overflow-hidden border border-border dark:border-border/10 shadow-md p-4 w-full max-w-xs web:pointer-events-auto',
 });
 
 const popoverHeaderStyle = tva({
-  base: 'flex-row justify-between items-center pb-3',
+  base: 'flex-row justify-between items-center',
 });
 
 const popoverBodyStyle = tva({
-  base: 'flex-1',
+  base: '',
 });
 
 const popoverFooterStyle = tva({
-  base: 'flex-col-reverse gap-2 sm:flex-row sm:justify-end pt-3',
+  base: 'flex-row justify-between items-center',
 });
 
 type IPopoverProps = React.ComponentProps<typeof UIPopover> &
