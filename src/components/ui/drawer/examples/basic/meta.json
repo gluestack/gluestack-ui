@@ -29,6 +29,8 @@
     "Heading": "@/components/ui/heading",
     "Text": "@/components/ui/text",
     "Icon": "@/components/ui/icon",
-    "CloseIcon": "@/components/ui/icon"
+    "CloseIcon": "@/components/ui/icon",
+    "VStack": "@/components/ui/vstack",
+    "Divider": "@/components/ui/divider"
   }
 }

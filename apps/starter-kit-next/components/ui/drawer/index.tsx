@@ -77,11 +77,11 @@ const drawerStyle = tva({
 });
 
 const drawerBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default web:pointer-events-auto',
 });
 
 const drawerContentStyle = tva({
-  base: 'bg-background-0 overflow-scroll border-outline-100 p-6 absolute',
+  base: 'bg-background overflow-scroll shadow-xl p-6 absolute web:pointer-events-auto',
   parentVariants: {
     size: {
       sm: 'w-1/4',
@@ -90,10 +90,10 @@ const drawerContentStyle = tva({
       full: 'w-full',
     },
     anchor: {
-      left: 'h-full border-r',
-      right: 'h-full border-l',
-      top: 'w-full border-b',
-      bottom: 'w-full border-t',
+      left: 'h-full border-r border-border dark:border-border/10',
+      right: 'h-full border-l border-border dark:border-border/10',
+      top: 'w-full border-b border-border dark:border-border/10 rounded-b-xl',
+      bottom: 'w-full border-t border-border dark:border-border/10 rounded-t-xl',
     },
   },
   parentCompoundVariants: [
@@ -141,19 +141,19 @@ const drawerContentStyle = tva({
 });
 
 const drawerCloseButtonStyle = tva({
-  base: 'z-10 rounded data-[focus-visible=true]:web:bg-background-100 web:outline-0 cursor-pointer',
+  base: 'z-10 rounded-sm p-2 data-[focus-visible=true]:bg-accent web:cursor-pointer web:outline-0 data-[hover=true]:bg-accent/50',
 });
 
 const drawerHeaderStyle = tva({
-  base: 'justify-between items-center flex-row',
+  base: 'justify-between items-center flex-row pb-4',
 });
 
 const drawerBodyStyle = tva({
-  base: 'mt-4 mb-6 shrink-0',
+  base: 'flex-1',
 });
 
 const drawerFooterStyle = tva({
-  base: 'flex-row justify-end items-center',
+  base: 'flex-col-reverse gap-2 sm:flex-row sm:justify-end pt-4',
 });
 
 type IDrawerProps = React.ComponentProps<typeof UIDrawer> &
@@ -205,19 +205,14 @@ const DrawerBackdrop = React.forwardRef<
         opacity: 0,
       }}
       animate={{
-        opacity: 0.5,
+        opacity: 1,
       }}
       exit={{
         opacity: 0,
       }}
       transition={{
-        type: 'spring',
-        damping: 18,
-        stiffness: 250,
-        opacity: {
-          type: 'timing',
-          duration: 250,
-        },
+        type: 'timing',
+        duration: 200,
       }}
       {...props}
       className={drawerBackdropStyle({
@@ -259,8 +254,9 @@ const DrawerContent = React.forwardRef<
       animate={animateObj}
       exit={exitObj}
       transition={{
-        type: 'timing',
-        duration: 300,
+        type: 'spring',
+        damping: 25,
+        stiffness: 250,
       }}
       {...props}
       className={drawerContentStyle({
