@@ -45,7 +45,7 @@ export const config = {
     '--destructive': '255 100 103',
     /* Error */
 
-    '--background': '255 255 255',
+    '--background':'10 10 10',
 
     '--input': '255 255 255',
     '--border': '255 255 255',

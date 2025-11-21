@@ -49,7 +49,7 @@ const alertDialogStyle = tva({
 });
 
 const alertDialogContentStyle = tva({
-  base: 'bg-background rounded-lg border shadow-lg p-6 gap-4 w-full max-w-[calc(100%-2rem)] sm:max-w-lg',
+  base: 'bg-background rounded-lg border border-border dark:border-border/10 shadow-lg p-6 gap-4 w-full max-w-[calc(100%-2rem)] sm:max-w-lg',
 });
 
 const alertDialogCloseButtonStyle = tva({
@@ -57,7 +57,7 @@ const alertDialogCloseButtonStyle = tva({
 });
 
 const alertDialogHeaderStyle = tva({
-  base: 'flex-col gap-2 text-center sm:text-left',
+  base: 'flex-col text-foreground gap-2 text-center sm:text-left',
 });
 
 const alertDialogFooterStyle = tva({

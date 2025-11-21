@@ -8,15 +8,14 @@ function Example() {
       </Button>
       <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogBackdrop />
-        <AlertDialogContent className="p-0 max-w-[590px] sm:flex-row border-primary-800 rounded-xl">
-          <Box className="bg-primary-600 min-w-[123px] items-center justify-center native:max-h-[95px]">
+        <AlertDialogContent className="p-0 max-w-[590px] sm:flex-row rounded-xl">
+          <Box className="bg-primary min-w-[123px] items-center justify-center native:max-h-[95px]">
             <Image
               source=\\{{
                 uri: "https://gluestack.github.io/public-blog-video-assets/Image%20Container.png",
               }}
               alt="image"
               className="min-h-[95px] min-w-[95px] h-full w-full"
-              size="none"
             />
           </Box>
           <AlertDialogBody
@@ -24,18 +23,18 @@ function Example() {
             contentContainerClassName="p-6 flex-row justify-between gap-6 md:gap-9 items-center"
           >
             <VStack>
-              <Heading size="md" className="text-typography-950 font-semibold leading-6">
+              <Heading className="text-foreground font-semibold text-lg leading-6">
                 Get Additional Discount
               </Heading>
-              <Text className="pt-2 text-typography-950" size="sm">
+              <Text className="pt-2 text-foreground text-sm">
                 Upgrade your plan before your trial ends yo get 5% discount. Use
                 code{' '}
-                <Text className="font-bold" size="md">
+                <Text className="font-bold text-base">
                   #PRO005
                 </Text>
               </Text>
             </VStack>
-            <Button size="sm" className="hidden sm:flex" onPress={handleClose}>
+            <Button className="hidden sm:flex" onPress={handleClose}>
               <ButtonText>Upgrade</ButtonText>
             </Button>
           </AlertDialogBody>
