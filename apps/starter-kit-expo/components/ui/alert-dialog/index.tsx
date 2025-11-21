@@ -49,7 +49,7 @@ const alertDialogStyle = tva({
 });
 
 const alertDialogContentStyle = tva({
-  base: 'bg-background rounded-lg border border-border dark:border-border/10 shadow-lg p-6 gap-4 w-full max-w-[calc(100%-2rem)] sm:max-w-lg',
+  base: 'bg-background rounded-lg overflow-hidden border border-border dark:border-border/10 shadow-lg p-6 gap-4 w-[95%] web:max-w-[calc(100%-2rem)] sm:max-w-lg',
 });
 
 const alertDialogCloseButtonStyle = tva({
