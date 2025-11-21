@@ -51,6 +51,7 @@ export const config = {
 
     '--input': '255 255 255',
     '--border': '255 255 255',
+    '--ring': '115 115 115',
 
     '--accent': '38 38 38',
     '--accent-foreground': '250 250 250',
