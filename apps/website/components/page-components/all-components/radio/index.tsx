@@ -12,7 +12,7 @@ export default function Example() {
       code={`function Example() {
   return (
     <RadioGroup>
-      <Radio value="{{value}}" size="{{size}}" isInvalid={ {{isInvalid}} } isDisabled={ {{isDisabled}} }>
+      <Radio value="{{value}}" isInvalid={ {{isInvalid}} } isDisabled={ {{isDisabled}} }>
         <RadioIndicator>
           <RadioIcon as={CircleIcon} />
         </RadioIndicator>
@@ -22,17 +22,6 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  },
   "isInvalid": {
     "control": {
       "type": "boolean"
