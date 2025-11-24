@@ -1,6 +1,6 @@
 function Example() {
   return (
-    <Box className="w-[290px] h-[400px] p-4 rounded-sm bg-background-100 gap-3">
+    <Box className="w-[290px] h-[400px] p-4 rounded-sm bg-muted gap-3">
         <Skeleton variant="rounded" className="h-44 w-64 rounded-sm" isLoaded={ {{isLoaded}} }>
           <Image
           className="h-44 w-64 rounded-sm"
@@ -10,11 +10,11 @@ function Example() {
            />
         </Skeleton>
         <VStack className="gap-2">
-          <Text className="text-primary-700 text-sm">May 15, 2023</Text>
-          <Text className="text-primary-900 font-bold">
+          <Text className="text-muted-foreground text-sm">May 15, 2023</Text>
+          <Text className="text-foreground font-bold">
           The Power of Positive Thinking
           </Text>
-          <Text className="text-primary-700 text-sm">
+          <Text className="text-muted-foreground text-sm">
           Discover how the power of positive thinking can transform your life,
           boost your confidence, and help you overcome challenges.
           </Text>

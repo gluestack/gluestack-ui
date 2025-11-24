@@ -5,20 +5,20 @@ function App(){
                   placement="top"
                   trigger={(triggerProps) => {
                     return (
-                    <Avatar size="md" {...triggerProps} className="bg-primary-600">
-                      <Icon as={EditIcon} size="sm" className="text-white"/>
+                    <Avatar size="md" {...triggerProps} className="bg-primary">
+                      <Icon as={EditIcon} size="sm" className="text-primary-foreground"/>
                     </Avatar>
                     )
                   }}
               >
                 <TooltipContent
-                className="bg-background-50 rounded-md"
+                className="bg-muted rounded-md"
                 >
                   <Box className="p-2.5">
                     <Text size="sm">New message</Text>
                     <HStack space="xs" className="p-1 ml-3">
                           <Avatar size="xs" className="bg-gray-500 rounded">
-                              <Icon as={Command} className="text-typography-0"/>
+                              <Icon as={Command} className="text-primary-foreground"/>
                           </Avatar>
                           <Avatar size="xs" className="bg-gray-500 rounded">
                             <AvatarFallbackText>N</AvatarFallbackText>
