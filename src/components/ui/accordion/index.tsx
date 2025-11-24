@@ -1,11 +1,17 @@
 'use client';
 import { H3 } from '@expo/html-elements';
-import { createAccordion } from '@gluestack-ui/core/accordion/creator';
+import {
+  createAccordion,
+  AccordionItemContext,
+} from '@gluestack-ui/core/accordion/creator';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import React from 'react';
 import { Platform, Pressable, Text, TextProps, View } from 'react-native';
+import { AnimatedHeight } from './AnimatedHeight';
+import { AnimatedIcon } from './AnimatedIcon';
+import { accordionAnimationConfig } from './animation-config';
 
 /** Styles */
 
@@ -142,12 +148,19 @@ const AccordionContent = React.forwardRef<
   React.ComponentRef<typeof UIAccordion.Content>,
   IAccordionContentProps
 >(function AccordionContent({ className, ...props }, ref) {
+  const { isExpanded } = React.useContext(AccordionItemContext);
+
   return (
-    <UIAccordion.Content
-      ref={ref}
-      {...props}
-      className={accordionContentStyle({ class: className })}
-    />
+    <AnimatedHeight
+      isExpanded={isExpanded}
+      duration={accordionAnimationConfig.contentDuration}
+    >
+      <UIAccordion.Content
+        ref={ref}
+        {...props}
+        className={accordionContentStyle({ class: className })}
+      />
+    </AnimatedHeight>
   );
 });
 
@@ -168,12 +181,20 @@ const AccordionIcon = React.forwardRef<
   React.ComponentRef<typeof UIAccordion.Icon>,
   IAccordionIconProps
 >(function AccordionIcon({ className, ...props }, ref) {
+  const { isExpanded } = React.useContext(AccordionItemContext);
+
   return (
-    <UIAccordion.Icon
-      ref={ref}
-      {...props}
-      className={accordionIconStyle({ class: className })}
-    />
+    <AnimatedIcon
+      isExpanded={isExpanded}
+      duration={accordionAnimationConfig.iconDuration}
+      rotation={accordionAnimationConfig.iconRotation}
+    >
+      <UIAccordion.Icon
+        ref={ref}
+        {...props}
+        className={accordionIconStyle({ class: className })}
+      />
+    </AnimatedIcon>
   );
 });
 

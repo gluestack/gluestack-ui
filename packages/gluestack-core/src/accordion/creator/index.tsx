@@ -9,6 +9,9 @@ import type { IAccordionComponentType } from './types';
 import { AccordionIcon } from './AccordionIcon';
 import { AccordionHeader } from './AccordionHeader';
 
+// Export context for use in style files
+export { AccordionContext, AccordionItemContext } from './Context';
+
 export function createAccordion<
   AccordionProps,
   ItemProps,
