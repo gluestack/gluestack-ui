@@ -10,13 +10,13 @@ export const accordionAnimationConfig = {
    * Duration for content expand/collapse animation
    * @default 300
    */
-  contentDuration: 300,
+  contentDuration: 200,
 
   /**
    * Duration for icon rotation animation
    * @default 300
    */
-  iconDuration: 300,
+  iconDuration: 200,
 
   /**
    * Rotation angle for icon when accordion is expanded (in degrees)
