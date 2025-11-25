@@ -24,12 +24,12 @@ const ComponentCard = React.memo(({ component, onPress }: any) => {
   const { colorMode }: any = useContext(ColorModeContext);
   const gradientColors =
     colorMode === 'light'
-      ? ['#E6E6E600', '#E6E6E680']
-      : ['#F2E8FF00', '#F2E8FF1A'];
+      ? ['#A765FD00', '#A765FD1A']
+      : ['#F2E8FF00', '#A765FD1A'];
 
   return (
     <Pressable
-      className={`flex-1 rounded-xl border-outline-100 border-[0.5px] w-full h-full ${
+      className={`flex-1 rounded-xl border-[#A765FD26] dark:border-[#F2F1F114] border-[0.5px] w-full h-full ${
         colorMode === 'light'
           ? 'lg:shadow-[0px_0px_4.374px_0px_rgba(38,38,38,0.10)] data-[hover=true]:lg:border data-[hover=true]:border-outline-100'
           : 'lg:shadow-soft-1 lg:border border-outline-50 data-[hover=true]:border-outline-200'
@@ -113,8 +113,8 @@ const Header = React.memo(() => {
   const { colorMode }: any = useContext(ColorModeContext);
   const gradientColors =
     colorMode === 'light'
-      ? ['#E6E6E600', '#E6E6E680']
-      : ['#27262500', '#272625CC'];
+      ? ['#A765FD00', '#A765FD1A']
+      : ['#A765FD1A', '#A765FD1A'];
 
   return (
     <LinearGradient
@@ -124,7 +124,7 @@ const Header = React.memo(() => {
       style={{ width: '100%', borderRadius: 28, overflow: 'hidden' }}
     >
       <BlurView
-        intensity={90}
+        intensity={70}
         tint={colorMode === 'light' ? 'light' : 'dark'}
         experimentalBlurMethod="dimezisBlurView"
       >

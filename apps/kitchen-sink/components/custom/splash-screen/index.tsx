@@ -8,7 +8,7 @@ const { width, height } = Dimensions.get('window');
 export const SplashScreen = () => {
   return (
     <Box
-      className="flex-1 bg-white justify-center items-center"
+      className="flex-1 bg-black justify-center items-center"
       style={{ width, height }}
     >
       <LottieView

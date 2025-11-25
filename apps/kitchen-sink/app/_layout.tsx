@@ -37,7 +37,7 @@ const CustomBackButton = () => {
 
 export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
-  const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light');
+  const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('dark');
   const handleColorMode = () => {
     setColorMode((prevMode: string) =>
       prevMode === 'light' ? 'dark' : 'light'
