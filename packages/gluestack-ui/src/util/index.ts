@@ -225,12 +225,19 @@ export const promptVersionManager = async (): Promise<any> => {
 async function ensureLegacyPeerDeps(): Promise<void> {
   const commands: { [key: string]: string } = {
     npm: 'npm config --location=project set legacy-peer-deps=true',
-    yarn: 'yarn config set legacy-peer-deps true',
-    pnpm: 'pnpm config set legacy-peer-deps true',
+    // pnpm uses strict-peer-dependencies config instead
+    pnpm: 'pnpm config set strict-peer-dependencies false',
+    // yarn handles peer dependencies differently and doesn't need this config
   };
 
   const command = config.packageManager && commands[config.packageManager];
-  if (command) execSync(command);
+  if (command) {
+    try {
+      execSync(command, { stdio: 'pipe' });
+    } catch (err) {
+      // Silently fail if config command doesn't work - not critical
+    }
+  }
 }
 
 const installDependencies = async (

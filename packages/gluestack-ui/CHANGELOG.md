@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 3.0.10
+
+### Patch Changes
+
+- fix: init issue fixed for pnpm
+
 ## 3.0.9
 
 ### Patch Changes
