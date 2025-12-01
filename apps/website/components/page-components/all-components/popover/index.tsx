@@ -25,7 +25,6 @@ export default function Example() {
       onClose={handleClose}
       onOpen={handleOpen}
       placement="{{placement}}"
-      size="{{size}}"
       trigger={(triggerProps) => {
         return (
           <Button {...triggerProps}>
@@ -38,7 +37,7 @@ export default function Example() {
       <PopoverContent>
         <PopoverArrow />
         <PopoverBody>
-          <Text className="text-typography-900">
+          <Text className="text-foreground">
             Alex, Annie and many others are already enjoying the Pro features,
             don't miss out on the fun!
           </Text>
@@ -48,19 +47,6 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg",
-      "full"
-    ],
-    "defaultValue": "md"
-  },
   "placement": {
     "control": {
       "type": "select"

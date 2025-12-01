@@ -1,13 +1,6 @@
 {
   "title": "Basic",
   "argTypes": {
-    "size": {
-      "control": {
-        "type": "select"
-      },
-      "options": ["sm", "md", "lg"],
-      "defaultValue": "md"
-    },
     "isInvalid": {
       "control": {
         "type": "boolean"

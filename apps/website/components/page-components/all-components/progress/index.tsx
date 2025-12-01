@@ -9,27 +9,13 @@ export default function Example() {
       code={`function Example() {
   return (
     <Center className="w-[300px] h-[150px]">
-      <Progress value={40} size="{{size}}" orientation="{{orientation}}">
+      <Progress value={40} orientation="{{orientation}}">
         <ProgressFilledTrack />
       </Progress>
     </Center>
   )
 }`}
       argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg",
-      "xl",
-      "2xl"
-    ],
-    "defaultValue": "md"
-  },
   "orientation": {
     "control": {
       "type": "select"

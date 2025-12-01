@@ -12,6 +12,8 @@ import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
 import { CloseIcon } from '@/components/ui/icon';
+import { VStack } from '@/components/ui/vstack';
+import { Divider } from '@/components/ui/divider';
 
 export default function Example() {
   return (
@@ -38,13 +40,37 @@ export default function Example() {
         <DrawerBackdrop />
         <DrawerContent>
           <DrawerHeader>
-            <Heading size="lg">Menu</Heading>
+            <Heading size="xl" className="text-foreground font-semibold">
+              Settings
+            </Heading>
             <DrawerCloseButton>
-              <Icon as={CloseIcon} />
+              <Icon as={CloseIcon} className="stroke-foreground" size="lg" />
             </DrawerCloseButton>
           </DrawerHeader>
           <DrawerBody>
-            <Text>This is the basic drawer component.</Text>
+            <VStack className="gap-6">
+              <VStack className="gap-2">
+                <Heading size="md" className="text-foreground">
+                  Updated Design
+                </Heading>
+                <Text className="text-muted-foreground text-sm leading-5">
+                  This drawer features the new gluestack design system with:
+                </Text>
+                <VStack className="gap-1.5 pl-4">
+                  <Text className="text-foreground text-sm">• Consistent borders and shadows</Text>
+                  <Text className="text-foreground text-sm">• Smooth spring animations</Text>
+                  <Text className="text-foreground text-sm">• Improved backdrop overlay</Text>
+                  <Text className="text-foreground text-sm">• Better dark mode support</Text>
+                </VStack>
+              </VStack>
+              <Divider />
+              <VStack className="gap-2">
+                <Text className="text-foreground font-medium">Test the controls:</Text>
+                <Text className="text-muted-foreground text-sm">
+                  Use the size and anchor controls above to see different drawer positions and sizes.
+                </Text>
+              </VStack>
+            </VStack>
           </DrawerBody>
           <DrawerFooter>
             <Button
@@ -54,6 +80,13 @@ export default function Example() {
               }}
             >
               <ButtonText>Cancel</ButtonText>
+            </Button>
+            <Button
+              onPress={() => {
+                setShowDrawer(false);
+              }}
+            >
+              <ButtonText>Save Changes</ButtonText>
             </Button>
           </DrawerFooter>
         </DrawerContent>
@@ -87,7 +120,7 @@ export default function Example() {
     "defaultValue": "left"
   }
 }}
-      reactLive={{ Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton, Button, ButtonText, Heading, Text, Icon, CloseIcon }}
+      reactLive={{ Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton, Button, ButtonText, Heading, Text, Icon, CloseIcon, VStack, Divider }}
     />
   );
 }

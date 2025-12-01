@@ -9,9 +9,8 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Badge size="{{size}}" variant="{{variant}}" action="{{action}}">
-      <BadgeText>Verified</BadgeText>
-      <BadgeIcon as={GlobeIcon} className="ml-2" />
+    <Badge variant="{{variant}}">
+      <BadgeText>New</BadgeText>
     </Badge>
   )
 }`}
@@ -21,34 +20,12 @@ export default function Example() {
       "type": "select"
     },
     "options": [
-      "solid",
+      "default",
+      "secondary",
+      "destructive",
       "outline"
     ],
-    "defaultValue": "solid"
-  },
-  "action": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "error",
-      "warning",
-      "success",
-      "info",
-      "muted"
-    ],
-    "defaultValue": "muted"
-  },
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "lg"
+    "defaultValue": "default"
   }
 }}
       reactLive={{ Badge, BadgeText, BadgeIcon, GlobeIcon }}

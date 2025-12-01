@@ -13,7 +13,6 @@ export default function Example() {
     <Center className="w-[300px] h-[150px]">
       <Slider
         defaultValue={30}
-        size="{{size}}"
         orientation="{{orientation}}"
         isDisabled={ {{isDisabled}} }
         isReversed={ {{isReversed}} }
@@ -27,17 +26,6 @@ export default function Example() {
   )
 }`}
       argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
-  },
   "orientation": {
     "control": {
       "type": "select"

@@ -7,8 +7,8 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Box className="bg-primary-500 p-5">
-      <Text className="text-typography-0">This is the Box</Text>
+    <Box className="bg-primary p-5">
+      <Text className="text-primary-foreground">This is the Box</Text>
     </Box>
   )
 }`}

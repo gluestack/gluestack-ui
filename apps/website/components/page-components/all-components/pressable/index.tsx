@@ -9,9 +9,9 @@ export default function Example() {
   return (
     <Pressable
       onPress={() => console.log("Hello")}
-      className="p-5 bg-primary-500"
+      className="p-5 bg-primary"
     >
-      <Text className="text-typography-0">Press me</Text>
+      <Text className="text-primary-foreground">Press me</Text>
     </Pressable>
   )
 }`}
