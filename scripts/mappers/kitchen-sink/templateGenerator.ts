@@ -23,7 +23,11 @@ export const generateCodePreviewer = (
   try {
     if (!fileOps.pathExists(codePath) || !fileOps.pathExists(argsPath)) {
       console.error(`Missing files for example ${exampleName} in ${component}`);
-      return `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`;
+      return {
+        code: `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`,
+        title: exampleName,
+        exampleName: exampleName,
+      };
     }
     let code = fileOps.readTextFile(codePath);
     const meta = fileOps.readJsonFile(argsPath);
@@ -119,7 +123,7 @@ export const generateCodePreviewer = (
 
     // Generate variant examples for "basic" example only
     // Store variants in a property that can be accessed later
-    let variantExamples: string[] = [];
+    let variantExamples: Array<{ code: string; title: string }> = [];
     if (exampleName === 'basic' && meta.argTypes) {
       variantExamples = generateVariantExamples(
         component,
@@ -146,15 +150,23 @@ export const generateCodePreviewer = (
       });
     }
     
-    // Return compiled code directly instead of wrapping in ComponentPreviewer
+    // Return compiled code with title/name
     // The compiledCode already has all variables replaced with default values
-    return compiledCode;
+    return {
+      code: compiledCode,
+      title: meta.title || exampleName,
+      exampleName: exampleName,
+    };
   } catch (error) {
     console.error(
       `:x: Error building CodePreviewer for Example:${exampleName} in ${component}:`,
       error
     );
-    return `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`;
+    return {
+      code: `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`,
+      title: exampleName,
+      exampleName: exampleName,
+    };
   }
 };
 
@@ -164,7 +176,7 @@ const generateVariantExamples = (
   originalTemplate: string,
   argTypes: Record<string, any>,
   defaultCompiledCode: string
-): string[] => {
+): Array<{ code: string; title: string }> => {
   // Get default values for all argTypes
   const defaultValues: Record<string, any> = {};
   Object.entries(argTypes).forEach(([key, value]: [string, any]) => {
@@ -212,18 +224,22 @@ const generateVariantExamples = (
   );
   console.log('─'.repeat(80));
 
-  // Compile all variants and return them
-  const compiledVariants: string[] = [];
+  // Compile all variants and return them with titles
+  const compiledVariants: Array<{ code: string; title: string }> = [];
 
   allVariants.forEach((combination, index) => {
     // Create variant name: basicbuttondefault, basicbuttondestructive, etc.
     // Use the non-default value(s) in the name
     const nonDefaultValues = Object.entries(combination)
       .filter(([key, value]) => defaultValues[key] !== value)
-      .map(([key, value]) => value)
-      .join('');
+      .map(([key, value]) => {
+        // Capitalize first letter for display
+        return value.charAt(0).toUpperCase() + value.slice(1);
+      })
+      .join(' ');
     
-    const variantName = `basic${component}${nonDefaultValues || 'default'}`;
+    // Create display title
+    const variantTitle = nonDefaultValues || 'Default';
     
     // Compile template with this combination
     let variantCode = originalTemplate;
@@ -238,7 +254,7 @@ const generateVariantExamples = (
       variantCode = variantCode.replace(regex, value);
     });
 
-    console.log(`\n${index + 1}. Variant: ${variantName}`);
+    console.log(`\n${index + 1}. Variant: ${variantTitle}`);
     console.log('─'.repeat(80));
     console.log('Combination:', JSON.stringify(combination, null, 2));
     console.log('─'.repeat(80));
@@ -247,8 +263,11 @@ const generateVariantExamples = (
     console.log(variantCode);
     console.log('─'.repeat(80));
     
-    // Add to compiled variants array
-    compiledVariants.push(variantCode);
+    // Add to compiled variants array with title
+    compiledVariants.push({
+      code: variantCode,
+      title: variantTitle,
+    });
   });
 
   console.log(`\n✅ Generated ${allVariants.length} variant examples\n`);
@@ -266,8 +285,8 @@ export const copyProcessedAnnotations = (
     const sourceContent = fileOps.readTextFile(sourcePath);
     const importMap: ImportMap = {};
 
-    // Process each annotation match and collect examples
-    const examples: string[] = [];
+    // Process each annotation match and collect examples with titles
+    const examples: Array<{ code: string; title: string }> = [];
     let match;
     while ((match = regex.CodePreviewerRegex.exec(sourceContent)) !== null) {
       const exampleName = match[1].trim();
@@ -295,12 +314,12 @@ export const copyProcessedAnnotations = (
         })
         .join('\n');
 
-      // Convert each example function to a named component
+      // Convert each example function to a named component with heading
       const exampleComponents = examples
         .map((example, index) => {
           // Extract the function body (remove "function Example()" and closing brace)
           // The example is: "function Example() {\n  return (\n    ...\n  )\n}"
-          let functionBody = example.trim();
+          let functionBody = example.code.trim();
           
           // Remove "function Example() {" from the start
           functionBody = functionBody.replace(/^function\s+Example\s*\(\)\s*\{/, '');
@@ -317,9 +336,14 @@ export const copyProcessedAnnotations = (
         })
         .join('\n');
 
-      // Generate JSX to render all components with proper spacing
+      // Generate JSX to render all components with headings
       const renderedComponents = examples
-        .map((_, index) => `          <Example${index + 1} />`)
+        .map((example, index) => {
+          const componentName = `Example${index + 1}`;
+          // Capitalize first letter of title
+          const headingTitle = example.title.charAt(0).toUpperCase() + example.title.slice(1);
+          return `          <Heading size="md" className="text-typography-800 mb-4 mt-6">${headingTitle}</Heading>\n          <Example${index + 1} />`;
+        })
         .join('\n');
 
       // Wrap the processed content in a component

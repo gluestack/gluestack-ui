@@ -23,6 +23,7 @@ export const wrappedComponentTemplate = (
   return `
 import React from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Heading } from '@/components/ui/heading';
 
 ${componentDefinitions}
 
