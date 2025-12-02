@@ -117,6 +117,16 @@ export const generateCodePreviewer = (
     console.log('─'.repeat(80));
     console.log(`\n`);
 
+    // Generate variant examples for "basic" example only
+    if (exampleName === 'basic' && meta.argTypes) {
+      generateVariantExamples(
+        component,
+        code.trim(),
+        meta.argTypes,
+        compiledCode
+      );
+    }
+
     // Add reactLive imports to importMap
     if (meta.reactLive) {
       Object.entries(meta.reactLive).forEach(([key, value]) => {
@@ -136,6 +146,96 @@ export const generateCodePreviewer = (
     );
     return `<!-- Failed to load CodePreviewer for Example:${exampleName} -->`;
   }
+};
+
+// Generate variant examples for basic example
+const generateVariantExamples = (
+  component: string,
+  originalTemplate: string,
+  argTypes: Record<string, any>,
+  defaultCompiledCode: string
+) => {
+  // Get default values for all argTypes
+  const defaultValues: Record<string, any> = {};
+  Object.entries(argTypes).forEach(([key, value]: [string, any]) => {
+    if (value.defaultValue !== undefined) {
+      defaultValues[key] = value.defaultValue;
+    }
+  });
+
+  // Find all argTypes that have options array
+  const argTypesWithOptions: Array<{
+    name: string;
+    options: string[];
+    defaultValue: any;
+  }> = [];
+
+  Object.entries(argTypes).forEach(([key, value]: [string, any]) => {
+    if (value.options && Array.isArray(value.options)) {
+      argTypesWithOptions.push({
+        name: key,
+        options: value.options,
+        defaultValue: value.defaultValue,
+      });
+    }
+  });
+
+  // If no argTypes with options, skip
+  if (argTypesWithOptions.length === 0) {
+    return;
+  }
+
+  // Generate variants: each argType with its options, keeping others at default
+  const allVariants: Array<Record<string, string>> = [];
+
+  argTypesWithOptions.forEach((argType) => {
+    argType.options.forEach((option) => {
+      // Create combination with this option and defaults for others
+      const combination: Record<string, string> = { ...defaultValues };
+      combination[argType.name] = option;
+      allVariants.push(combination);
+    });
+  });
+
+  console.log(
+    `\n🎨 Generating ${allVariants.length} variant examples for ${component}/basic:`
+  );
+  console.log('─'.repeat(80));
+
+  allVariants.forEach((combination, index) => {
+    // Create variant name: basicbuttondefault, basicbuttondestructive, etc.
+    // Use the non-default value(s) in the name
+    const nonDefaultValues = Object.entries(combination)
+      .filter(([key, value]) => defaultValues[key] !== value)
+      .map(([key, value]) => value)
+      .join('');
+    
+    const variantName = `basic${component}${nonDefaultValues || 'default'}`;
+    
+    // Compile template with this combination
+    let variantCode = originalTemplate;
+    
+    // Replace escaped braces first
+    variantCode = variantCode.replace(/\\\\{{/g, '{{');
+    variantCode = variantCode.replace(/\\\\}}/g, '}}');
+    
+    // Replace variables with combination values
+    Object.entries(combination).forEach(([key, value]) => {
+      const regex = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
+      variantCode = variantCode.replace(regex, value);
+    });
+
+    console.log(`\n${index + 1}. Variant: ${variantName}`);
+    console.log('─'.repeat(80));
+    console.log('Combination:', JSON.stringify(combination, null, 2));
+    console.log('─'.repeat(80));
+    console.log('Compiled Code:');
+    console.log('─'.repeat(80));
+    console.log(variantCode);
+    console.log('─'.repeat(80));
+  });
+
+  console.log(`\n✅ Generated ${allVariants.length} variant examples\n`);
 };
 
 export const copyProcessedAnnotations = (
