@@ -16,15 +16,21 @@ export const importTemplate = (imports: string[], importPath: string) => {
   return `import { ${imports.join(', ')} } from '${importPath}'`;
 };
 
-export const wrappedComponentTemplate = (processedContent: string) => {
+export const wrappedComponentTemplate = (
+  componentDefinitions: string,
+  renderedComponents: string
+) => {
   return `
 import React from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+${componentDefinitions}
+
 export default function ComponentExamples() {
   return (
-        <KeyboardAwareScrollView enableAutomaticScroll showsVerticalScrollIndicator={false} className='bg-background-0 flex-1 px-3 pb-6 web:flex-col md:max-w-[1230px] w-full mx-auto'>
-      ${processedContent.trim()}
-        </KeyboardAwareScrollView>
+    <KeyboardAwareScrollView enableAutomaticScroll showsVerticalScrollIndicator={false} className='bg-background-0 flex-1 px-3 pb-6 web:flex-col md:max-w-[1230px] w-full mx-auto'>
+${renderedComponents}
+    </KeyboardAwareScrollView>
   );
 }`;
 };

@@ -118,13 +118,20 @@ export const generateCodePreviewer = (
     console.log(`\n`);
 
     // Generate variant examples for "basic" example only
+    // Store variants in a property that can be accessed later
+    let variantExamples: string[] = [];
     if (exampleName === 'basic' && meta.argTypes) {
-      generateVariantExamples(
+      variantExamples = generateVariantExamples(
         component,
         code.trim(),
         meta.argTypes,
         compiledCode
       );
+    }
+    
+    // Store variants in importMap as a special property (we'll extract it later)
+    if (variantExamples.length > 0) {
+      (importMap as any).__variantExamples = variantExamples;
     }
 
     // Add reactLive imports to importMap
@@ -138,7 +145,10 @@ export const generateCodePreviewer = (
         }
       });
     }
-    return componentPreviewerTemplate(code.trim(), argTypes, title);
+    
+    // Return compiled code directly instead of wrapping in ComponentPreviewer
+    // The compiledCode already has all variables replaced with default values
+    return compiledCode;
   } catch (error) {
     console.error(
       `:x: Error building CodePreviewer for Example:${exampleName} in ${component}:`,
@@ -154,7 +164,7 @@ const generateVariantExamples = (
   originalTemplate: string,
   argTypes: Record<string, any>,
   defaultCompiledCode: string
-) => {
+): string[] => {
   // Get default values for all argTypes
   const defaultValues: Record<string, any> = {};
   Object.entries(argTypes).forEach(([key, value]: [string, any]) => {
@@ -180,9 +190,9 @@ const generateVariantExamples = (
     }
   });
 
-  // If no argTypes with options, skip
+  // If no argTypes with options, return empty array
   if (argTypesWithOptions.length === 0) {
-    return;
+    return [];
   }
 
   // Generate variants: each argType with its options, keeping others at default
@@ -201,6 +211,9 @@ const generateVariantExamples = (
     `\n🎨 Generating ${allVariants.length} variant examples for ${component}/basic:`
   );
   console.log('─'.repeat(80));
+
+  // Compile all variants and return them
+  const compiledVariants: string[] = [];
 
   allVariants.forEach((combination, index) => {
     // Create variant name: basicbuttondefault, basicbuttondestructive, etc.
@@ -233,9 +246,14 @@ const generateVariantExamples = (
     console.log('─'.repeat(80));
     console.log(variantCode);
     console.log('─'.repeat(80));
+    
+    // Add to compiled variants array
+    compiledVariants.push(variantCode);
   });
 
   console.log(`\n✅ Generated ${allVariants.length} variant examples\n`);
+  
+  return compiledVariants;
 };
 
 export const copyProcessedAnnotations = (
@@ -246,15 +264,11 @@ export const copyProcessedAnnotations = (
   try {
     // Read source file content
     const sourceContent = fileOps.readTextFile(sourcePath);
-    const importMap: ImportMap = {
-      '@/components/custom/component-previewer': ['ComponentPreviewer'],
-    };
+    const importMap: ImportMap = {};
 
-    // Only collect the processed annotations
-    let processedContent = '';
+    // Process each annotation match and collect examples
+    const examples: string[] = [];
     let match;
-
-    // Process each annotation match
     while ((match = regex.CodePreviewerRegex.exec(sourceContent)) !== null) {
       const exampleName = match[1].trim();
       const processedAnnotation = generateCodePreviewer(
@@ -262,11 +276,18 @@ export const copyProcessedAnnotations = (
         component,
         importMap
       );
-      processedContent += processedAnnotation + '\n\n';
+      examples.push(processedAnnotation);
+      
+      // Check if this example generated variant examples (for basic example)
+      if ((importMap as any).__variantExamples) {
+        examples.push(...(importMap as any).__variantExamples);
+        // Clear the variant examples after adding them
+        delete (importMap as any).__variantExamples;
+      }
     }
 
     // If we found and processed any annotations
-    if (processedContent) {
+    if (examples.length > 0) {
       // Generate import statements
       const importContent = Object.entries(importMap)
         .map(([importPath, imports]) => {
@@ -274,8 +295,38 @@ export const copyProcessedAnnotations = (
         })
         .join('\n');
 
+      // Convert each example function to a named component
+      const exampleComponents = examples
+        .map((example, index) => {
+          // Extract the function body (remove "function Example()" and closing brace)
+          // The example is: "function Example() {\n  return (\n    ...\n  )\n}"
+          let functionBody = example.trim();
+          
+          // Remove "function Example() {" from the start
+          functionBody = functionBody.replace(/^function\s+Example\s*\(\)\s*\{/, '');
+          
+          // Remove closing brace from the end
+          functionBody = functionBody.replace(/\}\s*$/, '');
+          
+          // Trim and indent properly
+          functionBody = functionBody.trim();
+          
+          // Create named component with proper indentation
+          const componentName = `Example${index + 1}`;
+          return `const ${componentName} = () => {\n${functionBody}\n};\n`;
+        })
+        .join('\n');
+
+      // Generate JSX to render all components with proper spacing
+      const renderedComponents = examples
+        .map((_, index) => `          <Example${index + 1} />`)
+        .join('\n');
+
       // Wrap the processed content in a component
-      const wrappedContent = wrappedComponentTemplate(processedContent);
+      const wrappedContent = wrappedComponentTemplate(
+        exampleComponents.trim(),
+        renderedComponents
+      );
 
       // Combine imports with wrapped content
       const finalContent = `${importContent}\n\n${wrappedContent}`;
