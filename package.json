@@ -3,6 +3,7 @@
   "dependencies": {
     "@clack/prompts": "^0.11.0",
     "chokidar": "^4.0.3",
+    "handlebars": "^4.7.8",
     "solito": "^4.4.1",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.3",

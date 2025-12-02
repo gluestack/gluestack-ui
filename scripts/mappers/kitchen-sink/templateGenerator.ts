@@ -29,6 +29,94 @@ export const generateCodePreviewer = (
     const meta = fileOps.readJsonFile(argsPath);
     const argTypes = JSON.stringify(meta.argTypes || {}, null, 2);
     const title = JSON.stringify(meta.title);
+
+    // Console log the handlebar code and props
+    console.log(`\n📝 Handlebar Code for ${component}/${exampleName}:`);
+    console.log('─'.repeat(80));
+    console.log(code.trim());
+    console.log('─'.repeat(80));
+
+    console.log(
+      `\n📋 Props/ArgTypes from meta.json for ${component}/${exampleName}:`
+    );
+    console.log('─'.repeat(80));
+    console.log(argTypes);
+    console.log('─'.repeat(80));
+
+    // Extract default values from argTypes
+    const defaultValues: Record<string, any> = {};
+    if (meta.argTypes) {
+      Object.entries(meta.argTypes).forEach(([key, value]: [string, any]) => {
+        if (value.defaultValue !== undefined) {
+          defaultValues[key] = value.defaultValue;
+        }
+      });
+    }
+    console.log('defaultValues', defaultValues);
+    console.log('code', code.trim());
+
+    // Use regex-based replacement to compile handlebars template
+    let compiledCode = code.trim();
+
+    // Step 1: Convert escaped handlebars to literal braces
+    // Template file has: source=\\{{ (two backslashes in the file)
+    // When read as string, it stays as: source=\\{{ (two backslashes)
+    // We need to remove both backslashes to get: source={{
+    // Match \\ (escaped as \\\\ in regex) followed by {{ or }} and remove the backslashes
+    const beforeReplace = compiledCode;
+    compiledCode = compiledCode.replace(/\\\\{{/g, '{{'); // Replace \\{{ with {{
+    compiledCode = compiledCode.replace(/\\\\}}/g, '}}'); // Replace \\}} with }}
+
+    // Debug: Check if replacement happened
+    if (beforeReplace !== compiledCode) {
+      console.log(`\n🔄 Escaped braces converted:`);
+      console.log('─'.repeat(80));
+      console.log('Before:', beforeReplace.substring(0, 200));
+      console.log('After:', compiledCode.substring(0, 200));
+      console.log('─'.repeat(80));
+    }
+
+    // Step 2: Replace handlebars variables {{variableName}} with default values
+    // Match {{variableName}} pattern and replace with defaultValue if exists
+    compiledCode = compiledCode.replace(
+      /\{\{(\w+)\}\}/g,
+      (match, variableName) => {
+        // Check if we have a default value for this variable
+        if (defaultValues.hasOwnProperty(variableName)) {
+          const defaultValue = defaultValues[variableName];
+          // Handle different value types - return proper syntax
+          if (typeof defaultValue === 'string') {
+            // Don't add quotes - template already has them (e.g., variant="{{variant}}")
+            return defaultValue;
+          } else if (typeof defaultValue === 'boolean') {
+            return defaultValue.toString();
+          } else if (typeof defaultValue === 'number') {
+            return defaultValue.toString();
+          } else if (defaultValue === null || defaultValue === undefined) {
+            return 'null';
+          } else {
+            // For objects/arrays, stringify them properly
+            return JSON.stringify(defaultValue);
+          }
+        }
+        // If no default value, keep the original handlebars syntax
+        return match;
+      }
+    );
+
+    console.log(`\n🔧 Default Values extracted from argTypes:`);
+    console.log('─'.repeat(80));
+    console.log(JSON.stringify(defaultValues, null, 2));
+    console.log('─'.repeat(80));
+
+    console.log(
+      `\n✨ Compiled Code (regex replacement with default values) for ${component}/${exampleName}:`
+    );
+    console.log('─'.repeat(80));
+    console.log(compiledCode);
+    console.log('─'.repeat(80));
+    console.log(`\n`);
+
     // Add reactLive imports to importMap
     if (meta.reactLive) {
       Object.entries(meta.reactLive).forEach(([key, value]) => {
@@ -91,6 +179,7 @@ export const copyProcessedAnnotations = (
 
       // Combine imports with wrapped content
       const finalContent = `${importContent}\n\n${wrappedContent}`;
+      // console.log("finalcontent",finalContent); the
 
       // Ensure destination directory exists and write file
       const destDir = path.dirname(destinationPath);
