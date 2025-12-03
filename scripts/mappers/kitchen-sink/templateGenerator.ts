@@ -92,7 +92,7 @@ export const generateCodePreviewer = (
 
     // Generate variant examples for "basic" example only
     // Store variants in a property that can be accessed later
-    let variantExamples: Array<{ code: string; title: string }> = [];
+    let variantExamples: Array<{ code: string; title: string; componentName: string }> = [];
     if (exampleName === 'basic' && meta.argTypes) {
       variantExamples = generateVariantExamples(
         component,
@@ -103,6 +103,7 @@ export const generateCodePreviewer = (
     }
 
     // Store variants in importMap as a special property (we'll extract it later)
+    // Variants include componentName for proper naming
     if (variantExamples.length > 0) {
       (importMap as any).__variantExamples = variantExamples;
     }
@@ -155,6 +156,8 @@ const generateVariantExamples = (
   });
 
   // Find all argTypes that have options array
+  // ONLY process 'variant' and 'size' props for variant generation
+  // Other props will just use their default values in the basic example
   const argTypesWithOptions: Array<{
     name: string;
     options: string[];
@@ -162,7 +165,12 @@ const generateVariantExamples = (
   }> = [];
 
   Object.entries(argTypes).forEach(([key, value]: [string, any]) => {
-    if (value.options && Array.isArray(value.options)) {
+    // Only generate variants for 'variant' and 'size' props
+    if (
+      (key === 'variant' || key === 'size') &&
+      value.options &&
+      Array.isArray(value.options)
+    ) {
       argTypesWithOptions.push({
         name: key,
         options: value.options,
@@ -181,6 +189,11 @@ const generateVariantExamples = (
 
   argTypesWithOptions.forEach((argType) => {
     argType.options.forEach((option) => {
+      // Skip if this option is the same as the default value (avoid duplicate "default" variant)
+      if (option === argType.defaultValue) {
+        return; // Skip this variant as it's the same as basic/default
+      }
+      
       // Create combination with this option and defaults for others
       const combination: Record<string, string> = { ...defaultValues };
       combination[argType.name] = option;
@@ -188,22 +201,51 @@ const generateVariantExamples = (
     });
   });
 
-  // Compile all variants and return them with titles
-  const compiledVariants: Array<{ code: string; title: string }> = [];
+  // Compile all variants and return them with titles and component names
+  const compiledVariants: Array<{ code: string; title: string; componentName: string }> = [];
 
   allVariants.forEach((combination, index) => {
-    // Create variant name: basicbuttondefault, basicbuttondestructive, etc.
-    // Use the non-default value(s) in the name
-    const nonDefaultValues = Object.entries(combination)
-      .filter(([key, value]) => defaultValues[key] !== value)
-      .map(([key, value]) => {
-        // Capitalize first letter for display
-        return value.charAt(0).toUpperCase() + value.slice(1);
-      })
-      .join(' ');
+    // Find which prop changed (non-default value)
+    const changedProps = Object.entries(combination).filter(
+      ([key, value]) => defaultValues[key] !== value
+    );
+
+    // Determine prefix based on prop name
+    let prefix = 'Example'; // Default fallback
+    let valueForTitle = '';
+
+    if (changedProps.length > 0) {
+      const [propName, propValue] = changedProps[0];
+      
+      // Use prop-specific prefixes
+      if (propName === 'variant') {
+        prefix = 'Variant';
+      } else if (propName === 'size') {
+        prefix = 'Size';
+      } else {
+        // For other props, use prop name as prefix (capitalized)
+        prefix = propName.charAt(0).toUpperCase() + propName.slice(1);
+      }
+      
+      valueForTitle = String(propValue);
+    }
 
     // Create display title
-    const variantTitle = nonDefaultValues || 'Default';
+    // For numeric values like "2xl", keep as is (already valid)
+    // For text values, capitalize each word (e.g., "top left" -> "Top left")
+    let variantTitle: string;
+    if (valueForTitle && /^\d/.test(valueForTitle)) {
+      // Value starts with number, keep as is (e.g., "2xl" -> "2xl")
+      variantTitle = valueForTitle;
+    } else if (valueForTitle) {
+      // Capitalize first letter of each word (e.g., "top left" -> "Top left", "destructive" -> "Destructive")
+      variantTitle = valueForTitle
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    } else {
+      variantTitle = 'Default';
+    }
 
     // Compile template with this combination
     let variantCode = originalTemplate;
@@ -220,10 +262,31 @@ const generateVariantExamples = (
 
 
 
+    // Create component name with appropriate prefix
+    // Handle numeric prefixes by using the prefix (e.g., "Size2xl" instead of "2xl")
+    // Convert multi-word values to PascalCase (e.g., "top left" -> "TopLeft")
+    let componentNameValue: string;
+    if (valueForTitle && /^\d/.test(valueForTitle)) {
+      // Value starts with number, keep it as is (e.g., "2xl" -> "2xl")
+      componentNameValue = valueForTitle;
+    } else if (valueForTitle) {
+      // Convert to PascalCase: split by spaces, capitalize each word, join without spaces
+      // e.g., "top left" -> "TopLeft", "destructive" -> "Destructive"
+      componentNameValue = valueForTitle
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join('');
+    } else {
+      componentNameValue = 'Default';
+    }
+    
+    const componentName = prefix + componentNameValue;
+
     // Add to compiled variants array with title
     compiledVariants.push({
       code: variantCode,
       title: variantTitle,
+      componentName: componentName, // Store component name for later use
     });
   });
 
@@ -298,14 +361,26 @@ export const copyProcessedAnnotations = (
           // Trim and indent properly
           functionBody = functionBody.trim();
 
-          // Create named component from title (e.g., "Basic Accordion" -> "BasicAccordion")
-          // Remove special characters and convert to PascalCase
-          const componentName =
-            example.title
-              .split(' ')
-              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-              .join('')
-              .replace(/[^a-zA-Z0-9]/g, '') || `Example${index + 1}`;
+          // Use componentName from variant if available, otherwise generate from title
+          let componentName: string;
+          if ((example as any).componentName) {
+            // Variant example with pre-generated component name (e.g., "VariantDestructive", "Size2xl")
+            componentName = (example as any).componentName;
+          } else {
+            // Regular example - create named component from title with "Example" prefix
+            // Remove special characters and convert to PascalCase
+            const titleBasedName =
+              example.title
+                .split(' ')
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join('')
+                .replace(/[^a-zA-Z0-9]/g, '') || `Example${index + 1}`;
+            
+            // Add "Example" prefix for non-variant examples
+            componentName = titleBasedName.startsWith('Example') 
+              ? titleBasedName 
+              : `Example${titleBasedName}`;
+          }
 
           return `const ${componentName} = () => {\n${functionBody}\n};\n`;
         })
@@ -314,13 +389,25 @@ export const copyProcessedAnnotations = (
       // Generate variants array for UsageVariantFlatList
       const variantsArray = examples
         .map((example, index) => {
-          // Create component name from title
-          const componentName =
-            example.title
-              .split(' ')
-              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-              .join('')
-              .replace(/[^a-zA-Z0-9]/g, '') || `Example${index + 1}`;
+          // Use componentName from variant if available, otherwise generate from title
+          let componentName: string;
+          if ((example as any).componentName) {
+            // Variant example with pre-generated component name
+            componentName = (example as any).componentName;
+          } else {
+            // Regular example - create component name from title with "Example" prefix
+            const titleBasedName =
+              example.title
+                .split(' ')
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join('')
+                .replace(/[^a-zA-Z0-9]/g, '') || `Example${index + 1}`;
+            
+            // Add "Example" prefix for non-variant examples
+            componentName = titleBasedName.startsWith('Example') 
+              ? titleBasedName 
+              : `Example${titleBasedName}`;
+          }
 
           // Create value from title (lowercase, kebab-case)
           const value =
