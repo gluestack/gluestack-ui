@@ -65,7 +65,7 @@ const VariantItem = memo(
     });
 
     return (
-      <Animated.View className="items-center justify-center " style={[{ width, height: 400 }, animatedStyle]}>
+      <Animated.View className="items-center justify-center px-6" style={[{ width, height: 400 }, animatedStyle]}>
         {item.content}
       </Animated.View>
     );
