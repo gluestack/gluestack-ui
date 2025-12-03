@@ -34,18 +34,7 @@ export const generateCodePreviewer = (
     const argTypes = JSON.stringify(meta.argTypes || {}, null, 2);
     const title = JSON.stringify(meta.title);
 
-    // Console log the handlebar code and props
-    console.log(`\n📝 Handlebar Code for ${component}/${exampleName}:`);
-    console.log('─'.repeat(80));
-    console.log(code.trim());
-    console.log('─'.repeat(80));
 
-    console.log(
-      `\n📋 Props/ArgTypes from meta.json for ${component}/${exampleName}:`
-    );
-    console.log('─'.repeat(80));
-    console.log(argTypes);
-    console.log('─'.repeat(80));
 
     // Extract default values from argTypes
     const defaultValues: Record<string, any> = {};
@@ -56,8 +45,6 @@ export const generateCodePreviewer = (
         }
       });
     }
-    console.log('defaultValues', defaultValues);
-    console.log('code', code.trim());
 
     // Use regex-based replacement to compile handlebars template
     let compiledCode = code.trim();
@@ -71,14 +58,7 @@ export const generateCodePreviewer = (
     compiledCode = compiledCode.replace(/\\\\{{/g, '{{'); // Replace \\{{ with {{
     compiledCode = compiledCode.replace(/\\\\}}/g, '}}'); // Replace \\}} with }}
 
-    // Debug: Check if replacement happened
-    if (beforeReplace !== compiledCode) {
-      console.log(`\n🔄 Escaped braces converted:`);
-      console.log('─'.repeat(80));
-      console.log('Before:', beforeReplace.substring(0, 200));
-      console.log('After:', compiledCode.substring(0, 200));
-      console.log('─'.repeat(80));
-    }
+
 
     // Step 2: Replace handlebars variables {{variableName}} with default values
     // Match {{variableName}} pattern and replace with defaultValue if exists
@@ -108,18 +88,7 @@ export const generateCodePreviewer = (
       }
     );
 
-    console.log(`\n🔧 Default Values extracted from argTypes:`);
-    console.log('─'.repeat(80));
-    console.log(JSON.stringify(defaultValues, null, 2));
-    console.log('─'.repeat(80));
-
-    console.log(
-      `\n✨ Compiled Code (regex replacement with default values) for ${component}/${exampleName}:`
-    );
-    console.log('─'.repeat(80));
-    console.log(compiledCode);
-    console.log('─'.repeat(80));
-    console.log(`\n`);
+ 
 
     // Generate variant examples for "basic" example only
     // Store variants in a property that can be accessed later
@@ -132,7 +101,7 @@ export const generateCodePreviewer = (
         compiledCode
       );
     }
-    
+
     // Store variants in importMap as a special property (we'll extract it later)
     if (variantExamples.length > 0) {
       (importMap as any).__variantExamples = variantExamples;
@@ -149,7 +118,7 @@ export const generateCodePreviewer = (
         }
       });
     }
-    
+
     // Return compiled code with title/name
     // The compiledCode already has all variables replaced with default values
     return {
@@ -219,11 +188,6 @@ const generateVariantExamples = (
     });
   });
 
-  console.log(
-    `\n🎨 Generating ${allVariants.length} variant examples for ${component}/basic:`
-  );
-  console.log('─'.repeat(80));
-
   // Compile all variants and return them with titles
   const compiledVariants: Array<{ code: string; title: string }> = [];
 
@@ -237,32 +201,25 @@ const generateVariantExamples = (
         return value.charAt(0).toUpperCase() + value.slice(1);
       })
       .join(' ');
-    
+
     // Create display title
     const variantTitle = nonDefaultValues || 'Default';
-    
+
     // Compile template with this combination
     let variantCode = originalTemplate;
-    
+
     // Replace escaped braces first
     variantCode = variantCode.replace(/\\\\{{/g, '{{');
     variantCode = variantCode.replace(/\\\\}}/g, '}}');
-    
+
     // Replace variables with combination values
     Object.entries(combination).forEach(([key, value]) => {
       const regex = new RegExp(`\\{\\{${key}\\}\\}`, 'g');
       variantCode = variantCode.replace(regex, value);
     });
 
-    console.log(`\n${index + 1}. Variant: ${variantTitle}`);
-    console.log('─'.repeat(80));
-    console.log('Combination:', JSON.stringify(combination, null, 2));
-    console.log('─'.repeat(80));
-    console.log('Compiled Code:');
-    console.log('─'.repeat(80));
-    console.log(variantCode);
-    console.log('─'.repeat(80));
-    
+
+
     // Add to compiled variants array with title
     compiledVariants.push({
       code: variantCode,
@@ -270,8 +227,8 @@ const generateVariantExamples = (
     });
   });
 
-  console.log(`\n✅ Generated ${allVariants.length} variant examples\n`);
-  
+
+
   return compiledVariants;
 };
 
@@ -296,7 +253,7 @@ export const copyProcessedAnnotations = (
         importMap
       );
       examples.push(processedAnnotation);
-      
+
       // Check if this example generated variant examples (for basic example)
       if ((importMap as any).__variantExamples) {
         examples.push(...(importMap as any).__variantExamples);
@@ -314,42 +271,76 @@ export const copyProcessedAnnotations = (
         })
         .join('\n');
 
-      // Convert each example function to a named component with heading
+      // Convert each example function to a named component
       const exampleComponents = examples
         .map((example, index) => {
-          // Extract the function body (remove "function Example()" and closing brace)
-          // The example is: "function Example() {\n  return (\n    ...\n  )\n}"
+          // Extract the function body (remove function declaration and closing brace)
+          // Handle any function name: "function Example()", "function App()", etc.
           let functionBody = example.code.trim();
-          
-          // Remove "function Example() {" from the start
-          functionBody = functionBody.replace(/^function\s+Example\s*\(\)\s*\{/, '');
-          
-          // Remove closing brace from the end
-          functionBody = functionBody.replace(/\}\s*$/, '');
-          
+
+          // Match any function name at the start: function <anyName>() or function <anyName>(){}
+          // Remove "function <name>() {" from the start (handles any function name)
+          // This regex matches: function + any word characters + optional params + opening brace
+          // Handle various formats: "function App(){", "function App() {", "function Example() {"
+          // Use a more flexible pattern - match function keyword followed by any identifier
+          const functionPattern =
+            /^function\s+[a-zA-Z_$][a-zA-Z0-9_$]*\s*\([^)]*\)\s*\{/;
+          if (functionPattern.test(functionBody)) {
+            functionBody = functionBody.replace(functionPattern, '');
+          }
+
+          // Remove closing brace from the end (match the outermost closing brace)
+          // Handle cases where there might be multiple closing braces or semicolons
+          // We want to remove only the last one (the function's closing brace)
+          functionBody = functionBody.replace(/;\s*\}\s*$/, ''); // Handle "};" pattern first
+          functionBody = functionBody.replace(/\}\s*$/, ''); // Handle "}" pattern
+
           // Trim and indent properly
           functionBody = functionBody.trim();
-          
-          // Create named component with proper indentation
-          const componentName = `Example${index + 1}`;
+
+          // Create named component from title (e.g., "Basic Accordion" -> "BasicAccordion")
+          // Remove special characters and convert to PascalCase
+          const componentName =
+            example.title
+              .split(' ')
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join('')
+              .replace(/[^a-zA-Z0-9]/g, '') || `Example${index + 1}`;
+
           return `const ${componentName} = () => {\n${functionBody}\n};\n`;
         })
         .join('\n');
 
-      // Generate JSX to render all components with headings
-      const renderedComponents = examples
+      // Generate variants array for UsageVariantFlatList
+      const variantsArray = examples
         .map((example, index) => {
-          const componentName = `Example${index + 1}`;
-          // Capitalize first letter of title
-          const headingTitle = example.title.charAt(0).toUpperCase() + example.title.slice(1);
-          return `          <Heading size="md" className="text-typography-800 mb-4 mt-6">${headingTitle}</Heading>\n          <Example${index + 1} />`;
+          // Create component name from title
+          const componentName =
+            example.title
+              .split(' ')
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join('')
+              .replace(/[^a-zA-Z0-9]/g, '') || `Example${index + 1}`;
+
+          // Create value from title (lowercase, kebab-case)
+          const value =
+            example.title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-|-$/g, '') || `example-${index + 1}`;
+
+          // Create label (capitalize first letter)
+          const label =
+            example.title.charAt(0).toUpperCase() + example.title.slice(1);
+
+          return `  {\n    value: "${value}",\n    label: "${label}",\n    content: <${componentName} />,\n  }`;
         })
-        .join('\n');
+        .join(',\n');
 
       // Wrap the processed content in a component
       const wrappedContent = wrappedComponentTemplate(
         exampleComponents.trim(),
-        renderedComponents
+        variantsArray
       );
 
       // Combine imports with wrapped content

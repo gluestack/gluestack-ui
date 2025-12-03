@@ -18,20 +18,19 @@ export const importTemplate = (imports: string[], importPath: string) => {
 
 export const wrappedComponentTemplate = (
   componentDefinitions: string,
-  renderedComponents: string
+  variantsArray: string
 ) => {
   return `
 import React from 'react';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Heading } from '@/components/ui/heading';
+import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
 
 ${componentDefinitions}
 
+const COMPONENT_VARIANTS = [
+${variantsArray}
+];
+
 export default function ComponentExamples() {
-  return (
-    <KeyboardAwareScrollView enableAutomaticScroll showsVerticalScrollIndicator={false} className='bg-background-0 flex-1 px-3 pb-6 web:flex-col md:max-w-[1230px] w-full mx-auto'>
-${renderedComponents}
-    </KeyboardAwareScrollView>
-  );
+  return <UsageVariantFlatList data={COMPONENT_VARIANTS} />;
 }`;
 };
