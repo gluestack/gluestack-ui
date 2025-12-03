@@ -50,7 +50,7 @@ export function PaginationIndicator({
 
   return (
     <AnimatedView
-      className="w-2 h-2 bg-background-500 rounded-full"
+      className="w-2 h-2 bg-primary rounded-full"
       style={[
         {
           shadowColor: "#000",
