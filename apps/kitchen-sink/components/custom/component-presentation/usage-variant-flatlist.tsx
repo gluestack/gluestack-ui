@@ -1,9 +1,10 @@
 import { BlurView } from "expo-blur";
 import * as Haptics from "expo-haptics";
-import { memo, useCallback, useContext, useRef, useState } from "react";
+import { memo, useCallback, useContext, useEffect, useRef, useState } from "react";
 import {
   FlatList,
   Platform,
+  ScrollView,
   StyleSheet,
   useWindowDimensions,
   View,
@@ -19,7 +20,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ColorModeContext } from "@/app/_layout";
-import { PaginationIndicator } from "./pagination-indicator";
 import type { UsageVariant } from "./types";
 import { Text } from "@/components/ui/text";
 
@@ -90,24 +90,53 @@ export const UsageVariantFlatList = ({
   const applyBlur = Platform.OS === "ios";
 
   const listRef = useRef<FlatList<UsageVariant>>(null);
+  const variantNamesScrollRef = useRef<ScrollView>(null);
+
+  const scrollX = useSharedValue(0);
+  
+  // Store item positions for accurate scrolling
+  const itemPositionsRef = useRef<number[]>([]);
+
+  const scrollVariantNamesToActive = useCallback((activeIndex: number) => {
+    if (variantNamesScrollRef.current && activeIndex >= 0 && activeIndex < data.length) {
+      const itemPositions = itemPositionsRef.current;
+      if (itemPositions.length > activeIndex) {
+        const itemCenter = itemPositions[activeIndex] || 0;
+        const scrollPosition = Math.max(0, itemCenter - width / 2);
+        variantNamesScrollRef.current.scrollTo({
+          x: scrollPosition,
+          animated: true,
+        });
+      }
+    }
+  }, [width, data.length]);
 
   const handleViewableItemsChanged = useCallback(
-    ({ viewableItems }: { viewableItems: Array<{ item: UsageVariant }> }) => {
+    ({ viewableItems }: { viewableItems: Array<{ item: UsageVariant; index: number | null }> }) => {
       if (viewableItems.length > 0 && viewableItems[0]) {
         if (Platform.OS === "ios") {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         }
-        setCurrentVariant(viewableItems[0].item);
+        const item = viewableItems[0].item;
+        const index = viewableItems[0].index ?? 0;
+        setCurrentVariant(item);
+        scrollVariantNamesToActive(index);
       }
     },
-    []
+    [scrollVariantNamesToActive]
   );
+
+  // Set initial scroll position after component mounts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      scrollVariantNamesToActive(0);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [scrollVariantNamesToActive]);
 
   const viewabilityConfig = useRef({
     itemVisiblePercentThreshold: 50,
   }).current;
-
-  const scrollX = useSharedValue(0);
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
@@ -194,47 +223,68 @@ export const UsageVariantFlatList = ({
         style={{ bottom: insets.bottom + 34 }}
         pointerEvents="none"
       >
-        <View className="gap-3 w-full items-center">
-          {/* Fixed text label container */}
-          <View className="h-6 flex-row w-full justify-center">
-            {data.map((item, index) => {
-              const rLabelStyle = useAnimatedStyle(() => {
-                return {
-                  opacity: interpolate(
-                    scrollX.value / width,
-                    [index - 0.5, index, index + 0.5],
-                    [0, 1, 0],
-                    Extrapolation.CLAMP
-                  ),
-                };
-              });
-
-              return (
-                <Animated.View
-                  key={index}
-                  className="absolute"
-                  style={rLabelStyle}
-                >
-                  <Text className="text-typography-900 text-base font-medium">
-                    {item.label}
-                  </Text>
-                </Animated.View>
+        {/* Variant names horizontal scrollable list - active item centered, others faded */}
+        <ScrollView
+          ref={variantNamesScrollRef}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          scrollEnabled={false}
+          contentContainerStyle={{
+            alignItems: 'center',
+            paddingHorizontal: width / 2,
+          }}
+          onLayout={(event) => {
+            // Calculate positions of each item after layout
+            const { width: scrollWidth } = event.nativeEvent.layout;
+            // We'll measure positions dynamically
+          }}
+        >
+          {data.map((item, index) => {
+            const rVariantNameStyle = useAnimatedStyle(() => {
+              const inputRange = [
+                (index - 1) * width,
+                index * width,
+                (index + 1) * width,
+              ];
+              
+              const opacity = interpolate(
+                scrollX.value,
+                inputRange,
+                [0.3, 1, 0.3],
+                Extrapolation.CLAMP
               );
-            })}
-          </View>
 
-          {/* Dots container */}
-          <View className="flex-row gap-1">
-            {data.map((item, index) => (
-              <PaginationIndicator
+              const scale = interpolate(
+                scrollX.value,
+                inputRange,
+                [0.85, 1, 0.85],
+                Extrapolation.CLAMP
+              );
+
+              return {
+                opacity,
+                transform: [{ scale }],
+              };
+            });
+
+            return (
+              <Animated.View
                 key={index}
-                index={index}
-                scrollY={scrollX}
-                itemSize={width}
-              />
-            ))}
-          </View>
-        </View>
+                className="px-3"
+                style={rVariantNameStyle}
+                onLayout={(event) => {
+                  // Measure and store position of each item
+                  const { x, width: itemWidth } = event.nativeEvent.layout;
+                  itemPositionsRef.current[index] = x + itemWidth / 2;
+                }}
+              >
+                <Text className="text-typography-900 text-sm font-medium">
+                  {item.label}
+                </Text>
+              </Animated.View>
+            );
+          })}
+        </ScrollView>
       </View>
     </>
   );
