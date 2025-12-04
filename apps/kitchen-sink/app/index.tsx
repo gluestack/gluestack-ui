@@ -43,7 +43,7 @@ import { HStack } from "@/components/ui/hstack";
 import { VStack } from "@/components/ui/vstack";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { ThemeName } from "@/constants/themes";
-import { getAllComponents } from "@/utils/getComponents";
+import componentsList from "@/constants/components.json";
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
@@ -88,35 +88,11 @@ type Component = {
   icon?: React.ComponentType<any>;
 };
 
-// Get all components and flatten them into a single list
-function getAllComponentsList(): Component[] {
-  const nestedComponents = getAllComponents();
-  
-  // Flatten all components from all categories
-  const allComponents: Component[] = [];
-  
-  nestedComponents.forEach((category) => {
-    category.components.forEach((component) => {
-      // Filter out bottomsheet and components without paths
-      if (
-        component.path &&
-        !component.name.toLowerCase().includes('bottomsheet') &&
-        !component.path.toLowerCase().includes('bottomsheet')
-      ) {
-        allComponents.push({
-          title: component.name,
-          path: component.path,
-          count: 4, // Default variant count (can be improved to dynamically count)
-          icon: COMPONENT_ICONS[component.path.toLowerCase()],
-        });
-      }
-    });
-  });
-  
-  return allComponents;
-}
-
-const components = getAllComponentsList();
+// Get all components directly from the generated components.json array
+const components = (componentsList as Component[]).map((component) => ({
+  ...component,
+  icon: COMPONENT_ICONS[component.path.toLowerCase()],
+}));
 
 type ComponentCardProps = {
   item: Component;
