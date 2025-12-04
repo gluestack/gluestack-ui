@@ -1,9 +1,9 @@
-import { useRouter } from "expo-router";
-import { useFocusEffect } from "@react-navigation/native";
-import { BlurView } from "expo-blur";
-import { LinearGradient } from "expo-linear-gradient";
-import * as Haptics from "expo-haptics";
-import { memo, useCallback, useRef, useState } from "react";
+import { useRouter } from 'expo-router';
+import { useFocusEffect } from '@react-navigation/native';
+import { BlurView } from 'expo-blur';
+import { LinearGradient } from 'expo-linear-gradient';
+import * as Haptics from 'expo-haptics';
+import { memo, useCallback, useRef, useState } from 'react';
 import {
   FlatList,
   Platform,
@@ -11,7 +11,7 @@ import {
   StyleSheet,
   useWindowDimensions,
   View,
-} from "react-native";
+} from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -20,47 +20,47 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   type SharedValue,
-} from "react-native-reanimated";
-import { useAppTheme } from "@/contexts/app-theme-context";
-import { useAccessibilityInfo } from "@/helpers/use-accessability-info";
-import { Text } from "@/components/ui/text";
-import { Card } from "@/components/ui/card";
-import { Icon } from "@/components/ui/icon";
+} from 'react-native-reanimated';
+import { useAppTheme } from '@/contexts/app-theme-context';
+import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
+import { Text } from '@/components/ui/text';
+import { Card } from '@/components/ui/card';
+import { Icon } from '@/components/ui/icon';
 
-import { Image } from "@/components/ui/image";
-import { HStack } from "@/components/ui/hstack";
+import { Image } from '@/components/ui/image';
+import { HStack } from '@/components/ui/hstack';
 import {
   BottomControlBar,
   type ComponentItem,
-} from "@/components/custom/bottom-control-bar";
-import { COMPONENTS_LIST } from "@/constants/components-list";
+} from '@/components/custom/bottom-control-bar';
+import { COMPONENTS_LIST } from '@/constants/components-list';
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
 // Cards gradient colors
 const GRADIENT_COLORS = [
-  ["#3497D266", "#3497D2"] as const,
-  ["#C94AB480", "#C94AB4"] as const,
-  ["#4facfe", "#3497D2"] as const,
-  ["#26AF5F80", "#26AF5F"] as const,
-  ["#fa709a", "#fee140"] as const,
-  ["#30cfd0", "#330867"] as const,
-  ["#a8edea", "#fed6e3"] as const,
-  ["#ff9a9e", "#fecfef"] as const,
-  ["#ffecd2", "#fcb69f"] as const,
-  ["#ff6e7f", "#bfe9ff"] as const,
-  ["#e0c3fc", "#8ec5fc"] as const,
-  ["#f093fb", "#f5576c"] as const,
-  ["#fbc2eb", "#a6c1ee"] as const,
-  ["#fdcbf1", "#e6dee9"] as const,
-  ["#a1c4fd", "#c2e9fb"] as const,
-  ["#d299c2", "#fef9d7"] as const,
-  ["#667eea", "#764ba2"] as const,
-  ["#fa709a", "#fee140"] as const,
-  ["#30cfd0", "#330867"] as const,
-  ["#43e97b", "#38f9d7"] as const,
-  ["#4facfe", "#00f2fe"] as const,
+  ['#3497D266', '#3497D2'] as const,
+  ['#C94AB480', '#C94AB4'] as const,
+  ['#4facfe', '#3497D2'] as const,
+  ['#26AF5F80', '#26AF5F'] as const,
+  ['#fa709a', '#fee140'] as const,
+  ['#30cfd0', '#330867'] as const,
+  ['#a8edea', '#fed6e3'] as const,
+  ['#ff9a9e', '#fecfef'] as const,
+  ['#ffecd2', '#fcb69f'] as const,
+  ['#ff6e7f', '#bfe9ff'] as const,
+  ['#e0c3fc', '#8ec5fc'] as const,
+  ['#f093fb', '#f5576c'] as const,
+  ['#fbc2eb', '#a6c1ee'] as const,
+  ['#fdcbf1', '#e6dee9'] as const,
+  ['#a1c4fd', '#c2e9fb'] as const,
+  ['#d299c2', '#fef9d7'] as const,
+  ['#667eea', '#764ba2'] as const,
+  ['#fa709a', '#fee140'] as const,
+  ['#30cfd0', '#330867'] as const,
+  ['#43e97b', '#38f9d7'] as const,
+  ['#4facfe', '#00f2fe'] as const,
 ];
 
 const components = COMPONENTS_LIST;
@@ -128,7 +128,7 @@ const ComponentCard = memo(
           width: itemWidth + spacing,
           height,
           paddingTop: 100,
-          alignItems: "center",
+          alignItems: 'center',
         }}
       >
         <Animated.View
@@ -147,7 +147,7 @@ const ComponentCard = memo(
         >
           <Pressable
             onPress={onPress}
-            style={{ width: "100%", height: "100%" }}
+            style={{ width: '100%', height: '100%' }}
           >
             <Card className="flex-1 justify-center p-8 pr-0 overflow-hidden max-h-[400px] rounded-2xl">
               <AnimatedLinearGradient
@@ -178,7 +178,7 @@ const ComponentCard = memo(
   }
 );
 
-ComponentCard.displayName = "ComponentCard";
+ComponentCard.displayName = 'ComponentCard';
 
 export default function ComponentsTab() {
   const router = useRouter();
@@ -210,7 +210,7 @@ export default function ComponentsTab() {
   const handleViewableItemsChanged = useCallback(
     ({ viewableItems }: { viewableItems: Array<{ item: ComponentItem }> }) => {
       if (viewableItems.length > 0 && viewableItems[0]) {
-        if (Platform.OS === "ios") {
+        if (Platform.OS === 'ios') {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         }
         setCurrentComponent(viewableItems[0].item);
@@ -261,8 +261,8 @@ export default function ComponentsTab() {
           <Image
             source={{
               uri: isDark
-                ? "https://i.imgur.com/EUqtUMu.png"
-                : "https://i.imgur.com/9bvua6C.png",
+                ? 'https://i.imgur.com/EUqtUMu.png'
+                : 'https://i.imgur.com/9bvua6C.png',
             }}
             alt="Kitchensink App Logo"
             className="h-6 w-6"
@@ -284,7 +284,7 @@ export default function ComponentsTab() {
       if (isNavigatingRef.current) return;
       isNavigatingRef.current = true;
 
-      if (Platform.OS === "ios") {
+      if (Platform.OS === 'ios') {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       }
       router.push(`/(home)/components/${path}` as any);
@@ -299,10 +299,13 @@ export default function ComponentsTab() {
         (c) => c.path === component.path
       );
       if (originalIndex !== -1) {
-        listRef.current?.scrollToIndex({
-          index: originalIndex,
-          animated: true,
-        });
+        // Delay scrolling by 1 second
+        setTimeout(() => {
+          listRef.current?.scrollToIndex({
+            index: originalIndex,
+            animated: true,
+          });
+        }, 1000);
         setCurrentComponent(component);
       }
     },
@@ -355,8 +358,8 @@ export default function ComponentsTab() {
           animatedProps={animatedProps}
           tint={
             isDark
-              ? "systemUltraThinMaterialDark"
-              : "systemUltraThinMaterialLight"
+              ? 'systemUltraThinMaterialDark'
+              : 'systemUltraThinMaterialLight'
           }
         />
       )}
