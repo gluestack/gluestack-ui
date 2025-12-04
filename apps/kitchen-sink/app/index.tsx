@@ -1,240 +1,766 @@
-import { Box } from '@/components/ui/box';
-import { Grid, GridItem } from '@/components/ui/grid';
-import { Heading } from '@/components/ui/heading';
-import { HStack } from '@/components/ui/hstack';
-import { ChevronRightIcon, Icon } from '@/components/ui/icon';
-import { Image } from '@/components/ui/image';
-import { Text } from '@/components/ui/text';
-import { VStack } from '@/components/ui/vstack';
-import { getAllComponents } from '@/utils/getComponents';
-import { usePathname, useRouter } from 'expo-router';
-import React, { useCallback, useContext, useMemo } from 'react';
-import { FlatList, Platform, Pressable } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { LinearGradient } from 'expo-linear-gradient';
-import { ColorModeContext } from './_layout';
-import { BlurView } from 'expo-blur';
+import { useRouter } from "expo-router";
+import { BlurView } from "expo-blur";
+import { LinearGradient } from "expo-linear-gradient";
+import * as Haptics from "expo-haptics";
+import { memo, useCallback, useMemo, useRef, useState } from "react";
+import {
+  FlatList,
+  Modal,
+  Platform,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+} from "react-native";
+import Animated, {
+  Extrapolation,
+  interpolate,
+  useAnimatedProps,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+  Easing,
+  FadeIn,
+  FadeOut,
+  type SharedValue,
+} from "react-native-reanimated";
+import { useAppTheme } from "@/contexts/app-theme-context";
+import { useAccessibilityInfo } from "@/helpers/use-accessability-info";
+import { Text } from "@/components/ui/text";
+import { Card } from "@/components/ui/card";
+import { Icon, MoonIcon, SunIcon, SearchIcon } from "@/components/ui/icon";
+import { PaletteIcon } from "lucide-react-native";
+import {
+  AccordionIcon,
+  AlertDialogIcon,
+  AlertIcon,
+  AvatarIcon,
+} from "@/components/custom/custom-icons";
+import { Image } from "@/components/ui/image";
+import { HStack } from "@/components/ui/hstack";
+import { VStack } from "@/components/ui/vstack";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { ThemeName } from "@/constants/themes";
+import { getAllComponents } from "@/utils/getComponents";
 
-const components = getAllComponents();
-const AnimatedHeading = Animated.createAnimatedComponent(Heading);
-const AnimatedText = Animated.createAnimatedComponent(Text);
+const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
+const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
-// Memoized ComponentCard to prevent unnecessary re-renders
-const ComponentCard = React.memo(({ component, onPress }: any) => {
-  const { colorMode }: any = useContext(ColorModeContext);
-  const gradientColors =
-    colorMode === 'light'
-      ? ['#E6E6E600', '#E6E6E680']
-      : ['#F2E8FF00', '#F2E8FF1A'];
+// Vibrant gradient color combinations that work well with white text
+const GRADIENT_COLORS = [
+  ["#3497D266", "#3497D2"] as const,
+  ["#C94AB480", "#C94AB4"] as const,
+  ["#4facfe", "#3497D2"] as const,
+  ["#26AF5F80", "#26AF5F"] as const,
+  ["#fa709a", "#fee140"] as const,
+  ["#30cfd0", "#330867"] as const,
+  ["#a8edea", "#fed6e3"] as const,
+  ["#ff9a9e", "#fecfef"] as const,
+  ["#ffecd2", "#fcb69f"] as const,
+  ["#ff6e7f", "#bfe9ff"] as const,
+  ["#e0c3fc", "#8ec5fc"] as const,
+  ["#f093fb", "#f5576c"] as const,
+  ["#fbc2eb", "#a6c1ee"] as const,
+  ["#fdcbf1", "#e6dee9"] as const,
+  ["#a1c4fd", "#c2e9fb"] as const,
+  ["#d299c2", "#fef9d7"] as const,
+  ["#667eea", "#764ba2"] as const,
+  ["#fa709a", "#fee140"] as const,
+  ["#30cfd0", "#330867"] as const,
+  ["#43e97b", "#38f9d7"] as const,
+  ["#4facfe", "#00f2fe"] as const,
+];
 
-  return (
-    <Pressable
-      className={`flex-1 rounded-xl border-outline-100 border-[0.5px] w-full h-full ${
-        colorMode === 'light'
-          ? 'lg:shadow-[0px_0px_4.374px_0px_rgba(38,38,38,0.10)] data-[hover=true]:lg:border data-[hover=true]:border-outline-100'
-          : 'lg:shadow-soft-1 lg:border border-outline-50 data-[hover=true]:border-outline-200'
-      }`}
-      onPress={onPress}
-    >
-      <Box className="rounded-xl p-4 aspect-[17/12]">
-        <Image
-          source={{
-            uri: colorMode === 'light' ? component.url : component.darkUrl,
-          }}
-          alt={`${component.title} image`}
-          className={`w-full h-full rounded-xl shadow-[0px_0px_1.998px_0px_rgba(38,38,38,0.10)]`}
-          resizeMode="cover"
-          // Android-specific optimizations
-          fadeDuration={0}
-        />
-      </Box>
-      <LinearGradient
-        colors={gradientColors as any}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0, y: 1 }}
-        style={{ borderRadius: 12 }}
-      >
-        <HStack className="justify-between p-4 mt-1">
-          <Text className="text-typography-700 font-medium sm:text-base text-sm ">
-            {component.name}
-          </Text>
-          <Icon
-            as={ChevronRightIcon}
-            size="sm"
-            className="text-background-400 lg:hidden"
-          />
-        </HStack>
-      </LinearGradient>
-    </Pressable>
-  );
-});
-ComponentCard.displayName = 'ComponentCard';
+// Icon mapping for components
+const COMPONENT_ICONS: Record<string, React.ComponentType<any>> = {
+  accordion: AccordionIcon,
+  alert: AlertIcon,
+  "alert-dialog": AlertDialogIcon,
+  avatar: AvatarIcon,
+};
 
-// Animated wrapper for category items
-const AnimatedCategoryItem = React.memo(
-  ({ category, handleComponentPress, index }: any) => {
+type Component = {
+  title: string;
+  path: string;
+  count: number;
+  icon?: React.ComponentType<any>;
+};
+
+// Get all components and flatten them into a single list
+function getAllComponentsList(): Component[] {
+  const nestedComponents = getAllComponents();
+  
+  // Flatten all components from all categories
+  const allComponents: Component[] = [];
+  
+  nestedComponents.forEach((category) => {
+    category.components.forEach((component) => {
+      // Filter out bottomsheet and components without paths
+      if (
+        component.path &&
+        !component.name.toLowerCase().includes('bottomsheet') &&
+        !component.path.toLowerCase().includes('bottomsheet')
+      ) {
+        allComponents.push({
+          title: component.name,
+          path: component.path,
+          count: 4, // Default variant count (can be improved to dynamically count)
+          icon: COMPONENT_ICONS[component.path.toLowerCase()],
+        });
+      }
+    });
+  });
+  
+  return allComponents;
+}
+
+const components = getAllComponentsList();
+
+type ComponentCardProps = {
+  item: Component;
+  index: number;
+  displayIndex: number;
+  scrollX: SharedValue<number>;
+  itemWidth: number;
+  spacing: number;
+  height: number;
+  onPress: () => void;
+};
+
+const ComponentCard = memo(
+  ({
+    item,
+    index,
+    displayIndex,
+    scrollX,
+    itemWidth,
+    spacing,
+    height,
+    onPress,
+  }: ComponentCardProps) => {
+    const { reduceTransparencyEnabled } = useAccessibilityInfo();
+    const { isDark } = useAppTheme();
+    const applyOpacity = reduceTransparencyEnabled;
+
+    const animatedStyle = useAnimatedStyle(() => {
+      const inputRange = [
+        (index - 1) * (itemWidth + spacing),
+        index * (itemWidth + spacing),
+        (index + 1) * (itemWidth + spacing),
+      ];
+
+      return {
+        opacity: applyOpacity
+          ? interpolate(
+              scrollX.get(),
+              inputRange,
+              [0.6, 1, 0.6],
+              Extrapolation.CLAMP
+            )
+          : 1,
+        transform: [
+          {
+            scale: interpolate(
+              scrollX.get(),
+              inputRange,
+              [0.8, 1.1, 0.8],
+              Extrapolation.CLAMP
+            ),
+          },
+        ],
+      };
+    });
+
+    const gradientColors = GRADIENT_COLORS[index % GRADIENT_COLORS.length];
+
     return (
-      <Animated.View
-        entering={FadeInDown.duration(500).delay((index + 5) * 100)}
+      <View
+        style={{
+          width: itemWidth + spacing,
+          height,
+          paddingTop: 100,
+          alignItems: "center",
+        }}
       >
-        <Box className="pb-8 px-5 md:px-20 gap-1 mt-6">
-          <Heading size="md" className="text-typography-800 mb-4">
-            {category.category}
-          </Heading>
-          <Grid
-            className="gap-5"
-            _extra={{
-              className: 'grid-cols-2 md:grid-cols-4 xl:grid-cols-6',
-            }}
+        <Animated.View
+          style={[
+            {
+              width: itemWidth,
+              height: height * 0.55,
+            },
+            animatedStyle,
+          ]}
+        >
+          <Pressable
+            onPress={onPress}
+            style={{ width: "100%", height: "100%" }}
           >
-            {category.components.map((component: any) => (
-              <GridItem
-                _extra={{
-                  className: 'col-span-1',
-                }}
-                key={component.name}
-              >
-                <ComponentCard
-                  component={component}
-                  onPress={() => handleComponentPress(component.path!)}
-                />
-              </GridItem>
-            ))}
-          </Grid>
-        </Box>
-      </Animated.View>
+            <Card className="flex-1 justify-center p-8 pr-0 overflow-hidden max-h-[400px] rounded-2xl">
+              <AnimatedLinearGradient
+                colors={gradientColors}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
+              <View className="flex-1 justify-between">
+                <Text className="text-white text-8xl font-bold font-outfit opacity-30 leading-[1.1] tracking-tighter">
+                  {displayIndex.toString()}
+                </Text>
+                {item.icon && (
+                  <Icon as={item.icon} className="h-32 w-full stroke-none" />
+                )}
+                <View className="gap-1">
+                  <Text className="text-white text-2xl font-bold font-outfit">
+                    {item.title}
+                  </Text>
+                  <Text className="text-slate-50 text-sm font-andika">
+                    {item.count} Variants
+                  </Text>
+                </View>
+              </View>
+            </Card>
+          </Pressable>
+        </Animated.View>
+      </View>
     );
   }
 );
-AnimatedCategoryItem.displayName = 'AnimatedCategoryItem';
 
-// Memoized Header to prevent unnecessary re-renders
-const Header = React.memo(() => {
-  const { colorMode }: any = useContext(ColorModeContext);
-  const gradientColors =
-    colorMode === 'light'
-      ? ['#E6E6E600', '#E6E6E680']
-      : ['#27262500', '#272625CC'];
+ComponentCard.displayName = "ComponentCard";
 
-  return (
-    <LinearGradient
-      colors={gradientColors as any}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1 }}
-      style={{ width: '100%', borderRadius: 28, overflow: 'hidden' }}
-    >
-      <BlurView
-        intensity={90}
-        tint={colorMode === 'light' ? 'light' : 'dark'}
-        experimentalBlurMethod="dimezisBlurView"
-      >
-        <HStack className="w-full mx-auto justify-between web:rounded-b-3xl rounded-b-[28px] pt-safe mb-1">
-          <VStack className="w-full  md:max-w-[630px] lg:max-w-[400px] xl:max-w-[480px] mx-4 md:ml-8 mt-8 lg:my-[44px] xl:ml-[80px] flex-1 px-1">
-            <AnimatedHeading
-              entering={FadeInDown.duration(300)}
-              className="mb-2 xl:mb-[18px] text-3xl lg:text-5xl xl:text-[56px]"
-            >
-              Kitchensink app
-            </AnimatedHeading>
-            <AnimatedText
-              entering={FadeInDown.duration(300).delay(200)}
-              className="text-sm lg:text-base xl:text-lg text-typography-500 mb-4"
-            >
-              Kitchensink is a comprehensive demo app showcasing all the
-              gluestack components in action. It includes buttons, forms, icons
-              and much more!
-            </AnimatedText>
-          </VStack>
-          <VStack className="hidden lg:flex flex-1 max-h-[510px] h-full aspect-[1075/510]">
-            <Image
-              source={
-                colorMode === 'light'
-                  ? require('../assets/images/header-light.webp')
-                  : require('../assets/images/header-dark.webp')
-              }
-              alt="header_image"
-              className="h-full w-full"
-            />
-          </VStack>
-        </HStack>
-      </BlurView>
-    </LinearGradient>
-  );
-});
-Header.displayName = 'Header';
-export default function ComponentList() {
+// Theme color mapping for the theme button indicator
+const THEME_COLORS: Record<ThemeName, string[]> = {
+  default: ["#6366f1", "#8b5cf6"],
+  ocean: ["#06b6d4", "#0891b2"],
+  forest: ["#22c55e", "#16a34a"],
+  sunset: ["#f97316", "#ea580c"],
+  lavender: ["#a855f7", "#9333ea"],
+  cyber: ["#ec4899", "#db2777"],
+  rose: ["#e11d48", "#be123c"],
+};
+
+export default function ComponentsTab() {
   const router = useRouter();
-  const pathname = usePathname();
+  const [currentComponent, setCurrentComponent] = useState<Component>(
+    components[0]!
+  );
+  const [showComponentMenu, setShowComponentMenu] = useState(false);
+  const [showThemeMenu, setShowThemeMenu] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Memoize handleComponentPress to prevent unnecessary re-creations
-  const handleComponentPress = useCallback(
-    (componentPath: string) => {
-      // Use Expo Router's built-in navigation state check
-      const targetPath = `components/${componentPath}`;
+  // Refs for measuring button positions
+  const componentButtonRef = useRef<View>(null);
+  const themeButtonRef = useRef<View>(null);
+  const [componentButtonLayout, setComponentButtonLayout] = useState({
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0,
+  });
+  const [themeButtonLayout, setThemeButtonLayout] = useState({
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0,
+  });
 
-      // Prevent navigation if we're already on the target path or if navigation is in progress
-      if (pathname.includes(targetPath)) {
-        return;
+  const { isDark, toggleColorMode, currentTheme, setTheme, availableThemes } =
+    useAppTheme();
+  const { width, height } = useWindowDimensions();
+
+  const ITEM_WIDTH = width * 0.6;
+  const SPACING = 5;
+  const SIDE_OFFSET = (width - ITEM_WIDTH) / 2 - SPACING / 2;
+  const CONTENT_HEIGHT = height * 0.75;
+
+  const { reduceTransparencyEnabled } = useAccessibilityInfo();
+  const applyBlur = !reduceTransparencyEnabled;
+
+  const listRef = useRef<FlatList<Component>>(null);
+
+  const handleViewableItemsChanged = useCallback(
+    ({ viewableItems }: { viewableItems: Array<{ item: Component }> }) => {
+      if (viewableItems.length > 0 && viewableItems[0]) {
+        if (Platform.OS === "ios") {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        }
+        setCurrentComponent(viewableItems[0].item);
       }
-
-      // Use replace instead of push to prevent stack accumulation on rapid clicks
-      router.push(`/components/${componentPath}` as any);
     },
-    [pathname, router]
-  );
-
-  // Filter out bottomsheet components and components without paths
-  const filteredComponents = useMemo(
-    () =>
-      components
-        .map((category) => ({
-          ...category,
-          components: category.components.filter(
-            (component) =>
-              component.path &&
-              !component.name.toLowerCase().includes('bottomsheet') &&
-              !component.path.toLowerCase().includes('bottomsheet')
-          ),
-        }))
-        .filter((category) => category.components.length > 0),
     []
   );
 
-  // Memoize renderCategoryItem to prevent unnecessary re-creations
-  const renderCategoryItem = useCallback(
-    ({ item: category, index }: any) => (
-      <AnimatedCategoryItem
-        category={category}
-        handleComponentPress={handleComponentPress}
-        index={index}
-      />
-    ),
-    [handleComponentPress]
+  const viewabilityConfig = useRef({
+    itemVisiblePercentThreshold: 50,
+  }).current;
+
+  const scrollX = useSharedValue(0);
+
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollX.set(event.contentOffset.x);
+    },
+  });
+
+  const animatedProps = useAnimatedProps(() => {
+    if (components.length === 1) {
+      return { intensity: 0 };
+    }
+
+    const inputRange: number[] = [];
+    const outputRange: number[] = [];
+
+    for (let i = 0; i < components.length; i++) {
+      inputRange.push(i * (ITEM_WIDTH + SPACING));
+      outputRange.push(0);
+
+      if (i < components.length - 1) {
+        inputRange.push((i + 0.5) * (ITEM_WIDTH + SPACING));
+        outputRange.push(30);
+      }
+    }
+
+    return {
+      intensity: interpolate(scrollX.get(), inputRange, outputRange),
+    };
+  });
+
+  const Header = () => {
+    return (
+      <View className="items-center justify-center z-10 mt-10 gap-2">
+        <HStack className="items-center gap-2">
+          <Image
+            source={{
+              uri: isDark
+                ? "https://i.imgur.com/EUqtUMu.png"
+                : "https://i.imgur.com/9bvua6C.png",
+            }}
+            alt="Kitchensink App Logo"
+            className="h-6 w-6"
+          />
+          <Text className="text-typography-900 text-2xl font-bold font-andika">
+            Kitchensink App
+          </Text>
+        </HStack>
+        <Text className="max-w-[60%] text-center">
+          Demo app showcasing all the gluestack ui components in action.
+        </Text>
+      </View>
+    );
+  };
+
+  const handleCardPress = useCallback(
+    (path: string) => {
+      if (Platform.OS === "ios") {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      }
+      router.push(`/components/${path}` as any);
+    },
+    [router]
   );
 
-  // Stable keyExtractor to ensure consistent list keys
-  const keyExtractor = useCallback(
-    (item: any) => `category-${item.category}`,
+  const filteredComponents = useMemo(() => {
+    if (!searchQuery.trim()) return components;
+    return components.filter((item) =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [searchQuery]);
+
+  const handleComponentSelect = useCallback(
+    (component: Component, index: number) => {
+      setShowComponentMenu(false);
+      setSearchQuery("");
+      // Find original index in components array
+      const originalIndex = components.findIndex(
+        (c) => c.path === component.path
+      );
+      if (originalIndex !== -1) {
+        listRef.current?.scrollToIndex({
+          index: originalIndex,
+          animated: true,
+        });
+        setCurrentComponent(component);
+      }
+    },
     []
   );
+
+  const handleThemeSelect = useCallback(
+    (themeName: ThemeName) => {
+      if (Platform.OS === "ios") {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      }
+      setTheme(themeName);
+      setShowThemeMenu(false);
+    },
+    [setTheme]
+  );
+
+  // Rotation animation for color mode toggle
+  const colorModeRotation = useSharedValue(0);
+
+  const colorModeAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ rotate: `${colorModeRotation.value}deg` }],
+    };
+  });
+
+  const handleToggleColorMode = useCallback(() => {
+    if (Platform.OS === "ios") {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    // Animate rotation 360 degrees
+    colorModeRotation.value = withTiming(colorModeRotation.value + 360, {
+      duration: 500,
+      easing: Easing.out(Easing.cubic),
+    });
+    toggleColorMode();
+  }, [toggleColorMode, colorModeRotation]);
 
   return (
-    <Box className="flex-1 bg-background-0 pb-safe">
-      <FlatList
-        data={filteredComponents}
-        renderItem={renderCategoryItem}
-        ListHeaderComponent={<Header />}
-        stickyHeaderIndices={Platform.OS != 'web' ? [0] : []}
-        keyExtractor={keyExtractor}
-        showsVerticalScrollIndicator={false}
-        // Android-specific optimizations (keeping animations intact)
-        removeClippedSubviews={Platform.OS === 'android'}
-        maxToRenderPerBatch={Platform.OS === 'android' ? 2 : 3}
-        updateCellsBatchingPeriod={Platform.OS === 'android' ? 100 : 50}
-        initialNumToRender={Platform.OS === 'android' ? 1 : 2}
-        windowSize={Platform.OS === 'android' ? 3 : 5}
-        contentContainerClassName="gap-6"
+    <View className="flex-1">
+      <Header />
+      <Animated.FlatList
+        ref={listRef}
+        data={components}
+        renderItem={({ item, index }) => (
+          <ComponentCard
+            item={item}
+            index={index}
+            displayIndex={index + 1}
+            scrollX={scrollX}
+            itemWidth={ITEM_WIDTH}
+            spacing={SPACING}
+            height={CONTENT_HEIGHT}
+            onPress={() => handleCardPress(item.path)}
+          />
+        )}
+        keyExtractor={(item) => item.path}
+        getItemLayout={(_, index) => ({
+          length: ITEM_WIDTH + SPACING,
+          offset: (ITEM_WIDTH + SPACING) * index,
+          index,
+        })}
+        horizontal
+        snapToInterval={ITEM_WIDTH + SPACING}
+        decelerationRate="fast"
+        contentContainerStyle={{
+          paddingHorizontal: SIDE_OFFSET,
+        }}
+        showsHorizontalScrollIndicator={false}
+        bounces={false}
+        onViewableItemsChanged={handleViewableItemsChanged}
+        viewabilityConfig={viewabilityConfig}
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+        keyboardShouldPersistTaps="handled"
       />
-    </Box>
+      {applyBlur && (
+        <AnimatedBlurView
+          pointerEvents="none"
+          style={StyleSheet.absoluteFill}
+          animatedProps={animatedProps}
+          tint={
+            isDark
+              ? "systemUltraThinMaterialDark"
+              : "systemUltraThinMaterialLight"
+          }
+        />
+      )}
+      {/* Bottom Control Bar */}
+      <View
+        className="absolute left-0 right-0 items-center"
+        style={{ bottom: 34 }}
+        pointerEvents="box-none"
+      >
+        <View className="flex-row items-center gap-3">
+          {/* Dark/Light Mode Toggle */}
+          <Pressable
+            onPress={handleToggleColorMode}
+            className="w-16 h-16 rounded-full bg-background-0 items-center justify-center"
+            style={{
+              shadowColor: isDark ? "#fff" : "#000",
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.15,
+              shadowRadius: 4,
+              elevation: 4,
+            }}
+          >
+            <Animated.View style={colorModeAnimatedStyle}>
+              <Icon
+                as={isDark ? SunIcon : MoonIcon}
+                className="text-typography-700"
+                size="md"
+              />
+            </Animated.View>
+          </Pressable>
+
+          {/* Theme Selector Button */}
+          <View
+            ref={themeButtonRef}
+            onLayout={() => {
+              themeButtonRef.current?.measureInWindow((x, y, w, h) => {
+                setThemeButtonLayout({ x, y, width: w, height: h });
+              });
+            }}
+          >
+            <Pressable
+              onPress={() => setShowThemeMenu(true)}
+              className="w-16 h-16 rounded-full bg-background-0 items-center justify-center"
+              style={{
+                shadowColor: isDark ? "#fff" : "#000",
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.15,
+                shadowRadius: 4,
+                elevation: 4,
+              }}
+            >
+              <Icon
+                as={PaletteIcon}
+                className="text-typography-700"
+                size="md"
+              />
+            </Pressable>
+          </View>
+
+          {/* Component Selector Pill */}
+          <View
+            ref={componentButtonRef}
+            onLayout={() => {
+              componentButtonRef.current?.measureInWindow((x, y, w, h) => {
+                setComponentButtonLayout({ x, y, width: w, height: h });
+              });
+            }}
+          >
+            <Pressable
+              onPress={() => setShowComponentMenu(true)}
+              className="px-6 py-5 bg-typography-900 rounded-full w-[200px]"
+              style={{
+                shadowColor: isDark ? "#fff" : "#000",
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.25,
+                shadowRadius: 4,
+                elevation: 5,
+              }}
+            >
+              <Text className="text-typography-0 text-base font-medium text-center font-outfit">
+                {currentComponent.title}
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+      </View>
+
+      {/* Component Selection Menu */}
+      <Modal
+        visible={showComponentMenu}
+        transparent
+        animationType="none"
+        onRequestClose={() => {
+          setShowComponentMenu(false);
+          setSearchQuery("");
+        }}
+      >
+        <View style={StyleSheet.absoluteFill}>
+          {/* Minimal Blur Backdrop - Performance optimized */}
+          <Pressable
+            style={StyleSheet.absoluteFill}
+            onPress={() => {
+              setShowComponentMenu(false);
+              setSearchQuery("");
+            }}
+          >
+            {applyBlur ? (
+              <BlurView
+                intensity={5}
+                tint={isDark ? "dark" : "light"}
+                experimentalBlurMethod="dimezisBlurView"
+                style={StyleSheet.absoluteFill}
+              />
+            ) : (
+              <View
+                style={[
+                  StyleSheet.absoluteFill,
+                  {
+                    backgroundColor: isDark
+                      ? "rgba(0,0,0,0.4)"
+                      : "rgba(0,0,0,0.25)",
+                  },
+                ]}
+              />
+            )}
+          </Pressable>
+
+          {/* Menu Content - Positioned above the button */}
+          <Animated.View
+            entering={FadeIn.duration(50)
+              .springify()
+              .damping(40)
+              .stiffness(200)}
+            exiting={FadeOut.duration(50)}
+            className="absolute bg-background-0 rounded-2xl"
+            style={{
+              bottom: height - componentButtonLayout.y + 12,
+              right:
+                width - componentButtonLayout.x - componentButtonLayout.width,
+              width: Math.min(width - 32, 320),
+              maxHeight: height * 0.5,
+              shadowColor: isDark ? "#fff" : "#000",
+              shadowOffset: { width: 0, height: -4 },
+              shadowOpacity: 0.15,
+              shadowRadius: 16,
+              elevation: 12,
+            }}
+          >
+            {/* Search Input */}
+            <View className="px-3 py-3 border-b border-outline-50">
+              <Input variant="rounded" size="lg">
+                <InputSlot className="pl-3">
+                  <InputIcon as={SearchIcon} />
+                </InputSlot>
+                <InputField
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChangeText={setSearchQuery}
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                />
+              </Input>
+            </View>
+
+            {/* Component List */}
+            <ScrollView
+              className="flex-1"
+              showsVerticalScrollIndicator={false}
+              bounces={false}
+            >
+              <View className="py-2 gap-1">
+                {filteredComponents.map((item, index) => (
+                  <Pressable
+                    key={item.path}
+                    onPress={() => handleComponentSelect(item, index)}
+                    className={`px-3 py-2.5 mx-1.5 rounded-lg flex-row items-center gap-2.5 ${
+                      currentComponent.path === item.path
+                        ? "bg-primary-100"
+                        : "active:bg-background-50"
+                    }`}
+                  >
+                    <Text
+                      className={`text-sm font-medium ${
+                        currentComponent.path === item.path
+                          ? "text-primary-700"
+                          : "text-typography-700"
+                      }`}
+                    >
+                      {item.title}
+                    </Text>
+                  </Pressable>
+                ))}
+                {filteredComponents.length === 0 && (
+                  <View className="py-6 items-center">
+                    <Text className="text-typography-400 text-sm">
+                      No components found
+                    </Text>
+                  </View>
+                )}
+              </View>
+            </ScrollView>
+          </Animated.View>
+        </View>
+      </Modal>
+
+      {/* Theme Selection Menu */}
+      <Modal
+        visible={showThemeMenu}
+        transparent
+        animationType="none"
+        onRequestClose={() => setShowThemeMenu(false)}
+      >
+        <View style={StyleSheet.absoluteFill} className="items-center">
+          {/* Minimal Blur Backdrop - Performance optimized */}
+          <Pressable
+            style={StyleSheet.absoluteFill}
+            onPress={() => setShowThemeMenu(false)}
+          >
+            {applyBlur ? (
+              <BlurView
+                intensity={5}
+                tint={isDark ? "dark" : "light"}
+                experimentalBlurMethod="dimezisBlurView"
+                style={StyleSheet.absoluteFill}
+              />
+            ) : (
+              <View
+                style={[
+                  StyleSheet.absoluteFill,
+                  {
+                    backgroundColor: isDark
+                      ? "rgba(0,0,0,0.4)"
+                      : "rgba(0,0,0,0.25)",
+                  },
+                ]}
+              />
+            )}
+          </Pressable>
+
+          {/* Menu Content - Positioned above the button */}
+          <Animated.View
+            entering={FadeIn.duration(50)
+              .springify()
+              .damping(40)
+              .stiffness(200)
+            }
+            exiting={FadeOut.duration(50)}
+            className="absolute bg-background-0 rounded-[38px] p-4"
+            style={{
+              bottom: height - themeButtonLayout.y + 12,
+              width: Math.min(width - 80),
+              shadowColor: isDark ? "#fff" : "#000",
+              shadowOffset: { width: 0, height: -4 },
+              shadowOpacity: 0.15,
+              shadowRadius: 16,
+              elevation: 12,
+            }}
+          >
+            {/* Theme List */}
+            <View className="gap-4">
+              <ScrollView horizontal className="py-1 flex-row gap-2">
+                {availableThemes.map((theme) => {
+                  const colors =
+                    THEME_COLORS[theme.name] || THEME_COLORS.default;
+                  return (
+                    <Pressable
+                      key={theme.name}
+                      onPress={() => handleThemeSelect(theme.name)}
+                      className={`px-3 py-2 rounded-full w-fit ${
+                        currentTheme === theme.name
+                          ? "bg-background-50"
+                          : "active:bg-background-100"
+                      }`}
+                    >
+                      <LinearGradient
+                        colors={colors as [string, string]}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 1 }}
+                        style={{
+                          width: 24,
+                          height: 24,
+                          borderRadius: 12,
+                        }}
+                      />
+                    </Pressable>
+                  );
+                })}
+              </ScrollView>
+              <View className="w-auto items-center border border-black/50 dark:border-white/50 rounded-full py-4 mx-4">
+                <Text className="capitalize">{currentTheme}</Text>
+              </View>
+            </View>
+          </Animated.View>
+        </View>
+      </Modal>
+    </View>
   );
 }

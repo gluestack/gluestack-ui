@@ -10,7 +10,9 @@ import { Fab } from '@/components/ui/fab';
 import { Text } from '@/components/ui/text';
 import { SplashScreen } from '@/components/custom/splash-screen';
 import * as SplashScreenExpo from 'expo-splash-screen';
-export const ColorModeContext = React.createContext({});
+import { AppThemeProvider } from '@/contexts/app-theme-context';
+
+export const ColorModeContext = React.createContext<{ colorMode: 'light' | 'dark'; toggleColorMode?: () => void }>({ colorMode: 'light' });
 
 SplashScreenExpo.preventAutoHideAsync();
 const capitalize = (str: string) => {
@@ -64,8 +66,9 @@ export default function RootLayout() {
         style="auto" //android
         backgroundColor={`${colorMode == 'light' ? '#F6F6F6' : '#272625'}`}
       />
-      <ColorModeContext.Provider value={{ colorMode }}>
-        <GluestackUIProvider mode={colorMode}>
+      <ColorModeContext.Provider value={{ colorMode, toggleColorMode: handleColorMode }}>
+        <AppThemeProvider>
+          <GluestackUIProvider mode={colorMode}>
           <Stack
             screenOptions={({ route }) => ({
               animation: 'none',
@@ -105,6 +108,7 @@ export default function RootLayout() {
             />
           </Fab>
         </GluestackUIProvider>
+        </AppThemeProvider>
       </ColorModeContext.Provider>
     </>
   );
