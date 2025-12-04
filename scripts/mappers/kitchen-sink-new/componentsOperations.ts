@@ -97,7 +97,7 @@ export const processSidebarFile = (filePath: string) => {
 
   // Generate component list array only from sidebar.json components
   const sourcePath = path.resolve('src/components/ui');
-  const componentsListPath = path.resolve('apps/KitchenSink-App-feat-homeScreen/constants/components.json');
+  const componentsListPath = path.resolve('apps/KitchenSink-App-feat-homeScreen/constants/components-list.ts');
   
   if (!fs.existsSync(sourcePath)) {
     return;
@@ -108,6 +108,11 @@ export const processSidebarFile = (filePath: string) => {
     
     // Iterate through components in sidebar.json
     sidebarComponentMap.forEach((title, componentPath) => {
+      // Skip excluded components
+      if (componentPath === 'all-components' || componentPath === 'bottomsheet') {
+        return;
+      }
+      
       const componentDir = path.join(sourcePath, componentPath);
       
       // Check if component directory exists
@@ -134,18 +139,51 @@ export const processSidebarFile = (filePath: string) => {
     // Sort alphabetically by title
     components.sort((a, b) => a.title.localeCompare(b.title));
     
+    // Map component paths to icon names (only for components that have icons)
+    const iconMap: Record<string, string> = {
+      'accordion': 'AccordionIcon',
+      'alert': 'AlertIcon',
+      'alert-dialog': 'AlertDialogIcon',
+      'avatar': 'AvatarIcon',
+    };
+    
+    // Generate TypeScript file content
+    const imports = `import {
+  AccordionIcon,
+  AlertDialogIcon,
+  AlertIcon,
+  AvatarIcon,
+} from "@/components/custom/custom-icons";
+import type { ComponentItem } from "@/components/custom/bottom-control-bar";
+
+`;
+    
+    const componentsArray = components.map((comp) => {
+      const iconName = iconMap[comp.path];
+      const iconProp = iconName ? `icon: ${iconName}` : '';
+      return `  { title: "${comp.title}", path: "${comp.path}", count: ${comp.count}${iconProp ? `, ${iconProp}` : ''} }`;
+    }).join(',\n');
+    
+    const getComponentByPathFunction = `
+export const getComponentByPath = (path: string): ComponentItem | undefined => {
+  return COMPONENTS_LIST.find((c) => c.path === path);
+};
+`;
+    
+    const fileContent = `${imports}export const COMPONENTS_LIST: ComponentItem[] = [
+${componentsArray}
+];
+${getComponentByPathFunction}
+`;
+    
     // Ensure destination directory exists
     const destDir = path.dirname(componentsListPath);
     if (!fs.existsSync(destDir)) {
       fs.mkdirSync(destDir, { recursive: true });
     }
     
-    // Write the components array as JSON
-    fs.writeFileSync(
-      componentsListPath,
-      JSON.stringify(components, null, 2),
-      'utf-8'
-    );
+    // Write the TypeScript file
+    fs.writeFileSync(componentsListPath, fileContent, 'utf-8');
   } catch (error) {
     console.error('Error generating components list:', error);
   }
