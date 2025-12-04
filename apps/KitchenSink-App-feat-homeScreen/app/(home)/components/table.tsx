@@ -1,21 +1,13 @@
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableData,
-  TableFooter,
-  TableCaption,
-} from '@/components/ui/table';
-import { Box } from '@/components/ui/box';
-import { Badge, BadgeText } from '@/components/ui/badge';
+import { Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter, TableCaption } from '@/components/ui/table'
+import { Box } from '@/components/ui/box'
+import { Badge, BadgeText } from '@/components/ui/badge'
+
 
 import React from 'react';
 import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
 
 const ExampleBasic = () => {
-  return (
+return (
     <Table className="w-full">
       <TableHeader>
         <TableRow>
@@ -44,12 +36,12 @@ const ExampleBasic = () => {
         </TableRow>
       </TableFooter>
     </Table>
-  );
+  )
 };
 
 const ExampleTableWithCaption = () => {
-  return (
-    <Box className="rounded-lg overflow-hidden w-full">
+return (
+        <Box className="rounded-lg overflow-hidden w-full">
       <Table className="w-full">
         <TableHeader>
           <TableRow>
@@ -95,15 +87,15 @@ const ExampleTableWithCaption = () => {
         </TableCaption>
       </Table>
     </Box>
-  );
+)
 };
 
 const ExampleStrippedTable = () => {
-  return (
-    <Box className="p-3 bg-background rounded-lg overflow-hidden">
+return (
+         <Box className="p-3 bg-background-0 rounded-lg overflow-hidden">
       <Table className="w-full">
         <TableHeader>
-          <TableRow className="border-b-0 bg-background hover:bg-background">
+          <TableRow className="border-b-0 bg-background-0 hover:bg-background-0">
             <TableHead className="font-bold">Order id</TableHead>
             <TableHead>Items</TableHead>
             <TableHead>Name</TableHead>
@@ -129,7 +121,7 @@ const ExampleStrippedTable = () => {
               </Badge>
             </TableData>
           </TableRow>
-          <TableRow className="border-b-0 hover:bg-background">
+          <TableRow className="border-b-0 hover:bg-background-0">
             <TableData>5231</TableData>
             <TableData>2</TableData>
             <TableData>Priya Sharma</TableData>
@@ -157,7 +149,7 @@ const ExampleStrippedTable = () => {
               </Badge>
             </TableData>
           </TableRow>
-          <TableRow className="border-b-0 hover:bg-background">
+          <TableRow className="border-b-0 hover:bg-background-0">
             <TableData>5231</TableData>
             <TableData>4</TableData>
             <TableData>Ananya Gupta</TableData>
@@ -185,7 +177,7 @@ const ExampleStrippedTable = () => {
               </Badge>
             </TableData>
           </TableRow>
-          <TableRow className="border-b-0 bg-background hover:bg-background">
+          <TableRow className="border-b-0 bg-background-0 hover:bg-background-0">
             <TableData>5771</TableData>
             <TableData>3</TableData>
             <TableData>Nisha Verma</TableData>
@@ -200,12 +192,12 @@ const ExampleStrippedTable = () => {
         </TableBody>
       </Table>
     </Box>
-  );
+)
 };
 
 const ExampleTableWithOtherComponents = () => {
-  return (
-    <Box className="rounded-lg overflow-hidden">
+return (
+ <Box className="rounded-lg overflow-hidden">
       <Table className="w-full">
         <TableHeader>
           <TableRow>
@@ -305,18 +297,16 @@ const ExampleTableWithOtherComponents = () => {
         </TableBody>
       </Table>
     </Box>
-  );
+)
 };
 
 const ExampleTableWithTopAndSideHeader = () => {
-  return (
-    <Box className="border border-solid border-outline-200 rounded-lg overflow-hidden w-full">
+return (
+<Box className="border border-solid border-outline-200 rounded-lg overflow-hidden w-full">
       <Table className="w-full">
         <TableHeader>
           <TableRow className="bg-background-50">
-            <TableHead className="border-0 border-r border-solid border-outline-200">
-              Player
-            </TableHead>
+            <TableHead className="border-0 border-r border-solid border-outline-200">Player</TableHead>
             <TableHead>Pts</TableHead>
             <TableHead>Reb</TableHead>
             <TableHead>Ast</TableHead>
@@ -326,9 +316,7 @@ const ExampleTableWithTopAndSideHeader = () => {
         </TableHeader>
         <TableBody>
           <TableRow>
-            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">
-              LeBron James
-            </TableHead>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">LeBron James</TableHead>
             <TableData>30</TableData>
             <TableData>10</TableData>
             <TableData>5</TableData>
@@ -336,9 +324,7 @@ const ExampleTableWithTopAndSideHeader = () => {
             <TableData>2</TableData>
           </TableRow>
           <TableRow>
-            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">
-              Anthony Davis
-            </TableHead>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">Anthony Davis</TableHead>
             <TableData>21</TableData>
             <TableData>15</TableData>
             <TableData>10</TableData>
@@ -346,9 +332,7 @@ const ExampleTableWithTopAndSideHeader = () => {
             <TableData>6</TableData>
           </TableRow>
           <TableRow>
-            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">
-              Austin Reaves
-            </TableHead>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">Austin Reaves</TableHead>
             <TableData>18</TableData>
             <TableData>8</TableData>
             <TableData>15</TableData>
@@ -356,9 +340,7 @@ const ExampleTableWithTopAndSideHeader = () => {
             <TableData>3</TableData>
           </TableRow>
           <TableRow className="border-b-0">
-            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">
-              Kobe Bryant
-            </TableHead>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">Kobe Bryant</TableHead>
             <TableData>32</TableData>
             <TableData>12</TableData>
             <TableData>13</TableData>
@@ -368,35 +350,35 @@ const ExampleTableWithTopAndSideHeader = () => {
         </TableBody>
       </Table>
     </Box>
-  );
+)
 };
 
 const COMPONENT_VARIANTS = [
   {
-    value: 'basic',
-    label: 'Basic',
+    value: "basic",
+    label: "Basic",
     content: <ExampleBasic />,
   },
   {
-    value: 'table-with-caption',
-    label: 'Table with caption',
+    value: "table-with-caption",
+    label: "Table with caption",
     content: <ExampleTableWithCaption />,
   },
   {
-    value: 'stripped-table',
-    label: 'Stripped table',
+    value: "stripped-table",
+    label: "Stripped table",
     content: <ExampleStrippedTable />,
   },
   {
-    value: 'table-with-other-components',
-    label: 'Table with other components',
+    value: "table-with-other-components",
+    label: "Table with other components",
     content: <ExampleTableWithOtherComponents />,
   },
   {
-    value: 'table-with-top-and-side-header',
-    label: 'Table with top and side header',
+    value: "table-with-top-and-side-header",
+    label: "Table with top and side header",
     content: <ExampleTableWithTopAndSideHeader />,
-  },
+  }
 ];
 
 export default function TableScreen() {

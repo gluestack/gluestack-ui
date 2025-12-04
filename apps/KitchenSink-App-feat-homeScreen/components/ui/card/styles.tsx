@@ -11,7 +11,7 @@ export const cardStyle = tva({
       lg: 'p-6 rounded-xl',
     },
     variant: {
-      elevated: 'bg-background',
+      elevated: 'bg-background-0',
       outline: 'border border-outline-200 ',
       ghost: 'rounded-none',
       filled: 'bg-background-50',

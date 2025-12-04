@@ -38,7 +38,7 @@ const toastStyle = tva({
 
     variant: {
       solid: '',
-      outline: 'border bg-background',
+      outline: 'border bg-background-0',
     },
   },
 });
