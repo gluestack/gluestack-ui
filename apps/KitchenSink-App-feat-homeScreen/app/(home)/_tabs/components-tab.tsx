@@ -267,7 +267,7 @@ export default function ComponentsTab() {
             alt="Kitchensink App Logo"
             className="h-6 w-6"
           />
-          <Text className="text-typography-900 text-2xl font-bold font-andika">
+          <Text className="text-2xl font-bold font-andika">
             Kitchensink App
           </Text>
         </HStack>
