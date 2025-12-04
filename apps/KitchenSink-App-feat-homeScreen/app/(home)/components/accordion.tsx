@@ -1,17 +1,30 @@
-import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon } from '@/components/ui/accordion'
-import { Divider } from '@/components/ui/divider'
-import { ChevronDownIcon, ChevronUpIcon, AddIcon, RemoveIcon } from '@/components/ui/icon'
-
+import {
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionTrigger,
+  AccordionTitleText,
+  AccordionContent,
+  AccordionContentText,
+  AccordionIcon,
+} from '@/components/ui/accordion';
+import { Divider } from '@/components/ui/divider';
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  AddIcon,
+  RemoveIcon,
+} from '@/components/ui/icon';
 
 import React from 'react';
 import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
 
 const ExampleBasic = () => {
-return (
+  return (
     <Accordion
       type="single"
-      isCollapsible={ true }
-      isDisabled={ false }
+      isCollapsible={true}
+      isDisabled={false}
       className=" w-[90%]"
     >
       <AccordionItem value="a">
@@ -23,11 +36,10 @@ return (
                   <AccordionTitleText>
                     How do I place an order?
                   </AccordionTitleText>
-                
-                    <AccordionIcon as={ChevronDownIcon}  />
-                 
+
+                  <AccordionIcon as={ChevronDownIcon} />
                 </>
-              )
+              );
             }}
           </AccordionTrigger>
         </AccordionHeader>
@@ -49,9 +61,9 @@ return (
                   <AccordionTitleText>
                     What payment methods do you accept?
                   </AccordionTitleText>
-                  <AccordionIcon as={ChevronDownIcon}  />
+                  <AccordionIcon as={ChevronDownIcon} />
                 </>
-              )
+              );
             }}
           </AccordionTrigger>
         </AccordionHeader>
@@ -63,41 +75,36 @@ return (
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  )
+  );
 };
 
 const ExampleCustomizedComponent = () => {
-return (
-      <Accordion
-      className=""
-      type="multiple"
-    >
-      <AccordionItem value="a"
-           className="border-b border-input dark:border-input/[0.15]"
-        >
-        <AccordionHeader 
-        >
+  return (
+    <Accordion className="" type="multiple">
+      <AccordionItem
+        value="a"
+        className="border-b border-input dark:border-input/[0.15]"
+      >
+        <AccordionHeader>
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
                 <>
                   <AccordionTitleText>
-           What does the "type" prop of the Accordion component do?
+                    What does the "type" prop of the Accordion component do?
                   </AccordionTitleText>
-                    
-                      <AccordionIcon as={ChevronDownIcon} />
 
+                  <AccordionIcon as={ChevronDownIcon} />
                 </>
               );
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent className=""
-        >
+        <AccordionContent className="">
           <AccordionContentText>
-            The type prop determines whether one or multiple items can be
-            opened at the same time. The default value is "single" which means
-            only one item can be opened at a time. 
+            The type prop determines whether one or multiple items can be opened
+            at the same time. The default value is "single" which means only one
+            item can be opened at a time.
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
@@ -111,69 +118,65 @@ return (
               return (
                 <>
                   <AccordionTitleText>
-                 Can I disable the whole accordion?
+                    Can I disable the whole accordion?
                   </AccordionTitleText>
-                      <AccordionIcon as={ChevronDownIcon} />
-                      
+                  <AccordionIcon as={ChevronDownIcon} />
                 </>
               );
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent className=""
-        >
+        <AccordionContent className="">
           <AccordionContentText>
             Yes, you can disable the whole accordion by setting the isDisabled
             prop to true on the Accordion component.
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem
-        value="c"
-      >
-        <AccordionHeader
-        >
+      <AccordionItem value="c">
+        <AccordionHeader>
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
                 <>
                   <AccordionTitleText>
-                 What is a controlled accordion? How can I make it controlled?
+                    What is a controlled accordion? How can I make it
+                    controlled?
                   </AccordionTitleText>
-                       
-                    <AccordionIcon as={ChevronDownIcon} />
-                
+
+                  <AccordionIcon as={ChevronDownIcon} />
                 </>
               );
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent className=""
-        >
+        <AccordionContent className="">
           <AccordionContentText>
-      Controlled components refer to the components where the state and behaviors are controlled by the Parent component. You can make the accordion a controlled component by passing the value prop to the Accordion component and setting the onValueChange prop to update the value prop. Refer to the controlled accordion example in the docs.
+            Controlled components refer to the components where the state and
+            behaviors are controlled by the Parent component. You can make the
+            accordion a controlled component by passing the value prop to the
+            Accordion component and setting the onValueChange prop to update the
+            value prop. Refer to the controlled accordion example in the docs.
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-)
+  );
 };
 
 const ExampleRoundedCorners = () => {
-return (
-          <Accordion className="m-5 w-[80%] max-w-[640px] bg-transparent">
+  return (
+    <Accordion className="m-5 w-[80%] max-w-[640px] bg-transparent">
       <AccordionItem value="item-1" className="rounded-lg">
         <AccordionHeader>
-          <AccordionTrigger
-            className="focus:web:rounded-lg"
-            >
+          <AccordionTrigger className="focus:web:rounded-lg">
             {({ isExpanded }) => {
               return (
                 <>
                   {isExpanded ? (
-                    <AccordionIcon as={RemoveIcon} className="mr-3"/>
+                    <AccordionIcon as={RemoveIcon} className="mr-3" />
                   ) : (
-                    <AccordionIcon as={AddIcon} className="mr-3"/>
+                    <AccordionIcon as={AddIcon} className="mr-3" />
                   )}
                   <AccordionTitleText>
                     How do I place an order?
@@ -198,12 +201,12 @@ return (
               return (
                 <>
                   {isExpanded ? (
-                    <AccordionIcon as={RemoveIcon} className="mr-3"/>
+                    <AccordionIcon as={RemoveIcon} className="mr-3" />
                   ) : (
-                    <AccordionIcon as={AddIcon} className="mr-3"/>
+                    <AccordionIcon as={AddIcon} className="mr-3" />
                   )}
                   <AccordionTitleText>
-                   What payment methods do you accept?
+                    What payment methods do you accept?
                   </AccordionTitleText>
                 </>
               );
@@ -218,27 +221,27 @@ return (
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-)
+  );
 };
 
 const ExampleDisabledItem = () => {
-return (
-          <Accordion variant="unfilled" className="m-5 w-[90%]">
-      <AccordionItem value="item-1" isDisabled={true}
-      className= "border-b border-outline-300"
+  return (
+    <Accordion variant="unfilled" className="m-5 w-[90%]">
+      <AccordionItem
+        value="item-1"
+        isDisabled={true}
+        className="border-b border-outline-300"
       >
         <AccordionHeader>
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
                 <>
-                  <AccordionTitleText>
-                   Disabled Item
-                  </AccordionTitleText>
+                  <AccordionTitleText>Disabled Item</AccordionTitleText>
                   {isExpanded ? (
-                    <AccordionIcon as={RemoveIcon}  />
+                    <AccordionIcon as={RemoveIcon} />
                   ) : (
-                    <AccordionIcon as={AddIcon}  />
+                    <AccordionIcon as={AddIcon} />
                   )}
                 </>
               );
@@ -246,19 +249,17 @@ return (
           </AccordionTrigger>
         </AccordionHeader>
         <AccordionContent>
-          <AccordionContentText>
-            This is a Disabled Item.
-          </AccordionContentText>
+          <AccordionContentText>This is a Disabled Item.</AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-2" >
+      <AccordionItem value="item-2">
         <AccordionHeader>
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
                 <>
                   <AccordionTitleText>
-                   Is this accordion accessible?
+                    Is this accordion accessible?
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={RemoveIcon} />
@@ -279,12 +280,17 @@ return (
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-)
+  );
 };
 
 const ExampleDefaultValue = () => {
-return (
-          <Accordion variant="unfilled" type="single" defaultValue="item-3" className="w-[90%] m-5">
+  return (
+    <Accordion
+      variant="unfilled"
+      type="single"
+      defaultValue="item-3"
+      className="w-[90%] m-5"
+    >
       <AccordionItem value="item-1" className="rounded-lg">
         <AccordionHeader>
           <AccordionTrigger>
@@ -292,12 +298,12 @@ return (
               return (
                 <>
                   <AccordionTitleText>
-                  What is the defaultValue prop of the Accordion component?
+                    What is the defaultValue prop of the Accordion component?
                   </AccordionTitleText>
                   {isExpanded ? (
-                    <AccordionIcon as={RemoveIcon}  />
+                    <AccordionIcon as={RemoveIcon} />
                   ) : (
-                    <AccordionIcon as={AddIcon}  />
+                    <AccordionIcon as={AddIcon} />
                   )}
                 </>
               );
@@ -320,7 +326,7 @@ return (
               return (
                 <>
                   <AccordionTitleText>
-                   How many size variants does the Accordion component have?
+                    How many size variants does the Accordion component have?
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={RemoveIcon} />
@@ -339,14 +345,14 @@ return (
         </AccordionContent>
       </AccordionItem>
       <Divider />
-           <AccordionItem value="item-3" className="rounded-lg">
+      <AccordionItem value="item-3" className="rounded-lg">
         <AccordionHeader>
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
                 <>
                   <AccordionTitleText>
-                  Can I nest my accordions?
+                    Can I nest my accordions?
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={RemoveIcon} />
@@ -360,46 +366,45 @@ return (
         </AccordionHeader>
         <AccordionContent>
           <AccordionContentText>
-            Yes, you can nest your accordions. Refer to the nested accordion example in the docs.
+            Yes, you can nest your accordions. Refer to the nested accordion
+            example in the docs.
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-)
+  );
 };
 
 const ExampleNestedComponents = () => {
-return (
-           <Accordion
-           variant="unfilled"
-           size="sm"
-           className="m-5 border border-outline-300 w-[80%] max-w-[640px]"
+  return (
+    <Accordion
+      variant="unfilled"
+      size="sm"
+      className="m-5 border border-outline-300 w-[80%] max-w-[640px]"
     >
       <AccordionItem value="a">
-        <AccordionHeader     
-        className="bg-background-0"
-        >
+        <AccordionHeader className="bg-background">
           <AccordionTrigger>
-            {({isExpanded}) => (
+            {({ isExpanded }) => (
               <>
                 {isExpanded ? (
                   <AccordionIcon as={RemoveIcon} size="sm" />
                 ) : (
                   <AccordionIcon as={AddIcon} size="sm" />
                 )}
-                <AccordionTitleText className="ml-3 text-sm">USA</AccordionTitleText>
+                <AccordionTitleText className="ml-3 text-sm">
+                  USA
+                </AccordionTitleText>
               </>
             )}
           </AccordionTrigger>
         </AccordionHeader>
         <AccordionContent className="pb-0">
-          <Accordion
-            className="w-full border border-outline-300"
-          >
+          <Accordion className="w-full border border-outline-300">
             <AccordionItem value="b">
               <AccordionHeader>
                 <AccordionTrigger>
-                  {({isExpanded}) => (
+                  {({ isExpanded }) => (
                     <>
                       {isExpanded ? (
                         <AccordionIcon as={RemoveIcon} />
@@ -422,19 +427,20 @@ return (
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          <Accordion className="w-full mt-5 bg-background-0"
-        >
+          <Accordion className="w-full mt-5 bg-background">
             <AccordionItem value="c">
               <AccordionHeader>
                 <AccordionTrigger>
-                  {({isExpanded}) => (
+                  {({ isExpanded }) => (
                     <>
                       {isExpanded ? (
                         <AccordionIcon as={RemoveIcon} />
                       ) : (
                         <AccordionIcon as={AddIcon} />
                       )}
-                      <AccordionTitleText className="ml-3">Nevada</AccordionTitleText>
+                      <AccordionTitleText className="ml-3">
+                        Nevada
+                      </AccordionTitleText>
                     </>
                   )}
                 </AccordionTrigger>
@@ -451,14 +457,25 @@ return (
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-)
+  );
 };
 
 const ExampleControlledAccordion = () => {
-const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2']);
-    return (
-    <Accordion variant="unfilled" type="multiple" value={selectedValues} onValueChange={(item) => setSelectedValues(item)} className="m-5 w-[95%]">
-      <AccordionItem value="item-1" className="border-t border-b border-outline-300"
+  const [selectedValues, setSelectedValues] = React.useState([
+    'item-1',
+    'item-2',
+  ]);
+  return (
+    <Accordion
+      variant="unfilled"
+      type="multiple"
+      value={selectedValues}
+      onValueChange={(item) => setSelectedValues(item)}
+      className="m-5 w-[95%]"
+    >
+      <AccordionItem
+        value="item-1"
+        className="border-t border-b border-outline-300"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -466,33 +483,7 @@ const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2'])
               return (
                 <>
                   <AccordionTitleText>
-                   Exploring Nature's Wonders
-                  </AccordionTitleText>
-                  {isExpanded ? (
-                    <AccordionIcon as={RemoveIcon}  />
-                  ) : (
-                    <AccordionIcon as={AddIcon}  />
-                  )}
-                </>
-              );
-            }}
-          </AccordionTrigger>
-        </AccordionHeader>
-        <AccordionContent>
-          <AccordionContentText>
-          Embark on a journey through the breathtaking landscapes and diverse ecosystems of our planet. From majestic mountains to serene oceans, discover the beauty that nature has to offer.
-          </AccordionContentText>
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-2"
-      >
-        <AccordionHeader>
-          <AccordionTrigger>
-            {({ isExpanded }) => {
-              return (
-                <>
-                  <AccordionTitleText>
-                   The Art of Culinary Delights
+                    Exploring Nature's Wonders
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={RemoveIcon} />
@@ -506,20 +497,20 @@ const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2'])
         </AccordionHeader>
         <AccordionContent>
           <AccordionContentText>
-           Indulge your senses in a culinary adventure. Uncover the secrets behind delectable dishes, learn about unique flavor profiles, and ignite your passion for cooking.
+            Embark on a journey through the breathtaking landscapes and diverse
+            ecosystems of our planet. From majestic mountains to serene oceans,
+            discover the beauty that nature has to offer.
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-3"
-      className="border-t border-b border-outline-300"
-      >
+      <AccordionItem value="item-2">
         <AccordionHeader>
           <AccordionTrigger>
             {({ isExpanded }) => {
               return (
                 <>
                   <AccordionTitleText>
-                   Mastering the Creative Process
+                    The Art of Culinary Delights
                   </AccordionTitleText>
                   {isExpanded ? (
                     <AccordionIcon as={RemoveIcon} />
@@ -533,50 +524,82 @@ const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2'])
         </AccordionHeader>
         <AccordionContent>
           <AccordionContentText>
-           Immerse yourself in the world of creativity. Unleash your artistic potential, whether it's through writing, painting, or any other form of expression.
+            Indulge your senses in a culinary adventure. Uncover the secrets
+            behind delectable dishes, learn about unique flavor profiles, and
+            ignite your passion for cooking.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem
+        value="item-3"
+        className="border-t border-b border-outline-300"
+      >
+        <AccordionHeader>
+          <AccordionTrigger>
+            {({ isExpanded }) => {
+              return (
+                <>
+                  <AccordionTitleText>
+                    Mastering the Creative Process
+                  </AccordionTitleText>
+                  {isExpanded ? (
+                    <AccordionIcon as={RemoveIcon} />
+                  ) : (
+                    <AccordionIcon as={AddIcon} />
+                  )}
+                </>
+              );
+            }}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent>
+          <AccordionContentText>
+            Immerse yourself in the world of creativity. Unleash your artistic
+            potential, whether it's through writing, painting, or any other form
+            of expression.
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-)
+  );
 };
 
 const COMPONENT_VARIANTS = [
   {
-    value: "basic",
-    label: "Basic",
+    value: 'basic',
+    label: 'Basic',
     content: <ExampleBasic />,
   },
   {
-    value: "customized-component",
-    label: "Customized Component",
+    value: 'customized-component',
+    label: 'Customized Component',
     content: <ExampleCustomizedComponent />,
   },
   {
-    value: "rounded-corners",
-    label: "Rounded corners",
+    value: 'rounded-corners',
+    label: 'Rounded corners',
     content: <ExampleRoundedCorners />,
   },
   {
-    value: "disabled-item",
-    label: "Disabled item",
+    value: 'disabled-item',
+    label: 'Disabled item',
     content: <ExampleDisabledItem />,
   },
   {
-    value: "default-value",
-    label: "Default value",
+    value: 'default-value',
+    label: 'Default value',
     content: <ExampleDefaultValue />,
   },
   {
-    value: "nested-components",
-    label: "Nested Components",
+    value: 'nested-components',
+    label: 'Nested Components',
     content: <ExampleNestedComponents />,
   },
   {
-    value: "controlled-accordion",
-    label: "Controlled Accordion",
+    value: 'controlled-accordion',
+    label: 'Controlled Accordion',
     content: <ExampleControlledAccordion />,
-  }
+  },
 ];
 
 export default function AccordionScreen() {

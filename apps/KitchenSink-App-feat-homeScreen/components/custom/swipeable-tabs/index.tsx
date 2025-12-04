@@ -1,5 +1,5 @@
-import * as Haptics from "expo-haptics";
-import React, { useCallback, useRef, useState } from "react";
+import * as Haptics from 'expo-haptics';
+import React, { useCallback, useRef, useState } from 'react';
 import {
   Dimensions,
   LayoutChangeEvent,
@@ -8,21 +8,21 @@ import {
   Text,
   useColorScheme,
   View,
-} from "react-native";
+} from 'react-native';
 import PagerView, {
   type PagerViewOnPageScrollEventData,
   type PagerViewOnPageSelectedEventData,
-} from "react-native-pager-view";
+} from 'react-native-pager-view';
 import Animated, {
   Extrapolation,
   interpolate,
   SharedValue,
   useAnimatedStyle,
   useSharedValue,
-} from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+} from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 
@@ -98,7 +98,7 @@ interface TabButtonProps {
 interface FadeOverlayProps {
   scrollX: SharedValue<number>;
   tabCount: number;
-  side: "left" | "right";
+  side: 'left' | 'right';
 }
 
 const FadeOverlay: React.FC<FadeOverlayProps> = ({
@@ -109,7 +109,7 @@ const FadeOverlay: React.FC<FadeOverlayProps> = ({
   const animatedStyle = useAnimatedStyle(() => {
     const lastTabScrollX = (tabCount - 1) * SCREEN_WIDTH;
 
-    if (side === "right") {
+    if (side === 'right') {
       // Fade out as we approach the last tab
       const opacity = interpolate(
         scrollX.value,
@@ -132,14 +132,14 @@ const FadeOverlay: React.FC<FadeOverlayProps> = ({
 
   return (
     <Animated.View
-      className="bg-background-0"
+      className="bg-background"
       style={[
         {
-          position: "absolute",
+          position: 'absolute',
           [side]: 0,
           top: 0,
           bottom: 0,
-          width: side === "left" ? 46 : 40,
+          width: side === 'left' ? 46 : 40,
           zIndex: 10,
         },
         animatedStyle,
@@ -203,7 +203,7 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
 }) => {
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
-  const isDark = colorScheme === "dark";
+  const isDark = colorScheme === 'dark';
   const pagerRef = useRef<PagerView>(null);
   const [tabWidths, setTabWidths] = useState<number[]>([]);
   const [tabPositions, setTabPositions] = useState<number[]>([]);
@@ -228,7 +228,7 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
   );
 
   const triggerHaptic = useCallback(() => {
-    if (Platform.OS === "ios") {
+    if (Platform.OS === 'ios') {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
   }, []);
@@ -258,7 +258,7 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
   );
 
   return (
-    <View className="flex-1 bg-background-0">
+    <View className="flex-1 bg-background">
       {/* Tab Header */}
       <View style={{ paddingTop: insets.top }}>
         <View className="flex-row items-center justify-center px-2">

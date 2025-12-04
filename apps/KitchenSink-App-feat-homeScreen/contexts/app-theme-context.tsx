@@ -5,16 +5,16 @@ import React, {
   useMemo,
   useState,
   useEffect,
-} from "react";
-import { useColorScheme } from "nativewind";
-import { View, ActivityIndicator } from "react-native";
+} from 'react';
+import { useColorScheme } from 'nativewind';
+import { View, ActivityIndicator } from 'react-native';
 import {
   ThemeName,
   ColorMode,
   getThemeVars,
   themeConfigs,
-} from "@/constants/themes";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+} from '@/constants/themes';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface AppThemeContextType {
   currentTheme: ThemeName;
@@ -31,15 +31,15 @@ const AppThemeContext = createContext<AppThemeContextType | undefined>(
   undefined
 );
 
-const THEME_STORAGE_KEY = "@app_theme";
-const COLOR_MODE_STORAGE_KEY = "@app_color_mode";
+const THEME_STORAGE_KEY = '@app_theme';
+const COLOR_MODE_STORAGE_KEY = '@app_color_mode';
 
 export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { colorScheme, setColorScheme } = useColorScheme();
-  const [currentTheme, setCurrentTheme] = useState<ThemeName>("default");
-  const [colorMode, setColorMode] = useState<ColorMode>("light");
+  const [currentTheme, setCurrentTheme] = useState<ThemeName>('default');
+  const [colorMode, setColorMode] = useState<ColorMode>('light');
   const [isThemeLoaded, setIsThemeLoaded] = useState(false);
 
   // Initialize theme from storage
@@ -59,7 +59,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
           setColorMode(colorScheme as ColorMode);
         }
       } catch (error) {
-        console.error("Error loading theme:", error);
+        console.error('Error loading theme:', error);
       } finally {
         setIsThemeLoaded(true);
       }
@@ -68,15 +68,15 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     loadTheme();
   }, []);
 
-  const isLight = useMemo(() => colorMode === "light", [colorMode]);
-  const isDark = useMemo(() => colorMode === "dark", [colorMode]);
+  const isLight = useMemo(() => colorMode === 'light', [colorMode]);
+  const isDark = useMemo(() => colorMode === 'dark', [colorMode]);
 
   const setTheme = useCallback(async (newTheme: ThemeName) => {
     setCurrentTheme(newTheme);
     try {
       await AsyncStorage.setItem(THEME_STORAGE_KEY, newTheme);
     } catch (error) {
-      console.error("Error saving theme:", error);
+      console.error('Error saving theme:', error);
     }
   }, []);
 
@@ -87,14 +87,14 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
       try {
         await AsyncStorage.setItem(COLOR_MODE_STORAGE_KEY, newMode);
       } catch (error) {
-        console.error("Error saving color mode:", error);
+        console.error('Error saving color mode:', error);
       }
     },
     [setColorScheme]
   );
 
   const toggleColorMode = useCallback(async () => {
-    const newMode: ColorMode = colorMode === "light" ? "dark" : "light";
+    const newMode: ColorMode = colorMode === 'light' ? 'dark' : 'light';
     handleSetColorMode(newMode);
   }, [colorMode, handleSetColorMode]);
 
@@ -136,7 +136,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   // Show nothing while loading to prevent flash of wrong theme
   if (!isThemeLoaded) {
     return (
-      <View className="flex-1 items-center justify-center bg-background-0">
+      <View className="flex-1 items-center justify-center bg-background">
         <ActivityIndicator size="small" />
       </View>
     );
@@ -154,7 +154,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 export const useAppTheme = () => {
   const context = useContext(AppThemeContext);
   if (!context) {
-    throw new Error("useAppTheme must be used within AppThemeProvider");
+    throw new Error('useAppTheme must be used within AppThemeProvider');
   }
   return context;
 };

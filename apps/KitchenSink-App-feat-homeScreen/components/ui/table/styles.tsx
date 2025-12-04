@@ -24,7 +24,7 @@ export const tableHeadStyle = tva({
 });
 
 export const tableRowStyleStyle = tva({
-  base: 'border-0 border-b border-solid border-outline-200 bg-background-0',
+  base: 'border-0 border-b border-solid border-outline-200 bg-background',
   variants: {
     isHeaderRow: {
       true: '',

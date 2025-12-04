@@ -1,7 +1,7 @@
-import { BlurView } from "expo-blur";
-import { LinearGradient } from "expo-linear-gradient";
-import * as Haptics from "expo-haptics";
-import { memo, useCallback, useRef, useState } from "react";
+import { BlurView } from 'expo-blur';
+import { LinearGradient } from 'expo-linear-gradient';
+import * as Haptics from 'expo-haptics';
+import { memo, useCallback, useRef, useState } from 'react';
 import {
   Modal,
   Platform,
@@ -11,7 +11,7 @@ import {
   TextInput,
   useWindowDimensions,
   View,
-} from "react-native";
+} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -19,23 +19,23 @@ import Animated, {
   Easing,
   FadeIn,
   FadeOut,
-} from "react-native-reanimated";
-import { useAppTheme } from "@/contexts/app-theme-context";
-import { useAccessibilityInfo } from "@/helpers/use-accessability-info";
-import { Text } from "@/components/ui/text";
-import { Icon, MoonIcon, SunIcon, SearchIcon } from "@/components/ui/icon";
-import { PaletteIcon } from "lucide-react-native";
-import { ThemeName } from "@/constants/themes";
+} from 'react-native-reanimated';
+import { useAppTheme } from '@/contexts/app-theme-context';
+import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
+import { Text } from '@/components/ui/text';
+import { Icon, MoonIcon, SunIcon, SearchIcon } from '@/components/ui/icon';
+import { PaletteIcon } from 'lucide-react-native';
+import { ThemeName } from '@/constants/themes';
 
 // Theme color mapping for the theme button indicator
 const THEME_COLORS: Record<ThemeName, string[]> = {
-  default: ["#121212", "#ffffff"],
-  ocean: ["#06b6d4", "#0891b2"],
-  forest: ["#22c55e", "#16a34a"],
-  sunset: ["#f97316", "#ea580c"],
-  lavender: ["#a855f7", "#9333ea"],
-  cyber: ["#ec4899", "#db2777"],
-  rose: ["#e11d48", "#be123c"],
+  default: ['#121212', '#ffffff'],
+  ocean: ['#06b6d4', '#0891b2'],
+  forest: ['#22c55e', '#16a34a'],
+  sunset: ['#f97316', '#ea580c'],
+  lavender: ['#a855f7', '#9333ea'],
+  cyber: ['#ec4899', '#db2777'],
+  rose: ['#e11d48', '#be123c'],
 };
 
 export type ComponentItem = {
@@ -80,7 +80,7 @@ const BottomControlBar = memo(
   }: BottomControlBarProps) => {
     const [showComponentMenu, setShowComponentMenu] = useState(false);
     const [showThemeMenu, setShowThemeMenu] = useState(false);
-    const [searchQuery, setSearchQuery] = useState("");
+    const [searchQuery, setSearchQuery] = useState('');
 
     // Refs for measuring button positions
     const componentButtonRef = useRef<View>(null);
@@ -115,7 +115,7 @@ const BottomControlBar = memo(
     });
 
     const handleToggleColorMode = useCallback(() => {
-      if (Platform.OS === "ios") {
+      if (Platform.OS === 'ios') {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
       // Animate rotation 360 degrees
@@ -128,7 +128,7 @@ const BottomControlBar = memo(
 
     const handleThemeSelect = useCallback(
       (themeName: ThemeName) => {
-        if (Platform.OS === "ios") {
+        if (Platform.OS === 'ios') {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         }
         setTheme(themeName);
@@ -148,7 +148,7 @@ const BottomControlBar = memo(
     const handleComponentSelect = useCallback(
       (component: ComponentItem, index: number) => {
         setShowComponentMenu(false);
-        setSearchQuery("");
+        setSearchQuery('');
         onComponentSelect?.(component, index);
       },
       [onComponentSelect]
@@ -174,9 +174,9 @@ const BottomControlBar = memo(
             {/* Dark/Light Mode Toggle */}
             <Pressable
               onPress={handleToggleColorMode}
-              className="w-16 h-16 rounded-full bg-background-0 items-center justify-center"
+              className="w-16 h-16 rounded-full bg-background items-center justify-center"
               style={{
-                shadowColor: isDark ? "#fff" : "#000",
+                shadowColor: isDark ? '#fff' : '#000',
                 shadowOffset: { width: 0, height: 2 },
                 shadowOpacity: 0.15,
                 shadowRadius: 4,
@@ -203,9 +203,9 @@ const BottomControlBar = memo(
             >
               <Pressable
                 onPress={() => setShowThemeMenu(true)}
-                className="w-16 h-16 rounded-full bg-background-0 items-center justify-center"
+                className="w-16 h-16 rounded-full bg-background items-center justify-center"
                 style={{
-                  shadowColor: isDark ? "#fff" : "#000",
+                  shadowColor: isDark ? '#fff' : '#000',
                   shadowOffset: { width: 0, height: 2 },
                   shadowOpacity: 0.15,
                   shadowRadius: 4,
@@ -237,14 +237,14 @@ const BottomControlBar = memo(
                   className="px-6 py-5 bg-typography-900 rounded-full"
                   style={{
                     width: pillWidth,
-                    shadowColor: isDark ? "#fff" : "#000",
+                    shadowColor: isDark ? '#fff' : '#000',
                     shadowOffset: { width: 0, height: 2 },
                     shadowOpacity: 0.25,
                     shadowRadius: 4,
                     elevation: 5,
                   }}
                 >
-                  <Text className="text-typography-0 text-base font-medium text-center font-outfit">
+                  <Text className=" text-base font-medium text-center font-outfit">
                     {pillLabel}
                   </Text>
                 </Pressable>
@@ -261,7 +261,7 @@ const BottomControlBar = memo(
             animationType="none"
             onRequestClose={() => {
               setShowComponentMenu(false);
-              setSearchQuery("");
+              setSearchQuery('');
             }}
           >
             <View style={StyleSheet.absoluteFill}>
@@ -270,13 +270,13 @@ const BottomControlBar = memo(
                 style={StyleSheet.absoluteFill}
                 onPress={() => {
                   setShowComponentMenu(false);
-                  setSearchQuery("");
+                  setSearchQuery('');
                 }}
               >
                 {applyBlur ? (
                   <BlurView
                     intensity={5}
-                    tint={isDark ? "dark" : "light"}
+                    tint={isDark ? 'dark' : 'light'}
                     experimentalBlurMethod="dimezisBlurView"
                     style={StyleSheet.absoluteFill}
                   />
@@ -286,8 +286,8 @@ const BottomControlBar = memo(
                       StyleSheet.absoluteFill,
                       {
                         backgroundColor: isDark
-                          ? "rgba(0,0,0,0.4)"
-                          : "rgba(0,0,0,0.25)",
+                          ? 'rgba(0,0,0,0.4)'
+                          : 'rgba(0,0,0,0.25)',
                       },
                     ]}
                   />
@@ -301,7 +301,7 @@ const BottomControlBar = memo(
                   .damping(40)
                   .stiffness(200)}
                 exiting={FadeOut.duration(50)}
-                className="absolute bg-background-0 rounded-2xl"
+                className="absolute bg-background rounded-2xl"
                 style={{
                   bottom: height - componentButtonLayout.y + 12,
                   right:
@@ -310,7 +310,7 @@ const BottomControlBar = memo(
                     componentButtonLayout.width,
                   width: Math.min(width - 32, 320),
                   maxHeight: height * 0.5,
-                  shadowColor: isDark ? "#fff" : "#000",
+                  shadowColor: isDark ? '#fff' : '#000',
                   shadowOffset: { width: 0, height: -4 },
                   shadowOpacity: 0.15,
                   shadowRadius: 16,
@@ -319,7 +319,7 @@ const BottomControlBar = memo(
               >
                 {/* Search Input */}
                 <View className="px-3 py-3 border-b border-outline-50">
-                  <View className="flex-row items-center h-11 rounded-full border border-background-300 bg-background-0">
+                  <View className="flex-row items-center h-11 rounded-full border border-background-300 bg-background">
                     <View className="pl-3 justify-center items-center">
                       <Icon
                         as={SearchIcon}
@@ -353,15 +353,15 @@ const BottomControlBar = memo(
                         onPress={() => handleComponentSelect(item, index)}
                         className={`px-3 py-2.5 mx-1.5 rounded-lg flex-row items-center gap-2.5 ${
                           currentComponent?.path === item.path
-                            ? "bg-primary-100"
-                            : "active:bg-background-50"
+                            ? 'bg-primary-100'
+                            : 'active:bg-background-50'
                         }`}
                       >
                         <Text
                           className={`text-sm font-medium ${
                             currentComponent?.path === item.path
-                              ? "text-primary-700"
-                              : "text-typography-700"
+                              ? 'text-primary-700'
+                              : 'text-typography-700'
                           }`}
                         >
                           {item.title}
@@ -398,7 +398,7 @@ const BottomControlBar = memo(
               {applyBlur ? (
                 <BlurView
                   intensity={5}
-                  tint={isDark ? "dark" : "light"}
+                  tint={isDark ? 'dark' : 'light'}
                   experimentalBlurMethod="dimezisBlurView"
                   style={StyleSheet.absoluteFill}
                 />
@@ -408,8 +408,8 @@ const BottomControlBar = memo(
                     StyleSheet.absoluteFill,
                     {
                       backgroundColor: isDark
-                        ? "rgba(0,0,0,0.4)"
-                        : "rgba(0,0,0,0.25)",
+                        ? 'rgba(0,0,0,0.4)'
+                        : 'rgba(0,0,0,0.25)',
                     },
                   ]}
                 />
@@ -423,11 +423,11 @@ const BottomControlBar = memo(
                 .damping(40)
                 .stiffness(200)}
               exiting={FadeOut.duration(50)}
-              className="absolute bg-background-0 rounded-[38px] p-4"
+              className="absolute bg-background rounded-[38px] p-4"
               style={{
                 bottom: height - themeButtonLayout.y + 12,
                 width: Math.min(width - 80),
-                shadowColor: isDark ? "#fff" : "#000",
+                shadowColor: isDark ? '#fff' : '#000',
                 shadowOffset: { width: 0, height: -4 },
                 shadowOpacity: 0.15,
                 shadowRadius: 16,
@@ -450,8 +450,8 @@ const BottomControlBar = memo(
                         onPress={() => handleThemeSelect(theme.name)}
                         className={`px-3 py-2 rounded-full w-fit mx-1 ${
                           currentTheme === theme.name
-                            ? "bg-background-50"
-                            : "active:bg-background-100"
+                            ? 'bg-background-50'
+                            : 'active:bg-background-100'
                         }`}
                       >
                         <LinearGradient
@@ -480,6 +480,6 @@ const BottomControlBar = memo(
   }
 );
 
-BottomControlBar.displayName = "BottomControlBar";
+BottomControlBar.displayName = 'BottomControlBar';
 
 export { BottomControlBar };

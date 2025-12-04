@@ -17,7 +17,7 @@ type IMotionViewProps = React.ComponentProps<typeof View> &
 const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
 
 const menuStyle = tva({
-  base: 'rounded-md bg-background-0 border border-outline-100 p-1 shadow-hard-5',
+  base: 'rounded-md bg-background border border-outline-100 p-1 shadow-hard-5',
 });
 
 const menuItemStyle = tva({
