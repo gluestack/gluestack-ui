@@ -35,7 +35,7 @@
     "expo-web-browser": "~15.0.7",
     "lucide-react-native": "^0.510.0",
     "nativewind": "^4.2.1",
-    "react": "19.1.0",
+    "react": "^19.2.1",
     "react-aria": "^3.41.1",
     "react-dom": "19.1.0",
     "react-native": "0.81.4",
