@@ -1,6 +1,6 @@
-import { BlurView } from "expo-blur";
-import * as Haptics from "expo-haptics";
-import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { BlurView } from 'expo-blur';
+import * as Haptics from 'expo-haptics';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   FlatList,
   Platform,
@@ -8,7 +8,7 @@ import {
   StyleSheet,
   useWindowDimensions,
   View,
-} from "react-native";
+} from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -17,11 +17,11 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   type SharedValue,
-} from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useAppTheme } from "@/contexts/app-theme-context";
-import type { UsageVariant } from "./types";
-import { Text } from "@/components/ui/text";
+} from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useAppTheme } from '@/contexts/app-theme-context';
+import type { UsageVariant } from './types';
+import { Text } from '@/components/ui/text';
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
@@ -43,14 +43,15 @@ const VariantItem = memo(
   ({ item, index, scrollY, itemHeight, width, height }: VariantItemProps) => {
     const animatedStyle = useAnimatedStyle(() => {
       return {
-        opacity: Platform.OS === "android"
-          ? interpolate(
-              scrollY.get() / itemHeight,
-              [index - 0.5, index, index + 0.5],
-              [0, 1, 0],
-              Extrapolation.CLAMP
-            )
-          : 1,
+        opacity:
+          Platform.OS === 'android'
+            ? interpolate(
+                scrollY.get() / itemHeight,
+                [index - 0.5, index, index + 0.5],
+                [0, 1, 0],
+                Extrapolation.CLAMP
+              )
+            : 1,
         transform: [
           {
             scale: interpolate(
@@ -65,14 +66,17 @@ const VariantItem = memo(
     });
 
     return (
-      <Animated.View className="items-center justify-center px-6" style={[{ width, height: 400 }, animatedStyle]}>
+      <Animated.View
+        className="items-center justify-center px-6"
+        style={[{ width, height }, animatedStyle]}
+      >
         {item.content}
       </Animated.View>
     );
   }
 );
 
-VariantItem.displayName = "VariantItem";
+VariantItem.displayName = 'VariantItem';
 
 export const UsageVariantFlatList = ({
   data,
@@ -86,34 +90,45 @@ export const UsageVariantFlatList = ({
   const { width, height } = useWindowDimensions();
   const itemWidth = width;
 
-  const applyBlur = Platform.OS === "ios";
+  const applyBlur = Platform.OS === 'ios';
 
   const listRef = useRef<FlatList<UsageVariant>>(null);
   const variantNamesScrollRef = useRef<ScrollView>(null);
 
   const scrollX = useSharedValue(0);
-  
+
   // Store item positions for accurate scrolling
   const itemPositionsRef = useRef<number[]>([]);
 
-  const scrollVariantNamesToActive = useCallback((activeIndex: number) => {
-    if (variantNamesScrollRef.current && activeIndex >= 0 && activeIndex < data.length) {
-      const itemPositions = itemPositionsRef.current;
-      if (itemPositions.length > activeIndex) {
-        const itemCenter = itemPositions[activeIndex] || 0;
-        const scrollPosition = Math.max(0, itemCenter - width / 2);
-        variantNamesScrollRef.current.scrollTo({
-          x: scrollPosition,
-          animated: true,
-        });
+  const scrollVariantNamesToActive = useCallback(
+    (activeIndex: number) => {
+      if (
+        variantNamesScrollRef.current &&
+        activeIndex >= 0 &&
+        activeIndex < data.length
+      ) {
+        const itemPositions = itemPositionsRef.current;
+        if (itemPositions.length > activeIndex) {
+          const itemCenter = itemPositions[activeIndex] || 0;
+          const scrollPosition = Math.max(0, itemCenter - width / 2);
+          variantNamesScrollRef.current.scrollTo({
+            x: scrollPosition,
+            animated: true,
+          });
+        }
       }
-    }
-  }, [width, data.length]);
+    },
+    [width, data.length]
+  );
 
   const handleViewableItemsChanged = useCallback(
-    ({ viewableItems }: { viewableItems: Array<{ item: UsageVariant; index: number | null }> }) => {
+    ({
+      viewableItems,
+    }: {
+      viewableItems: Array<{ item: UsageVariant; index: number | null }>;
+    }) => {
       if (viewableItems.length > 0 && viewableItems[0]) {
-        if (Platform.OS === "ios") {
+        if (Platform.OS === 'ios') {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         }
         const item = viewableItems[0].item;
@@ -212,14 +227,14 @@ export const UsageVariantFlatList = ({
           animatedProps={animatedProps}
           tint={
             isDark
-              ? "systemUltraThinMaterialDark"
-              : "systemUltraThinMaterialLight"
+              ? 'systemUltraThinMaterialDark'
+              : 'systemUltraThinMaterialLight'
           }
         />
       )}
       <View
         className="absolute left-0 right-0 items-center"
-        style={{ bottom: insets.bottom + 34 }}
+        style={{ top: insets.top + 60 }}
         pointerEvents="none"
       >
         {/* Variant names horizontal scrollable list - active item centered, others faded */}
@@ -245,7 +260,7 @@ export const UsageVariantFlatList = ({
                 index * width,
                 (index + 1) * width,
               ];
-              
+
               const opacity = interpolate(
                 scrollX.value,
                 inputRange,
