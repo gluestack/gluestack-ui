@@ -20,6 +20,7 @@ import Animated, {
   FadeIn,
   FadeOut,
 } from 'react-native-reanimated';
+import { useRouter } from 'expo-router';
 import { useAppTheme } from '@/contexts/app-theme-context';
 import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { Text } from '@/components/ui/text';
@@ -78,6 +79,7 @@ const BottomControlBar = memo(
     pillWidth = 200,
     children,
   }: BottomControlBarProps) => {
+    const router = useRouter();
     const [showComponentMenu, setShowComponentMenu] = useState(false);
     const [showThemeMenu, setShowThemeMenu] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
@@ -147,11 +149,19 @@ const BottomControlBar = memo(
 
     const handleComponentSelect = useCallback(
       (component: ComponentItem, index: number) => {
+        if (Platform.OS === 'ios') {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        }
         setShowComponentMenu(false);
         setSearchQuery('');
+
+        // Navigate directly to the component page
+        router.push(`/(home)/components/${component.path}` as any);
+
+        // Still call the callback if provided (for any additional logic)
         onComponentSelect?.(component, index);
       },
-      [onComponentSelect]
+      [router, onComponentSelect]
     );
 
     const handlePillPress = useCallback(() => {
