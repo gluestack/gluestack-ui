@@ -1,0 +1,14 @@
+import * as componentOperations from './componentsOperations';
+import * as docsOperations from './docsOperations';
+export default {
+  component: function (component: string, event = 'added') {
+    componentOperations.copyComponent(component, event);
+    docsOperations.copyComponentsDocs(component, event);
+  },
+  nonComponent: function (path: string) {
+    // componentOperations.processNonComponentFile(path);
+    if (path === 'src/sidebar.json') {
+      componentOperations.processSidebarFile(path);
+    }
+  },
+};
