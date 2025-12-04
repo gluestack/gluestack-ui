@@ -174,19 +174,19 @@ const BottomControlBar = memo(
             {/* Dark/Light Mode Toggle */}
             <Pressable
               onPress={handleToggleColorMode}
-              className="w-16 h-16 rounded-full bg-background items-center justify-center"
-              style={{
-                shadowColor: isDark ? '#fff' : '#000',
-                shadowOffset: { width: 0, height: 2 },
-                shadowOpacity: 0.15,
-                shadowRadius: 4,
-                elevation: 4,
-              }}
+              className="w-16 h-16 rounded-full border border-input dark:border-input/10 dark:bg-input/[0.075] items-center justify-center"
+              // style={{
+              //   shadowColor: isDark ? '#fff' : '#000',
+              //   shadowOffset: { width: 0, height: 2 },
+              //   shadowOpacity: 0.15,
+              //   shadowRadius: 4,
+              //   elevation: 4,
+              // }}
             >
               <Animated.View style={colorModeAnimatedStyle}>
                 <Icon
                   as={isDark ? SunIcon : MoonIcon}
-                  className="text-typography-700"
+                  className="text-foreground"
                   size="md"
                 />
               </Animated.View>
@@ -203,20 +203,16 @@ const BottomControlBar = memo(
             >
               <Pressable
                 onPress={() => setShowThemeMenu(true)}
-                className="w-16 h-16 rounded-full bg-background items-center justify-center"
-                style={{
-                  shadowColor: isDark ? '#fff' : '#000',
-                  shadowOffset: { width: 0, height: 2 },
-                  shadowOpacity: 0.15,
-                  shadowRadius: 4,
-                  elevation: 4,
-                }}
+                className="w-16 h-16 rounded-full border border-input dark:border-input/10 dark:bg-input/[0.075] items-center justify-center"
+                // style={{
+                //   shadowColor: isDark ? '#fff' : '#000',
+                //   shadowOffset: { width: 0, height: 2 },
+                //   shadowOpacity: 0.15,
+                //   shadowRadius: 4,
+                //   elevation: 4,
+                // }}
               >
-                <Icon
-                  as={PaletteIcon}
-                  className="text-typography-700"
-                  size="md"
-                />
+                <Icon as={PaletteIcon} className="text-foreground" size="md" />
               </Pressable>
             </View>
 
@@ -234,7 +230,7 @@ const BottomControlBar = memo(
               >
                 <Pressable
                   onPress={handlePillPress}
-                  className="px-6 py-5 bg-typography-900 rounded-full"
+                  className="px-6 py-5 bg-primary rounded-full"
                   style={{
                     width: pillWidth,
                     shadowColor: isDark ? '#fff' : '#000',
@@ -244,7 +240,7 @@ const BottomControlBar = memo(
                     elevation: 5,
                   }}
                 >
-                  <Text className=" text-base font-medium text-center font-outfit">
+                  <Text className=" text-base text-primary-foreground font-medium text-center font-outfit">
                     {pillLabel}
                   </Text>
                 </Pressable>
