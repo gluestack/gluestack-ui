@@ -1,0 +1,55 @@
+import {
+  AccordionIcon,
+  AlertDialogIcon,
+  AlertIcon,
+  AvatarIcon,
+} from "@/components/custom/custom-icons";
+import type { ComponentItem } from "@/components/custom/bottom-control-bar";
+
+export const COMPONENTS_LIST: ComponentItem[] = [
+  { title: "Accordion", path: "accordion", count: 7, icon: AccordionIcon },
+  { title: "Actionsheet", path: "actionsheet", count: 9 },
+  { title: "Alert", path: "alert", count: 5, icon: AlertIcon },
+  { title: "AlertDialog", path: "alert-dialog", count: 4, icon: AlertDialogIcon },
+  { title: "Avatar", path: "avatar", count: 9, icon: AvatarIcon },
+  { title: "Badge", path: "badge", count: 3 },
+  { title: "Box", path: "box", count: 1 },
+  { title: "Button", path: "button", count: 6 },
+  { title: "Card", path: "card", count: 5 },
+  { title: "Center", path: "center", count: 1 },
+  { title: "Checkbox", path: "checkbox", count: 9 },
+  { title: "Divider", path: "divider", count: 5 },
+  { title: "Drawer", path: "drawer", count: 3 },
+  { title: "Fab", path: "fab", count: 5 },
+  { title: "FormControl", path: "form-control", count: 6 },
+  { title: "Grid", path: "grid", count: 5 },
+  { title: "Heading", path: "heading", count: 2 },
+  { title: "HStack", path: "hstack", count: 2 },
+  { title: "Icon", path: "icon", count: 4 },
+  { title: "Image", path: "image", count: 2 },
+  { title: "Input", path: "input", count: 3 },
+  { title: "Link", path: "link", count: 3 },
+  { title: "Menu", path: "menu", count: 3 },
+  { title: "Modal", path: "modal", count: 5 },
+  { title: "Popover", path: "popover", count: 5 },
+  { title: "Portal", path: "portal", count: 1 },
+  { title: "Pressable", path: "pressable", count: 2 },
+  { title: "Progress", path: "progress", count: 4 },
+  { title: "Radio", path: "radio", count: 9 },
+  { title: "Select", path: "select", count: 2 },
+  { title: "Skeleton", path: "skeleton", count: 2 },
+  { title: "Slider", path: "slider", count: 1 },
+  { title: "Spinner", path: "spinner", count: 3 },
+  { title: "Switch", path: "switch", count: 3 },
+  { title: "Table", path: "table", count: 5 },
+  { title: "Text", path: "text", count: 2 },
+  { title: "Textarea", path: "textarea", count: 2 },
+  { title: "Toast", path: "toast", count: 5 },
+  { title: "Tooltip", path: "tooltip", count: 3 },
+  { title: "VStack", path: "vstack", count: 2 }
+];
+
+export const getComponentByPath = (path: string): ComponentItem | undefined => {
+  return COMPONENTS_LIST.find((c) => c.path === path);
+};
+

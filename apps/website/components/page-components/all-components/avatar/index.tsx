@@ -10,7 +10,7 @@ export default function Example() {
       code={`function Example() {
   return (
     <Avatar>
-      <AvatarFallbackText>Jane Doe</AvatarFallbackText>
+      <AvatarFallbackText>Jane Doe is test</AvatarFallbackText>
       <AvatarImage
         source=\\{{
           uri: "https://github.com/shadcn.png",

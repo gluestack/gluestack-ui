@@ -1,5 +1,6 @@
 import websiteMapper from './website';
 import kitchenSinkMapper from './kitchen-sink';
+import kitchenSinkNewMapper from './kitchen-sink-new';
 import starterKitsMapper from './starter-kits';
 
 export default [
@@ -10,6 +11,10 @@ export default [
   {
     name: 'kitchen-sink',
     mapper: kitchenSinkMapper,
+  },
+  {
+    name: 'kitchen-sink-new',
+    mapper: kitchenSinkNewMapper,
   },
   {
     name: 'starter-kits',

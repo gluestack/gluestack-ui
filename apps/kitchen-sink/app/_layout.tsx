@@ -2,15 +2,16 @@ import { Stack, useRouter } from 'expo-router';
 import '../global.css';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { Pressable } from 'react-native';
-import { ChevronLeftIcon, SunIcon, MoonIcon } from '@/components/ui/icon';
+import { ChevronLeftIcon } from '@/components/ui/icon';
 import { Icon } from '@/components/ui/icon';
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Fab } from '@/components/ui/fab';
 import { Text } from '@/components/ui/text';
 import { SplashScreen } from '@/components/custom/splash-screen';
 import * as SplashScreenExpo from 'expo-splash-screen';
-export const ColorModeContext = React.createContext({});
+import { AppThemeProvider } from '@/contexts/app-theme-context';
+
+export const ColorModeContext = React.createContext<{ colorMode: 'light' | 'dark'; toggleColorMode?: () => void }>({ colorMode: 'light' });
 
 SplashScreenExpo.preventAutoHideAsync();
 const capitalize = (str: string) => {
@@ -64,8 +65,9 @@ export default function RootLayout() {
         style="auto" //android
         backgroundColor={`${colorMode == 'light' ? '#F6F6F6' : '#272625'}`}
       />
-      <ColorModeContext.Provider value={{ colorMode }}>
-        <GluestackUIProvider mode={colorMode}>
+      <ColorModeContext.Provider value={{ colorMode, toggleColorMode: handleColorMode }}>
+        <AppThemeProvider>
+          <GluestackUIProvider mode={colorMode}>
           <Stack
             screenOptions={({ route }) => ({
               animation: 'none',
@@ -95,16 +97,8 @@ export default function RootLayout() {
               }}
             />
           </Stack>
-          <Fab
-            className="bottom-10 sm:right-10 right-6 p-4 z-0"
-            onPress={handleColorMode}
-          >
-            <Icon
-              as={colorMode === 'light' ? SunIcon : MoonIcon}
-              className="text-typography-0"
-            />
-          </Fab>
         </GluestackUIProvider>
+        </AppThemeProvider>
       </ColorModeContext.Provider>
     </>
   );
