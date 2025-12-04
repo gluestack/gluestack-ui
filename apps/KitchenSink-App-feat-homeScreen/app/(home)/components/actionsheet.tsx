@@ -469,5 +469,8 @@ const COMPONENT_VARIANTS = [
 ];
 
 export default function ActionsheetScreen() {
-  return <UsageVariantFlatList data={COMPONENT_VARIANTS} />;
+  const pathname = usePathname();
+  const componentPath = pathname?.split('/').pop() || '';
+  
+  return <UsageVariantFlatList data={COMPONENT_VARIANTS} componentPath={componentPath} />;
 }

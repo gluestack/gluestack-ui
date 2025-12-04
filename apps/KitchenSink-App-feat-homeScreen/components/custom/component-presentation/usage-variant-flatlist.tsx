@@ -22,12 +22,21 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAppTheme } from '@/contexts/app-theme-context';
 import type { UsageVariant } from './types';
 import { Text } from '@/components/ui/text';
-
+import {
+  BottomControlBar,
+  type ComponentItem,
+} from '@/components/custom/bottom-control-bar';
+import {
+  COMPONENTS_LIST,
+  getComponentByPath,
+} from '@/constants/components-list';
+import { useRouter, usePathname } from 'expo-router';
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
 interface UsageVariantFlatListProps {
   data: UsageVariant[];
   scrollEnabled?: boolean;
+  componentPath?: string;
 }
 
 type VariantItemProps = {
@@ -81,10 +90,32 @@ VariantItem.displayName = 'VariantItem';
 export const UsageVariantFlatList = ({
   data,
   scrollEnabled = true,
+  componentPath,
 }: UsageVariantFlatListProps) => {
   const [currentVariant, setCurrentVariant] = useState<UsageVariant>(data[0]!);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const { isDark } = useAppTheme();
+
+  // Extract component path from pathname if not provided
+  const derivedComponentPath =
+    componentPath || pathname?.split('/').pop() || '';
+
+  const currentComponent = derivedComponentPath
+    ? getComponentByPath(derivedComponentPath)
+    : undefined;
+
+  // Handle component selection from the menu
+  const handleComponentSelect = useCallback(
+    (component: ComponentItem) => {
+      if (Platform.OS === 'ios') {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      }
+      router.replace(`/(home)/components/${component.path}` as any);
+    },
+    [router]
+  );
 
   const insets = useSafeAreaInsets();
   const { width, height } = useWindowDimensions();
@@ -300,6 +331,14 @@ export const UsageVariantFlatList = ({
           })}
         </ScrollView>
       </View>
+      <BottomControlBar
+        bottomOffset={insets.bottom + 34}
+        pillLabel={currentComponent?.title}
+        showPill={true}
+        components={COMPONENTS_LIST}
+        currentComponent={currentComponent}
+        onComponentSelect={handleComponentSelect}
+      />
     </>
   );
 };
