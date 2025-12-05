@@ -82,7 +82,7 @@ return (
               return (
                 <>
                   <AccordionTitleText>
-           What does the "type" prop of the Accordion component do?
+Accordion “type” Prop Purpose
                   </AccordionTitleText>
                     
                       <AccordionIcon as={ChevronDownIcon} />
@@ -161,7 +161,7 @@ return (
 
 const ExampleRoundedCorners = () => {
 return (
-          <Accordion className="m-5 w-[80%] max-w-[640px] bg-transparent">
+          <Accordion className="m-5 w-[80%] max-w-[640px] shadow">
       <AccordionItem value="item-1" className="rounded-lg">
         <AccordionHeader>
           <AccordionTrigger
