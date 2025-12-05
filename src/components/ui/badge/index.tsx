@@ -122,7 +122,7 @@ function Badge({
 }: { className?: string } & IBadgeProps) {
   return (
     <ContextView
-      className={badgeStyle({ action, variant, class: className })}
+      className={badgeStyle({ action, variant, className })}
       {...props}
       context={{
         action,
