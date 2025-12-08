@@ -1,621 +1,395 @@
-import { vars } from "nativewind";
-import { config as gluestackConfig } from "@/components/ui/gluestack-ui-provider/config";
+import { vars } from 'nativewind';
+import { config as gluestackConfig } from '@/components/ui/gluestack-ui-provider/config';
 
 export type ThemeName =
-  | "default"
-  | "ocean"
-  | "forest"
-  | "sunset"
-  | "lavender"
-  | "cyber"
-  | "rose";
+  | 'default'
+  | 'ocean'
+  | 'forest'
+  | 'sunset'
+  | 'lavender'
+  | 'cyber'
+  | 'rose';
 
-export type ColorMode = "light" | "dark";
+export type ColorMode = 'light' | 'dark';
 
-// Helper to convert hex to RGB
-const hexToRgb = (hex: string): string => {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? `${parseInt(result[1], 16)} ${parseInt(result[2], 16)} ${parseInt(
-        result[3],
-        16
-      )}`
-    : "0 0 0";
-};
-
-// Helper to generate a complete color scale from key colors
-const generateColorScale = (colors: {
-  50?: string;
-  100?: string;
-  200?: string;
-  300?: string;
-  400?: string;
-  500: string; // Primary shade (required)
-  600?: string;
-  700?: string;
-  800?: string;
-  900?: string;
-}) => {
-  return {
-    "--color-primary-0": hexToRgb(colors[50] || colors[100] || colors[500]),
-    "--color-primary-50": hexToRgb(colors[50] || colors[100] || colors[500]),
-    "--color-primary-100": hexToRgb(colors[100] || colors[200] || colors[500]),
-    "--color-primary-200": hexToRgb(colors[200] || colors[300] || colors[500]),
-    "--color-primary-300": hexToRgb(colors[300] || colors[400] || colors[500]),
-    "--color-primary-400": hexToRgb(colors[400] || colors[500]),
-    "--color-primary-500": hexToRgb(colors[500]),
-    "--color-primary-600": hexToRgb(colors[600] || colors[700] || colors[500]),
-    "--color-primary-700": hexToRgb(colors[700] || colors[800] || colors[500]),
-    "--color-primary-800": hexToRgb(colors[800] || colors[900] || colors[500]),
-    "--color-primary-900": hexToRgb(colors[900] || colors[800] || colors[500]),
-    "--color-primary-950": hexToRgb(colors[900] || colors[500]),
-  };
-};
-
-// Common color definitions
-const commonColors = {
-  light: {
-    // Typography
-    "--color-typography-0": "254 254 255",
-    "--color-typography-50": "245 245 245",
-    "--color-typography-100": "229 229 229",
-    "--color-typography-200": "212 212 216",
-    "--color-typography-300": "161 161 170",
-    "--color-typography-400": "140 140 140",
-    "--color-typography-500": "107 114 128",
-    "--color-typography-600": "82 82 91",
-    "--color-typography-700": "55 65 81",
-    "--color-typography-800": "39 39 42",
-    "--color-typography-900": "17 24 39",
-    "--color-typography-950": "9 9 11",
-
-    // Outline
-    "--color-outline-0": "253 254 254",
-    "--color-outline-50": "243 243 243",
-    "--color-outline-100": "230 230 230",
-    "--color-outline-200": "221 220 219",
-    "--color-outline-300": "209 213 219",
-    "--color-outline-400": "165 163 163",
-    "--color-outline-500": "140 141 141",
-    "--color-outline-600": "115 116 116",
-    "--color-outline-700": "83 82 82",
-    "--color-outline-800": "65 65 65",
-    "--color-outline-900": "39 38 36",
-    "--color-outline-950": "26 23 23",
-
-    // Background
-    "--color-background-0": "255 255 255",
-    "--color-background-50": "249 250 251",
-    "--color-background-100": "243 244 246",
-    "--color-background-200": "229 231 235",
-    "--color-background-300": "209 213 219",
-    "--color-background-400": "156 163 175",
-    "--color-background-500": "107 114 128",
-    "--color-background-600": "75 85 99",
-    "--color-background-700": "55 65 81",
-    "--color-background-800": "31 41 55",
-    "--color-background-900": "17 24 39",
-    "--color-background-950": "3 7 18",
-  },
-  dark: {
-    // Typography
-    "--color-typography-0": "23 23 23",
-    "--color-typography-50": "38 38 39",
-    "--color-typography-100": "64 64 64",
-    "--color-typography-200": "82 82 82",
-    "--color-typography-300": "115 115 115",
-    "--color-typography-400": "140 140 140",
-    "--color-typography-500": "163 163 163",
-    "--color-typography-600": "212 212 212",
-    "--color-typography-700": "219 219 220",
-    "--color-typography-800": "229 229 229",
-    "--color-typography-900": "245 245 245",
-    "--color-typography-950": "254 254 255",
-
-    // Outline
-    "--color-outline-0": "26 23 23",
-    "--color-outline-50": "39 38 36",
-    "--color-outline-100": "65 65 65",
-    "--color-outline-200": "83 82 82",
-    "--color-outline-300": "115 116 116",
-    "--color-outline-400": "140 141 141",
-    "--color-outline-500": "165 163 163",
-    "--color-outline-600": "211 211 211",
-    "--color-outline-700": "221 220 219",
-    "--color-outline-800": "230 230 230",
-    "--color-outline-900": "243 243 243",
-    "--color-outline-950": "253 254 254",
-
-    // Background
-    "--color-background-0": "18 18 18",
-    "--color-background-50": "31 31 31",
-    "--color-background-100": "39 39 42",
-    "--color-background-200": "63 63 70",
-    "--color-background-300": "82 82 91",
-    "--color-background-400": "113 113 122",
-    "--color-background-500": "161 161 170",
-    "--color-background-600": "212 212 216",
-    "--color-background-700": "228 228 231",
-    "--color-background-800": "244 244 245",
-    "--color-background-900": "250 250 250",
-    "--color-background-950": "255 255 255",
-  },
-};
-
-// Theme configurations
+// Theme configurations using shadcn-style tokens
 export const themeConfigs = {
   default: {
-    name: "Default",
-    description: "Gluestack UI default theme",
+    name: 'Default',
+    description: 'Gluestack UI default theme',
     light: gluestackConfig.light,
     dark: gluestackConfig.dark,
   },
   ocean: {
-    name: "Ocean",
-    description: "Calm blues and aqua tones",
+    name: 'Ocean',
+    description: 'Calm blues and aqua tones',
     light: vars({
-      ...generateColorScale({
-        50: "#ecfeff",
-        100: "#cffafe",
-        200: "#a5f3fc",
-        300: "#67e8f9",
-        400: "#22d3ee",
-        500: "#06b6d4",
-        600: "#0891b2",
-        700: "#0e7490",
-        800: "#155e75",
-        900: "#164e63",
-      }),
-      "--color-secondary-500": hexToRgb("#14b8a6"),
-      "--color-secondary-600": hexToRgb("#0d9488"),
-      "--color-tertiary-500": hexToRgb("#06b6d4"),
-      "--color-success-0": "209 250 229",
-      "--color-success-500": hexToRgb("#14b8a6"),
-      "--color-error-0": "254 226 226",
-      "--color-error-500": hexToRgb("#f43f5e"),
-      "--color-warning-0": "255 237 213",
-      "--color-warning-500": hexToRgb("#f97316"),
-      "--color-info-0": "219 234 254",
-      "--color-info-500": hexToRgb("#3b82f6"),
-      ...commonColors.light,
-      "--color-background-0": hexToRgb("#f0fdfa"),
-      "--color-background-50": hexToRgb("#ccfbf1"),
-      "--color-background-100": hexToRgb("#99f6e4"),
-      "--color-background-error": "254 226 226",
-      "--color-background-warning": "255 237 213",
-      "--color-background-success": "209 250 229",
-      "--color-background-muted": "236 254 255",
-      "--color-background-info": "224 242 254",
-      "--color-indicator-primary": hexToRgb("#06b6d4"),
-      "--color-indicator-info": hexToRgb("#3b82f6"),
-      "--color-indicator-error": hexToRgb("#f43f5e"),
+      '--primary': '6 182 212', // cyan-500
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '207 250 254', // cyan-100
+      '--secondary-foreground': '22 78 99', // cyan-900
+
+      '--background': '236 254 255', // cyan-50
+      '--foreground': '22 78 99', // cyan-900
+
+      '--card': '255 255 255',
+      '--card-foreground': '22 78 99',
+
+      '--popover': '255 255 255',
+      '--popover-foreground': '22 78 99',
+
+      '--muted': '207 250 254', // cyan-100
+      '--muted-foreground': '8 145 178', // cyan-600
+
+      '--accent': '165 243 252', // cyan-200
+      '--accent-foreground': '14 116 144', // cyan-700
+
+      '--destructive': '239 68 68',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '165 243 252', // cyan-200
+      '--input': '165 243 252',
+      '--ring': '6 182 212', // cyan-500
     }),
     dark: vars({
-      ...generateColorScale({
-        50: "#164e63",
-        100: "#155e75",
-        200: "#0e7490",
-        300: "#0891b2",
-        400: "#06b6d4",
-        500: "#22d3ee",
-        600: "#67e8f9",
-        700: "#a5f3fc",
-        800: "#cffafe",
-        900: "#ecfeff",
-      }),
-      "--color-secondary-500": hexToRgb("#2dd4bf"),
-      "--color-secondary-600": hexToRgb("#14b8a6"),
-      "--color-tertiary-500": hexToRgb("#67e8f9"),
-      "--color-success-0": "6 78 59",
-      "--color-success-500": hexToRgb("#2dd4bf"),
-      "--color-error-0": "69 10 10",
-      "--color-error-500": hexToRgb("#fb7185"),
-      "--color-warning-0": "69 26 3",
-      "--color-warning-500": hexToRgb("#fb923c"),
-      "--color-info-0": "23 37 84",
-      "--color-info-500": hexToRgb("#60a5fa"),
-      ...commonColors.dark,
-      "--color-background-0": hexToRgb("#083344"),
-      "--color-background-50": hexToRgb("#164e63"),
-      "--color-background-100": hexToRgb("#155e75"),
-      "--color-background-error": "66 43 43",
-      "--color-background-warning": "65 47 35",
-      "--color-background-success": "19 78 74",
-      "--color-background-muted": "22 78 99",
-      "--color-background-info": "30 58 138",
-      "--color-indicator-primary": hexToRgb("#22d3ee"),
-      "--color-indicator-info": hexToRgb("#60a5fa"),
-      "--color-indicator-error": hexToRgb("#fb7185"),
+      '--primary': '34 211 238', // cyan-400
+      '--primary-foreground': '8 51 68', // cyan-950
+
+      '--secondary': '22 78 99', // cyan-900
+      '--secondary-foreground': '207 250 254', // cyan-100
+
+      '--background': '8 51 68', // cyan-950
+      '--foreground': '236 254 255', // cyan-50
+
+      '--card': '22 78 99', // cyan-900
+      '--card-foreground': '236 254 255',
+
+      '--popover': '22 78 99',
+      '--popover-foreground': '236 254 255',
+
+      '--muted': '21 94 117', // cyan-800
+      '--muted-foreground': '103 232 249', // cyan-300
+
+      '--accent': '14 116 144', // cyan-700
+      '--accent-foreground': '207 250 254',
+
+      '--destructive': '248 113 113',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '21 94 117', // cyan-800
+      '--input': '21 94 117',
+      '--ring': '34 211 238', // cyan-400
     }),
   },
   forest: {
-    name: "Forest",
-    description: "Natural greens and earthy tones",
+    name: 'Forest',
+    description: 'Natural greens and earthy tones',
     light: vars({
-      ...generateColorScale({
-        50: "#f0fdf4",
-        100: "#dcfce7",
-        200: "#bbf7d0",
-        300: "#86efac",
-        400: "#4ade80",
-        500: "#22c55e",
-        600: "#16a34a",
-        700: "#15803d",
-        800: "#166534",
-        900: "#14532d",
-      }),
-      "--color-secondary-500": hexToRgb("#84cc16"),
-      "--color-secondary-600": hexToRgb("#65a30d"),
-      "--color-tertiary-500": hexToRgb("#a3e635"),
-      "--color-success-0": "220 252 231",
-      "--color-success-500": hexToRgb("#10b981"),
-      "--color-error-0": "254 226 226",
-      "--color-error-500": hexToRgb("#dc2626"),
-      "--color-warning-0": "254 243 199",
-      "--color-warning-500": hexToRgb("#ea580c"),
-      "--color-info-0": "209 250 229",
-      "--color-info-500": hexToRgb("#0891b2"),
-      ...commonColors.light,
-      "--color-background-0": hexToRgb("#f7fee7"),
-      "--color-background-50": hexToRgb("#ecfccb"),
-      "--color-background-100": hexToRgb("#d9f99d"),
-      "--color-background-error": "254 226 226",
-      "--color-background-warning": "254 243 199",
-      "--color-background-success": "220 252 231",
-      "--color-background-muted": "236 253 245",
-      "--color-background-info": "209 250 229",
-      "--color-indicator-primary": hexToRgb("#22c55e"),
-      "--color-indicator-info": hexToRgb("#0891b2"),
-      "--color-indicator-error": hexToRgb("#dc2626"),
+      '--primary': '34 197 94', // green-500
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '220 252 231', // green-100
+      '--secondary-foreground': '20 83 45', // green-900
+
+      '--background': '240 253 244', // green-50
+      '--foreground': '20 83 45', // green-900
+
+      '--card': '255 255 255',
+      '--card-foreground': '20 83 45',
+
+      '--popover': '255 255 255',
+      '--popover-foreground': '20 83 45',
+
+      '--muted': '220 252 231', // green-100
+      '--muted-foreground': '22 163 74', // green-600
+
+      '--accent': '187 247 208', // green-200
+      '--accent-foreground': '21 128 61', // green-700
+
+      '--destructive': '239 68 68',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '187 247 208', // green-200
+      '--input': '187 247 208',
+      '--ring': '34 197 94', // green-500
     }),
     dark: vars({
-      ...generateColorScale({
-        50: "#14532d",
-        100: "#166534",
-        200: "#15803d",
-        300: "#16a34a",
-        400: "#22c55e",
-        500: "#4ade80",
-        600: "#86efac",
-        700: "#bbf7d0",
-        800: "#dcfce7",
-        900: "#f0fdf4",
-      }),
-      "--color-secondary-500": hexToRgb("#a3e635"),
-      "--color-secondary-600": hexToRgb("#84cc16"),
-      "--color-tertiary-500": hexToRgb("#bef264"),
-      "--color-success-0": "6 78 59",
-      "--color-success-500": hexToRgb("#34d399"),
-      "--color-error-0": "69 10 10",
-      "--color-error-500": hexToRgb("#f87171"),
-      "--color-warning-0": "69 26 3",
-      "--color-warning-500": hexToRgb("#fb923c"),
-      "--color-info-0": "8 51 68",
-      "--color-info-500": hexToRgb("#22d3ee"),
-      ...commonColors.dark,
-      "--color-background-0": hexToRgb("#14532d"),
-      "--color-background-50": hexToRgb("#166534"),
-      "--color-background-100": hexToRgb("#15803d"),
-      "--color-background-error": "66 43 43",
-      "--color-background-warning": "65 47 35",
-      "--color-background-success": "6 78 59",
-      "--color-background-muted": "22 101 52",
-      "--color-background-info": "8 51 68",
-      "--color-indicator-primary": hexToRgb("#4ade80"),
-      "--color-indicator-info": hexToRgb("#22d3ee"),
-      "--color-indicator-error": hexToRgb("#f87171"),
+      '--primary': '74 222 128', // green-400
+      '--primary-foreground': '5 46 22', // green-950
+
+      '--secondary': '20 83 45', // green-900
+      '--secondary-foreground': '220 252 231', // green-100
+
+      '--background': '5 46 22', // green-950
+      '--foreground': '240 253 244', // green-50
+
+      '--card': '20 83 45', // green-900
+      '--card-foreground': '240 253 244',
+
+      '--popover': '20 83 45',
+      '--popover-foreground': '240 253 244',
+
+      '--muted': '22 101 52', // green-800
+      '--muted-foreground': '134 239 172', // green-300
+
+      '--accent': '21 128 61', // green-700
+      '--accent-foreground': '220 252 231',
+
+      '--destructive': '248 113 113',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '22 101 52', // green-800
+      '--input': '22 101 52',
+      '--ring': '74 222 128', // green-400
     }),
   },
   sunset: {
-    name: "Sunset",
-    description: "Warm oranges and pinks",
+    name: 'Sunset',
+    description: 'Warm oranges and pinks',
     light: vars({
-      ...generateColorScale({
-        50: "#fff7ed",
-        100: "#ffedd5",
-        200: "#fed7aa",
-        300: "#fdba74",
-        400: "#fb923c",
-        500: "#f97316",
-        600: "#ea580c",
-        700: "#c2410c",
-        800: "#9a3412",
-        900: "#7c2d12",
-      }),
-      "--color-secondary-500": hexToRgb("#f43f5e"),
-      "--color-secondary-600": hexToRgb("#e11d48"),
-      "--color-tertiary-500": hexToRgb("#fb7185"),
-      "--color-success-0": "220 252 231",
-      "--color-success-500": hexToRgb("#10b981"),
-      "--color-error-0": "254 226 226",
-      "--color-error-500": hexToRgb("#dc2626"),
-      "--color-warning-0": "254 249 195",
-      "--color-warning-500": hexToRgb("#eab308"),
-      "--color-info-0": "219 234 254",
-      "--color-info-500": hexToRgb("#3b82f6"),
-      ...commonColors.light,
-      "--color-background-0": hexToRgb("#fff7ed"),
-      "--color-background-50": hexToRgb("#ffedd5"),
-      "--color-background-100": hexToRgb("#fed7aa"),
-      "--color-background-error": "254 226 226",
-      "--color-background-warning": "254 249 195",
-      "--color-background-success": "220 252 231",
-      "--color-background-muted": "255 241 242",
-      "--color-background-info": "219 234 254",
-      "--color-indicator-primary": hexToRgb("#f97316"),
-      "--color-indicator-info": hexToRgb("#3b82f6"),
-      "--color-indicator-error": hexToRgb("#dc2626"),
+      '--primary': '249 115 22', // orange-500
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '255 237 213', // orange-100
+      '--secondary-foreground': '124 45 18', // orange-900
+
+      '--background': '255 247 237', // orange-50
+      '--foreground': '124 45 18', // orange-900
+
+      '--card': '255 255 255',
+      '--card-foreground': '124 45 18',
+
+      '--popover': '255 255 255',
+      '--popover-foreground': '124 45 18',
+
+      '--muted': '255 237 213', // orange-100
+      '--muted-foreground': '234 88 12', // orange-600
+
+      '--accent': '254 215 170', // orange-200
+      '--accent-foreground': '194 65 12', // orange-700
+
+      '--destructive': '239 68 68',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '254 215 170', // orange-200
+      '--input': '254 215 170',
+      '--ring': '249 115 22', // orange-500
     }),
     dark: vars({
-      ...generateColorScale({
-        50: "#7c2d12",
-        100: "#9a3412",
-        200: "#c2410c",
-        300: "#ea580c",
-        400: "#f97316",
-        500: "#fb923c",
-        600: "#fdba74",
-        700: "#fed7aa",
-        800: "#ffedd5",
-        900: "#fff7ed",
-      }),
-      "--color-secondary-500": hexToRgb("#fb7185"),
-      "--color-secondary-600": hexToRgb("#f43f5e"),
-      "--color-tertiary-500": hexToRgb("#fda4af"),
-      "--color-success-0": "6 78 59",
-      "--color-success-500": hexToRgb("#34d399"),
-      "--color-error-0": "69 10 10",
-      "--color-error-500": hexToRgb("#f87171"),
-      "--color-warning-0": "69 26 3",
-      "--color-warning-500": hexToRgb("#fbbf24"),
-      "--color-info-0": "23 37 84",
-      "--color-info-500": hexToRgb("#60a5fa"),
-      ...commonColors.dark,
-      "--color-background-0": hexToRgb("#7c2d12"),
-      "--color-background-50": hexToRgb("#9a3412"),
-      "--color-background-100": hexToRgb("#c2410c"),
-      "--color-background-error": "66 43 43",
-      "--color-background-warning": "69 26 3",
-      "--color-background-success": "6 78 59",
-      "--color-background-muted": "127 29 29",
-      "--color-background-info": "30 58 138",
-      "--color-indicator-primary": hexToRgb("#fb923c"),
-      "--color-indicator-info": hexToRgb("#60a5fa"),
-      "--color-indicator-error": hexToRgb("#f87171"),
+      '--primary': '251 146 60', // orange-400
+      '--primary-foreground': '67 20 7', // orange-950
+
+      '--secondary': '124 45 18', // orange-900
+      '--secondary-foreground': '255 237 213', // orange-100
+
+      '--background': '67 20 7', // orange-950
+      '--foreground': '255 247 237', // orange-50
+
+      '--card': '124 45 18', // orange-900
+      '--card-foreground': '255 247 237',
+
+      '--popover': '124 45 18',
+      '--popover-foreground': '255 247 237',
+
+      '--muted': '154 52 18', // orange-800
+      '--muted-foreground': '253 186 116', // orange-300
+
+      '--accent': '194 65 12', // orange-700
+      '--accent-foreground': '255 237 213',
+
+      '--destructive': '248 113 113',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '154 52 18', // orange-800
+      '--input': '154 52 18',
+      '--ring': '251 146 60', // orange-400
     }),
   },
   lavender: {
-    name: "Lavender",
-    description: "Soft purples and pastels",
+    name: 'Lavender',
+    description: 'Soft purples and pastels',
     light: vars({
-      ...generateColorScale({
-        50: "#faf5ff",
-        100: "#f3e8ff",
-        200: "#e9d5ff",
-        300: "#d8b4fe",
-        400: "#c084fc",
-        500: "#a855f7",
-        600: "#9333ea",
-        700: "#7e22ce",
-        800: "#6b21a8",
-        900: "#581c87",
-      }),
-      "--color-secondary-500": hexToRgb("#c084fc"),
-      "--color-secondary-600": hexToRgb("#a855f7"),
-      "--color-tertiary-500": hexToRgb("#e879f9"),
-      "--color-success-0": "220 252 231",
-      "--color-success-500": hexToRgb("#22c55e"),
-      "--color-error-0": "254 226 226",
-      "--color-error-500": hexToRgb("#f43f5e"),
-      "--color-warning-0": "254 243 199",
-      "--color-warning-500": hexToRgb("#f59e0b"),
-      "--color-info-0": "219 234 254",
-      "--color-info-500": hexToRgb("#3b82f6"),
-      ...commonColors.light,
-      "--color-background-0": hexToRgb("#faf5ff"),
-      "--color-background-50": hexToRgb("#f3e8ff"),
-      "--color-background-100": hexToRgb("#e9d5ff"),
-      "--color-background-error": "254 226 226",
-      "--color-background-warning": "254 243 199",
-      "--color-background-success": "220 252 231",
-      "--color-background-muted": "250 245 255",
-      "--color-background-info": "219 234 254",
-      "--color-indicator-primary": hexToRgb("#a855f7"),
-      "--color-indicator-info": hexToRgb("#3b82f6"),
-      "--color-indicator-error": hexToRgb("#f43f5e"),
+      '--primary': '168 85 247', // purple-500
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '243 232 255', // purple-100
+      '--secondary-foreground': '88 28 135', // purple-900
+
+      '--background': '250 245 255', // purple-50
+      '--foreground': '88 28 135', // purple-900
+
+      '--card': '255 255 255',
+      '--card-foreground': '88 28 135',
+
+      '--popover': '255 255 255',
+      '--popover-foreground': '88 28 135',
+
+      '--muted': '243 232 255', // purple-100
+      '--muted-foreground': '147 51 234', // purple-600
+
+      '--accent': '233 213 255', // purple-200
+      '--accent-foreground': '126 34 206', // purple-700
+
+      '--destructive': '239 68 68',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '233 213 255', // purple-200
+      '--input': '233 213 255',
+      '--ring': '168 85 247', // purple-500
     }),
     dark: vars({
-      ...generateColorScale({
-        50: "#581c87",
-        100: "#6b21a8",
-        200: "#7e22ce",
-        300: "#9333ea",
-        400: "#a855f7",
-        500: "#c084fc",
-        600: "#d8b4fe",
-        700: "#e9d5ff",
-        800: "#f3e8ff",
-        900: "#faf5ff",
-      }),
-      "--color-secondary-500": hexToRgb("#e879f9"),
-      "--color-secondary-600": hexToRgb("#d946ef"),
-      "--color-tertiary-500": hexToRgb("#f0abfc"),
-      "--color-success-0": "6 78 59",
-      "--color-success-500": hexToRgb("#4ade80"),
-      "--color-error-0": "69 10 10",
-      "--color-error-500": hexToRgb("#fb7185"),
-      "--color-warning-0": "69 26 3",
-      "--color-warning-500": hexToRgb("#fbbf24"),
-      "--color-info-0": "23 37 84",
-      "--color-info-500": hexToRgb("#60a5fa"),
-      ...commonColors.dark,
-      "--color-background-0": hexToRgb("#581c87"),
-      "--color-background-50": hexToRgb("#6b21a8"),
-      "--color-background-100": hexToRgb("#7e22ce"),
-      "--color-background-error": "66 43 43",
-      "--color-background-warning": "65 47 35",
-      "--color-background-success": "6 78 59",
-      "--color-background-muted": "76 29 149",
-      "--color-background-info": "30 58 138",
-      "--color-indicator-primary": hexToRgb("#c084fc"),
-      "--color-indicator-info": hexToRgb("#60a5fa"),
-      "--color-indicator-error": hexToRgb("#fb7185"),
+      '--primary': '192 132 252', // purple-400
+      '--primary-foreground': '59 7 100', // purple-950
+
+      '--secondary': '88 28 135', // purple-900
+      '--secondary-foreground': '243 232 255', // purple-100
+
+      '--background': '59 7 100', // purple-950
+      '--foreground': '250 245 255', // purple-50
+
+      '--card': '88 28 135', // purple-900
+      '--card-foreground': '250 245 255',
+
+      '--popover': '88 28 135',
+      '--popover-foreground': '250 245 255',
+
+      '--muted': '107 33 168', // purple-800
+      '--muted-foreground': '216 180 254', // purple-300
+
+      '--accent': '126 34 206', // purple-700
+      '--accent-foreground': '243 232 255',
+
+      '--destructive': '248 113 113',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '107 33 168', // purple-800
+      '--input': '107 33 168',
+      '--ring': '192 132 252', // purple-400
     }),
   },
   cyber: {
-    name: "Cyber",
-    description: "Neon pinks and electric blues",
+    name: 'Cyber',
+    description: 'Neon pinks and electric blues',
     light: vars({
-      ...generateColorScale({
-        50: "#fdf4ff",
-        100: "#fae8ff",
-        200: "#f5d0fe",
-        300: "#f0abfc",
-        400: "#e879f9",
-        500: "#ec4899",
-        600: "#db2777",
-        700: "#be185d",
-        800: "#9f1239",
-        900: "#831843",
-      }),
-      "--color-secondary-500": hexToRgb("#06b6d4"),
-      "--color-secondary-600": hexToRgb("#0891b2"),
-      "--color-tertiary-500": hexToRgb("#a855f7"),
-      "--color-success-0": "209 250 229",
-      "--color-success-500": hexToRgb("#14b8a6"),
-      "--color-error-0": "254 226 226",
-      "--color-error-500": hexToRgb("#ef4444"),
-      "--color-warning-0": "254 243 199",
-      "--color-warning-500": hexToRgb("#f59e0b"),
-      "--color-info-0": "224 242 254",
-      "--color-info-500": hexToRgb("#8b5cf6"),
-      ...commonColors.light,
-      "--color-background-0": hexToRgb("#fdf4ff"),
-      "--color-background-50": hexToRgb("#fae8ff"),
-      "--color-background-100": hexToRgb("#f5d0fe"),
-      "--color-background-error": "254 226 226",
-      "--color-background-warning": "254 243 199",
-      "--color-background-success": "209 250 229",
-      "--color-background-muted": "253 242 248",
-      "--color-background-info": "224 231 255",
-      "--color-indicator-primary": hexToRgb("#ec4899"),
-      "--color-indicator-info": hexToRgb("#8b5cf6"),
-      "--color-indicator-error": hexToRgb("#ef4444"),
+      '--primary': '236 72 153', // pink-500
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '252 231 243', // pink-100
+      '--secondary-foreground': '131 24 67', // pink-900
+
+      '--background': '253 242 248', // pink-50
+      '--foreground': '131 24 67', // pink-900
+
+      '--card': '255 255 255',
+      '--card-foreground': '131 24 67',
+
+      '--popover': '255 255 255',
+      '--popover-foreground': '131 24 67',
+
+      '--muted': '252 231 243', // pink-100
+      '--muted-foreground': '219 39 119', // pink-600
+
+      '--accent': '251 207 232', // pink-200
+      '--accent-foreground': '190 24 93', // pink-700
+
+      '--destructive': '239 68 68',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '251 207 232', // pink-200
+      '--input': '251 207 232',
+      '--ring': '236 72 153', // pink-500
     }),
     dark: vars({
-      ...generateColorScale({
-        50: "#831843",
-        100: "#9f1239",
-        200: "#be185d",
-        300: "#db2777",
-        400: "#ec4899",
-        500: "#f472b6",
-        600: "#f9a8d4",
-        700: "#fbcfe8",
-        800: "#fce7f3",
-        900: "#fdf2f8",
-      }),
-      "--color-secondary-500": hexToRgb("#22d3ee"),
-      "--color-secondary-600": hexToRgb("#06b6d4"),
-      "--color-tertiary-500": hexToRgb("#c084fc"),
-      "--color-success-0": "19 78 74",
-      "--color-success-500": hexToRgb("#2dd4bf"),
-      "--color-error-0": "69 10 10",
-      "--color-error-500": hexToRgb("#f87171"),
-      "--color-warning-0": "69 26 3",
-      "--color-warning-500": hexToRgb("#fbbf24"),
-      "--color-info-0": "46 16 101",
-      "--color-info-500": hexToRgb("#a78bfa"),
-      ...commonColors.dark,
-      "--color-background-0": hexToRgb("#831843"),
-      "--color-background-50": hexToRgb("#9f1239"),
-      "--color-background-100": hexToRgb("#be185d"),
-      "--color-background-error": "66 43 43",
-      "--color-background-warning": "65 47 35",
-      "--color-background-success": "19 78 74",
-      "--color-background-muted": "131 24 67",
-      "--color-background-info": "59 7 100",
-      "--color-indicator-primary": hexToRgb("#f472b6"),
-      "--color-indicator-info": hexToRgb("#a78bfa"),
-      "--color-indicator-error": hexToRgb("#f87171"),
+      '--primary': '244 114 182', // pink-400
+      '--primary-foreground': '80 7 36', // pink-950
+
+      '--secondary': '131 24 67', // pink-900
+      '--secondary-foreground': '252 231 243', // pink-100
+
+      '--background': '80 7 36', // pink-950
+      '--foreground': '253 242 248', // pink-50
+
+      '--card': '131 24 67', // pink-900
+      '--card-foreground': '253 242 248',
+
+      '--popover': '131 24 67',
+      '--popover-foreground': '253 242 248',
+
+      '--muted': '157 23 77', // pink-800
+      '--muted-foreground': '249 168 212', // pink-300
+
+      '--accent': '190 24 93', // pink-700
+      '--accent-foreground': '252 231 243',
+
+      '--destructive': '248 113 113',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '157 23 77', // pink-800
+      '--input': '157 23 77',
+      '--ring': '244 114 182', // pink-400
     }),
   },
   rose: {
-    name: "Rose",
-    description: "Elegant rose and burgundy",
+    name: 'Rose',
+    description: 'Elegant rose and burgundy',
     light: vars({
-      ...generateColorScale({
-        50: "#fff1f2",
-        100: "#ffe4e6",
-        200: "#fecdd3",
-        300: "#fda4af",
-        400: "#fb7185",
-        500: "#e11d48",
-        600: "#be123c",
-        700: "#9f1239",
-        800: "#881337",
-        900: "#881337",
-      }),
-      "--color-secondary-500": hexToRgb("#f43f5e"),
-      "--color-secondary-600": hexToRgb("#e11d48"),
-      "--color-tertiary-500": hexToRgb("#fb7185"),
-      "--color-success-0": "220 252 231",
-      "--color-success-500": hexToRgb("#10b981"),
-      "--color-error-0": "254 226 226",
-      "--color-error-500": hexToRgb("#dc2626"),
-      "--color-warning-0": "254 243 199",
-      "--color-warning-500": hexToRgb("#f59e0b"),
-      "--color-info-0": "219 234 254",
-      "--color-info-500": hexToRgb("#3b82f6"),
-      ...commonColors.light,
-      "--color-background-0": hexToRgb("#fff1f2"),
-      "--color-background-50": hexToRgb("#ffe4e6"),
-      "--color-background-100": hexToRgb("#fecdd3"),
-      "--color-background-error": "254 226 226",
-      "--color-background-warning": "254 243 199",
-      "--color-background-success": "220 252 231",
-      "--color-background-muted": "255 241 242",
-      "--color-background-info": "219 234 254",
-      "--color-indicator-primary": hexToRgb("#e11d48"),
-      "--color-indicator-info": hexToRgb("#3b82f6"),
-      "--color-indicator-error": hexToRgb("#dc2626"),
+      '--primary': '225 29 72', // rose-600
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '255 228 230', // rose-100
+      '--secondary-foreground': '136 19 55', // rose-900
+
+      '--background': '255 241 242', // rose-50
+      '--foreground': '136 19 55', // rose-900
+
+      '--card': '255 255 255',
+      '--card-foreground': '136 19 55',
+
+      '--popover': '255 255 255',
+      '--popover-foreground': '136 19 55',
+
+      '--muted': '255 228 230', // rose-100
+      '--muted-foreground': '190 18 60', // rose-700
+
+      '--accent': '254 205 211', // rose-200
+      '--accent-foreground': '159 18 57', // rose-800
+
+      '--destructive': '239 68 68',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '254 205 211', // rose-200
+      '--input': '254 205 211',
+      '--ring': '225 29 72', // rose-600
     }),
     dark: vars({
-      ...generateColorScale({
-        50: "#881337",
-        100: "#9f1239",
-        200: "#be123c",
-        300: "#e11d48",
-        400: "#f43f5e",
-        500: "#fb7185",
-        600: "#fda4af",
-        700: "#fecdd3",
-        800: "#ffe4e6",
-        900: "#fff1f2",
-      }),
-      "--color-secondary-500": hexToRgb("#fda4af"),
-      "--color-secondary-600": hexToRgb("#fb7185"),
-      "--color-tertiary-500": hexToRgb("#fecdd3"),
-      "--color-success-0": "6 78 59",
-      "--color-success-500": hexToRgb("#34d399"),
-      "--color-error-0": "69 10 10",
-      "--color-error-500": hexToRgb("#f87171"),
-      "--color-warning-0": "69 26 3",
-      "--color-warning-500": hexToRgb("#fbbf24"),
-      "--color-info-0": "23 37 84",
-      "--color-info-500": hexToRgb("#60a5fa"),
-      ...commonColors.dark,
-      "--color-background-0": hexToRgb("#881337"),
-      "--color-background-50": hexToRgb("#9f1239"),
-      "--color-background-100": hexToRgb("#be123c"),
-      "--color-background-error": "66 43 43",
-      "--color-background-warning": "65 47 35",
-      "--color-background-success": "6 78 59",
-      "--color-background-muted": "127 29 29",
-      "--color-background-info": "30 58 138",
-      "--color-indicator-primary": hexToRgb("#fb7185"),
-      "--color-indicator-info": hexToRgb("#60a5fa"),
-      "--color-indicator-error": hexToRgb("#f87171"),
+      '--primary': '251 113 133', // rose-400
+      '--primary-foreground': '76 5 25', // rose-950
+
+      '--secondary': '136 19 55', // rose-900
+      '--secondary-foreground': '255 228 230', // rose-100
+
+      '--background': '76 5 25', // rose-950
+      '--foreground': '255 241 242', // rose-50
+
+      '--card': '136 19 55', // rose-900
+      '--card-foreground': '255 241 242',
+
+      '--popover': '136 19 55',
+      '--popover-foreground': '255 241 242',
+
+      '--muted': '159 18 57', // rose-800
+      '--muted-foreground': '253 164 175', // rose-300
+
+      '--accent': '190 18 60', // rose-700
+      '--accent-foreground': '255 228 230',
+
+      '--destructive': '248 113 113',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '159 18 57', // rose-800
+      '--input': '159 18 57',
+      '--ring': '251 113 133', // rose-400
     }),
   },
 };
