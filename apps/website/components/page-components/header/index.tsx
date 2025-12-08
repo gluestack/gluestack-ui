@@ -327,7 +327,7 @@ const Header = ({
                 <Link
                   className="rounded-full"
                   aria-label="figma link"
-                  href="https://www.figma.com/community/file/1358053104938234615/gluestack-ui-v2-0-design-kit"
+                  href="https://www.figma.com/community/file/1577667149474894602"
                   isExternal
                 >
                   <svg
