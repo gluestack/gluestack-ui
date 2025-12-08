@@ -117,9 +117,6 @@ module.exports = {
         lg: '10px', // 0.625rem = 10px
         xl: '14px', // calc(0.625rem + 4px) = 14px
       },
-      borderWidth: {
-        hairline: hairlineWidth(),
-      },
       fontWeight: {
         extrablack: '950',
       },
