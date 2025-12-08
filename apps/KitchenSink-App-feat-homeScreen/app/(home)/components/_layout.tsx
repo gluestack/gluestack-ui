@@ -1,22 +1,26 @@
-import { Stack, useRouter } from "expo-router";
-import { Platform, Pressable } from "react-native";
-import { useAppTheme } from "@/contexts/app-theme-context";
-import { Icon, ChevronLeftIcon } from "@/components/ui/icon";
+import { Stack, useRouter } from 'expo-router';
+import { Platform, Pressable } from 'react-native';
+import { useAppTheme } from '@/contexts/app-theme-context';
+import { Icon, ChevronLeftIcon } from '@/components/ui/icon';
+import { Box } from '@/components/ui/box';
 
 export default function ComponentsLayout() {
   const { isDark } = useAppTheme();
   const router = useRouter();
 
-  const themeColorForeground = isDark ? "#ffffff" : "#000000";
-  const themeColorBackground = isDark ? "#000000" : "#ffffff";
+  const themeColorForeground = isDark ? '#ffffff' : '#000000';
+  const themeColorBackground = isDark ? '#000000' : '#ffffff';
 
   return (
     <Stack
+      screenLayout={({ children }) => (
+        <Box className="flex-1 bg-background">{children}</Box>
+      )}
       screenOptions={{
         headerShown: true,
-        headerTitleAlign: "center",
+        headerTitleAlign: 'center',
         headerTransparent: true,
-        headerBlurEffect: isDark ? "dark" : "light",
+        headerBlurEffect: isDark ? 'dark' : 'light',
         headerTintColor: themeColorForeground,
         headerStyle: {
           backgroundColor: Platform.select({
@@ -25,10 +29,10 @@ export default function ComponentsLayout() {
           }),
         },
         headerTitleStyle: {
-          fontFamily: "Outfit_600SemiBold",
+          fontFamily: 'Outfit_600SemiBold',
         },
         gestureEnabled: true,
-        gestureDirection: "horizontal",
+        gestureDirection: 'horizontal',
         fullScreenGestureEnabled: true,
         contentStyle: {
           backgroundColor: themeColorBackground,
@@ -37,7 +41,7 @@ export default function ComponentsLayout() {
           <Pressable
             onPress={() => router.back()}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            style={{ marginLeft: Platform.OS === "ios" ? 0 : 8 }}
+            style={{ marginLeft: Platform.OS === 'ios' ? 0 : 8 }}
           >
             <Icon
               as={ChevronLeftIcon}
@@ -48,10 +52,10 @@ export default function ComponentsLayout() {
         ),
       }}
     >
-      <Stack.Screen name="accordion" options={{ title: "Accordion" }} />
-      <Stack.Screen name="alert" options={{ title: "Alert" }} />
-      <Stack.Screen name="alert-dialog" options={{ title: "Alert Dialog" }} />
-      <Stack.Screen name="avatar" options={{ title: "Avatar" }} />
+      <Stack.Screen name="accordion" options={{ title: 'Accordion' }} />
+      <Stack.Screen name="alert" options={{ title: 'Alert' }} />
+      <Stack.Screen name="alert-dialog" options={{ title: 'Alert Dialog' }} />
+      <Stack.Screen name="avatar" options={{ title: 'Avatar' }} />
     </Stack>
   );
 }

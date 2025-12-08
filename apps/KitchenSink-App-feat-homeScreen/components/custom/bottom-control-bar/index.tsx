@@ -184,7 +184,7 @@ const BottomControlBar = memo(
             {/* Dark/Light Mode Toggle */}
             <Pressable
               onPress={handleToggleColorMode}
-              className="w-16 h-16 rounded-full border border-input dark:border-input/10 dark:bg-input/[0.075] items-center justify-center"
+              className="w-16 h-16 rounded-full border border-input dark:bg-input/[0.075] items-center justify-center"
             >
               <Animated.View style={colorModeAnimatedStyle}>
                 <Icon
@@ -206,14 +206,7 @@ const BottomControlBar = memo(
             >
               <Pressable
                 onPress={() => setShowThemeMenu(true)}
-                className="w-16 h-16 rounded-full border border-input dark:border-input/10 dark:bg-input/[0.075] items-center justify-center"
-                // style={{
-                //   shadowColor: isDark ? '#fff' : '#000',
-                //   shadowOffset: { width: 0, height: 2 },
-                //   shadowOpacity: 0.15,
-                //   shadowRadius: 4,
-                //   elevation: 4,
-                // }}
+                className="w-16 h-16 rounded-full border border-input dark:bg-input/[0.075] items-center justify-center"
               >
                 <Icon as={PaletteIcon} className="text-foreground" size="md" />
               </Pressable>

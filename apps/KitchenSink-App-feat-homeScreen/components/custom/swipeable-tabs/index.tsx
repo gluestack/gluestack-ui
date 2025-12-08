@@ -6,7 +6,6 @@ import {
   Platform,
   Pressable,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
 import PagerView, {
@@ -202,8 +201,6 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
   initialIndex = 1,
 }) => {
   const insets = useSafeAreaInsets();
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
   const pagerRef = useRef<PagerView>(null);
   const [tabWidths, setTabWidths] = useState<number[]>([]);
   const [tabPositions, setTabPositions] = useState<number[]>([]);
