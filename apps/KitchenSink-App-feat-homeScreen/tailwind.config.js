@@ -92,14 +92,24 @@ module.exports = {
         },
       },
       fontFamily: {
-        'heading': undefined,
-        'body': undefined,
-        'mono': undefined,
-        'jakarta': ['var(--font-plus-jakarta-sans)'],
-        'roboto': ['var(--font-roboto)'],
-        'code': ['var(--font-source-code-pro)'],
-        'inter': ['var(--font-inter)'],
-        'space-mono': ['var(--font-space-mono)'],
+        heading: undefined,
+        body: undefined,
+        mono: undefined,
+        inter: ['var(--font-inter)'],
+        andika: [
+          'Andika_400Regular',
+          'Andika_400Regular_Italic',
+          'Andika_700Bold',
+          'Andika_700Bold_Italic',
+        ],
+        outfit: [
+          'Outfit_400Regular',
+          'Outfit_500Medium',
+          'Outfit_600SemiBold',
+          'Outfit_700Bold',
+          'Outfit_800ExtraBold',
+          'Outfit_900Black',
+        ],
       },
       borderRadius: {
         sm: '6px', // calc(0.625rem - 4px) = 6px
