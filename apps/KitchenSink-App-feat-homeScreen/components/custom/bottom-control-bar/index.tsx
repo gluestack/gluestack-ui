@@ -185,13 +185,6 @@ const BottomControlBar = memo(
             <Pressable
               onPress={handleToggleColorMode}
               className="w-16 h-16 rounded-full border border-input dark:border-input/10 dark:bg-input/[0.075] items-center justify-center"
-              // style={{
-              //   shadowColor: isDark ? '#fff' : '#000',
-              //   shadowOffset: { width: 0, height: 2 },
-              //   shadowOpacity: 0.15,
-              //   shadowRadius: 4,
-              //   elevation: 4,
-              // }}
             >
               <Animated.View style={colorModeAnimatedStyle}>
                 <Icon

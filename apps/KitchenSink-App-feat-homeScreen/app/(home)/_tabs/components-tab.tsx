@@ -129,6 +129,11 @@ const ComponentCard = memo(
           height,
           paddingTop: 100,
           alignItems: 'center',
+          shadowColor:isDark ? "#fff" : "#000",
+              shadowOffset: { width: 0, height: 8 },
+              shadowOpacity: 0.2,
+              shadowRadius: 10,
+              elevation: 12,
         }}
       >
         <Animated.View
@@ -136,11 +141,7 @@ const ComponentCard = memo(
             {
               width: itemWidth,
               height: height * 0.55,
-              // shadowColor:isDark ? "#fff" : "#000",
-              // shadowOffset: { width: 0, height: 8 },
-              // shadowOpacity: 0.2,
-              // shadowRadius: 10,
-              // elevation: 12,
+              
             },
             animatedStyle,
           ]}
@@ -149,7 +150,7 @@ const ComponentCard = memo(
             onPress={onPress}
             style={{ width: '100%', height: '100%' }}
           >
-            <Card className="flex-1 justify-center p-8 pr-0 overflow-hidden max-h-[400px] rounded-2xl">
+            <Card className="flex-1 justify-center p-8 pr-0 overflow-hidden max-h-[400px] rounded-3xl border-0">
               <AnimatedLinearGradient
                 colors={gradientColors}
                 start={{ x: 0, y: 0 }}
