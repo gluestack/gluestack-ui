@@ -6,7 +6,8 @@ export type ThemeName =
   | 'vercel'
   | 'violetBloom'
   | 'supabase'
-  | 'claude';
+  | 'claude'
+  | 'twitter';
 
 export type ColorMode = 'light' | 'dark';
 
@@ -264,6 +265,68 @@ export const themeConfigs = {
       '--border': '62 62 56', // rgb(62, 62, 56)
       '--input': '82 81 74', // rgb(82, 81, 74)
       '--ring': '217 119 87',
+    }),
+  },
+  twitter: {
+    name: 'Twitter',
+    description: 'Classic Twitter blue',
+    light: vars({
+      '--primary': '30 157 241', // rgb(30, 157, 241)
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '15 20 25', // rgb(15, 20, 25)
+      '--secondary-foreground': '255 255 255',
+
+      '--background': '255 255 255', // rgb(255, 255, 255)
+      '--foreground': '15 20 25', // rgb(15, 20, 25)
+
+      '--card': '247 248 248', // rgb(247, 248, 248)
+      '--card-foreground': '15 20 25',
+
+      '--popover': '255 255 255',
+      '--popover-foreground': '15 20 25',
+
+      '--muted': '229 229 230', // rgb(229, 229, 230)
+      '--muted-foreground': '15 20 25',
+
+      '--accent': '227 236 246', // rgb(227, 236, 246)
+      '--accent-foreground': '30 157 241', // rgb(30, 157, 241)
+
+      '--destructive': '244 33 46', // rgb(244, 33, 46)
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '225 234 239', // rgb(225, 234, 239)
+      '--input': '247 249 250', // rgb(247, 249, 250)
+      '--ring': '29 161 242', // rgb(29, 161, 242)
+    }),
+    dark: vars({
+      '--primary': '28 156 240', // rgb(28, 156, 240)
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '240 243 244', // rgb(240, 243, 244)
+      '--secondary-foreground': '15 20 25', // rgb(15, 20, 25)
+
+      '--background': '0 0 0', // rgb(0, 0, 0)
+      '--foreground': '231 233 234', // rgb(231, 233, 234)
+
+      '--card': '23 24 28', // rgb(23, 24, 28)
+      '--card-foreground': '217 217 217', // rgb(217, 217, 217)
+
+      '--popover': '0 0 0',
+      '--popover-foreground': '231 233 234',
+
+      '--muted': '24 24 24', // rgb(24, 24, 24)
+      '--muted-foreground': '114 118 122', // rgb(114, 118, 122)
+
+      '--accent': '6 22 34', // rgb(6, 22, 34)
+      '--accent-foreground': '28 156 240',
+
+      '--destructive': '244 33 46',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '36 38 40', // rgb(36, 38, 40)
+      '--input': '34 48 60', // rgb(34, 48, 60)
+      '--ring': '29 161 242',
     }),
   },
 };

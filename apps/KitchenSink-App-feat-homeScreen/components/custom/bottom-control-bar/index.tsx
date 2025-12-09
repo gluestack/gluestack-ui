@@ -35,6 +35,7 @@ const THEME_COLORS: Record<ThemeName, string[]> = {
   violetBloom: ['#7033ff', '#8c5cff'], // Purple gradient
   supabase: ['#72e3ad', '#10b981'], // Mint green to emerald gradient
   claude: ['#c96442', '#d97757'], // Terracotta gradient
+  twitter: ['#1e9df1', '#1da1f2'], // Twitter blue gradient
 };
 
 export type ComponentItem = {
@@ -407,10 +408,10 @@ const BottomControlBar = memo(
                 .damping(40)
                 .stiffness(200)}
               exiting={FadeOut.duration(50)}
-              className="absolute bg-background rounded-[38px] p-4"
+              className="absolute bg-card rounded-3xl p-6"
               style={{
                 bottom: height - themeButtonLayout.y + 12,
-                width: Math.min(width - 80),
+                width: Math.min(width - 80, 340),
                 shadowColor: isDark ? '#fff' : '#000',
                 shadowOffset: { width: 0, height: -4 },
                 shadowOpacity: 0.15,
@@ -418,42 +419,71 @@ const BottomControlBar = memo(
                 elevation: 12,
               }}
             >
-              {/* Theme List */}
-              <View className="gap-4">
-                <ScrollView
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  className="py-1 flex-row"
+              {/* Theme Content */}
+              <View className="gap-6">
+                {/* Color Palettes */}
+                <View className="flex-row justify-center gap-3">
+                  {availableThemes
+                    .filter((theme) => theme.name !== 'default')
+                    .map((theme) => {
+                      const colors =
+                        THEME_COLORS[theme.name] || THEME_COLORS.default;
+                      const isSelected = currentTheme === theme.name;
+                      return (
+                        <Pressable
+                          key={theme.name}
+                          onPress={() => handleThemeSelect(theme.name)}
+                          className={`items-center justify-center ${
+                            isSelected ? 'opacity-100' : 'opacity-60'
+                          }`}
+                        >
+                          <View
+                            className="rounded-full"
+                            style={{
+                              width: 52,
+                              height: 52,
+                              backgroundColor: colors[0],
+                              borderWidth: isSelected ? 3 : 0,
+                              borderColor: isDark
+                                ? 'rgba(255,255,255,0.3)'
+                                : 'rgba(0,0,0,0.2)',
+                            }}
+                          />
+                        </Pressable>
+                      );
+                    })}
+                </View>
+
+                {/* Divider */}
+                <View className="h-[1px] bg-border" />
+
+                {/* Reset to Default Button */}
+                <Pressable
+                  onPress={() => handleThemeSelect('default')}
+                  className="py-3 items-center active:opacity-70"
                 >
-                  {availableThemes.map((theme) => {
-                    const colors =
-                      THEME_COLORS[theme.name] || THEME_COLORS.default;
-                    return (
-                      <Pressable
-                        key={theme.name}
-                        onPress={() => handleThemeSelect(theme.name)}
-                        className={`px-3 py-2 rounded-full w-fit mx-1 ${
-                          currentTheme === theme.name
-                            ? 'bg-background-50'
-                            : 'active:bg-background-100'
-                        }`}
-                      >
-                        <LinearGradient
-                          colors={colors as [string, string]}
-                          start={{ x: 0, y: 0 }}
-                          end={{ x: 1, y: 1 }}
-                          style={{
-                            width: 24,
-                            height: 24,
-                            borderRadius: 12,
-                          }}
-                        />
-                      </Pressable>
-                    );
-                  })}
-                </ScrollView>
-                <View className="w-auto items-center border border-black/50 dark:border-white/50 rounded-full py-4 mx-4">
-                  <Text className="capitalize">{currentTheme}</Text>
+                  <Text className="text-foreground font-semibold text-base">
+                    Reset to Default
+                  </Text>
+                </Pressable>
+
+                {/* Divider */}
+                <View className="h-[1px] bg-border" />
+
+                {/* Current Theme Indicator */}
+                <View className="items-center">
+                  <Text className="text-muted-foreground text-sm mb-2">
+                    Current Theme
+                  </Text>
+                  <Text className="text-foreground font-semibold text-base capitalize">
+                    {currentTheme === 'default'
+                      ? 'Default'
+                      : currentTheme === 'violetBloom'
+                        ? 'Violet Bloom'
+                        : currentTheme === 'twitter'
+                          ? 'Twitter'
+                          : currentTheme}
+                  </Text>
                 </View>
               </View>
             </Animated.View>

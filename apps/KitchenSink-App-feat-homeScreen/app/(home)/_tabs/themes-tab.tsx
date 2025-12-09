@@ -52,6 +52,11 @@ const THEME_PREVIEW_COLORS: Record<
     secondary: '#b05730',
     tertiary: '#9c87f5',
   },
+  twitter: {
+    primary: '#1e9df1',
+    secondary: '#1da1f2',
+    tertiary: '#1c9cf0',
+  },
 };
 
 const PIE_CHART = {
