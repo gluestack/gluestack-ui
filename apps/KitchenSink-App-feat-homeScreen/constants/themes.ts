@@ -8,7 +8,9 @@ export type ThemeName =
   | 'sunset'
   | 'lavender'
   | 'cyber'
-  | 'rose';
+  | 'rose'
+  | 'vercel'
+  | 'violetBloom';
 
 export type ColorMode = 'light' | 'dark';
 
@@ -390,6 +392,130 @@ export const themeConfigs = {
       '--border': '159 18 57', // rose-800
       '--input': '159 18 57',
       '--ring': '251 113 133', // rose-400
+    }),
+  },
+  vercel: {
+    name: 'Vercel',
+    description: 'Minimalist black and white',
+    light: vars({
+      '--primary': '0 0 0', // black
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '250 250 250', // neutral-50
+      '--secondary-foreground': '0 0 0',
+
+      '--background': '255 255 255', // white
+      '--foreground': '0 0 0', // black
+
+      '--card': '255 255 255',
+      '--card-foreground': '0 0 0',
+
+      '--popover': '255 255 255',
+      '--popover-foreground': '0 0 0',
+
+      '--muted': '245 245 245', // neutral-100
+      '--muted-foreground': '82 82 82', // neutral-600
+
+      '--accent': '245 245 245', // neutral-100
+      '--accent-foreground': '23 23 23', // neutral-900
+
+      '--destructive': '239 68 68',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '229 229 229', // neutral-200
+      '--input': '229 229 229',
+      '--ring': '0 0 0', // black
+    }),
+    dark: vars({
+      '--primary': '255 255 255', // white
+      '--primary-foreground': '0 0 0',
+
+      '--secondary': '23 23 23', // neutral-900
+      '--secondary-foreground': '255 255 255',
+
+      '--background': '0 0 0', // black
+      '--foreground': '255 255 255', // white
+
+      '--card': '10 10 10', // near black
+      '--card-foreground': '255 255 255',
+
+      '--popover': '10 10 10',
+      '--popover-foreground': '255 255 255',
+
+      '--muted': '38 38 38', // neutral-800
+      '--muted-foreground': '163 163 163', // neutral-400
+
+      '--accent': '38 38 38', // neutral-800
+      '--accent-foreground': '250 250 250',
+
+      '--destructive': '248 113 113',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '38 38 38', // neutral-800
+      '--input': '38 38 38',
+      '--ring': '255 255 255', // white
+    }),
+  },
+  violetBloom: {
+    name: 'Violet Bloom',
+    description: 'Purple and violet tones',
+    light: vars({
+      '--primary': '112 51 255', // rgb(112, 51, 255)
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '237 240 244', // rgb(237, 240, 244)
+      '--secondary-foreground': '8 8 8',
+
+      '--background': '253 253 253', // rgb(253, 253, 253)
+      '--foreground': '0 0 0',
+
+      '--card': '253 253 253',
+      '--card-foreground': '0 0 0',
+
+      '--popover': '252 252 252',
+      '--popover-foreground': '0 0 0',
+
+      '--muted': '245 245 245',
+      '--muted-foreground': '82 82 82',
+
+      '--accent': '226 235 255', // rgb(226, 235, 255)
+      '--accent-foreground': '30 105 220', // rgb(30, 105, 220)
+
+      '--destructive': '229 75 79', // rgb(229, 75, 79)
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '231 231 238', // rgb(231, 231, 238)
+      '--input': '235 235 235',
+      '--ring': '0 0 0',
+    }),
+    dark: vars({
+      '--primary': '140 92 255', // rgb(140, 92, 255)
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '42 44 51', // rgb(42, 44, 51)
+      '--secondary-foreground': '240 240 240',
+
+      '--background': '26 27 30', // rgb(26, 27, 30)
+      '--foreground': '240 240 240',
+
+      '--card': '34 35 39', // rgb(34, 35, 39)
+      '--card-foreground': '240 240 240',
+
+      '--popover': '34 35 39',
+      '--popover-foreground': '240 240 240',
+
+      '--muted': '42 44 51',
+      '--muted-foreground': '160 160 160',
+
+      '--accent': '30 41 59', // rgb(30, 41, 59)
+      '--accent-foreground': '121 192 255', // rgb(121, 192, 255)
+
+      '--destructive': '248 113 113',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '51 53 58', // rgb(51, 53, 58)
+      '--input': '51 53 58',
+      '--ring': '140 92 255',
     }),
   },
 };

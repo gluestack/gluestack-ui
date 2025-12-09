@@ -1,47 +1,53 @@
-import { ScreenScrollView } from "@/components/custom/screen-scroll-view";
-import { Heading } from "@/components/ui/heading";
-import { Icon } from "@/components/ui/icon";
-import { Text } from "@/components/ui/text";
-import { VStack } from "@/components/ui/vstack";
-import { ColorMode, ThemeName, themeConfigs } from "@/constants/themes";
-import { useAppTheme } from "@/contexts/app-theme-context";
-import { LucideIcon, Moon, Palette, Sun } from "lucide-react-native";
-import React from "react";
-import { Pressable, View, ViewStyle } from "react-native";
+import { ScreenScrollView } from '@/components/custom/screen-scroll-view';
+import { Heading } from '@/components/ui/heading';
+import { Icon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { ColorMode, ThemeName, themeConfigs } from '@/constants/themes';
+import { useAppTheme } from '@/contexts/app-theme-context';
+import { LucideIcon, Moon, Palette, Sun } from 'lucide-react-native';
+import React from 'react';
+import { Pressable, View, ViewStyle } from 'react-native';
 import Animated, {
   FadeInDown,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-} from "react-native-reanimated";
-import Svg, { Circle, Path } from "react-native-svg";
+} from 'react-native-reanimated';
+import Svg, { Circle, Path } from 'react-native-svg';
 
 // ============================================================================
 // Constants
 // ============================================================================
 
 const COLORS = {
-  surface: { dark: "#1c1c1e", light: "#f2f2f7" },
-  surfaceElevated: { dark: "#2c2c2e", light: "#ffffff" },
-  textPrimary: { dark: "#ffffff", light: "#000000" },
-  textSecondary: { dark: "#8e8e93", light: "#6c6c70" },
-  textMuted: { dark: "#8e8e93", light: "#8e8e93" },
-  border: { dark: "rgba(255,255,255,0.08)", light: "rgba(0,0,0,0.05)" },
-  textSubtle: { dark: "rgba(255,255,255,0.7)", light: "rgba(0,0,0,0.6)" },
-  textSubtler: { dark: "rgba(255,255,255,0.6)", light: "rgba(0,0,0,0.5)" },
+  surface: { dark: '#1c1c1e', light: '#f2f2f7' },
+  surfaceElevated: { dark: '#2c2c2e', light: '#ffffff' },
+  textPrimary: { dark: '#ffffff', light: '#000000' },
+  textSecondary: { dark: '#8e8e93', light: '#6c6c70' },
+  textMuted: { dark: '#8e8e93', light: '#8e8e93' },
+  border: { dark: 'rgba(255,255,255,0.08)', light: 'rgba(0,0,0,0.05)' },
+  textSubtle: { dark: 'rgba(255,255,255,0.7)', light: 'rgba(0,0,0,0.6)' },
+  textSubtler: { dark: 'rgba(255,255,255,0.6)', light: 'rgba(0,0,0,0.5)' },
 } as const;
 
 const THEME_PREVIEW_COLORS: Record<
   ThemeName,
   { primary: string; secondary: string; tertiary: string }
 > = {
-  default: { primary: "#3b82f6", secondary: "#8b5cf6", tertiary: "#10b981" },
-  ocean: { primary: "#06b6d4", secondary: "#14b8a6", tertiary: "#3b82f6" },
-  forest: { primary: "#22c55e", secondary: "#84cc16", tertiary: "#10b981" },
-  sunset: { primary: "#f97316", secondary: "#f43f5e", tertiary: "#eab308" },
-  lavender: { primary: "#a855f7", secondary: "#c084fc", tertiary: "#ec4899" },
-  cyber: { primary: "#ec4899", secondary: "#06b6d4", tertiary: "#a855f7" },
-  rose: { primary: "#e11d48", secondary: "#f43f5e", tertiary: "#fb7185" },
+  default: { primary: '#3b82f6', secondary: '#8b5cf6', tertiary: '#10b981' },
+  ocean: { primary: '#06b6d4', secondary: '#14b8a6', tertiary: '#3b82f6' },
+  forest: { primary: '#22c55e', secondary: '#84cc16', tertiary: '#10b981' },
+  sunset: { primary: '#f97316', secondary: '#f43f5e', tertiary: '#eab308' },
+  lavender: { primary: '#a855f7', secondary: '#c084fc', tertiary: '#ec4899' },
+  cyber: { primary: '#ec4899', secondary: '#06b6d4', tertiary: '#a855f7' },
+  rose: { primary: '#e11d48', secondary: '#f43f5e', tertiary: '#fb7185' },
+  vercel: { primary: '#000000', secondary: '#525252', tertiary: '#a3a3a3' },
+  violetBloom: {
+    primary: '#7033ff',
+    secondary: '#8c5cff',
+    tertiary: '#1e69dc',
+  },
 };
 
 const PIE_CHART = {
@@ -55,10 +61,10 @@ const PIE_CHART = {
 // ============================================================================
 
 const getColor = (colorKey: keyof typeof COLORS, isDark: boolean): string =>
-  COLORS[colorKey][isDark ? "dark" : "light"];
+  COLORS[colorKey][isDark ? 'dark' : 'light'];
 
 const createShadowStyle = (isActive: boolean, isDark: boolean): ViewStyle => ({
-  shadowColor: isActive ? "#000" : "transparent",
+  shadowColor: isActive ? '#000' : 'transparent',
   shadowOffset: { width: 0, height: isActive ? 1 : 0 },
   shadowOpacity: isActive ? (isDark ? 0.3 : 0.08) : 0,
   shadowRadius: isActive ? 3 : 0,
@@ -66,7 +72,7 @@ const createShadowStyle = (isActive: boolean, isDark: boolean): ViewStyle => ({
 });
 
 const createCardShadowStyle = (isDark: boolean): ViewStyle => ({
-  shadowColor: "#000",
+  shadowColor: '#000',
   shadowOffset: { width: 0, height: 2 },
   shadowOpacity: isDark ? 0.3 : 0.06,
   shadowRadius: 8,
@@ -173,8 +179,8 @@ const ThemePieChart: React.FC<ThemePieChartProps> = ({
           <Text
             className="text-[11px] mt-1.5 text-center"
             style={{
-              color: isActive ? colors.primary : getColor("textSubtle", isDark),
-              fontWeight: isActive ? "600" : "500",
+              color: isActive ? colors.primary : getColor('textSubtle', isDark),
+              fontWeight: isActive ? '600' : '500',
             }}
           >
             {themeConfig.name}
@@ -212,23 +218,23 @@ const SegmentButton: React.FC<SegmentButtonProps> = ({
       className="flex-1 flex-row items-center justify-center py-3 px-4 rounded-xl"
       style={{
         backgroundColor: isActive
-          ? getColor("surfaceElevated", isDark)
-          : "transparent",
+          ? getColor('surfaceElevated', isDark)
+          : 'transparent',
         ...createShadowStyle(isActive, isDark),
       }}
     >
       <Icon
         as={icon}
         size="sm"
-        className={isActive ? activeIconClass : "text-typography-400"}
+        className={isActive ? activeIconClass : 'text-typography-400'}
       />
       <Text
         className="ml-2 text-sm"
         style={{
           color: isActive
-            ? getColor("textPrimary", isDark)
-            : getColor("textMuted", isDark),
-          fontWeight: isActive ? "600" : "500",
+            ? getColor('textPrimary', isDark)
+            : getColor('textMuted', isDark),
+          fontWeight: isActive ? '600' : '500',
         }}
       >
         {label}
@@ -244,16 +250,16 @@ const APPEARANCE_SEGMENTS: Array<{
   activeIconClass: string;
 }> = [
   {
-    mode: "light",
+    mode: 'light',
     icon: Sun,
-    label: "Light",
-    activeIconClass: "text-warning-500",
+    label: 'Light',
+    activeIconClass: 'text-warning-500',
   },
   {
-    mode: "dark",
+    mode: 'dark',
     icon: Moon,
-    label: "Dark",
-    activeIconClass: "text-primary-400",
+    label: 'Dark',
+    activeIconClass: 'text-primary-400',
   },
 ];
 
@@ -264,7 +270,7 @@ const AppearanceSegmentedControl: React.FC = () => {
     <Animated.View
       entering={FadeInDown.duration(400).delay(100).springify()}
       className="rounded-2xl p-1"
-      style={{ backgroundColor: getColor("surface", isDark) }}
+      style={{ backgroundColor: getColor('surface', isDark) }}
     >
       <View className="flex-row">
         {APPEARANCE_SEGMENTS.map((segment) => (
@@ -306,7 +312,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
     {icon && (
       <View
         className="w-8 h-8 rounded-lg items-center justify-center mr-3"
-        style={{ backgroundColor: getColor("surface", isDark) }}
+        style={{ backgroundColor: getColor('surface', isDark) }}
       >
         <Icon as={icon} size="sm" className="text-primary-500" />
       </View>
@@ -314,14 +320,14 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
     <View className="flex-1">
       <Text
         className="text-base font-semibold"
-        style={{ color: getColor("textPrimary", isDark) }}
+        style={{ color: getColor('textPrimary', isDark) }}
       >
         {title}
       </Text>
       {subtitle && (
         <Text
           className="text-xs mt-0.5"
-          style={{ color: getColor("textSecondary", isDark) }}
+          style={{ color: getColor('textSecondary', isDark) }}
         >
           {subtitle}
         </Text>
@@ -345,7 +351,7 @@ const ActiveThemeIndicator: React.FC<ActiveThemeIndicatorProps> = ({
   return (
     <View
       className="mt-2 pt-4 flex-row items-center justify-center"
-      style={{ borderTopWidth: 1, borderTopColor: getColor("border", isDark) }}
+      style={{ borderTopWidth: 1, borderTopColor: getColor('border', isDark) }}
     >
       <View
         className="w-3 h-3 rounded-full mr-2"
@@ -353,10 +359,10 @@ const ActiveThemeIndicator: React.FC<ActiveThemeIndicatorProps> = ({
       />
       <Text
         className="text-sm"
-        style={{ color: getColor("textSubtler", isDark) }}
+        style={{ color: getColor('textSubtler', isDark) }}
       >
-        Active:{" "}
-        <Text style={{ color: colors.primary, fontWeight: "600" }}>
+        Active:{' '}
+        <Text style={{ color: colors.primary, fontWeight: '600' }}>
           {config.name}
         </Text>
       </Text>
@@ -414,7 +420,7 @@ export default function ThemesTab() {
             entering={FadeInDown.duration(400).delay(200).springify()}
             className="rounded-2xl p-4"
             style={{
-              backgroundColor: getColor("surface", isDark),
+              backgroundColor: getColor('surface', isDark),
               ...createCardShadowStyle(isDark),
             }}
           >
