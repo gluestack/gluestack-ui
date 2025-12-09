@@ -30,13 +30,11 @@ import { ThemeName } from '@/constants/themes';
 
 // Theme color mapping for the theme button indicator
 const THEME_COLORS: Record<ThemeName, string[]> = {
-  default: ['#121212', '#ffffff'],
-  ocean: ['#06b6d4', '#0891b2'],
-  forest: ['#22c55e', '#16a34a'],
-  sunset: ['#f97316', '#ea580c'],
-  lavender: ['#a855f7', '#9333ea'],
-  cyber: ['#ec4899', '#db2777'],
-  rose: ['#e11d48', '#be123c'],
+  default: ['#3b82f6', '#8b5cf6'], // Blue to purple gradient
+  vercel: ['#000000', '#525252'], // Black to gray gradient
+  violetBloom: ['#7033ff', '#8c5cff'], // Purple gradient
+  supabase: ['#72e3ad', '#10b981'], // Mint green to emerald gradient
+  claude: ['#c96442', '#d97757'], // Terracotta gradient
 };
 
 export type ComponentItem = {
@@ -229,8 +227,6 @@ const BottomControlBar = memo(
                   className="px-6 py-5 bg-primary rounded-full"
                   style={{
                     width: pillWidth,
-                 
-              
                   }}
                 >
                   <Text className=" text-base text-primary-foreground font-medium text-center font-outfit">

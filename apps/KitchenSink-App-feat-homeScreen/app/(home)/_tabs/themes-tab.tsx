@@ -36,12 +36,6 @@ const THEME_PREVIEW_COLORS: Record<
   { primary: string; secondary: string; tertiary: string }
 > = {
   default: { primary: '#3b82f6', secondary: '#8b5cf6', tertiary: '#10b981' },
-  ocean: { primary: '#06b6d4', secondary: '#14b8a6', tertiary: '#3b82f6' },
-  forest: { primary: '#22c55e', secondary: '#84cc16', tertiary: '#10b981' },
-  sunset: { primary: '#f97316', secondary: '#f43f5e', tertiary: '#eab308' },
-  lavender: { primary: '#a855f7', secondary: '#c084fc', tertiary: '#ec4899' },
-  cyber: { primary: '#ec4899', secondary: '#06b6d4', tertiary: '#a855f7' },
-  rose: { primary: '#e11d48', secondary: '#f43f5e', tertiary: '#fb7185' },
   vercel: { primary: '#000000', secondary: '#525252', tertiary: '#a3a3a3' },
   violetBloom: {
     primary: '#7033ff',
