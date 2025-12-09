@@ -10,7 +10,8 @@ export type ThemeName =
   | 'cyber'
   | 'rose'
   | 'vercel'
-  | 'violetBloom';
+  | 'violetBloom'
+  | 'supabase';
 
 export type ColorMode = 'light' | 'dark';
 
@@ -516,6 +517,68 @@ export const themeConfigs = {
       '--border': '51 53 58', // rgb(51, 53, 58)
       '--input': '51 53 58',
       '--ring': '140 92 255',
+    }),
+  },
+  supabase: {
+    name: 'Supabase',
+    description: 'Fresh green accent colors',
+    light: vars({
+      '--primary': '114 227 173', // rgb(114, 227, 173)
+      '--primary-foreground': '30 39 35', // rgb(30, 39, 35)
+
+      '--secondary': '253 253 253', // rgb(253, 253, 253)
+      '--secondary-foreground': '23 23 23',
+
+      '--background': '252 252 252', // rgb(252, 252, 252)
+      '--foreground': '23 23 23',
+
+      '--card': '252 252 252',
+      '--card-foreground': '23 23 23',
+
+      '--popover': '252 252 252',
+      '--popover-foreground': '82 82 82',
+
+      '--muted': '237 237 237', // rgb(237, 237, 237)
+      '--muted-foreground': '32 32 32',
+
+      '--accent': '237 237 237',
+      '--accent-foreground': '32 32 32',
+
+      '--destructive': '202 50 20', // rgb(202, 50, 20)
+      '--destructive-foreground': '255 252 252',
+
+      '--border': '223 223 223', // rgb(223, 223, 223)
+      '--input': '246 246 246',
+      '--ring': '114 227 173',
+    }),
+    dark: vars({
+      '--primary': '0 98 57', // rgb(0, 98, 57)
+      '--primary-foreground': '221 232 227', // rgb(221, 232, 227)
+
+      '--secondary': '36 36 36', // rgb(36, 36, 36)
+      '--secondary-foreground': '250 250 250',
+
+      '--background': '18 18 18', // rgb(18, 18, 18)
+      '--foreground': '226 232 240', // rgb(226, 232, 240)
+
+      '--card': '23 23 23', // rgb(23, 23, 23)
+      '--card-foreground': '226 232 240',
+
+      '--popover': '36 36 36', // rgb(36, 36, 36)
+      '--popover-foreground': '169 169 169',
+
+      '--muted': '31 31 31', // rgb(31, 31, 31)
+      '--muted-foreground': '162 162 162',
+
+      '--accent': '49 49 49', // rgb(49, 49, 49)
+      '--accent-foreground': '250 250 250',
+
+      '--destructive': '84 28 21', // rgb(84, 28, 21)
+      '--destructive-foreground': '237 233 232',
+
+      '--border': '41 41 41', // rgb(41, 41, 41)
+      '--input': '36 36 36',
+      '--ring': '74 222 128', // rgb(74, 222, 128)
     }),
   },
 };

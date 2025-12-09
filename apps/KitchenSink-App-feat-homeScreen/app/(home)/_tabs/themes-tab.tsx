@@ -48,6 +48,11 @@ const THEME_PREVIEW_COLORS: Record<
     secondary: '#8c5cff',
     tertiary: '#1e69dc',
   },
+  supabase: {
+    primary: '#72e3ad',
+    secondary: '#10b981',
+    tertiary: '#3b82f6',
+  },
 };
 
 const PIE_CHART = {
