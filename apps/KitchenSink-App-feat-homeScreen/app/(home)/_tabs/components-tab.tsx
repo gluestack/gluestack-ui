@@ -129,11 +129,7 @@ const ComponentCard = memo(
           height,
           paddingTop: 100,
           alignItems: 'center',
-          shadowColor:isDark ? "#fff" : "#000",
-              shadowOffset: { width: 0, height: 8 },
-              shadowOpacity: 0.2,
-              shadowRadius: 10,
-              elevation: 12,
+        
         }}
       >
         <Animated.View

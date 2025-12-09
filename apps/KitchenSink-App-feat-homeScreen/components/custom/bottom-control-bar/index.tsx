@@ -229,11 +229,8 @@ const BottomControlBar = memo(
                   className="px-6 py-5 bg-primary rounded-full"
                   style={{
                     width: pillWidth,
-                    shadowColor: isDark ? '#fff' : '#000',
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 4,
-                    elevation: 5,
+                 
+              
                   }}
                 >
                   <Text className=" text-base text-primary-foreground font-medium text-center font-outfit">

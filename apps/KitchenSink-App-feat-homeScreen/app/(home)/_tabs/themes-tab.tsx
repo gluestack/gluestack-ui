@@ -53,6 +53,11 @@ const THEME_PREVIEW_COLORS: Record<
     secondary: '#10b981',
     tertiary: '#3b82f6',
   },
+  claude: {
+    primary: '#c96442',
+    secondary: '#b05730',
+    tertiary: '#9c87f5',
+  },
 };
 
 const PIE_CHART = {

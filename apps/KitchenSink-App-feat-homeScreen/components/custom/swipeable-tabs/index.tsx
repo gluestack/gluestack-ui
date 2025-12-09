@@ -295,6 +295,7 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
         onPageSelected={onPageSelected}
         overdrag={false}
         scrollEnabled={false}
+        
       >
         {tabs.map((tab) => (
           <View key={tab.key} className="flex-1 pb-safe">

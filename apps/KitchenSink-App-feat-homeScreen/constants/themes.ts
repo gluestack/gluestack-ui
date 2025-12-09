@@ -11,7 +11,8 @@ export type ThemeName =
   | 'rose'
   | 'vercel'
   | 'violetBloom'
-  | 'supabase';
+  | 'supabase'
+  | 'claude';
 
 export type ColorMode = 'light' | 'dark';
 
@@ -579,6 +580,68 @@ export const themeConfigs = {
       '--border': '41 41 41', // rgb(41, 41, 41)
       '--input': '36 36 36',
       '--ring': '74 222 128', // rgb(74, 222, 128)
+    }),
+  },
+  claude: {
+    name: 'Claude',
+    description: 'Warm terracotta and earthy tones',
+    light: vars({
+      '--primary': '201 100 66', // rgb(201, 100, 66)
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '233 230 220', // rgb(233, 230, 220)
+      '--secondary-foreground': '83 81 70', // rgb(83, 81, 70)
+
+      '--background': '250 249 245', // rgb(250, 249, 245)
+      '--foreground': '61 57 41', // rgb(61, 57, 41)
+
+      '--card': '250 249 245',
+      '--card-foreground': '20 20 19', // rgb(20, 20, 19)
+
+      '--popover': '255 255 255',
+      '--popover-foreground': '40 38 27', // rgb(40, 38, 27)
+
+      '--muted': '237 233 222', // rgb(237, 233, 222)
+      '--muted-foreground': '131 130 125', // rgb(131, 130, 125)
+
+      '--accent': '233 230 220',
+      '--accent-foreground': '40 38 27',
+
+      '--destructive': '20 20 19',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '218 217 212', // rgb(218, 217, 212)
+      '--input': '180 178 167', // rgb(180, 178, 167)
+      '--ring': '201 100 66',
+    }),
+    dark: vars({
+      '--primary': '217 119 87', // rgb(217, 119, 87)
+      '--primary-foreground': '255 255 255',
+
+      '--secondary': '250 249 245', // rgb(250, 249, 245)
+      '--secondary-foreground': '48 48 46', // rgb(48, 48, 46)
+
+      '--background': '38 38 36', // rgb(38, 38, 36)
+      '--foreground': '195 192 182', // rgb(195, 192, 182)
+
+      '--card': '38 38 36',
+      '--card-foreground': '250 249 245',
+
+      '--popover': '48 48 46', // rgb(48, 48, 46)
+      '--popover-foreground': '229 229 226', // rgb(229, 229, 226)
+
+      '--muted': '27 27 25', // rgb(27, 27, 25)
+      '--muted-foreground': '183 181 169', // rgb(183, 181, 169)
+
+      '--accent': '26 25 21', // rgb(26, 25, 21)
+      '--accent-foreground': '245 244 238', // rgb(245, 244, 238)
+
+      '--destructive': '239 68 68',
+      '--destructive-foreground': '255 255 255',
+
+      '--border': '62 62 56', // rgb(62, 62, 56)
+      '--input': '82 81 74', // rgb(82, 81, 74)
+      '--ring': '217 119 87',
     }),
   },
 };
