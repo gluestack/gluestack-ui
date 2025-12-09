@@ -310,8 +310,8 @@ const BottomControlBar = memo(
                 }}
               >
                 {/* Search Input */}
-                <View className="px-3 py-3 border-b border-outline-50">
-                  <View className="flex-row items-center h-11 rounded-full border border-background-300 bg-background">
+                <View className="px-3 py-3 border-b border-input">
+                  <View className="flex-row items-center h-11 rounded-full border border-input bg-background">
                     <View className="pl-3 justify-center items-center">
                       <Icon
                         as={SearchIcon}
@@ -321,12 +321,11 @@ const BottomControlBar = memo(
                     </View>
                     <TextInput
                       placeholder="Search..."
-                      placeholderTextColor="#9CA3AF"
                       value={searchQuery}
                       onChangeText={setSearchQuery}
                       autoCapitalize="none"
                       autoCorrect={false}
-                      className="flex-1 px-3 text-typography-900"
+                      className="flex-1 px-3 text-foreground placeholder:text-foreground "
                       style={{ fontSize: 16 }}
                     />
                   </View>
@@ -345,15 +344,15 @@ const BottomControlBar = memo(
                         onPress={() => handleComponentSelect(item, index)}
                         className={`px-3 py-2.5 mx-1.5 rounded-lg flex-row items-center gap-2.5 ${
                           currentComponent?.path === item.path
-                            ? 'bg-primary-100'
-                            : 'active:bg-background-50'
+                            ? 'bg-primary'
+                            : 'active:bg-primary/50'
                         }`}
                       >
                         <Text
                           className={`text-sm font-medium ${
                             currentComponent?.path === item.path
-                              ? 'text-primary-700'
-                              : 'text-typography-700'
+                              ? 'text-primary-foreground'
+                              : 'text-foreground'
                           }`}
                         >
                           {item.title}

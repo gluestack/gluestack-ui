@@ -173,6 +173,6 @@ const COMPONENT_VARIANTS = [
   }
 ];
 
-export default function MenuScreen() {
+export default function ComponentExamples() {
   return <UsageVariantFlatList data={COMPONENT_VARIANTS} />;
 }
