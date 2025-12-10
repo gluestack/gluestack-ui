@@ -406,17 +406,13 @@ const BottomControlBar = memo(
               entering={FadeIn.duration(50)
                 .springify()
                 .damping(40)
-                .stiffness(2000)}
+                .stiffness(200)}
               exiting={FadeOut.duration(50)}
               className="absolute bg-card rounded-3xl p-6"
               style={{
                 bottom: height - themeButtonLayout.y + 12,
                 width: Math.min(width - 80, 340),
-                shadowColor: isDark ? '#fff' : '#000',
-                shadowOffset: { width: 0, height: -4 },
-                shadowOpacity: 0.15,
-                shadowRadius: 16,
-                elevation: 12,
+               
               }}
             >
               {/* Theme Content */}
