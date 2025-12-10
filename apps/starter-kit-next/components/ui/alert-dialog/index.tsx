@@ -51,7 +51,7 @@ const alertDialogStyle = tva({
 });
 
 const alertDialogContentStyle = tva({
-  base: 'bg-popover rounded-lg overflow-hidden border border-border p-6 w-[80%] max-w-[510px]',
+  base: 'bg-popover rounded-lg overflow-hidden border border-border p-6 w-full max-w-[calc(100%-2rem)] sm:max-w-lg',
 });
 
 const alertDialogCloseButtonStyle = tva({
