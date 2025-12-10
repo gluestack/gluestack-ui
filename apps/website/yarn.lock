@@ -4853,6 +4853,11 @@ expect@30.0.5:
     jest-mock "30.0.5"
     jest-util "30.0.5"
 
+expo-blur@^15.0.8:
+  version "15.0.8"
+  resolved "https://registry.yarnpkg.com/expo-blur/-/expo-blur-15.0.8.tgz#846cea275a6644639c5c338987b4cca54cf93eca"
+  integrity sha512-rWyE1NBRZEu9WD+X+5l7gyPRszw7n12cW3IRNAb5i6KFzaBp8cxqT5oeaphJapqURvcqhkOZn2k5EtBSbsuU7w==
+
 exponential-backoff@^3.1.1:
   version "3.1.2"
   resolved "https://registry.npmjs.org/exponential-backoff/-/exponential-backoff-3.1.2.tgz#a8f26adb96bf78e8cd8ad1037928d5e5c0679d91"

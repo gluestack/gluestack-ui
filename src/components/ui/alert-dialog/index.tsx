@@ -41,7 +41,7 @@ const PressableBlurView = React.forwardRef<
   React.ComponentProps<typeof BlurView>
 >((props, ref) => {
   return (
-    <BlurView style={StyleSheet.absoluteFill}>
+    <BlurView intensity={10} style={StyleSheet.absoluteFill}>
       <Pressable ref={ref} {...props} />
     </BlurView>
   );
