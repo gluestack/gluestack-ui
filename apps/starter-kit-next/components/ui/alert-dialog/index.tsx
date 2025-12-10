@@ -2,10 +2,8 @@
 import React from 'react';
 import { createAlertDialog } from '@gluestack-ui/core/alert-dialog/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  withStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
-
+import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import { BlurView } from 'expo-blur';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
@@ -14,7 +12,13 @@ import {
   createMotionAnimatedComponent,
   MotionComponentProps,
 } from '@legendapp/motion';
-import { View, Pressable, ScrollView, ViewStyle } from 'react-native';
+import {
+  View,
+  Pressable,
+  ScrollView,
+  ViewStyle,
+  StyleSheet,
+} from 'react-native';
 
 const SCOPE = 'ALERT_DIALOG';
 
@@ -32,6 +36,19 @@ const AnimatedPressable = createMotionAnimatedComponent(
   Pressable
 ) as React.ComponentType<IAnimatedPressableProps>;
 
+const PressableBlurView = React.forwardRef<
+  React.ComponentRef<typeof BlurView>,
+  React.ComponentProps<typeof BlurView>
+>((props, ref) => {
+  return (
+    <BlurView style={StyleSheet.absoluteFill}>
+      <Pressable ref={ref} {...props} />
+    </BlurView>
+  );
+});
+
+PressableBlurView.displayName = 'PressableBlurView';
+
 const UIAccessibleAlertDialog = createAlertDialog({
   Root: RootComponent,
   Body: ScrollView,
@@ -39,7 +56,7 @@ const UIAccessibleAlertDialog = createAlertDialog({
   CloseButton: Pressable,
   Header: View,
   Footer: View,
-  Backdrop: AnimatedPressable,
+  Backdrop: PressableBlurView,
   AnimatePresence: AnimatePresence,
 });
 
