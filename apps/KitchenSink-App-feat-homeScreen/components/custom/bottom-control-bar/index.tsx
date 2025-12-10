@@ -406,7 +406,7 @@ const BottomControlBar = memo(
               entering={FadeIn.duration(50)
                 .springify()
                 .damping(40)
-                .stiffness(200)}
+                .stiffness(2000)}
               exiting={FadeOut.duration(50)}
               className="absolute bg-card rounded-3xl p-6"
               style={{
@@ -454,28 +454,9 @@ const BottomControlBar = memo(
                     })}
                 </View>
 
-                {/* Divider */}
-                <View className="h-[1px] bg-border" />
-
-                {/* Reset to Default Button */}
-                <Pressable
-                  onPress={() => handleThemeSelect('default')}
-                  className="py-3 items-center active:opacity-70"
-                >
-                  <Text className="text-foreground font-semibold text-base">
-                    Reset to Default
-                  </Text>
-                </Pressable>
-
-                {/* Divider */}
-                <View className="h-[1px] bg-border" />
-
                 {/* Current Theme Indicator */}
-                <View className="items-center">
-                  <Text className="text-muted-foreground text-sm mb-2">
-                    Current Theme
-                  </Text>
-                  <Text className="text-foreground font-semibold text-base capitalize">
+                <View className="items-center px-6 py-4 border border-input rounded-full">
+                  <Text className="text-foreground font-outfit font-medium text-base capitalize">
                     {currentTheme === 'default'
                       ? 'Default'
                       : currentTheme === 'violetBloom'
@@ -485,6 +466,16 @@ const BottomControlBar = memo(
                           : currentTheme}
                   </Text>
                 </View>
+
+                {/* Reset to Default Button */}
+                <Pressable
+                  onPress={() => handleThemeSelect('default')}
+                  className="py-3 items-center active:opacity-70"
+                >
+                  <Text className="text-foreground font-outfit font-medium text-base">
+                    Reset to Default
+                  </Text>
+                </Pressable>
               </View>
             </Animated.View>
           </View>

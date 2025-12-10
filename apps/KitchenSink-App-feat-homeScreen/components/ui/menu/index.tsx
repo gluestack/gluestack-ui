@@ -1,20 +1,60 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createMenu } from '@gluestack-ui/core/menu/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import { Pressable, Text, View, ViewStyle } from 'react-native';
-import {
-  Motion,
-  AnimatePresence,
-  MotionComponentProps,
-} from '@legendapp/motion';
+import { Pressable, Text, View } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  } from 'react-native-reanimated';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-type IMotionViewProps = React.ComponentProps<typeof View> &
-  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+const AnimatedMenuRoot = React.forwardRef<
+  React.ComponentRef<typeof Animated.View>,
+  React.ComponentProps<typeof Animated.View> & { className?: string }
+>(function AnimatedMenuRoot({ className, style, ...props }, ref) {
+  const opacity = useSharedValue(0);
+  const scale = useSharedValue(0.20);
 
-const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+  useEffect(() => {
+    // Animate in when component mounts
+    opacity.value = withTiming(1, { duration: 150 });
+    scale.value = withTiming(1, { duration: 150 });
+  }, []);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+      transform: [{ scale: scale.value }],
+    };
+  }, [opacity, scale]);
+
+  return (
+    <Animated.View
+      ref={ref}
+      style={[animatedStyle, style]}
+      className={className}
+      {...props}
+    />
+  );
+});
+
+// AnimatePresence wrapper that accepts props (compatible with menu creator)
+// Uses View instead of Fragment to support ref prop
+const MenuAnimatePresence = React.forwardRef<
+  React.ComponentRef<typeof View>,
+  { children: React.ReactNode; [key: string]: any }
+>(function MenuAnimatePresence({ children, ...props }, ref) {
+  // Accept all props including ref
+  // The menu creator passes various props, we just render children in a transparent wrapper
+  return (
+    <View ref={ref} {...props} pointerEvents="box-none">
+      {children}
+    </View>
+  );
+});
 
 const menuStyle = tva({
   base: 'rounded-md bg-popover text-popover-foreground border border-border p-1 shadow-hard-5',
@@ -110,16 +150,17 @@ const Separator = React.forwardRef<
     />
   );
 });
+
 export const UIMenu = createMenu({
-  Root: MotionView,
+  Root: AnimatedMenuRoot,
   Item: Item,
   Label: Text,
   Backdrop: BackdropPressable,
-  AnimatePresence: AnimatePresence,
+  AnimatePresence: MenuAnimatePresence,
   Separator: Separator,
 });
 
-cssInterop(MotionView, { className: 'style' });
+cssInterop(AnimatedMenuRoot, { className: 'style' });
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle> & { className?: string };
@@ -131,22 +172,6 @@ const Menu = React.forwardRef<React.ComponentRef<typeof UIMenu>, IMenuProps>(
     return (
       <UIMenu
         ref={ref}
-        initial={{
-          opacity: 0,
-          scale: 0.8,
-        }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-        }}
-        exit={{
-          opacity: 0,
-          scale: 0.8,
-        }}
-        transition={{
-          type: 'timing',
-          duration: 100,
-        }}
         className={menuStyle({
           class: className,
         })}
