@@ -23,6 +23,8 @@ import {
 export const customFonts = {
   Georgia: require('../assets/fonts/georgia.ttf'),
   Melno: require('../assets/fonts/melno.ttf'),
+  Geist: require('../assets/fonts/geist.ttf'),
+  GT_America: require('../assets/fonts/gt-america.otf'),
   Outfit_400Regular,
   Outfit_500Medium,
   Outfit_600SemiBold,

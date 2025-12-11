@@ -89,9 +89,8 @@ export const themeConfigs = {
       '--border': '229 229 229', // neutral-200
       '--input': '229 229 229',
       '--ring': '0 0 0', // black
-      '--font-sans': 'Outfit_400Regular',
-      '--font-serif':
-        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+      '--font-sans': 'Geist',
+      '--font-serif': 'Georgia',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     }),
@@ -123,9 +122,8 @@ export const themeConfigs = {
       '--border': '38 38 38', // neutral-800
       '--input': '38 38 38',
       '--ring': '255 255 255', // white
-      '--font-sans': 'Outfit_600SemiBold',
-      '--font-serif':
-        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+      '--font-sans': 'Geist',
+      '--font-serif': 'Georgia',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     }),
@@ -233,7 +231,7 @@ export const themeConfigs = {
       '--border': '223 223 223', // rgb(223, 223, 223)
       '--input': '246 246 246',
       '--ring': '114 227 173',
-      '--font-sans': 'Andika_400Regular',
+      '--font-sans': 'Outfit_400Regular',
       '--font-serif':
         'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
       '--font-mono':
@@ -267,7 +265,7 @@ export const themeConfigs = {
       '--border': '41 41 41', // rgb(41, 41, 41)
       '--input': '36 36 36',
       '--ring': '74 222 128', // rgb(74, 222, 128)
-      '--font-sans': 'Andika_700Bold',
+      '--font-sans': 'Outfit_400Regular',
       '--font-serif':
         'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
       '--font-mono':
@@ -379,7 +377,7 @@ export const themeConfigs = {
       '--border': '225 234 239', // rgb(225, 234, 239)
       '--input': '247 249 250', // rgb(247, 249, 250)
       '--ring': '29 161 242', // rgb(29, 161, 242)
-      '--font-sans': 'OpenSans_400Regular',
+      '--font-sans': 'GT_America',
       '--font-serif': 'Georgia, serif',
       '--font-mono': 'Menlo, monospace',
     }),
@@ -411,7 +409,7 @@ export const themeConfigs = {
       '--border': '36 38 40', // rgb(36, 38, 40)
       '--input': '34 48 60', // rgb(34, 48, 60)
       '--ring': '29 161 242',
-      '--font-sans': 'OpenSans_400Regular',
+      '--font-sans': 'GT_America',
       '--font-serif': 'Georgia',
       '--font-mono': 'Menlo',
     }),
