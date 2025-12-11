@@ -270,11 +270,11 @@ export default function ComponentsTab() {
             alt="Kitchensink App Logo"
             className="h-6 w-6"
           />
-          <Text className="text-2xl font-bold font-andika">
+          <Text className="text-2xl font-bold font-sans">
             Kitchensink App
           </Text>
         </HStack>
-        <Text className="max-w-[60%] text-center">
+        <Text className="max-w-[60%] text-center font-serif">
           Demo app showcasing all the gluestack ui components in action.
         </Text>
       </View>

@@ -36,7 +36,6 @@ export const themeConfigs = {
       '--ring': '212 212 212',
       '--accent': '247 247 247',
       '--accent-foreground': '52 52 52',
-      '--font-sans': 'Outfit_400Regular',
     }),
     dark: vars({
       // From gluestackConfig.dark
@@ -57,7 +56,6 @@ export const themeConfigs = {
       '--accent-foreground': '250 250 250',
       '--muted': '38 38 38',
       '--muted-foreground': '161 161 161',
-      '--font-sans': 'Outfit_400Regular',
     }),
   },
   vercel: {
@@ -92,6 +90,10 @@ export const themeConfigs = {
       '--input': '229 229 229',
       '--ring': '0 0 0', // black
       '--font-sans': 'Outfit_400Regular',
+      '--font-serif':
+        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+      '--font-mono':
+        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     }),
     dark: vars({
       '--primary': '255 255 255', // white
@@ -122,6 +124,10 @@ export const themeConfigs = {
       '--input': '38 38 38',
       '--ring': '255 255 255', // white
       '--font-sans': 'Outfit_600SemiBold',
+      '--font-serif':
+        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+      '--font-mono':
+        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     }),
   },
   violetBloom: {
@@ -156,6 +162,10 @@ export const themeConfigs = {
       '--input': '235 235 235',
       '--ring': '0 0 0',
       '--font-sans': 'Outfit_500Medium',
+      '--font-serif':
+        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+      '--font-mono':
+        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     }),
     dark: vars({
       '--primary': '140 92 255', // rgb(140, 92, 255)
@@ -186,6 +196,10 @@ export const themeConfigs = {
       '--input': '51 53 58',
       '--ring': '140 92 255',
       '--font-sans': 'Outfit_700Bold',
+      '--font-serif':
+        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+      '--font-mono':
+        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     }),
   },
   supabase: {
@@ -220,6 +234,10 @@ export const themeConfigs = {
       '--input': '246 246 246',
       '--ring': '114 227 173',
       '--font-sans': 'Andika_400Regular',
+      '--font-serif':
+        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+      '--font-mono':
+        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     }),
     dark: vars({
       '--primary': '0 98 57', // rgb(0, 98, 57)
@@ -250,6 +268,10 @@ export const themeConfigs = {
       '--input': '36 36 36',
       '--ring': '74 222 128', // rgb(74, 222, 128)
       '--font-sans': 'Andika_700Bold',
+      '--font-serif':
+        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+      '--font-mono':
+        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     }),
   },
   claude: {
@@ -283,7 +305,12 @@ export const themeConfigs = {
       '--border': '218 217 212', // rgb(218, 217, 212)
       '--input': '180 178 167', // rgb(180, 178, 167)
       '--ring': '201 100 66',
-      '--font-sans': 'Andika_400Regular',
+      '--font-sans':
+        'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+      '--font-serif':
+        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+      '--font-mono':
+        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     }),
     dark: vars({
       '--primary': '217 119 87', // rgb(217, 119, 87)
@@ -313,7 +340,12 @@ export const themeConfigs = {
       '--border': '62 62 56', // rgb(62, 62, 56)
       '--input': '82 81 74', // rgb(82, 81, 74)
       '--ring': '217 119 87',
-      '--font-sans': 'Andika_700Bold',
+      '--font-sans':
+        'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+      '--font-serif':
+        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+      '--font-mono':
+        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     }),
   },
   twitter: {
@@ -347,7 +379,9 @@ export const themeConfigs = {
       '--border': '225 234 239', // rgb(225, 234, 239)
       '--input': '247 249 250', // rgb(247, 249, 250)
       '--ring': '29 161 242', // rgb(29, 161, 242)
-      '--font-sans': 'Outfit_500Medium',
+      '--font-sans': 'OpenSans_400Regular',
+      '--font-serif': 'Georgia, serif',
+      '--font-mono': 'Menlo, monospace',
     }),
     dark: vars({
       '--primary': '28 156 240', // rgb(28, 156, 240)
@@ -377,7 +411,9 @@ export const themeConfigs = {
       '--border': '36 38 40', // rgb(36, 38, 40)
       '--input': '34 48 60', // rgb(34, 48, 60)
       '--ring': '29 161 242',
-      '--font-sans': 'Outfit_800ExtraBold',
+      '--font-sans': 'OpenSans_400Regular',
+      '--font-serif': 'Georgia',
+      '--font-mono': 'Menlo',
     }),
   },
 };
@@ -385,6 +421,7 @@ export const themeConfigs = {
 export const themeNames: ThemeName[] = Object.keys(themeConfigs) as ThemeName[];
 
 // Font mapping for each theme and mode
+// For React Native, we extract the first font from CSS font stacks
 const themeFonts: Record<ThemeName, { light: string; dark: string }> = {
   default: {
     light: 'Outfit_400Regular',
@@ -403,12 +440,14 @@ const themeFonts: Record<ThemeName, { light: string; dark: string }> = {
     dark: 'Andika_700Bold',
   },
   claude: {
-    light: 'Andika_400Regular',
-    dark: 'Andika_700Bold',
+    // For CSS font stacks, use system fonts (first in stack)
+    // React Native will fallback to system default
+    light: 'system', // Maps to system-ui from CSS stack
+    dark: 'system', // Maps to system-ui from CSS stack
   },
   twitter: {
-    light: 'Outfit_500Medium',
-    dark: 'Outfit_800ExtraBold',
+    light: 'Georgia',
+    dark: 'Georgia',
   },
 };
 
@@ -416,6 +455,26 @@ export function getThemeVars(theme: ThemeName, mode: ColorMode) {
   return themeConfigs[theme][mode];
 }
 
+// Helper to extract first font from CSS font stack for React Native
+function extractFirstFont(fontStack: string): string {
+  // Remove quotes and get first font name
+  const firstFont = fontStack.split(',')[0]?.trim().replace(/['"]/g, '');
+  // Map common CSS font names to React Native equivalents
+  const fontMap: Record<string, string> = {
+    'ui-sans-serif': 'system',
+    'system-ui': 'system',
+    '-apple-system': 'system',
+    'BlinkMacSystemFont': 'system',
+  };
+  return fontMap[firstFont] || firstFont || 'system';
+}
+
 export function getThemeFontSans(theme: ThemeName, mode: ColorMode): string {
+  // For Claude theme, extract first font from CSS stack
+  if (theme === 'claude') {
+    // Claude uses CSS font stacks, so we need to extract the first font
+    // For React Native, we'll use system font as fallback
+    return 'system';
+  }
   return themeFonts[theme]?.[mode] || 'Outfit_400Regular';
 }

@@ -800,6 +800,16 @@
   resolved "https://registry.npmjs.org/@expo-google-fonts/andika/-/andika-0.4.1.tgz#b6ba72ad48a27fa063c46d897b30bb67c66e26af"
   integrity sha512-S9uvDEZZpZ2jw0FBb/iJj62I5DVXrqdrOPILN4x4cm1j2AglnnUh9Xax7FZ/+1nGStBN7W1vsRoLAQ2o+wTLjw==
 
+"@expo-google-fonts/montserrat@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/montserrat/-/montserrat-0.4.2.tgz#2fa3a12ac0c79bf51ff48b5ed7fa71db26057fda"
+  integrity sha512-Xyq7rKJhhZOE1Xk4wKSSVoUeOkFmQEMhtZ3pdFrgYckGZMs115Apmld1AI8Ju+yrl5GzDdfRCCqRr33dvEDYUA==
+
+"@expo-google-fonts/open-sans@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/open-sans/-/open-sans-0.4.2.tgz#6479b000202a483ac283e22d8057197d3dedc8c8"
+  integrity sha512-gvhPqLXYnltWgll3iBwRGUwf5yN2HCh4mgQmFoQ8oU66LTs23oX4N7T3t0BDsKfP/1Z8F8+4c7wSkA11Nnk4kA==
+
 "@expo-google-fonts/outfit@^0.4.3":
   version "0.4.3"
   resolved "https://registry.npmjs.org/@expo-google-fonts/outfit/-/outfit-0.4.3.tgz#aa513893f064c3345b694cb6df0ac5cf9e427ee7"

@@ -92,9 +92,12 @@ module.exports = {
       fontFamily: {
         heading: undefined,
         body: undefined,
-        mono: undefined,
+        mono: 'var(--font-mono)',
         sans: 'var(--font-sans)',
+        serif: 'var(--font-serif)',
         inter: ['var(--font-inter)'],
+        georgia: ['Georgia'],
+        melno: ['Melno'],
         andika: [
           'Andika_400Regular',
           'Andika_400Regular_Italic',

@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@expo-google-fonts/andika": "^0.4.1",
+    "@expo-google-fonts/montserrat": "^0.4.2",
+    "@expo-google-fonts/open-sans": "^0.4.2",
     "@expo-google-fonts/outfit": "^0.4.3",
     "@expo/html-elements": "^0.12.5",
     "@expo/vector-icons": "^15.0.3",
