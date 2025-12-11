@@ -20,11 +20,16 @@ import {
   Outfit_800ExtraBold,
   Outfit_900Black,
 } from '@expo-google-fonts/outfit';
+import { Lora_400Regular } from '@expo-google-fonts/lora/400Regular';
+import { Lora_500Medium } from '@expo-google-fonts/lora/500Medium';
+import { Lora_600SemiBold } from '@expo-google-fonts/lora/600SemiBold';
+import { Lora_700Bold } from '@expo-google-fonts/lora/700Bold';
 export const customFonts = {
   Georgia: require('../assets/fonts/georgia.ttf'),
   Melno: require('../assets/fonts/melno.ttf'),
   Geist: require('../assets/fonts/geist.ttf'),
   GT_America: require('../assets/fonts/gt-america.otf'),
+  Jakarta: require('../assets/fonts/jakarta.ttf'),
   Outfit_400Regular,
   Outfit_500Medium,
   Outfit_600SemiBold,
@@ -43,4 +48,8 @@ export const customFonts = {
   Montserrat_500Medium,
   Montserrat_600SemiBold,
   Montserrat_700Bold,
+  Lora_400Regular,
+  Lora_500Medium,
+  Lora_600SemiBold,
+  Lora_700Bold,
 };

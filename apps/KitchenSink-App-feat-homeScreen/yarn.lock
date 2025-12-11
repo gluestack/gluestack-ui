@@ -800,6 +800,11 @@
   resolved "https://registry.npmjs.org/@expo-google-fonts/andika/-/andika-0.4.1.tgz#b6ba72ad48a27fa063c46d897b30bb67c66e26af"
   integrity sha512-S9uvDEZZpZ2jw0FBb/iJj62I5DVXrqdrOPILN4x4cm1j2AglnnUh9Xax7FZ/+1nGStBN7W1vsRoLAQ2o+wTLjw==
 
+"@expo-google-fonts/lora@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/lora/-/lora-0.4.2.tgz#cf4464ab37fcbcd3131cba173874690fa3077dc8"
+  integrity sha512-Bnofh2mIOUKp4KUS48VjaBgug4lQOcw/ftU0NFv5OPtiutL422//G1v63xDZEMUEL6ft4fi5q94/uKcpDjbPag==
+
 "@expo-google-fonts/montserrat@^0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/montserrat/-/montserrat-0.4.2.tgz#2fa3a12ac0c79bf51ff48b5ed7fa71db26057fda"

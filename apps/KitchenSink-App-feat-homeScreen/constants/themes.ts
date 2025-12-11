@@ -159,9 +159,8 @@ export const themeConfigs = {
       '--border': '231 231 238', // rgb(231, 231, 238)
       '--input': '235 235 235',
       '--ring': '0 0 0',
-      '--font-sans': 'Outfit_500Medium',
-      '--font-serif':
-        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+      '--font-sans': 'Jakarta',
+      '--font-serif': 'Lora_400Regular',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     }),
@@ -193,9 +192,8 @@ export const themeConfigs = {
       '--border': '51 53 58', // rgb(51, 53, 58)
       '--input': '51 53 58',
       '--ring': '140 92 255',
-      '--font-sans': 'Outfit_700Bold',
-      '--font-serif':
-        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+      '--font-sans': 'Jakarta',
+      '--font-serif': 'Lora_400Regular',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     }),
@@ -232,10 +230,8 @@ export const themeConfigs = {
       '--input': '246 246 246',
       '--ring': '114 227 173',
       '--font-sans': 'Outfit_400Regular',
-      '--font-serif':
-        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
-      '--font-mono':
-        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      '--font-serif': 'Outfit_400Regular',
+      '--font-mono': 'Outfit_400Regular',
     }),
     dark: vars({
       '--primary': '0 98 57', // rgb(0, 98, 57)
@@ -266,10 +262,8 @@ export const themeConfigs = {
       '--input': '36 36 36',
       '--ring': '74 222 128', // rgb(74, 222, 128)
       '--font-sans': 'Outfit_400Regular',
-      '--font-serif':
-        'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
-      '--font-mono':
-        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      '--font-serif': 'Outfit_400Regular',
+      '--font-mono': 'Outfit_400Regular',
     }),
   },
   claude: {
@@ -430,8 +424,8 @@ const themeFonts: Record<ThemeName, { light: string; dark: string }> = {
     dark: 'Outfit_600SemiBold',
   },
   violetBloom: {
-    light: 'Outfit_500Medium',
-    dark: 'Outfit_700Bold',
+    light: 'Lora_500Medium',
+    dark: 'Lora_500Medium',
   },
   supabase: {
     light: 'Andika_400Regular',
