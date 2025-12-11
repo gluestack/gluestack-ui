@@ -371,8 +371,8 @@ export const themeConfigs = {
       '--border': '225 234 239', // rgb(225, 234, 239)
       '--input': '247 249 250', // rgb(247, 249, 250)
       '--ring': '29 161 242', // rgb(29, 161, 242)
-      '--font-sans': 'GT_America',
-      '--font-serif': 'Georgia, serif',
+      '--font-sans': 'OpenSans_400Regular',
+      '--font-serif': 'Georgia',
       '--font-mono': 'Menlo, monospace',
     }),
     dark: vars({
@@ -403,7 +403,7 @@ export const themeConfigs = {
       '--border': '36 38 40', // rgb(36, 38, 40)
       '--input': '34 48 60', // rgb(34, 48, 60)
       '--ring': '29 161 242',
-      '--font-sans': 'GT_America',
+      '--font-sans': 'OpenSans_400Regular',
       '--font-serif': 'Georgia',
       '--font-mono': 'Menlo',
     }),

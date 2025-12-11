@@ -3,12 +3,60 @@ import { Platform, Pressable } from 'react-native';
 import { useAppTheme } from '@/contexts/app-theme-context';
 import { Icon, ChevronLeftIcon } from '@/components/ui/icon';
 import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { HStack } from '@/components/ui/hstack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { BlurView } from 'expo-blur';
+
+// Custom Header Component with NativeWind styling
+function CustomHeader({ title }: { title: string }) {
+  const { isDark } = useAppTheme();
+  const router = useRouter();
+  const insets = useSafeAreaInsets();
+
+  return (
+    <Box
+      className=""
+      style={{
+        paddingTop: insets.top,
+      }}
+    >
+     
+        <Box
+          className="absolute inset-0 bg-background"
+        />
+
+
+      <HStack className="items-center justify-between px-4 h-14">
+        {/* Back Button */}
+        <Pressable
+          onPress={() => router.back()}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          className="w-10 items-start justify-center"
+        >
+          <Icon
+            as={ChevronLeftIcon}
+            size="xl"
+            className={isDark ? 'text-white' : 'text-black'}
+          />
+        </Pressable>
+
+        {/* Title */}
+        <Text
+          className={`text-lg font-sans font-semibold text-center flex-1 ${isDark ? 'text-white' : 'text-black'}`}
+        >
+          {title}
+        </Text>
+
+        {/* Right placeholder for alignment */}
+        <Box className="w-10" />
+      </HStack>
+    </Box>
+  );
+}
 
 export default function ComponentsLayout() {
   const { isDark } = useAppTheme();
-  const router = useRouter();
-
-  const themeColorForeground = isDark ? '#ffffff' : '#000000';
   const themeColorBackground = isDark ? '#000000' : '#ffffff';
 
   return (
@@ -18,44 +66,38 @@ export default function ComponentsLayout() {
       )}
       screenOptions={{
         headerShown: true,
-        headerTitleAlign: 'center',
-        headerTransparent: true,
-        headerBlurEffect: isDark ? 'dark' : 'light',
-        headerTintColor: themeColorForeground,
-        headerStyle: {
-          backgroundColor: Platform.select({
-            ios: undefined,
-            android: themeColorBackground,
-          }),
-        },
-        headerTitleStyle: {
-          fontFamily: 'Outfit_600SemiBold',
-        },
         gestureEnabled: true,
         gestureDirection: 'horizontal',
         fullScreenGestureEnabled: true,
         contentStyle: {
           backgroundColor: themeColorBackground,
         },
-        headerLeft: () => (
-          <Pressable
-            onPress={() => router.back()}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            style={{ marginLeft: Platform.OS === 'ios' ? 0 : 8 }}
-          >
-            <Icon
-              as={ChevronLeftIcon}
-              size="xl"
-              style={{ color: themeColorForeground }}
-            />
-          </Pressable>
-        ),
       }}
     >
-      <Stack.Screen name="accordion" options={{ title: 'Accordion' }} />
-      <Stack.Screen name="alert" options={{ title: 'Alert' }} />
-      <Stack.Screen name="alert-dialog" options={{ title: 'Alert Dialog' }} />
-      <Stack.Screen name="avatar" options={{ title: 'Avatar' }} />
+      <Stack.Screen
+        name="accordion"
+        options={{
+          header: () => <CustomHeader title="Accordion" />,
+        }}
+      />
+      <Stack.Screen
+        name="alert"
+        options={{
+          header: () => <CustomHeader title="Alert" />,
+        }}
+      />
+      <Stack.Screen
+        name="alert-dialog"
+        options={{
+          header: () => <CustomHeader title="Alert Dialog" />,
+        }}
+      />
+      <Stack.Screen
+        name="avatar"
+        options={{
+          header: () => <CustomHeader title="Avatar" />,
+        }}
+      />
     </Stack>
   );
 }

@@ -9,6 +9,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+
 import Animated, {
   Extrapolation,
   interpolate,
@@ -230,7 +231,7 @@ export const UsageVariantFlatList = ({
             scrollY={scrollX}
             itemHeight={itemWidth}
             width={width}
-            height={height}
+            height={height-100-insets.top}
           />
         )}
         keyExtractor={(item) => item.value}
@@ -256,16 +257,16 @@ export const UsageVariantFlatList = ({
           pointerEvents="none"
           style={StyleSheet.absoluteFill}
           animatedProps={animatedProps}
-          tint={
-            isDark
-              ? 'systemUltraThinMaterialDark'
-              : 'systemUltraThinMaterialLight'
-          }
+          // tint={
+          //   isDark
+          //     ? 'systemUltraThinMaterialDark'
+          //     : 'systemUltraThinMaterialLight'
+          // }
         />
       )}
       <View
-        className="absolute left-0 right-0 items-center"
-        style={{ top: insets.top + 60 }}
+        className="absolute left-0 right-0 items-center top-10"
+   
         pointerEvents="none"
       >
         {/* Variant names horizontal scrollable list - active item centered, others faded */}

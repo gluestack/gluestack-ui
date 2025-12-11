@@ -20,6 +20,7 @@ import {
   Outfit_800ExtraBold,
   Outfit_900Black,
 } from '@expo-google-fonts/outfit';
+
 import { Lora_400Regular } from '@expo-google-fonts/lora/400Regular';
 import { Lora_500Medium } from '@expo-google-fonts/lora/500Medium';
 import { Lora_600SemiBold } from '@expo-google-fonts/lora/600SemiBold';

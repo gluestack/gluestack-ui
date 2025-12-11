@@ -359,11 +359,11 @@ export default function ComponentsTab() {
           pointerEvents="none"
           style={StyleSheet.absoluteFill}
           animatedProps={animatedProps}
-          tint={
-            isDark
-              ? 'systemUltraThinMaterialDark'
-              : 'systemUltraThinMaterialLight'
-          }
+          // tint={
+          //   isDark
+          //     ? 'systemUltraThinMaterialDark'
+          //     : 'systemUltraThinMaterialLight'
+          // }
         />
       )}
       <BottomControlBar
