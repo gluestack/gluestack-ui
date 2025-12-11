@@ -323,7 +323,7 @@ export const UsageVariantFlatList = ({
                   itemPositionsRef.current[index] = x + itemWidth / 2;
                 }}
               >
-                <Text className="text-foreground  font-medium">
+                <Text className="text-foreground font-sans font-medium">
                   {item.label}
                 </Text>
               </Animated.View>

@@ -230,7 +230,7 @@ const BottomControlBar = memo(
                     width: pillWidth,
                   }}
                 >
-                  <Text className=" text-base text-primary-foreground font-medium text-center font-outfit">
+                  <Text className=" text-base font-sans text-primary-foreground font-medium text-center">
                     {pillLabel}
                   </Text>
                 </Pressable>
