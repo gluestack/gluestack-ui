@@ -91,7 +91,7 @@ module.exports = {
       },
       fontFamily: {
         heading: undefined,
-        body: undefined,
+        body: 'var(--font-sans)',
         mono: 'var(--font-mono)',
         sans: 'var(--font-sans)',
         serif: 'var(--font-serif)',
