@@ -93,6 +93,7 @@ module.exports = {
         heading: undefined,
         body: undefined,
         mono: undefined,
+        sans: 'var(--font-sans)',
         inter: ['var(--font-inter)'],
         andika: [
           'Andika_400Regular',

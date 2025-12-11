@@ -12,6 +12,7 @@ import {
   ThemeName,
   ColorMode,
   getThemeVars,
+  getThemeFontSans,
   themeConfigs,
 } from '@/constants/themes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -25,6 +26,7 @@ interface AppThemeContextType {
   setColorMode: (mode: ColorMode) => void;
   toggleColorMode: () => void;
   availableThemes: { name: ThemeName; display: string; description: string }[];
+  fontSans: string;
 }
 
 const AppThemeContext = createContext<AppThemeContextType | undefined>(
@@ -110,6 +112,10 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     return getThemeVars(currentTheme, colorMode);
   }, [currentTheme, colorMode]);
 
+  const fontSans = useMemo(() => {
+    return getThemeFontSans(currentTheme, colorMode);
+  }, [currentTheme, colorMode]);
+
   const value = useMemo(
     () => ({
       currentTheme,
@@ -120,6 +126,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
       setColorMode: handleSetColorMode,
       toggleColorMode,
       availableThemes,
+      fontSans,
     }),
     [
       currentTheme,
@@ -130,6 +137,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
       handleSetColorMode,
       toggleColorMode,
       availableThemes,
+      fontSans,
     ]
   );
 

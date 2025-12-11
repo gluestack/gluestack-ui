@@ -16,8 +16,49 @@ export const themeConfigs = {
   default: {
     name: 'Default',
     description: 'Gluestack UI default theme',
-    light: gluestackConfig.light,
-    dark: gluestackConfig.dark,
+    light: vars({
+      // From gluestackConfig.light
+      '--primary': '23 23 23',
+      '--primary-foreground': '250 250 250',
+      '--card': '255 255 255',
+      '--secondary': '245 245 245',
+      '--secondary-foreground': '23 23 23',
+      '--background': '255 255 255',
+      '--popover': '255 255 255',
+      '--popover-foreground': '10 10 10',
+      '--muted': '245 245 245',
+      '--muted-foreground': '115 115 115',
+      '--destructive': '231 0 11',
+      '--destructive-foreground': '255 255 255',
+      '--foreground': '10 10 10',
+      '--border': '229 229 229',
+      '--input': '229 229 229',
+      '--ring': '212 212 212',
+      '--accent': '247 247 247',
+      '--accent-foreground': '52 52 52',
+      '--font-sans': 'Outfit_400Regular',
+    }),
+    dark: vars({
+      // From gluestackConfig.dark
+      '--primary-foreground': '23 23 23',
+      '--primary': '255 245 245',
+      '--card': '23 23 23',
+      '--foreground': '250 250 250',
+      '--popover': '23 23 23',
+      '--popover-foreground': '250 250 250',
+      '--secondary': '38 38 38',
+      '--secondary-foreground': '250 250 250',
+      '--destructive': '255 100 103',
+      '--background': '10 10 10',
+      '--input': '46 46 46',
+      '--border': '46 46 46',
+      '--ring': '115 115 115',
+      '--accent': '38 38 38',
+      '--accent-foreground': '250 250 250',
+      '--muted': '38 38 38',
+      '--muted-foreground': '161 161 161',
+      '--font-sans': 'Outfit_400Regular',
+    }),
   },
   vercel: {
     name: 'Vercel',
@@ -50,6 +91,7 @@ export const themeConfigs = {
       '--border': '229 229 229', // neutral-200
       '--input': '229 229 229',
       '--ring': '0 0 0', // black
+      '--font-sans': 'Outfit_400Regular',
     }),
     dark: vars({
       '--primary': '255 255 255', // white
@@ -79,6 +121,7 @@ export const themeConfigs = {
       '--border': '38 38 38', // neutral-800
       '--input': '38 38 38',
       '--ring': '255 255 255', // white
+      '--font-sans': 'Outfit_600SemiBold',
     }),
   },
   violetBloom: {
@@ -112,6 +155,7 @@ export const themeConfigs = {
       '--border': '231 231 238', // rgb(231, 231, 238)
       '--input': '235 235 235',
       '--ring': '0 0 0',
+      '--font-sans': 'Outfit_500Medium',
     }),
     dark: vars({
       '--primary': '140 92 255', // rgb(140, 92, 255)
@@ -141,6 +185,7 @@ export const themeConfigs = {
       '--border': '51 53 58', // rgb(51, 53, 58)
       '--input': '51 53 58',
       '--ring': '140 92 255',
+      '--font-sans': 'Outfit_700Bold',
     }),
   },
   supabase: {
@@ -174,6 +219,7 @@ export const themeConfigs = {
       '--border': '223 223 223', // rgb(223, 223, 223)
       '--input': '246 246 246',
       '--ring': '114 227 173',
+      '--font-sans': 'Andika_400Regular',
     }),
     dark: vars({
       '--primary': '0 98 57', // rgb(0, 98, 57)
@@ -203,6 +249,7 @@ export const themeConfigs = {
       '--border': '41 41 41', // rgb(41, 41, 41)
       '--input': '36 36 36',
       '--ring': '74 222 128', // rgb(74, 222, 128)
+      '--font-sans': 'Andika_700Bold',
     }),
   },
   claude: {
@@ -236,6 +283,7 @@ export const themeConfigs = {
       '--border': '218 217 212', // rgb(218, 217, 212)
       '--input': '180 178 167', // rgb(180, 178, 167)
       '--ring': '201 100 66',
+      '--font-sans': 'Andika_400Regular',
     }),
     dark: vars({
       '--primary': '217 119 87', // rgb(217, 119, 87)
@@ -265,6 +313,7 @@ export const themeConfigs = {
       '--border': '62 62 56', // rgb(62, 62, 56)
       '--input': '82 81 74', // rgb(82, 81, 74)
       '--ring': '217 119 87',
+      '--font-sans': 'Andika_700Bold',
     }),
   },
   twitter: {
@@ -298,6 +347,7 @@ export const themeConfigs = {
       '--border': '225 234 239', // rgb(225, 234, 239)
       '--input': '247 249 250', // rgb(247, 249, 250)
       '--ring': '29 161 242', // rgb(29, 161, 242)
+      '--font-sans': 'Outfit_500Medium',
     }),
     dark: vars({
       '--primary': '28 156 240', // rgb(28, 156, 240)
@@ -327,12 +377,45 @@ export const themeConfigs = {
       '--border': '36 38 40', // rgb(36, 38, 40)
       '--input': '34 48 60', // rgb(34, 48, 60)
       '--ring': '29 161 242',
+      '--font-sans': 'Outfit_800ExtraBold',
     }),
   },
 };
 
 export const themeNames: ThemeName[] = Object.keys(themeConfigs) as ThemeName[];
 
+// Font mapping for each theme and mode
+const themeFonts: Record<ThemeName, { light: string; dark: string }> = {
+  default: {
+    light: 'Outfit_400Regular',
+    dark: 'Outfit_400Regular',
+  },
+  vercel: {
+    light: 'Outfit_400Regular',
+    dark: 'Outfit_600SemiBold',
+  },
+  violetBloom: {
+    light: 'Outfit_500Medium',
+    dark: 'Outfit_700Bold',
+  },
+  supabase: {
+    light: 'Andika_400Regular',
+    dark: 'Andika_700Bold',
+  },
+  claude: {
+    light: 'Andika_400Regular',
+    dark: 'Andika_700Bold',
+  },
+  twitter: {
+    light: 'Outfit_500Medium',
+    dark: 'Outfit_800ExtraBold',
+  },
+};
+
 export function getThemeVars(theme: ThemeName, mode: ColorMode) {
   return themeConfigs[theme][mode];
+}
+
+export function getThemeFontSans(theme: ThemeName, mode: ColorMode): string {
+  return themeFonts[theme]?.[mode] || 'Outfit_400Regular';
 }

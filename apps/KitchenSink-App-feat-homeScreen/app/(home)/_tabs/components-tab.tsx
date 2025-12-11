@@ -88,7 +88,7 @@ const ComponentCard = memo(
     onPress,
   }: ComponentCardProps) => {
     const { reduceTransparencyEnabled } = useAccessibilityInfo();
-    const { isDark } = useAppTheme();
+    const { isDark, fontSans } = useAppTheme();
     const applyOpacity = reduceTransparencyEnabled;
 
     const animatedStyle = useAnimatedStyle(() => {
@@ -154,15 +154,21 @@ const ComponentCard = memo(
                 style={StyleSheet.absoluteFill}
               />
               <View className="flex-1 justify-between">
-                <Text className="text-white text-8xl font-bold font-outfit opacity-30 leading-[1.1] tracking-tighter">
+                <Text 
+                  className="text-white font-sans text-8xl font-bold opacity-30 leading-[1.1] tracking-tighter"
+
+                >
                   {displayIndex.toString()}
                 </Text>
                 <Icon as={item.icon} className="h-32 w-full stroke-none" />
                 <View className="gap-1">
-                  <Text className="text-white text-2xl font-bold font-outfit">
+                  <Text 
+                    className="text-white font-sans text-2xl font-bold"
+                  
+                  >
                     {item.title}
                   </Text>
-                  <Text className="text-slate-50 text-sm font-andika">
+                  <Text className="text-slate-50 text-sm ">
                     {item.count} Variants
                   </Text>
                 </View>
