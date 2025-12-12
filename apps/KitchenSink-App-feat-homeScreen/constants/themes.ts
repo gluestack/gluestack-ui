@@ -149,7 +149,7 @@ export const themeConfigs = {
 
       '--border': '38 38 38', // neutral-800
       '--input': '38 38 38',
-      '--ring': '255 255 255', // white
+      '--ring': '164 164 164', // white
       '--font-sans': 'Geist',
       '--font-serif': 'Georgia',
       '--font-mono':
@@ -437,7 +437,7 @@ export const themeConfigs = {
       '--destructive-foreground': '255 255 255',
 
       '--border': '36 38 40', // rgb(36, 38, 40)
-      '--input': '34 48 60', // rgb(34, 48, 60)
+      '--input': '36 38 40', // rgb(34, 48, 60)
       '--ring': '29 161 242',
       '--font-sans': 'OpenSans_400Regular',
       '--font-serif': 'Georgia',
