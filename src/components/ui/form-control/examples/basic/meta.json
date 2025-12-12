@@ -18,13 +18,6 @@
         "type": "boolean"
       },
       "defaultValue": false
-    },
-    "size": {
-      "control": {
-        "type": "select"
-      },
-      "options": ["sm", "md", "lg"],
-      "defaultValue": "md"
     }
   },
   "reactLive": {

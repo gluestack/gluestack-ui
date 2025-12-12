@@ -442,7 +442,7 @@ export const themeConfigs = {
       '--font-sans': 'OpenSans_400Regular',
       '--font-serif': 'Georgia',
       '--font-mono': 'Menlo',
-      ...calculateRadius('0.25rem'),
+      ...calculateRadius('1.3rem'),
     }),
   },
 };

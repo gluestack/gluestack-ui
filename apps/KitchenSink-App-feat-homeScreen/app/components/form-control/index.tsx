@@ -272,6 +272,6 @@ const COMPONENT_VARIANTS = [
   }
 ];
 
-export default function FormControlScreen() {
+export default function ComponentExamples() {
   return <UsageVariantFlatList data={COMPONENT_VARIANTS} />;
 }
