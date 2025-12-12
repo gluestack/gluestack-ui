@@ -5,6 +5,8 @@ import { Button, ButtonText, ButtonSpinner } from '@/components/ui/button'
 import { VStack } from '@/components/ui/vstack'
 import { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon } from '@/components/ui/radio'
 import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from '@/components/ui/checkbox'
+import { Heading } from '@/components/ui/heading'
+import { Text } from '@/components/ui/text'
 import { Textarea, TextareaInput } from '@/components/ui/textarea'
 import { HStack } from '@/components/ui/hstack'
 
@@ -152,49 +154,98 @@ const [values, setValues] = React.useState(['bits']);
         )
 };
 
-const ExampleFormControlWithError = () => {
-return (
-    <FormControl isInvalid>
+const ExampleSigningForm = () => {
+const [isInvalid, setIsInvalid] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState("12345");
+  const [values, setValues] = React.useState("Male");
+  const handleSubmit = () => {
+    if (inputValue.length < 6) {
+      setIsInvalid(true);
+    } else {
+      setIsInvalid(false);
+    }
+  };
+
+  return (
+    <VStack className="bg-popover border gap-4 max-w-[350px] border-border rounded-md px-8 pt-6 pb-8">
+      <VStack space="sm">
+      <Heading size="xl">Get Started</Heading>
+     <Text className="text-foreground/70 text-[15px] leading-[20px] font-body">Welcome to gluestack-ui - Elevate your app with our components</Text>
+     </VStack>
+      <FormControl className=""
+      >
+        <FormControlLabel className="mt-2">
+          <FormControlLabelText>Name</FormControlLabelText>
+        </FormControlLabel>
+        <Input className="my-1">
+          <InputField
+            type="text"
+            placeholder="Enter your name"
+            value={inputValue}
+            onChangeText={(text) => setInputValue(text)}
+          />
+        </Input>
+      
+      </FormControl>
+       <FormControl
+      >
+        <FormControlLabel>
+          <FormControlLabelText>Email</FormControlLabelText>
+        </FormControlLabel>
+        <Input className="my-1">
+          <InputField
+            type="text"
+            placeholder="Enter your email"
+            value={inputValue}
+            onChangeText={(text) => setInputValue(text)}
+          />
+        </Input>
+      
+      </FormControl>
+
+          <FormControl>
       <FormControlLabel>
         <FormControlLabelText>
-          Which time slot works best for you?
+          Gender
         </FormControlLabelText>
       </FormControlLabel>
-      <RadioGroup className='my-2'>
-        <VStack space="sm">
-          <Radio size="sm" value="Mango">
+      <RadioGroup className='my-1' value={values} onChange={setValues}>
+        <HStack space="sm">
+          <Radio size="sm" value="Male">
             <RadioIndicator>
               <RadioIcon as={CircleIcon} />
             </RadioIndicator>
             <RadioLabel>
-              Monday
+              Male
             </RadioLabel>
           </Radio>
-          <Radio size="sm" value="Apple">
+          <Radio size="sm" value="Female">
             <RadioIndicator>
               <RadioIcon as={CircleIcon} />
             </RadioIndicator>
             <RadioLabel>
-              Tuesday
+              Female
             </RadioLabel>
           </Radio>
-          <Radio size="sm" value="Orange">
+            <Radio size="sm" value="Other">
             <RadioIndicator>
               <RadioIcon as={CircleIcon} />
             </RadioIndicator>
             <RadioLabel>
-              Wednesday
+              Other
             </RadioLabel>
           </Radio>
-        </VStack>
+        
+        </HStack>
       </RadioGroup>
-      <FormControlError>
-        <FormControlErrorIcon as={AlertCircleIcon}/>
-        <FormControlErrorText>
-          Choose one time slot for the meeting
-        </FormControlErrorText>
-      </FormControlError>
+     
     </FormControl>
+    <VStack space="sm">
+      <Button className="w-full mt-4" size="lg" onPress={handleSubmit}>
+        <ButtonText className="font-medium font-body">Create an account</ButtonText>
+      </Button>
+      </VStack>
+    </VStack>
   )
 };
 
@@ -256,9 +307,9 @@ const COMPONENT_VARIANTS = [
     content: <ExampleFormControlWithCheckbox />,
   },
   {
-    value: "form-control-with-error",
-    label: "Form Control with Error",
-    content: <ExampleFormControlWithError />,
+    value: "signing-form",
+    label: "Signing Form",
+    content: <ExampleSigningForm />,
   },
   {
     value: "form-control-with-textarea",

@@ -1,0 +1,94 @@
+function App () {
+  const [isInvalid, setIsInvalid] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState("12345");
+  const [values, setValues] = React.useState("Male");
+  const handleSubmit = () => {
+    if (inputValue.length < 6) {
+      setIsInvalid(true);
+    } else {
+      setIsInvalid(false);
+    }
+  };
+
+  return (
+    <VStack className="bg-popover border gap-4 max-w-[350px] border-border rounded-md px-8 pt-6 pb-8">
+      <VStack space="sm">
+      <Heading size="xl">Get Started</Heading>
+     <Text className="text-foreground/70 text-[15px] leading-[20px] font-body">Welcome to gluestack-ui - Elevate your app with our components</Text>
+     </VStack>
+      <FormControl className=""
+      >
+        <FormControlLabel className="mt-2">
+          <FormControlLabelText>Name</FormControlLabelText>
+        </FormControlLabel>
+        <Input className="my-1">
+          <InputField
+            type="text"
+            placeholder="Enter your name"
+            value={inputValue}
+            onChangeText={(text) => setInputValue(text)}
+          />
+        </Input>
+      
+      </FormControl>
+       <FormControl
+      >
+        <FormControlLabel>
+          <FormControlLabelText>Email</FormControlLabelText>
+        </FormControlLabel>
+        <Input className="my-1">
+          <InputField
+            type="text"
+            placeholder="Enter your email"
+            value={inputValue}
+            onChangeText={(text) => setInputValue(text)}
+          />
+        </Input>
+      
+      </FormControl>
+
+          <FormControl>
+      <FormControlLabel>
+        <FormControlLabelText>
+          Gender
+        </FormControlLabelText>
+      </FormControlLabel>
+      <RadioGroup className='my-1' value={values} onChange={setValues}>
+        <HStack space="sm">
+          <Radio size="sm" value="Male">
+            <RadioIndicator>
+              <RadioIcon as={CircleIcon} />
+            </RadioIndicator>
+            <RadioLabel>
+              Male
+            </RadioLabel>
+          </Radio>
+          <Radio size="sm" value="Female">
+            <RadioIndicator>
+              <RadioIcon as={CircleIcon} />
+            </RadioIndicator>
+            <RadioLabel>
+              Female
+            </RadioLabel>
+          </Radio>
+            <Radio size="sm" value="Other">
+            <RadioIndicator>
+              <RadioIcon as={CircleIcon} />
+            </RadioIndicator>
+            <RadioLabel>
+              Other
+            </RadioLabel>
+          </Radio>
+        
+        </HStack>
+      </RadioGroup>
+     
+    </FormControl>
+    <VStack space="sm">
+      <Button className="w-full mt-4" size="lg" onPress={handleSubmit}>
+        <ButtonText className="font-medium font-body">Create an account</ButtonText>
+      </Button>
+      </VStack>
+    </VStack>
+  );
+}

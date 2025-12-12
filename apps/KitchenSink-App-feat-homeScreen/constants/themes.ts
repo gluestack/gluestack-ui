@@ -291,7 +291,7 @@ export const themeConfigs = {
       '--destructive-foreground': '237 233 232',
 
       '--border': '41 41 41', // rgb(41, 41, 41)
-      '--input': '36 36 36',
+      '--input': '41 41 41',
       '--ring': '74 222 128', // rgb(74, 222, 128)
       '--font-sans': 'Outfit_400Regular',
       '--font-serif': 'Outfit_400Regular',

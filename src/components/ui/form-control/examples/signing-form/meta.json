@@ -1,5 +1,5 @@
 {
-  "title": "Form Control with Error",
+  "title": "Signing Form",
   "description": "Error messages can be displayed using FormControl.",
   "argTypes": {},
   "reactLive": {
@@ -16,6 +16,8 @@
     "RadioIcon": "@/components/ui/radio",
     "VStack": "@/components/ui/vstack",
     "AlertCircleIcon": "@/components/ui/icon",
-    "CircleIcon": "@/components/ui/icon"
+    "CircleIcon": "@/components/ui/icon",
+    "Heading": "@/components/ui/heading",
+    "Text": "@/components/ui/text"
   }
 }
