@@ -188,7 +188,7 @@ const TabButton: React.FC<TabButtonProps> = ({
       onLayout={(e) => onLayout(e, index)}
     >
       <Pressable onPress={onPress} className="px-4 py-3">
-        <Text className="text-base font-semibold text-foreground font-andika">
+        <Text className="text-base font-medium text-foreground font-body">
           {tab.title}
         </Text>
       </Pressable>
