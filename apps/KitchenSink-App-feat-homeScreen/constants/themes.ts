@@ -29,10 +29,10 @@ function calculateRadius(baseRadius: string) {
   
   return {
     '--radius': `${basePx}px`,
-    '--radius-sm': `${Math.max(0, basePx - 4)}px`,
-    '--radius-md': `${Math.max(0, basePx - 2)}px`,
-    '--radius-lg': `${basePx}px`,
-    '--radius-xl': `${basePx + 4}px`,
+    '--radius-sm': `${Math.max(0, basePx - 2)}px`,
+    '--radius-md': `${Math.max(0, basePx)}px`,
+    '--radius-lg': `${Math.max(0, basePx + 2)}px`,
+    '--radius-xl': `${Math.max(0, basePx + 4)}px`,
   };
 }
 
@@ -61,7 +61,7 @@ export const themeConfigs = {
       '--ring': '212 212 212',
       '--accent': '247 247 247',
       '--accent-foreground': '52 52 52',
-      ...calculateRadius('0.5rem'),
+      ...calculateRadius('0.625rem'),
     }),
     dark: vars({
       // From gluestackConfig.dark
@@ -82,7 +82,7 @@ export const themeConfigs = {
       '--accent-foreground': '250 250 250',
       '--muted': '38 38 38',
       '--muted-foreground': '161 161 161',
-      ...calculateRadius('0.5rem'),
+      ...calculateRadius('0.625rem'),
     }),
   },
   vercel: {
@@ -120,7 +120,7 @@ export const themeConfigs = {
       '--font-serif': 'Georgia',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-      ...calculateRadius('0.375rem'),
+      ...calculateRadius('0.5rem'),
     }),
     dark: vars({
       '--primary': '255 255 255', // white
@@ -154,7 +154,7 @@ export const themeConfigs = {
       '--font-serif': 'Georgia',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-      ...calculateRadius('0.375rem'),
+      ...calculateRadius('0.5rem'),
     }),
   },
   violetBloom: {
@@ -192,7 +192,7 @@ export const themeConfigs = {
       '--font-serif': 'Lora_400Regular',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-      ...calculateRadius('0.75rem'),
+      ...calculateRadius('1.4rem'),
     }),
     dark: vars({
       '--primary': '140 92 255', // rgb(140, 92, 255)
@@ -226,7 +226,7 @@ export const themeConfigs = {
       '--font-serif': 'Lora_400Regular',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-      ...calculateRadius('0.75rem'),
+      ...calculateRadius('1.4rem'),
     }),
   },
   supabase: {
@@ -263,7 +263,7 @@ export const themeConfigs = {
       '--font-sans': 'Outfit_400Regular',
       '--font-serif': 'Outfit_400Regular',
       '--font-mono': 'Outfit_400Regular',
-      ...calculateRadius('0.625rem'),
+      ...calculateRadius('0.5rem'),
     }),
     dark: vars({
       '--primary': '0 98 57', // rgb(0, 98, 57)
@@ -296,7 +296,7 @@ export const themeConfigs = {
       '--font-sans': 'Outfit_400Regular',
       '--font-serif': 'Outfit_400Regular',
       '--font-mono': 'Outfit_400Regular',
-      ...calculateRadius('0.625rem'),
+      ...calculateRadius('0.5rem'),
     }),
   },
   claude: {
@@ -336,7 +336,7 @@ export const themeConfigs = {
         'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-      ...calculateRadius('1rem'),
+      ...calculateRadius('0.5rem'),
     }),
     dark: vars({
       '--primary': '217 119 87', // rgb(217, 119, 87)
@@ -372,7 +372,7 @@ export const themeConfigs = {
         'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-      ...calculateRadius('1rem'),
+      ...calculateRadius('0.5rem'),
     }),
   },
   twitter: {
@@ -409,7 +409,7 @@ export const themeConfigs = {
       '--font-sans': 'OpenSans_400Regular',
       '--font-serif': 'Georgia',
       '--font-mono': 'Menlo, monospace',
-      ...calculateRadius('0.25rem'),
+      ...calculateRadius('1.3rem'),
     }),
     dark: vars({
       '--primary': '28 156 240', // rgb(28, 156, 240)

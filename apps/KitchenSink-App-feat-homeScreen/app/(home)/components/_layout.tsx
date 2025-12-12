@@ -98,6 +98,12 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="Avatar" />,
         }}
       />
+      <Stack.Screen
+        name="form-control"
+        options={{
+          header: () => <CustomHeader title="Form Control" />,
+        }}
+      />
     </Stack>
   );
 }
