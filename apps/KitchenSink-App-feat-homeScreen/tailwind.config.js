@@ -114,10 +114,10 @@ module.exports = {
         ],
       },
       borderRadius: {
-        sm: '6px', // calc(0.625rem - 4px) = 6px
-        md: '8px', // calc(0.625rem - 2px) = 8px
-        lg: '10px', // 0.625rem = 10px
-        xl: '14px', // calc(0.625rem + 4px) = 14px
+        sm: 'var(--radius-sm)',
+        md: 'var(--radius-md)',
+        lg: 'var(--radius-lg)',
+        xl: 'var(--radius-xl)',
       },
       fontWeight: {
         extrablack: '950',

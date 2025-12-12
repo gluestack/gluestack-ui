@@ -11,6 +11,31 @@ export type ThemeName =
 
 export type ColorMode = 'light' | 'dark';
 
+// Helper function to calculate radius values from a base radius
+// Converts rem/px to pixels and calculates derived values
+function calculateRadius(baseRadius: string) {
+  // Parse the base radius value
+  let basePx: number;
+  
+  if (baseRadius.endsWith('rem')) {
+    // Convert rem to px (assuming 1rem = 16px)
+    basePx = parseFloat(baseRadius) * 16;
+  } else if (baseRadius.endsWith('px')) {
+    basePx = parseFloat(baseRadius);
+  } else {
+    // Default to 8px if format is unknown
+    basePx = 8;
+  }
+  
+  return {
+    '--radius': `${basePx}px`,
+    '--radius-sm': `${Math.max(0, basePx - 4)}px`,
+    '--radius-md': `${Math.max(0, basePx - 2)}px`,
+    '--radius-lg': `${basePx}px`,
+    '--radius-xl': `${basePx + 4}px`,
+  };
+}
+
 // Theme configurations using shadcn-style tokens
 export const themeConfigs = {
   default: {
@@ -36,6 +61,7 @@ export const themeConfigs = {
       '--ring': '212 212 212',
       '--accent': '247 247 247',
       '--accent-foreground': '52 52 52',
+      ...calculateRadius('0.5rem'),
     }),
     dark: vars({
       // From gluestackConfig.dark
@@ -56,6 +82,7 @@ export const themeConfigs = {
       '--accent-foreground': '250 250 250',
       '--muted': '38 38 38',
       '--muted-foreground': '161 161 161',
+      ...calculateRadius('0.5rem'),
     }),
   },
   vercel: {
@@ -93,6 +120,7 @@ export const themeConfigs = {
       '--font-serif': 'Georgia',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      ...calculateRadius('0.375rem'),
     }),
     dark: vars({
       '--primary': '255 255 255', // white
@@ -126,6 +154,7 @@ export const themeConfigs = {
       '--font-serif': 'Georgia',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      ...calculateRadius('0.375rem'),
     }),
   },
   violetBloom: {
@@ -163,6 +192,7 @@ export const themeConfigs = {
       '--font-serif': 'Lora_400Regular',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      ...calculateRadius('0.75rem'),
     }),
     dark: vars({
       '--primary': '140 92 255', // rgb(140, 92, 255)
@@ -196,6 +226,7 @@ export const themeConfigs = {
       '--font-serif': 'Lora_400Regular',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      ...calculateRadius('0.75rem'),
     }),
   },
   supabase: {
@@ -232,6 +263,7 @@ export const themeConfigs = {
       '--font-sans': 'Outfit_400Regular',
       '--font-serif': 'Outfit_400Regular',
       '--font-mono': 'Outfit_400Regular',
+      ...calculateRadius('0.625rem'),
     }),
     dark: vars({
       '--primary': '0 98 57', // rgb(0, 98, 57)
@@ -264,6 +296,7 @@ export const themeConfigs = {
       '--font-sans': 'Outfit_400Regular',
       '--font-serif': 'Outfit_400Regular',
       '--font-mono': 'Outfit_400Regular',
+      ...calculateRadius('0.625rem'),
     }),
   },
   claude: {
@@ -303,6 +336,7 @@ export const themeConfigs = {
         'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      ...calculateRadius('1rem'),
     }),
     dark: vars({
       '--primary': '217 119 87', // rgb(217, 119, 87)
@@ -338,6 +372,7 @@ export const themeConfigs = {
         'ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
       '--font-mono':
         'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      ...calculateRadius('1rem'),
     }),
   },
   twitter: {
@@ -374,6 +409,7 @@ export const themeConfigs = {
       '--font-sans': 'OpenSans_400Regular',
       '--font-serif': 'Georgia',
       '--font-mono': 'Menlo, monospace',
+      ...calculateRadius('0.25rem'),
     }),
     dark: vars({
       '--primary': '28 156 240', // rgb(28, 156, 240)
@@ -406,6 +442,7 @@ export const themeConfigs = {
       '--font-sans': 'OpenSans_400Regular',
       '--font-serif': 'Georgia',
       '--font-mono': 'Menlo',
+      ...calculateRadius('0.25rem'),
     }),
   },
 };
