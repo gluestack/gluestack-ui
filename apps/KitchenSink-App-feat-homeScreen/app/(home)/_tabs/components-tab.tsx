@@ -160,7 +160,7 @@ const ComponentCard = memo(
                 >
                   {displayIndex.toString()}
                 </Text>
-                <Icon as={item.icon} className="h-32 w-full stroke-none" />
+                {item.icon && <Icon as={item.icon} className="h-32 w-full stroke-none" />}
                 <View className="gap-1">
                   <Text 
                     className="text-white font-sans text-2xl font-bold"

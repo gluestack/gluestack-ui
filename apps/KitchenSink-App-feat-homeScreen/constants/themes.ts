@@ -481,6 +481,11 @@ const themeFonts: Record<ThemeName, { light: string; dark: string }> = {
 };
 
 export function getThemeVars(theme: ThemeName, mode: ColorMode) {
+  // Add safety check for Android and invalid theme/mode combinations
+  if (!theme || !mode || !themeConfigs[theme] || !themeConfigs[theme][mode]) {
+    console.warn(`Invalid theme config: theme=${theme}, mode=${mode}, falling back to default`);
+    return themeConfigs['default']['light'];
+  }
   return themeConfigs[theme][mode];
 }
 
@@ -499,6 +504,12 @@ function extractFirstFont(fontStack: string): string {
 }
 
 export function getThemeFontSans(theme: ThemeName, mode: ColorMode): string {
+  // Add safety check for Android and invalid theme/mode combinations
+  if (!theme || !mode) {
+    console.warn(`Invalid theme font config: theme=${theme}, mode=${mode}, falling back to default`);
+    return 'Outfit_400Regular';
+  }
+  
   // For Claude theme, extract first font from CSS stack
   if (theme === 'claude') {
     // Claude uses CSS font stacks, so we need to extract the first font

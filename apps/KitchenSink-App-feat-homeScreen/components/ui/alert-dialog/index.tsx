@@ -43,8 +43,8 @@ const PressableBlurView = React.forwardRef<
   React.ComponentProps<typeof BlurView>
 >((props, ref) => {
   return (
-    <Animated.View entering={FadeIn.duration(250)} exiting={FadeOut.duration(250)} style={StyleSheet.absoluteFill}>
-      <BlurView intensity={10} style={StyleSheet.absoluteFill}>
+    <Animated.View entering={FadeIn.duration(100)} exiting={FadeOut.duration(100)} style={StyleSheet.absoluteFill}>
+      <BlurView intensity={10}  style={StyleSheet.absoluteFill} experimentalBlurMethod='dimezisBlurView'>
         <Pressable ref={ref} {...props} />
       </BlurView>
     </Animated.View>
@@ -56,7 +56,7 @@ PressableBlurView.displayName = 'PressableBlurView';
 const UIAccessibleAlertDialog = createAlertDialog({
   Root: RootComponent,
   Body: ScrollView,
-  Content: MotionView,
+  Content: Animated.View,
   CloseButton: Pressable,
   Header: View,
   Footer: View,
@@ -90,7 +90,7 @@ const alertDialogFooterStyle = tva({
 const alertDialogBodyStyle = tva({ base: '' });
 
 const alertDialogBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0  web:cursor-default',
 });
 
 type IAlertDialogProps = React.ComponentPropsWithoutRef<
@@ -150,27 +150,8 @@ const AlertDialogContent = React.forwardRef<
     <UIAccessibleAlertDialog.Content
       pointerEvents="auto"
       ref={ref}
-      initial={{
-        scale: 0.9,
-        opacity: 0,
-      }}
-      animate={{
-        scale: 1,
-        opacity: 1,
-      }}
-      exit={{
-        scale: 0.9,
-        opacity: 0,
-      }}
-      transition={{
-        type: 'spring',
-        damping: 18,
-        stiffness: 250,
-        opacity: {
-          type: 'timing',
-          duration: 250,
-        },
-      }}
+      entering={FadeIn.duration(100)}
+      exiting={FadeOut.duration(100)}
       {...props}
       className={alertDialogContentStyle({
         class: className,

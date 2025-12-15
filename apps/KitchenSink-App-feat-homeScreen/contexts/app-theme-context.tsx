@@ -41,7 +41,11 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const { colorScheme, setColorScheme } = useColorScheme();
   const [currentTheme, setCurrentTheme] = useState<ThemeName>('default');
-  const [colorMode, setColorMode] = useState<ColorMode>('light');
+  // Ensure colorMode is always a valid ColorMode, defaulting to colorScheme or 'light'
+  const [colorMode, setColorMode] = useState<ColorMode>(() => {
+    const scheme = colorScheme as ColorMode;
+    return (scheme === 'light' || scheme === 'dark') ? scheme : 'light';
+  });
   const [isThemeLoaded, setIsThemeLoaded] = useState(false);
 
   // Initialize theme from storage

@@ -364,16 +364,16 @@ const ActiveThemeIndicator: React.FC<ActiveThemeIndicatorProps> = ({
     >
       <View
         className="w-3 h-3 rounded-full mr-2"
-        style={{ backgroundColor: colors.primary }}
+        // style={{ backgroundColor: colors.primary }}
       />
       <Text
         className="text-sm"
         style={{ color: getColor('textSubtler', isDark) }}
       >
         Active:{' '}
-        <Text style={{ color: colors.primary, fontWeight: '600' }}>
+        {/* <Text style={{ color: colors.primary, fontWeight: '600' }}>
           {config.name}
-        </Text>
+        </Text> */}
       </Text>
     </View>
   );
