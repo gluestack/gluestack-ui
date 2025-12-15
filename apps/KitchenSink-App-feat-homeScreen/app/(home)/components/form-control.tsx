@@ -156,7 +156,7 @@ const [values, setValues] = React.useState(['bits']);
 
 const ExampleSigningForm = () => {
 const [isInvalid, setIsInvalid] = React.useState(false);
-  const [inputValue, setInputValue] = React.useState("12345");
+  const [inputValue, setInputValue] = React.useState("");
   const [values, setValues] = React.useState("Male");
   const handleSubmit = () => {
     if (inputValue.length < 6) {
@@ -187,21 +187,7 @@ const [isInvalid, setIsInvalid] = React.useState(false);
         </Input>
       
       </FormControl>
-       <FormControl
-      >
-        <FormControlLabel>
-          <FormControlLabelText>Email</FormControlLabelText>
-        </FormControlLabel>
-        <Input className="my-1">
-          <InputField
-            type="text"
-            placeholder="Enter your email"
-            value={inputValue}
-            onChangeText={(text) => setInputValue(text)}
-          />
-        </Input>
-      
-      </FormControl>
+     
 
           <FormControl>
       <FormControlLabel>

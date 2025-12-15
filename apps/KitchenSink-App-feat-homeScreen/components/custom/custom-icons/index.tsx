@@ -254,5 +254,62 @@ const AvatarIcon = createIcon({
     </>
   ),
 });
+const FormControllIcon = createIcon({
+  viewBox: '0 0 186 127',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect width={146} height={27} fill="#fff" rx={13.5} />
+        <Path
+          stroke="#fff"
+          strokeWidth={1.748}
+          d="M14 39.874h202c7.249 0 13.126 5.877 13.126 13.126v14c0 7.25-5.877 13.126-13.126 13.126H14C6.75 80.126.874 74.249.874 67V53c0-7.25 5.877-13.126 13.126-13.126Z"
+        />
+        <Rect
+          width={11}
+          height={12}
+          x={16.485}
+          y={58.01}
+          fill="#fff"
+          rx={5.5}
+        />
+        <Rect width={12} height={12} x={39.024} y={58.01} fill="#fff" rx={6} />
+        <Rect
+          width={11}
+          height={12}
+          x={62.564}
+          y={58.01}
+          fill="#fff"
+          rx={5.5}
+        />
+        <Rect width={12} height={12} x={85.103} y={58.01} fill="#fff" rx={6} />
+        <Rect
+          width={11}
+          height={12}
+          x={108.642}
+          y={58.01}
+          fill="#fff"
+          rx={5.5}
+        />
+        <Rect width={79} height={31} x={63.922} y={93} fill="#fff" rx={15.5} />
+        <Rect
+          width={81.019}
+          height={33.019}
+          x={149.99}
+          y={91.99}
+          stroke="#fff"
+          strokeWidth={2.019}
+          rx={16.51}
+        />
+      </G>
+      ;
+    </>
+  ),
+});
 
-export { AccordionIcon, AlertIcon, AvatarIcon, AlertDialogIcon };
+export { AccordionIcon, AlertIcon, AvatarIcon, AlertDialogIcon, FormControllIcon };

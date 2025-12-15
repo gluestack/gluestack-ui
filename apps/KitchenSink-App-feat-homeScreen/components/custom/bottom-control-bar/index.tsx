@@ -282,19 +282,19 @@ const BottomControlBar = memo(
 
               {/* Menu Content - Positioned above the button */}
               <Animated.View
-                entering={FadeIn.duration(50)
+                entering={FadeIn.duration(200)
                   .springify()
                   .damping(40)
                   .stiffness(200)}
                 exiting={FadeOut.duration(50)}
-                className="absolute bg-background rounded-2xl"
+                className="absolute bg-popover border border-border rounded-2xl"
                 style={{
                   bottom: height - componentButtonLayout.y + 12,
                   right:
                     width -
                     componentButtonLayout.x -
                     componentButtonLayout.width,
-                  width: Math.min(width - 32, 320),
+                  width: Math.min(350),
                   maxHeight: height * 0.5,
                   shadowColor: isDark ? '#fff' : '#000',
                   shadowOffset: { width: 0, height: -4 },
@@ -339,7 +339,7 @@ const BottomControlBar = memo(
                         className={`px-3 py-2.5 mx-1.5 rounded-lg flex-row items-center gap-2.5 ${
                           currentComponent?.path === item.path
                             ? 'bg-primary'
-                            : 'active:bg-primary/50'
+                            : 'active:bg-primary'
                         }`}
                       >
                         <Text
@@ -403,7 +403,7 @@ const BottomControlBar = memo(
 
             {/* Menu Content - Positioned above the button */}
             <Animated.View
-              entering={FadeIn.duration(50)
+              entering={FadeIn.duration(200)
                 .springify()
                 .damping(40)
                 .stiffness(200)}
@@ -412,7 +412,6 @@ const BottomControlBar = memo(
               style={{
                 bottom: height - themeButtonLayout.y + 12,
                 width: Math.min(width - 80, 340),
-               
               }}
             >
               {/* Theme Content */}
