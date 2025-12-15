@@ -6,37 +6,26 @@ import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { BlurView } from 'expo-blur';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  Motion,
-  AnimatePresence,
-  createMotionAnimatedComponent,
-  MotionComponentProps,
-} from '@legendapp/motion';
-import {
-  View,
-  Pressable,
-  ScrollView,
-  ViewStyle,
-  StyleSheet,
-} from 'react-native';
-import { FadeIn, FadeOut,BounceIn,BounceOut } from 'react-native-reanimated';
+import { View, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { FadeIn, FadeOut } from 'react-native-reanimated';
 import Animated from 'react-native-reanimated';
 
 const SCOPE = 'ALERT_DIALOG';
 
 const RootComponent = withStyleContext(View, SCOPE);
 
-type IMotionViewProps = React.ComponentProps<typeof View> &
-  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
-
-const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
-
-type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
-  MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
-
-const AnimatedPressable = createMotionAnimatedComponent(
-  Pressable
-) as React.ComponentType<IAnimatedPressableProps>;
+// Simple AnimatePresence replacement for Reanimated
+// The actual animations are handled by entering/exiting props on children
+const ReanimatedAnimatePresence = React.forwardRef<
+  React.ComponentRef<typeof View>,
+  { children: React.ReactNode; [key: string]: any }
+>(({ children, ...props }, ref) => {
+  return (
+    <View ref={ref} {...props} pointerEvents="box-none">
+      {children}
+    </View>
+  );
+});
 
 const PressableBlurView = React.forwardRef<
   React.ComponentRef<typeof BlurView>,
@@ -69,11 +58,10 @@ const UIAccessibleAlertDialog = createAlertDialog({
   Header: View,
   Footer: View,
   Backdrop: PressableBlurView,
-  AnimatePresence: AnimatePresence,
+  AnimatePresence: ReanimatedAnimatePresence,
 });
 
-cssInterop(MotionView, { className: 'style' });
-cssInterop(AnimatedPressable, { className: 'style' });
+cssInterop(Animated.View, { className: 'style' });
 
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
