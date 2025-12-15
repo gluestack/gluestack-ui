@@ -19,6 +19,8 @@ import {
   ViewStyle,
   StyleSheet,
 } from 'react-native';
+import { FadeIn, FadeOut } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
 const SCOPE = 'ALERT_DIALOG';
 
@@ -41,9 +43,11 @@ const PressableBlurView = React.forwardRef<
   React.ComponentProps<typeof BlurView>
 >((props, ref) => {
   return (
-    <BlurView intensity={10} style={StyleSheet.absoluteFill}>
-      <Pressable ref={ref} {...props} />
-    </BlurView>
+    <Animated.View entering={FadeIn.duration(250)} exiting={FadeOut.duration(250)} style={StyleSheet.absoluteFill}>
+      <BlurView intensity={10} style={StyleSheet.absoluteFill}>
+        <Pressable ref={ref} {...props} />
+      </BlurView>
+    </Animated.View>
   );
 });
 
@@ -242,24 +246,7 @@ const AlertDialogBackdrop = React.forwardRef<
   return (
     <UIAccessibleAlertDialog.Backdrop
       ref={ref}
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 0.5,
-      }}
-      exit={{
-        opacity: 0,
-      }}
-      transition={{
-        type: 'spring',
-        damping: 18,
-        stiffness: 250,
-        opacity: {
-          type: 'timing',
-          duration: 250,
-        },
-      }}
+    
       {...props}
       className={alertDialogBackdropStyle({
         class: className,
