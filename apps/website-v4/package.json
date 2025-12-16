@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@docsearch/react": "4",
     "@expo/html-elements": "^0.12.5",
     "@gluestack-ui/core": "^3.0.12",
     "@gluestack-ui/utils": "^3.0.13",
@@ -16,6 +17,7 @@
     "@gorhom/bottom-sheet": "^5.2.8",
     "@legendapp/motion": "^2.5.3",
     "dom-helpers": "^5.2.1",
+    "geist": "^1.5.1",
     "lucide-react-native": "^0.510.0",
     "nativewind": "^4.2.1",
     "next": "16.0.8",

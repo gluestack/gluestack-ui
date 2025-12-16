@@ -73,7 +73,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${theme}`}
+      className={`${theme} ${geistSans.variable} ${geistMono.variable}`}
       style={{ colorScheme: theme }}
     >
       <head>
@@ -86,7 +86,7 @@ export default async function RootLayout({
         </title>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex-1`}
+        className={`${geistSans.className} flex-1`}
       >
         <ModeProvider defaultMode={theme}>
           <Provider>

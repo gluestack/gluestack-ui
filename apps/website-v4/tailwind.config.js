@@ -178,11 +178,11 @@ module.exports = {
         heading: undefined,
         body: undefined,
         mono: undefined,
-        jakarta: ['var(--font-plus-jakarta-sans)'],
         roboto: ['var(--font-roboto)'],
-        code: ['var(--font-source-code-pro)'],
         inter: ['var(--font-inter)'],
         'space-mono': ['var(--font-space-mono)'],
+        'geist-sans': ['var(--font-geist-sans)'],
+        'geist-mono': ['var(--font-geist-mono)'],
       },
       fontWeight: {
         extrablack: '950',
