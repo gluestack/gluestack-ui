@@ -1,7 +1,6 @@
 "use client";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import StyledJsxRegistry from "./registry";
-import { useMode } from "@/utils/theme-context";
 
 
 

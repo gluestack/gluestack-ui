@@ -10,13 +10,13 @@ import {
 import GluestackLogoDark from '@/public/logo/products/gluestack/gluestack-logo-dark.svg';
 import GluestackLogo from '@/public/logo/products/gluestack/gluestack-logo.svg';
 import { LayoutContext } from '@/utils/layout-context';
-import { useMode } from '@/utils/theme-context';
+import { useTheme } from 'next-themes';
 import { Nav } from '@expo/html-elements';
 import { Menu } from 'lucide-react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UiDocSearch } from './DocSearch';
 import ProductDropdown from './ProductDropdown';
 
@@ -27,15 +27,27 @@ const Header = ({
   isOpenSidebar?: boolean;
   setIsOpenSidebar?: (value: boolean) => void;
 } = {}) => {
-  const { colorMode } = useMode();
+  const { resolvedTheme } = useTheme();
   const [showDrawer, setShowDrawer] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const context = useContext(LayoutContext);
   const isOpenSidebar = propsIsOpenSidebar ?? context.isOpenSidebar;
   const setIsOpenSidebar = propsSetIsOpenSidebar ?? context.setIsOpenSidebar;
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Check if current route is documentation
   const isDocsRoute = pathname?.includes('/ui/docs/');
+
+  // Use a default logo during SSR to avoid hydration mismatch
+  const logoSrc = mounted
+    ? resolvedTheme === 'dark'
+      ? GluestackLogoDark
+      : GluestackLogo
+    : GluestackLogo;
 
   return (
     <div className="h-[80px] w-full sticky z-10 flex justify-center bg-white/80 dark:bg-background/80 backdrop-blur-md">
@@ -47,7 +59,7 @@ const Header = ({
               <Image
                 alt="gluestack-ui logo"
                 className="h-[20px] w-auto"
-                src={colorMode === 'dark' ? GluestackLogoDark : GluestackLogo}
+                src={logoSrc}
                 priority
               />
             </NextLink>
@@ -107,7 +119,7 @@ const Header = ({
               <Image
                 alt="gluestack-ui logo"
                 className="sm:h-[28px] h-[20px] w-auto"
-                src={colorMode === 'dark' ? GluestackLogoDark : GluestackLogo}
+                src={logoSrc}
                 priority
               />
             </SheetTitle>

@@ -6,10 +6,10 @@ import StarterKitLogo from '@/public/logo/products/gluestack/logo-dark.svg';
 import StarterKitLogoDark from '@/public/logo/products/gluestack/logo-light.svg';
 import RapidNativelogo from '@/public/logo/products/rapidnative/logo.png';
 import AppMarketLogo from '@/public/logo/products/theappmarket/appmarket-logo.svg';
-import { useMode } from '@/utils/theme-context';
+import { useTheme } from 'next-themes';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ProductDropdownOptions = [
   {
@@ -68,8 +68,13 @@ const ProductDropdownOptions = [
 ];
 
 const ProductDropdown = () => {
-  const { colorMode } = useMode();
+  const { resolvedTheme } = useTheme();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleMouseEnter = () => {
     setDropdownOpen(true);
@@ -115,7 +120,7 @@ const ProductDropdown = () => {
                     alt="product logo"
                     className="w-6 h-6 mt-1"
                     src={
-                      colorMode === 'dark'
+                      mounted && resolvedTheme === 'dark'
                         ? option.logo.dark
                         : option.logo.light
                     }

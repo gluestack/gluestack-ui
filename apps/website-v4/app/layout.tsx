@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Provider from './provider';
 import { cookies } from 'next/headers';
-import { ModeProvider } from '@/utils/theme-context';
+import { ThemeProvider } from '@/utils/theme-provider';
 
 export const metadata: Metadata = {
   title:
@@ -61,38 +61,36 @@ export default async function RootLayout({
 }>) {
   // Read theme from cookies
   const cookieStore = await cookies();
-  const cookieTheme = cookieStore.get("theme") as
+  const cookieTheme = cookieStore.get('theme') as
     | {
         name: string;
-        value: "light" | "dark" | "system";
+        value: 'light' | 'dark' | 'system';
       }
     | undefined;
 
-  const theme = cookieTheme?.value || "dark";
+  const theme = cookieTheme?.value || 'dark';
 
   return (
-    <html
-      lang="en"
-      className={`${theme} ${geistSans.variable} ${geistMono.variable}`}
-      style={{ colorScheme: theme }}
-    >
+    <html lang="en" suppressHydrationWarning>
       <head>
-      <meta
+        <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5"
         />
-         <title>
-          gluestack-ui v4 - React & React Native UI components library for Web & Mobile App
+        <title>
+          gluestack-ui v4 - React & React Native UI components library for Web &
+          Mobile App
         </title>
       </head>
-      <body
-        className={`${geistSans.className} flex-1`}
-      >
-        <ModeProvider defaultMode={theme}>
-          <Provider>
-            {children}
-          </Provider>
-        </ModeProvider>
+      <body className={`${geistSans.className} flex-1`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
