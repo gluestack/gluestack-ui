@@ -1,6 +1,4 @@
-import { Box } from '@/components/ui/box';
 import Header from '@/components/page-components/header';
-// import ResponsiveSidebar from '@/components/page-components/landing-page/ResponsiveSidebar';
 
 function WebsiteLayout({
   children,
@@ -17,14 +15,7 @@ function WebsiteLayout({
       }}
     >
       <Header />
-      <Box>{children}</Box>
-      {/* Responsive Sidebar */}
-      {/* {isOpenSidebar && (
-        <ResponsiveSidebar
-          isOpen={isOpenSidebar}
-          setIsOpenSidebar={setIsOpenSidebar}
-        />
-      )} */}
+      <div>{children}</div>
     </div>
   );
 }

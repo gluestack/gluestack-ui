@@ -1,12 +1,5 @@
 'use client';
-import { Badge, BadgeText } from '@/components/ui/badge';
-import { Box } from '@/components/ui/box';
-import { HStack } from '@/components/ui/hstack';
-import { ChevronDownIcon, ChevronUpIcon, Icon } from '@/components/ui/icon';
-import { Link } from '@/components/ui/link';
-import { Pressable } from '@/components/ui/pressable';
-import { Text } from '@/components/ui/text';
-import { VStack } from '@/components/ui/vstack';
+import { Badge } from '@/components/web/badge';
 import AppLaunchKitLogo from '@/public/logo/products/app-launch-kit/dark-mode.svg';
 import AppLaunchKitLogoDark from '@/public/logo/products/app-launch-kit/light-mode.svg';
 import StarterKitLogo from '@/public/logo/products/gluestack/logo-dark.svg';
@@ -14,6 +7,7 @@ import StarterKitLogoDark from '@/public/logo/products/gluestack/logo-light.svg'
 import RapidNativelogo from '@/public/logo/products/rapidnative/logo.png';
 import AppMarketLogo from '@/public/logo/products/theappmarket/appmarket-logo.svg';
 import { useMode } from '@/utils/theme-context';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -91,71 +85,57 @@ const ProductDropdown = () => {
       onMouseLeave={handleMouseLeave}
       className="relative"
     >
-      <Pressable
-        className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary-50/10 active:bg-primary-50/20 outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-        onPress={() => setDropdownOpen(!dropdownOpen)}
+      <button
+        className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary items-center"
+        onClick={() => setDropdownOpen(!dropdownOpen)}
       >
-        <Box className="rounded-full items-center justify-center flex-row">
-          <Text className="leading-normal font-normal text-sm text-typography-700">
-            Products
-          </Text>
-          {dropdownOpen ? (
-            <Icon
-              as={ChevronUpIcon}
-              className="ml-1  h-4 w-4  text-typography-700 pointer-events-none"
-            />
-          ) : (
-            <Icon
-              as={ChevronDownIcon}
-              className="ml-1  h-4 w-4  text-typography-700 pointer-events-none"
-            />
-          )}
-        </Box>
-      </Pressable>
+        <span className="leading-normal font-normal text-sm text-foreground/70">
+          Products
+        </span>
+        {dropdownOpen ? (
+          <ChevronUp className="ml-1 h-4 w-4 text-foreground/70 pointer-events-none" />
+        ) : (
+          <ChevronDown className="ml-1 h-4 w-4 text-foreground/70 pointer-events-none" />
+        )}
+      </button>
 
       {dropdownOpen && (
-        <Box className="absolute top-full left-0 min-w-[350px] ">
-          <Box className="mt-2.5 p-1 bg-background-0 shadow-hard-5 border border-outline-100 rounded-md max-h-[300px] overflow-x-scroll">
+        <div className="absolute top-full left-0 min-w-[350px]">
+          <div className="mt-2.5 p-1 bg-background shadow-lg border border-border rounded-md max-h-[300px] overflow-x-scroll">
             {ProductDropdownOptions.map((option) => (
-              <Pressable focusable={false} key={option.href}>
-                <Link
-                  className="p-3 rounded flex-row min-w-[200px] hover:bg-primary-50/10 gap-2"
-                  isExternal
-                  href={option.href}
-                >
-                  <HStack className="gap-3 justify-between w-full flex items-center">
-                    <Image
-                      alt="product logo"
-                      className="w-6 h-6 mt-1"
-                      src={
-                        colorMode === 'dark'
-                          ? option.logo.dark
-                          : option.logo.light
-                      }
-                    />
-                    <VStack>
-                      <Text className="leading-normal font-medium text-sm text-typography-700 mb-1">
-                        {option.title}
-                      </Text>
-                      <Text className="text-xs font-normal text-typography-500 leading-normal">
-                        {option.description}
-                      </Text>
-                    </VStack>
-                    <Badge
-                      className="h-fit w-fit"
-                      variant="solid"
-                      action={option.badge.action as any}
-                    >
-                      <BadgeText className="text-xs font-roboto">
-                        {option.badge.text}
-                      </BadgeText>
-                    </Badge>
-                  </HStack>
-                </Link>
-              </Pressable>
+              <a
+                key={option.href}
+                className="p-3 rounded flex flex-row min-w-[200px] hover:bg-primary/10 gap-2"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={option.href}
+              >
+                <div className="flex flex-row gap-3 justify-between w-full items-center">
+                  <Image
+                    alt="product logo"
+                    className="w-6 h-6 mt-1"
+                    src={
+                      colorMode === 'dark'
+                        ? option.logo.dark
+                        : option.logo.light
+                    }
+                  />
+                  <div className="flex flex-col flex-1">
+                    <span className="leading-normal font-medium text-sm text-foreground/70 mb-1">
+                      {option.title}
+                    </span>
+                    <span className="text-xs font-normal text-muted-foreground leading-normal">
+                      {option.description}
+                    </span>
+                  </div>
+                  <Badge className="h-fit w-fit text-xs" variant="secondary">
+                    {option.badge.text}
+                  </Badge>
+                </div>
+              </a>
             ))}
-          </Box>
-        </Box>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -1,45 +1,39 @@
-import { Box } from '@/components/ui/box';
-import { Button, ButtonText } from '@/components/ui/button';
-import { Heading } from '@/components/ui/heading';
-import { HStack } from '@/components/ui/hstack';
-import { Icon } from '@/components/ui/icon';
-import { Text } from '@/components/ui/text';
-import { VStack } from '@/components/ui/vstack';
-import { ArrowUpRight, Terminal } from 'lucide-react-native';
+import { Button } from '@/components/web/button';
+import { ArrowUpRight, Terminal } from 'lucide-react';
 import AwardBadge from '../AwardBadge';
 import CopySnippetButton from '../copy-snippet-button';
 
 const HeroSection = () => {
   return (
-    <Box className="w-full h-full">
-      <VStack className="md:w-1/2 md:pl-[120px] h-[calc(100vh-80px)] justify-center gap-5">
-        <Box className="">
+    <div className="w-full h-full">
+      <div className="flex flex-col md:w-1/2 md:pl-[120px] h-[calc(100vh-80px)] justify-center gap-5">
+        <div>
           <AwardBadge />
-        </Box>
-        <Box className="gap-3">
-          <Heading size="4xl" className="tracking-[0.2px] leading-[120%]">
+        </div>
+        <div className="flex flex-col gap-3">
+          <h1 className="text-4xl font-bold tracking-[0.2px] leading-[120%]">
             React & React Native UI Components & Patterns
-          </Heading>
-          <Text className="font-roboto text-sm">
+          </h1>
+          <p className="font-sans text-sm text-muted-foreground">
             Comprehensive React and React Native component library for building
             modern, high-performance web and mobile apps. Copy-paste UI
             components library & patterns crafted with Tailwind CSS (NativeWind)
-          </Text>
-        </Box>
-        <Box className="gap-4 flex flex-col lg:flex-row">
-          <Button className="rounded-full" size="xl">
-            <ButtonText size="md">Get Started</ButtonText>
-            <Icon as={ArrowUpRight} className="text-primary-0" />
+          </p>
+        </div>
+        <div className="gap-4 flex flex-col lg:flex-row">
+          <Button className="rounded-full h-14 px-8">
+            Get Started
+            <ArrowUpRight className="text-primary-foreground" />
           </Button>
-          <HStack className="gap-3 border border-outline-50 rounded-full items-center py-3 px-6">
-            <Icon as={Terminal} className="text-primary-100" />
-            <Text className="font-geist-mono">npm create gluestack@latest</Text>
+          <div className="flex flex-row gap-3 border border-border rounded-full items-center py-3 px-6">
+            <Terminal className="text-muted-foreground" />
+            <span className="font-mono">npm create gluestack@latest</span>
             <CopySnippetButton />
-          </HStack>
-        </Box>
-      </VStack>
-      <Box className="hidden md:block md:w-1/2"></Box>
-    </Box>
+          </div>
+        </div>
+      </div>
+      <div className="hidden md:block md:w-1/2"></div>
+    </div>
   );
 };
 

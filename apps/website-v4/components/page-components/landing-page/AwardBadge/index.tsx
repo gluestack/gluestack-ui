@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
-import { Box } from '@/components/ui/box';
-// import { ThemeContext } from '@/utils/context/theme-context';
+import React from 'react';
+
 const AwardBadge = () => {
-  // const { colorMode } = useContext(ThemeContext);
   return (
-    <Box className="pb-5">
+    <div className="pb-5">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="178"
@@ -311,7 +309,7 @@ const AwardBadge = () => {
           />
         </g>
       </svg>
-    </Box>
+    </div>
   );
 };
 
