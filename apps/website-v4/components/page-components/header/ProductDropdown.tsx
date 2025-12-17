@@ -19,7 +19,7 @@ const ProductDropdownOptions = [
       dark: StarterKitLogoDark,
     },
     title: 'gluestack-ui pro',
-    description: "The only React Native templateyou'll ever need.",
+    description: "The only React Native template you'll ever need.",
     badge: {
       text: 'PAID',
       action: 'info',

@@ -6,7 +6,7 @@ import CopySnippetButton from '../copy-snippet-button';
 const HeroSection = () => {
   return (
     <div className="w-full h-full">
-      <div className="flex flex-col md:w-1/2 md:pl-[120px] h-[calc(100vh-80px)] justify-center gap-5">
+      <div className="flex flex-col md:w-1/2 md:pl-[120px] h-[calc(100vh-80px-56px)] justify-center gap-5">
         <div>
           <AwardBadge />
         </div>

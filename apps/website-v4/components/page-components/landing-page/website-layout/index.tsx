@@ -1,4 +1,5 @@
 import Header from '@/components/page-components/header';
+import GluestackProBanner from '../gluestack-pro-banner';
 
 function WebsiteLayout({
   children,
@@ -14,8 +15,9 @@ function WebsiteLayout({
         minHeight: '-webkit-fill-available', // iOS Safari specific fix
       }}
     >
+      <GluestackProBanner />
       <Header />
-      <div>{children}</div>
+      <div className='px-8 md:px-0'>{children}</div>
     </div>
   );
 }

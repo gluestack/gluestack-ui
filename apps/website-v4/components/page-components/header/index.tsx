@@ -52,16 +52,17 @@ const Header = ({
   return (
     <div className="h-[80px] w-full sticky z-10 flex justify-center bg-white/80 dark:bg-background/80 backdrop-blur-md">
       {/* @ts-ignore */}
-      <Nav className="items-center max-w-[1760px] md:px-[120px] px-8 w-full mx-auto py-6">
+      <Nav className="items-center md:px-[120px] px-8 w-full mx-auto py-6">
         <div className="flex flex-row justify-between items-center w-full">
           <div className="flex flex-row gap-6 items-center">
-            <NextLink href="/" className="no-underline z-1 ml-2">
+            <NextLink href="/" className="no-underline z-1 ml-2 flex flex-row gap-1 items-center">
               <Image
                 alt="gluestack-ui logo"
                 className="h-[20px] w-auto"
                 src={logoSrc}
                 priority
               />
+              <span className='text-xs font-semibold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50'>preview</span>
             </NextLink>
             {/* Desktop: Show Docs and Demo buttons */}
             <div className="hidden md:flex items-center gap-1.5 lg:gap-6">
