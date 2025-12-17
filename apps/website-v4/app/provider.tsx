@@ -6,13 +6,13 @@ import { useMode } from "@/utils/theme-context";
 
 
 function ProviderWithTheme({ children }: { children: React.ReactNode }) {
-  const { colorMode } = useMode();
+  // const { colorMode } = useMode();
   return (
-    <GluestackUIProvider mode={colorMode}>
+    // <GluestackUIProvider mode={colorMode}>
       <div className="h-screen w-screen overflow-hidden overflow-y-scroll">
         {children}
       </div>
-    </GluestackUIProvider>
+    // </GluestackUIProvider>
   );
 }
 

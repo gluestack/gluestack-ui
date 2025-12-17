@@ -1,17 +1,18 @@
 import { Box } from '@/components/ui/box';
-import { VStack } from '@/components/ui/vstack';
-import AwardBadge from '../AwardBadge';
-import { Heading } from '@/components/ui/heading';
-import { Text } from '@/components/ui/text';
-import { HStack } from '@/components/ui/hstack';
 import { Button, ButtonText } from '@/components/ui/button';
+import { Heading } from '@/components/ui/heading';
+import { HStack } from '@/components/ui/hstack';
+import { Icon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
 import { ArrowUpRight, Terminal } from 'lucide-react-native';
-import { CopyIcon, Icon } from '@/components/ui/icon';
+import AwardBadge from '../AwardBadge';
+import CopySnippetButton from '../copy-snippet-button';
 
 const HeroSection = () => {
   return (
     <Box className="w-full h-full">
-      <VStack className="md:w-1/2 md:pl-[120px] justify-center gap-5">
+      <VStack className="md:w-1/2 md:pl-[120px] h-[calc(100vh-80px)] justify-center gap-5">
         <Box className="">
           <AwardBadge />
         </Box>
@@ -25,17 +26,17 @@ const HeroSection = () => {
             components library & patterns crafted with Tailwind CSS (NativeWind)
           </Text>
         </Box>
-        <HStack className="gap-3">
+        <Box className="gap-4 flex flex-col lg:flex-row">
           <Button className="rounded-full" size="xl">
             <ButtonText size="md">Get Started</ButtonText>
             <Icon as={ArrowUpRight} className="text-primary-0" />
           </Button>
-          <HStack className="gap-2 border border-outline-50 rounded-full items-center py-3 px-6">
+          <HStack className="gap-3 border border-outline-50 rounded-full items-center py-3 px-6">
             <Icon as={Terminal} className="text-primary-100" />
             <Text className="font-geist-mono">npm create gluestack@latest</Text>
-            <Icon as={CopyIcon} className='text-primary-100'/>
+            <CopySnippetButton />
           </HStack>
-        </HStack>
+        </Box>
       </VStack>
       <Box className="hidden md:block md:w-1/2"></Box>
     </Box>
