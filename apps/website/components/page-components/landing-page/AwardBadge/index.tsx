@@ -1,5 +1,5 @@
-'use client';
-import React from 'react';
+
+
 import { Box } from '@/components/ui/box';
 
 const AwardBadge = () => {
