@@ -26,7 +26,6 @@ import RapidNativelogo from '@/public/icon/logo/rapidnative/logo.png';
 import { useColorMode } from '@/app/provider';
 import NextLink from 'next/link';
 import { Nav } from '@expo/html-elements';
-import { ThemeContext } from '@/utils/context/theme-context';
 import { usePathname } from 'next/navigation';
 import { UiDocSearch } from './Docsearch';
 import { LayoutContext } from '@/components/custom/layout/LayoutContext';
