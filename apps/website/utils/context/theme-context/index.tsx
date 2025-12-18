@@ -12,8 +12,7 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType>({
   colorMode: 'dark',
   setColorMode: () => {},
-
-
+ 
 });
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
@@ -29,12 +28,12 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       | 'light'
       | 'dark'
       | 'system';
-
+   
 
     if (savedColorMode) {
       setColorMode(savedColorMode);
     }
-
+  
     setMounted(true);
   }, []);
 
@@ -44,8 +43,6 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       localStorage.setItem('colorMode', mode);
     }
   };
-
-
 
   // Prevent flash of wrong theme
   if (!mounted) {
@@ -57,7 +54,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         colorMode,
         setColorMode: handleColorModeChange,
-       
+     
       }}
     >
       {children}
