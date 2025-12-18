@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createAlertDialog } from '@gluestack-ui/core/alert-dialog/creator';
+import { createAlertDialog, AlertDialogContext } from '@gluestack-ui/core/alert-dialog/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
@@ -10,19 +10,25 @@ import {
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-import { View, Pressable, ScrollView, ViewStyle } from 'react-native';
+import { View, Pressable, ScrollView } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withSpring,
+} from 'react-native-reanimated';
 
 const SCOPE = 'ALERT_DIALOG';
 
 const RootComponent = withStyleContext(View, SCOPE);
 
-
+cssInterop(Animated.View, { className: 'style' });
 
 
 const UIAccessibleAlertDialog = createAlertDialog({
   Root: RootComponent,
   Body: ScrollView,
-  Content: View,
+  Content: Animated.View,
   CloseButton: Pressable,
   Header: View,
   Footer: View,
@@ -128,12 +134,43 @@ const AlertDialogContent = React.forwardRef<
   IAlertDialogContentProps
 >(function AlertDialogContent({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
+  const { visible } = React.useContext(AlertDialogContext);
+  
+  const scale = useSharedValue(0.9);
+  const opacity = useSharedValue(0);
+
+  React.useEffect(() => {
+    if (visible) {
+      scale.value = withSpring(1, {
+        damping: 18,
+        stiffness: 250,
+      });
+      opacity.value = withTiming(1, {
+        duration: 200,
+      });
+    } else {
+      scale.value = withSpring(0.9, {
+        damping: 18,
+        stiffness: 250,
+      });
+      opacity.value = withTiming(0, {
+        duration: 200,
+      });
+    }
+  }, [visible, scale, opacity]);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: scale.value }],
+      opacity: opacity.value,
+    };
+  }, [scale, opacity]);
 
   return (
     <UIAccessibleAlertDialog.Content
+      style={animatedStyle}
       pointerEvents="auto"
       ref={ref}
- 
       {...props}
       className={alertDialogContentStyle({
         parentVariants: {
