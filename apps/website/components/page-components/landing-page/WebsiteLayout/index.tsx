@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { Box } from '@/components/ui/box';
 import Header from '@/components/page-components/header';

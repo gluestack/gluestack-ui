@@ -1,5 +1,3 @@
-'use client';
-
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
@@ -7,7 +5,6 @@ import { Heading } from '@/components/ui/heading';
 import { HStack } from '@/components/ui/hstack';
 import { Icon, ArrowRightIcon } from '@/components/ui/icon';
 import { Divider } from '@/components/ui/divider';
-import { Fab, FabIcon } from '@/components/ui/fab';
 
 import MeetCreators from './MeetCreators';
 import { Newsletter } from './Newsletter';
@@ -23,17 +20,15 @@ import { developersData } from './Newsletter/data';
 import AwardBadge from './AwardBadge';
 import NextLink from 'next/link';
 import { SocialMediaGridTestimonial } from './Testimonials';
-import { Moon, Sun } from 'lucide-react-native';
 import WebsiteLayout from './WebsiteLayout';
-import useErrorShortcut from './SentryTestComponent';
 import AnimatedStars from '@/components/page-components/landing-page/AnimatedGithubCount';
 import Kitchensink from './Kitchensink';
 import VadimStream from './VadimStream';
-import { ThemeContext } from '@/utils/context/theme-context';
-import { useContext } from 'react';
 import MCPServer from './MCPServer';
 import HireTeam from './HireTeam';
 import Link from 'next/link';
+import ClientWrapper from './ClientWrapper';
+import ThemeToggleFab from './ThemeToggleFab';
 
 const RapidNativeBanner = () => {
   return (
@@ -56,11 +51,8 @@ const RapidNativeBanner = () => {
 };
 
 const App = ({ referrer }: { referrer: string }) => {
-  const { colorMode, setColorMode } = useContext(ThemeContext);
-  useErrorShortcut();
-
   return (
-    <>
+    <ClientWrapper>
       <WebsiteLayout>
         <Box className="items-center justify-center">
           <VStack className="w-[85%] max-w-[1440px] justify-center self-center">
@@ -162,21 +154,9 @@ const App = ({ referrer }: { referrer: string }) => {
 
         <Footer />
         <BadgeComponent />
-        <Box className="fixed bottom-0 right-0 min-[992px]:hidden ">
-          <Fab
-            onPress={() =>
-              setColorMode(colorMode === 'light' ? 'dark' : 'light')
-            }
-            className="absolute z-10 bottom-8 right-4"
-          >
-            <FabIcon
-              as={colorMode === 'light' ? Moon : Sun}
-              className="stroke-typography-200"
-            />
-          </Fab>
-        </Box>
+        <ThemeToggleFab />
       </WebsiteLayout>
-    </>
+    </ClientWrapper>
   );
 };
 export default App;

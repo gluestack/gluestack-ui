@@ -1,3 +1,4 @@
+'use client';
 import { CodeBlock } from '@/components/custom/markdown/code-block';
 import { Box } from '@/components/ui/box';
 import { Pressable } from '@/components/ui/pressable';
