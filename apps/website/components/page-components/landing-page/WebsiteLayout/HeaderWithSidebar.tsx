@@ -17,7 +17,7 @@ import {
   SidebarItemProps,
   SidebarSectionProps,
 } from '@/components/page-components/landing-page/ResponsiveSidebar/sidebar-header-items';
-import { ThemeContext } from '@/utils/context/theme-context';
+import { useColorMode } from '@/app/provider';
 
 const SidebarItem = ({
   title,
@@ -27,7 +27,7 @@ const SidebarItem = ({
   badge,
   onItemClick,
 }: SidebarItemProps & { onItemClick: () => void }) => {
-  const { colorMode } = useContext(ThemeContext);
+  const { colorMode } = useColorMode();
   return (
     <Link href={link} onClick={onItemClick}>
       <HStack className="hover:bg-background-100 px-3.5 py-2 gap-2 items-center">
@@ -90,7 +90,7 @@ export default function HeaderWithSidebar() {
       {/* Responsive Sidebar with Drawer */}
       <Drawer
         isOpen={isOpenSidebar}
-        size="sm"
+        size="full"
         anchor="left"
         onClose={() => {
           setIsOpenSidebar(false);
