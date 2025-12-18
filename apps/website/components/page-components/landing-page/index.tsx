@@ -27,8 +27,8 @@ import VadimStream from './VadimStream';
 import MCPServer from './MCPServer';
 import HireTeam from './HireTeam';
 import Link from 'next/link';
-import ClientWrapper from './ClientWrapper';
 import ThemeToggleFab from './ThemeToggleFab';
+import SentryErrorHandler from './SentryErrorHandler';
 
 const RapidNativeBanner = () => {
   return (
@@ -52,7 +52,8 @@ const RapidNativeBanner = () => {
 
 const App = ({ referrer }: { referrer: string }) => {
   return (
-    <ClientWrapper>
+    <>
+      <SentryErrorHandler />
       <WebsiteLayout>
         <Box className="items-center justify-center">
           <VStack className="w-[85%] max-w-[1440px] justify-center self-center">
@@ -156,7 +157,7 @@ const App = ({ referrer }: { referrer: string }) => {
         <BadgeComponent />
         <ThemeToggleFab />
       </WebsiteLayout>
-    </ClientWrapper>
+    </>
   );
 };
 export default App;

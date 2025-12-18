@@ -6,3 +6,4 @@ export default function SentryErrorHandler() {
   useErrorShortcut();
   return null;
 }
+
