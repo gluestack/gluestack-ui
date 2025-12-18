@@ -186,15 +186,13 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           </Fab>
         </Box>
         {/* Conditional Sidebar Rendering */}
-        {isOpenSidebar && isDocsRoute && (
+        {isDocsRoute ? (
           <DocsSidebar
             isOpen={isOpenSidebar}
             setIsOpenSidebar={setIsOpenSidebar}
           />
-        )}
-        
-        {/* Responsive Sidebar with Drawer for non-docs routes */}
-        {!isDocsRoute && (
+        ) : (
+          /* Responsive Sidebar with Drawer for non-docs routes */
           <Drawer
             isOpen={isOpenSidebar}
             size="sm"

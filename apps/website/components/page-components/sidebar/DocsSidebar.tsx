@@ -8,6 +8,12 @@ import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 import { Box } from '@/components/ui/box';
 import { ToggleColorModeButton } from '@/components/custom/color-mode-toggle-button';
+import {
+  Drawer,
+  DrawerBackdrop,
+  DrawerContent,
+  DrawerBody,
+} from '@/components/ui/drawer';
 
 interface NavigationItem {
   type?: string;
@@ -149,13 +155,6 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
   const [selectedSection, setSelectedSection] = useState<string>('Home');
   const pathname = usePathname();
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, []);
-
   // Find the parent section that contains the current pathname
   useEffect(() => {
     const findParentSection = (
@@ -183,56 +182,66 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
     setSelectedSection(section.title);
   };
 
-  if (!isOpen) return null;
-
   const selectedSectionData = navigation.sections.find(
     (section) => section.title === selectedSection
   );
 
   return (
-    <Box className="w-full dark:bg-black bg-white lg:hidden z-0 overflow-y-auto fixed h-[calc(100vh-56px)] top-0 pt-16 left-0 scrollbar-hide">
-      {/* Fixed navigation at top */}
-      <div className="border-b border-outline-100 p-2">
-        {navigation.sections.map((section, index) => (
-          <div
-            key={index}
-            className={`flex items-center gap-2 px-4 py-2 my-1 cursor-pointer rounded-md ${
-              selectedSection === section.title
-                ? 'bg-background-50 text-typography-950'
-                : 'text-typography-800 hover:bg-background-100 hover:text-typography-900'
-            }`}
-            onClick={() => handleSectionClick(section)}
-          >
-            {section.icons && (
-              <Icon
-                as={
-                  require('lucide-react-native')[
-                    section.icons.name ?? 'CircleHelp'
-                  ]
-                }
-                className="w-5 h-5"
-              />
-            )}
-            <Text className="font-medium">{section.title}</Text>
+    <Drawer
+      isOpen={isOpen}
+      size="sm"
+      anchor="left"
+      onClose={() => {
+        setIsOpenSidebar(false);
+      }}
+    >
+      <DrawerBackdrop />
+      <DrawerContent className="lg:hidden">
+        <DrawerBody className="p-0 relative">
+          {/* Fixed navigation at top */}
+          <div className="border-b border-outline-100 p-2">
+            {navigation.sections.map((section, index) => (
+              <div
+                key={index}
+                className={`flex items-center gap-2 px-4 py-2 my-1 cursor-pointer rounded-md ${
+                  selectedSection === section.title
+                    ? 'bg-background-50 text-typography-950'
+                    : 'text-typography-800 hover:bg-background-100 hover:text-typography-900'
+                }`}
+                onClick={() => handleSectionClick(section)}
+              >
+                {section.icons && (
+                  <Icon
+                    as={
+                      require('lucide-react-native')[
+                        section.icons.name ?? 'CircleHelp'
+                      ]
+                    }
+                    className="w-5 h-5"
+                  />
+                )}
+                <Text className="font-medium">{section.title}</Text>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {/* Selected section content */}
-      {selectedSectionData && (
-        <div className="p-2">
-          <ResponsiveSidebarSection
-            section={selectedSectionData}
-            onItemClick={() => setIsOpenSidebar(false)}
-          />
-        </div>
-      )}
-      {/* color mode toggle button start */}
-      <div className="absolute bottom-0 right-0 p-4">
-        <ToggleColorModeButton />
-      </div>
-      {/* color mode toggle button end */}
-    </Box>
+          {/* Selected section content */}
+          {selectedSectionData && (
+            <div className="p-2">
+              <ResponsiveSidebarSection
+                section={selectedSectionData}
+                onItemClick={() => setIsOpenSidebar(false)}
+              />
+            </div>
+          )}
+          {/* color mode toggle button start */}
+          <div className="absolute bottom-0 right-0 p-4">
+            <ToggleColorModeButton />
+          </div>
+          {/* color mode toggle button end */}
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
   );
 };
 export default DocsSidebar;
