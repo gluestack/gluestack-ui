@@ -189,7 +189,7 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
   return (
     <Drawer
       isOpen={isOpen}
-      size="sm"
+      size="full"
       anchor="left"
       onClose={() => {
         setIsOpenSidebar(false);
