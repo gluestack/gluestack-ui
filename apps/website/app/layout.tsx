@@ -2,8 +2,8 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import './globals.css';
 import CanonicalLink from '@/components/custom/canonical/CanonicalLink';
-import Provider from './provider';
-import { TempProvider } from './TempProvider';
+
+import { Provider } from './provider';
 
 export default function RootLayout({
   children,
@@ -37,7 +37,7 @@ export default function RootLayout({
         />
       </head>
       <body className={GeistSans.className}>
-        <TempProvider>{children}</TempProvider>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

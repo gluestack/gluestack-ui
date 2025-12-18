@@ -23,7 +23,7 @@ import StarterKitLogo from '@/public/icon/logo/gluestack/logo-dark.svg';
 import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
 import AppMarketLogo from '@/public/icon/logo/theappmarket/appmarket-logo.svg';
 import RapidNativelogo from '@/public/icon/logo/rapidnative/logo.png';
-import { useColorMode } from '@/app/TempProvider';
+import { useColorMode } from '@/app/provider';
 import NextLink from 'next/link';
 import { Nav } from '@expo/html-elements';
 import { ThemeContext } from '@/utils/context/theme-context';
