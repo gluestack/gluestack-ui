@@ -1,4 +1,3 @@
-'use client';
 // @ts-nocheck
 
 import { Box } from '@/components/ui/box';
@@ -10,10 +9,8 @@ import { VStack } from '@/components/ui/vstack';
 import { Image } from '@/components/ui/image';
 import { Heading } from '@/components/ui/heading';
 import { ArrowRightIcon } from '@/components/ui/icon';
-import { useContext } from 'react';
 
 function MeetCreators({ geekyantsLink }: { geekyantsLink: string }) {
-  // const { colorMode } = useMode();
   return (
     <Box className="mt-[120px] gap-12">
       <VStack className="lg:max-w-[768px]">
@@ -31,7 +28,6 @@ function MeetCreators({ geekyantsLink }: { geekyantsLink: string }) {
               GeɘkyAnts
             </Text>
           </HStack>
-          {/* <HStack className="justify-center items-center gap-1"></HStack> */}
         </Box>
 
         <Text className="text-lg font-bold leading-[30px] text-typography-700">
@@ -39,7 +35,7 @@ function MeetCreators({ geekyantsLink }: { geekyantsLink: string }) {
         </Text>
         <Text className="text-lg font-normal leading-[30px] mt-3 text-typography-700">
           GeekyAnts is a team of React Native experts who love open-source and
-          solving developer problems. We’ve been working on React Native since
+          solving developer problems. We've been working on React Native since
           2015 and have designed and built{' '}
           <a
             href="https://theappmarket.io/"
