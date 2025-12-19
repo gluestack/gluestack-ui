@@ -1,14 +1,12 @@
 // @ts-nocheck
 
 import { Box } from '@/components/ui/box';
-import { Button, ButtonIcon, ButtonText } from '@/components/ui/button';
 import { HStack } from '@/components/ui/hstack';
-import { Link } from '@/components/ui/link';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { Image } from '@/components/ui/image';
 import { Heading } from '@/components/ui/heading';
-import { ArrowRightIcon } from '@/components/ui/icon';
+import MeetCreatorsButton from './MeetCreatorsButton';
 
 function MeetCreators({ geekyantsLink }: { geekyantsLink: string }) {
   return (
@@ -48,20 +46,7 @@ function MeetCreators({ geekyantsLink }: { geekyantsLink: string }) {
         </Text>
       </VStack>
 
-      <HStack>
-        <Link
-          className="rounded-full focus-visible:outline-0 focus-visible:bg-secondary-50/20"
-          href={geekyantsLink}
-          isExternal
-        >
-          <Button size="sm" focusable={false}>
-            <ButtonText className="mr-1 no-underline">
-              Visit GeekyAnts
-            </ButtonText>
-            <ButtonIcon className="w-4 h-4" as={ArrowRightIcon} />
-          </Button>
-        </Link>
-      </HStack>
+      <MeetCreatorsButton geekyantsLink={geekyantsLink} />
     </Box>
   );
 }
