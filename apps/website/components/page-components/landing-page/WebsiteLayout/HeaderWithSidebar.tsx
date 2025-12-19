@@ -2,11 +2,13 @@
 import React, { useState, useContext } from 'react';
 import { Box } from '@/components/ui/box';
 import Header from '@/components/page-components/header';
+import { Icon, CloseIcon } from '@/components/ui/icon';
 import {
   Drawer,
   DrawerBackdrop,
   DrawerContent,
   DrawerBody,
+  DrawerCloseButton,
 } from '@/components/ui/drawer';
 import { VStack } from '@/components/ui/vstack';
 import { HStack } from '@/components/ui/hstack';
@@ -98,6 +100,9 @@ export default function HeaderWithSidebar() {
       >
         <DrawerBackdrop />
         <DrawerContent className="lg:hidden">
+          <DrawerCloseButton>
+            <Icon as={CloseIcon} />
+          </DrawerCloseButton>
           <DrawerBody className="pt-4">
             <VStack className="gap-2 px-4 min-h-fit pb-20">
               <SidebarWithHeaders onItemClick={() => setIsOpenSidebar(false)} />

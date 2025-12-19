@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import sidebarData from '@/sidebar.json';
-import { Icon } from '@/components/ui/icon';
+import { Icon, CloseIcon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
 import { Box } from '@/components/ui/box';
 import { ToggleColorModeButton } from '@/components/custom/color-mode-toggle-button';
@@ -13,6 +13,7 @@ import {
   DrawerBackdrop,
   DrawerContent,
   DrawerBody,
+  DrawerCloseButton,
 } from '@/components/ui/drawer';
 
 interface NavigationItem {
@@ -197,6 +198,9 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
     >
       <DrawerBackdrop />
       <DrawerContent className="lg:hidden">
+        <DrawerCloseButton>
+          <Icon as={CloseIcon} />
+        </DrawerCloseButton>
         <DrawerBody className="p-0 relative">
           {/* Fixed navigation at top */}
           <div className="border-b border-outline-100 p-2">
