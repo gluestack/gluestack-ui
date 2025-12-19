@@ -46,16 +46,7 @@ export function Provider({ children }: { children: ReactNode }) {
 
   // Prevent flash of wrong theme - render with default light mode
   if (!mounted) {
-    return (
-      <ColorModeContext.Provider
-        value={{
-          colorMode: 'light',
-          setColorMode: handleColorModeChange,
-        }}
-      >
-        <GluestackUIProvider mode="light">{children}</GluestackUIProvider>
-      </ColorModeContext.Provider>
-    );
+    return null
   }
 
   return (
