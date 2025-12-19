@@ -4,10 +4,10 @@ import { Box } from '@/components/ui/box';
 import { Fab, FabIcon } from '@/components/ui/fab';
 import { Moon, Sun } from 'lucide-react-native';
 import { ThemeContext } from '@/utils/context/theme-context';
-import { useContext } from 'react';
+import { useColorMode } from '@/app/provider';
 
 export default function ThemeToggleFab() {
-  const { colorMode, setColorMode } = useContext(ThemeContext);
+  const { colorMode, setColorMode } = useColorMode();
 
   return (
     <Box className="fixed bottom-0 right-0 min-[992px]:hidden ">
