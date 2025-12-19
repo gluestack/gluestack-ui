@@ -1,3 +1,4 @@
+'use client';
 // @ts-nocheck
 
 import { Box } from '@/components/ui/box';

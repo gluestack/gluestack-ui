@@ -1,20 +1,71 @@
 'use client';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-import StyledJsxRegistry from './registry';
-import { ThemeContext, ThemeProvider } from '@/utils/context/theme-context';
-import { useContext } from 'react';
+import {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  ReactNode,
+} from 'react';
 
-function ProviderWithTheme({ children }: { children: React.ReactNode }) {
-  const { colorMode } = useContext(ThemeContext);
-  return <GluestackUIProvider mode={colorMode}>{children}</GluestackUIProvider>;
-}
+type ColorModeType = 'light' | 'dark' | 'system';
 
-export default function Provider({ children }: { children: React.ReactNode }) {
+type ColorModeContextType = {
+  colorMode: ColorModeType;
+  setColorMode: (mode: ColorModeType) => void;
+};
+
+const ColorModeContext = createContext<ColorModeContextType>({
+  colorMode: 'light',
+  setColorMode: () => {},
+});
+
+export const useColorMode = () => useContext(ColorModeContext);
+
+export function Provider({ children }: { children: ReactNode }) {
+  const [colorMode, setColorMode] = useState<ColorModeType>('light');
+  const [mounted, setMounted] = useState(false);
+
+  // Load theme from localStorage after mount
+  useEffect(() => {
+    const savedColorMode = localStorage.getItem('colorMode') as ColorModeType;
+
+    if (savedColorMode) {
+      setColorMode(savedColorMode);
+    }
+
+    setMounted(true);
+  }, []);
+
+  const handleColorModeChange = (mode: ColorModeType) => {
+    setColorMode(mode);
+    if (mounted) {
+      localStorage.setItem('colorMode', mode);
+    }
+  };
+
+  // Prevent flash of wrong theme - render with default light mode
+  if (!mounted) {
+    return (
+      <ColorModeContext.Provider
+        value={{
+          colorMode: 'light',
+          setColorMode: handleColorModeChange,
+        }}
+      >
+        <GluestackUIProvider mode="light">{children}</GluestackUIProvider>
+      </ColorModeContext.Provider>
+    );
+  }
+
   return (
-    <ThemeProvider>
-      <StyledJsxRegistry>
-        <ProviderWithTheme>{children}</ProviderWithTheme>
-      </StyledJsxRegistry>
-    </ThemeProvider>
+    <ColorModeContext.Provider
+      value={{
+        colorMode,
+        setColorMode: handleColorModeChange,
+      }}
+    >
+      <GluestackUIProvider mode={colorMode}>{children}</GluestackUIProvider>
+    </ColorModeContext.Provider>
   );
 }

@@ -1,3 +1,4 @@
+'use client';
 import React, { useMemo, useEffect, useContext } from 'react';
 import { Box } from '@/components/ui/box';
 import { VStack } from '@/components/ui/vstack';

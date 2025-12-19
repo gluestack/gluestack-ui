@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';

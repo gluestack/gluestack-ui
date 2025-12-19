@@ -23,10 +23,9 @@ import StarterKitLogo from '@/public/icon/logo/gluestack/logo-dark.svg';
 import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
 import AppMarketLogo from '@/public/icon/logo/theappmarket/appmarket-logo.svg';
 import RapidNativelogo from '@/public/icon/logo/rapidnative/logo.png';
-
+import { useColorMode } from '@/app/provider';
 import NextLink from 'next/link';
 import { Nav } from '@expo/html-elements';
-import { ThemeContext } from '@/utils/context/theme-context';
 import { usePathname } from 'next/navigation';
 import { UiDocSearch } from './Docsearch';
 import { LayoutContext } from '@/components/custom/layout/LayoutContext';
@@ -44,7 +43,7 @@ const Header = ({
   const isOpenSidebar = propsIsOpenSidebar ?? context.isOpenSidebar;
   const setIsOpenSidebar = propsSetIsOpenSidebar ?? context.setIsOpenSidebar;
 
-  const { colorMode, setColorMode }: any = useContext(ThemeContext);
+  const { colorMode, setColorMode }: any = useColorMode();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname();
 

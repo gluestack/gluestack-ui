@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Box } from '@/components/ui/box';
 import { HStack } from '@/components/ui/hstack';
