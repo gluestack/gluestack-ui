@@ -1,12 +1,6 @@
 'use client';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-import {
-  createContext,
-  useState,
-  useEffect,
-  useContext,
-  ReactNode,
-} from 'react';
+import { createContext, useState, useContext, ReactNode } from 'react';
 
 type ColorModeType = 'light' | 'dark' | 'system';
 
@@ -22,41 +16,31 @@ const ColorModeContext = createContext<ColorModeContextType>({
 
 export const useColorMode = () => useContext(ColorModeContext);
 
-export function Provider({ children }: { children: ReactNode }) {
-  const [colorMode, setColorMode] = useState<ColorModeType>('light');
-  const [mounted, setMounted] = useState(false);
+export function Provider({
+  children,
+  initialColorMode = 'light',
+}: {
+  children: ReactNode;
+  initialColorMode?: ColorModeType;
+}) {
+  const [colorMode, setColorMode] = useState<ColorModeType>(initialColorMode);
 
-  // Load theme from localStorage after mount
-  useEffect(() => {
-    const savedColorMode = localStorage.getItem('colorMode') as ColorModeType;
-
-    if (savedColorMode) {
-      setColorMode(savedColorMode);
-    }
-
-    setMounted(true);
-  }, []);
-
-  const handleColorModeChange = (mode: ColorModeType) => {
+  const handleColorModeChange = async (mode: ColorModeType) => {
     setColorMode(mode);
-    if (mounted) {
-      localStorage.setItem('colorMode', mode);
+
+    // Update cookie via API route
+    try {
+      await fetch('/api/theme', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ colorMode: mode }),
+      });
+    } catch (error) {
+      console.error('Failed to update theme cookie:', error);
     }
   };
-
-  // Prevent flash of wrong theme - render with default light mode
-  if (!mounted) {
-    return (
-      <ColorModeContext.Provider
-        value={{
-          colorMode: 'light',
-          setColorMode: handleColorModeChange,
-        }}
-      >
-        <GluestackUIProvider mode="light">{children}</GluestackUIProvider>
-      </ColorModeContext.Provider>
-    );
-  }
 
   return (
     <ColorModeContext.Provider
