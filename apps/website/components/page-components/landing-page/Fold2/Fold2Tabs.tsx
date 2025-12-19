@@ -10,7 +10,7 @@ import React, { useContext } from 'react';
 import FormsContent from './Forms';
 import NavigationContent from './Navigation';
 import CardsContent from './Cards';
-import { ThemeContext } from '@/utils/context/theme-context';
+import { useColorMode } from '@/app/provider';
 
 type IActiveTab = 'Forms' | 'Navigation' | 'Cards';
 
@@ -95,7 +95,7 @@ const HoriZontalTabNavigation = ({
 };
 
 export default function Fold2Tabs() {
-  const { colorMode } = useContext(ThemeContext);
+  const { colorMode } = useColorMode();
   const [activeTab, setActiveTab] = React.useState<IActiveTab>('Forms');
   const handleClick = (buttonName: IActiveTab) => {
     setActiveTab(buttonName);
