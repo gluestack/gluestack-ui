@@ -8,12 +8,7 @@ import {
   Dimensions,
   ViewStyle,
 } from 'react-native';
-import {
-  Motion,
-  AnimatePresence,
-  createMotionAnimatedComponent,
-  MotionComponentProps,
-} from '@legendapp/motion';
+
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
@@ -22,12 +17,6 @@ import {
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
-  MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
-
-const AnimatedPressable = createMotionAnimatedComponent(
-  Pressable
-) as React.ComponentType<IAnimatedPressableProps>;
 
 const SCOPE = 'MODAL';
 const screenWidth = Dimensions.get('window').width;
@@ -39,24 +28,18 @@ const sizes: { [key: string]: number } = {
   full: 1,
 };
 
-type IMotionViewProps = React.ComponentProps<typeof View> &
-  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
 
-const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
 
 const UIDrawer = createDrawer({
   Root: withStyleContext(View, SCOPE),
-  Backdrop: AnimatedPressable,
-  Content: MotionView,
+  Backdrop: Pressable,
+  Content: View,
   Body: ScrollView,
   CloseButton: Pressable,
   Footer: View,
   Header: View,
-  AnimatePresence: AnimatePresence,
 });
 
-cssInterop(AnimatedPressable, { className: 'style' });
-cssInterop(MotionView, { className: 'style' });
 
 const drawerStyle = tva({
   base: 'w-full h-full web:pointer-events-none relative',
@@ -201,19 +184,7 @@ const DrawerBackdrop = React.forwardRef<
   return (
     <UIDrawer.Backdrop
       ref={ref}
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      exit={{
-        opacity: 0,
-      }}
-      transition={{
-        type: 'timing',
-        duration: 200,
-      }}
+    
       {...props}
       className={drawerBackdropStyle({
         class: className,
@@ -250,22 +221,15 @@ const DrawerContent = React.forwardRef<
   return (
     <UIDrawer.Content
       ref={ref}
-      initial={initialObj}
-      animate={animateObj}
-      exit={exitObj}
-      transition={{
-        type: 'spring',
-        damping: 25,
-        stiffness: 250,
-      }}
-      {...props}
-      className={drawerContentStyle({
-        parentVariants: {
-          size: parentSize,
-          anchor: parentAnchor,
-        },
-        class: `${className} ${customClass}`,
-      })}
+
+        {...props}
+        className={drawerContentStyle({
+          parentVariants: {
+            size: parentSize,
+            anchor: parentAnchor,
+          },
+          class: `${className} ${customClass}`,
+        })}
       pointerEvents="auto"
     />
   );
