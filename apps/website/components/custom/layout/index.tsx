@@ -29,7 +29,7 @@ import { LayoutContext } from './LayoutContext';
 import { Box } from '@/components/ui/box';
 import { Fab, FabIcon } from '@/components/ui/fab';
 import { MoonIcon, SunIcon } from '@/components/ui/icon';
-import { ThemeContext } from '@/utils/context/theme-context';
+import { useColorMode } from '@/app/provider';
 import { TOC } from '../toc';
 
 const SidebarItem = ({
@@ -40,7 +40,7 @@ const SidebarItem = ({
   badge,
   onItemClick,
 }: SidebarItemProps & { onItemClick: () => void }) => {
-  const { colorMode } = useContext(ThemeContext);
+  const { colorMode } = useColorMode();
   return (
     <Link href={link} onClick={onItemClick}>
       <HStack className="hover:bg-background-100 px-3.5 py-2 gap-2 items-center">
@@ -91,7 +91,7 @@ const SidebarWithHeaders = ({ onItemClick }: { onItemClick: () => void }) => {
 };
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
-  const { colorMode, setColorMode } = useContext(ThemeContext);
+  const { colorMode, setColorMode } = useColorMode();
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
   const docsLayoutRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();

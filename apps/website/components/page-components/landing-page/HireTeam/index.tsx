@@ -1,9 +1,8 @@
-'use client';
 import Image from 'next/image';
 import GeekyantsLogo from '@/public/svg/geekyants-logo.svg';
-import { Button, ButtonText } from '@/components/ui/button';
+import HireTeamButton from './HireTeamButton';
 
-const index = () => {
+const HireTeam = () => {
   return (
     <section className="mt-[120px] bg-gradient-to-r from-[#000000] to-[#161616] py-16 px-8  rounded-xl shadow-2xl">
       <div className="text-left">
@@ -30,22 +29,10 @@ const index = () => {
         </p>
 
         {/* Call-to-Action Button */}
-        <Button
-          className="bg-white data-[hover=true]:bg-white/80 border border-gray-200 px-8 py-3 rounded-full text-base font-medium transition-colors duration-200"
-          onPress={() => {
-            window.open(
-              'https://geekyants.com/hire?utm_source=gluestack.io&utm_medium=referral&utm_campaign=cross-partnership',
-              '_blank'
-            );
-          }}
-        >
-          <ButtonText className="text-black data-[hover=true]:text-black">
-            Book a Discovery Call
-          </ButtonText>
-        </Button>
+        <HireTeamButton />
       </div>
     </section>
   );
 };
 
-export default index;
+export default HireTeam;
