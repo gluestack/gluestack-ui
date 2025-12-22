@@ -34,30 +34,37 @@ const RootComponent = withStyleContext(View, SCOPE);
 
 const AnimatedBackdrop = React.forwardRef<
   React.ComponentRef<typeof Animated.View>,
-  React.ComponentProps<typeof Pressable> & { className?: string }
+  React.ComponentProps<typeof Animated.View> & { className?: string }
 >(function AnimatedBackdrop({ className, style, children, ...props }, ref) {
   const { visible } = useContext(AlertDialogContext);
   const opacity = useSharedValue(0);
+  const scale = useSharedValue(0.2);
 
   useEffect(() => {
-    opacity.value = withTiming(visible ? 1 : 0, { duration: 1500 });
-  }, [visible, opacity]);
+    if (visible) {
+      opacity.value = withTiming(1, { duration: 150 });
+      scale.value = withTiming(1, { duration: 150 });
+    }
+  }, [visible]);
   const animatedStyle = useAnimatedStyle(() => {
     return {
       opacity: opacity.value,
+      transform: [{ scale: scale.value }],
     };
-  }, [opacity]);
+  }, [opacity, scale]);
   return (
     <Animated.View
       ref={ref}
-      style={
-        [animatedStyle, style, StyleSheet.absoluteFill] as AnimatedStyle<any>
-      }
-
+      style={[animatedStyle, style]}
+      className={className}
+      {...props}
     >
-      <Pressable style={StyleSheet.absoluteFill} {...props}>
-        {children}
-      </Pressable>
+      {/* <Pressable
+        {...props}
+        style={{ height: '90%', width: '90%', backgroundColor: 'blue' }}
+      > */}
+      {children}
+      {/* </Pressable> */}
     </Animated.View>
   );
 });
@@ -147,7 +154,7 @@ const alertDialogFooterStyle = tva({
 const alertDialogBodyStyle = tva({ base: '' });
 
 const alertDialogBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-red-500/50 web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-red-500 web:cursor-default',
 });
 
 type IAlertDialogProps = React.ComponentPropsWithoutRef<
