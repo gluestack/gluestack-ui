@@ -11,9 +11,11 @@ import {
 } from '@gluestack-ui/utils/nativewind-utils';
 
 import Animated, {
+  createAnimatedComponent,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
+  type AnimatedStyle,
 } from 'react-native-reanimated';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
@@ -23,6 +25,37 @@ import { View, Pressable, ScrollView, ViewStyle } from 'react-native';
 const SCOPE = 'ALERT_DIALOG';
 
 const RootComponent = withStyleContext(View, SCOPE);
+
+const AnimatedPressable = createAnimatedComponent(Pressable);
+
+const AnimatedBackdrop = React.forwardRef<
+  React.ComponentRef<typeof AnimatedPressable>,
+  React.ComponentProps<typeof AnimatedPressable> & { className?: string }
+>(function AnimatedBackdrop({ className, style, children, ...props }, ref) {
+  const { visible } = useContext(AlertDialogContext);
+  const opacity = useSharedValue(0);
+
+  useEffect(() => {
+    if (visible) {
+      opacity.value = withTiming(1, { duration: 150 });
+    }
+  }, [visible]);
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+    };
+  }, [opacity]);
+  return (
+    <AnimatedPressable
+      ref={ref}
+      style={[animatedStyle, style] as AnimatedStyle<any>}
+      className={className}
+      {...props}
+    >
+      {children}
+    </AnimatedPressable>
+  );
+});
 
 const AnimatedContent = React.forwardRef<
   React.ComponentRef<typeof Animated.View>,
@@ -63,9 +96,10 @@ const UIAccessibleAlertDialog = createAlertDialog({
   CloseButton: Pressable,
   Header: View,
   Footer: View,
-  Backdrop: Pressable,
+  Backdrop: AnimatedBackdrop,
 });
 cssInterop(AnimatedContent, { className: 'style' });
+cssInterop(AnimatedBackdrop, { className: 'style' });
 
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
