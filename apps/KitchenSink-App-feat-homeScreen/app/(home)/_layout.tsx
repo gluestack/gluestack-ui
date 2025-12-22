@@ -20,6 +20,14 @@ export default function HomeLayout() {
           headerShown: false,
         }}
       />
+
+      {/* Showcases group - header managed by nested layout */}
+      <Stack.Screen
+        name="showcases"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 }
