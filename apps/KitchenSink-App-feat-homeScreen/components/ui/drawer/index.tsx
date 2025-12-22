@@ -1,6 +1,9 @@
 'use client';
-import React from 'react';
-import { createModal as createDrawer } from '@gluestack-ui/core/modal/creator';
+import React, { useEffect, useContext } from 'react';
+import {
+  createModal as createDrawer,
+  ModalContext,
+} from '@gluestack-ui/core/modal/creator';
 import {
   Pressable,
   View,
@@ -9,6 +12,13 @@ import {
   ViewStyle,
 } from 'react-native';
 
+import Animated, {
+  createAnimatedComponent,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+  type AnimatedStyle,
+} from 'react-native-reanimated';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
@@ -16,7 +26,6 @@ import {
 } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-
 
 const SCOPE = 'MODAL';
 const screenWidth = Dimensions.get('window').width;
@@ -28,19 +37,86 @@ const sizes: { [key: string]: number } = {
   full: 1,
 };
 
+const AnimatedDrawerContent = React.forwardRef<
+  React.ComponentRef<typeof Animated.View>,
+  React.ComponentProps<typeof Animated.View> & { className?: string }
+>(function AnimatedContent({ className, style, children, ...props }, ref) {
+  const { visible } = useContext(ModalContext) as { visible: boolean };
+  const { size: parentSize, anchor: parentAnchor } = useStyleContext(SCOPE);
 
+  const drawerHeight = screenHeight * (sizes[parentSize] || sizes.md);
+  const drawerWidth = screenWidth * (sizes[parentSize] || sizes.md);
+
+  // Calculate initial translate values based on anchor
+  const initialTranslateX =
+    parentAnchor === 'left'
+      ? -drawerWidth
+      : parentAnchor === 'right'
+        ? drawerWidth
+        : 0;
+  const initialTranslateY =
+    parentAnchor === 'top'
+      ? -drawerHeight
+      : parentAnchor === 'bottom'
+        ? drawerHeight
+        : 0;
+
+  const opacity = useSharedValue(0);
+  const translateX = useSharedValue(initialTranslateX);
+  const translateY = useSharedValue(initialTranslateY);
+
+  useEffect(() => {
+    if (visible) {
+      opacity.value = withTiming(1, { duration: 300 });
+      translateX.value = withTiming(0, { duration: 300 });
+      translateY.value = withTiming(0, { duration: 300 });
+    } else {
+      opacity.value = withTiming(0, { duration: 300 });
+      translateX.value = withTiming(initialTranslateX, { duration: 300 });
+      translateY.value = withTiming(initialTranslateY, { duration: 300 });
+    }
+  }, [
+    visible,
+    opacity,
+    translateX,
+    translateY,
+    initialTranslateX,
+    initialTranslateY,
+  ]);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+      transform: [
+        { translateX: translateX.value },
+        { translateY: translateY.value },
+      ] as const,
+    };
+  }, [opacity, translateX, translateY]);
+
+  return (
+    <Animated.View
+      ref={ref}
+      style={[style, animatedStyle]}
+      className={className}
+      {...props}
+    >
+      {children}
+    </Animated.View>
+  );
+});
 
 const UIDrawer = createDrawer({
   Root: withStyleContext(View, SCOPE),
   Backdrop: Pressable,
-  Content: View,
+  Content: AnimatedDrawerContent,
   Body: ScrollView,
   CloseButton: Pressable,
   Footer: View,
   Header: View,
 });
 
-
+cssInterop(AnimatedDrawerContent, { className: 'style' });
 const drawerStyle = tva({
   base: 'w-full h-full web:pointer-events-none relative',
   variants: {
@@ -76,7 +152,8 @@ const drawerContentStyle = tva({
       left: 'h-full border-r border-border dark:border-border/10',
       right: 'h-full border-l border-border dark:border-border/10',
       top: 'w-full border-b border-border dark:border-border/10 rounded-b-xl',
-      bottom: 'w-full border-t border-border dark:border-border/10 rounded-t-xl',
+      bottom:
+        'w-full border-t border-border dark:border-border/10 rounded-t-xl',
     },
   },
   parentCompoundVariants: [
@@ -184,7 +261,6 @@ const DrawerBackdrop = React.forwardRef<
   return (
     <UIDrawer.Backdrop
       ref={ref}
-    
       {...props}
       className={drawerBackdropStyle({
         class: className,
@@ -221,15 +297,14 @@ const DrawerContent = React.forwardRef<
   return (
     <UIDrawer.Content
       ref={ref}
-
-        {...props}
-        className={drawerContentStyle({
-          parentVariants: {
-            size: parentSize,
-            anchor: parentAnchor,
-          },
-          class: `${className} ${customClass}`,
-        })}
+      {...props}
+      className={drawerContentStyle({
+        parentVariants: {
+          size: parentSize,
+          anchor: parentAnchor,
+        },
+        class: `${className} ${customClass}`,
+      })}
       pointerEvents="auto"
     />
   );
