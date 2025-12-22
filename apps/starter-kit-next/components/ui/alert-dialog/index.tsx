@@ -20,40 +20,45 @@ import Animated, {
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-import { View, Pressable, ScrollView, ViewStyle } from 'react-native';
+import {
+  View,
+  Pressable,
+  ScrollView,
+  ViewStyle,
+  StyleSheet,
+} from 'react-native';
 
 const SCOPE = 'ALERT_DIALOG';
 
 const RootComponent = withStyleContext(View, SCOPE);
 
-const AnimatedPressable = createAnimatedComponent(Pressable);
-
 const AnimatedBackdrop = React.forwardRef<
-  React.ComponentRef<typeof AnimatedPressable>,
-  React.ComponentProps<typeof AnimatedPressable> & { className?: string }
+  React.ComponentRef<typeof Animated.View>,
+  React.ComponentProps<typeof Pressable> & { className?: string }
 >(function AnimatedBackdrop({ className, style, children, ...props }, ref) {
   const { visible } = useContext(AlertDialogContext);
   const opacity = useSharedValue(0);
 
   useEffect(() => {
-    if (visible) {
-      opacity.value = withTiming(1, { duration: 150 });
-    }
-  }, [visible]);
+    opacity.value = withTiming(visible ? 1 : 0, { duration: 1500 });
+  }, [visible, opacity]);
   const animatedStyle = useAnimatedStyle(() => {
     return {
       opacity: opacity.value,
     };
   }, [opacity]);
   return (
-    <AnimatedPressable
+    <Animated.View
       ref={ref}
-      style={[animatedStyle, style] as AnimatedStyle<any>}
-      className={className}
-      {...props}
+      style={
+        [animatedStyle, style, StyleSheet.absoluteFill] as AnimatedStyle<any>
+      }
+
     >
-      {children}
-    </AnimatedPressable>
+      <Pressable style={StyleSheet.absoluteFill} {...props}>
+        {children}
+      </Pressable>
+    </Animated.View>
   );
 });
 
@@ -142,7 +147,7 @@ const alertDialogFooterStyle = tva({
 const alertDialogBodyStyle = tva({ base: '' });
 
 const alertDialogBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-red-500/50 web:cursor-default',
 });
 
 type IAlertDialogProps = React.ComponentPropsWithoutRef<
