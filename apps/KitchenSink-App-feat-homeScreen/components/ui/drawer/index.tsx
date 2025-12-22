@@ -37,6 +37,40 @@ const sizes: { [key: string]: number } = {
   full: 1,
 };
 
+const AnimatedBackdrop = React.forwardRef<
+  React.ComponentRef<typeof Animated.View>,
+  React.ComponentProps<typeof Animated.View> & { className?: string }
+>(function AnimatedBackdrop({ className, style, children, ...props }, ref) {
+  const { visible } = useContext(ModalContext) 
+  const opacity = useSharedValue(0);
+  const scale = useSharedValue(0.2);
+
+  useEffect(() => {
+    if (visible) {
+      opacity.value = withTiming(1, { duration: 150 });
+    }
+  }, [visible]);
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+    };
+  }, [opacity]);
+  return (
+    <Animated.View
+      ref={ref}
+      style={[animatedStyle, style]}
+      className={className}
+      {...props}
+    >
+      {/* <Pressable
+        {...props}
+        style={{ height: '90%', width: '90%', backgroundColor: 'blue' }}
+      > */}
+      {children}
+      {/* </Pressable> */}
+    </Animated.View>
+  );
+});
 const AnimatedDrawerContent = React.forwardRef<
   React.ComponentRef<typeof Animated.View>,
   React.ComponentProps<typeof Animated.View> & { className?: string }
@@ -108,7 +142,7 @@ const AnimatedDrawerContent = React.forwardRef<
 
 const UIDrawer = createDrawer({
   Root: withStyleContext(View, SCOPE),
-  Backdrop: Pressable,
+  Backdrop: AnimatedBackdrop,
   Content: AnimatedDrawerContent,
   Body: ScrollView,
   CloseButton: Pressable,
@@ -117,6 +151,7 @@ const UIDrawer = createDrawer({
 });
 
 cssInterop(AnimatedDrawerContent, { className: 'style' });
+cssInterop(AnimatedBackdrop, { className: 'style' });
 const drawerStyle = tva({
   base: 'w-full h-full web:pointer-events-none relative',
   variants: {
