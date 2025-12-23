@@ -81,6 +81,7 @@ export default async function RootLayout({
           gluestack-ui v4 - React & React Native UI components library for Web &
           Mobile App
         </title>
+        {/* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@4" /> */}
       </head>
       <body className={`${geistSans.className} flex-1`}>
         <ThemeProvider
@@ -91,6 +92,7 @@ export default async function RootLayout({
         >
           {children}
         </ThemeProvider>
+        {/* <script src="https://cdn.jsdelivr.net/npm/@docsearch/react@4"/> */}
       </body>
     </html>
   );

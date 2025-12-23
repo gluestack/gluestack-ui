@@ -97,7 +97,8 @@ const Header = ({
               )}
             </div>
           </div>
-          <div className="flex flex-row gap-6 items-center scale-75 sm:scale-100">
+          <div className="flex flex-row gap-6 items-center">
+            <UiDocSearch />
             <ToggleThemeButton />
             {/* Mobile: Show hamburger menu button */}
             <Button
