@@ -7,7 +7,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 
@@ -19,7 +19,7 @@ const UIFab = createFab({
   Icon: UIIcon,
 });
 
-cssInterop(PrimitiveIcon, {
+const StyledPrimitiveIcon = styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -169,21 +169,21 @@ const FabLabel = React.forwardRef<
   );
 });
 
-type IFabIconProps = React.ComponentPropsWithoutRef<typeof UIFab.Icon> &
+type IFabIconProps = React.ComponentPropsWithoutRef<typeof StyledPrimitiveIcon> &
   VariantProps<typeof fabIconStyle> & {
     height?: number;
     width?: number;
   };
 
 const FabIcon = React.forwardRef<
-  React.ComponentRef<typeof UIFab.Icon>,
+  React.ComponentRef<typeof StyledPrimitiveIcon>,
   IFabIconProps
 >(function FabIcon({ size, className, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
     return (
-      <UIFab.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={fabIconStyle({ class: className })}
@@ -195,7 +195,7 @@ const FabIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UIFab.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={fabIconStyle({ class: className })}
@@ -203,7 +203,7 @@ const FabIcon = React.forwardRef<
     );
   }
   return (
-    <UIFab.Icon
+    <StyledPrimitiveIcon
       ref={ref}
       {...props}
       className={fabIconStyle({
