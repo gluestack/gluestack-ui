@@ -7,7 +7,7 @@ import {
   useStyleContext,
   type VariantProps,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 
@@ -23,7 +23,7 @@ const UIButton = createButton({
   Icon: UIIcon,
 });
 
-cssInterop(PrimitiveIcon, {
+const StyledPrimitiveIcon = styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -337,7 +337,7 @@ const ButtonText = React.forwardRef<
 
 const ButtonSpinner = UIButton.Spinner;
 
-type IButtonIcon = React.ComponentPropsWithoutRef<typeof UIButton.Icon> &
+type IButtonIcon = React.ComponentPropsWithoutRef<typeof StyledPrimitiveIcon> &
   VariantProps<typeof buttonIconStyle> & {
     className?: string | undefined;
     as?: React.ElementType;
@@ -346,7 +346,7 @@ type IButtonIcon = React.ComponentPropsWithoutRef<typeof UIButton.Icon> &
   };
 
 const ButtonIcon = React.forwardRef<
-  React.ElementRef<typeof UIButton.Icon>,
+  React.ElementRef<typeof StyledPrimitiveIcon>,
   IButtonIcon
 >(({ className, size, ...props }, ref) => {
   const {
@@ -357,7 +357,7 @@ const ButtonIcon = React.forwardRef<
 
   if (typeof size === 'number') {
     return (
-      <UIButton.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={buttonIconStyle({ class: className })}
@@ -369,7 +369,7 @@ const ButtonIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UIButton.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={buttonIconStyle({ class: className })}
@@ -377,7 +377,7 @@ const ButtonIcon = React.forwardRef<
     );
   }
   return (
-    <UIButton.Icon
+    <StyledPrimitiveIcon
       {...props}
       className={buttonIconStyle({
         parentVariants: {
