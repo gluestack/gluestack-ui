@@ -7,7 +7,7 @@ import {
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import React from 'react';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 
@@ -111,7 +111,7 @@ export const UIAlert = createAlert({
   Icon: UIIcon,
 });
 
-cssInterop(PrimitiveIcon, {
+const StyledPrimitiveIcon = styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -190,21 +190,21 @@ const AlertText = React.forwardRef<
   );
 });
 
-type IAlertIconProps = React.ComponentPropsWithoutRef<typeof UIAlert.Icon> &
+type IAlertIconProps = React.ComponentPropsWithoutRef<typeof StyledPrimitiveIcon> &
   VariantProps<typeof alertIconStyle> & {
     height?: number;
     width?: number;
   };
 
 const AlertIcon = React.forwardRef<
-  React.ComponentRef<typeof UIAlert.Icon>,
+  React.ComponentRef<typeof StyledPrimitiveIcon>,
   IAlertIconProps
 >(function AlertIcon({ className, size = 'md', ...props }, ref) {
   const { action: parentAction } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
     return (
-      <UIAlert.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={alertIconStyle({ class: className })}
@@ -216,7 +216,7 @@ const AlertIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UIAlert.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={alertIconStyle({ class: className })}
@@ -224,7 +224,7 @@ const AlertIcon = React.forwardRef<
     );
   }
   return (
-    <UIAlert.Icon
+    <StyledPrimitiveIcon
       className={alertIconStyle({
         parentVariants: {
           action: parentAction,
