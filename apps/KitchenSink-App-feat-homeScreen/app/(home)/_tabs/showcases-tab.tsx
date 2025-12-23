@@ -1,7 +1,6 @@
 import { useRouter } from 'expo-router';
 import { useFocusEffect } from '@react-navigation/native';
 import { BlurView } from 'expo-blur';
-import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import { memo, useCallback, useRef, useState } from 'react';
 import {
@@ -24,8 +23,6 @@ import Animated, {
 import { useAppTheme } from '@/contexts/app-theme-context';
 import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { Text } from '@/components/ui/text';
-import { Card } from '@/components/ui/card';
-import { Icon } from '@/components/ui/icon';
 import { Image } from '@/components/ui/image';
 import { HStack } from '@/components/ui/hstack';
 import {
@@ -33,52 +30,48 @@ import {
   type ComponentItem,
 } from '@/components/custom/bottom-control-bar';
 import { SHOWCASES_LIST, type ShowcaseItem } from '@/constants/showcases-list';
+import LoginShowcase from '../showcases/login';
+import DashboardShowcase from '../showcases/dashboard';
+import ProfileShowcase from '../showcases/profile';
+import EcommerceShowcase from '../showcases/ecommerce';
+import SocialShowcase from '../showcases/social';
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
-const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
-// Cards gradient colors
-const GRADIENT_COLORS = [
-  ['#3497D266', '#3497D2'] as const,
-  ['#C94AB480', '#C94AB4'] as const,
-  ['#4facfe', '#3497D2'] as const,
-  ['#26AF5F80', '#26AF5F'] as const,
-  ['#fa709a', '#fee140'] as const,
-];
+// Map showcase paths to their components
+const SHOWCASE_COMPONENTS: Record<string, React.ComponentType> = {
+  login: LoginShowcase,
+  dashboard: DashboardShowcase,
+  profile: ProfileShowcase,
+  ecommerce: EcommerceShowcase,
+  social: SocialShowcase,
+};
 
 const showcases = SHOWCASES_LIST;
 
 type ShowcaseCardProps = {
   item: ShowcaseItem;
   index: number;
-  displayIndex: number;
   scrollX: SharedValue<number>;
-  itemWidth: number;
   spacing: number;
-  height: number;
   onPress: () => void;
 };
 
 const ShowcaseCard = memo(
-  ({
-    item,
-    index,
-    displayIndex,
-    scrollX,
-    itemWidth,
-    spacing,
-    height,
-    onPress,
-  }: ShowcaseCardProps) => {
+  ({ item, index, scrollX, spacing, onPress }: ShowcaseCardProps) => {
     const { reduceTransparencyEnabled } = useAccessibilityInfo();
-    const { isDark, fontSans } = useAppTheme();
+    const { width, height } = useWindowDimensions();
     const applyOpacity = reduceTransparencyEnabled;
+
+    const cardWidth = width * 0.6;
+    const cardHeight = height * 0.6;
+    const SCALE = 0.6;
 
     const animatedStyle = useAnimatedStyle(() => {
       const inputRange = [
-        (index - 1) * (itemWidth + spacing),
-        index * (itemWidth + spacing),
-        (index + 1) * (itemWidth + spacing),
+        (index - 1) * (cardWidth + spacing),
+        index * (cardWidth + spacing),
+        (index + 1) * (cardWidth + spacing),
       ];
 
       return {
@@ -90,35 +83,25 @@ const ShowcaseCard = memo(
               Extrapolation.CLAMP
             )
           : 1,
-        transform: [
-          {
-            scale: interpolate(
-              scrollX.get(),
-              inputRange,
-              [0.8, 1.1, 0.8],
-              Extrapolation.CLAMP
-            ),
-          },
-        ],
       };
     });
 
-    const gradientColors = GRADIENT_COLORS[index % GRADIENT_COLORS.length];
+    const ShowcaseComponent = SHOWCASE_COMPONENTS[item.path];
 
     return (
       <View
         style={{
-          width: itemWidth + spacing,
-          height,
-          paddingTop: 100,
+          width: cardWidth + spacing,
+          height: cardHeight,
           alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <Animated.View
           style={[
             {
-              width: itemWidth,
-              height: height * 0.55,
+              width: cardWidth,
+              height: cardHeight,
             },
             animatedStyle,
           ]}
@@ -127,27 +110,37 @@ const ShowcaseCard = memo(
             onPress={onPress}
             style={{ width: '100%', height: '100%' }}
           >
-            <Card className="flex-1 justify-center p-8 pr-0 overflow-hidden max-h-[400px] rounded-3xl border-0">
-              <AnimatedLinearGradient
-                colors={gradientColors}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={StyleSheet.absoluteFill}
-              />
-              <View className="flex-1 justify-between">
-                <Text className="text-white font-sans text-8xl font-bold opacity-30 leading-[1.1] tracking-tighter">
-                  {displayIndex.toString()}
-                </Text>
-                <View className="gap-1 flex-1 justify-center">
-                  <Text className="text-white font-sans text-2xl font-bold">
+            <View className="flex-1 overflow-hidden rounded-3xl bg-background border border-border">
+              {ShowcaseComponent ? (
+                <View
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Animated.View
+                    style={{
+                      width: width,
+                      height: height,
+                      transform: [{ scale: SCALE }],
+                    }}
+                  >
+                    <ShowcaseComponent />
+                  </Animated.View>
+                </View>
+              ) : (
+                <View className="flex-1 justify-center p-8">
+                  <Text className="text-typography-900 font-sans text-xl font-bold">
                     {item.title}
                   </Text>
-                  <Text className="text-slate-50 text-sm">
+                  <Text className="text-typography-500 text-sm mt-2">
                     {item.description || 'Showcase'}
                   </Text>
                 </View>
-              </View>
-            </Card>
+              )}
+            </View>
           </Pressable>
         </Animated.View>
       </View>
@@ -166,10 +159,10 @@ export default function ShowcasesTab() {
   const { isDark } = useAppTheme();
   const { width, height } = useWindowDimensions();
 
-  const ITEM_WIDTH = width * 0.6;
-  const SPACING = 5;
-  const SIDE_OFFSET = (width - ITEM_WIDTH) / 2 - SPACING / 2;
-  const CONTENT_HEIGHT = height * 0.75;
+  const CARD_WIDTH = width * 0.6;
+  const CARD_HEIGHT = height * 0.6;
+  const SPACING = 100;
+  const SIDE_OFFSET = (width - CARD_WIDTH) / 2 - SPACING / 2;
 
   const { reduceTransparencyEnabled } = useAccessibilityInfo();
   const applyBlur = !reduceTransparencyEnabled;
@@ -217,11 +210,11 @@ export default function ShowcasesTab() {
     const outputRange: number[] = [];
 
     for (let i = 0; i < showcases.length; i++) {
-      inputRange.push(i * (ITEM_WIDTH + SPACING));
+      inputRange.push(i * (CARD_WIDTH + SPACING));
       outputRange.push(0);
 
       if (i < showcases.length - 1) {
-        inputRange.push((i + 0.5) * (ITEM_WIDTH + SPACING));
+        inputRange.push((i + 0.5) * (CARD_WIDTH + SPACING));
         outputRange.push(30);
       }
     }
@@ -244,9 +237,7 @@ export default function ShowcasesTab() {
             alt="Kitchensink App Logo"
             className="h-6 w-6"
           />
-          <Text className="text-2xl font-bold font-sans">
-            Showcases
-          </Text>
+          <Text className="text-2xl font-bold font-sans">Showcases</Text>
         </HStack>
         <Text className="max-w-[60%] text-foreground/80 text-center font-serif">
           See components in real-world scenarios
@@ -291,7 +282,6 @@ export default function ShowcasesTab() {
 
   return (
     <View className="flex-1">
-      <Header />
       <Animated.FlatList
         ref={listRef}
         data={showcases}
@@ -299,22 +289,19 @@ export default function ShowcasesTab() {
           <ShowcaseCard
             item={item}
             index={index}
-            displayIndex={index + 1}
             scrollX={scrollX}
-            itemWidth={ITEM_WIDTH}
             spacing={SPACING}
-            height={CONTENT_HEIGHT}
             onPress={() => handleCardPress(item.path)}
           />
         )}
         keyExtractor={(item) => item.path}
         getItemLayout={(_, index) => ({
-          length: ITEM_WIDTH + SPACING,
-          offset: (ITEM_WIDTH + SPACING) * index,
+          length: CARD_WIDTH + SPACING,
+          offset: (CARD_WIDTH + SPACING) * index,
           index,
         })}
         horizontal
-        snapToInterval={ITEM_WIDTH + SPACING}
+        snapToInterval={CARD_WIDTH + SPACING}
         decelerationRate="fast"
         contentContainerStyle={{
           paddingHorizontal: SIDE_OFFSET,
@@ -339,7 +326,12 @@ export default function ShowcasesTab() {
         pillLabel={currentShowcase.title}
         components={showcases as ComponentItem[]}
         currentComponent={currentShowcase as ComponentItem}
-        onComponentSelect={handleShowcaseSelect as (component: ComponentItem, index: number) => void}
+        onComponentSelect={
+          handleShowcaseSelect as (
+            component: ComponentItem,
+            index: number
+          ) => void
+        }
       />
     </View>
   );
