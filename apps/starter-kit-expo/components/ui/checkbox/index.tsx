@@ -13,7 +13,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const IndicatorWrapper = React.forwardRef<
@@ -50,7 +50,7 @@ const UICheckbox = createCheckbox({
   Indicator: IndicatorWrapper,
 });
 
-cssInterop(PrimitiveIcon, {
+const StyledPrimitiveIcon = styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -181,19 +181,19 @@ const CheckboxLabel = React.forwardRef<
 });
 
 type ICheckboxIconProps = React.ComponentPropsWithoutRef<
-  typeof UICheckbox.Icon
+  typeof StyledPrimitiveIcon
 > &
   VariantProps<typeof checkboxIconStyle>;
 
 const CheckboxIcon = React.forwardRef<
-  React.ComponentRef<typeof UICheckbox.Icon>,
+  React.ComponentRef<typeof StyledPrimitiveIcon>,
   ICheckboxIconProps
 >(function CheckboxIcon({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
     return (
-      <UICheckbox.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={checkboxIconStyle({ class: className })}
@@ -205,7 +205,7 @@ const CheckboxIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UICheckbox.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={checkboxIconStyle({ class: className })}
@@ -214,7 +214,7 @@ const CheckboxIcon = React.forwardRef<
   }
 
   return (
-    <UICheckbox.Icon
+    <StyledPrimitiveIcon
       className={checkboxIconStyle({
         parentVariants: {
           size: parentSize,
