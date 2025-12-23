@@ -3,7 +3,7 @@ import React from 'react';
 import { createToastHook } from '@gluestack-ui/core/toast/creator';
 import { AccessibilityInfo, Text, View, ViewStyle } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import {
   Motion,
   AnimatePresence,
@@ -20,10 +20,9 @@ type IMotionViewProps = React.ComponentProps<typeof View> &
 
 const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
 
-const useToast = createToastHook(MotionView, AnimatePresence);
+const StyledMotionView = styled(MotionView, { className: 'style' });
+const useToast = createToastHook(StyledMotionView, AnimatePresence);
 const SCOPE = 'TOAST';
-
-cssInterop(MotionView, { className: 'style' });
 
 const toastStyle = tva({
   base: 'p-4 m-1 rounded-md gap-1 web:pointer-events-auto shadow-hard-5 border-outline-100',
