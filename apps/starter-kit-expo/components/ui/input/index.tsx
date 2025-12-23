@@ -7,7 +7,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 
@@ -20,7 +20,7 @@ const UIInput = createInput({
   Input: TextInput,
 });
 
-cssInterop(PrimitiveIcon, {
+const StyledPrimitiveIcon = styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -119,7 +119,7 @@ const Input = React.forwardRef<React.ComponentRef<typeof UIInput>, IInputProps>(
   }
 );
 
-type IInputIconProps = React.ComponentProps<typeof UIInput.Icon> &
+type IInputIconProps = React.ComponentProps<typeof StyledPrimitiveIcon> &
   VariantProps<typeof inputIconStyle> & {
     className?: string;
     height?: number;
@@ -127,14 +127,14 @@ type IInputIconProps = React.ComponentProps<typeof UIInput.Icon> &
   };
 
 const InputIcon = React.forwardRef<
-  React.ComponentRef<typeof UIInput.Icon>,
+  React.ComponentRef<typeof StyledPrimitiveIcon>,
   IInputIconProps
 >(function InputIcon({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
     return (
-      <UIInput.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={inputIconStyle({ class: className })}
@@ -146,7 +146,7 @@ const InputIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UIInput.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={inputIconStyle({ class: className })}
@@ -154,7 +154,7 @@ const InputIcon = React.forwardRef<
     );
   }
   return (
-    <UIInput.Icon
+    <StyledPrimitiveIcon
       ref={ref}
       {...props}
       className={inputIconStyle({
