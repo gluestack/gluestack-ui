@@ -13,7 +13,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
@@ -40,8 +40,8 @@ const UIModal = createModal({
   AnimatePresence: AnimatePresence,
 });
 
-cssInterop(AnimatedPressable, { className: 'style' });
-cssInterop(MotionView, { className: 'style' });
+const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
+const StyledMotionView = styled(MotionView, { className: 'style' });
 
 const modalStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
@@ -92,10 +92,10 @@ const modalFooterStyle = tva({
 type IModalProps = React.ComponentProps<typeof UIModal> &
   VariantProps<typeof modalStyle> & { className?: string };
 
-type IModalBackdropProps = React.ComponentProps<typeof UIModal.Backdrop> &
+type IModalBackdropProps = React.ComponentProps<typeof StyledAnimatedPressable> &
   VariantProps<typeof modalBackdropStyle> & { className?: string };
 
-type IModalContentProps = React.ComponentProps<typeof UIModal.Content> &
+type IModalContentProps = React.ComponentProps<typeof StyledMotionView> &
   VariantProps<typeof modalContentStyle> & { className?: string };
 
 type IModalHeaderProps = React.ComponentProps<typeof UIModal.Header> &
@@ -123,11 +123,11 @@ const Modal = React.forwardRef<React.ComponentRef<typeof UIModal>, IModalProps>(
 );
 
 const ModalBackdrop = React.forwardRef<
-  React.ComponentRef<typeof UIModal.Backdrop>,
+  React.ComponentRef<typeof StyledAnimatedPressable>,
   IModalBackdropProps
 >(function ModalBackdrop({ className, ...props }, ref) {
   return (
-    <UIModal.Backdrop
+    <StyledAnimatedPressable
       ref={ref}
       initial={{
         opacity: 0,
@@ -156,13 +156,13 @@ const ModalBackdrop = React.forwardRef<
 });
 
 const ModalContent = React.forwardRef<
-  React.ComponentRef<typeof UIModal.Content>,
+  React.ComponentRef<typeof StyledMotionView>,
   IModalContentProps
 >(function ModalContent({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
   return (
-    <UIModal.Content
+    <StyledMotionView
       ref={ref}
       initial={{
         opacity: 0,
