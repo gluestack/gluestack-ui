@@ -7,7 +7,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 
@@ -245,7 +245,7 @@ export const UIFormControl = createFormControl({
   HelperText: Text,
 });
 
-cssInterop(PrimitiveIcon, {
+const StyledPrimitiveIcon = styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -315,7 +315,7 @@ const FormControlErrorText = React.forwardRef<
 });
 
 type IFormControlErrorIconProps = React.ComponentProps<
-  typeof UIFormControl.Error.Icon
+  typeof StyledPrimitiveIcon
 > &
   VariantProps<typeof formControlErrorIconStyle> & {
     height?: number;
@@ -323,14 +323,14 @@ type IFormControlErrorIconProps = React.ComponentProps<
   };
 
 const FormControlErrorIcon = React.forwardRef<
-  React.ComponentRef<typeof UIFormControl.Error.Icon>,
+  React.ComponentRef<typeof StyledPrimitiveIcon>,
   IFormControlErrorIconProps
 >(function FormControlErrorIcon({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
     return (
-      <UIFormControl.Error.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={formControlErrorIconStyle({ class: className })}
@@ -342,7 +342,7 @@ const FormControlErrorIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UIFormControl.Error.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={formControlErrorIconStyle({ class: className })}
@@ -350,7 +350,7 @@ const FormControlErrorIcon = React.forwardRef<
     );
   }
   return (
-    <UIFormControl.Error.Icon
+    <StyledPrimitiveIcon
       className={formControlErrorIconStyle({
         parentVariants: { size: parentSize },
         size,
