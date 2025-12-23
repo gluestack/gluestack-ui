@@ -7,11 +7,12 @@
     "@expo/html-elements": "^0.12.5",
     "@gorhom/bottom-sheet": "^5.1.8",
     "@legendapp/motion": "^2.4.0",
-    "nativewind": "^4.1.23",
-    "react": "^18",
-    "react-native": "^0.79.2",
+    "nativewind": "^5.0.0-preview.2",
+    "react": "^19",
+    "react-native": "^0.81",
+    "react-native-css": "^3.0.1",
     "react-native-reanimated": "^4.0.1",
-    "react-native-safe-area-context": "5.4.0",
+    "react-native-safe-area-context": "^5.4.0",
     "tailwind-variants": "^0.2.1"
   },
   "scripts": {
@@ -21,7 +22,7 @@
     "@types/react": "^19.1.9",
     "@types/react-native": "^0.73.0",
     "prettier-plugin-tailwindcss": "^0.5.11",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3"
   }
 }
