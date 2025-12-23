@@ -3,16 +3,17 @@ import { useEffect, useState } from 'react';
 
 // Default Tailwind breakpoints
 const DEFAULT_BREAKPOINTS = {
-  sm: 640,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
+  'sm': 640,
+  'md': 768,
+  'lg': 1024,
+  'xl': 1280,
   '2xl': 1536,
 } as const;
 
 type Breakpoints = Record<string, number>;
 type BreakpointKey<T extends Breakpoints> = keyof T | 'default';
-type BreakPointValue<T extends Breakpoints = typeof DEFAULT_BREAKPOINTS> = Partial<Record<BreakpointKey<T>, unknown>>;
+type BreakPointValue<T extends Breakpoints = typeof DEFAULT_BREAKPOINTS> =
+  Partial<Record<BreakpointKey<T>, unknown>>;
 
 type MediaQueriesBreakpoints<T extends Breakpoints> = {
   key: BreakpointKey<T>;
@@ -71,17 +72,16 @@ function getBreakPointValue<T extends Breakpoints>(
   return finalBreakPointResolvedValue;
 }
 
-export function createBreakpointHook<T extends Breakpoints = typeof DEFAULT_BREAKPOINTS>(
-  customBreakpoints?: T
-) {
+export function createBreakpointHook<
+  T extends Breakpoints = typeof DEFAULT_BREAKPOINTS,
+>(customBreakpoints?: T) {
   const breakpoints = (customBreakpoints || DEFAULT_BREAKPOINTS) as T;
 
   return function useBreakpointValue(values: BreakPointValue<T>): unknown {
     const { width } = useWindowDimensions();
 
-    const [currentBreakPointValue, setCurrentBreakPointValue] = useState<unknown>(
-      getBreakPointValue(values, width, breakpoints)
-    );
+    const [currentBreakPointValue, setCurrentBreakPointValue] =
+      useState<unknown>(getBreakPointValue(values, width, breakpoints));
 
     useEffect(() => {
       if (typeof values === 'object') {
