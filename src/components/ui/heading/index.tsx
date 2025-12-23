@@ -2,22 +2,22 @@ import React, { forwardRef, memo } from 'react';
 import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
 import { headingStyle } from './styles';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 
 type IHeadingProps = VariantProps<typeof headingStyle> &
   React.ComponentPropsWithoutRef<typeof H1> & {
     as?: React.ElementType;
   };
 
-cssInterop(H1, { className: 'style' });
-cssInterop(H2, { className: 'style' });
-cssInterop(H3, { className: 'style' });
-cssInterop(H4, { className: 'style' });
-cssInterop(H5, { className: 'style' });
-cssInterop(H6, { className: 'style' });
+const StyledH1 = styled(H1, { className: 'style' });
+const StyledH2 = styled(H2, { className: 'style' });
+const StyledH3 = styled(H3, { className: 'style' });
+const StyledH4 = styled(H4, { className: 'style' });
+const StyledH5 = styled(H5, { className: 'style' });
+const StyledH6 = styled(H6, { className: 'style' });
 
 const MappedHeading = memo(
-  forwardRef<React.ComponentRef<typeof H1>, IHeadingProps>(
+  forwardRef<React.ComponentRef<typeof StyledH1>, IHeadingProps>(
     function MappedHeading(
       {
         size,
@@ -38,7 +38,7 @@ const MappedHeading = memo(
         case '4xl':
         case '3xl':
           return (
-            <H1
+            <StyledH1
               className={headingStyle({
                 size,
                 isTruncated: isTruncated as boolean,
@@ -57,7 +57,7 @@ const MappedHeading = memo(
           );
         case '2xl':
           return (
-            <H2
+            <StyledH2
               className={headingStyle({
                 size,
                 isTruncated: isTruncated as boolean,
@@ -76,7 +76,7 @@ const MappedHeading = memo(
           );
         case 'xl':
           return (
-            <H3
+            <StyledH3
               className={headingStyle({
                 size,
                 isTruncated: isTruncated as boolean,
@@ -95,7 +95,7 @@ const MappedHeading = memo(
           );
         case 'lg':
           return (
-            <H4
+            <StyledH4
               className={headingStyle({
                 size,
                 isTruncated: isTruncated as boolean,
@@ -114,7 +114,7 @@ const MappedHeading = memo(
           );
         case 'md':
           return (
-            <H5
+            <StyledH5
               className={headingStyle({
                 size,
                 isTruncated: isTruncated as boolean,
@@ -134,7 +134,7 @@ const MappedHeading = memo(
         case 'sm':
         case 'xs':
           return (
-            <H6
+            <StyledH6
               className={headingStyle({
                 size,
                 isTruncated: isTruncated as boolean,
@@ -153,7 +153,7 @@ const MappedHeading = memo(
           );
         default:
           return (
-            <H4
+            <StyledH4
               className={headingStyle({
                 size,
                 isTruncated: isTruncated as boolean,
@@ -176,7 +176,7 @@ const MappedHeading = memo(
 );
 
 const Heading = memo(
-  forwardRef<React.ComponentRef<typeof H1>, IHeadingProps>(function Heading(
+  forwardRef<React.ComponentRef<typeof StyledH1>, IHeadingProps>(function Heading(
     { className, size = 'lg', as: AsComp, ...props },
     ref
   ) {
