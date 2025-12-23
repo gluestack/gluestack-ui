@@ -9,7 +9,7 @@ import {
 } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { createSelect } from '@gluestack-ui/core/select/creator';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import {
   Actionsheet,
   ActionsheetContent,
@@ -88,10 +88,12 @@ const selectInputStyle = tva({
   },
 });
 
+const StyledSelectTriggerWrapper = styled(SelectTriggerWrapper, { className: 'style' });
+
 const UISelect = createSelect(
   {
     Root: View,
-    Trigger: withStyleContext(SelectTriggerWrapper),
+    Trigger: withStyleContext(StyledSelectTriggerWrapper),
     Input: TextInput,
     Icon: UIIcon,
   },
@@ -111,13 +113,13 @@ const UISelect = createSelect(
   }
 );
 
-cssInterop(UISelect, { className: 'style' });
-cssInterop(UISelect.Input, {
+const StyledUISelect = styled(UISelect, { className: 'style' });
+const StyledUISelectInput = styled(UISelect.Input, {
   className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });
-cssInterop(SelectTriggerWrapper, { className: 'style' });
 
-cssInterop(PrimitiveIcon, {
+
+const StyledPrimitiveIcon = styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -131,14 +133,14 @@ cssInterop(PrimitiveIcon, {
 });
 
 type ISelectProps = VariantProps<typeof selectStyle> &
-  React.ComponentProps<typeof UISelect> & { className?: string };
+  React.ComponentProps<typeof StyledUISelect> & { className?: string };
 
 const Select = React.forwardRef<
-  React.ComponentRef<typeof UISelect>,
+  React.ComponentRef<typeof StyledUISelect>,
   ISelectProps
 >(function Select({ className, ...props }, ref) {
   return (
-    <UISelect
+    <StyledUISelect
       className={selectStyle({
         class: className,
       })}
@@ -173,15 +175,15 @@ const SelectTrigger = React.forwardRef<
 });
 
 type ISelectInputProps = VariantProps<typeof selectInputStyle> &
-  React.ComponentProps<typeof UISelect.Input> & { className?: string };
+  React.ComponentProps<typeof StyledUISelectInput> & { className?: string };
 
 const SelectInput = React.forwardRef<
-  React.ComponentRef<typeof UISelect.Input>,
+  React.ComponentRef<typeof StyledUISelectInput>,
   ISelectInputProps
 >(function SelectInput({ className, ...props }, ref) {
   const { size: parentSize, variant: parentVariant } = useStyleContext();
   return (
-    <UISelect.Input
+    <StyledUISelectInput
       className={selectInputStyle({
         class: className,
         parentVariants: {
@@ -196,16 +198,16 @@ const SelectInput = React.forwardRef<
 });
 
 type ISelectIcon = VariantProps<typeof selectIconStyle> &
-  React.ComponentProps<typeof UISelect.Icon> & { className?: string };
+  React.ComponentProps<typeof StyledPrimitiveIcon> & { className?: string };
 
 const SelectIcon = React.forwardRef<
-  React.ComponentRef<typeof UISelect.Icon>,
+  React.ComponentRef<typeof StyledPrimitiveIcon>,
   ISelectIcon
 >(function SelectIcon({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext();
   if (typeof size === 'number') {
     return (
-      <UISelect.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={selectIconStyle({ class: className })}
@@ -218,7 +220,7 @@ const SelectIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UISelect.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={selectIconStyle({ class: className })}
@@ -226,7 +228,7 @@ const SelectIcon = React.forwardRef<
     );
   }
   return (
-    <UISelect.Icon
+    <StyledPrimitiveIcon
       className={selectIconStyle({
         class: className,
         size,
