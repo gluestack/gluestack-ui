@@ -19,7 +19,7 @@ const UIFab = createFab({
   Icon: UIIcon,
 });
 
-styled(PrimitiveIcon, {
+const StyledPrimitiveIcon = styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -195,7 +195,7 @@ const FabIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UIFab.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={fabIconStyle({ class: className })}
@@ -203,7 +203,7 @@ const FabIcon = React.forwardRef<
     );
   }
   return (
-    <UIFab.Icon
+    <StyledPrimitiveIcon
       ref={ref}
       {...props}
       className={fabIconStyle({

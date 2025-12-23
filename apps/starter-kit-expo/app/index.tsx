@@ -1,63 +1,140 @@
-import React from 'react';
-import Gradient from '@/assets/icons/Gradient';
-import Logo from '@/assets/icons/Logo';
-import { Box } from '@/components/ui/box';
-import { ScrollView } from 'react-native';
-import { Text } from '@/components/ui/text';
-
 import { Button, ButtonText } from '@/components/ui/button';
-import { useRouter } from 'expo-router';
-import { Icon } from '@/components/ui/icon';
-
-const FeatureCard = ({ iconSvg: IconSvg, name, desc }: any) => {
-  return (
-    <Box
-      className="flex-column md:flex-1 m-2 p-4 rounded-lg bg-background-0/40"
-      key={name}
-    >
-      <Box className="items-center flex flex-row">
-        <Icon as={IconSvg}/>
-        <Text className="font-medium ml-2 text-xl">{name}</Text>
-      </Box>
-      <Text className="mt-2">{desc}</Text>
-    </Box>
-  );
-};
-
+import { Center } from '@/components/ui/center';
+import {
+  AddIcon,
+  GlobeIcon,
+  Icon,
+  PlayIcon,
+  SettingsIcon,
+} from '@/components/ui/icon';
+import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
+import { useState } from 'react';
+import {
+  Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+} from '@/components/ui/modal';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { CloseIcon } from '@/components/ui/icon';
+import {
+  Actionsheet,
+  ActionsheetContent,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetBackdrop,
+} from '@/components/ui/actionsheet';
 export default function Home() {
-  const router = useRouter();
+  const [showModal, setShowModal] = useState(false);
+  const [showActionsheet, setShowActionsheet] = useState(false);
+  const handleClose = () => setShowActionsheet(false);
   return (
-    <Box className="flex-1 bg-background-300 h-[100vh]">
-        <Box className="absolute h-[500px] w-[500px] lg:w-[700px] lg:h-[700px]">
-          <Gradient />
-        </Box>
-      {/* <ScrollView
-        style={{ height: '100%' }}
-        contentContainerStyle={{ flexGrow: 1 }}
-      > */}
-        <Box className="flex flex-1 items-center mx-5 lg:my-24 lg:mx-32 py-safe">
-          <Box className="gap-10 base:flex-col sm:flex-row justify-between sm:w-[80%] md:flex-1">
-            <Box className="bg-background-template py-2 px-6 rounded-full items-center flex-column md:flex-row md:self-start">
-              <Text className="text-white font-medium">
-                Get started by editing
-              </Text>
-              <Text className="text-white font-medium ml-2">./App.tsx or ./app/index.tsx (or whatever entry point you have)</Text>
-            </Box>
+    <Center className="h-screen w-screen gap-2">
+      <Menu
+        placement="top"
+        offset={5}
+        disabledKeys={['Settings']}
+        trigger={({ ...triggerProps }) => {
+          return (
+            <Button {...triggerProps}>
+              <ButtonText>Menu</ButtonText>
+            </Button>
+          );
+        }}
+      >
+        <MenuItem key="Add account" textValue="Add account">
+          <Icon as={AddIcon} size="sm" className="mr-2" />
+          <MenuItemLabel size="sm">Add account</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Community" textValue="Community">
+          <Icon as={GlobeIcon} size="sm" className="mr-2" />
+          <MenuItemLabel size="sm">Community</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Plugins" textValue="Plugins">
+          <Icon as={PlayIcon} size="sm" className="mr-2" />
+          <MenuItemLabel size="sm">Plugins</MenuItemLabel>
+        </MenuItem>
+        <MenuItem key="Settings" textValue="Settings">
+          <Icon as={SettingsIcon} size="sm" className="mr-2" />
+          <MenuItemLabel size="sm">Settings</MenuItemLabel>
+        </MenuItem>
+      </Menu>
+      {/* Modal */}
+      <Button onPress={() => setShowModal(true)}>
+        <ButtonText>Open Modal</ButtonText>
+      </Button>
+      <Modal
+        isOpen={showModal}
+        onClose={() => {
+          setShowModal(false);
+        }}
+        size="sm"
+      >
+        <ModalBackdrop />
+        <ModalContent>
+          <ModalHeader>
+            <Heading size="lg">Modal Title</Heading>
+            <ModalCloseButton>
+              <Icon as={CloseIcon} />
+            </ModalCloseButton>
+          </ModalHeader>
+          <ModalBody>
+            <Text>This is the modal body. You can add any content here.</Text>
+          </ModalBody>
+          <ModalFooter>
             <Button
-              size="md"
-              className="bg-primary-500 px-6 py-2 rounded-full"
+              variant="outline"
+              action="secondary"
+              className="mr-3"
               onPress={() => {
-                router.push('/tabs/tab1');
+                setShowModal(false);
               }}
             >
-              <ButtonText>Explore Tab Navigation</ButtonText>
+              <ButtonText>Cancel</ButtonText>
             </Button>
-          </Box>
-          <Box className="flex-1 justify-center items-center h-[20px] w-[300px] lg:h-[160px] lg:w-[400px]">
-            <Logo />
-          </Box>
-        </Box>
-      {/* </ScrollView> */}
-    </Box>
+            <Button
+              onPress={() => {
+                setShowModal(false);
+              }}
+            >
+              <ButtonText>Save</ButtonText>
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      {/* Actionsheet */}
+      <Button onPress={() => setShowActionsheet(true)}>
+        <ButtonText>Open Actionsheet</ButtonText>
+      </Button>
+      <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <ActionsheetBackdrop />
+        <ActionsheetContent>
+          <ActionsheetDragIndicatorWrapper>
+            <ActionsheetDragIndicator />
+          </ActionsheetDragIndicatorWrapper>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Edit Message</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Mark Unread</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Remind Me</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem onPress={handleClose}>
+            <ActionsheetItemText>Add to Saved Items</ActionsheetItemText>
+          </ActionsheetItem>
+          <ActionsheetItem isDisabled onPress={handleClose}>
+            <ActionsheetItemText>Delete</ActionsheetItemText>
+          </ActionsheetItem>
+        </ActionsheetContent>
+      </Actionsheet>
+    </Center>
   );
 }

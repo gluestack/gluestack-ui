@@ -31,7 +31,7 @@ const iconStyle = tva({
   },
 });
 
-styled(UIIcon, {
+const StyledUIIcon = styled(UIIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -52,7 +52,7 @@ const Icon = React.forwardRef<React.ComponentRef<typeof UIIcon>, IIConProps>(
   function Icon({ size = 'md', className, ...props }, ref) {
     if (typeof size === 'number') {
       return (
-        <UIIcon
+        <StyledUIIcon
           ref={ref}
           {...props}
           className={iconStyle({ class: className })}
@@ -64,7 +64,7 @@ const Icon = React.forwardRef<React.ComponentRef<typeof UIIcon>, IIConProps>(
       size === undefined
     ) {
       return (
-        <UIIcon
+        <StyledUIIcon
           ref={ref}
           {...props}
           className={iconStyle({ class: className })}
@@ -72,7 +72,7 @@ const Icon = React.forwardRef<React.ComponentRef<typeof UIIcon>, IIConProps>(
       );
     }
     return (
-      <UIIcon
+      <StyledUIIcon
         ref={ref}
         {...props}
         className={iconStyle({ size, class: className })}

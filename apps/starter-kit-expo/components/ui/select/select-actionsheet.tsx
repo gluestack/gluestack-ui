@@ -87,7 +87,7 @@ styled(UIActionsheet.SectionHeaderText, { className: 'style' });
 styled(PrimitiveIcon, {
   className: {
     target: 'style',
-    nativeStyleToProp: {
+    nativeStyleMapping: {
       height: true,
       width: true,
       fill: true,
@@ -100,7 +100,7 @@ styled(PrimitiveIcon, {
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 
 const actionsheetContentStyle = tva({
-  base: 'items-center rounded-tl-3xl rounded-tr-3xl p-2 bg-background-0 web:pointer-events-auto web:select-none shadow-lg pb-safe',
+  base: 'items-center rounded-tl-3xl rounded-tr-3xl p-2 bg-background-950 web:pointer-events-auto web:select-none shadow-lg pb-20',
 });
 
 const actionsheetItemStyle = tva({
@@ -150,7 +150,7 @@ const actionsheetDragIndicatorWrapperStyle = tva({
 });
 
 const actionsheetBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default web:pointer-events-auto',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-red-500 web:cursor-default web:pointer-events-auto',
 });
 
 const actionsheetScrollViewStyle = tva({

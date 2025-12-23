@@ -123,8 +123,9 @@ const Separator = React.forwardRef<
     />
   );
 });
+const styledMotionView = styled(MotionView, { className: 'style' });
 export const UIMenu = createMenu({
-  Root: MotionView,
+  Root: styledMotionView,
   Item: Item,
   Label: Text,
   Backdrop: BackdropPressable,
@@ -132,7 +133,6 @@ export const UIMenu = createMenu({
   Separator: Separator,
 });
 
-styled(MotionView, { className: 'style' });
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle> & { className?: string };

@@ -23,7 +23,7 @@ const UIButton = createButton({
   Icon: UIIcon,
 });
 
-styled(PrimitiveIcon, {
+const StyledPrimitiveIcon = styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -357,7 +357,7 @@ const ButtonIcon = React.forwardRef<
 
   if (typeof size === 'number') {
     return (
-      <UIButton.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={buttonIconStyle({ class: className })}
@@ -369,7 +369,7 @@ const ButtonIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UIButton.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={buttonIconStyle({ class: className })}
@@ -377,7 +377,7 @@ const ButtonIcon = React.forwardRef<
     );
   }
   return (
-    <UIButton.Icon
+    <StyledPrimitiveIcon
       {...props}
       className={buttonIconStyle({
         parentVariants: {

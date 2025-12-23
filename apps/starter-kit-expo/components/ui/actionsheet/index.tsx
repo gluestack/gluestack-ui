@@ -60,26 +60,37 @@ export const UIActionsheet = createActionsheet({
   AnimatePresence: AnimatePresence,
 });
 
-styled(UIActionsheet, { className: 'style' });
-styled(UIActionsheet.Content, { className: 'style' });
-styled(ItemWrapper, { className: 'style' });
-styled(UIActionsheet.ItemText, { className: 'style' });
-styled(UIActionsheet.DragIndicator, { className: 'style' });
-styled(UIActionsheet.DragIndicatorWrapper, { className: 'style' });
-styled(UIActionsheet.Backdrop, { className: 'style' });
-styled(UIActionsheet.ScrollView, {
+const StyledActionsheet = styled(UIActionsheet, { className: 'style' });
+const StyledActionsheetContent = styled(UIActionsheet.Content, {
+  className: 'style',
+});
+const StyledActionsheetItem = styled(ItemWrapper, { className: 'style' });
+const StyledActionsheetItemText = styled(UIActionsheet.ItemText, {
+  className: 'style',
+});
+const StyledActionsheetDragIndicator = styled(UIActionsheet.DragIndicator, {
+  className: 'style',
+});
+const StyledActionsheetDragIndicatorWrapper = styled(
+  UIActionsheet.DragIndicatorWrapper,
+  { className: 'style' }
+);
+const StyledActionsheetBackdrop = styled(UIActionsheet.Backdrop, {
+  className: 'style',
+});
+const StyledActionsheetScrollView = styled(UIActionsheet.ScrollView, {
   className: 'style',
   contentContainerClassName: 'contentContainerStyle',
   indicatorClassName: 'indicatorStyle',
 });
-styled(UIActionsheet.VirtualizedList, {
+const StyledActionsheetVirtualizedList = styled(UIActionsheet.VirtualizedList, {
   className: 'style',
   ListFooterComponentClassName: 'ListFooterComponentStyle',
   ListHeaderComponentClassName: 'ListHeaderComponentStyle',
   contentContainerClassName: 'contentContainerStyle',
   indicatorClassName: 'indicatorStyle',
 });
-styled(UIActionsheet.FlatList, {
+const StyledActionsheetFlatList = styled(UIActionsheet.FlatList, {
   className: 'style',
   ListFooterComponentClassName: 'ListFooterComponentStyle',
   ListHeaderComponentClassName: 'ListHeaderComponentStyle',
@@ -87,8 +98,13 @@ styled(UIActionsheet.FlatList, {
   contentContainerClassName: 'contentContainerStyle',
   indicatorClassName: 'indicatorStyle',
 });
-styled(UIActionsheet.SectionList, { className: 'style' });
-styled(UIActionsheet.SectionHeaderText, { className: 'style' });
+const StyledActionsheetSectionList = styled(UIActionsheet.SectionList, {
+  className: 'style',
+});
+const StyledActionsheetSectionHeaderText = styled(
+  UIActionsheet.SectionHeaderText,
+  { className: 'style' }
+);
 
 styled(PrimitiveIcon, {
   className: {
@@ -419,11 +435,11 @@ const ActionsheetBackdrop = React.forwardRef<
 });
 
 const ActionsheetScrollView = React.forwardRef<
-  React.ComponentRef<typeof UIActionsheet.ScrollView>,
+  React.ComponentRef<typeof StyledActionsheetScrollView>,
   IActionsheetScrollViewProps
 >(function ActionsheetScrollView({ className, ...props }, ref) {
   return (
-    <UIActionsheet.ScrollView
+    <StyledActionsheetScrollView
       className={actionsheetScrollViewStyle({
         class: className,
       })}
@@ -434,11 +450,11 @@ const ActionsheetScrollView = React.forwardRef<
 });
 
 const ActionsheetVirtualizedList = React.forwardRef<
-  React.ComponentRef<typeof UIActionsheet.VirtualizedList>,
+  React.ComponentRef<typeof StyledActionsheetVirtualizedList>,
   IActionsheetVirtualizedListProps
 >(function ActionsheetVirtualizedList({ className, ...props }, ref) {
   return (
-    <UIActionsheet.VirtualizedList
+    <StyledActionsheetVirtualizedList
       className={actionsheetVirtualizedListStyle({
         class: className,
       })}
@@ -449,11 +465,11 @@ const ActionsheetVirtualizedList = React.forwardRef<
 });
 
 const ActionsheetFlatList = React.forwardRef<
-  React.ComponentRef<typeof UIActionsheet.FlatList>,
+  React.ComponentRef<typeof StyledActionsheetFlatList>,
   IActionsheetFlatListProps
 >(function ActionsheetFlatList({ className, ...props }, ref) {
   return (
-    <UIActionsheet.FlatList
+    <StyledActionsheetFlatList
       className={actionsheetFlatListStyle({
         class: className,
       })}
@@ -464,11 +480,11 @@ const ActionsheetFlatList = React.forwardRef<
 });
 
 const ActionsheetSectionList = React.forwardRef<
-  React.ComponentRef<typeof UIActionsheet.SectionList>,
+  React.ComponentRef<typeof StyledActionsheetSectionList>,
   IActionsheetSectionListProps
 >(function ActionsheetSectionList({ className, ...props }, ref) {
   return (
-    <UIActionsheet.SectionList
+    <StyledActionsheetSectionList
       className={actionsheetSectionListStyle({
         class: className,
       })}
@@ -479,7 +495,7 @@ const ActionsheetSectionList = React.forwardRef<
 });
 
 const ActionsheetSectionHeaderText = React.forwardRef<
-  React.ComponentRef<typeof UIActionsheet.SectionHeaderText>,
+  React.ComponentRef<typeof StyledActionsheetSectionHeaderText>,
   IActionsheetSectionHeaderTextProps
 >(function ActionsheetSectionHeaderText(
   {
@@ -497,7 +513,7 @@ const ActionsheetSectionHeaderText = React.forwardRef<
   ref
 ) {
   return (
-    <UIActionsheet.SectionHeaderText
+    <StyledActionsheetSectionHeaderText
       className={actionsheetSectionHeaderTextStyle({
         class: className,
         isTruncated: Boolean(isTruncated),

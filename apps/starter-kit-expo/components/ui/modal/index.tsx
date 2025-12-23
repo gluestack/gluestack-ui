@@ -29,10 +29,13 @@ type IMotionViewProps = React.ComponentProps<typeof View> &
 
 const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
 
+const styledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
+const styledMotionView = styled(MotionView, { className: 'style' });
+
 const UIModal = createModal({
   Root: withStyleContext(View, SCOPE),
-  Backdrop: AnimatedPressable,
-  Content: MotionView,
+  Backdrop: styledAnimatedPressable,
+  Content: styledMotionView,
   Body: ScrollView,
   CloseButton: Pressable,
   Footer: View,
@@ -40,8 +43,6 @@ const UIModal = createModal({
   AnimatePresence: AnimatePresence,
 });
 
-styled(AnimatedPressable, { className: 'style' });
-styled(MotionView, { className: 'style' });
 
 const modalStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
