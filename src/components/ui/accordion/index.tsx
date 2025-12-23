@@ -9,7 +9,7 @@ import {
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import { H3 } from '@expo/html-elements';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'ACCORDION';
@@ -84,8 +84,27 @@ const accordionTriggerStyle = tva({
 
 const Root = withStyleContext(View, SCOPE);
 
+const StyledH3 = styled(H3, {
+  className: {
+    target: 'style',
+  },
+});
+
+const StyledPrimitiveIcon = styled(PrimitiveIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
+});
+
 const Header = (
-  Platform.OS === 'web' ? H3 : View
+  Platform.OS === 'web' ? StyledH3 : View
 ) as React.ComponentType<TextProps>;
 
 /** Creator */
@@ -100,24 +119,7 @@ const UIAccordion = createAccordion({
   Content: View,
 });
 
-cssInterop(PrimitiveIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
-});
 
-cssInterop(H3, {
-  className: {
-    target: 'style',
-  },
-});
 
 type IAccordionProps = React.ComponentPropsWithoutRef<typeof UIAccordion> &
   VariantProps<typeof accordionStyle>;
@@ -138,14 +140,14 @@ type IAccordionContentTextProps = React.ComponentPropsWithoutRef<
   VariantProps<typeof accordionContentTextStyle>;
 
 type IAccordionIconProps = VariantProps<typeof accordionIconStyle> &
-  React.ComponentPropsWithoutRef<typeof UIAccordion.Icon> & {
+  React.ComponentPropsWithoutRef<typeof StyledPrimitiveIcon> & {
     as?: React.ElementType;
     height?: number;
     width?: number;
   };
 
 type IAccordionHeaderProps = React.ComponentPropsWithoutRef<
-  typeof UIAccordion.Header
+  typeof StyledH3
 > &
   VariantProps<typeof accordionHeaderStyle>;
 
@@ -225,14 +227,14 @@ const AccordionContentText = React.forwardRef<
 });
 
 const AccordionIcon = React.forwardRef<
-  React.ComponentRef<typeof UIAccordion.Icon>,
+  React.ComponentRef<typeof StyledPrimitiveIcon>,
   IAccordionIconProps
 >(function AccordionIcon({ size, className, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
     return (
-      <UIAccordion.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={accordionIconStyle({ class: className })}
@@ -244,7 +246,7 @@ const AccordionIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UIAccordion.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={accordionIconStyle({ class: className })}
@@ -252,7 +254,7 @@ const AccordionIcon = React.forwardRef<
     );
   }
   return (
-    <UIAccordion.Icon
+    <StyledPrimitiveIcon
       ref={ref}
       {...props}
       className={accordionIconStyle({
@@ -265,11 +267,11 @@ const AccordionIcon = React.forwardRef<
 });
 
 const AccordionHeader = React.forwardRef<
-  React.ComponentRef<typeof UIAccordion.Header>,
+  React.ComponentRef<typeof StyledH3>,
   IAccordionHeaderProps
 >(function AccordionHeader({ className, ...props }, ref) {
   return (
-    <UIAccordion.Header
+    <StyledH3
       ref={ref}
       {...props}
       className={accordionHeaderStyle({
