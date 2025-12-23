@@ -19,7 +19,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
@@ -43,11 +43,13 @@ type IMotionViewProps = React.ComponentProps<typeof View> &
   MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
 
 const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
+const StyledMotionView = styled(MotionView, { className: 'style' });
 
 const UIDrawer = createDrawer({
   Root: withStyleContext(View, SCOPE),
-  Backdrop: AnimatedPressable,
-  Content: MotionView,
+  Backdrop: StyledAnimatedPressable,
+  Content: StyledMotionView,
   Body: ScrollView,
   CloseButton: Pressable,
   Footer: View,
@@ -55,8 +57,6 @@ const UIDrawer = createDrawer({
   AnimatePresence: AnimatePresence,
 });
 
-cssInterop(AnimatedPressable, { className: 'style' });
-cssInterop(MotionView, { className: 'style' });
 
 const drawerStyle = tva({
   base: 'w-full h-full web:pointer-events-none relative',
