@@ -10,10 +10,11 @@ import { HStack } from '@/components/ui/hstack';
 import { Bookmark } from 'lucide-react-native';
 import { PlayIcon } from '../icons';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 const ITEM_WIDTH = SCREEN_WIDTH * 0.7;
 const SPACING = 0;
 const SIDE_SPACING = (SCREEN_WIDTH - ITEM_WIDTH) / 2;
+const GRADIENT_HEIGHT = SCREEN_HEIGHT * 0.2; // 20vh
 
 const AnimatedFlatList = Animated.createAnimatedComponent(Animated.FlatList);
 
@@ -70,47 +71,48 @@ const CarouselItemComponent = memo(
           marginHorizontal: SPACING / 2,
         }}
       >
-        <Card className="p-0">
+        <Card className="p-0 relative h-[46vh]">
           <Image
             source={item.poster}
             alt={item.title}
-            className="w-full h-[46vh] rounded-xl"
+            className="w-full  h-full rounded-xl"
           />
+          {/* <Box className="absolute z-0 h-[20vh] bottom-0 w-full bg-red-500"></Box> */}
           <LinearGradient
-            colors={[
-              'rgba(0, 6, 15, 1)',
-              'rgba(0, 6, 15, 0.56)',
-              'rgba(0, 6, 15, 0)',
-            ]}
-            start={{ x: 0, y: 0.95 }}
-            end={{ x: 0, y: 0.6 }}
-            className="absolute z-0 h-[100%] bottom-0 w-full"
+            colors={['transparent', 'rgba(0, 0, 0)']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            style={{
+              position: 'absolute',
+              zIndex: 30,
+              height: GRADIENT_HEIGHT,
+              bottom: 0,
+              left: 0,
+              right: 0,
+            }}
           />
-          <Box className="absolute z-10 bottom-0 w-full gap-3 py-5">
+          <Box className="absolute z-[50] bottom-0 w-full gap-3 py-5">
             <HStack className="gap-2 justify-center items-center">
               {item.tags.map((tag, index) => (
-                <Text
-                  key={index}
-                  className="text-md text-typography-600 font-proximaNova"
-                >
+                <Text key={index} className="text-md text-foreground font-body">
                   • {tag}
                 </Text>
               ))}
             </HStack>
             <HStack className="justify-center items-center gap-2">
-              <Button className="" size="sm">
+              <Button className="bg-[rgb(65,1,255)]">
                 <ButtonIcon
                   as={PlayIcon}
-                  className="text-typography-800 fill-white"
+                  className="stroke-primary-foreground fill-none"
                 />
-                <ButtonText className="text-typography-800 text-sm font-satoshi font-bold">
+                <ButtonText className=" text-sm font-body font-bold">
                   Play
                 </ButtonText>
               </Button>
-              <Button className="" size="sm">
+              <Button className="bg-[rgb(65,1,255)]" size="sm">
                 <ButtonIcon
                   as={Bookmark}
-                  className="text-typography-800 fill-white"
+                  className="stroke-primary-foreground fill-none"
                 />
                 <ButtonText className="text-typography-800 text-sm font-satoshi font-bold">
                   My List
@@ -227,4 +229,3 @@ export const CustomCarousel: React.FC<CustomCarouselProps> = ({
     </>
   );
 };
-
