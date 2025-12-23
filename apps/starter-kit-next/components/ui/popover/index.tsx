@@ -13,7 +13,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
@@ -42,8 +42,8 @@ const UIPopover = createPopover({
   AnimatePresence: AnimatePresence,
 });
 
-cssInterop(MotionView, { className: 'style' });
-cssInterop(AnimatedPressable, { className: 'style' });
+const StyledMotionView = styled(MotionView, { className: 'style' });
+const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
 
 const popoverStyle = tva({
   base: 'group/popover w-full h-full justify-center items-center web:pointer-events-none',
@@ -126,10 +126,10 @@ const popoverFooterStyle = tva({
 type IPopoverProps = React.ComponentProps<typeof UIPopover> &
   VariantProps<typeof popoverStyle> & { className?: string };
 
-type IPopoverArrowProps = React.ComponentProps<typeof UIPopover.Arrow> &
+type IPopoverArrowProps = React.ComponentProps<typeof StyledMotionView> &
   VariantProps<typeof popoverArrowStyle> & { className?: string };
 
-type IPopoverContentProps = React.ComponentProps<typeof UIPopover.Content> &
+type IPopoverContentProps = React.ComponentProps<typeof StyledMotionView> &
   VariantProps<typeof popoverContentStyle> & { className?: string };
 
 type IPopoverHeaderProps = React.ComponentProps<typeof UIPopover.Header> &
@@ -141,7 +141,7 @@ type IPopoverFooterProps = React.ComponentProps<typeof UIPopover.Footer> &
 type IPopoverBodyProps = React.ComponentProps<typeof UIPopover.Body> &
   VariantProps<typeof popoverBodyStyle> & { className?: string };
 
-type IPopoverBackdropProps = React.ComponentProps<typeof UIPopover.Backdrop> &
+type IPopoverBackdropProps = React.ComponentProps<typeof StyledAnimatedPressable> &
   VariantProps<typeof popoverBackdropStyle> & { className?: string };
 
 type IPopoverCloseButtonProps = React.ComponentProps<
@@ -202,12 +202,12 @@ const PopoverContent = React.forwardRef<
 });
 
 const PopoverArrow = React.forwardRef<
-  React.ComponentRef<typeof UIPopover.Arrow>,
+  React.ComponentRef<typeof StyledMotionView>,
   IPopoverArrowProps
 >(function PopoverArrow({ className, ...props }, ref) {
   const { placement } = useStyleContext(SCOPE);
   return (
-    <UIPopover.Arrow
+    <StyledMotionView
       ref={ref}
       transition={{
         type: 'spring',
@@ -230,11 +230,11 @@ const PopoverArrow = React.forwardRef<
 });
 
 const PopoverBackdrop = React.forwardRef<
-  React.ComponentRef<typeof UIPopover.Backdrop>,
+  React.ComponentRef<typeof StyledAnimatedPressable>,
   IPopoverBackdropProps
 >(function PopoverBackdrop({ className, ...props }, ref) {
   return (
-    <UIPopover.Backdrop
+    <StyledAnimatedPressable
       ref={ref}
       {...props}
       initial={{
