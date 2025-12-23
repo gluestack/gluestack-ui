@@ -2,7 +2,7 @@ import React from 'react';
 import { createIcon } from '@gluestack-ui/core/icon/creator';
 import { Path } from 'react-native-svg';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
   PrimitiveIcon,
@@ -31,7 +31,7 @@ const iconStyle = tva({
   },
 });
 
-cssInterop(UIIcon, {
+const StyledUIIcon = styled(UIIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -48,11 +48,11 @@ type IIConProps = IPrimitiveIcon &
   VariantProps<typeof iconStyle> &
   React.ComponentPropsWithoutRef<typeof UIIcon>;
 
-const Icon = React.forwardRef<React.ComponentRef<typeof UIIcon>, IIConProps>(
+const Icon = React.forwardRef<React.ComponentRef<typeof StyledUIIcon>, IIConProps>(
   function Icon({ size = 'md', className, ...props }, ref) {
     if (typeof size === 'number') {
       return (
-        <UIIcon
+        <StyledUIIcon
           ref={ref}
           {...props}
           className={iconStyle({ class: className })}
@@ -64,7 +64,7 @@ const Icon = React.forwardRef<React.ComponentRef<typeof UIIcon>, IIConProps>(
       size === undefined
     ) {
       return (
-        <UIIcon
+        <StyledUIIcon
           ref={ref}
           {...props}
           className={iconStyle({ class: className })}
@@ -72,7 +72,7 @@ const Icon = React.forwardRef<React.ComponentRef<typeof UIIcon>, IIConProps>(
       );
     }
     return (
-      <UIIcon
+      <StyledUIIcon
         ref={ref}
         {...props}
         className={iconStyle({ size, class: className })}
