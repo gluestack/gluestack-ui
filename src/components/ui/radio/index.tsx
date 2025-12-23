@@ -7,7 +7,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 
@@ -25,7 +25,7 @@ const UIRadio = createRadio({
   Label: Text,
 });
 
-cssInterop(PrimitiveIcon, {
+const StyledPrimitiveIcon = styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -163,20 +163,20 @@ const RadioLabel = React.forwardRef<
   );
 });
 
-type IRadioIconProps = React.ComponentProps<typeof UIRadio.Icon> &
+type IRadioIconProps = React.ComponentProps<typeof StyledPrimitiveIcon> &
   VariantProps<typeof radioIconStyle> & {
     height?: number;
     width?: number;
   };
 const RadioIcon = React.forwardRef<
-  React.ComponentRef<typeof UIRadio.Icon>,
+  React.ComponentRef<typeof StyledPrimitiveIcon>,
   IRadioIconProps
 >(function RadioIcon({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
     return (
-      <UIRadio.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={radioIconStyle({ class: className })}
@@ -188,7 +188,7 @@ const RadioIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UIRadio.Icon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={radioIconStyle({ class: className })}
@@ -197,7 +197,7 @@ const RadioIcon = React.forwardRef<
   }
 
   return (
-    <UIRadio.Icon
+      <StyledPrimitiveIcon
       {...props}
       className={radioIconStyle({
         parentVariants: {
