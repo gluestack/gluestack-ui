@@ -2,7 +2,7 @@
 import React from 'react';
 import { createMenu } from '@gluestack-ui/core/menu/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import { Pressable, Text, View, ViewStyle } from 'react-native';
 import {
   Motion,
@@ -132,7 +132,7 @@ export const UIMenu = createMenu({
   Separator: Separator,
 });
 
-cssInterop(MotionView, { className: 'style' });
+styled(MotionView, { className: 'style' });
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle> & { className?: string };

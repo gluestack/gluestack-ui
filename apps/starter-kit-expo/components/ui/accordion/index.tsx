@@ -9,7 +9,7 @@ import {
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import { H3 } from '@expo/html-elements';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'ACCORDION';
@@ -100,7 +100,7 @@ const UIAccordion = createAccordion({
   Content: View,
 });
 
-cssInterop(PrimitiveIcon, {
+styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -113,7 +113,7 @@ cssInterop(PrimitiveIcon, {
   },
 });
 
-cssInterop(H3, {
+styled(H3, {
   className: {
     target: 'style',
   },

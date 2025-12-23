@@ -13,7 +13,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const IndicatorWrapper = React.forwardRef<
@@ -50,7 +50,7 @@ const UICheckbox = createCheckbox({
   Indicator: IndicatorWrapper,
 });
 
-cssInterop(PrimitiveIcon, {
+styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {

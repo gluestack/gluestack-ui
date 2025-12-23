@@ -7,7 +7,7 @@ import {
   useStyleContext,
   type VariantProps,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 
@@ -23,7 +23,7 @@ const UIButton = createButton({
   Icon: UIIcon,
 });
 
-cssInterop(PrimitiveIcon, {
+styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {

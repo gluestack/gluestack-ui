@@ -9,7 +9,7 @@ import {
 } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { createSelect } from '@gluestack-ui/core/select/creator';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import {
   Actionsheet,
   ActionsheetContent,
@@ -111,13 +111,13 @@ const UISelect = createSelect(
   }
 );
 
-cssInterop(UISelect, { className: 'style' });
-cssInterop(UISelect.Input, {
+styled(UISelect, { className: 'style' });
+styled(UISelect.Input, {
   className: { target: 'style', nativeStyleToProp: { textAlign: true } },
 });
-cssInterop(SelectTriggerWrapper, { className: 'style' });
+styled(SelectTriggerWrapper, { className: 'style' });
 
-cssInterop(PrimitiveIcon, {
+styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {

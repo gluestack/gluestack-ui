@@ -2,9 +2,9 @@
 import { ActivityIndicator } from 'react-native';
 import React from 'react';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 
-cssInterop(ActivityIndicator, {
+styled(ActivityIndicator, {
   className: { target: 'style', nativeStyleToProp: { color: true } },
 });
 

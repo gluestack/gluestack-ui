@@ -19,7 +19,7 @@ import React, {
   useState,
 } from 'react';
 import { Pressable, Text } from 'react-native';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 
 const bottomSheetBackdropStyle = tva({
@@ -175,7 +175,7 @@ export const BottomSheetBackdrop = ({
   );
 };
 
-cssInterop(GorhomBottomSheetBackdrop, { className: 'style' });
+styled(GorhomBottomSheetBackdrop, { className: 'style' });
 
 type IBottomSheetDragIndicator = React.ComponentProps<typeof BottomSheetHandle>;
 
@@ -197,7 +197,7 @@ export const BottomSheetDragIndicator = ({
   );
 };
 
-cssInterop(BottomSheetHandle, { className: 'style' });
+styled(BottomSheetHandle, { className: 'style' });
 
 type IBottomSheetContent = React.ComponentProps<typeof GorhomBottomSheetView>;
 
@@ -249,7 +249,7 @@ export const BottomSheetContent = ({ ...props }: IBottomSheetContent) => {
   );
 };
 
-cssInterop(GorhomBottomSheetView, { className: 'style' });
+styled(GorhomBottomSheetView, { className: 'style' });
 
 export const BottomSheetItem = ({
   children,
@@ -288,7 +288,7 @@ export const BottomSheetFlatList = GorhomBottomSheetFlatList;
 export const BottomSheetSectionList = GorhomBottomSheetSectionList;
 export const BottomSheetTextInput = GorhomBottomSheetInput;
 
-cssInterop(GorhomBottomSheetInput, { className: 'style' });
-cssInterop(GorhomBottomSheetScrollView, { className: 'style' });
-cssInterop(GorhomBottomSheetFlatList, { className: 'style' });
-cssInterop(GorhomBottomSheetSectionList, { className: 'style' });
+styled(GorhomBottomSheetInput, { className: 'style' });
+styled(GorhomBottomSheetScrollView, { className: 'style' });
+styled(GorhomBottomSheetFlatList, { className: 'style' });
+styled(GorhomBottomSheetSectionList, { className: 'style' });

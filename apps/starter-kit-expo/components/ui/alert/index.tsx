@@ -7,7 +7,7 @@ import {
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import React from 'react';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 
@@ -111,7 +111,7 @@ export const UIAlert = createAlert({
   Icon: UIIcon,
 });
 
-cssInterop(PrimitiveIcon, {
+styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {

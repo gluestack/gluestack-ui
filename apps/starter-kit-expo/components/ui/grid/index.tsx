@@ -8,7 +8,7 @@ import React, {
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { View, Dimensions, Platform, ViewProps } from 'react-native';
 import { gridStyle, gridItemStyle } from './styles';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import {
   useBreakpointValue,
   getBreakPointValue,
@@ -181,7 +181,7 @@ const Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
     );
   }
 );
-cssInterop(Grid, {
+styled(Grid, {
   className: {
     target: 'style',
     nativeStyleToProp: {
