@@ -7,7 +7,7 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 import { Svg } from 'react-native-svg';
@@ -97,7 +97,7 @@ const badgeIconStyle = tva({
 
 const ContextView = withStyleContext(View, SCOPE);
 
-cssInterop(PrimitiveIcon, {
+const StyledPrimitiveIcon = styled(PrimitiveIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -163,18 +163,18 @@ const BadgeText = React.forwardRef<
   );
 });
 
-type IBadgeIconProps = React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
+type IBadgeIconProps = React.ComponentPropsWithoutRef<typeof StyledPrimitiveIcon> &
   VariantProps<typeof badgeIconStyle>;
 
 const BadgeIcon = React.forwardRef<
-  React.ComponentRef<typeof Svg>,
+  React.ComponentRef<typeof StyledPrimitiveIcon>,
   IBadgeIconProps
 >(function BadgeIcon({ className, size, ...props }, ref) {
   const { size: parentSize, action: parentAction } = useStyleContext(SCOPE);
 
   if (typeof size === 'number') {
     return (
-      <UIIcon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={badgeIconStyle({ class: className })}
@@ -186,7 +186,7 @@ const BadgeIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UIIcon
+      <StyledPrimitiveIcon
         ref={ref}
         {...props}
         className={badgeIconStyle({ class: className })}
@@ -194,7 +194,7 @@ const BadgeIcon = React.forwardRef<
     );
   }
   return (
-    <UIIcon
+    <StyledPrimitiveIcon
       className={badgeIconStyle({
         parentVariants: {
           size: parentSize,
