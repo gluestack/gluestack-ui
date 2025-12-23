@@ -219,7 +219,7 @@ export default function Filters() {
           </ButtonText>
         </Button>
         <Button className="flex-1 rounded-full bg-[rgb(18,244,142)] data-[active=true]:bg-[rgb(18,244,142)]">
-          <ButtonText className=" font-poppins">Save</ButtonText>
+          <ButtonText className="text-black font-poppins">Save</ButtonText>
         </Button>
       </HStack>
     </Box>
