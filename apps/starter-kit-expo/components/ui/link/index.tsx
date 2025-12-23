@@ -5,7 +5,7 @@ import { Text } from 'react-native';
 
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 import React from 'react';
@@ -14,8 +14,8 @@ export const UILink = createLink({
   Text: Text,
 });
 
-cssInterop(UILink, { className: 'style' });
-cssInterop(UILink.Text, { className: 'style' });
+const StyledUILink = styled(UILink, { className: 'style' });
+const StyledUILinkText = styled(UILink.Text, { className: 'style' });
 
 const linkStyle = tva({
   base: 'group/link web:outline-0 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-indicator-primary data-[focus-visible=true]:web:outline-0 data-[disabled=true]:opacity-4 ',
@@ -65,10 +65,10 @@ const linkTextStyle = tva({
 type ILinkProps = React.ComponentProps<typeof UILink> &
   VariantProps<typeof linkStyle> & { className?: string };
 
-const Link = React.forwardRef<React.ComponentRef<typeof UILink>, ILinkProps>(
+const Link = React.forwardRef<React.ComponentRef<typeof StyledUILink>, ILinkProps>(
   function Link({ className, ...props }, ref) {
     return (
-      <UILink
+      <StyledUILink
         ref={ref}
         {...props}
         className={linkStyle({ class: className })}
@@ -81,11 +81,11 @@ type ILinkTextProps = React.ComponentProps<typeof UILink.Text> &
   VariantProps<typeof linkTextStyle> & { className?: string };
 
 const LinkText = React.forwardRef<
-  React.ComponentRef<typeof UILink.Text>,
+  React.ComponentRef<typeof StyledUILinkText>,
   ILinkTextProps
 >(function LinkText({ className, size = 'md', ...props }, ref) {
   return (
-    <UILink.Text
+    <StyledUILinkText
       ref={ref}
       {...props}
       className={linkTextStyle({
