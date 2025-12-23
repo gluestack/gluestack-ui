@@ -7,15 +7,17 @@ import { VStack } from '@/components/ui/vstack';
 import { SearchBar } from './components/SearchBar';
 import { CustomCarousel } from './components/CustomCarousel';
 import { CardsList } from './components/CardsList';
+import { Box } from '@/components/ui/box';
 import { keepWatching, recommended, top10 } from './data/movies';
 
 const Home = () => {
   return (
-    <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+    <Box className="flex-1 bg-background">
+    <ScrollView className="flex-1 bg-background" showsVerticalScrollIndicator={false}>
       <VStack className="gap-6">
         <HStack className="gap-3 mx-5 mt-12 justify-between items-center">
           <SearchBar placeholder="What do you want to watch today?" />
-          <Icon as={Cast} size="xl" className="text-background-850" />
+          <Icon as={Cast} size="xl" className="text-foreground" />
         </HStack>
         <CustomCarousel data={keepWatching} autoplayInterval={3000} />
         <CardsList
@@ -37,8 +39,8 @@ const Home = () => {
         />
       </VStack>
     </ScrollView>
+    </Box>
   );
 };
 
 export default Home;
-
