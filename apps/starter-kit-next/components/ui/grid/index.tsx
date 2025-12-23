@@ -8,7 +8,7 @@ import React, {
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { View, Dimensions, Platform, ViewProps } from 'react-native';
 import { gridStyle, gridItemStyle } from './styles';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import {
   useBreakpointValue,
   getBreakPointValue,
@@ -104,7 +104,7 @@ type IGridProps = ViewProps &
       className: string;
     };
   };
-const Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
+const Grid = forwardRef<React.ComponentRef<typeof StyledGrid>, IGridProps>(
   function Grid({ className, _extra, children, ...props }, ref) {
     const [calculatedWidth, setCalculatedWidth] = useState<number | null>(null);
     const gridClass = _extra?.className;
@@ -116,7 +116,7 @@ const Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
         const gridItemClassName = child?.props?._extra?.className;
         const colSpan2 = getBreakPointValue(
           generateResponsiveColSpans({ gridItemClassName }),
-          DEVICE_WIDTH
+          DEVICE_WIDTH,
         );
         const colSpan = colSpan2 ? colSpan2 : 1;
         if (colSpan > responsiveNumColumns) {
@@ -156,7 +156,7 @@ const Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
     const borderWidthToSubtract = borderLeftWidth + borderRightWidth;
     return (
       <GridContext.Provider value={contextValue}>
-        <View
+        <StyledGrid
           ref={ref}
           className={gridStyle({
             class: className + ' ' + gridClassMerged,
@@ -176,12 +176,12 @@ const Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
           {...props}
         >
           {calculatedWidth && childrenWithProps}
-        </View>
+        </StyledGrid>
       </GridContext.Provider>
     );
   }
 );
-cssInterop(Grid, {
+const StyledGrid = styled(Grid, {
   className: {
     target: 'style',
     nativeStyleToProp: {
