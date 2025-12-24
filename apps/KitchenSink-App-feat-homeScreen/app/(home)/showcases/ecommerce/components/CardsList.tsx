@@ -56,7 +56,7 @@ export const CardsList = ({ movies, title }: CardsListProps) => {
               }`}
             >
               {title === 'Top 10 Movies' && (
-                <Text className="text-secondary-600 font-spartanBold text-7xl absolute left-0 tracking-[-10] leading-[84px]">
+                <Text className="text-foreground font-spartanBold text-7xl absolute left-0 tracking-[-10] leading-[84px]">
                   {item.id}
                 </Text>
               )}
@@ -72,10 +72,16 @@ export const CardsList = ({ movies, title }: CardsListProps) => {
                         'rgba(0, 6, 15, 1)',
                         'rgba(0, 6, 15, 0.64)',
                         'rgba(0, 6, 15, 0.08)',
+                        'transparent',
                       ]}
                       start={{ x: 0, y: 0 }}
-                      end={{ x: 0.4, y: 0 }}
-                      className="absolute z-10 h-full w-full"
+                      end={{ x: 1, y: 0 }}
+                      style={{
+                        position: 'absolute',
+                        zIndex: 10,
+                        height: '100%',
+                        width: '100%',
+                      }}
                     />
                   )}
                   <Box
@@ -91,7 +97,7 @@ export const CardsList = ({ movies, title }: CardsListProps) => {
                       title === 'Keep watching') && (
                       <VStack className="z-10 items-center justify-center flex-1 bg-background-0/30 w-full rounded-xl overflow-hidden">
                         <Icon as={PlayIcon} className="h-10 w-10" />
-                        <Text className="absolute bottom-6 text-typography-600 font-proximaNova text-sm">
+                        <Text className="absolute bottom-6 text-foreground font-body text-sm">
                           1h 55m
                         </Text>
                         <Progress
