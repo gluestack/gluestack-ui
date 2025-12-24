@@ -10,6 +10,7 @@ import {
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { View, Pressable, ScrollView } from 'react-native';
+import { AnimatedContent } from './AnimatedContent';
 
 const SCOPE = 'ALERT_DIALOG';
 
@@ -18,13 +19,13 @@ const RootComponent = withStyleContext(View, SCOPE);
 const UIAccessibleAlertDialog = createAlertDialog({
   Root: RootComponent,
   Body: ScrollView,
-  Content: View,
+  Content: AnimatedContent,
   CloseButton: Pressable,
   Header: View,
   Footer: View,
   Backdrop: Pressable,
 });
-
+cssInterop(AnimatedContent, { className: 'style' });
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
   parentVariants: {
