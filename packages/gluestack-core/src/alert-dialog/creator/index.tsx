@@ -7,6 +7,8 @@ import AlertDialogHeader from './AlertDialogHeader';
 import AlertDialogBackdrop from './AlertDialogBackdrop';
 import type { IAlertDialogComponentType } from './types';
 
+export { AlertDialogContext } from './Context';
+
 export function createAlertDialog<
   AlertDialog,
   AlertDialogContent,

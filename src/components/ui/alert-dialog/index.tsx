@@ -10,7 +10,10 @@ import {
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { View, Pressable, ScrollView } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import { AlertDialogContext } from '@gluestack-ui/core/alert-dialog/creator';
 import { AnimatedContent } from './AnimatedContent';
+import { AnimatedBackdrop } from './AnimatedBackdrop';
 
 const SCOPE = 'ALERT_DIALOG';
 
@@ -23,9 +26,9 @@ const UIAccessibleAlertDialog = createAlertDialog({
   CloseButton: Pressable,
   Header: View,
   Footer: View,
-  Backdrop: Pressable,
+  Backdrop: AnimatedBackdrop,
 });
-cssInterop(AnimatedContent, { className: 'style' });
+
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
   parentVariants: {
@@ -125,6 +128,25 @@ const AlertDialogContent = React.forwardRef<
   IAlertDialogContentProps
 >(function AlertDialogContent({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
+  const context = React.useContext(AlertDialogContext);
+  const visible = context?.visible ?? false;
+  const [shouldRender, setShouldRender] = React.useState(visible);
+
+  React.useEffect(() => {
+    if (visible) {
+      setShouldRender(true);
+    } else {
+      // Delay unmounting to allow exit animation to complete
+      const timer = setTimeout(() => {
+        setShouldRender(false);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [visible]);
+
+  if (!shouldRender) {
+    return null;
+  }
 
   return (
     <UIAccessibleAlertDialog.Content

@@ -20,7 +20,7 @@ const AlertDialogContent = (
     const { dialogProps } = useDialog({ ...props }, mergedRef);
 
     React.useEffect(() => {
-      if (contentRef) {
+      if (contentRef && visible) {
         const reactTag = findNodeHandle(contentRef.current);
         if (reactTag) {
           // Issue from react-native side
