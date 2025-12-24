@@ -2,13 +2,11 @@ import React, { forwardRef } from 'react';
 import { AlertDialogContext } from './Context';
 import { Platform, AccessibilityInfo, Keyboard } from 'react-native';
 import { FocusScope } from '@gluestack-ui/utils/aria';
-import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { useDialog } from '@gluestack-ui/utils/aria';
 import { mergeRefs, findNodeHandle } from '@gluestack-ui/utils/common';
 
 const AlertDialogContent = (
-  StyledAlertDialogContent: any,
-  AnimatePresence?: any
+  StyledAlertDialogContent: any
 ) =>
   forwardRef(({ children, focusScope = true, ...props }: any, ref?: any) => {
     const { initialFocusRef, finalFocusRef, handleClose, visible } =
@@ -53,24 +51,18 @@ const AlertDialogContent = (
     }, [initialFocusRef, finalFocusRef, visible]);
 
     const content = (
-      <OverlayAnimatePresence
-        visible={visible}
-        AnimatePresence={AnimatePresence}
+      <StyledAlertDialogContent
+        {...props}
+        ref={mergedRef}
+        onAccessibilityEscape={handleClose}
+        aria-modal="true"
+        role={Platform.OS === 'web' ? 'alertdialog' : undefined}
+        accessibilityViewIsModal
+        tabIndex={Platform.OS === 'web' ? -1 : undefined}
+        {...dialogProps}
       >
-        <StyledAlertDialogContent
-          {...props}
-          ref={mergedRef}
-          onAccessibilityEscape={handleClose}
-          exit={true}
-          aria-modal="true"
-          role={Platform.OS === 'web' ? 'alertdialog' : undefined}
-          accessibilityViewIsModal
-          tabIndex={Platform.OS === 'web' ? -1 : undefined}
-          {...dialogProps}
-        >
-          {children}
-        </StyledAlertDialogContent>
-      </OverlayAnimatePresence>
+        {children}
+      </StyledAlertDialogContent>
     );
 
     return focusScope ? (

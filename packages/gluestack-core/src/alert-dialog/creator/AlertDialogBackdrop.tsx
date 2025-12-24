@@ -1,29 +1,22 @@
 import React, { forwardRef } from 'react';
 import { AlertDialogContext } from './Context';
-import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 
 function AlertDialogBackdrop<StyledAlertDialogBackdrop>(
-  StyledAlertDialogBackdrop: React.ComponentType<StyledAlertDialogBackdrop>,
-  AnimatePresence?: any
+  StyledAlertDialogBackdrop: React.ComponentType<StyledAlertDialogBackdrop>
 ) {
   return forwardRef(({ children, ...props }: { children?: any }, ref?: any) => {
     const { visible, closeOnOverlayClick, handleClose } =
       React.useContext(AlertDialogContext);
     return (
-      <OverlayAnimatePresence
-        visible={visible}
-        AnimatePresence={AnimatePresence}
+      <StyledAlertDialogBackdrop
+        ref={ref}
+        onPress={() => {
+          closeOnOverlayClick && handleClose();
+        }}
+        {...(props as StyledAlertDialogBackdrop)}
       >
-        <StyledAlertDialogBackdrop
-          ref={ref}
-          onPress={() => {
-            closeOnOverlayClick && handleClose();
-          }}
-          {...(props as StyledAlertDialogBackdrop)}
-        >
-          {children}
-        </StyledAlertDialogBackdrop>
-      </OverlayAnimatePresence>
+        {children}
+      </StyledAlertDialogBackdrop>
     );
   });
 }

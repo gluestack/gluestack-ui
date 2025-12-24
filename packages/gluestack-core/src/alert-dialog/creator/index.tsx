@@ -15,7 +15,6 @@ export function createAlertDialog<
   AlertDialogFooter,
   AlertDialogBody,
   AlertDialogBackdrop,
-  AlertDialogAnimatePresence,
 >({
   Root,
   Content,
@@ -24,7 +23,6 @@ export function createAlertDialog<
   Footer,
   Body,
   Backdrop,
-  AnimatePresence,
 }: {
   Root: React.ComponentType<AlertDialog>;
   Content: React.ComponentType<AlertDialogContent>;
@@ -33,15 +31,14 @@ export function createAlertDialog<
   Footer: React.ComponentType<AlertDialogFooter>;
   Body: React.ComponentType<AlertDialogBody>;
   Backdrop: React.ComponentType<AlertDialogBackdrop>;
-  AnimatePresence?: React.ComponentType<AlertDialogAnimatePresence>;
 }) {
   const AlertDialog: any = AlertMain(Root);
-  AlertDialog.Content = AlertDialogContent(Content, AnimatePresence);
+  AlertDialog.Content = AlertDialogContent(Content);
   AlertDialog.CloseButton = AlertDialogCloseButton(CloseButton);
   AlertDialog.Header = AlertDialogHeader(Header);
   AlertDialog.Footer = AlertDialogFooter(Footer);
   AlertDialog.Body = AlertDialogBody(Body);
-  AlertDialog.Backdrop = AlertDialogBackdrop(Backdrop, AnimatePresence);
+  AlertDialog.Backdrop = AlertDialogBackdrop(Backdrop);
 
   AlertDialog.displayName = 'AlertDialog';
   AlertDialog.Content.displayName = 'AlertDialog.Content';
