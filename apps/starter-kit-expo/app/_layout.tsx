@@ -1,3 +1,4 @@
+import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import '@/global.css';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -7,17 +8,15 @@ import {
   ThemeProvider,
 } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import { Slot, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
-import { useColorScheme } from '@/components/useColorScheme';
-import { Slot, usePathname } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { Fab, FabIcon } from '@/components/ui/fab';
-import { MoonIcon, SunIcon } from '@/components/ui/icon';
+import { SafeAreaListener } from 'react-native-safe-area-context';
+import { Uniwind } from 'uniwind';
 
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
+  ErrorBoundary
 } from 'expo-router';
 
 SplashScreen.preventAutoHideAsync();
@@ -47,21 +46,17 @@ function RootLayoutNav() {
   const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
 
   return (
-    <GluestackUIProvider mode={colorMode}>
-      <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
-        <Slot />
-        {pathname === '/' && (
-          <Fab
-            onPress={() =>
-              setColorMode(colorMode === 'dark' ? 'light' : 'dark')
-            }
-            className="m-6"
-            size="lg"
-          >
-            <FabIcon as={colorMode === 'dark' ? MoonIcon : SunIcon} />
-          </Fab>
-        )}
-      </ThemeProvider>
-    </GluestackUIProvider>
+    <SafeAreaListener
+      onChange={({ insets }) => {
+        Uniwind.updateInsets(insets);
+      }}
+    >
+      <GluestackUIProvider mode={colorMode}>
+        <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
+          <Slot />
+          {pathname === '/' && <ThemeSwitcher />}
+        </ThemeProvider>
+      </GluestackUIProvider>
+    </SafeAreaListener>
   );
 }
