@@ -158,8 +158,7 @@
   --color-indicator-info: oklch(65% 0.1 240);
   --color-indicator-error: oklch(45% 0.19 25);
 }
-
-/* Dark mode color tokens */
+/* Dark mode color tokens - media query based (for system preference) */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-primary-0: oklch(71% 0 0);
@@ -303,6 +302,7 @@
     --color-indicator-error: oklch(60% 0.2 25);
   }
 }
+
 /* NativeWind v5 / Tailwind v4 theme configuration */
 @theme {
   /* Primary Colors */

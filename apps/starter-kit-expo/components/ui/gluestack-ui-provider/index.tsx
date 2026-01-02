@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { config } from './config';
 import { View, ViewProps } from 'react-native';
 import { OverlayProvider } from '@gluestack-ui/core/overlay/creator';
 import { ToastProvider } from '@gluestack-ui/core/toast/creator';
@@ -25,7 +24,6 @@ export function GluestackUIProvider({
   return (
     <View
       style={[
-        config[colorScheme!],
         { flex: 1, height: '100%', width: '100%' },
         props.style,
       ]}

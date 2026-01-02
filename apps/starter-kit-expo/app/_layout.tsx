@@ -55,10 +55,10 @@ function RootLayoutNav() {
             onPress={() =>
               setColorMode(colorMode === 'dark' ? 'light' : 'dark')
             }
-            className="m-6"
+            className="m-6 p-8 bg-red-500"
             size="lg"
           >
-            <FabIcon as={colorMode === 'dark' ? MoonIcon : SunIcon} />
+            {/* <FabIcon as={colorMode === 'dark' ? MoonIcon : SunIcon} /> */}
           </Fab>
         )}
       </ThemeProvider>

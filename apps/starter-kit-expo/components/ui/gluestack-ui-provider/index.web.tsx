@@ -1,9 +1,7 @@
 'use client';
 import React, { useEffect, useLayoutEffect } from 'react';
-import { config } from './config';
 import { OverlayProvider } from '@gluestack-ui/core/overlay/creator';
 import { ToastProvider } from '@gluestack-ui/core/toast/creator';
-import { setFlushStyles } from '@gluestack-ui/utils/nativewind-utils';
 import { script } from './script';
 
 export type ModeType = 'light' | 'dark' | 'system';
@@ -26,20 +24,20 @@ export function GluestackUIProvider({
   mode?: ModeType;
   children?: React.ReactNode;
 }) {
-  let cssVariablesWithMode = ``;
-  Object.keys(config).forEach((configKey) => {
-    cssVariablesWithMode +=
-      configKey === 'dark' ? `\n .dark {\n ` : `\n:root {\n`;
-    const cssVariables = Object.keys(
-      config[configKey as keyof typeof config]
-    ).reduce((acc: string, curr: string) => {
-      acc += `${curr}:${config[configKey as keyof typeof config][curr]}; `;
-      return acc;
-    }, '');
-    cssVariablesWithMode += `${cssVariables} \n}`;
-  });
+  // let cssVariablesWithMode = ``;
+  // Object.keys(config).forEach((configKey) => {
+  //   cssVariablesWithMode +=
+  //     configKey === 'dark' ? `\n .dark {\n ` : `\n:root {\n`;
+  //   const cssVariables = Object.keys(
+  //     config[configKey as keyof typeof config]
+  //   ).reduce((acc: string, curr: string) => {
+  //     acc += `${curr}:${config[configKey as keyof typeof config][curr]}; `;
+  //     return acc;
+  //   }, '');
+  //   cssVariablesWithMode += `${cssVariables} \n}`;
+  // });
 
-  setFlushStyles(cssVariablesWithMode);
+  // setFlushStyles(cssVariablesWithMode);
 
   const handleMediaQuery = React.useCallback((e: MediaQueryListEvent) => {
     script(e.matches ? 'dark' : 'light');
@@ -50,7 +48,7 @@ export function GluestackUIProvider({
       const documentElement = document.documentElement;
       if (documentElement) {
         documentElement.classList.add(mode);
-        documentElement.classList.remove(mode === 'light' ? 'dark' : 'light');
+            documentElement.classList.remove(mode === 'light' ? 'dark' : 'light');
         documentElement.style.colorScheme = mode;
       }
     }
@@ -60,10 +58,11 @@ export function GluestackUIProvider({
     if (mode !== 'system') return;
     const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-    media.addListener(handleMediaQuery);
+    media.addEventListener('change', handleMediaQuery);
 
-    return () => media.removeListener(handleMediaQuery);
+    return () => media.removeEventListener('change', handleMediaQuery);
   }, [handleMediaQuery]);
+
 
   useSafeLayoutEffect(() => {
     if (typeof window !== 'undefined') {
@@ -73,7 +72,6 @@ export function GluestackUIProvider({
         let style = head?.querySelector(`[id='${variableStyleTagId}']`);
         if (!style) {
           style = createStyle(variableStyleTagId);
-          style.innerHTML = cssVariablesWithMode;
           if (head) head.appendChild(style);
         }
       }

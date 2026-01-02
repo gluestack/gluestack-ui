@@ -9,21 +9,6 @@ import { Button, ButtonText } from '@/components/ui/button';
 import { useRouter } from 'expo-router';
 import { Icon } from '@/components/ui/icon';
 
-const FeatureCard = ({ iconSvg: IconSvg, name, desc }: any) => {
-  return (
-    <Box
-      className="flex-column md:flex-1 m-2 p-4 rounded-lg bg-background-0/40"
-      key={name}
-    >
-      <Box className="items-center flex flex-row">
-        <Icon as={IconSvg}/>
-        <Text className="font-medium ml-2 text-xl">{name}</Text>
-      </Box>
-      <Text className="mt-2">{desc}</Text>
-    </Box>
-  );
-};
-
 export default function Home() {
   const router = useRouter();
   return (
@@ -45,7 +30,7 @@ export default function Home() {
             </Box>
             <Button
               size="md"
-              className="bg-primary-500 px-6 py-2 rounded-full"
+              className=" px-6 py-2 rounded-full"
               onPress={() => {
                 router.push('/tabs/tab1');
               }}
