@@ -42,8 +42,10 @@ const UIPopover = createPopover({
   AnimatePresence: AnimatePresence,
 });
 
-const StyledMotionView = styled(MotionView, { className: 'style' });
-const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
+const StyledMotionView = styled(UIPopover.Content, { className: 'style' });
+const StyledAnimatedPressable = styled(UIPopover.Backdrop, {
+  className: 'style',
+});
 
 const popoverStyle = tva({
   base: 'group/popover w-full h-full justify-center items-center web:pointer-events-none',
@@ -141,7 +143,9 @@ type IPopoverFooterProps = React.ComponentProps<typeof UIPopover.Footer> &
 type IPopoverBodyProps = React.ComponentProps<typeof UIPopover.Body> &
   VariantProps<typeof popoverBodyStyle> & { className?: string };
 
-type IPopoverBackdropProps = React.ComponentProps<typeof StyledAnimatedPressable> &
+type IPopoverBackdropProps = React.ComponentProps<
+  typeof StyledAnimatedPressable
+> &
   VariantProps<typeof popoverBackdropStyle> & { className?: string };
 
 type IPopoverCloseButtonProps = React.ComponentProps<
@@ -169,13 +173,13 @@ const Popover = React.forwardRef<
 });
 
 const PopoverContent = React.forwardRef<
-  React.ComponentRef<typeof UIPopover.Content>,
+  React.ComponentRef<typeof StyledMotionView>,
   IPopoverContentProps
 >(function PopoverContent({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
   return (
-    <UIPopover.Content
+    <StyledMotionView
       ref={ref}
       transition={{
         type: 'spring',
@@ -202,12 +206,12 @@ const PopoverContent = React.forwardRef<
 });
 
 const PopoverArrow = React.forwardRef<
-  React.ComponentRef<typeof StyledMotionView>,
+  React.ComponentRef<typeof UIPopover.Arrow>,
   IPopoverArrowProps
 >(function PopoverArrow({ className, ...props }, ref) {
   const { placement } = useStyleContext(SCOPE);
   return (
-    <StyledMotionView
+    <UIPopover.Arrow
       ref={ref}
       transition={{
         type: 'spring',

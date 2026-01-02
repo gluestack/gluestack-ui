@@ -1,48 +1,101 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Gradient from '@/assets/icons/Gradient';
 import Logo from '@/assets/icons/Logo';
 import { Box } from '@/components/ui/box';
 import { ScrollView } from 'react-native';
 import { Text } from '@/components/ui/text';
 
-import { Button, ButtonText } from '@/components/ui/button';
 import { useRouter } from 'expo-router';
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogBody,
+  AlertDialogBackdrop,
+} from '@/components/ui/alert-dialog';
+import {
+  Popover,
+  PopoverBackdrop,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+} from '@/components/ui/popover';
+
+import { Heading } from '@/components/ui/heading';
+import { Button, ButtonText } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleOpenPopover = () => {
+    setIsOpen(true);
+  };
+  const handleClosePopover = () => {
+    setIsOpen(false);
+  };
   const router = useRouter();
+  const [showAlertDialog, setShowAlertDialog] = useState(false);
+  const handleClose = () => setShowAlertDialog(false);
   return (
-    <Box className="flex-1 bg-background-300 h-[100vh]">
-        <Box className="absolute h-[500px] w-[500px] lg:w-[700px] lg:h-[700px]">
-          <Gradient />
-        </Box>
-      {/* <ScrollView
-        style={{ height: '100%' }}
-        contentContainerStyle={{ flexGrow: 1 }}
-      > */}
-        <Box className="flex flex-1 items-center mx-5 lg:my-24 lg:mx-32 py-safe">
-          <Box className="gap-10 base:flex-col sm:flex-row justify-between sm:w-[80%] md:flex-1">
-            <Box className="bg-background-template py-2 px-6 rounded-full items-center flex-column md:flex-row md:self-start">
-              <Text className="text-white font-medium">
-                Get started by editing
-              </Text>
-              <Text className="text-white font-medium ml-2">./App.tsx or ./app/index.tsx (or whatever entry point you have)</Text>
-            </Box>
+    <Box className="flex-1 bg-background-300 h-[100vh] pt-96">
+      <Button onPress={() => setShowAlertDialog(true)}>
+        <ButtonText>Open Dialog</ButtonText>
+      </Button>
+      <AlertDialog isOpen={showAlertDialog} onClose={handleClose} size="md">
+        <AlertDialogBackdrop />
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <Heading className="text-typography-950 font-semibold" size="md">
+              Are you sure you want to delete this post?
+            </Heading>
+          </AlertDialogHeader>
+          <AlertDialogBody className="mt-3 mb-4">
+            <Text size="sm">
+              Deleting the post will remove it permanently and cannot be undone.
+              Please confirm if you want to proceed.
+            </Text>
+          </AlertDialogBody>
+          <AlertDialogFooter className="">
             <Button
-              size="md"
-              className=" px-6 py-2 rounded-full"
-              onPress={() => {
-                router.push('/tabs/tab1');
-              }}
+              variant="outline"
+              action="secondary"
+              onPress={handleClose}
+              size="sm"
             >
-              <ButtonText>Explore Tab Navigation</ButtonText>
+              <ButtonText>Cancel</ButtonText>
             </Button>
-          </Box>
-          <Box className="flex-1 justify-center items-center h-[20px] w-[300px] lg:h-[160px] lg:w-[400px]">
-            <Logo />
-          </Box>
-        </Box>
-      {/* </ScrollView> */}
+            <Button size="sm" onPress={handleClose}>
+              <ButtonText>Delete</ButtonText>
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+      <Popover
+        isOpen={isOpen}
+        onClose={handleClosePopover}
+        onOpen={handleOpenPopover}
+        placement="bottom"
+        size="md"
+        trigger={(triggerProps) => {
+          return (
+            <Button {...triggerProps}>
+              <ButtonText>Open Popover</ButtonText>
+            </Button>
+          );
+        }}
+      >
+        <PopoverBackdrop />
+        <PopoverContent>
+          <PopoverArrow />
+          <PopoverBody>
+            <Text className="text-typography-900">
+              Alex, Annie and many others are already enjoying the Pro features,
+              don't miss out on the fun!
+            </Text>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
     </Box>
   );
 }

@@ -33,19 +33,21 @@ const AnimatedPressable = createMotionAnimatedComponent(
   Pressable
 ) as React.ComponentType<IAnimatedPressableProps>;
 
+const StyledMotionView = styled(MotionView, { className: 'style' });
+const StyledAnimatedPressable = styled(AnimatedPressable, {
+  className: 'style',
+});
+
 const UIAccessibleAlertDialog = createAlertDialog({
   Root: RootComponent,
   Body: ScrollView,
-  Content: MotionView,
+  Content: StyledMotionView,
   CloseButton: Pressable,
   Header: View,
   Footer: View,
-  Backdrop: AnimatedPressable,
+  Backdrop: StyledAnimatedPressable,
   AnimatePresence: AnimatePresence,
 });
-
-const StyledMotionView = styled(MotionView, { className: 'style' });
-const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
 
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
@@ -97,7 +99,7 @@ type IAlertDialogProps = React.ComponentPropsWithoutRef<
   VariantProps<typeof alertDialogStyle>;
 
 type IAlertDialogContentProps = React.ComponentPropsWithoutRef<
-  typeof StyledMotionView
+  typeof UIAccessibleAlertDialog.Content
 > &
   VariantProps<typeof alertDialogContentStyle> & { className?: string };
 
@@ -122,7 +124,7 @@ type IAlertDialogBodyProps = React.ComponentPropsWithoutRef<
   VariantProps<typeof alertDialogBodyStyle>;
 
 type IAlertDialogBackdropProps = React.ComponentPropsWithoutRef<
-  typeof StyledAnimatedPressable
+  typeof UIAccessibleAlertDialog.Backdrop
 > &
   VariantProps<typeof alertDialogBackdropStyle> & { className?: string };
 
@@ -142,13 +144,13 @@ const AlertDialog = React.forwardRef<
 });
 
 const AlertDialogContent = React.forwardRef<
-  React.ComponentRef<typeof StyledMotionView>,
+  React.ComponentRef<typeof UIAccessibleAlertDialog.Content>,
   IAlertDialogContentProps
 >(function AlertDialogContent({ className, size, ...props }, ref) {
   const { size: parentSize } = useStyleContext(SCOPE);
 
   return (
-    <StyledMotionView
+    <UIAccessibleAlertDialog.Content
       pointerEvents="auto"
       ref={ref}
       initial={{
@@ -245,11 +247,11 @@ const AlertDialogBody = React.forwardRef<
 });
 
 const AlertDialogBackdrop = React.forwardRef<
-  React.ComponentRef<typeof StyledAnimatedPressable>,
+  React.ComponentRef<typeof UIAccessibleAlertDialog.Backdrop>,
   IAlertDialogBackdropProps
 >(function AlertDialogBackdrop({ className, ...props }, ref) {
   return (
-    <StyledAnimatedPressable
+    <UIAccessibleAlertDialog.Backdrop
       ref={ref}
       initial={{
         opacity: 0,
