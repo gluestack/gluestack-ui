@@ -28,10 +28,10 @@ Object.entries(screenSize).forEach(([key, value]) => {
   }
 });
 
-export const getBreakPointValue = (
-  values: BreakPointValue,
+export const getBreakPointValue = <const V extends BreakPointValue>(
+  values: V,
   width: number
-): unknown => {
+): V[keyof V] => {
   if (typeof values !== 'object') return values;
 
   let finalBreakPointResolvedValue: unknown;
@@ -73,15 +73,17 @@ export const getBreakPointValue = (
   } else {
     finalBreakPointResolvedValue = lastValidObject.value;
   }
-  return finalBreakPointResolvedValue;
+  return finalBreakPointResolvedValue as V[keyof V];
 };
 
-export function useBreakpointValue(values: BreakPointValue): unknown {
+export function useBreakpointValue<const V extends BreakPointValue>(
+  values: V
+): V[keyof V] {
   const { width } = useWindowDimensions();
 
-  const [currentBreakPointValue, setCurrentBreakPointValue] = useState<unknown>(
-    getBreakPointValue(values, width)
-  );
+  const [currentBreakPointValue, setCurrentBreakPointValue] = useState<
+    V[keyof V]
+  >(getBreakPointValue(values, width));
 
   useEffect(() => {
     if (typeof values === 'object') {
