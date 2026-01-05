@@ -9,8 +9,7 @@ import {
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import { H3 } from '@expo/html-elements';
-import { cssInterop } from 'nativewind';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@/components/ui/icon';
 
 const SCOPE = 'ACCORDION';
 /** Styles */
@@ -98,25 +97,6 @@ const UIAccordion = createAccordion({
   TitleText: Text,
   ContentText: Text,
   Content: View,
-});
-
-cssInterop(PrimitiveIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
-});
-
-cssInterop(H3, {
-  className: {
-    target: 'style',
-  },
 });
 
 type IAccordionProps = React.ComponentPropsWithoutRef<typeof UIAccordion> &
