@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AccessibilityInfo } from 'react-native';
+import { AccessibilityInfo, Platform } from 'react-native';
 
 export const useAccessibilityInfo = () => {
   const [reduceMotionEnabled, setReduceMotionEnabled] = useState(false);
@@ -7,6 +7,11 @@ export const useAccessibilityInfo = () => {
     useState(false);
 
   useEffect(() => {
+    // Skip AccessibilityInfo setup on web as these APIs are not available
+    if (Platform.OS === 'web') {
+      return;
+    }
+
     const reduceMotionChangedSubscription = AccessibilityInfo.addEventListener(
       'reduceMotionChanged',
       (isReduceMotionEnabled) => {
