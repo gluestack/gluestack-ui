@@ -38,7 +38,7 @@
     "lucide-react-native": "^0.510.0",
     "nanoid": "^5.1.5",
     "nativewind": "^4.1.23",
-    "next": "14.2.35",
+    "next": "14.2.4",
     "next-compose-plugins": "^2.2.1",
     "prettier": "3.6.2",
     "prism-react-renderer": "^2.4.1",
