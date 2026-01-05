@@ -12,35 +12,35 @@ return (
       _extra={{className: "grid-cols-10"}}
     >
       <GridItem
-        className="bg-background-50 p-6 rounded-md"
+        className="bg-primary/10 p-6 rounded-md"
         _extra={{className: "col-span-3"}}
       />
       <GridItem
-        className="bg-background-50 p-6 rounded-md"
+        className="bg-primary/10 p-6 rounded-md"
         _extra={{className: "col-span-5"}}
       />
       <GridItem
-        className="bg-background-50 p-6 rounded-md"
+        className="bg-primary/10 p-6 rounded-md"
         _extra={{className: "col-span-2"}}
       />
       <GridItem
-        className="bg-background-50 p-6 rounded-md"
+        className="bg-primary/10 p-6 rounded-md"
         _extra={{className: "col-span-4"}}
       />
       <GridItem
-        className="bg-background-50 p-6 rounded-md"
+        className="bg-primary/10 p-6 rounded-md"
         _extra={{className: "col-span-6"}}
       />
       <GridItem
-        className="bg-background-50 p-6 rounded-md"
+        className="bg-primary/10 p-6 rounded-md"
         _extra={{className: "col-span-2"}}
       />
       <GridItem
-        className="bg-background-50 p-6 rounded-md"
+        className="bg-primary/10 p-6 rounded-md"
         _extra={{className: "col-span-4"}}
       />
       <GridItem
-        className="bg-background-50 p-6 rounded-md"
+        className="bg-primary/10 p-6 rounded-md"
         _extra={{className: "col-span-4"}}
       />
     </Grid>
@@ -53,7 +53,7 @@ return (
       className: 'grid-cols-9',
     }}>
       <GridItem
-        className="bg-background-50 p-3 rounded-md text-center"
+        className="bg-primary/10 p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-3',
         }}
@@ -61,7 +61,7 @@ return (
         <Text>A</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-3 rounded-md text-center"
+        className="bg-primary/10 p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-3',
         }}
@@ -69,7 +69,7 @@ return (
         <Text>B</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-3 rounded-md text-center"
+        className="bg-primary/10 p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-3',
         }}
@@ -86,7 +86,7 @@ return (
       className: 'grid-cols-6',
     }}>
       <GridItem
-        className="bg-background-50 p-4 rounded-md text-center"
+        className="bg-primary/10 p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-2',
         }}
@@ -94,7 +94,7 @@ return (
         <Text className="text-sm">01</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-4 rounded-md text-center"
+        className="bg-primary/10 p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-2',
         }}
@@ -102,7 +102,7 @@ return (
         <Text className="text-sm">02</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-4 rounded-md text-center"
+        className="bg-primary/10 p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-2',
         }}
@@ -110,7 +110,7 @@ return (
         <Text className="text-sm">03</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-4 rounded-md text-center"
+        className="bg-primary/10 p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-2',
         }}
@@ -118,7 +118,7 @@ return (
         <Text className="text-sm">04</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-4 rounded-md text-center"
+        className="bg-primary/10 p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-2',
         }}
@@ -126,7 +126,7 @@ return (
         <Text className="text-sm">05</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-4 rounded-md text-center"
+        className="bg-primary/10 p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-2',
         }}
@@ -143,7 +143,7 @@ return (
       className: 'grid-cols-8',
     }}>
       <GridItem
-        className="bg-background-50 p-3 rounded-md text-center"
+        className="bg-primary/10 p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-4',
         }}
@@ -151,7 +151,7 @@ return (
         <Text className="text-sm">01</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-3 rounded-md text-center"
+        className="bg-primary/10 p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-4',
         }}
@@ -159,7 +159,7 @@ return (
         <Text className="text-sm">02</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-3 rounded-md text-center"
+        className="bg-primary/10 p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-4',
         }}
@@ -182,7 +182,7 @@ return (
         </Grid>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-3 rounded-md text-center"
+        className="bg-primary/10 p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-4',
         }}
@@ -208,7 +208,7 @@ return (
       className: 'grid-cols-6',
     }}>
       <GridItem
-        className="bg-background-50 p-4 rounded-md text-center"
+        className="bg-primary/10 p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-6 md:col-span-3 lg:col-span-2',
         }}
@@ -216,7 +216,7 @@ return (
         <Text className="text-sm">01</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-4 rounded-md text-center"
+        className="bg-primary/10 p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-6 md:col-span-3 lg:col-span-2',
         }}
@@ -224,7 +224,7 @@ return (
         <Text className="text-sm">02</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-4 rounded-md text-center"
+        className="bg-primary/10 p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-6 md:col-span-3 lg:col-span-2',
         }}
@@ -232,7 +232,7 @@ return (
         <Text className="text-sm">03</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-4 rounded-md text-center"
+        className="bg-primary/10 p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-6 md:col-span-3 lg:col-span-2',
         }}
@@ -240,7 +240,7 @@ return (
         <Text className="text-sm">04</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-4 rounded-md text-center"
+        className="bg-primary/10 p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-6 md:col-span-3 lg:col-span-2',
         }}
@@ -248,7 +248,7 @@ return (
         <Text className="text-sm">05</Text>
       </GridItem>
       <GridItem
-        className="bg-background-50 p-4 rounded-md text-center"
+        className="bg-primary/10 p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-6 md:col-span-3 lg:col-span-2',
         }}
