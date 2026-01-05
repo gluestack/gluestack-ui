@@ -4,20 +4,20 @@ import kitchenSinkNewMapper from './kitchen-sink-new';
 import starterKitsMapper from './starter-kits';
 
 export default [
-  {
-    name: 'website',
-    mapper: websiteMapper,
-  },
-  {
-    name: 'kitchen-sink',
-    mapper: kitchenSinkMapper,
-  },
+  // {
+  //   name: 'website',
+  //   mapper: websiteMapper,
+  // },
+  // {
+  //   name: 'kitchen-sink',
+  //   mapper: kitchenSinkMapper,
+  // },
   {
     name: 'kitchen-sink-new',
     mapper: kitchenSinkNewMapper,
   },
-  {
-    name: 'starter-kits',
-    mapper: starterKitsMapper,
-  },
+  // {
+  //   name: 'starter-kits',
+  //   mapper: starterKitsMapper,
+  // },
 ];
