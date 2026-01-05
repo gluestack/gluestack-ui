@@ -114,6 +114,9 @@
       --color-typography-800: #404040;
       --color-typography-900: #262627;
       --color-typography-950: #171717;
+      --color-typography-white: #FFFFFF;
+      --color-typography-gray: #D4D4D4;
+      --color-typography-black: #181718;
 
       /* Outline */
       --color-outline-0: #fdfefe;
@@ -142,6 +145,8 @@
       --color-background-800: #414040;
       --color-background-900: #272625;
       --color-background-950: #121212;
+      --color-background-light: #fbfbfb;
+      --color-background-dark: #181719;
 
       /* Background Special */
       --color-background-error: #fef1f1;
@@ -267,6 +272,9 @@
       --color-typography-800: #e5e5e5;
       --color-typography-900: #f5f5f5;
       --color-typography-950: #fefeff;
+      --color-typography-white: #FFFFFF;
+      --color-typography-gray: #D4D4D4;
+      --color-typography-black: #181718;
 
       /* Outline */
       --color-outline-0: #1a1717;
@@ -295,6 +303,8 @@
       --color-background-800: #f2f1f1;
       --color-background-900: #f6f6f6;
       --color-background-950: #ffffff;
+      --color-background-light: #fbfbfb;
+      --color-background-dark: #181719;
 
       /* Background Special */
       --color-background-error: #422b2b;
@@ -309,12 +319,4 @@
       --color-indicator-error: #e84645;
     }
   }
-}
-
-.hover-button {
-  transition: transform 0.3s ease-in-out;
-}
-
-.hover-button:hover {
-  transform: scale(5);
 }
