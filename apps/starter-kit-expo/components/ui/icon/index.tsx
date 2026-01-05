@@ -2,16 +2,18 @@ import React from 'react';
 import { createIcon } from '@gluestack-ui/core/icon/creator';
 import { Path } from 'react-native-svg';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
   PrimitiveIcon,
   IPrimitiveIcon,
   Svg,
 } from '@gluestack-ui/core/icon/creator';
+import { withUniwind } from 'uniwind';
+
+const StyledPrimitiveIcon = withUniwind(PrimitiveIcon);
 
 export const UIIcon = createIcon({
-  Root: PrimitiveIcon,
+  Root: StyledPrimitiveIcon,
 }) as React.ForwardRefExoticComponent<
   React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
     React.RefAttributes<React.ComponentRef<typeof Svg>>
@@ -27,19 +29,6 @@ const iconStyle = tva({
       'md': 'h-[18px] w-[18px]',
       'lg': 'h-5 w-5',
       'xl': 'h-6 w-6',
-    },
-  },
-});
-
-cssInterop(UIIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
     },
   },
 });
