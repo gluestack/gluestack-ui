@@ -10,7 +10,6 @@ import {
   AnimatePresence,
   MotionComponentProps,
 } from '@legendapp/motion';
-import { cssInterop } from 'nativewind';
 
 type IMotionViewProps = React.ComponentProps<typeof View> &
   MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
@@ -23,8 +22,6 @@ export const UITooltip = createTooltip({
   Text: Text,
   AnimatePresence: AnimatePresence,
 });
-
-cssInterop(MotionView, { className: 'style' });
 
 const tooltipStyle = tva({
   base: 'w-full h-full web:pointer-events-none',
