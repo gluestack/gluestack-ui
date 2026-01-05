@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import type { ColorValue, ViewProps } from 'react-native';
-import { Path, G } from 'react-native-svg';
+import { G, Path } from 'react-native-svg';
 
 interface CreateIconOptions {
   /**

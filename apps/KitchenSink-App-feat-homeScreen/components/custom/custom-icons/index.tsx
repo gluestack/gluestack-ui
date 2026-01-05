@@ -1,23 +1,23 @@
-import { createIcon } from "@/components/ui/icon";
+import { createIcon } from '@/components/ui/icon';
 import {
   Circle,
-  Ellipse,
+  ClipPath,
   Defs,
+  Ellipse,
   G,
   Mask,
   Path,
   Rect,
-  ClipPath,
-} from "react-native-svg";
+} from 'react-native-svg';
 
 const AccordionIcon = createIcon({
-  viewBox: "0 0 212 147",
+  viewBox: '0 0 212 147',
   path: (
     <>
       <G
         opacity={0.1}
         style={{
-          mixBlendMode: "overlay",
+          mixBlendMode: 'overlay',
         }}
       >
         <Rect
@@ -68,13 +68,13 @@ const AccordionIcon = createIcon({
 });
 
 const AlertIcon = createIcon({
-  viewBox: "0 0 193 149",
+  viewBox: '0 0 193 149',
   path: (
     <>
       <G
         opacity={0.15}
         style={{
-          mixBlendMode: "overlay",
+          mixBlendMode: 'overlay',
         }}
       >
         <G clipPath="url(#a)">
@@ -110,13 +110,13 @@ const AlertIcon = createIcon({
 });
 
 const AlertDialogIcon = createIcon({
-  viewBox: "0 0 190 141",
+  viewBox: '0 0 190 141',
   path: (
     <>
       <G
         opacity={0.15}
         style={{
-          mixBlendMode: "overlay",
+          mixBlendMode: 'overlay',
         }}
       >
         <Rect
@@ -167,13 +167,13 @@ const AlertDialogIcon = createIcon({
 });
 
 const AvatarIcon = createIcon({
-  viewBox: "0 0 193 174",
+  viewBox: '0 0 193 174',
   path: (
     <>
       <G
         opacity={0.15}
         style={{
-          mixBlendMode: "overlay",
+          mixBlendMode: 'overlay',
         }}
       >
         <Circle cx={149} cy={38} r={37.25} stroke="#fff" strokeWidth={1.5} />
@@ -185,7 +185,7 @@ const AvatarIcon = createIcon({
           y={0}
           maskUnits="userSpaceOnUse"
           style={{
-            maskType: "alpha",
+            maskType: 'alpha',
           }}
         >
           <Circle cx={149} cy={38} r={38} fill="#C4C4C4" />
@@ -198,7 +198,7 @@ const AvatarIcon = createIcon({
       <G
         opacity={0.15}
         style={{
-          mixBlendMode: "overlay",
+          mixBlendMode: 'overlay',
         }}
       >
         <Circle cx={63.5} cy={108.5} r={62.5} stroke="#fff" strokeWidth={2} />
@@ -210,7 +210,7 @@ const AvatarIcon = createIcon({
           y={45}
           maskUnits="userSpaceOnUse"
           style={{
-            maskType: "alpha",
+            maskType: 'alpha',
           }}
         >
           <Circle cx={63.5} cy={108.5} r={63.5} fill="#C4C4C4" />
@@ -229,7 +229,7 @@ const AvatarIcon = createIcon({
       <G
         opacity={0.15}
         style={{
-          mixBlendMode: "overlay",
+          mixBlendMode: 'overlay',
         }}
       >
         <Circle cx={174} cy={122} r={37.25} stroke="#fff" strokeWidth={1.5} />
@@ -241,7 +241,7 @@ const AvatarIcon = createIcon({
           y={84}
           maskUnits="userSpaceOnUse"
           style={{
-            maskType: "alpha",
+            maskType: 'alpha',
           }}
         >
           <Circle cx={174} cy={122} r={38} fill="#C4C4C4" />
@@ -307,9 +307,12 @@ const FormControllIcon = createIcon({
           rx={16.51}
         />
       </G>
-      ;
     </>
   ),
 });
 
-export { AccordionIcon, AlertIcon, AvatarIcon, AlertDialogIcon, FormControllIcon };
+export {
+  AccordionIcon, AlertDialogIcon, AlertIcon,
+  AvatarIcon, FormControllIcon
+};
+
