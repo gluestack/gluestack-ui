@@ -1,6 +1,7 @@
 import { Fab, FabIcon } from '@/components/ui/fab';
 import { Icon, MoonIcon, SettingsIcon, SunIcon } from '@/components/ui/icon';
 import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Uniwind, useUniwind } from 'uniwind';
 
 export const ThemeSwitcher = () => {
@@ -13,9 +14,22 @@ export const ThemeSwitcher = () => {
   ];
   const activeTheme = hasAdaptiveThemes ? 'system' : theme;
 
+  const handleThemeChange = async (themeName: 'light' | 'dark' | 'system') => {
+    try {
+      // Save theme to AsyncStorage
+      await AsyncStorage.setItem('app-theme', themeName);
+      // Apply theme
+      Uniwind.setTheme(themeName);
+    } catch (error) {
+      console.error('Failed to save theme:', error);
+      // Still apply theme even if storage fails
+      Uniwind.setTheme(themeName);
+    }
+  };
+
   return (
     <Menu
-      placement="top left"
+      placement="top"
       offset={5}
       disabledKeys={[`${activeTheme}`]}
       trigger={({ ...triggerProps }) => {
@@ -40,11 +54,11 @@ export const ThemeSwitcher = () => {
           key={theme.name}
           textValue={`${theme.name}`}
           onPress={() =>
-            Uniwind.setTheme(theme.name as 'light' | 'dark' | 'system')
+            handleThemeChange(theme.name as 'light' | 'dark' | 'system')
           }
         >
-          <Icon as={theme.icon} size="sm" className="mr-2" />
-          <MenuItemLabel size="sm">{theme.label}</MenuItemLabel>
+          <Icon as={theme.icon} className="mr-2" />
+          <MenuItemLabel>{theme.label}</MenuItemLabel>
         </MenuItem>
       ))}
     </Menu>
