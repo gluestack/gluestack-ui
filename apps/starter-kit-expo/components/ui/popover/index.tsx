@@ -13,7 +13,6 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
@@ -41,9 +40,6 @@ const UIPopover = createPopover({
   Header: View,
   AnimatePresence: AnimatePresence,
 });
-
-cssInterop(MotionView, { className: 'style' });
-cssInterop(AnimatedPressable, { className: 'style' });
 
 const popoverStyle = tva({
   base: 'group/popover w-full h-full justify-center items-center web:pointer-events-none',
