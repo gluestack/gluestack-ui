@@ -1,6 +1,5 @@
-import { Stack } from "expo-router";
-import { Platform } from "react-native";
 import { useAppTheme } from "@/contexts/app-theme-context";
+import { Stack } from "expo-router";
 
 export default function HomeLayout() {
   const { isDark } = useAppTheme();

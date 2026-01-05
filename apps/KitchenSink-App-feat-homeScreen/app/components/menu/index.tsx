@@ -1,11 +1,9 @@
-import { Menu, MenuItem, MenuItemLabel, MenuSeparator } from '@/components/ui/menu'
-import { Button, ButtonText, ButtonIcon } from '@/components/ui/button'
-import { Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon, MenuIcon, HelpCircleIcon, MessageCircleIcon } from '@/components/ui/icon'
-import { Badge, BadgeText } from '@/components/ui/badge'
-
-
-import React from 'react';
 import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
+import { Badge, BadgeText } from '@/components/ui/badge';
+import { Button, ButtonIcon, ButtonText } from '@/components/ui/button';
+import { AddIcon, GlobeIcon, HelpCircleIcon, Icon, MenuIcon, MessageCircleIcon, PlayIcon, SettingsIcon } from '@/components/ui/icon';
+import { Menu, MenuItem, MenuItemLabel, MenuSeparator } from '@/components/ui/menu';
+import React from 'react';
 
 const ExampleBasic = () => {
 return (

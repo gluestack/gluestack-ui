@@ -1,14 +1,12 @@
-import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input'
-import { FormControl } from '@/components/ui/form-control'
-import { VStack } from '@/components/ui/vstack'
-import { Heading } from '@/components/ui/heading'
-import { Text } from '@/components/ui/text'
+import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist'
 import { Button, ButtonText } from '@/components/ui/button'
+import { FormControl } from '@/components/ui/form-control'
+import { Heading } from '@/components/ui/heading'
 import { EyeIcon, EyeOffIcon, SearchIcon } from '@/components/ui/icon'
-
-
-import React from 'react';
-import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input'
+import { Text } from '@/components/ui/text'
+import { VStack } from '@/components/ui/vstack'
+import React from 'react'
 
 const ExampleBasic = () => {
 return (

@@ -1,16 +1,14 @@
-import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop } from '@/components/ui/alert-dialog'
-import { Button, ButtonText } from '@/components/ui/button'
-import { Text } from '@/components/ui/text'
-import { Heading } from '@/components/ui/heading'
+import { AlertDialog, AlertDialogBackdrop, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader } from '@/components/ui/alert-dialog'
 import { Box } from '@/components/ui/box'
-import { Image } from '@/components/ui/image'
-import { VStack } from '@/components/ui/vstack'
+import { Button, ButtonText } from '@/components/ui/button'
+import { Heading } from '@/components/ui/heading'
 import { Icon, TrashIcon } from '@/components/ui/icon'
+import { Image } from '@/components/ui/image'
+import { Text } from '@/components/ui/text'
+import { VStack } from '@/components/ui/vstack'
 import { UploadCloud } from 'lucide-react-native'
-
-
-import React from 'react';
-import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
+import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist'
+import React from 'react'
 
 const ExampleBasic = () => {
 const [showAlertDialog, setShowAlertDialog] = React.useState(false)

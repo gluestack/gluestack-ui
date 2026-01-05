@@ -1,12 +1,11 @@
-import { Stack, useRouter } from 'expo-router';
-import { Platform, Pressable } from 'react-native';
-import { useAppTheme } from '@/contexts/app-theme-context';
-import { Icon, ChevronLeftIcon } from '@/components/ui/icon';
 import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
 import { HStack } from '@/components/ui/hstack';
+import { ChevronLeftIcon, Icon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
+import { useAppTheme } from '@/contexts/app-theme-context';
+import { Stack, useRouter } from 'expo-router';
+import { Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { BlurView } from 'expo-blur';
 
 // Custom Header Component with NativeWind styling
 function CustomHeader({ title }: { title: string }) {

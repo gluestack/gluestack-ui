@@ -1,13 +1,11 @@
-import { Icon, EditIcon, AddIcon, AlertCircleIcon, ArrowUpIcon, ArrowDownIcon, ArrowRightIcon, ArrowLeftIcon, AtSignIcon, BellIcon, CalendarDaysIcon, CheckIcon, CheckCircleIcon, ChevronUpIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, ChevronsUpDownIcon, CircleIcon, ClockIcon, CloseIcon, CloseCircleIcon, CopyIcon, DownloadIcon, EyeIcon, EyeOffIcon, FavouriteIcon, GlobeIcon, GripVerticalIcon, HelpCircleIcon, InfoIcon, LinkIcon, ExternalLinkIcon, LoaderIcon, LockIcon, MailIcon, MenuIcon, MessageCircleIcon, MoonIcon, PaperclipIcon, PhoneIcon, PlayIcon, RemoveIcon, RepeatIcon, Repeat1Icon, SearchIcon, SettingsIcon, ShareIcon, SlashIcon, StarIcon, SunIcon, ThreeDotsIcon, TrashIcon, UnlockIcon, createIcon } from '@/components/ui/icon'
+import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist'
 import { Center } from '@/components/ui/center'
 import { HStack } from '@/components/ui/hstack'
+import { AddIcon, AlertCircleIcon, ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, AtSignIcon, BellIcon, CalendarDaysIcon, CheckCircleIcon, CheckIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, ChevronsLeftIcon, ChevronsRightIcon, ChevronsUpDownIcon, CircleIcon, ClockIcon, CloseCircleIcon, CloseIcon, CopyIcon, DownloadIcon, EditIcon, ExternalLinkIcon, EyeIcon, EyeOffIcon, FavouriteIcon, GlobeIcon, GripVerticalIcon, HelpCircleIcon, Icon, InfoIcon, LinkIcon, LoaderIcon, LockIcon, MailIcon, MenuIcon, MessageCircleIcon, MoonIcon, PaperclipIcon, PhoneIcon, PlayIcon, RemoveIcon, Repeat1Icon, RepeatIcon, SearchIcon, SettingsIcon, ShareIcon, SlashIcon, StarIcon, SunIcon, ThreeDotsIcon, TrashIcon, UnlockIcon, createIcon } from '@/components/ui/icon'
 import { VStack } from '@/components/ui/vstack'
-import { Camera, ChromeIcon, InstagramIcon, FacebookIcon } from 'lucide-react-native'
+import { Camera, ChromeIcon, FacebookIcon, InstagramIcon } from 'lucide-react-native'
+import React from 'react'
 import { Path } from 'react-native-svg'
-
-
-import React from 'react';
-import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
 
 const ExampleBasic = () => {
 return (

@@ -1,10 +1,8 @@
-import { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon } from '@/components/ui/accordion'
-import { Divider } from '@/components/ui/divider'
-import { ChevronDownIcon, ChevronUpIcon, AddIcon, RemoveIcon } from '@/components/ui/icon'
-
-
-import React from 'react';
+import { Accordion, AccordionContent, AccordionContentText, AccordionHeader, AccordionIcon, AccordionItem, AccordionTitleText, AccordionTrigger } from '@/components/ui/accordion';
+import { Divider } from '@/components/ui/divider';
+import { AddIcon, ChevronDownIcon, RemoveIcon } from '@/components/ui/icon';
 import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
+import React from 'react';
 
 const ExampleBasic = () => {
 return (

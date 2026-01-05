@@ -1,8 +1,6 @@
+import { customFonts } from '@/app/fonts';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import '@/global.css';
-
-import { customFonts } from '@/app/fonts';
-
 import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';

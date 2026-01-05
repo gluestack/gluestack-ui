@@ -1,16 +1,13 @@
-import { Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel } from '@/components/ui/radio'
-import { CircleIcon } from '@/components/ui/icon'
-import { Center } from '@/components/ui/center'
-import { VStack } from '@/components/ui/vstack'
-import { HStack } from '@/components/ui/hstack'
+import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist'
 import { Box } from '@/components/ui/box'
-import { Text } from '@/components/ui/text'
-import { Heading } from '@/components/ui/heading'
 import { FormControl } from '@/components/ui/form-control'
-
-
-import React from 'react';
-import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
+import { Heading } from '@/components/ui/heading'
+import { HStack } from '@/components/ui/hstack'
+import { CircleIcon } from '@/components/ui/icon'
+import { Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel } from '@/components/ui/radio'
+import { Text } from '@/components/ui/text'
+import { VStack } from '@/components/ui/vstack'
+import React from 'react'
 
 const ExampleBasic = () => {
 return (

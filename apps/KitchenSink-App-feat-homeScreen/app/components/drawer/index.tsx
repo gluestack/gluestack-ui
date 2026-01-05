@@ -1,20 +1,18 @@
-import { Drawer, DrawerBackdrop, DrawerContent, DrawerHeader, DrawerBody, DrawerFooter, DrawerCloseButton } from '@/components/ui/drawer'
-import { Button, ButtonText, ButtonIcon } from '@/components/ui/button'
-import { Heading } from '@/components/ui/heading'
-import { Text } from '@/components/ui/text'
-import { Icon, CloseIcon, CheckIcon } from '@/components/ui/icon'
-import { VStack } from '@/components/ui/vstack'
-import { Divider } from '@/components/ui/divider'
-import { HStack } from '@/components/ui/hstack'
-import { CheckboxGroup, Checkbox, CheckboxIndicator, CheckboxIcon, CheckboxLabel } from '@/components/ui/checkbox'
-import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@/components/ui/slider'
-import { Pressable } from '@/components/ui/pressable'
+import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist'
 import { Avatar, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar'
-import { User, Home, ShoppingCart, Wallet, LogOut } from 'lucide-react-native'
-
-
-import React from 'react';
-import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
+import { Button, ButtonIcon, ButtonText } from '@/components/ui/button'
+import { Checkbox, CheckboxGroup, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from '@/components/ui/checkbox'
+import { Divider } from '@/components/ui/divider'
+import { Drawer, DrawerBackdrop, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader } from '@/components/ui/drawer'
+import { Heading } from '@/components/ui/heading'
+import { HStack } from '@/components/ui/hstack'
+import { CheckIcon, CloseIcon, Icon } from '@/components/ui/icon'
+import { Pressable } from '@/components/ui/pressable'
+import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@/components/ui/slider'
+import { Text } from '@/components/ui/text'
+import { VStack } from '@/components/ui/vstack'
+import { Home, LogOut, ShoppingCart, User, Wallet } from 'lucide-react-native'
+import React from 'react'
 
 const ExampleBasic = () => {
 const [showDrawer, setShowDrawer] = React.useState(false);

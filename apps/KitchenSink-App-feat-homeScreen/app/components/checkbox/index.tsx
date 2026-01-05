@@ -1,16 +1,14 @@
-import { Checkbox, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckboxGroup } from '@/components/ui/checkbox'
-import { CheckIcon } from '@/components/ui/icon'
-import { VStack } from '@/components/ui/vstack'
-import { HStack } from '@/components/ui/hstack'
 import { Box } from '@/components/ui/box'
-import { Text } from '@/components/ui/text'
+import { Center } from '@/components/ui/center'
+import { Checkbox, CheckboxGroup, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from '@/components/ui/checkbox'
 import { FormControl } from '@/components/ui/form-control'
 import { Heading } from '@/components/ui/heading'
-import { Center } from '@/components/ui/center'
-
-
-import React from 'react';
-import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
+import { HStack } from '@/components/ui/hstack'
+import { CheckIcon } from '@/components/ui/icon'
+import { Text } from '@/components/ui/text'
+import { VStack } from '@/components/ui/vstack'
+import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist'
+import React from 'react'
 
 const ExampleBasic = () => {
 return (

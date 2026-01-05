@@ -1,15 +1,13 @@
-import { Button, ButtonText, ButtonSpinner, ButtonIcon } from '@/components/ui/button'
-import { EditIcon, ArrowUpIcon, InfoIcon, AddIcon, ArrowLeftIcon } from '@/components/ui/icon'
+import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist'
 import { Box } from '@/components/ui/box'
+import { Button, ButtonIcon, ButtonSpinner, ButtonText } from '@/components/ui/button'
 import { Center } from '@/components/ui/center'
 import { Heading } from '@/components/ui/heading'
+import { AddIcon, ArrowLeftIcon, ArrowUpIcon, EditIcon, InfoIcon } from '@/components/ui/icon'
 import { Input, InputField } from '@/components/ui/input'
 import { Text } from '@/components/ui/text'
 import { VStack } from '@/components/ui/vstack'
-
-
-import React from 'react';
-import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
+import React from 'react'
 
 const ExampleBasic = () => {
 return (
