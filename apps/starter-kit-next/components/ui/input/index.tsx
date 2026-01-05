@@ -7,9 +7,8 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@/components/ui/icon';
 
 const SCOPE = 'INPUT';
 
@@ -18,19 +17,6 @@ const UIInput = createInput({
   Icon: UIIcon,
   Slot: Pressable,
   Input: TextInput,
-});
-
-cssInterop(PrimitiveIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
 });
 
 const inputStyle = tva({
