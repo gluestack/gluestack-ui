@@ -2,14 +2,13 @@
 
 import React from 'react';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@/components/ui/icon';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { createSelect } from '@gluestack-ui/core/select/creator';
-import { cssInterop } from 'nativewind';
 import {
   Actionsheet,
   ActionsheetContent,
@@ -110,25 +109,6 @@ const UISelect = createSelect(
     SectionHeaderText: ActionsheetSectionHeaderText,
   }
 );
-
-cssInterop(UISelect, { className: 'style' });
-cssInterop(UISelect.Input, {
-  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
-});
-cssInterop(SelectTriggerWrapper, { className: 'style' });
-
-cssInterop(PrimitiveIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
-});
 
 type ISelectProps = VariantProps<typeof selectStyle> &
   React.ComponentProps<typeof UISelect> & { className?: string };
