@@ -1,15 +1,14 @@
 'use client';
 import React from 'react';
 import { createButton } from '@gluestack-ui/core/button/creator';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
+  tva,
   withStyleContext,
   useStyleContext,
+  type VariantProps,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@/components/ui/icon';
 
 const SCOPE = 'BUTTON';
 
@@ -21,19 +20,6 @@ const UIButton = createButton({
   Group: View,
   Spinner: ActivityIndicator,
   Icon: UIIcon,
-});
-
-cssInterop(PrimitiveIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
 });
 
 const buttonStyle = tva({
@@ -326,14 +312,9 @@ const ButtonText = React.forwardRef<
           size: parentSize,
           action: parentAction,
         },
-        variant: variant as 'link' | 'outline' | 'solid' | undefined,
+        variant,
         size,
-        action: action as
-          | 'primary'
-          | 'secondary'
-          | 'positive'
-          | 'negative'
-          | undefined,
+        action,
         class: className,
       })}
     />
@@ -420,8 +401,8 @@ const ButtonGroup = React.forwardRef<
         className={buttonGroupStyle({
           class: className,
           space,
-          isAttached: isAttached as boolean,
-          flexDirection: flexDirection as any,
+          isAttached,
+          flexDirection,
         })}
         {...props}
         ref={ref}
