@@ -1,5 +1,11 @@
 # @gluestack-ui/utils
 
+## 3.0.15
+
+### Patch Changes
+
+- chore: rollback
+
 ## 3.0.14
 
 ### Patch Changes
