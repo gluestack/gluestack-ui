@@ -1,20 +1,24 @@
 'use client';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-import { createContext, useState, useContext, ReactNode } from 'react';
+import { ThemeProvider } from '@/utils/theme-provider';
+import { useTheme } from 'next-themes';
+import { ReactNode, useEffect, useState } from 'react';
 
 type ColorModeType = 'light' | 'dark' | 'system';
 
-type ColorModeContextType = {
-  colorMode: ColorModeType;
-  setColorMode: (mode: ColorModeType) => void;
-};
+function GluestackWrapper({ children }: { children: ReactNode }) {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-const ColorModeContext = createContext<ColorModeContextType>({
-  colorMode: 'light',
-  setColorMode: () => {},
-});
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-export const useColorMode = () => useContext(ColorModeContext);
+  // Use default theme during SSR to avoid hydration mismatch
+  const mode = mounted ? (resolvedTheme as ColorModeType) : 'light';
+
+  return <GluestackUIProvider mode={mode}>{children}</GluestackUIProvider>;
+}
 
 export function Provider({
   children,
@@ -23,33 +27,14 @@ export function Provider({
   children: ReactNode;
   initialColorMode?: ColorModeType;
 }) {
-  const [colorMode, setColorMode] = useState<ColorModeType>(initialColorMode);
-
-  const handleColorModeChange = async (mode: ColorModeType) => {
-    setColorMode(mode);
-
-    // Update cookie via API route
-    try {
-      await fetch('/api/theme', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ colorMode: mode }),
-      });
-    } catch (error) {
-      console.error('Failed to update theme cookie:', error);
-    }
-  };
-
   return (
-    <ColorModeContext.Provider
-      value={{
-        colorMode,
-        setColorMode: handleColorModeChange,
-      }}
+    <ThemeProvider
+      attribute="class"
+      defaultTheme={initialColorMode}
+      enableSystem
+      disableTransitionOnChange
     >
-      <GluestackUIProvider mode={colorMode}>{children}</GluestackUIProvider>
-    </ColorModeContext.Provider>
+      <GluestackWrapper>{children}</GluestackWrapper>
+    </ThemeProvider>
   );
 }

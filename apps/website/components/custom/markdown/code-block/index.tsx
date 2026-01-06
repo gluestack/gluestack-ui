@@ -9,7 +9,7 @@ import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-diff';
-import { useColorMode } from '@/app/provider';
+import { useTheme } from 'next-themes';
 import './styles.css';
 import { Icon } from '@/components/ui/icon';
 import { CheckIcon, CopyIcon } from 'lucide-react-native';
@@ -67,7 +67,14 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   const [copied, setCopied] = useState(false);
   const [formattedCode, setFormattedCode] = useState(code);
   const codeRef = useRef<HTMLElement>(null);
-  const { colorMode } = useColorMode();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const colorMode = mounted ? (resolvedTheme as 'light' | 'dark') : 'light';
   const currentTheme = themes[colorMode as keyof typeof themes];
 
   useEffect(() => {

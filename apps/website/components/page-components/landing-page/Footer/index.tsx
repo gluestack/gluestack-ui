@@ -1,5 +1,5 @@
 'use client';
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Box } from '@/components/ui/box';
 import { HStack } from '@/components/ui/hstack';
 import { VStack } from '@/components/ui/vstack';
@@ -7,7 +7,7 @@ import { Text } from '@/components/ui/text';
 import { Pressable } from '@/components/ui/pressable';
 import { Link } from '@/components/ui/link';
 import { Image } from '@/components/ui/image';
-import {useColorMode} from '@/app/provider';
+import { useTheme } from 'next-themes';
 
 const footerItems = [
   {
@@ -74,7 +74,15 @@ const footerItems = [
 ];
 
 const Footer = () => {
-  const { colorMode } = useColorMode();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const colorMode = mounted ? (resolvedTheme as 'light' | 'dark') : 'light';
+
   return (
     <Box className="justify-center max-w-[1440px] w-[85%] my-0 mx-auto relative border-t border-outline-100 mt-[60px]">
       <VStack className="pt-12 pb-7 mb-5 md:pb-12 md:mb-0">

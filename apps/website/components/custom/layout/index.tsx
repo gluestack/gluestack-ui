@@ -29,7 +29,7 @@ import { LayoutContext } from './LayoutContext';
 import { Box } from '@/components/ui/box';
 import { Fab, FabIcon } from '@/components/ui/fab';
 import { MoonIcon, SunIcon } from '@/components/ui/icon';
-import { useColorMode } from '@/app/provider';
+import { useTheme } from 'next-themes';
 import { TOC } from '../toc';
 
 const SidebarItem = ({
@@ -40,12 +40,18 @@ const SidebarItem = ({
   badge,
   onItemClick,
 }: SidebarItemProps & { onItemClick: () => void }) => {
-  const { colorMode } = useColorMode();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <Link href={link} onClick={onItemClick}>
       <HStack className="hover:bg-background-100 px-3.5 py-2 gap-2 items-center">
         <Box className="p-0.5 items-center justify-center bg-background-50 rounded">
-          {colorMode === 'light' ? logo : logoDark}
+          {mounted && resolvedTheme === 'light' ? logo : logoDark}
         </Box>
         <Text className="text-typography-800">{title}</Text>
         {badge && <Box className="ml-2">{badge}</Box>}
@@ -91,10 +97,15 @@ const SidebarWithHeaders = ({ onItemClick }: { onItemClick: () => void }) => {
 };
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
-  const { colorMode, setColorMode } = useColorMode();
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
   const docsLayoutRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   // Check if current route is documentation
   const isDocsRoute = pathname?.includes('/docs/');
 
@@ -175,12 +186,12 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         <Box className="fixed bottom-0 right-0 min-[992px]:hidden ">
           <Fab
             onPress={() =>
-              setColorMode(colorMode === 'light' ? 'dark' : 'light')
+              setTheme(resolvedTheme === 'light' ? 'dark' : 'light')
             }
             className="absolute z-10 bottom-8 right-4"
           >
             <FabIcon
-              as={colorMode === 'light' ? MoonIcon : SunIcon}
+              as={mounted && resolvedTheme === 'light' ? MoonIcon : SunIcon}
               className="stroke-typography-200"
             />
           </Fab>

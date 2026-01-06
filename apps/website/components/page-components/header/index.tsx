@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Badge, BadgeText } from '@/components/ui/badge';
 import { HStack } from '@/components/ui/hstack';
 import { Icon, ChevronUpIcon, ChevronDownIcon } from '@/components/ui/icon';
@@ -23,7 +23,7 @@ import StarterKitLogo from '@/public/icon/logo/gluestack/logo-dark.svg';
 import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
 import AppMarketLogo from '@/public/icon/logo/theappmarket/appmarket-logo.svg';
 import RapidNativelogo from '@/public/icon/logo/rapidnative/logo.png';
-import { useColorMode } from '@/app/provider';
+import { useTheme } from 'next-themes';
 import NextLink from 'next/link';
 import { Nav } from '@expo/html-elements';
 import { usePathname } from 'next/navigation';
@@ -43,12 +43,24 @@ const Header = ({
   const isOpenSidebar = propsIsOpenSidebar ?? context.isOpenSidebar;
   const setIsOpenSidebar = propsSetIsOpenSidebar ?? context.setIsOpenSidebar;
 
-  const { colorMode, setColorMode }: any = useColorMode();
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Check if current route is documentation
   const isDocsRoute = pathname?.includes('/ui/docs/');
+
+  // Use a default logo during SSR to avoid hydration mismatch
+  const logoSrc = mounted
+    ? resolvedTheme === 'dark'
+      ? GluestackLogoDark
+      : GluestackLogo
+    : GluestackLogo;
 
   const handleMouseEnter = () => {
     setDropdownOpen(true);
@@ -146,21 +158,12 @@ const Header = ({
           <HStack className="items-center md:gap-3 gap-4">
             <HStack className="gap-1.5 items-center">
               <Link href="/" className="no-underline z-1 inherit ml-2">
-                {colorMode === 'dark' ? (
-                  <Image
-                    alt="gluestack-ui logo"
-                    className={'h-[20px] w-auto'}
-                    src={GluestackLogoDark}
-                    priority
-                  />
-                ) : (
-                  <Image
-                    alt="gluestack-ui logo"
-                    className={'h-[20px] w-auto'}
-                    src={GluestackLogo}
-                    priority
-                  />
-                )}
+                <Image
+                  alt="gluestack-ui logo"
+                  className={'h-[20px] w-auto'}
+                  src={logoSrc}
+                  priority
+                />
               </Link>
               <Menu
                 placement="bottom"
@@ -271,7 +274,7 @@ const Header = ({
                                       alt="product logo"
                                       className="w-6 h-6 mt-1"
                                       src={
-                                        colorMode === 'dark'
+                                        mounted && resolvedTheme === 'dark'
                                           ? option.logo.dark
                                           : option.logo.light
                                       }
@@ -433,12 +436,12 @@ const Header = ({
               <Pressable
                 role="button"
                 onPress={() => {
-                  setColorMode(colorMode === 'dark' ? 'light' : 'dark');
+                  setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
                 }}
                 className="web:focus:shadow-none lg:flex hidden "
               >
                 <Box className={`rounded-full items-center justify-center `}>
-                  {colorMode === 'dark' ? (
+                  {mounted && resolvedTheme === 'dark' ? (
                     <Icon
                       as={MoonIcon}
                       className={'sm:w-6 sm:h-6 h-5 w-5 text-typography-900 '}

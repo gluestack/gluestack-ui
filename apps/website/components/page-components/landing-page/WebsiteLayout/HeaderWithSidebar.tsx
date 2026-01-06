@@ -19,7 +19,7 @@ import {
   SidebarItemProps,
   SidebarSectionProps,
 } from '@/components/page-components/landing-page/ResponsiveSidebar/sidebar-header-items';
-import { useColorMode } from '@/app/provider';
+import { useTheme } from 'next-themes';
 
 const SidebarItem = ({
   title,
@@ -29,12 +29,18 @@ const SidebarItem = ({
   badge,
   onItemClick,
 }: SidebarItemProps & { onItemClick: () => void }) => {
-  const { colorMode } = useColorMode();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <Link href={link} onClick={onItemClick}>
       <HStack className="hover:bg-background-100 px-3.5 py-2 gap-2 items-center">
         <Box className="p-0.5 items-center justify-center bg-background-50 rounded">
-          {colorMode === 'light' ? logo : logoDark}
+          {mounted && resolvedTheme === 'light' ? logo : logoDark}
         </Box>
         <Text className="text-typography-800">{title}</Text>
         {badge && <Box className="ml-2">{badge}</Box>}

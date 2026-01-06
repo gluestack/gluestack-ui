@@ -6,11 +6,11 @@ import { Pressable } from '@/components/ui/pressable';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { Image } from '@/components/ui/image';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import FormsContent from './Forms';
 import NavigationContent from './Navigation';
 import CardsContent from './Cards';
-import { useColorMode } from '@/app/provider';
+import { useTheme } from 'next-themes';
 
 type IActiveTab = 'Forms' | 'Navigation' | 'Cards';
 
@@ -95,8 +95,16 @@ const HoriZontalTabNavigation = ({
 };
 
 export default function Fold2Tabs() {
-  const { colorMode } = useColorMode();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = React.useState<IActiveTab>('Forms');
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const colorMode = mounted ? (resolvedTheme as 'light' | 'dark') : 'light';
+
   const handleClick = (buttonName: IActiveTab) => {
     setActiveTab(buttonName);
   };

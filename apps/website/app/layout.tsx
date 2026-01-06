@@ -18,7 +18,7 @@ export default async function RootLayout({
     | 'system';
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="robots" content="index, follow" />
 
@@ -43,7 +43,9 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className={GeistSans.className}>
+      <body
+        className={`${GeistSans.className} ${GeistSans.variable} ${GeistMono.variable}`}
+      >
         <Provider initialColorMode={initialColorMode}>{children}</Provider>
       </body>
     </html>
