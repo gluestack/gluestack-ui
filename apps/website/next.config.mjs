@@ -2,12 +2,14 @@ import { withSentryConfig } from '@sentry/nextjs';
 import withPlugins from 'next-compose-plugins';
 import createMDX from '@next/mdx';
 import { withExpo } from '@expo/next-adapter';
+import { withGluestackUI } from '@gluestack/ui-next-adapter';
 import remarkPrism from 'remark-prism';
 import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
 import { redirects, oldRedirects } from './redirects.js';
 
-const nextConfig = withExpo({
+// Base config that will be enhanced by withGluestackUI
+const baseNextConfig = {
   async redirects() {
     return [...redirects, ...oldRedirects];
   },
@@ -24,25 +26,13 @@ const nextConfig = withExpo({
       },
     ];
   },
-  webpack: (config) => {
+  webpack: (config, context) => {
+    // Add Expo-specific asset registry alias
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      // Transform all direct `react-native` imports to `react-native-web`
-      'react-native$': 'react-native-web',
       'react-native/Libraries/Image/AssetRegistry':
         'react-native-web/dist/cjs/modules/AssetRegistry', // Fix for loading images in web builds with Expo-Image
     };
-    config.resolve.extensions = [
-      '.web.js',
-      '.web.jsx',
-      '.web.ts',
-      '.web.tsx',
-      '.js',
-      '.jsx',
-      '.ts',
-      '.tsx',
-      ...config.resolve.extensions,
-    ];
     return config;
   },
   reactStrictMode: true,
@@ -53,19 +43,6 @@ const nextConfig = withExpo({
     instrumentationHook: true,
     optimizeCss: true,
   },
-  transpilePackages: [
-    // you need to list `react-native` because `react-native-web` `@gluestack-ui/utils` is aliased to `react-native`.
-    'react-native',
-    'react-native-web',
-    'ui',
-    'nativewind',
-    'react-native-css-interop',
-    '@expo/html-elements',
-    'react-native-safe-area-context',
-    '@gluestack-ui/utils',
-    '@gluestack-ui/core',
-    // Add other packages that need transpiling
-  ],
   images: {
     remotePatterns: [
       {
@@ -85,7 +62,11 @@ const nextConfig = withExpo({
       },
     ],
   },
-});
+};
+
+// Apply withGluestackUI to auto-configure transpilePackages and React Native Web setup
+// Then apply withExpo for Expo-specific configuration
+const nextConfig = withExpo(withGluestackUI(baseNextConfig));
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
