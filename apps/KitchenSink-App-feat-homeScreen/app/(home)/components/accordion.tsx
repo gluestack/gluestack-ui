@@ -92,8 +92,7 @@ return (
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent className=""
-        >
+        <AccordionContent>
           <AccordionContentText>
             The type prop determines whether one or multiple items can be
             opened at the same time. The default value is "single" which means
@@ -120,8 +119,7 @@ return (
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent className=""
-        >
+        <AccordionContent>
           <AccordionContentText>
             Yes, you can disable the whole accordion by setting the isDisabled
             prop to true on the Accordion component.
@@ -225,7 +223,7 @@ const ExampleDisabledItem = () => {
 return (
           <Accordion variant="unfilled" className="m-5 w-[90%]">
       <AccordionItem value="item-1" isDisabled={true}
-      className= "border-b border-outline-300"
+      className= "border-b border-border/70"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -370,36 +368,32 @@ return (
 
 const ExampleNestedComponents = () => {
 return (
-           <Accordion
-           variant="unfilled"
-           size="sm"
-           className="m-5 border border-outline-300 w-[80%] max-w-[640px]"
+            <Accordion
+      className="m-5 border border-border/70 w-[80%] max-w-[640px] rounded-md"
     >
       <AccordionItem value="a">
-        <AccordionHeader     
-        className="bg-background-0"
-        >
+        <AccordionHeader className="bg-background">
           <AccordionTrigger>
-            {({isExpanded}) => (
+            {({ isExpanded }) => (
               <>
                 {isExpanded ? (
-                  <AccordionIcon as={RemoveIcon} size="sm" />
+                  <AccordionIcon as={RemoveIcon}/>
                 ) : (
-                  <AccordionIcon as={AddIcon} size="sm" />
+                  <AccordionIcon as={AddIcon}/>
                 )}
-                <AccordionTitleText className="ml-3 text-sm">USA</AccordionTitleText>
+                <AccordionTitleText className="ml-3 text-sm">
+                  USA
+                </AccordionTitleText>
               </>
             )}
           </AccordionTrigger>
         </AccordionHeader>
         <AccordionContent className="pb-0">
-          <Accordion
-            className="w-full border border-outline-300"
-          >
+          <Accordion className="w-full border border-border/70 rounded-md">
             <AccordionItem value="b">
               <AccordionHeader>
                 <AccordionTrigger>
-                  {({isExpanded}) => (
+                  {({ isExpanded }) => (
                     <>
                       {isExpanded ? (
                         <AccordionIcon as={RemoveIcon} />
@@ -422,19 +416,20 @@ return (
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          <Accordion className="w-full mt-5 bg-background-0"
-        >
+          <Accordion className="w-full mt-5 bg-background">
             <AccordionItem value="c">
               <AccordionHeader>
                 <AccordionTrigger>
-                  {({isExpanded}) => (
+                  {({ isExpanded }) => (
                     <>
                       {isExpanded ? (
                         <AccordionIcon as={RemoveIcon} />
                       ) : (
                         <AccordionIcon as={AddIcon} />
                       )}
-                      <AccordionTitleText className="ml-3">Nevada</AccordionTitleText>
+                      <AccordionTitleText className="ml-3">
+                        Nevada
+                      </AccordionTitleText>
                     </>
                   )}
                 </AccordionTrigger>
@@ -457,8 +452,8 @@ return (
 const ExampleControlledAccordion = () => {
 const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2']);
     return (
-    <Accordion variant="unfilled" type="multiple" value={selectedValues} onValueChange={(item) => setSelectedValues(item)} className="m-5 w-[95%]">
-      <AccordionItem value="item-1" className="border-t border-b border-outline-300"
+    <Accordion type="multiple" value={selectedValues} onValueChange={(item) => setSelectedValues(item)} className="m-5 w-[95%]">
+      <AccordionItem value="item-1" className="border-t border-b border-border/70"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -511,7 +506,7 @@ const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2'])
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3"
-      className="border-t border-b border-outline-300"
+      className="border-t border-b border-border/70"
       >
         <AccordionHeader>
           <AccordionTrigger>
