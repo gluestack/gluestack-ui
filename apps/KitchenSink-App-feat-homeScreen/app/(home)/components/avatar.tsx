@@ -124,7 +124,7 @@ const avatars = [
     <AvatarGroup>
       {avatars.slice(0, 3).map((avatar, index) => {
         return (
-          <Avatar key={index} size="lg" className={'border-2 border-outline-0 ' + avatar.color}>
+          <Avatar key={index} className={'border-2 border-background ' + avatar.color}>
             <AvatarFallbackText className="text-white">{avatar.alt}</AvatarFallbackText>
           </Avatar>
         );
@@ -139,7 +139,7 @@ const avatars = [
 const ExampleAvatarGroupWithoutBadge = () => {
 return (
     <AvatarGroup>
-      <Avatar size="md">
+      <Avatar>
         <AvatarFallbackText>John Doe</AvatarFallbackText>
         <AvatarImage
           source={{
@@ -147,7 +147,7 @@ return (
           }}
         />
       </Avatar>
-      <Avatar size="md">
+      <Avatar>
         <AvatarFallbackText>John Doe</AvatarFallbackText>
         <AvatarImage
           source={{
@@ -155,7 +155,7 @@ return (
           }}
         />
       </Avatar>
-      <Avatar size="md">
+      <Avatar>
         <AvatarFallbackText>John Doe</AvatarFallbackText>
         <AvatarImage
           source={{
@@ -163,7 +163,7 @@ return (
           }}
         />
       </Avatar>
-      <Avatar size="md">
+      <Avatar>
         <AvatarFallbackText>John Doe</AvatarFallbackText>
         <AvatarImage
           source={{
