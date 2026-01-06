@@ -60,7 +60,7 @@ return (
         <VStack>
           <HStack>
             <Heading size="sm">Ronald Richards</Heading>
-            <Badge size="sm" variant="solid" action="success" className='ml-1'>
+            <Badge size="sm" variant="secondary" className='ml-1'>
               <BadgeText>Verified</BadgeText>
               <BadgeIcon as={BadgeCheckIcon} className='ml-1'/>
             </Badge>
