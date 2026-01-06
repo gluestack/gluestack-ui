@@ -12,7 +12,7 @@ function Example() {
     <AvatarGroup>
       {avatars.slice(0, 3).map((avatar, index) => {
         return (
-          <Avatar key={index} size="lg" className={'border-2 border-outline-0 ' + avatar.color}>
+          <Avatar key={index} className={'border-2 border-background ' + avatar.color}>
             <AvatarFallbackText className="text-white">{avatar.alt}</AvatarFallbackText>
           </Avatar>
         );
