@@ -6,7 +6,7 @@ function Example() {
     });
   };
   return (
-    <VStack className="gap-5 sm:gap-8 p-6 sm:p-9 border border-outline-200 bg-background-0 rounded-xl shadow-hard-5 w-full max-w-[423px]">
+    <VStack className="gap-5 sm:gap-8 p-6 sm:p-9 border border-border/80 bg-background rounded-xl shadow-hard-5 w-full max-w-[423px]">
       <VStack className="items-center gap-1">
         <Heading size="xl">Confirm our password?</Heading>
         <Text>johnsmith@gmail.com</Text>
@@ -19,9 +19,8 @@ function Example() {
           />
           <InputSlot className="mr-3" onPress={handleState}>
             <InputIcon
-              size="xs"
               as={showPassword ? EyeIcon : EyeOffIcon}
-              className="stroke-background-600"
+              className="stroke-foreground/60"
             />
           </InputSlot>
         </Input>
@@ -29,9 +28,9 @@ function Example() {
           <ButtonText>Confirm</ButtonText>
         </Button>
       </VStack>
-      <Alert className="items-start" action="info">
-        <AlertIcon as={InfoIcon} size="xs" className="stroke-background-500" />
-        <AlertText className="text-typography-600" size="xs">
+      <Alert className="items-start bg-primary/10 border-primary/20">
+        <AlertIcon as={InfoIcon} size="xs" className="stroke-foreground/60" />
+        <AlertText className="text-foreground/60" size="xs">
           Minimum 8 characters, with at least 1 uppercase, 1 lowercase, and 1
           number required.
         </AlertText>

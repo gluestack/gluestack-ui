@@ -1,12 +1,12 @@
 function Example() {
   return (
-    <Alert action="error" className="gap-3">
-      <AlertIcon as={Bomb} size="lg" />
-      <AlertText className="text-typography-900" size="sm">
-        <Text className="mr-2 font-semibold text-typography-900">
+    <Alert className="gap-3 bg-destructive/10 border-destructive/20">
+      <AlertIcon as={Bomb} size="lg" className="mt-1" />
+      <AlertText className="text-foreground/80" size="sm">
+        <Text className="mr-2 font-semibold text-foreground/90">
           Heads up:
         </Text>
-        Once done, this action cannot be undone
+       {" "} Once done, this action cannot be undone
       </AlertText>
     </Alert>
   );
