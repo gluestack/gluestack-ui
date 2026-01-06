@@ -32,14 +32,13 @@ return (
 const ExampleAlertWithCTA = () => {
 return (
     <Alert
-      action="success"
       className="gap-4 max-w-[585px] w-full self-center items-start min-[400px]:items-center"
     >
       <VStack className="gap-4 min-[400px]:flex-row justify-between flex-1 min-[400px]:items-center">
-        <AlertText className="font-semibold text-typography-900" size="sm">
+        <AlertText className="font-semibold text-foreground/90" size="sm">
           Verify your phone number to create an API key
         </AlertText>
-        <Button size="sm" className="hidden sm:flex">
+        <Button size="sm">
           <ButtonText>Start verification</ButtonText>
         </Button>
       </VStack>
@@ -51,14 +50,13 @@ return (
 const ExampleAlertOnCloudSync = () => {
 return (
     <Alert
-      action="warning"
-      className="gap-4 max-w-[585px] w-full self-center items-start min-[400px]:items-center"
+      className="gap-4 max-w-[585px] w-full self-center items-start min-[400px]:items-center bg-primary/10 border-primary/20"
     >
       <VStack className="gap-4 min-[400px]:flex-row justify-between flex-1 min-[400px]:items-center">
-        <AlertText className="font-semibold text-typography-900" size="sm">
+        <AlertText className="font-semibold text-foreground/90" size="sm">
           Your data has been synced to the cloud
         </AlertText>
-        <Button size="sm" className="hidden sm:flex">
+        <Button size="sm">
           <ButtonText>View details</ButtonText>
         </Button>
       </VStack>
@@ -69,13 +67,13 @@ return (
 
 const ExampleWarningAlert = () => {
 return (
-    <Alert action="error" className="gap-3">
-      <AlertIcon as={Bomb} size="lg" />
-      <AlertText className="text-typography-900" size="sm">
-        <Text className="mr-2 font-semibold text-typography-900">
+    <Alert className="gap-3 bg-destructive/10 border-destructive/20">
+      <AlertIcon as={Bomb} size="lg" className="mt-1" />
+      <AlertText className="text-foreground/80" size="sm">
+        <Text className="mr-2 font-semibold text-foreground/90">
           Heads up:
         </Text>
-        Once done, this action cannot be undone
+       {" "} Once done, this action cannot be undone
       </AlertText>
     </Alert>
   )
@@ -89,7 +87,7 @@ const [showPassword, setShowPassword] = React.useState(false);
     });
   };
   return (
-    <VStack className="gap-5 sm:gap-8 p-6 sm:p-9 border border-outline-200 bg-background-0 rounded-xl shadow-hard-5 w-full max-w-[423px]">
+    <VStack className="gap-5 sm:gap-8 p-6 sm:p-9 border border-border/80 bg-background rounded-xl shadow-hard-5 w-full max-w-[423px]">
       <VStack className="items-center gap-1">
         <Heading size="xl">Confirm our password?</Heading>
         <Text>johnsmith@gmail.com</Text>
@@ -102,9 +100,8 @@ const [showPassword, setShowPassword] = React.useState(false);
           />
           <InputSlot className="mr-3" onPress={handleState}>
             <InputIcon
-              size="xs"
               as={showPassword ? EyeIcon : EyeOffIcon}
-              className="stroke-background-600"
+              className="stroke-foreground/60"
             />
           </InputSlot>
         </Input>
@@ -112,9 +109,9 @@ const [showPassword, setShowPassword] = React.useState(false);
           <ButtonText>Confirm</ButtonText>
         </Button>
       </VStack>
-      <Alert className="items-start" action="info">
-        <AlertIcon as={InfoIcon} size="xs" className="stroke-background-500" />
-        <AlertText className="text-typography-600" size="xs">
+      <Alert className="items-start bg-primary/10 border-primary/20">
+        <AlertIcon as={InfoIcon} size="xs" className="stroke-foreground/60" />
+        <AlertText className="text-foreground/60" size="xs">
           Minimum 8 characters, with at least 1 uppercase, 1 lowercase, and 1
           number required.
         </AlertText>
