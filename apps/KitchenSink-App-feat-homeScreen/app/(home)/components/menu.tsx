@@ -1,37 +1,24 @@
-import { Badge, BadgeText } from '@/components/ui/badge';
-import { Button, ButtonIcon, ButtonText } from '@/components/ui/button';
-import {
-  AddIcon,
-  GlobeIcon,
-  HelpCircleIcon,
-  Icon,
-  MenuIcon,
-  MessageCircleIcon,
-  PlayIcon,
-  SettingsIcon,
-} from '@/components/ui/icon';
-import {
-  Menu,
-  MenuItem,
-  MenuItemLabel,
-  MenuSeparator,
-} from '@/components/ui/menu';
+import { Menu, MenuItem, MenuItemLabel, MenuSeparator } from '@/components/ui/menu'
+import { Button, ButtonText, ButtonIcon } from '@/components/ui/button'
+import { Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon, MenuIcon, HelpCircleIcon, MessageCircleIcon } from '@/components/ui/icon'
+import { Badge, BadgeText } from '@/components/ui/badge'
 
-import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
+
 import React from 'react';
+import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
 
 const ExampleBasic = () => {
-  return (
+return (
     <Menu
       placement="top"
       offset={5}
-      disabledKeys={['Settings']}
+      disabledKeys={["Settings"]}
       trigger={({ ...triggerProps }) => {
         return (
           <Button {...triggerProps}>
             <ButtonText>Menu</ButtonText>
           </Button>
-        );
+        )
       }}
     >
       <MenuItem key="Add account" textValue="Add account">
@@ -51,11 +38,11 @@ const ExampleBasic = () => {
         <MenuItemLabel size="sm">Settings</MenuItemLabel>
       </MenuItem>
     </Menu>
-  );
+  )
 };
 
 const ExampleMenuWithTag = () => {
-  return (
+return (
     <Menu
       offset={5}
       trigger={({ ...triggerProps }) => {
@@ -79,7 +66,11 @@ const ExampleMenuWithTag = () => {
       <MenuItem key="Orders" textValue="Orders" className="p-2">
         <MenuItemLabel size="sm">Orders</MenuItemLabel>
       </MenuItem>
-      <MenuItem key="Address Book" textValue="Address Book" className="p-2">
+      <MenuItem
+        key="Address Book"
+        textValue="Address Book"
+        className="p-2"
+      >
         <MenuItemLabel size="sm">Address Book</MenuItemLabel>
       </MenuItem>
       <MenuSeparator />
@@ -89,7 +80,11 @@ const ExampleMenuWithTag = () => {
       <MenuItem key="Coupons" textValue="Coupons" className="p-2">
         <MenuItemLabel size="sm">Coupons</MenuItemLabel>
       </MenuItem>
-      <MenuItem key="Help Center" textValue="Help Center" className="p-2">
+      <MenuItem
+        key="Help Center"
+        textValue="Help Center"
+        className="p-2"
+      >
         <MenuItemLabel size="sm">Help Center</MenuItemLabel>
       </MenuItem>
       <MenuSeparator />
@@ -97,11 +92,11 @@ const ExampleMenuWithTag = () => {
         <MenuItemLabel size="sm">Logout</MenuItemLabel>
       </MenuItem>
     </Menu>
-  );
+  )
 };
 
 const ExampleMenuWithSelection = () => {
-  const [selected, setSelected] = React.useState(new Set([]));
+const [selected, setSelected] = React.useState(new Set([]));
   return (
     <Menu
       placement="bottom left"
@@ -157,25 +152,25 @@ const ExampleMenuWithSelection = () => {
         <MenuItemLabel size="sm">Install Chrome Extension</MenuItemLabel>
       </MenuItem>
     </Menu>
-  );
+  )
 };
 
 const COMPONENT_VARIANTS = [
   {
-    value: 'basic',
-    label: 'Basic',
+    value: "basic",
+    label: "Basic",
     content: <ExampleBasic />,
   },
   {
-    value: 'menu-with-tag',
-    label: 'Menu with Tag',
+    value: "menu-with-tag",
+    label: "Menu with Tag",
     content: <ExampleMenuWithTag />,
   },
   {
-    value: 'menu-with-selection',
-    label: 'Menu with Selection',
+    value: "menu-with-selection",
+    label: "Menu with Selection",
     content: <ExampleMenuWithSelection />,
-  },
+  }
 ];
 
 export default function MenuScreen() {

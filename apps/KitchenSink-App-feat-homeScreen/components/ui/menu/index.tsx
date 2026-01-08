@@ -12,8 +12,8 @@ import Animated, {
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const AnimatedMenuRoot = React.forwardRef<
-  React.ComponentRef<typeof Animated.View>,
-  React.ComponentProps<typeof Animated.View> & { className?: string }
+  React.ComponentRef<typeof Animated.ScrollView>,
+  React.ComponentProps<typeof Animated.ScrollView> & { className?: string }
 >(function AnimatedMenuRoot({ className, style, ...props }, ref) {
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.20);
@@ -32,7 +32,8 @@ const AnimatedMenuRoot = React.forwardRef<
   }, [opacity, scale]);
 
   return (
-    <Animated.View
+    <Animated.ScrollView
+      showsVerticalScrollIndicator={false}
       ref={ref}
       style={[animatedStyle, style]}
       className={className}
@@ -57,7 +58,7 @@ const MenuAnimatePresence = React.forwardRef<
 });
 
 const menuStyle = tva({
-  base: 'rounded-md bg-popover text-popover-foreground border border-border p-1 shadow-hard-5',
+  base: 'rounded-md bg-popover text-popover-foreground border border-border p-1 shadow-hard-5 max-h-[300px] overflow-y-auto',
 });
 
 const menuItemStyle = tva({
