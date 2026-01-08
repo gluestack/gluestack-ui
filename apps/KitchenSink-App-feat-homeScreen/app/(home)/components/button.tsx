@@ -98,10 +98,10 @@ return (
 const ExampleLinkButton = () => {
 return (
     <Button variant='link'>
-      <ButtonText className='font-medium text-sm text-typography-900'>
+      <ButtonText className='font-medium text-sm text-foreground'>
         Back to top
       </ButtonText>
-      <ButtonIcon as={ArrowUpIcon} className='h-3 w-3 text-background-900 ml-1' />
+      <ButtonIcon as={ArrowUpIcon} className='h-3 w-3 text-foreground ml-1' />
     </Button>
   )
 };
@@ -113,7 +113,7 @@ return (
         <ButtonIcon as={InfoIcon} className='mr-2'/>
         <ButtonText>Left Icon</ButtonText>
       </Button>
-      <Button variant='solid' className='mt-2'>
+      <Button variant='secondary' className='mt-2'>
         <ButtonText>Right Icon</ButtonText>
         <ButtonIcon as={AddIcon} className='ml-2'/>
       </Button>
@@ -124,7 +124,7 @@ return (
 const ExampleButtonWithFullWidth = () => {
 return (
     <Center>
-      <Box className='p-5 max-w-96 border border-background-300 rounded-lg'>
+      <Box className='p-5 max-w-96 border border-border/70 rounded-lg'>
         <VStack className='pb-4' space='xs'>
           <Heading className='leading-[30px]'>
             Set new password
@@ -157,7 +157,6 @@ return (
             <Button variant='link' size='sm' className='p-0'>
               <ButtonIcon
                 className='mr-1'
-                size='md'
                 as={ArrowLeftIcon}
               />
               <ButtonText>

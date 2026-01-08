@@ -47,10 +47,10 @@ const buttonStyle = tva({
       link: 'text-primary underline-offset-4 data-[hover=true]:underline data-[active=true]:underline',
     },
     size: {
-      default: 'h-9 px-4 py-2',
-      sm: 'h-8 rounded-md px-3 text-xs',
-      lg: 'h-10 rounded-md px-8',
-      icon: 'h-9 w-9',
+      default: 'px-4 py-2',
+      sm: 'min-h-8 rounded-md px-3 text-xs',
+      lg: 'min-h-10 rounded-md px-8',
+      icon: 'min-h-9 min-w-9',
     },
   },
 });
@@ -73,6 +73,19 @@ const buttonTextStyle = tva({
     },
   },
 });
+
+const buttonSpinnerStyle = tva({
+  base: '',
+  parentVariants: {
+    size: {
+      default: 'h-4 w-4',
+      sm: 'h-4 w-4',
+      lg: 'h-4 w-4',
+      icon: 'h-4 w-4',
+    },
+  },
+});
+
 const buttonIconStyle = tva({
   base: 'fill-none pointer-events-none shrink-0',
   parentVariants: {
@@ -158,14 +171,20 @@ const ButtonText = React.forwardRef<
     />
   );
 });
-const ButtonSpinner = UIButton.Spinner;
+const ButtonSpinner = React.forwardRef<
+  React.ElementRef<typeof UIButton.Spinner>,
+  React.ComponentPropsWithoutRef<typeof UIButton.Spinner>
+>(({ className, size, ...props }, ref) => {
+  const { size: parentSize } = useStyleContext(SCOPE);
+  return <UIButton.Spinner ref={ref} {...props} className={buttonSpinnerStyle({ parentVariants: { size: parentSize }, class: className, size })} />;
+});
 type IButtonIcon = React.ComponentPropsWithoutRef<typeof UIButton.Icon> &
   VariantProps<typeof buttonIconStyle> & {
     className?: string | undefined;
     as?: React.ElementType;
     height?: number;
     width?: number;
-  };
+};
 const ButtonIcon = React.forwardRef<
   React.ElementRef<typeof UIButton.Icon>,
   IButtonIcon
