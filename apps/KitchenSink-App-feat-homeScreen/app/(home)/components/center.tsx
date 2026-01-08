@@ -7,8 +7,8 @@ import { UsageVariantFlatList } from '@/components/custom/component-presentation
 
 const ExampleBasic = () => {
 return (
-      <Center className="bg-primary-500 h-[150px] w-[250px]">
-        <Text className="text-typography-0 font-bold">This is the center.</Text>
+      <Center className="bg-primary/80 h-[150px] w-[250px]">
+        <Text className="text-primary-foreground font-bold">This is the center.</Text>
       </Center>
     )
 };
