@@ -37,7 +37,7 @@ return (
         alt="image"
       />
       <Text
-        className="text-sm font-normal mb-2 text-typography-700"
+        className="text-sm font-normal mb-2 text-foreground/70"
       >
         May 15, 2023
       </Text>
@@ -48,14 +48,14 @@ return (
         <HStack className="items-center">
           <LinkText
             size="sm"
-            className="font-semibold text-info-600 no-underline"
+            className="font-semibold text-primary no-underline"
           >
             Read Blog
           </LinkText>
           <Icon
             as={ArrowRightIcon}
             size="sm"
-            className="text-info-600 mt-0.5 ml-0.5"
+            className="text-primary mt-0.5 ml-0.5"
           />
         </HStack>
       </Link>
@@ -85,34 +85,26 @@ return (
         </VStack>
       </Box>
       <Box
-        className="my-5 flex-col sm:flex-row"
+        className="my-5 flex-row"
       >
         <VStack
-          className="items-center pb-2 sm:flex-1 sm:pb-0 sm:border-r sm:border-outline-300"
+          className="items-center flex-1 pb-0 border-r border-border/70"
         >
           <Heading size="xs">
             81
           </Heading>
           <Text size="xs">posts</Text>
         </VStack>
-        <Divider
-          orientation="horizontal"
-          className="w-[40%] self-center bg-background-300 flex sm:hidden"
-        />
         <VStack
-          className="items-center py-2 sm:flex-1 sm:py-0 sm:border-r sm:border-outline-300"
+          className="items-center flex-1 py-0 border-r border-border/70"
         >
           <Heading size="xs">
             5,281
           </Heading>
           <Text size="xs">followers</Text>
         </VStack>
-        <Divider
-          orientation="horizontal"
-          className="w-[40%] self-center bg-background-300 flex sm:hidden"
-        />
         <VStack
-          className="items-center pt-2 sm:flex-1 sm:pt-0"
+          className="items-center flex-1 pt-0"
         >
           <Heading size="xs">
             281
@@ -121,20 +113,20 @@ return (
         </VStack>
       </Box>
       <Box
-        className="mb-5 flex-col sm:mb-6 sm:flex-row"
+        className="mb-5 sm:mb-6 flex-row items-center justify-center"
       >
         <Image
           source={{
             uri: 'https://gluestack.github.io/public-blog-video-assets/parrot.png',
           }}
-          className="mb-3 rounded-md w-full h-[140px] sm:mb-0 sm:mr-3 sm:w-[150px] sm:h-[154px]"
+          className="rounded-md w-[45%] h-[140px] mb-0 mr-3 sm:w-[150px] sm:h-[154px]"
           alt="image"
         />
         <Image
           source={{
             uri: 'https://gluestack.github.io/public-blog-video-assets/dear.png',
           }}
-          className="rounded-md w-full h-[140px] sm:w-[150px] sm:h-[154px]"
+          className="rounded-md w-[45%] h-[140px] sm:w-[150px] sm:h-[154px]"
           alt="image"
         />
       </Box>
@@ -156,7 +148,7 @@ return (
         alt="image"
       />
       <Text
-        className="text-sm font-normal mb-2 text-typography-700"
+        className="text-sm font-normal mb-2 text-foreground/70"
       >
         Fashion Clothing
       </Text>
@@ -179,11 +171,11 @@ return (
         </Button>
         <Button
           variant="outline"
-          className="px-4 py-2 border-outline-300 sm:flex-1"
+          className="px-4 py-2 border-border/70 sm:flex-1"
         >
           <ButtonText
             size="sm"
-            className="text-typography-600"
+            className="text-foreground/60"
           >
             Wishlist
           </ButtonText>
@@ -197,7 +189,7 @@ const ExampleBlogCard = () => {
 return (
     <Card className="p-5 rounded-lg max-w-[360px] m-3"
     >
-      <Text className="text-sm font-normal mb-2 text-typography-700"
+      <Text className="text-sm font-normal mb-2 text-foreground/70"
       >
         May 15, 2023
       </Text>
