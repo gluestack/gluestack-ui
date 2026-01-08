@@ -1,6 +1,6 @@
 {
-  "title": "SignIn Form",
-  "description": "A form for signing in to an account.",
+  "title": "Form Control with Error",
+  "description": "Error messages can be displayed using FormControl.",
   "argTypes": {},
   "reactLive": {
     "FormControl": "@/components/ui/form-control",
@@ -16,8 +16,6 @@
     "RadioIcon": "@/components/ui/radio",
     "VStack": "@/components/ui/vstack",
     "AlertCircleIcon": "@/components/ui/icon",
-    "CircleIcon": "@/components/ui/icon",
-    "Heading": "@/components/ui/heading",
-    "Text": "@/components/ui/text"
+    "CircleIcon": "@/components/ui/icon"
   }
 }
