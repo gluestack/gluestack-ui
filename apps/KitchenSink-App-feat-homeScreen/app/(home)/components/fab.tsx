@@ -86,7 +86,7 @@ const data = [
     },
   ];
   return (
-    <Box className='border rounded-lg border-outline-200 p-6 bg-background-100 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'>
+    <Box className='border rounded-lg border-border/80 p-6 bg-background/90 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'>
       <VStack space='md'>
         {data.map((chatData, index) => {
           return (
@@ -111,7 +111,7 @@ const data = [
           );
         })}
       </VStack>
-      <Fab size='lg' className='bg-primary-600 hover:bg-primary-700 active:bg-primary-800'>
+      <Fab size='lg' className='bg-primary/90 hover:bg-primary/80 active:bg-primary/70'>
         <FabIcon as={EditIcon}/>
       </Fab>
     </Box>
@@ -120,14 +120,14 @@ const data = [
 
 const ExampleFABWithIconAndText = () => {
 return (
-    <Box className='max-w-96 border rounded-lg border-outline-200 py-[56px] px-6 mx-5 bg-background-100'>
-      <Fab className="top-4 h-10 bg-primary-600 hover:bg-primary-700 active:bg-primary-900 py-2">
+    <Box className='max-w-96 border rounded-lg border-border/80 py-[56px] px-6 mx-5 bg-background/90'>
+      <Fab className="top-4 h-10 bg-primary/90 hover:bg-primary/80 active:bg-primary/70 py-2">
         <FabIcon as={SearchIcon} />
         <FabLabel>Search</FabLabel>
       </Fab>
       <VStack space='lg'>
         <Box>
-          <Text className='text-xs text-primary-600 font-bold'>
+          <Text className='text-xs text-primary/90 font-bold'>
             HEALTH
           </Text>
           <Heading size='sm'>
@@ -140,11 +140,11 @@ return (
             <Text size='xs'>
               Wade Warrem
             </Text>
-            <Divider orientation='vertical' className='bg-background-300' />
+            <Divider orientation='vertical' className='bg-border/90' />
             <Text size='xs'>
               6th Oct, 2019
             </Text>
-            <Divider orientation='vertical' className='bg-background-300' />
+            <Divider orientation='vertical' className='bg-border/90' />
             <Text size='xs'>
               5 mins read
             </Text>
@@ -152,7 +152,7 @@ return (
         </Box>
         <Divider />
         <Box>
-          <Text className='text-xs text-primary-600 font-bold'>
+          <Text className='text-xs text-primary/90 font-bold'>
             TECHNOLOGY
           </Text>
           <Heading size='sm'>
@@ -165,11 +165,11 @@ return (
             <Text size='xs'>
               Wade Warrem
             </Text>
-            <Divider orientation='vertical' className='bg-background-300' />
+            <Divider orientation='vertical' className='bg-border/90' />
             <Text size='xs'>
               6th Oct, 2019
             </Text>
-            <Divider orientation='vertical' className='bg-background-300' />
+            <Divider orientation='vertical' className='bg-border/90' />
             <Text size='xs'>
               5 mins read
             </Text>
@@ -182,7 +182,7 @@ return (
 
 const ExamplePlacement = () => {
 return (
-    <Box className='border rounded-lg border-outline-300 py-4 bg-background-0 mx-5'>
+    <Box className='border rounded-lg border-border/70 py-4 bg-background mx-5'>
       <VStack space='lg' className='mb-2 px-6 py-2'>
         <Checkbox size="sm">
           <CheckboxIndicator>
@@ -224,7 +224,7 @@ return (
 
 const ExampleCustomPlacement = () => {
 return (
-    <Box className='max-w-96 border rounded-lg border-outline-200 overflow-hidden mx-5 bg-background-100'>
+    <Box className='max-w-96 border rounded-lg border-border/80 overflow-hidden mx-5 bg-background/90'>
       <Box>
         <Image
           className='h-[185px] w-[416px]'
@@ -251,12 +251,12 @@ return (
           Oranges are a great source of vitamin C, which is essential for a healthy immune system. Oranges are a great source of vitamin C, which is important for maintaining a healthy immune system. Vitamin C also helps with the absorption of iron and the production of collagen, which supports healthy skin, teeth, and bones.
         </Text>
         <Link href="https://gluestack.io/" isExternal>
-          <Text className='text-xs text-primary-600'>
+          <Text className='text-xs text-primary/90'>
             READ MORE
           </Text>
         </Link>
       </VStack>
-      <Fab size='lg' className='bg-primary-600 right-4 bottom-16 hover:bg-primary-700 active:bg-primary-800'>
+      <Fab size='lg' className='bg-primary/90 right-4 bottom-16 hover:bg-primary/80 active:bg-primary/70'>
         <FabIcon as={ShoppingCartIcon} className='h-4 w-4'/>
       </Fab>
     </Box>
