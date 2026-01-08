@@ -17,7 +17,7 @@ function Example() {
     },
   ];
   return (
-    <Box className='border rounded-lg border-outline-200 p-6 bg-background-100 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'>
+    <Box className='border rounded-lg border-border/80 p-6 bg-background/90 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'>
       <VStack space='md'>
         {data.map((chatData, index) => {
           return (
@@ -42,7 +42,7 @@ function Example() {
           );
         })}
       </VStack>
-      <Fab size='lg' className='bg-primary-600 hover:bg-primary-700 active:bg-primary-800'>
+      <Fab size='lg' className='bg-primary/90 hover:bg-primary/80 active:bg-primary/70'>
         <FabIcon as={EditIcon}/>
       </Fab>
     </Box>
