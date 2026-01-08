@@ -17,7 +17,7 @@ return (
   <Text className="font-semibold">
     Easy
   </Text>
-  <Divider className="my-0.5" />
+  <Divider className="my-0.5 w-20" />
   <Text className="font-semibold">
     Difficult
   </Text>
@@ -30,7 +30,7 @@ return (
     <VStack>
       <Heading>gluestack-ui</Heading>
       <Text>Universal component library</Text>
-      <Divider className="my-2 bg-indigo-500" />
+      <Divider className="my-2 bg-indigo-500 w-auto" />
       <HStack>
         <Text>Installation</Text>
         <Divider
@@ -52,7 +52,7 @@ const ExampleOrientation = () => {
 return (
     <VStack
       space='lg'
-      className="p-12 border border-outline-300 rounded-lg mx-5"
+      className="p-12 border border-border/70 rounded-lg mx-5"
     >
       <Box>
         <Text size='xs' className="font-bold text-blue-600">
@@ -78,7 +78,7 @@ return (
           </Text>
         </HStack>
       </Box>
-      <Divider className="bg-gray-300"/>
+      <Divider className="bg-gray-300 w-auto"/>
       <Box>
         <Text size='xs' className="font-bold text-blue-600">
           TECHNOLOGY
@@ -110,7 +110,7 @@ return (
 const ExampleWithWithoutInset = () => {
 return (
     <VStack space="2xl">
-      <HStack className="px-3 h-8 rounded border border-solid border-outline-300">
+      <HStack className="px-3 h-8 rounded border border-solid border-border/70">
         <Button variant="link" size="xs">
           <ButtonText>Github</ButtonText>
         </Button>
@@ -123,7 +123,7 @@ return (
           <ButtonText>Discord</ButtonText>
         </Button>
       </HStack>
-      <HStack className="px-3 h-8 rounded border border-solid border-outline-300 items-center">
+      <HStack className="px-3 h-8 rounded border border-solid border-border/70 items-center">
         <Button variant="link" size="xs">
           <ButtonText>Github</ButtonText>
         </Button>
@@ -142,7 +142,7 @@ return (
 
 const ExampleAddingContentWithinADivider = () => {
 return (
-    <Box className="py-9 px-20 m-5 rounded-lg border border-outline-300">
+    <Box className="py-9 px-20 m-5 rounded-lg border border-border/70">
       <Heading size='3xl'>
         Search Results
       </Heading>

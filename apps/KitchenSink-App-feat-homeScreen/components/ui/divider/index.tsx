@@ -5,7 +5,7 @@ import { Platform, View } from 'react-native';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const dividerStyle = tva({
-  base: 'bg-background-200',
+  base: 'bg-border/80',
   variants: {
     orientation: {
       vertical: 'w-px h-full',
