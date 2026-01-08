@@ -1,156 +1,37 @@
 'use client';
-import React, { useEffect, useContext } from 'react';
-import {
-  createModal as createDrawer,
-  ModalContext,
-} from '@gluestack-ui/core/modal/creator';
-import {
-  Pressable,
-  View,
-  ScrollView,
-  Dimensions,
-  ViewStyle,
-} from 'react-native';
+import { createModal as createDrawer } from '@gluestack-ui/core/modal/creator';
+import React from 'react';
+import { Dimensions, Pressable, ScrollView, View } from 'react-native';
 
-import Animated, {
-  createAnimatedComponent,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-  type AnimatedStyle,
-} from 'react-native-reanimated';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
-  withStyleContext,
+  tva,
   useStyleContext,
+  withStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import Animated, {
+  FadeIn,
+  FadeOut,
+  SlideInLeft,
+  SlideOutLeft,
+} from 'react-native-reanimated';
 
 const SCOPE = 'MODAL';
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
-const sizes: { [key: string]: number } = {
-  sm: 0.25,
-  md: 0.5,
-  lg: 0.75,
-  full: 1,
-};
-
-const AnimatedBackdrop = React.forwardRef<
-  React.ComponentRef<typeof Animated.View>,
-  React.ComponentProps<typeof Animated.View> & { className?: string }
->(function AnimatedBackdrop({ className, style, children, ...props }, ref) {
-  const { visible } = useContext(ModalContext) 
-  const opacity = useSharedValue(0);
-  const scale = useSharedValue(0.2);
-
-  useEffect(() => {
-    if (visible) {
-      opacity.value = withTiming(1, { duration: 150 });
-    }
-  }, [visible]);
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      opacity: opacity.value,
-    };
-  }, [opacity]);
-  return (
-    <Animated.View
-      ref={ref}
-      style={[animatedStyle, style]}
-      className={className}
-      {...props}
-    >
-      {/* <Pressable
-        {...props}
-        style={{ height: '90%', width: '90%', backgroundColor: 'blue' }}
-      > */}
-      {children}
-      {/* </Pressable> */}
-    </Animated.View>
-  );
-});
-const AnimatedDrawerContent = React.forwardRef<
-  React.ComponentRef<typeof Animated.View>,
-  React.ComponentProps<typeof Animated.View> & { className?: string }
->(function AnimatedContent({ className, style, children, ...props }, ref) {
-  const { visible } = useContext(ModalContext) as { visible: boolean };
-  const { size: parentSize, anchor: parentAnchor } = useStyleContext(SCOPE);
-
-  const drawerHeight = screenHeight * (sizes[parentSize] || sizes.md);
-  const drawerWidth = screenWidth * (sizes[parentSize] || sizes.md);
-
-  // Calculate initial translate values based on anchor
-  const initialTranslateX =
-    parentAnchor === 'left'
-      ? -drawerWidth
-      : parentAnchor === 'right'
-        ? drawerWidth
-        : 0;
-  const initialTranslateY =
-    parentAnchor === 'top'
-      ? -drawerHeight
-      : parentAnchor === 'bottom'
-        ? drawerHeight
-        : 0;
-
-  const opacity = useSharedValue(0);
-  const translateX = useSharedValue(initialTranslateX);
-  const translateY = useSharedValue(initialTranslateY);
-
-  useEffect(() => {
-    if (visible) {
-      opacity.value = withTiming(1, { duration: 300 });
-      translateX.value = withTiming(0, { duration: 300 });
-      translateY.value = withTiming(0, { duration: 300 });
-    } else {
-      opacity.value = withTiming(0, { duration: 300 });
-      translateX.value = withTiming(initialTranslateX, { duration: 300 });
-      translateY.value = withTiming(initialTranslateY, { duration: 300 });
-    }
-  }, [
-    visible,
-    opacity,
-    translateX,
-    translateY,
-    initialTranslateX,
-    initialTranslateY,
-  ]);
-
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      opacity: opacity.value,
-      transform: [
-        { translateX: translateX.value },
-        { translateY: translateY.value },
-      ] as const,
-    };
-  }, [opacity, translateX, translateY]);
-
-  return (
-    <Animated.View
-      ref={ref}
-      style={[style, animatedStyle]}
-      className={className}
-      {...props}
-    >
-      {children}
-    </Animated.View>
-  );
-});
+const AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedBackdrop = Animated.createAnimatedComponent(Pressable);
 
 const UIDrawer = createDrawer({
   Root: withStyleContext(View, SCOPE),
   Backdrop: AnimatedBackdrop,
-  Content: AnimatedDrawerContent,
+  Content: AnimatedView,
   Body: ScrollView,
   CloseButton: Pressable,
   Footer: View,
   Header: View,
 });
 
-cssInterop(AnimatedDrawerContent, { className: 'style' });
+cssInterop(AnimatedView, { className: 'style' });
 cssInterop(AnimatedBackdrop, { className: 'style' });
 const drawerStyle = tva({
   base: 'w-full h-full web:pointer-events-none relative',
@@ -178,7 +59,7 @@ const drawerContentStyle = tva({
   base: 'bg-background overflow-scroll shadow-md p-6 absolute web:pointer-events-auto',
   parentVariants: {
     size: {
-      sm: 'w-1/4',
+      sm: 'w-2/5 sm:w-1/4',
       md: 'w-1/2',
       lg: 'w-3/4',
       full: 'w-full',
@@ -296,6 +177,8 @@ const DrawerBackdrop = React.forwardRef<
   return (
     <UIDrawer.Backdrop
       ref={ref}
+      entering={FadeIn.duration(150)}
+      exiting={FadeOut.duration(150)}
       {...props}
       className={drawerBackdropStyle({
         class: className,
@@ -310,20 +193,7 @@ const DrawerContent = React.forwardRef<
 >(function DrawerContent({ className, ...props }, ref) {
   const { size: parentSize, anchor: parentAnchor } = useStyleContext(SCOPE);
 
-  const drawerHeight = screenHeight * (sizes[parentSize] || sizes.md);
-  const drawerWidth = screenWidth * (sizes[parentSize] || sizes.md);
-
   const isHorizontal = parentAnchor === 'left' || parentAnchor === 'right';
-
-  const initialObj = isHorizontal
-    ? { x: parentAnchor === 'left' ? -drawerWidth : drawerWidth }
-    : { y: parentAnchor === 'top' ? -drawerHeight : drawerHeight };
-
-  const animateObj = isHorizontal ? { x: 0 } : { y: 0 };
-
-  const exitObj = isHorizontal
-    ? { x: parentAnchor === 'left' ? -drawerWidth : drawerWidth }
-    : { y: parentAnchor === 'top' ? -drawerHeight : drawerHeight };
 
   const customClass = isHorizontal
     ? `top-0 ${parentAnchor === 'left' ? 'left-0' : 'right-0'}`
@@ -332,6 +202,8 @@ const DrawerContent = React.forwardRef<
   return (
     <UIDrawer.Content
       ref={ref}
+      entering={SlideInLeft.duration(150).springify().stiffness(700)}
+      exiting={SlideOutLeft.duration(150).springify()}
       {...props}
       className={drawerContentStyle({
         parentVariants: {
@@ -416,9 +288,9 @@ DrawerCloseButton.displayName = 'DrawerCloseButton';
 export {
   Drawer,
   DrawerBackdrop,
-  DrawerContent,
-  DrawerCloseButton,
-  DrawerHeader,
   DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
   DrawerFooter,
+  DrawerHeader,
 };
