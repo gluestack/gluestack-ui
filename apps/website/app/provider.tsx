@@ -1,6 +1,13 @@
 'use client';
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-import { createContext, useState, useContext, ReactNode } from 'react';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider/index.web';
+import {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  ReactNode,
+} from 'react';
+import StyleRegistry from './registry';
 
 type ColorModeType = 'light' | 'dark' | 'system';
 
@@ -24,6 +31,12 @@ export function Provider({
   initialColorMode?: ColorModeType;
 }) {
   const [colorMode, setColorMode] = useState<ColorModeType>(initialColorMode);
+  const [mounted, setMounted] = useState(false);
+
+  // Set mounted after component mounts on client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleColorModeChange = async (mode: ColorModeType) => {
     setColorMode(mode);
@@ -42,6 +55,11 @@ export function Provider({
     }
   };
 
+  // Prevent flash of incorrect content during SSR
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <ColorModeContext.Provider
       value={{
@@ -49,7 +67,9 @@ export function Provider({
         setColorMode: handleColorModeChange,
       }}
     >
-      <GluestackUIProvider mode={colorMode}>{children}</GluestackUIProvider>
+      <StyleRegistry>
+        <GluestackUIProvider mode={colorMode}>{children}</GluestackUIProvider>
+      </StyleRegistry>
     </ColorModeContext.Provider>
   );
 }
