@@ -154,7 +154,47 @@ const [values, setValues] = React.useState(['bits']);
         )
 };
 
-const ExampleSigningForm = () => {
+const ExampleFormControlWithError = () => {
+return (
+    <FormControl isInvalid>
+      <FormControlLabel>
+        <FormControlLabelText>
+          Which time slot works best for you?
+        </FormControlLabelText>
+      </FormControlLabel>
+      <RadioGroup className="my-2">
+        <VStack space="sm">
+          <Radio size="sm" value="Mango">
+            <RadioIndicator>
+              <RadioIcon as={CircleIcon} />
+            </RadioIndicator>
+            <RadioLabel>Monday</RadioLabel>
+          </Radio>
+          <Radio size="sm" value="Apple">
+            <RadioIndicator>
+              <RadioIcon as={CircleIcon} />
+            </RadioIndicator>
+            <RadioLabel>Tuesday</RadioLabel>
+          </Radio>
+          <Radio size="sm" value="Orange">
+            <RadioIndicator>
+              <RadioIcon as={CircleIcon} />
+            </RadioIndicator>
+            <RadioLabel>Wednesday</RadioLabel>
+          </Radio>
+        </VStack>
+      </RadioGroup>
+      <FormControlError>
+        <FormControlErrorIcon as={AlertCircleIcon} />
+        <FormControlErrorText>
+          Choose one time slot for the meeting
+        </FormControlErrorText>
+      </FormControlError>
+    </FormControl>
+  )
+};
+
+const ExampleSignInForm = () => {
 const [isInvalid, setIsInvalid] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("");
   const [values, setValues] = React.useState("Male");
@@ -293,9 +333,14 @@ const COMPONENT_VARIANTS = [
     content: <ExampleFormControlWithCheckbox />,
   },
   {
-    value: "signing-form",
-    label: "Signing Form",
-    content: <ExampleSigningForm />,
+    value: "form-control-with-error",
+    label: "Form Control with Error",
+    content: <ExampleFormControlWithError />,
+  },
+  {
+    value: "signin-form",
+    label: "SignIn Form",
+    content: <ExampleSignInForm />,
   },
   {
     value: "form-control-with-textarea",
