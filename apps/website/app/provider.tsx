@@ -1,6 +1,7 @@
 'use client';
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider/index.web';
 import { createContext, useState, useContext, ReactNode } from 'react';
+import StyleRegistry from './registry';
 
 type ColorModeType = 'light' | 'dark' | 'system';
 
@@ -49,7 +50,9 @@ export function Provider({
         setColorMode: handleColorModeChange,
       }}
     >
-      <GluestackUIProvider mode={colorMode}>{children}</GluestackUIProvider>
+      <StyleRegistry>
+        <GluestackUIProvider mode={colorMode}>{children}</GluestackUIProvider>
+      </StyleRegistry>
     </ColorModeContext.Provider>
   );
 }
