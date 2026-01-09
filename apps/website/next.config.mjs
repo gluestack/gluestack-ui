@@ -50,7 +50,6 @@ const nextConfig = withExpo({
     ignoreBuildErrors: true,
   },
   experimental: {
-    instrumentationHook: true,
     optimizeCss: true,
   },
   transpilePackages: [
