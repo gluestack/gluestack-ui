@@ -19,7 +19,7 @@ export const useColorMode = () => useContext(ColorModeContext);
 
 export function Provider({
   children,
-  initialColorMode = 'light',
+  initialColorMode = 'dark',
 }: {
   children: ReactNode;
   initialColorMode?: ColorModeType;

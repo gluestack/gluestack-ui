@@ -12,7 +12,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = await cookies();
-  const initialColorMode = (cookieStore.get('colorMode')?.value || 'light') as
+  const initialColorMode = (cookieStore.get('colorMode')?.value || 'dark') as
     | 'light'
     | 'dark'
     | 'system';
