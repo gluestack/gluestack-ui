@@ -4,7 +4,7 @@ import { Text } from '@/components/ui/text';
 export const UL = memo(({ children, ...props }: any) => {
   return (
     <StyledUL {...props}>
-     <Text>{children}</Text>
+      <Text>{children}</Text>
     </StyledUL>
   );
 });

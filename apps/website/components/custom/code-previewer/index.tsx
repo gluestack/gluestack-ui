@@ -125,7 +125,7 @@ export function CodePreviewer({
     if (control?.type === 'boolean' || typeof defaultValue === 'boolean') {
       return (
         <Box className="flex flex-col gap-2">
-          <Text className="text-sm" htmlFor={name}>
+          <Text className="text-sm">
             {name}
           </Text>
           <Switch
@@ -133,10 +133,8 @@ export function CodePreviewer({
             isDisabled={false}
             trackColor={{ false: '#D4D4D4', true: '#005DB4' }}
             thumbColor={'#FAFAFA'}
-            activeThumbColor={'#FAFAFA'}
             ios_backgroundColor={'#D4D4D4'}
             value={values[name] ?? defaultValue}
-            j
             onToggle={() => handleChange(name, !values[name])}
           />
         </Box>

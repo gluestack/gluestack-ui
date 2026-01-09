@@ -78,7 +78,7 @@ const extractTextFromChildren = (children: React.ReactNode): string => {
 
 export const CodeBlock: React.FC<CodeBlockProps> = ({
   code,
-  language = 'jsx',
+  language = 'tsx',
   className,
 }) => {
   const [copied, setCopied] = useState(false);
