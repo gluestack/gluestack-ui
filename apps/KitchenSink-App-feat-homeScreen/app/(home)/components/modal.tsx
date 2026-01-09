@@ -352,17 +352,19 @@ const [showModal, setShowModal] = React.useState(false);
             >
               <ButtonText>Continue</ButtonText>
             </Button>
-            <Text size="sm" className="">
+            <HStack space="xs" className="items-center">
+            <Text size="sm">
               Didn't receive the email?
-              <Link className="">
+            </Text>
+              <Link>
                 <LinkText
                   size="xs"
-                  className="text-typography-700 font-semibold"
+                  className="text-foreground/80 font-semibold"
                 >
                   Click to resend
                 </LinkText>
               </Link>
-            </Text>
+              </HStack>
             <HStack space="xs" className="items-center">
               <Button
                 variant="link"
@@ -453,10 +455,10 @@ const [showModal, setShowModal] = React.useState(false);
             className="h-[185px] w-full rounded"
           />
           <ModalBody className="mb-5" contentContainerClassName="">
-            <Heading size="md" className="text-typography-950 text-center">
+            <Heading size="md" className="text-center">
               Welcome to the dashboard
             </Heading>
-            <Text size="sm" className="text-typography-500 text-center">
+            <Text size="sm" className="text-foreground/60 text-center">
               We are glad to have you on board, Here are some quick tips to let
               you up and running.
             </Text>
@@ -505,15 +507,15 @@ const [showModal, setShowModal] = React.useState(false);
         <ModalBackdrop />
         <ModalContent className="max-w-[305px] items-center">
           <ModalHeader>
-            <Box className="w-[56px] h-[56px] rounded-full bg-background-error items-center justify-center">
-              <Icon as={TrashIcon} className="stroke-error-600" size="xl" />
+            <Box className="w-[56px] h-[56px] rounded-full bg-destructive-foreground items-center justify-center">
+              <Icon as={TrashIcon} className="stroke-destructive" size="xl" />
             </Box>
           </ModalHeader>
           <ModalBody className="mt-0 mb-4">
-            <Heading size="md" className="text-typography-950 mb-2 text-center">
+            <Heading size="md" className="mb-2 text-center">
               Delete blog post
             </Heading>
-            <Text size="sm" className="text-typography-500 text-center">
+            <Text size="sm" className="text-foreground/60 text-center">
               Are you sure you want to delete this post? This action cannot be
               undone.
             </Text>
@@ -561,18 +563,18 @@ const [showModal, setShowModal] = React.useState(false);
       >
         <ModalBackdrop />
         <ModalContent className="max-w-[395px]">
-          <ModalHeader className="gap-2 items-start">
-            <VStack className="gap-1">
-              <Heading size="md" className="text-typography-950">
+          <ModalHeader className="gap-2 items-start p-2">
+            <VStack className="gap-1 w-4/5">
+              <Heading size="md">
                 Invite your team
               </Heading>
-              <Text size="sm" className="text-typography-500">
+              <Text size="sm" className="text-foreground/60">
                 You have created a new project! Invite colleagues to collaborate
                 on this project.
               </Text>
             </VStack>
             <ModalCloseButton>
-              <Icon as={CloseIcon} className="stroke-background-500" />
+              <Icon as={CloseIcon} className="stroke-foreground/60" />
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody
@@ -582,8 +584,8 @@ const [showModal, setShowModal] = React.useState(false);
             <Input variant="outline" size="sm" className="flex-1">
               <InputField placeholder="join.untitledui.com/personalproject" />
             </Input>
-            <Pressable className="h-9 w-9 justify-center items-center border border-outline-300 rounded">
-              <Icon as={CopyIcon} className="stroke-background-800" />
+            <Pressable className="h-9 w-9 justify-center items-center border border-border/70 rounded">
+              <Icon as={CopyIcon} className="stroke-foreground/80" />
             </Pressable>
           </ModalBody>
         </ModalContent>
