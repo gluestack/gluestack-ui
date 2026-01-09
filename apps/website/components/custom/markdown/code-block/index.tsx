@@ -1,24 +1,24 @@
-import React, { useEffect, useRef, useState, useContext } from 'react';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-jsx';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
-import 'prismjs/components/prism-tsx';
-import 'prismjs/components/prism-bash';
-import 'prismjs/components/prism-json';
-import 'prismjs/components/prism-css';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-diff';
 import { useColorMode } from '@/app/provider';
-import './styles.css';
 import { Icon } from '@/components/ui/icon';
-import { CheckIcon, CopyIcon } from 'lucide-react-native';
+import { CopyIcon } from 'lucide-react-native';
 import * as prettier from 'prettier';
 import prettierPluginBabel from 'prettier/plugins/babel';
 import prettierPluginEstree from 'prettier/plugins/estree';
-import prettierPluginTypescript from 'prettier/plugins/typescript';
-import prettierPluginCSS from 'prettier/plugins/postcss';
 import prettierPluginHTML from 'prettier/plugins/html';
+import prettierPluginCSS from 'prettier/plugins/postcss';
+import prettierPluginTypescript from 'prettier/plugins/typescript';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-diff';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-tsx';
+import 'prismjs/components/prism-typescript';
+import React, { useEffect, useRef, useState } from 'react';
+import './styles.css';
 // Theme configurations
 const themes = {
   light: {
