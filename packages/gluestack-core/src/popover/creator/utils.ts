@@ -42,7 +42,7 @@ export const getArrowStyles = ({
   actualPlacement,
 }: ArrowStyleProps) => {
   const additionalStyles: any = {
-    transform: [],
+    transform: [{ rotate: '45deg'} , {translateY: height / 2}],
   };
 
   const diagonalLength = getDiagonalLength(height, width);

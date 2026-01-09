@@ -134,10 +134,7 @@ type IPopoverCloseButtonProps = React.ComponentProps<
 const Popover = React.forwardRef<
   React.ComponentRef<typeof UIPopover>,
   IPopoverProps
->(function Popover(
-  { className, placement = 'bottom', ...props },
-  ref
-) {
+>(function Popover({ className, placement = 'bottom', ...props }, ref) {
   return (
     <UIPopover
       ref={ref}

@@ -85,7 +85,7 @@ const [isOpen, setIsOpen] = React.useState(false);
                 contentContainerClassName="flex flex-row gap-4"
               >
               <AvatarGroup className="flex-row items-center">
-                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0">
+                  <Avatar className="w-9 h-9 border-[1.5px] border-border">
                     <AvatarFallbackText>John Doe</AvatarFallbackText>
                     <AvatarImage
                       source={{
@@ -94,7 +94,7 @@ const [isOpen, setIsOpen] = React.useState(false);
                       alt="imageAltText"
                     />
                   </Avatar>
-                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0">
+                  <Avatar className="w-9 h-9 border-[1.5px] border-border">
                     <AvatarFallbackText>John Doe</AvatarFallbackText>
                     <AvatarImage
                       source={{
@@ -103,7 +103,7 @@ const [isOpen, setIsOpen] = React.useState(false);
                       alt="imageAltText"
                     />
                   </Avatar>
-                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0">
+                  <Avatar className="w-9 h-9 border-[1.5px] border-border">
                     <AvatarFallbackText>John Doe</AvatarFallbackText>
                     <AvatarImage
                       source={{
@@ -112,7 +112,7 @@ const [isOpen, setIsOpen] = React.useState(false);
                       alt="imageAltText"
                     />
                   </Avatar>
-                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0 group-[.avatar-group]/avatar-group:ml-0">
+                  <Avatar className="w-9 h-9 border-[1.5px] border-border group-[.avatar-group]/avatar-group:ml-0">
                     <AvatarFallbackText>John Doe</AvatarFallbackText>
                     <AvatarImage
                       source={{
@@ -122,7 +122,7 @@ const [isOpen, setIsOpen] = React.useState(false);
                     />
                   </Avatar>
                 </AvatarGroup>
-                <Text className="text-typography-900" size="sm">
+                <Text className="text-foreground/90" size="sm">
                   Alex, Annie and many others are already enjoying the Pro features,
                   don't miss out on the fun!
                 </Text>
@@ -192,7 +192,7 @@ const [isOpen, setIsOpen] = React.useState(false);
               </PopoverBody>
               <PopoverFooter>
                 <Pressable
-                  className="px-4 bg-primary-500 rounded w-full"
+                  className="px-4 bg-primary rounded w-full"
                   onPress={handleClose}
                 >
                   <Button onPress={handleClose} size="sm" className="gap-2">
@@ -242,16 +242,16 @@ const [isOpen, setIsOpen] = React.useState(false)
             className="sm:h-[270px] sm:w-[211px] h-[150px] w-full"
           />
           <VStack className="items-center justify-center w-full max-w-[344px] sm:mx-8 p-4 sm:p-0">
-            <Text size="sm" className="text-typography-950">
+            <Text size="sm" className="text-foreground">
               Sign up to the newsletter and get
             </Text>
-            <Heading size="3xl" className="text-typography-950 my-1">
+            <Heading size="3xl" className="my-1">
               25% Off
             </Heading>
             <Input variant="outline" size="sm" className="my-4 w-full">
               <InputField placeholder="youremail@address.com" />
             </Input>
-            <Button size="xs" isDisabled className="w-full">
+            <Button size="sm" isDisabled className="w-full">
               <ButtonText>Subscribe</ButtonText>
             </Button>
           </VStack>
@@ -303,7 +303,7 @@ const [showPopover, setShowPopover] = React.useState(false);
                   />
                 </Avatar>
                 <VStack>
-                  <Text size="sm" className="font-semibold text-typography-900">
+                  <Text size="sm" className="font-semibold text-foreground/90">
                     Jane Cooper
                   </Text>
                   <Text size="xs">janecooper09@gmail.com</Text>
@@ -326,7 +326,7 @@ const [showPopover, setShowPopover] = React.useState(false);
                   />
                 </Avatar>
                 <VStack>
-                  <Text size="sm" className="font-semibold text-typography-900">
+                  <Text size="sm" className="font-semibold text-foreground/90">
                     Catherine Miller
                   </Text>
                   <Text size="xs">catherinemiller88@gmail.com</Text>
