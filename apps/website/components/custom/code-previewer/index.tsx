@@ -1,23 +1,23 @@
-import { useState, useEffect } from 'react';
-import Handlebars from 'handlebars';
-import { LiveProvider, LiveError, LivePreview } from 'react-live';
 import { CodeBlock } from '@/components/custom/markdown/code-block';
 import { Box } from '@/components/ui/box';
+import { ChevronDownIcon } from '@/components/ui/icon';
 import { Switch } from '@/components/ui/switch';
 import { Text } from '@/components/ui/text';
-import { ChevronDownIcon } from '@/components/ui/icon';
+import Handlebars from 'handlebars';
+import { useEffect, useState } from 'react';
+import { LiveError, LivePreview, LiveProvider } from 'react-live';
 
 import {
   Select,
-  SelectTrigger,
-  SelectInput,
-  SelectIcon,
-  SelectPortal,
   SelectBackdrop,
   SelectContent,
   SelectDragIndicator,
   SelectDragIndicatorWrapper,
+  SelectIcon,
+  SelectInput,
   SelectItem,
+  SelectPortal,
+  SelectTrigger,
 } from '@/components/ui/select';
 
 export function CodePreviewer({
