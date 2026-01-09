@@ -114,8 +114,8 @@ const Kitchensink = () => {
 
         <Box className="flex-1 sm:mt-10  sm:p-10 aspect-[5/3] md:aspect-[604/411]">
           <Image
-            alt="kitchensink image"
-            src="/assets/kitchensink-app.webp"
+            alt="kitchensink qr-code"
+            src={kitchensink.qrCodeUri}
             fill
             sizes="100vw"
             unoptimized
