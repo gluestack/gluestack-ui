@@ -9,12 +9,12 @@ export const dashboard = {
 };
 export const kitchensink = {
   updateIds: {
-    android: '237b603b-a038-4cd2-9d4f-d87c5881dc75',
-    ios: '6d1dcf62-7b3d-42cc-8bdd-1577543b50e0',
+    android: '3a2b0b34-eed3-45cf-a234-6d6179f00f7b',
+    ios: 'ef5af6c0-5ba2-42b8-a8b2-7e43c672878c',
   },
   iframeUri: 'https://kitchen-sink-gluestack.vercel.app/',
   qrCodeUri:
-    'https://qr.expo.dev/eas-update?slug=exp&projectId=b3529931-c47f-4970-aa9f-de2f59c05f07&groupId=f652a2df-5594-4023-9759-1843130cf9de&host=u.expo.dev',
+    'https://qr.expo.dev/eas-update?slug=exp&projectId=b3529931-c47f-4970-aa9f-de2f59c05f07&groupId=9da5d225-0eeb-496b-9049-91857e041569&host=u.expo.dev',
 };
 export const todoapp = {
   updateIds: {
