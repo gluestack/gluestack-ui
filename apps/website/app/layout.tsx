@@ -12,13 +12,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = await cookies();
-  const initialColorMode = (cookieStore.get('colorMode')?.value || 'light') as
+  const initialColorMode = (cookieStore.get('colorMode')?.value || 'dark') as
     | 'light'
     | 'dark'
     | 'system';
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <head>
         <meta name="robots" content="index, follow" />
 

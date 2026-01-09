@@ -2,7 +2,7 @@ import { CodeBlock } from '@/components/custom/markdown/code-block';
 import React from 'react';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
-import { Link } from '@/components/ui/link';
+import { Link, LinkText } from '@/components/ui/link';
 interface CodeProps {
   children: string;
   className?: string;
@@ -84,7 +84,9 @@ export const docsComponents = {
         isExternal={containsAny(props.href)}
         className="leading-6 font-body text-typography-950 underline underline-offset-4 decoration-typography-950 inline-block"
         {...props}
-      />
+      >
+        <LinkText>{props.children}</LinkText>
+      </Link>
     );
   },
   // Define container styles

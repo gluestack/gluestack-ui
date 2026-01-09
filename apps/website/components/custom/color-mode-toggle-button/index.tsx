@@ -1,7 +1,6 @@
-import { useContext } from 'react';
+import { useColorMode } from '@/app/provider';
 import { Fab, FabIcon } from '@/components/ui/fab';
 import { MoonIcon, SunIcon } from '@/components/ui/icon';
-import { useColorMode } from '@/app/provider';
 
 export const ToggleColorModeButton = () => {
   const { colorMode, setColorMode } = useColorMode();

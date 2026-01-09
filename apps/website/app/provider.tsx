@@ -1,12 +1,6 @@
 'use client';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider/index.web';
-import {
-  createContext,
-  useState,
-  useContext,
-  useEffect,
-  ReactNode,
-} from 'react';
+import { createContext, useState, useContext, ReactNode } from 'react';
 import StyleRegistry from './registry';
 
 type ColorModeType = 'light' | 'dark' | 'system';
@@ -25,18 +19,12 @@ export const useColorMode = () => useContext(ColorModeContext);
 
 export function Provider({
   children,
-  initialColorMode = 'light',
+  initialColorMode = 'dark',
 }: {
   children: ReactNode;
   initialColorMode?: ColorModeType;
 }) {
   const [colorMode, setColorMode] = useState<ColorModeType>(initialColorMode);
-  const [mounted, setMounted] = useState(false);
-
-  // Set mounted after component mounts on client
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleColorModeChange = async (mode: ColorModeType) => {
     setColorMode(mode);
@@ -54,11 +42,6 @@ export function Provider({
       console.error('Failed to update theme cookie:', error);
     }
   };
-
-  // Prevent flash of incorrect content during SSR
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <ColorModeContext.Provider
