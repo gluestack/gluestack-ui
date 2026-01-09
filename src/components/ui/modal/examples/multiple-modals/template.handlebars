@@ -75,17 +75,19 @@ function Example() {
             >
               <ButtonText>Continue</ButtonText>
             </Button>
-            <Text size="sm" className="">
+            <HStack space="xs" className="items-center">
+            <Text size="sm">
               Didn't receive the email?
-              <Link className="">
+            </Text>
+              <Link>
                 <LinkText
                   size="xs"
-                  className="text-typography-700 font-semibold"
+                  className="text-foreground/80 font-semibold"
                 >
                   Click to resend
                 </LinkText>
               </Link>
-            </Text>
+              </HStack>
             <HStack space="xs" className="items-center">
               <Button
                 variant="link"
