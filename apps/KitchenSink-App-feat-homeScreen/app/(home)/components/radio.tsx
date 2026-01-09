@@ -87,7 +87,7 @@ const [values, setValues] = React.useState("Read-only");
                     </RadioIndicator>
                     <RadioLabel>Extended coverage</RadioLabel>
                   </Radio>
-                  <Text size="$sm" className="ml-7 text-muted-foreground">Extra services included</Text>
+                  <Text size="sm" className="ml-7 text-muted-foreground">Extra services included</Text>
                 </Box>
                 <Box>
                   <Radio value="Write" size="md">
@@ -96,7 +96,7 @@ const [values, setValues] = React.useState("Read-only");
                     </RadioIndicator>
                     <RadioLabel>Basic coverage</RadioLabel>
                   </Radio>
-                  <Text size="$sm" className="ml-7 text-muted-foreground">Nothing extra included</Text>
+                  <Text size="sm" className="ml-7 text-muted-foreground">Nothing extra included</Text>
                 </Box>
               </VStack>
             </RadioGroup>
@@ -132,7 +132,7 @@ return (
                 </Radio>
               </VStack>
             </RadioGroup>
-            <Text className="text-sm text-light-500">
+            <Text className="text-sm text-muted-foreground">
               Choose a time slot for the meeting
             </Text>
           </VStack>
