@@ -299,14 +299,7 @@ const ActionsheetItemText = React.forwardRef<
   React.ComponentRef<typeof UIActionsheet.ItemText>,
   IActionsheetItemTextProps
 >(function ActionsheetItemText(
-  {
-    isTruncated,
-    bold,
-    underline,
-    strikeThrough,
-    className,
-    ...props
-  },
+  { isTruncated, bold, underline, strikeThrough, className, ...props },
   ref
 ) {
   return (

@@ -107,15 +107,15 @@ const toast = useToast();
                     action="error"
                     variant="outline"
                     nativeID={uniqueToastId}
-                    className="p-4 gap-6 border-error-500 w-full shadow-hard-5 max-w-[443px] flex-row justify-between"
+                    className="p-4 gap-6 border-destructive w-full shadow-hard-5 max-w-[443px] flex-row justify-between"
                   >
                     <HStack space="md">
                       <Icon
                         as={HelpCircleIcon}
-                        className="stroke-error-500 mt-0.5"
+                        className="stroke-destructive mt-0.5"
                       />
                       <VStack space="xs">
-                        <ToastTitle className="font-semibold text-error-500">Error!</ToastTitle>
+                        <ToastTitle className="font-semibold text-destructive">Error!</ToastTitle>
                         <ToastDescription size="sm">
                           Something went wrong.
                         </ToastDescription>
@@ -237,12 +237,10 @@ const toast = useToast();
                       <Button
                         action="secondary"
                         variant="outline"
-                        size="sm"
-                        className="flex-grow"
                       >
                         <ButtonText>Not now</ButtonText>
                       </Button>
-                      <Button size="sm" className="flex-grow">
+                      <Button>
                         <ButtonText>Update</ButtonText>
                       </Button>
                     </ButtonGroup>
@@ -276,11 +274,11 @@ const toast = useToast();
                         <Icon
                           as={Send}
                           size="xl"
-                          className="fill-typography-100 stroke-none"
+                          className="fill-foreground/80 stroke-none"
                         />
                         <Divider
                           orientation="vertical"
-                          className="h-[30px] bg-outline-200"
+                          className="h-[30px] bg-border/80"
                         />
                         <ToastTitle size="sm">Message sent successfully</ToastTitle>
                       </Toast>
