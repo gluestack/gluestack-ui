@@ -4,9 +4,8 @@ import {
   createAccordion,
   AccordionItemContext,
 } from '@gluestack-ui/core/accordion/creator';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@/components/ui/icon';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import React from 'react';
 import { Platform, Pressable, Text, TextProps, View } from 'react-native';
 import { AnimatedHeight } from './AnimatedHeight';
@@ -61,25 +60,6 @@ const UIAccordion = createAccordion({
   TitleText: Text,
   ContentText: Text,
   Content: View,
-});
-
-cssInterop(PrimitiveIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
-});
-
-cssInterop(H3, {
-  className: {
-    target: 'style',
-  },
 });
 
 type IAccordionProps = React.ComponentPropsWithoutRef<typeof UIAccordion>;
