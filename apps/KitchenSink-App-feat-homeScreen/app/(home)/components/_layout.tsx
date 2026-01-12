@@ -20,11 +20,7 @@ function CustomHeader({ title }: { title: string }) {
         paddingTop: insets.top,
       }}
     >
-     
-        <Box
-          className="absolute inset-0 bg-background"
-        />
-
+      <Box className="absolute inset-0 bg-background" />
 
       <HStack className="items-center justify-between px-4 h-14">
         {/* Back Button */}

@@ -1,21 +1,21 @@
-import { Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetFlatList, ActionsheetIcon, ActionsheetItem, ActionsheetItemText, ActionsheetSectionHeaderText, ActionsheetSectionList, ActionsheetVirtualizedList } from '@/components/ui/actionsheet'
-import { Box } from '@/components/ui/box'
-import { Button, ButtonGroup, ButtonText } from '@/components/ui/button'
-import { FormControl, FormControlLabel, FormControlLabelText } from '@/components/ui/form-control'
-import { Heading } from '@/components/ui/heading'
-import { HStack } from '@/components/ui/hstack'
-import { CircleIcon, ClockIcon, CloseIcon, DownloadIcon, EditIcon, EyeOffIcon, Icon, TrashIcon } from '@/components/ui/icon'
-import { Image } from '@/components/ui/image'
-import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input'
-import { Pressable } from '@/components/ui/pressable'
-import { Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel } from '@/components/ui/radio'
-import { Text } from '@/components/ui/text'
+import { Actionsheet, ActionsheetContent, ActionsheetItem, ActionsheetItemText, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetBackdrop, ActionsheetIcon, ActionsheetVirtualizedList, ActionsheetFlatList, ActionsheetSectionList, ActionsheetSectionHeaderText } from '@/components/ui/actionsheet'
+import { Button, ButtonText, ButtonGroup } from '@/components/ui/button'
 import { VStack } from '@/components/ui/vstack'
+import { HStack } from '@/components/ui/hstack'
+import { Box } from '@/components/ui/box'
+import { Image } from '@/components/ui/image'
+import { FormControl, FormControlLabel, FormControlLabelText } from '@/components/ui/form-control'
+import { Input, InputSlot, InputField, InputIcon } from '@/components/ui/input'
 import { CreditCardIcon, UploadCloud } from 'lucide-react-native'
+import { Text } from '@/components/ui/text'
+import { Heading } from '@/components/ui/heading'
+import { Radio, RadioGroup, RadioLabel, RadioIndicator, RadioIcon } from '@/components/ui/radio'
+import { CircleIcon, EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon, Icon, CloseIcon } from '@/components/ui/icon'
+import { Pressable } from '@/components/ui/pressable'
 
 
-import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist'
-import React from 'react'
+import React from 'react';
+import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
 
 const ExampleBasic = () => {
 const [showActionsheet, setShowActionsheet] = React.useState(false)
@@ -349,6 +349,7 @@ const [showActionsheet, setShowActionsheet] = React.useState(false);
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
            <ActionsheetSectionList
+            h="$56"
             sections={DATA}
             keyExtractor={(item, index) => item + index}
             renderItem={({ item }) => (
