@@ -10,8 +10,10 @@ import {
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
 const SCOPE = 'Radio';
+const AnimatedIcon = Animated.createAnimatedComponent(UIIcon);
 
 const UIRadio = createRadio({
   Root: (Platform.OS === 'web'
@@ -20,7 +22,7 @@ const UIRadio = createRadio({
     typeof withStyleContext<typeof Pressable>
   >,
   Group: View,
-  Icon: UIIcon,
+  Icon: AnimatedIcon,
   Indicator: View,
   Label: Text,
 });
@@ -203,9 +205,12 @@ const RadioIcon = React.forwardRef<
         parentVariants: {
           size: parentSize,
         },
+
         size,
         class: className,
       })}
+      entering={FadeIn.duration(150)}
+      exiting={FadeOut.duration(150)}
       ref={ref}
     />
   );

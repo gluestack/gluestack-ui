@@ -4,17 +4,67 @@ import { createMenu } from '@gluestack-ui/core/menu/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import { Pressable, Text, View, ViewStyle } from 'react-native';
-import {
-  Motion,
-  AnimatePresence,
-  MotionComponentProps,
-} from '@legendapp/motion';
+
+import Animated, { ZoomIn, ZoomOut } from 'react-native-reanimated';
+
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-type IMotionViewProps = React.ComponentProps<typeof View> &
-  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+const AnimatedView = Animated.createAnimatedComponent(View);
 
-const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+const Item = React.forwardRef<
+  React.ComponentRef<typeof Pressable>,
+  IMenuItemProps
+>(function Item({ className, ...props }, ref) {
+  return (
+    <Pressable
+      ref={ref}
+      className={menuItemStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+
+const BackdropPressable = React.forwardRef<
+  React.ComponentRef<typeof Pressable>,
+  React.ComponentPropsWithoutRef<typeof Pressable> &
+    VariantProps<typeof menuBackdropStyle>
+>(function BackdropPressable({ className, ...props }, ref) {
+  return (
+    <Pressable
+      ref={ref}
+      className={menuBackdropStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+
+const Separator = React.forwardRef<
+  React.ComponentRef<typeof View>,
+  React.ComponentPropsWithoutRef<typeof View> &
+    VariantProps<typeof menuSeparatorStyle>
+>(function Separator({ className, ...props }, ref) {
+  return (
+    <View
+      ref={ref}
+      className={menuSeparatorStyle({ class: className })}
+      {...props}
+    />
+  );
+});
+
+export const UIMenu = createMenu({
+  Root: AnimatedView,
+  Item: Item,
+  Label: Text,
+  Backdrop: BackdropPressable,
+  Separator: Separator,
+});
+
+cssInterop(AnimatedView, { className: 'style' });
 
 const menuStyle = tva({
   base: 'rounded-md bg-background-0 border border-outline-100 p-1 shadow-hard-5',
@@ -75,64 +125,9 @@ const menuItemLabelStyle = tva({
   },
 });
 
-const BackdropPressable = React.forwardRef<
-  React.ComponentRef<typeof Pressable>,
-  React.ComponentPropsWithoutRef<typeof Pressable> &
-    VariantProps<typeof menuBackdropStyle>
->(function BackdropPressable({ className, ...props }, ref) {
-  return (
-    <Pressable
-      ref={ref}
-      className={menuBackdropStyle({
-        class: className,
-      })}
-      {...props}
-    />
-  );
-});
-
 type IMenuItemProps = VariantProps<typeof menuItemStyle> & {
   className?: string;
 } & React.ComponentPropsWithoutRef<typeof Pressable>;
-
-const Item = React.forwardRef<
-  React.ComponentRef<typeof Pressable>,
-  IMenuItemProps
->(function Item({ className, ...props }, ref) {
-  return (
-    <Pressable
-      ref={ref}
-      className={menuItemStyle({
-        class: className,
-      })}
-      {...props}
-    />
-  );
-});
-
-const Separator = React.forwardRef<
-  React.ComponentRef<typeof View>,
-  React.ComponentPropsWithoutRef<typeof View> &
-    VariantProps<typeof menuSeparatorStyle>
->(function Separator({ className, ...props }, ref) {
-  return (
-    <View
-      ref={ref}
-      className={menuSeparatorStyle({ class: className })}
-      {...props}
-    />
-  );
-});
-export const UIMenu = createMenu({
-  Root: MotionView,
-  Item: Item,
-  Label: Text,
-  Backdrop: BackdropPressable,
-  AnimatePresence: AnimatePresence,
-  Separator: Separator,
-});
-
-cssInterop(MotionView, { className: 'style' });
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle> & { className?: string };
@@ -144,22 +139,8 @@ const Menu = React.forwardRef<React.ComponentRef<typeof UIMenu>, IMenuProps>(
     return (
       <UIMenu
         ref={ref}
-        initial={{
-          opacity: 0,
-          scale: 0.8,
-        }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-        }}
-        exit={{
-          opacity: 0,
-          scale: 0.8,
-        }}
-        transition={{
-          type: 'timing',
-          duration: 100,
-        }}
+        entering={ZoomIn.duration(150)}
+        exiting={ZoomOut.duration(150)}
         className={menuStyle({
           class: className,
         })}

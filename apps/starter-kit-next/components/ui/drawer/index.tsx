@@ -1,63 +1,38 @@
 'use client';
-import React from 'react';
 import { createModal as createDrawer } from '@gluestack-ui/core/modal/creator';
+import React from 'react';
+import { Dimensions, Pressable, ScrollView, View } from 'react-native';
+
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
-  Pressable,
-  View,
-  ScrollView,
-  Dimensions,
-  ViewStyle,
-} from 'react-native';
-import {
-  Motion,
-  AnimatePresence,
-  createMotionAnimatedComponent,
-  MotionComponentProps,
-} from '@legendapp/motion';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  withStyleContext,
+  tva,
   useStyleContext,
+  withStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-
-type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
-  MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
-
-const AnimatedPressable = createMotionAnimatedComponent(
-  Pressable
-) as React.ComponentType<IAnimatedPressableProps>;
+import Animated, {
+  FadeIn,
+  FadeOut,
+  SlideInLeft,
+  SlideOutLeft,
+} from 'react-native-reanimated';
 
 const SCOPE = 'MODAL';
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
-const sizes: { [key: string]: number } = {
-  sm: 0.25,
-  md: 0.5,
-  lg: 0.75,
-  full: 1,
-};
-
-type IMotionViewProps = React.ComponentProps<typeof View> &
-  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
-
-const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+const AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedBackdrop = Animated.createAnimatedComponent(Pressable);
 
 const UIDrawer = createDrawer({
   Root: withStyleContext(View, SCOPE),
-  Backdrop: AnimatedPressable,
-  Content: MotionView,
+  Backdrop: AnimatedBackdrop,
+  Content: AnimatedView,
   Body: ScrollView,
   CloseButton: Pressable,
   Footer: View,
   Header: View,
-  AnimatePresence: AnimatePresence,
 });
 
-cssInterop(AnimatedPressable, { className: 'style' });
-cssInterop(MotionView, { className: 'style' });
-
+cssInterop(AnimatedView, { className: 'style' });
+cssInterop(AnimatedBackdrop, { className: 'style' });
 const drawerStyle = tva({
   base: 'w-full h-full web:pointer-events-none relative',
   variants: {
@@ -77,23 +52,24 @@ const drawerStyle = tva({
 });
 
 const drawerBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default web:pointer-events-auto',
 });
 
 const drawerContentStyle = tva({
-  base: 'bg-background-0 overflow-scroll border-outline-100 p-6 absolute',
+  base: 'bg-white overflow-scroll shadow-md p-6 absolute web:pointer-events-auto',
   parentVariants: {
     size: {
-      sm: 'w-1/4',
+      sm: 'w-2/5 sm:w-1/4',
       md: 'w-1/2',
       lg: 'w-3/4',
       full: 'w-full',
     },
     anchor: {
-      left: 'h-full border-r',
-      right: 'h-full border-l',
-      top: 'w-full border-b',
-      bottom: 'w-full border-t',
+      left: 'h-full border-r border-border dark:border-border/10',
+      right: 'h-full border-l border-border dark:border-border/10',
+      top: 'w-full border-b border-border dark:border-border/10 rounded-b-xl',
+      bottom:
+        'w-full border-t border-border dark:border-border/10 rounded-t-xl',
     },
   },
   parentCompoundVariants: [
@@ -141,19 +117,19 @@ const drawerContentStyle = tva({
 });
 
 const drawerCloseButtonStyle = tva({
-  base: 'z-10 rounded data-[focus-visible=true]:web:bg-background-100 web:outline-0 cursor-pointer',
+  base: 'z-10 rounded-sm p-2 data-[focus-visible=true]:bg-accent web:cursor-pointer web:outline-0 data-[hover=true]:bg-accent/50',
 });
 
 const drawerHeaderStyle = tva({
-  base: 'justify-between items-center flex-row',
+  base: 'justify-between items-center flex-row pb-4',
 });
 
 const drawerBodyStyle = tva({
-  base: 'mt-4 mb-6 shrink-0',
+  base: 'flex-1',
 });
 
 const drawerFooterStyle = tva({
-  base: 'flex-row justify-end items-center',
+  base: 'flex-col-reverse gap-2 sm:flex-row sm:justify-end pt-4',
 });
 
 type IDrawerProps = React.ComponentProps<typeof UIDrawer> &
@@ -201,24 +177,8 @@ const DrawerBackdrop = React.forwardRef<
   return (
     <UIDrawer.Backdrop
       ref={ref}
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 0.5,
-      }}
-      exit={{
-        opacity: 0,
-      }}
-      transition={{
-        type: 'spring',
-        damping: 18,
-        stiffness: 250,
-        opacity: {
-          type: 'timing',
-          duration: 250,
-        },
-      }}
+      entering={FadeIn.duration(150)}
+      exiting={FadeOut.duration(150)}
       {...props}
       className={drawerBackdropStyle({
         class: className,
@@ -233,20 +193,7 @@ const DrawerContent = React.forwardRef<
 >(function DrawerContent({ className, ...props }, ref) {
   const { size: parentSize, anchor: parentAnchor } = useStyleContext(SCOPE);
 
-  const drawerHeight = screenHeight * (sizes[parentSize] || sizes.md);
-  const drawerWidth = screenWidth * (sizes[parentSize] || sizes.md);
-
   const isHorizontal = parentAnchor === 'left' || parentAnchor === 'right';
-
-  const initialObj = isHorizontal
-    ? { x: parentAnchor === 'left' ? -drawerWidth : drawerWidth }
-    : { y: parentAnchor === 'top' ? -drawerHeight : drawerHeight };
-
-  const animateObj = isHorizontal ? { x: 0 } : { y: 0 };
-
-  const exitObj = isHorizontal
-    ? { x: parentAnchor === 'left' ? -drawerWidth : drawerWidth }
-    : { y: parentAnchor === 'top' ? -drawerHeight : drawerHeight };
 
   const customClass = isHorizontal
     ? `top-0 ${parentAnchor === 'left' ? 'left-0' : 'right-0'}`
@@ -255,13 +202,8 @@ const DrawerContent = React.forwardRef<
   return (
     <UIDrawer.Content
       ref={ref}
-      initial={initialObj}
-      animate={animateObj}
-      exit={exitObj}
-      transition={{
-        type: 'timing',
-        duration: 300,
-      }}
+      entering={SlideInLeft.duration(150).springify().stiffness(700)}
+      exiting={SlideOutLeft.duration(150).springify()}
       {...props}
       className={drawerContentStyle({
         parentVariants: {
@@ -346,9 +288,9 @@ DrawerCloseButton.displayName = 'DrawerCloseButton';
 export {
   Drawer,
   DrawerBackdrop,
-  DrawerContent,
-  DrawerCloseButton,
-  DrawerHeader,
   DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
   DrawerFooter,
+  DrawerHeader,
 };
