@@ -1,14 +1,5 @@
 {
   "title": "Basic",
-  "argTypes": {
-    "size": {
-      "control": {
-        "type": "select"
-      },
-      "options": ["xs", "sm", "md", "lg", "full"],
-      "defaultValue": "md"
-    }
-  },
   "reactLive": {
     "AlertDialog": "@/components/ui/alert-dialog",
     "AlertDialogContent": "@/components/ui/alert-dialog",

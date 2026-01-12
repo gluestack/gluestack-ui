@@ -5,7 +5,7 @@
       "control": {
         "type": "select"
       },
-      "options": ["2xs", "xs", "sm", "md", "lg", "xl", "2xl"],
+      "options": ["2xs", "xs", "sm", "md", "lg", "xl", "2xl", "full"],
       "defaultValue": "xl"
     }
   },

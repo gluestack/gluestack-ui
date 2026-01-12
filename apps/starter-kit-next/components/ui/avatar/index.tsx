@@ -5,10 +5,7 @@ import { createAvatar } from '@gluestack-ui/core/avatar/creator';
 import { View, Text, Image, Platform } from 'react-native';
 
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  withStyleContext,
-  useStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
+import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 const SCOPE = 'AVATAR';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
@@ -21,50 +18,19 @@ const UIAvatar = createAvatar({
 });
 
 const avatarStyle = tva({
-  base: 'rounded-full justify-center items-center relative bg-primary-600 group-[.avatar-group]/avatar-group:-ml-2.5',
-  variants: {
-    size: {
-      'xs': 'w-6 h-6',
-      'sm': 'w-8 h-8',
-      'md': 'w-12 h-12',
-      'lg': 'w-16 h-16',
-      'xl': 'w-24 h-24',
-      '2xl': 'w-32 h-32',
-    },
-  },
+  base: 'relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full  bg-muted items-center justify-center',
 });
 
 const avatarFallbackTextStyle = tva({
-  base: 'text-typography-0 font-semibold overflow-hidden text-transform:uppercase web:cursor-default',
-
-  parentVariants: {
-    size: {
-      'xs': 'text-2xs',
-      'sm': 'text-xs',
-      'md': 'text-base',
-      'lg': 'text-xl',
-      'xl': 'text-3xl',
-      '2xl': 'text-5xl',
-    },
-  },
+  base: 'text-foreground text-xs font-medium',
 });
 
 const avatarGroupStyle = tva({
-  base: 'group/avatar-group flex-row-reverse relative avatar-group',
+  base: 'flex-row items-center gap-2',
 });
 
 const avatarBadgeStyle = tva({
-  base: 'w-5 h-5 bg-success-500 rounded-full absolute right-0 bottom-0 border-background-0 border-2',
-  parentVariants: {
-    size: {
-      'xs': 'w-2 h-2',
-      'sm': 'w-2 h-2',
-      'md': 'w-3 h-3',
-      'lg': 'w-4 h-4',
-      'xl': 'w-6 h-6',
-      '2xl': 'w-8 h-8',
-    },
-  },
+  base: 'absolute h-3 w-3 rounded-full border-2 border-background right-0 bottom-0',
 });
 
 const avatarImageStyle = tva({
@@ -80,13 +46,13 @@ type IAvatarProps = Omit<
 const Avatar = React.forwardRef<
   React.ComponentRef<typeof UIAvatar>,
   IAvatarProps
->(function Avatar({ className, size = 'md', ...props }, ref) {
+>(function Avatar({ className, ...props }, ref) {
   return (
     <UIAvatar
       ref={ref}
       {...props}
-      className={avatarStyle({ size, class: className })}
-      context={{ size }}
+      className={avatarStyle({ class: className })}
+      context={{}}
     />
   );
 });
@@ -97,20 +63,12 @@ type IAvatarBadgeProps = React.ComponentPropsWithoutRef<typeof UIAvatar.Badge> &
 const AvatarBadge = React.forwardRef<
   React.ComponentRef<typeof UIAvatar.Badge>,
   IAvatarBadgeProps
->(function AvatarBadge({ className, size, ...props }, ref) {
-  const { size: parentSize } = useStyleContext(SCOPE);
-
+>(function AvatarBadge({ className, ...props }, ref) {
   return (
     <UIAvatar.Badge
       ref={ref}
       {...props}
-      className={avatarBadgeStyle({
-        parentVariants: {
-          size: parentSize,
-        },
-        size,
-        class: className,
-      })}
+      className={avatarBadgeStyle({ class: className })}
     />
   );
 });
@@ -122,20 +80,12 @@ type IAvatarFallbackTextProps = React.ComponentPropsWithoutRef<
 const AvatarFallbackText = React.forwardRef<
   React.ComponentRef<typeof UIAvatar.FallbackText>,
   IAvatarFallbackTextProps
->(function AvatarFallbackText({ className, size, ...props }, ref) {
-  const { size: parentSize } = useStyleContext(SCOPE);
-
+>(function AvatarFallbackText({ className, ...props }, ref) {
   return (
     <UIAvatar.FallbackText
       ref={ref}
       {...props}
-      className={avatarFallbackTextStyle({
-        parentVariants: {
-          size: parentSize,
-        },
-        size,
-        class: className,
-      })}
+      className={avatarFallbackTextStyle({ class: className })}
     />
   );
 });
@@ -154,12 +104,8 @@ const AvatarImage = React.forwardRef<
       className={avatarImageStyle({
         class: className,
       })}
-      // @ts-expect-error : This is a workaround to fix the issue with the image style on web.
-      style={
-        Platform.OS === 'web'
-          ? { height: 'revert-layer', width: 'revert-layer' }
-          : undefined
-      }
+      // @ts-expect-error - resizeMode is React Native specific
+      resizeMode="cover"
     />
   );
 });
@@ -182,4 +128,14 @@ const AvatarGroup = React.forwardRef<
   );
 });
 
-export { Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, AvatarGroup };
+// Alias for shadcn compatibility
+const AvatarFallback = AvatarFallbackText;
+
+export {
+  Avatar,
+  AvatarBadge,
+  AvatarFallbackText,
+  AvatarFallback,
+  AvatarImage,
+  AvatarGroup,
+};

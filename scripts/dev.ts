@@ -32,6 +32,11 @@ const mapperFilter = args
   .find((arg) => arg.startsWith('--mapper='))
   ?.split('=')[1];
 
+// Get component filter from command line arguments
+const componentFilter = args
+  .find((arg) => arg.startsWith('--component='))
+  ?.split('=')[1];
+
 // Check for sync flag
 const syncFlag = args.includes('--sync') || args.includes('--initial');
 
@@ -55,6 +60,10 @@ if (mapperFilter) {
   );
 }
 
+if (componentFilter) {
+  console.log(`🎯 Component filter enabled - only processing: ${componentFilter}`);
+}
+
 if (syncFlag) {
   console.log(`🔄 Sync mode enabled - will process existing files and exit`);
 } else {
@@ -66,8 +75,30 @@ let initialSyncCompleted = false;
 let initialFileCount = 0;
 let processedFileCount = 0;
 
+// Determine watch path based on component filter
+const watchPath = componentFilter
+  ? path.join(componentsPath, componentFilter)
+  : sourcePath;
+
+// Validate component filter - check if component directory exists
+if (componentFilter) {
+  const componentDir = path.join(componentsPath, componentFilter);
+  if (!fs.existsSync(componentDir)) {
+    console.error(
+      `❌ Component "${componentFilter}" not found at ${componentDir}`
+    );
+    console.error(
+      `Available components: ${fs.readdirSync(componentsPath).filter((item) => {
+        const itemPath = path.join(componentsPath, item);
+        return fs.statSync(itemPath).isDirectory();
+      }).join(', ')}`
+    );
+    process.exit(1);
+  }
+}
+
 // Initialize watcher
-const watcher = chokidar.watch(sourcePath, {
+const watcher = chokidar.watch(watchPath, {
   persistent: !syncFlag, // Don't persist if sync flag is set
   ignoreInitial: !syncFlag, // Process existing files only if sync flag is set
   awaitWriteFinish: {
@@ -182,6 +213,19 @@ const processFileChange = async (event: string, filePath: string) => {
   // Skip files that shouldn't be processed
   if (!shouldProcessFile(filePath)) {
     return;
+  }
+
+  // If component filter is set, only process files for that component
+  if (componentFilter) {
+    const component = getComponentFromPath(filePath);
+    // For component files, check if they match the filter
+    if (component && component !== componentFilter) {
+      return; // Skip files that don't match the component filter
+    }
+    // For non-component files (like sidebar.json), skip them when component filter is active
+    if (!component) {
+      return;
+    }
   }
 
   // For special files like sidebar.json, check if processed recently
@@ -318,14 +362,19 @@ watcher
     }
   });
 
-console.log(`👀 Watching for file changes in ${sourcePath}...`);
+console.log(`👀 Watching for file changes in ${watchPath}...`);
 if (syncFlag) {
   console.log(
-    `💡 Sync mode: Processing all existing files and will exit when complete`
+    `💡 Sync mode: Processing existing files${componentFilter ? ` for component "${componentFilter}"` : ''} and will exit when complete`
   );
 } else {
-  console.log(`💡 Dev mode: Processing all files and watching for new changes`);
+  console.log(`💡 Dev mode: Processing files${componentFilter ? ` for component "${componentFilter}"` : ''} and watching for new changes`);
   console.log(
     `💡 Use --sync flag to process all existing files once: npm run <script> -- --sync`
   );
+  if (!componentFilter) {
+    console.log(
+      `💡 Use --component=<name> flag to process only a specific component: npm run <script> -- --component=button`
+    );
+  }
 }

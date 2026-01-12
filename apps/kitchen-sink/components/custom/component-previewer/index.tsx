@@ -77,7 +77,7 @@ export const ComponentPreviewer = ({
         >
           <SelectTrigger
             variant="underlined"
-            className="w-full justify-between items-center border-outline-200"
+            className="w-full justify-between items-center  border-outline-200"
             size="md"
           >
             <SelectInput
@@ -90,9 +90,9 @@ export const ComponentPreviewer = ({
               as={ChevronDownIcon}
             />
           </SelectTrigger>
-          <SelectPortal>
+          <SelectPortal >
             <SelectBackdrop />
-            <SelectContent>
+            <SelectContent className="bg-background">
               <SelectDragIndicatorWrapper>
                 <SelectDragIndicator />
               </SelectDragIndicatorWrapper>

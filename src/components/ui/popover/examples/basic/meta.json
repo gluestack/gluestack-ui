@@ -1,13 +1,6 @@
 {
   "title": "Basic",
   "argTypes": {
-    "size": {
-      "control": {
-        "type": "select"
-      },
-      "options": ["xs", "sm", "md", "lg", "full"],
-      "defaultValue": "md"
-    },
     "placement": {
       "control": {
         "type": "select"

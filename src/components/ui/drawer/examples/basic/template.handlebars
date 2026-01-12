@@ -18,14 +18,16 @@ function Example() {
         }}
       >
         <DrawerBackdrop />
-        <DrawerContent>
+        <DrawerContent className="pt-safe">
           <DrawerHeader>
-            <Heading size="lg">Menu</Heading>
+            <Heading size="lg" className="text-foreground font-semibold">
+              Drawer
+            </Heading>
             <DrawerCloseButton>
-              <Icon as={CloseIcon} />
+              <Icon as={CloseIcon} className="stroke-foreground" size="lg" />
             </DrawerCloseButton>
           </DrawerHeader>
-          <DrawerBody>
+         <DrawerBody>
             <Text>This is the basic drawer component.</Text>
           </DrawerBody>
           <DrawerFooter>

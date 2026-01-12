@@ -14,7 +14,6 @@ function App () {
     <VStack>
       <FormControl
         isInvalid={isInvalid}
-        size="{{size}}"
         isDisabled={ {{isDisabled}} }
         isReadOnly={ {{isReadOnly}} }
         isRequired={ {{isRequired}} }
@@ -36,13 +35,13 @@ function App () {
           </FormControlHelperText>
         </FormControlHelper>
         <FormControlError>
-          <FormControlErrorIcon as={AlertCircleIcon} className="text-red-500"/>
-          <FormControlErrorText  className="text-red-500">
+          <FormControlErrorIcon as={AlertCircleIcon} className="text-destructive"/>
+          <FormControlErrorText  className="text-destructive">
             At least 6 characters are required.
           </FormControlErrorText>
         </FormControlError>
       </FormControl>
-      <Button className="w-fit self-end mt-4" size="sm" variant="outline" onPress={handleSubmit}>
+      <Button className="w-fit self-end mt-4" size="sm"  onPress={handleSubmit}>
         <ButtonText>Submit</ButtonText>
       </Button>
     </VStack>

@@ -13,18 +13,18 @@ function Example() {
       >
         <ModalBackdrop />
         <ModalContent className="max-w-[395px]">
-          <ModalHeader className="gap-2 items-start">
-            <VStack className="gap-1">
-              <Heading size="md" className="text-typography-950">
+          <ModalHeader className="gap-2 items-start p-2">
+            <VStack className="gap-1 w-4/5">
+              <Heading size="md">
                 Invite your team
               </Heading>
-              <Text size="sm" className="text-typography-500">
+              <Text size="sm" className="text-foreground/60">
                 You have created a new project! Invite colleagues to collaborate
                 on this project.
               </Text>
             </VStack>
             <ModalCloseButton>
-              <Icon as={CloseIcon} className="stroke-background-500" />
+              <Icon as={CloseIcon} className="stroke-foreground/60" />
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody
@@ -34,8 +34,8 @@ function Example() {
             <Input variant="outline" size="sm" className="flex-1">
               <InputField placeholder="join.untitledui.com/personalproject" />
             </Input>
-            <Pressable className="h-9 w-9 justify-center items-center border border-outline-300 rounded">
-              <Icon as={CopyIcon} className="stroke-background-800" />
+            <Pressable className="h-9 w-9 justify-center items-center border border-border/70 rounded">
+              <Icon as={CopyIcon} className="stroke-foreground/80" />
             </Pressable>
           </ModalBody>
         </ModalContent>

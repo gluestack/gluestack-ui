@@ -1,27 +1,67 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createMenu } from '@gluestack-ui/core/menu/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import { Pressable, Text, View, ViewStyle } from 'react-native';
-import {
-  Motion,
-  AnimatePresence,
-  MotionComponentProps,
-} from '@legendapp/motion';
+import { Pressable, Text, View } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  } from 'react-native-reanimated';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-type IMotionViewProps = React.ComponentProps<typeof View> &
-  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+const AnimatedMenuRoot = React.forwardRef<
+  React.ComponentRef<typeof Animated.View>,
+  React.ComponentProps<typeof Animated.View> & { className?: string }
+>(function AnimatedMenuRoot({ className, style, ...props }, ref) {
+  const opacity = useSharedValue(0);
+  const scale = useSharedValue(0.20);
 
-const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+  useEffect(() => {
+    // Animate in when component mounts
+    opacity.value = withTiming(1, { duration: 150 });
+    scale.value = withTiming(1, { duration: 150 });
+  }, []);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+      transform: [{ scale: scale.value }],
+    };
+  }, [opacity, scale]);
+
+  return (
+    <Animated.View
+      ref={ref}
+      style={[animatedStyle, style]}
+      className={className}
+      {...props}
+    />
+  );
+});
+
+// AnimatePresence wrapper that accepts props (compatible with menu creator)
+// Uses View instead of Fragment to support ref prop
+const MenuAnimatePresence = React.forwardRef<
+  React.ComponentRef<typeof View>,
+  { children: React.ReactNode; [key: string]: any }
+>(function MenuAnimatePresence({ children, ...props }, ref) {
+  // Accept all props including ref
+  // The menu creator passes various props, we just render children in a transparent wrapper
+  return (
+    <View ref={ref} {...props} pointerEvents="box-none">
+      {children}
+    </View>
+  );
+});
 
 const menuStyle = tva({
-  base: 'rounded-md bg-background-0 border border-outline-100 p-1 shadow-hard-5',
+  base: 'rounded-md bg-popover text-popover-foreground border border-border p-1 shadow-hard-5',
 });
 
 const menuItemStyle = tva({
-  base: 'min-w-[200px] p-3 flex-row items-center rounded data-[hover=true]:bg-background-50 data-[active=true]:bg-background-100 data-[focus=true]:bg-background-50 data-[focus=true]:web:outline-none data-[focus=true]:web:outline-0 data-[disabled=true]:opacity-40 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[focus-visible=true]:web:cursor-pointer data-[disabled=true]:data-[focus=true]:bg-transparent',
+  base: 'min-w-[200px] p-3 flex-row items-center rounded data-[hover=true]:bg-accent data-[hover=true]:text-accent-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground data-[focus=true]:bg-accent data-[focus=true]:text-accent-foreground data-[focus=true]:web:outline-none data-[focus=true]:web:outline-0 data-[disabled=true]:opacity-40 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-ring data-[focus-visible=true]:web:outline data-[focus-visible=true]:web:cursor-pointer data-[disabled=true]:data-[focus=true]:bg-transparent',
 });
 
 const menuBackdropStyle = tva({
@@ -31,11 +71,11 @@ const menuBackdropStyle = tva({
 });
 
 const menuSeparatorStyle = tva({
-  base: 'bg-background-200 h-px w-full',
+  base: 'bg-border h-px w-full',
 });
 
 const menuItemLabelStyle = tva({
-  base: 'text-typography-700 font-normal font-body',
+  base: 'text-popover-foreground font-normal font-body',
 
   variants: {
     isTruncated: {
@@ -49,19 +89,6 @@ const menuItemLabelStyle = tva({
     },
     strikeThrough: {
       true: 'line-through',
-    },
-    size: {
-      '2xs': 'text-2xs',
-      'xs': 'text-xs',
-      'sm': 'text-sm',
-      'md': 'text-base',
-      'lg': 'text-lg',
-      'xl': 'text-xl',
-      '2xl': 'text-2xl',
-      '3xl': 'text-3xl',
-      '4xl': 'text-4xl',
-      '5xl': 'text-5xl',
-      '6xl': 'text-6xl',
     },
     sub: {
       true: 'text-xs',
@@ -123,16 +150,17 @@ const Separator = React.forwardRef<
     />
   );
 });
+
 export const UIMenu = createMenu({
-  Root: MotionView,
+  Root: AnimatedMenuRoot,
   Item: Item,
   Label: Text,
   Backdrop: BackdropPressable,
-  AnimatePresence: AnimatePresence,
+  AnimatePresence: MenuAnimatePresence,
   Separator: Separator,
 });
 
-cssInterop(MotionView, { className: 'style' });
+cssInterop(AnimatedMenuRoot, { className: 'style' });
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle> & { className?: string };
@@ -144,22 +172,6 @@ const Menu = React.forwardRef<React.ComponentRef<typeof UIMenu>, IMenuProps>(
     return (
       <UIMenu
         ref={ref}
-        initial={{
-          opacity: 0,
-          scale: 0.8,
-        }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-        }}
-        exit={{
-          opacity: 0,
-          scale: 0.8,
-        }}
-        transition={{
-          type: 'timing',
-          duration: 100,
-        }}
         className={menuStyle({
           class: className,
         })}
@@ -181,7 +193,6 @@ const MenuItemLabel = React.forwardRef<
     bold,
     underline,
     strikeThrough,
-    size = 'md',
     sub,
     italic,
     highlight,
@@ -197,7 +208,6 @@ const MenuItemLabel = React.forwardRef<
         bold: bold as boolean,
         underline: underline as boolean,
         strikeThrough: strikeThrough as boolean,
-        size,
         sub: sub as boolean,
         italic: italic as boolean,
         highlight: highlight as boolean,

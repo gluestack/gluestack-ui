@@ -4,7 +4,7 @@
     "slug": "kitchen-sink",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "",
     "scheme": "kitchensink",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -12,10 +12,11 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
+      // "adaptiveIcon": {
+      //   "foregroundImage": "./assets/images/splash-icon.png",
+      //   "backgroundColor": "#000000"
+      // },
+      "backgroundColor": "#00000000",
       "edgeToEdgeEnabled": true
     },
     "web": {
@@ -28,10 +29,10 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "null",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#000000"
         }
       ],
       "expo-font",

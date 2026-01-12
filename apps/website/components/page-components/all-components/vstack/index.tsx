@@ -9,9 +9,9 @@ export default function Example() {
   return (
     <Box className="justify-center h-60">
       <VStack space="{{space}}" reversed={ {{isReversed}} }>
-        <Box className="h-16 w-16 bg-primary-300" />
-        <Box className="h-16 w-16 bg-primary-400" />
-        <Box className="h-16 w-16 bg-primary-500" />
+        <Box className="h-16 w-16 bg-primary/30" />
+        <Box className="h-16 w-16 bg-primary/60" />
+        <Box className="h-16 w-16 bg-primary" />
       </VStack>
     </Box>
   )

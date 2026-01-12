@@ -36,32 +36,6 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
             updateArrowSize({ height, width });
           }}
           {...props}
-          initial={{
-            opacity: 0,
-            y:
-              actualPlacement === 'top'
-                ? 2
-                : actualPlacement === 'bottom'
-                  ? -2
-                  : 0,
-            x:
-              actualPlacement === 'right'
-                ? -2
-                : actualPlacement === 'left'
-                  ? 2
-                  : 0,
-            rotate: '45deg',
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            x: 0,
-            rotate: '45deg',
-          }}
-          exit={{
-            opacity: 0,
-            rotate: '45deg',
-          }}
           style={[
             props?.style,
             arrowProps?.style,

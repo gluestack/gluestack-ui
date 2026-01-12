@@ -10,7 +10,7 @@ function Example() {
                     return (
                       <Toast
                         nativeID={toastId}
-                        className="p-4 gap-3 w-full sm:min-w-[386px] max-w-[386px] bg-background-0 shadow-hard-2 flex-row"
+                        className="p-4 gap-3 w-full sm:min-w-[386px] max-w-[386px] bg-card shadow-hard-2 flex-row"
                       >
                         <Avatar>
                           <AvatarFallbackText>JS</AvatarFallbackText>
@@ -24,15 +24,15 @@ function Example() {
                           <HStack className="justify-between">
                             <Heading
                               size="sm"
-                              className="text-typography-950 font-semibold"
+                              className="text-foreground font-semibold"
                             >
                               Jacob Steve
                             </Heading>
-                            <Text size="sm" className="text-typography-500">
+                            <Text size="sm" className="text-muted-foreground">
                               2m ago
                             </Text>
                           </HStack>
-                          <Text size="sm" className="text-typography-500">
+                          <Text size="sm" className="text-muted-foreground">
                             commented on your photo
                           </Text>
                         </VStack>

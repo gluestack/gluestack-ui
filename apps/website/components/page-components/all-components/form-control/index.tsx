@@ -36,7 +36,6 @@ export default function Example() {
     <VStack>
       <FormControl
         isInvalid={isInvalid}
-        size="{{size}}"
         isDisabled={ {{isDisabled}} }
         isReadOnly={ {{isReadOnly}} }
         isRequired={ {{isRequired}} }
@@ -58,13 +57,13 @@ export default function Example() {
           </FormControlHelperText>
         </FormControlHelper>
         <FormControlError>
-          <FormControlErrorIcon as={AlertCircleIcon} className="text-red-500"/>
-          <FormControlErrorText  className="text-red-500">
+          <FormControlErrorIcon as={AlertCircleIcon} className="text-destructive"/>
+          <FormControlErrorText  className="text-destructive">
             At least 6 characters are required.
           </FormControlErrorText>
         </FormControlError>
       </FormControl>
-      <Button className="w-fit self-end mt-4" size="sm" variant="outline" onPress={handleSubmit}>
+      <Button className="w-fit self-end mt-4" size="sm"  onPress={handleSubmit}>
         <ButtonText>Submit</ButtonText>
       </Button>
     </VStack>
@@ -88,17 +87,6 @@ export default function Example() {
       "type": "boolean"
     },
     "defaultValue": false
-  },
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
   }
 }}
       reactLive={{ FormControl, FormControlLabel, FormControlError, FormControlErrorText, FormControlErrorIcon, FormControlHelper, FormControlHelperText, FormControlLabelText, AlertCircleIcon, Input, InputField, InputIcon, InputSlot, Button, ButtonText, ButtonSpinner, VStack }}

@@ -10,7 +10,7 @@
     "nativewind": "^4.1.23",
     "react": "^18",
     "react-native": "^0.79.2",
-    "react-native-reanimated": "^4.0.1",
+    "react-native-reanimated": "^4.2.1",
     "react-native-safe-area-context": "5.4.0",
     "tailwind-variants": "^0.2.1"
   },

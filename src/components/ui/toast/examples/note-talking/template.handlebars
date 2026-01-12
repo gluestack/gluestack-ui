@@ -20,15 +20,15 @@ function Example() {
                     action="error"
                     variant="outline"
                     nativeID={uniqueToastId}
-                    className="p-4 gap-6 border-error-500 w-full shadow-hard-5 max-w-[443px] flex-row justify-between"
+                    className="p-4 gap-6 border-destructive w-full shadow-hard-5 max-w-[443px] flex-row justify-between"
                   >
                     <HStack space="md">
                       <Icon
                         as={HelpCircleIcon}
-                        className="stroke-error-500 mt-0.5"
+                        className="stroke-destructive mt-0.5"
                       />
                       <VStack space="xs">
-                        <ToastTitle className="font-semibold text-error-500">Error!</ToastTitle>
+                        <ToastTitle className="font-semibold text-destructive">Error!</ToastTitle>
                         <ToastDescription size="sm">
                           Something went wrong.
                         </ToastDescription>

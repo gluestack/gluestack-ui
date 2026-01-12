@@ -10,7 +10,7 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Checkbox isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } size="{{size}}">
+    <Checkbox isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} }>
         <CheckboxIndicator>
             <CheckboxIcon as={CheckIcon} />
         </CheckboxIndicator>
@@ -30,17 +30,6 @@ export default function Example() {
       "type": "boolean"
     },
     "defaultValue": false
-  },
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg"
-    ],
-    "defaultValue": "md"
   }
 }}
       reactLive={{ Checkbox, CheckboxIndicator, CheckboxLabel, CheckIcon, CheckboxIcon }}

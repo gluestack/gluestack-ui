@@ -12,7 +12,6 @@ function App() {
       onClose={handleClose}
       onOpen={handleOpen}
       placement="{{placement}}"
-      size="{{size}}"
       trigger={(triggerProps) => {
         return (
           <Button {...triggerProps}>
@@ -25,7 +24,7 @@ function App() {
       <PopoverContent>
         <PopoverArrow />
         <PopoverBody>
-          <Text className="text-typography-900">
+          <Text className="text-foreground">
             Alex, Annie and many others are already enjoying the Pro features,
             don't miss out on the fun!
           </Text>

@@ -21,30 +21,25 @@ export default function Example() {
       <Button onPress={() => setShowAlertDialog(true)}>
         <ButtonText>Open Dialog</ButtonText>
       </Button>
-      <AlertDialog isOpen={showAlertDialog} onClose={handleClose} size="{{size}}">
+      <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogBackdrop />
         <AlertDialogContent>
           <AlertDialogHeader>
-            <Heading className="text-typography-950 font-semibold" size="md">
+            <Heading className="text-foreground font-semibold text-lg">
               Are you sure you want to delete this post?
             </Heading>
           </AlertDialogHeader>
           <AlertDialogBody className="mt-3 mb-4">
-            <Text size="sm">
+            <Text className="text-sm text-muted-foreground">
               Deleting the post will remove it permanently and cannot be undone.
               Please confirm if you want to proceed.
             </Text>
           </AlertDialogBody>
-          <AlertDialogFooter className="">
-            <Button
-              variant="outline"
-              action="secondary"
-              onPress={handleClose}
-              size="sm"
-            >
+          <AlertDialogFooter>
+            <Button variant="outline" onPress={handleClose}>
               <ButtonText>Cancel</ButtonText>
             </Button>
-            <Button size="sm" onPress={handleClose}>
+            <Button onPress={handleClose}>
               <ButtonText>Delete</ButtonText>
             </Button>
           </AlertDialogFooter>
@@ -53,21 +48,7 @@ export default function Example() {
     </>
   )
 }`}
-      argTypes={{
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "xs",
-      "sm",
-      "md",
-      "lg",
-      "full"
-    ],
-    "defaultValue": "md"
-  }
-}}
+      argTypes={{}}
       reactLive={{ AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading }}
     />
   );

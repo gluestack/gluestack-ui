@@ -1,51 +1,117 @@
 'use client';
-import React from 'react';
-import { createAlertDialog } from '@gluestack-ui/core/alert-dialog/creator';
+import React, { useContext, useEffect } from 'react';
+import {
+  createAlertDialog,
+  AlertDialogContext,
+} from '@gluestack-ui/core/alert-dialog/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 
+import Animated, {
+  createAnimatedComponent,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+  type AnimatedStyle,
+} from 'react-native-reanimated';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+
 import {
-  Motion,
-  AnimatePresence,
-  createMotionAnimatedComponent,
-  MotionComponentProps,
-} from '@legendapp/motion';
-import { View, Pressable, ScrollView, ViewStyle } from 'react-native';
+  View,
+  Pressable,
+  ScrollView,
+  ViewStyle,
+  StyleSheet,
+} from 'react-native';
 
 const SCOPE = 'ALERT_DIALOG';
 
 const RootComponent = withStyleContext(View, SCOPE);
 
-type IMotionViewProps = React.ComponentProps<typeof View> &
-  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+const AnimatedBackdrop = React.forwardRef<
+  React.ComponentRef<typeof Animated.View>,
+  React.ComponentProps<typeof Animated.View> & { className?: string }
+>(function AnimatedBackdrop({ className, style, children, ...props }, ref) {
+  const { visible } = useContext(AlertDialogContext);
+  const opacity = useSharedValue(0);
+  const scale = useSharedValue(0.2);
 
-const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+  useEffect(() => {
+    if (visible) {
+      opacity.value = withTiming(1, { duration: 150 });
+      scale.value = withTiming(1, { duration: 150 });
+    }
+  }, [visible]);
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+      transform: [{ scale: scale.value }],
+    };
+  }, [opacity, scale]);
+  return (
+    <Animated.View
+      ref={ref}
+      style={[animatedStyle, style]}
+      className={className}
+      {...props}
+    >
+      {/* <Pressable
+        {...props}
+        style={{ height: '90%', width: '90%', backgroundColor: 'blue' }}
+      > */}
+      {children}
+      {/* </Pressable> */}
+    </Animated.View>
+  );
+});
 
-type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
-  MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
+const AnimatedContent = React.forwardRef<
+  React.ComponentRef<typeof Animated.View>,
+  React.ComponentProps<typeof Animated.View> & { className?: string }
+>(function AnimatedContent({ className, style, children, ...props }, ref) {
+  const { visible } = useContext(AlertDialogContext);
+  const opacity = useSharedValue(0);
+  const scale = useSharedValue(0.2);
 
-const AnimatedPressable = createMotionAnimatedComponent(
-  Pressable
-) as React.ComponentType<IAnimatedPressableProps>;
+  useEffect(() => {
+    if (visible) {
+      opacity.value = withTiming(1, { duration: 150 });
+      scale.value = withTiming(1, { duration: 150 });
+    }
+  }, [visible]);
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+      transform: [{ scale: scale.value }],
+    };
+  }, [opacity, scale]);
+  return (
+    <Animated.View
+      ref={ref}
+      style={[animatedStyle, style]}
+      className={className}
+      {...props}
+    >
+      {children}
+    </Animated.View>
+  );
+});
 
 const UIAccessibleAlertDialog = createAlertDialog({
   Root: RootComponent,
   Body: ScrollView,
-  Content: MotionView,
+  Content: AnimatedContent,
   CloseButton: Pressable,
   Header: View,
   Footer: View,
-  Backdrop: AnimatedPressable,
-  AnimatePresence: AnimatePresence,
+  Backdrop: AnimatedBackdrop,
 });
-
-cssInterop(MotionView, { className: 'style' });
-cssInterop(AnimatedPressable, { className: 'style' });
+cssInterop(AnimatedContent, { className: 'style' });
+cssInterop(AnimatedBackdrop, { className: 'style' });
 
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
@@ -61,7 +127,7 @@ const alertDialogStyle = tva({
 });
 
 const alertDialogContentStyle = tva({
-  base: 'bg-background-0 rounded-lg overflow-hidden border border-outline-100 p-6',
+  base: 'bg-background rounded-lg overflow-hidden border p-6',
   parentVariants: {
     size: {
       xs: 'w-[60%] max-w-[360px]',
@@ -88,7 +154,7 @@ const alertDialogFooterStyle = tva({
 const alertDialogBodyStyle = tva({ base: '' });
 
 const alertDialogBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-red-500 web:cursor-default',
 });
 
 type IAlertDialogProps = React.ComponentPropsWithoutRef<
@@ -151,27 +217,6 @@ const AlertDialogContent = React.forwardRef<
     <UIAccessibleAlertDialog.Content
       pointerEvents="auto"
       ref={ref}
-      initial={{
-        scale: 0.9,
-        opacity: 0,
-      }}
-      animate={{
-        scale: 1,
-        opacity: 1,
-      }}
-      exit={{
-        scale: 0.9,
-        opacity: 0,
-      }}
-      transition={{
-        type: 'spring',
-        damping: 18,
-        stiffness: 250,
-        opacity: {
-          type: 'timing',
-          duration: 250,
-        },
-      }}
       {...props}
       className={alertDialogContentStyle({
         parentVariants: {
@@ -251,24 +296,6 @@ const AlertDialogBackdrop = React.forwardRef<
   return (
     <UIAccessibleAlertDialog.Backdrop
       ref={ref}
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 0.5,
-      }}
-      exit={{
-        opacity: 0,
-      }}
-      transition={{
-        type: 'spring',
-        damping: 18,
-        stiffness: 250,
-        opacity: {
-          type: 'timing',
-          duration: 250,
-        },
-      }}
       {...props}
       className={alertDialogBackdropStyle({
         class: className,
