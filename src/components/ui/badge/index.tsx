@@ -75,8 +75,8 @@ function Badge({
 }: { className?: string } & IBadgeProps) {
 
   const contextValue = useMemo(
-    () => ({ action, variant, size }),
-    [action, variant, size]
+    () => ({  variant }),
+    [variant]
   );
 
   return (
@@ -84,7 +84,7 @@ function Badge({
       className={badgeStyle({ variant, class: className })}
       {...props}
       context={{
-        variant,
+        contextValue
       }}
     >
       {children}

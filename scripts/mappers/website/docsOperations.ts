@@ -4,7 +4,7 @@ import * as templateGen from './templateGenerator';
 
 export const copyComponentsDocs = (component: string) => {
   const sourcePath = path.resolve('src/components/ui');
-  const websitePath = path.resolve('apps/website-v4/app/ui/docs/components');
+  const websitePath = path.resolve('apps/website/app/ui/docs/components');
 
   try {
     // Find docs files in the component folder

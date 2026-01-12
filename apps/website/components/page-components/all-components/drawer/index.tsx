@@ -38,39 +38,17 @@ export default function Example() {
         }}
       >
         <DrawerBackdrop />
-        <DrawerContent>
+        <DrawerContent className="pt-safe">
           <DrawerHeader>
-            <Heading size="xl" className="text-foreground font-semibold">
-              Settings
+            <Heading size="lg" className="text-foreground font-semibold">
+              Drawer
             </Heading>
             <DrawerCloseButton>
               <Icon as={CloseIcon} className="stroke-foreground" size="lg" />
             </DrawerCloseButton>
           </DrawerHeader>
-          <DrawerBody>
-            <VStack className="gap-6">
-              <VStack className="gap-2">
-                <Heading size="md" className="text-foreground">
-                  Updated Design
-                </Heading>
-                <Text className="text-muted-foreground text-sm leading-5">
-                  This drawer features the new gluestack design system with:
-                </Text>
-                <VStack className="gap-1.5 pl-4">
-                  <Text className="text-foreground text-sm">• Consistent borders and shadows</Text>
-                  <Text className="text-foreground text-sm">• Smooth spring animations</Text>
-                  <Text className="text-foreground text-sm">• Improved backdrop overlay</Text>
-                  <Text className="text-foreground text-sm">• Better dark mode support</Text>
-                </VStack>
-              </VStack>
-              <Divider />
-              <VStack className="gap-2">
-                <Text className="text-foreground font-medium">Test the controls:</Text>
-                <Text className="text-muted-foreground text-sm">
-                  Use the size and anchor controls above to see different drawer positions and sizes.
-                </Text>
-              </VStack>
-            </VStack>
+         <DrawerBody>
+            <Text>This is the basic drawer component.</Text>
           </DrawerBody>
           <DrawerFooter>
             <Button
@@ -80,13 +58,6 @@ export default function Example() {
               }}
             >
               <ButtonText>Cancel</ButtonText>
-            </Button>
-            <Button
-              onPress={() => {
-                setShowDrawer(false);
-              }}
-            >
-              <ButtonText>Save Changes</ButtonText>
             </Button>
           </DrawerFooter>
         </DrawerContent>

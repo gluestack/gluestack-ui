@@ -2,12 +2,10 @@ import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { Heading } from '@/components/ui/heading';
-
-import MeetCreators from './MeetCreators';
-import { Newsletter } from './Newsletter';
+import { Button } from '@/components/web/button';
+import { ArrowUpRight, Terminal } from 'lucide-react';
 import Footer from './Footer';
-import Inspiration from './Inspiration';
-import PowerOfTailwind from './PowerOfTailwind';
+import CopySnippetButton from './copy-snippet-button';
 import Example from './Example';
 import Fold3 from './Fold3';
 import Fold1 from './Fold1';
@@ -31,54 +29,36 @@ const App = ({ referrer }: { referrer: string }) => {
     <>
       <SentryErrorHandler />
       <WebsiteLayout>
-        <Box className="items-center justify-center">
-          <VStack className="w-[85%] max-w-[1440px] justify-center self-center">
-            <RapidNativeBanner />
-            <VStack className="mx-auto max-w-[900px] pt-[80px] sm:pt-[120px] w-full my-0 items-center justify-center self-center">
-              <Box className="flex w-full items-start sm:items-center mt-[50px] sm:mt-0">
-                <AwardBadge />
-              </Box>
-
-              <Heading
-                size="4xl"
-                className="text-left leading-[54px] sm:text-center text-typography-950 md:text-[54px] font-plus-jakarta md:leading-[1.3em] -tracking-[0.02em] font-bold items-center max-w-[800px]"
-              >
-                React & React Native Components Library & Patterns
-              </Heading>
-              <Text className="text-left sm:text-center text-typography-950 md:text-lg text-lg font-normal mt-4 ">
+        <div className="w-full h-full">
+          <div className="flex flex-col md:w-1/2 md:pl-[120px] h-[calc(100vh-80px-56px)] justify-center gap-5">
+            <div>
+              <AwardBadge />
+            </div>
+            <div className="flex flex-col gap-3">
+              <h1 className="text-4xl font-bold tracking-[0.2px] leading-[120%]">
+                React & React Native UI Components & Patterns
+              </h1>
+              <p className="font-sans text-sm text-muted-foreground">
                 Comprehensive React and React Native component library for
                 building modern, high-performance web and mobile apps.
-                <Heading
-                  size="2xl"
-                  className="text-typography-950 md:text-lg text-lg font-normal inline"
-                >
-                  {' '}
-                  Copy-paste UI components library & patterns crafted with
-                  Tailwind CSS (NativeWind)
-                </Heading>
-              </Text>
-            </VStack>
-
-            <VStack className="mx-auto max-w-[950px] pt-8 w-full my-0 sm:items-center justify-center ">
-              <HeroButtons />
-            </VStack>
-
-            <Fold1 />
-            <Fold2 />
-            <Example />
-            <Fold3 />
-            <PowerOfTailwind />
-            <Kitchensink />
-            <MCPServer />
-            <VadimStream />
-            <SocialMediaGridTestimonial />
-            <Inspiration />
-            <Newsletter newsletterAvatarData={developersData} />
-            <MeetCreators geekyantsLink="https://geekyants.com/hire-react-native-developers?utm_source=gluestack.io&utm_medium=referral&utm_campaign=partner_site" />
-            <HireTeam />
-          </VStack>
-          {/* GeekyAnts Hire Team Banner */}
-        </Box>
+                Copy-paste UI components library & patterns crafted with
+                Tailwind CSS (NativeWind)
+              </p>
+            </div>
+            <div className="gap-4 flex flex-col lg:flex-row">
+              <Button className="rounded-full h-14 px-8">
+                Get Started
+                <ArrowUpRight className="text-primary-foreground" />
+              </Button>
+              <div className="flex flex-row gap-3 border border-border rounded-full items-center py-3 px-6">
+                <Terminal className="text-muted-foreground" />
+                <span className="font-mono">npm create gluestack@latest</span>
+                <CopySnippetButton />
+              </div>
+            </div>
+          </div>
+          <div className="hidden md:block md:w-1/2"></div>
+        </div>
 
         <Footer />
         <BadgeComponent />

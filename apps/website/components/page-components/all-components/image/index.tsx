@@ -27,7 +27,8 @@ export default function Example() {
       "md",
       "lg",
       "xl",
-      "2xl"
+      "2xl",
+      "full"
     ],
     "defaultValue": "xl"
   }

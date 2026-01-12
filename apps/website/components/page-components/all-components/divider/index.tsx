@@ -12,7 +12,7 @@ export default function Example() {
   <Text className="font-semibold">
     Easy
   </Text>
-  <Divider className="my-0.5" />
+  <Divider className="my-0.5 w-20" />
   <Text className="font-semibold">
     Difficult
   </Text>

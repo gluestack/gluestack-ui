@@ -1,11 +1,13 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
 import { Switch } from '@/components/ui/switch';
+import { Center } from '@/components/ui/center';
 
 export default function Example() {
   return (
     <ComponentPreviewer
       code={`function Example() {
   return (
+    <Center>
     <Switch
       size="{{size}}"
       isDisabled={ {{isDisabled}} }
@@ -14,6 +16,7 @@ export default function Example() {
       activeThumbColor="#fafafa"
       ios_backgroundColor="#d4d4d4"
     />
+    </Center>
   )
 }`}
       argTypes={{
@@ -35,7 +38,7 @@ export default function Example() {
     "defaultValue": false
   }
 }}
-      reactLive={{ Switch }}
+      reactLive={{ Switch, Center }}
     />
   );
 }
