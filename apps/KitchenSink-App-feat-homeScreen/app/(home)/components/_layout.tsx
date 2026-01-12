@@ -99,6 +99,216 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="Form Control" />,
         }}
       />
+          <Stack.Screen
+        name="actionsheet"
+        options={{
+          header: () => <CustomHeader title="Actionsheet" />,
+        }}
+      />
+      <Stack.Screen
+        name="badge"
+        options={{
+          header: () => <CustomHeader title="Badge" />,
+        }}
+      />
+      <Stack.Screen
+        name="box"
+        options={{
+          header: () => <CustomHeader title="Box" />,
+        }}
+      />
+      <Stack.Screen
+        name="button"
+        options={{
+          header: () => <CustomHeader title="Button" />,
+        }}
+      />
+      <Stack.Screen
+        name="card"
+        options={{
+          header: () => <CustomHeader title="Card" />,
+        }}
+      />
+      <Stack.Screen
+        name="center"
+        options={{
+          header: () => <CustomHeader title="Center" />,
+        }}
+      />
+      <Stack.Screen
+        name="checkbox"
+        options={{
+          header: () => <CustomHeader title="Checkbox" />,
+        }}
+      />
+      <Stack.Screen
+        name="divider"
+        options={{
+          header: () => <CustomHeader title="Divider" />,
+        }}
+      />
+      <Stack.Screen
+        name="drawer"
+        options={{
+          header: () => <CustomHeader title="Drawer" />,
+        }}
+      />
+      <Stack.Screen
+        name="fab"
+        options={{
+          header: () => <CustomHeader title="Fab" />,
+        }}
+      />
+      <Stack.Screen
+        name="grid"
+        options={{
+          header: () => <CustomHeader title="Grid" />,
+        }}
+      />
+      <Stack.Screen
+        name="heading"
+        options={{
+          header: () => <CustomHeader title="Heading" />,
+        }}
+      />
+      <Stack.Screen
+        name="hstack"
+        options={{
+          header: () => <CustomHeader title="HStack" />,
+        }}
+      />
+      <Stack.Screen
+        name="icon"
+        options={{
+          header: () => <CustomHeader title="Icon" />,
+        }}
+      />
+      <Stack.Screen
+        name="image"
+        options={{
+          header: () => <CustomHeader title="Image" />,
+        }}
+      />
+      <Stack.Screen
+        name="input"
+        options={{
+          header: () => <CustomHeader title="Input" />,
+        }}
+      />
+      <Stack.Screen
+        name="link"
+        options={{
+          header: () => <CustomHeader title="Link" />,
+        }}
+      />
+      <Stack.Screen
+        name="menu"
+        options={{
+          header: () => <CustomHeader title="Menu" />,
+        }}
+      />
+      <Stack.Screen
+        name="modal"
+        options={{
+          header: () => <CustomHeader title="Modal" />,
+        }}
+      />
+      <Stack.Screen
+        name="popover"
+        options={{
+          header: () => <CustomHeader title="Popover" />,
+        }}
+      />
+      <Stack.Screen
+        name="portal"
+        options={{
+          header: () => <CustomHeader title="Portal" />,
+        }}
+      />
+      <Stack.Screen
+        name="pressable"
+        options={{
+          header: () => <CustomHeader title="Pressable" />,
+        }}
+      />
+      <Stack.Screen
+        name="progress"
+        options={{
+          header: () => <CustomHeader title="Progress" />,
+        }}
+      />
+      <Stack.Screen
+        name="radio"
+        options={{
+          header: () => <CustomHeader title="Radio" />,
+        }}
+      />
+      <Stack.Screen
+        name="select"
+        options={{
+          header: () => <CustomHeader title="Select" />,
+        }}
+      />
+      <Stack.Screen
+        name="skeleton"
+        options={{
+          header: () => <CustomHeader title="Skeleton" />,
+        }}
+      />
+      <Stack.Screen
+        name="slider"
+        options={{
+          header: () => <CustomHeader title="Slider" />,
+        }}
+      />
+      <Stack.Screen
+        name="spinner"
+        options={{
+          header: () => <CustomHeader title="Spinner" />,
+        }}
+      />
+      <Stack.Screen
+        name="switch"
+        options={{
+          header: () => <CustomHeader title="Switch" />,
+        }}
+      />
+      <Stack.Screen
+        name="table"
+        options={{
+          header: () => <CustomHeader title="Table" />,
+        }}
+      />
+      <Stack.Screen
+        name="text"
+        options={{
+          header: () => <CustomHeader title="Text" />,
+        }}
+      />
+      <Stack.Screen
+        name="textarea"
+        options={{
+          header: () => <CustomHeader title="Textarea" />,
+        }}
+      />
+      <Stack.Screen
+        name="toast"
+        options={{
+          header: () => <CustomHeader title="Toast" />,
+        }}
+      />
+      <Stack.Screen
+        name="tooltip"
+        options={{
+          header: () => <CustomHeader title="Tooltip" />,
+        }}
+      />
+      <Stack.Screen
+        name="vstack"
+        options={{
+          header: () => <CustomHeader title="VStack" />,
+        }}
+      />
     </Stack>
   );
 }

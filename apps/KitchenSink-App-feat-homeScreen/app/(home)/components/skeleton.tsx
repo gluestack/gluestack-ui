@@ -25,7 +25,7 @@ return (
 
 const ExampleUsingIsLoadedProp = () => {
 return (
-    <Box className="w-[290px] h-[400px] p-4 rounded-sm bg-muted gap-3">
+    <Box className="w-[290px] p-4 rounded-sm bg-muted gap-3">
         <Skeleton variant="rounded" className="h-44 w-64 rounded-sm" isLoaded={ false }>
           <Image
           className="h-44 w-64 rounded-sm"
@@ -44,9 +44,9 @@ return (
           boost your confidence, and help you overcome challenges.
           </Text>
         </VStack>
-        <HStack className="gap-2">
-        <Avatar size="xs">
-          <AvatarFallbackText>John Smith</AvatarFallbackText>
+        <HStack className="gap-2 items-center">
+        <Avatar size="xs" className="bg-primary">
+          <AvatarFallbackText className="text-primary-foreground">John Smith</AvatarFallbackText>
         </Avatar>
         <Text className="text-sm font-bold">John Smith</Text>
       </HStack>

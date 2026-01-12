@@ -1,7 +1,7 @@
 import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
-import { memo, useCallback, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Modal,
   Platform,
@@ -27,6 +27,7 @@ import { Text } from '@/components/ui/text';
 import { Icon, MoonIcon, SunIcon, SearchIcon } from '@/components/ui/icon';
 import { PaletteIcon } from 'lucide-react-native';
 import { ThemeName } from '@/constants/themes';
+import { Input, InputField, InputSlot } from '@/components/ui/input';
 
 // Theme color mapping for the theme button indicator
 const THEME_COLORS: Record<ThemeName, string[]> = {
@@ -86,6 +87,7 @@ const BottomControlBar = memo(
     // Refs for measuring button positions
     const componentButtonRef = useRef<View>(null);
     const themeButtonRef = useRef<View>(null);
+    const searchInputRef = useRef<any>(null);
     const [componentButtonLayout, setComponentButtonLayout] = useState({
       x: 0,
       y: 0,
@@ -105,6 +107,17 @@ const BottomControlBar = memo(
 
     const { reduceTransparencyEnabled } = useAccessibilityInfo();
     const applyBlur = !reduceTransparencyEnabled;
+
+    // Autofocus search input when component menu opens
+    useEffect(() => {
+      if (showComponentMenu) {
+        // Add a small delay to ensure the modal is fully rendered
+        const timer = setTimeout(() => {
+          searchInputRef.current?.focus();
+        }, 100);
+        return () => clearTimeout(timer);
+      }
+    }, [showComponentMenu]);
 
     // Rotation animation for color mode toggle
     const colorModeRotation = useSharedValue(0);
@@ -155,7 +168,7 @@ const BottomControlBar = memo(
         setSearchQuery('');
 
         // Navigate directly to the component page
-        router.push(`/(home)/components/${component.path}` as any);
+        router.replace(`/(home)/components/${component.path}` as any);
 
         // Still call the callback if provided (for any additional logic)
         onComponentSelect?.(component, index);
@@ -298,31 +311,26 @@ const BottomControlBar = memo(
                   maxHeight: height * 0.5,
                   shadowColor: isDark ? '#fff' : '#000',
                   shadowOffset: { width: 0, height: -4 },
-                  shadowOpacity: 0.15,
+                  shadowOpacity: 0.05,
                   shadowRadius: 16,
                   elevation: 12,
                 }}
               >
                 {/* Search Input */}
                 <View className="px-3 py-3 border-b border-input">
-                  <View className="flex-row items-center h-11 rounded-full border border-input bg-background">
-                    <View className="pl-3 justify-center items-center">
-                      <Icon
-                        as={SearchIcon}
-                        className="text-typography-400"
-                        size="sm"
-                      />
-                    </View>
-                    <TextInput
+                  <Input className="flex-row items-center h-11 rounded-full border border-input bg-background">
+                    <InputSlot className="pl-3 justify-center items-center">
+                      <Icon as={SearchIcon} size="sm" />
+                    </InputSlot>
+                    <InputField
+                      ref={searchInputRef}
                       placeholder="Search..."
                       value={searchQuery}
                       onChangeText={setSearchQuery}
                       autoCapitalize="none"
                       autoCorrect={false}
-                      className="flex-1 px-3 text-foreground placeholder:text-foreground "
-                      style={{ fontSize: 16 }}
                     />
-                  </View>
+                  </Input>
                 </View>
 
                 {/* Component List */}
@@ -339,14 +347,14 @@ const BottomControlBar = memo(
                         className={`px-3 py-2.5 mx-1.5 rounded-lg flex-row items-center gap-2.5 ${
                           currentComponent?.path === item.path
                             ? 'bg-primary'
-                            : 'active:bg-primary'
+                            : 'active:bg-secondary'
                         }`}
                       >
                         <Text
                           className={`text-sm font-medium ${
                             currentComponent?.path === item.path
                               ? 'text-primary-foreground'
-                              : 'text-foreground'
+                              : 'text-white'
                           }`}
                         >
                           {item.title}

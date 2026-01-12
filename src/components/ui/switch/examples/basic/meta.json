@@ -16,6 +16,7 @@
     }
   },
   "reactLive": {
-    "Switch": "@/components/ui/switch"
+    "Switch": "@/components/ui/switch",
+    "Center": "@/components/ui/center"
   }
 }
