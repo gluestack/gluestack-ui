@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "jsxImportSource": "nativewind",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -11,7 +15,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -20,8 +24,12 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/docs-components/*": ["./components/docs-components/*"],
+      "@/*": [
+        "./*"
+      ],
+      "@/docs-components/*": [
+        "./components/docs-components/*"
+      ],
       "@/utils/*": [
         "./utils/*"
       ],
@@ -31,8 +39,19 @@
       "tailwind.config": [
         "./tailwind.config.js"
       ]
-    }
+    },
+    "target": "ES2017"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "__tests__/website.test.js", "redirects.js"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "__tests__/website.test.js",
+    "redirects.js",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
