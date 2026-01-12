@@ -102,6 +102,14 @@ function Tooltip<StyledTooltipProp>(
               // newChildren.props.onMouseEnter,
               openWithDelay
             ),
+            'onPressIn': composeEventHandlers<any>(
+              // newChildren.props.onPressIn,
+              openWithDelay
+            ),
+            'onPressOut': composeEventHandlers<any>(
+              // newChildren.props.onPressOut,
+              closeWithDelay
+            ),
             'onMouseLeave': composeEventHandlers<any>(
               // newChildren.props.onMouseLeave,
               closeWithDelay

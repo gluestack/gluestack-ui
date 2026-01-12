@@ -13,7 +13,6 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -30,8 +29,6 @@ const UIModal = createModal({
   Header: View,
 });
 
-cssInterop(AnimatedPressable, { className: 'style' });
-cssInterop(AnimatedView, { className: 'style' });
 
 const modalStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',

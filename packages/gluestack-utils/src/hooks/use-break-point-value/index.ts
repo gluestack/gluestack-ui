@@ -1,11 +1,16 @@
 import { Dimensions, useWindowDimensions } from 'react-native';
 import { useEffect, useState } from 'react';
 
-import resolveConfig from 'tailwindcss/resolveConfig';
-import * as tailwindConfig from '../../tailwind.config';
+import tailwindConfig from '../../tailwind.config';
 
-const TailwindTheme = resolveConfig(tailwindConfig as any);
-const screenSize = TailwindTheme.theme.screens;
+// Extract screens directly from config without using resolveConfig
+// This works in React Native environments
+const screenSize = tailwindConfig.theme?.screens || {
+  sm: '480px',
+  md: '768px',
+  lg: '976px',
+  xl: '1440px',
+};
 
 type breakpoints = keyof typeof screenSize | 'default';
 
@@ -18,7 +23,7 @@ type MediaQueriesBreakpoints = {
 
 type BreakPointValue = Partial<Record<breakpoints, unknown>>;
 
-const resolveScreenWidth: Record<breakpoints, number> = {
+const resolveScreenWidth: Record<string, number> = {
   default: 0,
 };
 
@@ -46,7 +51,7 @@ export const getBreakPointValue = (
     const isValid = isValidBreakpoint(resolveScreenWidth[key], width);
 
     mediaQueriesBreakpoints.push({
-      key: key,
+      key: key as breakpoints,
       breakpoint: resolveScreenWidth[key],
       isValid: isValid,
     });

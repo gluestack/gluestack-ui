@@ -16,8 +16,8 @@ export default [
     name: 'kitchen-sink-new',
     mapper: kitchenSinkNewMapper,
   },
-  // {
-  //   name: 'starter-kits',
-  //   mapper: starterKitsMapper,
-  // },
+  {
+    name: 'starter-kits',
+    mapper: starterKitsMapper,
+  },
 ];

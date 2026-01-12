@@ -1,7 +1,7 @@
 'use client';
 import { createModal as createDrawer } from '@gluestack-ui/core/modal/creator';
 import React from 'react';
-import { Dimensions, Pressable, ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
@@ -9,7 +9,6 @@ import {
   useStyleContext,
   withStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import Animated, {
   FadeIn,
   FadeOut,
@@ -31,8 +30,7 @@ const UIDrawer = createDrawer({
   Header: View,
 });
 
-cssInterop(AnimatedView, { className: 'style' });
-cssInterop(AnimatedBackdrop, { className: 'style' });
+
 const drawerStyle = tva({
   base: 'w-full h-full web:pointer-events-none relative',
   variants: {
