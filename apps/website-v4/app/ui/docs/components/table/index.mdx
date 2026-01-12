@@ -1,0 +1,1025 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter, TableCaption } from '@/components/ui/table';
+import { Box } from '@/components/ui/box';
+import { Badge, BadgeText } from '@/components/ui/badge';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { InlineCode } from '@/docs-components/inline-code';
+import {
+  Table as UiTable,
+  TableContainer as UiTableContainer,
+  TableHeader as UiTableHeader,
+  TableBody as UiTableBody,
+  TableRow as UiTableRow,
+  TableCell as UiTableCell,
+  TableHeaderCell as UiTableHeaderCell,
+} from '@/docs-components/table';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+# Table
+
+Effortlessly manage tabular data with gluestack-ui Table component. A fully customizable React Native table component for smooth data display in your UI. Perfect for any project!
+
+This is an illustration of **Table** component.
+
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Table className="w-full">
+      <TableHeader>
+        <TableRow>
+          <TableHead>Customer Name</TableHead>
+          <TableHead>Units</TableHead>
+          <TableHead>Costs</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableData>Rajesh Kumar</TableData>
+          <TableData>10</TableData>
+          <TableData>$130</TableData>
+        </TableRow>
+        <TableRow>
+          <TableData>Priya Sharma</TableData>
+          <TableData>12</TableData>
+          <TableData>$210</TableData>
+        </TableRow>
+      </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TableHead>Total</TableHead>
+          <TableHead>22</TableHead>
+          <TableHead>$340</TableHead>
+        </TableRow>
+      </TableFooter>
+    </Table>
+  )
+}`}
+  argTypes={{}}
+  reactLive={{ Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter }}
+  importMap={{"@/components/ui/table":["Table","TableBody","TableHeader","TableRow","TableHead","TableData","TableFooter"]}}
+/>
+
+## Installation
+
+<Tabs>
+    <TabItem Label="cli">
+
+### Run the following command:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add table`} language="bash" />
+
+
+</TabItem>
+    <TabItem Label="manual">
+
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @expo/html-elements
+```
+
+### Step 2: Copy and paste the following code into index.tsx in your project.
+
+```jsx
+import React, { createContext, useMemo, useContext } from 'react';
+import {
+  Table as ExpoTable,
+  THead as ExpoTHead,
+  TBody as ExpoTBody,
+  TFoot as ExpoTFoot,
+  TR as ExpoTR,
+  Caption as ExpoTCaption,
+} from '@expo/html-elements';
+
+import {
+  tableStyle,
+  tableHeaderStyle,
+  tableBodyStyle,
+  tableFooterStyle,
+  tableHeadStyle,
+  tableRowStyleStyle,
+  tableDataStyle,
+  tableCaptionStyle,
+} from './styles';
+import { Text, View } from 'react-native';
+
+const TableHeaderContext = createContext<{
+  isHeaderRow: boolean;
+}>({
+  isHeaderRow: false,
+});
+const TableFooterContext = createContext<{
+  isFooterRow: boolean;
+}>({
+  isFooterRow: false,
+});
+
+type ITableProps = React.ComponentProps<typeof ExpoTable>;
+type ITableHeaderProps = React.ComponentProps<typeof ExpoTHead>;
+type ITableBodyProps = React.ComponentProps<typeof ExpoTBody>;
+type ITableFooterProps = React.ComponentProps<typeof ExpoTFoot>;
+type ITableHeadProps = React.ComponentProps<typeof View | typeof Text> & {
+  useRNView?: boolean;
+};
+type ITableRowProps = React.ComponentProps<typeof ExpoTR>;
+type ITableDataProps = React.ComponentProps<typeof View | typeof Text> & {
+  useRNView?: boolean;
+};
+type ITableCaptionProps = React.ComponentProps<typeof ExpoTCaption>;
+
+const Table = React.forwardRef<
+  React.ComponentRef<typeof ExpoTable>,
+  ITableProps
+>(({ className, ...props }, ref) => {
+  return (
+    <ExpoTable
+      ref={ref}
+      className={tableStyle({ class: className })}
+      {...props}
+    />
+  );
+});
+
+const TableHeader = React.forwardRef<
+  React.ComponentRef<typeof ExpoTHead>,
+  ITableHeaderProps
+>(function TableHeader({ className, ...props }, ref) {
+  const contextValue = useMemo(() => {
+    return {
+      isHeaderRow: true,
+    };
+  }, []);
+  return (
+    <TableHeaderContext.Provider value={contextValue}>
+      <ExpoTHead
+        ref={ref}
+        className={tableHeaderStyle({ class: className })}
+        {...props}
+      />
+    </TableHeaderContext.Provider>
+  );
+});
+
+const TableBody = React.forwardRef<
+  React.ComponentRef<typeof ExpoTBody>,
+  ITableBodyProps
+>(function TableBody({ className, ...props }, ref) {
+  return (
+    <ExpoTBody
+      ref={ref}
+      className={tableBodyStyle({ class: className })}
+      {...props}
+    />
+  );
+});
+
+const TableFooter = React.forwardRef<
+  React.ComponentRef<typeof ExpoTFoot>,
+  ITableFooterProps
+>(function TableFooter({ className, ...props }, ref) {
+  const contextValue = useMemo(() => {
+    return {
+      isFooterRow: true,
+    };
+  }, []);
+  return (
+    <TableFooterContext.Provider value={contextValue}>
+      <ExpoTFoot
+        ref={ref}
+        className={tableFooterStyle({ class: className })}
+        {...props}
+      />
+    </TableFooterContext.Provider>
+  );
+});
+
+const TableHead = React.forwardRef<
+  React.ComponentRef<typeof View | typeof Text>,
+  ITableHeadProps
+>(function TableHead({ useRNView = false, className, ...props }, ref) {
+  if (useRNView) {
+    return (
+      <View
+        ref={ref}
+        className={tableHeadStyle({ class: className })}
+        {...props}
+      />
+    );
+  } else {
+    return (
+      <Text
+        ref={ref}
+        className={tableHeadStyle({ class: className })}
+        {...props}
+      />
+    );
+  }
+});
+
+const TableRow = React.forwardRef<
+  React.ComponentRef<typeof ExpoTR>,
+  ITableRowProps
+>(function TableRow({ className, ...props }, ref) {
+  const { isHeaderRow } = useContext(TableHeaderContext);
+  const { isFooterRow } = useContext(TableFooterContext);
+
+  return (
+    <ExpoTR
+      ref={ref}
+      className={tableRowStyleStyle({
+        isHeaderRow,
+        isFooterRow,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+
+const TableData = React.forwardRef<
+  React.ComponentRef<typeof View | typeof Text>,
+  ITableDataProps
+>(function TableData({ useRNView = false, className, ...props }, ref) {
+  if (useRNView) {
+    return (
+      <View
+        ref={ref}
+        className={tableDataStyle({ class: className })}
+        {...props}
+      />
+    );
+  } else {
+    return (
+      <Text
+        ref={ref}
+        className={tableDataStyle({ class: className })}
+        {...props}
+      />
+    );
+  }
+});
+
+const TableCaption = React.forwardRef<
+  React.ComponentRef<typeof ExpoTCaption>,
+  ITableCaptionProps
+>(({ className, ...props }, ref) => {
+  return (
+    <ExpoTCaption
+      ref={ref}
+      className={tableCaptionStyle({ class: className })}
+      {...props}
+    />
+  );
+});
+
+Table.displayName = 'Table';
+TableHeader.displayName = 'TableHeader';
+TableBody.displayName = 'TableBody';
+TableFooter.displayName = 'TableFooter';
+TableHead.displayName = 'TableHead';
+TableRow.displayName = 'TableRow';
+TableData.displayName = 'TableData';
+TableCaption.displayName = 'TableCaption';
+
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableData,
+  TableCaption,
+};
+
+```
+
+> Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 3(optional): Copy and paste the following code into index.web.tsx in your project.
+
+```jsx
+import React, { createContext, useMemo, useContext } from 'react';
+import {
+  tableStyle,
+  tableHeaderStyle,
+  tableBodyStyle,
+  tableFooterStyle,
+  tableHeadStyle,
+  tableRowStyleStyle,
+  tableDataStyle,
+  tableCaptionStyle,
+} from './styles';
+
+const TableHeaderContext = createContext<{
+  isHeaderRow: boolean;
+}>({
+  isHeaderRow: false,
+});
+const TableFooterContext = createContext<{
+  isFooterRow: boolean;
+}>({
+  isFooterRow: false,
+});
+
+const Table = React.forwardRef<HTMLTableElement, React.ComponentProps<'table'>>(
+  function Table({ className, ...props }, ref) {
+    return (
+      <table
+        ref={ref}
+        className={tableStyle({ class: className })}
+        {...props}
+      />
+    );
+  }
+);
+
+const TableHeader = React.forwardRef<
+  HTMLTableSectionElement,
+  React.ComponentProps<'thead'>
+>(function TableHeader({ className, ...props }, ref) {
+  const contextValue = useMemo(() => {
+    return {
+      isHeaderRow: true,
+    };
+  }, []);
+  return (
+    <TableHeaderContext.Provider value={contextValue}>
+      <thead
+        ref={ref}
+        className={tableHeaderStyle({ class: className })}
+        {...props}
+      />
+    </TableHeaderContext.Provider>
+  );
+});
+
+const TableBody = React.forwardRef<
+  HTMLTableSectionElement,
+  React.ComponentProps<'tbody'>
+>(function TableBody({ className, ...props }, ref) {
+  return (
+    <tbody
+      ref={ref}
+      className={tableBodyStyle({ class: className })}
+      {...props}
+    />
+  );
+});
+
+const TableFooter = React.forwardRef<
+  HTMLTableSectionElement,
+  React.ComponentProps<'tfoot'>
+>(function TableFooter({ className, ...props }, ref) {
+  const contextValue = useMemo(() => {
+    return {
+      isFooterRow: true,
+    };
+  }, []);
+  return (
+    <TableFooterContext.Provider value={contextValue}>
+      <tfoot
+        ref={ref}
+        className={tableFooterStyle({ class: className })}
+        {...props}
+      />
+    </TableFooterContext.Provider>
+  );
+});
+
+const TableHead = React.forwardRef<
+  HTMLTableCellElement,
+  React.ComponentProps<'th'>
+>(function TableHead({ className, ...props }, ref) {
+  return (
+    <th ref={ref} className={tableHeadStyle({ class: className })} {...props} />
+  );
+});
+
+const TableRow = React.forwardRef<
+  HTMLTableRowElement,
+  React.ComponentProps<'tr'>
+>(function TableRow({ className, ...props }, ref) {
+  const { isHeaderRow } = useContext(TableHeaderContext);
+  const { isFooterRow } = useContext(TableFooterContext);
+  return (
+    <tr
+      ref={ref}
+      className={tableRowStyleStyle({
+        isHeaderRow,
+        isFooterRow,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+
+const TableData = React.forwardRef<
+  HTMLTableCellElement,
+  React.ComponentProps<'td'>
+>(function TableData({ className, ...props }, ref) {
+  return (
+    <td ref={ref} className={tableDataStyle({ class: className })} {...props} />
+  );
+});
+
+const TableCaption = React.forwardRef<
+  HTMLTableCaptionElement,
+  React.ComponentProps<'caption'>
+>(function TableCaption({ className, ...props }, ref) {
+  return (
+    <caption
+      ref={ref}
+      className={tableCaptionStyle({ class: className })}
+      {...props}
+    />
+  );
+});
+
+Table.displayName = 'Table';
+TableHeader.displayName = 'TableHeader';
+TableBody.displayName = 'TableBody';
+TableFooter.displayName = 'TableFooter';
+TableHead.displayName = 'TableHead';
+TableRow.displayName = 'TableRow';
+TableData.displayName = 'TableData';
+TableCaption.displayName = 'TableCaption';
+
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableData,
+  TableCaption,
+};
+
+```
+
+### Step 4: Copy and paste the following code into styles.tsx in your project.
+
+```jsx
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { isWeb } from '@gluestack-ui/utils/nativewind-utils';
+
+const captionTableStyle = isWeb ? 'caption-bottom' : '';
+
+export const tableStyle = tva({
+  base: `table border-collapse border-collapse w-[800px]`,
+});
+
+export const tableHeaderStyle = tva({
+  base: '',
+});
+
+export const tableBodyStyle = tva({
+  base: '',
+});
+
+export const tableFooterStyle = tva({
+  base: '',
+});
+
+export const tableHeadStyle = tva({
+  base: 'flex-1 px-6 py-[14px] text-left font-bold text-[16px] leading-[22px] text-typography-800 font-roboto',
+});
+
+export const tableRowStyleStyle = tva({
+  base: 'border-0 border-b border-solid border-outline-200 bg-background-0',
+  variants: {
+    isHeaderRow: {
+      true: '',
+    },
+    isFooterRow: {
+      true: 'border-b-0 ',
+    },
+  },
+});
+
+export const tableDataStyle = tva({
+  base: 'flex-1 px-6 py-[14px] text-left text-[16px] font-medium leading-[22px] text-typography-800 font-roboto',
+});
+
+export const tableCaptionStyle = tva({
+  base: `${captionTableStyle} px-6 py-[14px] text-[16px] font-normal leading-[22px] text-typography-800 bg-background-50 font-roboto`,
+});
+
+```
+
+### Step 5: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  Table,
+  TableHeader,
+  TableFooter,
+  TableBody,
+  TableHead,
+  TableData,
+  TableRow,
+  TableCaption,
+} from '@/components/ui/table';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/5FVEmNK.png"
+  webUrl="https://i.imgur.com/D622sCO.png"
+  classNameStyle="aspect-[513/803] md:aspect-[736/467]"
+/>
+
+```jsx
+export default () => (
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHead />
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableData />
+      </TableRow>
+    </TableBody>
+    <TableFooter>
+      <TableRow>
+        <TableData />
+      </TableRow>
+    </TableFooter>
+    <TableCaption />
+  </Table>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Table
+
+It inherits all the properties of of @expo/html-elements's [Table](https://www.npmjs.com/package/@expo/html-elements#table) on native and html table tag on web.
+
+#### TableHeader
+
+It inherits all the properties of of @expo/html-elements's [THead](https://www.npmjs.com/package/@expo/html-elements#thead) on native and html thead tag on web.
+
+#### TableRow
+
+It inherits all the properties of of @expo/html-elements's [TR](https://www.npmjs.com/package/@expo/html-elements#tr) on native and html tr tag on web.
+
+#### TableData
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component on native and html td tag on web.
+
+<>
+  <UiTable>
+    <UiTableHeader>
+      <UiTableRow>
+        <UiTableHeaderCell>Prop</UiTableHeaderCell>
+        <UiTableHeaderCell>Type</UiTableHeaderCell>
+        <UiTableHeaderCell>Default</UiTableHeaderCell>
+      </UiTableRow>
+    </UiTableHeader>
+    <UiTableBody>
+      <UiTableRow>
+        <UiTableCell>Prop</UiTableCell>
+        <UiTableCell>Type</UiTableCell>
+        <UiTableCell>Default</UiTableCell>
+      </UiTableRow>
+      <UiTableRow>
+        <UiTableCell>
+          <InlineCode>useRNView</InlineCode>
+          </UiTableCell>
+        <UiTableCell>boolean</UiTableCell>
+        <UiTableCell>
+          If true renders a react-native view component instead of a text
+          component.
+        </UiTableCell>
+      </UiTableRow>
+    </UiTableBody>
+  </UiTable>
+</>
+
+#### TableHead
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component on native and html th tag on web.
+
+<>
+  <UiTable>
+    <UiTableHeader>
+      <UiTableRow>
+        <UiTableHeaderCell>Prop</UiTableHeaderCell>
+        <UiTableHeaderCell>Type</UiTableHeaderCell>
+        <UiTableHeaderCell>Default</UiTableHeaderCell>
+      </UiTableRow>
+    </UiTableHeader>
+    <UiTableBody>
+      <UiTableRow>
+        <UiTableCell>
+          <InlineCode>useRNView</InlineCode>
+        </UiTableCell>
+        <UiTableCell>boolean</UiTableCell>
+        <UiTableCell>
+          If true renders a react-native view component instead of a text
+          component.
+        </UiTableCell>
+      </UiTableRow>
+         <UiTableRow>
+            <UiTableCell>boolean</UiTableCell>
+            <UiTableCell>
+            If true renders a react-native view component instead of a text
+            component.
+          </UiTableCell>
+        </UiTableRow>
+    </UiTableBody>
+  </UiTable>
+</>
+
+#### TableBody
+
+It inherits all the properties of of @expo/html-elements's [TBody](https://www.npmjs.com/package/@expo/html-elements#tbody) on native and html tbody tag on web.
+
+#### TableFooter
+
+It inherits all the properties of of @expo/html-elements's [TFoot](https://www.npmjs.com/package/@expo/html-elements#tfoot) on native and html tfoot tag on web.
+
+#### TableCaption
+
+It inherits all the properties of of @expo/html-elements's [Caption](https://www.npmjs.com/package/@expo/html-elements#caption) on native and html caption tag on web.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+
+  #### Table with caption
+
+  This is an example of a Table component with a caption.
+  
+  <CodePreviewer
+  code={`function App(){
+    return (
+        <Box className="rounded-lg overflow-hidden w-full">
+      <Table className="w-full">
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+            <TableHead>Email Address</TableHead>
+            <TableHead>Phone Number</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableData>Rajesh Kumar</TableData>
+            <TableData className="font-normal">rajesh@example.com</TableData>
+            <TableData className="font-normal">1234567890</TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>Priya Sharma</TableData>
+            <TableData className="font-normal">priya@example.com</TableData>
+            <TableData className="font-normal">1234567890</TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>Ravi Patel</TableData>
+            <TableData className="font-normal">ravi@example.com</TableData>
+            <TableData className="font-normal">1234567890</TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>Ananya Gupta</TableData>
+            <TableData className="font-normal">ananya@example.com</TableData>
+            <TableData className="font-normal">1234567890</TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>Arjun Singh</TableData>
+            <TableData className="font-normal">arjun@example.com</TableData>
+            <TableData className="font-normal">1234567890</TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>Nisha Verma</TableData>
+            <TableData className="font-normal">nisha@example.com</TableData>
+            <TableData className="font-normal">1234567890</TableData>
+          </TableRow>
+        </TableBody>
+        <TableCaption className="font-normal">
+          Showing recent membership details
+        </TableCaption>
+      </Table>
+    </Box>
+);
+}`}
+  argTypes={{}}
+  reactLive={{ Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter, TableCaption, Box }}
+  importMap={{"@/components/ui/table":["Table","TableBody","TableHeader","TableRow","TableHead","TableData","TableFooter","TableCaption"],"@/components/ui/box":["Box"]}}
+/>
+
+
+  #### Stripped table
+
+  This example demonstrates a table with a striped background.
+  
+  <CodePreviewer
+  code={`function App(){
+    return (
+         <Box className="p-3 bg-background-0 rounded-lg overflow-hidden">
+      <Table className="w-full">
+        <TableHeader>
+          <TableRow className="border-b-0 bg-background-0 hover:bg-background-0">
+            <TableHead className="font-bold">Order id</TableHead>
+            <TableHead>Items</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>City</TableHead>
+            <TableHead>Order price</TableHead>
+            <TableHead>Status</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow className="border-b-0 bg-background-50">
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Rajesh Kumar</TableData>
+            <TableData>New Jersey</TableData>
+            <TableData>$ 200</TableData>
+            <TableData>
+              <Badge
+                size="sm"
+                action="success"
+                className="w-fit justify-center"
+              >
+                <BadgeText>Completed</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow className="border-b-0 hover:bg-background-0">
+            <TableData>5231</TableData>
+            <TableData>2</TableData>
+            <TableData>Priya Sharma</TableData>
+            <TableData>Austin</TableData>
+            <TableData>$ 150</TableData>
+            <TableData>
+              <Badge size="sm" action="info" className="w-fit justify-center">
+                <BadgeText>Processing</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow className="border-b-0 bg-background-50">
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Ravi Patel</TableData>
+            <TableData>Seattle</TableData>
+            <TableData>$ 215</TableData>
+            <TableData>
+              <Badge
+                size="sm"
+                action="warning"
+                className="w-fit justify-center"
+              >
+                <BadgeText>Shipped</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow className="border-b-0 hover:bg-background-0">
+            <TableData>5231</TableData>
+            <TableData>4</TableData>
+            <TableData>Ananya Gupta</TableData>
+            <TableData>California</TableData>
+            <TableData>$ 88</TableData>
+            <TableData>
+              <Badge size="sm" action="info" className="w-fit justify-center">
+                <BadgeText>Processing</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow className="border-b-0 bg-background-50">
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Arjun Singh</TableData>
+            <TableData>Seattle</TableData>
+            <TableData>$ 115</TableData>
+            <TableData>
+              <Badge
+                size="sm"
+                action="success"
+                className="w-fit justify-center"
+              >
+                <BadgeText>Completed</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow className="border-b-0 bg-background-0 hover:bg-background-0">
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Nisha Verma</TableData>
+            <TableData>Seattle</TableData>
+            <TableData>$ 115</TableData>
+            <TableData>
+              <Badge size="sm" action="info" className="w-fit justify-center">
+                <BadgeText>Processing</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Box>
+);
+}`}
+  argTypes={{}}
+  reactLive={{ Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter, Box, Badge, BadgeText }}
+  importMap={{"@/components/ui/table":["Table","TableBody","TableHeader","TableRow","TableHead","TableData","TableFooter"],"@/components/ui/box":["Box"],"@/components/ui/badge":["Badge","BadgeText"]}}
+/>
+
+
+  #### Table with other components
+
+  This example illustrates a table component with a badge component.
+  
+  <CodePreviewer
+  code={`function App(){
+    return (
+ <Box className="rounded-lg overflow-hidden">
+      <Table className="w-full">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="font-bold">Order id</TableHead>
+            <TableHead>Items</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>City</TableHead>
+            <TableHead>Order price</TableHead>
+            <TableHead>Status</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableData>571</TableData>
+            <TableData>3</TableData>
+            <TableData>Rajesh Kumar</TableData>
+            <TableData>New Jersey</TableData>
+            <TableData>$ 200</TableData>
+            <TableData>
+              <Badge
+                size="sm"
+                action="success"
+                className="w-fit justify-center"
+              >
+                <BadgeText>Completed</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>5231</TableData>
+            <TableData>2</TableData>
+            <TableData>Priya Sharma</TableData>
+            <TableData>Austin</TableData>
+            <TableData>$ 150</TableData>
+            <TableData>
+              <Badge size="sm" action="info" className="w-fit justify-center">
+                <BadgeText>Processing</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Ravi Patel</TableData>
+            <TableData>Seattle</TableData>
+            <TableData>$ 215</TableData>
+            <TableData>
+              <Badge
+                size="sm"
+                action="warning"
+                className="w-fit justify-center"
+              >
+                <BadgeText>Shipped</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>5231</TableData>
+            <TableData>4</TableData>
+            <TableData>Ananya Gupta</TableData>
+            <TableData>California</TableData>
+            <TableData>$ 88</TableData>
+            <TableData>
+              <Badge size="sm" action="info" className="w-fit justify-center">
+                <BadgeText>Processing</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Arjun Singh</TableData>
+            <TableData>Seattle</TableData>
+            <TableData>$ 115</TableData>
+            <TableData>
+              <Badge size="sm" action="info" className="w-fit justify-center">
+                <BadgeText>Processing</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>5771</TableData>
+            <TableData>3</TableData>
+            <TableData>Nisha Verma</TableData>
+            <TableData>Austin</TableData>
+            <TableData>$ 115</TableData>
+            <TableData>
+              <Badge
+                size="sm"
+                action="success"
+                className="w-fit justify-center"
+              >
+                <BadgeText>Completed</BadgeText>
+              </Badge>
+            </TableData>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Box>
+);
+}`}
+  argTypes={{}}
+  reactLive={{ Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter, Box, Badge, BadgeText }}
+  importMap={{"@/components/ui/table":["Table","TableBody","TableHeader","TableRow","TableHead","TableData","TableFooter"],"@/components/ui/box":["Box"],"@/components/ui/badge":["Badge","BadgeText"]}}
+/>
+
+
+  #### Table with top and side header
+
+  This example illustrates a table component with a top and a side header.
+  
+  <CodePreviewer
+  code={`function App(){
+    return (
+<Box className="border border-solid border-outline-200 rounded-lg overflow-hidden w-full">
+      <Table className="w-full">
+        <TableHeader>
+          <TableRow className="bg-background-50">
+            <TableHead className="border-0 border-r border-solid border-outline-200">Player</TableHead>
+            <TableHead>Pts</TableHead>
+            <TableHead>Reb</TableHead>
+            <TableHead>Ast</TableHead>
+            <TableHead>Stl</TableHead>
+            <TableHead>Blk</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">LeBron James</TableHead>
+            <TableData>30</TableData>
+            <TableData>10</TableData>
+            <TableData>5</TableData>
+            <TableData>5</TableData>
+            <TableData>2</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">Anthony Davis</TableHead>
+            <TableData>21</TableData>
+            <TableData>15</TableData>
+            <TableData>10</TableData>
+            <TableData>3</TableData>
+            <TableData>6</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">Austin Reaves</TableHead>
+            <TableData>18</TableData>
+            <TableData>8</TableData>
+            <TableData>15</TableData>
+            <TableData>3</TableData>
+            <TableData>3</TableData>
+          </TableRow>
+          <TableRow className="border-b-0">
+            <TableHead className="bg-background-50 border-0 border-solid border-r border-outline-200 font-medium">Kobe Bryant</TableHead>
+            <TableData>32</TableData>
+            <TableData>12</TableData>
+            <TableData>13</TableData>
+            <TableData>4</TableData>
+            <TableData>5</TableData>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Box>
+);
+}`}
+  argTypes={{}}
+  reactLive={{ Table, TableBody, TableHeader, TableRow, TableHead, TableData, TableFooter, Box }}
+  importMap={{"@/components/ui/table":["Table","TableBody","TableHeader","TableRow","TableHead","TableData","TableFooter"],"@/components/ui/box":["Box"]}}
+/>

@@ -1,24 +1,24 @@
-import React, { useEffect, useRef, useState, useContext } from 'react';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-jsx';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-typescript';
-import 'prismjs/components/prism-tsx';
-import 'prismjs/components/prism-bash';
-import 'prismjs/components/prism-json';
-import 'prismjs/components/prism-css';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-diff';
-import { ThemeContext } from '@/utils/context/theme-context';
-import './styles.css';
+import { useColorMode } from '@/app/provider';
 import { Icon } from '@/components/ui/icon';
-import { CheckIcon, CopyIcon } from 'lucide-react-native';
+import { CopyIcon } from 'lucide-react-native';
 import * as prettier from 'prettier';
 import prettierPluginBabel from 'prettier/plugins/babel';
 import prettierPluginEstree from 'prettier/plugins/estree';
-import prettierPluginTypescript from 'prettier/plugins/typescript';
-import prettierPluginCSS from 'prettier/plugins/postcss';
 import prettierPluginHTML from 'prettier/plugins/html';
+import prettierPluginCSS from 'prettier/plugins/postcss';
+import prettierPluginTypescript from 'prettier/plugins/typescript';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-diff';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-tsx';
+import 'prismjs/components/prism-typescript';
+import React, { useEffect, useRef, useState } from 'react';
+import './styles.css';
 // Theme configurations
 const themes = {
   light: {
@@ -55,46 +55,91 @@ const themes = {
 
 type CodeBlockProps = {
   className?: string;
-  code: string;
+  code: string | React.ReactNode;
   language?: 'jsx' | 'javascript' | 'ts' | 'tsx' | 'patch' | string;
+};
+
+// Helper function to extract text from React children
+const extractTextFromChildren = (children: React.ReactNode): string => {
+  if (typeof children === 'string') {
+    return children;
+  }
+  if (typeof children === 'number') {
+    return String(children);
+  }
+  if (Array.isArray(children)) {
+    return children.map(extractTextFromChildren).join('');
+  }
+  if (React.isValidElement(children) && children.props) {
+    return extractTextFromChildren((children.props as any).children);
+  }
+  return '';
 };
 
 export const CodeBlock: React.FC<CodeBlockProps> = ({
   code,
-  language = 'jsx',
+  language = 'tsx',
   className,
 }) => {
   const [copied, setCopied] = useState(false);
-  const [formattedCode, setFormattedCode] = useState(code);
+  // Ensure code is always a string by extracting text from React children
+  const codeString = extractTextFromChildren(code);
+  const [formattedCode, setFormattedCode] = useState(codeString);
   const codeRef = useRef<HTMLElement>(null);
-  const { colorMode } = useContext(ThemeContext);
+  const { colorMode } = useColorMode();
   const currentTheme = themes[colorMode as keyof typeof themes];
 
   useEffect(() => {
     const formatCode = async () => {
       try {
-        const parser = language === 'tsx' ? 'typescript' : language;
-        const formatted = await prettier.format(code, {
-          parser,
-          plugins: [
-            prettierPluginBabel,
-            prettierPluginEstree,
-            prettierPluginTypescript,
-            prettierPluginCSS,
-            prettierPluginHTML,
-          ],
-          semi: true,
-          singleQuote: true,
-          trailingComma: 'es5',
-        });
-        setFormattedCode(formatted);
+        // Map languages to parsers and check if formatting is supported
+        let parser = language;
+        let shouldFormat = true;
+
+        // Map common language aliases to parser names
+        if (language === 'tsx') {
+          parser = 'typescript';
+        } else if (language === 'ts') {
+          parser = 'typescript';
+        } else if (language === 'jsx' || language === 'javascript') {
+          parser = 'babel';
+        } else if (language === 'css') {
+          parser = 'css';
+        } else if (language === 'html' || language === 'markup') {
+          parser = 'html';
+        } else if (language === 'json') {
+          parser = 'json';
+        } else {
+          // Don't format unsupported languages like bash, diff, etc.
+          shouldFormat = false;
+        }
+
+        if (shouldFormat) {
+          const formatted = await prettier.format(codeString, {
+            parser,
+            plugins: [
+              prettierPluginBabel,
+              prettierPluginEstree,
+              prettierPluginTypescript,
+              prettierPluginCSS,
+              prettierPluginHTML,
+            ],
+            semi: true,
+            singleQuote: true,
+            trailingComma: 'es5',
+          });
+          setFormattedCode(formatted);
+        } else {
+          // Skip formatting for unsupported languages
+          setFormattedCode(codeString);
+        }
       } catch (error) {
         console.error('Error formatting code:', error);
-        setFormattedCode(code);
+        setFormattedCode(codeString);
       }
     };
     formatCode();
-  }, [code, language]);
+  }, [code, language, codeString]);
 
   useEffect(() => {
     Prism.highlightAll();
@@ -136,8 +181,11 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
       <pre
         className={`language-${language} border border-outline-100 rounded-lg max-h-[400px] overflow-y-auto p-6 scrollbar-hide ${className}`}
         style={themeStyles}
+        suppressHydrationWarning
       >
-        <code ref={codeRef}>{formattedCode}</code>
+        <code ref={codeRef} suppressHydrationWarning>
+          {formattedCode}
+        </code>
       </pre>
       <button
         onClick={handleCopy}
@@ -147,7 +195,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
           {/* @ts-ignore */}
           <Icon
             as={CopyIcon}
-            size={16}
+            size="sm"
             className={` ${copied ? 'text-green-500' : ''}`}
           />
           {copied ? 'Copied!' : ''}

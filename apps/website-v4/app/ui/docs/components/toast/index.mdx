@@ -1,0 +1,782 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Toast, ToastTitle, ToastDescription, useToast } from '@/components/ui/toast';
+import { Button, ButtonText, ButtonGroup } from '@/components/ui/button';
+import { Pressable } from '@/components/ui/pressable';
+import { Icon, CloseIcon, HelpCircleIcon } from '@/components/ui/icon';
+import { HStack } from '@/components/ui/hstack';
+import { VStack } from '@/components/ui/vstack';
+import { Avatar, AvatarImage, AvatarFallbackText } from '@/components/ui/avatar';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { Box } from '@/components/ui/box';
+import { RefreshCw, Send } from 'lucide-react-native';
+import { Divider } from '@/components/ui/divider';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Toast
+
+gluestack-ui Toast component for React Native lets you show toast messages effortlessly. Improve your Toast component with flexible placement, duration, and actions.
+
+This is an illustration of **Toast** component.
+
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  const toast = useToast()
+  const [toastId, setToastId] = React.useState(0)
+  const handleToast = () => {
+    if (!toast.isActive(toastId)) {
+      showNewToast()
+    }
+  }
+  const showNewToast = () => {
+    const newId = Math.random()
+    setToastId(newId)
+    toast.show({
+      id: newId,
+      placement: "top",
+      duration: 3000,
+      render: ({ id }) => {
+        const uniqueToastId = "toast-" + id
+        return (
+          <Toast nativeID={uniqueToastId} action="{{action}}" variant="{{variant}}">
+            <ToastTitle>Hello!</ToastTitle>
+            <ToastDescription>
+              This is a customized toast message.
+            </ToastDescription>
+          </Toast>
+        )
+      },
+    })
+  }
+  return (
+    <Button onPress={handleToast}>
+      <ButtonText>Press Me</ButtonText>
+    </Button>
+  )
+}`}
+  argTypes={{
+  "action": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "success",
+      "info",
+      "warning",
+      "error",
+      "muted"
+    ],
+    "defaultValue": "muted"
+  },
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "solid",
+      "outline"
+    ],
+    "defaultValue": "solid"
+  }
+}}
+  reactLive={{ Toast, ToastTitle, ToastDescription, useToast, Button, ButtonText }}
+  importMap={{"@/components/ui/toast":["Toast","ToastTitle","ToastDescription","useToast"],"@/components/ui/button":["Button","ButtonText"]}}
+/>
+
+### Platform Support
+
+**The Tooltip component is currently only supported on web platform**. Native mobile support (iOS/Android) is not available at this time. For more information, see [issue #1555](https://github.com/gluestack/gluestack-ui/issues/1555#issuecomment-1876602492).
+
+<br />
+
+## Installation
+
+<Tabs>
+  <TabItem label="CLI">
+
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add toast`} language="bash" />
+
+
+  </TabItem>
+  <TabItem label="Manual">
+
+
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+'use client';
+import React from 'react';
+import { createToastHook } from '@gluestack-ui/core/toast/creator';
+import { AccessibilityInfo, Text, View, ViewStyle } from 'react-native';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import {
+  Motion,
+  AnimatePresence,
+  MotionComponentProps,
+} from '@legendapp/motion';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+
+type IMotionViewProps = React.ComponentProps<typeof View> &
+  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+
+const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+
+const useToast = createToastHook(MotionView, AnimatePresence);
+const SCOPE = 'TOAST';
+
+cssInterop(MotionView, { className: 'style' });
+
+const toastStyle = tva({
+  base: 'p-4 m-1 rounded-md gap-1 web:pointer-events-auto shadow-hard-5 border-outline-100',
+  variants: {
+    action: {
+      error: 'bg-error-800',
+      warning: 'bg-warning-700',
+      success: 'bg-success-700',
+      info: 'bg-info-700',
+      muted: 'bg-background-800',
+    },
+
+    variant: {
+      solid: '',
+      outline: 'border bg-background-0',
+    },
+  },
+});
+
+const toastTitleStyle = tva({
+  base: 'text-typography-0 font-medium font-body tracking-md text-left',
+  variants: {
+    isTruncated: {
+      true: '',
+    },
+    bold: {
+      true: 'font-bold',
+    },
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-base',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+  },
+  parentVariants: {
+    variant: {
+      solid: '',
+      outline: '',
+    },
+    action: {
+      error: '',
+      warning: '',
+      success: '',
+      info: '',
+      muted: '',
+    },
+  },
+  parentCompoundVariants: [
+    {
+      variant: 'outline',
+      action: 'error',
+      class: 'text-error-800',
+    },
+    {
+      variant: 'outline',
+      action: 'warning',
+      class: 'text-warning-800',
+    },
+    {
+      variant: 'outline',
+      action: 'success',
+      class: 'text-success-800',
+    },
+    {
+      variant: 'outline',
+      action: 'info',
+      class: 'text-info-800',
+    },
+    {
+      variant: 'outline',
+      action: 'muted',
+      class: 'text-background-800',
+    },
+  ],
+});
+
+const toastDescriptionStyle = tva({
+  base: 'font-normal font-body tracking-md text-left',
+  variants: {
+    isTruncated: {
+      true: '',
+    },
+    bold: {
+      true: 'font-bold',
+    },
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-base',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+  },
+  parentVariants: {
+    variant: {
+      solid: 'text-typography-50',
+      outline: 'text-typography-900',
+    },
+  },
+});
+
+const Root = withStyleContext(View, SCOPE);
+type IToastProps = React.ComponentProps<typeof Root> & {
+  className?: string;
+} & VariantProps<typeof toastStyle>;
+
+const Toast = React.forwardRef<React.ComponentRef<typeof Root>, IToastProps>(
+  function Toast(
+    { className, variant = 'solid', action = 'muted', ...props },
+    ref
+  ) {
+    return (
+      <Root
+        ref={ref}
+        className={toastStyle({ variant, action, class: className })}
+        context={{ variant, action }}
+        {...props}
+      />
+    );
+  }
+);
+
+type IToastTitleProps = React.ComponentProps<typeof Text> & {
+  className?: string;
+} & VariantProps<typeof toastTitleStyle>;
+
+const ToastTitle = React.forwardRef<
+  React.ComponentRef<typeof Text>,
+  IToastTitleProps
+>(function ToastTitle({ className, size = 'md', children, ...props }, ref) {
+  const { variant: parentVariant, action: parentAction } =
+    useStyleContext(SCOPE);
+  React.useEffect(() => {
+    // Issue from react-native side
+    // Hack for now, will fix this later
+    AccessibilityInfo.announceForAccessibility(children as string);
+  }, [children]);
+
+  return (
+    <Text
+      {...props}
+      ref={ref}
+      aria-live="assertive"
+      aria-atomic="true"
+      role="alert"
+      className={toastTitleStyle({
+        size,
+        class: className,
+        parentVariants: {
+          variant: parentVariant,
+          action: parentAction,
+        },
+      })}
+    >
+      {children}
+    </Text>
+  );
+});
+
+type IToastDescriptionProps = React.ComponentProps<typeof Text> & {
+  className?: string;
+} & VariantProps<typeof toastDescriptionStyle>;
+
+const ToastDescription = React.forwardRef<
+  React.ComponentRef<typeof Text>,
+  IToastDescriptionProps
+>(function ToastDescription({ className, size = 'md', ...props }, ref) {
+  const { variant: parentVariant } = useStyleContext(SCOPE);
+  return (
+    <Text
+      ref={ref}
+      {...props}
+      className={toastDescriptionStyle({
+        size,
+        class: className,
+        parentVariants: {
+          variant: parentVariant,
+        },
+      })}
+    />
+  );
+});
+
+Toast.displayName = 'Toast';
+ToastTitle.displayName = 'ToastTitle';
+ToastDescription.displayName = 'ToastDescription';
+
+export { useToast, Toast, ToastTitle, ToastDescription };
+
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { useToast, Toast } from '@/components/ui/toast';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/hESv96t.png"
+  webUrl="https://i.imgur.com/onUcTTR.png"
+  classNameStyle="aspect-[513/399] md:aspect-[736/283]"
+/>
+
+```ts
+export default () => (
+  <Toast>
+    <ToastTitle />
+    <ToastDescription />
+  </Toast>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Toast
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>duration</InlineCode>
+          </TableCell>
+          <TableCell>number or null</TableCell>
+          <TableCell>5000</TableCell>
+          <TableCell>The delay before the toast hides (in milliseconds). If set to null, toast will never dismiss.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>onCloseComplete</InlineCode>
+          </TableCell>
+          <TableCell>()=>{}</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>Callback function to run side effects after the toast has closed.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>placement</InlineCode>
+          </TableCell>
+          <TableCell>'top'| 'top right' | 'top left' | 'bottom' | 'bottom left' | 'bottom right'</TableCell>
+          <TableCell>bottom</TableCell>
+          <TableCell>Position of toast on the web page.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>render?: (props: any)</InlineCode>
+          </TableCell>
+          <TableCell>ReactNode</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>Renders a toast component</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>avoidKeyboard</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>If true and the keyboard is opened, the Toast will move up equivalent to the keyboard height.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>containerStyle</InlineCode>
+          </TableCell>
+          <TableCell>ViewStyle</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>Container style object for the toast.</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+#### ToastTitle
+
+Contains all Text related layout style props and actions.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### ToastDescription
+
+Contains all Text related layout style props and actions.
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+### Accessibility
+
+We have outlined the various features that ensure the Toast component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alert/).
+
+#### Keyboard
+
+- `Tab + Enter`: Triggers the toast's action.
+
+#### Screen Reader
+
+- VoiceOver: When the toast is focused, the screen reader will announce the toast's title.
+
+### Props
+
+Toast component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props) and the props mentioned below.
+
+#### Toast
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Value</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>action</InlineCode>
+        </TableCell>
+        <TableCell>
+          <InlineCode>error | warning | success | info | attention</InlineCode>
+        </TableCell>
+        <TableCell>
+          <InlineCode>attention</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>variant</InlineCode>
+        </TableCell>
+        <TableCell>
+          <InlineCode>solid | outline | accent</InlineCode>
+        </TableCell>
+        <TableCell>
+          <InlineCode>solid</InlineCode>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+
+  #### Toast in note talking platform
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+          const toast = useToast();
+          const [toastId, setToastId] = React.useState(0);
+          const handleToast = () => {
+            if (!toast.isActive(toastId)) {
+              showNewToast();
+            }
+          };
+          const showNewToast = () => {
+            const newId = Math.random();
+            setToastId(newId);
+            toast.show({
+              id: newId,
+              placement: 'top',
+              duration: 3000,
+              render: ({ id }) => {
+                const uniqueToastId = "toast-" + id;
+                return (
+                  <Toast
+                    action="error"
+                    variant="outline"
+                    nativeID={uniqueToastId}
+                    className="p-4 gap-6 border-error-500 w-full shadow-hard-5 max-w-[443px] flex-row justify-between"
+                  >
+                    <HStack space="md">
+                      <Icon
+                        as={HelpCircleIcon}
+                        className="stroke-error-500 mt-0.5"
+                      />
+                      <VStack space="xs">
+                        <ToastTitle className="font-semibold text-error-500">Error!</ToastTitle>
+                        <ToastDescription size="sm">
+                          Something went wrong.
+                        </ToastDescription>
+                      </VStack>
+                    </HStack>
+                    <HStack className="min-[450px]:gap-3 gap-1">
+                      <Button variant="link" size="sm" className="px-3.5 self-center">
+                        <ButtonText>Retry</ButtonText>
+                      </Button>
+                      <Pressable onPress={() => toast.close(id)}>
+                        <Icon as={CloseIcon} />
+                      </Pressable>
+                    </HStack>
+                  </Toast>
+                );
+              },
+            });
+          };
+          return (
+            <Button onPress={handleToast}>
+              <ButtonText>Press Me</ButtonText>
+            </Button>
+          );
+        }`}
+  argTypes={{}}
+  reactLive={{ Toast, ToastTitle, ToastDescription, useToast, Button, ButtonText, Pressable, Icon, CloseIcon, HelpCircleIcon, HStack, VStack }}
+  importMap={{"@/components/ui/toast":["Toast","ToastTitle","ToastDescription","useToast"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/pressable":["Pressable"],"@/components/ui/icon":["Icon","CloseIcon","HelpCircleIcon"],"@/components/ui/hstack":["HStack"],"@/components/ui/vstack":["VStack"]}}
+/>
+
+
+  #### Social media notification
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+          const toast = useToast();
+          return (
+            <Button
+              onPress={() => {
+                toast.show({
+                  placement:"top",
+                  render: ({ id }) => {
+                    const toastId = "toast-" + id;
+                    return (
+                      <Toast
+                        nativeID={toastId}
+                        className="p-4 gap-3 w-full sm:min-w-[386px] max-w-[386px] bg-background-0 shadow-hard-2 flex-row"
+                      >
+                        <Avatar>
+                          <AvatarFallbackText>JS</AvatarFallbackText>
+                          <AvatarImage
+                            source=\\{{
+                              uri: "https://gluestack.github.io/public-blog-video-assets/Avatar.png",
+                            }}
+                          />
+                        </Avatar>
+                        <VStack className="web:flex-1">
+                          <HStack className="justify-between">
+                            <Heading
+                              size="sm"
+                              className="text-typography-950 font-semibold"
+                            >
+                              Jacob Steve
+                            </Heading>
+                            <Text size="sm" className="text-typography-500">
+                              2m ago
+                            </Text>
+                          </HStack>
+                          <Text size="sm" className="text-typography-500">
+                            commented on your photo
+                          </Text>
+                        </VStack>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <ButtonText>Show Toast</ButtonText>
+            </Button>
+          );
+        }`}
+  argTypes={{}}
+  reactLive={{ Toast, ToastTitle, ToastDescription, useToast, Button, ButtonText, Avatar, AvatarImage, AvatarFallbackText, HStack, VStack, Heading, Text }}
+  importMap={{"@/components/ui/toast":["Toast","ToastTitle","ToastDescription","useToast"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/avatar":["Avatar","AvatarImage","AvatarFallbackText"],"@/components/ui/hstack":["HStack"],"@/components/ui/vstack":["VStack"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"]}}
+/>
+
+
+  #### Software update toast
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+        const toast = useToast();
+        const [toastId, setToastId] = React.useState(0);
+        const handleToast = () => {
+          if (!toast.isActive(toastId)) {
+            showNewToast();
+          }
+        };
+        const showNewToast = () => {
+          const newId = Math.random();
+          setToastId(newId);
+          toast.show({
+            id: newId,
+            placement: 'top',
+            duration: 3000,
+            render: ({ id }) => {
+              const uniqueToastId = "toast-" + id;
+              return (
+                <Toast
+                  nativeID={uniqueToastId}
+                  className="p-4 gap-4 w-full max-w-[386px] bg-background-0 shadow-hard-2 flex-row"
+                >
+                  <Box className="h-11 w-11 items-center justify-center hidden min-[400px]:flex bg-background-50">
+                    <Icon
+                      as={RefreshCw}
+                      size="xl"
+                      className="stroke-background-800"
+                    />
+                  </Box>
+                  <VStack space="xl">
+                    <VStack space="xs">
+                      <HStack className="justify-between">
+                        <ToastTitle className="text-typography-900 font-semibold">
+                          Update available
+                        </ToastTitle>
+                        <Pressable onPress={() => toast.close(id)}>
+                          <Icon as={CloseIcon} className="stroke-background-500" />
+                        </Pressable>
+                      </HStack>
+                      <ToastDescription className="text-typography-700">
+                        A new software version is available for download.
+                      </ToastDescription>
+                    </VStack>
+                    <ButtonGroup className="gap-3 flex-row">
+                      <Button
+                        action="secondary"
+                        variant="outline"
+                        size="sm"
+                        className="flex-grow"
+                      >
+                        <ButtonText>Not now</ButtonText>
+                      </Button>
+                      <Button size="sm" className="flex-grow">
+                        <ButtonText>Update</ButtonText>
+                      </Button>
+                    </ButtonGroup>
+                  </VStack>
+                </Toast>
+              );
+            },
+          });
+        };
+        return (
+          <Button onPress={handleToast}>
+            <ButtonText>Press Me</ButtonText>
+          </Button>
+        );
+      }`}
+  argTypes={{}}
+  reactLive={{ Toast, ToastTitle, ToastDescription, useToast, Button, ButtonText, Pressable, Icon, CloseIcon, HStack, VStack, Box, RefreshCw, ButtonGroup }}
+  importMap={{"@/components/ui/toast":["Toast","ToastTitle","ToastDescription","useToast"],"@/components/ui/button":["Button","ButtonText","ButtonGroup"],"@/components/ui/pressable":["Pressable"],"@/components/ui/icon":["Icon","CloseIcon"],"@/components/ui/hstack":["HStack"],"@/components/ui/vstack":["VStack"],"@/components/ui/box":["Box"],"lucide-react-native":["RefreshCw"]}}
+/>
+
+
+  #### Message sent toast
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+          const toast = useToast();
+          return (
+            <Button
+              onPress={() => {
+                toast.show({
+                  placement:"top",
+                  render: ({ id }) => {
+                    const toastId = "toast-" + id;
+                    return (
+                      <Toast
+                        nativeID={toastId}
+                        className="px-5 py-3 gap-4 shadow-soft-1 items-center flex-row"
+                      >
+                        <Icon
+                          as={Send}
+                          size="xl"
+                          className="fill-typography-100 stroke-none"
+                        />
+                        <Divider
+                          orientation="vertical"
+                          className="h-[30px] bg-outline-200"
+                        />
+                        <ToastTitle size="sm">Message sent successfully</ToastTitle>
+                      </Toast>
+                    );
+                  },
+                });
+              }}
+            >
+              <ButtonText>Show Toast</ButtonText>
+            </Button>
+          );
+        }`}
+  argTypes={{}}
+  reactLive={{ Toast, ToastTitle, useToast, Button, ButtonText, Icon, Send, Divider }}
+  importMap={{"@/components/ui/toast":["Toast","ToastTitle","useToast"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/icon":["Icon"],"lucide-react-native":["Send"],"@/components/ui/divider":["Divider"]}}
+/>

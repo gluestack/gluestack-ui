@@ -1,0 +1,255 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Image } from '@/components/ui/image';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Image
+
+Enhance your app with the Image component from gluestack-ui. Build seamless UI component images in React & React Native with ease. Explore the docs now!
+
+This is an illustration of **Image** component.
+
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Image
+      size="{{size}}"
+      source=\\{{
+        uri: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      }}
+      alt="image"
+    />
+  )
+}`}
+  argTypes={{
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "2xs",
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl",
+      "2xl"
+    ],
+    "defaultValue": "xl"
+  }
+}}
+  reactLive={{ Image }}
+  importMap={{"@/components/ui/image":["Image"]}}
+/>
+
+<br />
+## Installation
+
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add image`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+import React from 'react';
+import { createImage } from '@gluestack-ui/core/image/creator';
+import { Platform, Image as RNImage } from 'react-native';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+
+const imageStyle = tva({
+  base: 'max-w-full',
+  variants: {
+    size: {
+      '2xs': 'h-6 w-6',
+      'xs': 'h-10 w-10',
+      'sm': 'h-16 w-16',
+      'md': 'h-20 w-20',
+      'lg': 'h-24 w-24',
+      'xl': 'h-32 w-32',
+      '2xl': 'h-64 w-64',
+      'full': 'h-full w-full',
+      'none': '',
+    },
+  },
+});
+
+const UIImage = createImage({ Root: RNImage });
+
+type ImageProps = VariantProps<typeof imageStyle> &
+  React.ComponentProps<typeof UIImage>;
+const Image = React.forwardRef<
+  React.ComponentRef<typeof UIImage>,
+  ImageProps & { className?: string }
+>(function Image({ size = 'md', className, ...props }, ref) {
+  return (
+    <UIImage
+      className={imageStyle({ size, class: className })}
+      {...props}
+      ref={ref}
+      // @ts-expect-error : web only
+      style={
+        Platform.OS === 'web'
+          ? { height: 'revert-layer', width: 'revert-layer' }
+          : undefined
+      }
+    />
+  );
+});
+
+Image.displayName = 'Image';
+export { Image };
+
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Image } from '@/components/ui/image';
+```
+
+```ts
+export default () => <Image source={source} />;
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Image
+
+It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image) component.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<img />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<Image />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Props
+
+Image component is created using Image component from react-native. It extends all the props supported by [React Native Image](https://reactnative.dev/docs/image#props).
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>source</InlineCode>
+        </TableCell>
+        <TableCell>ImageSourcePropType</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>The source of the image</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>alt</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>The alt text for the image</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>2xs | xs | sm | md | lg | xl | 2xl | full</TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>The size of the image</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section offers visual previews of the component, letting you quickly identify the best fit for your needs. Just copy the code and use it in your project.
+
+#### Basic Unitools Image
+
+The below example will run for both Expo and Next.js projects. For installation steps, refer to the [Installation](https://unitools.geekyants.com/packages/image/) section of `@unitools/image`.
+
+```ts
+import Image from '@unitools/image';
+```
+
+{/* <UnitoolsImageEg/> */}
+
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Image
+          source=\\{{
+            uri: "https://gluestack.github.io/public-blog-video-assets/mountains.png",
+          }}
+          alt="Logo"
+          size='none'
+          className="aspect-[320/208] w-full max-w-[320px]"
+        />
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Image }}
+  importMap={{"@/components/ui/image":["Image"]}}
+/>

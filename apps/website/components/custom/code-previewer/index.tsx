@@ -1,23 +1,23 @@
-import { useState, useEffect } from 'react';
-import Handlebars from 'handlebars';
-import { LiveProvider, LiveError, LivePreview } from 'react-live';
 import { CodeBlock } from '@/components/custom/markdown/code-block';
 import { Box } from '@/components/ui/box';
+import { ChevronDownIcon } from '@/components/ui/icon';
 import { Switch } from '@/components/ui/switch';
 import { Text } from '@/components/ui/text';
-import { ChevronDownIcon } from '@/components/ui/icon';
+import Handlebars from 'handlebars';
+import { useEffect, useState } from 'react';
+import { LiveError, LivePreview, LiveProvider } from 'react-live';
 
 import {
   Select,
-  SelectTrigger,
-  SelectInput,
-  SelectIcon,
-  SelectPortal,
   SelectBackdrop,
   SelectContent,
   SelectDragIndicator,
   SelectDragIndicatorWrapper,
+  SelectIcon,
+  SelectInput,
   SelectItem,
+  SelectPortal,
+  SelectTrigger,
 } from '@/components/ui/select';
 
 export function CodePreviewer({
@@ -125,7 +125,7 @@ export function CodePreviewer({
     if (control?.type === 'boolean' || typeof defaultValue === 'boolean') {
       return (
         <Box className="flex flex-col gap-2">
-          <Text className="text-sm" htmlFor={name}>
+          <Text className="text-sm">
             {name}
           </Text>
           <Switch
@@ -133,10 +133,8 @@ export function CodePreviewer({
             isDisabled={false}
             trackColor={{ false: '#D4D4D4', true: '#005DB4' }}
             thumbColor={'#FAFAFA'}
-            activeThumbColor={'#FAFAFA'}
             ios_backgroundColor={'#D4D4D4'}
             value={values[name] ?? defaultValue}
-            j
             onToggle={() => handleChange(name, !values[name])}
           />
         </Box>

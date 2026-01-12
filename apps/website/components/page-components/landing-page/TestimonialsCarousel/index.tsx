@@ -1,3 +1,4 @@
+'use client';
 import { useRef, useState } from 'react';
 import type { NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 import { Box } from '@/components/ui/box';

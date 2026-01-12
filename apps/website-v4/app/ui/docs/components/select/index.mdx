@@ -1,0 +1,834 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectItem } from '@/components/ui/select';
+import { ChevronDownIcon, Icon, AlertCircleIcon } from '@/components/ui/icon';
+import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorIcon, FormControlErrorText } from '@/components/ui/form-control';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableContainer,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableText,
+  TableHeaderCell,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Select
+
+Enhance your React Native app with a customizable Select dropdown component. Supports accessibility, animations, and flexible styling for a smooth user experience.
+
+This is an illustration of **Select** component.
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Select>
+      <SelectTrigger variant="{{variant}}" size="{{size}}">
+        <SelectInput placeholder="Select option" />
+        <SelectIcon className="mr-3" as={ChevronDownIcon} />
+      </SelectTrigger>
+      <SelectPortal>
+        <SelectBackdrop />
+        <SelectContent>
+          <SelectDragIndicatorWrapper>
+            <SelectDragIndicator />
+          </SelectDragIndicatorWrapper>
+          <SelectItem label="UX Research" value="ux" />
+          <SelectItem label="Web Development" value="web" />
+          <SelectItem
+            label="Cross Platform Development Process"
+            value="Cross Platform Development Process"
+          />
+          <SelectItem label="UI Designing" value="ui" isDisabled={true} />
+          <SelectItem label="Backend Development" value="backend" />
+        </SelectContent>
+      </SelectPortal>
+    </Select>
+  )
+}`}
+  argTypes={{
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "underlined",
+      "outline",
+      "rounded"
+    ],
+    "defaultValue": "outline"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectItem, ChevronDownIcon }}
+  importMap={{"@/components/ui/select":["Select","SelectTrigger","SelectInput","SelectIcon","SelectPortal","SelectBackdrop","SelectContent","SelectDragIndicator","SelectDragIndicatorWrapper","SelectItem"],"@/components/ui/icon":["ChevronDownIcon"]}}
+/>
+
+<br />
+
+## Installation
+
+<Tabs>
+  <TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add select`} language="bash" />
+
+  </TabItem>
+  <TabItem label="Manual">
+
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @legendapp/motion
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```tsx
+'use client';
+
+import React from 'react';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { createSelect } from '@gluestack-ui/core/select/creator';
+import { cssInterop } from 'nativewind';
+import {
+  Actionsheet,
+  ActionsheetContent,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetBackdrop,
+  ActionsheetScrollView,
+  ActionsheetVirtualizedList,
+  ActionsheetFlatList,
+  ActionsheetSectionList,
+  ActionsheetSectionHeaderText,
+} from './select-actionsheet';
+import { Pressable, View, TextInput } from 'react-native';
+
+const SelectTriggerWrapper = React.forwardRef<
+  React.ComponentRef<typeof Pressable>,
+  React.ComponentProps<typeof Pressable>
+>(function SelectTriggerWrapper({ ...props }, ref) {
+  return <Pressable {...props} ref={ref} />;
+});
+
+const selectIconStyle = tva({
+  base: 'text-background-500 fill-none',
+  parentVariants: {
+    size: {
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'h-[18px] w-[18px]',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
+    },
+  },
+});
+
+const selectStyle = tva({
+  base: '',
+});
+
+const selectTriggerStyle = tva({
+  base: 'border border-background-300 rounded flex-row items-center overflow-hidden data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[hover=true]:border-background-300',
+  variants: {
+    size: {
+      xl: 'h-12',
+      lg: 'h-11',
+      md: 'h-10',
+      sm: 'h-9',
+    },
+    variant: {
+      underlined:
+        'border-0 border-b rounded-none data-[hover=true]:border-primary-700 data-[focus=true]:border-primary-700 data-[focus=true]:web:shadow-[inset_0_-1px_0_0] data-[focus=true]:web:shadow-primary-700 data-[invalid=true]:border-error-700 data-[invalid=true]:web:shadow-error-700',
+      outline:
+        'data-[focus=true]:border-primary-700 data-[focus=true]:web:shadow-[inset_0_0_0_1px] data-[focus=true]:data-[hover=true]:web:shadow-primary-600 data-[invalid=true]:web:shadow-[inset_0_0_0_1px] data-[invalid=true]:border-error-700 data-[invalid=true]:web:shadow-error-700 data-[invalid=true]:data-[hover=true]:border-error-700',
+      rounded:
+        'rounded-full data-[focus=true]:border-primary-700 data-[focus=true]:web:shadow-[inset_0_0_0_1px] data-[focus=true]:web:shadow-primary-700 data-[invalid=true]:border-error-700 data-[invalid=true]:web:shadow-error-700',
+    },
+  },
+});
+
+const selectInputStyle = tva({
+  base: 'px-3 placeholder:text-typography-500 web:w-full h-full text-typography-900 pointer-events-none web:outline-none ios:leading-[0px] py-0',
+  parentVariants: {
+    size: {
+      xl: 'text-xl',
+      lg: 'text-lg',
+      md: 'text-base',
+      sm: 'text-sm',
+    },
+    variant: {
+      underlined: 'px-0',
+      outline: '',
+      rounded: 'px-4',
+    },
+  },
+});
+
+const UISelect = createSelect(
+  {
+    Root: View,
+    Trigger: withStyleContext(SelectTriggerWrapper),
+    Input: TextInput,
+    Icon: UIIcon,
+  },
+  {
+    Portal: Actionsheet,
+    Backdrop: ActionsheetBackdrop,
+    Content: ActionsheetContent,
+    DragIndicator: ActionsheetDragIndicator,
+    DragIndicatorWrapper: ActionsheetDragIndicatorWrapper,
+    Item: ActionsheetItem,
+    ItemText: ActionsheetItemText,
+    ScrollView: ActionsheetScrollView,
+    VirtualizedList: ActionsheetVirtualizedList,
+    FlatList: ActionsheetFlatList,
+    SectionList: ActionsheetSectionList,
+    SectionHeaderText: ActionsheetSectionHeaderText,
+  }
+);
+
+cssInterop(UISelect, { className: 'style' });
+cssInterop(UISelect.Input, {
+  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
+});
+cssInterop(SelectTriggerWrapper, { className: 'style' });
+
+cssInterop(PrimitiveIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
+});
+
+type ISelectProps = VariantProps<typeof selectStyle> &
+  React.ComponentProps<typeof UISelect> & { className?: string };
+
+const Select = React.forwardRef<
+  React.ComponentRef<typeof UISelect>,
+  ISelectProps
+>(function Select({ className, ...props }, ref) {
+  return (
+    <UISelect
+      className={selectStyle({
+        class: className,
+      })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+type ISelectTriggerProps = VariantProps<typeof selectTriggerStyle> &
+  React.ComponentProps<typeof UISelect.Trigger> & { className?: string };
+
+const SelectTrigger = React.forwardRef<
+  React.ComponentRef<typeof UISelect.Trigger>,
+  ISelectTriggerProps
+>(function SelectTrigger(
+  { className, size = 'md', variant = 'outline', ...props },
+  ref
+) {
+  return (
+    <UISelect.Trigger
+      className={selectTriggerStyle({
+        class: className,
+        size,
+        variant,
+      })}
+      ref={ref}
+      context={{ size, variant }}
+      {...props}
+    />
+  );
+});
+
+type ISelectInputProps = VariantProps<typeof selectInputStyle> &
+  React.ComponentProps<typeof UISelect.Input> & { className?: string };
+
+const SelectInput = React.forwardRef<
+  React.ComponentRef<typeof UISelect.Input>,
+  ISelectInputProps
+>(function SelectInput({ className, ...props }, ref) {
+  const { size: parentSize, variant: parentVariant } = useStyleContext();
+  return (
+    <UISelect.Input
+      className={selectInputStyle({
+        class: className,
+        parentVariants: {
+          size: parentSize,
+          variant: parentVariant,
+        },
+      })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+type ISelectIcon = VariantProps<typeof selectIconStyle> &
+  React.ComponentProps<typeof UISelect.Icon> & { className?: string };
+
+const SelectIcon = React.forwardRef<
+  React.ComponentRef<typeof UISelect.Icon>,
+  ISelectIcon
+>(function SelectIcon({ className, size, ...props }, ref) {
+  const { size: parentSize } = useStyleContext();
+  if (typeof size === 'number') {
+    return (
+      <UISelect.Icon
+        ref={ref}
+        {...props}
+        className={selectIconStyle({ class: className })}
+        size={size}
+      />
+    );
+  } else if (
+    //@ts-expect-error : web only
+    (props?.height !== undefined || props?.width !== undefined) &&
+    size === undefined
+  ) {
+    return (
+      <UISelect.Icon
+        ref={ref}
+        {...props}
+        className={selectIconStyle({ class: className })}
+      />
+    );
+  }
+  return (
+    <UISelect.Icon
+      className={selectIconStyle({
+        class: className,
+        size,
+        parentVariants: {
+          size: parentSize,
+        },
+      })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+Select.displayName = 'Select';
+SelectTrigger.displayName = 'SelectTrigger';
+SelectInput.displayName = 'SelectInput';
+SelectIcon.displayName = 'SelectIcon';
+
+// Actionsheet Components
+const SelectPortal = UISelect.Portal;
+const SelectBackdrop = UISelect.Backdrop;
+const SelectContent = UISelect.Content;
+const SelectDragIndicator = UISelect.DragIndicator;
+const SelectDragIndicatorWrapper = UISelect.DragIndicatorWrapper;
+const SelectItem = UISelect.Item;
+const SelectScrollView = UISelect.ScrollView;
+const SelectVirtualizedList = UISelect.VirtualizedList;
+const SelectFlatList = UISelect.FlatList;
+const SelectSectionList = UISelect.SectionList;
+const SelectSectionHeaderText = UISelect.SectionHeaderText;
+
+export {
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectItem,
+  SelectScrollView,
+  SelectVirtualizedList,
+  SelectFlatList,
+  SelectSectionList,
+  SelectSectionHeaderText,
+};
+
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
+  SelectItem,
+} from '@/components/ui/select';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/g0lTtcB.png"
+  webUrl="https://i.imgur.com/cX9uCot.png"
+  classNameStyle="aspect-[513/397] md:aspect-[736/237]"
+/>
+
+```ts
+export default () => (
+  <Select>
+    <SelectTrigger>
+      <SelectInput />
+      <SelectIcon as={IconComponent} />
+    </SelectTrigger>
+    <SelectPortal>
+      <SelectBackdrop />
+      <SelectContent>
+        <SelectDragIndicatorWrapper>
+          <SelectDragIndicator />
+        </SelectDragIndicatorWrapper>
+        <SelectItem />
+      </SelectContent>
+    </SelectPortal>
+  </Select>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Select
+
+Contains all Select related layout style and high-level select props.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+> Note: Please note that this select component renders as an Actionsheet on `iOS` and `Android` devices for a native feel. On `web`, it behaves like a regular select element and renders the default HTML options.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isDisabled</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, the select is disabled and cannot be edited.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isInvalid</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, the select displays an error state.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isRequired</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, sets aria-required="true" on the input.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isHovered</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, the select displays a hover state.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isFocusVisible</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, the focus ring of select will be visible.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isFocused</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, the select displays a focus state.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>closeOnOverlayClick</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>{`When true, the select will close when the overlay is clicked.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>selectedValue</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>{`Sets the currently selected option value, allowing the component to render with the corresponding option pre-selected.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>initialLabel</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>{`Sets the initial selected Label for a select component.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>defaultValue</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>{`Sets the initial selected option value for a select component.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onOpen</InlineCode>
+      </TableCell>
+      <TableCell>{`() => any`}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>{`Callback to be invoked when Select Dropdown or Actionsheet is opened.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onValueChange</InlineCode>
+      </TableCell>
+      <TableCell>{`() => any`}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>{`Callback to be invoked when Select value is changed.`}</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onClose</InlineCode>
+      </TableCell>
+      <TableCell>{`() => any`}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>{`Callback to be invoked when Select Dropdown or Actionsheet is closed.`}</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+> Note: Please note that if you want to use `initialLabel` prop, then you also need to pass `defaultValue` or `selectedValue` prop, to select the option value for a select component.
+
+#### SelectTrigger
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+#### SelectInput
+
+It inherits all the properties of React Native's [TextInput](https://reactnative.dev/docs/textInput) component.
+
+#### SelectIcon
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+#### SelectPortal
+
+It is internally mapped wth gluestack-ui's [Actionsheet](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+> Note: If **snapPoints** are not provided to `SelectPortal`, then it's essential to set **maxHeight** to `SelectContent`.
+
+#### SelectBackdrop
+
+It is internally mapped wth gluestack-ui's [ActionsheetBackdrop](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+
+#### SelectContent
+
+It is internally mapped wth gluestack-ui's [ActionsheetContent](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. With this ActionSheet component, you have the flexibility to use any declarative animation library that suits your needs.
+
+#### SelectDragIndicatorWrapper
+
+It is internally mapped wth gluestack-ui's [ActionsheetDragIndicatorWrapper](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### SelectDragIndicator
+
+It is internally mapped wth gluestack-ui's [ActionsheetDragIndicator](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### SelectItem
+
+It internally uses gluestack-ui's [ActionsheetItem](https://ui.gluestack.io/docs/components/disclosure/actionsheet) and [Actionsheet.ItemText](https://ui.gluestack.io/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isDisabled</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>{`When true, its disabled state activates.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>label</InlineCode>
+          </TableCell>
+          <TableCell>string</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>{`setting label that displays to the user.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>value</InlineCode>
+          </TableCell>
+          <TableCell>string</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>{`The value to be used for the item. This is the value that will be returned on form submission.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>textStyle</InlineCode>
+          </TableCell>
+          <TableCell>inherits all the properties of react native text</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>{`This prop only works on native.`}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+#### SelectScrollView
+
+It is internally mapped wth gluestack-ui's [Actionsheet.ScrollView](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [ScrollView](https://reactnative.dev/docs/scrollview#props) component.
+
+#### SelectVirtualizedList
+
+It is internally mapped wth gluestack-ui's [Actionsheet.VirtualizedList](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [VirtualizedList](https://reactnative.dev/docs/virtualizedlist#props) component.
+
+#### SelectFlatList
+
+It is internally mapped wth gluestack-ui's [Actionsheet.FlatList](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [FlatList](https://reactnative.dev/docs/flatlist#props) component.
+
+#### SelectSectionList
+
+It is internally mapped wth gluestack-ui's [Actionsheet.SectionList](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [SectionList](https://reactnative.dev/docs/sectionlist#props) component.
+
+#### SelectSectionHeaderText
+
+It is internally mapped wth gluestack-ui's [Actionsheet.SectionHeaderText](/ui/docs/components/disclosure/actionsheet) component, which inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text#props) component.
+
+### Features
+
+- Support for native and web platforms separately.
+- Support for passing custom trigger.
+
+### Accessibility
+
+We have outlined the various features that ensure the Select component is accessible to all users, including those with disabilities.These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://react-spectrum.adobe.com/react-aria/Selecthtml).
+
+#### Keyboard
+
+- `Tab + Space`: Triggers the select's action.
+
+#### Screen Reader
+
+- VoiceOver: When the select is focused, the screen reader will announce the select content.
+
+### Props
+
+Select component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props) and the props mentioned below.
+
+#### Select
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Value</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>size</InlineCode>
+          </TableCell>
+          <TableCell>sm | md | lg | xl</TableCell>
+          <TableCell>md</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>variant</InlineCode>
+          </TableCell>
+          <TableCell>underlined | outline | rounded</TableCell>
+          <TableCell>outline</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Data Attributes Table
+
+Component receives states as props as boolean values, which are applied as `data-*` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>State</TableHeaderCell>
+          <TableHeaderCell>Data Attribute</TableHeaderCell>
+          <TableHeaderCell>Values</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>hover</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>data-hover</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+         <TableRow>
+          <TableCell>
+            <InlineCode>disabled</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>data-disabled</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>focus</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>data-focus</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>invalid</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>data-invalid</InlineCode>
+          </TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+  #### Select FormControlled
+
+  The Select component with FormControl example demonstrates how to manage its state using the FormControl component. This allows for easy integration with forms and form validation.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <FormControl isRequired isInvalid>
+          <FormControlLabel>
+            <FormControlLabelText>
+              Choose your favorite color
+            </FormControlLabelText>
+          </FormControlLabel>
+          <Select>
+            <SelectTrigger>
+              <SelectInput placeholder="Select option" className="flex-1" />
+              <SelectIcon className="mr-3" as={ChevronDownIcon} />
+            </SelectTrigger>
+            <SelectPortal>
+              <SelectBackdrop />
+              <SelectContent>
+                <SelectDragIndicatorWrapper>
+                  <SelectDragIndicator />
+                </SelectDragIndicatorWrapper>
+                <SelectItem label="Red" value="red" />
+                <SelectItem label="Blue" value="blue" />
+                <SelectItem label="Black" value="black" />
+                <SelectItem label="Pink" value="pink" isDisabled={true} />
+                <SelectItem label="Green" value="green" />
+              </SelectContent>
+            </SelectPortal>
+          </Select>
+          <FormControlHelper>
+            <FormControlHelperText>
+              You can only select one option
+            </FormControlHelperText>
+          </FormControlHelper>
+          <FormControlError>
+            <FormControlErrorIcon as={AlertCircleIcon} />
+            <FormControlErrorText>Mandatory field</FormControlErrorText>
+          </FormControlError>
+        </FormControl>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Select, SelectTrigger, SelectInput, SelectIcon, SelectPortal, SelectBackdrop, SelectContent, SelectDragIndicatorWrapper, SelectDragIndicator, SelectItem, Icon, ChevronDownIcon, FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorIcon, FormControlErrorText, AlertCircleIcon }}
+  importMap={{"@/components/ui/select":["Select","SelectTrigger","SelectInput","SelectIcon","SelectPortal","SelectBackdrop","SelectContent","SelectDragIndicatorWrapper","SelectDragIndicator","SelectItem"],"@/components/ui/icon":["Icon","ChevronDownIcon","AlertCircleIcon"],"@/components/ui/form-control":["FormControl","FormControlLabel","FormControlLabelText","FormControlHelper","FormControlHelperText","FormControlError","FormControlErrorIcon","FormControlErrorText"]}}
+/>

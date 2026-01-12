@@ -1,0 +1,683 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Menu, MenuItem, MenuItemLabel, MenuSeparator } from '@/components/ui/menu';
+import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
+import { Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon, MenuIcon, HelpCircleIcon, MessageCircleIcon } from '@/components/ui/icon';
+import { Badge, BadgeText } from '@/components/ui/badge';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Menu
+
+Build a user-friendly interface with gluestack-ui menu component in React & React Native, designed for easy navigation and accessibility.
+
+This is an illustration of **Menu** component.
+
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Menu
+      placement="{{placement}}"
+      offset={5}
+      disabledKeys={["Settings"]}
+      trigger={({ ...triggerProps }) => {
+        return (
+          <Button {...triggerProps}>
+            <ButtonText>Menu</ButtonText>
+          </Button>
+        )
+      }}
+    >
+      <MenuItem key="Add account" textValue="Add account">
+        <Icon as={AddIcon} size="sm" className="mr-2" />
+        <MenuItemLabel size="sm">Add account</MenuItemLabel>
+      </MenuItem>
+      <MenuItem key="Community" textValue="Community">
+        <Icon as={GlobeIcon} size="sm" className="mr-2" />
+        <MenuItemLabel size="sm">Community</MenuItemLabel>
+      </MenuItem>
+      <MenuItem key="Plugins" textValue="Plugins">
+        <Icon as={PlayIcon} size="sm" className="mr-2" />
+        <MenuItemLabel size="sm">Plugins</MenuItemLabel>
+      </MenuItem>
+      <MenuItem key="Settings" textValue="Settings">
+        <Icon as={SettingsIcon} size="sm" className="mr-2" />
+        <MenuItemLabel size="sm">Settings</MenuItemLabel>
+      </MenuItem>
+    </Menu>
+  )
+}`}
+  argTypes={{
+  "placement": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "top",
+      "bottom",
+      "left",
+      "right",
+      "top start",
+      "top end",
+      "bottom start",
+      "bottom end",
+      "left start",
+      "left end",
+      "right start",
+      "right end"
+    ],
+    "defaultValue": "top"
+  }
+}}
+  reactLive={{ Menu, MenuItem, MenuItemLabel, Button, ButtonText, Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon }}
+  importMap={{"@/components/ui/menu":["Menu","MenuItem","MenuItemLabel"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/icon":["Icon","AddIcon","GlobeIcon","PlayIcon","SettingsIcon"]}}
+/>
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add menu`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+> Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @legendapp/motion
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```tsx
+'use client';
+import React from 'react';
+import { createMenu } from '@gluestack-ui/core/menu/creator';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import { Pressable, Text, View, ViewStyle } from 'react-native';
+import {
+  Motion,
+  AnimatePresence,
+  MotionComponentProps,
+} from '@legendapp/motion';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+
+type IMotionViewProps = React.ComponentProps<typeof View> &
+  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+
+const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+
+const menuStyle = tva({
+  base: 'rounded-md bg-background-0 border border-outline-100 p-1 shadow-hard-5',
+});
+
+const menuItemStyle = tva({
+  base: 'min-w-[200px] p-3 flex-row items-center rounded data-[hover=true]:bg-background-50 data-[active=true]:bg-background-100 data-[focus=true]:bg-background-50 data-[focus=true]:web:outline-none data-[focus=true]:web:outline-0 data-[disabled=true]:opacity-40 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-primary-700 data-[focus-visible=true]:web:outline data-[focus-visible=true]:web:cursor-pointer data-[disabled=true]:data-[focus=true]:bg-transparent',
+});
+
+const menuBackdropStyle = tva({
+  base: 'absolute top-0 bottom-0 left-0 right-0 web:cursor-default',
+  // add this classnames if you want to give background color to backdrop
+  // opacity-50 bg-background-500,
+});
+
+const menuSeparatorStyle = tva({
+  base: 'bg-background-200 h-px w-full',
+});
+
+const menuItemLabelStyle = tva({
+  base: 'text-typography-700 font-normal font-body',
+
+  variants: {
+    isTruncated: {
+      true: 'web:truncate',
+    },
+    bold: {
+      true: 'font-bold',
+    },
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-base',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+    sub: {
+      true: 'text-xs',
+    },
+    italic: {
+      true: 'italic',
+    },
+    highlight: {
+      true: 'bg-yellow-500',
+    },
+  },
+});
+
+const BackdropPressable = React.forwardRef<
+  React.ComponentRef<typeof Pressable>,
+  React.ComponentPropsWithoutRef<typeof Pressable> &
+    VariantProps<typeof menuBackdropStyle>
+>(function BackdropPressable({ className, ...props }, ref) {
+  return (
+    <Pressable
+      ref={ref}
+      className={menuBackdropStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+
+type IMenuItemProps = VariantProps<typeof menuItemStyle> & {
+  className?: string;
+} & React.ComponentPropsWithoutRef<typeof Pressable>;
+
+const Item = React.forwardRef<
+  React.ComponentRef<typeof Pressable>,
+  IMenuItemProps
+>(function Item({ className, ...props }, ref) {
+  return (
+    <Pressable
+      ref={ref}
+      className={menuItemStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+
+const Separator = React.forwardRef<
+  React.ComponentRef<typeof View>,
+  React.ComponentPropsWithoutRef<typeof View> &
+    VariantProps<typeof menuSeparatorStyle>
+>(function Separator({ className, ...props }, ref) {
+  return (
+    <View
+      ref={ref}
+      className={menuSeparatorStyle({ class: className })}
+      {...props}
+    />
+  );
+});
+export const UIMenu = createMenu({
+  Root: MotionView,
+  Item: Item,
+  Label: Text,
+  Backdrop: BackdropPressable,
+  AnimatePresence: AnimatePresence,
+  Separator: Separator,
+});
+
+cssInterop(MotionView, { className: 'style' });
+
+type IMenuProps = React.ComponentProps<typeof UIMenu> &
+  VariantProps<typeof menuStyle> & { className?: string };
+type IMenuItemLabelProps = React.ComponentProps<typeof UIMenu.ItemLabel> &
+  VariantProps<typeof menuItemLabelStyle> & { className?: string };
+
+const Menu = React.forwardRef<React.ComponentRef<typeof UIMenu>, IMenuProps>(
+  function Menu({ className, ...props }, ref) {
+    return (
+      <UIMenu
+        ref={ref}
+        initial={{
+          opacity: 0,
+          scale: 0.8,
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+        }}
+        exit={{
+          opacity: 0,
+          scale: 0.8,
+        }}
+        transition={{
+          type: 'timing',
+          duration: 100,
+        }}
+        className={menuStyle({
+          class: className,
+        })}
+        {...props}
+      />
+    );
+  }
+);
+
+const MenuItem = UIMenu.Item;
+
+const MenuItemLabel = React.forwardRef<
+  React.ComponentRef<typeof UIMenu.ItemLabel>,
+  IMenuItemLabelProps
+>(function MenuItemLabel(
+  {
+    className,
+    isTruncated,
+    bold,
+    underline,
+    strikeThrough,
+    size = 'md',
+    sub,
+    italic,
+    highlight,
+    ...props
+  },
+  ref
+) {
+  return (
+    <UIMenu.ItemLabel
+      ref={ref}
+      className={menuItemLabelStyle({
+        isTruncated: isTruncated as boolean,
+        bold: bold as boolean,
+        underline: underline as boolean,
+        strikeThrough: strikeThrough as boolean,
+        size,
+        sub: sub as boolean,
+        italic: italic as boolean,
+        highlight: highlight as boolean,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+
+const MenuSeparator = UIMenu.Separator;
+
+Menu.displayName = 'Menu';
+MenuItem.displayName = 'MenuItem';
+MenuItemLabel.displayName = 'MenuItemLabel';
+MenuSeparator.displayName = 'MenuSeparator';
+export { Menu, MenuItem, MenuItemLabel, MenuSeparator };
+
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  Menu,
+  MenuItem,
+  MenuItemLabel,
+  MenuSeparator,
+} from '@/components/ui/menu';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/ychqRCR.png"
+  webUrl="https://i.imgur.com/42xE2oh.png"
+  classNameStyle="aspect-[513/477] md:aspect-[736/317]"
+/>
+
+```ts
+export default () => (
+  <Menu>
+    <MenuItem>
+      <MenuItemLabel />
+    </MenuItem>
+    <MenuSeparator />
+  </Menu>
+);
+```
+
+> Note: The immediate parent of **MenuItem** must be **Menu**. There should be no higher-order component (HOC) between them.
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Menu
+
+Contains all menu related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>trigger</InlineCode>
+      </TableCell>
+      <TableCell>
+        {'(_props: any, state: { open: boolean; }) => Element'}
+      </TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        Function that returns a React Element. This element will be used as a
+        Trigger for the Menu
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>placement</InlineCode>
+      </TableCell>
+      <TableCell>
+        "bottom" | "top" | "right" | "left" | "top left" | "top right" | "bottom
+        left" | "bottom right" | "right top" | "right bottom" | "left top" |
+        "left bottom"
+      </TableCell>
+      <TableCell>bottom left</TableCell>
+      <TableCell>Menu placement</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>defaultIsOpen</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>If true, the menu will be opened by default</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onOpen</InlineCode>
+      </TableCell>
+      <TableCell>{'() => void'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        This function will be invoked when the menu is opened
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onClose</InlineCode>
+      </TableCell>
+      <TableCell>{'() => void'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>This function will be invoked when menu is closed</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isOpen</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>
+        Whether the menu is opened. Useful for controlling the open state
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>offset</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The additional offset applied along the main axis</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>crossOffset</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The additional offset applied along the cross axis</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>disabledKeys</InlineCode>
+      </TableCell>
+      <TableCell>string[]</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Item keys in this collection will be disabled</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>closeOnSelect</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>Whether menu is closed after option is selected</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>selectedKeys</InlineCode>
+      </TableCell>
+      <TableCell>{"'all' | Iterable<Key>"}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        The currently selected keys in the collection (controlled)
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>selectionMode</InlineCode>
+      </TableCell>
+      <TableCell>{"'none' | 'single' | 'multiple'"}</TableCell>
+      <TableCell>none</TableCell>
+      <TableCell>
+        The type of selection that is allowed in the collection
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onSelectionChange</InlineCode>
+      </TableCell>
+      <TableCell>{"(keys: 'all' | Iterable<Key>) => void"}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Handler that is called when the selection changes</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+#### MenuItemLabel
+
+Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### MenuSeparator
+
+Contains all view related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Features
+
+- Keyboard support for actions
+- Support for hover, focus and active states
+
+### Accessibility
+
+We have outlined the various features that ensure the Menu component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [MENU WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/menubar/).
+
+#### Keyboard
+
+- `Space`: Opens/closes the menu
+- `Enter`: Opens/closes the menu
+- `Arrow Down`: Moves focus to the next focusable element
+- `Arrow Up`: Moves focus to the previous focusable element
+- `Esc`: Closes the menu and moves focus to menuTrigger
+
+#### Screen Reader
+
+- VoiceOver: When the menu is opened, the screen reader will say, Menu item group with 4 items. You are currently on a menu item group. To select this menu item, press Control + Option + Space. To close the menu, press Escape.
+
+#### States
+
+- `aria-labelledby` identifies the element that labels the current element.
+- `aria-label` defines a string value that labels the current element.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+
+  #### Menu with Tag
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Menu
+      offset={5}
+      trigger={({ ...triggerProps }) => {
+        return (
+          <Button {...triggerProps} size="sm">
+            <ButtonIcon as={MenuIcon} />
+          </Button>
+        );
+      }}
+    >
+      <MenuItem
+        key="Membership"
+        textValue="Membership"
+        className="p-2 justify-between"
+      >
+        <MenuItemLabel size="sm">Membership</MenuItemLabel>
+        <Badge action="success" className="rounded-full">
+          <BadgeText className="text-2xs capitalize">Pro</BadgeText>
+        </Badge>
+      </MenuItem>
+      <MenuItem key="Orders" textValue="Orders" className="p-2">
+        <MenuItemLabel size="sm">Orders</MenuItemLabel>
+      </MenuItem>
+      <MenuItem
+        key="Address Book"
+        textValue="Address Book"
+        className="p-2"
+      >
+        <MenuItemLabel size="sm">Address Book</MenuItemLabel>
+      </MenuItem>
+      <MenuSeparator />
+      <MenuItem key="Earn & Redeem" textValue="Earn & Redeem" className="p-2">
+        <MenuItemLabel size="sm">Earn & Redeem</MenuItemLabel>
+      </MenuItem>
+      <MenuItem key="Coupons" textValue="Coupons" className="p-2">
+        <MenuItemLabel size="sm">Coupons</MenuItemLabel>
+      </MenuItem>
+      <MenuItem
+        key="Help Center"
+        textValue="Help Center"
+        className="p-2"
+      >
+        <MenuItemLabel size="sm">Help Center</MenuItemLabel>
+      </MenuItem>
+      <MenuSeparator />
+      <MenuItem key="Logout" textValue="Logout" className="p-2">
+        <MenuItemLabel size="sm">Logout</MenuItemLabel>
+      </MenuItem>
+    </Menu>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Menu, MenuItem, MenuItemLabel, MenuSeparator, Button, ButtonIcon, MenuIcon, Badge, BadgeText }}
+  importMap={{"@/components/ui/menu":["Menu","MenuItem","MenuItemLabel","MenuSeparator"],"@/components/ui/button":["Button","ButtonIcon"],"@/components/ui/icon":["MenuIcon"],"@/components/ui/badge":["Badge","BadgeText"]}}
+/>
+
+
+  #### Menu with Selection
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [selected, setSelected] = React.useState(new Set([]));
+  return (
+    <Menu
+      placement="bottom left"
+      selectionMode="single"
+      selectedKeys={selected}
+      offset={5}
+      className="p-1.5"
+      onSelectionChange={(keys) => {
+        setSelected(keys);
+      }}
+      closeOnSelect={true}
+      trigger={({ ...triggerProps }) => {
+        return (
+          <Button {...triggerProps}>
+            <ButtonText>Menu</ButtonText>
+          </Button>
+        );
+      }}
+    >
+      <MenuItem
+        key="Account Settings"
+        textValue="Account Settings"
+        className="p-2 web:min-w-[294px] min-w-[225px]"
+      >
+        <Icon as={SettingsIcon} size="sm" className="mr-2" />
+        <MenuItemLabel size="sm">Account Settings</MenuItemLabel>
+      </MenuItem>
+      <MenuItem key="Help Centre" textValue="Help Centre" className="p-2">
+        <Icon as={HelpCircleIcon} size="sm" className="mr-2" />
+        <MenuItemLabel size="sm">Help Centre</MenuItemLabel>
+      </MenuItem>
+      <MenuItem
+        key="Contact Support"
+        textValue="Contact Support"
+        className="p-2"
+      >
+        <Icon as={MessageCircleIcon} size="sm" className="mr-2" />
+        <MenuItemLabel size="sm">Contact Support</MenuItemLabel>
+      </MenuItem>
+      <MenuSeparator />
+      <MenuItem
+        key="Download Mobile App"
+        textValue="Download Mobile App"
+        className="p-2"
+      >
+        <MenuItemLabel size="sm">Download Mobile App</MenuItemLabel>
+      </MenuItem>
+      <MenuItem
+        key="Install Chrome Extension"
+        textValue="Install Chrome Extension"
+        className="p-2"
+      >
+        <MenuItemLabel size="sm">Install Chrome Extension</MenuItemLabel>
+      </MenuItem>
+    </Menu>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Menu, MenuItem, MenuItemLabel, MenuSeparator, Button, ButtonText, Icon, SettingsIcon, HelpCircleIcon, MessageCircleIcon }}
+  importMap={{"@/components/ui/menu":["Menu","MenuItem","MenuItemLabel","MenuSeparator"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/icon":["Icon","SettingsIcon","HelpCircleIcon","MessageCircleIcon"]}}
+/>

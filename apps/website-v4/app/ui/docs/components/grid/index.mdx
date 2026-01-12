@@ -1,0 +1,857 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Grid, GridItem } from '@/components/ui/grid';
+import { Text } from '@/components/ui/text';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Grid
+
+Discover a powerful Grid component for React & React Native with customizable layout and behavior. Perfect for creating responsive grid layouts in your UI design.
+
+This is an illustration of **Grid** component.
+
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Grid
+      className="gap-4"
+      _extra=\\{{className: "grid-cols-10"}}
+    >
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-3"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-5"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-2"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-4"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-6"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-2"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-4"}}
+      />
+      <GridItem
+        className="bg-background-50 p-6 rounded-md"
+        _extra=\\{{className: "col-span-4"}}
+      />
+    </Grid>
+  )
+}`}
+  argTypes={{}}
+  reactLive={{ Grid, GridItem }}
+  importMap={{"@/components/ui/grid":["Grid","GridItem"]}}
+/>
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add grid`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+import React, {
+  useState,
+  createContext,
+  useContext,
+  useMemo,
+  forwardRef,
+} from 'react';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { View, Dimensions, Platform, ViewProps } from 'react-native';
+import { gridStyle, gridItemStyle } from './styles';
+import { cssInterop } from 'nativewind';
+import {
+  useBreakpointValue,
+  getBreakPointValue,
+} from '@gluestack-ui/utils/hooks';
+const { width: DEVICE_WIDTH } = Dimensions.get('window');
+const GridContext = createContext<any>({});
+function arrangeChildrenIntoRows({
+  childrenArray,
+  colSpanArr,
+  numColumns,
+}: {
+  childrenArray: React.ReactNode[];
+  colSpanArr: number[];
+  numColumns: number;
+}) {
+  let currentRow = 1;
+  let currentRowTotalColSpan = 0;
+  // store how many items in each row
+  const rowItemsCount: {
+    [key: number]: number[];
+  } = {};
+  for (let i = 0; i < childrenArray.length; i++) {
+    const colSpan = colSpanArr[i];
+    // if current row is full, go to next row
+    if (currentRowTotalColSpan + colSpan > numColumns) {
+      currentRow++;
+      currentRowTotalColSpan = colSpan;
+    } else {
+      // if current row is not full, add colSpan to current row
+      currentRowTotalColSpan += colSpan;
+    }
+    rowItemsCount[currentRow] = rowItemsCount[currentRow]
+      ? [...rowItemsCount[currentRow], i]
+      : [i];
+  }
+  return rowItemsCount;
+}
+function generateResponsiveNumColumns({ gridClass }: { gridClass: string }) {
+  const gridClassNamePattern = /\b(?:\w+:)?grid-cols-?\d+\b/g;
+  const numColumns = gridClass?.match(gridClassNamePattern);
+  if (!numColumns) {
+    return 12;
+  }
+  const regex = /^(?:(\w+):)?grid-cols-?(\d+)$/;
+  const result: any = {};
+  numColumns.forEach((classname) => {
+    const match = classname.match(regex);
+    if (match) {
+      const prefix = match[1] || 'default';
+      const value = parseInt(match[2], 10);
+      result[prefix] = value;
+    }
+  });
+  return result;
+}
+function generateResponsiveColSpans({
+  gridItemClassName,
+}: {
+  gridItemClassName: string;
+}) {
+  const gridClassNamePattern = /\b(?:\w+:)?col-span-?\d+\b/g;
+  const colSpan: any = gridItemClassName?.match(gridClassNamePattern);
+  if (!colSpan) {
+    return 1;
+  }
+  const regex = /^(?:(\w+):)?col-span-?(\d+)$/;
+  const result: any = {};
+  colSpan.forEach((classname: any) => {
+    const match = classname.match(regex);
+    if (match) {
+      const prefix = match[1] || 'default';
+      const value = parseInt(match[2], 10);
+      result[prefix] = value;
+    }
+  });
+  return result;
+}
+type IGridProps = ViewProps &
+  VariantProps<typeof gridStyle> & {
+    gap?: number;
+    rowGap?: number;
+    columnGap?: number;
+    flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
+    padding?: number;
+    paddingLeft?: number;
+    paddingRight?: number;
+    paddingStart?: number;
+    paddingEnd?: number;
+    borderWidth?: number;
+    borderLeftWidth?: number;
+    borderRightWidth?: number;
+    _extra: {
+      className: string;
+    };
+  };
+const Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
+  function Grid({ className, _extra, children, ...props }, ref) {
+    const [calculatedWidth, setCalculatedWidth] = useState<number | null>(null);
+    const gridClass = _extra?.className;
+    const obj = generateResponsiveNumColumns({ gridClass });
+    const responsiveNumColumns: any = useBreakpointValue(obj);
+    const itemsPerRow = useMemo(() => {
+      // get the colSpan of each child
+      const colSpanArr = React.Children.map(children, (child: any) => {
+        const gridItemClassName = child?.props?._extra?.className;
+        const colSpan2 = getBreakPointValue(
+          generateResponsiveColSpans({ gridItemClassName }),
+          DEVICE_WIDTH
+        );
+        const colSpan = colSpan2 ? colSpan2 : 1;
+        if (colSpan > responsiveNumColumns) {
+          return responsiveNumColumns;
+        }
+        return colSpan;
+      });
+      const childrenArray = React.Children.toArray(children);
+      const rowItemsCount = arrangeChildrenIntoRows({
+        childrenArray,
+        colSpanArr,
+        numColumns: responsiveNumColumns,
+      });
+      return rowItemsCount;
+    }, [responsiveNumColumns, children]);
+    const childrenWithProps = React.Children.map(children, (child, index) => {
+      if (React.isValidElement(child)) {
+        return React.cloneElement(child, { key: index, index: index } as any);
+      }
+      return child;
+    });
+    const gridClassMerged = `${Platform.select({
+      web: gridClass ?? '',
+    })}`;
+    const contextValue = useMemo(() => {
+      return {
+        calculatedWidth,
+        numColumns: responsiveNumColumns,
+        itemsPerRow,
+        flexDirection: props?.flexDirection || 'row',
+        gap: props?.gap || 0,
+        columnGap: props?.columnGap || 0,
+      };
+    }, [calculatedWidth, itemsPerRow, responsiveNumColumns, props]);
+    const borderLeftWidth = props?.borderLeftWidth || props?.borderWidth || 0;
+    const borderRightWidth = props?.borderRightWidth || props?.borderWidth || 0;
+    const borderWidthToSubtract = borderLeftWidth + borderRightWidth;
+    return (
+      <GridContext.Provider value={contextValue}>
+        <View
+          ref={ref}
+          className={gridStyle({
+            class: className + ' ' + gridClassMerged,
+          })}
+          onLayout={(event) => {
+            const paddingLeftToSubtract =
+              props?.paddingStart || props?.paddingLeft || props?.padding || 0;
+            const paddingRightToSubtract =
+              props?.paddingEnd || props?.paddingRight || props?.padding || 0;
+            const gridWidth =
+              Math.floor(event.nativeEvent.layout.width) -
+              paddingLeftToSubtract -
+              paddingRightToSubtract -
+              borderWidthToSubtract;
+            setCalculatedWidth(gridWidth);
+          }}
+          {...props}
+        >
+          {calculatedWidth && childrenWithProps}
+        </View>
+      </GridContext.Provider>
+    );
+  }
+);
+cssInterop(Grid, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      gap: 'gap',
+      rowGap: 'rowGap',
+      columnGap: 'columnGap',
+      flexDirection: 'flexDirection',
+      padding: 'padding',
+      paddingLeft: 'paddingLeft',
+      paddingRight: 'paddingRight',
+      paddingStart: 'paddingStart',
+      paddingEnd: 'paddingEnd',
+      borderWidth: 'borderWidth',
+      borderLeftWidth: 'borderLeftWidth',
+      borderRightWidth: 'borderRightWidth',
+    },
+  },
+});
+type IGridItemProps = ViewProps &
+  VariantProps<typeof gridItemStyle> & {
+    index?: number;
+    _extra: {
+      className: string;
+    };
+  };
+const GridItem = forwardRef<React.ComponentRef<typeof View>, IGridItemProps>(
+  function GridItem({ className, _extra, ...props }, ref) {
+    const {
+      calculatedWidth,
+      numColumns,
+      itemsPerRow,
+      flexDirection,
+      gap,
+      columnGap,
+    } = useContext(GridContext);
+    const gridItemClass = _extra?.className;
+    const responsiveColSpan = (useBreakpointValue(
+      generateResponsiveColSpans({ gridItemClassName: gridItemClass })
+    ) ?? 1) as number;
+    const flexBasisValue = useMemo(() => {
+      if (!calculatedWidth || !numColumns || responsiveColSpan <= 0) {
+        return 'auto';
+      }
+      if (flexDirection?.includes('column')) {
+        return 'auto';
+      }
+      // Find which row this item is in
+      const row = Object.keys(itemsPerRow).find((key) => {
+        return itemsPerRow[key].includes(props?.index);
+      });
+      if (!row) {
+        return 'auto';
+      }
+      const rowColsCount = itemsPerRow[row]?.length || 1;
+      const space = columnGap || gap || 0;
+      // Calculate available width accounting for gaps
+      const totalGapWidth = space * (rowColsCount - 1);
+      const availableWidth = calculatedWidth - totalGapWidth;
+      // Calculate the width for this item based on its column span
+      const itemWidth = (availableWidth * responsiveColSpan) / numColumns;
+      // Return the width directly instead of percentage for better native compatibility
+      return Math.max(0, Math.floor(itemWidth));
+    }, [
+      calculatedWidth,
+      responsiveColSpan,
+      numColumns,
+      columnGap,
+      gap,
+      flexDirection,
+      itemsPerRow,
+      props?.index,
+    ]);
+    return (
+      <View
+        ref={ref}
+        // @ts-expect-error : internal implementation for r-19/react-native-web
+        gridItemClass={gridItemClass}
+        className={gridItemStyle({
+          class: className,
+        })}
+        {...props}
+        style={[
+          {
+            width:
+              typeof flexBasisValue === 'number' ? flexBasisValue : undefined,
+            flexBasis:
+              typeof flexBasisValue === 'string' ? flexBasisValue : undefined,
+            flexShrink: 0,
+            flexGrow: 0,
+          },
+          props.style,
+        ]}
+      />
+    );
+  }
+);
+Grid.displayName = 'Grid';
+GridItem.displayName = 'GridItem';
+export { Grid, GridItem };
+
+```
+
+> Note: **Step 2 is optional and only required if you want to add support for [React Server Components](https://vercel.com/blog/understanding-react-server-components), You can skip this and jump to Step 3 directly if you don't have this requirement.**
+
+### Step 2(optional): Copy and paste the following code into your project.
+
+```jsx
+import React from 'react';
+import { gridStyle, gridItemStyle } from './styles';
+
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+
+type IGridProps = React.ComponentPropsWithoutRef<'div'> &
+  VariantProps<typeof gridStyle> & {
+    gap?: number;
+    rowGap?: number;
+    columnGap?: number;
+    flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
+    padding?: number;
+    paddingLeft?: number;
+    paddingRight?: number;
+    paddingStart?: number;
+    paddingEnd?: number;
+    _extra: {
+      className: string;
+    };
+  };
+
+const Grid = React.forwardRef<HTMLDivElement, IGridProps>(function Grid(
+  { className, _extra, ...props },
+  ref
+) {
+  const gridClass = _extra?.className;
+  const finalGridClass = gridClass ?? '';
+  return (
+    <div
+      ref={ref}
+      className={gridStyle({
+        class: className + ' ' + finalGridClass,
+      })}
+      {...props}
+    />
+  );
+});
+
+type IGridItemProps = React.ComponentPropsWithoutRef<'div'> &
+  VariantProps<typeof gridItemStyle> & {
+    index?: number;
+    _extra: {
+      className: string;
+    };
+  };
+const GridItem = React.forwardRef<HTMLDivElement, IGridItemProps>(
+  function GridItem({ className, _extra, ...props }, ref) {
+    const gridItemClass = _extra?.className;
+
+    const finalGridItemClass = gridItemClass ?? '';
+    return (
+      <div
+        ref={ref}
+        className={gridItemStyle({
+          class: className + ' ' + finalGridItemClass,
+        })}
+        {...props}
+      />
+    );
+  }
+);
+
+Grid.displayName = 'Grid';
+GridItem.displayName = 'GridItem';
+
+export { Grid, GridItem };
+
+```
+
+### Step 3: Copy and paste the following code into your project.
+
+```jsx
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { isWeb } from '@gluestack-ui/utils/nativewind-utils';
+
+const gridBaseStyle = isWeb
+  ? 'grid grid-cols-12'
+  : 'box-border flex-row flex-wrap justify-start';
+const gridItemBaseStyle = isWeb ? 'w-auto col-span-1' : '';
+
+export const gridStyle = tva({
+  base: `w-full ${gridBaseStyle}`,
+});
+
+export const gridItemStyle = tva({
+  base: `w-full ${gridItemBaseStyle}`,
+});
+
+```
+
+### Step 4: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Grid, GridItem } from '@/components/ui/grid';
+```
+
+```ts
+export default () => (
+  <Grid>
+    <GridItem />
+  </Grid>
+);
+```
+
+> Note: Our responsive grid component is based on a 12-column grid layout. It follows the CSS **grid system** on the web and **flexbox layout** on native devices. Since the grid layout is only supported on the web, passing the grid-cols and col-span classNames inside \_extra is **recommended** for the grid component to work effortlessly on both web and native. Our grid component currently does not support rowSpan.
+
+> Note: The immediate parent of **GridItem** must be **Grid**. There should be no higher-order component (HOC) between them.
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+### Grid
+
+<p>{`Renders a <div /> on web and a View on native.`}</p>
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<div />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<View />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### Props
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>_extra</InlineCode>
+        </TableCell>
+        <TableCell>object</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Accepts grid-cols-* className. Value for * can range from 1 to 12. Default value is grid-cols-12.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### GridItem
+
+<p>{`Renders a <div /> on web and a View on native.`}</p>
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<div />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<View />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### Props
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>_extra</InlineCode>
+        </TableCell>
+        <TableCell>object</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Accepts col-span-* className. Value for * can range from 1 to 12. Default value is col-span-1.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+
+  #### Setting the gap between grid items
+
+  Use the gap-* utilities to change the gap between both rows and columns in grid.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Grid className="gap-4" _extra=\\{{
+      className: 'grid-cols-9',
+    }}>
+      <GridItem
+        className="bg-background-50 p-3 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-3',
+        }}
+      >
+        <Text>A</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-3 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-3',
+        }}
+      >
+        <Text>B</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-3 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-3',
+        }}
+      >
+        <Text>C</Text>
+      </GridItem>
+    </Grid>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Grid, GridItem, Text }}
+  importMap={{"@/components/ui/grid":["Grid","GridItem"],"@/components/ui/text":["Text"]}}
+/>
+
+
+  #### Changing row and column gaps independently
+
+  Use the gap-x-* and gap-y-* utilities to change the gap between columns and rows independently.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Grid className="gap-y-2 gap-x-4" _extra=\\{{
+      className: 'grid-cols-6',
+    }}>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-2',
+        }}
+      >
+        <Text className="text-sm">01</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-2',
+        }}
+      >
+        <Text className="text-sm">02</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-2',
+        }}
+      >
+        <Text className="text-sm">03</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-2',
+        }}
+      >
+        <Text className="text-sm">04</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-2',
+        }}
+      >
+        <Text className="text-sm">05</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-2',
+        }}
+      >
+        <Text className="text-sm">06</Text>
+      </GridItem>
+    </Grid>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Grid, GridItem, Text }}
+  importMap={{"@/components/ui/grid":["Grid","GridItem"],"@/components/ui/text":["Text"]}}
+/>
+
+
+  #### Nested Grids
+
+  The following example depicts how easily you can nest grids to create complex layouts with multiple levels of nesting.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Grid className="gap-3" _extra=\\{{
+      className: 'grid-cols-8',
+    }}>
+      <GridItem
+        className="bg-background-50 p-3 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-4',
+        }}
+      >
+        <Text className="text-sm">01</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-3 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-4',
+        }}
+      >
+        <Text className="text-sm">02</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-3 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-4',
+        }}
+      >
+        <Grid className="gap-5" _extra=\\{{
+          className: 'grid-cols-2',
+        }}>
+          <GridItem className="bg-background-200 p-2 rounded-md" _extra=\\{{
+            className: 'col-span-1',
+          }}><Text className="text-sm">1</Text></GridItem>
+          <GridItem className="bg-background-200 p-2 rounded-md" _extra=\\{{
+            className: 'col-span-1',
+          }}><Text className="text-sm">2</Text></GridItem>
+          <GridItem className="bg-background-200 p-2 rounded-md" _extra=\\{{
+            className: 'col-span-1',
+          }}><Text className="text-sm">3</Text></GridItem>
+          <GridItem className="bg-background-200 p-2 rounded-md" _extra=\\{{
+            className: 'col-span-1',
+          }}><Text className="text-sm">4</Text></GridItem>
+        </Grid>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-3 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-4',
+        }}
+      > 
+        <Grid className="gap-5" _extra=\\{{
+          className: 'grid-cols-4',
+        }}>
+          <GridItem className="bg-background-200 p-2 rounded-md" _extra=\\{{
+            className: 'col-span-4',
+          }}><Text className="text-sm">1</Text></GridItem>
+          <GridItem className="bg-background-200 p-2 rounded-md" _extra=\\{{
+            className: 'col-span-4',
+          }}><Text className="text-sm">2</Text></GridItem>
+        </Grid>
+      </GridItem>
+    </Grid>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Grid, GridItem, Text }}
+  importMap={{"@/components/ui/grid":["Grid","GridItem"],"@/components/ui/text":["Text"]}}
+/>
+
+
+  #### Responsive Grids
+
+  You can pass different grid-cols-* and col-span-* values at different breakpoints to create a more responsive layout.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Grid className="gap-y-2 gap-x-4" _extra=\\{{
+      className: 'grid-cols-6',
+    }}>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-6 md:col-span-3 lg:col-span-2',
+        }}
+      >
+        <Text className="text-sm">01</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-6 md:col-span-3 lg:col-span-2',
+        }}
+      >
+        <Text className="text-sm">02</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-6 md:col-span-3 lg:col-span-2',
+        }}
+      >
+        <Text className="text-sm">03</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-6 md:col-span-3 lg:col-span-2',
+        }}
+      >
+        <Text className="text-sm">04</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-6 md:col-span-3 lg:col-span-2',
+        }}
+      >
+        <Text className="text-sm">05</Text>
+      </GridItem>
+      <GridItem
+        className="bg-background-50 p-4 rounded-md text-center"
+        _extra=\\{{
+          className: 'col-span-6 md:col-span-3 lg:col-span-2',
+        }}
+      >
+        <Text className="text-sm">06</Text>
+      </GridItem>
+    </Grid>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Grid, GridItem, Text }}
+  importMap={{"@/components/ui/grid":["Grid","GridItem"],"@/components/ui/text":["Text"]}}
+/>
+
+#### Why we introduced \_extra prop?
+
+Grid Layout is not supported in native. In order to make our component universal, we introduced the `_extra` prop to pass the grid classnames to the grid component. We use the `_extra` prop to pass the grid classnames to the grid component & extract the neccessary styles from the provided classname. This approach provides a SSR friendly solution for responsiveness.

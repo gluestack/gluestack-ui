@@ -49,6 +49,7 @@
     ".next/types/**/*.ts",
     "__tests__/website.test.js",
     "redirects.js",
+    "types/**/*.d.ts",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [

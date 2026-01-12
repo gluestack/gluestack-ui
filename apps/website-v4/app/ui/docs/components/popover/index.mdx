@@ -1,0 +1,1130 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Popover, PopoverBackdrop, PopoverArrow, PopoverBody, PopoverContent, PopoverFooter, PopoverHeader } from '@/components/ui/popover';
+import { Button, ButtonText, ButtonIcon } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
+import { Avatar, AvatarGroup, AvatarFallbackText, AvatarImage } from '@/components/ui/avatar';
+import { Pressable } from '@/components/ui/pressable';
+import { Heading } from '@/components/ui/heading';
+import { VStack } from '@/components/ui/vstack';
+import { Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon } from '@/components/ui/checkbox';
+import { CheckIcon, ArrowRightIcon, ChevronRightIcon, ShareIcon, ChevronDownIcon } from '@/components/ui/icon';
+import { Input, InputField } from '@/components/ui/input';
+import { Image } from '@/components/ui/image';
+import { HStack } from '@/components/ui/hstack';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Popover
+
+Improve user experience with a React Popover component—perfect for contextual modals, tooltips & interactive UI elements. Works seamlessly in React & React Native!
+
+This is an illustration of **Popover** component.
+
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function App() {
+  const [isOpen, setIsOpen] = React.useState(false)
+  const handleOpen = () => {
+    setIsOpen(true)
+  }
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+  return (
+    <Popover
+      isOpen={isOpen}
+      onClose={handleClose}
+      onOpen={handleOpen}
+      placement="{{placement}}"
+      size="{{size}}"
+      trigger={(triggerProps) => {
+        return (
+          <Button {...triggerProps}>
+            <ButtonText>Open Popover</ButtonText>
+          </Button>
+        )
+      }}
+    >
+      <PopoverBackdrop />
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverBody>
+          <Text className="text-typography-900">
+            Alex, Annie and many others are already enjoying the Pro features,
+            don't miss out on the fun!
+          </Text>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  )
+}`}
+  argTypes={{
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "full"
+    ],
+    "defaultValue": "md"
+  },
+  "placement": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "top",
+      "bottom",
+      "left",
+      "right",
+      "bottom left",
+      "bottom right",
+      "top left",
+      "top right",
+      "left bottom",
+      "left right",
+      "right bottom",
+      "right top"
+    ],
+    "defaultValue": "bottom"
+  }
+}}
+  reactLive={{ Popover, PopoverBackdrop, PopoverArrow, PopoverBody, PopoverContent, Button, ButtonText, Text }}
+  importMap={{"@/components/ui/popover":["Popover","PopoverBackdrop","PopoverArrow","PopoverBody","PopoverContent"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/text":["Text"]}}
+/>
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add popover`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+> Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @legendapp/motion
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```tsx
+'use client';
+import React from 'react';
+import { View, Pressable, ScrollView, ViewStyle } from 'react-native';
+import {
+  Motion,
+  createMotionAnimatedComponent,
+  AnimatePresence,
+  MotionComponentProps,
+} from '@legendapp/motion';
+import { createPopover } from '@gluestack-ui/core/popover/creator';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+
+type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
+  MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
+
+const AnimatedPressable = createMotionAnimatedComponent(
+  Pressable
+) as React.ComponentType<IAnimatedPressableProps>;
+
+const SCOPE = 'POPOVER';
+
+type IMotionViewProps = React.ComponentProps<typeof View> &
+  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+
+const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+
+const UIPopover = createPopover({
+  Root: withStyleContext(View, SCOPE),
+  Arrow: MotionView,
+  Backdrop: AnimatedPressable,
+  Body: ScrollView,
+  CloseButton: Pressable,
+  Content: MotionView,
+  Footer: View,
+  Header: View,
+  AnimatePresence: AnimatePresence,
+});
+
+cssInterop(MotionView, { className: 'style' });
+cssInterop(AnimatedPressable, { className: 'style' });
+
+const popoverStyle = tva({
+  base: 'group/popover w-full h-full justify-center items-center web:pointer-events-none',
+  variants: {
+    size: {
+      xs: '',
+      sm: '',
+      md: '',
+      lg: '',
+      full: '',
+    },
+  },
+});
+
+const popoverArrowStyle = tva({
+  base: 'bg-background-0 z-[1] border absolute overflow-hidden h-3.5 w-3.5 border-outline-100',
+  variants: {
+    placement: {
+      'top left':
+        'data-[flip=false]:border-t-0 data-[flip=false]:border-l-0 data-[flip=true]:border-b-0 data-[flip=true]:border-r-0',
+      'top':
+        'data-[flip=false]:border-t-0 data-[flip=false]:border-l-0 data-[flip=true]:border-b-0 data-[flip=true]:border-r-0',
+      'top right':
+        'data-[flip=false]:border-t-0 data-[flip=false]:border-l-0 data-[flip=true]:border-b-0 data-[flip=true]:border-r-0',
+      'bottom':
+        'data-[flip=false]:border-b-0 data-[flip=false]:border-r-0 data-[flip=true]:border-t-0 data-[flip=true]:border-l-0',
+      'bottom left':
+        'data-[flip=false]:border-b-0 data-[flip=false]:border-r-0 data-[flip=true]:border-t-0 data-[flip=true]:border-l-0',
+      'bottom right':
+        'data-[flip=false]:border-b-0 data-[flip=false]:border-r-0 data-[flip=true]:border-t-0 data-[flip=true]:border-l-0',
+      'left':
+        'data-[flip=false]:border-l-0 data-[flip=false]:border-b-0 data-[flip=true]:border-r-0 data-[flip=true]:border-t-0',
+      'left top':
+        'data-[flip=false]:border-l-0 data-[flip=false]:border-b-0 data-[flip=true]:border-r-0 data-[flip=true]:border-t-0',
+      'left bottom':
+        'data-[flip=false]:border-l-0 data-[flip=false]:border-b-0 data-[flip=true]:border-r-0 data-[flip=true]:border-t-0',
+      'right':
+        'data-[flip=false]:border-r-0 data-[flip=false]:border-t-0 data-[flip=true]:border-l-0 data-[flip=true]:border-b-0',
+      'right top':
+        'data-[flip=false]:border-r-0 data-[flip=false]:border-t-0 data-[flip=true]:border-l-0 data-[flip=true]:border-b-0',
+      'right bottom':
+        'data-[flip=false]:border-r-0 data-[flip=false]:border-t-0 data-[flip=true]:border-l-0 data-[flip=true]:border-b-0',
+    },
+  },
+});
+
+const popoverBackdropStyle = tva({
+  base: 'absolute left-0 top-0 right-0 bottom-0 web:cursor-default',
+});
+
+const popoverCloseButtonStyle = tva({
+  base: 'group/popover-close-button z-[1] rounded-sm data-[focus-visible=true]:web:bg-background-100 web:outline-0 web:cursor-pointer',
+});
+
+const popoverContentStyle = tva({
+  base: 'bg-background-0 rounded-lg overflow-hidden border border-outline-100 w-full',
+  parentVariants: {
+    size: {
+      xs: 'max-w-[360px] p-3.5',
+      sm: 'max-w-[420px] p-4',
+      md: 'max-w-[510px] p-[18px]',
+      lg: 'max-w-[640px] p-5',
+      full: 'p-6',
+    },
+  },
+});
+
+const popoverHeaderStyle = tva({
+  base: 'flex-row justify-between items-center',
+});
+
+const popoverBodyStyle = tva({
+  base: '',
+});
+
+const popoverFooterStyle = tva({
+  base: 'flex-row justify-between items-center',
+});
+
+type IPopoverProps = React.ComponentProps<typeof UIPopover> &
+  VariantProps<typeof popoverStyle> & { className?: string };
+
+type IPopoverArrowProps = React.ComponentProps<typeof UIPopover.Arrow> &
+  VariantProps<typeof popoverArrowStyle> & { className?: string };
+
+type IPopoverContentProps = React.ComponentProps<typeof UIPopover.Content> &
+  VariantProps<typeof popoverContentStyle> & { className?: string };
+
+type IPopoverHeaderProps = React.ComponentProps<typeof UIPopover.Header> &
+  VariantProps<typeof popoverHeaderStyle> & { className?: string };
+
+type IPopoverFooterProps = React.ComponentProps<typeof UIPopover.Footer> &
+  VariantProps<typeof popoverFooterStyle> & { className?: string };
+
+type IPopoverBodyProps = React.ComponentProps<typeof UIPopover.Body> &
+  VariantProps<typeof popoverBodyStyle> & { className?: string };
+
+type IPopoverBackdropProps = React.ComponentProps<typeof UIPopover.Backdrop> &
+  VariantProps<typeof popoverBackdropStyle> & { className?: string };
+
+type IPopoverCloseButtonProps = React.ComponentProps<
+  typeof UIPopover.CloseButton
+> &
+  VariantProps<typeof popoverCloseButtonStyle> & { className?: string };
+
+const Popover = React.forwardRef<
+  React.ComponentRef<typeof UIPopover>,
+  IPopoverProps
+>(function Popover(
+  { className, size = 'md', placement = 'bottom', ...props },
+  ref
+) {
+  return (
+    <UIPopover
+      ref={ref}
+      placement={placement}
+      {...props}
+      className={popoverStyle({ size, class: className })}
+      context={{ size, placement }}
+      pointerEvents="box-none"
+    />
+  );
+});
+
+const PopoverContent = React.forwardRef<
+  React.ComponentRef<typeof UIPopover.Content>,
+  IPopoverContentProps
+>(function PopoverContent({ className, size, ...props }, ref) {
+  const { size: parentSize } = useStyleContext(SCOPE);
+
+  return (
+    <UIPopover.Content
+      ref={ref}
+      transition={{
+        type: 'spring',
+        damping: 18,
+        stiffness: 250,
+        mass: 0.9,
+        opacity: {
+          type: 'timing',
+          duration: 50,
+          delay: 50,
+        },
+      }}
+      {...props}
+      className={popoverContentStyle({
+        parentVariants: {
+          size: parentSize,
+        },
+        size,
+        class: className,
+      })}
+      pointerEvents="auto"
+    />
+  );
+});
+
+const PopoverArrow = React.forwardRef<
+  React.ComponentRef<typeof UIPopover.Arrow>,
+  IPopoverArrowProps
+>(function PopoverArrow({ className, ...props }, ref) {
+  const { placement } = useStyleContext(SCOPE);
+  return (
+    <UIPopover.Arrow
+      ref={ref}
+      transition={{
+        type: 'spring',
+        damping: 18,
+        stiffness: 250,
+        mass: 0.9,
+        opacity: {
+          type: 'timing',
+          duration: 50,
+          delay: 50,
+        },
+      }}
+      {...props}
+      className={popoverArrowStyle({
+        class: className,
+        placement,
+      })}
+    />
+  );
+});
+
+const PopoverBackdrop = React.forwardRef<
+  React.ComponentRef<typeof UIPopover.Backdrop>,
+  IPopoverBackdropProps
+>(function PopoverBackdrop({ className, ...props }, ref) {
+  return (
+    <UIPopover.Backdrop
+      ref={ref}
+      {...props}
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 0.1,
+      }}
+      exit={{
+        opacity: 0,
+      }}
+      transition={{
+        type: 'spring',
+        damping: 18,
+        stiffness: 450,
+        mass: 0.9,
+        opacity: {
+          type: 'timing',
+          duration: 50,
+          delay: 50,
+        },
+      }}
+      className={popoverBackdropStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+const PopoverBody = React.forwardRef<
+  React.ComponentRef<typeof UIPopover.Body>,
+  IPopoverBodyProps
+>(function PopoverBody({ className, ...props }, ref) {
+  return (
+    <UIPopover.Body
+      ref={ref}
+      {...props}
+      className={popoverBodyStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+const PopoverCloseButton = React.forwardRef<
+  React.ComponentRef<typeof UIPopover.CloseButton>,
+  IPopoverCloseButtonProps
+>(function PopoverCloseButton({ className, ...props }, ref) {
+  return (
+    <UIPopover.CloseButton
+      ref={ref}
+      {...props}
+      className={popoverCloseButtonStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+const PopoverFooter = React.forwardRef<
+  React.ComponentRef<typeof UIPopover.Footer>,
+  IPopoverFooterProps
+>(function PopoverFooter({ className, ...props }, ref) {
+  return (
+    <UIPopover.Footer
+      ref={ref}
+      {...props}
+      className={popoverFooterStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+const PopoverHeader = React.forwardRef<
+  React.ComponentRef<typeof UIPopover.Header>,
+  IPopoverHeaderProps
+>(function PopoverHeader({ className, ...props }, ref) {
+  return (
+    <UIPopover.Header
+      ref={ref}
+      {...props}
+      className={popoverHeaderStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+Popover.displayName = 'Popover';
+PopoverArrow.displayName = 'PopoverArrow';
+PopoverBackdrop.displayName = 'PopoverBackdrop';
+PopoverContent.displayName = 'PopoverContent';
+PopoverHeader.displayName = 'PopoverHeader';
+PopoverFooter.displayName = 'PopoverFooter';
+PopoverBody.displayName = 'PopoverBody';
+PopoverCloseButton.displayName = 'PopoverCloseButton';
+
+export {
+  Popover,
+  PopoverBackdrop,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverFooter,
+  PopoverHeader,
+  PopoverBody,
+  PopoverContent,
+};
+
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  Popover,
+  PopoverBackdrop,
+  PopoverContent,
+  PopoverArrow,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  PopoverFooter,
+} from '@/components/ui/popover';
+```
+
+```ts
+export default () => (
+  <Popover>
+    <PopoverBackdrop />
+    <PopoverContent>
+      <PopoverArrow />
+      <PopoverHeader>
+        <PopoverCloseButton />
+      </PopoverHeader>
+      <PopoverBody />
+      <PopoverFooter />
+    </PopoverContent>
+  </Popover>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Popover
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>defaultIsOpen</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Specifies the default open state of the popover.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isOpen</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        If true, the popover will open. Useful for controllable state behavior.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>trapFocus</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>Whether popover should trap focus.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>focusScope</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>Whether focus should be outside of popover or not</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>shouldFlip</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>
+        Whether the element should flip its orientation when there is
+        insufficient room.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>initialFocusRef</InlineCode>
+      </TableCell>
+      <TableCell>{`React.RefObject<any>`}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        The ref of element to receive focus when the popover opens.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>finalFocusRef</InlineCode>
+      </TableCell>
+      <TableCell>{`React.RefObject<any>`}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        The ref of element to receive focus when the popover closes
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>trigger</InlineCode>
+      </TableCell>
+      <TableCell>{`() => any`}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        Function that returns a React Element. This element will be used as a
+        Trigger for the popover.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>crossOffset</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        The additional offset applied along the cross axis between the element
+        and its trigger element.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>offset</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        The additional offset applied along the main axis between the element
+        and its trigger element.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>shouldOverlapWithTrigger</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>
+        Determines whether popover content should overlap with the trigger.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isKeyboardDismissable</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>If true, the keyboard can dismiss the popover.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>placement</InlineCode>
+      </TableCell>
+      <TableCell>
+        'top' | 'top left' | 'top right' | 'bottom' | 'bottom left' | 'bottom
+        right' | 'right' | 'right top' | 'right bottom' | 'left' | 'left top' |
+        'left bottom'
+      </TableCell>
+      <TableCell>'bottom'</TableCell>
+      <TableCell>Popover placement</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>useRNModal</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>If true, renders react-native native modal.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>avoidKeyboard</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>If true, the popover will avoid the keyboard.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onOpen</InlineCode>
+      </TableCell>
+      <TableCell>() => any</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        This function will be invoked when popover is opened.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onClose</InlineCode>
+      </TableCell>
+      <TableCell>() => any</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        This function will be invoked when popover is closed.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>children</InlineCode>
+      </TableCell>
+      <TableCell>any</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The content to display inside the popover.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+#### PopoverBackdrop
+
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's]
+(https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component.
+You can use any declarative animation library you prefer.
+
+#### PopoverContent
+
+Contains all backdrop related layout style props and actions.
+It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/
+motion/overview/) component. You can use any declarative animation library you prefer.
+
+#### PopoverHeader
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### PopoverFooter
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### PopoverBody
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### PopoverCloseButton
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+### Features
+
+- Keyboard support for actions.
+
+### Accessibility
+
+We have outlined the various features that ensure the Popover component is accessible to all users, including those with
+disabilities. These features help ensure that your application is inclusive and meets accessibility standards. It adheres
+to the [Dialog WAI-ARIA design pattern.](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
+
+#### Keyboard
+
+- `Space`: Opens/closes the popover.
+- `Enter`: Opens/closes the popover.
+- `Tab`: Moves focus to the next focusable element.
+- `Shift + Tab`: Moves focus to the previous focusable element.
+- `Esc`: Closes the popover and moves focus to PopoverTrigger.
+
+#### Screen Reader
+
+- VoiceOver: When we click on button, the screen reader will announce Popover, menu expanded, button and when we close it
+  then it says Popover, menu collapsed, button.
+  Popover component i
+
+### Props
+
+Popover component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Popover
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Value</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>xs | sm | md | lg | full</TableCell>
+        <TableCell>md</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+
+  #### Popover used along with multiple Avatars
+
+  
+  
+  <CodePreviewer
+  code={`function App() {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            trigger={(triggerProps) => {
+              return (
+                <Button
+                  {...triggerProps}
+                  size="sm"
+                >
+                  <ButtonText>
+                    Open Popover
+                  </ButtonText>
+                </Button>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent className="w-full max-w-[420px] p-4">
+              <PopoverArrow />
+              <PopoverBody
+                className=""
+                contentContainerClassName="flex flex-row gap-4"
+              >
+              <AvatarGroup className="flex-row items-center">
+                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0">
+                    <AvatarFallbackText>John Doe</AvatarFallbackText>
+                    <AvatarImage
+                      source=\\{{
+                        uri: 'https://i.ibb.co/PF4vFQk/a130347c432c7b83615044cec215d824.jpg',
+                      }}
+                      alt="imageAltText"
+                    />
+                  </Avatar>
+                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0">
+                    <AvatarFallbackText>John Doe</AvatarFallbackText>
+                    <AvatarImage
+                      source=\\{{
+                        uri: 'https://i.ibb.co/MgrMrRc/Avatar-2.png',
+                      }}
+                      alt="imageAltText"
+                    />
+                  </Avatar>
+                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0">
+                    <AvatarFallbackText>John Doe</AvatarFallbackText>
+                    <AvatarImage
+                      source=\\{{
+                        uri: 'https://i.ibb.co/BLRZt0p/Avatar-6.jpg',
+                      }}
+                      alt="imageAltText"
+                    />
+                  </Avatar>
+                  <Avatar className="w-9 h-9 border-[1.5px] border-outline-0 group-[.avatar-group]/avatar-group:ml-0">
+                    <AvatarFallbackText>John Doe</AvatarFallbackText>
+                    <AvatarImage
+                      source=\\{{
+                        uri: 'https://i.ibb.co/4VVsQ0K/Avatar-7.png',
+                      }}
+                      alt="imageAltText"
+                    />
+                  </Avatar>
+                </AvatarGroup>
+                <Text className="text-typography-900" size="sm">
+                  Alex, Annie and many others are already enjoying the Pro features,
+                  don't miss out on the fun!
+                </Text>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        )
+      }`}
+  argTypes={{}}
+  reactLive={{ Popover, PopoverBackdrop, PopoverContent, PopoverBody, PopoverArrow, Button, ButtonText, Text, Avatar, AvatarGroup, AvatarFallbackText, AvatarImage }}
+  importMap={{"@/components/ui/popover":["Popover","PopoverBackdrop","PopoverContent","PopoverBody","PopoverArrow"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/text":["Text"],"@/components/ui/avatar":["Avatar","AvatarGroup","AvatarFallbackText","AvatarImage"]}}
+/>
+
+
+  #### Popover with CTA
+
+  
+  
+  <CodePreviewer
+  code={`function App() {
+        const [isOpen, setIsOpen] = React.useState(false);
+        const [values, setValues] = React.useState(['work']);
+        const handleOpen = () => {
+          setIsOpen(true);
+        };
+        const handleClose = () => {
+          setIsOpen(false);
+        };
+        return (
+          <Popover
+            isOpen={isOpen}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            offset={8}
+            trigger={(triggerProps) => {
+              return (
+                <Button {...triggerProps} className="gap-2">
+                  <ButtonText>Purchase Plan</ButtonText>
+                  <ButtonIcon as={ChevronRightIcon} />
+                </Button>
+              );
+            }}
+          >
+            <PopoverBackdrop/>
+            <PopoverContent className="w-full max-w-[420px] p-5 gap-6 pl-4 shadow-hard-5">
+              <PopoverBody>
+                <Heading className="pl-1">
+                  Are you interested in using Pro for work or personal use?
+                </Heading>
+                <Text className="pt-2 pb-6 pl-1" size="sm">
+                  We can recommend plans that are right for you. With our personalized
+                  approach, you can trust that the plans we recommend will align
+                  perfectly with your goals.
+                </Text>
+                <CheckboxGroup
+                  value={values}
+                  onChange={(keys) => {
+                    setValues(keys);
+                  }}
+                  className="pl-1"
+                >
+                  <VStack space="sm">
+                    <Checkbox value="projects">
+                      <CheckboxIndicator>
+                        <CheckboxIcon as={CheckIcon} />
+                      </CheckboxIndicator>
+                      <CheckboxLabel>For personal projects</CheckboxLabel>
+                    </Checkbox>
+                    <Checkbox value="work">
+                      <CheckboxIndicator>
+                        <CheckboxIcon as={CheckIcon} />
+                      </CheckboxIndicator>
+                      <CheckboxLabel>For work</CheckboxLabel>
+                    </Checkbox>
+                  </VStack>
+                </CheckboxGroup>
+              </PopoverBody>
+              <PopoverFooter>
+                <Pressable
+                  className="px-4 bg-primary-500 rounded w-full"
+                  onPress={handleClose}
+                >
+                  <Button onPress={handleClose} size="sm" className="gap-2">
+                    <ButtonText>Next</ButtonText>
+                    <ButtonIcon as={ArrowRightIcon} />
+                  </Button>
+                </Pressable>
+              </PopoverFooter>
+            </PopoverContent>
+          </Popover>
+        )
+      }`}
+  argTypes={{}}
+  reactLive={{ Pressable, Popover, PopoverBackdrop, PopoverContent, PopoverBody, PopoverFooter, Button, ButtonText, ButtonIcon, Heading, Text, VStack, Checkbox, CheckboxGroup, CheckboxIndicator, CheckboxLabel, CheckboxIcon, CheckIcon, ArrowRightIcon, ChevronRightIcon }}
+  importMap={{"@/components/ui/pressable":["Pressable"],"@/components/ui/popover":["Popover","PopoverBackdrop","PopoverContent","PopoverBody","PopoverFooter"],"@/components/ui/button":["Button","ButtonText","ButtonIcon"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/checkbox":["Checkbox","CheckboxGroup","CheckboxIndicator","CheckboxLabel","CheckboxIcon"],"@/components/ui/icon":["CheckIcon","ArrowRightIcon","ChevronRightIcon"]}}
+/>
+
+
+  #### Popover with Image
+
+  
+  
+  <CodePreviewer
+  code={`function App() {
+  const [isOpen, setIsOpen] = React.useState(false)
+  const handleOpen = () => {
+    setIsOpen(true)
+  }
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+  return (
+    <Popover
+      isOpen={isOpen}
+      onClose={handleClose}
+      onOpen={handleOpen}
+      offset={8}
+      trigger={(triggerProps) => {
+        return (
+          <Button {...triggerProps} size="sm">
+            <ButtonText>Claim Offer</ButtonText>
+          </Button>
+        )
+      }}
+    >
+      <PopoverBackdrop />
+      <PopoverContent className="shadow-soft-1 h-full max-w-full p-0">
+        <PopoverBody
+          className=""
+          contentContainerClassName="flex flex-col sm:flex-row w-full h-full"
+        >
+          <Image
+            source=\\{{
+              uri: "https://i.ibb.co/TqD9vBY/popover-image-1-11zon.jpg",
+            }}
+            alt="image"
+            className="sm:h-[270px] sm:w-[211px] h-[150px] w-full"
+          />
+          <VStack className="items-center justify-center w-full max-w-[344px] sm:mx-8 p-4 sm:p-0">
+            <Text size="sm" className="text-typography-950">
+              Sign up to the newsletter and get
+            </Text>
+            <Heading size="3xl" className="text-typography-950 my-1">
+              25% Off
+            </Heading>
+            <Input variant="outline" size="sm" className="my-4 w-full">
+              <InputField placeholder="youremail@address.com" />
+            </Input>
+            <Button size="xs" isDisabled className="w-full">
+              <ButtonText>Subscribe</ButtonText>
+            </Button>
+          </VStack>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  )
+}`}
+  argTypes={{}}
+  reactLive={{ Popover, PopoverBackdrop, PopoverContent, PopoverBody, Button, ButtonText, Heading, Text, VStack, Input, InputField, Image }}
+  importMap={{"@/components/ui/popover":["Popover","PopoverBackdrop","PopoverContent","PopoverBody"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/input":["Input","InputField"],"@/components/ui/image":["Image"]}}
+/>
+
+
+  #### Popover with InputField
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [showPopover, setShowPopover] = React.useState(false);
+  return (
+    <Popover
+      isOpen={showPopover}
+      onClose={() => setShowPopover(false)}
+      onOpen={() => setShowPopover(true)}
+      offset={8}
+      trigger={(triggerProps) => {
+        return (
+          <Button {...triggerProps} className="gap-2">
+            <ButtonText>Share</ButtonText>
+            <ButtonIcon as={ShareIcon} />
+          </Button>
+        );
+      }}
+    >
+      <PopoverBackdrop />
+      <PopoverContent className="p-5 gap-8 max-w-[473px] w-full native:max-w-[300px]">
+        <PopoverHeader className="w-full gap-3">
+          <Input size="sm" className="flex-1">
+            <InputField placeholder="Email separated by commas" />
+          </Input>
+          <Button size="sm">
+            <ButtonText>Invite</ButtonText>
+          </Button>
+        </PopoverHeader>
+        <PopoverBody className="gap-6">
+          <Heading size="sm">People with access</Heading>
+          <VStack space="lg">
+            <HStack space="4xl" className="items-center">
+              <HStack space="md" className="w-full items-center">
+                <Avatar>
+                  <AvatarFallbackText>JC</AvatarFallbackText>
+                  <AvatarImage
+                    source=\\{{
+                      uri: 'https://i.ibb.co/7R4DyhQ/Avatar-1.jpg',
+                    }}
+                    alt="Jane Cooper"
+                  />
+                </Avatar>
+                <VStack>
+                  <Text size="sm" className="font-semibold text-typography-900">
+                    Jane Cooper
+                  </Text>
+                  <Text size="xs">janecooper09@gmail.com</Text>
+                </VStack>
+              </HStack>
+              <Button variant="link" size="xs" className="gap-1 sm:px-3.5">
+                <ButtonText>Can edit</ButtonText>
+                <ButtonIcon as={ChevronDownIcon} />
+              </Button>
+            </HStack>
+            <HStack space="4xl" className="items-center">
+              <HStack space="md" className="w-full items-center">
+                <Avatar>
+                  <AvatarFallbackText>CM</AvatarFallbackText>
+                  <AvatarImage
+                    source=\\{{
+                      uri: 'https://i.ibb.co/sQwcjSZ/Avatar-2.png',
+                    }}
+                    alt="Catherine Miller"
+                  />
+                </Avatar>
+                <VStack>
+                  <Text size="sm" className="font-semibold text-typography-900">
+                    Catherine Miller
+                  </Text>
+                  <Text size="xs">catherinemiller88@gmail.com</Text>
+                </VStack>
+              </HStack>
+              <Button variant="link" size="xs" className="gap-1 sm:px-3.5">
+                <ButtonText>Admin</ButtonText>
+                <ButtonIcon as={ChevronDownIcon} />
+              </Button>
+            </HStack>
+          </VStack>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Popover, PopoverBackdrop, PopoverContent, PopoverHeader, PopoverBody, Button, ButtonText, ButtonIcon, Heading, Text, HStack, VStack, Input, InputField, Avatar, AvatarFallbackText, AvatarImage, ShareIcon, ChevronDownIcon }}
+  importMap={{"@/components/ui/popover":["Popover","PopoverBackdrop","PopoverContent","PopoverHeader","PopoverBody"],"@/components/ui/button":["Button","ButtonText","ButtonIcon"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/hstack":["HStack"],"@/components/ui/vstack":["VStack"],"@/components/ui/input":["Input","InputField"],"@/components/ui/avatar":["Avatar","AvatarFallbackText","AvatarImage"],"@/components/ui/icon":["ShareIcon","ChevronDownIcon"]}}
+/>

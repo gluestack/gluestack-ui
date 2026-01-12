@@ -2,15 +2,23 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import './globals.css';
 import CanonicalLink from '@/components/custom/canonical/CanonicalLink';
-import Provider from './provider';
+import { cookies } from 'next/headers';
 
-export default function RootLayout({
+import { Provider } from './provider';
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const initialColorMode = (cookieStore.get('colorMode')?.value || 'dark') as
+    | 'light'
+    | 'dark'
+    | 'system';
+
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <head>
         <meta name="robots" content="index, follow" />
 
@@ -36,7 +44,7 @@ export default function RootLayout({
         />
       </head>
       <body className={GeistSans.className}>
-        <Provider>{children}</Provider>
+        <Provider initialColorMode={initialColorMode}>{children}</Provider>
       </body>
     </html>
   );
