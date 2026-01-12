@@ -1,4 +1,5 @@
 import { Switch } from '@/components/ui/switch'
+import { Center } from '@/components/ui/center'
 import { Text } from '@/components/ui/text'
 import { HStack } from '@/components/ui/hstack'
 
@@ -8,6 +9,7 @@ import { UsageVariantFlatList } from '@/components/custom/component-presentation
 
 const ExampleBasic = () => {
 return (
+    <Center>
     <Switch
       size="md"
       isDisabled={ false }
@@ -16,11 +18,13 @@ return (
       activeThumbColor="#fafafa"
       ios_backgroundColor="#d4d4d4"
     />
+    </Center>
   )
 };
 
 const SizeSm = () => {
 return (
+    <Center>
     <Switch
       size="sm"
       isDisabled={ false }
@@ -29,11 +33,13 @@ return (
       activeThumbColor="#fafafa"
       ios_backgroundColor="#d4d4d4"
     />
+    </Center>
   )
 };
 
 const SizeLg = () => {
 return (
+    <Center>
     <Switch
       size="lg"
       isDisabled={ false }
@@ -42,6 +48,7 @@ return (
       activeThumbColor="#fafafa"
       ios_backgroundColor="#d4d4d4"
     />
+    </Center>
   )
 };
 
