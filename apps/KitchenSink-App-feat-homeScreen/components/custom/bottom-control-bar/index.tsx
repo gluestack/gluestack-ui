@@ -168,7 +168,7 @@ const BottomControlBar = memo(
         setSearchQuery('');
 
         // Navigate directly to the component page
-        router.push(`/(home)/components/${component.path}` as any);
+        router.replace(`/(home)/components/${component.path}` as any);
 
         // Still call the callback if provided (for any additional logic)
         onComponentSelect?.(component, index);
@@ -346,15 +346,15 @@ const BottomControlBar = memo(
                         onPress={() => handleComponentSelect(item, index)}
                         className={`px-3 py-2.5 mx-1.5 rounded-lg flex-row items-center gap-2.5 ${
                           currentComponent?.path === item.path
-                            ? 'bg-primary/70'
-                            : 'active:bg-primary'
+                            ? 'bg-primary'
+                            : 'active:bg-secondary'
                         }`}
                       >
                         <Text
                           className={`text-sm font-medium ${
                             currentComponent?.path === item.path
                               ? 'text-primary-foreground'
-                              : 'text-foreground'
+                              : 'text-white'
                           }`}
                         >
                           {item.title}
