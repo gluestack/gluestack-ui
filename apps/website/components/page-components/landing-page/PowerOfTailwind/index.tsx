@@ -10,11 +10,11 @@ const PowerOfTailwind = () => {
       <VStack className="gap-3 w-full">
         <Heading
           size="2xl"
-          className="text-3xl font-bold sm:leading-[54px] leading-9 text-typography-900 sm:text-4xl w-full"
+          className="text-3xl font-bold sm:leading-[54px] leading-9 text-foreground sm:text-4xl w-full"
         >
           The Power of Tailwind CSS with NativeWind
         </Heading>
-        <Text className="text-typography-700 text-lg font-normal leading-[30px] w-full md:w-[75%]">
+        <Text className="text-muted-foreground text-lg font-normal leading-[30px] w-full md:w-[75%]">
           Unleash your creativity and maximize the styling possibilities with{' '}
           <a
             href="https://gluestack.io/ui/docs/home/getting-started/installation"

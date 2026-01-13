@@ -14,8 +14,8 @@ const buttonCode = [
 
   function Example() {
       return (
-        <Button size="md" style={{ $$css: true }} className="bg-primary-500 hover:bg-primary-600">
-          <ButtonText style={{ $$css: true }} className="text-typography-50" >Button</ButtonText>
+        <Button size="md" style={{ $$css: true }} className="bg-primary hover:bg-primary/90">
+          <ButtonText style={{ $$css: true }} className="text-background" >Button</ButtonText>
         </Button>
       );
   }
@@ -135,7 +135,7 @@ const buttonCode = [
     code: `// Built with gluestack-ui and NativeWind. Copy-paste the code into your project.
   import { tva } from '@gluestack-ui/nativewind-utils/tva';
   const buttonStyle = tva({
-    base: 'group/button rounded bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40',
+    base: 'group/button rounded bg-primary flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40',
     variants: {
       variant: {
         solid: '',
@@ -151,11 +151,11 @@ const buttonCode = [
   });
   
   const buttonTextStyle = tva({
-    base: 'text-typography-0 font-semibold web:select-none',
+    base: 'text-primary-foreground font-semibold web:select-none',
     parentVariants: {
       variant: {
         solid:
-          'text-typography-0 group-data-[hover=true]/button:text-typography-0 group-data-[active=true]/button:text-typography-0',
+          'text-primary-foreground group-data-[hover=true]/button:text-primary-foreground group-data-[active=true]/button:text-primary-foreground',
       },
       size: {
         sm: 'text-sm',
@@ -176,29 +176,29 @@ export default function PowerOfTailwindInteractive() {
   return (
     <Box className="flex flex-col md:flex-row w-full gap-5">
       <Box className="w-full md:w-1/2">
-        <Center className="w-full border border-outline-50 mb-5 p-4 h-[446px]">
-          <Button className="bg-primary-500 hover:bg-primary-600 h-10 px-5 w-fit">
-            <ButtonText className="text-typography-50">Button</ButtonText>
+        <Center className="w-full border border-border mb-5 p-4 h-[446px]">
+          <Button className="bg-primary hover:bg-primary/90 h-10 px-5 w-fit">
+            <ButtonText className="text-background">Button</ButtonText>
           </Button>
         </Center>
       </Box>
       <Box className="w-full md:w-1/2">
-        <Box className="border border-outline-50 border-collapse flex-row min-h-[46px] w-full">
+        <Box className="border border-border border-collapse flex-row min-h-[46px] w-full">
           {buttonCode.map((code, index) => (
             <Pressable
               key={index}
               onPress={() => setActiveTab(index)}
               className={`px-4 py-2 ${
                 activeTab === index
-                  ? 'border-b-2 border-primary-500 bg-background-50'
-                  : 'text-typography-500'
+                  ? 'border-b-2 border-primary-500 bg-muted'
+                  : 'text-muted-foreground'
               }`}
             >
               <Text
                 className={`${
                   activeTab === index
                     ? 'text-primary-500 font-medium'
-                    : 'text-typography-500'
+                    : 'text-muted-foreground'
                 }`}
               >
                 {code.fileName}
@@ -208,7 +208,7 @@ export default function PowerOfTailwindInteractive() {
         </Box>
         <CodeBlock
           code={buttonCode[activeTab].code}
-          className="h-[446px] border border-outline-50 rounded-none w-full overflow-auto"
+          className="h-[446px] border border-border rounded-none w-full overflow-auto"
         />
       </Box>
     </Box>

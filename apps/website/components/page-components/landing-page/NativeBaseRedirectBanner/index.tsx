@@ -22,14 +22,14 @@ export const Banner = ({ referrer }: { referrer: string }) => {
             as={TriangleAlertIcon}
             className="items-center justify-center text-warning-500 h-5 w-5"
           />
-          <Text className="text-typography-950 text-md font-medium">
+          <Text className="text-foreground text-md font-medium">
             Looking for nativebase?
           </Text>
         </Box>
         <NextLink
           href="https://nativebase.io"
           target="_blank"
-          className="flex text-typography-50 rounded-md bg-background-900 px-4 py-2 gap-3 items-center justify-center flex-row sm:ml-[48px]"
+          className="flex text-primary-foreground rounded-md bg-foreground px-4 py-2 gap-3 items-center justify-center flex-row sm:ml-[48px]"
         >
           Open nativebase.io
         </NextLink>
@@ -37,7 +37,7 @@ export const Banner = ({ referrer }: { referrer: string }) => {
       <Button
         variant="link"
         size="sm"
-        className="sm:ml-2 data-[hover=true]:bg-background-50/50 rounded-full aspect-square w-auto"
+        className="sm:ml-2 data-[hover=true]:bg-accent rounded-full aspect-square w-auto"
         onPress={handleClose}
       >
         <ButtonIcon as={CloseIcon} />

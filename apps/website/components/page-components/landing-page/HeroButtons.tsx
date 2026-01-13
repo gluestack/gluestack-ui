@@ -11,26 +11,26 @@ export default function HeroButtons() {
   return (
     <VStack space="xl" className="sm:flex-row">
       <NextLink
-        className="items-center web:focus:shadow-none bg-primary-500 px-6 py-2 rounded hover:bg-primary-600 active:bg-primary-600 outline-none focus-visible:ring-2 focus-visible:ring-primary-200"
+        className="items-center web:focus:shadow-none bg-primary px-6 py-2 rounded hover:bg-primary/90 active:bg-primary/90 outline-none focus-visible:ring-2 focus-visible:ring-ring"
         href="/ui/docs"
       >
         <HStack
           space="sm"
           className="rounded-full items-center justify-center"
         >
-          <Text className="leading-normal font-normal text-lg text-typography-0">
+          <Text className="leading-normal font-normal text-lg text-primary-foreground">
             Get Started
           </Text>
           <Icon
             as={ArrowRightIcon}
-            className="text-typography-0"
+            className="text-primary-foreground"
           />
         </HStack>
       </NextLink>
       <NextLink
         aria-label="github link"
         href="https://github.com/gluestack/gluestack-ui"
-        className="web:focus:shadow-none border border-outline-300 px-6 py-2 rounded hover:bg-secondary-50 active:bg-secondary-50 focus-visible:ring-2 focus-visible:ring-primary-200"
+        className="web:focus:shadow-none border border-border px-6 py-2 rounded hover:bg-accent active:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
         style={{
           //@ts-ignore
           outline: 'none',
@@ -51,7 +51,7 @@ export default function HeroButtons() {
                 className="fill-[currentColor]"
               />
             </svg>
-            <Text className="text-md text-typography-900">Stars</Text>
+            <Text className="text-md text-foreground">Stars</Text>
           </HStack>
           <Divider orientation="vertical" className="mx-3 h-6" />
           <AnimatedStars />

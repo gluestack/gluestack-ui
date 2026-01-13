@@ -35,31 +35,31 @@ const BadgeComponent = () => {
         shouldAnimate ? 'slide-up' : ''
       }`}
     >
-      <Badge className="p-4 gap-3 md:flex-row flex-col rounded-xl bg-background-950">
+      <Badge className="p-4 gap-3 md:flex-row flex-col rounded-xl bg-foreground">
         <VStack className="md:items-start items-center md:self-center self-start">
-          <Text className="leading-6 text-sm font-normal text-typography-50">
+          <Text className="leading-6 text-sm font-normal text-background">
             We use cookies to optimise the website experience.
           </Text>
           <HStack className="self-start min-[300px]:flex-row max-[600px]:flex-col">
             <HStack className="min-[300px]:flex-row max-[600px]:flex-col">
-              <Text className="leading-6 text-sm font-normal text-typography-50">
+              <Text className="leading-6 text-sm font-normal text-background">
                 Check
               </Text>
-              <Text className="leading-6 text-sm font-normal text-typography-50">
+              <Text className="leading-6 text-sm font-normal text-background">
                 &nbsp;our&nbsp;
               </Text>
               <Link href="/cookie-policy" isExternal>
-                <LinkText className="text-sm text-typography-50">
+                <LinkText className="text-sm text-background">
                   Cookies
                 </LinkText>
               </Link>
-              <Text className="leading-6 text-sm font-normal text-typography-50">
+              <Text className="leading-6 text-sm font-normal text-background">
                 &nbsp;&&nbsp;
               </Text>
             </HStack>
 
             <Link href="/privacy-policy" isExternal>
-              <LinkText className="text-typography-50 text-sm">
+              <LinkText className="text-background text-sm">
                 Privacy Policy
               </LinkText>
             </Link>
@@ -71,18 +71,18 @@ const BadgeComponent = () => {
             action="secondary"
             variant="outline"
             onPress={handleDenyClick}
-            className="sm:w-auto"
+            className="sm:w-auto border-background"
           >
-            <ButtonText className="text-typography-50">Deny</ButtonText>
+            <ButtonText className="text-background">Deny</ButtonText>
           </Button>
           <Button
             onPress={handleEulaAccept}
             size="sm"
             action="primary"
             variant="solid"
-            className="bg-background-50 sm:w-auto"
+            className="bg-background sm:w-auto"
           >
-            <ButtonText className="text-typography-900">Accept</ButtonText>
+            <ButtonText className="text-foreground">Accept</ButtonText>
           </Button>
         </HStack>
       </Badge>

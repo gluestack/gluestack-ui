@@ -12,7 +12,7 @@ export default function MeetCreatorsButton({
   return (
     <HStack>
       <Link
-        className="rounded-full focus-visible:outline-0 focus-visible:bg-secondary-50/20"
+        className="rounded-full focus-visible:outline-0 focus-visible:bg-accent/20"
         href={geekyantsLink}
         isExternal
       >

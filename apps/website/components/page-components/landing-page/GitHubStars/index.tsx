@@ -23,7 +23,7 @@ const GitHubStars = async () => {
   return (
     <Text
       className={
-        `text-md text-typography-900 font-medium` + githubStars
+        `text-md text-foreground font-medium` + githubStars
           ? ''
           : 'animate-spin'
       }

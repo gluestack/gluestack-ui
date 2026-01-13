@@ -9,7 +9,7 @@ const Inspiration = () => {
   return (
     <Box className="gap-20">
       <VStack className="max-w-[1024px] mt-[120px] gap-3">
-        <Heading className="text-3xl font-bold sm:leading-[54px] leading-9 text-typography-900 sm:text-4xl">
+        <Heading className="text-3xl font-bold sm:leading-[54px] leading-9 text-foreground sm:text-4xl">
           Inspiration
         </Heading>
         <Text className="text-lg font-normal leading-[30px] lg:w-[75%]">

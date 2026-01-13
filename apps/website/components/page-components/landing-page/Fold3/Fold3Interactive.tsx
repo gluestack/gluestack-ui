@@ -102,20 +102,20 @@ const Fold3InteractiveContent = () => {
             );
           })}
         </Box>
-        <HStack className="bg-background-50 rounded-lg p-1 gap-1.5 items-center w-full sm:w-auto min-w-[200px]">
+        <HStack className="bg-muted rounded-lg p-1 gap-1.5 items-center w-full sm:w-auto min-w-[200px]">
           {['Sharp', 'Subtle', 'Rounded'].map((buttonName) => (
             <Pressable
               key={buttonName}
               onPress={() => handleClick(buttonName)}
               className={`flex-1 gap-1.5 cursor-pointer ${
-                activeButton === buttonName ? 'bg-background-0' : ''
+                activeButton === buttonName ? 'bg-background' : ''
               } rounded-lg px-2 sm:px-3.5 py-2 items-center`}
             >
               <Text
                 className={`text-xs sm:text-sm whitespace-nowrap ${
                   activeButton === buttonName
-                    ? 'text-typography-900 font-semibold'
-                    : 'text-typography-700 font-normal'
+                    ? 'text-foreground font-semibold'
+                    : 'text-muted-foreground font-normal'
                 } `}
               >
                 {buttonName}
@@ -132,7 +132,7 @@ const Fold3InteractiveContent = () => {
                 className={`${getBorderStyle(
                   activeButton,
                   ''
-                )} border-outline-100 border p-5 gap-6`}
+                )} border-border border p-5 gap-6`}
               >
                 <Box className="w-full h-[230px] relative">
                   <NextImage
@@ -147,10 +147,10 @@ const Fold3InteractiveContent = () => {
                   <Text className="text-sm font-normal leading-[21px] text-primary-700">
                     May 15, 2023
                   </Text>
-                  <Heading className="mt-2 text-base font-bold leading-normal text-typography-900">
+                  <Heading className="mt-2 text-base font-bold leading-normal text-foreground">
                     The Power of Positive Thinking
                   </Heading>
-                  <Text className="mt-1.5 text-sm font-normal leading-[21px] text-typography-700">
+                  <Text className="mt-1.5 text-sm font-normal leading-[21px] text-muted-foreground">
                     Discover how the power of positive thinking can transform
                     your life, boost your confidence, and help you overcome
                     challenges. Explore practical tips and techniques to
@@ -169,11 +169,11 @@ const Fold3InteractiveContent = () => {
                     />
                   </Avatar>
                   <VStack>
-                    <Heading className="text-sm font-bold leading-normal text-typography-900">
+                    <Heading className="text-sm font-bold leading-normal text-foreground">
                       John Smith
                     </Heading>
                     <Text
-                      className="text-sm font-normal leading-[21px] text-typography-700"
+                      className="text-sm font-normal leading-[21px] text-muted-foreground"
                       size="sm"
                     >
                       Motivational Speaker
@@ -186,7 +186,7 @@ const Fold3InteractiveContent = () => {
                 className={`${getBorderStyle(
                   activeButton,
                   ''
-                )} border-outline-100 p-5 border`}
+                )} border-border p-5 border`}
               >
                 <Text className="self-stretch text-base font-semibold">
                   Share gluestack-ui with friends
@@ -194,7 +194,7 @@ const Fold3InteractiveContent = () => {
                 <Text className="self-stretch text-sm font-normal mt-2.5">
                   Email friends who have never tried gluestack-ui
                 </Text>
-                <Text className="mt-6 text-sm font-normal text-typography-900 mb-1.5">
+                <Text className="mt-6 text-sm font-normal text-foreground mb-1.5">
                   Send an invite
                 </Text>
                 <Box className="gap-3 md:flex-row flex-col md:items-center">
@@ -208,7 +208,7 @@ const Fold3InteractiveContent = () => {
                       <InputField
                         aria-label="abc@gmail.com"
                         placeholder="abc@gmail.com"
-                        className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+                        className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
                       />
                     </Input>
                   </FormControl>
@@ -224,21 +224,21 @@ const Fold3InteractiveContent = () => {
 
             <VStack className="gap-6 w-full lg:w-[55%]">
               <Box
-                className={`border border-outline-100 ${getBorderStyle(
+                className={`border border-border ${getBorderStyle(
                   activeButton,
                   ''
                 )} py-7 px-6`}
               >
-                <Text className="text-lg font-bold text-typography-900">
+                <Text className="text-lg font-bold text-foreground">
                   Notification Settings
                 </Text>
-                <Text className="text-sm font-normal text-typography-700">
+                <Text className="text-sm font-normal text-muted-foreground">
                   Receive notifications about gluestack-ui updates.
                 </Text>
                 <VStack className="gap-5 mt-8">
                   <HStack className="gap-5 items-center">
                     <Box
-                      className={`p-3 md:flex hidden bg-primary-600/10 ${getBorderStyle(
+                      className={`p-3 md:flex hidden bg-primary/90/10 ${getBorderStyle(
                         activeButton,
                         ''
                       )}`}
@@ -249,12 +249,12 @@ const Fold3InteractiveContent = () => {
                         className="text-primary-700"
                       />
                     </Box>
-                    <HStack className="border-b border-outline-100 pb-2 items-center flex-1">
+                    <HStack className="border-b border-border pb-2 items-center flex-1">
                       <VStack className="flex-1">
-                        <Text className="text-sm font-bold text-typography-900">
+                        <Text className="text-sm font-bold text-foreground">
                           Email
                         </Text>
-                        <Text className="md:text-sm mr-4 font-light text-typography-700 text-xs">
+                        <Text className="md:text-sm mr-4 font-light text-muted-foreground text-xs">
                           Receive email updates on comments you followed
                         </Text>
                       </VStack>
@@ -269,7 +269,7 @@ const Fold3InteractiveContent = () => {
                   </HStack>
                   <HStack className="gap-5 items-center">
                     <Box
-                      className={`p-3 md:flex hidden bg-primary-600/10 ${getBorderStyle(
+                      className={`p-3 md:flex hidden bg-primary/90/10 ${getBorderStyle(
                         activeButton,
                         ''
                       )}`}
@@ -280,12 +280,12 @@ const Fold3InteractiveContent = () => {
                         className="text-primary-700"
                       />
                     </Box>
-                    <HStack className="border-b border-outline-100 pb-2  items-center flex-1">
+                    <HStack className="border-b border-border pb-2  items-center flex-1">
                       <VStack className=" flex-1">
-                        <Text className="text-sm font-bold text-typography-900">
+                        <Text className="text-sm font-bold text-foreground">
                           Text messages
                         </Text>
-                        <Text className="md:text-sm mr-4 font-light text-typography-700 text-xs">
+                        <Text className="md:text-sm mr-4 font-light text-muted-foreground text-xs">
                           Receive updates by SMS
                         </Text>
                       </VStack>
@@ -299,7 +299,7 @@ const Fold3InteractiveContent = () => {
                   </HStack>
                   <HStack className="gap-5 items-center">
                     <Box
-                      className={`p-3 md:flex hidden bg-primary-600/10 ${getBorderStyle(
+                      className={`p-3 md:flex hidden bg-primary/90/10 ${getBorderStyle(
                         activeButton,
                         ''
                       )}`}
@@ -310,12 +310,12 @@ const Fold3InteractiveContent = () => {
                         className="text-primary-700"
                       />
                     </Box>
-                    <HStack className="border-b border-outline-100 pb-2 items-center flex-1">
+                    <HStack className="border-b border-border pb-2 items-center flex-1">
                       <VStack className="flex-1">
-                        <Text className="text-sm font-bold text-typography-900">
+                        <Text className="text-sm font-bold text-foreground">
                           Automatically Delete items
                         </Text>
-                        <Text className="md:text-sm mr-4 font-light text-typography-700 text-xs">
+                        <Text className="md:text-sm mr-4 font-light text-muted-foreground text-xs">
                           Delete activities older than 3 months
                         </Text>
                       </VStack>
@@ -328,16 +328,16 @@ const Fold3InteractiveContent = () => {
                 className={`border ${getBorderStyle(
                   activeButton,
                   ''
-                )} border-outline-100 p-6`}
+                )} border-border p-6`}
               >
-                <Text className="text-lg font-bold leading-normal text-typography-900">
+                <Text className="text-lg font-bold leading-normal text-foreground">
                   Upload Your Files
                 </Text>
                 <Text className="text-sm font-normal mt-1.5">
                   JPG, PNG, PDF, MP4, GIFs supported
                 </Text>
                 <Box
-                  className={`bg-background-50 mt-5 mb-6 border-dashed border border-outline-100 justify-center items-center py-6  ${getBorderStyle(
+                  className={`bg-muted mt-5 mb-6 border-dashed border border-border justify-center items-center py-6  ${getBorderStyle(
                     activeButton,
                     ''
                   )}`}
@@ -346,14 +346,14 @@ const Fold3InteractiveContent = () => {
                     className="md:h-[62px] md:w-[62px] w-14 h-14 text-background-900"
                     as={CloudUpload}
                   />
-                  <Text className="text-typography-700 text-sm font-normal text-center">
+                  <Text className="text-muted-foreground text-sm font-normal text-center">
                     Drag & drop your file here
                   </Text>
-                  <Text className="text-xs text-typography-700 font-normal mt-1.5">
+                  <Text className="text-xs text-muted-foreground font-normal mt-1.5">
                     or
                   </Text>
                   <Box
-                    className={`bg-primary-600/10 px-2 py-1 mt-1.5 ${getBorderStyle(
+                    className={`bg-primary/90/10 px-2 py-1 mt-1.5 ${getBorderStyle(
                       activeButton,
                       'button'
                     )}`}
@@ -363,7 +363,7 @@ const Fold3InteractiveContent = () => {
                     </Text>
                   </Box>
                 </Box>
-                <Text className="text-typography-900 text-sm font-bold">
+                <Text className="text-foreground text-sm font-bold">
                   Uploading 1 file
                 </Text>
                 <HStack className="gap-5 mt-3.5 items-center">
@@ -404,16 +404,16 @@ const Fold3InteractiveContent = () => {
             </VStack>
           </HStack>
           <Box
-            className={`items-start lg:items-center flex-col lg:flex-row justify-between p-4 sm:p-5 border border-outline-100 ${getBorderStyle(
+            className={`items-start lg:items-center flex-col lg:flex-row justify-between p-4 sm:p-5 border border-border ${getBorderStyle(
               activeButton,
               ''
             )} w-full`}
           >
             <VStack className="gap-1.5 w-full">
-              <Text className="text-typography-900 text-base font-bold leading-normal">
+              <Text className="text-foreground text-base font-bold leading-normal">
                 Updates Available
               </Text>
-              <Text className="text-sm font-normal leading-[21px] text-typography-700">
+              <Text className="text-sm font-normal leading-[21px] text-muted-foreground">
                 A new version is available. Please upgrade for the best
                 experience.
               </Text>
@@ -442,17 +442,17 @@ const Fold3InteractiveContent = () => {
             className={`${getBorderStyle(
               activeButton,
               ''
-            )} border-outline-100 border p-4 sm:p-5 gap-6 sm:gap-8 w-full`}
+            )} border-border border p-4 sm:p-5 gap-6 sm:gap-8 w-full`}
           >
             <VStack className="gap-1">
-              <Text className="text-typography-900 text-2xl font-bold leading-normal">
+              <Text className="text-foreground text-2xl font-bold leading-normal">
                 Login to your account
               </Text>
               <HStack className="gap-1.5">
-                <Text className="font-normal text-sm text-typography-700">
+                <Text className="font-normal text-sm text-muted-foreground">
                   Don't have an account?
                 </Text>
-                <Text className="font-medium text-sm text-typography-700">
+                <Text className="font-medium text-sm text-muted-foreground">
                   Sign up
                 </Text>
               </HStack>
@@ -460,7 +460,7 @@ const Fold3InteractiveContent = () => {
             <VStack className="gap-5">
               <FormControl className="gap-1.5">
                 <FormControlLabel>
-                  <FormControlLabelText className="text-sm font-medium leading-normal text-typography-900">
+                  <FormControlLabelText className="text-sm font-medium leading-normal text-foreground">
                     Email
                   </FormControlLabelText>
                 </FormControlLabel>
@@ -470,7 +470,7 @@ const Fold3InteractiveContent = () => {
                   <InputField
                     aria-label="abc@gmail.com"
                     placeholder="abc@gmail.com"
-                    className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+                    className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
                   />
                 </Input>
               </FormControl>
@@ -483,7 +483,7 @@ const Fold3InteractiveContent = () => {
                 isRequired={false}
               >
                 <FormControlLabel className="mb-1">
-                  <FormControlLabelText className="text-typography-900 text-sm">
+                  <FormControlLabelText className="text-foreground text-sm">
                     Password
                   </FormControlLabelText>
                 </FormControlLabel>
@@ -491,7 +491,7 @@ const Fold3InteractiveContent = () => {
                   <InputField
                     aria-label="password"
                     placeholder="Enter password"
-                    className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+                    className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
                     type={showPassword ? 'text' : 'password'}
                   />
                   <InputSlot className="pr-3" onPress={handleState}>
@@ -507,7 +507,7 @@ const Fold3InteractiveContent = () => {
                   <CheckboxIndicator>
                     <CheckboxIcon as={CheckIcon} />
                   </CheckboxIndicator>
-                  <CheckboxLabel className="text-sm font-normal leading-[21px] text-typography-900">
+                  <CheckboxLabel className="text-sm font-normal leading-[21px] text-foreground">
                     Remember me
                   </CheckboxLabel>
                 </Checkbox>
@@ -523,16 +523,16 @@ const Fold3InteractiveContent = () => {
               size="sm"
               action="primary"
             >
-              <ButtonText className="text-sm font-semibold leading-normal text-typography-0">
+              <ButtonText className="text-sm font-semibold leading-normal text-primary-foreground">
                 Login
               </ButtonText>
             </Button>
             <HStack className="justify-center flex-1 items-center">
-              <Divider className="h-0 flex-1 border-outline-100 border" />
-              <Text className="text-typography-600 text-center text-xs font-normal leading-normal px-2">
+              <Divider className="h-0 flex-1 border-border border" />
+              <Text className="text-muted-foreground text-center text-xs font-normal leading-normal px-2">
                 OR CONTINUE WITH
               </Text>
-              <Divider className="h-0 flex-1  border-outline-100 border" />
+              <Divider className="h-0 flex-1  border-border border" />
             </HStack>
             <HStack className="gap-3 items-start self-stretch">
               <Button
@@ -653,7 +653,7 @@ const Fold3InteractiveContent = () => {
             className={`border flex-1 justify-center ${getBorderStyle(
               activeButton,
               ''
-            )} p-4 sm:p-6 border-outline-100 w-full`}
+            )} p-4 sm:p-6 border-border w-full`}
           >
             <VStack space="md">
               <Avatar className="w-[74px] h-[74px] self-center">
@@ -665,7 +665,7 @@ const Fold3InteractiveContent = () => {
                 />
               </Avatar>
               <VStack className="gap-0.5">
-                <Heading className="text-typography-900 text-lg font-bold leading-normal self-center text-center">
+                <Heading className="text-foreground text-lg font-bold leading-normal self-center text-center">
                   John Smith
                 </Heading>
                 <Text className="text-primary-700 text-sm font-normal leading-[21px] self-center text-center">
@@ -673,16 +673,16 @@ const Fold3InteractiveContent = () => {
                 </Text>
               </VStack>
             </VStack>
-            <Text className="text-typography-700 text-center self-center text-sm font-normal leading-5 mt-4">
+            <Text className="text-muted-foreground text-center self-center text-sm font-normal leading-5 mt-4">
               Pushing the boundaries of reality with XR design wizardry ✨🚀
               #XRDesigner
             </Text>
             <HStack className="justify-center mt-7">
               <VStack className="items-center flex-1 gap-1">
-                <Text className="text-sm font-bold leading-[18px] text-typography-900">
+                <Text className="text-sm font-bold leading-[18px] text-foreground">
                   32
                 </Text>
-                <Text className="text-xs text-typography-900 font-normal leading-[18px]">
+                <Text className="text-xs text-foreground font-normal leading-[18px]">
                   posts
                 </Text>
               </VStack>
@@ -691,10 +691,10 @@ const Fold3InteractiveContent = () => {
                 className="mx-2.5 h-auto w-[0.954px] bg-outline-100"
               />
               <VStack className="items-center flex-1 gap-1">
-                <Text className="text-sm font-bold leading-[18px] text-typography-900">
+                <Text className="text-sm font-bold leading-[18px] text-foreground">
                   8,396
                 </Text>
-                <Text className="text-xs text-typography-900 font-normal leading-[18px]">
+                <Text className="text-xs text-foreground font-normal leading-[18px]">
                   followers
                 </Text>
               </VStack>
@@ -703,10 +703,10 @@ const Fold3InteractiveContent = () => {
                 className="mx-2.5 h-auto w-[0.954px] bg-outline-100"
               />
               <VStack className="items-center flex-1 gap-1">
-                <Text className="text-sm font-bold leading-[18px] text-typography-900">
+                <Text className="text-sm font-bold leading-[18px] text-foreground">
                   720
                 </Text>
-                <Text className="text-xs text-typography-900 font-normal leading-[18px]">
+                <Text className="text-xs text-foreground font-normal leading-[18px]">
                   follwing
                 </Text>
               </VStack>

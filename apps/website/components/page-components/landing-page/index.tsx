@@ -24,6 +24,13 @@ import SentryErrorHandler from './SentryErrorHandler';
 import RapidNativeBanner from './RapidNativeBanner';
 import HeroButtons from './HeroButtons';
 
+import MeetCreators from './MeetCreators';
+import { Newsletter } from './Newsletter';
+
+import Inspiration from './Inspiration';
+import PowerOfTailwind from './PowerOfTailwind';
+
+
 const App = ({ referrer }: { referrer: string }) => {
   return (
     <>
@@ -59,7 +66,21 @@ const App = ({ referrer }: { referrer: string }) => {
           </div>
           <div className="hidden md:block md:w-1/2"></div>
         </div>
-
+        <div className="max-w-[1440px] w-[85%] my-0 mx-auto">
+        <Fold1 />
+        <Fold2 />
+        <Example />
+        <Fold3 />
+        <PowerOfTailwind />
+        <Kitchensink />
+        <MCPServer />
+        <VadimStream />
+        <SocialMediaGridTestimonial />
+        <Inspiration />
+        <Newsletter newsletterAvatarData={developersData} />
+        <MeetCreators geekyantsLink="https://geekyants.com/hire-react-native-developers?utm_source=gluestack.io&utm_medium=referral&utm_campaign=partner_site" />
+        <HireTeam />
+</div>
         <Footer />
         <BadgeComponent />
         <ThemeToggleFab />

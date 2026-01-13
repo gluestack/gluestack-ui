@@ -43,7 +43,7 @@ export const SocialMediaTestimonial = ({
     <Link
       href={link}
       isExternal
-      className="p-5 h-full flex flex-col shadow-hard-5 rounded-lg border border-outline-100 flex-1"
+      className="p-5 h-full flex flex-col shadow-hard-5 rounded-lg border border-border flex-1"
     >
       <VStack className="flex-1">
         <HStack className="justify-between items-center">
@@ -61,7 +61,7 @@ export const SocialMediaTestimonial = ({
             </Avatar>
             <VStack className="gap-1">
               <HStack className="gap-2">
-                <Text className="text-sm text-typography-900 font-semibold font-roboto">
+                <Text className="text-sm text-foreground font-semibold font-roboto">
                   {authorName}
                 </Text>
                 {isVerified && (
@@ -73,7 +73,7 @@ export const SocialMediaTestimonial = ({
                   />
                 )}
               </HStack>
-              <Text className="text-sm text-typography-400 font-roboto">
+              <Text className="text-sm text-muted-foreground font-roboto">
                 {profileName}
               </Text>
             </VStack>
@@ -107,7 +107,7 @@ export const SocialMediaTestimonial = ({
       <Box className="mt-auto pt-2">
         <HStack>
           {timestamp && (
-            <Text className="  text-sm text-typography-500 leading-[21px]">
+            <Text className="  text-sm text-muted-foreground leading-[21px]">
               {timestamp}
             </Text>
           )}
@@ -118,7 +118,7 @@ export const SocialMediaTestimonial = ({
             />
           )}
           {date && (
-            <Text className="  text-sm text-typography-500 leading-[21px]">
+            <Text className="  text-sm text-muted-foreground leading-[21px]">
               {date}
             </Text>
           )}

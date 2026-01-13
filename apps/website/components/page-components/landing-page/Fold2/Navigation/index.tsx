@@ -81,20 +81,20 @@ const NavigationContent = ({ show }: { show: boolean }) => {
       className={`gap-6 w-full lg:flex-row flex-col ${show ? '' : 'hidden'}`}
     >
       <VStack className="gap-6 lg:w-[40%]">
-        <HStack className="bg-background-50 rounded-lg p-1 lg:flex hidden gap-1.5 items-center">
+        <HStack className="bg-muted rounded-lg p-1 lg:flex hidden gap-1.5 items-center">
           {['Daily', 'Weekly', 'Monthly'].map((buttonName) => (
             <Pressable
               key={buttonName}
               onPress={() => handleClick(buttonName)}
               className={` flex-1 gap-1.5 cursor-pointer ${
-                activeButton === buttonName ? 'bg-background-0' : ''
+                activeButton === buttonName ? 'bg-background' : ''
               } rounded-lg px-3.5 py-2 items-center`}
             >
               <Text
                 className={`text-sm ${
                   activeButton === buttonName
-                    ? 'text-typography-900 font-semibold'
-                    : 'text-typography-700 font-normal'
+                    ? 'text-foreground font-semibold'
+                    : 'text-muted-foreground font-normal'
                 } `}
               >
                 {buttonName}
@@ -122,7 +122,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
               <AlertDialogContent>
                 <AlertDialogHeader>
                   <Heading
-                    className="text-typography-950 font-semibold"
+                    className="text-foreground font-semibold"
                     size="md"
                   >
                     Are you sure you want to delete this post?
@@ -167,7 +167,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
               <PopoverContent>
                 <PopoverArrow />
                 <PopoverBody>
-                  <Text className="text-typography-900">
+                  <Text className="text-foreground">
                     Alex, Annie and many others are already enjoying the Pro
                     features, don&apos;t miss out on the fun!
                   </Text>
@@ -232,7 +232,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
 
         <VStack
           space="2xl"
-          className="border border-dashed border-outline-100 rounded-lg  py-[21px] px-[18px] gap-3"
+          className="border border-dashed border-border rounded-lg  py-[21px] px-[18px] gap-3"
         >
           <HStack space="md">
             <Avatar className="h-9 w-9">
@@ -292,7 +292,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
         </VStack>
       </VStack>
       <VStack className="lg:w-[60%]">
-        <Box className="border border-dashed border-outline-100 rounded-lg gap-5 p-6 md:flex hidden">
+        <Box className="border border-dashed border-border rounded-lg gap-5 p-6 md:flex hidden">
           <HStack className="gap-3">
             {[
               { name: 'Attachments', icon: Paperclip },
@@ -332,7 +332,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
               >
                 <HStack
                   className={`cursor-pointer ${
-                    selectedButton === button.name ? 'bg-background-50' : ''
+                    selectedButton === button.name ? 'bg-muted' : ''
                   } rounded-full px-6 py-3 gap-1.5 self-center items-center`}
                 >
                   <Icon
@@ -348,33 +348,33 @@ const NavigationContent = ({ show }: { show: boolean }) => {
         <Box className="justify-between items-center mt-[25px] md:flex hidden flex-row">
           <Button variant="outline" className="px-3 gap-1 h-8 border-0">
             <ButtonIcon className="h-4 w-4" as={ChevronLeftIcon} />
-            <ButtonText className="text-xs font-bold text-typography-900">
+            <ButtonText className="text-xs font-bold text-foreground">
               Prev
             </ButtonText>
           </Button>
           <HStack className="gap-4">
             <Button className="w-9 h-8">
-              <ButtonText className="text-typography-100 text-xs leading-normal font-bold px-[11px] py-0">
+              <ButtonText className="text-muted-foreground text-xs leading-normal font-bold px-[11px] py-0">
                 01
               </ButtonText>
             </Button>
             <Button className="w-9 h-8 border-0" variant="outline">
-              <ButtonText className="text-typography-900 text-xs leading-normal font-bold">
+              <ButtonText className="text-foreground text-xs leading-normal font-bold">
                 02
               </ButtonText>
             </Button>
             <Button className="w-9 h-8 border-0" variant="outline">
-              <ButtonText className="text-typography-900 text-xs leading-normal font-bold">
+              <ButtonText className="text-foreground text-xs leading-normal font-bold">
                 03
               </ButtonText>
             </Button>
             <Button className="w-9 h-8 border-0" variant="outline">
-              <ButtonText className="text-typography-900 text-xs leading-normal font-bold">
+              <ButtonText className="text-foreground text-xs leading-normal font-bold">
                 04
               </ButtonText>
             </Button>
             <Button className="w-9 h-8 border-0" variant="outline">
-              <ButtonText className="text-typography-900 text-xs leading-normal font-bold">
+              <ButtonText className="text-foreground text-xs leading-normal font-bold">
                 05
               </ButtonText>
             </Button>
@@ -383,14 +383,14 @@ const NavigationContent = ({ show }: { show: boolean }) => {
             </Button>
           </HStack>
           <Button variant="outline" className="px-3 gap-1 h-8 border-0">
-            <ButtonText className="text-xs font-bold text-typography-900">
+            <ButtonText className="text-xs font-bold text-foreground">
               Next
             </ButtonText>
             <ButtonIcon className="h-4 w-4" as={ChevronRightIcon} />
           </Button>
         </Box>
         <HStack className="gap-6 md:mt-[34px] md:flex-row flex-col">
-          <VStack className="gap-3 p-6 border border-dashed border-outline-100 rounded-lg md:flex-col flex-row">
+          <VStack className="gap-3 p-6 border border-dashed border-border rounded-lg md:flex-col flex-row">
             <Spinner size="large" color={colors.indigo[600]} />
             <Spinner size="large" color={colors.emerald[600]} />
             <Spinner size="large" color={colors.amber[600]} />
@@ -406,10 +406,10 @@ const NavigationContent = ({ show }: { show: boolean }) => {
               action="success"
               variant="outline"
             >
-              <AlertText className="text-base font-medium leading-[22px] text-typography-900">
+              <AlertText className="text-base font-medium leading-[22px] text-foreground">
                 Success!
               </AlertText>
-              <AlertText className="text-typography-700 text-sm font-normal leading-5">
+              <AlertText className="text-muted-foreground text-sm font-normal leading-5">
                 Your changes have been saved successfully.
               </AlertText>
             </Alert>

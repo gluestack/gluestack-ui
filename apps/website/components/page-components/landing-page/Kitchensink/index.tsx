@@ -15,9 +15,9 @@ import { kitchensink } from '@/components/docs-components/apps/appConfig';
 
 const Kitchensink = () => {
   return (
-    <Box className="gap-10 p-4 bg-background-50 mt-[120px] sm:mt-0 sm:bg-background-0 sm:p-0 sm:border-none border border-outline-100 rounded-lg sm:rounded-none">
+    <Box className="gap-10 p-4 bg-muted mt-[120px] sm:mt-0 sm:bg-background sm:p-0 sm:border-none border border-border rounded-lg sm:rounded-none">
       <VStack className="max-w-[1024px] sm:mt-[120px] gap-3">
-        <Heading className="text-3xl font-bold sm:leading-[54px] leading-9 text-typography-900 sm:text-4xl">
+        <Heading className="text-3xl font-bold sm:leading-[54px] leading-9 text-foreground sm:text-4xl">
           Kitchensink
         </Heading>
         <VStack className="gap-4">
@@ -43,14 +43,14 @@ const Kitchensink = () => {
           </NextLink>
         </VStack>
       </VStack>
-      <HStack className="relative flex-1 w-full h-full  gap-5 flex-col xl:flex-row sm:border sm:border-outline-200 rounded-lg">
+      <HStack className="relative flex-1 w-full h-full  gap-5 flex-col xl:flex-row sm:border sm:border-border rounded-lg">
         <Box className=" p-10 md:flex hidden">
           <VStack className="flex-1">
             <VStack className="web:md:flex md:flex hidden web:hidden">
-              <Heading className="text-4xl tracking-tighter font-bold sm:leading-[34px] leading-9 text-typography-900 ">
+              <Heading className="text-4xl tracking-tighter font-bold sm:leading-[34px] leading-9 text-foreground ">
                 Check out the App
               </Heading>
-              <Text className="text-xl font-normal mt-4 leading-[20px]  text-typography-900 ">
+              <Text className="text-xl font-normal mt-4 leading-[20px]  text-foreground ">
                 Scan the QR to open the app on your store
               </Text>
             </VStack>
@@ -88,10 +88,10 @@ const Kitchensink = () => {
                   <Text className="text-lg font-normal leading-[30px]  text-center md:flex hidden">
                     Scan the QR code
                   </Text>
-                  <Text className="text-xs font-normal leading-[30px]  text-typography-600 text-center md:flex hidden">
+                  <Text className="text-xs font-normal leading-[30px]  text-muted-foreground text-center md:flex hidden">
                     Available in
                   </Text>
-                  <VStack className="border border-outline-200 rounded-md items-center px-16 py-3 flex-1 gap-2 web:md:flex md:flex hidden web:hidden">
+                  <VStack className="border border-border rounded-md items-center px-16 py-3 flex-1 gap-2 web:md:flex md:flex hidden web:hidden">
                     <HStack className="flex-1 items-center justify-center gap-2">
                       <IOS />
                       <Text className="text-md font-normal leading-[30px] flex-1">

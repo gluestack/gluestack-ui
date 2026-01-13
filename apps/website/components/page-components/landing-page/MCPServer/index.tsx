@@ -75,7 +75,7 @@ const VadimStream = () => {
   return (
     <Box className="gap-20">
       <VStack className="max-w-[1024px] mt-[120px] gap-3">
-        <Heading className="text-3xl font-roboto font-bold sm:leading-[54px] leading-9 text-typography-900 sm:text-4xl">
+        <Heading className="text-3xl font-roboto font-bold sm:leading-[54px] leading-9 text-foreground sm:text-4xl">
           MCP Server
         </Heading>
         <Text className="text-lg font-roboto font-normal leading-[30px] lg:w-[75%]">
@@ -87,7 +87,7 @@ const VadimStream = () => {
           our demo to see how it accelerates development with gluestack-ui:
         </Text>
       </VStack>
-      <Box className="flex-1 border border-outline-200 rounded-lg overflow-hidden aspect-video md:max-w-[500px] lg:max-w-[600px] 2xl:max-w-[700px]">
+      <Box className="flex-1 border border-border rounded-lg overflow-hidden aspect-video md:max-w-[500px] lg:max-w-[600px] 2xl:max-w-[700px]">
         <iframe
           id="mcp-server-video"
           width="100%"

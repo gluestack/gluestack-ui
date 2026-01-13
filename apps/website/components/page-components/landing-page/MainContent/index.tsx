@@ -134,10 +134,10 @@ const MainContent = () => {
     <VStack className="gap-[120px]">
       {/* <Fold1/> */}
       <VStack className="mx-auto gap-5 max-w-[950px] pt-[140px] w-full my-0 items-center justify-center self-center">
-        <Text className="text-center text-typography-800 text-[72px] font-semibold leading-normal items-center">
+        <Text className="text-center text-foreground text-[72px] font-semibold leading-normal items-center">
           React & React Native Components & Patterns
         </Text>
-        <Text className="text-center text-typography-700 text-4xl font-normal">
+        <Text className="text-center text-muted-foreground text-4xl font-normal">
           Import from library & copy-paste styles all the way to victory
         </Text>
         <HStack className="gap-2.5 px-2.5 justify-center mb-12 pt-20">
@@ -205,20 +205,20 @@ const MainContent = () => {
           <HStack className="gap-6 w-full">
             {/* 1st */}
             <VStack className="gap-6 w-[50%]">
-              <VStack className="rounded-xl border-outline-200 border p-5 gap-6">
+              <VStack className="rounded-xl border-border border p-5 gap-6">
                 <Image
                   alt="dark mode"
                   className="w-auto h-[256px]"
                   src={PositiveThinking}
                 />
                 <VStack className="self-start">
-                  <Text className="text-sm font-normal leading-[21px] text-typography-700">
+                  <Text className="text-sm font-normal leading-[21px] text-muted-foreground">
                     May 15, 2023
                   </Text>
-                  <Heading className="mt-2 self-start text-base font-bold leading-normal text-typography-900">
+                  <Heading className="mt-2 self-start text-base font-bold leading-normal text-foreground">
                     The Power of Positive Thinking
                   </Heading>
-                  <Text className="mt-1.5 self-start text-sm font-normal leading-[21px] text-typography-700">
+                  <Text className="mt-1.5 self-start text-sm font-normal leading-[21px] text-muted-foreground">
                     Discover how the power of positive thinking can transform
                     your life, boost your confidence, and help you overcome
                     challenges. Explore practical tips and techniques to
@@ -237,11 +237,11 @@ const MainContent = () => {
                     />
                   </Avatar>
                   <VStack>
-                    <Heading className="text-sm font-bold leading-normal text-typography-900">
+                    <Heading className="text-sm font-bold leading-normal text-foreground">
                       John Smith
                     </Heading>
                     <Text
-                      className="text-sm font-normal leading-[21px] text-typography-700"
+                      className="text-sm font-normal leading-[21px] text-muted-foreground"
                       size="sm"
                     >
                       Motivational Speaker
@@ -250,26 +250,26 @@ const MainContent = () => {
                 </HStack>
               </VStack>
 
-              <VStack className="rounded-xl border-outline-200 p-5 border">
+              <VStack className="rounded-xl border-border p-5 border">
                 <Text className="self-stretch text-base font-semibold">
                   Share gluestack-ui with friends
                 </Text>
                 <Text className="self-stretch text-sm font-normal mt-2.5">
                   Email friends who have never tried gluestack-ui
                 </Text>
-                <Text className="mt-6 text-sm font-normal text-typography-900 mb-1.5">
+                <Text className="mt-6 text-sm font-normal text-foreground mb-1.5">
                   Send an invite
                 </Text>
                 <HStack className="gap-4">
                   <FormControl className="gap-1.5">
-                    <Input className="border-outline-300  py-0 rounded-md">
+                    <Input className="border-border  py-0 rounded-md">
                       <InputField
                         placeholder="abc@gmail.com"
-                        className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+                        className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
                       />
                     </Input>
                   </FormControl>
-                  <Button className="px-4 py-2 bg-primary-500">
+                  <Button className="px-4 py-2 bg-primary">
                     <ButtonText className="text-sm text-[#FCFCFC] font-semibold leading-[20px]">
                       Send
                     </ButtonText>
@@ -280,7 +280,7 @@ const MainContent = () => {
 
             {/* 2 */}
             <VStack className="gap-6">
-              <Box className="border border-outline-200 rounded-lg overflow-hidden">
+              <Box className="border border-border rounded-lg overflow-hidden">
                 <Table className="w-full">
                   <TableHeader className="">
                     <TableRow className="h-[70px]">
@@ -321,10 +321,10 @@ const MainContent = () => {
                           </CheckboxIndicator>
                         </Checkbox>
                       </TableData>
-                      <TableData className="px-6 py-5 text-sm leading-4 font-[Roboto] font-normal text-typography-900">
+                      <TableData className="px-6 py-5 text-sm leading-4 font-[Roboto] font-normal text-foreground">
                         John Doe
                       </TableData>
-                      <TableData className="px-6 py-5 text-sm leading-4 font-[Roboto] font-normal text-typography-900">
+                      <TableData className="px-6 py-5 text-sm leading-4 font-[Roboto] font-normal text-foreground">
                         +01 1234567890
                       </TableData>
                       <TableData className="px-6 py-5 shrink-0">
@@ -344,10 +344,10 @@ const MainContent = () => {
                           </CheckboxIndicator>
                         </Checkbox>
                       </TableData>
-                      <TableData className="px-6 py-5 text-sm leading-4 font-[Roboto] font-normal text-typography-900">
+                      <TableData className="px-6 py-5 text-sm leading-4 font-[Roboto] font-normal text-foreground">
                         Michael K
                       </TableData>
-                      <TableData className="px-6 py-5 text-sm leading-4 font-[Roboto] font-normal text-typography-900">
+                      <TableData className="px-6 py-5 text-sm leading-4 font-[Roboto] font-normal text-foreground">
                         +01 1234567890
                       </TableData>
                       <TableData className="px-6 py-5 text-sm">
@@ -367,10 +367,10 @@ const MainContent = () => {
                           </CheckboxIndicator>
                         </Checkbox>
                       </TableData>
-                      <TableData className="px-6 py-5 text-sm leading-4 font-[Roboto] font-normal text-typography-900">
+                      <TableData className="px-6 py-5 text-sm leading-4 font-[Roboto] font-normal text-foreground">
                         Martine D.
                       </TableData>
-                      <TableData className="px-6 py-5 text-sm leading-4 font-[Roboto] font-normal text-typography-900">
+                      <TableData className="px-6 py-5 text-sm leading-4 font-[Roboto] font-normal text-foreground">
                         +01 1234567890
                       </TableData>
                       <TableData className="px-6 py-5 text-sm">
@@ -387,29 +387,29 @@ const MainContent = () => {
                 src={ClickImage}
               />
               <HStack className="gap-4">
-                <HStack className="bg-background-950 p-5 rounded-lg flex-1">
+                <HStack className="bg-foreground p-5 rounded-lg flex-1">
                   <VStack>
-                    <Text className="text-sm font-medium leading-normal text-typography-50">
+                    <Text className="text-sm font-medium leading-normal text-background">
                       Weekly Views
                     </Text>
-                    <Text className="text-typography-50 text-2xl font-bold leading-normal">
+                    <Text className="text-background text-2xl font-bold leading-normal">
                       10,0000
                     </Text>
-                    <Text className="text-typography-400">
+                    <Text className="text-muted-foreground">
                       +1.5% from last week
                     </Text>
                   </VStack>
                   <Icon className="h-4 w-4 p-[10px]" as={EyeIcon} color="red" />
                 </HStack>
-                <HStack className="bg-background-50 p-5 rounded-lg flex-1">
+                <HStack className="bg-muted p-5 rounded-lg flex-1">
                   <VStack>
-                    <Text className="text-sm font-medium leading-normal text-typography-900">
+                    <Text className="text-sm font-medium leading-normal text-foreground">
                       Weekly Followers
                     </Text>
-                    <Text className="text-typography-900 text-2xl font-bold leading-normal">
+                    <Text className="text-foreground text-2xl font-bold leading-normal">
                       15790
                     </Text>
-                    <Text className="text-typography-700">
+                    <Text className="text-muted-foreground">
                       +11.5% from last week
                     </Text>
                   </VStack>
@@ -419,28 +419,28 @@ const MainContent = () => {
               <HStack className="justify-between items-center">
                 <Button variant="link" className="px-3 gap-1 h-8">
                   <ButtonIcon className="h-4 w-4" as={ChevronLeftIcon} />
-                  <ButtonText className="text-xs font-bold text-typography-900">
+                  <ButtonText className="text-xs font-bold text-foreground">
                     Prev
                   </ButtonText>
                 </Button>
                 <HStack className="gap-4">
                   <Button className="w-[36px] h-8">
-                    <ButtonText className="text-typography-100 text-xs leading-normal font-bold px-[11px] py-0">
+                    <ButtonText className="text-muted-foreground text-xs leading-normal font-bold px-[11px] py-0">
                       01
                     </ButtonText>
                   </Button>
                   <Button className="w-9 h-8" variant="link">
-                    <ButtonText className="text-typography-900 text-xs leading-normal font-bold">
+                    <ButtonText className="text-foreground text-xs leading-normal font-bold">
                       02
                     </ButtonText>
                   </Button>
                   <Button className="w-9 h-8" variant="link">
-                    <ButtonText className="text-typography-900 text-xs leading-normal font-bold">
+                    <ButtonText className="text-foreground text-xs leading-normal font-bold">
                       03
                     </ButtonText>
                   </Button>
                   <Button className="w-9 h-8" variant="link">
-                    <ButtonText className="text-typography-900 text-xs leading-normal font-bold">
+                    <ButtonText className="text-foreground text-xs leading-normal font-bold">
                       04
                     </ButtonText>
                   </Button>
@@ -449,7 +449,7 @@ const MainContent = () => {
                   </Button>
                 </HStack>
                 <Button variant="link" className="px-3 gap-1 h-8">
-                  <ButtonText className="text-xs font-bold text-typography-900">
+                  <ButtonText className="text-xs font-bold text-foreground">
                     Next
                   </ButtonText>
                   <ButtonIcon className="h-4 w-4" as={ChevronRightIcon} />
@@ -458,12 +458,12 @@ const MainContent = () => {
             </VStack>
           </HStack>
           {/* 3 */}
-          <HStack className="justify-between p-5 border border-outline-200 rounded-lg">
+          <HStack className="justify-between p-5 border border-border rounded-lg">
             <VStack>
-              <Text className="text-typography-900 text-lg font-bold leading-normal">
+              <Text className="text-foreground text-lg font-bold leading-normal">
                 Updates Available
               </Text>
-              <Text className="text-sm font-normal leading-[21px] text-typography-700">
+              <Text className="text-sm font-normal leading-[21px] text-muted-foreground">
                 A new version is available. Please upgrade for the best
                 experience.
               </Text>
@@ -484,16 +484,16 @@ const MainContent = () => {
         </VStack>
         {/* 4 */}
         <VStack className="gap-6 w-[30%]">
-          <VStack className="rounded-xl border-outline-200 border p-5 gap-8">
+          <VStack className="rounded-xl border-border border p-5 gap-8">
             <VStack className="gap-1">
-              <Text className="text-typography-900 text-2xl font-bold leading-normal">
+              <Text className="text-foreground text-2xl font-bold leading-normal">
                 Login to your account
               </Text>
               <HStack className="gap-1.5">
-                <Text className="font-normal text-sm text-typography-700">
+                <Text className="font-normal text-sm text-muted-foreground">
                   Don’t have an account?
                 </Text>
-                <Text className="font-medium text-sm text-typography-700">
+                <Text className="font-medium text-sm text-muted-foreground">
                   Sign up
                 </Text>
               </HStack>
@@ -501,27 +501,27 @@ const MainContent = () => {
             <VStack className="gap-5">
               <FormControl className="gap-1.5">
                 <FormControlLabel>
-                  <FormControlLabelText className="text-sm font-medium leading-normal text-typography-900">
+                  <FormControlLabelText className="text-sm font-medium leading-normal text-foreground">
                     Email
                   </FormControlLabelText>
                 </FormControlLabel>
-                <Input className="border-outline-300  py-0 rounded-md">
+                <Input className="border-border  py-0 rounded-md">
                   <InputField
                     placeholder="abc@gmail.com"
-                    className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+                    className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
                   />
                 </Input>
               </FormControl>
               <FormControl className="gap-1.5">
                 <FormControlLabel>
-                  <FormControlLabelText className="text-sm font-medium leading-normal text-typography-900">
+                  <FormControlLabelText className="text-sm font-medium leading-normal text-foreground">
                     Password
                   </FormControlLabelText>
                 </FormControlLabel>
-                <Input className="border-outline-300 py-0 rounded-md">
+                <Input className="border-border py-0 rounded-md">
                   <InputField
                     placeholder="Enter password"
-                    className="text-sm font-normal leading-[21px] text-typography-600"
+                    className="text-sm font-normal leading-[21px] text-muted-foreground"
                   />
                 </Input>
               </FormControl>
@@ -532,25 +532,25 @@ const MainContent = () => {
                       <CheckIcon />
                     </CheckboxIcon>
                   </CheckboxIndicator>
-                  <CheckboxLabel className="text-sm font-normal leading-[21px] text-typography-900">
+                  <CheckboxLabel className="text-sm font-normal leading-[21px] text-foreground">
                     Remember me
                   </CheckboxLabel>
                 </Checkbox>
                 <Link>
-                  <LinkText className="text-right text-xs font-medium leading-normal text-typography-700 no-underline">
+                  <LinkText className="text-right text-xs font-medium leading-normal text-muted-foreground no-underline">
                     Forgot Password?
                   </LinkText>
                 </Link>
               </HStack>
             </VStack>
             <Button size="sm" className="w-full bg-secondary-900">
-              <ButtonText className="text-sm font-semibold leading-normal text-typography-0">
+              <ButtonText className="text-sm font-semibold leading-normal text-primary-foreground">
                 Login
               </ButtonText>
             </Button>
             <HStack className="justify-center flex-1 items-center">
               <Divider className="h-0 flex-1 border-background-200 border" />
-              <Text className="text-typography-600 text-center text-xs font-normal leading-normal px-2">
+              <Text className="text-muted-foreground text-center text-xs font-normal leading-normal px-2">
                 OR CONTINUE WITH
               </Text>
               <Divider className="h-0 flex-1  border-background-200 border" />
@@ -583,8 +583,8 @@ const MainContent = () => {
             </HStack>
           </VStack>
 
-          <VStack className="border flex-1 rounded-xl border-outline-200 bg-white justify-center p-5">
-            <Text className="text-typography-900 text-2xl font-bold leading-7">
+          <VStack className="border flex-1 rounded-xl border-border bg-white justify-center p-5">
+            <Text className="text-foreground text-2xl font-bold leading-7">
               Buttons
             </Text>
             <HStack className="justify-between p-3">
@@ -717,17 +717,17 @@ const MainContent = () => {
             </HStack>
           </VStack>
           <HStack className="gap-6 w-[75%]">
-            <VStack className="p-6 gap-8 border border-dashed rounded-md border-outline-300 flex-1">
+            <VStack className="p-6 gap-8 border border-dashed rounded-md border-border flex-1">
               <FormControl className="gap-1.5">
                 <FormControlLabel>
-                  <FormControlLabelText className="text-sm font-medium leading-normal text-typography-900">
+                  <FormControlLabelText className="text-sm font-medium leading-normal text-foreground">
                     Text Input
                   </FormControlLabelText>
                 </FormControlLabel>
-                <Input className="border-outline-300 py-0 rounded-md">
+                <Input className="border-border py-0 rounded-md">
                   <InputField
                     placeholder="Placeholder Text"
-                    className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+                    className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
                   />
                 </Input>
               </FormControl>
@@ -740,14 +740,14 @@ const MainContent = () => {
                 isRequired={false}
               >
                 <FormControlLabel className="mb-1">
-                  <FormControlLabelText className="text-typography-900 text-base">
+                  <FormControlLabelText className="text-foreground text-base">
                     Password
                   </FormControlLabelText>
                 </FormControlLabel>
                 <Input className="text-center">
                   <InputField
                     placeholder="xxxxx"
-                    className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+                    className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
                     type={showPassword ? 'text' : 'password'}
                   />
                   <InputSlot className="pr-3" onPress={handleState}>
@@ -769,7 +769,7 @@ const MainContent = () => {
 
               <FormControl isRequired isInvalid>
                 <FormControlLabel>
-                  <FormControlLabelText className="text-typography-900 text-base">
+                  <FormControlLabelText className="text-foreground text-base">
                     Choose your favorite color
                   </FormControlLabelText>
                 </FormControlLabel>
@@ -796,15 +796,15 @@ const MainContent = () => {
                   </SelectPortal>
                 </Select>
                 <FormControlHelper>
-                  <FormControlHelperText className="text-sm font-normal text-typography-500">
+                  <FormControlHelperText className="text-sm font-normal text-muted-foreground">
                     You can only select one option
                   </FormControlHelperText>
                 </FormControlHelper>
               </FormControl>
 
-              <Input className="text-center border-outline-300 rounded-s">
+              <Input className="text-center border-border rounded-s">
                 <InputField
-                  className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+                  className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
                   placeholder="Search for employee"
                 />
                 <InputSlot className="pr-3">
@@ -817,7 +817,7 @@ const MainContent = () => {
             </VStack>
             <VStack className="gap-6 flex-1">
               <HStack className="gap-6 ">
-                <Box className="p-6 gap-8 border border-dashed rounded-md border-outline-300">
+                <Box className="p-6 gap-8 border border-dashed rounded-md border-border">
                   <RadioGroup
                     className="gap-6"
                     value={values}
@@ -828,10 +828,10 @@ const MainContent = () => {
                         <RadioIcon as={CircleIcon} />
                       </RadioIndicator>
                       <VStack>
-                        <RadioLabel className="text-sm font-normal text-typography-900">
+                        <RadioLabel className="text-sm font-normal text-foreground">
                           Extended coverage
                         </RadioLabel>
-                        <RadioLabel className="text-sm text-typography-500 font-normal">
+                        <RadioLabel className="text-sm text-muted-foreground font-normal">
                           Extra serivices included
                         </RadioLabel>
                       </VStack>
@@ -841,10 +841,10 @@ const MainContent = () => {
                         <RadioIcon as={CircleIcon} />
                       </RadioIndicator>
                       <VStack>
-                        <RadioLabel className="text-sm font-normal text-typography-900">
+                        <RadioLabel className="text-sm font-normal text-foreground">
                           Basic coverage
                         </RadioLabel>
-                        <RadioLabel className="text-sm text-typography-500 font-normal">
+                        <RadioLabel className="text-sm text-muted-foreground font-normal">
                           Nothing extra included
                         </RadioLabel>
                       </VStack>
@@ -852,8 +852,8 @@ const MainContent = () => {
                   </RadioGroup>
                 </Box>
 
-                <VStack className="p-6 flex-1 gap-[15px] border border-dashed rounded-md border-outline-300">
-                  <Text className="text-typography-900 text-base font-normal">
+                <VStack className="p-6 flex-1 gap-[15px] border border-dashed rounded-md border-border">
+                  <Text className="text-foreground text-base font-normal">
                     Select Toppings
                   </Text>
                   <VStack className="gap-3">
@@ -869,11 +869,11 @@ const MainContent = () => {
                         <CheckboxIndicator>
                           <CheckboxIcon as={CheckIcon} />
                         </CheckboxIndicator>
-                        <CheckboxLabel className="text-sm font-normal leading-[21px] text-typography-900">
+                        <CheckboxLabel className="text-sm font-normal leading-[21px] text-foreground">
                           Pepperoni
                         </CheckboxLabel>
                       </Checkbox>
-                      <Text className="text-sm font-normal text-typography-900">
+                      <Text className="text-sm font-normal text-foreground">
                         $0.5
                       </Text>
                     </HStack>
@@ -888,11 +888,11 @@ const MainContent = () => {
                         <CheckboxIndicator>
                           <CheckboxIcon as={CheckIcon} />
                         </CheckboxIndicator>
-                        <CheckboxLabel className="text-sm font-normal leading-[21px] text-typography-900">
+                        <CheckboxLabel className="text-sm font-normal leading-[21px] text-foreground">
                           Mushrooms
                         </CheckboxLabel>
                       </Checkbox>
-                      <Text className="text-sm font-normal text-typography-900">
+                      <Text className="text-sm font-normal text-foreground">
                         $1.0
                       </Text>
                     </HStack>
@@ -907,11 +907,11 @@ const MainContent = () => {
                         <CheckboxIndicator>
                           <CheckboxIcon as={CheckIcon} />
                         </CheckboxIndicator>
-                        <CheckboxLabel className="text-sm font-normal leading-[21px] text-typography-900">
+                        <CheckboxLabel className="text-sm font-normal leading-[21px] text-foreground">
                           Bacon
                         </CheckboxLabel>
                       </Checkbox>
-                      <Text className="text-sm font-normal text-typography-900">
+                      <Text className="text-sm font-normal text-foreground">
                         $2.0
                       </Text>
                     </HStack>
@@ -919,17 +919,17 @@ const MainContent = () => {
                 </VStack>
               </HStack>
               <HStack />
-              <VStack className="gap-5 rounded-lg bg-background-50 p-5 flex-1">
+              <VStack className="gap-5 rounded-lg bg-muted p-5 flex-1">
                 <HStack className="gap-3 flex-1">
                   <Icon
                     as={ChevronUpIcon}
                     className="h-6 w-6 text-background-800"
                   />
                   <VStack className="flex-1">
-                    <Text className="text-lg font-bold text-typography-900">
+                    <Text className="text-lg font-bold text-foreground">
                       What payment methods do you accept?
                     </Text>
-                    <Text className="text-lg font-normal text-typography-700">
+                    <Text className="text-lg font-normal text-muted-foreground">
                       We accept all major credit cards, including Visa,
                       Mastercard, and American Express.
                     </Text>
@@ -1004,7 +1004,7 @@ const MainContent = () => {
           }}
         >
           <Box
-            className={`flex-row items-center bg-background-950 py-1.5 rounded-tl-2xl rounded-tr-2xl hidden sm:${
+            className={`flex-row items-center bg-foreground py-1.5 rounded-tl-2xl rounded-tr-2xl hidden sm:${
               isMobile ? 'hidden' : 'flex'
             }`}
           >
@@ -1036,7 +1036,7 @@ const MainContent = () => {
               isMobile ? 'flex' : 'hidden'
             } flex-row justify-between items-center rounded-tl-2xl rounded-tr-2xl bg-pink-800 py-1.5`}
           >
-            <Text className="ml-5 text-xs font-bold text-typography-400">
+            <Text className="ml-5 text-xs font-bold text-muted-foreground">
               8:15
             </Text>
 
@@ -1079,9 +1079,9 @@ const MainContent = () => {
           </Box>
         </Resizable>
 
-        <Box className="-mt-12 rounded-lg border border-outline-200 p-4 w-auto self-start md:flex-row">
+        <Box className="-mt-12 rounded-lg border border-border p-4 w-auto self-start md:flex-row">
           <Box>
-            <Text className="text-typography-800 text-xl font-bold ">
+            <Text className="text-foreground text-xl font-bold ">
               Give it a shot!
             </Text>
 
@@ -1196,20 +1196,20 @@ const MainContent = () => {
             <HStack className="gap-6 flex-1 w-full">
               {/* 1st */}
               <VStack className="gap-6 flex-1 w-[50%]">
-                <VStack className="rounded-xl border-outline-200 border p-5 gap-6">
+                <VStack className="rounded-xl border-border border p-5 gap-6">
                   <Image
                     alt="dark mode"
                     className="w-auto h-[256px]"
                     src={PositiveThinking}
                   />
                   <VStack className="self-start">
-                    <Text className="text-sm font-normal leading-[21px] text-typography-700">
+                    <Text className="text-sm font-normal leading-[21px] text-muted-foreground">
                       May 15, 2023
                     </Text>
-                    <Heading className="mt-2 self-start text-base font-bold leading-normal text-typography-900">
+                    <Heading className="mt-2 self-start text-base font-bold leading-normal text-foreground">
                       The Power of Positive Thinking
                     </Heading>
-                    <Text className="mt-1.5 self-start text-sm font-normal leading-[21px] text-typography-700">
+                    <Text className="mt-1.5 self-start text-sm font-normal leading-[21px] text-muted-foreground">
                       Discover how the power of positive thinking can transform
                       your life, boost your confidence, and help you overcome
                       challenges. Explore practical tips and techniques to
@@ -1228,11 +1228,11 @@ const MainContent = () => {
                       />
                     </Avatar>
                     <VStack>
-                      <Heading className="text-sm font-bold leading-normal text-typography-900">
+                      <Heading className="text-sm font-bold leading-normal text-foreground">
                         John Smith
                       </Heading>
                       <Text
-                        className="text-sm font-normal leading-[21px] text-typography-700"
+                        className="text-sm font-normal leading-[21px] text-muted-foreground"
                         size="sm"
                       >
                         Motivational Speaker
@@ -1241,26 +1241,26 @@ const MainContent = () => {
                   </HStack>
                 </VStack>
 
-                <VStack className="rounded-xl border-outline-200 p-5 border">
+                <VStack className="rounded-xl border-border p-5 border">
                   <Text className="self-stretch text-base font-semibold">
                     Share gluestack-ui with friends
                   </Text>
                   <Text className="self-stretch text-sm font-normal mt-2.5">
                     Email friends who have never tried gluestack-ui
                   </Text>
-                  <Text className="mt-6 text-sm font-normal text-typography-900 mb-1.5">
+                  <Text className="mt-6 text-sm font-normal text-foreground mb-1.5">
                     Send an invite
                   </Text>
                   <HStack className="gap-4">
                     <FormControl className="gap-1.5">
-                      <Input className="border-outline-300  py-0 rounded-md">
+                      <Input className="border-border  py-0 rounded-md">
                         <InputField
                           placeholder="abc@gmail.com"
-                          className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+                          className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
                         />
                       </Input>
                     </FormControl>
-                    <Button className="px-4 py-2 bg-primary-500">
+                    <Button className="px-4 py-2 bg-primary">
                       <ButtonText className="text-sm text-[#FCFCFC] font-semibold leading-[20px]">
                         Send
                       </ButtonText>
@@ -1271,24 +1271,24 @@ const MainContent = () => {
 
               {/* 2 */}
               <VStack className="gap-6">
-                <Box className="border border-outline-200 rounded-lg py-7 px-6">
-                  <Text className="text-lg font-bold text-typography-900">
+                <Box className="border border-border rounded-lg py-7 px-6">
+                  <Text className="text-lg font-bold text-foreground">
                     Notification Settings
                   </Text>
-                  <Text className="text-sm font-normal text-typography-700">
+                  <Text className="text-sm font-normal text-muted-foreground">
                     Receive notifications about gluestack-ui updates.
                   </Text>
                   <VStack className="gap-5 mt-8">
                     <HStack className="gap-5 items-center">
-                      <Box className="p-3 bg-background-50 roun">
+                      <Box className="p-3 bg-muted roun">
                         <Icon size="xl" as={MailIcon} />
                       </Box>
                       <HStack className="border-b flex-1 pb-0.5">
                         <VStack className="flex-1">
-                          <Text className="text-sm font-bold text-typography-900">
+                          <Text className="text-sm font-bold text-foreground">
                             Email
                           </Text>
-                          <Text className="text-sm font-light text-typography-700">
+                          <Text className="text-sm font-light text-muted-foreground">
                             Receive email updates on comments you followed
                           </Text>
                         </VStack>
@@ -1309,15 +1309,15 @@ const MainContent = () => {
                       </HStack>
                     </HStack>
                     <HStack className="gap-5 items-center">
-                      <Box className="p-3 bg-background-50 roun">
+                      <Box className="p-3 bg-muted roun">
                         <Icon size="xl" as={Type} />
                       </Box>
                       <HStack className="border-b flex-1 pb-0.5">
                         <VStack className="flex-1">
-                          <Text className="text-sm font-bold text-typography-900">
+                          <Text className="text-sm font-bold text-foreground">
                             Text messages
                           </Text>
-                          <Text className="text-sm font-light text-typography-700">
+                          <Text className="text-sm font-light text-muted-foreground">
                             Receive updates by SMS
                           </Text>
                         </VStack>
@@ -1336,15 +1336,15 @@ const MainContent = () => {
                       </HStack>
                     </HStack>
                     <HStack className="gap-5 items-center">
-                      <Box className="p-3 bg-background-50 roun">
+                      <Box className="p-3 bg-muted roun">
                         <Icon size="xl" as={CircleDollarSign} />
                       </Box>
 
                       <VStack className="flex-1">
-                        <Text className="text-sm font-bold text-typography-900">
+                        <Text className="text-sm font-bold text-foreground">
                           Automatically Delete items
                         </Text>
-                        <Text className="text-sm font-light text-typography-700">
+                        <Text className="text-sm font-light text-muted-foreground">
                           Delete activities older than 3 months
                         </Text>
                       </VStack>
@@ -1362,26 +1362,26 @@ const MainContent = () => {
                     </HStack>
                   </VStack>
                 </Box>
-                <Box className="flex-1 border rounded-lg border-outline-200 p-6 ">
-                  <Text className="text-lg font-bold leading-normal text-typography-900">
+                <Box className="flex-1 border rounded-lg border-border p-6 ">
+                  <Text className="text-lg font-bold leading-normal text-foreground">
                     Upload Your Files
                   </Text>
                   <Text className="text-sm font-normal mt-1.5">
                     JPG, PNG, PDF, MP4, GIFs supported
                   </Text>
-                  <Box className="bg-background-50 mt-5 mb-6 border-dashed border justify-center items-center py-6 px-[70px] rounded-xl flex-1">
+                  <Box className="bg-muted mt-5 mb-6 border-dashed border justify-center items-center py-6 px-[70px] rounded-xl flex-1">
                     <Icon className="h-[62px] w-[62px]" as={CloudUpload} />
-                    <Text className="text-typography-700 text-sm font-normal">
+                    <Text className="text-muted-foreground text-sm font-normal">
                       Drag & drop your file here
                     </Text>
-                    <Text className="text-xs text-typography-700 font-normal">
+                    <Text className="text-xs text-muted-foreground font-normal">
                       or
                     </Text>
                     <Text className="text-xs font-normal px-2 py-1 bg-[#E7E8E7]">
                       Browse Files
                     </Text>
                   </Box>
-                  <Text className="text-typography-900 text-sm font-bold">
+                  <Text className="text-foreground text-sm font-bold">
                     Uploading 1 file
                   </Text>
                   <HStack className="gap-5 mt-3.5">
@@ -1409,12 +1409,12 @@ const MainContent = () => {
               </VStack>
             </HStack>
             {/* 3 */}
-            <HStack className="justify-between p-5 border border-outline-200 rounded-lg">
+            <HStack className="justify-between p-5 border border-border rounded-lg">
               <VStack>
-                <Text className="text-typography-900 text-lg font-bold leading-normal">
+                <Text className="text-foreground text-lg font-bold leading-normal">
                   Updates Available
                 </Text>
-                <Text className="text-sm font-normal leading-[21px] text-typography-700">
+                <Text className="text-sm font-normal leading-[21px] text-muted-foreground">
                   A new version is available. Please upgrade for the best
                   experience.
                 </Text>
@@ -1435,16 +1435,16 @@ const MainContent = () => {
           </VStack>
           {/* 4 */}
           <VStack className="gap-6 w-[30%]">
-            <VStack className="rounded-xl border-outline-200 border p-5 gap-8">
+            <VStack className="rounded-xl border-border border p-5 gap-8">
               <VStack className="gap-1">
-                <Text className="text-typography-900 text-2xl font-bold leading-normal">
+                <Text className="text-foreground text-2xl font-bold leading-normal">
                   Login to your account
                 </Text>
                 <HStack className="gap-1.5">
-                  <Text className="font-normal text-sm text-typography-700">
+                  <Text className="font-normal text-sm text-muted-foreground">
                     Don’t have an account?
                   </Text>
-                  <Text className="font-medium text-sm text-typography-700">
+                  <Text className="font-medium text-sm text-muted-foreground">
                     Sign up
                   </Text>
                 </HStack>
@@ -1452,27 +1452,27 @@ const MainContent = () => {
               <VStack className="gap-5">
                 <FormControl className="gap-1.5">
                   <FormControlLabel>
-                    <FormControlLabelText className="text-sm font-medium leading-normal text-typography-900">
+                    <FormControlLabelText className="text-sm font-medium leading-normal text-foreground">
                       Email
                     </FormControlLabelText>
                   </FormControlLabel>
-                  <Input className="border-outline-300  py-0 rounded-md">
+                  <Input className="border-border  py-0 rounded-md">
                     <InputField
                       placeholder="abc@gmail.com"
-                      className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+                      className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
                     />
                   </Input>
                 </FormControl>
                 <FormControl className="gap-1.5">
                   <FormControlLabel>
-                    <FormControlLabelText className="text-sm font-medium leading-normal text-typography-900">
+                    <FormControlLabelText className="text-sm font-medium leading-normal text-foreground">
                       Password
                     </FormControlLabelText>
                   </FormControlLabel>
-                  <Input className="border-outline-300 py-0 rounded-md">
+                  <Input className="border-border py-0 rounded-md">
                     <InputField
                       placeholder="Enter password"
-                      className="text-sm font-normal leading-[21px] text-typography-600"
+                      className="text-sm font-normal leading-[21px] text-muted-foreground"
                     />
                   </Input>
                 </FormControl>
@@ -1483,25 +1483,25 @@ const MainContent = () => {
                         <CheckIcon />
                       </CheckboxIcon>
                     </CheckboxIndicator>
-                    <CheckboxLabel className="text-sm font-normal leading-[21px] text-typography-900">
+                    <CheckboxLabel className="text-sm font-normal leading-[21px] text-foreground">
                       Remember me
                     </CheckboxLabel>
                   </Checkbox>
                   <Link>
-                    <LinkText className="text-right text-xs font-medium leading-normal text-typography-700 no-underline">
+                    <LinkText className="text-right text-xs font-medium leading-normal text-muted-foreground no-underline">
                       Forgot Password?
                     </LinkText>
                   </Link>
                 </HStack>
               </VStack>
               <Button size="sm" className="w-full bg-secondary-900">
-                <ButtonText className="text-sm font-semibold leading-normal text-typography-0">
+                <ButtonText className="text-sm font-semibold leading-normal text-primary-foreground">
                   Login
                 </ButtonText>
               </Button>
               <HStack className="justify-center flex-1 items-center">
                 <Divider className="h-0 flex-1 border-background-200 border" />
-                <Text className="text-typography-600 text-center text-xs font-normal leading-normal px-2">
+                <Text className="text-muted-foreground text-center text-xs font-normal leading-normal px-2">
                   OR CONTINUE WITH
                 </Text>
                 <Divider className="h-0 flex-1  border-background-200 border" />
@@ -1543,7 +1543,7 @@ const MainContent = () => {
               </HStack>
             </VStack>
 
-            <VStack className="border flex-1 justify-center rounded-xl p-6 border-outline-200 bg-white">
+            <VStack className="border flex-1 justify-center rounded-xl p-6 border-border bg-white">
               {/* <VStack className="justify-between"> */}
               <VStack space="md">
                 <Avatar className="w-[74px] h-[74px] self-center">
@@ -1555,15 +1555,15 @@ const MainContent = () => {
                   />
                 </Avatar>
                 <VStack>
-                  <Heading className="text-typography-900 text-lg font-bold leading-normal self-center text-center">
+                  <Heading className="text-foreground text-lg font-bold leading-normal self-center text-center">
                     John Smith
                   </Heading>
-                  <Text className="text-typography-700 text-sm font-normal leading-[21px] self-center text-center">
+                  <Text className="text-muted-foreground text-sm font-normal leading-[21px] self-center text-center">
                     john@example.com
                   </Text>
                 </VStack>
               </VStack>
-              <Text className="text-typography-700 text-center self-center text-sm font-normal leading-5">
+              <Text className="text-muted-foreground text-center self-center text-sm font-normal leading-5">
                 Pushing the boundaries of reality with XR design wizardry ✨🚀
                 #XRDesigner
               </Text>
@@ -1596,10 +1596,10 @@ const MainContent = () => {
       </VStack>
       {/*  */}
       <VStack>
-        <Heading className="text-5xl font-bold leading-[54px] mb-3 text-typography-900">
+        <Heading className="text-5xl font-bold leading-[54px] mb-3 text-foreground">
           The Power of Tailwind with NativeWind
         </Heading>
-        <Text className="text-typography-700 text-xl font-normal leading-[30px]">
+        <Text className="text-muted-foreground text-xl font-normal leading-[30px]">
           Lorem ipsum dolor sit amet consectetur. Pretium mauris maecenas
           lobortis libero orci orci pellentesque. Hendrerit penatibus mauris
           adipiscing egestas. Nec risus malesuada habitant diam fermentum. Enim
@@ -1614,7 +1614,7 @@ const MainContent = () => {
       </VStack>
       {/*  */}
       <VStack>
-        <Heading className="text-5xl font-bold leading-[54px] mb-3 text-typography-900">
+        <Heading className="text-5xl font-bold leading-[54px] mb-3 text-foreground">
           Inspiration
         </Heading>
         <Text>

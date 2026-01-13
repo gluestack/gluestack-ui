@@ -126,7 +126,7 @@ export default function ExampleInteractive() {
           >
             <Box
               className={`${
-                colorMode === 'light' ? 'bg-background-900' : 'bg-[#404040]'
+                colorMode === 'light' ? 'bg-foreground' : 'bg-[#404040]'
               } rounded-t-2xl py-1.5 overflow-hidden flex flex-row`}
             >
               <NextImage
@@ -166,14 +166,14 @@ export default function ExampleInteractive() {
         </Box>
       </Box>
 
-      <Box className="mt-4 rounded-lg border border-outline-100 p-4 w-auto self-start md:flex-row">
+      <Box className="mt-4 rounded-lg border border-border p-4 w-auto self-start md:flex-row">
         <Box>
-          <Text className="text-typography-800 text-xl font-bold ">
+          <Text className="text-foreground text-xl font-bold ">
             Give it a shot!
           </Text>
 
           <Box className="hidden md:flex">
-            <Text className="text-base font-normal text-typography-800 leading-6">
+            <Text className="text-base font-normal text-foreground leading-6">
               Try it in your browser or scan the QR code with the{' '}
             </Text>
             <HStack className="items-center">
@@ -195,7 +195,7 @@ export default function ExampleInteractive() {
             explore.
           </Text>
           <HStack className="items-center">
-            <Text className="text-typography-800">
+            <Text className="text-foreground">
               The source code is available on{' '}
             </Text>
             <Link
@@ -211,7 +211,7 @@ export default function ExampleInteractive() {
               checkPlatform(colorMode);
             }}
           >
-            <Icon as={ExternalLink} className="h-4 w-4 text-typography-700" />
+            <Icon as={ExternalLink} className="h-4 w-4 text-muted-foreground" />
             <Text className="ml-2.5 text-sm font-normal leading-[22px]">
               Open in new tab
             </Text>

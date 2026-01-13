@@ -134,7 +134,7 @@ const Fold1Content = () => {
           <HStack className="gap-6 md:flex-row flex-col w-full">
             {/* 1st */}
             <Box className="gap-6 w-full xl:flex hidden xl:w-[45%]">
-              <VStack className="rounded-lg border-outline-100 border p-5 gap-6 h-full justify-between">
+              <VStack className="rounded-lg border-border border p-5 gap-6 h-full justify-between">
                 <Box className="w-full h-[230px]">
                   <NextImage
                     alt="PositiveThinking image"
@@ -145,13 +145,13 @@ const Fold1Content = () => {
                   />
                 </Box>
                 <VStack className="">
-                  <Text className="text-sm font-normal leading-[21px] text-typography-700">
+                  <Text className="text-sm font-normal leading-[21px] text-muted-foreground">
                     May 15, 2023
                   </Text>
-                  <Heading className="mt-2 self-start text-base font-bold leading-normal text-typography-900">
+                  <Heading className="mt-2 self-start text-base font-bold leading-normal text-foreground">
                     The Power of Positive Thinking
                   </Heading>
-                  <Text className="mt-1.5 self-start text-sm font-normal leading-[21px] text-typography-700">
+                  <Text className="mt-1.5 self-start text-sm font-normal leading-[21px] text-muted-foreground">
                     Discover how the power of positive thinking can transform
                     your life, boost your confidence, and help you overcome
                     challenges. Explore practical tips and techniques to
@@ -170,11 +170,11 @@ const Fold1Content = () => {
                     />
                   </Avatar>
                   <VStack>
-                    <Heading className="text-sm font-bold leading-normal text-typography-900">
+                    <Heading className="text-sm font-bold leading-normal text-foreground">
                       John Smith
                     </Heading>
                     <Text
-                      className="text-sm font-normal leading-[21px] text-typography-700"
+                      className="text-sm font-normal leading-[21px] text-muted-foreground"
                       size="sm"
                     >
                       Motivational Speaker
@@ -183,18 +183,18 @@ const Fold1Content = () => {
                 </HStack>
               </VStack>
 
-              <HStack className="gap-4 rounded-lg border-outline-100 px-5 py-6 border h-[230px]">
-                <Box className="p-2 h-8 border rounded-lg border-outline-100">
+              <HStack className="gap-4 rounded-lg border-border px-5 py-6 border h-[230px]">
+                <Box className="p-2 h-8 border rounded-lg border-border">
                   <Icon
                     as={DownloadCloudIcon}
-                    className="w-4 h-4 text-typography-500"
+                    className="w-4 h-4 text-muted-foreground"
                   />
                 </Box>
                 <VStack>
-                  <Heading className="text-base font-semibold text-typography-900 leading-6 tracking-[0.2px]">
+                  <Heading className="text-base font-semibold text-foreground leading-6 tracking-[0.2px]">
                     System Error
                   </Heading>
-                  <Text className="mt-0.5 mb-4 text-sm font-normal leading-[20px] text-typography-700">
+                  <Text className="mt-0.5 mb-4 text-sm font-normal leading-[20px] text-muted-foreground">
                     Apologies for the inconvenience. Our team is actively
                     working on fixing it.
                   </Text>
@@ -215,7 +215,7 @@ const Fold1Content = () => {
                 <Box className="p-2 absolute right-2 top-2 cursor-pointer">
                   <Icon
                     as={CloseIcon}
-                    className="w-4 h-4 text-typography-500"
+                    className="w-4 h-4 text-muted-foreground"
                   />
                 </Box>
               </HStack>
@@ -223,12 +223,12 @@ const Fold1Content = () => {
 
             {/* 2 */}
             <Box className="gap-6 xl:gap-0 xl:justify-between xl:w-[55%] md:w-auto">
-              <Box className="border border-outline-100 sm:flex hidden rounded-lg overflow-hidden">
+              <Box className="border border-border sm:flex hidden rounded-lg overflow-hidden">
                 {/* @ts-ignore */}
                 <Table className="w-full">
                   <TableHeader>
                     {/* @ts-ignore */}
-                    <TableRow className="h-[70px] border-outline-100">
+                    <TableRow className="h-[70px] border-border">
                       {/* @ts-ignore */}
                       <TableHead className="h-[70px]">
                         <Checkbox
@@ -280,7 +280,7 @@ const Fold1Content = () => {
                         key={row.id}
                         //@ts-ignore
                         className={`border-b-0 h-[60px] ${
-                          checkboxes[row.id] ? 'bg-background-50' : ''
+                          checkboxes[row.id] ? 'bg-muted' : ''
                         }`}
                       >
                         <TableData>
@@ -299,11 +299,11 @@ const Fold1Content = () => {
                           </Checkbox>
                         </TableData>
                         {/* @ts-ignore */}
-                        <TableData className="px-6 py-5 text-sm leading-4 font-normal text-typography-900">
+                        <TableData className="px-6 py-5 text-sm leading-4 font-normal text-foreground">
                           {row.name}
                         </TableData>
                         {/* @ts-ignore */}
-                        <TableData className="px-6 py-5 text-sm leading-4 font-normal text-typography-900">
+                        <TableData className="px-6 py-5 text-sm leading-4 font-normal text-foreground">
                           {row.phone}
                         </TableData>
                         {/* @ts-ignore */}
@@ -360,15 +360,15 @@ const Fold1Content = () => {
                     />
                   </Box>
                 </HStack>
-                <HStack className="bg-background-50 p-5 flex-1 rounded-lg border border-outline-100 justify-between">
+                <HStack className="bg-muted p-5 flex-1 rounded-lg border border-border justify-between">
                   <VStack>
-                    <Text className="text-sm font-medium leading-normal text-typography-900">
+                    <Text className="text-sm font-medium leading-normal text-foreground">
                       Weekly Followers
                     </Text>
-                    <Text className="text-typography-900 text-2xl font-bold leading-normal">
+                    <Text className="text-foreground text-2xl font-bold leading-normal">
                       15790
                     </Text>
-                    <Text className="text-typography-700">
+                    <Text className="text-muted-foreground">
                       +11.5% from last week
                     </Text>
                   </VStack>
@@ -387,13 +387,13 @@ const Fold1Content = () => {
                   className="px-3 gap-1 h-8 border-0"
                 >
                   <ButtonIcon className="h-4 w-4" as={ChevronLeftIcon} />
-                  <ButtonText className="text-xs font-bold text-typography-900">
+                  <ButtonText className="text-xs font-bold text-foreground">
                     Prev
                   </ButtonText>
                 </Button>
                 <HStack className="gap-4">
                   <Button aria-label="01" size="xs" className="px-0 w-8">
-                    <ButtonText className="text-typography-100">01</ButtonText>
+                    <ButtonText className="text-muted-foreground">01</ButtonText>
                   </Button>
                   <Button
                     size="xs"
@@ -401,7 +401,7 @@ const Fold1Content = () => {
                     variant="outline"
                     aria-label="02"
                   >
-                    <ButtonText className="text-typography-900">02</ButtonText>
+                    <ButtonText className="text-foreground">02</ButtonText>
                   </Button>
                   <Button
                     size="xs"
@@ -409,7 +409,7 @@ const Fold1Content = () => {
                     variant="outline"
                     aria-label="03"
                   >
-                    <ButtonText className="text-typography-900">03</ButtonText>
+                    <ButtonText className="text-foreground">03</ButtonText>
                   </Button>
                   <Button
                     size="xs"
@@ -417,7 +417,7 @@ const Fold1Content = () => {
                     variant="outline"
                     aria-label="04"
                   >
-                    <ButtonText className="text-typography-900">04</ButtonText>
+                    <ButtonText className="text-foreground">04</ButtonText>
                   </Button>
                   <Button
                     aria-label="EllipsisIcon"
@@ -435,7 +435,7 @@ const Fold1Content = () => {
                   variant="outline"
                   className="px-3 gap-1 h-8 border-0"
                 >
-                  <ButtonText className="text-xs font-bold text-typography-900">
+                  <ButtonText className="text-xs font-bold text-foreground">
                     Next
                   </ButtonText>
                   <ButtonIcon className="h-4 w-4" as={ChevronRightIcon} />
@@ -444,12 +444,12 @@ const Fold1Content = () => {
             </Box>
           </HStack>
           {/* 3 */}
-          <Box className="md:items-center xl:flex hidden w-full items-start md:flex-row flex-col justify-between p-5 border border-outline-100 rounded-lg">
+          <Box className="md:items-center xl:flex hidden w-full items-start md:flex-row flex-col justify-between p-5 border border-border rounded-lg">
             <VStack className="gap-1.5">
-              <Text className="text-typography-900 text-base font-bold leading-normal">
+              <Text className="text-foreground text-base font-bold leading-normal">
                 Updates Available
               </Text>
-              <Text className="text-sm font-normal leading-[21px] text-typography-700">
+              <Text className="text-sm font-normal leading-[21px] text-muted-foreground">
                 A new version is available. Please upgrade for the best
                 experience.
               </Text>
@@ -466,7 +466,7 @@ const Fold1Content = () => {
               <Button
                 aria-label="Download"
                 size="sm"
-                className="bg-primary-500"
+                className="bg-primary"
               >
                 <ButtonText>Download</ButtonText>
               </Button>
@@ -475,16 +475,16 @@ const Fold1Content = () => {
         </VStack>
         {/* 4 */}
         <Box className="gap-6 w-full xl:w-1/3 md:w-[75%]">
-          <VStack className="rounded-lg border-outline-100 border p-5 gap-5">
+          <VStack className="rounded-lg border-border border p-5 gap-5">
             <VStack className="gap-1">
-              <Text className="text-typography-900 text-2xl font-bold leading-normal">
+              <Text className="text-foreground text-2xl font-bold leading-normal">
                 Login to your account
               </Text>
               <HStack className="gap-1.5">
-                <Text className="font-normal text-sm text-typography-700">
+                <Text className="font-normal text-sm text-muted-foreground">
                   Don&apos;t have an account?
                 </Text>
-                <Text className="font-medium text-sm text-typography-700">
+                <Text className="font-medium text-sm text-muted-foreground">
                   Sign up
                 </Text>
               </HStack>
@@ -492,7 +492,7 @@ const Fold1Content = () => {
             <VStack className="gap-5">
               <FormControl className="gap-1.5">
                 <FormControlLabel>
-                  <FormControlLabelText className="text-sm font-medium leading-normal text-typography-900">
+                  <FormControlLabelText className="text-sm font-medium leading-normal text-foreground">
                     Email
                   </FormControlLabelText>
                 </FormControlLabel>
@@ -500,7 +500,7 @@ const Fold1Content = () => {
                   <InputField
                     aria-labelledby="Email"
                     placeholder="abc@gmail.com"
-                    className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+                    className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
                   />
                 </Input>
               </FormControl>
@@ -514,7 +514,7 @@ const Fold1Content = () => {
                 isRequired={false}
               >
                 <FormControlLabel className="mb-1">
-                  <FormControlLabelText className="text-typography-900 text-sm">
+                  <FormControlLabelText className="text-foreground text-sm">
                     Password
                   </FormControlLabelText>
                 </FormControlLabel>
@@ -522,7 +522,7 @@ const Fold1Content = () => {
                   <InputField
                     aria-label="Password"
                     placeholder="Enter password"
-                    className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+                    className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
                     type={showPassword ? 'text' : 'password'}
                   />
                   <InputSlot className="pr-3" onPress={handleState}>
@@ -542,13 +542,13 @@ const Fold1Content = () => {
                   <CheckboxIndicator>
                     <CheckboxIcon as={CheckIcon} />
                   </CheckboxIndicator>
-                  <CheckboxLabel className="sm:text-sm text-xs font-normal leading-[21px] text-typography-900">
+                  <CheckboxLabel className="sm:text-sm text-xs font-normal leading-[21px] text-foreground">
                     Remember me
                   </CheckboxLabel>
                 </Checkbox>
                 <Box className="w-full">
                   <Link>
-                    <LinkText className="self-end text-xs font-normal leading-[21px] text-typography-700 no-underline">
+                    <LinkText className="self-end text-xs font-normal leading-[21px] text-muted-foreground no-underline">
                       Forgot Password?
                     </LinkText>
                   </Link>
@@ -556,16 +556,16 @@ const Fold1Content = () => {
               </HStack>
             </VStack>
             <Button aria-label="Login" size="sm" className="w-full">
-              <ButtonText className="text-sm font-semibold leading-normal text-typography-0">
+              <ButtonText className="text-sm font-semibold leading-normal text-primary-foreground">
                 Login
               </ButtonText>
             </Button>
             <HStack className="justify-center items-center">
-              <Divider className="h-0 flex-1 border-outline-100 border" />
-              <Text className="text-typography-600 text-center text-xs font-normal leading-normal px-2">
+              <Divider className="h-0 flex-1 border-border border" />
+              <Text className="text-muted-foreground text-center text-xs font-normal leading-normal px-2">
                 OR CONTINUE WITH
               </Text>
-              <Divider className="h-0 flex-1  border-outline-100 border" />
+              <Divider className="h-0 flex-1  border-border border" />
             </HStack>
             <HStack className="gap-3 items-start self-stretch">
               <Button
@@ -682,8 +682,8 @@ const Fold1Content = () => {
             </HStack>
           </VStack>
 
-          <Box className="border rounded-lg lg:flex border-outline-100 bg-background-0 justify-center p-5">
-            <Text className="text-typography-900 text-2xl font-bold leading-7 mb-[30px]">
+          <Box className="border rounded-lg lg:flex border-border bg-background justify-center p-5">
+            <Text className="text-foreground text-2xl font-bold leading-7 mb-[30px]">
               Buttons
             </Text>
             <HStack className="w-full mb-6">

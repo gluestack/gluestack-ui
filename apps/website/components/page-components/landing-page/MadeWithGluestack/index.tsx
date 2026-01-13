@@ -12,7 +12,7 @@ const MadeWidthGluestack = () => {
   return (
     <Box className="pointer-events-none mx-auto my-0 max-w-[1440px] w-[85%] justify-between right-0 web:sticky hidden lg:flex bottom-6">
       <HStack className="justify-end">
-        <Badge className="bg-background-950 rounded-xl z-50 p-3">
+        <Badge className="bg-foreground rounded-xl z-50 p-3">
           <NextImage
             alt="ui logo"
             src={
@@ -23,7 +23,7 @@ const MadeWidthGluestack = () => {
             width={24}
             height={24}
           />
-          <Text className="text-typography-50 ml-3 font-medium tracking-tight">
+          <Text className="text-background ml-3 font-medium tracking-tight">
             Made with gluestack-ui
           </Text>
         </Badge>

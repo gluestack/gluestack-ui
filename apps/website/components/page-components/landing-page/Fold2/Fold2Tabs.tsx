@@ -65,8 +65,8 @@ const HoriZontalTabNavigation = ({
     <>
       <Pressable
         onPress={handleFormsClick}
-        className={`gap-6 flex-row hover:bg-background-50/70 rounded-lg p-4 ${
-          isActive ? 'bg-background-50' : ''
+        className={`gap-6 flex-row hover:bg-muted/70 rounded-lg p-4 ${
+          isActive ? 'bg-muted' : ''
         }`}
       >
         <Image
@@ -77,7 +77,7 @@ const HoriZontalTabNavigation = ({
         />
         <VStack>
           <Text
-            className={`text-base font-bold no-underline text-typography-900`}
+            className={`text-base font-bold no-underline text-foreground`}
           >
             {tabName}
           </Text>
@@ -125,20 +125,20 @@ export default function Fold2Tabs() {
       </Box>
       {/*  For mobile view */}
       <VStack className="gap-6 xl:hidden">
-        <HStack className="bg-background-50 w-fit rounded-lg p-1 gap-1.5 items-center">
+        <HStack className="bg-muted w-fit rounded-lg p-1 gap-1.5 items-center">
           {tabsNameArray.map((buttonName: IActiveTab) => (
             <Pressable
               key={buttonName}
               onPress={() => handleClick(buttonName)}
               className={`gap-1.5 cursor-pointer ${
-                activeTab === buttonName ? 'bg-background-0' : ''
+                activeTab === buttonName ? 'bg-background' : ''
               } rounded-lg px-3.5 py-2 items-center`}
             >
               <Text
                 className={`text-xs ${
                   activeTab === buttonName
-                    ? 'text-typography-900'
-                    : 'text-typography-700'
+                    ? 'text-foreground'
+                    : 'text-muted-foreground'
                 } ${
                   activeTab === buttonName ? 'font-semibold' : 'text-normal'
                 }`}

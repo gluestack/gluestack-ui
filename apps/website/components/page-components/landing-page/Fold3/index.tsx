@@ -10,11 +10,11 @@ const Fold3 = () => {
       <VStack className="gap-3 w-full">
         <Heading
           size="2xl"
-          className="text-2xl sm:text-3xl font-bold sm:leading-[54px] leading-9 mb-3 text-typography-900 lg:text-4xl"
+          className="text-2xl sm:text-3xl font-bold sm:leading-[54px] leading-9 mb-3 text-foreground lg:text-4xl"
         >
           Customize all the way, don't lose control!
         </Heading>
-        <Text className="text-typography-700 text-base sm:text-lg font-normal leading-[28px] sm:leading-[30px] lg:w-[75%]">
+        <Text className="text-muted-foreground text-base sm:text-lg font-normal leading-[28px] sm:leading-[30px] lg:w-[75%]">
           Take full control of your code with copy-paste components for
           unlimited customization. Customize every UI component and element
           precisely, from aesthetics to interactive behaviours.

@@ -9,7 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 // const AnimationLayout = ({ children, ...props }) => {
 //   return (
-//     <Center className="flex flex-row bg-background-0 " {...props}>
+//     <Center className="flex flex-row bg-background " {...props}>
 //       {children}
 //     </Center>
 //   );
@@ -18,7 +18,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 // const AnimatedTextComp = ({ children, ...props }) => {
 //   return (
 //     <StyledAnimatedText
-//       className="text-md text-typography-900 selection:text-background-0 select-none  text-center absolute left-0"
+//       className="text-md text-foreground selection:text-background-0 select-none  text-center absolute left-0"
 //       {...props}
 //     >
 //       {children}
@@ -89,7 +89,7 @@ const Ticker = ({ h = '95vh', ...props }) => {
     );
   } else {
     return (
-      <Text className={`text-md text-typography-900 font-medium`}>
+      <Text className={`text-md text-foreground font-medium`}>
         {starsCount}
       </Text>
     );
@@ -97,7 +97,7 @@ const Ticker = ({ h = '95vh', ...props }) => {
   //   return (
   //     <>
   //       {starsCount !== 0 ? (
-  //         <Text className={`text-md text-typography-900 font-medium`}>
+  //         <Text className={`text-md text-foreground font-medium`}>
   //           {starsCount}
   //         </Text>
   //       ) : (

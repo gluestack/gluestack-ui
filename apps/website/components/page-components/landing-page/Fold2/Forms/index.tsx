@@ -71,10 +71,10 @@ const FormsContent = ({ show }: { show: boolean }) => {
     <Box
       className={`gap-6 w-full md:flex-row flex-col ${show ? '' : 'hidden'}`}
     >
-      <VStack className="p-6 gap-8 md:w-2/3 w-full border border-dashed rounded-lg border-outline-100">
+      <VStack className="p-6 gap-8 md:w-2/3 w-full border border-dashed rounded-lg border-border">
         <FormControl className="gap-1.5">
           <FormControlLabel>
-            <FormControlLabelText className="text-sm font-medium leading-normal text-typography-900">
+            <FormControlLabelText className="text-sm font-medium leading-normal text-foreground">
               Text Input
             </FormControlLabelText>
           </FormControlLabel>
@@ -82,7 +82,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
             <InputField
               aria-label="Text Input"
               placeholder="Placeholder Text"
-              className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+              className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
             />
           </Input>
         </FormControl>
@@ -95,7 +95,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
           isRequired={false}
         >
           <FormControlLabel className="mb-1">
-            <FormControlLabelText className="text-typography-900 text-sm">
+            <FormControlLabelText className="text-foreground text-sm">
               Password
             </FormControlLabelText>
           </FormControlLabel>
@@ -103,7 +103,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
             <InputField
               aria-label="xxxxx"
               placeholder="xxxxx"
-              className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+              className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
               type={showPassword ? 'text' : 'password'}
             />
             <InputSlot className="pr-3" onPress={handleState}>
@@ -127,7 +127,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
 
         <FormControl isRequired>
           <FormControlLabel>
-            <FormControlLabelText className="text-typography-900 text-sm">
+            <FormControlLabelText className="text-foreground text-sm">
               Choose your favorite color
             </FormControlLabelText>
           </FormControlLabel>
@@ -155,7 +155,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
             </SelectPortal>
           </Select>
           <FormControlHelper>
-            <FormControlHelperText className="text-sm font-normal text-typography-500">
+            <FormControlHelperText className="text-sm font-normal text-muted-foreground">
               You can only select one option
             </FormControlHelperText>
           </FormControlHelper>
@@ -164,7 +164,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
         <Input>
           <InputField
             aria-label="Search for employee"
-            className="text-sm font-normal leading-[21px] text-typography-600 h-full"
+            className="text-sm font-normal leading-[21px] text-muted-foreground h-full"
             placeholder="Search for employee"
           />
           <InputSlot className="pr-3">
@@ -177,17 +177,17 @@ const FormsContent = ({ show }: { show: boolean }) => {
       </VStack>
       <VStack className="gap-6 w-full">
         <HStack className="gap-6 md:flex-row flex-col">
-          <Box className="p-6 flex-1 gap-8 border border-dashed rounded-lg border-outline-100">
+          <Box className="p-6 flex-1 gap-8 border border-dashed rounded-lg border-border">
             <RadioGroup className="gap-6" value={values} onChange={setValues}>
               <Radio className="gap-2" value="Eng">
                 <RadioIndicator>
                   <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <VStack>
-                  <RadioLabel className="text-sm font-normal text-typography-900">
+                  <RadioLabel className="text-sm font-normal text-foreground">
                     Extended coverage
                   </RadioLabel>
-                  <RadioLabel className="text-sm text-typography-500 font-normal">
+                  <RadioLabel className="text-sm text-muted-foreground font-normal">
                     Extra serivices included
                   </RadioLabel>
                 </VStack>
@@ -197,10 +197,10 @@ const FormsContent = ({ show }: { show: boolean }) => {
                   <RadioIcon as={CircleIcon} />
                 </RadioIndicator>
                 <VStack>
-                  <RadioLabel className="text-sm font-normal text-typography-900">
+                  <RadioLabel className="text-sm font-normal text-foreground">
                     Basic coverage
                   </RadioLabel>
-                  <RadioLabel className="text-sm text-typography-500 font-normal">
+                  <RadioLabel className="text-sm text-muted-foreground font-normal">
                     Nothing extra included
                   </RadioLabel>
                 </VStack>
@@ -208,8 +208,8 @@ const FormsContent = ({ show }: { show: boolean }) => {
             </RadioGroup>
           </Box>
 
-          <VStack className="flex-1 p-6 gap-[15px] border border-dashed rounded-lg border-outline-100">
-            <Text className="text-typography-900 text-base font-normal">
+          <VStack className="flex-1 p-6 gap-[15px] border border-dashed rounded-lg border-border">
+            <Text className="text-foreground text-base font-normal">
               Select Toppings
             </Text>
             <VStack className="gap-3">
@@ -225,11 +225,11 @@ const FormsContent = ({ show }: { show: boolean }) => {
                   <CheckboxIndicator>
                     <CheckboxIcon as={CheckIcon} />
                   </CheckboxIndicator>
-                  <CheckboxLabel className="text-sm font-normal leading-[21px] text-typography-900">
+                  <CheckboxLabel className="text-sm font-normal leading-[21px] text-foreground">
                     Pepperoni
                   </CheckboxLabel>
                 </Checkbox>
-                <Text className="text-sm font-normal text-typography-900">
+                <Text className="text-sm font-normal text-foreground">
                   $0.5
                 </Text>
               </HStack>
@@ -244,11 +244,11 @@ const FormsContent = ({ show }: { show: boolean }) => {
                   <CheckboxIndicator>
                     <CheckboxIcon as={CheckIcon} />
                   </CheckboxIndicator>
-                  <CheckboxLabel className="text-sm font-normal leading-[21px] text-typography-900">
+                  <CheckboxLabel className="text-sm font-normal leading-[21px] text-foreground">
                     Mushrooms
                   </CheckboxLabel>
                 </Checkbox>
-                <Text className="text-sm font-normal text-typography-900">
+                <Text className="text-sm font-normal text-foreground">
                   $1.0
                 </Text>
               </HStack>
@@ -263,11 +263,11 @@ const FormsContent = ({ show }: { show: boolean }) => {
                   <CheckboxIndicator>
                     <CheckboxIcon as={CheckIcon} />
                   </CheckboxIndicator>
-                  <CheckboxLabel className="text-sm font-normal leading-[21px] text-typography-900">
+                  <CheckboxLabel className="text-sm font-normal leading-[21px] text-foreground">
                     Bacon
                   </CheckboxLabel>
                 </Checkbox>
-                <Text className="text-sm font-normal text-typography-900">
+                <Text className="text-sm font-normal text-foreground">
                   $2.0
                 </Text>
               </HStack>
@@ -285,7 +285,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
             className="w-full bg-transparent shadow-none"
           >
             <AccordionItem
-              className="bg-background-50 rounded-t-lg"
+              className="bg-muted rounded-t-lg"
               value="accordion1"
             >
               <AccordionHeader>
@@ -301,7 +301,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
                             className="mr-3"
                           />
                         )}
-                        <AccordionTitleText className="text-typography-900">
+                        <AccordionTitleText className="text-foreground">
                           How do I place an order?
                         </AccordionTitleText>
                       </>
@@ -318,7 +318,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
-              className="bg-background-50 rounded-b-lg"
+              className="bg-muted rounded-b-lg"
               value="accordion2"
             >
               <AccordionHeader>
@@ -334,7 +334,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
                             className="mr-3"
                           />
                         )}
-                        <AccordionTitleText className="text-typography-900">
+                        <AccordionTitleText className="text-foreground">
                           What payment methods do you accept?
                         </AccordionTitleText>
                       </>

@@ -61,7 +61,7 @@ export const TestimonialsCarousel = ({ testimonials }: Props) => {
   };
 
   return (
-    <Box className="bg-background-0 items-center xl:hidden">
+    <Box className="bg-background items-center xl:hidden">
       <Box className="w-[100%] relative items-center">
         <FlatList
           horizontal
@@ -110,7 +110,7 @@ const ScrollLeft = ({ handleScrollLeft, disabled }: any) => {
       }`}
     >
       <Pressable
-        className={`top-[45%] -left-10 p-2 rounded-full bg-background-50 hover:bg-background-100 ${
+        className={`top-[45%] -left-10 p-2 rounded-full bg-muted hover:bg-muted/50 ${
           disabled
             ? 'data-[disabled=true]:opacity-0'
             : 'data-[disabled=true]:opacity-100 '
@@ -134,7 +134,7 @@ const ScrollRight = ({ handleScrollRight, disabled }: any) => {
       }`}
     >
       <Pressable
-        className={`top-[45%] -right-10 p-2 rounded-full bg-background-50 hover:bg-background-100  ${
+        className={`top-[45%] -right-10 p-2 rounded-full bg-muted hover:bg-muted/50  ${
           disabled
             ? 'data-[disabled=true]:opacity-0'
             : 'data-[disabled=true]:opacity-100 '

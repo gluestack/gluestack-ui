@@ -133,7 +133,7 @@ export const Newsletter = ({
   return (
     <Box className="max-w-[1024px] mt-[120px]">
       <VStack className="gap-3">
-        <Heading className="text-3xl font-bold sm:leading-[54px] leading-9 mb-3 text-typography-900 sm:text-4xl">
+        <Heading className="text-3xl font-bold sm:leading-[54px] leading-9 mb-3 text-foreground sm:text-4xl">
           Get exclusive updates!
         </Heading>
         <Text className="text-lg font-normal leading-[30px] lg:w-[75%]">
@@ -218,7 +218,7 @@ export const Newsletter = ({
                     />
                   )}
                 </Avatar>
-                <Text className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-background-800 text-background-0 px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                <Text className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-muted text-background-0 px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                   {item.userName}
                 </Text>
               </Box>

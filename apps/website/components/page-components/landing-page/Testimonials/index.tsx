@@ -10,7 +10,7 @@ import { TestimonialsCarousel } from '../TestimonialsCarousel';
 
 export const SocialMediaGridTestimonial = () => {
   return (
-    <VStack className="bg-background-0 mt-40">
+    <VStack className="bg-background mt-40">
       <Box className="gap-2 md:gap-3 mb-10 md:mb-20">
         <Heading className="text-3xl md:text-4xl  ">
           Public Cheers for Us!

@@ -123,7 +123,7 @@ const ProductsDropdown = () => {
                   if (product.link === router.pathname) return;
                   return (
                     <Pressable
-                      className="rounded-sm hover:bg-background-950"
+                      className="rounded-sm hover:bg-foreground"
                       key={index}
                       pointerEvents={product.link ? 'auto' : 'none'}
                       focusable={false}
@@ -131,7 +131,7 @@ const ProductsDropdown = () => {
                       tabIndex={-1}
                     >
                       <Link
-                        className="flex-1 rounded-sm lg:p-4 p-2 hover:bg-background-950 items-start"
+                        className="flex-1 rounded-sm lg:p-4 p-2 hover:bg-foreground items-start"
                         isExternal={product.isExternal}
                         href={product.link}
                         onPress={() => setIsOpen(false)}
@@ -165,7 +165,7 @@ const ProductsDropdown = () => {
                             ))}
                           </HStack>
 
-                          <Text className="text-sm leading-[22px] text-typography-400">
+                          <Text className="text-sm leading-[22px] text-muted-foreground">
                             {product.description}
                           </Text>
                         </Box>
@@ -197,7 +197,7 @@ const ProductsDropdown = () => {
                           <Text className="leading-6">
                             Create your Design System
                           </Text>
-                          <Text className="text-sm leading-[22px] text-typography-400">
+                          <Text className="text-sm leading-[22px] text-muted-foreground">
                             Building you design system from the ground up.
                           </Text>
                         </VStack>
@@ -223,7 +223,7 @@ const ProductsDropdown = () => {
                           <Text className="leading-6">
                             gluestack for designers
                           </Text>
-                          <Text className="text-typography-400 text-sm leading-[22px]">
+                          <Text className="text-muted-foreground text-sm leading-[22px]">
                             Automated components for easy collaboration and zero
                             miscommunication with devs.
                           </Text>

@@ -13,7 +13,7 @@ function MeetCreators({ geekyantsLink }: { geekyantsLink: string }) {
     <Box className="mt-[120px] gap-12">
       <VStack className="lg:max-w-[768px]">
         <Box className="min-[425px]:items-center mb-3 gap-1 min-[425px]:flex-row">
-          <Heading className="text-3xl min-[425px]:text-2xl font-bold sm:leading-[54px] leading-9 text-typography-900 sm:text-4xl">
+          <Heading className="text-3xl min-[425px]:text-2xl font-bold sm:leading-[54px] leading-9 text-foreground sm:text-4xl">
             Created By
           </Heading>
           <HStack className="gap-1 items-center">
@@ -22,16 +22,16 @@ function MeetCreators({ geekyantsLink }: { geekyantsLink: string }) {
               className="h-[54px] w-[54px]"
               alt="GeekyAnts Logo"
             />
-            <Text className="text-3xl min-[425px]:text-2xl font-bold sm:leading-[54px] leading-9 text-typography-900 sm:text-4xl">
+            <Text className="text-3xl min-[425px]:text-2xl font-bold sm:leading-[54px] leading-9 text-foreground sm:text-4xl">
               GeɘkyAnts
             </Text>
           </HStack>
         </Box>
 
-        <Text className="text-lg font-bold leading-[30px] text-typography-700">
+        <Text className="text-lg font-bold leading-[30px] text-muted-foreground">
           An OSS-loving, community-driven team of React Native geeks!
         </Text>
-        <Text className="text-lg font-normal leading-[30px] mt-3 text-typography-700">
+        <Text className="text-lg font-normal leading-[30px] mt-3 text-muted-foreground">
           GeekyAnts is a team of React Native experts who love open-source and
           solving developer problems. We've been working on React Native since
           2015 and have designed and built{' '}
