@@ -71,11 +71,6 @@ const Header = ({
             </NextLink>
             {/* Desktop: Show Docs and Demo buttons */}
             <div className="hidden md:flex items-center gap-1.5 lg:gap-6">
-              {/* {isDocsRoute ? (
-                <div className="sm:mr-6 mr-4">
-                  <UiDocSearch />
-                </div>
-              ) : ( */}
               <NextLink
                 className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 href="/ui/docs"
@@ -121,14 +116,11 @@ const Header = ({
               onClick={() => {
                 setColorMode(colorMode === 'dark' ? 'light' : 'dark');
               }}
-              className="web:focus:shadow-none lg:flex hidden "
+              className="web:focus:shadow-none lg:flex hidden"
             >
-              <div className={`rounded-full items-center justify-center `}>
-                {colorMode === 'dark' ? (
-                  <Moon className="absolute h-[18px] w-[18px] scale-0 rotate-90 transition-all text-muted-foreground dark:scale-100 dark:rotate-0" />
-                ) : (
-                  <Sun className="h-[18px] w-[18px] scale-100 rotate-0 transition-all text-muted-foreground dark:scale-0 dark:-rotate-90" />
-                )}
+              <div className="relative rounded-full items-center justify-center w-[18px] h-[18px]">
+                <Sun className="absolute inset-0 h-[18px] w-[18px] rotate-0 scale-100 transition-all duration-300 text-muted-foreground dark:-rotate-180 dark:scale-0" />
+                <Moon className="absolute inset-0 h-[18px] w-[18px] rotate-180 scale-0 transition-all duration-300 text-muted-foreground dark:rotate-0 dark:scale-100" />
               </div>
             </button>
             {/* Mobile: Show hamburger menu button */}
