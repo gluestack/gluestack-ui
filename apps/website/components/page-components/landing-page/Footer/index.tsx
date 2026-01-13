@@ -7,7 +7,7 @@ import { Text } from '@/components/ui/text';
 import { Pressable } from '@/components/ui/pressable';
 import { Link } from '@/components/ui/link';
 import { Image } from '@/components/ui/image';
-import {useColorMode} from '@/app/provider';
+import { useColorMode } from '@/app/provider';
 
 const footerItems = [
   {
@@ -76,7 +76,7 @@ const footerItems = [
 const Footer = () => {
   const { colorMode } = useColorMode();
   return (
-    <Box className="justify-center max-w-[1440px] w-[85%] my-0 mx-auto relative border-t border-outline-100 mt-[60px]">
+    <Box className="justify-center max-w-[1440px] w-[85%] my-0 mx-auto relative border-t border-border mt-[60px]">
       <VStack className="pt-12 pb-7 mb-5 md:pb-12 md:mb-0">
         <HStack className="flex-1 flex-wrap">
           <VStack className="mb-9 xl:mb-0 flex-1 min-w-[400px]">
@@ -97,7 +97,7 @@ const Footer = () => {
                 />
               )}
             </Link>
-            <Text className="text-sm font-medium leading-normal text-typography-700">
+            <Text className="text-sm font-medium leading-normal text-muted-foreground">
               React & React Native Components & Patterns
             </Text>
             <HStack className="gap-2 mt-4">
@@ -105,7 +105,7 @@ const Footer = () => {
                 href="https://github.com/gluestack/gluestack-ui"
                 isExternal
                 aria-label="github link"
-                className="bg-background-50 p-1 rounded"
+                className="bg-muted p-1 rounded hover:bg-accent transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +124,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/company/gluestackio/"
                 isExternal
                 aria-label="linkedin link"
-                className="bg-background-50 p-1 rounded"
+                className="bg-muted p-1 rounded hover:bg-accent transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +143,7 @@ const Footer = () => {
                 href="https://bsky.app/profile/gluestack.io"
                 isExternal
                 aria-label="bluesky"
-                className="bg-background-50 p-1 rounded"
+                className="bg-muted p-1 rounded hover:bg-accent transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +161,7 @@ const Footer = () => {
                 href="https://stackoverflow.com/questions/tagged/gluestack"
                 isExternal
                 aria-label="stackoverflow link"
-                className="bg-background-50 p-1 rounded"
+                className="bg-muted p-1 rounded hover:bg-accent transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -180,7 +180,7 @@ const Footer = () => {
                 href="https://discord.com/invite/V5SU7HZSAQ"
                 isExternal
                 aria-label="discord link"
-                className="bg-background-50 p-1 rounded"
+                className="bg-muted p-1 rounded hover:bg-accent transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -199,7 +199,7 @@ const Footer = () => {
                 href="https://twitter.com/gluestack"
                 isExternal
                 aria-label="twitter link"
-                className="bg-background-50 p-1 justify-center rounded"
+                className="bg-muted p-1 justify-center rounded hover:bg-accent transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -238,7 +238,7 @@ const Footer = () => {
                 href="https://gluestack.forumify.io/"
                 isExternal
                 aria-label="twitter link"
-                className="bg-background-50 p-1 rounded"
+                className="bg-muted p-1 rounded hover:bg-accent transition-colors"
               >
                 <svg
                   width="24"
@@ -256,7 +256,7 @@ const Footer = () => {
             </HStack>
 
             <HStack className="items-center gap-1 mt-4">
-              <Text className="no-underline text-typography-700 text-sm font-medium leading-normal">
+              <Text className="no-underline text-muted-foreground text-sm font-medium leading-normal">
                 Created by
               </Text>
 
@@ -289,7 +289,7 @@ const Footer = () => {
               key={key1}
               space="md"
             >
-              <Text className="font-semibold leading-normal text-base text-typography-900 md:text-md">
+              <Text className="font-semibold leading-normal text-base text-foreground md:text-md">
                 {item.title}
               </Text>
               <VStack space="md" className="gap-3">
@@ -305,9 +305,9 @@ const Footer = () => {
                             <Text
                               className={`${
                                 hovered
-                                  ? 'text-typography-800 underline underline-offset-4 group-hover/link:underline'
-                                  : 'text-typography-700'
-                              } leading-normal text-sm`}
+                                  ? 'text-foreground underline underline-offset-4 group-hover/link:underline'
+                                  : 'text-muted-foreground'
+                              } leading-normal text-sm transition-colors`}
                             >
                               {link.title}
                             </Text>
