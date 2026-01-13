@@ -52,7 +52,7 @@ const Header = ({
   return (
     <div className="h-[80px] w-full sticky top-0 z-10 flex justify-center bg-white/80 dark:bg-background/80 backdrop-blur-md">
       {/* @ts-ignore */}
-      <Nav className="items-center md:px-[120px] px-8 w-full mx-auto py-6">
+      <Nav className="items-center md:px-[120px] px-10 w-full mx-auto py-6">
         <div className="flex flex-row justify-between items-center w-full">
           <div className="flex flex-row gap-6 items-center">
             <NextLink
