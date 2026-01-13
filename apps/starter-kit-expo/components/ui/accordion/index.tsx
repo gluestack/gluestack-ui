@@ -4,9 +4,8 @@ import {
   createAccordion,
   AccordionItemContext,
 } from '@gluestack-ui/core/accordion/creator';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@/components/ui/icon';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import React from 'react';
 import { Platform, Pressable, Text, TextProps, View } from 'react-native';
 import { AnimatedHeight } from './AnimatedHeight';
@@ -28,23 +27,23 @@ const accordionTitleTextStyle = tva({
 });
 
 const accordionIconStyle = tva({
-  base: 'text-muted-foreground fill-none h-[16px] w-[16px]',
+  base: 'text-muted-foreground fill-none h-4 w-4',
 });
 
 const accordionContentTextStyle = tva({
-  base: 'text-foreground text-sm font-normal ',
+  base: 'text-foreground text-sm font-normal',
 });
 
 const accordionHeaderStyle = tva({
-  base: ' py-4 m-0',
+  base: 'py-4 m-0',
 });
 
 const accordionContentStyle = tva({
-  base: 'pb-4',
+  base: 'pb-4 px-4 pt-1',
 });
 
 const accordionTriggerStyle = tva({
-  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50 ',
+  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10 px-4',
 });
 
 const Header = (
@@ -61,25 +60,6 @@ const UIAccordion = createAccordion({
   TitleText: Text,
   ContentText: Text,
   Content: View,
-});
-
-cssInterop(PrimitiveIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
-});
-
-cssInterop(H3, {
-  className: {
-    target: 'style',
-  },
 });
 
 type IAccordionProps = React.ComponentPropsWithoutRef<typeof UIAccordion>;

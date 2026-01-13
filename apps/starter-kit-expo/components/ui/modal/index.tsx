@@ -1,47 +1,34 @@
 'use client';
 import React from 'react';
 import { createModal } from '@gluestack-ui/core/modal/creator';
-import { Pressable, View, ScrollView, ViewStyle } from 'react-native';
-import {
-  Motion,
-  AnimatePresence,
-  createMotionAnimatedComponent,
-  MotionComponentProps,
-} from '@legendapp/motion';
+import { Pressable, View, ScrollView } from 'react-native';
+import Animated, {
+  FadeIn,
+  FadeOut,
+  ZoomIn,
+  ZoomOut,
+} from 'react-native-reanimated';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
-  MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
-
-const AnimatedPressable = createMotionAnimatedComponent(
-  Pressable
-) as React.ComponentType<IAnimatedPressableProps>;
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const AnimatedView = Animated.createAnimatedComponent(View);
 const SCOPE = 'MODAL';
 
-type IMotionViewProps = React.ComponentProps<typeof View> &
-  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
-
-const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
-
 const UIModal = createModal({
-  Root: withStyleContext(View, SCOPE),
+  Root: withStyleContext(View as any, SCOPE),
   Backdrop: AnimatedPressable,
-  Content: MotionView,
+  Content: AnimatedView,
   Body: ScrollView,
   CloseButton: Pressable,
   Footer: View,
   Header: View,
-  AnimatePresence: AnimatePresence,
 });
 
-cssInterop(AnimatedPressable, { className: 'style' });
-cssInterop(MotionView, { className: 'style' });
 
 const modalStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
@@ -57,11 +44,11 @@ const modalStyle = tva({
 });
 
 const modalBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default',
 });
 
 const modalContentStyle = tva({
-  base: 'bg-background-0 rounded-md overflow-hidden border border-outline-100 shadow-hard-2 p-6',
+  base: 'bg-background rounded-md overflow-hidden border border-border/80 shadow-hard-2 p-6',
   parentVariants: {
     size: {
       xs: 'w-[60%] max-w-[360px]',
@@ -78,7 +65,7 @@ const modalBodyStyle = tva({
 });
 
 const modalCloseButtonStyle = tva({
-  base: 'group/modal-close-button z-10 rounded data-[focus-visible=true]:web:bg-background-100 web:outline-0 cursor-pointer',
+  base: 'group/modal-close-button z-10 rounded data-[focus-visible=true]:web:bg-background/90 web:outline-0 cursor-pointer',
 });
 
 const modalHeaderStyle = tva({
@@ -129,24 +116,8 @@ const ModalBackdrop = React.forwardRef<
   return (
     <UIModal.Backdrop
       ref={ref}
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 0.5,
-      }}
-      exit={{
-        opacity: 0,
-      }}
-      transition={{
-        type: 'spring',
-        damping: 18,
-        stiffness: 250,
-        opacity: {
-          type: 'timing',
-          duration: 250,
-        },
-      }}
+      entering={FadeIn.duration(150)}
+      exiting={FadeOut.duration(150)}
       {...props}
       className={modalBackdropStyle({
         class: className,
@@ -164,26 +135,8 @@ const ModalContent = React.forwardRef<
   return (
     <UIModal.Content
       ref={ref}
-      initial={{
-        opacity: 0,
-        scale: 0.9,
-      }}
-      animate={{
-        opacity: 1,
-        scale: 1,
-      }}
-      exit={{
-        opacity: 0,
-      }}
-      transition={{
-        type: 'spring',
-        damping: 18,
-        stiffness: 250,
-        opacity: {
-          type: 'timing',
-          duration: 250,
-        },
-      }}
+      entering={ZoomIn.duration(150).springify().stiffness(700)}
+      exiting={ZoomOut.duration(150)}
       {...props}
       className={modalContentStyle({
         parentVariants: {
@@ -218,6 +171,7 @@ const ModalBody = React.forwardRef<
 >(function ModalBody({ className, ...props }, ref) {
   return (
     <UIModal.Body
+      scrollEnabled={false}
       ref={ref}
       {...props}
       className={modalBodyStyle({

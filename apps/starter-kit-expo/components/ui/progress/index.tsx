@@ -7,7 +7,6 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const SCOPE = 'PROGRESS';
@@ -15,9 +14,6 @@ export const UIProgress = createProgress({
   Root: withStyleContext(View, SCOPE),
   FilledTrack: View,
 });
-
-cssInterop(UIProgress, { className: 'style' });
-cssInterop(UIProgress.FilledTrack, { className: 'style' });
 
 const progressStyle = tva({
   base: 'bg-primary/20 relative h-2 w-full overflow-hidden rounded-full',
@@ -47,10 +43,7 @@ type IProgressFilledTrackProps = VariantProps<typeof progressFilledTrackStyle> &
 const Progress = React.forwardRef<
   React.ComponentRef<typeof UIProgress>,
   IProgressProps
->(function Progress(
-  { className, orientation = 'horizontal', ...props },
-  ref
-) {
+>(function Progress({ className, orientation = 'horizontal', ...props }, ref) {
   return (
     <UIProgress
       ref={ref}

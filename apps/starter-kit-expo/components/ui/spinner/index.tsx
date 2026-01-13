@@ -2,11 +2,6 @@
 import { ActivityIndicator } from 'react-native';
 import React from 'react';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
-
-cssInterop(ActivityIndicator, {
-  className: { target: 'style', nativeStyleToProp: { color: true } },
-});
 
 const spinnerStyle = tva({});
 

@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { createMenu } from '@gluestack-ui/core/menu/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import { Pressable, Text, View } from 'react-native';
 import Animated, {
   useSharedValue,
@@ -12,8 +11,8 @@ import Animated, {
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const AnimatedMenuRoot = React.forwardRef<
-  React.ComponentRef<typeof Animated.View>,
-  React.ComponentProps<typeof Animated.View> & { className?: string }
+  React.ComponentRef<typeof Animated.ScrollView>,
+  React.ComponentProps<typeof Animated.ScrollView> & { className?: string }
 >(function AnimatedMenuRoot({ className, style, ...props }, ref) {
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.20);
@@ -32,7 +31,8 @@ const AnimatedMenuRoot = React.forwardRef<
   }, [opacity, scale]);
 
   return (
-    <Animated.View
+    <Animated.ScrollView
+      showsVerticalScrollIndicator={false}
       ref={ref}
       style={[animatedStyle, style]}
       className={className}
@@ -57,11 +57,11 @@ const MenuAnimatePresence = React.forwardRef<
 });
 
 const menuStyle = tva({
-  base: 'rounded-md bg-popover text-popover-foreground border border-border p-1 shadow-hard-5',
+  base: 'rounded-md bg-popover text-popover-foreground border border-border p-1 shadow-hard-5 max-h-[300px] overflow-y-auto',
 });
 
 const menuItemStyle = tva({
-  base: 'min-w-[200px] p-3 flex-row items-center rounded data-[hover=true]:bg-accent data-[hover=true]:text-accent-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground data-[focus=true]:bg-accent data-[focus=true]:text-accent-foreground data-[focus=true]:web:outline-none data-[focus=true]:web:outline-0 data-[disabled=true]:opacity-40 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-ring data-[focus-visible=true]:web:outline data-[focus-visible=true]:web:cursor-pointer data-[disabled=true]:data-[focus=true]:bg-transparent',
+  base: 'min-w-fit p-3 flex-row items-center rounded data-[hover=true]:bg-accent data-[hover=true]:text-accent-foreground data-[active=true]:bg-accent data-[active=true]:text-accent-foreground data-[focus=true]:bg-accent data-[focus=true]:text-accent-foreground data-[focus=true]:web:outline-none data-[focus=true]:web:outline-0 data-[disabled=true]:opacity-40 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:outline-2 data-[focus-visible=true]:web:outline-ring data-[focus-visible=true]:web:outline data-[focus-visible=true]:web:cursor-pointer data-[disabled=true]:data-[focus=true]:bg-transparent',
 });
 
 const menuBackdropStyle = tva({
@@ -160,7 +160,6 @@ export const UIMenu = createMenu({
   Separator: Separator,
 });
 
-cssInterop(AnimatedMenuRoot, { className: 'style' });
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle> & { className?: string };

@@ -14,6 +14,10 @@ import { Slot, usePathname } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Fab, FabIcon } from '@/components/ui/fab';
 import { MoonIcon, SunIcon } from '@/components/ui/icon';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Uniwind } from 'uniwind';
+import { SafeAreaListener } from 'react-native-safe-area-context';
+import { ThemeSwitcher } from '@/components/custom/ThemeSwitcher';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -28,7 +32,6 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
-  const [styleLoaded, setStyleLoaded] = useState(false);
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
@@ -44,24 +47,43 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const pathname = usePathname();
-  const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
+  const [themeLoaded, setThemeLoaded] = useState(false);
+
+  // Load saved theme on mount
+  useEffect(() => {
+    const loadTheme = async () => {
+      try {
+        const savedTheme = await AsyncStorage.getItem('app-theme');
+        if (savedTheme && ['light', 'dark', 'system'].includes(savedTheme)) {
+          Uniwind.setTheme(savedTheme as 'light' | 'dark' | 'system');
+        }
+      } catch (error) {
+        console.error('Failed to load theme:', error);
+      } finally {
+        setThemeLoaded(true);
+      }
+    };
+
+    loadTheme();
+  }, []);
+
+  // Don't render until theme is loaded to prevent flash
+  if (!themeLoaded) {
+    return null;
+  }
 
   return (
-    <GluestackUIProvider mode={colorMode}>
-      <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
-        <Slot />
-        {pathname === '/' && (
-          <Fab
-            onPress={() =>
-              setColorMode(colorMode === 'dark' ? 'light' : 'dark')
-            }
-            className="m-6"
-            size="lg"
-          >
-            <FabIcon as={colorMode === 'dark' ? MoonIcon : SunIcon} />
-          </Fab>
-        )}
+    <SafeAreaListener
+      onChange={({ insets }) => {
+        Uniwind.updateInsets(insets);
+      }}
+    >
+      <ThemeProvider value={Uniwind.currentTheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <GluestackUIProvider>
+          <Slot />
+          {pathname === '/' && <ThemeSwitcher />}
+        </GluestackUIProvider>
       </ThemeProvider>
-    </GluestackUIProvider>
+    </SafeAreaListener>
   );
 }

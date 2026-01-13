@@ -39,7 +39,7 @@ export const config = {
 
     '--card': '23 23 23',
     '--foreground': '250 250 250',
-'--popover': '23 23 23',
+    '--popover': '23 23 23',
     '--popover-foreground': '250 250 250',
     '--secondary': '38 38 38',
     '--secondary-foreground': '250 250 250',
@@ -47,10 +47,10 @@ export const config = {
     '--destructive': '255 100 103',
     /* Error */
 
-    '--background':'10 10 10',
+    '--background': '10 10 10',
 
-    '--input': '255 255 255',
-    '--border': '255 255 255',
+    '--input': '46 46 46',
+    '--border': '46 46 46',
     '--ring': '115 115 115',
 
     '--accent': '38 38 38',

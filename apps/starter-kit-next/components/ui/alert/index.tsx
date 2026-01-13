@@ -7,9 +7,8 @@ import {
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import React from 'react';
-import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@/components/ui/icon';
 
 const SCOPE = 'ALERT';
 
@@ -17,8 +16,8 @@ const alertStyle = tva({
   base: 'relative w-full rounded-lg border px-4 py-3 flex-row gap-3 items-start',
   variants: {
     variant: {
-      default: 'bg-card border-border  dark:border-input/10',
-      destructive: 'bg-card border-border  dark:border-input/10',
+      default: 'bg-card border-border',
+      destructive: 'bg-card border-destructive',
     },
   },
 });
@@ -34,7 +33,7 @@ const alertTextStyle = tva({
 });
 
 const alertIconStyle = tva({
-  base: 'fill-none translate-y-0.5',
+  base: 'fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',
@@ -59,18 +58,6 @@ export const UIAlert = createAlert({
   Icon: UIIcon,
 });
 
-cssInterop(PrimitiveIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
-});
 
 type IAlertProps = Omit<
   React.ComponentPropsWithoutRef<typeof UIAlert>,

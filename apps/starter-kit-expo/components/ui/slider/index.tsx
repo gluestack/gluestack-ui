@@ -9,7 +9,7 @@ import {
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { withUniwind } from 'uniwind';
 
 const SCOPE = 'SLIDER';
 const Root = withStyleContext(View, SCOPE);
@@ -21,7 +21,7 @@ export const UISlider = createSlider({
   ThumbInteraction: View,
 });
 
-cssInterop(UISlider.Track, { className: 'style' });
+const StyledTrack = withUniwind(UISlider.Track);
 
 const sliderStyle = tva({
   base: 'justify-center items-center data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-none',
@@ -126,11 +126,11 @@ const SliderThumb = React.forwardRef<
   );
 });
 
-type ISliderTrackProps = React.ComponentProps<typeof UISlider.Track> &
+type ISliderTrackProps = React.ComponentProps<typeof StyledTrack> &
   VariantProps<typeof sliderTrackStyle>;
 
 const SliderTrack = React.forwardRef<
-  React.ComponentRef<typeof UISlider.Track>,
+  React.ComponentRef<typeof StyledTrack>,
   ISliderTrackProps
 >(function SliderTrack({ className, ...props }, ref) {
   const {
@@ -139,7 +139,7 @@ const SliderTrack = React.forwardRef<
   } = useStyleContext(SCOPE);
 
   return (
-    <UISlider.Track
+    <StyledTrack
       ref={ref}
       {...props}
       className={sliderTrackStyle({
@@ -149,6 +149,7 @@ const SliderTrack = React.forwardRef<
         },
         class: className,
       })}
+      hitSlop={10}
     />
   );
 });

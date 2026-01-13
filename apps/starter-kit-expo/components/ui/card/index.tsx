@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 
 const cardStyle = tva({
-  base: 'flex-col bg-background border border-border dark:border-input/10 gap-6 rounded-xl shadow-sm py-6',
+  base: 'flex-col bg-background border border-border gap-6 rounded-xl shadow-sm p-4',
 });
 
 type ICardProps = React.ComponentPropsWithoutRef<typeof View> &
