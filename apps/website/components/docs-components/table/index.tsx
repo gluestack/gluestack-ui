@@ -13,18 +13,15 @@ export const Table = (props: React.HTMLProps<HTMLTableElement>) => (
 export const TableHeader = (
   props: React.HTMLProps<HTMLTableSectionElement>
 ) => (
-  <thead
-    {...props}
-    className={`py-4 border-outline-50 bg-background-50 rounded-xl`}
-  />
+  <thead {...props} className={`py-4 border-border bg-muted/50 rounded-xl`} />
 );
 
 export const TableBody = (props: React.HTMLProps<HTMLTableSectionElement>) => (
-  <tbody {...props} className={`border border-outline-50 last:rounded-b-xl`} />
+  <tbody {...props} className={`border border-border last:rounded-b-xl`} />
 );
 
 export const TableRow = (props: React.HTMLProps<HTMLTableRowElement>) => (
-  <tr {...props} className={`border-b border-outline-50 last:rounded-b-xl`} />
+  <tr {...props} className={`border-b border-border last:rounded-b-xl`} />
 );
 
 export const TableCell = (props: React.HTMLProps<HTMLTableCellElement>) => (
