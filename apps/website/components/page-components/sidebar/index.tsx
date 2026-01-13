@@ -41,7 +41,7 @@ const SidebarSection = ({ section }: { section: Section }) => {
   return (
     <div className="flex gap-2 py-2 mb-2">
       <span
-        className={`text-typography-950 font-bold pl-3 uppercase font-geist-sans`}
+        className={`text-foreground font-bold pl-3 uppercase font-geist-sans`}
       >
         {section.title}
       </span>
@@ -56,7 +56,7 @@ const SidebarLink = ({ item }: { item: NavigationItem }) => {
   if (item.type === 'heading') {
     return (
       <div
-        className={`font-bold text-typography-900 py-2 pl-3 my-2 mt-4 uppercase font-geist-sans`}
+        className={`font-bold text-foreground py-2 pl-3 my-2 mt-4 uppercase font-geist-sans`}
       >
         {item.title}
       </div>
@@ -66,8 +66,8 @@ const SidebarLink = ({ item }: { item: NavigationItem }) => {
   return (
     <Link
       href={item.path || '#'}
-      className={`text-sm font-medium block py-2 px-3.5 mr-2 my-0.5 text-typography-800 hover:bg-background-100 pl-3 font-inter ${
-        isActive ? 'bg-background-100 border-l-[3px] border-primary-500' : ''
+      className={`text-sm font-medium block py-2 px-3.5 mr-2 my-0.5 text-muted-foreground hover:bg-accent hover:text-foreground pl-3 font-inter ${
+        isActive ? 'bg-accent text-foreground border-l-[3px] border-primary' : ''
       }`}
     >
       {item.title}
@@ -157,14 +157,14 @@ export default function Sidebar() {
     }
   };
   return (
-    <div className="ml-4 w-64  border-r border-outline-100 flex flex-col left-0 bg-white dark:bg-black h-[94vh] max-lg:hidden overflow-y-scroll fixed top-[60px] z-0">
+    <div className="ml-4 w-64  border-r border-border flex flex-col left-0 bg-white dark:bg-black h-[94vh] max-lg:hidden overflow-y-scroll fixed top-[60px] z-0">
       {/* Fixed parent dropdowns at top */}
-      <div className="flex-none py-4 border-b border-outline-100">
+      <div className="flex-none py-4 border-b border-border">
         {parentDropdowns.map((section: Section, index: number) => (
           <div
             key={index}
-            className={`mb-1 cursor-pointer hover:bg-background-100 rounded-md mr-2 ${
-              selectedSection === section.title ? 'bg-background-100' : ''
+            className={`mb-1 cursor-pointer hover:bg-accent rounded-md mr-2 ${
+              selectedSection === section.title ? 'bg-accent' : ''
             }`}
             onClick={() => handleSectionClick(section.title)}
           >
@@ -178,7 +178,7 @@ export default function Sidebar() {
                   }
                 />
               )}
-              <Text className="text-typography-950 font-medium">
+              <Text className="text-foreground font-medium">
                 {section.title}
               </Text>
             </div>
@@ -188,7 +188,7 @@ export default function Sidebar() {
 
       {/* Scrollable content section with all pages */}
       <div
-        className={`flex-1 overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent  [&::-webkit-scrollbar-thumb]:rounded-full ${isHovered ? '[&::-webkit-scrollbar-thumb]:bg-background-300' : '[&::-webkit-scrollbar-thumb]:bg-transparent'}`}
+        className={`flex-1 overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent  [&::-webkit-scrollbar-thumb]:rounded-full ${isHovered ? '[&::-webkit-scrollbar-thumb]:bg-muted' : '[&::-webkit-scrollbar-thumb]:bg-transparent'}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >

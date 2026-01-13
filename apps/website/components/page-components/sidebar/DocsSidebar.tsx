@@ -58,7 +58,7 @@ const ResponsiveSidebarLink = ({
 
   if (item.type === 'heading') {
     return (
-      <div className="font-bold text-typography-900 py-2 pl-3 my-2 mt-4 uppercase font-geist-sans">
+      <div className="font-bold text-foreground py-2 pl-3 my-2 mt-4 uppercase font-geist-sans">
         {item.title}
       </div>
     );
@@ -68,8 +68,8 @@ const ResponsiveSidebarLink = ({
     <Link
       href={item.path || '#'}
       onClick={onItemClick}
-      className={`text-sm font-medium block py-2 px-3.5 mr-2 my-0.5 text-typography-800 hover:bg-background-100 pl-3 font-inter ${
-        isActive ? 'bg-background-100 border-l-[3px] border-primary-500' : ''
+      className={`text-sm font-medium block py-2 px-3.5 mr-2 my-0.5 text-muted-foreground hover:bg-accent hover:text-foreground pl-3 font-inter ${
+        isActive ? 'bg-accent text-foreground border-l-[3px] border-primary' : ''
       }`}
     >
       <div className="flex items-center ">
@@ -107,7 +107,7 @@ const ResponsiveSidebarSection = ({
             }
           />
         )}
-        <Text className="text-typography-950 font-bold uppercase text-sm tracking-wide">
+        <Text className="text-foreground font-bold uppercase text-sm tracking-wide">
           {section.title}
         </Text>
       </div>
@@ -203,14 +203,14 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
         </DrawerCloseButton>
         <DrawerBody className="p-0 relative">
           {/* Fixed navigation at top */}
-          <div className="border-b border-outline-100 p-2">
+          <div className="border-b border-border p-2">
             {navigation.sections.map((section, index) => (
               <div
                 key={index}
                 className={`flex items-center gap-2 px-4 py-2 my-1 cursor-pointer rounded-md ${
                   selectedSection === section.title
-                    ? 'bg-background-50 text-typography-950'
-                    : 'text-typography-800 hover:bg-background-100 hover:text-typography-900'
+                    ? 'bg-accent text-foreground'
+                    : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
                 }`}
                 onClick={() => handleSectionClick(section)}
               >
