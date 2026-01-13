@@ -10,7 +10,7 @@ import {
 import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';
 import GluestackLogo from '@/public/svg/gluestack_logo.svg';
 import { Nav } from '@expo/html-elements';
-import { Moon, Sun,Menu } from 'lucide-react';
+import { Moon, Sun, Menu, Search } from 'lucide-react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -27,6 +27,7 @@ const Header = ({
   setIsOpenSidebar?: (value: boolean) => void;
 } = {}) => {
   const [showDrawer, setShowDrawer] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { colorMode, setColorMode } = useColorMode();
@@ -75,32 +76,46 @@ const Header = ({
                   <UiDocSearch />
                 </div>
               ) : ( */}
-                  <NextLink
-                    className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                    href="/ui/docs"
-                  >
-                    <div className="rounded-full flex items-center justify-center">
-                      <span className="leading-normal font-normal text-sm text-foreground/70">
-                        Docs
-                      </span>
-                    </div>
-                  </NextLink>
-                  <NextLink
-                    className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                    href="/blogs/"
-                  >
-                    <div className="rounded-full flex items-center justify-center">
-                      <span className="leading-normal font-normal text-sm text-foreground/70">
-                        Blog
-                      </span>
-                    </div>
-                  </NextLink>
-                  <ProductDropdown />
+              <NextLink
+                className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                href="/ui/docs"
+              >
+                <div className="rounded-full flex items-center justify-center">
+                  <span className="leading-normal font-normal text-sm text-foreground/70">
+                    Docs
+                  </span>
+                </div>
+              </NextLink>
+              <NextLink
+                className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                href="/blogs/"
+              >
+                <div className="rounded-full flex items-center justify-center">
+                  <span className="leading-normal font-normal text-sm text-foreground/70">
+                    Blog
+                  </span>
+                </div>
+              </NextLink>
+              <ProductDropdown />
               {/* )} */}
             </div>
           </div>
-          <div className="flex flex-row gap-6 items-center">
-            <UiDocSearch />
+          <div className="flex flex-row gap-3 items-center">
+            {/* Desktop: Show full search */}
+            <div className="hidden md:block">
+              <UiDocSearch />
+            </div>
+
+            {/* Mobile: Show search icon */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={() => setShowMobileSearch(true)}
+            >
+              <Search className="h-5 w-5 text-foreground" />
+            </Button>
+
             <button
               role="button"
               onClick={() => {
@@ -129,7 +144,7 @@ const Header = ({
         </div>
       </Nav>
 
-      {/* Mobile Sheet (Drawer) */}
+      {/* Mobile Menu Sheet (Drawer) */}
       <Sheet open={showDrawer} onOpenChange={setShowDrawer}>
         <SheetContent side="left" className="w-[300px]">
           <SheetHeader>
@@ -155,6 +170,18 @@ const Header = ({
                 </Button>
               </NextLink>
             </div>
+          </div>
+        </SheetContent>
+      </Sheet>
+
+      {/* Mobile Search Sheet */}
+      <Sheet open={showMobileSearch} onOpenChange={setShowMobileSearch}>
+        <SheetContent side="top" className="h-[200px]">
+          <SheetHeader>
+            <SheetTitle className="sr-only">Search Documentation</SheetTitle>
+          </SheetHeader>
+          <div className="pt-4">
+            <UiDocSearch />
           </div>
         </SheetContent>
       </Sheet>
