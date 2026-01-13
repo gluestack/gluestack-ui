@@ -179,7 +179,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   return (
     <div className="relative group mb-5">
       <pre
-        className={`language-${language} border border-outline-100 rounded-lg max-h-[400px] overflow-y-auto p-6 scrollbar-hide ${className}`}
+        className={`language-${language} border border-border rounded-lg max-h-[400px] overflow-y-auto p-6 scrollbar-hide ${className}`}
         style={themeStyles}
         suppressHydrationWarning
       >
@@ -189,16 +189,18 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
       </pre>
       <button
         onClick={handleCopy}
-        className="absolute top-2 right-2 text-xs px-4 py-1 rounded-md transition-opacity opacity-0 group-hover:opacity-100"
+        className="absolute top-2 right-2 text-xs px-4 py-1 rounded-md transition-opacity opacity-0 group-hover:opacity-100 hover:bg-accent"
       >
         <div className="flex items-center gap-2">
           {/* @ts-ignore */}
           <Icon
             as={CopyIcon}
             size="sm"
-            className={` ${copied ? 'text-green-500' : ''}`}
+            className={`text-muted-foreground ${copied ? 'text-green-500' : ''}`}
           />
-          {copied ? 'Copied!' : ''}
+          <span className="text-muted-foreground">
+            {copied ? 'Copied!' : ''}
+          </span>
         </div>
       </button>
     </div>
