@@ -20,6 +20,7 @@
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "16.1.1",
     "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-scroll-area": "^1.2.10",
     "@radix-ui/react-slot": "^1.2.4",
     "@react-aria/checkbox": "3.2.1",
     "@sendinblue/client": "^3.3.1",

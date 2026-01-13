@@ -9,12 +9,20 @@ import { Text } from '@/components/ui/text';
 import { Box } from '@/components/ui/box';
 import { ToggleColorModeButton } from '@/components/custom/color-mode-toggle-button';
 import {
-  Drawer,
-  DrawerBackdrop,
-  DrawerContent,
-  DrawerBody,
-  DrawerCloseButton,
-} from '@/components/ui/drawer';
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/web/sheet';
+import { HStack } from '@/components/ui/hstack';
+import { VStack } from '@/components/ui/vstack';
+import {
+  headerItems,
+  SidebarItemProps,
+  SidebarSectionProps,
+} from '@/components/page-components/landing-page/ResponsiveSidebar/sidebar-header-items';
+import { useColorMode } from '@/app/provider';
+import { ScrollArea } from '@/components/web/scroll-area';
 
 interface NavigationItem {
   type?: string;
@@ -45,6 +53,45 @@ interface Navigation {
     sections: Section[];
   };
 }
+
+const SidebarItem = ({
+  title,
+  link,
+  logo,
+  logoDark,
+  badge,
+  onItemClick,
+}: SidebarItemProps & { onItemClick: () => void }) => {
+  const { colorMode } = useColorMode();
+  return (
+    <Link href={link} onClick={onItemClick}>
+      <HStack className="hover:bg-accent px-3.5 py-2 gap-2 items-center">
+        <Box className="p-0.5 items-center justify-center bg-muted rounded">
+          {colorMode === 'light' ? logo : logoDark}
+        </Box>
+        <Text className="text-foreground">{title}</Text>
+        {badge && <Box className="ml-2">{badge}</Box>}
+      </HStack>
+    </Link>
+  );
+};
+
+const SidebarSection = ({
+  title,
+  items,
+  onItemClick,
+}: SidebarSectionProps & { onItemClick: () => void }) => {
+  return (
+    <Box className="mb-4">
+      <Text className="text-muted-foreground text-xs font-semibold uppercase px-3.5 mb-2">
+        {title}
+      </Text>
+      {items.map((item, index) => (
+        <SidebarItem key={index} {...item} onItemClick={onItemClick} />
+      ))}
+    </Box>
+  );
+};
 
 const ResponsiveSidebarLink = ({
   item,
@@ -188,64 +235,71 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
   );
 
   return (
-    <Drawer
-      isOpen={isOpen}
-      size="full"
-      anchor="left"
-      onClose={() => {
-        setIsOpenSidebar(false);
-      }}
-    >
-      <DrawerBackdrop />
-      <DrawerContent className="lg:hidden">
-        <DrawerCloseButton>
-          <Icon as={CloseIcon} />
-        </DrawerCloseButton>
-        <DrawerBody className="p-0 relative">
-          {/* Fixed navigation at top */}
-          <div className="border-b border-border p-2">
-            {navigation.sections.map((section, index) => (
-              <div
-                key={index}
-                className={`flex items-center gap-2 px-4 py-2 my-1 cursor-pointer rounded-md ${
-                  selectedSection === section.title
-                    ? 'bg-accent text-foreground'
-                    : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
-                }`}
-                onClick={() => handleSectionClick(section)}
-              >
-                {section.icons && (
-                  <Icon
-                    as={
-                      require('lucide-react-native')[
-                        section.icons.name ?? 'CircleHelp'
-                      ]
-                    }
-                    className="w-5 h-5"
-                  />
-                )}
-                <Text className="font-medium">{section.title}</Text>
-              </div>
-            ))}
-          </div>
-
-          {/* Selected section content */}
-          {selectedSectionData && (
-            <div className="p-2">
-              <ResponsiveSidebarSection
-                section={selectedSectionData}
-                onItemClick={() => setIsOpenSidebar(false)}
-              />
+    <Sheet open={isOpen} onOpenChange={setIsOpenSidebar}>
+      <SheetContent side="left" className="w-full sm:max-w-md p-0">
+        <SheetHeader className="sr-only">
+          <SheetTitle>Documentation Navigation</SheetTitle>
+        </SheetHeader>
+        <ScrollArea className="h-full">
+          <div className="flex flex-col h-full">
+            {/* Fixed navigation at top */}
+            <div className="border-b border-border p-2 sticky top-0 bg-background z-10">
+              {navigation.sections.map((section, index) => (
+                <div
+                  key={index}
+                  className={`flex items-center gap-2 px-4 py-2 my-1 cursor-pointer rounded-md ${
+                    selectedSection === section.title
+                      ? 'bg-accent text-foreground'
+                      : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
+                  }`}
+                  onClick={() => handleSectionClick(section)}
+                >
+                  {section.icons && (
+                    <Icon
+                      as={
+                        require('lucide-react-native')[
+                          section.icons.name ?? 'CircleHelp'
+                        ]
+                      }
+                      className="w-5 h-5"
+                    />
+                  )}
+                  <Text className="font-medium">{section.title}</Text>
+                </div>
+              ))}
             </div>
-          )}
-          {/* color mode toggle button start */}
-          <div className="absolute bottom-0 right-0 p-4">
-            <ToggleColorModeButton />
+
+            {/* Selected section content */}
+            {selectedSectionData && (
+              <div className="p-2 flex-1">
+                <ResponsiveSidebarSection
+                  section={selectedSectionData}
+                  onItemClick={() => setIsOpenSidebar(false)}
+                />
+              </div>
+            )}
+
+            {/* Additional sidebar sections from homepage */}
+            <div className="border-t border-border mt-4">
+              <VStack className="gap-2 px-2 py-4">
+                {headerItems.map((headerItem, index) => (
+                  <SidebarSection
+                    key={index}
+                    {...headerItem}
+                    onItemClick={() => setIsOpenSidebar(false)}
+                  />
+                ))}
+              </VStack>
+            </div>
+
+            {/* Color mode toggle button */}
+            <div className="border-t border-border p-4 flex justify-end">
+              <ToggleColorModeButton />
+            </div>
           </div>
-          {/* color mode toggle button end */}
-        </DrawerBody>
-      </DrawerContent>
-    </Drawer>
+        </ScrollArea>
+      </SheetContent>
+    </Sheet>
   );
 };
 export default DocsSidebar;

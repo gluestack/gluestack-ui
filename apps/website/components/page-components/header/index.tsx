@@ -31,9 +31,6 @@ const Header = ({
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { colorMode, setColorMode } = useColorMode();
-  // const context = useContext(LayoutContext);
-  // const isOpenSidebar = propsIsOpenSidebar ?? context.isOpenSidebar;
-  // const setIsOpenSidebar = propsSetIsOpenSidebar ?? context.setIsOpenSidebar;
 
   useEffect(() => {
     setMounted(true);
@@ -127,8 +124,14 @@ const Header = ({
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
-              onClick={() => setShowDrawer(true)}
+              className="lg:hidden"
+              onClick={() => {
+                if (isDocsRoute && propsSetIsOpenSidebar) {
+                  propsSetIsOpenSidebar(true);
+                } else {
+                  setShowDrawer(true);
+                }
+              }}
             >
               <Menu className="h-5 w-5 text-foreground" />
             </Button>

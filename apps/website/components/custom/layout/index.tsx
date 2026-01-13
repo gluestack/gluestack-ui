@@ -96,7 +96,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   const docsLayoutRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   // Check if current route is documentation
-  const isDocsRoute = pathname?.includes('/docs/');
+  const isDocsRoute = pathname?.includes('/ui/docs/');
 
   const fluidLayout =
     pathname.includes('docs/apps') ||
@@ -130,7 +130,10 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           minHeight: '-webkit-fill-available', // iOS Safari specific fix
         }}
       >
-        <Header />
+        <Header
+          isOpenSidebar={isOpenSidebar}
+          setIsOpenSidebar={setIsOpenSidebar}
+        />
         <div
           className={`md:flex justify-between mx-auto ${
             fluidLayout ? '' : 'lg:ml-36 md:w-[85%]'
