@@ -32,40 +32,40 @@ export const docsComponents = {
   h1: (props: any) => (
     <Heading
       size="3xl"
-      className="font-semibold text-4xl text-typography-900 mt-8 mb-6 font-geist-sans tracking-tight"
+      className="font-semibold text-4xl text-foreground mt-8 mb-6 font-geist-sans tracking-tight"
       {...props}
     />
   ),
   h2: (props: any) => (
     <Heading
       size="2xl"
-      className="text-2xl font-semibold text-typography-800 mt-8 mb-4 font-geist-sans"
+      className="text-2xl font-semibold text-foreground mt-8 mb-4 font-geist-sans"
       {...props}
     />
   ),
   h3: (props: any) => (
     <Heading
       size="xl"
-      className="text-xl font-semibold text-typography-800 mt-6 mb-3 font-geist-sans"
+      className="text-xl font-semibold text-foreground mt-6 mb-3 font-geist-sans"
       {...props}
     />
   ),
   h4: (props: any) => (
     <Heading
       size="lg"
-      className="text-lg font-semibold text-typography-800 mt-5 mb-2 font-geist-sans"
+      className="text-lg font-semibold text-foreground mt-5 mb-2 font-geist-sans"
       {...props}
     />
   ),
   h5: (props: any) => (
     <Heading
       size="md"
-      className="text-md font-semibold text-typography-800 mt-4 mb-2 font-geist-sans"
+      className="text-md font-semibold text-foreground mt-4 mb-2 font-geist-sans"
       {...props}
     />
   ),
   p: (props: any) => (
-    <Text className="block text-typography-700 font-geist-sans leading-relaxed [&:not(:first-child)]:mt-6 [&:not(:last-child)]:mb-6" {...props} />
+    <Text className="block text-muted-foreground font-geist-sans leading-relaxed [&:not(:first-child)]:mt-6 [&:not(:last-child)]:mb-6" {...props} />
   ),
 
   // Define paragraph styles

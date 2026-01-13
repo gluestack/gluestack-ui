@@ -14,7 +14,7 @@ export const DiscordIcon = () => {
       </>
     ),
   });
-  return <Icon as={DiscordIcon} size="xl" className="text-typography-900" />;
+  return <Icon as={DiscordIcon} size="xl" className="text-foreground" />;
 };
 export const StackoverflowIcon = () => {
   const StackoverflowIcon = createIcon({
@@ -29,7 +29,7 @@ export const StackoverflowIcon = () => {
     ),
   });
   return (
-    <Icon as={StackoverflowIcon} size="xl" className="text-typography-900" />
+    <Icon as={StackoverflowIcon} size="xl" className="text-foreground" />
   );
 };
 
@@ -45,7 +45,7 @@ export const GithubIcon = () => {
       </>
     ),
   });
-  return <Icon as={GithubIcon} size="xl" className="text-typography-900" />;
+  return <Icon as={GithubIcon} size="xl" className="text-foreground" />;
 };
 
 export const TwitterIcon = () => {
@@ -60,5 +60,5 @@ export const TwitterIcon = () => {
       </>
     ),
   });
-  return <Icon as={TwitterIcon} size="xl" className="text-typography-900" />;
+  return <Icon as={TwitterIcon} size="xl" className="text-foreground" />;
 };

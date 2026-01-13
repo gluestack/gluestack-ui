@@ -6,7 +6,7 @@ import { tva } from '@gluestack-ui/utils/nativewind-utils';
 cssInterop(LI, { className: 'style' });
 
 const LIStyle = tva({
-  base: 'flex flex-row text-typography-800 text-md font-normal leading-6',
+  base: 'flex flex-row text-foreground text-md font-normal leading-6',
 });
 
 export const StyledLI = React.forwardRef(

@@ -23,8 +23,8 @@ const Fold2 = memo(() => {
       <Card
         title={
           <HStack className="items-center gap-2">
-            <Text className="text-typography-700 text-lg ">See All</Text>
-            <Icon as={ArrowRightIcon} className="text-typography-700" />
+            <Text className="text-foreground text-lg ">See All</Text>
+            <Icon as={ArrowRightIcon} className="text-foreground" />
           </HStack>
         }
         child={

@@ -34,7 +34,7 @@ function Card1() {
   return (
     <Box className="py-6 flex-1 ">
       <Box className="gap-5 mb-6 flex lg:flex-row flex-col w-full">
-        <Box className="rounded-xl border lg:flex-1 border-outline-50 bg-background-50">
+        <Box className="rounded-xl border lg:flex-1 border-border bg-muted/50">
           <Box className="p-6">
             <VStack space="lg" className="justify-center">
               <HStack className="justify-between items-center">
@@ -50,10 +50,10 @@ function Card1() {
                 onPointerLeave={() => {
                   setShowCopy(false);
                 }}
-                className="items-center justify-start py-6 px-7 rounded-lg md:px-9 bg-background-0"
+                className="items-center justify-start py-6 px-7 rounded-lg md:px-9 bg-background"
               >
                 <Tilde />
-                <Text className="text-xl leading-sm mx-3 font-code font-medium text-typography-900  md:text-xl  md:leading-md tracking-tighter">
+                <Text className="text-xl leading-sm mx-3 font-code font-medium text-foreground  md:text-xl  md:leading-md tracking-tighter">
                   npm create{' '}
                   <Text className="text-xl leading-sm font-medium text-primary-300 font-code md:text-xl  md:leading-md tracking-tighter">
                     gluestack@latest
@@ -73,7 +73,7 @@ function Card1() {
             </VStack>
           </Box>
         </Box>
-        <Box className="rounded-xl border lg:flex-1 border-outline-50  bg-background-50">
+        <Box className="rounded-xl border lg:flex-1 border-border bg-muted/50">
           <Box className="p-6">
             <VStack space="lg">
               <Text className="text-xl font-bold font-plus-jakarta">
@@ -116,7 +116,7 @@ function Card1() {
         </Box>
       </Box>
       <Box className="gap-5 flex lg:flex-row  lg:flex-wrap flex-col w-full">
-        <Box className="rounded-xl border border-outline-50 bg-background-50">
+        <Box className="rounded-xl border border-border bg-muted/50">
           <Box className="p-6">
             <VStack space="lg">
               <Text className="text-xl font-bold font-plus-jakarta">
@@ -137,7 +137,7 @@ function Card1() {
             </VStack>
           </Box>
         </Box>
-        <Box className="rounded-xl border border-outline-50 bg-background-50">
+        <Box className="rounded-xl border border-border bg-muted/50">
           <Box className="p-6">
             <VStack space="lg">
               <Text className="text-xl font-bold font-plus-jakarta">
@@ -155,7 +155,7 @@ function Card1() {
             </VStack>
           </Box>
         </Box>
-        <Box className="rounded-xl border lg:flex-1 border-outline-50 bg-background-50 ">
+        <Box className="rounded-xl border lg:flex-1 border-border bg-muted/50 ">
           <Box className="p-6">
             <VStack space="lg">
               <Text className="text-xl font-bold font-plus-jakarta">

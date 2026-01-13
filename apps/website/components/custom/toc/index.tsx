@@ -148,7 +148,7 @@ export const TOC: React.FC = () => {
     <ul
       className={
         level > 1
-          ? 'ml-3 mt-1 space-y-1 border-l border-outline-100/50 pl-3'
+          ? 'ml-3 mt-1 space-y-1 border-l border-border/50 pl-3'
           : 'space-y-1'
       }
     >
@@ -168,8 +168,8 @@ export const TOC: React.FC = () => {
                 ${level > 1 ? 'text-xs pl-0' : ''}
                 ${
                   isActive
-                    ? 'text-typography-950'
-                    : 'text-typography-500 hover:text-typography-700'
+                    ? 'text-foreground font-medium'
+                    : 'text-muted-foreground hover:text-foreground'
                 }
               `}
             >
@@ -203,9 +203,9 @@ export const TOC: React.FC = () => {
         </div>
 
         {/* Progress bar */}
-        <div className="relative h-1 bg-outline-100 rounded-full overflow-hidden">
+        <div className="relative h-1 bg-muted rounded-full overflow-hidden">
           <div
-            className="absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-300 ease-out bg-background-500"
+            className="absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-300 ease-out"
             style={{
               width: `${scrollProgress}%`,
             }}

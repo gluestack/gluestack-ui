@@ -71,7 +71,7 @@ const VadimStream = () => {
 
   return (
     <Box className="relative flex-1 w-full h-full gap-5 flex-col md:flex-row">
-      <Box className="flex-1 border border-outline-200 rounded-lg overflow-hidden aspect-video">
+      <Box className="flex-1 border border-border rounded-lg overflow-hidden aspect-video">
         <iframe
           id="player1"
           width="100%"
@@ -82,7 +82,7 @@ const VadimStream = () => {
           loading='lazy'
         />
       </Box>
-      <Box className="flex-1 border border-outline-200 rounded-lg overflow-hidden aspect-video">
+      <Box className="flex-1 border border-border rounded-lg overflow-hidden aspect-video">
         <iframe
           id="player2"
           width="100%"

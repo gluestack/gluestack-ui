@@ -22,7 +22,7 @@ function ManualInstallationNote() {
   const currentUrl = `${githubLink}${componentName}`;
 
   return (
-    <div>This command will copies all the code from <Link className="leading-6 font-body text-typography-950 underline underline-offset-4 decoration-typography-950 inline-block" href={currentUrl}>git repo</Link> — excluding the docs and examples folders — into your project’s <InlineCode>components/ui</InlineCode> directory.</div>
+    <div>This command will copies all the code from <Link className="leading-6 font-body text-foreground underline underline-offset-4 decoration-foreground inline-block" href={currentUrl}>git repo</Link> — excluding the docs and examples folders — into your project's <InlineCode>components/ui</InlineCode> directory.</div>
   );
 }
 

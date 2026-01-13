@@ -13,8 +13,8 @@ export const Card = ({
   href: string;
 }) => {
   return (
-    <Box className="min-w-[240px] min-h-[240px] flex-1 rounded-xl border border-outline-50">
-      <Box className="flex flex-row flex-4 min-h-[200px] px-6 w-full justify-center items-center bg-background-50   rounded-tl-xl rounded-tr-xl">
+    <Box className="min-w-[240px] min-h-[240px] flex-1 rounded-xl border border-border">
+      <Box className="flex flex-row flex-4 min-h-[200px] px-6 w-full justify-center items-center bg-muted/50 rounded-tl-xl rounded-tr-xl">
         {child}
       </Box>
       <NextLink
