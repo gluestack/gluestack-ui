@@ -1,7 +1,6 @@
 'use client';
 import { Badge } from '@/components/web/badge';
 import AppLaunchKitLogo from '@/public/icon/logo/app-launch-kit/dark-mode.svg';
-import GluestackProLogo from '@/public/icon/logo/gluestack-pro/logo.svg';
 import AppLaunchKitLogoDark from '@/public/icon/logo/app-launch-kit/light-mode.svg';
 import StarterKitLogo from '@/public/icon/logo/gluestack/logo-dark.svg';
 import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';

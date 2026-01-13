@@ -70,12 +70,11 @@ const Header = ({
             </NextLink>
             {/* Desktop: Show Docs and Demo buttons */}
             <div className="hidden md:flex items-center gap-1.5 lg:gap-6">
-              {isDocsRoute ? (
+              {/* {isDocsRoute ? (
                 <div className="sm:mr-6 mr-4">
                   <UiDocSearch />
                 </div>
-              ) : (
-                <>
+              ) : ( */}
                   <NextLink
                     className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
                     href="/ui/docs"
@@ -97,8 +96,7 @@ const Header = ({
                     </div>
                   </NextLink>
                   <ProductDropdown />
-                </>
-              )}
+              {/* )} */}
             </div>
           </div>
           <div className="flex flex-row gap-6 items-center">
