@@ -1,0 +1,454 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Alert, AlertText, AlertIcon } from '@/components/ui/alert';
+import { InfoIcon, Icon, CloseIcon, EyeIcon, EyeOffIcon } from '@/components/ui/icon';
+import { VStack } from '@/components/ui/vstack';
+import { Button, ButtonText } from '@/components/ui/button';
+import { CloudIcon, Bomb } from 'lucide-react-native';
+import { Text } from '@/components/ui/text';
+import { Heading } from '@/components/ui/heading';
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Alert
+
+gluestack-ui offers a responsive React Native Alert component with multiple styles. Easily integrate alerts into your UI with customizable React Native alert styles.
+
+This is an illustration of **Alert** component.
+
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Alert variant="{{variant}}">
+      <AlertIcon as={InfoIcon} />
+      <AlertText>You can add components to your app using the cli.</AlertText>
+    </Alert>
+  )
+}`}
+  argTypes={{
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "default",
+      "destructive"
+    ],
+    "defaultValue": "default"
+  }
+}}
+  reactLive={{ Alert, AlertText, AlertIcon, InfoIcon }}
+  importMap={{"@/components/ui/alert":["Alert","AlertText","AlertIcon"],"@/components/ui/icon":["InfoIcon"]}}
+/>
+
+<br />
+## Installation
+
+
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+ <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add alert`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+'use client';
+import { createAlert } from '@gluestack-ui/core/alert/creator';
+import { View, Text } from 'react-native';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import React from 'react';
+import { cssInterop } from 'nativewind';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+
+const SCOPE = 'ALERT';
+
+const alertStyle = tva({
+  base: 'relative w-full rounded-lg border px-4 py-3 flex-row gap-3 items-start',
+  variants: {
+    variant: {
+      default: 'bg-card border-border',
+      destructive: 'bg-card border-destructive',
+    },
+  },
+});
+
+const alertTextStyle = tva({
+  base: 'font-medium tracking-tight text-sm flex-1',
+  parentVariants: {
+    variant: {
+      default: 'text-card-foreground',
+      destructive: 'text-destructive',
+    },
+  },
+});
+
+const alertIconStyle = tva({
+  base: 'fill-none',
+  variants: {
+    size: {
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'h-[18px] w-[18px]',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
+    },
+  },
+  parentVariants: {
+    variant: {
+      default: 'text-card-foreground',
+      destructive: 'text-destructive',
+    },
+  },
+});
+
+export const UIAlert = createAlert({
+  Root: withStyleContext(View, SCOPE),
+  Text: Text,
+  Icon: UIIcon,
+});
+
+cssInterop(PrimitiveIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
+});
+
+type IAlertProps = Omit<
+  React.ComponentPropsWithoutRef<typeof UIAlert>,
+  'context'
+> &
+  VariantProps<typeof alertStyle>;
+
+const Alert = React.forwardRef<React.ComponentRef<typeof UIAlert>, IAlertProps>(
+  function Alert({ className, variant = 'default', ...props }, ref) {
+    return (
+      <UIAlert
+        className={alertStyle({ variant, class: className })}
+        context={{ variant }}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+
+type IAlertTextProps = React.ComponentPropsWithoutRef<typeof UIAlert.Text> &
+  VariantProps<typeof alertTextStyle>;
+
+const AlertText = React.forwardRef<
+  React.ComponentRef<typeof UIAlert.Text>,
+  IAlertTextProps
+>(function AlertText({ className, ...props }, ref) {
+  const { variant: parentVariant } = useStyleContext(SCOPE);
+  return (
+    <UIAlert.Text
+      className={alertTextStyle({
+        class: className,
+        parentVariants: {
+          variant: parentVariant,
+        },
+      })}
+      {...props}
+      ref={ref}
+    />
+  );
+});
+
+type IAlertIconProps = React.ComponentPropsWithoutRef<typeof UIAlert.Icon> &
+  VariantProps<typeof alertIconStyle> & {
+    height?: number;
+    width?: number;
+  };
+
+const AlertIcon = React.forwardRef<
+  React.ComponentRef<typeof UIAlert.Icon>,
+  IAlertIconProps
+>(function AlertIcon({ className, size = 'sm', ...props }, ref) {
+  const { variant: parentVariant } = useStyleContext(SCOPE);
+
+  if (typeof size === 'number') {
+    return (
+      <UIAlert.Icon
+        ref={ref}
+        {...props}
+        className={alertIconStyle({ class: className })}
+        size={size}
+      />
+    );
+  } else if (
+    (props.height !== undefined || props.width !== undefined) &&
+    size === undefined
+  ) {
+    return (
+      <UIAlert.Icon
+        ref={ref}
+        {...props}
+        className={alertIconStyle({ class: className })}
+      />
+    );
+  }
+  return (
+    <UIAlert.Icon
+      className={alertIconStyle({
+        parentVariants: {
+          variant: parentVariant,
+        },
+        size,
+        class: className,
+      })}
+      {...props}
+      ref={ref}
+    />
+  );
+});
+
+Alert.displayName = 'Alert';
+AlertText.displayName = 'AlertText';
+AlertIcon.displayName = 'AlertIcon';
+
+export { Alert, AlertText, AlertIcon };
+
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Alert, AlertIcon, AlertText } from '@/components/ui/alert';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/gdI4o2w.png"
+  webUrl="https://i.imgur.com/f8hHiIJ.png"
+  classNameStyle="aspect-[513/375] md:aspect-[736/259]"
+/>
+
+```ts
+export default () => (
+  <Alert>
+    <AlertIcon />
+    <AlertText />
+  </Alert>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Alert
+
+Contains all alert related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>action</InlineCode>
+        </TableCell>
+        <TableCell>error | warning | success | info | muted</TableCell>
+        <TableCell>info</TableCell>
+        <TableCell>Determines the color scheme of the alert.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>variant</InlineCode>
+        </TableCell>
+        <TableCell>solid | outline</TableCell>
+        <TableCell>solid</TableCell>
+        <TableCell>Determines the visual style of the alert.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### AlertIcon
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AlertText
+
+Contains all text related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+
+  #### Alert with CTA
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Alert
+      className="gap-4 max-w-[585px] w-full self-center items-start min-[400px]:items-center"
+    >
+      <VStack className="gap-4 min-[400px]:flex-row justify-between flex-1 min-[400px]:items-center">
+        <AlertText className="font-semibold text-foreground/90" size="sm">
+          Verify your phone number to create an API key
+        </AlertText>
+        <Button size="sm">
+          <ButtonText>Start verification</ButtonText>
+        </Button>
+      </VStack>
+      <Icon as={CloseIcon} />
+    </Alert>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Alert, AlertText, VStack, Icon, CloseIcon, Button, ButtonText }}
+  importMap={{"@/components/ui/alert":["Alert","AlertText"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["Icon","CloseIcon"],"@/components/ui/button":["Button","ButtonText"]}}
+/>
+
+
+  #### Alert on cloud sync
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Alert
+      className="gap-4 max-w-[585px] w-full self-center items-start min-[400px]:items-center bg-primary/10 border-primary/20"
+    >
+      <VStack className="gap-4 min-[400px]:flex-row justify-between flex-1 min-[400px]:items-center">
+        <AlertText className="font-semibold text-foreground/90" size="sm">
+          Your data has been synced to the cloud
+        </AlertText>
+        <Button size="sm">
+          <ButtonText>View details</ButtonText>
+        </Button>
+      </VStack>
+      <Icon as={CloseIcon} />
+    </Alert>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Alert, AlertText, AlertIcon, VStack, Icon, CloseIcon, Button, ButtonText, CloudIcon }}
+  importMap={{"@/components/ui/alert":["Alert","AlertText","AlertIcon"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["Icon","CloseIcon"],"@/components/ui/button":["Button","ButtonText"],"lucide-react-native":["CloudIcon"]}}
+/>
+
+
+  #### Warning alert
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Alert className="gap-3 bg-destructive/10 border-destructive/20">
+      <AlertIcon as={Bomb} size="lg" className="mt-1" />
+      <AlertText className="text-foreground/80" size="sm">
+        <Text className="mr-2 font-semibold text-foreground/90">
+          Heads up:
+        </Text>
+       {" "} Once done, this action cannot be undone
+      </AlertText>
+    </Alert>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Alert, AlertText, AlertIcon, Text, Bomb }}
+  importMap={{"@/components/ui/alert":["Alert","AlertText","AlertIcon"],"@/components/ui/text":["Text"],"lucide-react-native":["Bomb"]}}
+/>
+
+
+  #### Alert on confirm password modal
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleState = () => {
+    setShowPassword((showState) => {
+      return !showState;
+    });
+  };
+  return (
+    <VStack className="gap-5 sm:gap-8 p-6 sm:p-9 border border-border/80 bg-background rounded-xl shadow-hard-5 w-full max-w-[423px]">
+      <VStack className="items-center gap-1">
+        <Heading size="xl">Confirm our password?</Heading>
+        <Text>johnsmith@gmail.com</Text>
+      </VStack>
+      <VStack className="gap-3 sm:gap-5">
+        <Input className="rounded-md" size="sm">
+          <InputField
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Enter password"
+          />
+          <InputSlot className="mr-3" onPress={handleState}>
+            <InputIcon
+              as={showPassword ? EyeIcon : EyeOffIcon}
+              className="stroke-foreground/60"
+            />
+          </InputSlot>
+        </Input>
+        <Button className="w-full rounded-md" size="sm">
+          <ButtonText>Confirm</ButtonText>
+        </Button>
+      </VStack>
+      <Alert className="items-start bg-primary/10 border-primary/20">
+        <AlertIcon as={InfoIcon} size="xs" className="stroke-foreground/60" />
+        <AlertText className="text-foreground/60" size="xs">
+          Minimum 8 characters, with at least 1 uppercase, 1 lowercase, and 1
+          number required.
+        </AlertText>
+      </Alert>
+    </VStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Alert, AlertText, AlertIcon, VStack, Button, ButtonText, Heading, Input, InputField, InputIcon, InputSlot, Text, EyeIcon, EyeOffIcon, InfoIcon }}
+  importMap={{"@/components/ui/alert":["Alert","AlertText","AlertIcon"],"@/components/ui/vstack":["VStack"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/heading":["Heading"],"@/components/ui/input":["Input","InputField","InputIcon","InputSlot"],"@/components/ui/text":["Text"],"@/components/ui/icon":["EyeIcon","EyeOffIcon","InfoIcon"]}}
+/>

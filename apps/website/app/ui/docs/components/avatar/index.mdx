@@ -1,0 +1,626 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Avatar, AvatarFallbackText, AvatarImage, AvatarBadge, AvatarGroup } from '@/components/ui/avatar';
+import { Heading } from '@/components/ui/heading';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { Icon } from '@/components/ui/icon';
+import { User } from 'lucide-react-native';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+
+# Avatar
+
+Enhance your UI with our React Native Avatar component. Explore gluestack's-ui Avatar for seamless design and customization. Check out the docs to add an Avatar component to your app!
+
+This is an illustration of **Avatar** component.
+
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Avatar>
+      <AvatarFallbackText>Jane Doe is test</AvatarFallbackText>
+      <AvatarImage
+        source=\\{{
+          uri: "https://github.com/shadcn.png",
+        }}
+      />
+    </Avatar>
+  )
+}`}
+  argTypes={{}}
+  reactLive={{ Avatar, AvatarFallbackText, AvatarImage, AvatarBadge }}
+  importMap={{"@/components/ui/avatar":["Avatar","AvatarFallbackText","AvatarImage","AvatarBadge"]}}
+/>
+
+<br />
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add avatar`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+'use client';
+import { createAvatar } from '@gluestack-ui/core/avatar/creator';
+import React from 'react';
+
+import { Image, Text, View } from 'react-native';
+
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { tva, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+const SCOPE = 'AVATAR';
+
+const UIAvatar = createAvatar({
+  Root: withStyleContext(View, SCOPE),
+  Badge: View,
+  Group: View,
+  Image: Image,
+  FallbackText: Text,
+});
+
+const avatarStyle = tva({
+  base: 'relative flex h-12 w-12 shrink-0 rounded-full bg-muted items-center justify-center group-[.avatar-group]/avatar-group:-ml-2.5',
+});
+
+const avatarFallbackTextStyle = tva({
+  base: 'text-foreground text-xs font-medium text-transform:uppercase',
+});
+
+const avatarGroupStyle = tva({
+  base: 'group/avatar-group flex-row-reverse relative avatar-group',
+});
+
+const avatarBadgeStyle = tva({
+  base: 'absolute h-3 w-3 rounded-full border-2 border-background right-0 bottom-0 bg-green-500',
+});
+
+const avatarImageStyle = tva({
+  base: 'h-full w-full rounded-full absolute',
+});
+
+type IAvatarProps = Omit<
+  React.ComponentPropsWithoutRef<typeof UIAvatar>,
+  'context'
+> &
+  VariantProps<typeof avatarStyle>;
+
+const Avatar = React.forwardRef<
+  React.ComponentRef<typeof UIAvatar>,
+  IAvatarProps
+>(function Avatar({ className, ...props }, ref) {
+  return (
+    <UIAvatar
+      ref={ref}
+      {...props}
+      className={avatarStyle({ class: className })}
+      context={{}}
+    />
+  );
+});
+
+type IAvatarBadgeProps = React.ComponentPropsWithoutRef<typeof UIAvatar.Badge> &
+  VariantProps<typeof avatarBadgeStyle>;
+
+const AvatarBadge = React.forwardRef<
+  React.ComponentRef<typeof UIAvatar.Badge>,
+  IAvatarBadgeProps
+>(function AvatarBadge({ className, ...props }, ref) {
+  return (
+    <UIAvatar.Badge
+      ref={ref}
+      {...props}
+      className={avatarBadgeStyle({ class: className })}
+    />
+  );
+});
+
+type IAvatarFallbackTextProps = React.ComponentPropsWithoutRef<
+  typeof UIAvatar.FallbackText
+> &
+  VariantProps<typeof avatarFallbackTextStyle>;
+const AvatarFallbackText = React.forwardRef<
+  React.ComponentRef<typeof UIAvatar.FallbackText>,
+  IAvatarFallbackTextProps
+>(function AvatarFallbackText({ className, ...props }, ref) {
+  return (
+    <UIAvatar.FallbackText
+      ref={ref}
+      {...props}
+      className={avatarFallbackTextStyle({ class: className })}
+    />
+  );
+});
+
+type IAvatarImageProps = React.ComponentPropsWithoutRef<typeof UIAvatar.Image> &
+  VariantProps<typeof avatarImageStyle>;
+
+const AvatarImage = React.forwardRef<
+  React.ComponentRef<typeof UIAvatar.Image>,
+  IAvatarImageProps
+>(function AvatarImage({ className, ...props }, ref) {
+  return (
+    <UIAvatar.Image
+      ref={ref}
+      {...props}
+      className={avatarImageStyle({
+        class: className,
+      })}
+      // @ts-expect-error - resizeMode is React Native specific
+      resizeMode="cover"
+    />
+  );
+});
+
+type IAvatarGroupProps = React.ComponentPropsWithoutRef<typeof UIAvatar.Group> &
+  VariantProps<typeof avatarGroupStyle>;
+
+const AvatarGroup = React.forwardRef<
+  React.ComponentRef<typeof UIAvatar.Group>,
+  IAvatarGroupProps
+>(function AvatarGroup({ className, ...props }, ref) {
+  return (
+    <UIAvatar.Group
+      ref={ref}
+      {...props}
+      className={avatarGroupStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+// Alias for shadcn compatibility
+const AvatarFallback = AvatarFallbackText;
+
+export {
+  Avatar,
+  AvatarBadge,
+  AvatarFallback,
+  AvatarFallbackText,
+  AvatarGroup,
+  AvatarImage,
+};
+
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  Avatar,
+  AvatarBadge,
+  AvatarFallbackText,
+  AvatarImage,
+} from '@/components/ui/avatar';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/UWyUCue.png"
+  webUrl="https://i.imgur.com/MUsrjdt.png"
+  classNameStyle="aspect-[513/369] md:aspect-[736/209]"
+/>
+
+> IOS: It is highly recommended to use `<AvatarFallbackText />` before `<AvatarImage />` to avoid indexing issues in IOS.
+
+```ts
+export default () => (
+  <AvatarGroup>
+    <Avatar>
+      <AvatarFallbackText />
+      <AvatarImage />
+      <AvatarBadge />
+    </Avatar>
+  </AvatarGroup>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Avatar
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AvatarGroup
+
+It also inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AvatarImage
+
+It inherits all the properties of React Native's [Image](https://reactnative.dev/docs/image) component.
+
+#### AvatarFallbackText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### AvatarBadge
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Features
+
+- Returns a fallback to FallbackText if given an invalid image source.
+
+### Props
+
+Avatar component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+#### Avatar
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
+      <TableCell>xs | sm | md | lg | xl | 2xl</TableCell>
+      <TableCell>md</TableCell>
+      <TableCell>Determines the size of the avatar.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+
+  #### Avatar with letters
+
+  An Avatar component with text displays a stylized representation of a user or entity alongside accompanying text, providing a visual and textual identification within a user interface.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <VStack space="2xl">
+      <HStack space="md">
+        <Avatar className='bg-indigo-600'>
+          <AvatarFallbackText className="text-white">Ronald Richards</AvatarFallbackText>
+          <AvatarBadge />
+        </Avatar>
+        <VStack>
+          <Heading size="sm">Ronald Richards</Heading>
+          <Text size="sm">Nursing Assistant</Text>
+        </VStack>
+      </HStack>
+      <HStack space="md">
+        <Avatar className='bg-orange-600'>
+          <AvatarFallbackText className="text-white">Arlene McCoy</AvatarFallbackText>
+        </Avatar>
+        <VStack>
+          <Heading size="sm">Arlene McCoy</Heading>
+          <Text size="sm">Marketing Coordinator</Text>
+        </VStack>
+      </HStack>
+    </VStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack }}
+  importMap={{"@/components/ui/avatar":["Avatar","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/heading":["Heading"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"]}}
+/>
+
+
+  #### Avatar with Icon
+
+  An Avatar component with an icon combines a graphical symbol or icon with a user or entity representation, providing a visually appealing and easily recognizable identification within a user interface.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <VStack space="2xl">
+      <HStack space="md">
+        <Avatar className='bg-indigo-600'>
+          <Icon as={User} size="lg" className="stroke-white" />
+        </Avatar>
+        <VStack>
+          <Heading size="sm">Ronald Richards</Heading>
+          <Text size="sm">Nursing Assistant</Text>
+        </VStack>
+      </HStack>
+      <HStack space="md">
+        <Avatar className='bg-pink-600'>
+          <Icon as={User} size="lg" className="stroke-white" />
+        </Avatar>
+        <VStack>
+          <Heading size="sm">Kevin James</Heading>
+          <Text size="sm">Web Designer</Text>
+        </VStack>
+      </HStack>
+    </VStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack, Icon, User }}
+  importMap={{"@/components/ui/avatar":["Avatar","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/heading":["Heading"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["Icon"],"lucide-react-native":["User"]}}
+/>
+
+
+  #### Avatar with Image
+
+  An Avatar component with an image incorporates a user or entity representation using a profile picture or image, adding a personalized touch and visual identification within a user interface.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <VStack space="2xl">
+      <HStack space="md">
+        <Avatar>
+          <AvatarFallbackText>SS</AvatarFallbackText>
+          <AvatarImage
+            source=\\{{
+              uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+            }}
+          />
+        </Avatar>
+        <VStack>
+          <Heading size="sm">Ronald Richards</Heading>
+          <Text size="sm">Nursing Assistant</Text>
+        </VStack>
+      </HStack>
+      <HStack space="md">
+        <Avatar>
+          <AvatarFallbackText>SS</AvatarFallbackText>
+          <AvatarImage
+            source=\\{{
+              uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
+            }}
+          />
+          <AvatarBadge />
+        </Avatar>
+        <VStack>
+          <Heading size="sm">Arlene McCoy</Heading>
+          <Text size="sm">Marketing Coordinator</Text>
+        </VStack>
+      </HStack>
+    </VStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack }}
+  importMap={{"@/components/ui/avatar":["Avatar","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/heading":["Heading"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"]}}
+/>
+
+
+  #### Avatar Group
+
+  The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
+  
+  <CodePreviewer
+  code={`function Example() {
+  const avatars = [
+    { src: 'https://example.com.jpg', alt: 'Sandeep Srivastva', color:'bg-emerald-600' },
+    { src: 'https://example.com.jpg', alt: 'Arjun Kapoor', color:'bg-cyan-600' },
+    { src: 'https://example.com.jpg', alt: 'Ritik Sharma ', color:'bg-indigo-600' },
+    { src: 'https://example.com.jpg', alt: 'Akhil Sharma', color:'bg-gray-600' },
+    { src: 'https://example.com.jpg', alt: 'Rahul Sharma ', color:'bg-red-400' },
+  ];
+  const extraAvatars = avatars.slice(3);
+  const remainingCount = extraAvatars.length;
+  return (
+    <AvatarGroup>
+      {avatars.slice(0, 3).map((avatar, index) => {
+        return (
+          <Avatar key={index} className={'border-2 border-background ' + avatar.color}>
+            <AvatarFallbackText className="text-white">{avatar.alt}</AvatarFallbackText>
+          </Avatar>
+        );
+      })}
+      <Avatar size="lg">
+        <AvatarFallbackText>{"+ " + remainingCount + ""}</AvatarFallbackText>
+      </Avatar>
+    </AvatarGroup>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Avatar, AvatarGroup, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
+  importMap={{"@/components/ui/avatar":["Avatar","AvatarGroup","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/hstack":["HStack"]}}
+/>
+
+> To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<AvatarGroup>`
+
+
+  #### Avatar Group (Without Badge)
+
+  An Avatar Group component without badges organizes multiple avatars in a visually cohesive manner, offering a streamlined display of user or entity representations without additional visual indicators or badges within a user interface.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <AvatarGroup>
+      <Avatar>
+        <AvatarFallbackText>John Doe</AvatarFallbackText>
+        <AvatarImage
+          source=\\{{
+            uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+          }}
+        />
+      </Avatar>
+      <Avatar>
+        <AvatarFallbackText>John Doe</AvatarFallbackText>
+        <AvatarImage
+          source=\\{{
+            uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+          }}
+        />
+      </Avatar>
+      <Avatar>
+        <AvatarFallbackText>John Doe</AvatarFallbackText>
+        <AvatarImage
+          source=\\{{
+            uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+          }}
+        />
+      </Avatar>
+      <Avatar>
+        <AvatarFallbackText>John Doe</AvatarFallbackText>
+        <AvatarImage
+          source=\\{{
+            uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+          }}
+        />
+      </Avatar>
+    </AvatarGroup>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Avatar, AvatarGroup, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
+  importMap={{"@/components/ui/avatar":["Avatar","AvatarGroup","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/hstack":["HStack"]}}
+/>
+
+
+  #### Avatar Group (with Badge)
+
+  An Avatar Group component with badges presents a collection of avatars with accompanying badges, providing visual indicators or additional information associated with each user or entity representation within a user interface.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <AvatarGroup>
+      <Avatar size="md">
+        <AvatarFallbackText>John Doe</AvatarFallbackText>
+        <AvatarImage
+          source=\\{{
+            uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+          }}
+        />
+        <AvatarBadge />
+      </Avatar>
+      <Avatar size="md">
+        <AvatarFallbackText>John Doe</AvatarFallbackText>
+        <AvatarImage
+          source=\\{{
+            uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+          }}
+        />
+        <AvatarBadge/>
+      </Avatar>
+      <Avatar size="md">
+        <AvatarFallbackText>John Doe</AvatarFallbackText>
+        <AvatarImage
+          source=\\{{
+            uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+          }}
+        />
+        <AvatarBadge/>
+      </Avatar>
+      <Avatar size="md">
+        <AvatarFallbackText>John Doe</AvatarFallbackText>
+        <AvatarImage
+          source=\\{{
+            uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+          }}
+        />
+        <AvatarBadge />
+      </Avatar>
+    </AvatarGroup>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Avatar, AvatarGroup, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
+  importMap={{"@/components/ui/avatar":["Avatar","AvatarGroup","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/hstack":["HStack"]}}
+/>
+
+
+  #### Custom
+
+  A custom Avatar component with text allows for personalized user or entity representations by combining customized visuals, such as an image or icon, with accompanying text, providing a unique and identifiable presentation within a user interface.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <VStack space="2xl">
+      <HStack space="md">
+        <Avatar size="md" className='bg-indigo-300 border-2 border-indigo-600'>
+          <Icon as={User} size="xl" className='text-indigo-600' />
+        </Avatar>
+        <VStack>
+          <Heading size="sm">Ronald Richards</Heading>
+          <Text size="sm">Nursing Assistant</Text>
+        </VStack>
+      </HStack>
+      <HStack space="md">
+        <Avatar size="md" className='bg-pink-300 border-2 border-pink-600'>
+          <Icon as={User} size="xl" className='text-pink-600' />
+        </Avatar>
+        <VStack>
+          <Heading size="sm">Kevin James</Heading>
+          <Text size="sm">Web Designer</Text>
+        </VStack>
+      </HStack>
+    </VStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack, Icon, User }}
+  importMap={{"@/components/ui/avatar":["Avatar","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/heading":["Heading"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["Icon"],"lucide-react-native":["User"]}}
+/>
+
+
+  #### Fallback
+
+  Fallback text is shown when the image fails to load, the image is not available or the provided image url is not correct.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <HStack space="md">
+      <Avatar size="md">
+        <AvatarFallbackText>John Doe</AvatarFallbackText>
+        <AvatarImage
+          source=\\{{
+            uri: 'https://wrong-url',
+          }}
+        />
+      </Avatar>
+    </HStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
+  importMap={{"@/components/ui/avatar":["Avatar","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/hstack":["HStack"]}}
+/>

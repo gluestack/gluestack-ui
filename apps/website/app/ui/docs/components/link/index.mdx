@@ -1,0 +1,355 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Link, LinkText } from '@/components/ui/link';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Icon } from '@/components/ui/icon';
+import { ArrowUpRight } from 'lucide-react-native';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Link
+
+Enhance navigation with a React Native link component. Seamless UI link design for intuitive user experiences. Learn more!
+
+This is an illustration of **Link** component.
+
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Link href="https://gluestack.io/">
+      <LinkText>gluestack</LinkText>
+    </Link>
+  )
+}`}
+  argTypes={{}}
+  reactLive={{ Link, LinkText }}
+  importMap={{"@/components/ui/link":["Link","LinkText"]}}
+/>
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add link`} language="bash" />
+
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into your project.
+
+```tsx
+'use client';
+import { createLink } from '@gluestack-ui/core/link/creator';
+import { Pressable } from 'react-native';
+import { Text } from 'react-native';
+
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+
+import React from 'react';
+export const UILink = createLink({
+  Root: withStyleContext(Pressable),
+  Text: Text,
+});
+
+cssInterop(UILink, { className: 'style' });
+cssInterop(UILink.Text, { className: 'style' });
+
+const linkStyle = tva({
+  base: 'group/link web:outline-0 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-indicator-primary data-[focus-visible=true]:web:outline-0 data-[disabled=true]:opacity-4 ',
+});
+
+const linkTextStyle = tva({
+  base: 'underline text-destructive data-[hover=true]:text-destructive/80 data-[hover=true]:no-underline data-[active=true]:text-destructive/80 font-normal font-body web:font-sans web:tracking-sm web:my-0 web:bg-transparent web:border-0 web:box-border web:inline web:list-none web:m-0 web:p-0 web:relative web:text-start web:whitespace-pre-wrap web:break-words',
+
+  variants: {
+    isTruncated: {
+      true: 'web:truncate',
+    },
+    bold: {
+      true: 'font-bold',
+    },
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-base',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+    sub: {
+      true: 'text-xs',
+    },
+    italic: {
+      true: 'italic',
+    },
+    highlight: {
+      true: 'bg-yellow-500',
+    },
+  },
+});
+
+type ILinkProps = React.ComponentProps<typeof UILink> &
+  VariantProps<typeof linkStyle> & { className?: string };
+
+const Link = React.forwardRef<React.ComponentRef<typeof UILink>, ILinkProps>(
+  function Link({ className, ...props }, ref) {
+    return (
+      <UILink
+        ref={ref}
+        {...props}
+        className={linkStyle({ class: className })}
+      />
+    );
+  }
+);
+
+type ILinkTextProps = React.ComponentProps<typeof UILink.Text> &
+  VariantProps<typeof linkTextStyle> & { className?: string };
+
+const LinkText = React.forwardRef<
+  React.ComponentRef<typeof UILink.Text>,
+  ILinkTextProps
+>(function LinkText({ className, size = 'md', ...props }, ref) {
+  return (
+    <UILink.Text
+      ref={ref}
+      {...props}
+      className={linkTextStyle({
+        class: className,
+        size,
+      })}
+    />
+  );
+});
+
+Link.displayName = 'Link';
+LinkText.displayName = 'LinkText';
+
+export { Link, LinkText };
+
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Link } from '@/components/ui/link';
+```
+
+```ts
+export default () => (
+  <Link>
+    <LinkText />
+  </Link>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Link
+
+Contains all link related layout style props and actions.
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Platform</TableHeaderCell>
+        <TableHeaderCell>Output</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Web</InlineCode>
+        </TableCell>
+        <TableCell>{`<a />`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>Native</InlineCode>
+        </TableCell>
+        <TableCell>{`<Pressable />`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Props
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>href</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>URL that should be opened on Link press</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onPress</InlineCode>
+        </TableCell>
+        <TableCell>(event?: GestureResponderEvent) => any</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Callback that will be invoked on Link press</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isExternal</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>If true, link will be opened in new tab on web</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isHovered</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>When true, the link displays a hover state</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isFocusVisible</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>To manually set focus visible state to the link</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>
+          xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl
+        </TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>The size of the link</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Features
+
+- Keyboard support for actions
+- Support for hover and focus states
+- Option to add your styles or use the default styles
+
+### Accessibility
+
+We have outlined the various features that ensure the Link component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/link/).
+
+#### Keyboard
+
+- `Tab`: Moves focus to the next focusable element
+- `Enter`: Users should be able to open a link
+
+#### Screen Reader
+
+- VoiceOver: When a link receives focus, screen readers should announce a descriptive link name
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+
+  #### Default Link
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <HStack>
+            <Text
+              size="lg"
+            >Design inspiration from&nbsp;</Text>
+              <Link href="https://gluestack.io/" isExternal>
+                <LinkText size="lg">pinterest.com</LinkText>
+              </Link>
+          </HStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Link, LinkText, HStack, Text }}
+  importMap={{"@/components/ui/link":["Link","LinkText"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"]}}
+/>
+
+
+  #### Link with Icon
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <HStack>
+      <Text size="lg">Go to&nbsp;</Text>
+      <Link href="https://gluestack.io/" isExternal>
+        <HStack>
+          <LinkText size="lg">Pinterest</LinkText>
+          <Icon as={ArrowUpRight} size="lg" className="mt-0.5 text-destructive"/>
+        </HStack>
+      </Link>
+    </HStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Link, LinkText, HStack, Text, Icon, ArrowUpRight }}
+  importMap={{"@/components/ui/link":["Link","LinkText"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/icon":["Icon"],"lucide-react-native":["ArrowUpRight"]}}
+/>

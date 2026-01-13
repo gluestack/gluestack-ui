@@ -1,0 +1,741 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop } from '@/components/ui/alert-dialog';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
+import { Heading } from '@/components/ui/heading';
+import { Box } from '@/components/ui/box';
+import { Image } from '@/components/ui/image';
+import { VStack } from '@/components/ui/vstack';
+import { Icon, TrashIcon } from '@/components/ui/icon';
+import { UploadCloud } from 'lucide-react-native';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# AlertDialog
+
+Build seamless React Native dialogs with the AlertDialog component. Enhance user engagement with smooth and responsive modal prompts.
+
+This is an illustration of **AlertDialog** component.
+
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [showAlertDialog, setShowAlertDialog] = React.useState(false)
+  const handleClose = () => setShowAlertDialog(false)
+  return (
+    <>
+      <Button onPress={() => setShowAlertDialog(true)}>
+        <ButtonText>Open Dialog</ButtonText>
+      </Button>
+      <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
+        <AlertDialogBackdrop />
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <Heading className="text-foreground font-semibold text-lg">
+              Are you sure you want to delete this post?
+            </Heading>
+          </AlertDialogHeader>
+          <AlertDialogBody className="mt-3 mb-4">
+            <Text className="text-sm text-muted-foreground">
+              Deleting the post will remove it permanently and cannot be undone.
+              Please confirm if you want to proceed.
+            </Text>
+          </AlertDialogBody>
+          <AlertDialogFooter>
+            <Button variant="outline" onPress={handleClose}>
+              <ButtonText>Cancel</ButtonText>
+            </Button>
+            <Button onPress={handleClose}>
+              <ButtonText>Delete</ButtonText>
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
+  )
+}`}
+  argTypes={{}}
+  reactLive={{ AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading }}
+  importMap={{"@/components/ui/alert-dialog":["AlertDialog","AlertDialogContent","AlertDialogHeader","AlertDialogFooter","AlertDialogBody","AlertDialogBackdrop"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/text":["Text"],"@/components/ui/heading":["Heading"]}}
+/>
+
+<br />
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+  <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add alert-dialog`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @legendapp/motion
+```
+
+
+### Step 2: Copy and paste the following code into your project.
+
+```tsx
+'use client';
+import React from 'react';
+import {
+  createAlertDialog,
+} from '@gluestack-ui/core/alert-dialog/creator';
+import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import Animated, {
+  FadeIn,
+  FadeOut,
+  ZoomIn,
+  ZoomOut,
+} from 'react-native-reanimated';
+import {
+  Pressable,
+  ScrollView,
+  View,
+} from 'react-native';
+import { cssInterop } from 'nativewind';
+
+
+
+const SCOPE = 'ALERT_DIALOG';
+
+const RootComponent = withStyleContext(View, SCOPE);
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const AnimatedView = Animated.createAnimatedComponent(View);
+
+
+const UIAccessibleAlertDialog = createAlertDialog({
+  Root: RootComponent,
+  Body: ScrollView,
+  Content: AnimatedView,
+  CloseButton: Pressable,
+  Header: View,
+  Footer: View,
+  Backdrop: AnimatedPressable,
+});
+
+
+cssInterop(AnimatedPressable, { className: 'style' });
+cssInterop(AnimatedView, { className: 'style' });
+
+const alertDialogStyle = tva({
+  base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
+  parentVariants: {
+    size: {
+      xs: '',
+      sm: '',
+      md: '',
+      lg: '',
+      full: '',
+    },
+  },
+});
+
+const alertDialogContentStyle = tva({
+  base: 'bg-background rounded-lg overflow-hidden border border-border p-6',
+  parentVariants: {
+    size: {
+      xs: 'w-[60%] max-w-[360px]',
+      sm: 'w-[70%] max-w-[420px]',
+      md: 'w-[80%] max-w-[510px]',
+      lg: 'w-[90%] max-w-[640px]',
+      full: 'w-full',
+    },
+  },
+});
+
+const alertDialogCloseButtonStyle = tva({
+  base: 'group/alert-dialog-close-button z-10 rounded-sm p-2 data-[focus-visible=true]:bg-background/10 web:cursor-pointer outline-0',
+});
+
+const alertDialogHeaderStyle = tva({
+  base: 'justify-between items-center flex-row',
+});
+
+const alertDialogFooterStyle = tva({
+  base: 'flex-row justify-end items-center gap-3',
+});
+
+const alertDialogBodyStyle = tva({ base: '' });
+
+const alertDialogBackdropStyle = tva({
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default',
+});
+
+type IAlertDialogProps = React.ComponentPropsWithoutRef<
+  typeof UIAccessibleAlertDialog
+> &
+  VariantProps<typeof alertDialogStyle>;
+
+type IAlertDialogContentProps = React.ComponentPropsWithoutRef<
+  typeof UIAccessibleAlertDialog.Content
+> &
+  VariantProps<typeof alertDialogContentStyle> & { className?: string };
+
+type IAlertDialogCloseButtonProps = React.ComponentPropsWithoutRef<
+  typeof UIAccessibleAlertDialog.CloseButton
+> &
+  VariantProps<typeof alertDialogCloseButtonStyle>;
+
+type IAlertDialogHeaderProps = React.ComponentPropsWithoutRef<
+  typeof UIAccessibleAlertDialog.Header
+> &
+  VariantProps<typeof alertDialogHeaderStyle>;
+
+type IAlertDialogFooterProps = React.ComponentPropsWithoutRef<
+  typeof UIAccessibleAlertDialog.Footer
+> &
+  VariantProps<typeof alertDialogFooterStyle>;
+
+type IAlertDialogBodyProps = React.ComponentPropsWithoutRef<
+  typeof UIAccessibleAlertDialog.Body
+> &
+  VariantProps<typeof alertDialogBodyStyle>;
+
+type IAlertDialogBackdropProps = React.ComponentPropsWithoutRef<
+  typeof UIAccessibleAlertDialog.Backdrop
+> &
+  VariantProps<typeof alertDialogBackdropStyle> & { className?: string };
+
+const AlertDialog = React.forwardRef<
+  React.ComponentRef<typeof UIAccessibleAlertDialog>,
+  IAlertDialogProps
+>(function AlertDialog({ className, size = 'md', ...props }, ref) {
+  return (
+    <UIAccessibleAlertDialog
+      ref={ref}
+      {...props}
+      className={alertDialogStyle({ class: className })}
+      context={{ size }}
+      pointerEvents="box-none"
+    />
+  );
+});
+
+const AlertDialogContent = React.forwardRef<
+  React.ComponentRef<typeof UIAccessibleAlertDialog.Content>,
+  IAlertDialogContentProps
+>(function AlertDialogContent({ className, size, ...props }, ref) {
+  const { size: parentSize } = useStyleContext(SCOPE);
+
+  return (
+    <UIAccessibleAlertDialog.Content
+      pointerEvents="auto"
+      entering={ZoomIn.duration(150).springify().stiffness(700)}
+      exiting={ZoomOut.duration(150)}
+      ref={ref}
+      {...props}
+      className={alertDialogContentStyle({
+        parentVariants: {
+          size: parentSize,
+        },
+        size,
+        class: className,
+      })}
+    />
+  );
+});
+
+const AlertDialogCloseButton = React.forwardRef<
+  React.ComponentRef<typeof UIAccessibleAlertDialog.CloseButton>,
+  IAlertDialogCloseButtonProps
+>(function AlertDialogCloseButton({ className, ...props }, ref) {
+  return (
+    <UIAccessibleAlertDialog.CloseButton
+      ref={ref}
+      {...props}
+      className={alertDialogCloseButtonStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+const AlertDialogHeader = React.forwardRef<
+  React.ComponentRef<typeof UIAccessibleAlertDialog.Header>,
+  IAlertDialogHeaderProps
+>(function AlertDialogHeader({ className, ...props }, ref) {
+  return (
+    <UIAccessibleAlertDialog.Header
+      ref={ref}
+      {...props}
+      className={alertDialogHeaderStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+const AlertDialogFooter = React.forwardRef<
+  React.ComponentRef<typeof UIAccessibleAlertDialog.Footer>,
+  IAlertDialogFooterProps
+>(function AlertDialogFooter({ className, ...props }, ref) {
+  return (
+    <UIAccessibleAlertDialog.Footer
+      ref={ref}
+      {...props}
+      className={alertDialogFooterStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+const AlertDialogBody = React.forwardRef<
+  React.ComponentRef<typeof UIAccessibleAlertDialog.Body>,
+  IAlertDialogBodyProps
+>(function AlertDialogBody({ className, ...props }, ref) {
+  return (
+    <UIAccessibleAlertDialog.Body
+      ref={ref}
+      {...props}
+      className={alertDialogBodyStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+const AlertDialogBackdrop = React.forwardRef<
+  React.ComponentRef<typeof UIAccessibleAlertDialog.Backdrop>,
+  IAlertDialogBackdropProps
+>(function AlertDialogBackdrop({ className, ...props }, ref) {
+  return (
+    <UIAccessibleAlertDialog.Backdrop
+      ref={ref}
+      {...props}
+      entering={FadeIn.duration(150)}
+      exiting={FadeOut.duration(150)}
+      className={alertDialogBackdropStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+AlertDialog.displayName = 'AlertDialog';
+AlertDialogContent.displayName = 'AlertDialogContent';
+AlertDialogCloseButton.displayName = 'AlertDialogCloseButton';
+AlertDialogHeader.displayName = 'AlertDialogHeader';
+AlertDialogFooter.displayName = 'AlertDialogFooter';
+AlertDialogBody.displayName = 'AlertDialogBody';
+AlertDialogBackdrop.displayName = 'AlertDialogBackdrop';
+
+export {
+  AlertDialog, AlertDialogBackdrop, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter, AlertDialogHeader
+};
+
+
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogCloseButton,
+  AlertDialogFooter,
+  AlertDialogBody,
+} from '@/components/ui/alert-dialog';
+```
+
+```ts
+export default () => (
+  export default () => (
+  <AlertDialog>
+    <AlertDialogBackdrop />
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogCloseButton />
+      </AlertDialogHeader>
+      <AlertDialogBody />
+      <AlertDialogFooter />
+    </AlertDialogContent>
+  </AlertDialog>
+);
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### AlertDialog
+
+Contains all alert dialog related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+<>
+  <Table>
+    <TableBody>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isOpen</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          If true, the alert-dialog will open. Useful for controllable state
+          behavior.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onClose</InlineCode>
+        </TableCell>
+        <TableCell>() => any</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Callback invoked when the alert-dialog is closed.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>useRNModal</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          If true, renders react-native native modal. (Only works in
+          react-native)
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>defaultIsOpen</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          Specifies the default open state of the AlertDialog
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>initialFocusRef</InlineCode>
+        </TableCell>
+        <TableCell>{`React.RefObject<any>`}</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          The ref of element to receive focus when the alert-dialog opens.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>finalFocusRef</InlineCode>
+        </TableCell>
+        <TableCell>{`React.RefObject<any>`}</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          The ref of element to receive focus when the alert-dialog closes.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>avoidKeyboard</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>If true, the AlertDialog will avoid the keyboard.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>closeOnOverlayClick</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>true</TableCell>
+        <TableCell>
+          If true, the AlertDialog will close when the overlay is clicked.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isKeyboardDismissable</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>true</TableCell>
+        <TableCell>If true, the keyboard can dismiss the AlertDialog</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### AlertDialogBackdrop
+
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+
+#### AlertDialogContent
+
+It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
+
+#### AlertDialogCloseButton
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+#### AlertDialogHeader
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AlertDialogBody
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### AlertDialogFooter
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component
+
+### Features
+
+- Keyboard support for actions.
+
+### Accessibility
+
+We have outlined the various features that ensure the AlertDialog component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.It uses React Native ARIA [@react-native-aria/focus](https://react-native-aria.geekyants.com/) which follows the [WAI-ARIA Alert and Message Dialogs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/).
+
+#### Keyboard
+
+- `Tab`:
+  - Moves focus to the next tabbable element inside the dialog.
+  - If focus is on the last tabbable element inside the dialog, moves focus to the first tabbable element inside the dialog.
+- `Shift + Tab`:
+  - Moves focus to the previous tabbable element inside the dialog.
+  - If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.
+- `Escape`: Closes the dialog.
+
+#### Screen Reader
+
+- VoiceOver: When the button is focused, the screen reader will announce the button's label and provide instructions on how to click it. When the alert dialog is triggered, the screen reader will read its content.
+
+#### States
+
+- When the alert dialog is triggered, `aria-modal="true"` is added to the alert dialog content. This attribute informs assistive technologies that the windows underneath the current alert dialog are not available for interaction(inert).
+
+### Props
+
+AlertDialog component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props), and the props mentioned below.
+
+#### AlertDialog
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Value</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>xs | sm | md | lg | full</TableCell>
+        <TableCell>md</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+
+  #### AlertDialog with Image
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [showAlertDialog, setShowAlertDialog] = React.useState(false);
+  const handleClose = () => setShowAlertDialog(false);
+  return (
+    <>
+      <Button onPress={() => setShowAlertDialog(true)}>
+        <ButtonText>Pay</ButtonText>
+      </Button>
+      <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
+        <AlertDialogBackdrop />
+        <AlertDialogContent className="p-0 max-w-[590px] sm:flex-row rounded-xl">
+          <Box className="bg-primary min-w-[123px] items-center justify-center native:max-h-[95px]">
+            <Image
+              source=\\{{
+                uri: "https://gluestack.github.io/public-blog-video-assets/Image%20Container.png",
+              }}
+              alt="image"
+              className="min-h-[95px] min-w-[95px] h-full w-full"
+            />
+          </Box>
+          <AlertDialogBody
+            className=""
+            contentContainerClassName="p-6 flex-row justify-between gap-6 md:gap-9 items-center"
+          >
+            <VStack>
+              <Heading className="text-foreground font-semibold text-lg leading-6">
+                Get Additional Discount
+              </Heading>
+              <Text className="pt-2 text-foreground text-sm">
+                Upgrade your plan before your trial ends yo get 5% discount. Use
+                code{' '}
+                <Text className="font-bold text-base">
+                  #PRO005
+                </Text>
+              </Text>
+            </VStack>
+            <Button className="hidden sm:flex" onPress={handleClose}>
+              <ButtonText>Upgrade</ButtonText>
+            </Button>
+          </AlertDialogBody>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ AlertDialog, AlertDialogContent, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading, Box, Image, VStack }}
+  importMap={{"@/components/ui/alert-dialog":["AlertDialog","AlertDialogContent","AlertDialogBody","AlertDialogBackdrop"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/text":["Text"],"@/components/ui/heading":["Heading"],"@/components/ui/box":["Box"],"@/components/ui/image":["Image"],"@/components/ui/vstack":["VStack"]}}
+/>
+
+
+  #### AlertDialog with icon + cta
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [showAlertDialog, setShowAlertDialog] = React.useState(false);
+  const handleClose = () => setShowAlertDialog(false);
+  return (
+    <>
+      <Button onPress={() => setShowAlertDialog(true)}>
+        <ButtonText>Upload</ButtonText>
+      </Button>
+      <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
+        <AlertDialogBackdrop />
+        <AlertDialogContent className="p-4 gap-4 max-w-[649px] w-full md:flex-row mx-2">
+          <AlertDialogBody
+            className=""
+            contentContainerClassName="flex-row gap-4"
+          >
+            <Box className="h-10 min-[350px]:h-14 w-12 min-[350px]:w-14 rounded-full bg-muted items-center justify-center">
+              <Icon
+                as={UploadCloud}
+                className="stroke-foreground h-6 w-6"
+              />
+            </Box>
+            <VStack className="gap-1">
+              <Heading className="text-foreground font-semibold text-lg">
+                Cloud storage full!
+              </Heading>
+              <Text className="text-sm text-muted-foreground">You have used up all the storage you have.</Text>
+            </VStack>
+          </AlertDialogBody>
+          <AlertDialogFooter>
+            <Button
+              variant="outline"
+              onPress={handleClose}
+            >
+              <ButtonText>Cancel</ButtonText>
+            </Button>
+            <Button onPress={handleClose}>
+              <ButtonText>Upgrade Storage</ButtonText>
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ AlertDialog, AlertDialogContent, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading, Icon, VStack, Box, UploadCloud }}
+  importMap={{"@/components/ui/alert-dialog":["AlertDialog","AlertDialogContent","AlertDialogFooter","AlertDialogBody","AlertDialogBackdrop"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/text":["Text"],"@/components/ui/heading":["Heading"],"@/components/ui/icon":["Icon"],"@/components/ui/vstack":["VStack"],"@/components/ui/box":["Box"],"lucide-react-native":["UploadCloud"]}}
+/>
+
+
+  #### AlertDialog with Delete Option
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [showAlertDialog, setShowAlertDialog] = React.useState(false);
+  const handleClose = () => setShowAlertDialog(false);
+  return (
+    <>
+      <Button onPress={() => setShowAlertDialog(true)}>
+        <ButtonText>Delete Invoice</ButtonText>
+      </Button>
+      <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
+        <AlertDialogBackdrop />
+        <AlertDialogContent className="w-full max-w-[415px] gap-4 items-center">
+          <Box className="rounded-full h-[52px] w-[52px] bg-destructive/10 items-center justify-center">
+            <Icon as={TrashIcon} className="stroke-destructive h-6 w-6" />
+          </Box>
+          <AlertDialogHeader className="mb-2">
+            <Heading className="text-foreground font-semibold text-lg">Delete account?</Heading>
+          </AlertDialogHeader>
+          <AlertDialogBody>
+            <Text className="text-sm text-muted-foreground text-center">
+              The invoice will be deleted from the invoices section and in
+              the documents folder. This cannot be undone.
+            </Text>
+          </AlertDialogBody>
+          <AlertDialogFooter className="mt-5">
+            <Button
+              variant="destructive"
+              onPress={handleClose}
+              className="px-[30px]"
+            >
+              <ButtonText>Delete</ButtonText>
+            </Button>
+            <Button
+              variant="outline"
+              onPress={handleClose}
+              className="px-[30px]"
+            >
+              <ButtonText>Cancel</ButtonText>
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogBody, AlertDialogBackdrop, Button, ButtonText, Text, Heading, Icon, TrashIcon, Box }}
+  importMap={{"@/components/ui/alert-dialog":["AlertDialog","AlertDialogContent","AlertDialogHeader","AlertDialogFooter","AlertDialogBody","AlertDialogBackdrop"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/text":["Text"],"@/components/ui/heading":["Heading"],"@/components/ui/icon":["Icon","TrashIcon"],"@/components/ui/box":["Box"]}}
+/>

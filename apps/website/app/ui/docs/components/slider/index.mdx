@@ -1,0 +1,513 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Slider, SliderTrack, SliderFilledTrack, SliderThumb } from '@/components/ui/slider';
+import { Center } from '@/components/ui/center';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableContainer,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableText,
+  TableHeaderCell,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Slider
+
+Create smooth, interactive controls with the gluestack-ui React Native Slider component. Customize track height, values, and states for a seamless slider UI experience.
+
+This is an illustration of **Slider** component.
+
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Center className="w-[300px] h-[150px]">
+      <Slider
+        defaultValue={30}
+        orientation="{{orientation}}"
+        isDisabled={ {{isDisabled}} }
+        isReversed={ {{isReversed}} }
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+    </Center>
+  )
+}`}
+  argTypes={{
+  "orientation": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "horizontal",
+      "vertical"
+    ],
+    "defaultValue": "horizontal"
+  },
+  "isDisabled": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  },
+  "isReversed": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  }
+}}
+  reactLive={{ Slider, SliderTrack, SliderFilledTrack, SliderThumb, Center }}
+  importMap={{"@/components/ui/slider":["Slider","SliderTrack","SliderFilledTrack","SliderThumb"],"@/components/ui/center":["Center"]}}
+/>
+
+<br />
+## Installation
+
+<Tabs >
+  <TabItem label="CLI">
+     
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add slider`} language="bash" />
+
+  </TabItem>
+  <TabItem label="Manual">
+
+
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+'use client';
+import { createSlider } from '@gluestack-ui/core/slider/creator';
+import { Pressable } from 'react-native';
+import { View } from 'react-native';
+import React from 'react';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+
+const SCOPE = 'SLIDER';
+const Root = withStyleContext(View, SCOPE);
+export const UISlider = createSlider({
+  Root: Root,
+  Thumb: View,
+  Track: Pressable,
+  FilledTrack: View,
+  ThumbInteraction: View,
+});
+
+cssInterop(UISlider.Track, { className: 'style' });
+
+const sliderStyle = tva({
+  base: 'justify-center items-center data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-none',
+  variants: {
+    orientation: {
+      horizontal: 'w-full',
+      vertical: 'h-full',
+    },
+    isReversed: {
+      true: '',
+      false: '',
+    },
+  },
+});
+
+const sliderThumbStyle = tva({
+  base: 'bg-white border border-primary ring-ring/50 absolute rounded-full shadow-sm transition-[color,box-shadow] data-[hover=true]:ring-4 data-[focus-visible=true]:ring-4 data-[focus-visible=true]:outline-hidden disabled:pointer-events-none disabled:opacity-50 web:cursor-pointer h-4 w-4',
+});
+
+const sliderTrackStyle = tva({
+  base: 'bg-muted rounded-full overflow-hidden',
+  parentVariants: {
+    orientation: {
+      horizontal: 'w-full h-1.5 flex-row',
+      vertical: 'h-full w-1.5 flex-col-reverse',
+    },
+    isReversed: {
+      true: '',
+      false: '',
+    },
+  },
+  parentCompoundVariants: [
+    {
+      orientation: 'horizontal',
+      isReversed: true,
+      class: 'flex-row-reverse',
+    },
+    {
+      orientation: 'vertical',
+      isReversed: true,
+      class: 'flex-col',
+    },
+  ],
+});
+
+const sliderFilledTrackStyle = tva({
+  base: 'bg-primary',
+  parentVariants: {
+    orientation: {
+      horizontal: 'h-full',
+      vertical: 'w-full',
+    },
+  },
+});
+
+type ISliderProps = React.ComponentProps<typeof UISlider> &
+  VariantProps<typeof sliderStyle>;
+
+const Slider = React.forwardRef<
+  React.ComponentRef<typeof UISlider>,
+  ISliderProps
+>(function Slider(
+  {
+    className,
+    orientation = 'horizontal',
+    isReversed = false,
+    ...props
+  },
+  ref
+) {
+  return (
+    <UISlider
+      ref={ref}
+      isReversed={isReversed}
+      orientation={orientation}
+      {...props}
+      className={sliderStyle({
+        orientation,
+        isReversed,
+        class: className,
+      })}
+      context={{ orientation, isReversed }}
+    />
+  );
+});
+
+type ISliderThumbProps = React.ComponentProps<typeof UISlider.Thumb> &
+  VariantProps<typeof sliderThumbStyle>;
+
+const SliderThumb = React.forwardRef<
+  React.ComponentRef<typeof UISlider.Thumb>,
+  ISliderThumbProps
+>(function SliderThumb({ className, ...props }, ref) {
+  return (
+    <UISlider.Thumb
+      ref={ref}
+      {...props}
+      className={sliderThumbStyle({
+        class: className,
+      })}
+    />
+  );
+});
+
+type ISliderTrackProps = React.ComponentProps<typeof UISlider.Track> &
+  VariantProps<typeof sliderTrackStyle>;
+
+const SliderTrack = React.forwardRef<
+  React.ComponentRef<typeof UISlider.Track>,
+  ISliderTrackProps
+>(function SliderTrack({ className, ...props }, ref) {
+  const {
+    orientation: parentOrientation,
+    isReversed,
+  } = useStyleContext(SCOPE);
+
+  return (
+    <UISlider.Track
+      ref={ref}
+      {...props}
+      className={sliderTrackStyle({
+        parentVariants: {
+          orientation: parentOrientation,
+          isReversed,
+        },
+        class: className,
+      })}
+    />
+  );
+});
+
+type ISliderFilledTrackProps = React.ComponentProps<
+  typeof UISlider.FilledTrack
+> &
+  VariantProps<typeof sliderFilledTrackStyle>;
+
+const SliderFilledTrack = React.forwardRef<
+  React.ComponentRef<typeof UISlider.FilledTrack>,
+  ISliderFilledTrackProps
+>(function SliderFilledTrack({ className, ...props }, ref) {
+  const { orientation: parentOrientation } = useStyleContext(SCOPE);
+
+  return (
+    <UISlider.FilledTrack
+      ref={ref}
+      {...props}
+      className={sliderFilledTrackStyle({
+        parentVariants: {
+          orientation: parentOrientation,
+        },
+        class: className,
+      })}
+    />
+  );
+});
+
+export { Slider, SliderThumb, SliderTrack, SliderFilledTrack };
+
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Slider } from '@/components/ui/slider';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/k4vbMIM.png"
+  webUrl="https://i.imgur.com/E1WZefI.png"
+  classNameStyle="aspect-[513/343] md:aspect-[736/231]"
+/>
+
+```ts
+export default () => (
+  <Slider>
+    <SliderTrack>
+      <SliderFilledTrack />
+    </SliderTrack>
+    <SliderThumb />
+  </Slider>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Slider
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>onChange</InlineCode>
+          </TableCell>
+          <TableCell>{'(value: number) => void'}</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>Function called when the state of the Slider changes.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isDisabled</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>When true, this will disable Slider</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isReadOnly</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>To manually set read-only to the checkbox.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>sliderTrackHeight</InlineCode>
+          </TableCell>
+          <TableCell>number</TableCell>
+          <TableCell>8</TableCell>
+          <TableCell>To change the slider track height.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>defaultValue</InlineCode>
+          </TableCell>
+          <TableCell>number</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>To change the slider value.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>minValue</InlineCode>
+          </TableCell>
+          <TableCell>number</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>The slider's minimum value</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>maxValue</InlineCode>
+          </TableCell>
+          <TableCell>number</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>The slider's maximum value.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>value</InlineCode>
+          </TableCell>
+          <TableCell>number</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>The slider's current value.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>step</InlineCode>
+          </TableCell>
+          <TableCell>number</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>The slider's step value.</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+**Descendants Styling Props**
+Props to style child components.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Sx Prop</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>_thumb</InlineCode>
+          </TableCell>
+          <TableCell>Prop to style SliderThumb Component</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>_track</InlineCode>
+          </TableCell>
+          <TableCell>Prop to style SliderTrack Component</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>_filledTrack</InlineCode>
+          </TableCell>
+          <TableCell>Prop to style SliderFilledTrack Component</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+#### SliderTrack
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/Pressable) component.
+
+#### SliderFilledTrack
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### SliderThumb
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+
+### Accessibility
+
+We have outlined the various features that ensure the Slider component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slider/).
+
+#### Keyboard
+
+- `Tab`: Moves focus to the next focusable element.
+- `Right Arrow`: Increase the value of the slider by one step.
+- `Up Arrow`: Increase the value of the slider by one step.
+- `Left Arrow`: Decrease the value of the slider by one step.
+- `Down Arrow`: Decrease the value of the slider by one step.
+
+### Screen Reader
+
+- VoiceOver: When the slider is focused, the screen reader will announce the slider's value.
+
+### Props
+
+Slider component is created using View component from react-native. It extends all the props supported by [React Native View](https://reactnative.dev/docs/view#props).
+
+### Data Attributes Table
+
+Component receives states as props as boolean values, which are applied as `data-*` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>State</TableHeaderCell>
+          <TableHeaderCell>Data Attribute</TableHeaderCell>
+          <TableHeaderCell>Values</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>disabled</InlineCode>
+          </TableCell>
+          <TableCell>data-disabled</TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>focus</InlineCode>
+          </TableCell>
+          <TableCell>data-focus</TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>invalid</InlineCode>
+          </TableCell>
+          <TableCell>data-invalid</TableCell>
+          <TableCell>
+            <InlineCode>true | false</InlineCode>
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>

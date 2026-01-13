@@ -1,0 +1,463 @@
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHeaderCell,
+  TableCell,
+} from '@/docs-components/table';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Upgrade to gluestack-ui v3
+
+## Why gluestack-ui v3?
+
+### Evolution to v3
+
+**gluestack-ui v3** represents a major evolution in our approach to universal component development. Building on the foundation of v2, v3 introduces a revolutionary source-to-destination architecture that ensures consistency across all platforms while maintaining maximum flexibility.
+
+#### What's New in v3
+
+- **Source-to-Destination Architecture** *(contribution change)*: All components are maintained in a single source of truth (`src/` directory) and automatically synced across all project templates and examples
+- **Enhanced Package System** *(contribution change)*: Modular packages (`gluestack-core`, `gluestack-utils`, `ui-next-adapter`) for better maintainability and extensibility  
+- **Improved Developer Experience** *(contribution change)*: Streamlined development workflow with automated file synchronization and hot reloading
+- **Advanced Component Creation** *(contribution change)*: New CLI tools and scripts for rapid component development and contribution
+- **Better Documentation Integration** *(contribution change)*: Seamless integration between component source code and documentation
+- **Enhanced Testing Infrastructure** *(contribution change)*: Comprehensive testing across multiple starter templates and applications
+
+## Migration from Previous Versions
+
+### From v2 to v3
+
+#### What's Changed (Minimal Breaking Changes):
+
+**gluestack-ui v3** maintains API compatibility with v2 while introducing significant architectural improvements:
+
+- **Package structure changes** to @gluestack-ui/core and @gluestack-ui/utils
+- **Import path updates** for creator function
+- **ARIA dependencies** moved from react-native-aria to @gluestack-ui/core
+- **Enhanced Next.js adapter**
+- **Better compatibility** with Expo SDK 53 and Next.js 15
+
+#### What Stays the Same:
+- **Component APIs** remain exactly the same
+- **Styling system** unchanged
+- **Theming configurations** continue to work
+- **Copy-paste philosophy** maintained
+
+### Migration Benefits
+
+- **Seamless Upgrade**: Simple upgrade process with `npx gluestack-ui@latest upgrade` command.
+- **Minimal code changes** (only import paths)
+- **Enhanced stability** and bug fixes
+- **Future-ready foundation**
+- **Improved developer experience** (contribution change)
+- **Community Support**: Active community and comprehensive migration resources
+
+We've prepared a comprehensive migration guide to help you transition smoothly from v2 to v3, including automated migration tools and detailed instructions.
+
+# Manual Migration to gluestack-ui v3
+<br/>
+If you have a simple Next.js or Expo project using Gluestack, you can upgrade directly by running:
+<CodeBlock code="npx gluestack-ui@latest upgrade" language="bash" />
+
+For monorepos, please follow the manual installation guide instead.
+
+This guide provides detailed manual steps to migrate from legacy gluestack-ui packages to the new gluestack-ui v3 ecosystem. Follow these steps carefully to ensure a smooth transition with minimal issues.
+
+We’ll be releasing an official Gluestack monorepo template soon to make the process even easier.
+
+## Migration Overview
+
+The migration process involves several key steps:
+
+1. **Backup and Preparation** - Secure your codebase
+2. **Package Management** - Remove old packages and install new ones
+3. **Configuration Updates** - Update Tailwind and Next.js configurations
+4. **Code Transformation** - Update import statements and component usage
+5. **Clean Installation** - Ensure dependency integrity
+
+## Step 1: Backup and Preparation
+
+### Check Git Status
+
+Before proceeding, ensure your project has no uncommitted changes:
+
+<CodeBlock code="git status" language="bash" />
+
+If you have uncommitted changes, either commit them or stash them:
+
+<CodeBlock code={`# Commit changes
+git add .
+git commit -m "Pre-migration backup"
+
+# Or stash changes
+git stash`} language="bash" />
+
+### Identify Legacy Packages
+
+Check your `package.json` to identify old gluestack packages that need to be removed. Look for packages starting with:
+- `@gluestack-ui`
+- `gluestack`
+- `@gluestack`
+
+## Step 2: Remove Legacy Packages
+
+### Detect Old Packages
+
+First, list all the legacy packages in your `package.json` and remove them:
+
+Remove `react-native-aria`
+
+<Tabs>
+<TabItem label="npm">
+<CodeBlock code="# Remove old packages
+npm uninstall react-native-aria" language="bash" />
+</TabItem>
+<TabItem label="yarn">
+<CodeBlock code="# Remove old packages
+yarn remove @gluestack-ui/themed @gluestack-ui/components @gluestack-ui/config @gluestack/ui-next-adapter" language="bash" />
+</TabItem>
+<TabItem label="pnpm">
+<CodeBlock code="# Remove old packages
+pnpm remove @gluestack-ui/themed @gluestack-ui/components @gluestack-ui/config @gluestack/ui-next-adapter" language="bash" />
+</TabItem>
+<TabItem label="bun">
+<CodeBlock code="# Remove old packages
+bun remove @gluestack-ui/themed @gluestack-ui/components @gluestack-ui/config @gluestack/ui-next-adapter" language="bash" />
+</TabItem>
+</Tabs>
+
+**Note**: Replace the package names above with the actual legacy packages found in your `package.json`.
+
+## Step 3: Update Configuration Files
+
+### Update Tailwind Configuration
+
+Remove the old gluestack plugin from your `tailwind.config.ts` or `tailwind.config.js`:
+
+**Before:**
+<CodeBlock code={`import gluestackPlugin from '@gluestack-ui/nativewind-utils/tailwind-plugin';
+
+export default {
+  // ... other config
+  plugins: [gluestackPlugin, /* other plugins */],
+}`} language="typescript" />
+
+**After:**
+<CodeBlock code={
+`export default {
+  // ... other config
+  plugins: [/* other plugins only */],
+}`} language="typescript" />
+
+### Update Next.js Configuration
+
+Update your Next.js configuration files (`next.config.ts`, `next.config.js`, or `next.config.mjs`):
+
+**Before:**
+<CodeBlock code={`import { withGluestackUI } from '@gluestack/ui-next-adapter';
+
+const nextConfig = {
+  // ... your config
+};
+
+export default withGluestackUI(nextConfig);`} language="typescript" />
+
+**After:**
+<CodeBlock code={`import { withGluestackUI } from '@gluestack/ui-next-adapter';
+
+const nextConfig = {
+  // ... your config
+};
+
+export default withGluestackUI(nextConfig);`} language="typescript" />
+
+### Update Registry File (Next.js 15)
+
+If you have an `app/registry.tsx` file, update the flush import:
+
+**Before:**
+<CodeBlock code={`import { flush } from '@gluestack-ui/nativewind-utils/flush';`} language="typescript" />
+
+**After:**
+<CodeBlock code={`import { flush } from '@gluestack-ui/utils/nativewind-utils';`} language="typescript" />
+
+## Step 4: Install New Packages
+
+Install the new gluestack-ui v3 packages:
+
+<Tabs>
+<TabItem label="npm">
+<CodeBlock code="npm install @gluestack-ui/core@latest @gluestack-ui/utils@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
+</TabItem>
+<TabItem label="yarn">
+<CodeBlock code="yarn add @gluestack-ui/core@latest @gluestack-ui/utils@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
+</TabItem>
+<TabItem label="pnpm">
+<CodeBlock code="pnpm i @gluestack-ui/core@latest @gluestack-ui/utils@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
+</TabItem>
+<TabItem label="bun">
+<CodeBlock code="bun add @gluestack-ui/core@latest @gluestack-ui/utils@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
+</TabItem>
+</Tabs>
+
+## Step 5: Clean Installation
+
+To ensure all dependencies are properly resolved, perform a clean installation:
+
+<Tabs>
+<TabItem label="npm">
+<CodeBlock code={`# Remove node_modules and package-lock.json
+rm -rf node_modules package-lock.json
+
+# Reinstall dependencies
+npm install`} language="bash" />
+</TabItem>
+<TabItem label="yarn">
+<CodeBlock code={`# Remove node_modules and yarn.lock
+rm -rf node_modules yarn.lock
+
+# Reinstall dependencies
+yarn install`} language="bash" />
+</TabItem>
+<TabItem label="pnpm">
+<CodeBlock code={`# Remove node_modules and pnpm-lock.yaml
+rm -rf node_modules pnpm-lock.yaml
+
+# Reinstall dependencies
+pnpm install`} language="bash" />
+</TabItem>
+<TabItem label="bun">
+<CodeBlock code={`# Remove node_modules and bun.lockb
+rm -rf node_modules bun.lockb
+
+# Reinstall dependencies
+bun install`} language="bash" />
+</TabItem>
+</Tabs>
+
+## Step 6: Update Import Statements
+
+### Transform Component Imports
+
+Update all import statements in your `components/ui` folder and throughout your codebase:
+
+**Before:**
+<CodeBlock code={`
+import { createButton  } from '@gluestack-ui/button';
+import { createRadio } from '@gluestack-ui/radio';`} language="typescript" />
+
+**After:**
+<CodeBlock code={`
+import { createButton } from '@gluestack-ui/core/button/creator';
+import { createRadio } from '@gluestack-ui/core/radio/creator';`} language="typescript" />
+
+### Transform Utility Imports
+<br/>
+**Before:**
+<CodeBlock code={`import { flush } from '@gluestack-ui/nativewind-utils/flush';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';`} language="typescript" />
+
+**After:**
+<CodeBlock code={`import { flush } from '@gluestack-ui/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';`} language="typescript" />
+
+## Step 7: Update Component Usage Patterns
+
+### Import Path Transformation Rules
+
+Use these patterns to transform your imports:
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Old Import Pattern</TableHeaderCell>
+      <TableHeaderCell>New Import Pattern</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>{`from '@gluestack-ui/[component]'`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`from '@gluestack-ui/core/[component]/creator'`}</InlineCode>
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>{`from '@gluestack-ui/nativewind-utils/[utility]'`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`from '@gluestack-ui/utils/nativewind-utils'`}</InlineCode>
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>{`from '@gluestack/ui-next-adapter'`}</InlineCode>
+      </TableCell>
+      <TableCell>
+        <InlineCode>{`from '@gluestack/ui-next-adapter'`}</InlineCode>
+      </TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+## Step 8: Recursive File Processing
+
+### Process All Component Files
+
+You'll need to update imports in all TypeScript/JavaScript files recursively. Here's a systematic approach:
+
+1. **Start with the main components directory**: `components/ui/`
+2. **Process subdirectories**: Look for nested component folders
+3. **Update file extensions**: Process `.ts`, `.tsx`, `.js`, `.jsx` files
+4. **Check other directories**: Look for components in `src/`, `app/`, `screens/`, etc.
+
+### File Processing Checklist
+
+For each file, verify:
+- All `@gluestack-ui/*` imports are updated
+- All `@gluestack/*` imports are updated  
+- No legacy package imports remain
+- File compiles without import errors
+
+## Step 9: Verification and Testing
+
+### Verify Migration Success
+
+After completing the migration:
+
+#### Step1: Check for compilation errors:
+
+   <CodeBlock code="npm run build" language="bash" />
+
+#### Step2: Run your development server:
+   <CodeBlock code="npm run dev" language="bash" />
+
+#### Step3: Test core functionality: Ensure your components render and behave correctly
+<br/>
+
+### Common Issues and Solutions
+
+#### Import Resolution Issues
+If you encounter import errors:
+- Verify package installation: Check that all new packages are in `package.json`
+- Clear cache: Delete `node_modules` and reinstall
+- Check import paths: Ensure they follow the new pattern exactly
+
+#### Build Errors
+If builds fail:
+- Check TypeScript configuration compatibility
+- Verify all configuration files are updated
+- Ensure no legacy imports remain
+
+#### Runtime Issues
+If components don't work at runtime:
+- Check browser console for errors
+- Verify CSS/styling is loading correctly
+- Test component functionality individually
+
+## Step 10: Post-Migration Cleanup
+
+### Final Verification Steps
+
+#### Step1: Search for legacy references:
+<CodeBlock code={`# Search for any remaining old imports
+   grep -r "@gluestack-ui" src/ components/ app/
+   grep -r "@gluestack/" src/ components/ app/`} language="bash" />
+
+#### Step2: Commit your changes**:
+   <CodeBlock code={`git add .
+   git commit -m "Migrate to gluestack-ui v3 packages"`} language="bash" />
+
+3. **Test thoroughly**: Run your test suite and manually test key features
+
+## Troubleshooting
+
+### Package Manager Issues
+
+If you encounter dependency resolution issues:
+
+#### Step1: Clear package manager cache:
+<CodeBlock code={`
+   npm cache clean --force  # for npm
+   yarn cache clean         # for yarn  
+   pnpm store prune         # for pnpm
+   bun pm cache rm          # for bun`} language="bash" />
+
+#### Step2: Delete lock files and reinstall:
+   <CodeBlock code={`rm -rf node_modules package-lock.json
+     npm install`} language="bash" />
+
+### Configuration Issues
+
+If configurations aren't working:
+- Double-check file names and extensions
+- Ensure proper syntax in config files
+- Verify import statements in config files
+
+### Component Issues
+
+If components aren't working:
+- Check component documentation for API changes
+- Verify styling and theming setup
+- Test components individually
+
+## Migration Checklist
+
+Use this checklist to track your migration progress:
+
+- **Preparation**
+  - Committed or stashed all changes
+  - Identified all legacy packages
+  - Created project backup
+
+- **Package Management**
+  - Removed all legacy gluestack packages
+  - Installed new gluestack packages
+  - Performed clean installation
+
+- **Configuration Updates**
+  - Updated Tailwind configuration
+  - Updated Next.js configuration  
+  - Updated registry file (if applicable)
+
+- **Code Updates**
+  - Updated all component imports
+  - Updated utility imports
+  - Processed all subdirectories
+  - Verified no legacy imports remain
+
+- **Testing**
+  - Project builds successfully
+  - Development server runs
+  - Components render correctly
+  - Core functionality works
+
+- **Finalization**
+  - Committed changes
+  - Updated documentation
+  - Tested thoroughly
+
+## Next Steps
+
+After successful migration:
+
+1. **Update your team**: Inform team members about the migration
+2. **Update documentation**: Revise any project-specific documentation
+3. **Monitor for issues**: Keep an eye on the application for any unexpected behavior
+4. **Stay updated**: Follow gluestack-ui releases for future updates
+
+## Support
+
+If you encounter issues during migration:
+- Check the [gluestack-ui documentation](https://gluestack.io/ui/docs)
+- Review common issues in this guide
+- Seek help from the gluestack-ui community
+
+Remember to test thoroughly in a development environment before deploying to production!

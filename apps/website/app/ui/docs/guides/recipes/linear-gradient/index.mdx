@@ -1,0 +1,174 @@
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import GradientImage from '@/docs-components/gradient-image/GradientImage';
+
+# LinearGradient
+
+Learn how to use LinearGradient components in React Native for stunning UI effects. Create smooth color transitions with Linear Gradient for beautiful app designs.
+This is an illustration of **Linear Gradient** component in `App.tsx` file.
+
+<GradientImage />
+
+```jsx
+import './global.css';
+import React, { useState } from 'react';
+import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
+import { SafeAreaView } from '@/components/ui/safe-area-view';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { LinearGradient } from '@/components/ui/linear-gradient';
+import { Heading } from '@/components/ui/heading';
+import { Text } from '@/components/ui/text';
+import { Center } from '@/components/ui/center';
+import { Mail } from 'lucide-react-native';
+
+export default function App() {
+  const [colorMode, setColorMode] = (useState < 'dark') | ('light' > 'light');
+  return (
+    <SafeAreaView className="flex-1 justify-center items-center">
+      <GluestackUIProvider mode={colorMode}>
+        <Center className="rounded-xl bg-background-0 p-8 m-6 web:max-w-[400px]">
+          <Heading size="xl">Stay up to date</Heading>
+          <Text className="text-center leading-[22px] my-2">
+            Subscribe to our newsletter for the latest news and product updates.
+          </Text>
+
+          <Input
+            variant="outline"
+            size="md"
+            isDisabled={false}
+            isInvalid={false}
+            isReadOnly={false}
+            className="w-full rounded-full my-3"
+          >
+            <InputField placeholder="abc@example.com" />
+            <InputSlot className="pr-3">
+              <InputIcon
+                as={Mail}
+                color={colorMode === 'light' ? '#525252' : '#DBDBDC'}
+              />
+            </InputSlot>
+          </Input>
+
+          <LinearGradient
+            className="w-full rounded-full items-center py-2"
+            colors={['#8637CF', '#0F55A1']}
+            start={[0, 1]}
+            end={[1, 0]}
+          >
+            <Text className="text-white font-semibold">Subscribe</Text>
+          </LinearGradient>
+        </Center>
+      </GluestackUIProvider>
+    </SafeAreaView>
+  );
+}
+```
+
+<br />
+
+## Installation
+
+<Tabs>
+  <TabItem label="Expo Linear Gradient">
+
+### Step 1: Install the following dependencies:
+
+```bash
+npx expo install expo-linear-gradient
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+
+'use client';
+import React from 'react';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+import { LinearGradient as ExpoLinearGradient } from 'expo-linear-gradient';
+import { cssInterop } from 'nativewind';
+
+cssInterop(ExpoLinearGradient, {
+  className: 'style',
+});
+
+const linearGradientStyle = tva({
+  base: '',
+});
+
+export const LinearGradient = React.forwardRef(
+  ({ className, ...props }: any, ref?: any) => {
+    return (
+      <ExpoLinearGradient
+        {...props}
+        className={linearGradientStyle({ class: className })}
+        ref={ref}
+      />
+    );
+  }
+);
+
+
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+<TabItem label="React Native Linear Gradient">
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i react-native-linear-gradient
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+
+'use client';
+import React from 'react';
+import { tva } from '@gluestack-ui/nativewind-utils/tva';
+//@ts-ignore
+import { LinearGradient as RNLinearGradient } from 'react-native-linear-gradient';
+import { cssInterop } from 'nativewind';
+
+cssInterop(RNLinearGradient, {
+  className: 'style',
+});
+
+const linearGradientStyle = tva({
+  base: '',
+});
+
+export const LinearGradient = React.forwardRef(
+  ({ className, ...props }: any, ref?: any) => {
+    return (
+      <RNLinearGradient
+        {...props}
+        className={linearGradientStyle({ class: className })}
+        ref={ref}
+      />
+    );
+  }
+);
+
+
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import { LinearGradient } from '@/components/ui/linear-gradient';
+```
+
+```jsx
+export default () => <LinearGradient />;
+```

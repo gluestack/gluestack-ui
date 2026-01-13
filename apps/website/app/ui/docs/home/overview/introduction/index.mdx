@@ -1,0 +1,141 @@
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { GithubLink } from './githubLink';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionTrigger,
+  AccordionTitleText,
+  AccordionContent,
+  AccordionContentText,
+  AccordionIcon,
+} from '@/components/ui/accordion';
+import { Divider } from '@/components/ui/divider';
+import { ChevronDownIcon, ChevronUpIcon } from '@/components/ui/icon';
+
+# Introduction
+
+Customizable components and patterns for React, Next.js & React Native.
+
+**gluestack-ui** offers customizable, beautifully designed components for your projects. Unlike traditional libraries, it's not a pre-packaged dependency. Choose the components you need and copy-paste them directly into your React, Next.js & React Native projects.
+
+## gluestack-ui philosophy
+
+### Why gluestack-ui exists
+- **Problem:** Traditional UI libraries often force developers into rigid patterns, heavy dependencies, or platform-specific implementations.
+
+- **Solution:** gluestack-ui promotes a universal, modular, and copy-paste approach that lets developers own their UI components completely.
+
+- **Inspiration:** We started gluestack-ui v1 with a philosophy similar to React Aria & Radix UI, to keep the customization decoupled from component API and accessibility. By the time we announced v2, shadcn/ui had already taken over the web and today gluestack-ui and shadcn/ui are very similar, although gluestack-ui exists in the mobile and web world both!
+### Goals & Non-Goals
+
+#### Our goals
+
+- **Universal Consistency:** One codebase, same behavior across React, Next.js, and React Native.
+
+- **Developer Ownership:** Copy-paste components, modify freely, avoid vendor lock-in.
+
+- **Performance & Accessibility:** Lightweight, optimized, and accessible components by default.
+
+- **Community-Driven:** Open architecture encouraging contributions and experimentation.
+
+#### Non-goals
+
+**We don't aim to**
+- Create another monolithic UI library with hundreds of pre-styled components
+- Provide opinionated design themes that limit creative freedom
+- Replace platform-specific optimizations with lowest-common-denominator solutions
+- Build a proprietary styling system that requires learning new APIs
+- Create dependencies that become bottlenecks for your project's evolution
+
+### How gluestack-ui works
+
+- **Source-to-Destination Architecture:** Maintain a single source of truth for components that automatically syncs across projects.
+
+- **Copy-Paste Components:** Grab only what you need—no heavy dependencies required.
+
+- **Theming & Tailwind Integration:** Flexible styling system that works for web & mobile.
+
+- **TypeScript & RSC Ready:** Modern architecture for type safety and server-rendered apps.
+
+### Design 101
+
+- **Atomic, Composable Components:** Each component is small, reusable, and composable into more complex UIs.
+
+- **Compound Components:** Components with sub-components (e.g., 
+`<Button>`
+`<ButtonText>`Click Me`</ButtonText>`
+`</Button>`
+), allowing more flexible layouts.
+
+- **Accessibility by Default:** ARIA support baked in, keyboard navigable.
+
+- **Minimal Runtime Overhead:** Lightweight runtime ensures high performance.
+
+### Code 101
+
+- **Copy-Paste Philosophy:** No “magical imports.” You copy the component directly into your codebase.
+
+- **Fully Customizable:** You can override styles, props, and behavior easily.
+
+- **Single Source of Truth:** All component logic lives in src/ for maintainability and easy updates.
+
+- **Integration Ready:** Works out-of-the-box with Tailwind, NativeWind, and Next.js RSC.
+
+This philosophy guides every decision in gluestack-ui's development, from API design to documentation structure, ensuring that developers have the tools they need to build exceptional user experiences without compromise.
+
+{/* <FAQs /> */}
+
+## Future Considerations
+
+gluestack-ui is committed to continuously expanding its library of components to meet the needs of developers. We plan to add more components to the library, such as date-time picker, bottom sheet, and more. Apart from that, we are actively working on improving the performance of the styling library using techniques such as bundler-plugins, tree flattening, and more.
+
+## Community
+
+### Discord
+
+Get involved with the community, ask questions, and share tips, join our Discord.
+
+[Join our Discord](https://discord.gg/95qQ84nf6f)
+
+### Twitter
+
+To receive updates on new primitives, announcements, blog posts, and tips on using the library.
+
+[Follow gluestack-ui on Twitter](https://twitter.com/gluestack)
+
+### GitHub
+
+To report bugs, request features, or contribute to the library, check out the gluestack-ui GitHub repository.
+
+<GithubLink>View gluestack-ui on GitHub</GithubLink>
+
+### Stackoverflow
+
+Receive firsthand assistance from our community of developers.
+
+[Visit Stackoverflow](https://stackoverflow.com/questions/tagged/gluestack)
+
+### LinkedIn
+
+Stay updated about our company and collaborate on enterprise-level projects.
+
+[Follow us on LinkedIn](https://www.linkedin.com/company/gluestackio/)
+
+## All Components
+
+Explore 30+ components for React, Next.js & React Native [See All](/ui/docs/components/all-components).
+
+## Contributing
+
+gluestack-ui v3 is built by the community, for the community. We welcome contributions of all kinds:
+
+- **Component Development**: Help build new components or improve existing ones
+- **Documentation**: Improve guides, examples, and API documentation  
+- **Bug Reports**: Help us identify and fix issues
+- **Feature Requests**: Suggest new features and improvements
+
+Ready to build amazing universal apps? Let's get started! 🚀
+
+> Note: Upgrade to v3 [Click here](/ui/docs/guides/more/upgrade-to-v3).

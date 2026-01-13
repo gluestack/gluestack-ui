@@ -1,0 +1,881 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel } from '@/components/ui/radio';
+import { CircleIcon } from '@/components/ui/icon';
+import { Center } from '@/components/ui/center';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { Heading } from '@/components/ui/heading';
+import { FormControl } from '@/components/ui/form-control';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { InlineCode } from '@/docs-components/inline-code';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+# Radio
+
+Enhance your UI with a React Native radio button. Easily integrate radio buttons component with full accessibility support.
+
+This is an illustration of **Radio** component.
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <RadioGroup>
+      <Radio value="{{value}}" isInvalid={ {{isInvalid}} } isDisabled={ {{isDisabled}} }>
+        <RadioIndicator>
+          <RadioIcon as={CircleIcon} />
+        </RadioIndicator>
+        <RadioLabel>Label</RadioLabel>
+      </Radio>
+    </RadioGroup>
+  )
+}`}
+  argTypes={{
+  "isInvalid": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  },
+  "isDisabled": {
+    "control": {
+      "type": "boolean"
+    },
+    "defaultValue": false
+  }
+}}
+  reactLive={{ Radio, RadioGroup, RadioIndicator, RadioIcon, RadioLabel, CircleIcon }}
+  importMap={{"@/components/ui/radio":["Radio","RadioGroup","RadioIndicator","RadioIcon","RadioLabel"],"@/components/ui/icon":["CircleIcon"]}}
+/>
+
+## Installation
+
+<Tabs>
+  <TabItem label="CLI">
+
+### Run the following command:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add radio`} language="bash" />
+
+
+</TabItem>
+<TabItem label="Manual">
+
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i lucide-react-native
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+'use client';
+import React from 'react';
+import { createRadio } from '@gluestack-ui/core/radio/creator';
+import { Pressable, View, Platform, Text } from 'react-native';
+import { tva, useStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+
+const SCOPE = 'Radio';
+
+const UIRadio = createRadio({
+  Root: (Platform.OS === 'web'
+    ? withStyleContext(View, SCOPE)
+    : withStyleContext(Pressable, SCOPE)) as ReturnType<
+    typeof withStyleContext<typeof Pressable>
+  >,
+  Group: View,
+  Icon: UIIcon,
+  Indicator: View,
+  Label: Text,
+});
+
+cssInterop(PrimitiveIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
+});
+
+const radioStyle = tva({
+  base: 'group/radio flex-row justify-start items-center gap-2 web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed data-[disabled=true]:opacity-50',
+  variants: {
+    size: {
+      sm: 'gap-1.5',
+      md: 'gap-2',
+      lg: 'gap-2',
+    },
+  },
+});
+
+const radioGroupStyle = tva({
+  base: 'gap-3',
+});
+
+const radioIconStyle = tva({
+  base: 'rounded-full absolute stroke-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-primary h-2 w-2',
+  parentVariants: {
+    size: {
+      sm: 'h-[9px] w-[9px]',
+      md: 'h-3 w-3',
+      lg: 'h-4 w-4',
+    },
+  },
+});
+
+const radioIndicatorStyle = tva({
+  base: 'relative justify-center items-center aspect-square h-4 w-4 shrink-0 rounded-full border border-border  dark:bg-input/30 shadow-xs web:outline-none web:data-[focus-visible=true]:ring-[3px] web:data-[focus-visible=true]:ring-ring/50 web:data-[focus-visible=true]:border-ring data-[invalid=true]:ring-destructive/20 data-[invalid=true]:border-destructive data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
+  parentVariants: {
+    size: {
+      sm: 'h-4 w-4',
+      md: 'h-5 w-5',
+      lg: 'h-6 w-6',
+    },
+  },
+});
+
+const radioLabelStyle = tva({
+  base: 'text-foreground text-sm font-medium web:select-none web:cursor-pointer data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50 font-body',
+  parentVariants: {
+    size: {
+      '2xs': 'text-2xs',
+      'xs': 'text-xs',
+      'sm': 'text-sm',
+      'md': 'text-base',
+      'lg': 'text-lg',
+      'xl': 'text-xl',
+      '2xl': 'text-2xl',
+      '3xl': 'text-3xl',
+      '4xl': 'text-4xl',
+      '5xl': 'text-5xl',
+      '6xl': 'text-6xl',
+    },
+  },
+});
+
+type IRadioProps = Omit<React.ComponentProps<typeof UIRadio>, 'context'> &
+  VariantProps<typeof radioStyle>;
+const Radio = React.forwardRef<React.ComponentRef<typeof UIRadio>, IRadioProps>(
+  function Radio({ className, size = 'md', ...props }, ref) {
+    return (
+      <UIRadio
+        className={radioStyle({ class: className, size })}
+        {...props}
+        ref={ref}
+        context={{ size }}
+      />
+    );
+  }
+);
+
+type IRadioGroupProps = React.ComponentProps<typeof UIRadio.Group> &
+  VariantProps<typeof radioGroupStyle>;
+const RadioGroup = React.forwardRef<
+  React.ComponentRef<typeof UIRadio.Group>,
+  IRadioGroupProps
+>(function RadioGroup({ className, ...props }, ref) {
+  return (
+    <UIRadio.Group
+      className={radioGroupStyle({ class: className })}
+      {...props}
+      ref={ref}
+    />
+  );
+});
+
+type IRadioIndicatorProps = React.ComponentProps<typeof UIRadio.Indicator> &
+  VariantProps<typeof radioIndicatorStyle>;
+const RadioIndicator = React.forwardRef<
+  React.ComponentRef<typeof UIRadio.Indicator>,
+  IRadioIndicatorProps
+>(function RadioIndicator({ className, ...props }, ref) {
+  const { size } = useStyleContext(SCOPE);
+  return (
+    <UIRadio.Indicator
+      className={radioIndicatorStyle({
+        parentVariants: { size },
+        class: className,
+      })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+type IRadioLabelProps = React.ComponentProps<typeof UIRadio.Label> &
+  VariantProps<typeof radioIndicatorStyle>;
+const RadioLabel = React.forwardRef<
+  React.ComponentRef<typeof UIRadio.Label>,
+  IRadioLabelProps
+>(function RadioLabel({ className, ...props }, ref) {
+  const { size } = useStyleContext(SCOPE);
+  return (
+    <UIRadio.Label
+      className={radioLabelStyle({
+        parentVariants: { size },
+        class: className,
+      })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+type IRadioIconProps = React.ComponentProps<typeof UIRadio.Icon> &
+  VariantProps<typeof radioIconStyle> & {
+    height?: number;
+    width?: number;
+  };
+const RadioIcon = React.forwardRef<
+  React.ComponentRef<typeof UIRadio.Icon>,
+  IRadioIconProps
+>(function RadioIcon({ className, size, ...props }, ref) {
+  const { size: parentSize } = useStyleContext(SCOPE);
+
+  if (typeof size === 'number') {
+    return (
+      <UIRadio.Icon
+        ref={ref}
+        {...props}
+        className={radioIconStyle({ class: className })}
+        size={size}
+      />
+    );
+  } else if (
+    (props.height !== undefined || props.width !== undefined) &&
+    size === undefined
+  ) {
+    return (
+      <UIRadio.Icon
+        ref={ref}
+        {...props}
+        className={radioIconStyle({ class: className })}
+      />
+    );
+  }
+
+  return (
+    <UIRadio.Icon
+      {...props}
+      className={radioIconStyle({
+        parentVariants: {
+          size: parentSize,
+        },
+        size,
+        class: className,
+      })}
+      ref={ref}
+    />
+  );
+});
+
+
+Radio.displayName = 'Radio';
+RadioGroup.displayName = 'RadioGroup';
+RadioIndicator.displayName = 'RadioIndicator';
+RadioLabel.displayName = 'RadioLabel';
+RadioIcon.displayName = 'RadioIcon';
+
+export { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon };
+
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import { Radio } from '@/components/ui/radio';
+```
+
+<AnatomyImage
+  mobileUrl="https://i.imgur.com/ayT9tUE.png"
+  webUrl="https://i.imgur.com/niaZmLz.png"
+  classNameStyle="aspect-[513/394] md:aspect-[736/234]"
+/>
+
+```ts
+export default () => (
+  <RadioGroup>
+    <Radio>
+      <RadioIndicator>
+        <RadioIcon />
+      </RadioIndicator>
+      <RadioLabel />
+    </Radio>
+  </RadioGroup>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Radio
+
+Contains all Radio related layout style props and actions.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>value</InlineCode>
+          </TableCell>
+          <TableCell>string</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>{`The value to be used in the radio input. This is the value that will be returned on form submission.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>onChange</InlineCode>
+          </TableCell>
+          <TableCell>function</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>{`Function called when the state of the radio changes.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isDisabled</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>{`To manually set disable to the radio.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isInvalid</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>{`To manually set invalid to the radio.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isHovered</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>{`To manually set hover to the radio.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isFocusVisible</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>{`To manually set focus visible state to the radio.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isIndeterminate</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>{`To manually set indeterminate to the radio.`}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+    #### RadioIndicator
+
+Contains all Indicator related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+#### RadioIcon
+
+Contains all Icon related layout style props and actions. It inherits all the properties of gluestack Style's [AsForwarder](/style/docs/api/as-forwarder) component.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>forceMount</InlineCode>
+          </TableCell>
+          <TableCell>boolean</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>Forces mounting when more control is needed, useful for animations with React libraries.</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+#### RadioLabel
+
+Contains all Label related layout style props and actions. It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### RadioGroup
+
+Contains all Group related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>Prop</TableHeaderCell>
+          <TableHeaderCell>Type</TableHeaderCell>
+          <TableHeaderCell>Default</TableHeaderCell>
+          <TableHeaderCell>Description</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>value</InlineCode>
+          </TableCell>
+          <TableCell>string</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>The value of the radio group.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>onChange</InlineCode>
+          </TableCell>
+          <TableCell>function</TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>
+            The callback fired when any children Radio is checked or
+            unchecked.
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>isReadOnly</InlineCode>
+          </TableCell>
+          <TableCell>bool</TableCell>
+          <TableCell>false</TableCell>
+          <TableCell>{`To manually set read-only to the radio group.`}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+### Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+
+### Accessibility
+
+We have outlined the various features that ensure the Radio component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards. Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/radio/).
+
+#### Keyboard
+
+- `Tab`: Moves focus to the next focusable element.
+- `Shift + Tab`: Moves focus to the previous focusable element.
+- `Space`: To check or uncheck focused radio.
+
+#### Screen Reader
+
+- VoiceOver: When the radio is focused, the screen reader will announce it's a radio and it's current state (check or uncheck) and it's label.
+
+#### Focus Management
+
+- The `onFocus` and `onBlur` props manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
+
+#### States
+
+- In error state, `aria-invalid` will be passed to indicate that the radio input has an error, and providing support for an `aria-errormessage` to describe the error in more detail.
+- In disabled state, `aria-hidden` will be passed to make radio input not focusable.
+- In required state, `aria-required` will be passed to indicate that the radio input is required.
+
+### Props
+
+Radio component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props).
+
+### Data Attributes Table
+
+Component receives states as props as boolean values, which are applied as `data-*` attributes. These attributes are then used to style the component via classNames, enabling state-based styling.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>State</TableHeaderCell>
+        <TableHeaderCell>Data Attribute</TableHeaderCell>
+        <TableHeaderCell>Values</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>hover</InlineCode>
+        </TableCell>
+        <TableCell>data-hover</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>active</InlineCode>
+        </TableCell>
+        <TableCell>data-active</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>disabled</InlineCode>
+        </TableCell>
+        <TableCell>data-disabled</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>focusVisible</InlineCode>
+        </TableCell>
+        <TableCell>data-focus-visible</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>invalid</InlineCode>
+        </TableCell>
+        <TableCell>data-invalid</TableCell>
+        <TableCell>
+          <InlineCode>true | false</InlineCode>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+  #### Multiple Radio
+
+  Radio buttons provide a mutually exclusive selection mechanism, allowing users to choose a single option from a set of related choices.
+  
+  <CodePreviewer
+  code={`function App () {
+        const [values, setValues] = React.useState("Eng");
+        return (
+          <RadioGroup value={values} onChange={setValues}>
+            <VStack space="sm">
+              <Radio value="Eng" >
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>English</RadioLabel>
+              </Radio>
+              <Radio value="Fre" >
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>French</RadioLabel>
+              </Radio>
+              <Radio value="Ger" >
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>German</RadioLabel>
+              </Radio>
+            </VStack>
+          </RadioGroup>
+        )
+       }`}
+  argTypes={{}}
+  reactLive={{ Center, VStack, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, CircleIcon }}
+  importMap={{"@/components/ui/center":["Center"],"@/components/ui/vstack":["VStack"],"@/components/ui/radio":["Radio","RadioGroup","RadioIcon","RadioIndicator","RadioLabel"],"@/components/ui/icon":["CircleIcon"]}}
+/>
+
+  #### Horizontal
+
+  Radio buttons can be used horizontally.
+  
+  <CodePreviewer
+  code={`function App() {
+          const [values, setValues] = React.useState("Cash On Delivery");
+          return (
+            <RadioGroup value={values} onChange={setValues} >
+              <HStack space="2xl">
+                <Radio value="Credit Card">
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Credit Card</RadioLabel>
+                </Radio>
+                <Radio value="Cash On Delivery">
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Cash On Delivery</RadioLabel>
+                </Radio>
+              </HStack>
+            </RadioGroup>
+          )
+        }`}
+  argTypes={{}}
+  reactLive={{ Center, HStack, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, CircleIcon }}
+  importMap={{"@/components/ui/center":["Center"],"@/components/ui/hstack":["HStack"],"@/components/ui/radio":["Radio","RadioGroup","RadioIcon","RadioIndicator","RadioLabel"],"@/components/ui/icon":["CircleIcon"]}}
+/>
+
+  #### With help text
+
+  Radio buttons can be used with helper text.
+  
+  <CodePreviewer
+  code={`function App () {
+          const [values, setValues] = React.useState("Read-only");
+          return (
+            <RadioGroup value={values} onChange={setValues}>
+              <VStack space="2xl">
+                <Box>
+                  <Radio value="Read-only" size="md">
+                    <RadioIndicator>
+                      <RadioIcon as={CircleIcon}/>
+                    </RadioIndicator>
+                    <RadioLabel>Extended coverage</RadioLabel>
+                  </Radio>
+                  <Text size="sm" className="ml-7 text-muted-foreground">Extra services included</Text>
+                </Box>
+                <Box>
+                  <Radio value="Write" size="md">
+                    <RadioIndicator>
+                      <RadioIcon as={CircleIcon} />
+                    </RadioIndicator>
+                    <RadioLabel>Basic coverage</RadioLabel>
+                  </Radio>
+                  <Text size="sm" className="ml-7 text-muted-foreground">Nothing extra included</Text>
+                </Box>
+              </VStack>
+            </RadioGroup>
+          )
+        }`}
+  argTypes={{}}
+  reactLive={{ Center, VStack, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, CircleIcon, Box, Text }}
+  importMap={{"@/components/ui/center":["Center"],"@/components/ui/vstack":["VStack"],"@/components/ui/radio":["Radio","RadioGroup","RadioIcon","RadioIndicator","RadioLabel"],"@/components/ui/icon":["CircleIcon"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"]}}
+/>
+
+  #### Form Control
+
+  Radio buttons can be used inside FormControl for better control of states and functionality.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <FormControl>
+          <VStack space="md">
+            <Heading size="sm">
+              Which time slot works best for you?
+            </Heading>
+            <RadioGroup>
+              <VStack space="sm">
+                <Radio value="Monday" size="md" >
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Monday</RadioLabel>
+                </Radio>
+                <Radio value="Tuesday" size="md">
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Tuesday</RadioLabel>
+                </Radio>
+                <Radio value="Wednesday" size="md">
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Wednesday</RadioLabel>
+                </Radio>
+              </VStack>
+            </RadioGroup>
+            <Text className="text-sm text-muted-foreground">
+              Choose a time slot for the meeting
+            </Text>
+          </VStack>
+        </FormControl>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Center, Text, CircleIcon, VStack, Heading, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, FormControl }}
+  importMap={{"@/components/ui/center":["Center"],"@/components/ui/text":["Text"],"@/components/ui/icon":["CircleIcon"],"@/components/ui/vstack":["VStack"],"@/components/ui/heading":["Heading"],"@/components/ui/radio":["Radio","RadioGroup","RadioIcon","RadioIndicator","RadioLabel"],"@/components/ui/form-control":["FormControl"]}}
+/>
+
+  #### Label left
+
+  Radio buttons can be used horizontally
+  
+  <CodePreviewer
+  code={`function App() {
+        const [values, setValues] = React.useState("Monday");
+        return (
+          <RadioGroup value={values} onChange={setValues} >
+            <VStack space="lg" className="w-40">
+              <Radio value="Monday" className="justify-between">
+                <RadioLabel>Jane Cooper</RadioLabel>
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+              </Radio>
+              <Radio value="Tuesday" className="justify-between">
+                <RadioLabel>Wade Warren</RadioLabel>
+                <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+              </Radio>
+            </VStack>
+          </RadioGroup >
+        )
+      }`}
+  argTypes={{}}
+  reactLive={{ Center, VStack, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, CircleIcon }}
+  importMap={{"@/components/ui/center":["Center"],"@/components/ui/vstack":["VStack"],"@/components/ui/radio":["Radio","RadioGroup","RadioIcon","RadioIndicator","RadioLabel"],"@/components/ui/icon":["CircleIcon"]}}
+/>
+
+  #### Controlled
+
+  The Radio components can be used with a controlled state, enabling precise management of the selected option through external state management.
+  
+  <CodePreviewer
+  code={`function App () {
+        const [values, setValues] = React.useState('Apartments');
+        return (
+          <RadioGroup value={values} onChange={setValues}>
+            <VStack space='md'>
+              <Radio value="Apartments">
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>Apartments</RadioLabel>
+              </Radio>
+              <Radio value="Houses">
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>Houses</RadioLabel>
+              </Radio>
+            </VStack>
+          </RadioGroup>
+          )
+        }`}
+  argTypes={{}}
+  reactLive={{ Center, VStack, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, CircleIcon }}
+  importMap={{"@/components/ui/center":["Center"],"@/components/ui/vstack":["VStack"],"@/components/ui/radio":["Radio","RadioGroup","RadioIcon","RadioIndicator","RadioLabel"],"@/components/ui/icon":["CircleIcon"]}}
+/>
+
+  #### Uncontrolled
+
+  The Radio components can be used with either a ref or no state, providing an uncontrolled state where the selected option is managed internally.
+  
+  <CodePreviewer
+  code={`function App () {
+        const radioRef = React.useRef(null);
+        const handleRadioChange = (e) => {
+          e.preventDefault();
+          const checkboxValue = radioRef.current.checked;
+        };
+        return (
+          <RadioGroup>
+            <VStack space='md'>
+              <Radio value="Hotels" ref={radioRef} onChange={handleRadioChange} >
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>Hotels</RadioLabel>
+              </Radio>
+              <Radio value="Living quarters" ref={radioRef} onChange={handleRadioChange} >
+                <RadioIndicator>
+                  <RadioIcon as={CircleIcon} />
+                </RadioIndicator>
+                <RadioLabel>Living quarters</RadioLabel>
+              </Radio>
+            </VStack>
+          </RadioGroup>
+        );
+      }`}
+  argTypes={{}}
+  reactLive={{ Center, VStack, Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, CircleIcon }}
+  importMap={{"@/components/ui/center":["Center"],"@/components/ui/vstack":["VStack"],"@/components/ui/radio":["Radio","RadioGroup","RadioIcon","RadioIndicator","RadioLabel"],"@/components/ui/icon":["CircleIcon"]}}
+/>
+
+  #### Radio group
+
+  The Radio group component allows users to group radio and display them in a horizontal or vertical row for better visual representation and functionality..
+  
+  <CodePreviewer
+  code={`function RadioGroupExample() {
+          const [values, setValues] = React.useState("1st");
+          return (
+            <RadioGroup value={values} onChange={setValues}>
+              <VStack space="sm">
+                <Radio value="1st">
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Label 1</RadioLabel>
+                </Radio>
+                <Radio value="2nd">
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Label 2</RadioLabel>
+                </Radio>
+                <Radio value="3rd">
+                  <RadioIndicator>
+                    <RadioIcon as={CircleIcon} />
+                  </RadioIndicator>
+                  <RadioLabel>Label 3</RadioLabel>
+                </Radio>
+              </VStack>
+            </RadioGroup>
+          );
+        }`}
+  argTypes={{}}
+  reactLive={{ Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel, VStack, Center, CircleIcon }}
+  importMap={{"@/components/ui/radio":["Radio","RadioGroup","RadioIcon","RadioIndicator","RadioLabel"],"@/components/ui/vstack":["VStack"],"@/components/ui/center":["Center"],"@/components/ui/icon":["CircleIcon"]}}
+/>
