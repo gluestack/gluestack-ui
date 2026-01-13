@@ -86,23 +86,23 @@ export function CodePreviewer({
     if (control?.type === 'select') {
       return (
         <Box className="control-item">
-          <Text className="text-xs">{name}</Text>
+          <Text className="text-xs text-muted-foreground">{name}</Text>
           <Select
             className="w-full"
             onValueChange={(value: string) => handleChange(name, value)}
           >
             <SelectTrigger
               variant="underlined"
-              className="w-full justify-between items-center border-outline-200"
+              className="w-full justify-between items-center border-border"
               size="md"
             >
               <SelectInput
-                className="text-typography-900 text-sm font-medium placeholder:text-typography-900"
+                className="text-sm font-medium text-foreground"
                 placeholder={values[name]}
               />
               <SelectIcon
                 size="xl"
-                className="mr-3 text-typography-900"
+                className="mr-3 text-foreground"
                 as={ChevronDownIcon}
               />
             </SelectTrigger>
@@ -125,9 +125,7 @@ export function CodePreviewer({
     if (control?.type === 'boolean' || typeof defaultValue === 'boolean') {
       return (
         <Box className="flex flex-col gap-2">
-          <Text className="text-sm">
-            {name}
-          </Text>
+          <Text className="text-sm text-muted-foreground">{name}</Text>
           <Switch
             size="sm"
             isDisabled={false}
@@ -145,7 +143,7 @@ export function CodePreviewer({
 
     return (
       <Box className="control-item">
-        <Text className="text-lg">
+        <Text className="text-lg text-foreground">
           {name}: {JSON.stringify(values[name] || defaultValue)}
         </Text>
       </Box>
@@ -154,8 +152,8 @@ export function CodePreviewer({
 
   return (
     <Box className="flex flex-col w-full my-2">
-      <Box className="-mb-2 border border-outline-100 rounded-t-lg flex-col flex w-full min-h-[200px] md:flex-row">
-        <Box className="p-4 md:border-r border-outline-100 flex-1 flex items-center justify-center w-full ">
+      <Box className="-mb-2 border border-border rounded-t-lg flex-col flex w-full min-h-[200px] md:flex-row">
+        <Box className="p-4 md:border-r border-border flex-1 flex items-center justify-center w-full ">
           {isReady && (
             <LiveProvider code={compiledCode} scope={{ ...reactLive }}>
               <LiveError />
@@ -164,7 +162,7 @@ export function CodePreviewer({
           )}
         </Box>
         {Object.keys(argTypes).length > 0 && (
-          <Box className="p-4  border-b py-10  flex-1">
+          <Box className="p-4 border-b border-border py-10 flex-1">
             <Box className="flex flex-col gap-2">
               {Object.entries(argTypes).map(([key, value]) => (
                 <ArgController key={key} name={key} config={value} />
