@@ -11,6 +11,7 @@ module.exports = {
   important: 'html',
   presets: [require('nativewind/preset')],
   important: 'html',
+  plugins: [require('tailwindcss-animate')],
   safelist: [
     {
       pattern:
