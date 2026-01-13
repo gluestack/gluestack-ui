@@ -190,7 +190,7 @@ export default function AllComponents() {
                 <Component />
               </Box>
               <Box
-                className="w-full py-2 px-4 bg-muted cursor-pointer hover:bg-accent transition-colors"
+                className="w-full py-2 px-4 bg-muted cursor-pointer hover:bg-accent"
                 onClick={() => {
                   window.location.href = `/ui/docs/components/${componentName}`;
                 }}
