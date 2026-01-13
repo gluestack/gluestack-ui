@@ -22,6 +22,7 @@
     "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
     "@legendapp/motion": "^2.4.0",
     "@react-aria/utils": "^3.29.0",
+    "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-navigation/native": "^7.1.6",
     "babel-plugin-module-resolver": "^5.0.2",
     "dom-helpers": "^5.2.1",
