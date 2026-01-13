@@ -17,15 +17,15 @@ export default function Home() {
       <Box className="flex flex-1  mx-5 lg:my-24 lg:mx-32 py-safe">
         <Box className="gap-10 base:flex-col sm:flex-row justify-between sm:w-[80%] md:flex-1">
           <Box className="bg-background/10 py-2 px-6 rounded-full items-center flex-column md:flex-row md:self-start">
-            <Text className="text-white font-medium">
+            <Text className="text-foreground/80 font-medium">
               Get started by editing
             </Text>
-            <Text className="text-white font-medium ml-2">
+            <Text className="text-foreground/70 font-medium ml-2">
               ./App.tsx or ./app/index.tsx (or whatever entry point you have)
             </Text>
           </Box>
           <Button
-            size='sm'
+            size='default'
             className="bg-primary px-6 py-2 rounded-full"
             onPress={() => {
               router.push('/tabs/tab1');

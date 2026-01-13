@@ -19,9 +19,8 @@ const UIButton = createButton({
   Icon: UIIcon,
 });
 
-
 const buttonStyle = tva({
-  base: 'rounded-md flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2 ',
+  base: 'rounded-md flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2 h-fit',
   variants: {
     variant: {
       default:
@@ -32,13 +31,14 @@ const buttonStyle = tva({
         'border border-border bg-background shadow-xs data-[hover=true]:bg-accent data-[active=true]:bg-accent dark:bg-input/[0.045] dark:border-border/90 dark:data-[hover=true]:bg-input/[0.075] dark:data-[active=true]:bg-input/[0.075]',
       secondary:
         'bg-secondary text-secondary-foreground data-[hover=true]:bg-secondary/80 data-[active=true]:bg-secondary/80',
-      ghost: 'data-[hover=true]:bg-accent data-[active=true]:bg-accent dark:data-[hover=true]:bg-accent/50 dark:data-[active=true]:bg-accent/50',
+      ghost:
+        'data-[hover=true]:bg-accent data-[active=true]:bg-accent dark:data-[hover=true]:bg-accent/50 dark:data-[active=true]:bg-accent/50',
       link: 'text-primary underline-offset-4 data-[hover=true]:underline data-[active=true]:underline',
     },
     size: {
-      default: 'px-4 py-2',
-      sm: 'min-h-8 rounded-md px-3 text-xs',
-      lg: 'min-h-10 rounded-md px-8',
+      sm: 'min-h-8 py-4 rounded-md px-3 text-xs',
+      default: 'px-4 py-5',
+      lg: 'min-h-10 py-6 rounded-md px-8',
       icon: 'min-h-9 min-w-9',
     },
   },
@@ -49,7 +49,8 @@ const buttonTextStyle = tva({
     variant: {
       default: 'text-primary-foreground',
       destructive: 'text-white',
-      outline:'text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
+      outline:
+        'text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
       secondary: 'text-secondary-foreground',
       ghost: 'text-foreground ',
       link: 'text-primary data-[hover=true]:underline data-[active=true]:underline',
@@ -165,7 +166,17 @@ const ButtonSpinner = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof UIButton.Spinner>
 >(({ className, size, ...props }, ref) => {
   const { size: parentSize } = useStyleContext(SCOPE);
-  return <UIButton.Spinner ref={ref} {...props} className={buttonSpinnerStyle({ parentVariants: { size: parentSize }, class: className, size })} />;
+  return (
+    <UIButton.Spinner
+      ref={ref}
+      {...props}
+      className={buttonSpinnerStyle({
+        parentVariants: { size: parentSize },
+        class: className,
+        size,
+      })}
+    />
+  );
 });
 type IButtonIcon = React.ComponentPropsWithoutRef<typeof UIButton.Icon> &
   VariantProps<typeof buttonIconStyle> & {
@@ -173,7 +184,7 @@ type IButtonIcon = React.ComponentPropsWithoutRef<typeof UIButton.Icon> &
     as?: React.ElementType;
     height?: number;
     width?: number;
-};
+  };
 const ButtonIcon = React.forwardRef<
   React.ElementRef<typeof UIButton.Icon>,
   IButtonIcon
