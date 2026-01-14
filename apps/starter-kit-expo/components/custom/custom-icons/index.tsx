@@ -5,6 +5,7 @@ import {
   Defs,
   Ellipse,
   G,
+  Line,
   Mask,
   Path,
   Rect,
@@ -695,6 +696,293 @@ const ButtonIcon = createIcon({
   ),
 });
 
+const CardIcon = createIcon({
+  viewBox: '0 0 212 141',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect
+          width={270.6}
+          height={138.028}
+          x={1.01}
+          y={1.01}
+          stroke="#fff"
+          strokeWidth={2.019}
+          rx={30.978}
+        />
+        <Rect
+          width={79}
+          height={31}
+          x={16.155}
+          y={24.232}
+          fill="#fff"
+          stroke="#fff"
+          rx={15.5}
+        />
+        <Rect
+          width={240.309}
+          height={20.194}
+          x={16.155}
+          y={67.35}
+          fill="#fff"
+          stroke="#fff"
+          rx={10.097}
+        />
+        <Rect
+          width={240.309}
+          height={20.194}
+          x={16.155}
+          y={95.621}
+          fill="#fff"
+          stroke="#fff"
+          rx={10.097}
+        />
+      </G>
+    </>
+  ),
+});
+
+const CenterIcon = createIcon({
+  viewBox: '0 0 212 141',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect
+          width={276.303}
+          height={137.178}
+          x={1.411}
+          y={1.411}
+          stroke="#fff"
+          strokeWidth={2.822}
+          rx={28.339}
+        />
+        <Rect
+          width={162.75}
+          height={44}
+          x={44.625}
+          y={48}
+          fill="#fff"
+          stroke="#fff"
+          rx={14}
+        />
+        <Path
+          stroke="#fff"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2.26}
+          d="M23.151 28.184v-6.782h6.781M23.151 21.402l15.823 15.823M23.151 111.816v6.782h6.781M23.151 118.598l15.823-15.823"
+        />
+      </G>
+    </>
+  ),
+});
+
+const CheckboxIcon = createIcon({
+  viewBox: '0 0 163 155',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <G clipPath="url(#a)">
+          <Rect width={35} height={35} fill="#fff" stroke="#fff" rx={10} />
+          <Path fill="#fff" stroke="#fff" d="M0 .5h35v35H0z" />
+          <Path
+            stroke="#8C8C8C"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2.917}
+            d="M29.167 9.25 13.125 25.292 5.833 18"
+          />
+        </G>
+        <Rect
+          width={200}
+          height={35}
+          x={47}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+          rx={17.5}
+        />
+        <G clipPath="url(#b)">
+          <Rect
+            width={35}
+            height={35}
+            y={51}
+            fill="#fff"
+            stroke="#fff"
+            rx={10}
+          />
+          <Path fill="#fff" stroke="#fff" d="M0 51.5h35v35H0z" />
+          <Path
+            stroke="#8C8C8C"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2.917}
+            d="M29.167 60.25 13.125 76.292 5.833 69"
+          />
+        </G>
+        <Rect
+          width={200}
+          height={35}
+          x={47}
+          y={51}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+          rx={17.5}
+        />
+        <G clipPath="url(#c)">
+          <Rect
+            width={35}
+            height={35}
+            y={102}
+            fill="#fff"
+            stroke="#fff"
+            rx={10}
+          />
+          <Path fill="#fff" stroke="#fff" d="M0 102.5h35v35H0z" />
+          <Path
+            stroke="#8C8C8C"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2.917}
+            d="m29.167 111.25-16.042 16.042L5.833 120"
+          />
+        </G>
+        <Rect
+          width={200}
+          height={35}
+          x={47}
+          y={102}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+          rx={17.5}
+        />
+      </G>
+      <Defs>
+        <ClipPath id="a">
+          <Rect width={35} height={35} fill="#fff" stroke="#fff" rx={10} />
+        </ClipPath>
+        <ClipPath id="b">
+          <Rect
+            width={35}
+            height={35}
+            y={51}
+            fill="#fff"
+            stroke="#fff"
+            rx={10}
+          />
+        </ClipPath>
+        <ClipPath id="c">
+          <Rect
+            width={35}
+            height={35}
+            y={102}
+            fill="#fff"
+            stroke="#fff"
+            rx={10}
+          />
+        </ClipPath>
+      </Defs>
+    </>
+  ),
+});
+
+const DividerIcon = createIcon({
+  viewBox: '0 0 190 137',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect
+          width={272.619}
+          height={20.194}
+          rx={10.097}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Rect
+          y={32.1934}
+          width={272.619}
+          height={20.194}
+          rx={10.097}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Line
+          x1={1.00078}
+          y1={67.3895}
+          x2={271.62}
+          y2={67.6015}
+          stroke="#fff"
+          strokeWidth={2}
+          strokeLinecap="round"
+        />
+        <Rect
+          y={84.6016}
+          width={50}
+          height={20}
+          rx={10}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Line
+          x1={57}
+          y1={103.602}
+          x2={57}
+          y2={85.6016}
+          stroke="#fff"
+          strokeWidth={2}
+          strokeLinecap="round"
+        />
+        <Rect
+          x={66}
+          y={84.6016}
+          width={50}
+          height={20}
+          rx={10}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Line
+          x1={123}
+          y1={103.602}
+          x2={123}
+          y2={85.6016}
+          stroke="#fff"
+          strokeWidth={2}
+          strokeLinecap="round"
+        />
+        <Rect
+          x={132}
+          y={84.6016}
+          width={50}
+          height={20}
+          rx={10}
+          fill="#fff"
+          stroke="#fff"
+        />
+      </G>
+    </>
+  ),
+});
+
 export {
   AccordionIcon,
   AlertDialogIcon,
@@ -704,4 +992,8 @@ export {
   BadgeIcon,
   BoxIcon,
   ButtonIcon,
+  CardIcon,
+  CenterIcon,
+  CheckboxIcon,
+  DividerIcon,
 };
