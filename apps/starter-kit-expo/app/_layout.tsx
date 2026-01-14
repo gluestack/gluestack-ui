@@ -47,7 +47,8 @@ export default function RootLayout() {
             <GluestackUIProvider>
               <Stack screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="index" options={{ headerShown: false }} />
-                <Stack.Screen name="tabs" options={{ headerShown: false }} />
+                <Stack.Screen name="components" options={{ headerShown: false }} />
+                <Stack.Screen name="showcases" options={{ headerShown: false }} />
               </Stack>
             </GluestackUIProvider>
           </AppThemeProvider>

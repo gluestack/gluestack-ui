@@ -282,7 +282,7 @@ export default function ComponentsTab() {
       if (Platform.OS === 'ios') {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       }
-      router.push(`/tabs/components/${path}` as any);
+      router.push(`/components/${path}` as any);
     },
     [router]
   );

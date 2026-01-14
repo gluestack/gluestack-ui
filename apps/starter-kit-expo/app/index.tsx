@@ -5,8 +5,8 @@ import React, { useMemo } from 'react';
 import { View } from 'react-native';
 
 // Import tab content components
-import ComponentsTab from './tabs/(tabs)/_tabs/components-tab';
-import ShowcasesTab from './tabs/(tabs)/_tabs/showcases-tab';
+import ComponentsTab from './_tabs/components-tab';
+import ShowcasesTab from './_tabs/showcases-tab';
 
 export default function Index() {
   const { isDark } = useAppTheme();

@@ -30,11 +30,11 @@ import {
   type ComponentItem,
 } from '@/components/custom/bottom-control-bar';
 import { SHOWCASES_LIST, type ShowcaseItem } from '@/constants/showcases-list';
-import LoginShowcase from '../../showcases/login';
-import DashboardShowcase from '../../showcases/dashboard';
-import ProfileShowcase from '../../showcases/profile';
-import EcommerceShowcase from '../../showcases/ecommerce';
-import SocialShowcase from '../../showcases/social';
+import LoginShowcase from '../showcases/login';
+import DashboardShowcase from '../showcases/dashboard';
+import ProfileShowcase from '../showcases/profile';
+import EcommerceShowcase from '../showcases/ecommerce';
+import SocialShowcase from '../showcases/social';
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
@@ -255,7 +255,7 @@ export default function ShowcasesTab() {
       if (Platform.OS === 'ios') {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       }
-      router.push(`/(home)/showcases/${path}` as any);
+      router.push(`/showcases/${path}` as any);
     },
     [router]
   );
