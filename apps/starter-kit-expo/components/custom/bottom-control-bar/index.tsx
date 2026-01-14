@@ -337,7 +337,7 @@ const BottomControlBar = memo(
                         className={`px-3 py-2.5 mx-1.5 rounded-lg flex-row items-center gap-2.5 ${
                           currentComponent?.path === item.path
                             ? 'bg-primary'
-                            : 'active:bg-secondary'
+                            : 'active:bg-foreground/10'
                         }`}
                       >
                         <Text
