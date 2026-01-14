@@ -1,111 +1,232 @@
 import { useRouter } from 'expo-router';
-import { LinearGradient } from 'expo-linear-gradient';
+import { useFocusEffect } from '@react-navigation/native';
+import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useRef, useState } from 'react';
 import {
+  FlatList,
   Platform,
   Pressable,
-  ScrollView,
   StyleSheet,
   useWindowDimensions,
   View,
 } from 'react-native';
-import Animated from 'react-native-reanimated';
+import Animated, {
+  Extrapolation,
+  interpolate,
+  useAnimatedProps,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+  type SharedValue,
+} from 'react-native-reanimated';
 import { useAppTheme } from '@/contexts/app-theme-context';
+import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { Text } from '@/components/ui/text';
-import { Card } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
 import { HStack } from '@/components/ui/hstack';
-import { VStack } from '@/components/ui/vstack';
-import { SHOWCASES_LIST, type ShowcaseItem } from '@/constants/showcases-list';
 import {
-  LayoutDashboard,
-  LogIn,
-  ShoppingCart,
-  User,
-  Users,
-} from 'lucide-react-native';
-import { Icon } from '@/components/ui/icon';
+  BottomControlBar,
+  type ComponentItem,
+} from '@/components/custom/bottom-control-bar';
+import { SHOWCASES_LIST, type ShowcaseItem } from '@/constants/showcases-list';
+import LoginShowcase from '../../showcases/login';
+import DashboardShowcase from '../../showcases/dashboard';
+import ProfileShowcase from '../../showcases/profile';
+import EcommerceShowcase from '../../showcases/ecommerce';
+import SocialShowcase from '../../showcases/social';
 
-const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
+const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
-// Showcase gradient colors
-const SHOWCASE_GRADIENTS: Record<string, readonly [string, string]> = {
-  login: ['#667eea', '#764ba2'],
-  dashboard: ['#11998e', '#38ef7d'],
-  profile: ['#ee0979', '#ff6a00'],
-  ecommerce: ['#4facfe', '#00f2fe'],
-  social: ['#fa709a', '#fee140'],
+// Map showcase paths to their components
+const SHOWCASE_COMPONENTS: Record<string, React.ComponentType> = {
+  login: LoginShowcase,
+  dashboard: DashboardShowcase,
+  profile: ProfileShowcase,
+  ecommerce: EcommerceShowcase,
+  social: SocialShowcase,
 };
 
-const SHOWCASE_ICONS: Record<string, React.ElementType> = {
-  login: LogIn,
-  dashboard: LayoutDashboard,
-  profile: User,
-  ecommerce: ShoppingCart,
-  social: Users,
-};
+const showcases = SHOWCASES_LIST;
 
 type ShowcaseCardProps = {
   item: ShowcaseItem;
   index: number;
+  scrollX: SharedValue<number>;
+  spacing: number;
   onPress: () => void;
 };
 
-const ShowcaseCard = memo(({ item, index, onPress }: ShowcaseCardProps) => {
-  const gradientColors =
-    SHOWCASE_GRADIENTS[item.path] || (['#3497D266', '#3497D2'] as const);
-  const IconComponent = SHOWCASE_ICONS[item.path];
+const ShowcaseCard = memo(
+  ({ item, index, scrollX, spacing, onPress }: ShowcaseCardProps) => {
+    const { reduceTransparencyEnabled } = useAccessibilityInfo();
+    const { width, height } = useWindowDimensions();
+    const applyOpacity = reduceTransparencyEnabled;
 
-  return (
-    <Pressable onPress={onPress} className="mb-4">
-      <Card className="overflow-hidden rounded-2xl border-0 h-40">
-        <AnimatedLinearGradient
-          colors={gradientColors}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={StyleSheet.absoluteFill}
-        />
-        <View className="flex-1 flex-row items-center justify-between p-6">
-          <VStack className="flex-1 gap-2">
-            <Text className="text-white font-sans text-2xl font-bold">
-              {item.title}
-            </Text>
-            <Text className="text-white/80 text-sm">
-              {item.description || 'Explore this showcase'}
-            </Text>
-          </VStack>
-          {IconComponent && (
-            <View className="bg-white/20 rounded-full p-4">
-              <Icon as={IconComponent} className="text-white h-8 w-8" />
+    const cardWidth = width * 0.6;
+    const cardHeight = height * 0.6;
+    const SCALE = 0.6;
+
+    const animatedStyle = useAnimatedStyle(() => {
+      const inputRange = [
+        (index - 1) * (cardWidth + spacing),
+        index * (cardWidth + spacing),
+        (index + 1) * (cardWidth + spacing),
+      ];
+
+      return {
+        opacity: applyOpacity
+          ? interpolate(
+              scrollX.get(),
+              inputRange,
+              [0.6, 1, 0.6],
+              Extrapolation.CLAMP
+            )
+          : 1,
+      };
+    });
+
+    const ShowcaseComponent = SHOWCASE_COMPONENTS[item.path];
+
+    return (
+      <View
+        style={{
+          width: cardWidth + spacing,
+          height: cardHeight,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Animated.View
+          style={[
+            {
+              width: cardWidth,
+              height: cardHeight,
+            },
+            animatedStyle,
+          ]}
+        >
+          <Pressable
+            onPress={onPress}
+            style={{ width: '100%', height: '100%' }}
+          >
+            <View className="flex-1 overflow-hidden rounded-3xl bg-background border border-border">
+              {ShowcaseComponent ? (
+                <View
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Animated.View
+                    style={{
+                      width: width,
+                      height: height,
+                      transform: [{ scale: SCALE }],
+                    }}
+                  >
+                    <ShowcaseComponent />
+                  </Animated.View>
+                </View>
+              ) : (
+                <View className="flex-1 justify-center p-8">
+                  <Text className="text-typography-900 font-sans text-xl font-bold">
+                    {item.title}
+                  </Text>
+                  <Text className="text-typography-500 text-sm mt-2">
+                    {item.description || 'Showcase'}
+                  </Text>
+                </View>
+              )}
             </View>
-          )}
-        </View>
-      </Card>
-    </Pressable>
-  );
-});
+          </Pressable>
+        </Animated.View>
+      </View>
+    );
+  }
+);
 
 ShowcaseCard.displayName = 'ShowcaseCard';
 
 export default function ShowcasesTab() {
   const router = useRouter();
-  const { isDark } = useAppTheme();
-
-  const handleCardPress = useCallback(
-    (path: string) => {
-      if (Platform.OS === 'ios') {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-      }
-      // Navigate to showcase - you can customize this route
-      router.push(`/tabs/showcases/${path}` as any);
-    },
-    [router]
+  const [currentShowcase, setCurrentShowcase] = useState<ShowcaseItem>(
+    showcases[0]!
   );
+
+  const { isDark } = useAppTheme();
+  const { width, height } = useWindowDimensions();
+
+  const CARD_WIDTH = width * 0.6;
+  const CARD_HEIGHT = height * 0.6;
+  const SPACING = 100;
+  const SIDE_OFFSET = (width - CARD_WIDTH) / 2 - SPACING / 2;
+
+  const { reduceTransparencyEnabled } = useAccessibilityInfo();
+  const applyBlur = !reduceTransparencyEnabled;
+
+  const listRef = useRef<FlatList<ShowcaseItem>>(null);
+  const isNavigatingRef = useRef(false);
+
+  // Reset navigation guard when screen comes back into focus
+  useFocusEffect(
+    useCallback(() => {
+      isNavigatingRef.current = false;
+    }, [])
+  );
+
+  const handleViewableItemsChanged = useCallback(
+    ({ viewableItems }: { viewableItems: Array<{ item: ShowcaseItem }> }) => {
+      if (viewableItems.length > 0 && viewableItems[0]) {
+        if (Platform.OS === 'ios') {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        }
+        setCurrentShowcase(viewableItems[0].item);
+      }
+    },
+    []
+  );
+
+  const viewabilityConfig = useRef({
+    itemVisiblePercentThreshold: 50,
+  }).current;
+
+  const scrollX = useSharedValue(0);
+
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollX.set(event.contentOffset.x);
+    },
+  });
+
+  const animatedProps = useAnimatedProps(() => {
+    if (showcases.length === 1) {
+      return { intensity: 0 };
+    }
+
+    const inputRange: number[] = [];
+    const outputRange: number[] = [];
+
+    for (let i = 0; i < showcases.length; i++) {
+      inputRange.push(i * (CARD_WIDTH + SPACING));
+      outputRange.push(0);
+
+      if (i < showcases.length - 1) {
+        inputRange.push((i + 0.5) * (CARD_WIDTH + SPACING));
+        outputRange.push(30);
+      }
+    }
+
+    return {
+      intensity: interpolate(scrollX.get(), inputRange, outputRange),
+    };
+  });
 
   const Header = () => {
     return (
-      <View className="items-center justify-center z-10 mt-4 gap-2 mb-6">
+      <View className="items-center justify-center z-10 mt-10 gap-2">
         <HStack className="items-center gap-2">
           <Image
             source={{
@@ -118,30 +239,102 @@ export default function ShowcasesTab() {
           />
           <Text className="text-2xl font-bold font-sans">Showcases</Text>
         </HStack>
-        <Text className="max-w-[80%] text-foreground/80 text-center font-serif">
-          See components in real-world application scenarios
+        <Text className="max-w-[60%] text-foreground/80 text-center font-serif">
+          See components in real-world scenarios
         </Text>
       </View>
     );
   };
 
+  const handleCardPress = useCallback(
+    (path: string) => {
+      // Prevent multiple rapid navigations
+      if (isNavigatingRef.current) return;
+      isNavigatingRef.current = true;
+
+      if (Platform.OS === 'ios') {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      }
+      router.push(`/(home)/showcases/${path}` as any);
+    },
+    [router]
+  );
+
+  const handleShowcaseSelect = useCallback(
+    (showcase: ShowcaseItem, index: number) => {
+      // Find original index in showcases array
+      const originalIndex = showcases.findIndex(
+        (s) => s.path === showcase.path
+      );
+      if (originalIndex !== -1) {
+        // Delay scrolling by 1 second
+        setTimeout(() => {
+          listRef.current?.scrollToIndex({
+            index: originalIndex,
+            animated: true,
+          });
+        }, 1000);
+        setCurrentShowcase(showcase);
+      }
+    },
+    []
+  );
+
   return (
     <View className="flex-1">
-      <Header />
-      <ScrollView
-        className="flex-1 px-4"
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 100 }}
-      >
-        {SHOWCASES_LIST.map((item, index) => (
+      <Animated.FlatList
+        ref={listRef}
+        data={showcases}
+        renderItem={({ item, index }) => (
           <ShowcaseCard
-            key={item.path}
             item={item}
             index={index}
+            scrollX={scrollX}
+            spacing={SPACING}
             onPress={() => handleCardPress(item.path)}
           />
-        ))}
-      </ScrollView>
+        )}
+        className="mt-10"
+        keyExtractor={(item) => item.path}
+        getItemLayout={(_, index) => ({
+          length: CARD_WIDTH + SPACING,
+          offset: (CARD_WIDTH + SPACING) * index,
+          index,
+        })}
+        horizontal
+        snapToInterval={CARD_WIDTH + SPACING}
+        decelerationRate="fast"
+        contentContainerStyle={{
+          paddingHorizontal: SIDE_OFFSET,
+        }}
+        showsHorizontalScrollIndicator={false}
+        bounces={false}
+        overScrollMode="never"
+        onViewableItemsChanged={handleViewableItemsChanged}
+        viewabilityConfig={viewabilityConfig}
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+        keyboardShouldPersistTaps="handled"
+      />
+      {applyBlur && (
+        <AnimatedBlurView
+          pointerEvents="none"
+          style={StyleSheet.absoluteFill}
+          animatedProps={animatedProps}
+          tint={isDark ? 'dark' : 'light'}
+        />
+      )}
+      <BottomControlBar
+        pillLabel={currentShowcase.title}
+        components={showcases as ComponentItem[]}
+        currentComponent={currentShowcase as ComponentItem}
+        onComponentSelect={
+          handleShowcaseSelect as (
+            component: ComponentItem,
+            index: number
+          ) => void
+        }
+      />
     </View>
   );
 }
