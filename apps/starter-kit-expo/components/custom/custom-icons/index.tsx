@@ -87,7 +87,14 @@ const AlertIcon = createIcon({
             d="M17.538 26.308c.497 0 .914-.169 1.251-.505a1.69 1.69 0 0 0 .503-1.25v-7.015c0-.496-.168-.913-.505-1.248a1.705 1.705 0 0 0-1.248-.505 1.687 1.687 0 0 0-1.25.505 1.7 1.7 0 0 0-.504 1.248v7.016c0 .497.168.914.505 1.25a1.69 1.69 0 0 0 1.248.504Zm0-14.031c.497 0 .914-.168 1.251-.505a1.69 1.69 0 0 0 .503-1.249 1.706 1.706 0 0 0-.505-1.249 1.693 1.693 0 0 0-1.248-.505c-.497 0-.914.169-1.25.505a1.705 1.705 0 0 0-.504 1.25c-.002.495.167.912.505 1.25.338.338.754.505 1.248.503Zm0 22.8c-2.426 0-4.706-.46-6.84-1.382-2.133-.921-3.99-2.17-5.568-3.748-1.578-1.577-2.828-3.433-3.748-5.569-.92-2.134-1.38-4.415-1.382-6.84-.001-2.425.46-4.704 1.382-6.84.923-2.135 2.172-3.99 3.748-5.568 1.576-1.577 3.432-2.827 5.568-3.748C12.835.461 15.115 0 17.538 0c2.424 0 4.704.46 6.84 1.382 2.137.921 3.993 2.17 5.569 3.748 1.576 1.577 2.826 3.433 3.75 5.568.923 2.136 1.384 4.415 1.38 6.84-.003 2.425-.464 4.706-1.382 6.84-.918 2.136-2.167 3.992-3.748 5.569-1.58 1.577-3.437 2.827-5.569 3.75-2.131.922-4.411 1.382-6.84 1.38Z"
           />
         </G>
-        <Rect width={200} height={32} x={47} fill="#FBFBFB" stroke="#fff" rx={16} />
+        <Rect
+          width={200}
+          height={32}
+          x={47}
+          fill="#FBFBFB"
+          stroke="#fff"
+          rx={16}
+        />
         <Rect
           width={200}
           height={32}
@@ -98,7 +105,7 @@ const AlertIcon = createIcon({
           opacity={0.5}
           rx={16}
         />
-        <G fill="#FBFBFB"  stroke="#fff" opacity={0.5}>
+        <G fill="#FBFBFB" stroke="#fff" opacity={0.5}>
           <Rect width={24} height={24} x={49.074} y={93} rx={12} />
           <Rect width={200} height={24} x={85.074} y={93} rx={12} />
           <Rect width={24} height={24} x={49.074} y={125} rx={12} />
@@ -158,7 +165,7 @@ const AlertDialogIcon = createIcon({
           y={84.814}
           fill="#fff"
           stroke="#fff"
-              rx={15.5}
+          rx={15.5}
         />
         <Rect
           width={81.019}
@@ -196,12 +203,19 @@ const AvatarIcon = createIcon({
             maskType: 'alpha',
           }}
         >
-          <Circle cx={149} cy={38} r={38} fill="#C4C4C4" />
+          <Circle cx={149} cy={38} r={38} fill="#C4C4C4" stroke="#C4C4C4" />
         </Mask>
         <G mask="url(#a)">
-          <Ellipse cx={149} cy={66.88} fill="#fff" rx={28.88} ry={16.72} />
+          <Ellipse
+            cx={149}
+            cy={66.88}
+            fill="#fff"
+            stroke="#fff"
+            rx={28.88}
+            ry={16.72}
+          />
         </G>
-        <Circle cx={149} cy={32.303} r={13.68} fill="#fff" />
+        <Circle cx={149} cy={32.303} r={13.68} fill="#fff" stroke="#fff" />
       </G>
       <G
         opacity={0.15}
@@ -221,15 +235,28 @@ const AvatarIcon = createIcon({
             maskType: 'alpha',
           }}
         >
-          <Circle cx={63.5} cy={108.5} r={63.5} fill="#C4C4C4" />
+          <Circle
+            cx={63.5}
+            cy={108.5}
+            r={63.5}
+            fill="#C4C4C4"
+            stroke="#C4C4C4"
+          />
         </Mask>
         <G mask="url(#b)">
-          <Ellipse cx={63.499} cy={156.762} fill="#fff" rx={48.26} ry={27.94} />
+          <Ellipse
+            cx={63.499}
+            cy={156.762}
+            fill="#fff"
+            stroke="#fff"
+            rx={48.26}
+            ry={27.94}
+          />
         </G>
-        <Circle cx={63.5} cy={98.979} r={22.86} fill="#fff" />
+        <Circle cx={63.5} cy={98.979} r={22.86} fill="#fff" stroke="#fff" />
         <Path
           fill="#fff"
-          stroke="#408C61"
+          stroke="#3497D2"
           strokeWidth={10.552}
           d="M107.332 136.319c8.742 0 15.828 7.087 15.828 15.828 0 8.742-7.086 15.829-15.828 15.829-8.741 0-15.828-7.087-15.828-15.829 0-8.741 7.087-15.828 15.828-15.828Z"
         />
@@ -252,12 +279,19 @@ const AvatarIcon = createIcon({
             maskType: 'alpha',
           }}
         >
-          <Circle cx={174} cy={122} r={38} fill="#C4C4C4" />
+          <Circle cx={174} cy={122} r={38} fill="#C4C4C4" stroke="#C4C4C4" />
         </Mask>
         <G mask="url(#c)">
-          <Ellipse cx={174} cy={150.88} fill="#fff" rx={28.88} ry={16.72} />
+          <Ellipse
+            cx={174}
+            cy={150.88}
+            fill="#fff"
+            stroke="#fff"
+            rx={28.88}
+            ry={16.72}
+          />
         </G>
-        <Circle cx={174} cy={116.303} r={13.68} fill="#fff" />
+        <Circle cx={174} cy={116.303} r={13.68} fill="#fff" stroke="#fff" />
       </G>
     </>
   ),
@@ -323,205 +357,238 @@ const BadgeIcon = createIcon({
   viewBox: '0 0 193 146',
   path: (
     <>
-
-    <G opacity={0.15}>
-      <G
-        style={{
-          mixBlendMode: 'overlay',
-        }}
-      >
-        <Rect
-          width={171.342}
-          height={47.231}
-          x={0.874}
-          y={0.874}
-          stroke="#fff"
-          strokeWidth={1.748}
-          rx={23.616}
-        />
-        <Rect
-          width={26.101}
-          height={27}
-          x={16.485}
-          y={10.99}
-          fill="#fff"
-          rx={13.05}
-        />
-        <Rect
-          width={102.481}
-          height={27}
-          x={54.125}
-          y={10.99}
-          fill="#fff"
-          rx={13.5}
-        />
-      </G>
-      <G
-        style={{
-          mixBlendMode: 'overlay',
-        }}
-      >
-        <Rect
-          width={91.727}
-          height={34.727}
-          x={30.636}
-          y={61.617}
-          fill="#fff"
-          rx={17.364}
-        />
-        <Rect
-          width={91.727}
-          height={34.727}
-          x={30.636}
-          y={61.617}
-          stroke="#fff"
-          strokeWidth={1.273}
-          rx={17.364}
-        />
-        <Rect
-          width={69}
-          height={15}
-          x={42}
-          y={71.481}
-          fill="#7D8990"
-          rx={7.5}
-          style={{
-            mixBlendMode: 'luminosity',
-          }}
-        />
-      </G>
-      <G
-        style={{
-          mixBlendMode: 'overlay',
-        }}
-      >
-        <Rect
-          width={124.727}
-          height={34.727}
-          x={135.636}
-          y={61.617}
-          fill="#fff"
-          rx={17.364}
-        />
-        <Rect
-          width={124.727}
-          height={34.727}
-          x={135.636}
-          y={61.617}
-          stroke="#fff"
-          strokeWidth={1.273}
-          rx={17.364}
-        />
-        <Rect
-          width={19}
-          height={20}
-          x={147}
-          y={68.981}
-          fill="#7D8990"
-          rx={9.5}
-          style={{
-            mixBlendMode: 'luminosity',
-          }}
-        />
+      <G opacity={0.15}>
         <G
           style={{
-            mixBlendMode: 'difference',
+            mixBlendMode: 'overlay',
           }}
         >
           <Rect
-            width={74.6}
+            width={171.342}
+            height={47.231}
+            x={0.874}
+            y={0.874}
+            stroke="#fff"
+            strokeWidth={1.748}
+            rx={23.616}
+          />
+          <Rect
+            width={26.101}
+            height={27}
+            x={16.485}
+            y={10.99}
+            fill="#fff"
+            stroke="#fff"
+            rx={13.05}
+          />
+          <Rect
+            width={102.481}
+            height={27}
+            x={54.125}
+            y={10.99}
+            fill="#fff"
+            stroke="#fff"
+            rx={13.5}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            width={91.727}
+            height={34.727}
+            x={30.636}
+            y={61.617}
+            fill="#fff"
+            rx={17.364}
+          />
+          <Rect
+            width={91.727}
+            height={34.727}
+            x={30.636}
+            y={61.617}
+            stroke="#fff"
+            strokeWidth={1.273}
+            rx={17.364}
+          />
+          <Rect
+            width={69}
+            height={15}
+            x={42}
+            y={71.481}
+            fill="#7D8990"
+            rx={7.5}
+            stroke="#7D8990"
+            style={{
+            mixBlendMode: 'luminosity',
+            }}
+          >
+            <Rect
+              width={74.6}
+              height={20}
+              x={143.4}
+              y={116.98}
+              fill="#7D8990"
+              rx={10}
+            />
+          </Rect>
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            width={124.727}
+            height={34.727}
+            x={135.636}
+            y={61.617}
+            fill="#fff"
+            stroke="#fff"
+            rx={17.364}
+          />
+          <Rect
+            width={124.727}
+            height={34.727}
+            x={135.636}
+            y={61.617}
+            stroke="#fff"
+            strokeWidth={1.273}
+            rx={17.364}
+          />
+          <Rect
+            width={19}
             height={20}
-            x={174.4}
+            x={147}
             y={68.981}
             fill="#7D8990"
-            rx={10}
+            rx={9.5}
+            stroke="#7D8990"
             style={{
               mixBlendMode: 'luminosity',
             }}
+          >
+            <Rect
+              width={74.6}
+              height={20}
+              x={143.4}
+              y={116.98}
+              fill="#7D8990"
+              stroke="#7D8990"
+              rx={10}
           />
+          </Rect>
+          <G
+            style={{
+              mixBlendMode: 'difference',
+            }}
+          >
+            <Rect
+              width={74.6}
+              height={20}
+              x={174.4}
+              y={68.981}
+              fill="#7D8990"
+              stroke="#7D8990"
+              rx={10}
+
+              style={{
+                mixBlendMode: 'luminosity',
+              }}
+            />
+          </G>
         </G>
-      </G>
-      <G
-        style={{
-          mixBlendMode: 'overlay',
-        }}
-      >
-        <Rect
-          width={86.714}
-          height={34.878}
-          x={4.643}
-          y={109.623}
-          stroke="#fff"
-          strokeWidth={1.286}
-          rx={17.439}
-        />
-        <Rect
-          width={63.754}
-          height={20}
-          x={16.123}
-          y={117.062}
-          fill="#fff"
-          rx={10}
-        />
-      </G>
-      <G
-        style={{
-          mixBlendMode: 'overlay',
-        }}
-      >
-        <Rect
-          width={124.727}
-          height={34.727}
-          x={104.636}
-          y={109.617}
-          fill="#fff"
-          rx={17.364}
-        />
-        <Rect
-          width={124.727}
-          height={34.727}
-          x={104.636}
-          y={109.617}
-          stroke="#fff"
-          strokeWidth={1.273}
-          rx={17.364}
-        />
-        <Rect
-          width={19}
-          height={20}
-          x={116}
-          y={116.98}
-          fill="#7D8990"
-          rx={9.5}
-          style={{
-            mixBlendMode: 'luminosity',
-          }}
-        />
         <G
           style={{
-            mixBlendMode: 'difference',
+            mixBlendMode: 'overlay',
           }}
         >
           <Rect
-            width={74.6}
+            width={86.714}
+            height={34.878}
+            x={4.643}
+            y={109.623}
+            stroke="#fff"
+            strokeWidth={1.286}
+            rx={17.439}
+          />
+          <Rect
+            width={63.754}
             height={20}
-            x={143.4}
+            x={16.123}
+            y={117.062}
+            fill="#fff"
+            stroke="#fff"
+            rx={10}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            width={124.727}
+            height={34.727}
+            x={104.636}
+            y={109.617}
+            fill="#fff"
+            stroke="#fff"
+            rx={17.364}
+          />
+          <Rect
+            width={124.727}
+            height={34.727}
+            x={104.636}
+            y={109.617}
+            stroke="#fff"
+            strokeWidth={1.273}
+            rx={17.364}
+          />
+          <Rect
+            width={19}
+            height={20}
+            x={116}
             y={116.98}
             fill="#7D8990"
-            rx={10}
+            rx={9.5}
+            stroke="#7D8990"
             style={{
               mixBlendMode: 'luminosity',
             }}
           />
+          <G
+            style={{
+              mixBlendMode: 'difference',
+            }}
+          >
+            <Rect
+              width={74.6}
+              height={20}
+              x={143.4}
+              y={116.98}
+              fill="#7D8990"
+              rx={10}
+              stroke="#7D8990"
+              style={{
+                mixBlendMode: 'luminosity',
+              }}
+            />
+          </G>
         </G>
       </G>
-    </G>;
- </>
+      ;
+    </>
   ),
 });
 
 export {
-  AccordionIcon, AlertDialogIcon, AlertIcon,
-  AvatarIcon, FormControllIcon,BadgeIcon
+  AccordionIcon,
+  AlertDialogIcon,
+  AlertIcon,
+  AvatarIcon,
+  FormControllIcon,
+  BadgeIcon,
 };
-
