@@ -139,6 +139,7 @@ const AlertDialogIcon = createIcon({
           x={16.155}
           y={24.232}
           fill="#fff"
+          stroke="#fff"
           rx={10.097}
         />
         <Rect
@@ -147,6 +148,7 @@ const AlertDialogIcon = createIcon({
           x={16.155}
           y={52.504}
           fill="#fff"
+          stroke="#fff"
           rx={10.097}
         />
         <Rect
@@ -155,7 +157,8 @@ const AlertDialogIcon = createIcon({
           x={16.155}
           y={84.814}
           fill="#fff"
-          rx={15.5}
+          stroke="#fff"
+              rx={15.5}
         />
         <Rect
           width={81.019}
