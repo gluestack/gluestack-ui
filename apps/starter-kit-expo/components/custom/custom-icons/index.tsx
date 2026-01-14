@@ -983,6 +983,62 @@ const DividerIcon = createIcon({
   ),
 });
 
+const FabIcon = createIcon({
+  viewBox: '0 0 180 140',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Path
+          d="M31.9873 1.00977H279.99V138.99H31.9873C14.8788 138.99 1.00977 125.121 1.00977 108.013V31.9873C1.00977 14.8788 14.8788 1.00977 31.9873 1.00977Z"
+          stroke="#fff"
+          strokeWidth={2.0194}
+        />
+        <G
+          style={{
+            mixBlendMode: 'luminosity',
+          }}
+        >
+          <Rect
+            x={89.8533}
+            y={84}
+            width={28.9775}
+            height={30.2536}
+            rx={14.4887}
+            fill="#fff"
+            stroke="#fff"
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'luminosity',
+          }}
+        >
+          <G
+            style={{
+              mixBlendMode: 'luminosity',
+            }}
+          >
+            <Rect
+              x={131.642}
+              y={84.127}
+              width={113.775}
+              height={30}
+              rx={15}
+              fill="#fff"
+              stroke="#fff"
+            />
+          </G>
+        </G>
+      </G>
+    </>
+  ),
+});
+
 export {
   AccordionIcon,
   AlertDialogIcon,
@@ -996,4 +1052,5 @@ export {
   CenterIcon,
   CheckboxIcon,
   DividerIcon,
+  FabIcon,
 };
