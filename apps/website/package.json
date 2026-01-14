@@ -15,6 +15,7 @@
     "@expo/html-elements": "^0.12.5",
     "@expo/next-adapter": "^6.0.0",
     "@gluestack-ui/core-v4-experimental": "^3.0.13",
+    "@gluestack-ui/utils": "^3.0.15",
     "@gluestack-ui/utils-v4-experimental": "^3.0.13",
     "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
     "@legendapp/motion": "^2.4.0",

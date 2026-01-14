@@ -866,15 +866,25 @@
   dependencies:
     tslib "^2.8.0"
 
-"@gluestack-ui/core-v4-experimental-v4-experimental@^3.0.13":
+"@gluestack-ui/core-v4-experimental@^3.0.13":
   version "3.0.13"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/core-v4-experimental-v4-experimental/-/core-v4-experimental-3.0.13.tgz#01d7c5fc7a9aff4a78bd8d3eb15bb863177c5493"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/core-v4-experimental/-/core-v4-experimental-3.0.13.tgz#01d7c5fc7a9aff4a78bd8d3eb15bb863177c5493"
   integrity sha512-kTemaKzB/qoRGL8U8V5W99ZIsx9+DCe6ZAnSjFEFHfa4XUckNl9QzQSD2M+aCdXwtzoDXKGKumKsKm0LJRbRRg==
 
-"@gluestack-ui/utils-v4-experimental-v4-experimental@^3.0.13":
+"@gluestack-ui/utils-v4-experimental@^3.0.13":
   version "3.0.13"
-  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils-v4-experimental-v4-experimental/-/utils-v4-experimental-3.0.13.tgz#e4891c08282e6ec053d9191f794a9968a2983536"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils-v4-experimental/-/utils-v4-experimental-3.0.13.tgz#e4891c08282e6ec053d9191f794a9968a2983536"
   integrity sha512-oW7HSnWIOlRb1atiM7uaYZoEcbneLve4XntzzqziDjj93E40kmtoRtJminU8NGwUFAC5VrD2jjdigQ+1oEJqAA==
+  dependencies:
+    dom-helpers "^6.0.1"
+    react-aria "^3.41.1"
+    react-stately "^3.39.0"
+    tailwind-variants "0.1.20"
+
+"@gluestack-ui/utils@^3.0.15":
+  version "3.0.15"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-3.0.15.tgz#9a79d5afa97e550824f7c8e081069262353c0527"
+  integrity sha512-2zTKcMI7BKvxMWvkEcbsF42VkGqLM272cHC0I234pPJc5AzBbj1DlKhzrwuaY67EOWGzEhxPNlhifnQoQaqgWw==
   dependencies:
     dom-helpers "^6.0.1"
     react-aria "^3.41.1"
