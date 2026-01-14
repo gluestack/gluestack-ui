@@ -14,6 +14,8 @@ import {
   DrawerIcon,
   FormControllIcon,
   GridIcon,
+  HeadingIcon,
+  HStackIcon,
 } from '@/components/custom/custom-icons';
 import type { ComponentItem } from '@/components/custom/bottom-control-bar';
 
@@ -37,10 +39,15 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: 'Divider', path: 'divider', count: 5, icon: DividerIcon },
   { title: 'Drawer', path: 'drawer', count: 3, icon: DrawerIcon },
   { title: 'Fab', path: 'fab', count: 5, icon: FabIcon },
-  { title: 'FormControl', path: 'form-control', count: 7, icon: FormControllIcon },
+  {
+    title: 'FormControl',
+    path: 'form-control',
+    count: 7,
+    icon: FormControllIcon,
+  },
   { title: 'Grid', path: 'grid', count: 5, icon: GridIcon },
-  { title: 'Heading', path: 'heading', count: 2 },
-  { title: 'HStack', path: 'hstack', count: 2 },
+  { title: 'Heading', path: 'heading', count: 2, icon: HeadingIcon },
+  { title: 'HStack', path: 'hstack', count: 2, icon: HStackIcon },
   { title: 'Icon', path: 'icon', count: 4 },
   { title: 'Image', path: 'image', count: 2 },
   { title: 'Input', path: 'input', count: 3 },

@@ -1576,13 +1576,144 @@ const GridIcon = createIcon({
   ),
 });
 
+const HeadingIcon = createIcon({
+  viewBox: '0 0 194 147',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect x={2} width={141} height={42} rx={21} fill="#fff" stroke="#fff" />
+        <Rect
+          x={1}
+          y={65}
+          width={274.619}
+          height={22.194}
+          rx={11.097}
+          stroke="#fff"
+          strokeWidth={2}
+        />
+        <Rect
+          x={1}
+          y={94.1934}
+          width={274.619}
+          height={22.194}
+          rx={11.097}
+          stroke="#fff"
+          strokeWidth={2}
+        />
+        <Rect
+          x={1}
+          y={123.389}
+          width={274.619}
+          height={22.194}
+          rx={11.097}
+          stroke="#fff"
+          strokeWidth={2}
+        />
+      </G>
+    </>
+  ),
+});
+
+const HStackIcon = createIcon({
+  viewBox: '0 0 200 100',
+  path: (
+    <>
+      <G opacity={0.15}>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={1.61265}
+            y={1.61265}
+            width={76.7747}
+            height={96.7747}
+            rx={12.3874}
+            fill="#fff"
+          />
+          <Rect
+            x={1.61265}
+            y={1.61265}
+            width={76.7747}
+            height={96.7747}
+            rx={12.3874}
+            stroke="#fff"
+            strokeWidth={3.2253}
+          />
+          <Rect
+            x={40}
+            y={25}
+            width={1}
+            height={50}
+            rx={0.5}
+            fill="#fff"
+            stroke="#fff"
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={93.6126}
+            y={1.61265}
+            width={76.7747}
+            height={96.7747}
+            rx={12.3874}
+            fill="#fff"
+          />
+          <Rect
+            x={93.6126}
+            y={1.61265}
+            width={76.7747}
+            height={96.7747}
+            rx={12.3874}
+            stroke="#fff"
+            strokeWidth={3.2253}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={185.613}
+            y={1.61265}
+            width={76.7747}
+            height={96.7747}
+            rx={12.3874}
+            fill="#fff"
+          />
+          <Rect
+            x={185.613}
+            y={1.61265}
+            width={76.7747}
+            height={96.7747}
+            rx={12.3874}
+            stroke="#fff"
+            strokeWidth={3.2253}
+          />
+        </G>
+      </G>
+    </>
+  ),
+});
+
 export {
   AccordionIcon,
   AlertDialogIcon,
   AlertIcon,
   AvatarIcon,
   FormControllIcon,
-  FormControllIcon,
+  FormControllIcon as FormControlIcon,
   BadgeIcon,
   BoxIcon,
   ButtonIcon,
@@ -1593,4 +1724,6 @@ export {
   FabIcon,
   DrawerIcon,
   GridIcon,
+  HeadingIcon,
+  HStackIcon,
 };
