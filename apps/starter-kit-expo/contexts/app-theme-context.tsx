@@ -6,79 +6,193 @@ import React, {
   useState,
   useEffect,
 } from 'react';
-import { useColorScheme } from 'nativewind';
-import { View, ActivityIndicator } from 'react-native';
-import {
-  ThemeName,
-  ColorMode,
-  getThemeVars,
-  getThemeFontSans,
-  themeConfigs,
-} from '@/constants/themes';
+import { View, ActivityIndicator, useColorScheme } from 'react-native';
+import { Uniwind, useUniwind } from 'uniwind';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// Theme base names (without -light/-dark suffix)
+export type ThemeBase =
+  | 'default'
+  | 'vercel'
+  | 'violet'
+  | 'supabase'
+  | 'claude'
+  | 'twitter';
+
+export type ColorMode = 'light' | 'dark';
+
+// Full theme name as registered in metro.config.js
+export type FullThemeName =
+  | 'default-light'
+  | 'default-dark'
+  | 'vercel-light'
+  | 'vercel-dark'
+  | 'violet-light'
+  | 'violet-dark'
+  | 'supabase-light'
+  | 'supabase-dark'
+  | 'claude-light'
+  | 'claude-dark'
+  | 'twitter-light'
+  | 'twitter-dark'
+  | 'light'
+  | 'dark';
+
+// Theme configuration with display info
+export interface ThemeConfig {
+  base: ThemeBase;
+  displayName: string;
+  description: string;
+  colors: {
+    light: string;
+    dark: string;
+  };
+}
+
+export const THEME_CONFIGS: Record<ThemeBase, ThemeConfig> = {
+  default: {
+    base: 'default',
+    displayName: 'Default',
+    description: 'Gluestack UI default theme',
+    colors: {
+      light: '#3b82f6',
+      dark: '#8b5cf6',
+    },
+  },
+  vercel: {
+    base: 'vercel',
+    displayName: 'Vercel',
+    description: 'Minimalist black and white',
+    colors: {
+      light: '#000000',
+      dark: '#ffffff',
+    },
+  },
+  violet: {
+    base: 'violet',
+    displayName: 'Violet',
+    description: 'Purple and violet tones',
+    colors: {
+      light: '#7033ff',
+      dark: '#8c5cff',
+    },
+  },
+  supabase: {
+    base: 'supabase',
+    displayName: 'Supabase',
+    description: 'Fresh green accent colors',
+    colors: {
+      light: '#3ecf8e',
+      dark: '#00623a',
+    },
+  },
+  claude: {
+    base: 'claude',
+    displayName: 'Claude',
+    description: 'Warm terracotta and earthy tones',
+    colors: {
+      light: '#c96442',
+      dark: '#d97757',
+    },
+  },
+  twitter: {
+    base: 'twitter',
+    displayName: 'Twitter',
+    description: 'Classic Twitter blue',
+    colors: {
+      light: '#1e9df1',
+      dark: '#1da1f2',
+    },
+  },
+};
+
+export const THEME_BASES: ThemeBase[] = Object.keys(
+  THEME_CONFIGS
+) as ThemeBase[];
+
 interface AppThemeContextType {
-  currentTheme: ThemeName;
+  // Current theme base (e.g., 'vercel')
+  themeBase: ThemeBase;
+  // Current color mode
   colorMode: ColorMode;
+  // Full theme name for Uniwind (e.g., 'vercel-light')
+  fullThemeName: FullThemeName;
+  // Convenience booleans
   isLight: boolean;
   isDark: boolean;
-  setTheme: (theme: ThemeName) => void;
+  // Theme setters
+  setThemeBase: (theme: ThemeBase) => void;
   setColorMode: (mode: ColorMode) => void;
   toggleColorMode: () => void;
-  availableThemes: { name: ThemeName; display: string; description: string }[];
-  fontSans: string;
+  // Available themes
+  availableThemes: ThemeConfig[];
+  // Current theme config
+  currentThemeConfig: ThemeConfig;
 }
 
 const AppThemeContext = createContext<AppThemeContextType | undefined>(
   undefined
 );
 
-const THEME_STORAGE_KEY = '@app_theme';
+const THEME_STORAGE_KEY = '@app_theme_base';
 const COLOR_MODE_STORAGE_KEY = '@app_color_mode';
 
 export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const { colorScheme, setColorScheme } = useColorScheme();
-  const [currentTheme, setCurrentTheme] = useState<ThemeName>('default');
-  // Ensure colorMode is always a valid ColorMode, defaulting to colorScheme or 'light'
-  const [colorMode, setColorMode] = useState<ColorMode>(() => {
-    const scheme = colorScheme as ColorMode;
-    return (scheme === 'light' || scheme === 'dark') ? scheme : 'light';
-  });
-  const [isThemeLoaded, setIsThemeLoaded] = useState(false);
+  const systemColorScheme = useColorScheme();
+  const [themeBase, setThemeBaseState] = useState<ThemeBase>('default');
+  const [colorMode, setColorModeState] = useState<ColorMode>(
+    systemColorScheme === 'dark' ? 'dark' : 'light'
+  );
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Initialize theme from storage
+  // Compute the full theme name
+  const fullThemeName = useMemo(
+    () => `${themeBase}-${colorMode}` as FullThemeName,
+    [themeBase, colorMode]
+  );
+
+  // Apply theme to Uniwind whenever it changes
+  useEffect(() => {
+    if (isLoaded) {
+      Uniwind.setTheme(fullThemeName);
+    }
+  }, [fullThemeName, isLoaded]);
+
+  // Load saved theme on mount
   useEffect(() => {
     const loadTheme = async () => {
       try {
-        const savedTheme = await AsyncStorage.getItem(THEME_STORAGE_KEY);
-        const savedMode = await AsyncStorage.getItem(COLOR_MODE_STORAGE_KEY);
+        const [savedTheme, savedMode] = await Promise.all([
+          AsyncStorage.getItem(THEME_STORAGE_KEY),
+          AsyncStorage.getItem(COLOR_MODE_STORAGE_KEY),
+        ]);
 
-        if (savedTheme) {
-          setCurrentTheme(savedTheme as ThemeName);
+        if (savedTheme && THEME_BASES.includes(savedTheme as ThemeBase)) {
+          setThemeBaseState(savedTheme as ThemeBase);
         }
-        if (savedMode) {
-          setColorMode(savedMode as ColorMode);
-          setColorScheme(savedMode as ColorMode);
-        } else if (colorScheme) {
-          setColorMode(colorScheme as ColorMode);
+
+        if (savedMode && (savedMode === 'light' || savedMode === 'dark')) {
+          setColorModeState(savedMode as ColorMode);
+        } else if (systemColorScheme) {
+          setColorModeState(systemColorScheme === 'dark' ? 'dark' : 'light');
         }
       } catch (error) {
         console.error('Error loading theme:', error);
       } finally {
-        setIsThemeLoaded(true);
+        setIsLoaded(true);
       }
     };
 
     loadTheme();
-  }, []);
+  }, [systemColorScheme]);
 
-  const isLight = useMemo(() => colorMode === 'light', [colorMode]);
-  const isDark = useMemo(() => colorMode === 'dark', [colorMode]);
+  const isLight = colorMode === 'light';
+  const isDark = colorMode === 'dark';
 
-  const setTheme = useCallback(async (newTheme: ThemeName) => {
-    setCurrentTheme(newTheme);
+  const setThemeBase = useCallback(async (newTheme: ThemeBase) => {
+    setThemeBaseState(newTheme);
     try {
       await AsyncStorage.setItem(THEME_STORAGE_KEY, newTheme);
     } catch (error) {
@@ -86,67 +200,56 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, []);
 
-  const handleSetColorMode = useCallback(
-    async (newMode: ColorMode) => {
-      setColorMode(newMode);
-      setColorScheme(newMode);
-      try {
-        await AsyncStorage.setItem(COLOR_MODE_STORAGE_KEY, newMode);
-      } catch (error) {
-        console.error('Error saving color mode:', error);
-      }
-    },
-    [setColorScheme]
-  );
-
-  const toggleColorMode = useCallback(async () => {
-    const newMode: ColorMode = colorMode === 'light' ? 'dark' : 'light';
-    handleSetColorMode(newMode);
-  }, [colorMode, handleSetColorMode]);
-
-  const availableThemes = useMemo(() => {
-    return Object.entries(themeConfigs).map(([key, config]) => ({
-      name: key as ThemeName,
-      display: config.name,
-      description: config.description,
-    }));
+  const setColorMode = useCallback(async (newMode: ColorMode) => {
+    setColorModeState(newMode);
+    try {
+      await AsyncStorage.setItem(COLOR_MODE_STORAGE_KEY, newMode);
+    } catch (error) {
+      console.error('Error saving color mode:', error);
+    }
   }, []);
 
-  const themeVars = useMemo(() => {
-    return getThemeVars(currentTheme, colorMode);
-  }, [currentTheme, colorMode]);
+  const toggleColorMode = useCallback(() => {
+    const newMode = colorMode === 'light' ? 'dark' : 'light';
+    setColorMode(newMode);
+  }, [colorMode, setColorMode]);
 
-  const fontSans = useMemo(() => {
-    return getThemeFontSans(currentTheme, colorMode);
-  }, [currentTheme, colorMode]);
+  const availableThemes = useMemo(() => Object.values(THEME_CONFIGS), []);
+
+  const currentThemeConfig = useMemo(
+    () => THEME_CONFIGS[themeBase],
+    [themeBase]
+  );
 
   const value = useMemo(
     () => ({
-      currentTheme,
+      themeBase,
       colorMode,
+      fullThemeName,
       isLight,
       isDark,
-      setTheme,
-      setColorMode: handleSetColorMode,
+      setThemeBase,
+      setColorMode,
       toggleColorMode,
       availableThemes,
-      fontSans,
+      currentThemeConfig,
     }),
     [
-      currentTheme,
+      themeBase,
       colorMode,
+      fullThemeName,
       isLight,
       isDark,
-      setTheme,
-      handleSetColorMode,
+      setThemeBase,
+      setColorMode,
       toggleColorMode,
       availableThemes,
-      fontSans,
+      currentThemeConfig,
     ]
   );
 
-  // Show nothing while loading to prevent flash of wrong theme
-  if (!isThemeLoaded) {
+  // Show loading state while initializing
+  if (!isLoaded) {
     return (
       <View className="flex-1 items-center justify-center bg-background">
         <ActivityIndicator size="small" />
@@ -156,9 +259,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <AppThemeContext.Provider value={value}>
-      <View style={themeVars} className="flex-1">
-        {children}
-      </View>
+      {children}
     </AppThemeContext.Provider>
   );
 };
@@ -170,3 +271,6 @@ export const useAppTheme = () => {
   }
   return context;
 };
+
+// Re-export Uniwind hook for direct access if needed
+export { useUniwind };

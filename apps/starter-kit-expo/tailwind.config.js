@@ -16,74 +16,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // Colors are defined in global.css using CSS variables with @variant directives
+      // Uniwind automatically resolves --color-* variables to utility classes
       colors: {
-        foreground: 'rgb(var(--foreground)/<alpha-value>)',
-        card: {
-          DEFAULT: 'rgb(var(--card) / <alpha-value>)',
-          foreground: 'rgb(var(--card-foreground) / <alpha-value>)',
-        },
-        popover: {
-          DEFAULT: 'rgb(var(--popover) / <alpha-value>)',
-          foreground: 'rgb(var(--popover-foreground) / <alpha-value>)',
-        },
-        muted: {
-          DEFAULT: 'rgb(var(--muted) / <alpha-value>)',
-          foreground: 'rgb(var(--muted-foreground) / <alpha-value>)',
-        },
-        destructive: {
-          DEFAULT: 'rgb(var(--destructive) / <alpha-value>)',
-          foreground: 'rgb(var(--destructive-foreground) / <alpha-value>)',
-        },
-        border: 'rgb(var(--border)/<alpha-value>)',
-        input: 'rgb(var(--input)/<alpha-value>)',
-        ring: 'rgb(var(--ring) / <alpha-value>)',
-        white: 'rgb(255 255 255)',
-        // Chart colors
-        chart: {
-          1: 'rgb(var(--chart-1) / <alpha-value>)',
-          2: 'rgb(var(--chart-2) / <alpha-value>)',
-          3: 'rgb(var(--chart-3) / <alpha-value>)',
-          4: 'rgb(var(--chart-4) / <alpha-value>)',
-          5: 'rgb(var(--chart-5) / <alpha-value>)',
-        },
-
-        // Sidebar colors
-        sidebar: {
-          'DEFAULT': 'rgb(var(--sidebar) / <alpha-value>)',
-          'foreground': 'rgb(var(--sidebar-foreground) / <alpha-value>)',
-          'primary': 'rgb(var(--sidebar-primary) / <alpha-value>)',
-          'primary-foreground':
-            'rgb(var(--sidebar-primary-foreground) / <alpha-value>)',
-          'accent': 'rgb(var(--sidebar-accent) / <alpha-value>)',
-          'accent-foreground':
-            'rgb(var(--sidebar-accent-foreground) / <alpha-value>)',
-          'border': 'rgb(var(--sidebar-border))',
-          'ring': 'rgb(var(--sidebar-ring) / <alpha-value>)',
-        },
-
-        primary: {
-          DEFAULT: 'rgb(var(--primary)/<alpha-value>)',
-          foreground: 'rgb(var(--primary-foreground)/<alpha-value>)',
-        },
-
-        secondary: {
-          DEFAULT: 'rgb(var(--secondary)/<alpha-value>)',
-          foreground: 'rgb(var(--secondary-foreground)/<alpha-value>)',
-        },
-
         typography: {
           white: '#FFFFFF',
           gray: '#D4D4D4',
           black: '#181718',
         },
-
-        background: {
-          DEFAULT: 'rgb(var(--background)/<alpha-value>)',
-        },
-        accent: {
-          DEFAULT: 'rgb(var(--accent)/<alpha-value>)',
-          foreground: 'rgb(var(--accent-foreground)/<alpha-value>)',
-        },
+        white: 'rgb(255 255 255)',
       },
       fontFamily: {
         heading: undefined,
@@ -94,6 +35,8 @@ module.exports = {
         inter: ['var(--font-inter)'],
         georgia: ['Georgia'],
         melno: ['Melno'],
+        geist: ['Geist'],
+        jakarta: ['Jakarta'],
         andika: [
           'Andika_400Regular',
           'Andika_400Regular_Italic',
@@ -108,12 +51,25 @@ module.exports = {
           'Outfit_800ExtraBold',
           'Outfit_900Black',
         ],
+        opensans: [
+          'OpenSans_400Regular',
+          'OpenSans_500Medium',
+          'OpenSans_600SemiBold',
+          'OpenSans_700Bold',
+        ],
+        lora: [
+          'Lora_400Regular',
+          'Lora_500Medium',
+          'Lora_600SemiBold',
+          'Lora_700Bold',
+        ],
       },
       borderRadius: {
         sm: 'var(--radius-sm)',
         md: 'var(--radius-md)',
         lg: 'var(--radius-lg)',
         xl: 'var(--radius-xl)',
+        DEFAULT: 'var(--radius)',
       },
       fontWeight: {
         extrablack: '950',

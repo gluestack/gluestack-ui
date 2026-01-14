@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
+    "dev": "expo start --reset-cache",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -15,6 +16,11 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo-google-fonts/andika": "^0.4.1",
+    "@expo-google-fonts/lora": "^0.4.2",
+    "@expo-google-fonts/montserrat": "^0.4.2",
+    "@expo-google-fonts/open-sans": "^0.4.2",
+    "@expo-google-fonts/outfit": "^0.4.3",
     "@expo/html-elements": "^0.12.5",
     "@expo/vector-icons": "^15.0.2",
     "@gluestack-ui/core": "^3.0.8",

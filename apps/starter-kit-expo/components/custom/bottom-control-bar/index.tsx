@@ -1,5 +1,4 @@
 import { BlurView } from 'expo-blur';
-import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
@@ -8,7 +7,6 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  TextInput,
   useWindowDimensions,
   View,
 } from 'react-native';
@@ -21,23 +19,16 @@ import Animated, {
   FadeOut,
 } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
-import { useAppTheme } from '@/contexts/app-theme-context';
+import {
+  useAppTheme,
+  ThemeBase,
+  THEME_CONFIGS,
+} from '@/contexts/app-theme-context';
 import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { Text } from '@/components/ui/text';
 import { Icon, MoonIcon, SunIcon, SearchIcon } from '@/components/ui/icon';
-import { PaletteIcon } from 'lucide-react-native';
-import { ThemeName } from '@/constants/themes';
+import { PaletteIcon, CheckIcon } from 'lucide-react-native';
 import { Input, InputField, InputSlot } from '@/components/ui/input';
-
-// Theme color mapping for the theme button indicator
-const THEME_COLORS: Record<ThemeName, string[]> = {
-  default: ['#3b82f6', '#8b5cf6'], // Blue to purple gradient
-  vercel: ['#000000', '#525252'], // Black to gray gradient
-  violetBloom: ['#7033ff', '#8c5cff'], // Purple gradient
-  supabase: ['#72e3ad', '#10b981'], // Mint green to emerald gradient
-  claude: ['#c96442', '#d97757'], // Terracotta gradient
-  twitter: ['#1e9df1', '#1da1f2'], // Twitter blue gradient
-};
 
 export type ComponentItem = {
   title: string;
@@ -101,8 +92,15 @@ const BottomControlBar = memo(
       height: 0,
     });
 
-    const { isDark, toggleColorMode, currentTheme, setTheme, availableThemes } =
-      useAppTheme();
+    const {
+      isDark,
+      toggleColorMode,
+      themeBase,
+      setThemeBase,
+      availableThemes,
+      currentThemeConfig,
+    } = useAppTheme();
+
     const { width, height } = useWindowDimensions();
 
     const { reduceTransparencyEnabled } = useAccessibilityInfo();
@@ -111,7 +109,6 @@ const BottomControlBar = memo(
     // Autofocus search input when component menu opens
     useEffect(() => {
       if (showComponentMenu) {
-        // Add a small delay to ensure the modal is fully rendered
         const timer = setTimeout(() => {
           searchInputRef.current?.focus();
         }, 100);
@@ -132,7 +129,6 @@ const BottomControlBar = memo(
       if (Platform.OS === 'ios') {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }
-      // Animate rotation 360 degrees
       colorModeRotation.value = withTiming(colorModeRotation.value + 360, {
         duration: 500,
         easing: Easing.out(Easing.cubic),
@@ -141,14 +137,14 @@ const BottomControlBar = memo(
     }, [toggleColorMode, colorModeRotation]);
 
     const handleThemeSelect = useCallback(
-      (themeName: ThemeName) => {
+      (newTheme: ThemeBase) => {
         if (Platform.OS === 'ios') {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         }
-        setTheme(themeName);
+        setThemeBase(newTheme);
         setShowThemeMenu(false);
       },
-      [setTheme]
+      [setThemeBase]
     );
 
     const filteredComponents = components
@@ -166,11 +162,7 @@ const BottomControlBar = memo(
         }
         setShowComponentMenu(false);
         setSearchQuery('');
-
-        // Navigate directly to the component page
         router.replace(`/(home)/components/${component.path}` as any);
-
-        // Still call the callback if provided (for any additional logic)
         onComponentSelect?.(component, index);
       },
       [router, onComponentSelect]
@@ -239,11 +231,9 @@ const BottomControlBar = memo(
                 <Pressable
                   onPress={handlePillPress}
                   className="px-6 py-5 bg-primary rounded-full"
-                  style={{
-                    width: pillWidth,
-                  }}
+                  style={{ width: pillWidth }}
                 >
-                  <Text className=" text-base font-sans text-primary-foreground font-medium text-center">
+                  <Text className="text-base font-sans text-primary-foreground font-medium text-center">
                     {pillLabel}
                   </Text>
                 </Pressable>
@@ -264,7 +254,7 @@ const BottomControlBar = memo(
             }}
           >
             <View style={StyleSheet.absoluteFill}>
-              {/* Minimal Blur Backdrop - Performance optimized */}
+              {/* Backdrop */}
               <Pressable
                 style={StyleSheet.absoluteFill}
                 onPress={() => {
@@ -293,7 +283,7 @@ const BottomControlBar = memo(
                 )}
               </Pressable>
 
-              {/* Menu Content - Positioned above the button */}
+              {/* Menu Content */}
               <Animated.View
                 entering={FadeIn.duration(200)
                   .springify()
@@ -354,7 +344,7 @@ const BottomControlBar = memo(
                           className={`text-sm font-medium ${
                             currentComponent?.path === item.path
                               ? 'text-primary-foreground'
-                              : 'text-white'
+                              : 'text-foreground'
                           }`}
                         >
                           {item.title}
@@ -363,7 +353,7 @@ const BottomControlBar = memo(
                     ))}
                     {filteredComponents.length === 0 && (
                       <View className="py-6 items-center">
-                        <Text className="text-typography-400 text-sm">
+                        <Text className="text-muted-foreground text-sm">
                           No components found
                         </Text>
                       </View>
@@ -383,7 +373,7 @@ const BottomControlBar = memo(
           onRequestClose={() => setShowThemeMenu(false)}
         >
           <View style={StyleSheet.absoluteFill} className="items-center">
-            {/* Minimal Blur Backdrop - Performance optimized */}
+            {/* Backdrop */}
             <Pressable
               style={StyleSheet.absoluteFill}
               onPress={() => setShowThemeMenu(false)}
@@ -409,7 +399,7 @@ const BottomControlBar = memo(
               )}
             </Pressable>
 
-            {/* Menu Content - Positioned above the button */}
+            {/* Menu Content */}
             <Animated.View
               entering={FadeIn.duration(200)
                 .springify()
@@ -419,66 +409,95 @@ const BottomControlBar = memo(
               className="absolute bg-card rounded-3xl p-6"
               style={{
                 bottom: height - themeButtonLayout.y + 12,
-                width: Math.min(width - 80, 340),
+                width: Math.min(width - 48, 380),
               }}
             >
               {/* Theme Content */}
-              <View className="gap-6">
-                {/* Color Palettes */}
-                <View className="flex-row justify-center gap-3">
-                  {availableThemes
-                    .filter((theme) => theme.name !== 'default')
-                    .map((theme) => {
-                      const colors =
-                        THEME_COLORS[theme.name] || THEME_COLORS.default;
-                      const isSelected = currentTheme === theme.name;
-                      return (
-                        <Pressable
-                          key={theme.name}
-                          onPress={() => handleThemeSelect(theme.name)}
-                          className={`items-center justify-center ${
-                            isSelected ? 'opacity-100' : 'opacity-60'
-                          }`}
+              <View className="gap-5">
+                {/* Section Title */}
+                <Text className="text-foreground text-lg font-semibold text-center">
+                  Choose Theme
+                </Text>
+
+                {/* Theme Grid */}
+                <View className="flex-row flex-wrap justify-center gap-3">
+                  {availableThemes.map((theme) => {
+                    const isSelected = themeBase === theme.base;
+                    const themeColor = isDark
+                      ? theme.colors.dark
+                      : theme.colors.light;
+
+                    return (
+                      <Pressable
+                        key={theme.base}
+                        onPress={() => handleThemeSelect(theme.base)}
+                        className="items-center"
+                        style={{ width: 70 }}
+                      >
+                        <View
+                          className="rounded-full items-center justify-center"
+                          style={{
+                            width: 52,
+                            height: 52,
+                            backgroundColor: themeColor,
+                            borderWidth: isSelected ? 3 : 0,
+                            borderColor: isDark
+                              ? 'rgba(255,255,255,0.5)'
+                              : 'rgba(0,0,0,0.3)',
+                          }}
                         >
-                          <View
-                            className="rounded-full"
-                            style={{
-                              width: 52,
-                              height: 52,
-                              backgroundColor: colors[0],
-                              borderWidth: isSelected ? 3 : 0,
-                              borderColor: isDark
-                                ? 'rgba(255,255,255,0.3)'
-                                : 'rgba(0,0,0,0.2)',
-                            }}
-                          />
-                        </Pressable>
-                      );
-                    })}
+                          {isSelected && (
+                            <Icon
+                              as={CheckIcon}
+                              size="sm"
+                              style={{
+                                color:
+                                  theme.base === 'vercel'
+                                    ? isDark
+                                      ? '#000'
+                                      : '#fff'
+                                    : '#fff',
+                              }}
+                            />
+                          )}
+                        </View>
+                        <Text
+                          className={`text-xs mt-2 text-center ${
+                            isSelected
+                              ? 'text-foreground font-semibold'
+                              : 'text-muted-foreground'
+                          }`}
+                          numberOfLines={1}
+                        >
+                          {theme.displayName}
+                        </Text>
+                      </Pressable>
+                    );
+                  })}
                 </View>
 
-                {/* Current Theme Indicator */}
-                <View className="items-center px-6 py-4 border border-input rounded-full">
-                  <Text className="text-foreground font-outfit font-medium text-base capitalize">
-                    {currentTheme === 'default'
-                      ? 'Default'
-                      : currentTheme === 'violetBloom'
-                        ? 'Violet Bloom'
-                        : currentTheme === 'twitter'
-                          ? 'Twitter'
-                          : currentTheme}
+                {/* Current Theme Info */}
+                <View className="items-center px-4 py-3 bg-secondary/50 rounded-xl">
+                  <Text className="text-foreground font-medium text-sm">
+                    {currentThemeConfig.displayName} •{' '}
+                    {isDark ? 'Dark' : 'Light'}
+                  </Text>
+                  <Text className="text-muted-foreground text-xs mt-1">
+                    {currentThemeConfig.description}
                   </Text>
                 </View>
 
-                {/* Reset to Default Button */}
-                <Pressable
-                  onPress={() => handleThemeSelect('default')}
-                  className="py-3 items-center active:opacity-70"
-                >
-                  <Text className="text-foreground font-outfit font-medium text-base">
-                    Reset to Default
-                  </Text>
-                </Pressable>
+                {/* Reset Button */}
+                {themeBase !== 'default' && (
+                  <Pressable
+                    onPress={() => handleThemeSelect('default')}
+                    className="py-2.5 items-center active:opacity-70"
+                  >
+                    <Text className="text-muted-foreground font-medium text-sm">
+                      Reset to Default
+                    </Text>
+                  </Pressable>
+                )}
               </View>
             </Animated.View>
           </View>
