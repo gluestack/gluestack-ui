@@ -307,7 +307,7 @@ const FormControllIcon = createIcon({
           mixBlendMode: 'overlay',
         }}
       >
-        <Rect width={146} height={27} fill="#fff" rx={13.5} />
+        <Rect width={146} height={27} fill="#fff" stroke="#fff" rx={13.5} />
         <Path
           stroke="#fff"
           strokeWidth={1.748}
@@ -319,27 +319,54 @@ const FormControllIcon = createIcon({
           x={16.485}
           y={58.01}
           fill="#fff"
+          stroke="#fff"
           rx={5.5}
         />
-        <Rect width={12} height={12} x={39.024} y={58.01} fill="#fff" rx={6} />
+        <Rect
+          width={12}
+          height={12}
+          x={39.024}
+          y={58.01}
+          fill="#fff"
+          stroke="#fff"
+          rx={6}
+        />
         <Rect
           width={11}
           height={12}
           x={62.564}
           y={58.01}
           fill="#fff"
+          stroke="#fff"
           rx={5.5}
         />
-        <Rect width={12} height={12} x={85.103} y={58.01} fill="#fff" rx={6} />
+        <Rect
+          width={12}
+          height={12}
+          x={85.103}
+          y={58.01}
+          fill="#fff"
+          stroke="#fff"
+          rx={6}
+        />
         <Rect
           width={11}
           height={12}
           x={108.642}
           y={58.01}
           fill="#fff"
+          stroke="#fff"
           rx={5.5}
         />
-        <Rect width={79} height={31} x={63.922} y={93} fill="#fff" rx={15.5} />
+        <Rect
+          width={79}
+          height={31}
+          x={63.922}
+          y={93}
+          fill="#fff"
+          stroke="#fff"
+          rx={15.5}
+        />
         <Rect
           width={81.019}
           height={33.019}
@@ -1171,11 +1198,390 @@ const DrawerIcon = createIcon({
   ),
 });
 
+const GridIcon = createIcon({
+  viewBox: '0 0 175 175',
+  path: (
+    <>
+      <G opacity={0.15}>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={1.52695}
+            y={1.52695}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={1.52695}
+            y={1.52695}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={46.9762}
+            y={1.52695}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={46.9762}
+            y={1.52695}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={92.4254}
+            y={1.52695}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={92.4254}
+            y={1.52695}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={137.875}
+            y={1.52695}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={137.875}
+            y={1.52695}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={1.52695}
+            y={46.9762}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={1.52695}
+            y={46.9762}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={46.9762}
+            y={46.9762}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={46.9762}
+            y={46.9762}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={92.4254}
+            y={46.9762}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={92.4254}
+            y={46.9762}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={137.875}
+            y={46.9762}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={137.875}
+            y={46.9762}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={1.52695}
+            y={92.4254}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={1.52695}
+            y={92.4254}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={46.9762}
+            y={92.4254}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={46.9762}
+            y={92.4254}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={92.4254}
+            y={92.4254}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={92.4254}
+            y={92.4254}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={137.875}
+            y={92.4254}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={137.875}
+            y={92.4254}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={1.52695}
+            y={137.875}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={1.52695}
+            y={137.875}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={46.9762}
+            y={137.875}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={46.9762}
+            y={137.875}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={92.4254}
+            y={137.875}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={92.4254}
+            y={137.875}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            x={137.875}
+            y={137.875}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            fill="#fff"
+          />
+          <Rect
+            x={137.875}
+            y={137.875}
+            width={34.8205}
+            height={34.8205}
+            rx={6.04793}
+            stroke="#fff"
+            strokeWidth={3.05391}
+          />
+        </G>
+      </G>
+    </>
+  ),
+});
+
 export {
   AccordionIcon,
   AlertDialogIcon,
   AlertIcon,
   AvatarIcon,
+  FormControllIcon,
   FormControllIcon,
   BadgeIcon,
   BoxIcon,
@@ -1186,4 +1592,5 @@ export {
   DividerIcon,
   FabIcon,
   DrawerIcon,
+  GridIcon,
 };
