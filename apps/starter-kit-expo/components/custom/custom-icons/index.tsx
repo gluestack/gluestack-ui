@@ -1039,6 +1039,138 @@ const FabIcon = createIcon({
   ),
 });
 
+const DrawerIcon = createIcon({
+  viewBox: '0 0 182 140',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect
+          x={1.0097}
+          y={1.0097}
+          width={270.981}
+          height={137.981}
+          rx={30.9776}
+          stroke="#fff"
+          strokeWidth={2.0194}
+        />
+        <Rect
+          x={24}
+          y={18}
+          width={18}
+          height={18}
+          rx={5.14286}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Path
+          d="M28.6287 22.8867H36.8572"
+          stroke="#8C8C8C"
+          strokeWidth={1.02857}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M28.6287 26.4844H36.8572"
+          stroke="#8C8C8C"
+          strokeWidth={1.02857}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M28.6287 30.0879H36.8572"
+          stroke="#8C8C8C"
+          strokeWidth={1.02857}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Rect
+          x={46}
+          y={18}
+          width={59}
+          height={18}
+          rx={9}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+        />
+        <G opacity={0.5}>
+          <Rect
+            x={48}
+            y={57}
+            width={12}
+            height={12}
+            rx={6}
+            fill="#FBFBFB"
+            stroke="#FBFBFB"
+          />
+          <Rect
+            x={72}
+            y={57}
+            width={91}
+            height={12}
+            rx={6}
+            fill="#FBFBFB"
+            stroke="#FBFBFB"
+          />
+          <Rect
+            x={48}
+            y={77}
+            width={12}
+            height={12}
+            rx={6}
+            fill="#FBFBFB"
+            stroke="#FBFBFB"
+          />
+          <Rect
+            x={72}
+            y={77}
+            width={91}
+            height={12}
+            rx={6}
+            fill="#FBFBFB"
+            stroke="#FBFBFB"
+          />
+        </G>
+        <Rect
+          x={120.232}
+          y={110.375}
+          width={11.25}
+          height={11.25}
+          rx={3.05357}
+          stroke="#FDFEFE"
+          strokeWidth={0.75}
+        />
+        <Path
+          d="M128.001 113.688L123.715 117.974"
+          stroke="#fff"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M123.715 113.688L128.001 117.974"
+          stroke="#fff"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Rect
+          x={136.357}
+          y={110.5}
+          width={28.1429}
+          height={9.97143}
+          rx={4.98571}
+          stroke="#FDFEFE"
+        />
+      </G>
+    </>
+  ),
+});
+
 export {
   AccordionIcon,
   AlertDialogIcon,
@@ -1053,4 +1185,5 @@ export {
   CheckboxIcon,
   DividerIcon,
   FabIcon,
+  DrawerIcon,
 };
