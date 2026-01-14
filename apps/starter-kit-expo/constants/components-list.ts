@@ -5,6 +5,7 @@ import {
   AvatarIcon,
   BadgeIcon,
   BoxIcon,
+  ButtonIcon,
 } from '@/components/custom/custom-icons';
 import type { ComponentItem } from '@/components/custom/bottom-control-bar';
 
@@ -21,7 +22,7 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: 'Avatar', path: 'avatar', count: 9, icon: AvatarIcon },
   { title: 'Badge', path: 'badge', count: 3, icon: BadgeIcon },
   { title: 'Box', path: 'box', count: 1, icon: BoxIcon },
-  { title: 'Button', path: 'button', count: 6 },
+  { title: 'Button', path: 'button', count: 6, icon: ButtonIcon },
   { title: 'Card', path: 'card', count: 5 },
   { title: 'Center', path: 'center', count: 1 },
   { title: 'Checkbox', path: 'checkbox', count: 9 },

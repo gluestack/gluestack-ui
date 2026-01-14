@@ -610,7 +610,6 @@ const BoxIcon = createIcon({
             strokeWidth={3.225}
             rx={12.387}
           />
-         
         </G>
         <G
           style={{
@@ -657,8 +656,40 @@ const BoxIcon = createIcon({
             strokeWidth={3.225}
             rx={12.387}
           />
-        
         </G>
+      </G>
+    </>
+  ),
+});
+
+const ButtonIcon = createIcon({
+  viewBox: '0 0 193 120',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect
+          width={316.079}
+          height={115.982}
+          x={1.613}
+          y={1.613}
+          stroke="#fff"
+          strokeWidth={3.225}
+          rx={32.387}
+        />
+        <Rect
+          width={239.305}
+          height={50}
+          x={40}
+          y={34.603}
+          fill="#fff"
+          stroke="#fff"
+          rx={16}
+        />
       </G>
     </>
   ),
@@ -672,4 +703,5 @@ export {
   FormControllIcon,
   BadgeIcon,
   BoxIcon,
+  ButtonIcon,
 };
