@@ -10,6 +10,8 @@ import {
   ReanimatedLogLevel,
 } from 'react-native-reanimated';
 import { AppThemeProvider } from '@/contexts/app-theme-context';
+import { SafeAreaListener } from 'react-native-safe-area-context';
+import { Uniwind } from 'uniwind';
 
 configureReanimatedLogger({
   level: ReanimatedLogLevel.warn,
@@ -24,14 +26,20 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <KeyboardProvider>
-        <AppThemeProvider>
-          <GluestackUIProvider>
-            <Slot />
-          </GluestackUIProvider>
-        </AppThemeProvider>
-      </KeyboardProvider>
-    </GestureHandlerRootView>
+    <SafeAreaListener
+      onChange={({ insets }) => {
+        Uniwind.updateInsets(insets);
+      }}
+    >
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <KeyboardProvider>
+          <AppThemeProvider>
+            <GluestackUIProvider>
+              <Slot />
+            </GluestackUIProvider>
+          </AppThemeProvider>
+        </KeyboardProvider>
+      </GestureHandlerRootView>
+    </SafeAreaListener>
   );
 }
