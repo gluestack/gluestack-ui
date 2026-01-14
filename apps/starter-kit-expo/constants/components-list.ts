@@ -3,6 +3,7 @@ import {
   AlertDialogIcon,
   AlertIcon,
   AvatarIcon,
+  BadgeIcon,
 } from "@/components/custom/custom-icons";
 import type { ComponentItem } from "@/components/custom/bottom-control-bar";
 
@@ -12,7 +13,7 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: "Alert", path: "alert", count: 5, icon: AlertIcon },
   { title: "AlertDialog", path: "alert-dialog", count: 4, icon: AlertDialogIcon },
   { title: "Avatar", path: "avatar", count: 9, icon: AvatarIcon },
-  { title: "Badge", path: "badge", count: 3 },
+  { title: "Badge", path: "badge", count: 3, icon: BadgeIcon },
   { title: "Box", path: "box", count: 1 },
   { title: "Button", path: "button", count: 6 },
   { title: "Card", path: "card", count: 5 },

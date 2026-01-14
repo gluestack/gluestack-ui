@@ -44,23 +44,6 @@ const GRADIENT_COLORS = [
   ['#C94AB480', '#C94AB4'] as const,
   ['#4facfe', '#3497D2'] as const,
   ['#26AF5F80', '#26AF5F'] as const,
-  ['#fa709a', '#fee140'] as const,
-  ['#30cfd0', '#330867'] as const,
-  ['#a8edea', '#fed6e3'] as const,
-  ['#ff9a9e', '#fecfef'] as const,
-  ['#ffecd2', '#fcb69f'] as const,
-  ['#ff6e7f', '#bfe9ff'] as const,
-  ['#e0c3fc', '#8ec5fc'] as const,
-  ['#f093fb', '#f5576c'] as const,
-  ['#fbc2eb', '#a6c1ee'] as const,
-  ['#fdcbf1', '#e6dee9'] as const,
-  ['#a1c4fd', '#c2e9fb'] as const,
-  ['#d299c2', '#fef9d7'] as const,
-  ['#667eea', '#764ba2'] as const,
-  ['#fa709a', '#fee140'] as const,
-  ['#30cfd0', '#330867'] as const,
-  ['#43e97b', '#38f9d7'] as const,
-  ['#4facfe', '#00f2fe'] as const,
 ];
 
 const components = COMPONENTS_LIST;
