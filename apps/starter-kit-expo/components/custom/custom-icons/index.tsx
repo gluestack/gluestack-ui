@@ -2210,6 +2210,512 @@ const ModalIcon = createIcon({
   ),
 });
 
+const PopoverIcon = createIcon({
+  viewBox: '0 0 191 138',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect width={141} height={28} rx={14} fill="#fff" stroke="#fff" />
+        <Rect
+          x={0.5}
+          y={52.5}
+          width={173}
+          height={71}
+          rx={14.5}
+          stroke="#fff"
+        />
+        <Rect
+          x={12}
+          y={64}
+          width={150}
+          height={12.1601}
+          rx={6.08006}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Rect
+          x={12}
+          y={81.9199}
+          width={150}
+          height={12.1601}
+          rx={6.08006}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Rect
+          x={12}
+          y={99.8398}
+          width={150}
+          height={12.1601}
+          rx={6.08006}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Path
+          d="M69.0929 40.5706C70.2006 39.6583 71.7994 39.6583 72.9071 40.5706L88 53H54L69.0929 40.5706Z"
+          fill="#fff"
+          stroke="#fff"
+        />
+      </G>
+    </>
+  ),
+});
+
+const PressableIcon = createIcon({
+  viewBox: '0 0 190 120',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect
+          x={1.61265}
+          y={1.61265}
+          width={316.079}
+          height={115.982}
+          stroke="#fff"
+          strokeWidth={3.2253}
+        />
+        <Rect
+          width={239.305}
+          height={50}
+          transform="translate(40 34.6035)"
+          fill="#fff"
+          stroke="#fff"
+        />
+      </G>
+    </>
+  ),
+});
+
+const ProgressIcon = createIcon({
+  viewBox: '0 0 169 158',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Path
+          d="M146 5C158.15 5 168 14.8497 168 27C168 39.1503 158.15 49 146 49H23C10.8497 49 1 39.1503 1 27C1 14.8497 10.8497 5 23 5H146Z"
+          fill="#8C8C8C"
+          stroke="#8C8C8C"
+        />
+        <Path
+          d="M146 5C158.15 5 168 14.8497 168 27C168 39.1503 158.15 49 146 49H23C10.8497 49 1 39.1503 1 27C1 14.8497 10.8497 5 23 5H146Z"
+          stroke="#fff"
+          strokeWidth={2}
+        />
+        <Path
+          d="M2 27C2 15.402 11.402 6 23 6H87C98.598 6 108 15.402 108 27C108 38.598 98.598 48 87 48H23C11.402 48 2 38.598 2 27Z"
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Path
+          d="M146 57C158.15 57 168 66.8497 168 79C168 91.1503 158.15 101 146 101H23C10.8497 101 1 91.1503 1 79C1 66.8497 10.8497 57 23 57H146Z"
+          fill="#8C8C8C"
+          stroke="#8C8C8C"
+        />
+        <Path
+          d="M146 57C158.15 57 168 66.8497 168 79C168 91.1503 158.15 101 146 101H23C10.8497 101 1 91.1503 1 79C1 66.8497 10.8497 57 23 57H146Z"
+          stroke="#fff"
+          strokeWidth={2}
+        />
+        <Rect
+          x={2}
+          y={58}
+          width={67}
+          height={42}
+          rx={21}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Path
+          d="M146 109C158.15 109 168 118.85 168 131C168 143.15 158.15 153 146 153H23C10.8497 153 1 143.15 1 131C1 118.85 10.8497 109 23 109H146Z"
+          fill="#8C8C8C"
+          stroke="#8C8C8C"
+        />
+        <Path
+          d="M146 109C158.15 109 168 118.85 168 131C168 143.15 158.15 153 146 153H23C10.8497 153 1 143.15 1 131C1 118.85 10.8497 109 23 109H146Z"
+          stroke="#fff"
+          strokeWidth={2}
+        />
+        <Path
+          d="M2 131C2 119.402 11.402 110 23 110H117C128.598 110 138 119.402 138 131C138 142.598 128.598 152 117 152H23C11.402 152 2 142.598 2 131Z"
+          fill="#fff"
+          stroke="#fff"
+        />
+      </G>
+    </>
+  ),
+});
+
+const RadioIcon = createIcon({
+  viewBox: '0 0 199 138',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect
+          x={1}
+          y={1}
+          width={33}
+          height={33}
+          rx={16.5}
+          stroke="#fff"
+          strokeWidth={2}
+        />
+        <Rect
+          x={47}
+          width={200}
+          height={35}
+          rx={17.5}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+        />
+        <Rect
+          x={1}
+          y={52}
+          width={33}
+          height={33}
+          rx={16.5}
+          stroke="#fff"
+          strokeWidth={2}
+        />
+        <Rect
+          x={47}
+          y={51}
+          width={200}
+          height={35}
+          rx={17.5}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+        />
+        <Rect
+          x={1}
+          y={103}
+          width={33}
+          height={33}
+          rx={16.5}
+          stroke="#fff"
+          strokeWidth={2}
+        />
+        <Rect
+          x={47}
+          y={102}
+          width={200}
+          height={35}
+          rx={17.5}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+        />
+      </G>
+    </>
+  ),
+});
+
+const SelectIcon = createIcon({
+  viewBox: '0 0 172 162',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect width={114} height={28} rx={14} fill="#fff" stroke="#fff" />
+        <Path
+          d="M136.654 9.8356L129.086 17.9141L121.008 9.8356"
+          stroke="#fff"
+          strokeWidth={3.23139}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Rect
+          x={0.5}
+          y={52.5}
+          width={199}
+          height={108.074}
+          rx={14.5}
+          stroke="#fff"
+        />
+        <G clipPath="url(#a)">
+          <Rect
+            x={16}
+            y={68}
+            width={19.6905}
+            height={19.6905}
+            rx={5.62585}
+            fill="#fff"
+            stroke="#fff"
+          />
+          <Rect
+            width={19.6905}
+            height={19.6905}
+            transform="translate(16 68.2812)"
+            fill="#fff"
+            stroke="#fff"
+          />
+          <Path
+            d="M32.4087 73.2051L23.3839 82.2299L19.2817 78.1277"
+            stroke="#8C8C8C"
+            strokeWidth={1.64087}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </G>
+        <Rect
+          x={47.6904}
+          y={68}
+          width={144}
+          height={19.6905}
+          rx={9.84524}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+        />
+        <Rect
+          x={47.6904}
+          y={96.6914}
+          width={144}
+          height={19.6905}
+          rx={9.84524}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+        />
+        <Rect
+          x={47.6904}
+          y={125.383}
+          width={144}
+          height={19.6905}
+          rx={9.84524}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+        />
+      </G>
+      <Defs>
+        <ClipPath id="a">
+          <Rect
+            x={16}
+            y={68}
+            width={19.6905}
+            height={19.6905}
+            rx={5.62585}
+            fill="#fff"
+            stroke="#fff"
+          />
+        </ClipPath>
+      </Defs>
+    </>
+  ),
+});
+
+const SkeletonIcon = createIcon({
+  viewBox: '0 0 181 170',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Path
+          d="M9.7 0C7.1274 0 4.66017 1.00089 2.84106 2.78249C1.02196 4.56408 0 6.98044 0 9.5L0 66.5C0 69.0196 1.02196 71.4359 2.84106 73.2175C4.66017 74.9991 7.1274 76 9.7 76H87.3C89.8726 76 92.3398 74.9991 94.1589 73.2175C95.978 71.4359 97 69.0196 97 66.5V9.5C97 6.98044 95.978 4.56408 94.1589 2.78249C92.3398 1.00089 89.8726 0 87.3 0H9.7ZM8.8755 61.75L28.712 36.8125L42.874 53.485L62.662 28.5L88.1245 61.75H8.8755Z"
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Path
+          d="M118.7 0C116.127 0 113.66 1.00089 111.841 2.78249C110.022 4.56408 109 6.98044 109 9.5V66.5C109 69.0196 110.022 71.4359 111.841 73.2175C113.66 74.9991 116.127 76 118.7 76H196.3C198.873 76 201.34 74.9991 203.159 73.2175C204.978 71.4359 206 69.0196 206 66.5V9.5C206 6.98044 204.978 4.56408 203.159 2.78249C201.34 1.00089 198.873 0 196.3 0H118.7ZM117.876 61.75L137.712 36.8125L151.874 53.485L171.662 28.5L197.124 61.75H117.876Z"
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Rect
+          y={88}
+          width={204.464}
+          height={15.1455}
+          rx={7.57275}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Rect
+          y={109.145}
+          width={204.464}
+          height={15.1455}
+          rx={7.57275}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Rect
+          y={136.291}
+          width={33.1875}
+          height={33.1875}
+          rx={16.5938}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+        />
+        <Rect
+          x={39.9375}
+          y={136.385}
+          width={112.5}
+          height={13.5}
+          rx={6.75}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+        />
+        <Rect
+          x={39.9375}
+          y={155.885}
+          width={112.5}
+          height={13.5}
+          rx={6.75}
+          fill="#FBFBFB"
+          stroke="#FBFBFB"
+        />
+      </G>
+    </>
+  ),
+});
+
+const SliderIcon = createIcon({
+  viewBox: '0 0 196 106',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Path
+          d="M0 19.0807C0 15.5682 2.84747 12.7207 6.36 12.7207H343.44C346.953 12.7207 349.8 15.5682 349.8 19.0807C349.8 22.5932 346.953 25.4407 343.44 25.4407H6.35999C2.84746 25.4407 0 22.5932 0 19.0807Z"
+          fill="#fff"
+          stroke="#fff"
+          fillOpacity={0.4}
+        />
+        <Path
+          d="M0 19.0807C0 15.5682 2.84747 12.7207 6.36 12.7207H166.64C170.153 12.7207 173 15.5682 173 19.0807C173 22.5932 170.153 25.4407 166.64 25.4407H6.36C2.84747 25.4407 0 22.5932 0 19.0807Z"
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Circle cx={158.16} cy={19.0802} r={14.84} fill="#fff" stroke="#fff" />
+        <Path
+          d="M0 53.0006C0 49.4881 2.84747 46.6406 6.36 46.6406H343.44C346.953 46.6406 349.8 49.4881 349.8 53.0006C349.8 56.5132 346.953 59.3606 343.44 59.3606H6.35999C2.84746 59.3606 0 56.5132 0 53.0006Z"
+          fill="#fff"
+          stroke="#fff"
+          fillOpacity={0.4}
+        />
+        <Rect
+          y={46.6406}
+          width={97}
+          height={12.72}
+          rx={6.36}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Circle cx={82.1601} cy={53.0002} r={14.84} fill="#fff" stroke="#fff" />
+        <Path
+          d="M0 86.9205C0 83.408 2.84747 80.5605 6.36 80.5605H343.44C346.953 80.5605 349.8 83.408 349.8 86.9205C349.8 90.4331 346.953 93.2805 343.44 93.2805H6.35999C2.84746 93.2805 0 90.4331 0 86.9205Z"
+          fill="#fff"
+          stroke="#fff"
+          fillOpacity={0.4}
+        />
+        <Path
+          d="M0 86.9205C0 83.408 2.84747 80.5605 6.36 80.5605H147.64C151.153 80.5605 154 83.408 154 86.9205C154 90.4331 151.153 93.2805 147.64 93.2805H6.36C2.84747 93.2805 0 90.4331 0 86.9205Z"
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Circle cx={139.16} cy={86.9201} r={14.84} fill="#fff" stroke="#fff" />
+      </G>
+    </>
+  ),
+});
+
+const PortalIcon = createIcon({
+  viewBox: '0 0 192 168',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect width={141} height={28} rx={14} fill="#fff" stroke="#fff" />
+        <Rect
+          x={0.5}
+          y={52.5}
+          width={233}
+          height={114.13}
+          rx={14.5}
+          stroke="#fff"
+        />
+        <G clipPath="url(#a)">
+          <Path
+            d="M22.9979 73.7498C22.9979 73.9937 22.9126 74.201 22.7418 74.3717L21.4979 75.6156C21.3272 75.7863 21.1199 75.8717 20.876 75.8717C20.6321 75.8717 20.4248 75.7863 20.254 75.6156L17.565 72.9266L14.876 75.6156C14.7053 75.7863 14.4979 75.8717 14.254 75.8717C14.0101 75.8717 13.8028 75.7863 13.6321 75.6156L12.3882 74.3717C12.2174 74.201 12.1321 73.9937 12.1321 73.7498C12.1321 73.5059 12.2174 73.2985 12.3882 73.1278L15.0772 70.4388L12.3882 67.7498C12.2174 67.579 12.1321 67.3717 12.1321 67.1278C12.1321 66.8839 12.2174 66.6766 12.3882 66.5059L13.6321 65.262C13.8028 65.0912 14.0101 65.0059 14.254 65.0059C14.4979 65.0059 14.7053 65.0912 14.876 65.262L17.565 67.951L20.254 65.262C20.4248 65.0912 20.6321 65.0059 20.876 65.0059C21.1199 65.0059 21.3272 65.0912 21.4979 65.262L22.7418 66.5059C22.9126 66.6766 22.9979 66.8839 22.9979 67.1278C22.9979 67.3717 22.9126 67.579 22.7418 67.7498L20.0528 70.4388L22.7418 73.1278C22.9126 73.2985 22.9979 73.5059 22.9979 73.7498Z"
+            fill="#fff"
+            stroke="#fff"
+          />
+        </G>
+        <Rect
+          x={12}
+          y={83.1309}
+          width={210}
+          height={20.1601}
+          rx={10.0801}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Rect
+          x={12}
+          y={109.051}
+          width={210}
+          height={20.1601}
+          rx={10.0801}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Rect
+          x={12}
+          y={134.971}
+          width={210}
+          height={20.1601}
+          rx={10.0801}
+          fill="#fff"
+          stroke="#fff"
+        />
+      </G>
+      <Defs>
+        <ClipPath id="a">
+          <Rect
+            x={12}
+            y={64}
+            width={11.13}
+            height={11.13}
+            rx={3.42857}
+            fill="#fff"
+            stroke="#fff"
+          />
+        </ClipPath>
+      </Defs>
+    </>
+  ),
+});
+
 export {
   AccordionIcon,
   AlertDialogIcon,
@@ -2235,4 +2741,12 @@ export {
   LinkIcon,
   MenuIcon,
   ModalIcon,
+  PopoverIcon,
+  PortalIcon,
+  PressableIcon,
+  ProgressIcon,
+  RadioIcon,
+  SelectIcon,
+  SkeletonIcon,
+  SliderIcon,
 };
