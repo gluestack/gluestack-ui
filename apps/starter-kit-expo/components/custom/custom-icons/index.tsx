@@ -3286,6 +3286,7 @@ const ActionsheetIcon = createIcon({
         }}
       >
         <Rect
+          x={50}
           width={209.52}
           height={59.6814}
           rx={19.0473}
@@ -3298,7 +3299,7 @@ const ActionsheetIcon = createIcon({
           }}
         >
           <Rect
-            x={13.968}
+            x={63.968}
             y={13.9688}
             width={181.584}
             height={31.7455}
@@ -3308,7 +3309,7 @@ const ActionsheetIcon = createIcon({
           />
         </G>
         <Rect
-          x={13.968}
+          x={63.968}
           y={69.6816}
           width={181.584}
           height={31.7455}
@@ -3317,7 +3318,7 @@ const ActionsheetIcon = createIcon({
           stroke="#fff"
         />
         <Rect
-          x={13.968}
+          x={63.968}
           y={111.428}
           width={181.584}
           height={31.7455}
