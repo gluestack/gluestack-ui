@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui/core-v4-experimental@latest @gluestack-ui/utils-v4-experimental@latest  && next build --webpack",
+    "build": "next build --webpack",
     "build:preview": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui/core-v4-experimental@preview @gluestack-ui/utils-v4-experimental@preview  && next build --webpack",
     "build:only": "next build --webpack",
     "start": "next start",
