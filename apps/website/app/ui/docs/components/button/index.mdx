@@ -90,16 +90,16 @@ This is an illustration of **Button** component.
 ```jsx
 'use client';
 import React from 'react';
-import { createButton } from '@gluestack-ui/core/button/creator';
+import { createButton } from '@gluestack-ui/core-v4-experimental/button/creator';
 import {
   tva,
   withStyleContext,
   useStyleContext,
   type VariantProps,
-} from '@gluestack-ui/utils/nativewind-utils';
+} from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core-v4-experimental/icon/creator';
 const SCOPE = 'BUTTON';
 const Root = withStyleContext(Pressable, SCOPE);
 const UIButton = createButton({

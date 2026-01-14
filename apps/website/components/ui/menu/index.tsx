@@ -1,11 +1,11 @@
 'use client';
 import React, { useEffect } from 'react';
-import { createMenu } from '@gluestack-ui/core/menu/creator';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { createMenu } from '@gluestack-ui/core-v4-experimental/menu/creator';
+import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import { Pressable, Text, View } from 'react-native';
 import Animated, { ZoomIn, ZoomOut } from 'react-native-reanimated';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 

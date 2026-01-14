@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui/core@latest @gluestack-ui/utils@latest  && next build --webpack",
-    "build:preview": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui/core@preview @gluestack-ui/utils@preview  && next build --webpack",
+    "build": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui/core-v4-experimental@latest @gluestack-ui/utils-v4-experimental@latest  && next build --webpack",
+    "build:preview": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui/core-v4-experimental@preview @gluestack-ui/utils-v4-experimental@preview  && next build --webpack",
     "build:only": "next build --webpack",
     "start": "next start",
     "test": "jest"
@@ -14,7 +14,8 @@
     "@docsearch/react": "^3.9.0",
     "@expo/html-elements": "^0.12.5",
     "@expo/next-adapter": "^6.0.0",
-
+    "@gluestack-ui/core-v4-experimental": "^3.0.13",
+    "@gluestack-ui/utils-v4-experimental": "^3.0.13",
     "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
     "@legendapp/motion": "^2.4.0",
     "@mdx-js/loader": "^3.1.0",

@@ -9,8 +9,8 @@ import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import React from 'react';
 import { Platform, Pressable, Text, TextProps, View } from 'react-native';
-import { AnimatedHeight } from './AnimatedHeight';
-import { AnimatedIcon } from './AnimatedIcon';
+import { AnimatedHeight } from './AccordionAnimatedHeight';
+import { AnimatedIcon } from './AccordionAnimatedIcon';
 import { accordionAnimationConfig } from './animation-config';
 
 /** Styles */

@@ -92,19 +92,19 @@ Setup nativewind in your project following [NativeWind documentation](https://ww
 Install the dependencies and devDependencies of gluestack-ui in your project. This can be done using the following command:
 
 ```bash
-yarn add @gluestack-ui/core @gluestack-ui/utils react-native-svg @gluestack/ui-next-adapter react-native-web react-native
+yarn add @gluestack-ui/core-v4-experimental @gluestack-ui/utils-v4-experimental react-native-svg @gluestack/ui-next-adapter react-native-web react-native
 ```
 
 OR
 
 ```bash
-npm i @gluestack-ui/core @gluestack-ui/utils react-native-svg @gluestack/ui-next-adapter react-native-web react-native
+npm i @gluestack-ui/core-v4-experimental @gluestack-ui/utils-v4-experimental react-native-svg @gluestack/ui-next-adapter react-native-web react-native
 ```
 
 For Next.js 14, it's recommended to use the `--legacy-peer-deps` flag due to peer dependency resolution issues.
 
 ```bash
-npm i @gluestack-ui/core @gluestack-ui/utils react-native-svg @gluestack/ui-next-adapter react-native-web react-native --legacy-peer-deps
+npm i @gluestack-ui/core-v4-experimental @gluestack-ui/utils-v4-experimental react-native-svg @gluestack/ui-next-adapter react-native-web react-native --legacy-peer-deps
 ```
 
 > **For React Native CLI:** Make sure to install `react-dom` as well as it is required by some of the Gluestack UI components.
@@ -400,7 +400,7 @@ import { useServerInsertedHTML } from 'next/navigation';
 import { StyleRegistry, createStyleRegistry } from 'styled-jsx';
 // @ts-expect-error : AppRegistry is defined in react-native-web but its type is not defined
 import { AppRegistry } from 'react-native-web';
-import { flush } from '@gluestack-ui/utils/nativewind-utils';
+import { flush } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 
 export default function StyledJsxRegistry({
   children,

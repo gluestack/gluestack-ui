@@ -1,14 +1,14 @@
 'use client';
 import React from 'react';
-import { createProgress } from '@gluestack-ui/core/progress/creator';
+import { createProgress } from '@gluestack-ui/core-v4-experimental/progress/creator';
 import { View } from 'react-native';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
+} from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 
 const SCOPE = 'PROGRESS';
 export const UIProgress = createProgress({
@@ -47,10 +47,7 @@ type IProgressFilledTrackProps = VariantProps<typeof progressFilledTrackStyle> &
 const Progress = React.forwardRef<
   React.ComponentRef<typeof UIProgress>,
   IProgressProps
->(function Progress(
-  { className, orientation = 'horizontal', ...props },
-  ref
-) {
+>(function Progress({ className, orientation = 'horizontal', ...props }, ref) {
   return (
     <UIProgress
       ref={ref}

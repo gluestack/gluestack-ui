@@ -57,7 +57,7 @@ const nextConfig = withExpo({
     optimizeCss: true,
   },
   transpilePackages: [
-    // you need to list `react-native` because `react-native-web` `@gluestack-ui/utils` is aliased to `react-native`.
+    // you need to list `react-native` because `react-native-web` `@gluestack-ui/utils-v4-experimental` is aliased to `react-native`.
     'react-native',
     'react-native-web',
     'ui',
@@ -65,8 +65,8 @@ const nextConfig = withExpo({
     'react-native-css-interop',
     '@expo/html-elements',
     'react-native-safe-area-context',
-    '@gluestack-ui/utils',
-    '@gluestack-ui/core',
+    '@gluestack-ui/utils-v4-experimental',
+    '@gluestack-ui/core-v4-experimental',
     // Add other packages that need transpiling
   ],
   images: {

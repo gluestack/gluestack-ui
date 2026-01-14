@@ -36,9 +36,9 @@ import { InlineCode } from '@/docs-components/inline-code';
 
 **gluestack-ui v3** maintains API compatibility with v2 while introducing significant architectural improvements:
 
-- **Package structure changes** to @gluestack-ui/core and @gluestack-ui/utils
+- **Package structure changes** to @gluestack-ui/core-v4-experimental and @gluestack-ui/utils-v4-experimental
 - **Import path updates** for creator function
-- **ARIA dependencies** moved from react-native-aria to @gluestack-ui/core
+- **ARIA dependencies** moved from react-native-aria to @gluestack-ui/core-v4-experimental
 - **Enhanced Next.js adapter**
 - **Better compatibility** with Expo SDK 53 and Next.js 15
 
@@ -184,7 +184,7 @@ If you have an `app/registry.tsx` file, update the flush import:
 <CodeBlock code={`import { flush } from '@gluestack-ui/nativewind-utils/flush';`} language="typescript" />
 
 **After:**
-<CodeBlock code={`import { flush } from '@gluestack-ui/utils/nativewind-utils';`} language="typescript" />
+<CodeBlock code={`import { flush } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';`} language="typescript" />
 
 ## Step 4: Install New Packages
 
@@ -192,16 +192,16 @@ Install the new gluestack-ui v3 packages:
 
 <Tabs>
 <TabItem label="npm">
-<CodeBlock code="npm install @gluestack-ui/core@latest @gluestack-ui/utils@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
+<CodeBlock code="npm install @gluestack-ui/core-v4-experimental@latest @gluestack-ui/utils-v4-experimental@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
 </TabItem>
 <TabItem label="yarn">
-<CodeBlock code="yarn add @gluestack-ui/core@latest @gluestack-ui/utils@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
+<CodeBlock code="yarn add @gluestack-ui/core-v4-experimental@latest @gluestack-ui/utils-v4-experimental@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
 </TabItem>
 <TabItem label="pnpm">
-<CodeBlock code="pnpm i @gluestack-ui/core@latest @gluestack-ui/utils@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
+<CodeBlock code="pnpm i @gluestack-ui/core-v4-experimental@latest @gluestack-ui/utils-v4-experimental@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
 </TabItem>
 <TabItem label="bun">
-<CodeBlock code="bun add @gluestack-ui/core@latest @gluestack-ui/utils@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
+<CodeBlock code="bun add @gluestack-ui/core-v4-experimental@latest @gluestack-ui/utils-v4-experimental@latest react-native-svg@15.12.0 @gluestack/ui-next-adapter@latest" language="bash" />
 </TabItem>
 </Tabs>
 
@@ -253,8 +253,8 @@ import { createRadio } from '@gluestack-ui/radio';`} language="typescript" />
 
 **After:**
 <CodeBlock code={`
-import { createButton } from '@gluestack-ui/core/button/creator';
-import { createRadio } from '@gluestack-ui/core/radio/creator';`} language="typescript" />
+import { createButton } from '@gluestack-ui/core-v4-experimental/button/creator';
+import { createRadio } from '@gluestack-ui/core-v4-experimental/radio/creator';`} language="typescript" />
 
 ### Transform Utility Imports
 <br/>
@@ -263,8 +263,8 @@ import { createRadio } from '@gluestack-ui/core/radio/creator';`} language="type
 import { tva } from '@gluestack-ui/nativewind-utils/tva';`} language="typescript" />
 
 **After:**
-<CodeBlock code={`import { flush } from '@gluestack-ui/utils/nativewind-utils';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';`} language="typescript" />
+<CodeBlock code={`import { flush } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';`} language="typescript" />
 
 ## Step 7: Update Component Usage Patterns
 
@@ -285,7 +285,7 @@ Use these patterns to transform your imports:
         <InlineCode>{`from '@gluestack-ui/[component]'`}</InlineCode>
       </TableCell>
       <TableCell>
-        <InlineCode>{`from '@gluestack-ui/core/[component]/creator'`}</InlineCode>
+        <InlineCode>{`from '@gluestack-ui/core-v4-experimental/[component]/creator'`}</InlineCode>
       </TableCell>
     </TableRow>
     <TableRow>
@@ -293,7 +293,7 @@ Use these patterns to transform your imports:
         <InlineCode>{`from '@gluestack-ui/nativewind-utils/[utility]'`}</InlineCode>
       </TableCell>
       <TableCell>
-        <InlineCode>{`from '@gluestack-ui/utils/nativewind-utils'`}</InlineCode>
+        <InlineCode>{`from '@gluestack-ui/utils-v4-experimental/nativewind-utils'`}</InlineCode>
       </TableCell>
     </TableRow>
     <TableRow>

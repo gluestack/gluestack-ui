@@ -1,15 +1,18 @@
 'use client';
 import React from 'react';
-import { createFab } from '@gluestack-ui/core/fab/creator';
+import { createFab } from '@gluestack-ui/core-v4-experimental/fab/creator';
 import { Pressable, Text } from 'react-native';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
+} from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import {
+  PrimitiveIcon,
+  UIIcon,
+} from '@gluestack-ui/core-v4-experimental/icon/creator';
 
 const SCOPE = 'FAB';
 const Root = withStyleContext(Pressable, SCOPE);
@@ -100,7 +103,7 @@ const fabLabelStyle = tva({
 
 const fabIconStyle = tva({
   base: 'text-primary-foreground/90 fill-none',
-  variants: { 
+  variants: {
     size: {
       '2xs': 'h-3 w-3',
       'xs': 'h-3.5 w-3.5',

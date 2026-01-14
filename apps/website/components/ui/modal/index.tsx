@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createModal } from '@gluestack-ui/core/modal/creator';
+import { createModal } from '@gluestack-ui/core-v4-experimental/modal/creator';
 import { Pressable, View, ScrollView } from 'react-native';
 import Animated, {
   FadeIn,
@@ -8,13 +8,13 @@ import Animated, {
   ZoomIn,
   ZoomOut,
 } from 'react-native-reanimated';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
+} from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedView = Animated.createAnimatedComponent(View);

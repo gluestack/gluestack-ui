@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 import { View } from 'react-native';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 
 const cardStyle = tva({
   base: 'flex-col bg-background border border-border gap-6 rounded-xl shadow-sm p-4',
