@@ -1,5 +1,15 @@
+import { Icon, MoonIcon, SearchIcon, SunIcon } from '@/components/ui/icon';
+import { Input, InputField, InputSlot } from '@/components/ui/input';
+import { Text } from '@/components/ui/text';
+import {
+  ThemeBase,
+  useAppTheme,
+} from '@/contexts/app-theme-context';
+import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
+import { useRouter } from 'expo-router';
+import { CheckIcon, PaletteIcon } from 'lucide-react-native';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Modal,
@@ -11,24 +21,13 @@ import {
   View,
 } from 'react-native';
 import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
   Easing,
   FadeIn,
   FadeOut,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
 } from 'react-native-reanimated';
-import { useRouter } from 'expo-router';
-import {
-  useAppTheme,
-  ThemeBase,
-  THEME_CONFIGS,
-} from '@/contexts/app-theme-context';
-import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
-import { Text } from '@/components/ui/text';
-import { Icon, MoonIcon, SunIcon, SearchIcon } from '@/components/ui/icon';
-import { PaletteIcon, CheckIcon } from 'lucide-react-native';
-import { Input, InputField, InputSlot } from '@/components/ui/input';
 
 export type ComponentItem = {
   title: string;
