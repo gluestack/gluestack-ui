@@ -2,7 +2,7 @@ import { customFonts } from '@/constants/fonts';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import '@/global.css';
 import { useFonts } from 'expo-font';
-import { Slot } from 'expo-router';
+import { Stack } from 'expo-router';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import {
@@ -17,6 +17,16 @@ configureReanimatedLogger({
   level: ReanimatedLogLevel.warn,
   strict: false,
 });
+
+export {
+  // Catch any errors thrown by the Layout component.
+  ErrorBoundary,
+} from 'expo-router';
+
+export const unstable_settings = {
+  // Ensure that reloading on `/tabs/(tabs)` keeps the correct initial route.
+  initialRouteName: 'tabs',
+};
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts(customFonts);
@@ -35,7 +45,10 @@ export default function RootLayout() {
         <KeyboardProvider>
           <AppThemeProvider>
             <GluestackUIProvider>
-              <Slot />
+              <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="index" options={{ headerShown: false }} />
+                <Stack.Screen name="tabs" options={{ headerShown: false }} />
+              </Stack>
             </GluestackUIProvider>
           </AppThemeProvider>
         </KeyboardProvider>

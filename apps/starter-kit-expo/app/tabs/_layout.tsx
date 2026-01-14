@@ -8,12 +8,14 @@ export const unstable_settings = {
   initialRouteName: '(tabs)',
 };
 
+import { Box } from '@/components/ui/box';
 import { Stack } from 'expo-router';
 
 export default function AppLayout() {
   return (
-    <Stack>
+    <Stack screenOptions={{ headerShown: false }} screenLayout={({ children }) => <Box className="flex-1 bg-background">{children}</Box>}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="components" options={{ headerShown: false }} />
     </Stack>
   );
 }

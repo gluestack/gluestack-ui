@@ -88,7 +88,7 @@ const ComponentCard = memo(
     onPress,
   }: ComponentCardProps) => {
     const { reduceTransparencyEnabled } = useAccessibilityInfo();
-    const { isDark, fontSans } = useAppTheme();
+    const { isDark } = useAppTheme();
     const applyOpacity = reduceTransparencyEnabled;
 
     const animatedStyle = useAnimatedStyle(() => {
@@ -127,7 +127,7 @@ const ComponentCard = memo(
         style={{
           width: itemWidth + spacing,
           height,
-          paddingTop: 100,
+          paddingTop: 60,
           alignItems: 'center',
         }}
       >
@@ -189,7 +189,7 @@ export default function ComponentsTab() {
   const ITEM_WIDTH = width * 0.6;
   const SPACING = 5;
   const SIDE_OFFSET = (width - ITEM_WIDTH) / 2 - SPACING / 2;
-  const CONTENT_HEIGHT = height * 0.75;
+  const CONTENT_HEIGHT = height * 0.7;
 
   const { reduceTransparencyEnabled } = useAccessibilityInfo();
   const applyBlur = !reduceTransparencyEnabled;
@@ -253,7 +253,7 @@ export default function ComponentsTab() {
 
   const Header = () => {
     return (
-      <View className="items-center justify-center z-10 mt-10 gap-2">
+      <View className="items-center justify-center z-10 mt-4 gap-2">
         <HStack className="items-center gap-2">
           <Image
             source={{
@@ -308,7 +308,7 @@ export default function ComponentsTab() {
   );
 
   return (
-    <View className="flex-1 bg-background">
+    <View className="flex-1 pt-10">
       <Header />
       <Animated.FlatList
         ref={listRef}
@@ -351,11 +351,7 @@ export default function ComponentsTab() {
           pointerEvents="none"
           style={StyleSheet.absoluteFill}
           animatedProps={animatedProps}
-          // tint={
-          //   isDark
-          //     ? 'systemUltraThinMaterialDark'
-          //     : 'systemUltraThinMaterialLight'
-          // }
+          tint={isDark ? 'dark' : 'light'}
         />
       )}
       <BottomControlBar
