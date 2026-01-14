@@ -36,9 +36,9 @@ const buttonStyle = tva({
       link: 'text-primary underline-offset-4 data-[hover=true]:underline data-[active=true]:underline',
     },
     size: {
-      sm: 'min-h-8 py-4 rounded-md px-3 text-xs',
-      default: 'px-4 py-5',
-      lg: 'min-h-10 py-6 rounded-md px-8',
+      sm: 'min-h-8 rounded-md px-3 text-xs',
+      default: 'px-4 py-2',
+      lg: 'min-h-10 rounded-md px-8',
       icon: 'min-h-9 min-w-9',
     },
   },

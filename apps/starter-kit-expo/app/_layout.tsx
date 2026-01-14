@@ -9,16 +9,14 @@ import {
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
-import { useColorScheme } from '@/components/useColorScheme';
 import { Slot, usePathname } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { Fab, FabIcon } from '@/components/ui/fab';
-import { MoonIcon, SunIcon } from '@/components/ui/icon';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Uniwind } from 'uniwind';
 import { SafeAreaListener } from 'react-native-safe-area-context';
 import { ThemeSwitcher } from '@/components/custom/ThemeSwitcher';
-
+import { AppThemeProvider } from '../contexts/app-theme-context';
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -78,12 +76,16 @@ function RootLayoutNav() {
         Uniwind.updateInsets(insets);
       }}
     >
-      <ThemeProvider value={Uniwind.currentTheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <GluestackUIProvider>
-          <Slot />
-          {pathname === '/' && <ThemeSwitcher />}
-        </GluestackUIProvider>
-      </ThemeProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <KeyboardProvider>
+          <AppThemeProvider>
+            <GluestackUIProvider>
+              <Slot />
+              {pathname === '/' && <ThemeSwitcher />}
+            </GluestackUIProvider>
+          </AppThemeProvider>
+        </KeyboardProvider>
+      </GestureHandlerRootView>
     </SafeAreaListener>
   );
 }
