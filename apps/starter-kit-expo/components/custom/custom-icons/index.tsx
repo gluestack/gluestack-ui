@@ -422,7 +422,7 @@ const BadgeIcon = createIcon({
             rx={7.5}
             stroke="#7D8990"
             style={{
-            mixBlendMode: 'luminosity',
+              mixBlendMode: 'luminosity',
             }}
           >
             <Rect
@@ -478,7 +478,7 @@ const BadgeIcon = createIcon({
               fill="#7D8990"
               stroke="#7D8990"
               rx={10}
-          />
+            />
           </Rect>
           <G
             style={{
@@ -493,7 +493,6 @@ const BadgeIcon = createIcon({
               fill="#7D8990"
               stroke="#7D8990"
               rx={10}
-
               style={{
                 mixBlendMode: 'luminosity',
               }}
@@ -584,6 +583,87 @@ const BadgeIcon = createIcon({
   ),
 });
 
+const BoxIcon = createIcon({
+  viewBox: '0 0 190 132',
+  path: (
+    <>
+      <G opacity={0.15}>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            width={88.775}
+            height={56.775}
+            x={1.613}
+            y={1.613}
+            fill="#fff"
+            rx={12.387}
+          />
+          <Rect
+            width={88.775}
+            height={56.775}
+            x={1.613}
+            y={1.613}
+            stroke="#fff"
+            strokeWidth={3.225}
+            rx={12.387}
+          />
+         
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            width={204.775}
+            height={56.775}
+            x={105.613}
+            y={1.613}
+            fill="#fff"
+            rx={12.387}
+          />
+          <Rect
+            width={204.775}
+            height={56.775}
+            x={105.613}
+            y={1.613}
+            stroke="#fff"
+            strokeWidth={3.225}
+            rx={12.387}
+          />
+        </G>
+        <G
+          style={{
+            mixBlendMode: 'overlay',
+          }}
+        >
+          <Rect
+            width={203.775}
+            height={56.775}
+            x={1.613}
+            y={73.613}
+            fill="#fff"
+            rx={12.387}
+          />
+          <Rect
+            width={203.775}
+            height={56.775}
+            x={1.613}
+            y={73.613}
+            stroke="#fff"
+            strokeWidth={3.225}
+            rx={12.387}
+          />
+        
+        </G>
+      </G>
+    </>
+  ),
+});
+
 export {
   AccordionIcon,
   AlertDialogIcon,
@@ -591,4 +671,5 @@ export {
   AvatarIcon,
   FormControllIcon,
   BadgeIcon,
+  BoxIcon,
 };
