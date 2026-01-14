@@ -24,8 +24,8 @@ export {
 } from 'expo-router';
 
 export const unstable_settings = {
-  // Ensure that reloading on `/tabs/(tabs)` keeps the correct initial route.
-  initialRouteName: 'tabs',
+  // Ensure that reloading keeps the correct initial route.
+  initialRouteName: 'index',
 };
 
 export default function RootLayout() {
