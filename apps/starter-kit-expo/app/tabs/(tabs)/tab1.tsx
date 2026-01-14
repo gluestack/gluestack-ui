@@ -308,7 +308,7 @@ export default function ComponentsTab() {
   );
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 bg-background">
       <Header />
       <Animated.FlatList
         ref={listRef}
