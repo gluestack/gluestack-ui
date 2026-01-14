@@ -30,6 +30,14 @@ import {
   SelectIcon,
   SkeletonIcon,
   SliderIcon,
+  SpinnerIcon,
+  SwitchIcon,
+  TableIcon,
+  TextareaIcon,
+  TextIcon,
+  ToastIcon,
+  TooltipIcon,
+  VStackIcon,
 } from '@/components/custom/custom-icons';
 import type { ComponentItem } from '@/components/custom/bottom-control-bar';
 
@@ -76,14 +84,14 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: 'Select', path: 'select', count: 2, icon: SelectIcon },
   { title: 'Skeleton', path: 'skeleton', count: 2, icon: SkeletonIcon },
   { title: 'Slider', path: 'slider', count: 1, icon: SliderIcon },
-  { title: 'Spinner', path: 'spinner', count: 3 },
-  { title: 'Switch', path: 'switch', count: 3 },
-  { title: 'Table', path: 'table', count: 5 },
-  { title: 'Text', path: 'text', count: 2 },
-  { title: 'Textarea', path: 'textarea', count: 2 },
-  { title: 'Toast', path: 'toast', count: 5 },
-  { title: 'Tooltip', path: 'tooltip', count: 3 },
-  { title: 'VStack', path: 'vstack', count: 2 },
+  { title: 'Spinner', path: 'spinner', count: 3, icon: SpinnerIcon },
+  { title: 'Switch', path: 'switch', count: 3, icon: SwitchIcon },
+  { title: 'Table', path: 'table', count: 5, icon: TableIcon },
+  { title: 'Text', path: 'text', count: 2, icon: TextIcon },
+  { title: 'Textarea', path: 'textarea', count: 2, icon: TextareaIcon },
+  { title: 'Toast', path: 'toast', count: 5, icon: ToastIcon },
+  { title: 'Tooltip', path: 'tooltip', count: 3, icon: TooltipIcon },
+  { title: 'VStack', path: 'vstack', count: 2, icon: VStackIcon },
 ];
 
 export const getComponentByPath = (path: string): ComponentItem | undefined => {
