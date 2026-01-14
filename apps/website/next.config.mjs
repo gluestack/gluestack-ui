@@ -66,6 +66,7 @@ const nextConfig = withExpo({
     '@expo/html-elements',
     'react-native-safe-area-context',
     '@gluestack-ui/utils-v4-experimental',
+    '@gluestack-ui/utils',
     '@gluestack-ui/core-v4-experimental',
     // Add other packages that need transpiling
   ],
