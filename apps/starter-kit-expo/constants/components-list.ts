@@ -1,5 +1,6 @@
 import {
   AccordionIcon,
+  ActionsheetIcon,
   AlertDialogIcon,
   AlertIcon,
   AvatarIcon,
@@ -43,7 +44,12 @@ import type { ComponentItem } from '@/components/custom/bottom-control-bar';
 
 export const COMPONENTS_LIST: ComponentItem[] = [
   { title: 'Accordion', path: 'accordion', count: 7, icon: AccordionIcon },
-  { title: 'Actionsheet', path: 'actionsheet', count: 9 },
+  {
+    title: 'Actionsheet',
+    path: 'actionsheet',
+    count: 9,
+    icon: ActionsheetIcon,
+  },
   { title: 'Alert', path: 'alert', count: 5, icon: AlertIcon },
   {
     title: 'AlertDialog',

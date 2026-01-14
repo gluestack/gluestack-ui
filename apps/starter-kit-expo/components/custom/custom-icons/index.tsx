@@ -3275,8 +3275,64 @@ const VStackIcon = createIcon({
   ),
 });
 
+const ActionsheetIcon = createIcon({
+  viewBox: '0 0 183 144',
+  path: (
+    <>
+      <G
+        opacity={0.15}
+        style={{
+          mixBlendMode: 'overlay',
+        }}
+      >
+        <Rect
+          width={209.52}
+          height={59.6814}
+          rx={19.0473}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <G
+          style={{
+            mixBlendMode: 'luminosity',
+          }}
+        >
+          <Rect
+            x={13.968}
+            y={13.9688}
+            width={181.584}
+            height={31.7455}
+            rx={15.8727}
+            fill="#8C8C8C"
+            stroke="#8C8C8C"
+          />
+        </G>
+        <Rect
+          x={13.968}
+          y={69.6816}
+          width={181.584}
+          height={31.7455}
+          rx={15.8727}
+          fill="#fff"
+          stroke="#fff"
+        />
+        <Rect
+          x={13.968}
+          y={111.428}
+          width={181.584}
+          height={31.7455}
+          rx={15.8727}
+          fill="#fff"
+          stroke="#fff"
+        />
+      </G>
+    </>
+  ),
+});
+
 export {
   AccordionIcon,
+  ActionsheetIcon,
   AlertDialogIcon,
   AlertIcon,
   AvatarIcon,
