@@ -1,6 +1,48 @@
 @import 'tailwindcss';
 @import 'uniwind';
 
+/* ========================================
+   THEME EXTENSIONS (Tailwind v4 style)
+   ======================================== */
+@theme {
+  /* Static Colors */
+  --color-white: #ffffff;
+  --color-typography-white: #ffffff;
+  --color-typography-gray: #d4d4d4;
+  --color-typography-black: #181718;
+
+  /* Font Families */
+  --font-body: var(--font-sans);
+  --font-georgia: 'Georgia';
+  --font-melno: 'Melno';
+  --font-geist: 'Geist';
+  --font-jakarta: 'Jakarta';
+  --font-andika: 'Andika_400Regular';
+  --font-outfit: 'Outfit_400Regular';
+  --font-opensans: 'OpenSans_400Regular';
+  --font-lora: 'Lora_400Regular';
+
+  /* Font Weights */
+  --font-weight-extrablack: 950;
+
+  /* Font Sizes */
+  --font-size-2xs: 10px;
+
+  /* Box Shadows */
+  --shadow-hard-1: -2px 2px 8px 0px rgba(38, 38, 38, 0.2);
+  --shadow-hard-2: 0px 3px 10px 0px rgba(38, 38, 38, 0.2);
+  --shadow-hard-3: 2px 2px 8px 0px rgba(38, 38, 38, 0.2);
+  --shadow-hard-4: 0px -3px 10px 0px rgba(38, 38, 38, 0.2);
+  --shadow-hard-5: 0px 2px 10px 0px rgba(38, 38, 38, 0.1);
+  --shadow-soft-1: 0px 0px 10px rgba(38, 38, 38, 0.1);
+  --shadow-soft-2: 0px 0px 20px rgba(38, 38, 38, 0.2);
+  --shadow-soft-3: 0px 0px 30px rgba(38, 38, 38, 0.1);
+  --shadow-soft-4: 0px 0px 40px rgba(38, 38, 38, 0.1);
+}
+
+/* ========================================
+   THEME VARIANTS
+   ======================================== */
 @layer theme {
   :root {
     /* ========================================
@@ -601,7 +643,6 @@
        LEGACY THEMES - For backwards compatibility
        ======================================== */
     @variant light {
-      /* Alias to default-light for backwards compatibility */
       --radius: 10px;
       --radius-sm: 8px;
       --radius-md: 10px;
@@ -645,7 +686,6 @@
     }
 
     @variant dark {
-      /* Alias to default-dark for backwards compatibility */
       --radius: 10px;
       --radius-sm: 8px;
       --radius-md: 10px;
