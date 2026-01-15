@@ -1,9 +1,11 @@
 'use client';
 import React from 'react';
+import { createAlertDialog } from '@gluestack-ui/core/alert-dialog/creator';
 import {
-  createAlertDialog,
-} from '@gluestack-ui/core/alert-dialog/creator';
-import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+  tva,
+  useStyleContext,
+  withStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import Animated, {
   FadeIn,
@@ -11,15 +13,8 @@ import Animated, {
   ZoomIn,
   ZoomOut,
 } from 'react-native-reanimated';
-import {
-  Pressable,
-  ScrollView,
-  View,
-  ViewStyle
-} from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 import { cssInterop } from 'nativewind';
-
-
 
 const SCOPE = 'ALERT_DIALOG';
 
@@ -27,7 +22,6 @@ const RootComponent = withStyleContext(View, SCOPE);
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedView = Animated.createAnimatedComponent(View);
-
 
 const UIAccessibleAlertDialog = createAlertDialog({
   Root: RootComponent,
@@ -38,7 +32,6 @@ const UIAccessibleAlertDialog = createAlertDialog({
   Footer: View,
   Backdrop: AnimatedPressable,
 });
-
 
 cssInterop(AnimatedPressable, { className: 'style' });
 cssInterop(AnimatedView, { className: 'style' });
@@ -146,8 +139,11 @@ const AlertDialogContent = React.forwardRef<
   return (
     <UIAccessibleAlertDialog.Content
       pointerEvents="auto"
-      entering={ZoomIn.duration(150).springify().stiffness(700)}
-      exiting={ZoomOut.duration(150)}
+      entering={ZoomIn.duration(150).withInitialValues({
+        transform: [{ scale: 0.9 }],
+        opacity: 0,
+      })}
+      exiting={FadeOut.duration(150)}
       ref={ref}
       {...props}
       className={alertDialogContentStyle({
@@ -247,6 +243,11 @@ AlertDialogBody.displayName = 'AlertDialogBody';
 AlertDialogBackdrop.displayName = 'AlertDialogBackdrop';
 
 export {
-  AlertDialog, AlertDialogBackdrop, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter, AlertDialogHeader
+  AlertDialog,
+  AlertDialogBackdrop,
+  AlertDialogBody,
+  AlertDialogCloseButton,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
 };
-
