@@ -2,7 +2,7 @@ import { customFonts } from '@/constants/fonts';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import '@/global.css';
 import { useFonts } from 'expo-font';
-import { Slot } from 'expo-router';
+import { Stack } from 'expo-router';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import {
@@ -10,11 +10,23 @@ import {
   ReanimatedLogLevel,
 } from 'react-native-reanimated';
 import { AppThemeProvider } from '@/contexts/app-theme-context';
+import { SafeAreaListener } from 'react-native-safe-area-context';
+import { Uniwind } from 'uniwind';
 
 configureReanimatedLogger({
   level: ReanimatedLogLevel.warn,
   strict: false,
 });
+
+export {
+  // Catch any errors thrown by the Layout component.
+  ErrorBoundary,
+} from 'expo-router';
+
+export const unstable_settings = {
+  // Ensure that reloading keeps the correct initial route.
+  initialRouteName: 'index',
+};
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts(customFonts);
@@ -24,14 +36,24 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <KeyboardProvider>
-        <AppThemeProvider>
-          <GluestackUIProvider>
-            <Slot />
-          </GluestackUIProvider>
-        </AppThemeProvider>
-      </KeyboardProvider>
-    </GestureHandlerRootView>
+    <SafeAreaListener
+      onChange={({ insets }) => {
+        Uniwind.updateInsets(insets);
+      }}
+    >
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <KeyboardProvider>
+          <AppThemeProvider>
+            <GluestackUIProvider>
+              <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="index" options={{ headerShown: false }} />
+                <Stack.Screen name="components" options={{ headerShown: false }} />
+                <Stack.Screen name="showcases" options={{ headerShown: false }} />
+              </Stack>
+            </GluestackUIProvider>
+          </AppThemeProvider>
+        </KeyboardProvider>
+      </GestureHandlerRootView>
+    </SafeAreaListener>
   );
 }

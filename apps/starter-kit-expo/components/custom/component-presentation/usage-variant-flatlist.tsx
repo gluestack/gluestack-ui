@@ -113,7 +113,7 @@ export const UsageVariantFlatList = ({
       if (Platform.OS === 'ios') {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       }
-      router.replace(`/(home)/components/${component.path}` as any);
+      router.push(`/components/${component.path}` as any);
     },
     [router]
   );
@@ -257,11 +257,11 @@ export const UsageVariantFlatList = ({
           pointerEvents="none"
           style={StyleSheet.absoluteFill}
           animatedProps={animatedProps}
-          // tint={
-          //   isDark
-          //     ? 'systemUltraThinMaterialDark'
-          //     : 'systemUltraThinMaterialLight'
-          // }
+          tint={
+            isDark
+              ? 'dark'
+              : 'light'
+          }
         />
       )}
       <View

@@ -1,19 +1,19 @@
 'use client';
-import React from 'react';
 import { createModal } from '@gluestack-ui/core/modal/creator';
-import { Pressable, View, ScrollView } from 'react-native';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  tva,
+  useStyleContext,
+  withStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import React from 'react';
+import { Pressable, ScrollView, View } from 'react-native';
 import Animated, {
   FadeIn,
+  FadeInDown,
   FadeOut,
-  ZoomIn,
-  ZoomOut,
+  FadeOutDown,
 } from 'react-native-reanimated';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  withStyleContext,
-  useStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -28,7 +28,6 @@ const UIModal = createModal({
   Footer: View,
   Header: View,
 });
-
 
 const modalStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
@@ -116,8 +115,8 @@ const ModalBackdrop = React.forwardRef<
   return (
     <UIModal.Backdrop
       ref={ref}
-      entering={FadeIn.duration(150)}
-      exiting={FadeOut.duration(150)}
+      entering={FadeIn.duration(100).springify().damping(40).stiffness(200)}
+      exiting={FadeOut.duration(100).springify().damping(40).stiffness(200)}
       {...props}
       className={modalBackdropStyle({
         class: className,
@@ -135,8 +134,8 @@ const ModalContent = React.forwardRef<
   return (
     <UIModal.Content
       ref={ref}
-      entering={ZoomIn.duration(150).springify().stiffness(700)}
-      exiting={ZoomOut.duration(150)}
+      entering={FadeInDown.duration(150).springify().damping(60).stiffness(500)}
+      exiting={FadeOutDown.duration(150)}
       {...props}
       className={modalContentStyle({
         parentVariants: {
@@ -222,9 +221,9 @@ ModalCloseButton.displayName = 'ModalCloseButton';
 export {
   Modal,
   ModalBackdrop,
-  ModalContent,
-  ModalCloseButton,
-  ModalHeader,
   ModalBody,
+  ModalCloseButton,
+  ModalContent,
   ModalFooter,
+  ModalHeader,
 };
