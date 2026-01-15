@@ -1,40 +1,23 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createMenu } from '@gluestack-ui/core/menu/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { Pressable, Text, View } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  } from 'react-native-reanimated';
+import { Pressable, ScrollView, Text, View } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
+const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
+
 const AnimatedMenuRoot = React.forwardRef<
-  React.ComponentRef<typeof Animated.ScrollView>,
-  React.ComponentProps<typeof Animated.ScrollView> & { className?: string }
->(function AnimatedMenuRoot({ className, style, ...props }, ref) {
-  const opacity = useSharedValue(0);
-  const scale = useSharedValue(0.20);
-
-  useEffect(() => {
-    // Animate in when component mounts
-    opacity.value = withTiming(1, { duration: 150 });
-    scale.value = withTiming(1, { duration: 150 });
-  }, []);
-
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      opacity: opacity.value,
-      transform: [{ scale: scale.value }],
-    };
-  }, [opacity, scale]);
-
+  React.ComponentRef<typeof AnimatedScrollView>,
+  React.ComponentProps<typeof AnimatedScrollView> & { className?: string }
+>(function AnimatedMenuRoot({ className, ...props }, ref) {
   return (
-    <Animated.ScrollView
+    <AnimatedScrollView
       showsVerticalScrollIndicator={false}
       ref={ref}
-      style={[animatedStyle, style]}
+      entering={FadeIn.duration(150).springify().damping(60).stiffness(500)}
+      exiting={FadeOut.duration(100)}
       className={className}
       {...props}
     />
@@ -102,14 +85,18 @@ const menuItemLabelStyle = tva({
   },
 });
 
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+
 const BackdropPressable = React.forwardRef<
   React.ComponentRef<typeof Pressable>,
   React.ComponentPropsWithoutRef<typeof Pressable> &
     VariantProps<typeof menuBackdropStyle>
 >(function BackdropPressable({ className, ...props }, ref) {
   return (
-    <Pressable
+    <AnimatedPressable
       ref={ref}
+      entering={FadeIn.duration(100)}
+      exiting={FadeOut.duration(100)}
       className={menuBackdropStyle({
         class: className,
       })}
@@ -159,7 +146,6 @@ export const UIMenu = createMenu({
   AnimatePresence: MenuAnimatePresence,
   Separator: Separator,
 });
-
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle> & { className?: string };
