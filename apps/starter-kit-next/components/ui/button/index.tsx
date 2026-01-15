@@ -20,20 +20,27 @@ const UIButton = createButton({
 });
 
 const buttonStyle = tva({
-  base: 'rounded-md flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2 h-fit',
+  base: 'rounded-md flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2 h-fit disabled:opacity-40',
+  // TODO: remove disabled:opacity-40 after data-attribute support
   variants: {
     variant: {
       default:
-        'bg-primary data-[hover=true]:bg-primary/90 data-[active=true]:bg-primary/90',
+        'bg-primary data-[hover=true]:bg-primary/90 data-[active=true]:bg-primary/90 active:bg-primary/90',
+      // TODO: remove active:bg-primary/90 after data-attribute support
       destructive:
-        'bg-destructive data-[hover=true]:bg-destructive/90 data-[active=true]:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+        'bg-destructive data-[hover=true]:bg-destructive/90 data-[active=true]:bg-destructive/90 active:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+      // TODO: remove active:bg-destructive/90 after data-attribute support
       outline:
-        'border border-border bg-background shadow-xs data-[hover=true]:bg-accent data-[active=true]:bg-accent dark:bg-input/[0.045] dark:border-border/90 dark:data-[hover=true]:bg-input/[0.075] dark:data-[active=true]:bg-input/[0.075]',
+        'border border-border bg-background shadow-xs data-[hover=true]:bg-accent data-[active=true]:bg-accent dark:bg-input/[0.045] dark:border-border/90 dark:data-[hover=true]:bg-input/[0.075] dark:data-[active=true]:bg-input/[0.075] active:bg-accent',
+      // TODO: remove active:bg-accent after data-attribute support
       secondary:
-        'bg-secondary text-secondary-foreground data-[hover=true]:bg-secondary/80 data-[active=true]:bg-secondary/80',
+        'bg-secondary text-secondary-foreground data-[hover=true]:bg-secondary/80 data-[active=true]:bg-secondary/80 active:bg-secondary/80',
+      // TODO: remove active:bg-secondary/80 after data-attribute support
       ghost:
-        'data-[hover=true]:bg-accent data-[active=true]:bg-accent dark:data-[hover=true]:bg-accent/50 dark:data-[active=true]:bg-accent/50',
-      link: 'text-primary underline-offset-4 data-[hover=true]:underline data-[active=true]:underline',
+        'data-[hover=true]:bg-accent data-[active=true]:bg-accent dark:data-[hover=true]:bg-accent/50 dark:data-[active=true]:bg-accent/50 active:bg-accent',
+      // TODO: remove active:bg-accent after data-attribute support
+      link: 'text-primary underline-offset-4 data-[hover=true]:underline data-[active=true]:underline active:underline',
+      // TODO: remove active:underline after data-attribute support
     },
     size: {
       sm: 'min-h-8 rounded-md px-3 text-xs',
