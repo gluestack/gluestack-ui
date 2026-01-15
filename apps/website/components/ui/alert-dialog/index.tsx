@@ -139,8 +139,11 @@ const AlertDialogContent = React.forwardRef<
   return (
     <UIAccessibleAlertDialog.Content
       pointerEvents="auto"
-      entering={ZoomIn.duration(150).springify().stiffness(700)}
-      exiting={ZoomOut.duration(150)}
+      entering={ZoomIn.duration(150).withInitialValues({
+        transform: [{ scale: 0.9 }],
+        opacity: 0,
+      })}
+      exiting={FadeOut.duration(150)}
       ref={ref}
       {...props}
       className={alertDialogContentStyle({
