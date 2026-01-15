@@ -43,7 +43,8 @@ const accordionContentStyle = tva({
 });
 
 const accordionTriggerStyle = tva({
-  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10 px-4',
+  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10 px-4 disabled:opacity-40 disabled:cursor-not-allowed focus:bg-background/10',
+  // TODO: remove disabled:opacity-40 disabled:cursor-not-allowed focus:bg-background/10 after data-attribute support
 });
 
 const Header = (
