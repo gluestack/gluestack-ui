@@ -43,11 +43,12 @@ const UICheckbox = createCheckbox({
 });
 
 const checkboxStyle = tva({
-  base: 'group/checkbox flex-row items-center justify-start gap-2 web:cursor-pointer data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
+  base: 'group/checkbox flex-row items-center justify-start gap-2 web:cursor-pointer data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50 disabled:opacity-50',
 });
+// TODO: remove disabled:opacity-50 after data-attribute support
 
 const checkboxIndicatorStyle = tva({
-  base: 'justify-center items-center w-4 h-4 shrink-0 rounded border border-input dark:bg-input/30   shadow-xs web:outline-none web:data-[focus-visible=true]:ring-[3px] web:data-[focus-visible=true]:ring-ring/50 web:data-[focus-visible=true]:border-ring data-[checked=true]:bg-primary  data-[checked=true]:border-primary dark:data-[checked=true]:bg-primary dark:data-[checked=true]:border-primary data-[invalid=true]:ring-destructive/20 data-[invalid=true]:border-destructive data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
+  base: 'justify-center items-center w-4 h-4 shrink-0 rounded border border-input shadow-xs web:outline-none web:data-[focus-visible=true]:ring-[3px] web:data-[focus-visible=true]:ring-ring/50 web:data-[focus-visible=true]:border-ring data-[checked=true]:bg-primary  data-[checked=true]:border-primary dark:data-[checked=true]:bg-primary dark:data-[checked=true]:border-primary data-[invalid=true]:ring-destructive/20 data-[invalid=true]:border-destructive data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
 });
 
 const checkboxLabelStyle = tva({
@@ -55,8 +56,9 @@ const checkboxLabelStyle = tva({
 });
 
 const checkboxIconStyle = tva({
-  base: 'text-primary-foreground fill-none h-3.5 w-3.5',
+  base: 'text-primary-foreground fill-none h-3.5 w-3.5 bg-primary rounded',
 });
+// TODO: remove bg from checkicon after data-attribute support
 
 const CheckboxGroup = UICheckbox.Group;
 
