@@ -292,16 +292,12 @@ const BottomControlBar = memo(
                       onPress={() => handleComponentSelect(item, index)}
                       className={`px-3 py-2.5 mx-1.5 rounded-lg flex-row items-center gap-2.5 ${
                         currentComponent?.path === item.path
-                          ? 'bg-primary'
-                          : 'active:bg-secondary'
+                          ? 'bg-primary/20'
+                          : 'active:bg-secondary/40'
                       }`}
                     >
                       <Text
-                        className={`text-sm font-medium ${
-                          currentComponent?.path === item.path
-                            ? 'bg-primary'
-                            : 'active:bg-foreground/10'
-                        }`}
+                        className={`text-sm font-medium text-foreground`}
                       >
                         {item.title}
                       </Text>
