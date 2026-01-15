@@ -22,12 +22,12 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 const SCOPE = 'POPOVER';
 
 const UIPopover = createPopover({
-  Root: withStyleContext(View, SCOPE),
-  Arrow: AnimatedView,
+  Root: withStyleContext(AnimatedView, SCOPE),
+  Arrow: View,
   Backdrop: AnimatedPressable,
   Body: ScrollView,
   CloseButton: Pressable,
-  Content: AnimatedView,
+  Content: View,
   Footer: View,
   Header: View,
 });
@@ -130,6 +130,11 @@ const Popover = React.forwardRef<
       ref={ref}
       placement={placement}
       {...props}
+      entering={FadeIn.duration(200).withInitialValues({
+        transform: [{ translateY: placement === 'bottom' ? -10 : -10 }],
+        opacity: 0,
+      })}
+      exiting={FadeOut.duration(150)}
       className={popoverStyle({ class: className })}
       context={{ placement }}
       pointerEvents="box-none"
@@ -144,8 +149,6 @@ const PopoverContent = React.forwardRef<
   return (
     <UIPopover.Content
       ref={ref}
-      entering={ZoomIn.duration(200).springify().stiffness(700)}
-      exiting={ZoomOut.duration(150).springify()}
       {...props}
       className={popoverContentStyle({
         class: className,
