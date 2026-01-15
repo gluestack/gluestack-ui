@@ -1,6 +1,6 @@
 import websiteMapper from './website';
 import kitchenSinkMapper from './kitchen-sink';
-import kitchenSinkNewMapper from './kitchen-sink-new';
+import kitchenSinkNewMapper from './kitchen-sink';
 import starterKitsMapper from './starter-kits';
 
 export default [
