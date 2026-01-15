@@ -17,8 +17,8 @@ const alertStyle = tva({
   base: 'relative w-full rounded-lg border px-4 py-3 flex-row gap-3 items-start',
   variants: {
     variant: {
-      default: 'bg-card border-border  dark:border-input/10',
-      destructive: 'bg-card border-border  dark:border-input/10',
+      default: 'bg-card border-border',
+      destructive: 'bg-card border-destructive',
     },
   },
 });
@@ -34,7 +34,7 @@ const alertTextStyle = tva({
 });
 
 const alertIconStyle = tva({
-  base: 'fill-none translate-y-0.5',
+  base: 'fill-none',
   variants: {
     size: {
       '2xs': 'h-3 w-3',

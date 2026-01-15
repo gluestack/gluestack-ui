@@ -14,20 +14,20 @@ import { Svg } from 'react-native-svg';
 const SCOPE = 'BADGE';
 
 const badgeStyle = tva({
-  base: 'flex-row items-center justify-center rounded-full border px-2 py-0.5 w-fit shrink-0 gap-1',
+  base: 'flex-row items-center justify-center rounded-sm px-2 py-0.5',
   variants: {
     variant: {
-      default: 'border-transparent bg-primary',
-      secondary: 'border-transparent bg-secondary',
+      default: 'bg-primary',
+      secondary: 'bg-secondary',
       destructive:
-        'border-transparent bg-destructive dark:bg-destructive/60',
-      outline: 'border-border dark:border-border/10 bg-transparent',
+        'bg-destructive dark:bg-destructive/60',
+      outline: 'border border-border dark:border-border/90 bg-transparent',
     },
   },
 });
 
 const badgeTextStyle = tva({
-  base: 'text-xs font-medium',
+  base: 'text-xs font-medium tracking-normal uppercase',
   parentVariants: {
     variant: {
       default: 'text-primary-foreground',
@@ -75,8 +75,8 @@ function Badge({
 }: { className?: string } & IBadgeProps) {
 
   const contextValue = useMemo(
-    () => ({ action, variant, size }),
-    [action, variant, size]
+    () => ({  variant }),
+    [variant]
   );
 
   return (
@@ -84,7 +84,7 @@ function Badge({
       className={badgeStyle({ variant, class: className })}
       {...props}
       context={{
-        variant,
+        contextValue
       }}
     >
       {children}

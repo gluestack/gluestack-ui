@@ -1,13 +1,12 @@
 'use client';
-import React from 'react';
 import { createAvatar } from '@gluestack-ui/core/avatar/creator';
+import React from 'react';
 
-import { View, Text, Image, Platform } from 'react-native';
+import { Image, Text, View } from 'react-native';
 
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-const SCOPE = 'AVATAR';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { tva, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+const SCOPE = 'AVATAR';
 
 const UIAvatar = createAvatar({
   Root: withStyleContext(View, SCOPE),
@@ -18,19 +17,19 @@ const UIAvatar = createAvatar({
 });
 
 const avatarStyle = tva({
-  base: 'relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full  bg-muted items-center justify-center',
+  base: 'relative flex h-12 w-12 shrink-0 rounded-full bg-muted items-center justify-center group-[.avatar-group]/avatar-group:-ml-2.5',
 });
 
 const avatarFallbackTextStyle = tva({
-  base: 'text-foreground text-xs font-medium',
+  base: 'text-foreground text-xs font-medium text-transform:uppercase',
 });
 
 const avatarGroupStyle = tva({
-  base: 'flex-row items-center gap-2',
+  base: 'group/avatar-group flex-row-reverse relative avatar-group',
 });
 
 const avatarBadgeStyle = tva({
-  base: 'absolute h-3 w-3 rounded-full border-2 border-background right-0 bottom-0',
+  base: 'absolute h-3 w-3 rounded-full border-2 border-background right-0 bottom-0 bg-green-500',
 });
 
 const avatarImageStyle = tva({
@@ -134,8 +133,8 @@ const AvatarFallback = AvatarFallbackText;
 export {
   Avatar,
   AvatarBadge,
-  AvatarFallbackText,
   AvatarFallback,
-  AvatarImage,
+  AvatarFallbackText,
   AvatarGroup,
+  AvatarImage,
 };

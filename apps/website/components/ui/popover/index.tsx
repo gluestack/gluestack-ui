@@ -1,11 +1,11 @@
 'use client';
-import { createPopover } from '@gluestack-ui/core-v4-experimental/popover/creator';
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import { createPopover } from '@gluestack-ui/core/popover/creator';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
   tva,
   useStyleContext,
   withStyleContext,
-} from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+} from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import React from 'react';
 import { Pressable, ScrollView, View } from 'react-native';

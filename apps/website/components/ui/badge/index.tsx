@@ -1,17 +1,14 @@
 'use client';
 import React, { useMemo } from 'react';
 import { Text, View } from 'react-native';
-import {
-  PrimitiveIcon,
-  UIIcon,
-} from '@gluestack-ui/core-v4-experimental/icon/creator';
-import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+} from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 import { Svg } from 'react-native-svg';
 const SCOPE = 'BADGE';
@@ -22,7 +19,8 @@ const badgeStyle = tva({
     variant: {
       default: 'bg-primary',
       secondary: 'bg-secondary',
-      destructive: 'bg-destructive dark:bg-destructive/60',
+      destructive:
+        'bg-destructive dark:bg-destructive/60',
       outline: 'border border-border dark:border-border/90 bg-transparent',
     },
   },
@@ -75,14 +73,18 @@ function Badge({
   className,
   ...props
 }: { className?: string } & IBadgeProps) {
-  const contextValue = useMemo(() => ({ variant }), [variant]);
+
+  const contextValue = useMemo(
+    () => ({  variant }),
+    [variant]
+  );
 
   return (
     <ContextView
       className={badgeStyle({ variant, class: className })}
       {...props}
       context={{
-        contextValue,
+        contextValue
       }}
     >
       {children}

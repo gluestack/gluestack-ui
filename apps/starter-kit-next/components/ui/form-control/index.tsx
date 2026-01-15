@@ -3,10 +3,7 @@ import { Text, View } from 'react-native';
 import React from 'react';
 import { createFormControl } from '@gluestack-ui/core/form-control/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  withStyleContext,
-  useStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
+import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
@@ -26,7 +23,7 @@ const formControlErrorStyle = tva({
 });
 
 const formControlErrorTextStyle = tva({
-  base: 'text-destructive text-base font-body',
+  base: 'text-destructive text-xs font-body',
   variants: {
     isTruncated: {
       true: 'web:truncate',
@@ -115,7 +112,7 @@ const formControlLabelTextStyle = tva({
 });
 
 const formControlLabelAstrickStyle = tva({
-  base: 'font-medium text-typography-900 text-base ',
+  base: 'font-medium text-typography text-base',
   variants: {
     isTruncated: {
       true: 'web:truncate',

@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { Animated, Easing, Platform, View } from 'react-native';
 import { skeletonStyle, skeletonTextStyle } from './styles';
 

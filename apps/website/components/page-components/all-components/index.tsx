@@ -1,172 +1,95 @@
-import React from 'react';
-import { Grid, GridItem } from '@/components/ui/grid';
+import React from 'react';;
+import { Grid,GridItem } from '@/components/ui/grid';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
 
-import accordionComponent from './accordion';
 
-import actionsheetComponent from './actionsheet';
+  
+    
+    import accordionComponent from './accordion'
 
-import alertComponent from './alert';
+    import actionsheetComponent from './actionsheet'
 
-import alertdialogComponent from './alert-dialog';
+    import alertComponent from './alert'
 
-import avatarComponent from './avatar';
+    import alertdialogComponent from './alert-dialog'
 
-import badgeComponent from './badge';
+    import avatarComponent from './avatar'
 
-import boxComponent from './box';
+    import badgeComponent from './badge'
 
-import buttonComponent from './button';
+    import boxComponent from './box'
 
-import cardComponent from './card';
+    import buttonComponent from './button'
 
-import centerComponent from './center';
+    import cardComponent from './card'
 
-import checkboxComponent from './checkbox';
+    import centerComponent from './center'
 
-import dividerComponent from './divider';
+    import checkboxComponent from './checkbox'
 
-import drawerComponent from './drawer';
+    import dividerComponent from './divider'
 
-import fabComponent from './fab';
+    import drawerComponent from './drawer'
 
-import formcontrolComponent from './form-control';
+    import fabComponent from './fab'
 
-import gridComponent from './grid';
+    import formcontrolComponent from './form-control'
 
-import headingComponent from './heading';
+    import gridComponent from './grid'
 
-import hstackComponent from './hstack';
+    import headingComponent from './heading'
 
-import iconComponent from './icon';
+    import hstackComponent from './hstack'
 
-import imageComponent from './image';
+    import iconComponent from './icon'
 
-import inputComponent from './input';
+    import imageComponent from './image'
 
-import linkComponent from './link';
+    import inputComponent from './input'
 
-import menuComponent from './menu';
+    import linkComponent from './link'
 
-import modalComponent from './modal';
+    import menuComponent from './menu'
 
-import popoverComponent from './popover';
+    import modalComponent from './modal'
 
-import portalComponent from './portal';
+    import popoverComponent from './popover'
 
-import pressableComponent from './pressable';
+    import portalComponent from './portal'
 
-import progressComponent from './progress';
+    import pressableComponent from './pressable'
 
-import radioComponent from './radio';
+    import progressComponent from './progress'
 
-import selectComponent from './select';
+    import radioComponent from './radio'
 
-import skeletonComponent from './skeleton';
+    import selectComponent from './select'
 
-import sliderComponent from './slider';
+    import skeletonComponent from './skeleton'
 
-import spinnerComponent from './spinner';
+    import sliderComponent from './slider'
 
-import switchComponent from './switch';
+    import spinnerComponent from './spinner'
 
-import tableComponent from './table';
+    import switchComponent from './switch'
 
-import textComponent from './text';
+    import tableComponent from './table'
 
-import textareaComponent from './textarea';
+    import textComponent from './text'
 
-import toastComponent from './toast';
+    import textareaComponent from './textarea'
 
-import tooltipComponent from './tooltip';
+    import toastComponent from './toast'
 
-import vstackComponent from './vstack';
+    import tooltipComponent from './tooltip'
 
-const componentsList = [
-  accordionComponent,
-  actionsheetComponent,
-  alertComponent,
-  alertdialogComponent,
-  avatarComponent,
-  badgeComponent,
-  boxComponent,
-  buttonComponent,
-  cardComponent,
-  centerComponent,
-  checkboxComponent,
-  dividerComponent,
-  drawerComponent,
-  fabComponent,
-  formcontrolComponent,
-  gridComponent,
-  headingComponent,
-  hstackComponent,
-  iconComponent,
-  imageComponent,
-  inputComponent,
-  linkComponent,
-  menuComponent,
-  modalComponent,
-  popoverComponent,
-  portalComponent,
-  pressableComponent,
-  progressComponent,
-  radioComponent,
-  selectComponent,
-  skeletonComponent,
-  sliderComponent,
-  spinnerComponent,
-  switchComponent,
-  tableComponent,
-  textComponent,
-  textareaComponent,
-  toastComponent,
-  tooltipComponent,
-  vstackComponent,
-];
-const componentsNameList = [
-  'accordion',
-  'actionsheet',
-  'alert',
-  'alert-dialog',
-  'avatar',
-  'badge',
-  'box',
-  'button',
-  'card',
-  'center',
-  'checkbox',
-  'divider',
-  'drawer',
-  'fab',
-  'form-control',
-  'grid',
-  'heading',
-  'hstack',
-  'icon',
-  'image',
-  'input',
-  'link',
-  'menu',
-  'modal',
-  'popover',
-  'portal',
-  'pressable',
-  'progress',
-  'radio',
-  'select',
-  'skeleton',
-  'slider',
-  'spinner',
-  'switch',
-  'table',
-  'text',
-  'textarea',
-  'toast',
-  'tooltip',
-  'vstack',
-];
+    import vstackComponent from './vstack'
+  
+  
+
+const componentsList = [accordionComponent,actionsheetComponent,alertComponent,alertdialogComponent,avatarComponent,badgeComponent,boxComponent,buttonComponent,cardComponent,centerComponent,checkboxComponent,dividerComponent,drawerComponent,fabComponent,formcontrolComponent,gridComponent,headingComponent,hstackComponent,iconComponent,imageComponent,inputComponent,linkComponent,menuComponent,modalComponent,popoverComponent,portalComponent,pressableComponent,progressComponent,radioComponent,selectComponent,skeletonComponent,sliderComponent,spinnerComponent,switchComponent,tableComponent,textComponent,textareaComponent,toastComponent,tooltipComponent,vstackComponent];
+const componentsNameList = ["accordion","actionsheet","alert","alert-dialog","avatar","badge","box","button","card","center","checkbox","divider","drawer","fab","form-control","grid","heading","hstack","icon","image","input","link","menu","modal","popover","portal","pressable","progress","radio","select","skeleton","slider","spinner","switch","table","text","textarea","toast","tooltip","vstack"];
 export default function AllComponents() {
   return (
     <Grid
@@ -175,7 +98,7 @@ export default function AllComponents() {
         className: 'sm:grid-cols-2 md:grid-cols-3 grid-cols-1 2xl:grid-cols-4',
       }}
     >
-      {componentsNameList.map((componentName, index) => {
+      {componentsNameList.map((componentName,index) => {
         const Component = componentsList[index];
 
         return (
@@ -185,17 +108,17 @@ export default function AllComponents() {
             }}
             key={componentName}
           >
-            <Box className="flex h-[300px] border border-border items-center overflow-hidden justify-center rounded-lg dark:bg-black bg-white">
+            <Box className="flex h-[300px] border border-outline-100  items-center overflow-hidden justify-center rounded-lg dark:bg-black bg-white">
               <Box className="flex-1 w-full flex items-center justify-center origin-center">
                 <Component />
               </Box>
               <Box
-                className="w-full py-2 px-4 bg-muted cursor-pointer hover:bg-accent"
+                className="w-full py-2 px-4 bg-background-100 cursor-pointer"
                 onClick={() => {
                   window.location.href = `/ui/docs/components/${componentName}`;
                 }}
               >
-                <Text className="text-left text-muted-foreground text-lg font-medium capitalize">
+                <Text className="text-left text-typography-700 text-lg font-medium capitalize">
                   {componentName}
                 </Text>
               </Box>
@@ -206,3 +129,5 @@ export default function AllComponents() {
     </Grid>
   );
 }
+
+  

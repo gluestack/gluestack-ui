@@ -1,14 +1,14 @@
 'use client';
-import { createSlider } from '@gluestack-ui/core-v4-experimental/slider/creator';
+import { createSlider } from '@gluestack-ui/core/slider/creator';
 import { Pressable } from 'react-native';
 import { View } from 'react-native';
 import React from 'react';
-import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
-} from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+} from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 
 const SCOPE = 'SLIDER';
@@ -84,7 +84,12 @@ const Slider = React.forwardRef<
   React.ComponentRef<typeof UISlider>,
   ISliderProps
 >(function Slider(
-  { className, orientation = 'horizontal', isReversed = false, ...props },
+  {
+    className,
+    orientation = 'horizontal',
+    isReversed = false,
+    ...props
+  },
   ref
 ) {
   return (
@@ -128,7 +133,10 @@ const SliderTrack = React.forwardRef<
   React.ComponentRef<typeof UISlider.Track>,
   ISliderTrackProps
 >(function SliderTrack({ className, ...props }, ref) {
-  const { orientation: parentOrientation, isReversed } = useStyleContext(SCOPE);
+  const {
+    orientation: parentOrientation,
+    isReversed,
+  } = useStyleContext(SCOPE);
 
   return (
     <UISlider.Track

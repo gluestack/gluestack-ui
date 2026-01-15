@@ -1,14 +1,11 @@
 'use client';
-import { createAvatar } from '@gluestack-ui/core-v4-experimental/avatar/creator';
+import { createAvatar } from '@gluestack-ui/core/avatar/creator';
 import React from 'react';
 
 import { Image, Text, View } from 'react-native';
 
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
-import {
-  tva,
-  withStyleContext,
-} from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { tva, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 const SCOPE = 'AVATAR';
 
 const UIAvatar = createAvatar({
