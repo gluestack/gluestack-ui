@@ -156,7 +156,7 @@ const BottomControlBar = memo(
         }
         setShowComponentMenu(false);
         setSearchQuery('');
-        router.replace(`/(home)/components/${component.path}` as any);
+        router.push(`/components/${component.path}` as any);
         onComponentSelect?.(component, index);
       },
       [router, onComponentSelect]

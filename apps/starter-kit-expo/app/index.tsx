@@ -1,4 +1,4 @@
-import { StateTabs, type Tab } from '@/components/custom/state-tabs';
+import { SwipeableTabs, type Tab } from '@/components/custom/swipeable-tabs';
 import { useAppTheme } from '@/contexts/app-theme-context';
 import { StatusBar } from 'expo-status-bar';
 import React, { useMemo } from 'react';
@@ -28,8 +28,8 @@ export default function Index() {
   );
 
   return (
-    <View className="flex-1 bg-background py-safe">
-      <StateTabs tabs={tabs} initialIndex={0} />
+    <View className="flex-1 bg-background">
+      <SwipeableTabs tabs={tabs} initialIndex={0} />
       <StatusBar style={isDark ? 'light' : 'dark'} />
     </View>
   );

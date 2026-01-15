@@ -6978,6 +6978,11 @@ react-native-keyboard-controller@^1.20.5:
   dependencies:
     react-native-is-edge-to-edge "^1.2.1"
 
+react-native-pager-view@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.npmjs.org/react-native-pager-view/-/react-native-pager-view-8.0.0.tgz#9a6cc7d8239d97581840fe51691f07320d1ce4f7"
+  integrity sha512-oAwlWT1lhTkIs9HhODnjNNl/owxzn9DP1MbP+az6OTUdgbmzA16Up83sBH8NRKwrH8rNm7iuWnX1qMqiiWOLhg==
+
 react-native-reanimated@~4.1.0:
   version "4.1.6"
   resolved "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-4.1.6.tgz#9d3d06416eaf48ab25594611185f66b34e404291"

@@ -198,12 +198,16 @@ const TabButton: React.FC<TabButtonProps> = ({
 
 export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
   tabs,
-  initialIndex = 1,
+  initialIndex = 0,
 }) => {
   const insets = useSafeAreaInsets();
   const pagerRef = useRef<PagerView>(null);
   const [tabWidths, setTabWidths] = useState<number[]>([]);
   const [tabPositions, setTabPositions] = useState<number[]>([]);
+  const [currentPage, setCurrentPage] = useState(initialIndex);
+  const [loadedPages, setLoadedPages] = useState<Set<number>>(
+    new Set([initialIndex])
+  );
 
   const scrollX = useSharedValue(initialIndex * SCREEN_WIDTH);
 
@@ -240,10 +244,22 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
   );
 
   const onPageSelected = useCallback(
-    (_event: { nativeEvent: PagerViewOnPageSelectedEventData }) => {
+    (event: { nativeEvent: PagerViewOnPageSelectedEventData }) => {
+      const { position } = event.nativeEvent;
+      setCurrentPage(position);
+      
+      // Preload adjacent pages for smooth swiping
+      setLoadedPages((prev) => {
+        const newSet = new Set(prev);
+        newSet.add(position);
+        if (position > 0) newSet.add(position - 1);
+        if (position < tabs.length - 1) newSet.add(position + 1);
+        return newSet;
+      });
+      
       triggerHaptic();
     },
-    [triggerHaptic]
+    [triggerHaptic, tabs.length]
   );
 
   const scrollToTab = useCallback(
@@ -293,13 +309,14 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
         initialPage={initialIndex}
         onPageScroll={onPageScroll}
         onPageSelected={onPageSelected}
-        overdrag={false}
-        scrollEnabled={false}
-        
+        overdrag={true}
+        scrollEnabled={true}
+        orientation="horizontal"
+        pageMargin={0}
       >
-        {tabs.map((tab) => (
+        {tabs.map((tab, index) => (
           <View key={tab.key} className="flex-1 pb-safe">
-            {tab.component}
+            {loadedPages.has(index) ? tab.component : null}
           </View>
         ))}
       </PagerView>
