@@ -113,7 +113,7 @@ export const UsageVariantFlatList = ({
       if (Platform.OS === 'ios') {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       }
-      router.replace(`/(home)/components/${component.path}` as any);
+      router.push(`/(home)/components/${component.path}` as any);
     },
     [router]
   );

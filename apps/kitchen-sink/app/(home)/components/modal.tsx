@@ -507,7 +507,7 @@ const [showModal, setShowModal] = React.useState(false);
         <ModalBackdrop />
         <ModalContent className="max-w-[305px] items-center">
           <ModalHeader>
-            <Box className="w-[56px] h-[56px] rounded-full bg-destructive-foreground items-center justify-center">
+            <Box className="w-[56px] h-[56px] rounded-full bg-white items-center justify-center">
               <Icon as={TrashIcon} className="stroke-destructive" size="xl" />
             </Box>
           </ModalHeader>

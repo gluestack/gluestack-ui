@@ -168,12 +168,9 @@ const BottomControlBar = memo(
         setSearchQuery('');
 
         // Navigate directly to the component page
-        router.replace(`/(home)/components/${component.path}` as any);
-
-        // Still call the callback if provided (for any additional logic)
-        onComponentSelect?.(component, index);
+        router.push(`/(home)/components/${component.path}` as any);
       },
-      [router, onComponentSelect]
+      [router]
     );
 
     const handlePillPress = useCallback(() => {
@@ -346,15 +343,15 @@ const BottomControlBar = memo(
                         onPress={() => handleComponentSelect(item, index)}
                         className={`px-3 py-2.5 mx-1.5 rounded-lg flex-row items-center gap-2.5 ${
                           currentComponent?.path === item.path
-                            ? 'bg-primary'
-                            : 'active:bg-secondary'
+                            ? 'bg-secondary/70'
+                            : 'active:bg-primary/10'
                         }`}
                       >
                         <Text
                           className={`text-sm font-medium ${
                             currentComponent?.path === item.path
-                              ? 'text-primary-foreground'
-                              : 'text-white'
+                              ? 'text-secondary-foreground'
+                              : ''
                           }`}
                         >
                           {item.title}
@@ -362,11 +359,9 @@ const BottomControlBar = memo(
                       </Pressable>
                     ))}
                     {filteredComponents.length === 0 && (
-                      <View className="py-6 items-center">
-                        <Text className="text-typography-400 text-sm">
-                          No components found
-                        </Text>
-                      </View>
+                      <Text className="text-foreground text-sm p-2.5 text-center">
+                        No components found
+                      </Text>
                     )}
                   </View>
                 </ScrollView>

@@ -29,34 +29,25 @@ import {
   BottomControlBar,
   type ComponentItem,
 } from '@/components/custom/bottom-control-bar';
-import Showcase1 from '../showcases/showcase-1';
-import Showcase2 from '../showcases/showcase-2';
-import Showcase3 from '../showcases/showcase-3';
+import { SHOWCASES_LIST, type ShowcaseItem } from '@/constants/showcases-list';
+import LoginShowcase from '../../showcases/login';
+import DashboardShowcase from '../../showcases/dashboard';
+import ProfileShowcase from '../../showcases/profile';
+import EcommerceShowcase from '../../showcases/ecommerce';
+import SocialShowcase from '../../showcases/social';
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
-// Define showcases with their components in one place
-type ShowcaseItem = ComponentItem & {
-  component: React.ComponentType;
+// Map showcase paths to their components
+const SHOWCASE_COMPONENTS: Record<string, React.ComponentType> = {
+  login: LoginShowcase,
+  dashboard: DashboardShowcase,
+  profile: ProfileShowcase,
+  ecommerce: EcommerceShowcase,
+  social: SocialShowcase,
 };
 
-const showcases: ShowcaseItem[] = [
-  {
-    title: 'Showcase 1',
-    path: 'showcase-1',
-    component: Showcase1,
-  },
-  {
-    title: 'Showcase 2',
-    path: 'showcase-2',
-    component: Showcase2,
-  },
-  {
-    title: 'Showcase 3',
-    path: 'showcase-3',
-    component: Showcase3,
-  },
-];
+const showcases = SHOWCASES_LIST;
 
 type ShowcaseCardProps = {
   item: ShowcaseItem;
@@ -95,7 +86,7 @@ const ShowcaseCard = memo(
       };
     });
 
-    const ShowcaseComponent = item.component;
+    const ShowcaseComponent = SHOWCASE_COMPONENTS[item.path];
 
     return (
       <View
@@ -120,24 +111,35 @@ const ShowcaseCard = memo(
             style={{ width: '100%', height: '100%' }}
           >
             <View className="flex-1 overflow-hidden rounded-3xl bg-background border border-border">
-              <View
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Animated.View
+              {ShowcaseComponent ? (
+                <View
                   style={{
-                    width: width,
-                    height: height,
-                    transform: [{ scale: SCALE }],
+                    width: '100%',
+                    height: '100%',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
-                  <ShowcaseComponent />
-                </Animated.View>
-              </View>
+                  <Animated.View
+                    style={{
+                      width: width,
+                      height: height,
+                      transform: [{ scale: SCALE }],
+                    }}
+                  >
+                    <ShowcaseComponent />
+                  </Animated.View>
+                </View>
+              ) : (
+                <View className="flex-1 justify-center p-8">
+                  <Text className="text-typography-900 font-sans text-xl font-bold">
+                    {item.title}
+                  </Text>
+                  <Text className="text-typography-500 text-sm mt-2">
+                    {item.description || 'Showcase'}
+                  </Text>
+                </View>
+              )}
             </View>
           </Pressable>
         </Animated.View>
@@ -319,6 +321,7 @@ export default function ShowcasesTab() {
           pointerEvents="none"
           style={StyleSheet.absoluteFill}
           animatedProps={animatedProps}
+          tint={isDark ? 'dark' : 'light'}
         />
       )}
       <BottomControlBar

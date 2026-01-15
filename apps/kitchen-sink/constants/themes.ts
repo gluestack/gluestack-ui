@@ -54,7 +54,6 @@ export const themeConfigs = {
       '--muted': '245 245 245',
       '--muted-foreground': '115 115 115',
       '--destructive': '231 0 11',
-      '--destructive-foreground': '255 255 255',
       '--foreground': '10 10 10',
       '--border': '229 229 229',
       '--input': '229 229 229',
@@ -111,7 +110,6 @@ export const themeConfigs = {
       '--accent-foreground': '23 23 23', // neutral-900
 
       '--destructive': '239 68 68',
-      '--destructive-foreground': '255 255 255',
 
       '--border': '229 229 229', // neutral-200
       '--input': '229 229 229',
@@ -145,7 +143,6 @@ export const themeConfigs = {
       '--accent-foreground': '250 250 250',
 
       '--destructive': '248 113 113',
-      '--destructive-foreground': '255 255 255',
 
       '--border': '38 38 38', // neutral-800
       '--input': '38 38 38',
@@ -183,7 +180,6 @@ export const themeConfigs = {
       '--accent-foreground': '30 105 220', // rgb(30, 105, 220)
 
       '--destructive': '229 75 79', // rgb(229, 75, 79)
-      '--destructive-foreground': '255 255 255',
 
       '--border': '231 231 238', // rgb(231, 231, 238)
       '--input': '235 235 235',
@@ -217,7 +213,6 @@ export const themeConfigs = {
       '--accent-foreground': '121 192 255', // rgb(121, 192, 255)
 
       '--destructive': '248 113 113',
-      '--destructive-foreground': '255 255 255',
 
       '--border': '51 53 58', // rgb(51, 53, 58)
       '--input': '51 53 58',
@@ -255,7 +250,6 @@ export const themeConfigs = {
       '--accent-foreground': '32 32 32',
 
       '--destructive': '202 50 20', // rgb(202, 50, 20)
-      '--destructive-foreground': '255 252 252',
 
       '--border': '223 223 223', // rgb(223, 223, 223)
       '--input': '246 246 246',
@@ -288,7 +282,6 @@ export const themeConfigs = {
       '--accent-foreground': '250 250 250',
 
       '--destructive': '84 28 21', // rgb(84, 28, 21)
-      '--destructive-foreground': '237 233 232',
 
       '--border': '41 41 41', // rgb(41, 41, 41)
       '--input': '41 41 41',
@@ -325,7 +318,6 @@ export const themeConfigs = {
       '--accent-foreground': '40 38 27',
 
       '--destructive': '20 20 19',
-      '--destructive-foreground': '255 255 255',
 
       '--border': '218 217 212', // rgb(218, 217, 212)
       '--input': '180 178 167', // rgb(180, 178, 167)
@@ -361,7 +353,6 @@ export const themeConfigs = {
       '--accent-foreground': '245 244 238', // rgb(245, 244, 238)
 
       '--destructive': '239 68 68',
-      '--destructive-foreground': '255 255 255',
 
       '--border': '62 62 56', // rgb(62, 62, 56)
       '--input': '82 81 74', // rgb(82, 81, 74)
@@ -401,7 +392,6 @@ export const themeConfigs = {
       '--accent-foreground': '30 157 241', // rgb(30, 157, 241)
 
       '--destructive': '244 33 46', // rgb(244, 33, 46)
-      '--destructive-foreground': '255 255 255',
 
       '--border': '225 234 239', // rgb(225, 234, 239)
       '--input': '247 249 250', // rgb(247, 249, 250)
@@ -434,7 +424,6 @@ export const themeConfigs = {
       '--accent-foreground': '28 156 240',
 
       '--destructive': '244 33 46',
-      '--destructive-foreground': '255 255 255',
 
       '--border': '36 38 40', // rgb(36, 38, 40)
       '--input': '36 38 40', // rgb(34, 48, 60)

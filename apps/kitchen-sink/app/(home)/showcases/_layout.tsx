@@ -5,20 +5,14 @@ import { Text } from '@/components/ui/text';
 import { useAppTheme } from '@/contexts/app-theme-context';
 import { Stack, useRouter } from 'expo-router';
 import { Pressable } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // Custom Header Component with NativeWind styling
 function CustomHeader({ title }: { title: string }) {
   const { isDark } = useAppTheme();
   const router = useRouter();
-  const insets = useSafeAreaInsets();
 
   return (
-    <Box
-      className=""
-      style={{
-        paddingTop: insets.top,
-      }}
+    <Box className="pt-safe"
     >
       <Box className="absolute inset-0 bg-background" />
 
@@ -70,36 +64,23 @@ export default function ShowcasesLayout() {
       }}
     >
       <Stack.Screen
-        name="login"
+        name="showcase-1"
         options={{
-          header: () => <CustomHeader title="Login Flow" />,
+          header: () => <CustomHeader title="Showcase 1" />,
         }}
       />
       <Stack.Screen
-        name="dashboard"
+        name="showcase-2"
         options={{
-          header: () => <CustomHeader title="Dashboard" />,
+          header: () => <CustomHeader title="Showcase 2" />,
         }}
       />
       <Stack.Screen
-        name="profile"
+        name="showcase-3"
         options={{
-          header: () => <CustomHeader title="Profile" />,
-        }}
-      />
-      <Stack.Screen
-        name="ecommerce"
-        options={{
-          header: () => <CustomHeader title="E-Commerce" />,
-        }}
-      />
-      <Stack.Screen
-        name="social"
-        options={{
-          header: () => <CustomHeader title="Social Feed" />,
+          header: () => <CustomHeader title="Showcase 3" />,
         }}
       />
     </Stack>
   );
 }
-
