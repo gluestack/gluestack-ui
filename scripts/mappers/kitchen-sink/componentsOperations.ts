@@ -8,7 +8,7 @@ import {
 
 const mapperConfig: MapperConfig = {
   sourcePath: path.resolve('src/components/ui'),
-  destPath: path.resolve('apps/KitchenSink-App-feat-homeScreen/components/ui'),
+  destPath: path.resolve('apps/kitchen-sink/components/ui'),
   ignoreFiles: ['docs', 'examples', 'dependencies.json'],
 };
 
@@ -98,7 +98,7 @@ function pathToTitle(componentPath: string): string {
 // Update the _layout.tsx file with Stack.Screen entries
 function updateLayoutFile(sidebarComponentMap: Map<string, string>) {
   const layoutPath = path.resolve(
-    'apps/KitchenSink-App-feat-homeScreen/app/(home)/components/_layout.tsx'
+    'apps/kitchen-sink/app/(home)/components/_layout.tsx'
   );
 
   if (!fs.existsSync(layoutPath)) {
@@ -177,9 +177,7 @@ function updateLayoutFile(sidebarComponentMap: Map<string, string>) {
 
 export const processSidebarFile = (filePath: string) => {
   // Copy sidebar.json as before
-  const destPath = path.resolve(
-    'apps/KitchenSink-App-feat-homeScreen/constants/sidebar.json'
-  );
+  const destPath = path.resolve('apps/kitchen-sink/constants/sidebar.json');
   copySpecialFile(filePath, destPath);
 
   // Extract components from sidebar.json
@@ -196,7 +194,7 @@ export const processSidebarFile = (filePath: string) => {
   // Generate component list array only from sidebar.json components
   const sourcePath = path.resolve('src/components/ui');
   const componentsListPath = path.resolve(
-    'apps/KitchenSink-App-feat-homeScreen/constants/components-list.ts'
+    'apps/kitchen-sink/constants/components-list.ts'
   );
 
   if (!fs.existsSync(sourcePath)) {

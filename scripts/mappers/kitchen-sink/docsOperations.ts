@@ -5,7 +5,9 @@ import * as templateGen from './templateGenerator';
 
 export const copyComponentsDocs = (component: string, event: string) => {
   const sourcePath = path.resolve('src/components/ui');
-  const routePagesPath = path.resolve('apps/KitchenSink-App-feat-homeScreen/app/(home)/components');
+  const routePagesPath = path.resolve(
+    'apps/kitchen-sink/app/(home)/components'
+  );
 
   // Skip all-components and bottomsheet pages - they should not be copied to new kitchen-sink
   if (component === 'all-components' || component === 'bottomsheet') {
@@ -18,7 +20,7 @@ export const copyComponentsDocs = (component: string, event: string) => {
     if (fs.existsSync(routePagePath)) {
       fs.unlinkSync(routePagePath);
     }
-    
+
     console.log(`Docs for ${component} removed`);
     return;
   }
@@ -50,7 +52,11 @@ export const copyComponentsDocs = (component: string, event: string) => {
 
 // Generate route page in app/(home)/components/[component].tsx
 // This function generates the route page directly with processed annotations
-function generateRoutePage(component: string, routePagesPath: string, sourceMdxPath: string) {
+function generateRoutePage(
+  component: string,
+  routePagesPath: string,
+  sourceMdxPath: string
+) {
   try {
     // Ensure route pages directory exists
     fileOps.ensureDirectoryExists(routePagesPath);
@@ -61,10 +67,14 @@ function generateRoutePage(component: string, routePagesPath: string, sourceMdxP
     // Generate the component content using templateGenerator
     // We'll use a temporary path to generate the content, then read it
     const tempPath = path.join(routePagesPath, `.temp-${component}.tsx`);
-    
+
     // Generate content using copyProcessedAnnotations (it writes to a file)
-    const success = templateGen.copyProcessedAnnotations(sourceMdxPath, tempPath, component);
-    
+    const success = templateGen.copyProcessedAnnotations(
+      sourceMdxPath,
+      tempPath,
+      component
+    );
+
     if (!success) {
       console.warn(`Failed to process annotations for ${component}`);
       return;
