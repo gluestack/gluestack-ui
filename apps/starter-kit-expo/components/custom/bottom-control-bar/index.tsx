@@ -299,8 +299,8 @@ const BottomControlBar = memo(
                       <Text
                         className={`text-sm font-medium ${
                           currentComponent?.path === item.path
-                            ? 'text-primary-foreground'
-                            : 'text-foreground'
+                            ? 'bg-primary'
+                            : 'active:bg-foreground/10'
                         }`}
                       >
                         {item.title}
