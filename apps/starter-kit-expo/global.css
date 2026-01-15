@@ -50,11 +50,11 @@
        ======================================== */
     @variant default-light {
       /* Border Radius */
-      --radius: 10px;
-      --radius-sm: 8px;
-      --radius-md: 10px;
-      --radius-lg: 12px;
-      --radius-xl: 14px;
+      --radius: 4px;
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --radius-xl: 10px;
 
       /* Typography */
       --font-sans: 'Outfit_400Regular';
@@ -98,11 +98,11 @@
 
     @variant default-dark {
       /* Border Radius */
-      --radius: 10px;
-      --radius-sm: 8px;
-      --radius-md: 10px;
-      --radius-lg: 12px;
-      --radius-xl: 14px;
+      --radius: 4px;
+      --radius-sm: 4px;
+      --radius-md: 4px;
+      --radius-lg: 8px;
+      --radius-xl: 10px;
 
       /* Typography */
       --font-sans: 'Outfit_400Regular';
@@ -149,11 +149,11 @@
        ======================================== */
     @variant vercel-light {
       /* Border Radius */
-      --radius: 8px;
-      --radius-sm: 6px;
-      --radius-md: 8px;
-      --radius-lg: 10px;
-      --radius-xl: 12px;
+      --radius: 2px;
+      --radius-sm: 1px;
+      --radius-md: 2px;
+      --radius-lg: 4px;
+      --radius-xl: 6px;
 
       /* Typography */
       --font-sans: 'Geist';
@@ -197,11 +197,11 @@
 
     @variant vercel-dark {
       /* Border Radius */
-      --radius: 8px;
-      --radius-sm: 6px;
-      --radius-md: 8px;
-      --radius-lg: 10px;
-      --radius-xl: 12px;
+      --radius: 2px;
+      --radius-sm: 1px;
+      --radius-md: 2px;
+      --radius-lg: 4px;
+      --radius-xl: 6px;
 
       /* Typography */
       --font-sans: 'Geist';
@@ -248,11 +248,11 @@
        ======================================== */
     @variant violet-light {
       /* Border Radius */
-      --radius: 22px;
-      --radius-sm: 20px;
-      --radius-md: 22px;
-      --radius-lg: 24px;
-      --radius-xl: 26px;
+      --radius: 8px;
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 10px;
+      --radius-xl: 12px;
 
       /* Typography */
       --font-sans: 'Jakarta';
@@ -296,11 +296,11 @@
 
     @variant violet-dark {
       /* Border Radius */
-      --radius: 22px;
-      --radius-sm: 20px;
-      --radius-md: 22px;
-      --radius-lg: 24px;
-      --radius-xl: 26px;
+      --radius: 8px;
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 10px;
+      --radius-xl: 12px;
 
       /* Typography */
       --font-sans: 'Jakarta';
@@ -347,11 +347,11 @@
        ======================================== */
     @variant supabase-light {
       /* Border Radius */
-      --radius: 8px;
-      --radius-sm: 6px;
-      --radius-md: 8px;
-      --radius-lg: 10px;
-      --radius-xl: 12px;
+      --radius: 2px;
+      --radius-sm: 1px;
+      --radius-md: 2px;
+      --radius-lg: 4px;
+      --radius-xl: 6px;
 
       /* Typography */
       --font-sans: 'Outfit_400Regular';
@@ -395,11 +395,11 @@
 
     @variant supabase-dark {
       /* Border Radius */
-      --radius: 8px;
-      --radius-sm: 6px;
-      --radius-md: 8px;
-      --radius-lg: 10px;
-      --radius-xl: 12px;
+      --radius: 2px;
+      --radius-sm: 1px;
+      --radius-md: 2px;
+      --radius-lg: 4px;
+      --radius-xl: 6px;
 
       /* Typography */
       --font-sans: 'Outfit_400Regular';
@@ -446,11 +446,11 @@
        ======================================== */
     @variant claude-light {
       /* Border Radius */
-      --radius: 8px;
-      --radius-sm: 6px;
-      --radius-md: 8px;
-      --radius-lg: 10px;
-      --radius-xl: 12px;
+      --radius: 2px;
+      --radius-sm: 1px;
+      --radius-md: 2px;
+      --radius-lg: 4px;
+      --radius-xl: 6px;
 
       /* Typography */
       --font-sans: 'Georgia';
@@ -494,11 +494,11 @@
 
     @variant claude-dark {
       /* Border Radius */
-      --radius: 8px;
-      --radius-sm: 6px;
-      --radius-md: 8px;
-      --radius-lg: 10px;
-      --radius-xl: 12px;
+      --radius: 2px;
+      --radius-sm: 1px;
+      --radius-md: 2px;
+      --radius-lg: 4px;
+      --radius-xl: 6px;
 
       /* Typography */
       --font-sans: 'Georgia';
@@ -545,11 +545,11 @@
        ======================================== */
     @variant twitter-light {
       /* Border Radius */
-      --radius: 20px;
-      --radius-sm: 18px;
-      --radius-md: 20px;
-      --radius-lg: 22px;
-      --radius-xl: 24px;
+      --radius: 6px;
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --radius-xl: 10px;
 
       /* Typography */
       --font-sans: 'OpenSans_400Regular';
@@ -593,11 +593,11 @@
 
     @variant twitter-dark {
       /* Border Radius */
-      --radius: 20px;
-      --radius-sm: 18px;
-      --radius-md: 20px;
-      --radius-lg: 22px;
-      --radius-xl: 24px;
+      --radius: 6px;
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --radius-xl: 10px;
 
       /* Typography */
       --font-sans: 'OpenSans_400Regular';
