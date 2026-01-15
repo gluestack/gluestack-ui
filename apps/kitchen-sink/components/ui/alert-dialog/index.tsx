@@ -15,7 +15,6 @@ import {
   Pressable,
   ScrollView,
   View,
-  ViewStyle
 } from 'react-native';
 import { cssInterop } from 'nativewind';
 
