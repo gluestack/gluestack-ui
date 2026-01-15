@@ -606,7 +606,6 @@ const BadgeIcon = createIcon({
           </G>
         </G>
       </G>
-      ;
     </>
   ),
 });
