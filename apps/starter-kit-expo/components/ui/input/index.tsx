@@ -6,19 +6,21 @@ import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { UIIcon } from '@/components/ui/icon';
+import { withUniwind } from 'uniwind';
 
 const SCOPE = 'INPUT';
-
+const StyledInput = withUniwind(TextInput);
 const UIInput = createInput({
   Root: withStyleContext(View, SCOPE),
   Icon: UIIcon,
   Slot: Pressable,
-  Input: TextInput,
+  Input: StyledInput,
 });
 
 
 const inputStyle = tva({
-  base: 'h-9 w-full flex-row items-center rounded-md border border-border  dark:bg-input/30 bg-transparent shadow-xs transition-[color,box-shadow] overflow-hidden data-[focus=true]:outline-none data-[focus=true]:border-ring dark:data-[focus=true]:border-ring data-[focus=true]:web:ring-[3px] data-[focus=true]:web:ring-ring/50 data-[invalid=true]:border-destructive/40 dark:data-[invalid=true]:border-destructive/40 data-[invalid=true]:web:ring-destructive/20 dark:data-[invalid=true]:web:ring-destructive/40 data-[disabled=true]:pointer-events-none data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
+  base: 'h-9 w-full flex-row items-center rounded-md border border-border dark:bg-input/30 bg-transparent shadow-xs transition-all overflow-hidden data-[focus=true]:outline-none data-[focus=true]:border-ring dark:data-[focus=true]:border-ring data-[focus=true]:web:ring-[3px] data-[focus=true]:web:ring-ring/50 data-[invalid=true]:border-destructive/40 dark:data-[invalid=true]:border-destructive/40 data-[invalid=true]:web:ring-destructive/20 dark:data-[invalid=true]:web:ring-destructive/40 data-[disabled=true]:pointer-events-none data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50 disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed invalid:border-destructive',
+  // TODO: remove disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed after data-attribute support
 });
 
 const inputIconStyle = tva({
@@ -30,7 +32,7 @@ const inputSlotStyle = tva({
 });
 
 const inputFieldStyle = tva({
-  base: 'flex-1 text-foreground text-sm md:text-sm py-1 px-3 h-full placeholder:text-muted-foreground  web:outline-none ios:leading-[0px] web:cursor-text web:data-[disabled=true]:cursor-not-allowed',
+  base: 'flex-1 text-foreground text-sm md:text-sm py-1 px-3 h-full placeholder:text-muted-foreground web:outline-none ios:leading-[0px] web:cursor-text web:data-[disabled=true]:cursor-not-allowed',
 });
 
 type IInputProps = React.ComponentProps<typeof UIInput> &
@@ -42,7 +44,6 @@ const Input = React.forwardRef<React.ComponentRef<typeof UIInput>, IInputProps>(
         ref={ref}
         {...props}
         className={inputStyle({ class: className })}
-        context={{}}
       />
     );
   }
@@ -100,6 +101,8 @@ const InputField = React.forwardRef<
       className={inputFieldStyle({
         class: className,
       })}
+      placeholderTextColor="grey"
+      // TODO: remove placeholderTextColor after data-attribute support
     />
   );
 });
