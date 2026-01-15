@@ -67,8 +67,8 @@ const actionsheetContentStyle = tva({
 });
 
 const actionsheetItemStyle = tva({
-  base: 'w-full flex-row items-center p-3 rounded-sm data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-auto data-[disabled=true]:web:cursor-not-allowed data-[hover=true]:bg-primary/10 data-[active=true]:bg-primary/10 data-[focus=true]:bg-primary/10 web:data-[focus-visible=true]:bg-primary/10 gap-2 disabled:opacity-40 active:bg-primary/10',
-  // TODO: remove disabled:opacity-40 active:bg-primary/10 after data-attribute support
+  base: 'w-full flex-row items-center p-3 rounded-sm data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-auto data-[disabled=true]:web:cursor-not-allowed data-[hover=true]:bg-primary/10 data-[active=true]:bg-accent data-[focus=true]:bg-accent web:data-[focus-visible=true]:bg-accent gap-2 disabled:opacity-40 active:bg-accent',
+  // TODO: remove disabled:opacity-40 active:bg-accent after data-attribute support
 });
 
 const actionsheetItemTextStyle = tva({
