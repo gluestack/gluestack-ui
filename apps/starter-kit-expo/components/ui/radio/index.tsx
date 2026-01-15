@@ -22,7 +22,8 @@ const UIRadio = createRadio({
 });
 
 const radioStyle = tva({
-  base: 'group/radio flex-row justify-start items-center gap-2 web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed data-[disabled=true]:opacity-50',
+  base: 'group/radio flex-row justify-start items-center gap-2 web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed data-[disabled=true]:opacity-50 disabled:opacity-50',
+  // TODO: remove disabled:opacity-50 after data-attribute support
   variants: {
     size: {
       sm: 'gap-1.5',
@@ -48,7 +49,7 @@ const radioIconStyle = tva({
 });
 
 const radioIndicatorStyle = tva({
-  base: 'relative justify-center items-center aspect-square h-4 w-4 shrink-0 rounded-full border border-border  dark:bg-input/30 shadow-xs web:outline-none web:data-[focus-visible=true]:ring-[3px] web:data-[focus-visible=true]:ring-ring/50 web:data-[focus-visible=true]:border-ring data-[invalid=true]:ring-destructive/20 data-[invalid=true]:border-destructive data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
+  base: 'relative justify-center items-center aspect-square h-4 w-4 shrink-0 rounded-full border border-border shadow-xs web:outline-none web:data-[focus-visible=true]:ring-[3px] web:data-[focus-visible=true]:ring-ring/50 web:data-[focus-visible=true]:border-ring data-[invalid=true]:ring-destructive/20 data-[invalid=true]:border-destructive data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
   parentVariants: {
     size: {
       sm: 'h-4 w-4',
