@@ -11,11 +11,16 @@ import {
 } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  withSpring,
-  Easing,
+  SlideInLeft,
+  SlideInRight,
+  SlideInUp,
+  SlideInDown,
+  SlideOutLeft,
+  SlideOutRight,
+  SlideOutUp,
+  SlideOutDown,
+  FadeIn,
+  FadeOut,
 } from 'react-native-reanimated';
 
 const SCOPE = 'MODAL';
@@ -141,36 +146,11 @@ const DrawerBackdrop = React.forwardRef<
   React.ComponentRef<typeof UIDrawer.Backdrop>,
   IDrawerBackdropProps
 >(function DrawerBackdrop({ className, ...props }, ref) {
-  const opacity = useSharedValue(0);
-
-  // Animated style for backdrop fade
-  const animatedBackdropStyle = useAnimatedStyle(() => {
-    return {
-      opacity: opacity.value,
-    };
-  }, [opacity]);
-
-  // Trigger animation on mount
-  React.useEffect(() => {
-    // Fade in when backdrop appears
-    opacity.value = withTiming(1, {
-      duration: 150,
-      easing: Easing.ease,
-    });
-
-    // Cleanup: fade out when unmounting
-    return () => {
-      opacity.value = withTiming(0, {
-        duration: 150,
-        easing: Easing.ease,
-      });
-    };
-  }, [opacity]);
-
   return (
     <UIDrawer.Backdrop
       ref={ref}
-      style={animatedBackdropStyle}
+      entering={FadeIn.duration(150)}
+      exiting={FadeOut.duration(150)}
       {...props}
       className={drawerBackdropStyle({
         class: className,
@@ -191,84 +171,7 @@ const DrawerContent = React.forwardRef<
 
   const isHorizontal = parentAnchor === 'left' || parentAnchor === 'right';
 
-  // Shared values for animation
-  const translateX = useSharedValue(
-    isHorizontal ? (parentAnchor === 'left' ? -drawerWidth : drawerWidth) : 0
-  );
-  const translateY = useSharedValue(
-    !isHorizontal ? (parentAnchor === 'top' ? -drawerHeight : drawerHeight) : 0
-  );
-  const opacity = useSharedValue(0);
-
-  // Animated style for drawer content slide
-  const animatedContentStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        { translateX: translateX.value },
-        { translateY: translateY.value },
-      ],
-      opacity: opacity.value,
-    };
-  }, [translateX, translateY, opacity]);
-
-  // Trigger animation on mount
-  React.useEffect(() => {
-    // Slide in animation
-    if (isHorizontal) {
-      translateX.value = withSpring(0, {
-        damping: 30,
-        stiffness: 300,
-        mass: 0.8,
-      });
-    } else {
-      translateY.value = withSpring(0, {
-        damping: 30,
-        stiffness: 300,
-        mass: 0.8,
-      });
-    }
-
-    // Fade in simultaneously
-    opacity.value = withTiming(1, {
-      duration: 150,
-      easing: Easing.ease,
-    });
-
-    // Cleanup: slide out when unmounting
-    return () => {
-      if (isHorizontal) {
-        translateX.value = withTiming(
-          parentAnchor === 'left' ? -drawerWidth : drawerWidth,
-          {
-            duration: 200,
-            easing: Easing.ease,
-          }
-        );
-      } else {
-        translateY.value = withTiming(
-          parentAnchor === 'top' ? -drawerHeight : drawerHeight,
-          {
-            duration: 200,
-            easing: Easing.ease,
-          }
-        );
-      }
-      opacity.value = withTiming(0, {
-        duration: 150,
-        easing: Easing.ease,
-      });
-    };
-  }, [
-    translateX,
-    translateY,
-    opacity,
-    isHorizontal,
-    parentAnchor,
-    drawerWidth,
-    drawerHeight,
-  ]);
-
-  // Calculate positioning classes and inline styles
+  // Calculate positioning classes
   const customClass = isHorizontal
     ? `top-0 ${parentAnchor === 'left' ? 'left-0' : 'right-0'}`
     : `left-0 ${parentAnchor === 'top' ? 'top-0' : 'bottom-0'}`;
@@ -278,10 +181,31 @@ const DrawerContent = React.forwardRef<
     ? { width: drawerWidth }
     : { height: drawerHeight };
 
+  // Select entering and exiting animations based on anchor
+  const enteringAnimation =
+    parentAnchor === 'left'
+      ? SlideInLeft.duration(250).springify().damping(20).stiffness(300)
+      : parentAnchor === 'right'
+        ? SlideInRight.duration(250).springify().damping(20).stiffness(300)
+        : parentAnchor === 'top'
+          ? SlideInUp.duration(250).springify().damping(20).stiffness(300)
+          : SlideInDown.duration(250).springify().damping(20).stiffness(300);
+
+  const exitingAnimation =
+    parentAnchor === 'left'
+      ? SlideOutLeft.duration(200)
+      : parentAnchor === 'right'
+        ? SlideOutRight.duration(200)
+        : parentAnchor === 'top'
+          ? SlideOutUp.duration(200)
+          : SlideOutDown.duration(200);
+
   return (
     <UIDrawer.Content
       ref={ref}
-      style={[animatedContentStyle, dynamicStyle]}
+      style={dynamicStyle}
+      entering={enteringAnimation}
+      exiting={exitingAnimation}
       {...props}
       className={drawerContentStyle({
         parentVariants: {
