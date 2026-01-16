@@ -23,6 +23,8 @@ import StarterKitLogo from '@/public/icon/logo/gluestack/logo-dark.svg';
 import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
 import AppMarketLogo from '@/public/icon/logo/theappmarket/appmarket-logo.svg';
 import RapidNativelogo from '@/public/icon/logo/rapidnative/logo.png';
+import AppLighterLogo from '@/public/icon/logo/applighter/logo.png';
+import FlyDashLogo from '@/public/icon/logo/flydash/logo.png';
 import { useColorMode } from '@/app/provider';
 import NextLink from 'next/link';
 import { Nav } from '@expo/html-elements';
@@ -75,6 +77,32 @@ const Header = ({
       description: 'Generate native apps instantly with AI prompts.',
       badge: {
         text: 'PAID',
+        action: 'info',
+      },
+    },
+    {
+      href: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
+      logo: {
+        light: AppLighterLogo,
+        dark: AppLighterLogo,
+      },
+      title: 'AppLighter',
+      description: 'AI-Ready Full-Stack Expo Starter Kit.',
+      badge: {
+        text: 'Sponsored',
+        action: 'info',
+      },
+    },
+    {
+      href: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
+      logo: {
+        light: FlyDashLogo,
+        dark: FlyDashLogo,
+      },
+      title: 'FlyDash',
+      description: 'AI-Powered Internal Tools & Dashboard Builder.',
+      badge: {
+        text: 'Sponsored',
         action: 'info',
       },
     },

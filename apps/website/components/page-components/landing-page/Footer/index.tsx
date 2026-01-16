@@ -7,7 +7,7 @@ import { Text } from '@/components/ui/text';
 import { Pressable } from '@/components/ui/pressable';
 import { Link } from '@/components/ui/link';
 import { Image } from '@/components/ui/image';
-import {useColorMode} from '@/app/provider';
+import { useColorMode } from '@/app/provider';
 
 const footerItems = [
   {
@@ -31,6 +31,14 @@ const footerItems = [
   {
     title: 'Products',
     links: [
+      {
+        title: 'AppLighter',
+        href: 'https://www.applighter.com/',
+      },
+      {
+        title: 'FlyDash',
+        href: 'https://flydash.io/',
+      },
       {
         title: 'AppLaunchKit',
         href: 'https://applaunchk.it/',
