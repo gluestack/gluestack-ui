@@ -10,7 +10,12 @@ export const copyComponentsDocs = (component: string, event: string) => {
   );
 
   // Skip all-components and bottomsheet pages - they should not be copied to new kitchen-sink
-  if (component === 'all-components' || component === 'bottomsheet') {
+  if (
+    component === 'all-components' ||
+    component === 'bottomsheet' ||
+    component === 'gluestack-ui-provider' ||
+    component === 'utils'
+  ) {
     return;
   }
 

@@ -13,6 +13,11 @@ const mapperConfig: MapperConfig = {
 };
 
 export const copyComponent = (component: string, event: string = 'added') => {
+  // Skip excluded components
+  if (EXCLUDED_DIRS.includes(component)) {
+    console.log(`Skipping excluded component: ${component}`);
+    return;
+  }
   processComponentChange(component, event, mapperConfig);
 };
 
@@ -22,6 +27,7 @@ const EXCLUDED_DIRS = [
   'gluestack-ui-provider',
   'utils',
   'my-component',
+  'bottomsheet',
 ];
 
 // Count variants by checking examples directory
@@ -120,10 +126,7 @@ function updateLayoutFile(sidebarComponentMap: Map<string, string>) {
     // Find components that need to be added
     const componentsToAdd: Array<{ path: string; title: string }> = [];
     sidebarComponentMap.forEach((title, componentPath) => {
-      if (
-        componentPath === 'all-components' ||
-        componentPath === 'bottomsheet'
-      ) {
+      if (EXCLUDED_DIRS.includes(componentPath)) {
         return;
       }
       if (!existingScreens.has(componentPath)) {
@@ -208,10 +211,7 @@ export const processSidebarFile = (filePath: string) => {
     // Iterate through components in sidebar.json
     sidebarComponentMap.forEach((title, componentPath) => {
       // Skip excluded components
-      if (
-        componentPath === 'all-components' ||
-        componentPath === 'bottomsheet'
-      ) {
+      if (EXCLUDED_DIRS.includes(componentPath)) {
         return;
       }
 
