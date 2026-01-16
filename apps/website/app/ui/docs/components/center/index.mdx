@@ -58,7 +58,7 @@ This is an illustration of **Center** component.
 import { View, ViewProps } from 'react-native';
 import React from 'react';
 import { centerStyle } from './styles';
-import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 type ICenterProps = ViewProps & VariantProps<typeof centerStyle>;
 
@@ -88,7 +88,7 @@ export { Center };
 import React from 'react';
 import { centerStyle } from './styles';
 
-import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 type ICenterProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof centerStyle>;
@@ -111,8 +111,8 @@ export { Center };
 ### Step 3: Copy and paste the following code into styles.tsx in your project.
 
 ```jsx
-import { tva } from '@gluestack-ui/core/nativewind-utils';
-import { isWeb } from '@gluestack-ui/core/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { isWeb } from '@gluestack-ui/utils/nativewind-utils';
 
 const baseStyle = isWeb ? 'flex flex-col relative z-0' : '';
 

@@ -13,9 +13,9 @@ import {
   ViewStyle,
 } from 'react-native';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
-import { tva } from '@gluestack-ui/core/nativewind-utils';
-import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
-import { withStyleContext } from '@gluestack-ui/core/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import {
   Motion,

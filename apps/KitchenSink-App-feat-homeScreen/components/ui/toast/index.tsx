@@ -1,29 +1,79 @@
 'use client';
 import React from 'react';
 import { createToastHook } from '@gluestack-ui/core/toast/creator';
-import { AccessibilityInfo, Text, View, ViewStyle } from 'react-native';
+import { AccessibilityInfo, Text, View } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import {
-  Motion,
-  AnimatePresence,
-  MotionComponentProps,
-} from '@legendapp/motion';
+import Animated, {
+  SlideInDown,
+  SlideInUp,
+  SlideOutDown,
+  SlideOutUp,
+  runOnJS,
+} from 'react-native-reanimated';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-type IMotionViewProps = React.ComponentProps<typeof View> &
-  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+const AnimatedView = Animated.createAnimatedComponent(View);
 
-const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+// Reanimated toast animation wrapper
+const ReanimatedToastWrapper = React.forwardRef<
+  React.ComponentRef<typeof AnimatedView>,
+  React.ComponentProps<typeof AnimatedView> & {
+    placement?: string;
+    onAnimationEnd?: () => void;
+  }
+>(function ReanimatedToastWrapper(
+  { placement = 'bottom', onAnimationEnd, children, ...props },
+  ref
+) {
+  // Determine animation direction based on placement
+  const isTop = placement?.includes('top');
 
-const useToast = createToastHook(MotionView, AnimatePresence);
+  // Always slide out up
+  const exitingAnimation = SlideOutUp.duration(150).withCallback((finished) => {
+    'worklet';
+    if (finished && onAnimationEnd) {
+      runOnJS(onAnimationEnd)();
+    }
+  });
+
+  return (
+    <AnimatedView
+      ref={ref}
+      entering={SlideInUp.duration(200).withInitialValues({
+        transform: [{ translateY: -100 }],
+      })}
+      exiting={SlideInUp.duration(200).withInitialValues({
+        transform: [{ translateY: 0 }],
+      })}
+      {...props}
+    >
+      {children}
+    </AnimatedView>
+  );
+});
+
+// Custom AnimatePresence for Reanimated (not needed but required by API)
+const ReanimatedAnimatePresence = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  return <>{children}</>;
+};
+
+const useToast = createToastHook(
+  ReanimatedToastWrapper,
+  ReanimatedAnimatePresence
+);
 const SCOPE = 'TOAST';
 
-cssInterop(MotionView, { className: 'style' });
+cssInterop(AnimatedView, { className: 'style' });
+cssInterop(ReanimatedToastWrapper, { className: 'style' });
 
 const toastStyle = tva({
   base: 'p-4 m-1 rounded-md gap-1 web:pointer-events-auto shadow-hard-5 border-border/90',

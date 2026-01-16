@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 import { StyleRegistry, createStyleRegistry } from 'styled-jsx';
 import { AppRegistry } from 'react-native-web';
-import { flush } from '@gluestack-ui/core/nativewind-utils';
+import { flush } from '@gluestack-ui/utils/nativewind-utils';
 
 export default function StyledJsxRegistry({
   children,

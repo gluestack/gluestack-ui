@@ -184,7 +184,7 @@ If you have an `app/registry.tsx` file, update the flush import:
 <CodeBlock code={`import { flush } from '@gluestack-ui/nativewind-utils/flush';`} language="typescript" />
 
 **After:**
-<CodeBlock code={`import { flush } from '@gluestack-ui/core/nativewind-utils';`} language="typescript" />
+<CodeBlock code={`import { flush } from '@gluestack-ui/utils/nativewind-utils';`} language="typescript" />
 
 ## Step 4: Install New Packages
 
@@ -263,8 +263,8 @@ import { createRadio } from '@gluestack-ui/core/radio/creator';`} language="type
 import { tva } from '@gluestack-ui/nativewind-utils/tva';`} language="typescript" />
 
 **After:**
-<CodeBlock code={`import { flush } from '@gluestack-ui/core/nativewind-utils';
-import { tva } from '@gluestack-ui/core/nativewind-utils';`} language="typescript" />
+<CodeBlock code={`import { flush } from '@gluestack-ui/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';`} language="typescript" />
 
 ## Step 7: Update Component Usage Patterns
 
@@ -293,7 +293,7 @@ Use these patterns to transform your imports:
         <InlineCode>{`from '@gluestack-ui/nativewind-utils/[utility]'`}</InlineCode>
       </TableCell>
       <TableCell>
-        <InlineCode>{`from '@gluestack-ui/core/nativewind-utils'`}</InlineCode>
+        <InlineCode>{`from '@gluestack-ui/utils/nativewind-utils'`}</InlineCode>
       </TableCell>
     </TableRow>
     <TableRow>

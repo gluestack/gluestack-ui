@@ -93,7 +93,7 @@ import React, {
   useMemo,
   forwardRef,
 } from 'react';
-import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { View, Dimensions, Platform, ViewProps } from 'react-native';
 import { gridStyle, gridItemStyle } from './styles';
 import { cssInterop } from 'nativewind';
@@ -380,7 +380,7 @@ export { Grid, GridItem };
 import React from 'react';
 import { gridStyle, gridItemStyle } from './styles';
 
-import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 type IGridProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof gridStyle> & {
@@ -449,8 +449,8 @@ export { Grid, GridItem };
 ### Step 3: Copy and paste the following code into your project.
 
 ```jsx
-import { tva } from '@gluestack-ui/core/nativewind-utils';
-import { isWeb } from '@gluestack-ui/core/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { isWeb } from '@gluestack-ui/utils/nativewind-utils';
 
 const gridBaseStyle = isWeb
   ? 'grid grid-cols-12'

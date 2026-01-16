@@ -5,8 +5,8 @@ import {
   tva,
   useStyleContext,
   withStyleContext,
-} from '@gluestack-ui/core/nativewind-utils';
-import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
+} from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import Animated, {
   FadeIn,
   FadeOut,

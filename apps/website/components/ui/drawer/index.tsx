@@ -3,12 +3,12 @@ import { createModal as createDrawer } from '@gluestack-ui/core/modal/creator';
 import React from 'react';
 import { Dimensions, Pressable, ScrollView, View } from 'react-native';
 
-import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
   tva,
   useStyleContext,
   withStyleContext,
-} from '@gluestack-ui/core/nativewind-utils';
+} from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import Animated, {
   SlideInLeft,
