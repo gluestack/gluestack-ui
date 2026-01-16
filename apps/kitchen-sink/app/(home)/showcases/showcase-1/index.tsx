@@ -1,5 +1,5 @@
-import React from 'react';
-import { ScrollView, Pressable, Dimensions } from 'react-native';
+import React, { useRef } from 'react';
+import { ScrollView, Pressable, Dimensions, Animated } from 'react-native';
 import { Box } from '@/components/ui/box';
 import { HStack } from '@/components/ui/hstack';
 import { VStack } from '@/components/ui/vstack';
@@ -43,6 +43,8 @@ const CARD_WIDTH = 223;
 const CARD_SPACING = 24;
 
 function Showcase1() {
+  const scrollX = useRef(new Animated.Value(0)).current;
+
   const cards = [
     {
       id: 1,
@@ -165,7 +167,7 @@ function Showcase1() {
       </VStack>
 
       {/* Horizontal Scrollable Cards */}
-      <ScrollView
+      <Animated.ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
@@ -174,46 +176,77 @@ function Showcase1() {
         }}
         snapToInterval={CARD_WIDTH + CARD_SPACING}
         decelerationRate="fast"
-        className="mb-4 max-h-[320px] overflow-hidden"
+        className="mb-4 max-h-[320px]"
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+          { useNativeDriver: true }
+        )}
+        scrollEventThrottle={16}
       >
-        {cards.map((card) => (
-          <Pressable key={card.id} className="active:opacity-90 max-h-[300px]">
-            <Box className=" aspect-[3/4]  border-[2.5px] border-[#C1FC15] rounded-lg p-3">
-              <Image
-                source={{ uri: card.image }}
-                alt="Reward Card"
-                className="h-full w-full"
-                style={{ resizeMode: 'cover' }}
-              />
+        {cards.map((card, index) => {
+          const inputRange = [
+            (index - 1) * (CARD_WIDTH + CARD_SPACING),
+            index * (CARD_WIDTH + CARD_SPACING),
+            (index + 1) * (CARD_WIDTH + CARD_SPACING),
+          ];
 
-              {/* Gradient Overlay - using opacity for subtle darkening */}
-              <Box className="absolute bottom-0 left-0 right-0 h-32 bg-black/20" />
+          const rotate = scrollX.interpolate({
+            inputRange,
+            outputRange: ['5deg', '0deg', '-5deg'],
+            extrapolate: 'clamp',
+          });
+          const translateY = scrollX.interpolate({
+            inputRange,
+            outputRange: [20, 0, 20],
+            extrapolate: 'clamp',
+          });
 
-              {/* Brand Badge */}
-              <Box className="absolute bottom-8 left-8">
-                <Box
-                  className="w-[72px] h-[72px] rounded-full bg-white items-center justify-center"
-                  style={{
-                    shadowColor: '#000',
-                    shadowOffset: { width: 0, height: 4 },
-                    shadowOpacity: 0.4,
-                    shadowRadius: 10,
-                    elevation: 10,
-                  }}
-                >
-                  <Box className="w-14 h-14 rounded-ful items-center justify-center">
-                    <Image
-                      source={{ uri: card.brandLogo }}
-                      alt={card.brand}
-                      className="w-full h-full rounded-full"
-                    />
+          return (
+            <Animated.View
+              key={card.id}
+              style={{
+                transform: [{ rotate }, { translateY }],
+              }}
+            >
+              <Pressable className="active:opacity-90 max-h-[300px]">
+                <Box className=" aspect-[3/4]  border-[2.5px] border-[#C1FC15] rounded-lg p-3">
+                  <Image
+                    source={{ uri: card.image }}
+                    alt="Reward Card"
+                    className="h-full w-full"
+                    style={{ resizeMode: 'cover' }}
+                  />
+
+                  {/* Gradient Overlay - using opacity for subtle darkening */}
+                  <Box className="absolute bottom-0 left-0 right-0 h-32 bg-black/20" />
+
+                  {/* Brand Badge */}
+                  <Box className="absolute bottom-8 left-8">
+                    <Box
+                      className="w-[72px] h-[72px] rounded-full bg-white items-center justify-center"
+                      style={{
+                        shadowColor: '#000',
+                        shadowOffset: { width: 0, height: 4 },
+                        shadowOpacity: 0.4,
+                        shadowRadius: 10,
+                        elevation: 10,
+                      }}
+                    >
+                      <Box className="w-14 h-14 rounded-ful items-center justify-center">
+                        <Image
+                          source={{ uri: card.brandLogo }}
+                          alt={card.brand}
+                          className="w-full h-full rounded-full"
+                        />
+                      </Box>
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
-            </Box>
-          </Pressable>
-        ))}
-      </ScrollView>
+              </Pressable>
+            </Animated.View>
+          );
+        })}
+      </Animated.ScrollView>
 
       {/* Partner Brands Section */}
       <VStack className="gap-5">
@@ -272,8 +305,7 @@ function Showcase1() {
               </Text>
               <Text className="text-black text-base font-bold">→</Text>
             </HStack>
-            </Pressable>
-            
+          </Pressable>
         </Box>
       </VStack>
     </Box>
