@@ -4,10 +4,15 @@ import { Icon } from '@/components/ui/icon';
 import { Image } from '@/components/ui/image';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
-import { ChevronDownIcon, ChevronLeftIcon, MinusIcon, PlusIcon, Share2Icon } from 'lucide-react-native';
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  MinusIcon,
+  PlusIcon,
+  Share2Icon,
+} from 'lucide-react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Pressable, ScrollView } from 'react-native';
-
 
 interface CartItem {
   id: number;
