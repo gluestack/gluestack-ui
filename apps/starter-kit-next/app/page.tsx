@@ -12,7 +12,7 @@ export default function Home() {
 
 const FeatureCard = ({ iconSvg, name, desc }: any) => {
   return (
-    <Box className="flex-column border border-w-1 border-outline-700 flex-1 m-2 p-4 rounded">
+    <Box className="flex-column border border-w-1 border-border/30 flex-1 m-2 p-4 rounded">
       <Box className="items-center flex flex-row">
         <Image
           src={`/${iconSvg}`}
@@ -21,11 +21,11 @@ const FeatureCard = ({ iconSvg, name, desc }: any) => {
           width={22}
           height={22}
         />
-        <Text className="text-typography-white font-medium ml-2 text-xl">
+        <Text className="text-primary-foreground font-medium ml-2 text-xl">
           {name}
         </Text>
       </Box>
-      <Text className="text-typography-400 mt-2">{desc}</Text>
+      <Text className="text-primary-foreground/70 mt-2">{desc}</Text>
     </Box>
   );
 };
@@ -38,10 +38,10 @@ const Container = () => {
       </Box>
       <Box className="flex flex-1 items-center my-16 mx-5 lg:my-24 lg:mx-32">
         <Box className="py-2 px-6 rounded-full items-center flex-column sm:flex-row md:self-start">
-          <Text className="text-typography-white font-normal">
+          <Text className="text-primary-foreground font-normal">
             Get started by editing
           </Text>
-          <Text className="text-typography-white font-medium ml-2">
+          <Text className="text-primary-foreground/70 font-medium ml-2">
             <code>./app/page.tsx</code>
           </Text>
         </Box>
