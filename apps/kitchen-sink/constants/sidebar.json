@@ -471,21 +471,6 @@
       },
       {
         "type": "Dropdown",
-        "title": "Sponsored",
-        "icons": {
-          "source": "lucide-react-native",
-          "name": "Handshake",
-          "headerTitle": "Sponsored"
-        },
-        "subsections": [
-          {
-            "title": "Sponsored Apps",
-            "path": "/ui/docs/sponsored/apps"
-          }
-        ]
-      },
-      {
-        "type": "Dropdown",
         "title": "MCP Server",
         "icons": {
           "source": "lucide-react-native",
