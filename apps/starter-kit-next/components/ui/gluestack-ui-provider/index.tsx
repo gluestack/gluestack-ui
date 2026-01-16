@@ -15,17 +15,17 @@ export function GluestackUIProvider({
   children?: React.ReactNode;
   style?: ViewProps['style'];
 }) {
-  // const { colorScheme, setColorScheme } = useColorScheme();
+  const { colorScheme, setColorScheme } = useColorScheme();
 
-  // useEffect(() => {
-  //   setColorScheme(mode);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [mode]);
+  useEffect(() => {
+    setColorScheme(mode);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode]);
 
   return (
     <View
       style={[
-        // config[colorScheme!],
+        config[colorScheme!],
         { flex: 1, height: '100%', width: '100%' },
         props.style,
       ]}
