@@ -31,31 +31,47 @@ const COLORS = {
   textSubtler: { dark: 'rgba(255,255,255,0.6)', light: 'rgba(0,0,0,0.5)' },
 } as const;
 
+// Helper function to convert RGB string to hex
+const rgbToHex = (rgb: string): string => {
+  const [r, g, b] = rgb.split(' ').map(Number);
+  return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+};
+
+// Theme preview colors extracted from theme configurations
+// These are the RGB values used in the actual theme configs
 const THEME_PREVIEW_COLORS: Record<
   ThemeName,
   { primary: string; secondary: string; tertiary: string }
 > = {
-  default: { primary: '#3b82f6', secondary: '#8b5cf6', tertiary: '#10b981' },
-  vercel: { primary: '#000000', secondary: '#525252', tertiary: '#a3a3a3' },
+  default: {
+    primary: rgbToHex('23 23 23'), // --primary
+    secondary: rgbToHex('245 245 245'), // --secondary
+    tertiary: rgbToHex('247 247 247'), // --accent
+  },
+  vercel: {
+    primary: rgbToHex('0 0 0'), // --primary (black)
+    secondary: rgbToHex('250 250 250'), // --secondary
+    tertiary: rgbToHex('245 245 245'), // --accent
+  },
   violetBloom: {
-    primary: '#7033ff',
-    secondary: '#8c5cff',
-    tertiary: '#1e69dc',
+    primary: rgbToHex('112 51 255'), // --primary
+    secondary: rgbToHex('237 240 244'), // --secondary
+    tertiary: rgbToHex('226 235 255'), // --accent
   },
   supabase: {
-    primary: '#72e3ad',
-    secondary: '#10b981',
-    tertiary: '#3b82f6',
+    primary: rgbToHex('114 227 173'), // --primary (green)
+    secondary: rgbToHex('253 253 253'), // --secondary
+    tertiary: rgbToHex('237 237 237'), // --accent
   },
   claude: {
-    primary: '#c96442',
-    secondary: '#b05730',
-    tertiary: '#9c87f5',
+    primary: rgbToHex('201 100 66'), // --primary (terracotta)
+    secondary: rgbToHex('233 230 220'), // --secondary
+    tertiary: rgbToHex('237 233 222'), // --accent
   },
   twitter: {
-    primary: '#1e9df1',
-    secondary: '#1da1f2',
-    tertiary: '#1c9cf0',
+    primary: rgbToHex('30 157 241'), // --primary (blue)
+    secondary: rgbToHex('15 20 25'), // --secondary
+    tertiary: rgbToHex('227 236 246'), // --accent
   },
 };
 
@@ -148,9 +164,7 @@ const ThemePieChart: React.FC<ThemePieChartProps> = ({
 
   return (
     <Animated.View
-      entering={FadeInDown.duration(400)
-        .delay(index * 60)
-        .springify()}
+      entering={FadeInDown.duration(200)}
     >
       <Animated.View style={animatedStyle}>
         <Pressable
@@ -186,11 +200,7 @@ const ThemePieChart: React.FC<ThemePieChartProps> = ({
             </Svg>
           </View>
           <Text
-            className="text-[11px] mt-1.5 text-center"
-            style={{
-              color: isActive ? colors.primary : getColor('textSubtle', isDark),
-              fontWeight: isActive ? '600' : '500',
-            }}
+            className="text-[11px] mt-1.5 text-center text-foreground"
           >
             {themeConfig.name}
           </Text>
@@ -235,7 +245,7 @@ const SegmentButton: React.FC<SegmentButtonProps> = ({
       <Icon
         as={icon}
         size="sm"
-        className={isActive ? activeIconClass : 'text-typography-400'}
+        className={isActive ? activeIconClass : 'text-foreground/40'}
       />
       <Text
         className="ml-2 text-sm"
@@ -262,13 +272,13 @@ const APPEARANCE_SEGMENTS: Array<{
     mode: 'light',
     icon: Sun,
     label: 'Light',
-    activeIconClass: 'text-warning-500',
+    activeIconClass: 'text-primary',
   },
   {
     mode: 'dark',
     icon: Moon,
     label: 'Dark',
-    activeIconClass: 'text-primary-400',
+    activeIconClass: 'text-primary',
   },
 ];
 
@@ -323,7 +333,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         className="w-8 h-8 rounded-lg items-center justify-center mr-3"
         style={{ backgroundColor: getColor('surface', isDark) }}
       >
-        <Icon as={icon} size="sm" className="text-primary-500" />
+        <Icon as={icon} size="sm" className="text-primary" />
       </View>
     )}
     <View className="flex-1">
@@ -364,16 +374,16 @@ const ActiveThemeIndicator: React.FC<ActiveThemeIndicatorProps> = ({
     >
       <View
         className="w-3 h-3 rounded-full mr-2"
-        // style={{ backgroundColor: colors.primary }}
+        style={{ backgroundColor: colors.primary }}
       />
       <Text
         className="text-sm"
         style={{ color: getColor('textSubtler', isDark) }}
       >
         Active:{' '}
-        {/* <Text style={{ color: colors.primary, fontWeight: '600' }}>
+        <Text className='text-primary font-semibold'>
           {config.name}
-        </Text> */}
+        </Text>
       </Text>
     </View>
   );
@@ -395,10 +405,10 @@ export default function ThemesTab() {
         {/* Header */}
         <Animated.View entering={FadeInDown.duration(500).springify()}>
           <VStack space="xs">
-            <Heading size="2xl" className="text-typography-900">
+            <Heading size="2xl" className="text-foreground">
               Appearance
             </Heading>
-            <Text className="text-typography-500 text-base">
+            <Text className="text-foreground/50 text-base">
               Personalize your visual experience
             </Text>
           </VStack>
@@ -426,7 +436,7 @@ export default function ThemesTab() {
             delay={150}
           />
           <Animated.View
-            entering={FadeInDown.duration(400).delay(200).springify()}
+            entering={FadeInDown.duration(200).delay(100)}
             className="rounded-2xl p-4"
             style={{
               backgroundColor: getColor('surface', isDark),
