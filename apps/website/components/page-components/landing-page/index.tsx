@@ -3,7 +3,6 @@ import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { Heading } from '@/components/ui/heading';
 
-import MeetCreators from './MeetCreators';
 import { Newsletter } from './Newsletter';
 import Footer from './Footer';
 import Inspiration from './Inspiration';
@@ -74,7 +73,6 @@ const App = ({ referrer }: { referrer: string }) => {
             <SocialMediaGridTestimonial />
             <Inspiration />
             <Newsletter newsletterAvatarData={developersData} />
-            <MeetCreators geekyantsLink="https://geekyants.com/hire-react-native-developers?utm_source=gluestack.io&utm_medium=referral&utm_campaign=partner_site" />
             <HireTeam />
           </VStack>
           {/* GeekyAnts Hire Team Banner */}

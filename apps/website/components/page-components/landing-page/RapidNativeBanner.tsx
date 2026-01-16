@@ -9,17 +9,18 @@ export default function RapidNativeBanner() {
     <Link
       href="https://rapidnative.com/?utm_source=gluestack.io&utm_medium=banner&utm_campaign=brand-awareness"
       target="_blank"
-      className="absolute top-5 left-1/2 -translate-x-1/2 z-10 w-full max-w-[620px]"
+      className="absolute top-5 left-1/2 -translate-x-1/2 z-10"
     >
-      <HStack className="bg-primary-500/90 backdrop-blur-sm rounded-full px-4 sm:px-8 py-2.5 sm:py-3.5 items-center justify-center gap-2 sm:gap-3 hover:bg-primary-600/95 transition-all duration-200 shadow-sm mx-auto">
-        <Text className="text-sm sm:text-base font-medium text-typography-0 text-center">
-          🎉 Prompt to React Native UI available now!
-        </Text>
-        <Icon
-          as={ArrowRightIcon}
-          className="h-4 w-4 sm:h-5 sm:w-5 text-typography-0 flex-shrink-0"
-        />
-      </HStack>
+      <div className="relative">
+        <HStack className="bg-primary-500/90 backdrop-blur-sm rounded-full px-4 sm:px-8 py-2.5 sm:py-3.5 items-center justify-center gap-2 sm:gap-3 hover:bg-primary-600/95 transition-all duration-200 shadow-sm mx-auto">
+          <Text className="text-[8px] font-semibold text-primary-500 bg-typography-0 px-2 py-0.5 rounded-lg uppercase tracking-wide">
+            Partner
+          </Text>
+          <Text className="text-sm sm:text-base font-medium text-typography-0 text-center">
+            RapidNative: Generate React Native apps with Prompts!
+          </Text>
+        </HStack>
+      </div>
     </Link>
   );
 }
