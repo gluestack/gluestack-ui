@@ -131,7 +131,6 @@ const Popover = React.forwardRef<
       placement={placement}
       {...props}
       entering={FadeIn.duration(200).withInitialValues({
-        transform: [{ translateY: placement === 'bottom' ? -10 : -10 }],
         opacity: 0,
       })}
       exiting={FadeOut.duration(150)}
