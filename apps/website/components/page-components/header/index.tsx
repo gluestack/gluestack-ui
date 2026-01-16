@@ -22,6 +22,7 @@ import AppLaunchKitLogoDark from '@/public/icon/logo/app-launch-kit/light-mode.s
 import StarterKitLogo from '@/public/icon/logo/gluestack/logo-dark.svg';
 import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
 import AppMarketLogo from '@/public/icon/logo/theappmarket/appmarket-logo.svg';
+import GluestackMarketLogo from '@/public/icon/logo/gluestack-market/logo.png';
 import RapidNativelogo from '@/public/icon/logo/rapidnative/logo.png';
 import AppLighterLogo from '@/public/icon/logo/applighter/logo.png';
 import FlyDashLogo from '@/public/icon/logo/flydash/logo.png';
@@ -94,19 +95,6 @@ const Header = ({
       },
     },
     {
-      href: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
-      logo: {
-        light: FlyDashLogo,
-        dark: FlyDashLogo,
-      },
-      title: 'FlyDash',
-      description: 'AI-Powered Internal Tools & Dashboard Builder.',
-      badge: {
-        text: 'Partner',
-        action: 'info',
-      },
-    },
-    {
       href: 'https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation',
       logo: {
         light: StarterKitLogo,
@@ -120,27 +108,27 @@ const Header = ({
       },
     },
     {
-      href: 'https://theappmarket.io',
+      href: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
       logo: {
-        light: AppMarketLogo,
-        dark: AppMarketLogo,
+        light: FlyDashLogo,
+        dark: FlyDashLogo,
       },
-      title: 'theappmarket',
-      description:
-        'Transform your app idea into reality with our production-ready, cross-platform free and premium React Native templates and UI kits, built with Expo, gluestack (NativeWind), and TypeScript.',
+      title: 'FlyDash',
+      description: 'AI-Powered Internal Tools & Dashboard Builder.',
       badge: {
-        text: 'PAID',
+        text: 'Partner',
         action: 'info',
       },
     },
     {
-      href: 'https://applaunchk.it/',
+      href: 'https://market.gluestack.io/',
       logo: {
-        light: AppLaunchKitLogo,
-        dark: AppLaunchKitLogoDark,
+        light: GluestackMarketLogo,
+        dark: GluestackMarketLogo,
       },
-      title: 'AppLaunchKit',
-      description: 'Fullstack Universal Template for Android, iOS and Web',
+      title: 'gluestack market',
+      description:
+        'Transform your app idea into reality with our production-ready, cross-platform free and premium React Native templates and UI kits, built with Expo, gluestack (NativeWind), and TypeScript.',
       badge: {
         text: 'PAID',
         action: 'info',
@@ -294,7 +282,7 @@ const Header = ({
                                   isExternal
                                   href={option.href}
                                 >
-                                  <HStack className="gap-3 justify-between w-full flex items-center">
+                                  <HStack className="gap-3 justify-between w-full flex items-start mt-1">
                                     <Image
                                       alt="product logo"
                                       className="w-6 h-6 mt-1"
@@ -484,9 +472,7 @@ const Header = ({
                   href="https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=banner_docs&utm_campaign=brand-awareness"
                   className="border border-outline-200 px-4 py-1.5 xl:flex hidden rounded"
                 >
-                  <Text className="text-sm text-typography-900">
-                    gluestack-ui pro
-                  </Text>
+                  <Text className="text-sm text-typography-900">Pro</Text>
                 </Link>
               )}
               {!pathname.includes('/docs') ? (
@@ -515,7 +501,7 @@ const Header = ({
                     className="bg-primary-500 px-4 py-1.5 xl:flex hidden rounded"
                   >
                     <Text className="text-sm text-typography-0">
-                      Prompt to React Native UI
+                      Prompt to React Native
                     </Text>
                   </Link>
                 </HStack>

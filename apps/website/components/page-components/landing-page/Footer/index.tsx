@@ -26,6 +26,10 @@ const footerItems = [
         title: 'Blogs',
         href: '/blogs',
       },
+      {
+        title: 'Support',
+        href: '/support',
+      },
     ],
   },
   {
@@ -71,11 +75,22 @@ const footerItems = [
     ],
   },
   {
-    title: 'Contact',
+    title: 'Partners',
     links: [
       {
-        title: 'Support',
-        href: '/support',
+        title: 'RapidNative',
+        href: 'https://rapidnative.com/',
+        isExternal: true,
+      },
+      {
+        title: 'FlyDash',
+        href: 'https://flydash.io/',
+        isExternal: true,
+      },
+      {
+        title: 'AppLighter',
+        href: 'https://www.applighter.com/',
+        isExternal: true,
       },
     ],
   },

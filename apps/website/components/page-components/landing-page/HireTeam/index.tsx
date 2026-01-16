@@ -42,7 +42,9 @@ const HireTeam = () => {
 
           {/* Main Heading */}
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Built by GeekyAnts. Backed by expertise.
+            Built by GeekyAnts.
+            <br />
+            Backed by expertise.
           </h2>
 
           {/* Description */}
@@ -59,7 +61,7 @@ const HireTeam = () => {
         <div className="flex-1 bg-gradient-to-r from-[#000000] to-[#161616] py-12 px-8 md:px-10 rounded-xl shadow-2xl">
           {/* Title */}
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-            Our Partner Apps
+            Our Partners
           </h3>
 
           {/* Subtitle */}
