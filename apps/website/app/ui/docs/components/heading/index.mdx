@@ -50,7 +50,7 @@ This is an illustration of **Heading** component.
 import React, { forwardRef, memo } from 'react';
 import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
 import { headingStyle } from './styles';
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
 import { cssInterop } from 'nativewind';
 
 type IHeadingProps = VariantProps<typeof headingStyle> &
@@ -277,7 +277,7 @@ export { Heading };
 ```jsx
 import React, { forwardRef, memo } from 'react';
 import { headingStyle } from './styles';
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
 type IHeadingProps = VariantProps<typeof headingStyle> &
   React.ComponentPropsWithoutRef<'h1'> & {
     as?: React.ElementType;
@@ -483,8 +483,8 @@ export { Heading };
 ### Step 3: Copy and paste the following code into styles.tsx in your project.
 
 ```jsx
-import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
-import { isWeb } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import { tva } from '@gluestack-ui/core/nativewind-utils';
+import { isWeb } from '@gluestack-ui/core/nativewind-utils';
 const baseStyle = isWeb
   ? 'font-sans tracking-sm bg-transparent border-0 box-border display-inline list-none margin-0 padding-0 position-relative text-start no-underline whitespace-pre-wrap word-wrap-break-word'
   : '';

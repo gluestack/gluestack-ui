@@ -1,7 +1,7 @@
 import React from 'react';
 import { LI } from '@expo/html-elements';
 import { cssInterop } from 'nativewind';
-import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import { tva } from '@gluestack-ui/core/nativewind-utils';
 
 cssInterop(LI, { className: 'style' });
 

@@ -68,9 +68,9 @@ This is an illustration of **Card** component.
 ```jsx
 'use client';
 import React from 'react';
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
 import { View } from 'react-native';
-import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import { tva } from '@gluestack-ui/core/nativewind-utils';
 
 const cardStyle = tva({
   base: 'flex-col bg-background border border-border gap-6 rounded-xl shadow-sm p-4',
@@ -99,7 +99,7 @@ export { Card };
 ```jsx
 import React from 'react';
 import { cardStyle } from './styles';
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
 
 type ICardProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof cardStyle>;
@@ -126,8 +126,8 @@ export { Card };
 ### Step 3: Copy and paste the following code into styles.tsx in your project.
 
 ```jsx
-import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
-import { isWeb } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import { tva } from '@gluestack-ui/core/nativewind-utils';
+import { isWeb } from '@gluestack-ui/core/nativewind-utils';
 const baseStyle = isWeb ? 'flex flex-col relative z-0' : '';
 
 export const cardStyle = tva({

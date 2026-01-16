@@ -66,7 +66,7 @@ This is an illustration of **Skeleton** component.
 
 ```jsx
 import React, { forwardRef } from 'react';
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
 import { Animated, Easing, Platform, View } from 'react-native';
 import { skeletonStyle, skeletonTextStyle } from './styles';
 
@@ -211,7 +211,7 @@ export { Skeleton, SkeletonText };
 import React from 'react';
 import { skeletonStyle, skeletonTextStyle } from './styles';
 
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
 
 type ISkeletonProps = React.ComponentPropsWithoutRef<'div'> &
   VariantProps<typeof skeletonStyle> & {
@@ -317,7 +317,7 @@ export { Skeleton, SkeletonText };
 ### Step 3: Copy and paste the following code into styles.tsx in your project.
 
 ```jsx
-import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import { tva } from '@gluestack-ui/core/nativewind-utils';
 
 export const skeletonStyle = tva({
   base: 'w-full h-full shadow',
