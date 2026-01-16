@@ -466,6 +466,14 @@
           {
             "title": "Starter Kit",
             "path": "/ui/docs/apps/starter-kit"
+          },
+          {
+            "title": "AppLighter",
+            "path": "https://www.applighter.com/"
+          },
+          {
+            "title": "FlyDash",
+            "path": "https://flydash.io/"
           }
         ]
       },
