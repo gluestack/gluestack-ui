@@ -163,9 +163,7 @@ const ThemePieChart: React.FC<ThemePieChartProps> = ({
   const { radius, center, size } = PIE_CHART;
 
   return (
-    <Animated.View
-      entering={FadeInDown.duration(200)}
-    >
+    <Animated.View entering={FadeInDown.duration(200)}>
       <Animated.View style={animatedStyle}>
         <Pressable
           onPress={onPress}
@@ -199,9 +197,7 @@ const ThemePieChart: React.FC<ThemePieChartProps> = ({
               )}
             </Svg>
           </View>
-          <Text
-            className="text-[11px] mt-1.5 text-center text-foreground"
-          >
+          <Text className={`text-[11px] mt-1.5 text-center text-foreground ${isActive ? 'text-primary font-semibold' : 'text-foreground/50 font-medium'}`}>
             {themeConfig.name}
           </Text>
         </Pressable>
@@ -381,9 +377,7 @@ const ActiveThemeIndicator: React.FC<ActiveThemeIndicatorProps> = ({
         style={{ color: getColor('textSubtler', isDark) }}
       >
         Active:{' '}
-        <Text className='text-primary font-semibold'>
-          {config.name}
-        </Text>
+        <Text className="text-primary font-semibold">{config.name}</Text>
       </Text>
     </View>
   );
@@ -443,7 +437,7 @@ export default function ThemesTab() {
               ...createCardShadowStyle(isDark),
             }}
           >
-            <View className="flex-row flex-wrap">
+            <View className="flex-row flex-wrap gap-2">
               {availableThemes.map((theme, index) => (
                 <View key={theme.name} className="mb-4">
                   <ThemePieChart
