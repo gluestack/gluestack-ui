@@ -17,7 +17,6 @@ import Copied from './Copied';
 import Copy from './Copy';
 import Figma from './Figma';
 import Unitools from './Unitools';
-import { Image } from '@/components/ui/image';
 
 
 function Card1() {
@@ -150,9 +149,9 @@ function Card1() {
                   href="/ui/docs/getting-started/vscode-extensions"
                   style={{
                     borderRadius: 8,
-                    height: 72,
+                    height: 100,
                   }}
-                  className="bg-secondary-0"
+                  className="bg-secondary-0 flex items-center justify-center"
                 >
                   <VsCode />
                 </NextLink>
@@ -170,7 +169,10 @@ function Card1() {
                 <Link
                   href="https://www.figma.com/@gluestack"
                   isExternal
-                  className="rounded-lg bg-secondary-0"
+                  style={{
+                    height: 100,
+                  }}
+                  className="rounded-lg bg-secondary-0 flex items-center justify-center"
                 >
                   <Figma />
                 </Link>
@@ -193,11 +195,10 @@ function Card1() {
                     className="rounded-lg bg-secondary-0 flex-1 min-w-[120px] flex flex-col items-center gap-2 px-3 py-4 hover:bg-background-100 transition-colors"
                   >
                     <Box className="h-6 w-6 relative">
-                      <Image
+                      <img
                         src={kit.logo}
                         alt={`${kit.name} logo`}
-                        fill
-                        className="object-contain"
+                        className="object-contain absolute inset-0 w-full h-full"
                       />
                     </Box>
                     <VStack className="gap-0.5 items-center">
