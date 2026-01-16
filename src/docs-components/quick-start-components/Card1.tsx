@@ -17,6 +17,8 @@ import Copied from './Copied';
 import Copy from './Copy';
 import Figma from './Figma';
 import Unitools from './Unitools';
+import { Image } from '@/components/ui/image';
+
 
 function Card1() {
   const [copied, setCopied] = useState(false);
@@ -30,6 +32,27 @@ function Card1() {
       setCopied(false);
     }, 2000);
   };
+
+  const partnerKits = [
+    {
+      name: 'RapidNative',
+      logo: '/icon/logo/rapidnative/logo.png',
+      url: 'https://rapidnative.com/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
+      description: 'Generate native apps instantly with AI prompts.',
+    },
+    {
+      name: 'AppLighter',
+      logo: '/icon/logo/applighter/logo.png',
+      url: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
+      description: 'AI-Ready Full-Stack Expo Starter Kit.',
+    },
+    {
+      name: 'FlyDash',
+      logo: '/icon/logo/flydash/logo.png',
+      url: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
+      description: 'AI-Powered Internal Tools & Dashboard Builder.',
+    },
+  ];
 
   return (
     <Box className="py-6 flex-1 ">
@@ -159,31 +182,34 @@ function Card1() {
           <Box className="p-6">
             <VStack space="lg">
               <Text className="text-xl font-bold font-plus-jakarta">
-                Head Starter Kit
+                Our Partners
               </Text>
-              <HStack className="flex-wrap gap-2.5">
-                <Link
-                  href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/apps/starter-kit-next`}
-                  isExternal
-                  className="rounded-lg bg-secondary-0"
-                >
-                  <Next />
-                </Link>
-                <Link
-                  href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/apps/starter-kit-expo`}
-                  isExternal
-                  className="rounded-lg bg-secondary-0"
-                >
-                  <Expo1 />
-                </Link>
-                <Link
-                  href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/apps/starter-kit-universal`}
-                  isExternal
-                  className="rounded-lg bg-secondary-0"
-                  disabled // disabled until we make a new universal starter kit
-                >
-                  <Unitools />
-                </Link>
+              <HStack className="flex-wrap gap-3">
+                {partnerKits.map((kit) => (
+                  <Link
+                    key={kit.name}
+                    href={kit.url}
+                    isExternal
+                    className="rounded-lg bg-secondary-0 flex-1 min-w-[120px] flex flex-col items-center gap-2 px-3 py-4 hover:bg-background-100 transition-colors"
+                  >
+                    <Box className="h-6 w-6 relative">
+                      <Image
+                        src={kit.logo}
+                        alt={`${kit.name} logo`}
+                        fill
+                        className="object-contain"
+                      />
+                    </Box>
+                    <VStack className="gap-0.5 items-center">
+                      <Text className="text-sm font-bold text-typography-900">
+                        {kit.name}
+                      </Text>
+                      <Text className="text-xs text-typography-500 text-center">
+                        {kit.description}
+                      </Text>
+                    </VStack>
+                  </Link>
+                ))}
               </HStack>
             </VStack>
           </Box>

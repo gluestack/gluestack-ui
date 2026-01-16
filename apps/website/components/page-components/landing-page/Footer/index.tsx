@@ -36,14 +36,6 @@ const footerItems = [
     title: 'Products',
     links: [
       {
-        title: 'AppLighter',
-        href: 'https://www.applighter.com/',
-      },
-      {
-        title: 'FlyDash',
-        href: 'https://flydash.io/',
-      },
-      {
         title: 'AppLaunchKit',
         href: 'https://applaunchk.it/',
       },
