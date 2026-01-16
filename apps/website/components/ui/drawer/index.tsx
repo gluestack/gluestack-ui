@@ -1,14 +1,14 @@
 'use client';
-import { createModal as createDrawer } from '@gluestack-ui/core-v4-experimental/modal/creator';
+import { createModal as createDrawer } from '@gluestack-ui/core/modal/creator';
 import React from 'react';
 import { Dimensions, Pressable, ScrollView, View } from 'react-native';
 
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
 import {
   tva,
   useStyleContext,
   withStyleContext,
-} from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+} from '@gluestack-ui/core/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import Animated, {
   SlideInLeft,

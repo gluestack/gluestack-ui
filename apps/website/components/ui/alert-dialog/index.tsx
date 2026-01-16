@@ -1,12 +1,12 @@
 'use client';
 import React from 'react';
-import { createAlertDialog } from '@gluestack-ui/core-v4-experimental/alert-dialog/creator';
+import { createAlertDialog } from '@gluestack-ui/core/alert-dialog/creator';
 import {
   tva,
   useStyleContext,
   withStyleContext,
-} from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+} from '@gluestack-ui/core/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
 import Animated, {
   FadeIn,
   FadeOut,

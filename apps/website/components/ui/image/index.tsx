@@ -1,8 +1,8 @@
 import React from 'react';
-import { createImage } from '@gluestack-ui/core-v4-experimental/image/creator';
+import { createImage } from '@gluestack-ui/core/image/creator';
 import { Platform, Image as RNImage } from 'react-native';
-import { tva } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
-import type { VariantProps } from '@gluestack-ui/utils-v4-experimental/nativewind-utils';
+import { tva } from '@gluestack-ui/core/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/core/nativewind-utils';
 
 const imageStyle = tva({
   base: 'max-w-full',
