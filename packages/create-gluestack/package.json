@@ -1,6 +1,6 @@
 {
   "name": "create-gluestack",
-  "version": "3.0.2",
+  "version": "4.0.0-alpha.0",
   "main": "./dist/index.js",
   "bin": {
     "create-gluestack": "./dist/index.js"
