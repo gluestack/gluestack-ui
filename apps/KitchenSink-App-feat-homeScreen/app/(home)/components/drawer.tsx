@@ -29,8 +29,8 @@ const [showDrawer, setShowDrawer] = React.useState(false);
       </Button>
       <Drawer
         isOpen={showDrawer}
-        size="sm"
-        anchor="left"
+        size="md"
+        anchor="top"
         onClose={() => {
           setShowDrawer(false);
         }}

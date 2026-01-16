@@ -184,21 +184,21 @@ const DrawerContent = React.forwardRef<
   // Select entering and exiting animations based on anchor
   const enteringAnimation =
     parentAnchor === 'left'
-      ? SlideInLeft.duration(250).springify().damping(20).stiffness(300)
+      ? SlideInLeft.duration(150)
       : parentAnchor === 'right'
-        ? SlideInRight.duration(250).springify().damping(20).stiffness(300)
+        ? SlideInRight.duration(150)
         : parentAnchor === 'top'
-          ? SlideInUp.duration(250).springify().damping(20).stiffness(300)
-          : SlideInDown.duration(250).springify().damping(20).stiffness(300);
+          ? SlideInUp.duration(150)
+          : SlideInDown.duration(150);
 
   const exitingAnimation =
     parentAnchor === 'left'
-      ? SlideOutLeft.duration(200)
+      ? SlideOutLeft.duration(150)
       : parentAnchor === 'right'
-        ? SlideOutRight.duration(200)
+        ? SlideOutRight.duration(150)
         : parentAnchor === 'top'
-          ? SlideOutUp.duration(200)
-          : SlideOutDown.duration(200);
+          ? SlideOutUp.duration(150)
+          : SlideOutDown.duration(150);
 
   return (
     <UIDrawer.Content
