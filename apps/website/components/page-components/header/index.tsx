@@ -76,7 +76,7 @@ const Header = ({
       title: 'RapidNative',
       description: 'Generate native apps instantly with AI prompts.',
       badge: {
-        text: 'PAID',
+        text: 'Partner',
         action: 'info',
       },
     },
@@ -89,7 +89,7 @@ const Header = ({
       title: 'AppLighter',
       description: 'AI-Ready Full-Stack Expo Starter Kit.',
       badge: {
-        text: 'Sponsored',
+        text: 'Partner',
         action: 'info',
       },
     },
@@ -102,7 +102,7 @@ const Header = ({
       title: 'FlyDash',
       description: 'AI-Powered Internal Tools & Dashboard Builder.',
       badge: {
-        text: 'Sponsored',
+        text: 'Partner',
         action: 'info',
       },
     },

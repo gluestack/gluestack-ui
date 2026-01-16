@@ -466,21 +466,14 @@
           {
             "title": "Starter Kit",
             "path": "/ui/docs/apps/starter-kit"
-          }
-        ]
-      },
-      {
-        "type": "Dropdown",
-        "title": "Sponsored",
-        "icons": {
-          "source": "lucide-react-native",
-          "name": "Handshake",
-          "headerTitle": "Sponsored"
-        },
-        "subsections": [
+          },
           {
-            "title": "Sponsored Apps",
-            "path": "/ui/docs/sponsored/apps"
+            "title": "Applighter",
+            "path": "https://www.applighter.com/"
+          },
+          {
+            "title": "FlyDash",
+            "path": "https://flydash.io/"
           }
         ]
       },
