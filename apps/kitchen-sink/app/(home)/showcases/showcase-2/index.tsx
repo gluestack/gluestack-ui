@@ -97,12 +97,19 @@ function Showcase2() {
       source={{
         uri: 'https://images.unsplash.com/photo-1695728213930-93ced4114eb0?q=80&w=985&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       }}
+      alt="Showcase 2 Background"
       className="flex-1 pt-safe"
       resizeMode="cover"
     >
       {/* Top Badge with Chevron */}
       <Box className="items-center pt-12 pb-6">
-        <Image source={{ uri: 'https://avatars.githubusercontent.com/u/120183344?s=200&v=4' }} className="w-16 h-16 rounded-full" />
+        <Image
+          source={{
+            uri: 'https://avatars.githubusercontent.com/u/120183344?s=200&v=4',
+          }}
+          className="w-16 h-16 rounded-full"
+          alt="Showcase 2 Avatar"
+        />
       </Box>
 
       {/* Title Section */}
