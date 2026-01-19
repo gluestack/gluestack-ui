@@ -32,10 +32,10 @@ import {
   getComponentByPath,
 } from '@/constants/components-list';
 import { useRouter, usePathname } from 'expo-router';
-import { cssInterop } from 'react-native-css-interop';
+import { cssInterop } from 'nativewind';
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 const AnimatedView = Animated.createAnimatedComponent(View);
-cssInterop(AnimatedView, { className: 'style' });
+Platform.OS === 'web' ? cssInterop(AnimatedView, { className: 'style' }) : null;
 
 interface UsageVariantFlatListProps {
   data: UsageVariant[];

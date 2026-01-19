@@ -26,8 +26,9 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { cssInterop } from 'nativewind';
 const AnimatedView = Animated.createAnimatedComponent(View);
-
+Platform.OS === 'web' ? cssInterop(AnimatedView, { className: 'style' }) : null;
 // Theme color mapping for the theme button indicator
 const THEME_COLORS: Record<ThemeName, string[]> = {
   default: ['#3b82f6', '#8b5cf6'], // Blue to purple gradient
@@ -104,7 +105,7 @@ const BottomControlBar = memo(
     const { width, height } = useWindowDimensions();
 
     const { reduceTransparencyEnabled } = useAccessibilityInfo();
-    const applyBlur = !reduceTransparencyEnabled;
+    const applyBlur = !reduceTransparencyEnabled && Platform.OS !== 'web';
 
     // Autofocus search input when component menu opens
     useEffect(() => {
@@ -294,7 +295,7 @@ const BottomControlBar = memo(
                   .springify()
                   .damping(40)
                   .stiffness(200)}
-                exiting={FadeOut.duration(50)}
+                exiting={FadeOut.duration(150)}
                 className="absolute bg-popover border border-border rounded-2xl"
                 style={{
                   bottom: height - componentButtonLayout.y + 12,
@@ -408,7 +409,7 @@ const BottomControlBar = memo(
                 .springify()
                 .damping(40)
                 .stiffness(200)}
-              exiting={FadeOut.duration(50)}
+              exiting={FadeOut.duration(150)}
               className="absolute bg-card rounded-3xl p-6"
               style={{
                 bottom: height - themeButtonLayout.y + 12,
