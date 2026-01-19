@@ -18,15 +18,15 @@ const toastStyle = tva({
   base: 'p-4 m-1 rounded-md gap-1 web:pointer-events-auto border-border',
   variants: {
     action: {
-      error: 'bg-destructive text-destructive-foreground',
-      warning: 'bg-accent text-accent-foreground',
-      success: 'bg-secondary text-secondary-foreground',
+      error: 'bg-popover text-popover-foreground',
+      warning: 'bg-popover text-popover-foreground',
+      success: 'bg-popover text-popover-foreground',
       info: 'bg-popover text-popover-foreground',
-      muted: 'bg-muted text-muted-foreground',
+      muted: 'bg-popover text-popover-foreground',
     },
 
     variant: {
-      solid: '',
+      solid: 'border border-border bg-popover shadow-soft-4',
       outline: 'border border-border bg-popover',
     },
   },
