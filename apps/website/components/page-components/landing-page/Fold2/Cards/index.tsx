@@ -73,7 +73,7 @@ const CardsContent = ({ show }: { show: boolean }) => {
             </VStack>
             <Divider
               orientation="vertical"
-              className="mx-2.5 h-auto w-[0.954px] bg-outline-100"
+              className="mx-2.5 h-auto w-[0.954px]"
             />
             <VStack className="items-center flex-1 gap-1">
               <Text className="text-sm font-bold leading-[18px] -tracking-[0.2px] text-foreground">
@@ -85,7 +85,7 @@ const CardsContent = ({ show }: { show: boolean }) => {
             </VStack>
             <Divider
               orientation="vertical"
-              className="mx-2.5 h-auto w-[0.954px] bg-outline-100"
+              className="mx-2.5 h-auto w-[0.954px]"
             />
             <VStack className="items-center flex-1 gap-1">
               <Text className="text-sm font-bold leading-[18px] -tracking-[0.2px] text-foreground">
@@ -99,12 +99,12 @@ const CardsContent = ({ show }: { show: boolean }) => {
         </VStack>
 
         <Alert
-          className="bg-info-0 gap-2 items-center justify-center"
+          className="bg-[rgb(236,248,254)] dark:bg-[rgb(3,38,56)] border-0 gap-2 items-center justify-center"
           action="info"
           variant="solid"
         >
-          <AlertIcon as={AlertCircleIcon} />
-          <AlertText className="text-info-800 text-base font-medium leading-normal flex-none">
+          <AlertIcon className="dark:text-[rgb(162,221,250)] text-[rgb(7,90,131)]" as={AlertCircleIcon} />
+          <AlertText className="dark:text-[rgb(162,221,250)] text-[rgb(7,90,131)]  text-base font-medium leading-normal flex-none">
             No internet connection
           </AlertText>
         </Alert>
@@ -149,7 +149,7 @@ const CardsContent = ({ show }: { show: boolean }) => {
             <Button variant="outline" size="sm">
               <ButtonText>Deny</ButtonText>
             </Button>
-            <Button variant="solid" action="primary" size="sm">
+            <Button  >
               <ButtonText>Accept all</ButtonText>
             </Button>
           </HStack>

@@ -403,8 +403,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
 
             <Alert
               className="flex-col items-start gap-1 rounded"
-              action="success"
-              variant="outline"
+              
             >
               <AlertText className="text-base font-medium leading-[22px] text-foreground">
                 Success!

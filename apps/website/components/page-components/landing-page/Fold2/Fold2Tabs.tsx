@@ -87,7 +87,7 @@ const HoriZontalTabNavigation = ({
       {showDividers && (
         <Divider
           orientation="vertical"
-          className="mx-6 my-2 h-[78px] w-0.5 bg-outline-300"
+          className="mx-6 my-2 h-[78px] w-0.5"
         />
       )}
     </>
