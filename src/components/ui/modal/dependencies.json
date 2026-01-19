@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "react-native-reanimated": "^4.0.1"
+    "react-native-reanimated": "^4.2.1"
   },
   "devDependencies": {},
   "components": []
