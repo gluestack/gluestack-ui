@@ -1,9 +1,14 @@
-import { useRouter } from 'expo-router';
+import { Card } from '@/components/ui/card';
+import { Icon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
+import { useAppTheme } from '@/contexts/app-theme-context';
+import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { useFocusEffect } from '@react-navigation/native';
 import { BlurView } from 'expo-blur';
-import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
-import { memo, useCallback, useRef, useState } from 'react';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
+import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import {
   FlatList,
   Platform,
@@ -21,18 +26,13 @@ import Animated, {
   useSharedValue,
   type SharedValue,
 } from 'react-native-reanimated';
-import { useAppTheme } from '@/contexts/app-theme-context';
-import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
-import { Text } from '@/components/ui/text';
-import { Card } from '@/components/ui/card';
-import { Icon } from '@/components/ui/icon';
 
-import { Image } from '@/components/ui/image';
-import { HStack } from '@/components/ui/hstack';
 import {
   BottomControlBar,
   type ComponentItem,
 } from '@/components/custom/bottom-control-bar';
+import { HStack } from '@/components/ui/hstack';
+import { Image } from '@/components/ui/image';
 import { COMPONENTS_LIST } from '@/constants/components-list';
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
@@ -88,7 +88,6 @@ const ComponentCard = memo(
     onPress,
   }: ComponentCardProps) => {
     const { reduceTransparencyEnabled } = useAccessibilityInfo();
-    const { isDark, fontSans } = useAppTheme();
     const applyOpacity = reduceTransparencyEnabled;
 
     const animatedStyle = useAnimatedStyle(() => {
@@ -129,7 +128,6 @@ const ComponentCard = memo(
           height,
           paddingTop: 100,
           alignItems: 'center',
-        
         }}
       >
         <Animated.View
@@ -137,7 +135,6 @@ const ComponentCard = memo(
             {
               width: itemWidth,
               height: height * 0.55,
-              
             },
             animatedStyle,
           ]}
@@ -154,18 +151,14 @@ const ComponentCard = memo(
                 style={StyleSheet.absoluteFill}
               />
               <View className="flex-1 justify-between">
-                <Text 
-                  className="text-white font-sans text-8xl font-bold opacity-30 leading-[1.1] tracking-tighter"
-
-                >
+                <Text className="text-white font-sans text-8xl font-bold opacity-30 leading-[1.1] tracking-tighter">
                   {displayIndex.toString()}
                 </Text>
-                {item.icon && <Icon as={item.icon} className="h-32 w-full stroke-none" />}
+                {item.icon && (
+                  <Icon as={item.icon} className="h-32 w-full stroke-none" />
+                )}
                 <View className="gap-1">
-                  <Text 
-                    className="text-white font-sans text-2xl font-bold"
-                  
-                  >
+                  <Text className="text-white font-sans text-2xl font-bold">
                     {item.title}
                   </Text>
                   <Text className="text-slate-50 text-sm ">
@@ -192,13 +185,13 @@ export default function ComponentsTab() {
   const { isDark } = useAppTheme();
   const { width, height } = useWindowDimensions();
 
-  const ITEM_WIDTH = width * 0.6;
+  const ITEM_WIDTH = width > 480 ? width * 0.3 : width * 0.6;
   const SPACING = 5;
   const SIDE_OFFSET = (width - ITEM_WIDTH) / 2 - SPACING / 2;
   const CONTENT_HEIGHT = height * 0.75;
 
   const { reduceTransparencyEnabled } = useAccessibilityInfo();
-  const applyBlur = !reduceTransparencyEnabled;
+  const applyBlur = !reduceTransparencyEnabled && Platform.OS !== 'web';
 
   const listRef = useRef<FlatList<ComponentItem>>(null);
   const isNavigatingRef = useRef(false);
@@ -257,7 +250,7 @@ export default function ComponentsTab() {
     };
   });
 
-  const Header = () => {
+  const Header = useMemo(() => {
     return (
       <View className="items-center justify-center z-10 mt-10 gap-2">
         <HStack className="items-center gap-2">
@@ -270,16 +263,14 @@ export default function ComponentsTab() {
             alt="Kitchensink App Logo"
             className="h-6 w-6"
           />
-          <Text className="text-2xl font-bold font-sans">
-            Kitchensink App
-          </Text>
+          <Text className="text-2xl font-bold font-sans">Kitchensink App</Text>
         </HStack>
         <Text className="max-w-[60%] text-foreground/80 text-center font-serif">
           Demo app showcasing all the gluestack ui components in action.
         </Text>
       </View>
     );
-  };
+  }, [isDark]);
 
   const handleCardPress = useCallback(
     (path: string) => {
@@ -316,8 +307,8 @@ export default function ComponentsTab() {
   );
 
   return (
-    <View className="flex-1">
-      <Header />
+    <View className="flex-1 bg-background">
+      {Header}
       <Animated.FlatList
         ref={listRef}
         data={components}

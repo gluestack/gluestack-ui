@@ -1,10 +1,10 @@
-import { type FC, type PropsWithChildren } from "react";
-import { Platform, ScrollView, type ScrollViewProps } from "react-native";
-import Animated, { type AnimatedProps } from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-
+import { type FC, type PropsWithChildren } from 'react';
+import { Platform, ScrollView, type ScrollViewProps } from 'react-native';
+import { cssInterop } from 'react-native-css-interop';
+import Animated, { type AnimatedProps } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
-
+cssInterop(AnimatedScrollView, { className: 'style' });
 interface Props extends AnimatedProps<ScrollViewProps> {
   className?: string;
   contentContainerClassName?: string;

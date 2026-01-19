@@ -32,8 +32,10 @@ import {
 import Showcase1 from '../showcases/showcase-1';
 import Showcase2 from '../showcases/showcase-2';
 import Showcase3 from '../showcases/showcase-3';
+import { cssInterop } from 'react-native-css-interop';
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
+cssInterop(Animated.FlatList, { className: 'style' });
 
 // Define showcases with their components in one place
 type ShowcaseItem = ComponentItem & {
@@ -155,15 +157,14 @@ export default function ShowcasesTab() {
   );
 
   const { isDark } = useAppTheme();
-  const { width, height } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   const CARD_WIDTH = width * 0.6;
-  const CARD_HEIGHT = height * 0.6;
   const SPACING = 100;
   const SIDE_OFFSET = (width - CARD_WIDTH) / 2 - SPACING / 2;
 
   const { reduceTransparencyEnabled } = useAccessibilityInfo();
-  const applyBlur = !reduceTransparencyEnabled;
+  const applyBlur = !reduceTransparencyEnabled && Platform.OS !== 'web';
 
   const listRef = useRef<FlatList<ShowcaseItem>>(null);
   const isNavigatingRef = useRef(false);

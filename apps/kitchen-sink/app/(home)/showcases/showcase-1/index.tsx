@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { ScrollView, Pressable, Dimensions, Animated } from 'react-native';
+import { Pressable, Dimensions, Animated } from 'react-native';
 import { Box } from '@/components/ui/box';
 import { HStack } from '@/components/ui/hstack';
 import { VStack } from '@/components/ui/vstack';
@@ -88,11 +88,11 @@ function Showcase1() {
       color: '#FC8019',
       logo: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Swiggy_logo.png',
     },
-    {
-      name: 'Ajio',
-      color: '#FFFFFF',
-      logo: 'https://static.wikia.nocookie.net/logopedia/images/d/dc/Ajio-Logo.png/revision/latest?cb=20240316175725',
-    },
+    // {
+    //   name: 'Ajio',
+    //   color: '#FFFFFF',
+    //   logo: 'https://static.wikia.nocookie.net/logopedia/images/d/dc/Ajio-Logo.png/revision/latest?cb=20240316175725',
+    // },
   ];
 
   return (
@@ -209,11 +209,11 @@ function Showcase1() {
               }}
             >
               <Pressable className="active:opacity-90 max-h-[300px]">
-                <Box className=" aspect-[3/4]  border-[2.5px] border-[#C1FC15] rounded-lg p-3">
+                <Box className="border-[2.5px] border-[#C1FC15] rounded-lg p-3">
                   <Image
                     source={{ uri: card.image }}
                     alt="Reward Card"
-                    className="h-full w-full"
+                    className="h-[100%] w-[233px] aspect-[3/4]"
                     style={{ resizeMode: 'cover' }}
                   />
 

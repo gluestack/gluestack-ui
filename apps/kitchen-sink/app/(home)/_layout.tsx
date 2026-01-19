@@ -1,11 +1,6 @@
-import { useAppTheme } from "@/contexts/app-theme-context";
 import { Stack } from "expo-router";
 
 export default function HomeLayout() {
-  const { isDark } = useAppTheme();
-
-  const themeColorForeground = isDark ? "#ffffff" : "#000000";
-  const themeColorBackground = isDark ? "#000000" : "#ffffff";
 
   return (
     <Stack>

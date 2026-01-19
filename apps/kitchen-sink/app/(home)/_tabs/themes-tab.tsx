@@ -153,9 +153,7 @@ interface ThemePieChartProps {
 const ThemePieChart: React.FC<ThemePieChartProps> = ({
   themeName,
   isActive,
-  onPress,
-  isDark,
-  index,
+  onPress
 }) => {
   const colors = THEME_PREVIEW_COLORS[themeName];
   const themeConfig = themeConfigs[themeName];
@@ -197,7 +195,9 @@ const ThemePieChart: React.FC<ThemePieChartProps> = ({
               )}
             </Svg>
           </View>
-          <Text className={`text-[11px] mt-1.5 text-center text-foreground ${isActive ? 'text-primary font-semibold' : 'text-foreground/50 font-medium'}`}>
+          <Text
+            className={`text-[11px] mt-1.5 text-center text-foreground ${isActive ? 'text-primary font-semibold' : 'text-foreground/50 font-medium'}`}
+          >
             {themeConfig.name}
           </Text>
         </Pressable>
@@ -284,8 +284,7 @@ const AppearanceSegmentedControl: React.FC = () => {
   return (
     <Animated.View
       entering={FadeInDown.duration(400).delay(100).springify()}
-      className="rounded-2xl p-1"
-      style={{ backgroundColor: getColor('surface', isDark) }}
+      style={{ backgroundColor: getColor('surface', isDark), padding:4 , borderRadius:16 }}
     >
       <View className="flex-row">
         {APPEARANCE_SEGMENTS.map((segment) => (
@@ -392,8 +391,8 @@ export default function ThemesTab() {
 
   return (
     <ScreenScrollView
-      className="px-5"
-      contentContainerStyle={{ paddingTop: 40 }}
+      className="px-5 max-w-screen-xl mx-auto"
+      contentContainerClassName="pt-10 pb-10"
     >
       <VStack space="2xl" className="pb-10">
         {/* Header */}
@@ -431,10 +430,10 @@ export default function ThemesTab() {
           />
           <Animated.View
             entering={FadeInDown.duration(200).delay(100)}
-            className="rounded-2xl p-4"
             style={{
               backgroundColor: getColor('surface', isDark),
               ...createCardShadowStyle(isDark),
+              padding:16 , borderRadius:16
             }}
           >
             <View className="flex-row flex-wrap gap-2">

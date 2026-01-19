@@ -1,10 +1,10 @@
 import { customFonts } from '@/app/fonts';
-import { SplashScreen } from "@/components/custom/splash-screen";
+import { SplashScreen } from '@/components/custom/splash-screen';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import '@/global.css';
 import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
-import * as SplashScreenExpo from "expo-splash-screen";
+import * as SplashScreenExpo from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
@@ -13,6 +13,7 @@ import {
   ReanimatedLogLevel,
 } from 'react-native-reanimated';
 import { AppThemeProvider } from '../contexts/app-theme-context';
+import { Box } from '@/components/ui/box';
 
 configureReanimatedLogger({
   level: ReanimatedLogLevel.warn,
@@ -38,7 +39,7 @@ export default function RootLayout() {
   if (!isReady) {
     return <SplashScreen />;
   }
-  
+
   if (!fontsLoaded) {
     return null;
   }
@@ -48,7 +49,7 @@ export default function RootLayout() {
       <KeyboardProvider>
         <AppThemeProvider>
           <GluestackUIProvider>
-            <Slot />
+              <Slot />
           </GluestackUIProvider>
         </AppThemeProvider>
       </KeyboardProvider>

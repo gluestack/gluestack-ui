@@ -5,23 +5,23 @@ import {
   LayoutChangeEvent,
   Platform,
   Pressable,
+  ScrollView,
   Text,
   View,
 } from 'react-native';
-import PagerView, {
-  type PagerViewOnPageScrollEventData,
-  type PagerViewOnPageSelectedEventData,
-} from 'react-native-pager-view';
 import Animated, {
   Extrapolation,
   interpolate,
   SharedValue,
   useAnimatedStyle,
   useSharedValue,
+  useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
+
+const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
 export interface Tab {
   key: string;
@@ -149,9 +149,10 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
   initialIndex = 1,
 }) => {
   const insets = useSafeAreaInsets();
-  const pagerRef = useRef<PagerView>(null);
+  const scrollViewRef = useRef<ScrollView>(null);
   const [tabWidths, setTabWidths] = useState<number[]>([]);
   const [tabPositions, setTabPositions] = useState<number[]>([]);
+  const [currentPage, setCurrentPage] = useState(initialIndex);
 
   const scrollX = useSharedValue(initialIndex * SCREEN_WIDTH);
 
@@ -178,29 +179,47 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
     }
   }, []);
 
-  const onPageScroll = useCallback(
-    (event: { nativeEvent: PagerViewOnPageScrollEventData }) => {
-      const { position, offset } = event.nativeEvent;
-      // Convert page position + offset to scrollX value
-      scrollX.value = (position + offset) * SCREEN_WIDTH;
+  // Web ScrollView handler
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollX.value = event.contentOffset.x;
     },
-    [scrollX]
-  );
+  });
 
-  const onPageSelected = useCallback(
-    (_event: { nativeEvent: PagerViewOnPageSelectedEventData }) => {
-      triggerHaptic();
+  const handleScrollEnd = useCallback(
+    (event: any) => {
+      const offsetX = event.nativeEvent.contentOffset.x;
+      const pageIndex = Math.round(offsetX / SCREEN_WIDTH);
+      if (pageIndex !== currentPage) {
+        setCurrentPage(pageIndex);
+        triggerHaptic();
+      }
     },
-    [triggerHaptic]
+    [currentPage, triggerHaptic]
   );
 
   const scrollToTab = useCallback(
     (index: number) => {
-      pagerRef.current?.setPage(index);
+      scrollViewRef.current?.scrollTo({
+        x: index * SCREEN_WIDTH,
+        animated: true,
+      });
       triggerHaptic();
     },
     [triggerHaptic]
   );
+
+  // Initialize scroll position for web
+  React.useEffect(() => {
+    if (scrollViewRef.current) {
+      setTimeout(() => {
+        scrollViewRef.current?.scrollTo({
+          x: initialIndex * SCREEN_WIDTH,
+          animated: false,
+        });
+      }, 0);
+    }
+  }, [initialIndex]);
 
   return (
     <View className="flex-1 bg-background">
@@ -229,23 +248,30 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
       </View>
 
       {/* Content */}
-      <PagerView
-        ref={pagerRef}
+      <AnimatedScrollView
+        ref={scrollViewRef}
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onScroll={scrollHandler}
+        onMomentumScrollEnd={handleScrollEnd}
+        scrollEventThrottle={16}
         style={{ flex: 1 }}
-        initialPage={initialIndex}
-        onPageScroll={onPageScroll}
-        onPageSelected={onPageSelected}
-        overdrag={false}
-        scrollEnabled={false}
+        contentContainerStyle={{ width: SCREEN_WIDTH * tabs.length }}
       >
         {tabs.map((tab) => (
-          <View key={tab.key} className="flex-1 pb-safe">
+          <View
+            key={tab.key}
+            className="flex-1 pb-safe"
+            style={{ width: SCREEN_WIDTH }}
+          >
             {tab.component}
           </View>
         ))}
-      </PagerView>
+      </AnimatedScrollView>
     </View>
   );
 };
 
 export default SwipeableTabs;
+
