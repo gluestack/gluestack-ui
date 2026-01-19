@@ -15,7 +15,7 @@ export default function BlogsPageLayout({
 
   return (
     <WebsiteLayout>
-      <Box className="flex-1 mt-5 flex-row w-[85%] max-w-[1440px] mx-auto pt-40 md:pt-[140px]">
+      <Box className="flex-1 mt-5 flex-row w-[85%] max-w-[1440px] mx-auto pt-40 md:pt-[60px]">
         <Box className="flex-1 w-full h-full">{children}</Box>
       </Box>
       <BadgeComponent />
