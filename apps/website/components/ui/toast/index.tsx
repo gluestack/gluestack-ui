@@ -3,98 +3,37 @@ import React from 'react';
 import { createToastHook } from '@gluestack-ui/core/toast/creator';
 import { AccessibilityInfo, Text, View } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
-import Animated, {
-  SlideInDown,
-  SlideInUp,
-  SlideOutDown,
-  SlideOutUp,
-  runOnJS,
-} from 'react-native-reanimated';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-
-const AnimatedView = Animated.createAnimatedComponent(View);
-
-// Reanimated toast animation wrapper
-const ReanimatedToastWrapper = React.forwardRef<
-  React.ComponentRef<typeof AnimatedView>,
-  React.ComponentProps<typeof AnimatedView> & {
-    placement?: string;
-    onAnimationEnd?: () => void;
-  }
->(function ReanimatedToastWrapper(
-  { placement = 'bottom', onAnimationEnd, children, ...props },
-  ref
-) {
-  // Determine animation direction based on placement
-  const isTop = placement?.includes('top');
-
-  // Always slide out up
-  const exitingAnimation = SlideOutUp.duration(150).withCallback((finished) => {
-    'worklet';
-    if (finished && onAnimationEnd) {
-      runOnJS(onAnimationEnd)();
-    }
-  });
-
-  return (
-    <AnimatedView
-      ref={ref}
-      entering={SlideInUp.duration(200).withInitialValues({
-        transform: [{ translateY: -100 }],
-      })}
-      exiting={SlideInUp.duration(200).withInitialValues({
-        transform: [{ translateY: 0 }],
-      })}
-      {...props}
-    >
-      {children}
-    </AnimatedView>
-  );
-});
-
-// Custom AnimatePresence for Reanimated (not needed but required by API)
-const ReanimatedAnimatePresence = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
-  return <>{children}</>;
-};
-
-const useToast = createToastHook(
-  ReanimatedToastWrapper,
-  ReanimatedAnimatePresence
-);
+import Animated, { FadeIn, FadeOut, SlideInUp } from 'react-native-reanimated';
+import { cssInterop } from 'nativewind';
+const useToast = createToastHook(View);
 const SCOPE = 'TOAST';
-
+const AnimatedView = Animated.createAnimatedComponent(View);
 cssInterop(AnimatedView, { className: 'style' });
-cssInterop(ReanimatedToastWrapper, { className: 'style' });
-
 const toastStyle = tva({
-  base: 'p-4 m-1 rounded-md gap-1 web:pointer-events-auto shadow-hard-5 border-border/90',
+  base: 'p-4 m-1 rounded-md gap-1 web:pointer-events-auto shadow-hard-5 border-outline-100',
   variants: {
     action: {
-      error: 'bg-destructive',
+      error: 'bg-error-800',
       warning: 'bg-warning-700',
-      success: 'bg-green-500',
-      info: 'bg-blue-500',
-      muted: 'bg-muted',
+      success: 'bg-success-700',
+      info: 'bg-info-700',
+      muted: 'bg-background-800',
     },
 
     variant: {
       solid: '',
-      outline: 'border bg-background',
+      outline: 'border bg-background-0',
     },
   },
 });
 
 const toastTitleStyle = tva({
-  base: 'text-foreground font-medium font-body tracking-md text-left',
+  base: 'text-typography-0 font-medium font-body tracking-md text-left',
   variants: {
     isTruncated: {
       true: '',
@@ -139,27 +78,27 @@ const toastTitleStyle = tva({
     {
       variant: 'outline',
       action: 'error',
-      class: 'text-destructive',
+      class: 'text-error-800',
     },
     {
       variant: 'outline',
       action: 'warning',
-      class: 'text-yellow-500',
+      class: 'text-warning-800',
     },
     {
       variant: 'outline',
       action: 'success',
-      class: 'text-green-500',
+      class: 'text-success-800',
     },
     {
       variant: 'outline',
       action: 'info',
-      class: 'text-blue-500',
+      class: 'text-info-800',
     },
     {
       variant: 'outline',
       action: 'muted',
-      class: 'text-muted-foreground',
+      class: 'text-background-800',
     },
   ],
 });
@@ -195,13 +134,13 @@ const toastDescriptionStyle = tva({
   },
   parentVariants: {
     variant: {
-      solid: 'text-foreground/50',
-      outline: 'text-foreground/90',
+      solid: 'text-typography-50',
+      outline: 'text-typography-900',
     },
   },
 });
 
-const Root = withStyleContext(View, SCOPE);
+const Root = withStyleContext(AnimatedView, SCOPE);
 type IToastProps = React.ComponentProps<typeof Root> & {
   className?: string;
 } & VariantProps<typeof toastStyle>;
@@ -214,6 +153,7 @@ const Toast = React.forwardRef<React.ComponentRef<typeof Root>, IToastProps>(
     return (
       <Root
         ref={ref}
+        entering={FadeIn.duration(200)}
         className={toastStyle({ variant, action, class: className })}
         context={{ variant, action }}
         {...props}

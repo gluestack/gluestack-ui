@@ -2,8 +2,12 @@
 import { useKeyboardBottomInset } from '@gluestack-ui/utils/hooks';
 import { Overlay } from '../../overlay/creator';
 import React from 'react';
-import { Platform, View } from 'react-native';
-import { initialWindowMetrics, SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { Platform, View, Animated } from 'react-native';
+import {
+  initialWindowMetrics,
+  SafeAreaProvider,
+  SafeAreaView,
+} from 'react-native-safe-area-context';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { ToastContext } from './ToastContext';
 import type { IToast, ToastPlacement } from './types';
@@ -54,15 +58,10 @@ const POSITIONS = {
   },
 };
 export const ToastList = () => {
-  const {
-    toastInfo,
-    visibleToasts,
-    removeToast,
-    AnimationWrapper,
-    AnimatePresence: ContextAnimatePresence,
-  } = React.useContext(ToastContext);
-  const AnimationView = AnimationWrapper?.current;
-  const AnimatePresence = ContextAnimatePresence?.current;
+  const { toastInfo, visibleToasts, removeToast, ViewComponent } =
+    React.useContext(ToastContext);
+
+  const ViewComponentRef = ViewComponent?.current || View;
 
   const bottomInset = useKeyboardBottomInset() * 2;
   const getPositions = () => {
@@ -92,55 +91,27 @@ export const ToastList = () => {
             >
               {toastInfo[position].map((toast: IToast) => {
                 return (
-                  <SafeAreaProvider key={toast.id} initialMetrics={initialWindowMetrics}>
+                  <SafeAreaProvider
+                    key={toast.id}
+                    initialMetrics={initialWindowMetrics}
+                  >
                     <SafeAreaView style={{ pointerEvents: 'box-none' }}>
-                      <OverlayAnimatePresence
+                      <AnimatedToastView
+                        key={toast.id}
                         visible={visibleToasts[toast.id]}
-                        AnimatePresence={AnimatePresence}
+                        position={position}
+                        ViewComponent={ViewComponentRef}
+                        containerStyle={toast.config?.containerStyle}
+                        avoidKeyboard={toast.config?.avoidKeyboard}
+                        bottomInset={bottomInset}
                         onExit={() => {
                           removeToast(toast.id);
                           toast.config?.onCloseComplete &&
                             toast.config?.onCloseComplete();
                         }}
                       >
-                        <AnimationView
-                          initial={{
-                            opacity: 0,
-                            y: transitionConfig[position],
-                          }}
-                          animate={{
-                            opacity: 1,
-                            y: 0,
-                          }}
-                          exit={{
-                            opacity: 0,
-                            y: transitionConfig[position],
-                          }}
-                          transition={{
-                            type: 'timing',
-                            duration: 150,
-                          }}
-                          key={toast.id}
-                          {...toast.config?.containerStyle}
-                          style={{ pointerEvents: 'box-none' }}
-                        >
-                          <View
-                            style={{
-                              bottom:
-                                [
-                                  'bottom',
-                                  'bottom-left',
-                                  'bottom-right',
-                                ].includes(position) &&
-                                toast.config?.avoidKeyboard
-                                  ? bottomInset
-                                  : undefined,
-                            }}
-                          >
-                            {toast.component}
-                          </View>
-                        </AnimationView>
-                      </OverlayAnimatePresence>
+                        {toast.component}
+                      </AnimatedToastView>
                     </SafeAreaView>
                   </SafeAreaProvider>
                 );
@@ -151,4 +122,101 @@ export const ToastList = () => {
       })}
     </Overlay>
   ) : null;
+};
+
+const AnimatedToastView = ({
+  visible,
+  position,
+  ViewComponent,
+  containerStyle,
+  avoidKeyboard,
+  bottomInset,
+  onExit,
+  children,
+}: {
+  visible: boolean;
+  position: ToastPlacement;
+  ViewComponent: any;
+  containerStyle?: any;
+  avoidKeyboard?: boolean;
+  bottomInset?: number;
+  onExit: () => void;
+  children: React.ReactNode;
+}) => {
+  const initialOffset = transitionConfig[position] || 0;
+  const opacity = React.useRef(new Animated.Value(visible ? 1 : 0)).current;
+  const translateY = React.useRef(
+    new Animated.Value(visible ? 0 : initialOffset)
+  ).current;
+  const prevVisible = React.useRef(visible);
+  const AnimatedViewComponent = React.useMemo(
+    () => Animated.createAnimatedComponent(ViewComponent),
+    [ViewComponent]
+  );
+
+  React.useEffect(() => {
+    if (prevVisible.current !== visible) {
+      if (visible) {
+        // Animate in
+        Animated.parallel([
+          Animated.timing(opacity, {
+            toValue: 1,
+            duration: 150,
+            useNativeDriver: true,
+          }),
+          Animated.timing(translateY, {
+            toValue: 0,
+            duration: 150,
+            useNativeDriver: true,
+          }),
+        ]).start();
+      } else {
+        // Animate out
+        Animated.parallel([
+          Animated.timing(opacity, {
+            toValue: 0,
+            duration: 150,
+            useNativeDriver: true,
+          }),
+          Animated.timing(translateY, {
+            toValue: initialOffset,
+            duration: 150,
+            useNativeDriver: true,
+          }),
+        ]).start(() => {
+          onExit();
+        });
+      }
+      prevVisible.current = visible;
+    }
+  }, [visible, opacity, translateY, initialOffset, onExit]);
+
+  if (!visible && !prevVisible.current) {
+    return null;
+  }
+
+  return (
+    <AnimatedViewComponent
+      style={[
+        {
+          opacity,
+          transform: [{ translateY }],
+          pointerEvents: 'box-none' as const,
+        },
+        containerStyle,
+      ]}
+    >
+      <View
+        style={{
+          bottom:
+            ['bottom', 'bottom-left', 'bottom-right'].includes(position) &&
+            avoidKeyboard
+              ? bottomInset
+              : undefined,
+        }}
+      >
+        {children}
+      </View>
+    </AnimatedViewComponent>
+  );
 };

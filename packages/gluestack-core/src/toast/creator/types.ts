@@ -79,8 +79,7 @@ export type IToastContext = {
   hideToast: (id: string) => void;
   avoidKeyboard?: boolean;
   bottomInset?: number;
-  AnimationWrapper: MutableRefObject<any | null>;
-  AnimatePresence: MutableRefObject<any | null>;
+  ViewComponent?: MutableRefObject<any | null>;
 };
 
 export type IToastComponentType<
