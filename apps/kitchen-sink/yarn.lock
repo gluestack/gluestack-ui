@@ -1548,6 +1548,18 @@
   resolved "https://registry.npmjs.org/@legendapp/tools/-/tools-2.0.1.tgz#995fe6cb3e2398b939f645505aa8e1abc84bd07f"
   integrity sha512-Kxt0HWvWElRK6oybHRzcYxdgaKGwuaiRNreS7usW7QuHXRIHaH4yMcW2YNRG4DHE5fpefv+Bno/BohQcCE4FaA==
 
+"@lottiefiles/dotlottie-react@^0.17.13":
+  version "0.17.13"
+  resolved "https://registry.npmjs.org/@lottiefiles/dotlottie-react/-/dotlottie-react-0.17.13.tgz#a38ec8a97ea3ea544977fff5734d294ec155a89a"
+  integrity sha512-Ui8bqFlxqxLqB3G4bE9nsSw05lUn7eiZ24dSi/NVHFjTMAlb/JxdS8xWt1cdF2W1yJPNCeQuze6kkqNC5OMbJg==
+  dependencies:
+    "@lottiefiles/dotlottie-web" "0.61.0"
+
+"@lottiefiles/dotlottie-web@0.61.0":
+  version "0.61.0"
+  resolved "https://registry.npmjs.org/@lottiefiles/dotlottie-web/-/dotlottie-web-0.61.0.tgz#403dfab1ae254b60ff68c5e736c26bdc5bb887fd"
+  integrity sha512-1QwcDchh/TXTvP9zXUHA5oJOdhEdUrn6U7gAiQ1AXEUrcK6PTU6v5D3byP76BK56fQjoY2WQ2A4pYDCCvoVRqw==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -6001,6 +6013,11 @@ loose-envify@^1.0.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+lottie-react-native@^7.3.5:
+  version "7.3.5"
+  resolved "https://registry.npmjs.org/lottie-react-native/-/lottie-react-native-7.3.5.tgz#515c703e8a8845c54dbd54d489467c0c1f21d8bd"
+  integrity sha512-5VPrHGbEmpNxrcEfmxyFZBvDksMaZ6LhyQZL0S0VIDwMRVrhGwOZQZKVFSEFU5HxNuDjxm/vPSoEhlKKfbYKHw==
 
 lru-cache@^10.0.1, lru-cache@^10.2.0:
   version "10.4.3"

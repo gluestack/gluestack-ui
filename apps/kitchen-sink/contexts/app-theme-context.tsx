@@ -1,21 +1,21 @@
+import {
+  ColorMode,
+  getThemeFontSans,
+  getThemeVars,
+  themeConfigs,
+  ThemeName,
+} from '@/constants/themes';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useColorScheme } from 'nativewind';
 import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
-  useEffect,
 } from 'react';
-import { useColorScheme } from 'nativewind';
-import { View, ActivityIndicator } from 'react-native';
-import {
-  ThemeName,
-  ColorMode,
-  getThemeVars,
-  getThemeFontSans,
-  themeConfigs,
-} from '@/constants/themes';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View } from 'react-native';
 
 interface AppThemeContextType {
   currentTheme: ThemeName;
@@ -44,9 +44,8 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   // Ensure colorMode is always a valid ColorMode, defaulting to colorScheme or 'light'
   const [colorMode, setColorMode] = useState<ColorMode>(() => {
     const scheme = colorScheme as ColorMode;
-    return (scheme === 'light' || scheme === 'dark') ? scheme : 'light';
+    return scheme === 'light' || scheme === 'dark' ? scheme : 'light';
   });
-  const [isThemeLoaded, setIsThemeLoaded] = useState(false);
 
   // Initialize theme from storage
   useEffect(() => {
@@ -66,8 +65,6 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
         }
       } catch (error) {
         console.error('Error loading theme:', error);
-      } finally {
-        setIsThemeLoaded(true);
       }
     };
 
@@ -144,15 +141,6 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
       fontSans,
     ]
   );
-
-  // Show nothing while loading to prevent flash of wrong theme
-  if (!isThemeLoaded) {
-    return (
-      <View className="flex-1 items-center justify-center bg-background">
-        <ActivityIndicator size="small" />
-      </View>
-    );
-  }
 
   return (
     <AppThemeContext.Provider value={value}>
