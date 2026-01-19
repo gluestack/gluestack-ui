@@ -89,9 +89,9 @@ const Ticker = ({ h = '95vh', ...props }) => {
     );
   } else {
     return (
-      <Text className={`text-md text-foreground font-medium`}>
+      <span className={`text-sm text-foreground`}>
         {starsCount}
-      </Text>
+      </span>
     );
   }
   //   return (
