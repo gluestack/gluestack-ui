@@ -15,7 +15,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
-// import { UiDocSearch } from './DocSearch';
+import { UiDocSearch } from './DocSearch';
 import ProductDropdown from './ProductDropdown';
 import { useColorMode } from '@/app/provider';
 
@@ -100,9 +100,9 @@ const Header = ({
           </div>
           <div className="flex flex-row gap-3 items-center">
             {/* Desktop: Show full search */}
-            {/* <div className="hidden md:block">
+            <div className="hidden md:block">
               <UiDocSearch />
-            </div> */}
+            </div>
 
             {/* Mobile: Show search icon */}
             <Button

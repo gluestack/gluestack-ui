@@ -34,8 +34,36 @@
   color: #A1A1A1;
 }
 .dark .DocSearch-Button-Key{
-  border-color: #A1A1A1;
-  background-color: transparent;
-  border-radius: 6px;
-  color: #A1A1A1;
+  background-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    height: 20px !important;
+    width: 20px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #a1a1a160 !important;
+    font-size: 16px !important;
+    padding: 0px !important;
+  /* border: 1px solid #A1A1A1 !important; */
+}
+
+.DocSearch-Button-Key{
+  background-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  height: 20px !important;
+  width: 20px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border:1px solid #1212120D !important;
+  font-size: 16px !important;
+  padding: 0px !important;
+}
+.DocSearch-Button-Key::after{
+  display: none !important;
+}
+.DocSearch-Button-Key::before{
+  display: none !important;
 }
