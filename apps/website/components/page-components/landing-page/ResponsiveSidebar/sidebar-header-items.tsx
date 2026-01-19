@@ -183,7 +183,32 @@ export const headerItems: SidebarSectionProps[] = [
         ),
         badge: (
           <Badge size="md" variant="solid" action="info">
-            <BadgeText>PAID</BadgeText>
+            <BadgeText>Partner</BadgeText>
+          </Badge>
+        ),
+      },
+      {
+        title: 'AppLighter',
+        link: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
+        logo: (
+          <Image
+            alt="AppLighter logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/applighter/logo.png')}
+          />
+        ),
+        logoDark: (
+          <Image
+            alt="AppLighter logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/applighter/logo.png')}
+          />
+        ),
+        badge: (
+          <Badge size="md" variant="solid" action="info">
+            <BadgeText>Partner</BadgeText>
           </Badge>
         ),
       },
@@ -213,47 +238,47 @@ export const headerItems: SidebarSectionProps[] = [
         ),
       },
       {
-        title: 'theappmarket',
-        link: 'https://theappmarket.io',
+        title: 'FlyDash',
+        link: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
         logo: (
           <Image
-            alt="theappmarket logo"
+            alt="FlyDash logo"
             className="w-5 h-5"
             size="md"
-            source={require('@/public/icon/logo/theappmarket/appmarket-logo.svg')}
+            source={require('@/public/icon/logo/flydash/logo.png')}
           />
         ),
         logoDark: (
           <Image
-            alt="theappmarket logo"
+            alt="FlyDash logo"
             className="w-5 h-5"
             size="md"
-            source={require('@/public/icon/logo/theappmarket/appmarket-logo.svg')}
+            source={require('@/public/icon/logo/flydash/logo.png')}
           />
         ),
         badge: (
           <Badge size="md" variant="solid" action="info">
-            <BadgeText>PAID</BadgeText>
+            <BadgeText>Partner</BadgeText>
           </Badge>
         ),
       },
       {
-        title: 'AppLaunchKit',
-        link: 'https://applaunchk.it/',
+        title: 'gluestack market',
+        link: 'https://market.gluestack.io/',
         logo: (
           <Image
-            alt="AppLaunchKit logo"
+            alt="gluestack market logo"
             className="w-5 h-5"
             size="md"
-            source={require('@/public/icon/logo/app-launch-kit/dark-mode.svg')}
+            source={require('@/public/icon/logo/gluestack-market/logo.png')}
           />
         ),
         logoDark: (
           <Image
-            alt="AppLaunchKit logo"
+            alt="gluestack market logo"
             className="w-5 h-5"
             size="md"
-            source={require('@/public/icon/logo/app-launch-kit/light-mode.svg')}
+            source={require('@/public/icon/logo/gluestack-market/logo.png')}
           />
         ),
         badge: (
