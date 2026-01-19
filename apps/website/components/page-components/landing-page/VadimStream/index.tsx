@@ -79,7 +79,7 @@ const VadimStream = () => {
       <VStack className="max-w-[1024px] mt-[120px] gap-3">
         <Heading className="text-3xl font-roboto font-bold sm:leading-[54px] leading-9 text-foreground sm:text-4xl">
           Learn about gluestack from YouTube guru {/* @ts-ignore */}
-          <Span className="text-3xl font-roboto font-bold sm:leading-[54px] leading-9 text-info-600 sm:text-4xl">
+          <Span className="text-3xl font-roboto font-bold sm:leading-[54px] leading-9 text-[rgb(11,141,205)] dark:text-[rgb(87,194,246)] sm:text-4xl">
             notJust.dev
           </Span>
         </Heading>
