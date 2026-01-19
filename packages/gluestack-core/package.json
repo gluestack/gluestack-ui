@@ -158,7 +158,7 @@
     }
   },
   "peerDependencies": {
-    "@gluestack-ui/utils": ">=2.0.0",
+    "@gluestack-ui/utils": ">=4.0.0-alpha.0",
     "react": ">=16.8.0",
     "react-native": ">=0.64.0",
     "react-native-svg": ">=12.0.0",

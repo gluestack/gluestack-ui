@@ -46,6 +46,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     const scheme = colorScheme as ColorMode;
     return scheme === 'light' || scheme === 'dark' ? scheme : 'light';
   });
+  const [isThemeLoaded, setIsThemeLoaded] = useState(false);
 
   // Initialize theme from storage
   useEffect(() => {
@@ -65,11 +66,14 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
         }
       } catch (error) {
         console.error('Error loading theme:', error);
+      } finally {
+        setIsThemeLoaded(true);
       }
     };
 
     loadTheme();
   }, []);
+ 
 
   const isLight = useMemo(() => colorMode === 'light', [colorMode]);
   const isDark = useMemo(() => colorMode === 'dark', [colorMode]);
@@ -141,6 +145,9 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
       fontSans,
     ]
   );
+  if (!isThemeLoaded) {
+    return null;
+  }
 
   return (
     <AppThemeContext.Provider value={value}>

@@ -113,7 +113,7 @@ const BottomControlBar = memo(
         // Add a small delay to ensure the modal is fully rendered
         const timer = setTimeout(() => {
           searchInputRef.current?.focus();
-        }, 100);
+        }, 500);
         return () => clearTimeout(timer);
       }
     }, [showComponentMenu]);
@@ -253,7 +253,7 @@ const BottomControlBar = memo(
           <Modal
             visible={showComponentMenu}
             transparent
-            animationType="none"
+            animationType="fade"
             onRequestClose={() => {
               setShowComponentMenu(false);
               setSearchQuery('');
