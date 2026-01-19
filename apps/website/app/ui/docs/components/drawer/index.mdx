@@ -130,12 +130,12 @@ This is an illustration of **Drawer** component.
 
 
 
-> Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
+> Note: At present, we have integrated `react-native-reanimated` for animation. You have the option to remove this and implement your own custom animation wrapper.
 
 ### Step 1: Install the following dependencies:
 
 ```bash
-npm i @legendapp/motion
+npm i react-native-reanimated
 ```
 
 ### Step 2: Copy and paste the following code into your project.
@@ -588,11 +588,11 @@ Contains all View related layout style props and actions. It inherits all the pr
 
 #### DrawerBackdrop
 
-It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [react-native-reanimated's](https://docs.swmansion.com/react-native-reanimated/) `Animated.createAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
 
 #### DrawerContent
 
-It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. You can use any declarative animation library you prefer.
+It is [react-native-reanimated's](https://docs.swmansion.com/react-native-reanimated/) [Animated.View](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/glossary#animatedview) component. You can use any declarative animation library you prefer.
 
 <>
   <Table>
