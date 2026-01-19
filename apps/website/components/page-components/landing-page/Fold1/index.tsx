@@ -323,9 +323,9 @@ const Fold1Content = () => {
                   sizes="100vw"
                   fill
                 />
-                <Box className="absolute bg-primary-900 h-[88.6%] w-[48.765%] rounded-full justify-center items-center bottom-[22.5%] left-[62.4%]">
-                  <Box className="absolute h-0 py-[93.07%] w-[186.138%] rounded-full bg-primary-900 opacity-50" />
-                  <Box className="absolute h-[144.58%] w-[144.58%] rounded-full border-[5.7348vw] md:border-[24.4px] lg:border-[3.5vw] xl:border-[27px] border-primary-900 opacity-70" />
+                <Box className="absolute bg-primary h-[88.6%] w-[48.765%] rounded-full justify-center items-center bottom-[22.5%] left-[62.4%]">
+                  <Box className="absolute h-0 py-[93.07%] w-[186.138%] rounded-full bg-primary opacity-50" />
+                  <Box className="absolute h-[144.58%] w-[144.58%] rounded-full border-[5.7348vw] md:border-[24.4px] lg:border-[3.5vw] xl:border-[27px] border-primary opacity-70" />
                   <Box className="absolute sm:w-[120px] md:w-auto mr-6">
                     <Text className="lg:text-2xl md:text-2xl sm:text-2xl min-[320px]:text-lg max-[639px]:text-lg text-base text-typography-gray text-right">
                       Customise

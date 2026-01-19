@@ -12,7 +12,7 @@ import { cssInterop } from 'nativewind';
 import {
   useBreakpointValue,
   getBreakPointValue,
-} from '@gluestack-ui/core/hooks';
+} from '@gluestack-ui/utils/hooks';
 const { width: DEVICE_WIDTH } = Dimensions.get('window');
 const GridContext = createContext<any>({});
 function arrangeChildrenIntoRows({

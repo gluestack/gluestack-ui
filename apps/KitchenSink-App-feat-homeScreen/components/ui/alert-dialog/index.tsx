@@ -12,6 +12,7 @@ import Animated, {
   FadeOut,
   ZoomIn,
   ZoomOut,
+  Easing
 } from 'react-native-reanimated';
 import { Pressable, ScrollView, View } from 'react-native';
 import { cssInterop } from 'nativewind';
@@ -225,7 +226,7 @@ const AlertDialogBackdrop = React.forwardRef<
     <UIAccessibleAlertDialog.Backdrop
       ref={ref}
       {...props}
-      entering={FadeIn.duration(150)}
+      entering={FadeIn.duration(150).easing(Easing.linear)}
       exiting={FadeOut.duration(150)}
       className={alertDialogBackdropStyle({
         class: className,
