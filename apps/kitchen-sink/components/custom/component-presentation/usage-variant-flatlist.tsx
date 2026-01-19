@@ -32,7 +32,10 @@ import {
   getComponentByPath,
 } from '@/constants/components-list';
 import { useRouter, usePathname } from 'expo-router';
+import { cssInterop } from 'react-native-css-interop';
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
+const AnimatedView = Animated.createAnimatedComponent(View);
+cssInterop(AnimatedView, { className: 'style' });
 
 interface UsageVariantFlatListProps {
   data: UsageVariant[];
@@ -76,12 +79,12 @@ const VariantItem = memo(
     });
 
     return (
-      <Animated.View
-        className="items-center justify-center px-6"
+      <AnimatedView
+        className="flex items-center justify-center px-6"
         style={[{ width, height }, animatedStyle]}
       >
         {item.content}
-      </Animated.View>
+      </AnimatedView>
     );
   }
 );
@@ -314,7 +317,7 @@ export const UsageVariantFlatList = ({
             });
 
             return (
-              <Animated.View
+              <AnimatedView
                 key={index}
                 className="px-3"
                 style={rVariantNameStyle}
@@ -327,7 +330,7 @@ export const UsageVariantFlatList = ({
                 <Text className="text-foreground font-sans font-medium">
                   {item.label}
                 </Text>
-              </Animated.View>
+              </AnimatedView>
             );
           })}
         </ScrollView>
