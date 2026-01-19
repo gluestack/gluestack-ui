@@ -12,7 +12,7 @@ import Animated, {
   FadeOut,
   ZoomIn,
   ZoomOut,
-  Easing
+  Easing,
 } from 'react-native-reanimated';
 import { Pressable, ScrollView, View } from 'react-native';
 import { cssInterop } from 'nativewind';

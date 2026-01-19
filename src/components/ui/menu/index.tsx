@@ -4,7 +4,7 @@ import { createMenu } from '@gluestack-ui/core/menu/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import { Pressable, Text, View } from 'react-native';
-import Animated, { ZoomIn, ZoomOut } from 'react-native-reanimated';
+import Animated, { FadeOut, ZoomIn, ZoomOut } from 'react-native-reanimated';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -121,8 +121,11 @@ const Menu = React.forwardRef<React.ComponentRef<typeof UIMenu>, IMenuProps>(
   function Menu({ className, ...props }, ref) {
     return (
       <UIMenu
-        entering={ZoomIn.duration(150)}
-        exiting={ZoomOut.duration(150)}
+        entering={ZoomIn.duration(150).withInitialValues({
+          transform: [{ scale: 0.9 }],
+          opacity: 0,
+        })}
+        exiting={FadeOut.duration(150)}
         ref={ref}
         className={menuStyle({
           class: className,

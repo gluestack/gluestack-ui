@@ -189,7 +189,7 @@ const DrawerContent = React.forwardRef<
         ? SlideInRight.duration(150)
         : parentAnchor === 'top'
           ? SlideInUp.duration(150)
-          : SlideInDown.duration(150)
+          : SlideInDown.duration(150);
 
   const exitingAnimation =
     parentAnchor === 'left'

@@ -1,15 +1,11 @@
 'use client';
-import React from 'react';
 import { createToastHook } from '@gluestack-ui/core/toast/creator';
-import { AccessibilityInfo, Text, View } from 'react-native';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  withStyleContext,
-  useStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import Animated, { FadeIn, FadeOut, SlideInUp } from 'react-native-reanimated';
+import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
+import React from 'react';
+import { AccessibilityInfo, Text, View } from 'react-native';
+import Animated, { SlideInUp } from 'react-native-reanimated';
 const useToast = createToastHook(View);
 const SCOPE = 'TOAST';
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -252,4 +248,5 @@ Toast.displayName = 'Toast';
 ToastTitle.displayName = 'ToastTitle';
 ToastDescription.displayName = 'ToastDescription';
 
-export { useToast, Toast, ToastTitle, ToastDescription };
+export { Toast, ToastDescription, ToastTitle, useToast };
+

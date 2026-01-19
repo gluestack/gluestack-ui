@@ -138,8 +138,11 @@ const ModalContent = React.forwardRef<
   return (
     <UIModal.Content
       ref={ref}
-      entering={ZoomIn.duration(150).springify().stiffness(700)}
-      exiting={ZoomOut.duration(150)}
+      entering={ZoomIn.duration(150).withInitialValues({
+        transform: [{ scale: 0.9 }],
+        opacity: 0,
+      })}
+      exiting={FadeOut.duration(150)}
       {...props}
       className={modalContentStyle({
         parentVariants: {
