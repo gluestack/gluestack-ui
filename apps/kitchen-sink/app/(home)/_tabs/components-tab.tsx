@@ -185,7 +185,7 @@ export default function ComponentsTab() {
   const { isDark } = useAppTheme();
   const { width, height } = useWindowDimensions();
 
-  const ITEM_WIDTH = width > 480 ? width * 0.3 : width * 0.6;
+  const ITEM_WIDTH = width > 680 ? width * 0.3 : width * 0.6;
   const SPACING = 5;
   const SIDE_OFFSET = (width - ITEM_WIDTH) / 2 - SPACING / 2;
   const CONTENT_HEIGHT = height * 0.75;

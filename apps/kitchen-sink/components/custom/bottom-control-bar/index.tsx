@@ -1,6 +1,13 @@
+import { Icon, MoonIcon, SearchIcon, SunIcon } from '@/components/ui/icon';
+import { Input, InputField, InputSlot } from '@/components/ui/input';
+import { Text } from '@/components/ui/text';
+import { ThemeName } from '@/constants/themes';
+import { useAppTheme } from '@/contexts/app-theme-context';
+import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { BlurView } from 'expo-blur';
-import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
+import { useRouter } from 'expo-router';
+import { PaletteIcon } from 'lucide-react-native';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Modal,
@@ -8,26 +15,18 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  TextInput,
   useWindowDimensions,
   View,
 } from 'react-native';
 import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
   Easing,
   FadeIn,
   FadeOut,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
 } from 'react-native-reanimated';
-import { useRouter } from 'expo-router';
-import { useAppTheme } from '@/contexts/app-theme-context';
-import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
-import { Text } from '@/components/ui/text';
-import { Icon, MoonIcon, SunIcon, SearchIcon } from '@/components/ui/icon';
-import { PaletteIcon } from 'lucide-react-native';
-import { ThemeName } from '@/constants/themes';
-import { Input, InputField, InputSlot } from '@/components/ui/input';
+const AnimatedView = Animated.createAnimatedComponent(View);
 
 // Theme color mapping for the theme button indicator
 const THEME_COLORS: Record<ThemeName, string[]> = {
@@ -74,7 +73,6 @@ const BottomControlBar = memo(
     onPillPress,
     components,
     currentComponent,
-    onComponentSelect,
     bottomOffset = 34,
     pillWidth = 200,
     children,
@@ -195,13 +193,13 @@ const BottomControlBar = memo(
               onPress={handleToggleColorMode}
               className="w-16 h-16 rounded-full border border-input dark:bg-input/[0.075] items-center justify-center"
             >
-              <Animated.View style={colorModeAnimatedStyle}>
+              <AnimatedView style={colorModeAnimatedStyle}>
                 <Icon
                   as={isDark ? SunIcon : MoonIcon}
                   className="text-foreground"
                   size="md"
                 />
-              </Animated.View>
+              </AnimatedView>
             </Pressable>
 
             {/* Theme Selector Button */}
@@ -291,7 +289,7 @@ const BottomControlBar = memo(
               </Pressable>
 
               {/* Menu Content - Positioned above the button */}
-              <Animated.View
+              <AnimatedView
                 entering={FadeIn.duration(200)
                   .springify()
                   .damping(40)
@@ -365,7 +363,7 @@ const BottomControlBar = memo(
                     )}
                   </View>
                 </ScrollView>
-              </Animated.View>
+              </AnimatedView>
             </View>
           </Modal>
         )}
@@ -405,7 +403,7 @@ const BottomControlBar = memo(
             </Pressable>
 
             {/* Menu Content - Positioned above the button */}
-            <Animated.View
+            <AnimatedView
               entering={FadeIn.duration(200)
                 .springify()
                 .damping(40)
@@ -475,7 +473,7 @@ const BottomControlBar = memo(
                   </Text>
                 </Pressable>
               </View>
-            </Animated.View>
+            </AnimatedView>
           </View>
         </Modal>
       </>

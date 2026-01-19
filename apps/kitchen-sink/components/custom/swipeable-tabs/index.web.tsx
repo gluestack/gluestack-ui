@@ -224,7 +224,7 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
   return (
     <View className="flex-1 bg-background">
       {/* Tab Header */}
-      <View style={{ paddingTop: insets.top }} className='bg-transparent'>
+      <View style={{ paddingTop: insets.top }} className="bg-transparent">
         <View className="flex-row items-center justify-center px-2">
           <View className="flex-row relative">
             <FadeOverlay
@@ -274,4 +274,3 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
 };
 
 export default SwipeableTabs;
-

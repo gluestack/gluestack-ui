@@ -234,7 +234,7 @@ export const UsageVariantFlatList = ({
             scrollY={scrollX}
             itemHeight={itemWidth}
             width={width}
-            height={height-100-insets.top}
+            height={height - 100 - insets.top}
           />
         )}
         keyExtractor={(item) => item.value}
@@ -269,7 +269,6 @@ export const UsageVariantFlatList = ({
       )}
       <View
         className="absolute left-0 right-0 items-center top-10"
-   
         pointerEvents="none"
       >
         {/* Variant names horizontal scrollable list - active item centered, others faded */}
