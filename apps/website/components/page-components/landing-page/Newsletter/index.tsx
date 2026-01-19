@@ -207,7 +207,7 @@ export const Newsletter = ({
           {avatars.map((item) => (
             <Link href={item.profileUrl} isExternal key={item.id}>
               <Box className="relative group">
-                <Avatar className="md:w-20 md:h-20 w-14 h-14 border-2 border-background-0">
+                <Avatar className="md:w-20 md:h-20 w-14 h-14 border-2 border-background">
                   <AvatarFallbackText>{item.userName}</AvatarFallbackText>
                   {item.avatarURl && (
                     <Image
