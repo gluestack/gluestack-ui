@@ -9,7 +9,7 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Box className="w-[300px] gap-4 p-3 rounded-md bg-muted">
+    <Box className="w-[300px] gap-4 p-3">
       <Skeleton variant="sharp" className="h-[100px]" />
       <SkeletonText _lines={3} className="h-2" />
       <HStack className="gap-1 align-middle">
