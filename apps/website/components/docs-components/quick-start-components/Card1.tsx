@@ -23,7 +23,7 @@ function Card1() {
   const [showCopy, setShowCopy] = useState(false);
 
   const copyToClipboard = async () => {
-    const text = 'npm create gluestack@latest';
+    const text = 'npm create gluestack@alpha';
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => {
