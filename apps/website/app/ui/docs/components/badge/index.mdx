@@ -150,19 +150,11 @@ function Badge({
   className,
   ...props
 }: { className?: string } & IBadgeProps) {
-
-  const contextValue = useMemo(
-    () => ({  variant }),
-    [variant]
-  );
-
   return (
     <ContextView
       className={badgeStyle({ variant, class: className })}
       {...props}
-      context={{
-        contextValue
-      }}
+      context={{ variant }}
     >
       {children}
     </ContextView>
