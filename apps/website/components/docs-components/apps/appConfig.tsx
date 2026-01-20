@@ -12,7 +12,7 @@ export const kitchensink = {
     android: '019bd9ed-f672-7a91-990c-a468a79404e6',
     ios: '019bd9ed-f672-7499-a556-bc283f30ebec',
   },
-  iframeUri: 'https://kitchen-sink-nllr9x546-geekyants-labs.vercel.app/',
+  iframeUri: 'https://kitchen-sink-git-feat-merge-v4-animations-geekyants-labs.vercel.app/',
   qrCodeUri:
     'https://qr.expo.dev/eas-update?slug=exp&projectId=72e83d84-acc2-4675-a0a8-95d0f5fea5b4&groupId=0ab51a01-6c64-4a8f-bdf8-79526e5e63f5&host=u.expo.dev',
 };
