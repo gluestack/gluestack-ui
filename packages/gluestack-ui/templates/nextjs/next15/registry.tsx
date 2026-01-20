@@ -2,7 +2,6 @@
 import React, { useRef, useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 import { StyleRegistry, createStyleRegistry } from 'styled-jsx';
-// @ts-expect-error : AppRegistry is defined in react-native-web but its type is not defined
 import { AppRegistry } from 'react-native-web';
 import { flush } from '@gluestack-ui/utils/nativewind-utils';
 
@@ -14,6 +13,7 @@ export default function StyledJsxRegistry({
   // Only create stylesheet once with lazy initial state
   // x-ref: https://reactjs.org/docs/hooks-reference.html#lazy-initial-state
   const [jsxStyleRegistry] = useState(() => createStyleRegistry());
+
   const isServerInserted = useRef(false);
 
   useServerInsertedHTML(() => {
@@ -21,9 +21,22 @@ export default function StyledJsxRegistry({
     const { getStyleElement } = AppRegistry.getApplication('Main');
     if (!isServerInserted.current) {
       isServerInserted.current = true;
-      const styles = [getStyleElement(), jsxStyleRegistry.styles(), flush()];
+      const styles = [
+        getStyleElement(),
+        jsxStyleRegistry.styles(),
+        flush(),
+      ].filter(Boolean); // Remove any null/undefined styles
+
       jsxStyleRegistry.flush();
-      return <>{styles}</>;
+
+      // Add unique keys to each style element
+      return (
+        <>
+          {styles.map((style, index) => (
+            <React.Fragment key={`style-${index}`}>{style}</React.Fragment>
+          ))}
+        </>
+      );
     }
   });
 

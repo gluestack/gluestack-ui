@@ -432,15 +432,15 @@
   dependencies:
     tslib "^2.8.0"
 
-"@gluestack-ui/core@^3.0.12":
-  version "3.0.12"
-  resolved "https://registry.npmjs.org/@gluestack-ui/core/-/core-3.0.12.tgz#e8ec8aca7d960979b54b8ae24346e01ded86f1fa"
-  integrity sha512-TyNjDUJrZF/FTqcSEPBR87wZQ3yvbWuTjn0tG5AFYzYfMCw0IpfTigmzoajN9KHensN0xNwHoAkXKaHlhy11yQ==
+"@gluestack-ui/core@^4.0.0-alpha.0":
+  version "4.0.0-alpha.0"
+  resolved "https://registry.npmjs.org/@gluestack-ui/core/-/core-4.0.0-alpha.0.tgz#ee2ab57db452bba586603283025d8553663583a3"
+  integrity sha512-xxl+ceWDykoptE8YywB57MGyHLTu+go8iume4/FLHjlz4+p/0fl0zs5YaDh0IW2HJ2PzzV+U/Z0iSKKVYzMe7A==
 
-"@gluestack-ui/utils@^3.0.13":
-  version "3.0.15"
-  resolved "https://registry.npmjs.org/@gluestack-ui/utils/-/utils-3.0.15.tgz#9a79d5afa97e550824f7c8e081069262353c0527"
-  integrity sha512-2zTKcMI7BKvxMWvkEcbsF42VkGqLM272cHC0I234pPJc5AzBbj1DlKhzrwuaY67EOWGzEhxPNlhifnQoQaqgWw==
+"@gluestack-ui/utils@^4.0.0-alpha.0":
+  version "4.0.0-alpha.0"
+  resolved "https://registry.npmjs.org/@gluestack-ui/utils/-/utils-4.0.0-alpha.0.tgz#47f6b2f78a291e58254a8e725198569707fb3128"
+  integrity sha512-zSPhpSdNMEySIE0mlDnQMZtixI0MTi9dDuZC8zUT+JDkJsLYuF4H7KpcvWkk4CLZun2ewbWrsaT22JBpGlW8WA==
   dependencies:
     dom-helpers "^6.0.1"
     react-aria "^3.41.1"

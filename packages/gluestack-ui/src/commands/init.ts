@@ -48,7 +48,7 @@ export const init = new Command()
     try {
       const options = initOptionsSchema.parse({ ...opts });
       const isTemplate = options.templateOnly;
-      console.log('\n\x1b[1mWelcome to gluestack-ui v3!\x1b[0m\n');
+      console.log('\n\x1b[1mWelcome to gluestack-ui v4 alpha!\x1b[0m\n');
       const cwd = process.cwd();
 
       if (!fs.existsSync(path.join(cwd, 'package.json'))) {

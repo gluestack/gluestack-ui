@@ -8,7 +8,7 @@ const config = {
   reactNativeCLIProject: 'react-native-cli',
   tailwindConfigRootPath: 'src/gluestack-ui/templates/tailwind.config.js',
   writableComponentsPath: 'components/ui',
-  branchName: 'main',  // branch name for the gluestack-ui repo to be used for the CLI
+  branchName: 'main-v4-alpha',  // branch name for the gluestack-ui repo to be used for the CLI
   style: 'nativewind',
   providerComponent: 'gluestack-ui-provider',
   gluestackUIPattern: '@/components/ui/',

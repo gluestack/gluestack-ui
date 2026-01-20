@@ -1,6 +1,6 @@
 const data = {
   gitRepo: 'https://github.com/gluestack/gluestack-ui.git',
-  branch: 'main',
+  branch: 'main-v4-alpha',
   parentPath: 'apps', // This is the path to the parent directory of the template
   options: {
     framework: {
