@@ -22,7 +22,7 @@ const linkStyle = tva({
 });
 
 const linkTextStyle = tva({
-  base: 'underline text-info-700 data-[hover=true]:text-info-600 data-[hover=true]:no-underline data-[active=true]:text-info-700 font-normal font-body web:font-sans web:tracking-sm web:my-0 web:bg-transparent web:border-0 web:box-border web:display-inline web:list-none web:margin-0 web:padding-0 web:position-relative web:text-start web:whitespace-pre-wrap web:word-wrap-break-word',
+  base: 'underline text-primary data-[hover=true]:text-primary/80 data-[hover=true]:no-underline data-[active=true]:text-destructive/80 font-normal font-body web:font-sans web:tracking-sm web:my-0 web:bg-transparent web:border-0 web:box-border web:inline web:list-none web:m-0 web:p-0 web:relative web:text-start web:whitespace-pre-wrap web:break-words',
 
   variants: {
     isTruncated: {

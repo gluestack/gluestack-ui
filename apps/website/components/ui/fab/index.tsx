@@ -100,7 +100,7 @@ const fabLabelStyle = tva({
 
 const fabIconStyle = tva({
   base: 'text-primary-foreground/90 fill-none',
-  variants: {
+  variants: { 
     size: {
       '2xs': 'h-3 w-3',
       'xs': 'h-3.5 w-3.5',

@@ -1,7 +1,8 @@
 {
   "name": "@gluestack-ui/core",
   "description": "Universal UI components for React Native, Expo, and Next.js",
-  "version": "3.0.12",
+  "version": "4.0.0-alpha.0",
+  "repository": "https://github.com/gluestack/gluestack-ui.git",
   "main": "./lib/esm/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
@@ -157,7 +158,7 @@
     }
   },
   "peerDependencies": {
-    "@gluestack-ui/utils": ">=2.0.0",
+    "@gluestack-ui/utils": ">=4.0.0-alpha.0",
     "react": ">=16.8.0",
     "react-native": ">=0.64.0",
     "react-native-svg": ">=12.0.0",

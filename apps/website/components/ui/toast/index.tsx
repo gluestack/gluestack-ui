@@ -1,12 +1,26 @@
 'use client';
-import { createToastHook } from '@gluestack-ui/core/toast/creator';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import React from 'react';
-import { AccessibilityInfo, Text, View } from 'react-native';
-import Animated, { SlideInUp } from 'react-native-reanimated';
-const useToast = createToastHook(View);
+import { createToastHook } from '@gluestack-ui/core/toast/creator';
+import { AccessibilityInfo, Text, View, ViewStyle } from 'react-native';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import {
+  Motion,
+  AnimatePresence,
+  MotionComponentProps,
+} from '@legendapp/motion';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+
+type IMotionViewProps = React.ComponentProps<typeof View> &
+  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+
+const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+
+const useToast = createToastHook(MotionView, AnimatePresence);
 const SCOPE = 'TOAST';
 const AnimatedView = Animated.createAnimatedComponent(View);
 cssInterop(AnimatedView, { className: 'style' });

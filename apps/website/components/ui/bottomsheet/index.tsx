@@ -9,7 +9,7 @@ import GorhomBottomSheet, {
 } from '@gorhom/bottom-sheet';
 import { Platform } from 'react-native';
 import type { PressableProps, TextProps } from 'react-native';
-import { FocusScope } from '@gluestack-ui/core/aria';
+import { FocusScope } from '@gluestack-ui/utils/aria';
 import React, {
   createContext,
   useCallback,

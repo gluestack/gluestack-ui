@@ -47,7 +47,10 @@ type IProgressFilledTrackProps = VariantProps<typeof progressFilledTrackStyle> &
 const Progress = React.forwardRef<
   React.ComponentRef<typeof UIProgress>,
   IProgressProps
->(function Progress({ className, orientation = 'horizontal', ...props }, ref) {
+>(function Progress(
+  { className, orientation = 'horizontal', ...props },
+  ref
+) {
   return (
     <UIProgress
       ref={ref}

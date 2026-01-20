@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@legendapp/motion": "^2.4.0"
+    "react-native-reanimated": "^4.2.1"
   },
   "devDependencies": {},
   "components": []

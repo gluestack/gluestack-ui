@@ -118,11 +118,11 @@ This is an illustration of **Modal** component.
 
 </TabItem>
 <TabItem label="Manual">
-> Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
+> Note: At present, we have integrated `react-native-reanimated` for animation. You have the option to remove this and implement your own custom animation wrapper.
 ### Step 1: Install the following dependencies:
 
 ```bash
-npm i @legendapp/motion
+npm i react-native-reanimated
 ```
 
 ### Step 2: Copy and paste the following code into your project.
@@ -520,11 +520,11 @@ Contains all View related layout style props and actions. It inherits all the pr
 
 #### ModalBackdrop
 
-It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component.
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable#props) component, created using [react-native-reanimated's](https://docs.swmansion.com/react-native-reanimated/) `Animated.createAnimatedComponent` function to add animation to the component.
 
 #### ModalContent
 
-It is [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component.
+It is [react-native-reanimated's](https://docs.swmansion.com/react-native-reanimated/) [Animated.View](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/glossary#animatedview) component.
 
 <Table>
   <TableHeader>
@@ -856,7 +856,7 @@ The Examples section provides visual representations of the different variants o
         <ModalBackdrop />
         <ModalContent className="max-w-[305px] items-center">
           <ModalHeader>
-            <Box className="w-[56px] h-[56px] rounded-full bg-destructive-foreground items-center justify-center">
+            <Box className="w-[56px] h-[56px] rounded-full bg-white items-center justify-center">
               <Icon as={TrashIcon} className="stroke-destructive" size="xl" />
             </Box>
           </ModalHeader>

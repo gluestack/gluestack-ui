@@ -19,7 +19,8 @@ const badgeStyle = tva({
     variant: {
       default: 'bg-primary',
       secondary: 'bg-secondary',
-      destructive: 'bg-destructive dark:bg-destructive/60',
+      destructive:
+        'bg-destructive dark:bg-destructive/60',
       outline: 'border border-border dark:border-border/90 bg-transparent',
     },
   },
@@ -72,14 +73,18 @@ function Badge({
   className,
   ...props
 }: { className?: string } & IBadgeProps) {
-  const contextValue = useMemo(() => ({ variant }), [variant]);
+
+  const contextValue = useMemo(
+    () => ({  variant }),
+    [variant]
+  );
 
   return (
     <ContextView
       className={badgeStyle({ variant, class: className })}
       {...props}
       context={{
-        contextValue,
+        contextValue
       }}
     >
       {children}

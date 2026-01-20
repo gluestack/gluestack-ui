@@ -247,12 +247,6 @@ AccordionIcon.displayName = 'AccordionIcon';
 AccordionContent.displayName = 'AccordionContent';
 
 export {
-  Accordion,
-  AccordionContent,
-  AccordionContentText,
-  AccordionHeader,
-  AccordionIcon,
-  AccordionItem,
-  AccordionTitleText,
-  AccordionTrigger,
+  Accordion, AccordionContent, AccordionContentText, AccordionHeader, AccordionIcon, AccordionItem, AccordionTitleText, AccordionTrigger
 };
+
