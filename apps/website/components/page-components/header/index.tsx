@@ -20,6 +20,7 @@ import ProductDropdown from './ProductDropdown';
 import { useColorMode } from '@/app/provider';
 import ResourcesDropdown from './ResourcesDropdown';
 import AnimatedGithubCount from '../landing-page/AnimatedGithubCount';
+import { MobileSidebarMenu } from './MobileSidebarMenu';
 const Header = ({
   isOpenSidebar: propsIsOpenSidebar,
   setIsOpenSidebar: propsSetIsOpenSidebar,
@@ -89,7 +90,7 @@ async function fetchGitHubStars() {
               </span>
             </NextLink>
             {/* Desktop: Show Docs and Demo buttons */}
-            <div className="hidden md:flex items-center xl:ml-10 bg-red-500">
+            <div className="hidden md:flex items-center xl:ml-10">
               <NextLink
                 className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 href="/ui/docs"
@@ -117,19 +118,20 @@ async function fetchGitHubStars() {
           </div>
           <div className="flex flex-row xl:gap-10 gap-6 items-center">
             {/* Desktop: Show full search */}
-            <div className="hidden md:block">
+            <div className=" flex items-center  justify-center">
+                 
               <UiDocSearch />
             </div>
 
             {/* Mobile: Show search icon */}
-            <Button
+            {/* <Button
               variant="ghost"
               size="icon"
               className="md:hidden"
               onClick={() => setShowMobileSearch(true)}
             >
               <Search className="h-5 w-5 text-foreground" />
-            </Button>
+            </Button> */}
 
             <NextLink
               className="sm:flex hidden"
@@ -210,33 +212,12 @@ async function fetchGitHubStars() {
             </SheetTitle>
           </SheetHeader>
           <div onClick={() => setShowDrawer(false)}>
-            <div className="flex flex-col gap-2 pt-4">
-              <NextLink href="/demo">
-                <Button variant="ghost" className="w-full justify-start">
-                  Demo
-                </Button>
-              </NextLink>
-              <NextLink href="/docs">
-                <Button variant="ghost" className="w-full justify-start">
-                  Docs
-                </Button>
-              </NextLink>
-            </div>
+            <MobileSidebarMenu onItemClick={() => setShowDrawer(false)} />
           </div>
         </SheetContent>
       </Sheet>
 
-      {/* Mobile Search Sheet */}
-      <Sheet open={showMobileSearch} onOpenChange={setShowMobileSearch}>
-        <SheetContent side="top" className="h-[200px]">
-          <SheetHeader>
-            <SheetTitle className="sr-only">Search Documentation</SheetTitle>
-          </SheetHeader>
-          {/* <div className="pt-4">
-            <UiDocSearch />
-          </div> */}
-        </SheetContent>
-      </Sheet>
+    
     </div>
   );
 };

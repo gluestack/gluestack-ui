@@ -12,15 +12,26 @@
   border: none;
 }
 
+.dark .DocSearch-Button {
+  background-color: #1F1F1F;
+}
+
 @media (max-width: 1380px) {
   .DocSearch-Button {
     width: auto;
   }
 }
 
-.dark .DocSearch-Button {
-  background-color: #1F1F1F;
+
+@media (max-width: 768px) {
+  .DocSearch-Button {
+    background-color: transparent;
+  }
+    .dark .DocSearch-Button {
+      background-color: transparent;
+    }
 }
+
 
 .DocSearch-Button-Placeholder {
   font-size: 14px;
@@ -35,7 +46,11 @@
 }
 
 .DocSearch-Search-Icon {
-  display: none;
+  display: block;
+}
+
+.dark .DocSearch-Search-Icon {
+  color: #A1A1A1;
 }
 
 .DocSearch-Button-Key {

@@ -59,7 +59,7 @@ const App = ({ referrer }: { referrer: string }) => {
                   <ArrowUpRight className="text-primary-foreground" />
                 </Button>
               </NextLink>
-              <div className="flex flex-row gap-3 border border-border rounded-full items-center py-3 px-6">
+              <div className="flex w-fit flex-row gap-3 border border-border rounded-full items-center py-3 px-6">
                 <Terminal className="text-muted-foreground" />
                 <span className="font-mono">npm create gluestack@latest</span>
                 <CopySnippetButton />
