@@ -37,7 +37,7 @@ const App = ({ referrer }: { referrer: string }) => {
       <SentryErrorHandler />
       <WebsiteLayout>
         <div className=" h-full max-w-[1440px] w-[85%] my-0 mx-auto">
-          <div className="flex flex-col md:w-1/2   h-[calc(100vh-80px-56px)] justify-center gap-5">
+          <div className="flex flex-col md:w-1/2   h-[calc(100vh-100px)] justify-center gap-5">
             <div>
               <AwardBadge />
             </div>
