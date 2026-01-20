@@ -8,16 +8,17 @@ import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
 import { useRouter } from 'expo-router';
 import { PaletteIcon } from 'lucide-react-native';
+import { cssInterop } from 'nativewind';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Modal,
   Platform,
   Pressable,
-  ScrollView,
   StyleSheet,
   useWindowDimensions,
-  View,
+  View
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import Animated, {
   Easing,
   FadeIn,
@@ -26,7 +27,6 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { cssInterop } from 'nativewind';
 const AnimatedView = Animated.createAnimatedComponent(View);
 Platform.OS === 'web' ? cssInterop(AnimatedView, { className: 'style' }) : null;
 // Theme color mapping for the theme button indicator
@@ -329,12 +329,13 @@ const BottomControlBar = memo(
                   </Input>
                 </View>
 
+                <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
                 {/* Component List */}
-                <ScrollView
+                {/* <ScrollView
                   className="flex-1"
                   showsVerticalScrollIndicator={false}
                   bounces={false}
-                >
+                > */}
                   <View className="py-2 gap-1">
                     {filteredComponents.map((item, index) => (
                       <Pressable
@@ -363,7 +364,8 @@ const BottomControlBar = memo(
                       </Text>
                     )}
                   </View>
-                </ScrollView>
+                  {/* </ScrollView> */}
+                  </KeyboardAwareScrollView>
               </AnimatedView>
             </View>
           </Modal>
