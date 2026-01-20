@@ -158,11 +158,11 @@ const ComponentCard = memo(
                   <Icon as={item.icon} className="h-32 w-full stroke-none" />
                 )}
                 <View className="gap-1">
-                  <Text className="text-white font-sans text-2xl font-bold">
+                  <Text className="text-white font-sans text-2xl font-semibold">
                     {item.title}
                   </Text>
-                  <Text className="text-slate-50 text-sm ">
-                    {item.count} Variants
+                  <Text className="text-slate-50 text-sm font-sans">
+                    {item.count}  Variants
                   </Text>
                 </View>
               </View>
@@ -191,7 +191,7 @@ export default function ComponentsTab() {
   const CONTENT_HEIGHT = height * 0.75;
 
   const { reduceTransparencyEnabled } = useAccessibilityInfo();
-  const applyBlur = !reduceTransparencyEnabled && Platform.OS !== 'web';
+  const applyBlur = !reduceTransparencyEnabled && Platform.OS === 'ios';
 
   const listRef = useRef<FlatList<ComponentItem>>(null);
   const isNavigatingRef = useRef(false);
@@ -350,11 +350,6 @@ export default function ComponentsTab() {
           pointerEvents="none"
           style={StyleSheet.absoluteFill}
           animatedProps={animatedProps}
-          // tint={
-          //   isDark
-          //     ? 'systemUltraThinMaterialDark'
-          //     : 'systemUltraThinMaterialLight'
-          // }
         />
       )}
       <BottomControlBar
