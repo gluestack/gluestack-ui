@@ -1,7 +1,13 @@
-import { useRouter } from 'expo-router';
+import {
+  BottomControlBar,
+  type ComponentItem,
+} from '@/components/custom/bottom-control-bar';
+import { useAppTheme } from '@/contexts/app-theme-context';
+import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { useFocusEffect } from '@react-navigation/native';
 import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
+import { useRouter } from 'expo-router';
 import { memo, useCallback, useRef, useState } from 'react';
 import {
   FlatList,
@@ -11,6 +17,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+import { cssInterop } from 'react-native-css-interop';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -20,19 +27,9 @@ import Animated, {
   useSharedValue,
   type SharedValue,
 } from 'react-native-reanimated';
-import { useAppTheme } from '@/contexts/app-theme-context';
-import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
-import { Text } from '@/components/ui/text';
-import { Image } from '@/components/ui/image';
-import { HStack } from '@/components/ui/hstack';
-import {
-  BottomControlBar,
-  type ComponentItem,
-} from '@/components/custom/bottom-control-bar';
 import Showcase1 from '../showcases/showcase-1';
 import Showcase2 from '../showcases/showcase-2';
 import Showcase3 from '../showcases/showcase-3';
-import { cssInterop } from 'react-native-css-interop';
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 cssInterop(Animated.FlatList, { className: 'style' });
@@ -121,7 +118,7 @@ const ShowcaseCard = memo(
             onPress={onPress}
             style={{ width: '100%', height: '100%' }}
           >
-            <View className="flex-1 overflow-hidden rounded-3xl bg-background border border-border">
+            <View className="flex-1 overflow-hidden rounded-3xl bg-background border border-border" pointerEvents='none'>
               <View
                 style={{
                   width: '100%',
@@ -164,7 +161,7 @@ export default function ShowcasesTab() {
   const SIDE_OFFSET = (width - CARD_WIDTH) / 2 - SPACING / 2;
 
   const { reduceTransparencyEnabled } = useAccessibilityInfo();
-  const applyBlur = !reduceTransparencyEnabled && Platform.OS !== 'web';
+  const applyBlur = !reduceTransparencyEnabled && Platform.OS === 'ios';
 
   const listRef = useRef<FlatList<ShowcaseItem>>(null);
   const isNavigatingRef = useRef(false);
@@ -222,28 +219,6 @@ export default function ShowcasesTab() {
       intensity: interpolate(scrollX.get(), inputRange, outputRange),
     };
   });
-
-  const Header = () => {
-    return (
-      <View className="items-center justify-center z-10 mt-10 gap-2">
-        <HStack className="items-center gap-2">
-          <Image
-            source={{
-              uri: isDark
-                ? 'https://i.imgur.com/EUqtUMu.png'
-                : 'https://i.imgur.com/9bvua6C.png',
-            }}
-            alt="Kitchensink App Logo"
-            className="h-6 w-6"
-          />
-          <Text className="text-2xl font-bold font-sans">Showcases</Text>
-        </HStack>
-        <Text className="max-w-[60%] text-foreground/80 text-center font-serif">
-          See components in real-world scenarios
-        </Text>
-      </View>
-    );
-  };
 
   const handleCardPress = useCallback(
     (path: string) => {
