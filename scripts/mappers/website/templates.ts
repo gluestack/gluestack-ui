@@ -103,17 +103,17 @@ export default function AllComponents() {
             }}
             key={componentName}
           >
-            <Box className="flex h-[300px] border border-outline-100  items-center overflow-hidden justify-center rounded-lg dark:bg-black bg-white">
+           <Box className="flex h-[300px] border border-border  items-center overflow-hidden justify-center rounded-lg bg-card">
               <Box className="flex-1 w-full flex items-center justify-center origin-center">
                 <Component />
               </Box>
               <Box
-                className="w-full py-2 px-4 bg-background-100 cursor-pointer"
+                className="w-full py-2 px-4 bg-muted cursor-pointer"
                 onClick={() => {
                   window.location.href = \`/ui/docs/components/\${componentName}\`;
-                }}
+                  }}
               >
-                <Text className="text-left text-typography-700 text-lg font-medium capitalize">
+                <Text className="text-left text-muted-foreground text-lg font-medium capitalize">
                   {componentName}
                 </Text>
               </Box>
