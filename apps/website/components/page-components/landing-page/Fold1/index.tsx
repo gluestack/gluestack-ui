@@ -62,7 +62,7 @@ import React, { useContext, useState } from 'react';
 
 const Fold1Content = () => {
   const ButtonMap = [
-    { mode: 'default', bg: 'bg-typography-950' },
+    { mode: 'default', bg: 'bg-black dark:bg-white' },
     { mode: 'orange', bg: 'bg-[#F97316]' },
     { mode: 'blue', bg: 'bg-[#0EA5E9]' },
     { mode: 'green', bg: 'bg-[#10B981]' },
@@ -199,16 +199,13 @@ const Fold1Content = () => {
                     working on fixing it.
                   </Text>
                   <ButtonGroup className="flex-row">
-                    <Button
-                      variant="outline"
-                      action="secondary"
-                      size="sm"
-                      aria-label="Retry"
-                    >
-                      <ButtonText>Retry</ButtonText>
+                    <Button size="sm" aria-label="Retry">
+                      <ButtonText className="">Retry</ButtonText>
                     </Button>
                     <Button aria-label="Report" size="sm">
-                      <ButtonText>Report issues</ButtonText>
+                      <ButtonText className="">
+                        Report issues
+                      </ButtonText>
                     </Button>
                   </ButtonGroup>
                 </VStack>
@@ -323,17 +320,17 @@ const Fold1Content = () => {
                   sizes="100vw"
                   fill
                 />
-                <Box className="absolute bg-primary-900 h-[88.6%] w-[48.765%] rounded-full justify-center items-center bottom-[22.5%] left-[62.4%]">
-                  <Box className="absolute h-0 py-[93.07%] w-[186.138%] rounded-full bg-primary-900 opacity-50" />
-                  <Box className="absolute h-[144.58%] w-[144.58%] rounded-full border-[5.7348vw] md:border-[24.4px] lg:border-[3.5vw] xl:border-[27px] border-primary-900 opacity-70" />
+                <Box className="absolute bg-primary h-[88.6%] w-[48.765%] rounded-full justify-center items-center bottom-[22.5%] left-[62.4%]">
+                  <Box className="absolute h-0 py-[93.07%] w-[186.138%] rounded-full bg-primary opacity-50" />
+                  <Box className="absolute h-[144.58%] w-[144.58%] rounded-full border-[5.7348vw] md:border-[24.4px] lg:border-[3.5vw] xl:border-[27px] border-primary opacity-70" />
                   <Box className="absolute sm:w-[120px] md:w-auto mr-6">
-                    <Text className="lg:text-2xl md:text-2xl sm:text-2xl min-[320px]:text-lg max-[639px]:text-lg text-base text-typography-gray text-right">
+                    <Text className="lg:text-2xl md:text-2xl sm:text-2xl min-[320px]:text-lg max-[639px]:text-lg text-base text-primary-foreground/50 text-right">
                       Customise
                     </Text>
-                    <Text className="lg:text-2xl sm:text-2xl min-[400px]:text-lg max-[639px]:text-lg text-base md:text-xl text-typography-gray text-right">
+                    <Text className="lg:text-2xl sm:text-2xl min-[400px]:text-lg max-[639px]:text-lg text-base md:text-xl text-primary-foreground/50 text-right">
                       with few
                     </Text>
-                    <Text className="lg:text-3xl sm:text-3xl min-[400px]:text-xl max-[640px]:text-xl text-lg md:text-2xl font-bold text-typography-white text-right">
+                    <Text className="lg:text-3xl sm:text-3xl min-[400px]:text-xl max-[640px]:text-xl text-lg md:text-2xl font-bold text-primary-foreground/80 text-right">
                       clicks!
                     </Text>
                   </Box>
@@ -341,22 +338,20 @@ const Fold1Content = () => {
               </Box>
 
               <Box className="gap-4 sm:flex-row flex-col">
-                <HStack className="bg-primary-900 p-5 rounded-lg flex-1 justify-between">
+                <HStack className="bg-primary p-5 rounded-lg flex-1 justify-between ">
                   <VStack>
-                    <Text className="text-sm font-medium leading-normal text-typography-white">
+                    <Text className="text-sm font-medium leading-normal text-primary-foreground">
                       Weekly Views
                     </Text>
-                    <Text className="text-typography-white text-2xl font-bold leading-normal">
+                    <Text className=" text-2xl font-bold leading-normal text-primary-foreground">
                       10,0000
                     </Text>
-                    <Text className="text-typography-gray">
-                      +1.5% from last week
-                    </Text>
+                    <Text className="text-primary-foreground/50">+1.5% from last week</Text>
                   </VStack>
-                  <Box className="p-2 h-8 rounded-lg bg-white/20">
+                  <Box className="p-2 h-8 rounded-lg bg-primary-foreground/10">
                     <Icon
                       as={EyeIcon}
-                      className="w-4 h-4 text-typography-gray"
+                      className="w-4 h-4 text-primary-foreground/70"
                     />
                   </Box>
                 </HStack>
@@ -393,7 +388,9 @@ const Fold1Content = () => {
                 </Button>
                 <HStack className="gap-4">
                   <Button aria-label="01" size="xs" className="px-0 w-8">
-                    <ButtonText className="text-muted-foreground">01</ButtonText>
+                    <ButtonText className="text-muted-foreground">
+                      01
+                    </ButtonText>
                   </Button>
                   <Button
                     size="xs"
@@ -463,11 +460,7 @@ const Fold1Content = () => {
               >
                 <ButtonText>Skip</ButtonText>
               </Button>
-              <Button
-                aria-label="Download"
-                size="sm"
-                className="bg-primary"
-              >
+              <Button aria-label="Download" size="sm" className="bg-primary">
                 <ButtonText>Download</ButtonText>
               </Button>
             </HStack>
@@ -682,7 +675,7 @@ const Fold1Content = () => {
             </HStack>
           </VStack>
 
-          <Box className="border rounded-lg lg:flex border-border bg-background justify-center p-5">
+          <Box className="border rounded-lg lg:flex border-border bg-background/80 justify-center p-5">
             <Text className="text-foreground text-2xl font-bold leading-7 mb-[30px]">
               Buttons
             </Text>
@@ -693,16 +686,16 @@ const Fold1Content = () => {
                 </Text>
                 <VStack className="gap-3">
                   <Button aria-label="Default" action="primary" size="sm">
-                    <ButtonText>Default</ButtonText>
+                    <ButtonText className="">Default</ButtonText>
                   </Button>
                   <Button aria-label="Hover" isHovered size="sm">
-                    <ButtonText>Hover</ButtonText>
+                    <ButtonText className="">Hover</ButtonText>
                   </Button>
                   <Button aria-label="Active" isPressed size="sm">
-                    <ButtonText>Active</ButtonText>
+                    <ButtonText className="">Active</ButtonText>
                   </Button>
                   <Button aria-label="Disabled" size="sm" isDisabled>
-                    <ButtonText>Disabled</ButtonText>
+                    <ButtonText className="">Disabled</ButtonText>
                   </Button>
                 </VStack>
               </VStack>
@@ -765,10 +758,10 @@ const Fold1Content = () => {
                     size="sm"
                     variant="link"
                   >
-                    <ButtonText>Default</ButtonText>
+                    <ButtonText className="">Default</ButtonText>
                   </Button>
                   <Button aria-label="Hover" isHovered size="sm" variant="link">
-                    <ButtonText>Hover</ButtonText>
+                    <ButtonText className="">Hover</ButtonText>
                   </Button>
                   <Button
                     aria-label="Active"
@@ -776,7 +769,7 @@ const Fold1Content = () => {
                     size="sm"
                     variant="link"
                   >
-                    <ButtonText>Active</ButtonText>
+                    <ButtonText className="">Active</ButtonText>
                   </Button>
                   <Button
                     aria-label="Disabled"
@@ -784,7 +777,7 @@ const Fold1Content = () => {
                     isDisabled
                     variant="link"
                   >
-                    <ButtonText>Disabled</ButtonText>
+                    <ButtonText className="">Disabled</ButtonText>
                   </Button>
                 </VStack>
               </Box>

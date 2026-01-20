@@ -292,19 +292,14 @@ const FormsContent = ({ show }: { show: boolean }) => {
                 <AccordionTrigger>
                   {({ isExpanded }: { isExpanded: boolean }) => {
                     return (
-                      <>
-                        {isExpanded ? (
-                          <AccordionIcon as={ChevronUpIcon} className="mr-3" />
-                        ) : (
-                          <AccordionIcon
-                            as={ChevronDownIcon}
-                            className="mr-3"
-                          />
-                        )}
+                      < HStack className='gap-3 items-center justify-center'>
+                    
+                          <AccordionIcon as={ChevronDownIcon}  />
+                      
                         <AccordionTitleText className="text-foreground">
                           How do I place an order?
                         </AccordionTitleText>
-                      </>
+                      </HStack>
                     );
                   }}
                 </AccordionTrigger>
@@ -325,19 +320,14 @@ const FormsContent = ({ show }: { show: boolean }) => {
                 <AccordionTrigger>
                   {({ isExpanded }: { isExpanded: boolean }) => {
                     return (
-                      <>
-                        {isExpanded ? (
-                          <AccordionIcon as={ChevronUpIcon} className="mr-3" />
-                        ) : (
-                          <AccordionIcon
-                            as={ChevronDownIcon}
-                            className="mr-3"
-                          />
-                        )}
+                      < HStack className='gap-3 items-center justify-center'>
+                    
+                          <AccordionIcon as={ChevronDownIcon}  />
+                      
                         <AccordionTitleText className="text-foreground">
                           What payment methods do you accept?
                         </AccordionTitleText>
-                      </>
+                      </HStack>
                     );
                   }}
                 </AccordionTrigger>

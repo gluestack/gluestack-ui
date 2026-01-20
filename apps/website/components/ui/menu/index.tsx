@@ -121,8 +121,11 @@ const Menu = React.forwardRef<React.ComponentRef<typeof UIMenu>, IMenuProps>(
   function Menu({ className, ...props }, ref) {
     return (
       <UIMenu
-        entering={ZoomIn.duration(150)}
-        exiting={ZoomOut.duration(150)}
+        entering={ZoomIn.duration(150).withInitialValues({
+          transform: [{ scale: 0.9 }],
+          opacity: 0,
+        })}
+        exiting={FadeOut.duration(150)}
         ref={ref}
         className={menuStyle({
           class: className,

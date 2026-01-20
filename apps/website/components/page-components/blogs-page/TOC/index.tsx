@@ -130,8 +130,8 @@ export const TOC = ({ items }: { items: Item[] }) => {
                 className={
                   `text-sm leading-5 font-body  no-underline ` +
                   (selected === item.id
-                    ? 'text-typography-900'
-                    : 'text-typography-500')
+                    ? 'text-foreground'
+                    : 'text-foreground/50')
                 }
               >
                 {item.title.trim()}

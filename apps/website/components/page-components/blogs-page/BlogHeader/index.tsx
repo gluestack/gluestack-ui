@@ -12,11 +12,11 @@ export const BlogHeader = ({ blog }: any) => {
   return (
     <Box>
       <HStack>
-        <Text className="text-typography-700 text-xs font-semibold">
+        <Text className="text-foreground text-xs font-semibold">
           {dateNewFormat}
         </Text>
         {blog.reading_time && (
-          <Text className="text-typography-500 text-xs font-semibold">
+          <Text className="text-foreground/50 text-xs font-semibold">
             {' '}
             • {blog.reading_time + ' minute read'}
           </Text>
@@ -29,7 +29,7 @@ export const BlogHeader = ({ blog }: any) => {
           textDecoration: 'none',
         }}
       >
-        <Text className="text-typography-900 text-3xl font-medium">
+        <Text className="text-foreground text-3xl font-medium">
           {blog.title}
         </Text>
       </Link>
@@ -54,12 +54,12 @@ export const BlogHeader = ({ blog }: any) => {
                       color: '$gray300',
                     },
                   }}
-                  className="text-typography-800 text-sm font-bold"
+                  className="text-foreground text-sm font-bold"
                 >
                   {author?.name}
                 </Text>
 
-                <Text className="text-typography-500 text-sm font-medium">
+                <Text className="text-foreground/50 text-sm font-medium">
                   {author?.occupation}
                 </Text>
               </Box>

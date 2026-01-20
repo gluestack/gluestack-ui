@@ -23,7 +23,7 @@ const Tutorials = () => {
             Learn about gluestack from Youtube guru
           </Heading>
           <NextLink href="/ui/docs/apps/kitchensink-app">
-            <Heading className="text-3xl font-bold sm:leading-[54px] leading-9 text-info-600 sm:text-4xl">
+            <Heading className="text-3xl font-bold sm:leading-[54px] leading-9 text-[rgb(11,141,205)] dark:text-[rgb(87,194,246)] sm:text-4xl">
               notJust.dev
             </Heading>
           </NextLink>

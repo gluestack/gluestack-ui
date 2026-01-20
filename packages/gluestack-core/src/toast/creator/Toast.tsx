@@ -3,15 +3,20 @@ import { View } from 'react-native';
 import { ToastContext } from './ToastContext';
 import { ToastList } from './ToastList';
 import type { IToast, IToastInfo, IToastProps } from './types';
-export const ToastProvider = ({ children }: { children: any }) => {
+export const ToastProvider = ({
+  children,
+  ViewComponent = View,
+}: {
+  children: any;
+  ViewComponent?: any;
+}) => {
   const [toastInfo, setToastInfo] = useState<IToastInfo>({} as IToastInfo);
   const [visibleToasts, setVisibleToasts] = useState<{
     [key in string]: boolean;
   }>({});
 
-  const AnimationWrapper = React.useRef(View);
-  const AnimatePresence = React.useRef(View);
   const toastIndex = React.useRef(1);
+  const ViewRef = React.useRef(ViewComponent);
 
   const hideAll = React.useCallback(() => {
     setVisibleToasts({});
@@ -114,6 +119,10 @@ export const ToastProvider = ({ children }: { children: any }) => {
     [hideToast]
   );
 
+  React.useEffect(() => {
+    ViewRef.current = ViewComponent;
+  }, [ViewComponent]);
+
   const contextValue = React.useMemo(() => {
     return {
       toastInfo,
@@ -125,8 +134,7 @@ export const ToastProvider = ({ children }: { children: any }) => {
       visibleToasts,
       setVisibleToasts,
       hideToast,
-      AnimationWrapper,
-      AnimatePresence,
+      ViewComponent: ViewRef,
     };
   }, [
     toastInfo,
@@ -148,21 +156,22 @@ export const ToastProvider = ({ children }: { children: any }) => {
   );
 };
 
-export const getToastHook = (
-  StyledAnimationWrapper: any,
-  StyledAnimatePresence: any
-) => {
+export const getToastHook = (ViewComponent: any) => {
   const useToast = () => {
     const {
-      AnimationWrapper,
-      AnimatePresence,
       setToast,
       hideAll,
       isActive,
       hideToast,
+      ViewComponent: ContextViewComponent,
     } = React.useContext(ToastContext);
-    AnimatePresence.current = StyledAnimatePresence;
-    AnimationWrapper.current = StyledAnimationWrapper;
+
+    React.useEffect(() => {
+      if (ContextViewComponent) {
+        ContextViewComponent.current = ViewComponent;
+      }
+    }, [ViewComponent, ContextViewComponent]);
+
     const toast = useMemo(
       () => ({
         show: setToast,

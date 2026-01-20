@@ -12,7 +12,7 @@ import { UsageVariantFlatList } from '@/components/custom/component-presentation
 
 const ExampleBasic = () => {
 return (
-    <Box className="w-[300px] gap-4 p-3 rounded-md bg-muted">
+    <Box className="w-[300px] gap-4 p-3">
       <Skeleton variant="sharp" className="h-[100px]" />
       <SkeletonText _lines={3} className="h-2" />
       <HStack className="gap-1 align-middle">
@@ -25,7 +25,7 @@ return (
 
 const ExampleUsingIsLoadedProp = () => {
 return (
-    <Box className="w-[290px] p-4 rounded-sm bg-muted gap-3">
+    <Box className="w-[290px] p-4 rounded-sm  gap-3">
         <Skeleton variant="rounded" className="h-44 w-64 rounded-sm" isLoaded={ false }>
           <Image
           className="h-44 w-64 rounded-sm"

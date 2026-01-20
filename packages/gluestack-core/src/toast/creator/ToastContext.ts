@@ -11,6 +11,5 @@ export const ToastContext = createContext<IToastContext>({
   visibleToasts: {},
   setVisibleToasts: () => {},
   hideToast: () => {},
-  AnimationWrapper: { current: null },
-  AnimatePresence: { current: null },
+  ViewComponent: { current: null },
 });

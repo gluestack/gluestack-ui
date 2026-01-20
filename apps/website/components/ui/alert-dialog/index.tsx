@@ -10,6 +10,7 @@ import Animated, {
   FadeOut,
   ZoomIn,
   ZoomOut,
+  Easing,
 } from 'react-native-reanimated';
 import {
   Pressable,
@@ -145,8 +146,11 @@ const AlertDialogContent = React.forwardRef<
   return (
     <UIAccessibleAlertDialog.Content
       pointerEvents="auto"
-      entering={ZoomIn.duration(150).springify().stiffness(700)}
-      exiting={ZoomOut.duration(150)}
+      entering={ZoomIn.duration(150).withInitialValues({
+        transform: [{ scale: 0.9 }],
+        opacity: 0,
+      })}
+      exiting={FadeOut.duration(150)}
       ref={ref}
       {...props}
       className={alertDialogContentStyle({
@@ -228,7 +232,7 @@ const AlertDialogBackdrop = React.forwardRef<
     <UIAccessibleAlertDialog.Backdrop
       ref={ref}
       {...props}
-      entering={FadeIn.duration(150)}
+      entering={FadeIn.duration(150).easing(Easing.linear)}
       exiting={FadeOut.duration(150)}
       className={alertDialogBackdropStyle({
         class: className,

@@ -8,8 +8,7 @@ import BlogsPageLayout from '@/components/page-components/blogs-page/BlogsPageLa
 const blogs = [
   {
     title: 'React Native ARIA & gluestack-ui Security Incident Report',
-    cover:
-      '/images/blogs/rn-aria-incident-report.png',
+    cover: '/images/blogs/rn-aria-incident-report.png',
     slug: 'public-incident-report',
     published_at: {
       start: '2025-09-03T00:00:00Z',
@@ -258,7 +257,7 @@ const Blogs = () => {
   });
   return (
     <BlogsPageLayout>
-      <Heading className="text-4xl lg:text-5xl my-6 pt-4 text-typography-950">
+      <Heading className="text-4xl lg:text-5xl my-6 pt-4 text-foreground">
         Latest posts
       </Heading>
       <Box>

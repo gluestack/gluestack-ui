@@ -7,7 +7,7 @@ export const BlogListItem = ({ key, blog }: { key: number; blog: any }) => {
   return (
     <Box
       key={key}
-      className="py-6 md:py-10 border-b border-outline-100 md:flex md:flex-row md:gap-10 last:border-b-0 "
+      className="py-6 md:py-10 border-b border-border md:flex md:flex-row md:gap-10 last:border-b-0 "
     >
       {blog.cover && (
         <Box className="w-full aspect-[357/200.99] max-w-[357px] rounded-sm overflow-hidden">
