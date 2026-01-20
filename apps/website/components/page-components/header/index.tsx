@@ -80,7 +80,7 @@ async function fetchGitHubStars() {
             >
               <Image
                 alt="gluestack-ui logo"
-                className="h-[20px] w-auto"
+                className="h-[20px] w-full max-w-fit"
                 src={logoSrc}
                 priority
               />
@@ -89,7 +89,7 @@ async function fetchGitHubStars() {
               </span>
             </NextLink>
             {/* Desktop: Show Docs and Demo buttons */}
-            <div className="hidden md:flex items-center gap-1.5 lg:gap-6">
+            <div className="hidden md:flex items-center xl:ml-10 bg-red-500">
               <NextLink
                 className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 href="/ui/docs"
@@ -115,7 +115,7 @@ async function fetchGitHubStars() {
               {/* )} */}
             </div>
           </div>
-          <div className="flex flex-row gap-10 items-center">
+          <div className="flex flex-row xl:gap-10 gap-6 items-center">
             {/* Desktop: Show full search */}
             <div className="hidden md:block">
               <UiDocSearch />
@@ -132,7 +132,7 @@ async function fetchGitHubStars() {
             </Button>
 
             <NextLink
-              className="rounded-full"
+              className="sm:flex hidden"
               aria-label="github link"
               href="https://github.com/gluestack/gluestack-ui"
             >
@@ -170,7 +170,10 @@ async function fetchGitHubStars() {
                 <Moon className="absolute inset-0 h-[18px] w-[18px] rotate-180 scale-0 transition-all duration-300 text-foreground dark:rotate-0 dark:scale-100" />
               </div>
             </button>
-            <NextLink href="/ui/docs/home/overview/quick-start">
+            <NextLink
+              className="min-[1120px]:flex hidden"
+              href="/ui/docs/home/overview/quick-start"
+            >
               <Button className="rounded-full">Get Started</Button>
             </NextLink>
             {/* Mobile: Show hamburger menu button */}
