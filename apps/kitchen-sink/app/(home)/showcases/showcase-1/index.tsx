@@ -7,6 +7,7 @@ import { Text } from '@/components/ui/text';
 import { Image } from '@/components/ui/image';
 import { Icon, ChevronLeftIcon, createIcon } from '@/components/ui/icon';
 import { Path } from 'react-native-svg';
+import { useRouter } from 'expo-router';
 
 // Create custom Camera Icon
 const CameraIcon = createIcon({
@@ -43,6 +44,7 @@ const CARD_WIDTH = 223;
 const CARD_SPACING = 24;
 
 function Showcase1() {
+  const router = useRouter();
   const scrollX = useRef(new Animated.Value(0)).current;
 
   const cards = [
@@ -99,7 +101,7 @@ function Showcase1() {
     <Box className="flex-1 bg-black">
       {/* Header */}
       <HStack className="items-center justify-between px-6 pt-16 pb-8">
-        <Pressable hitSlop={10} className="active:opacity-60">
+        <Pressable hitSlop={10} className="active:opacity-60" onPress={() => router.back()}>
           <Icon as={ChevronLeftIcon} size="xl" className="text-white" />
         </Pressable>
 

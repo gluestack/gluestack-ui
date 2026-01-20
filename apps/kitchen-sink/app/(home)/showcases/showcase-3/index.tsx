@@ -4,6 +4,7 @@ import { Icon } from '@/components/ui/icon';
 import { Image } from '@/components/ui/image';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
+import { useRouter } from 'expo-router';
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
@@ -29,6 +30,7 @@ interface TopRatedItem {
 }
 
 function Showcase3() {
+  const router = useRouter();
   const [cartItems, setCartItems] = useState<CartItem[]>([
     {
       id: 1,
@@ -194,7 +196,7 @@ function Showcase3() {
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
         <HStack className="items-center justify-between px-6 pt-16 pb-6">
-          <Pressable hitSlop={10} className="active:opacity-60">
+          <Pressable hitSlop={10} className="active:opacity-60" onPress={() => router.back()}>
             <Icon as={ChevronLeftIcon} size="xl" className="text-white" />
           </Pressable>
 

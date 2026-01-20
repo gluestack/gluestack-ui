@@ -1,6 +1,6 @@
 import { Box } from '@/components/ui/box';
 import { HStack } from '@/components/ui/hstack';
-import { Icon, createIcon } from '@/components/ui/icon';
+import { ChevronLeftIcon, Icon } from '@/components/ui/icon';
 import { Image } from '@/components/ui/image';
 import { Input, InputField, InputSlot } from '@/components/ui/input';
 import {
@@ -11,27 +11,10 @@ import {
 } from '@/components/ui/slider';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
-import { StatusBar } from 'expo-status-bar';
+import { useRouter } from 'expo-router';
+import { Share2Icon } from 'lucide-react-native';
 import React, { useRef, useState } from 'react';
 import { Animated, ImageBackground, Pressable } from 'react-native';
-import { Path } from 'react-native-svg';
-
-// Create Chevron Up Icon for the top badge
-const ChevronUpIcon = createIcon({
-  viewBox: '0 0 24 24',
-  path: (
-    <>
-      <Path
-        d="M18 15L12 9L6 15"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-    </>
-  ),
-});
 
 // Emoji data with their corresponding expressions
 const emojis = [
@@ -43,6 +26,7 @@ const emojis = [
 ];
 
 function Showcase2() {
+  const router = useRouter();
   const [sliderValue, setSliderValue] = useState(100);
   const [activeEmojiIndex, setActiveEmojiIndex] = useState(4);
 
@@ -101,8 +85,13 @@ function Showcase2() {
       className="flex-1 pt-safe"
       resizeMode="cover"
     >
+        <HStack className="items-center justify-start px-6 py-2">
+          <Pressable hitSlop={10} className="active:opacity-60" onPress={() => router.back()}>
+            <Icon as={ChevronLeftIcon} size="xl" className="text-white" />
+          </Pressable>
+        </HStack>
       {/* Top Badge with Chevron */}
-      <Box className="items-center pt-12 pb-6">
+      <Box className="items-center py-6">
         <Image
           source={{
             uri: 'https://avatars.githubusercontent.com/u/120183344?s=200&v=4',
