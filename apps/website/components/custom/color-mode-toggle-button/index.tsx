@@ -16,7 +16,6 @@ export const ToggleColorModeButton = () => {
       >
         <FabIcon
           as={colorMode === 'dark' ? SunIcon : MoonIcon}
-          className="text-foreground"
         />
       </Fab>
     </div>

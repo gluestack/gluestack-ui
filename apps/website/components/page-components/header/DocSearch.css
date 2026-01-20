@@ -11,9 +11,28 @@
   background-color: #17171705;
   border: none;
 }
+
 .dark .DocSearch-Button {
   background-color: #1F1F1F;
 }
+
+@media (max-width: 1380px) {
+  .DocSearch-Button {
+    width: auto;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .DocSearch-Button {
+    background-color: transparent;
+  }
+    .dark .DocSearch-Button {
+      background-color: transparent;
+    }
+}
+
+
 .DocSearch-Button-Placeholder {
   font-size: 14px;
   font-weight: 400;
@@ -21,34 +40,27 @@
   line-height: 20px;
   letter-spacing: 0%;
 }
-.dark .DocSearch-Button-Placeholder{
+
+.dark .DocSearch-Button-Placeholder {
   color: #A1A1A1;
 }
+
 .DocSearch-Search-Icon {
-  display: none;
+  display: block;
 }
-.DocSearch-Button-Key{
+
+.dark .DocSearch-Search-Icon {
+  color: #A1A1A1;
+}
+
+.DocSearch-Button-Key {
   border-color: #1212120D;
   background-color: transparent;
   border-radius: 6px;
   color: #A1A1A1;
 }
-.dark .DocSearch-Button-Key{
-  background-color: transparent !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    height: 20px !important;
-    width: 20px !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #a1a1a160 !important;
-    font-size: 16px !important;
-    padding: 0px !important;
-  /* border: 1px solid #A1A1A1 !important; */
-}
 
-.DocSearch-Button-Key{
+.dark .DocSearch-Button-Key {
   background-color: transparent !important;
   background: transparent !important;
   box-shadow: none !important;
@@ -57,13 +69,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border:1px solid #1212120D !important;
+  border: 1px solid #a1a1a160 !important;
+  font-size: 16px !important;
+  padding: 0px !important;
+  /* border: 1px solid #A1A1A1 !important; */
+}
+
+.DocSearch-Button-Key {
+  background-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  height: 20px !important;
+  width: 20px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #1212120D !important;
   font-size: 16px !important;
   padding: 0px !important;
 }
-.DocSearch-Button-Key::after{
+
+.DocSearch-Button-Key::after {
   display: none !important;
 }
-.DocSearch-Button-Key::before{
+
+.DocSearch-Button-Key::before {
   display: none !important;
 }

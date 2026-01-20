@@ -17,7 +17,6 @@ export default function ThemeToggleFab() {
       >
         <FabIcon
           as={colorMode === 'light' ? Moon : Sun}
-          className="stroke-typography-200"
         />
       </Fab>
     </Box>
