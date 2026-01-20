@@ -281,11 +281,6 @@ export const UsageVariantFlatList = ({
             alignItems: 'center',
             paddingHorizontal: width / 2,
           }}
-          onLayout={(event) => {
-            // Calculate positions of each item after layout
-            const { width: scrollWidth } = event.nativeEvent.layout;
-            // We'll measure positions dynamically
-          }}
         >
           {data.map((item, index) => {
             const rVariantNameStyle = useAnimatedStyle(() => {
