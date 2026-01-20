@@ -96,10 +96,12 @@ npm i react-native-reanimated
 ```tsx
 'use client';
 import React from 'react';
+import { createAlertDialog } from '@gluestack-ui/core/alert-dialog/creator';
 import {
-  createAlertDialog,
-} from '@gluestack-ui/core/alert-dialog/creator';
-import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+  tva,
+  useStyleContext,
+  withStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import Animated, {
   FadeIn,

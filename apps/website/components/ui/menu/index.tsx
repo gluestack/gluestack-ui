@@ -4,7 +4,7 @@ import { createMenu } from '@gluestack-ui/core/menu/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import { Pressable, Text, View } from 'react-native';
-import Animated, { ZoomIn, ZoomOut } from 'react-native-reanimated';
+import Animated, { FadeOut, ZoomIn, ZoomOut } from 'react-native-reanimated';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
