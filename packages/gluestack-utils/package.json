@@ -1,7 +1,10 @@
 {
   "name": "@gluestack-ui/utils",
   "version": "4.0.0-alpha.0",
-  "repository": "https://github.com/gluestack/gluestack-ui.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "description": "Utility functions and hooks for gluestack-ui",
   "license": "MIT",
   "main": "./lib/esm/index.js",

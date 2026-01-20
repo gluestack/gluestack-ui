@@ -2,7 +2,10 @@
   "name": "gluestack-ui",
   "version": "4.0.0-alpha.0",
   "main": "dist/index.js",
-  "repository": "https://github.com/gluestack/gluestack-ui.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
   "bin": {
     "gluestack-ui": "./dist/index.js"
   },
