@@ -186,36 +186,36 @@ export const headerItems: SidebarSectionProps[] = [
           />
         ),
         badge: (
-          <Badge size="md" variant="solid" action="info">
+          <Badge variant='default'>
             <BadgeText>Partner</BadgeText>
           </Badge>
         ),
       },
-    //   {
-    //     title: 'AppLighter',
-    //     link: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
-    //     logo: (
-    //       <Image
-    //         alt="AppLighter logo"
-    //         className="w-5 h-5"
-    //         size="md"
-    //         source={require('@/public/icon/logo/applighter/logo.png')}
-    //       />
-    //     ),
-    //     logoDark: (
-    //       <Image
-    //         alt="AppLighter logo"
-    //         className="w-5 h-5"
-    //         size="md"
-    //         source={require('@/public/icon/logo/applighter/logo.png')}
-    //       />
-    //     ),
-    //     badge: (
-    //       <Badge size="md" variant="solid" action="info">
-    //         <BadgeText>Partner</BadgeText>
-    //       </Badge>
-    //     ),
-    //   },
+      {
+        title: 'AppLighter',
+        link: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
+        logo: (
+          <Image
+            alt="AppLighter logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/applighter/logo.png')}
+          />
+        ),
+        logoDark: (
+          <Image
+            alt="AppLighter logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/applighter/logo.png')}
+          />
+        ),
+        badge: (
+          <Badge variant='default'>
+            <BadgeText>Partner</BadgeText>
+          </Badge>
+        ),
+      },
       {
         title: 'gluestack-ui pro',
         link: 'https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation',
@@ -236,61 +236,61 @@ export const headerItems: SidebarSectionProps[] = [
           />
         ),
         badge: (
-          <Badge size="md" variant="solid" action="info">
+          <Badge variant='destructive'>
             <BadgeText>PAID</BadgeText>
           </Badge>
         ),
       },
-    //   {
-    //     title: 'FlyDash',
-    //     link: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
-    //     logo: (
-    //       <Image
-    //         alt="FlyDash logo"
-    //         className="w-5 h-5"
-    //         size="md"
-    //         source={require('@/public/icon/logo/flydash/logo.png')}
-    //       />
-    //     ),
-    //     logoDark: (
-    //       <Image
-    //         alt="FlyDash logo"
-    //         className="w-5 h-5"
-    //         size="md"
-    //         source={require('@/public/icon/logo/flydash/logo.png')}
-    //       />
-    //     ),
-    //     badge: (
-    //       <Badge size="md" variant="solid" action="info">
-    //         <BadgeText>Partner</BadgeText>
-    //       </Badge>
-    //     ),
-    //   },
-    //   {
-    //     title: 'gluestack market',
-    //     link: 'https://market.gluestack.io/',
-    //     logo: (
-    //       <Image
-    //         alt="gluestack market logo"
-    //         className="w-5 h-5"
-    //         size="md"
-    //         source={require('@/public/icon/logo/gluestack-market/logo.png')}
-    //       />
-    //     ),
-    //     logoDark: (
-    //       <Image
-    //         alt="gluestack market logo"
-    //         className="w-5 h-5"
-    //         size="md"
-    //         source={require('@/public/icon/logo/gluestack-market/logo.png')}
-    //       />
-    //     ),
-    //     badge: (
-    //       <Badge size="md" variant="solid" action="info">
-    //         <BadgeText>PAID</BadgeText>
-    //       </Badge>
-    //     ),
-    //   },
+      {
+        title: 'FlyDash',
+        link: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
+        logo: (
+          <Image
+            alt="FlyDash logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/flydash/logo.png')}
+          />
+        ),
+        logoDark: (
+          <Image
+            alt="FlyDash logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/flydash/logo.png')}
+          />
+        ),
+        badge: (
+          <Badge variant='default'>
+            <BadgeText>Partner</BadgeText>
+          </Badge>
+        ),
+      },
+      {
+        title: 'gluestack market',
+        link: 'https://market.gluestack.io/',
+        logo: (
+          <Image
+            alt="gluestack market logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/gluestack-market/logo.png')}
+          />
+        ),
+        logoDark: (
+          <Image
+            alt="gluestack market logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/gluestack-market/logo.png')}
+          />
+        ),
+        badge: (
+          <Badge variant="destructive">
+            <BadgeText>PAID</BadgeText>
+          </Badge>
+        ),
+      },
       {
         title: 'Starter Kit',
         link: 'https://github.com/gluestack/gluestack-ui-starter-kits/',
@@ -311,7 +311,7 @@ export const headerItems: SidebarSectionProps[] = [
           />
         ),
         badge: (
-          <Badge size="md" variant="solid" action="success">
+          <Badge variant="secondary">
             <BadgeText>FREE</BadgeText>
           </Badge>
         ),
