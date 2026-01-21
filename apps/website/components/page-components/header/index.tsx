@@ -45,7 +45,7 @@ const Header = ({
     : GluestackLogo;
 
   return (
-    <div className="h-[53px] w-full sticky top-0 z-10 flex justify-center bg-white/80 dark:bg-background/80 backdrop-blur-md">
+    <div className="h-[53px] w-full sticky top-0 z-10 flex justify-center bg-white/80 border-b border-border dark:bg-background/80 backdrop-blur-md">
       {/* @ts-ignore */}
       <Nav className="items-center justify-center w-full mx-auto py-6">
         <div

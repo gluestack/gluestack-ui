@@ -30,7 +30,7 @@ const App = ({ referrer }: { referrer: string }) => {
     <>
       <SentryErrorHandler />
       <WebsiteLayout>
-        <div className=" h-full flex flex-row my-0 mx-auto md:pl-[120px] w-[85%] md:w-full">
+        <div className=" h-full flex flex-row my-0  mx-auto md:pl-[120px] 2xl:pl-[calc((100vw-1440px)/2)] w-[85%] md:w-full">
           <div className="flex flex-col md:w-1/2 pr-5   h-[calc(100vh-100px)] justify-center gap-5">
             <div>
               <AwardBadge />
@@ -63,7 +63,7 @@ const App = ({ referrer }: { referrer: string }) => {
           <div className="hidden md:block md:w-1/2">
             <video
   poster="/videos/hero-poster.jpg"
-  className="w-full h-[calc(100vh-53px)] object-cover"
+  className="w-[50vw] h-[calc(100vh-53px)] object-cover"
   autoPlay
   loop
   preload="none"
