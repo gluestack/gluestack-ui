@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect, useContext } from 'react';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import sidebarData from '@/sidebar.json';
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
+import sidebarData from '@/sidebar.json';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 interface NavigationItem {
   type?: string;
@@ -66,18 +66,16 @@ const SidebarLink = ({ item }: { item: NavigationItem }) => {
   return (
     <Link
       href={item.path || '#'}
-      className={`text-sm font-medium block py-2 px-3.5 mr-2 my-0.5 text-muted-foreground hover:bg-accent hover:text-foreground pl-3 font-inter ${
-        isActive ? 'bg-accent text-foreground border-l-[3px] border-primary' : ''
-      }`}
+      className={`text-sm font-medium block py-2 px-3.5 mr-2 my-0.5 text-muted-foreground hover:bg-accent hover:text-foreground pl-3 font-inter ${isActive ? 'bg-accent text-foreground border-l-[3px] border-primary' : ''
+        }`}
     >
       {item.title}
       {item.tags?.length && item.tags?.length > 0 && (
         <span
-          className={`text-2xs uppercase font-roboto font-semibold rounded-sm px-1 py-0.5 m-2 ${
-            item.tags?.includes('alpha')
+          className={`text-2xs uppercase font-roboto font-semibold rounded-sm px-1 py-0.5 m-2 ${item.tags?.includes('alpha')
               ? 'text-info-600 bg-info-50/40'
               : 'text-success-600 bg-success-50/40'
-          }`}
+            }`}
         >
           {item.tags?.map((tag) => tag).join(', ')}
         </span>
@@ -163,9 +161,8 @@ export default function Sidebar() {
         {parentDropdowns.map((section: Section, index: number) => (
           <div
             key={index}
-            className={`mb-1 cursor-pointer hover:bg-accent rounded-md mr-2 ${
-              selectedSection === section.title ? 'bg-accent' : ''
-            }`}
+            className={`mb-1 cursor-pointer hover:bg-accent rounded-md mr-2 ${selectedSection === section.title ? 'bg-accent' : ''
+              }`}
             onClick={() => handleSectionClick(section.title)}
           >
             <div className="flex items-center gap-2 px-4 py-2">
@@ -173,7 +170,7 @@ export default function Sidebar() {
                 <Icon
                   as={
                     require('lucide-react-native')[
-                      section.icons.name ?? 'CircleHelp'
+                    section.icons.name ?? 'CircleHelp'
                     ]
                   }
                 />
