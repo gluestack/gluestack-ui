@@ -12,6 +12,7 @@ export interface SidebarItemProps {
   logo: React.ReactNode;
   logoDark: React.ReactNode;
   badge?: React.ReactNode;
+  description?: string;
 }
 
 export interface SidebarSectionProps {
@@ -169,6 +170,7 @@ export const headerItems: SidebarSectionProps[] = [
       {
         title: 'RapidNative',
         link: 'https://rapidnative.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
+        description: 'Generate native apps instantly with AI prompts.',
         logo: (
           <Image
             alt="RapidNative logo"
@@ -194,6 +196,7 @@ export const headerItems: SidebarSectionProps[] = [
       {
         title: 'AppLighter',
         link: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
+        description: 'AI-Ready Full-Stack Expo Starter Kit.',
         logo: (
           <Image
             alt="AppLighter logo"
@@ -219,6 +222,7 @@ export const headerItems: SidebarSectionProps[] = [
       {
         title: 'gluestack-ui pro',
         link: 'https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation',
+        description: "The only React Native template you'll ever need.",
         logo: (
           <Image
             alt="gluestack-ui pro logo"
@@ -244,6 +248,7 @@ export const headerItems: SidebarSectionProps[] = [
       {
         title: 'FlyDash',
         link: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
+        description: 'AI-Powered Internal Tools & Dashboard Builder.',
         logo: (
           <Image
             alt="FlyDash logo"
@@ -269,6 +274,8 @@ export const headerItems: SidebarSectionProps[] = [
       {
         title: 'gluestack market',
         link: 'https://market.gluestack.io/',
+        description:
+          'Transform your app idea into reality with our production-ready, cross-platform free and premium React Native templates and UI kits, built with Expo, gluestack (NativeWind), and TypeScript.',
         logo: (
           <Image
             alt="gluestack market logo"
@@ -294,6 +301,7 @@ export const headerItems: SidebarSectionProps[] = [
       {
         title: 'Starter Kit',
         link: 'https://github.com/gluestack/gluestack-ui-starter-kits/',
+        description: 'Production-ready starter kits to kickstart your React Native project.',
         logo: (
           <Image
             alt="Starter Kit logo"
@@ -510,6 +518,19 @@ export const headerItems: SidebarSectionProps[] = [
     ],
   },
 ];
+
+// Helper functions to get specific sections
+export const getResourcesSection = (): SidebarSectionProps | undefined => {
+  return headerItems.find((section) => section.title === 'Resources');
+};
+
+export const getProductsSection = (): SidebarSectionProps | undefined => {
+  return headerItems.find((section) => section.title === 'Products');
+};
+
+export const getCommunitySection = (): SidebarSectionProps | undefined => {
+  return headerItems.find((section) => section.title === 'Community');
+};
 
 interface MobileSidebarMenuProps {
   onItemClick?: () => void;
