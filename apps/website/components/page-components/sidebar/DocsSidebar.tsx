@@ -11,9 +11,14 @@ import {
   SheetTitle,
 } from '@/components/web/sheet';
 import sidebarData from '@/sidebar.json';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';
+import GluestackLogo from '@/public/svg/gluestack_logo.svg';
+import { useColorMode } from '@/app/provider';
+import NextLink from 'next/link';
 
 interface NavigationItem {
   type?: string;
@@ -152,7 +157,7 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
   const navigation = (sidebarData as Navigation).navigation;
   const [selectedSection, setSelectedSection] = useState<string>('Home');
   const pathname = usePathname();
-
+  const { colorMode } = useColorMode();
   // Find the parent section that contains the current pathname
   useEffect(() => {
     const findParentSection = (
@@ -189,6 +194,13 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
       <SheetContent side="left" className="w-full sm:max-w-md p-0">
         <SheetHeader className="sr-only">
           <SheetTitle>Documentation Navigation</SheetTitle>
+        </SheetHeader>
+        <SheetHeader className="p-4">
+          <NextLink href="/" onClick={() => {
+            setIsOpenSidebar(false);
+          }}>
+            <Image src={colorMode === 'dark' ? GluestackLogoDark : GluestackLogo} alt="gluestack-ui logo" className="h-[20px] w-full max-w-fit" />
+          </NextLink>
         </SheetHeader>
         <ScrollArea className="h-full">
           <div className="flex flex-col h-full">
