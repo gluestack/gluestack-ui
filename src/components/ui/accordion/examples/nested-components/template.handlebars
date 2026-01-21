@@ -2,10 +2,8 @@
 	
 function App(){
     return (
-            <Accordion
-      className="m-5 border border-border/70 w-[80%] max-w-[640px] rounded-md"
-    >
-      <AccordionItem value="a">
+            <Accordion className=" border border-border w-[90%] rounded-md">
+      <AccordionItem value="a" className="px-4">
         <AccordionHeader className="bg-background">
           <AccordionTrigger>
             {({ isExpanded }) => (
@@ -24,7 +22,7 @@ function App(){
         </AccordionHeader>
         <AccordionContent className="pb-0">
           <Accordion className="w-full border border-border/70 rounded-md">
-            <AccordionItem value="b">
+            <AccordionItem value="b" className="px-4">
               <AccordionHeader>
                 <AccordionTrigger>
                   {({ isExpanded }) => (
@@ -50,7 +48,7 @@ function App(){
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          <Accordion className="w-full mt-5 bg-background">
+          <Accordion className="w-full bg-background">
             <AccordionItem value="c">
               <AccordionHeader>
                 <AccordionTrigger>
