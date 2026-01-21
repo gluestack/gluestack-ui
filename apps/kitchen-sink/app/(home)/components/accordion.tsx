@@ -369,7 +369,7 @@ return (
 
 const ExampleNestedComponents = () => {
 return (
-            <Accordion className=" border border-border w-[90%] rounded-md">
+            <Accordion className="bg-background border border-border w-[90%] rounded-md">
       <AccordionItem value="a" className="px-4">
         <AccordionHeader className="bg-background">
           <AccordionTrigger>
@@ -452,7 +452,7 @@ const ExampleControlledAccordion = () => {
 const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2']);
     return (
     <Accordion type="multiple" value={selectedValues} onValueChange={(item) => setSelectedValues(item)} className="m-5 w-[95%]">
-      <AccordionItem value="item-1" className="border-t border-b border-border/70"
+      <AccordionItem value="item-1" className=" border-b border-border"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -479,6 +479,7 @@ const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2'])
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2"
+      className=" border-b border-border"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -505,7 +506,6 @@ const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2'])
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3"
-      className="border-t border-b border-border/70"
       >
         <AccordionHeader>
           <AccordionTrigger>
