@@ -11,11 +11,12 @@ import {
 import { useFonts } from 'expo-font';
 import { Slot, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
+  ErrorBoundary
 } from 'expo-router';
 
 SplashScreen.preventAutoHideAsync();
@@ -45,8 +46,9 @@ function RootLayoutNav() {
   const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
 
   return (
-    <GluestackUIProvider mode={colorMode}>
-      <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
+      <GluestackUIProvider mode={colorMode}>
+        <StatusBar style={colorMode === 'dark' ? 'light' : 'dark'} />
         <Slot />
         {pathname === '/' && (
           <Fab
@@ -59,7 +61,7 @@ function RootLayoutNav() {
             <FabIcon as={colorMode === 'dark' ? MoonIcon : SunIcon} />
           </Fab>
         )}
-      </ThemeProvider>
-    </GluestackUIProvider>
+      </GluestackUIProvider>
+    </ThemeProvider>
   );
 }
