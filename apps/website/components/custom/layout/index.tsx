@@ -10,85 +10,12 @@ import EditPageOnGithubLink from './EditPageOnGithubLink';
 import { useMDXComponents } from '@/mdx-components';
 import { usePathname } from 'next/navigation';
 import DocsSidebar from '@/components/page-components/sidebar/DocsSidebar';
-import {
-  Drawer,
-  DrawerBackdrop,
-  DrawerContent,
-  DrawerBody,
-} from '@/components/ui/drawer';
-import { VStack } from '@/components/ui/vstack';
-import { HStack } from '@/components/ui/hstack';
-import { Text } from '@/components/ui/text';
-import { Link } from '@/components/ui/link';
-import {
-  headerItems,
-  SidebarItemProps,
-  SidebarSectionProps,
-} from '@/components/page-components/landing-page/ResponsiveSidebar/sidebar-header-items';
 import { LayoutContext } from './LayoutContext';
 import { Box } from '@/components/ui/box';
 import { Fab, FabIcon } from '@/components/ui/fab';
 import { MoonIcon, SunIcon } from '@/components/ui/icon';
 import { useColorMode } from '@/app/provider';
 import { TOC } from '../toc';
-
-const SidebarItem = ({
-  title,
-  link,
-  logo,
-  logoDark,
-  badge,
-  onItemClick,
-}: SidebarItemProps & { onItemClick: () => void }) => {
-  const { colorMode } = useColorMode();
-  return (
-    <Link href={link} onClick={onItemClick}>
-      <HStack className="hover:bg-accent px-3.5 py-2 gap-2 items-center">
-        <Box className="p-0.5 items-center justify-center bg-muted rounded">
-          {colorMode === 'light' ? logo : logoDark}
-        </Box>
-        <Text className="text-foreground">{title}</Text>
-        {badge && <Box className="ml-2">{badge}</Box>}
-      </HStack>
-    </Link>
-  );
-};
-
-const SidebarSection = ({
-  title,
-  items,
-  onItemClick,
-}: SidebarSectionProps & { onItemClick: () => void }) => (
-  <Box className="mb-2 ">
-    <Text className="p-3.5 text-foreground font-semibold">{title}</Text>
-    {items.map((item) => (
-      <SidebarItem
-        key={item.title}
-        title={item.title}
-        link={item.link}
-        logo={item.logo}
-        logoDark={item.logoDark}
-        badge={item.badge}
-        onItemClick={onItemClick}
-      />
-    ))}
-  </Box>
-);
-
-const SidebarWithHeaders = ({ onItemClick }: { onItemClick: () => void }) => {
-  return (
-    <Box className="w-full h-full">
-      {headerItems.map((headerItem) => (
-        <SidebarSection
-          key={headerItem.title}
-          title={headerItem.title}
-          items={headerItem.items}
-          onItemClick={onItemClick}
-        />
-      ))}
-    </Box>
-  );
-};
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { colorMode, setColorMode } = useColorMode();
@@ -135,9 +62,8 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           setIsOpenSidebar={setIsOpenSidebar}
         />
         <div
-          className={`md:flex justify-between mx-auto ${
-            fluidLayout ? '' : 'lg:ml-36 md:w-[85%]'
-          }`}
+          className={`md:flex justify-between mx-auto ${fluidLayout ? '' : 'lg:ml-36 md:w-[85%]'
+            }`}
         >
           <div className="w-[250px] hidden lg:flex z-0">
             <Sidebar />
@@ -189,45 +115,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           </Fab>
         </Box>
         {/* Conditional Sidebar Rendering */}
-        {isDocsRoute ? (
+        {isDocsRoute && (
           <DocsSidebar
             isOpen={isOpenSidebar}
             setIsOpenSidebar={setIsOpenSidebar}
           />
-        ) : (
-          /* Responsive Sidebar with Drawer for non-docs routes */
-          <Drawer
-            isOpen={isOpenSidebar}
-            size="sm"
-            anchor="left"
-            onClose={() => {
-              setIsOpenSidebar(false);
-            }}
-          >
-            <DrawerBackdrop />
-            <DrawerContent className="lg:hidden">
-              <DrawerBody className="pt-4">
-                <VStack className="gap-2 px-4 min-h-fit pb-20">
-                  <SidebarWithHeaders
-                    onItemClick={() => setIsOpenSidebar(false)}
-                  />
-                  <Box className="pb-10 w-full">
-                    <Link
-                      href="https://geekyants.com/hire?utm_source=gluestack.io&utm_medium=referral&utm_campaign=partner_site"
-                      className="w-full"
-                      onClick={() => setIsOpenSidebar(false)}
-                    >
-                      <Box className="flex-1 justify-center items-center px-4 py-2 bg-primary-500 rounded hover:bg-primary-600">
-                        <Text className="font-normal leading-normal text-base text-typography-0">
-                          Hire React Native Experts
-                        </Text>
-                      </Box>
-                    </Link>
-                  </Box>
-                </VStack>
-              </DrawerBody>
-            </DrawerContent>
-          </Drawer>
         )}
       </div>
     </LayoutContext.Provider>
