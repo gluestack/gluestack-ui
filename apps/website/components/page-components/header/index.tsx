@@ -1,5 +1,6 @@
 'use client';
-// import ToggleThemeButton from '@/components/custom/toggle-theme-button';
+
+import { useColorMode } from '@/app/provider';
 import { Button } from '@/components/web/button';
 import {
   Sheet,
@@ -7,20 +8,20 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/web/sheet';
-import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';
 import GluestackLogo from '@/public/svg/gluestack_logo.svg';
+import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';
 import { Nav } from '@expo/html-elements';
-import { Moon, Sun, Menu, Search } from 'lucide-react';
+import { Menu, Moon, SunIcon } from 'lucide-react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useContext, useEffect, useState } from 'react';
-import { UiDocSearch } from './Docsearch';
-import ProductDropdown from './ProductDropdown';
-import { useColorMode } from '@/app/provider';
-import ResourcesDropdown from './ResourcesDropdown';
+import { useState } from 'react';
 import AnimatedGithubCount from '../landing-page/AnimatedGithubCount';
+import { UiDocSearch } from './Docsearch';
 import { MobileSidebarMenu } from './MobileSidebarMenu';
+import ProductDropdown from './ProductDropdown';
+import ResourcesDropdown from './ResourcesDropdown';
+
 const Header = ({
   isOpenSidebar: propsIsOpenSidebar,
   setIsOpenSidebar: propsSetIsOpenSidebar,
@@ -29,29 +30,9 @@ const Header = ({
   setIsOpenSidebar?: (value: boolean) => void;
 } = {}) => {
   const [showDrawer, setShowDrawer] = useState(false);
-  const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { colorMode, setColorMode } = useColorMode();
-async function fetchGitHubStars() {
-  const owner = 'gluestack';
-  const repo = 'gluestack-ui';
-  const url = `https://api.github.com/repos/${owner}/${repo}`;
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      return 0;
-    }
-    const data = await response.json();
-    const stars = data.stargazers_count;
-    return stars.toLocaleString();
-  } catch (error) {
-    return 0;
-  }
-}
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Check if current route is documentation
   const isDocsRoute = pathname?.includes('/ui/docs/');
@@ -68,11 +49,10 @@ async function fetchGitHubStars() {
       {/* @ts-ignore */}
       <Nav className="items-center justify-center w-full mx-auto py-6">
         <div
-          className={`flex flex-row justify-between items-center  ${
-            pathname?.includes('/ui/docs/')
-              ? 'w-[100%] px-5'
-              : 'w-[85%] max-w-[1440px]'
-          }`}
+          className={`flex flex-row justify-between items-center  ${pathname?.includes('/ui/docs/')
+            ? 'w-[100%] px-5'
+            : 'w-[85%] max-w-[1440px]'
+            }`}
         >
           <div className="flex flex-row gap-6 items-center">
             <NextLink
@@ -82,7 +62,7 @@ async function fetchGitHubStars() {
               <Image
                 alt="gluestack-ui logo"
                 className="h-[20px] w-full max-w-fit"
-                src={logoSrc}
+                src={colorMode === 'dark' ? GluestackLogoDark : GluestackLogo}
                 priority
               />
               <span className="text-xs font-semibold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">
@@ -118,20 +98,9 @@ async function fetchGitHubStars() {
           </div>
           <div className="flex flex-row xl:gap-10 gap-6 items-center">
             {/* Desktop: Show full search */}
-            <div className=" flex items-center  justify-center">
-                 
+            <div className=" flex items-center justify-center">
               <UiDocSearch />
             </div>
-
-            {/* Mobile: Show search icon */}
-            {/* <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setShowMobileSearch(true)}
-            >
-              <Search className="h-5 w-5 text-foreground" />
-            </Button> */}
 
             <NextLink
               className="sm:flex hidden"
@@ -168,7 +137,7 @@ async function fetchGitHubStars() {
               className="web:focus:shadow-none lg:flex hidden"
             >
               <div className="relative rounded-full items-center justify-center w-[18px] h-[18px]">
-                <Sun className="absolute inset-0 h-[18px] w-[18px] rotate-0 scale-100 transition-all duration-300 text-foreground dark:-rotate-180 dark:scale-0" />
+                <SunIcon className="absolute inset-0 h-[18px] w-[18px] rotate-0 scale-100 transition-all duration-300 text-foreground dark:-rotate-180 dark:scale-0" />
                 <Moon className="absolute inset-0 h-[18px] w-[18px] rotate-180 scale-0 transition-all duration-300 text-foreground dark:rotate-0 dark:scale-100" />
               </div>
             </button>
@@ -217,7 +186,7 @@ async function fetchGitHubStars() {
         </SheetContent>
       </Sheet>
 
-    
+
     </div>
   );
 };
