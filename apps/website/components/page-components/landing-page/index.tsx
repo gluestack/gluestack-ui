@@ -36,8 +36,8 @@ const App = ({ referrer }: { referrer: string }) => {
     <>
       <SentryErrorHandler />
       <WebsiteLayout>
-        <div className=" h-full max-w-[1440px] w-[85%] my-0 mx-auto">
-          <div className="flex flex-col md:w-1/2   h-[calc(100vh-80px-56px)] justify-center gap-5">
+        <div className=" h-full flex flex-row my-0 mx-auto md:pl-[120px] w-[85%] md:w-full">
+          <div className="flex flex-col md:w-1/2 pr-5   h-[calc(100vh-100px)] justify-center gap-5">
             <div>
               <AwardBadge />
             </div>
@@ -59,14 +59,26 @@ const App = ({ referrer }: { referrer: string }) => {
                   <ArrowUpRight className="text-primary-foreground" />
                 </Button>
               </NextLink>
-              <div className="flex flex-row gap-3 border border-border rounded-full items-center py-3 px-6">
+              <div className="flex w-fit flex-row gap-3 border border-border rounded-full items-center py-3 px-6">
                 <Terminal className="text-muted-foreground" />
                 <span className="font-mono">npm create gluestack@alpha</span>
                 <CopySnippetButton />
               </div>
             </div>
           </div>
-          <div className="hidden md:block md:w-1/2"></div>
+          <div className="hidden md:block md:w-1/2">
+            <video
+  poster="/videos/hero-poster.jpg"
+  className="w-full h-[calc(100vh-53px)] object-cover"
+  autoPlay
+  loop
+  preload="none"
+  playsInline
+  muted
+>
+  <source src="/videos/KitchenSink.mp4" type="video/mp4" />
+</video>
+          </div>
         </div>
         <div className="max-w-[1440px] w-[85%] my-0 mx-auto">
           <Fold1 />

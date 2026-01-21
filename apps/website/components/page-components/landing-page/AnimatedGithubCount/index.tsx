@@ -37,10 +37,18 @@ async function fetchGitHubStars() {
     }
     const data = await response.json();
     const stars = data.stargazers_count;
-    return stars.toLocaleString();
+    return stars;
   } catch (error) {
     return 0;
   }
+}
+
+function formatStarsCount(count: number): string {
+  if (count >= 1000) {
+    const rounded = Math.round((count / 1000) * 10) / 10;
+    return `${rounded}K`;
+  }
+  return count.toString();
 }
 
 const Ticker = ({ h = '95vh', ...props }) => {
@@ -90,7 +98,7 @@ const Ticker = ({ h = '95vh', ...props }) => {
   } else {
     return (
       <span className={`text-sm text-foreground`}>
-        {starsCount}
+        {formatStarsCount(starsCount)}
       </span>
     );
   }
