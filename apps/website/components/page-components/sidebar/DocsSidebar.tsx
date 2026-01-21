@@ -1,28 +1,19 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import sidebarData from '@/sidebar.json';
-import { Icon, CloseIcon } from '@/components/ui/icon';
-import { Text } from '@/components/ui/text';
-import { Box } from '@/components/ui/box';
 import { ToggleColorModeButton } from '@/components/custom/color-mode-toggle-button';
+import { Icon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
+import { ScrollArea } from '@/components/web/scroll-area';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from '@/components/web/sheet';
-import { HStack } from '@/components/ui/hstack';
-import { VStack } from '@/components/ui/vstack';
-import {
-  headerItems,
-  SidebarItemProps,
-  SidebarSectionProps,
-} from '@/components/page-components/landing-page/ResponsiveSidebar/sidebar-header-items';
-import { useColorMode } from '@/app/provider';
-import { ScrollArea } from '@/components/web/scroll-area';
+import sidebarData from '@/sidebar.json';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 interface NavigationItem {
   type?: string;
@@ -54,45 +45,6 @@ interface Navigation {
   };
 }
 
-const SidebarItem = ({
-  title,
-  link,
-  logo,
-  logoDark,
-  badge,
-  onItemClick,
-}: SidebarItemProps & { onItemClick: () => void }) => {
-  const { colorMode } = useColorMode();
-  return (
-    <Link href={link} onClick={onItemClick}>
-      <HStack className="hover:bg-accent px-3.5 py-2 gap-2 items-center">
-        <Box className="p-0.5 items-center justify-center bg-muted rounded">
-          {colorMode === 'light' ? logo : logoDark}
-        </Box>
-        <Text className="text-foreground">{title}</Text>
-        {badge && <Box className="ml-2">{badge}</Box>}
-      </HStack>
-    </Link>
-  );
-};
-
-const SidebarSection = ({
-  title,
-  items,
-  onItemClick,
-}: SidebarSectionProps & { onItemClick: () => void }) => {
-  return (
-    <Box className="mb-4">
-      <Text className="text-muted-foreground text-xs font-semibold uppercase px-3.5 mb-2">
-        {title}
-      </Text>
-      {items.map((item, index) => (
-        <SidebarItem key={index} {...item} onItemClick={onItemClick} />
-      ))}
-    </Box>
-  );
-};
-
 const ResponsiveSidebarLink = ({
   item,
   onItemClick,
@@ -115,19 +67,17 @@ const ResponsiveSidebarLink = ({
     <Link
       href={item.path || '#'}
       onClick={onItemClick}
-      className={`text-sm font-medium block py-2 px-3.5 mr-2 my-0.5 text-muted-foreground hover:bg-accent hover:text-foreground pl-3 font-inter ${
-        isActive ? 'bg-accent text-foreground border-l-[3px] border-primary' : ''
-      }`}
+      className={`text-sm font-medium block py-2 px-3.5 mr-2 my-0.5 text-muted-foreground hover:bg-accent hover:text-foreground pl-3 font-inter ${isActive ? 'bg-accent text-foreground border-l-[3px] border-primary' : ''
+        }`}
     >
       <div className="flex items-center ">
         <span>{item.title}</span>
         {item.tags?.length && item.tags?.length > 0 && (
           <span
-            className={`text-2xs uppercase font-roboto font-semibold rounded-sm px-1 py-0.5 m-2 ${
-              item.tags?.includes('alpha')
-                ? 'text-info-600 bg-info-50/40'
-                : 'text-success-600 bg-success-50/40'
-            }`}
+            className={`text-2xs uppercase font-roboto font-semibold rounded-sm px-1 py-0.5 m-2 ${item.tags?.includes('alpha')
+              ? 'text-info-600 bg-info-50/40'
+              : 'text-success-600 bg-success-50/40'
+              }`}
           >
             {item.tags?.map((tag) => tag).join(', ')}
           </span>
@@ -247,18 +197,17 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
               {navigation.sections.map((section, index) => (
                 <div
                   key={index}
-                  className={`flex items-center gap-2 px-4 py-2 my-1 cursor-pointer rounded-md ${
-                    selectedSection === section.title
-                      ? 'bg-accent text-foreground'
-                      : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
-                  }`}
+                  className={`flex items-center gap-2 px-4 py-2 my-1 cursor-pointer rounded-md ${selectedSection === section.title
+                    ? 'bg-accent text-foreground'
+                    : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
+                    }`}
                   onClick={() => handleSectionClick(section)}
                 >
                   {section.icons && (
                     <Icon
                       as={
                         require('lucide-react-native')[
-                          section.icons.name ?? 'CircleHelp'
+                        section.icons.name ?? 'CircleHelp'
                         ]
                       }
                       className="w-5 h-5"
@@ -278,19 +227,6 @@ const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
                 />
               </div>
             )}
-
-            {/* Additional sidebar sections from homepage */}
-            <div className="border-t border-border mt-4">
-              <VStack className="gap-2 px-2 py-4">
-                {headerItems.map((headerItem, index) => (
-                  <SidebarSection
-                    key={index}
-                    {...headerItem}
-                    onItemClick={() => setIsOpenSidebar(false)}
-                  />
-                ))}
-              </VStack>
-            </div>
 
             {/* Color mode toggle button */}
             <div className="border-t border-border p-4 flex justify-end">
