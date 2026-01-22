@@ -50,7 +50,7 @@ const SupportFormFold = () => {
     const existingScript = document.querySelector(
       `script[src*="recaptcha/api.js"]`
     );
-    
+
     if (existingScript) {
       // Script already exists, just check if grecaptcha is ready
       if (window.grecaptcha) {
