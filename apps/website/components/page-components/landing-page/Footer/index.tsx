@@ -71,17 +71,17 @@ const footerItems = [
     links: [
       {
         title: 'RapidNative',
-        href: 'https://rapidnative.com/',
+        href: 'https://rapidnative.com/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
         isExternal: true,
       },
       {
         title: 'FlyDash',
-        href: 'https://flydash.io/',
+        href: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
         isExternal: true,
       },
       {
         title: 'AppLighter',
-        href: 'https://www.applighter.com/',
+        href: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
         isExternal: true,
       },
     ],
