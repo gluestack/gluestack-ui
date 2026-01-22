@@ -4,7 +4,7 @@ import React from 'react';
 
 const BadgeDemo = () => {
   return (
-    <Badge size="md" variant="solid" action="muted">
+    <Badge>
       <BadgeText>Verified</BadgeText>
       <BadgeIcon as={GlobeIcon} className="ml-2" />
     </Badge>
