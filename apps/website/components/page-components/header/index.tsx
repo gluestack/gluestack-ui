@@ -154,9 +154,9 @@ const Header = ({
             </NextLink>) : (<HStack className="gap-3">
               <Link
                 onPress={() => setShowModal(true)}
-                className="border border-outline-200 px-4 py-1.5 xl:flex hidden rounded"
+                className="border border-border px-4 py-1.5 xl:flex hidden rounded"
               >
-                <Text className="text-sm text-typography-900">
+                <Text className="text-sm text-foreground">
                   Get Updates
                 </Text>
               </Link>
