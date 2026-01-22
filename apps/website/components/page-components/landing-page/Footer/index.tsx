@@ -33,15 +33,15 @@ const footerItems = [
     links: [
       {
         title: 'AppLaunchKit',
-        href: 'https://applaunchk.it/',
+        href: 'https://applaunchk.it/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
       },
       {
         title: 'Starter Kit',
-        href: 'https://github.com/gluestack/gluestack-ui-starter-kits/',
+        href: 'https://github.com/gluestack/gluestack-ui-starter-kits/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
       },
       {
         title: 'theappmarket',
-        href: 'https://theappmarket.io/',
+        href: 'https://theappmarket.io/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
       },
     ],
   },
@@ -68,6 +68,26 @@ const footerItems = [
       {
         title: 'Support',
         href: '/support',
+      },
+    ],
+  },
+  {
+    title: 'Partners',
+    links: [
+      {
+        title: 'RapidNative',
+        href: 'https://rapidnative.com/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
+        isExternal: true,
+      },
+      {
+        title: 'FlyDash',
+        href: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
+        isExternal: true,
+      },
+      {
+        title: 'AppLighter',
+        href: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
+        isExternal: true,
       },
     ],
   },
