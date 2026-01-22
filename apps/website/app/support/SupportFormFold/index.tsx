@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type React from 'react';
 import NextImage from 'next/image';
 import { HStack } from '@/components/ui/hstack';
@@ -7,6 +7,18 @@ import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { Box } from '@/components/ui/box';
+
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (callback: () => void) => void;
+      execute: (
+        siteKey: string,
+        options: { action: string }
+      ) => Promise<string>;
+    };
+  }
+}
 
 const data = [
   { icon: '/images/contact-us/technical.svg', name: 'Technical Issues' },
@@ -23,7 +35,68 @@ const SupportFormFold = () => {
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   const QUERY_MIN_LENGTH = 20;
+  const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '';
+
+  // Load reCAPTCHA script
+  useEffect(() => {
+    if (!RECAPTCHA_SITE_KEY) {
+      console.warn('reCAPTCHA site key is not configured');
+      return;
+    }
+
+    // Check if script is already loaded
+    const existingScript = document.querySelector(
+      `script[src*="recaptcha/api.js"]`
+    );
+    
+    if (existingScript) {
+      // Script already exists, just check if grecaptcha is ready
+      if (window.grecaptcha) {
+        window.grecaptcha.ready(() => {
+          setRecaptchaLoaded(true);
+        });
+      }
+      return;
+    }
+
+    // Check if grecaptcha is already available (from another component)
+    if (window.grecaptcha) {
+      window.grecaptcha.ready(() => {
+        setRecaptchaLoaded(true);
+      });
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => {
+      if (window.grecaptcha) {
+        window.grecaptcha.ready(() => {
+          setRecaptchaLoaded(true);
+        });
+      }
+    };
+    script.onerror = () => {
+      console.error('Failed to load reCAPTCHA script');
+      setRecaptchaLoaded(false);
+    };
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup: only remove script if we added it and component unmounts
+      // Don't remove if other components might be using it
+      const scriptToRemove = document.querySelector(
+        `script[src*="recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}"]`
+      );
+      if (scriptToRemove && scriptToRemove === script) {
+        scriptToRemove.remove();
+      }
+    };
+  }, [RECAPTCHA_SITE_KEY]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -37,19 +110,62 @@ const SupportFormFold = () => {
     setMessage(null);
 
     try {
+      let recaptchaToken = '';
+
+      // Execute reCAPTCHA if site key is configured
+      if (RECAPTCHA_SITE_KEY) {
+        // Wait for reCAPTCHA to be ready
+        if (!recaptchaLoaded || !window.grecaptcha) {
+          setMessage('⚠️ reCAPTCHA is still loading. Please wait a moment and try again.');
+          setLoading(false);
+          return;
+        }
+
+        try {
+          // Ensure grecaptcha is ready before executing
+          await new Promise<void>((resolve) => {
+            window.grecaptcha.ready(() => {
+              resolve();
+            });
+          });
+
+          recaptchaToken = await window.grecaptcha.execute(
+            RECAPTCHA_SITE_KEY,
+            { action: 'submit' }
+          );
+
+          if (!recaptchaToken) {
+            setMessage('⚠️ reCAPTCHA verification failed. Please try again.');
+            setLoading(false);
+            return;
+          }
+        } catch (recaptchaError) {
+          console.error('reCAPTCHA execution error:', recaptchaError);
+          setMessage('⚠️ reCAPTCHA verification failed. Please refresh the page and try again.');
+          setLoading(false);
+          return;
+        }
+      }
+
       const res = await fetch('/api/ticket', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          recaptchaToken,
+        }),
       });
       const data = await res.json();
       if (data.status === 'success') {
-        setMessage('✅ Thank you! We’ll get back to you soon.');
+        setMessage("✅ Thank you! We'll get back to you soon.");
         setForm({ name: '', email: '', company: '', query: '' });
       } else {
-        setMessage('⚠️ Something went wrong. Please try again.');
+        setMessage(
+          data.message || '⚠️ Something went wrong. Please try again.'
+        );
       }
     } catch (err) {
+      console.error('Form submission error:', err);
       setMessage('❌ Failed to submit. Please try again later.');
     }
     setLoading(false);
@@ -131,7 +247,7 @@ const SupportFormFold = () => {
                 className="w-full rounded-md border border-border/80 px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary bg-background/90"
               />
               <Text className="text-xs mt-1 text-foreground/60">
-                We’ll only use this to contact you about this request.
+                We'll only use this to contact you about this request.
               </Text>
             </Box>
 
@@ -148,7 +264,7 @@ const SupportFormFold = () => {
                 className="w-full rounded-md border border-border/80 px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary bg-background/90"
               />
               <Text className="text-xs mt-1 text-foreground/60">
-                Useful if you’re on a team plan or enterprise.
+                Useful if you're on a team plan or enterprise.
               </Text>
             </Box>
 

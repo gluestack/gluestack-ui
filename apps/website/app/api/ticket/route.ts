@@ -9,13 +9,78 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const { name, email, company, query } = await request.json();
+    const { name, email, company, query, recaptchaToken } = await request.json();
 
     if (!email || !query) {
       return NextResponse.json(
         { status: 'error', message: 'Email and query are required' },
         { status: 400 }
       );
+    }
+
+    // Verify reCAPTCHA token if provided
+    const recaptchaSecretKey = process.env.RECAPTCHA_SECRET_KEY;
+    if (recaptchaSecretKey) {
+      if (!recaptchaToken) {
+        return NextResponse.json(
+          {
+            status: 'error',
+            message: 'reCAPTCHA verification is required',
+          },
+          { status: 400 }
+        );
+      }
+
+      // Verify token with Google's API
+      const verificationResponse = await fetch(
+        'https://www.google.com/recaptcha/api/siteverify',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams({
+            secret: recaptchaSecretKey,
+            response: recaptchaToken,
+          }),
+        }
+      );
+
+      const verificationData = await verificationResponse.json();
+
+      if (!verificationData.success) {
+        return NextResponse.json(
+          {
+            status: 'error',
+            message: 'reCAPTCHA verification failed. Please try again.',
+          },
+          { status: 400 }
+        );
+      }
+
+      // Verify the action matches
+      if (verificationData.action !== 'submit') {
+        return NextResponse.json(
+          {
+            status: 'error',
+            message: 'Invalid reCAPTCHA action',
+          },
+          { status: 400 }
+        );
+      }
+
+      // Check score (0.0 to 1.0, where 1.0 is very likely a good interaction)
+      // You can adjust this threshold based on your needs (default is 0.5)
+      const scoreThreshold = 0.5;
+      if (verificationData.score < scoreThreshold) {
+        return NextResponse.json(
+          {
+            status: 'error',
+            message: 'reCAPTCHA verification failed. Please try again.',
+          },
+          { status: 400 }
+        );
+      }
     }
 
     const ticket = {
