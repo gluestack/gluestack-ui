@@ -7,8 +7,7 @@ import { Link } from '@/components/ui/link';
 import { Divider } from '@/components/ui/divider';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Image } from '@/components/ui/image';
-import { ThemeContext } from '@/utils/context/theme-context';
-import { useContext } from 'react';
+import { useColorMode } from '@/app/provider';
 
 type Props = {
   profileURI: string;
@@ -37,7 +36,7 @@ export const SocialMediaTestimonial = ({
   link,
   image,
 }: Props) => {
-  const { colorMode } = useContext(ThemeContext);
+  const { colorMode } = useColorMode();
 
   return (
     <Link
@@ -79,15 +78,11 @@ export const SocialMediaTestimonial = ({
             </VStack>
           </HStack>
           <Box className="h-[22px] w-[22px]">
-            {colorMode === 'dark' ? (
-              <Image source={logoDark} alt="twitter-icon" className="w-5 h-5" />
-            ) : (
-              <Image
-                source={logoLight}
-                className="w-5 h-5"
-                alt="twitter-icon"
-              />
-            )}
+            <Image
+              source={colorMode === 'dark' ? logoDark : logoLight}
+              className="w-5 h-5"
+              alt="twitter-icon"
+            />
           </Box>
         </HStack>
         <Text className="text-sm leading-[21px] py-7 font-roboto">

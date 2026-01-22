@@ -52,11 +52,11 @@ function Card1() {
                 }}
                 className="items-center justify-start py-6 px-7 rounded-lg md:px-9 bg-background"
               >
-                <Tilde />
-                <Text className="text-xl leading-sm mx-3 font-code font-medium text-foreground  md:text-xl  md:leading-md tracking-tighter">
+                <Terminal className="text-muted-foreground" />
+                <Text className="text-lg leading-sm mx-3 font-geist-mono font-medium text-foreground/90 md:text-xl md:leading-md tracking-tighter">
                   npm create{' '}
-                  <Text className="text-xl leading-sm font-medium text-primary-300 font-code md:text-xl  md:leading-md tracking-tighter">
-                    gluestack@latest
+                  <Text className="text-lg leading-sm font-medium text-foreground/80 font-geist-mono md:text-xl md:leading-md tracking-tighter">
+                    gluestack@alpha
                   </Text>
                 </Text>
                 {showCopy ? (

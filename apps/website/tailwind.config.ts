@@ -10,7 +10,6 @@ module.exports = {
   ],
   important: 'html',
   presets: [require('nativewind/preset')],
-  important: 'html',
   plugins: [require('tailwindcss-animate')],
   safelist: [
     {
@@ -92,6 +91,12 @@ module.exports = {
           foreground: 'rgb(var(--accent-foreground)/<alpha-value>)',
         },
       },
+      borderRadius: {
+        sm: '6px', // calc(0.625rem - 4px) = 6px
+        md: '8px', // calc(0.625rem - 2px) = 8px
+        lg: '10px', // 0.625rem = 10px
+        xl: '14px', // calc(0.625rem + 4px) = 14px
+      },
       fontFamily: {
         'heading': undefined,
         'body': undefined,
@@ -101,12 +106,8 @@ module.exports = {
         'code': ['var(--font-source-code-pro)'],
         'inter': ['var(--font-inter)'],
         'space-mono': ['var(--font-space-mono)'],
-      },
-      borderRadius: {
-        sm: '6px', // calc(0.625rem - 4px) = 6px
-        md: '8px', // calc(0.625rem - 2px) = 8px
-        lg: '10px', // 0.625rem = 10px
-        xl: '14px', // calc(0.625rem + 4px) = 14px
+        'geist-sans': ['var(--font-geist-sans)'],
+        'geist-mono': ['var(--font-geist-mono)'],
       },
       fontWeight: {
         extrablack: '950',

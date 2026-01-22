@@ -4,8 +4,8 @@ const Android = () => {
       width="18"
       height="19"
       viewBox="0 0 18 19"
-      className="fill-background-800"
       xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
     >
       <g id="prime:android">
         <g id="Group 1000001924">

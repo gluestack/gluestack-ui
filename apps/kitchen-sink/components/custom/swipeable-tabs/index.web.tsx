@@ -1,12 +1,12 @@
 import * as Haptics from 'expo-haptics';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import {
-  Dimensions,
   LayoutChangeEvent,
   Platform,
   Pressable,
   ScrollView,
   Text,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import Animated, {
@@ -18,8 +18,6 @@ import Animated, {
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
@@ -48,19 +46,20 @@ interface FadeOverlayProps {
   side: 'left' | 'right';
 }
 
-const FadeOverlay: React.FC<FadeOverlayProps> = ({
+const FadeOverlay: React.FC<FadeOverlayProps & { screenWidth: number }> = ({
   scrollX,
   tabCount,
   side,
+  screenWidth,
 }) => {
   const animatedStyle = useAnimatedStyle(() => {
-    const lastTabScrollX = (tabCount - 1) * SCREEN_WIDTH;
+    const lastTabScrollX = (tabCount - 1) * screenWidth;
 
     if (side === 'right') {
       // Fade out as we approach the last tab
       const opacity = interpolate(
         scrollX.value,
-        [lastTabScrollX - SCREEN_WIDTH, lastTabScrollX],
+        [lastTabScrollX - screenWidth, lastTabScrollX],
         [0.65, 0],
         Extrapolation.CLAMP
       );
@@ -69,7 +68,7 @@ const FadeOverlay: React.FC<FadeOverlayProps> = ({
       // Fade out as we approach the first tab
       const opacity = interpolate(
         scrollX.value,
-        [0, SCREEN_WIDTH],
+        [0, screenWidth],
         [0, 0.65],
         Extrapolation.CLAMP
       );
@@ -96,18 +95,19 @@ const FadeOverlay: React.FC<FadeOverlayProps> = ({
   );
 };
 
-const TabButton: React.FC<TabButtonProps> = ({
+const TabButton: React.FC<TabButtonProps & { screenWidth: number }> = ({
   tab,
   index,
   scrollX,
   onPress,
   onLayout,
+  screenWidth,
 }) => {
   const animatedWrapperStyle = useAnimatedStyle(() => {
     const inputRange = [
-      (index - 1) * SCREEN_WIDTH,
-      index * SCREEN_WIDTH,
-      (index + 1) * SCREEN_WIDTH,
+      (index - 1) * screenWidth,
+      index * screenWidth,
+      (index + 1) * screenWidth,
     ];
 
     const scale = interpolate(
@@ -153,8 +153,22 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
   const [tabWidths, setTabWidths] = useState<number[]>([]);
   const [tabPositions, setTabPositions] = useState<number[]>([]);
   const [currentPage, setCurrentPage] = useState(initialIndex);
+  const { width: screenWidth } = useWindowDimensions();
 
-  const scrollX = useSharedValue(initialIndex * SCREEN_WIDTH);
+  const scrollX = useSharedValue(initialIndex * screenWidth);
+
+  // Update scrollX and scroll position when screenWidth changes to maintain correct position
+  useEffect(() => {
+    if (scrollViewRef.current && screenWidth > 0) {
+      const newScrollX = currentPage * screenWidth;
+      scrollX.value = newScrollX;
+      scrollViewRef.current.scrollTo({
+        x: newScrollX,
+        animated: false,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [screenWidth, currentPage]);
 
   const handleTabLayout = useCallback(
     (event: LayoutChangeEvent, index: number) => {
@@ -189,24 +203,24 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
   const handleScrollEnd = useCallback(
     (event: any) => {
       const offsetX = event.nativeEvent.contentOffset.x;
-      const pageIndex = Math.round(offsetX / SCREEN_WIDTH);
+      const pageIndex = Math.round(offsetX / screenWidth);
       if (pageIndex !== currentPage) {
         setCurrentPage(pageIndex);
         triggerHaptic();
       }
     },
-    [currentPage, triggerHaptic]
+    [currentPage, triggerHaptic, screenWidth]
   );
 
   const scrollToTab = useCallback(
     (index: number) => {
       scrollViewRef.current?.scrollTo({
-        x: index * SCREEN_WIDTH,
+        x: index * screenWidth,
         animated: true,
       });
       triggerHaptic();
     },
-    [triggerHaptic]
+    [triggerHaptic, screenWidth]
   );
 
   // Initialize scroll position for web
@@ -214,12 +228,12 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
     if (scrollViewRef.current) {
       setTimeout(() => {
         scrollViewRef.current?.scrollTo({
-          x: initialIndex * SCREEN_WIDTH,
+          x: initialIndex * screenWidth,
           animated: false,
         });
       }, 0);
     }
-  }, [initialIndex]);
+  }, [initialIndex, screenWidth]);
 
   return (
     <View className="flex-1 bg-background">
@@ -231,8 +245,14 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
               scrollX={scrollX}
               tabCount={tabs.length}
               side="right"
+              screenWidth={screenWidth}
             />
-            <FadeOverlay scrollX={scrollX} tabCount={tabs.length} side="left" />
+            <FadeOverlay
+              scrollX={scrollX}
+              tabCount={tabs.length}
+              side="left"
+              screenWidth={screenWidth}
+            />
             {tabs.map((tab, index) => (
               <TabButton
                 key={tab.key}
@@ -241,6 +261,7 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
                 scrollX={scrollX}
                 onPress={() => scrollToTab(index)}
                 onLayout={handleTabLayout}
+                screenWidth={screenWidth}
               />
             ))}
           </View>
@@ -257,13 +278,13 @@ export const SwipeableTabs: React.FC<SwipeableTabsProps> = ({
         onMomentumScrollEnd={handleScrollEnd}
         scrollEventThrottle={16}
         style={{ flex: 1 }}
-        contentContainerStyle={{ width: SCREEN_WIDTH * tabs.length }}
+        contentContainerStyle={{ width: screenWidth * tabs.length }}
       >
         {tabs.map((tab) => (
           <View
             key={tab.key}
             className="flex-1 pb-safe"
-            style={{ width: SCREEN_WIDTH }}
+            style={{ width: screenWidth }}
           >
             {tab.component}
           </View>
