@@ -299,15 +299,15 @@ const ExampleFormControlWithFormActions = () => {
 return (
     <HStack>
       <FormControl>
-        <Button variant='outline' action='secondary'>
+        <Button variant='outline'>
           <ButtonText>
             Cancel
           </ButtonText>
         </Button>
       </FormControl>
       <FormControl>
-        <Button action='negative' className='ml-4'>
-          <ButtonText className="text-white group-hover/button:text-white group-active/button:text-white">
+        <Button variant='destructive' className='ml-4'>
+          <ButtonText>
             Delete
           </ButtonText>
         </Button>
