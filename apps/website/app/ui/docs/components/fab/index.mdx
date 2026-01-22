@@ -41,7 +41,7 @@ This is an illustration of **Fab** component.
   <CodePreviewer
   code={`function Example() {
   return (
-    <Box className="h-[230px] w-60 bg-background-50 rounded-md">
+    <Box className="h-[230px] w-full max-w-96 bg-card border border-border rounded-md">
       <Fab
         size="{{size}}"
         placement="{{placement}}"
@@ -155,9 +155,9 @@ const fabStyle = tva({
   base: 'group/fab bg-primary rounded-full z-20 p-4 flex-row items-center justify-center absolute hover:bg-primary/90 active:bg-primary/80 disabled:opacity-40 disabled:pointer-events-all disabled:cursor-not-allowed data-[focus=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-indicator-info shadow-hard-2',
   variants: {
     size: {
-      sm: 'px-2.5 py-2.5',
-      md: 'px-3 py-3',
-      lg: 'px-4 py-4',
+      sm: 'px-3.5 py-1.5',
+      md: 'px-4  py-2',
+      lg: 'px-5 py-3',
     },
     placement: {
       'top right': 'top-4 right-4',
@@ -186,17 +186,11 @@ const fabLabelStyle = tva({
       true: 'line-through',
     },
     size: {
-      '2xs': 'text-2xs',
-      'xs': 'text-xs',
+
       'sm': 'text-sm',
       'md': 'text-base',
       'lg': 'text-lg',
-      'xl': 'text-xl',
-      '2xl': 'text-2xl',
-      '3xl': 'text-3xl',
-      '4xl': 'text-4xl',
-      '5xl': 'text-5xl',
-      '6xl': 'text-6xl',
+    
     },
     sub: {
       true: 'text-xs',
@@ -221,12 +215,9 @@ const fabIconStyle = tva({
   base: 'text-primary-foreground/90 fill-none',
   variants: { 
     size: {
-      '2xs': 'h-3 w-3',
-      'xs': 'h-3.5 w-3.5',
-      'sm': 'h-4 w-4',
-      'md': 'w-[18px] h-[18px]',
+      'sm': 'h-3.5 w-3.5',
+      'md': 'h-4 w-4',
       'lg': 'h-5 w-5',
-      'xl': 'h-6 w-6',
     },
   },
 });
@@ -578,7 +569,7 @@ The Examples section provides visual representations of the different variants o
     },
   ];
   return (
-    <Box className='border rounded-lg border-border/80 p-6 bg-background/90 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'>
+    <Box className='max-w-96 w-full border rounded-lg border-border/80 p-6 bg-background/90'>
       <VStack space='md'>
         {data.map((chatData, index) => {
           return (
@@ -603,7 +594,7 @@ The Examples section provides visual representations of the different variants o
           );
         })}
       </VStack>
-      <Fab size='lg' className='bg-primary/90 hover:bg-primary/80 active:bg-primary/70'>
+      <Fab size='md' >
         <FabIcon as={EditIcon}/>
       </Fab>
     </Box>
@@ -694,7 +685,7 @@ The Examples section provides visual representations of the different variants o
   <CodePreviewer
   code={`function Example() {
   return (
-    <Box className='border rounded-lg border-border/70 py-4 bg-background mx-5'>
+    <Box className='max-w-96 border rounded-lg border-border/70  py-4 bg-background mx-5 '>
       <VStack space='lg' className='mb-2 px-6 py-2'>
         <Checkbox size="sm">
           <CheckboxIndicator>
@@ -727,7 +718,7 @@ The Examples section provides visual representations of the different variants o
           </CheckboxLabel>
         </Checkbox>
       </VStack>
-      <Fab size='sm' placement='bottom center' className='top-0 relative'>
+      <Fab size='sm' placement='bottom center' >
         <FabIcon as={AddIcon} size='sm'/>
       </Fab>
     </Box>
@@ -746,7 +737,7 @@ The Examples section provides visual representations of the different variants o
   <CodePreviewer
   code={`function Example() {
   return (
-    <Box className='max-w-96 border rounded-lg border-border/80 overflow-hidden mx-5 bg-background/90'>
+    <Box className='max-w-96 border rounded-lg border-border/80 overflow-hidden mx-5 bg-background/90 relative'>
       <Box>
         <Image
           className='h-[185px] w-[416px]'
@@ -778,7 +769,7 @@ The Examples section provides visual representations of the different variants o
           </Text>
         </Link>
       </VStack>
-      <Fab size='lg' className='bg-primary/90 right-4 bottom-16 hover:bg-primary/80 active:bg-primary/70'>
+      <Fab size='lg' className='bottom-4 right-4'>
         <FabIcon as={ShoppingCartIcon} className='h-4 w-4'/>
       </Fab>
     </Box>

@@ -1,6 +1,6 @@
 function Example() {
   return (
-    <Box className='max-w-96 border rounded-lg border-border/80 overflow-hidden mx-5 bg-background/90'>
+    <Box className='max-w-96 border rounded-lg border-border/80 overflow-hidden mx-5 bg-background/90 relative'>
       <Box>
         <Image
           className='h-[185px] w-[416px]'
@@ -32,7 +32,7 @@ function Example() {
           </Text>
         </Link>
       </VStack>
-      <Fab size='lg' className='bg-primary/90 right-4 bottom-16 hover:bg-primary/80 active:bg-primary/70'>
+      <Fab size='lg' className='bottom-4 right-4'>
         <FabIcon as={ShoppingCartIcon} className='h-4 w-4'/>
       </Fab>
     </Box>
