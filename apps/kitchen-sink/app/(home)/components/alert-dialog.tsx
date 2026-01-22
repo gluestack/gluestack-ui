@@ -104,7 +104,7 @@ const [showAlertDialog, setShowAlertDialog] = React.useState(false);
       </Button>
       <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogBackdrop />
-        <AlertDialogContent className="p-4 gap-4 max-w-[649px] w-full md:flex-row mx-2">
+        <AlertDialogContent className="p-4 gap-4 max-w-[649px]  md:flex-row mx-2">
           <AlertDialogBody
             className=""
             contentContainerClassName="flex-row gap-4"
@@ -149,7 +149,7 @@ const [showAlertDialog, setShowAlertDialog] = React.useState(false);
       </Button>
       <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogBackdrop />
-        <AlertDialogContent className="w-full max-w-[415px] gap-4 items-center">
+        <AlertDialogContent className=" max-w-[415px] gap-4 items-center">
           <Box className="rounded-full h-[52px] w-[52px] bg-destructive/10 items-center justify-center">
             <Icon as={TrashIcon} className="stroke-destructive h-6 w-6" />
           </Box>
