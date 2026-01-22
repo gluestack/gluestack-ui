@@ -1,22 +1,21 @@
 'use client';
-import React, { useState } from 'react';
-import { Link } from '@/components/ui/link';
+import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
+import { HStack } from '@/components/ui/hstack';
+import { Link } from '@/components/ui/link';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
-import { HStack } from '@/components/ui/hstack';
-import { Box } from '@/components/ui/box';
-import Next from './Next';
-import MySvgComponent from './MySvgComponent';
-import Expo1 from './Expo1';
-import ReactN from './ReactN';
-import VsCode from './VsCode';
+import { Terminal } from 'lucide-react';
 import NextLink from 'next/link';
+import { useState } from 'react';
 import Copied from './Copied';
 import Copy from './Copy';
+import Expo1 from './Expo1';
 import Figma from './Figma';
-import Unitools from './Unitools';
-import { Terminal } from 'lucide-react';
+import MySvgComponent from './MySvgComponent';
+import Next from './Next';
+import ReactN from './ReactN';
+import VsCode from './VsCode';
 
 function Card1() {
   const [copied, setCopied] = useState(false);
@@ -30,6 +29,28 @@ function Card1() {
       setCopied(false);
     }, 2000);
   };
+
+  const partnerKits = [
+    {
+      name: 'RapidNative',
+      logo: '/icon/logo/rapidnative/logo.png',
+      url: 'https://rapidnative.com/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
+      description: 'Generate native apps instantly with AI prompts.',
+    },
+    {
+      name: 'AppLighter',
+      logo: '/icon/logo/applighter/logo.png',
+      url: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
+      description: 'AI-Ready Full-Stack Expo Starter Kit.',
+    },
+    {
+      name: 'FlyDash',
+      logo: '/icon/logo/flydash/logo.png',
+      url: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
+      description: 'AI-Powered Internal Tools & Dashboard Builder.',
+    },
+  ];
+
 
   return (
     <Box className="py-6 flex-1 ">
@@ -158,31 +179,33 @@ function Card1() {
           <Box className="p-6">
             <VStack space="lg">
               <Text className="text-xl font-bold font-plus-jakarta">
-                Head Starter Kit
+                Our Partners
               </Text>
-              <HStack className="flex-wrap gap-2.5">
-                <Link
-                  href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/apps/starter-kit-next`}
-                  isExternal
-                  className="rounded-lg bg-secondary-0"
-                >
-                  <Next />
-                </Link>
-                <Link
-                  href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/apps/starter-kit-expo`}
-                  isExternal
-                  className="rounded-lg bg-secondary-0"
-                >
-                  <Expo1 />
-                </Link>
-                <Link
-                  href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/apps/starter-kit-universal`}
-                  isExternal
-                  className="rounded-lg bg-secondary-0"
-                  disabled // disabled until we make a new universal starter kit
-                >
-                  <Unitools />
-                </Link>
+              <HStack className="flex-wrap gap-3">
+                {partnerKits.map((kit) => (
+                  <Link
+                    key={kit.name}
+                    href={kit.url}
+                    isExternal
+                    className="rounded-lg bg-secondary flex-1 min-w-[120px] flex flex-col items-center gap-2 px-3 py-4 hover:bg-secondary/80 transition-colors"
+                  >
+                    <Box className="h-6 w-6 relative">
+                      <img
+                        src={kit.logo}
+                        alt={`${kit.name} logo`}
+                        className="object-contain absolute inset-0 w-full h-full"
+                      />
+                    </Box>
+                    <VStack className="gap-0.5 items-center">
+                      <Text className="text-sm font-bold text-foreground">
+                        {kit.name}
+                      </Text>
+                      <Text className="text-xs text-foreground/70 text-center">
+                        {kit.description}
+                      </Text>
+                    </VStack>
+                  </Link>
+                ))}
               </HStack>
             </VStack>
           </Box>
