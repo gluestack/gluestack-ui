@@ -12,11 +12,11 @@ import Expo1 from './Expo1';
 import ReactN from './ReactN';
 import VsCode from './VsCode';
 import NextLink from 'next/link';
-import Tilde from './Tilde';
 import Copied from './Copied';
 import Copy from './Copy';
 import Figma from './Figma';
 import Unitools from './Unitools';
+import { Terminal } from 'lucide-react';
 
 function Card1() {
   const [copied, setCopied] = useState(false);
@@ -52,17 +52,16 @@ function Card1() {
                 }}
                 className="items-center justify-start py-6 px-7 rounded-lg md:px-9 bg-background"
               >
-                <Tilde />
-                <Text className="text-xl leading-sm mx-3 font-code font-medium text-foreground  md:text-xl  md:leading-md tracking-tighter">
+                <Terminal className="text-muted-foreground" />
+                <Text className="text-lg leading-sm mx-3 font-code font-medium text-foreground/90 md:text-xl md:leading-md tracking-tighter">
                   npm create{' '}
-                  <Text className="text-xl leading-sm font-medium text-primary-300 font-code md:text-xl  md:leading-md tracking-tighter">
-                    gluestack@latest
+                  <Text className="text-lg leading-sm font-medium text-foreground/80 font-code md:text-xl md:leading-md tracking-tighter">
+                    gluestack@alpha
                   </Text>
                 </Text>
                 {showCopy ? (
                   <Button
                     onPress={copyToClipboard}
-                    // variant=""
                     variant="outline"
                     className="absolute right-3 p-0 web:cursor-pointer md:right-9 border-none data-[hover=true]:bg-none"
                   >

@@ -30,23 +30,23 @@ const App = ({ referrer }: { referrer: string }) => {
     <>
       <SentryErrorHandler />
       <WebsiteLayout>
-        <div className=" h-full flex flex-row my-0  mx-auto md:pl-[120px] 2xl:pl-[calc((100vw-1440px)/2)] w-[85%] md:w-full">
-          <div className="flex flex-col md:w-1/2 pr-5   h-[calc(100vh-100px)] justify-center gap-5">
+        <div className=" h-full flex flex-row my-0  mx-auto max-w-[1440px] w-[85%]">
+          <div className="flex flex-col md:w-1/2  h-[calc(100vh-100px)] justify-center md:items-end gap-5">
             <div>
               <AwardBadge />
             </div>
             <div className="flex flex-col gap-3">
-              <h1 className="text-4xl font-bold tracking-[0.2px] leading-[120%]">
-                React & React Native UI Components & Patterns
+              <h1 className="text-4xl font-bold tracking-[0.2px] leading-[120%] md:text-right">
+                React & React Native <br/> UI Components & Patterns
               </h1>
-              <p className="font-sans text-sm text-muted-foreground">
+              <p className="font-sans text-sm text-muted-foreground md:text-right">
                 Comprehensive React and React Native component library for
                 building modern, high-performance web and mobile apps.
                 Copy-paste UI components library & patterns crafted with
                 Tailwind CSS (NativeWind)
               </p>
             </div>
-            <div className="gap-4 flex flex-col lg:flex-row">
+            <div className="gap-4 flex flex-col lg:flex-row md:items-end lg:items-center">
               <NextLink href="/ui/docs/home/overview/quick-start">
                 <Button className="rounded-full h-14 px-8">
                   Get Started
@@ -60,18 +60,18 @@ const App = ({ referrer }: { referrer: string }) => {
               </div>
             </div>
           </div>
-          <div className="hidden md:block md:w-1/2">
+          <div className="hidden md:block md:w-1/2 items-start">
             <video
-  poster="/videos/hero-poster.jpg"
-  className="w-[50vw] h-[calc(100vh-53px)] object-cover"
-  autoPlay
-  loop
-  preload="none"
-  playsInline
-  muted
->
-  <source src="/videos/KitchenSink.mp4" type="video/mp4" />
-</video>
+              poster="/videos/hero-poster.jpg"
+              className="lg:-ml-10 xl:-ml-24 w-[full] h-[calc(100vh-53px)] lg:object-cover object-contain"
+              autoPlay
+              loop
+              preload="none"
+              playsInline
+              muted
+            >
+              <source src="/videos/KitchenSink.webm" type="video/webm" />
+            </video>
           </div>
         </div>
         <div className="max-w-[1440px] w-[85%] my-0 mx-auto">
