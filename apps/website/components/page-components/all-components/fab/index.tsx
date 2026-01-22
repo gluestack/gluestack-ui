@@ -10,7 +10,7 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Box className="h-[230px] w-full max-w-96 bg-card border border-border rounded-md">
+    <Box className="h-[230px] w-full min-w-60 max-w-96 bg-muted border border-border rounded-md">
       <Fab
         size="{{size}}"
         placement="{{placement}}"
