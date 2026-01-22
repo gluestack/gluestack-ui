@@ -1,49 +1,49 @@
 'use client';
-import React, { useContext } from 'react';
+import {
+  Avatar,
+  AvatarFallbackText,
+  AvatarImage,
+} from '@/components/ui/avatar';
+import { Box } from '@/components/ui/box';
+import { Button, ButtonText } from '@/components/ui/button';
 import {
   Checkbox,
   CheckboxIcon,
   CheckboxIndicator,
   CheckboxLabel,
 } from '@/components/ui/checkbox';
-import { Box } from '@/components/ui/box';
-import { Switch } from '@/components/ui/switch';
-import { Progress, ProgressFilledTrack } from '@/components/ui/progress';
 import { Divider } from '@/components/ui/divider';
 import {
   FormControl,
   FormControlLabel,
   FormControlLabelText,
 } from '@/components/ui/form-control';
-import { Button, ButtonText } from '@/components/ui/button';
-import { HStack } from '@/components/ui/hstack';
 import { Heading } from '@/components/ui/heading';
-import { Icon, CheckIcon, MailIcon } from '@/components/ui/icon';
+import { HStack } from '@/components/ui/hstack';
+import { CheckIcon, Icon, MailIcon } from '@/components/ui/icon';
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
 import { Link, LinkText } from '@/components/ui/link';
 import { Pressable } from '@/components/ui/pressable';
+import { Progress, ProgressFilledTrack } from '@/components/ui/progress';
+import { Switch } from '@/components/ui/switch';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
-import {
-  Avatar,
-  AvatarFallbackText,
-  AvatarImage,
-} from '@/components/ui/avatar';
+import React from 'react';
 
-import {
-  Type,
-  CircleDollarSign,
-  CloudUpload,
-  X,
-  EyeIcon,
-  EyeOffIcon,
-} from 'lucide-react-native';
-import NextImage from 'next/image';
-import { ThemeContext } from '@/utils/context/theme-context';
+import { useColorMode } from '@/app/provider';
 import {
   LocalThemeProvider,
   useLocalTheme,
 } from '@/utils/context/local-theme-context';
+import {
+  CircleDollarSign,
+  CloudUpload,
+  EyeIcon,
+  EyeOffIcon,
+  Type,
+  X,
+} from 'lucide-react-native';
+import NextImage from 'next/image';
 
 const getBorderStyle = (activeButton: string, elementType: string) => {
   switch (activeButton) {
@@ -75,7 +75,7 @@ const Fold3InteractiveContent = () => {
   const handleClick = (buttonName: React.SetStateAction<string>) => {
     setActiveButton(buttonName);
   };
-  const { colorMode } = useContext(ThemeContext);
+  const { colorMode } = useColorMode();
   const [showPassword, setShowPassword] = React.useState(false);
   const handleState = () => {
     setShowPassword((showState) => !showState);
@@ -107,16 +107,14 @@ const Fold3InteractiveContent = () => {
             <Pressable
               key={buttonName}
               onPress={() => handleClick(buttonName)}
-              className={`flex-1 gap-1.5 cursor-pointer ${
-                activeButton === buttonName ? 'bg-background' : ''
-              } rounded-lg px-2 sm:px-3.5 py-2 items-center`}
+              className={`flex-1 gap-1.5 cursor-pointer ${activeButton === buttonName ? 'bg-background' : ''
+                } rounded-lg px-2 sm:px-3.5 py-2 items-center`}
             >
               <Text
-                className={`text-xs sm:text-sm whitespace-nowrap ${
-                  activeButton === buttonName
+                className={`text-xs sm:text-sm whitespace-nowrap ${activeButton === buttonName
                     ? 'text-foreground font-semibold'
                     : 'text-muted-foreground font-normal'
-                } `}
+                  } `}
               >
                 {buttonName}
               </Text>
@@ -368,7 +366,7 @@ const Fold3InteractiveContent = () => {
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
-className='fill-foreground'
+                    className='fill-foreground'
                   >
                     <path
                       d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2ZM11.333 17.772C10.8975 17.9161 10.4426 17.993 9.984 18C9.247 18 8.713 17.814 8.34 17.454C7.969 17.106 7.765 16.579 7.771 15.985C7.777 14.641 8.754 13.874 10.08 13.874C10.601 13.874 11.004 13.977 11.201 14.072L11.01 14.803C10.788 14.707 10.512 14.629 10.069 14.629C9.307 14.629 8.731 15.061 8.731 15.937C8.731 16.77 9.253 17.262 10.002 17.262C10.212 17.262 10.38 17.238 10.452 17.201V16.355H9.828V15.642H11.333V17.772ZM12.967 17.958H12.049V13.916H12.967V17.958ZM16.229 14.666H14.676V15.589H16.127V16.333H14.676V17.958H13.758V13.916H16.229V14.666ZM14 9H13V4L18 9H14Z"

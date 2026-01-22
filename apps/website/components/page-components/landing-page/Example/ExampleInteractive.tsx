@@ -11,7 +11,7 @@ import { Resizable } from 're-resizable';
 import { Expand } from '../Expand';
 import QRCode from '@/public/assets/ui-example-nativewind-qr-code.png';
 import { ExternalLink } from 'lucide-react-native';
-import { ThemeContext } from '@/utils/context/theme-context';
+import { useColorMode } from '@/app/provider';
 
 // Function to detect if the user is on a web browser
 function checkPlatform(colorMode: string) {
@@ -34,7 +34,7 @@ const kitchensink = {
 };
 
 export default function ExampleInteractive() {
-  const { colorMode } = useContext(ThemeContext);
+  const { colorMode } = useColorMode();
   const resizableRef = React.useRef<any>(null);
   const [isMobile, setIsMobile] = React.useState(false);
   const iframeTheme = colorMode === 'light' ? 'dark' : 'light';

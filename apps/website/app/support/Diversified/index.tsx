@@ -1,12 +1,11 @@
 'use client';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
-import { ThemeContext } from '@/utils/context/theme-context';
+import { useColorMode } from '@/app/provider';
 import NextImage from 'next/image';
-import { useContext } from 'react';
 
 function Diversified() {
-  const { colorMode } = useContext(ThemeContext);
+  const { colorMode } = useColorMode();
   return (
     <Box className="mb-20 md:mb-[140px]">
       <Box className="max-w-[777px] items-start mb-20">

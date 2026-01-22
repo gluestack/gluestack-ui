@@ -1,6 +1,5 @@
 'use client';
-import { useContext } from 'react';
-import { ThemeContext } from '@/utils/context/theme-context';
+import { useColorMode } from '@/app/provider';
 import { Widget } from '@typeform/embed-react';
 import { Box } from '@/components/ui/box';
 import WebsiteLayout from '@/components/page-components/landing-page/WebsiteLayout';
@@ -8,7 +7,7 @@ import BadgeComponent from '@/components/page-components/landing-page/BadgeCompo
 import Footer from '@/components/page-components/landing-page/Footer';
 
 export default function Expert() {
-  const { colorMode } = useContext(ThemeContext);
+  const { colorMode } = useColorMode();
 
   return (
     <WebsiteLayout applyBgImage={true}>
