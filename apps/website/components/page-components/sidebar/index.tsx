@@ -73,8 +73,8 @@ const SidebarLink = ({ item }: { item: NavigationItem }) => {
       {item.tags?.length && item.tags?.length > 0 && (
         <span
           className={`text-2xs uppercase font-roboto font-semibold rounded-sm px-1 py-0.5 m-2 ${item.tags?.includes('alpha')
-              ? 'text-info-600 bg-info-50/40'
-              : 'text-success-600 bg-success-50/40'
+              ? 'text-blue-500 bg-blue-500/10'
+              : 'text-green-500 bg-green-500/10'
             }`}
         >
           {item.tags?.map((tag) => tag).join(', ')}
