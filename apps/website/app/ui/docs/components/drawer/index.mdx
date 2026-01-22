@@ -164,6 +164,7 @@ import Animated, {
   SlideOutDown,
   FadeIn,
   FadeOut,
+  Easing,
 } from 'react-native-reanimated';
 
 const SCOPE = 'MODAL';
@@ -366,7 +367,7 @@ const DrawerBackdrop = React.forwardRef<
   return (
     <UIDrawer.Backdrop
       ref={ref}
-      entering={FadeIn.duration(150)}
+      entering={FadeIn.duration(200).easing(Easing.in(Easing.cubic))}
       exiting={FadeOut.duration(150)}
       {...props}
       className={drawerBackdropStyle({
@@ -391,21 +392,21 @@ const DrawerContent = React.forwardRef<
   // Select entering and exiting animations based on anchor
   const enteringAnimation =
     parentAnchor === 'left'
-      ? SlideInLeft.duration(150)
+      ? SlideInLeft.duration(200).easing(Easing.in(Easing.cubic))
       : parentAnchor === 'right'
-        ? SlideInRight.duration(150)
+        ? SlideInRight.duration(200)
         : parentAnchor === 'top'
-          ? SlideInUp.duration(150)
-          : SlideInDown.duration(150);
+          ? SlideInUp.duration(200)
+          : SlideInDown.duration(200);
 
   const exitingAnimation =
     parentAnchor === 'left'
-      ? SlideOutLeft.duration(150)
+        ? SlideOutLeft.duration(200)
       : parentAnchor === 'right'
-        ? SlideOutRight.duration(150)
+        ? SlideOutRight.duration(200)
         : parentAnchor === 'top'
-          ? SlideOutUp.duration(150)
-          : SlideOutDown.duration(150);
+          ? SlideOutUp.duration(200)
+          : SlideOutDown.duration(200);
 
   return (
     <UIDrawer.Content

@@ -7,6 +7,7 @@ import Animated, {
   FadeOut,
   ZoomIn,
   ZoomOut,
+  Easing,
 } from 'react-native-reanimated';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
@@ -119,8 +120,8 @@ const ModalBackdrop = React.forwardRef<
   return (
     <UIModal.Backdrop
       ref={ref}
-      entering={FadeIn.duration(150)}
-      exiting={FadeOut.duration(150)}
+      entering={FadeIn.duration(200).easing(Easing.linear)}
+      exiting={FadeOut.duration(200).easing(Easing.linear)}
       {...props}
       className={modalBackdropStyle({
         class: className,
@@ -138,11 +139,11 @@ const ModalContent = React.forwardRef<
   return (
     <UIModal.Content
       ref={ref}
-      entering={ZoomIn.duration(150).withInitialValues({
+      entering={ZoomIn.duration(200).withInitialValues({
         transform: [{ scale: 0.9 }],
         opacity: 0,
       })}
-      exiting={FadeOut.duration(150)}
+      exiting={FadeOut.duration(200)}
       {...props}
       className={modalContentStyle({
         parentVariants: {

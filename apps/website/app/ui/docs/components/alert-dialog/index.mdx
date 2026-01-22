@@ -236,11 +236,11 @@ const AlertDialogContent = React.forwardRef<
   return (
     <UIAccessibleAlertDialog.Content
       pointerEvents="auto"
-      entering={ZoomIn.duration(150).withInitialValues({
+      entering={ZoomIn.duration(200).withInitialValues({
         transform: [{ scale: 0.9 }],
         opacity: 0,
       })}
-      exiting={FadeOut.duration(150)}
+      exiting={FadeOut.duration(200)}
       ref={ref}
       {...props}
       className={alertDialogContentStyle({
@@ -322,8 +322,8 @@ const AlertDialogBackdrop = React.forwardRef<
     <UIAccessibleAlertDialog.Backdrop
       ref={ref}
       {...props}
-      entering={FadeIn.duration(150).easing(Easing.linear)}
-      exiting={FadeOut.duration(150)}
+      entering={FadeIn.duration(200).easing(Easing.linear)}
+      exiting={FadeOut.duration(200).easing(Easing.linear)}
       className={alertDialogBackdropStyle({
         class: className,
       })}
