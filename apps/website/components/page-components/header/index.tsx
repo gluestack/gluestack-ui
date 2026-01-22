@@ -57,7 +57,7 @@ const Header = ({
           <div className="flex flex-row gap-6 items-center">
             <NextLink
               href="/"
-              className="no-underline z-1 ml-2 flex flex-row gap-1 items-center"
+              className="no-underline z-1 flex flex-row gap-1 items-center"
             >
               <Image
                 alt="gluestack-ui logo"
