@@ -39,7 +39,7 @@ const App = ({ referrer }: { referrer: string }) => {
               <h1 className="text-4xl font-bold tracking-[0.2px] leading-[120%] md:text-right">
                 React & React Native <br/> UI Components & Patterns
               </h1>
-              <p className="font-sans text-sm text-muted-foreground md:text-right">
+              <p className="font-sans text-sm text-muted-foreground md:text-right xl:max-w-[560px]">
                 Comprehensive React and React Native component library for
                 building modern, high-performance web and mobile apps.
                 Copy-paste UI components library & patterns crafted with
