@@ -4,8 +4,8 @@ const IOS = () => {
       width="20"
       height="21"
       viewBox="0 0 20 21"
-      className="fill-background-800"
       xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
     >
       <g id="ic:baseline-apple">
         <path
