@@ -21,17 +21,14 @@ import ThemeToggleFab from './ThemeToggleFab';
 import VadimStream from './VadimStream';
 import WebsiteLayout from './WebsiteLayout';
 
-import Inspiration from './Inspiration';
-import PowerOfTailwind from './PowerOfTailwind';
-import Image from 'next/image';
 import { kitchensink } from '@/components/docs-components/apps/appConfig';
 import { HStack } from '@/components/ui/hstack';
-import { Box } from '@/components/ui/box';
-import { VStack } from '@/components/ui/vstack';
 import { Text } from '@/components/ui/text';
-import { Divider } from '@/components/ui/divider';
-import IOS from './Ios';
-import Android from './Android';
+import { VStack } from '@/components/ui/vstack';
+import Image from 'next/image';
+import Inspiration from './Inspiration';
+import PowerOfTailwind from './PowerOfTailwind';
+import RapidNativeBanner from './RapidNativeBanner';
 
 
 const App = ({ referrer }: { referrer: string }) => {
@@ -40,6 +37,7 @@ const App = ({ referrer }: { referrer: string }) => {
       <SentryErrorHandler />
       <WebsiteLayout>
         <div className=" h-full flex flex-row my-0  mx-auto max-w-[1440px] w-[85%]">
+          <RapidNativeBanner />
           <div className="flex flex-col md:w-1/2  h-[calc(100vh-100px)] justify-center md:items-end gap-5">
             <AwardBadge />
             <div className="flex flex-col gap-3">
@@ -69,13 +67,13 @@ const App = ({ referrer }: { referrer: string }) => {
 
             {/* Kitchensink QR Code */}
             <HStack className="gap-2 items-center mt-10 border border-border rounded-md p-4 md:flex hidden">
-                <Image
-                  alt="kitchensink qrcode"
-                  src={kitchensink.qrCodeUri}
-                  height={156}
-                  width={156}
-                  unoptimized
-                />
+              <Image
+                alt="kitchensink qrcode"
+                src={kitchensink.qrCodeUri}
+                height={156}
+                width={156}
+                unoptimized
+              />
               <VStack className="max-w-[300px] items-center">
                 <Text className="text-base lg:text-lg font-semibold text-center">
                   Kitchensink App
