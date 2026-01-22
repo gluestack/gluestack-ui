@@ -20,6 +20,7 @@ export const config = {
     '--ring': '212 212 212',
     '--accent': '247 247 247',
     '--accent-foreground': '52 52 52',
+    '--card-foreground': '10 10 10',
   }),
   dark: vars({
     '--primary-foreground': '23 23 23',
@@ -39,5 +40,6 @@ export const config = {
     '--accent': '38 38 38',
     '--accent-foreground': '250 250 250',
     '--ring': '115 115 115',
+    '--card-foreground': '250 250 250',
   }),
 };

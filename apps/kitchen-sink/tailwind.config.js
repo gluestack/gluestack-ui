@@ -30,6 +30,10 @@ module.exports = {
           DEFAULT: 'rgb(var(--muted) / <alpha-value>)',
           foreground: 'rgb(var(--muted-foreground) / <alpha-value>)',
         },
+        card:{
+          DEFAULT: 'rgb(var(--card) / <alpha-value>)',
+          foreground: 'rgb(var(--card-foreground) / <alpha-value>)',
+        },
         destructive: {
           DEFAULT: 'rgb(var(--destructive) / <alpha-value>)',
         },

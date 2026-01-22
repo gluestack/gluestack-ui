@@ -13,6 +13,7 @@
     "Alert": "@/components/ui/alert",
     "AlertText": "@/components/ui/alert",
     "AlertIcon": "@/components/ui/alert",
-    "InfoIcon": "@/components/ui/icon"
+    "InfoIcon": "@/components/ui/icon",
+    "Center": "@/components/ui/center"
   }
 }
