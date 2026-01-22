@@ -111,28 +111,28 @@ const ExampleWithWithoutInset = () => {
 return (
     <VStack space="2xl">
       <HStack className="px-3 h-8 rounded border border-solid border-border/70">
-        <Button variant="link" size="xs">
+        <Button variant="link" size="sm">
           <ButtonText>Github</ButtonText>
         </Button>
         <Divider orientation="vertical" className="mx-2.5" />
-        <Button variant="link" size="xs">
+        <Button variant="link" size="sm">
           <ButtonText>Twitter</ButtonText>
         </Button>
         <Divider orientation="vertical" className="mx-2.5" />
-        <Button variant="link" size="xs">
+        <Button variant="link" size="sm">
           <ButtonText>Discord</ButtonText>
         </Button>
       </HStack>
       <HStack className="px-3 h-8 rounded border border-solid border-border/70 items-center">
-        <Button variant="link" size="xs">
+        <Button variant="link" size="sm">
           <ButtonText>Github</ButtonText>
         </Button>
         <Divider orientation="vertical" className="h-[50%] mx-2.5" />
-        <Button variant="link" size="xs">
+        <Button variant="link" size="sm">
           <ButtonText>Twitter</ButtonText>
         </Button>
         <Divider orientation="vertical" className="h-[50%] mx-2.5" />
-        <Button variant="link" size="xs">
+        <Button variant="link" size="sm">
           <ButtonText>Discord</ButtonText>
         </Button>
       </HStack>
@@ -142,11 +142,11 @@ return (
 
 const ExampleAddingContentWithinADivider = () => {
 return (
-    <Box className="py-9 px-20 m-5 rounded-lg border border-border/70">
-      <Heading size='3xl'>
+    <Box className="py-5 px-8 m-5 rounded-lg border border-border">
+      <Heading size='xl'>
         Search Results
       </Heading>
-      <Divider className="mt-4 mb-6"/>
+      <Divider className="mt-4 mb-6" />
       <Box>
         <Text size='xs' className='font-bold text-amber-700'>
           TECHNOLOGY

@@ -3,7 +3,7 @@ function App(){
     const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2']);
     return (
     <Accordion type="multiple" value={selectedValues} onValueChange={(item) => setSelectedValues(item)} className="m-5 w-[95%]">
-      <AccordionItem value="item-1" className="border-t border-b border-border/70"
+      <AccordionItem value="item-1" className=" border-b border-border"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -30,6 +30,7 @@ function App(){
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2"
+      className=" border-b border-border"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -56,7 +57,6 @@ function App(){
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3"
-      className="border-t border-b border-border/70"
       >
         <AccordionHeader>
           <AccordionTrigger>

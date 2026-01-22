@@ -40,15 +40,26 @@ This is an illustration of **Card** component.
   <CodePreviewer
   code={`function Example() {
   return (
-    <Card className="w-80">
-      <Heading size="md" className="mb-1">
+    <Card className="w-80" size="{{size}}">
+      <Heading size="md">
         Quick Start
       </Heading>
       <Text size="sm">Start building your next project in minutes</Text>
     </Card>
   )
 }`}
-  argTypes={{}}
+  argTypes={{
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "default",
+      "sm"
+    ],
+    "defaultValue": "default"
+  }
+}}
   reactLive={{ Card, Heading, Text }}
   importMap={{"@/components/ui/card":["Card"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"]}}
 />
@@ -68,21 +79,20 @@ This is an illustration of **Card** component.
 ```jsx
 'use client';
 import React from 'react';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { View } from 'react-native';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { cardStyle } from './styles';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-const cardStyle = tva({
-  base: 'flex-col bg-background border border-border gap-6 rounded-xl shadow-sm p-4',
-});
-
-type ICardProps = React.ComponentPropsWithoutRef<typeof View> &
-  VariantProps<typeof cardStyle> & { className?: string };
+type ICardProps = React.ComponentPropsWithoutRef<typeof View> & 
+  VariantProps<typeof cardStyle> & { 
+    className?: string;
+    size?: 'default' | 'sm';
+  };
 
 const Card = React.forwardRef<React.ComponentRef<typeof View>, ICardProps>(
-  function Card({ className, ...props }, ref) {
+  function Card({ className, size = 'default', ...props }, ref) {
     return (
-      <View className={cardStyle({ class: className })} {...props} ref={ref} />
+      <View className={cardStyle({ size, class: className })} {...props} ref={ref} />
     );
   }
 );
@@ -101,16 +111,19 @@ import React from 'react';
 import { cardStyle } from './styles';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-type ICardProps = React.ComponentPropsWithoutRef<'div'> &
-  VariantProps<typeof cardStyle>;
+type ICardProps = React.ComponentPropsWithoutRef<'div'> & 
+  VariantProps<typeof cardStyle> & { 
+    className?: string;
+    size?: 'default' | 'sm';
+  };
 
 const Card = React.forwardRef<HTMLDivElement, ICardProps>(function Card(
-  { className, size = 'md', variant = 'elevated', ...props },
+  { className, size = 'default', ...props },
   ref
 ) {
   return (
     <div
-      className={cardStyle({ size, variant, class: className })}
+      className={cardStyle({ size, class: className })}
       {...props}
       ref={ref}
     />
@@ -131,19 +144,15 @@ import { isWeb } from '@gluestack-ui/utils/nativewind-utils';
 const baseStyle = isWeb ? 'flex flex-col relative z-0' : '';
 
 export const cardStyle = tva({
-  base: baseStyle,
+  base: `${baseStyle} flex-col bg-card border border-border rounded-xl shadow-sm`,
   variants: {
     size: {
-      sm: 'p-3 rounded',
-      md: 'p-4 rounded-md',
-      lg: 'p-6 rounded-xl',
+      default: 'p-4 gap-6',
+      sm: 'p-3 gap-3',
     },
-    variant: {
-      elevated: 'bg-background',
-      outline: 'border border-border/20',
-      ghost: 'rounded-none',
-      filled: 'bg-background/10',
-    },
+  },
+  defaultVariants: {
+    size: 'default',
   },
 });
 
@@ -244,15 +253,15 @@ The Examples section provides visual representations of the different variants o
         source=\\{{
           uri: 'https://gluestack.github.io/public-blog-video-assets/yoga.png',
         }}
-        className="mb-6 h-[240px] w-full rounded-md aspect-[263/240]"
+        className=" h-[240px] w-full rounded-md aspect-[263/240]"
         alt="image"
       />
       <Text
-        className="text-sm font-normal mb-2 text-foreground/70"
+        className="text-sm font-normal text-foreground/70"
       >
         May 15, 2023
       </Text>
-      <Heading size="md" className="mb-4">
+      <Heading size="md">
         The Power of Positive Thinking
       </Heading>
       <Link href="https://gluestack.io/" isExternal>
@@ -306,7 +315,7 @@ The Examples section provides visual representations of the different variants o
         </VStack>
       </Box>
       <Box
-        className="my-5 flex-row"
+        className="flex-row"
       >
         <VStack
           className="items-center flex-1 pb-0 border-r border-border/70"
@@ -334,7 +343,7 @@ The Examples section provides visual representations of the different variants o
         </VStack>
       </Box>
       <Box
-        className="mb-5 sm:mb-6 flex-row items-center justify-center"
+        className="flex-row items-center justify-center"
       >
         <Image
           source=\\{{
@@ -375,15 +384,15 @@ The Examples section provides visual representations of the different variants o
         source=\\{{
           uri: 'https://gluestack.github.io/public-blog-video-assets/saree.png',
         }}
-        className="mb-6 h-[240px] w-full rounded-md aspect-[4/3]"
+        className="h-[240px] w-full rounded-md aspect-[4/3]"
         alt="image"
       />
       <Text
-        className="text-sm font-normal mb-2 text-foreground/70"
+        className="text-sm font-normal text-foreground/70"
       >
         Fashion Clothing
       </Text>
-      <VStack className="mb-6">
+      <VStack>
         <Heading size="md" className="mb-4">
           Cotton Kurta
         </Heading>
@@ -430,11 +439,11 @@ The Examples section provides visual representations of the different variants o
     return (
     <Card className="p-5 rounded-lg max-w-[360px] m-3"
     >
-      <Text className="text-sm font-normal mb-2 text-foreground/70"
+      <Text className="text-sm font-normal text-foreground/70"
       >
         May 15, 2023
       </Text>
-      <VStack className="mb-6">
+      <VStack>
         <Heading size="md" className="mb-4">
           The Power of Positive Thinking
         </Heading>

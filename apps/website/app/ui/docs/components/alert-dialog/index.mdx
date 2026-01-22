@@ -236,11 +236,11 @@ const AlertDialogContent = React.forwardRef<
   return (
     <UIAccessibleAlertDialog.Content
       pointerEvents="auto"
-      entering={ZoomIn.duration(150).withInitialValues({
+      entering={ZoomIn.duration(200).withInitialValues({
         transform: [{ scale: 0.9 }],
         opacity: 0,
       })}
-      exiting={FadeOut.duration(150)}
+      exiting={FadeOut.duration(200)}
       ref={ref}
       {...props}
       className={alertDialogContentStyle({
@@ -322,8 +322,8 @@ const AlertDialogBackdrop = React.forwardRef<
     <UIAccessibleAlertDialog.Backdrop
       ref={ref}
       {...props}
-      entering={FadeIn.duration(150).easing(Easing.linear)}
-      exiting={FadeOut.duration(150)}
+      entering={FadeIn.duration(200).easing(Easing.linear)}
+      exiting={FadeOut.duration(200).easing(Easing.linear)}
       className={alertDialogBackdropStyle({
         class: className,
       })}
@@ -649,7 +649,7 @@ The Examples section provides visual representations of the different variants o
       </Button>
       <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogBackdrop />
-        <AlertDialogContent className="p-4 gap-4 max-w-[649px] w-full md:flex-row mx-2">
+        <AlertDialogContent className="p-4 gap-4 max-w-[649px]  md:flex-row mx-2">
           <AlertDialogBody
             className=""
             contentContainerClassName="flex-row gap-4"
@@ -704,7 +704,7 @@ The Examples section provides visual representations of the different variants o
       </Button>
       <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
         <AlertDialogBackdrop />
-        <AlertDialogContent className="w-full max-w-[415px] gap-4 items-center">
+        <AlertDialogContent className=" max-w-[415px] gap-4 items-center">
           <Box className="rounded-full h-[52px] w-[52px] bg-destructive/10 items-center justify-center">
             <Icon as={TrashIcon} className="stroke-destructive h-6 w-6" />
           </Box>

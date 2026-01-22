@@ -17,8 +17,19 @@ import { UsageVariantFlatList } from '@/components/custom/component-presentation
 
 const ExampleBasic = () => {
 return (
-    <Card className="w-80">
-      <Heading size="md" className="mb-1">
+    <Card className="w-80" size="default">
+      <Heading size="md">
+        Quick Start
+      </Heading>
+      <Text size="sm">Start building your next project in minutes</Text>
+    </Card>
+  )
+};
+
+const SizeSm = () => {
+return (
+    <Card className="w-80" size="sm">
+      <Heading size="md">
         Quick Start
       </Heading>
       <Text size="sm">Start building your next project in minutes</Text>
@@ -33,15 +44,15 @@ return (
         source={{
           uri: 'https://gluestack.github.io/public-blog-video-assets/yoga.png',
         }}
-        className="mb-6 h-[240px] w-full rounded-md aspect-[263/240]"
+        className=" h-[240px] w-full rounded-md aspect-[263/240]"
         alt="image"
       />
       <Text
-        className="text-sm font-normal mb-2 text-foreground/70"
+        className="text-sm font-normal text-foreground/70"
       >
         May 15, 2023
       </Text>
-      <Heading size="md" className="mb-4">
+      <Heading size="md">
         The Power of Positive Thinking
       </Heading>
       <Link href="https://gluestack.io/" isExternal>
@@ -85,7 +96,7 @@ return (
         </VStack>
       </Box>
       <Box
-        className="my-5 flex-row"
+        className="flex-row"
       >
         <VStack
           className="items-center flex-1 pb-0 border-r border-border/70"
@@ -113,7 +124,7 @@ return (
         </VStack>
       </Box>
       <Box
-        className="mb-5 sm:mb-6 flex-row items-center justify-center"
+        className="flex-row items-center justify-center"
       >
         <Image
           source={{
@@ -144,15 +155,15 @@ return (
         source={{
           uri: 'https://gluestack.github.io/public-blog-video-assets/saree.png',
         }}
-        className="mb-6 h-[240px] w-full rounded-md aspect-[4/3]"
+        className="h-[240px] w-full rounded-md aspect-[4/3]"
         alt="image"
       />
       <Text
-        className="text-sm font-normal mb-2 text-foreground/70"
+        className="text-sm font-normal text-foreground/70"
       >
         Fashion Clothing
       </Text>
-      <VStack className="mb-6">
+      <VStack>
         <Heading size="md" className="mb-4">
           Cotton Kurta
         </Heading>
@@ -189,11 +200,11 @@ const ExampleBlogCard = () => {
 return (
     <Card className="p-5 rounded-lg max-w-[360px] m-3"
     >
-      <Text className="text-sm font-normal mb-2 text-foreground/70"
+      <Text className="text-sm font-normal text-foreground/70"
       >
         May 15, 2023
       </Text>
-      <VStack className="mb-6">
+      <VStack>
         <Heading size="md" className="mb-4">
           The Power of Positive Thinking
         </Heading>
@@ -232,6 +243,11 @@ const COMPONENT_VARIANTS = [
     value: "basic",
     label: "Basic",
     content: <ExampleBasic />,
+  },
+  {
+    value: "sm",
+    label: "Sm",
+    content: <SizeSm />,
   },
   {
     value: "card-with-image",

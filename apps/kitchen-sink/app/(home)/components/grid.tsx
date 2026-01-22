@@ -12,35 +12,35 @@ return (
       _extra={{className: "grid-cols-10"}}
     >
       <GridItem
-        className="bg-primary/10 p-6 rounded-md"
+        className="bg-muted p-6 rounded-md"
         _extra={{className: "col-span-3"}}
       />
       <GridItem
-        className="bg-primary/10 p-6 rounded-md"
+        className="bg-muted p-6 rounded-md"
         _extra={{className: "col-span-5"}}
       />
       <GridItem
-        className="bg-primary/10 p-6 rounded-md"
+        className="bg-muted p-6 rounded-md"
         _extra={{className: "col-span-2"}}
       />
       <GridItem
-        className="bg-primary/10 p-6 rounded-md"
+        className="bg-muted p-6 rounded-md"
         _extra={{className: "col-span-4"}}
       />
       <GridItem
-        className="bg-primary/10 p-6 rounded-md"
+        className="bg-muted p-6 rounded-md"
         _extra={{className: "col-span-6"}}
       />
       <GridItem
-        className="bg-primary/10 p-6 rounded-md"
+        className="bg-muted p-6 rounded-md"
         _extra={{className: "col-span-2"}}
       />
       <GridItem
-        className="bg-primary/10 p-6 rounded-md"
+        className="bg-muted p-6 rounded-md"
         _extra={{className: "col-span-4"}}
       />
       <GridItem
-        className="bg-primary/10 p-6 rounded-md"
+        className="bg-muted p-6 rounded-md"
         _extra={{className: "col-span-4"}}
       />
     </Grid>
@@ -53,28 +53,28 @@ return (
       className: 'grid-cols-9',
     }}>
       <GridItem
-        className="bg-primary/10 p-3 rounded-md text-center"
+        className="bg-muted p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-3',
         }}
       >
-        <Text>A</Text>
+        <Text className="text-muted-foreground">A</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-3 rounded-md text-center"
+        className="bg-muted p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-3',
         }}
       >
-        <Text>B</Text>
+        <Text className="text-muted-foreground">B</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-3 rounded-md text-center"
+        className="bg-muted p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-3',
         }}
       >
-        <Text>C</Text>
+        <Text className="text-muted-foreground">C</Text>
       </GridItem>
     </Grid>
   )
@@ -86,52 +86,52 @@ return (
       className: 'grid-cols-6',
     }}>
       <GridItem
-        className="bg-primary/10 p-4 rounded-md text-center"
+        className="bg-muted p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-2',
         }}
       >
-        <Text className="text-sm">01</Text>
+        <Text className="text-sm text-muted-foreground">01</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-4 rounded-md text-center"
+        className="bg-muted p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-2',
         }}
       >
-        <Text className="text-sm">02</Text>
+        <Text className="text-sm text-muted-foreground">02</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-4 rounded-md text-center"
+        className="bg-muted p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-2',
         }}
       >
-        <Text className="text-sm">03</Text>
+        <Text className="text-sm text-muted-foreground">03</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-4 rounded-md text-center"
+        className="bg-muted p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-2',
         }}
       >
-        <Text className="text-sm">04</Text>
+        <Text className="text-sm text-muted-foreground">04</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-4 rounded-md text-center"
+        className="bg-muted p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-2',
         }}
       >
-        <Text className="text-sm">05</Text>
+        <Text className="text-sm text-muted-foreground">05</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-4 rounded-md text-center"
+        className="bg-muted p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-2',
         }}
       >
-        <Text className="text-sm">06</Text>
+        <Text className="text-sm text-muted-foreground">06</Text>
       </GridItem>
     </Grid>
   )
@@ -143,59 +143,59 @@ return (
       className: 'grid-cols-8',
     }}>
       <GridItem
-        className="bg-primary/10 p-3 rounded-md text-center"
+        className="bg-muted p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-4',
         }}
       >
-        <Text className="text-sm">01</Text>
+        <Text className="text-sm text-muted-foreground">01</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-3 rounded-md text-center"
+        className="bg-muted p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-4',
         }}
       >
-        <Text className="text-sm">02</Text>
+        <Text className="text-sm text-muted-foreground">02</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-3 rounded-md text-center"
+        className=" p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-4',
         }}
       >
-        <Grid className="gap-5" _extra={{
+        <Grid className="gap-2" _extra={{
           className: 'grid-cols-2',
         }}>
-          <GridItem className="bg-background-200 p-2 rounded-md" _extra={{
+          <GridItem className="bg-muted p-2 rounded-md" _extra={{
             className: 'col-span-1',
-          }}><Text className="text-sm">1</Text></GridItem>
-          <GridItem className="bg-background-200 p-2 rounded-md" _extra={{
+          }}><Text className="text-sm text-muted-foreground">1</Text></GridItem>
+          <GridItem className="bg-muted p-2 rounded-md" _extra={{
             className: 'col-span-1',
-          }}><Text className="text-sm">2</Text></GridItem>
-          <GridItem className="bg-background-200 p-2 rounded-md" _extra={{
+          }}><Text className="text-sm text-muted-foreground">2</Text></GridItem>
+          <GridItem className="bg-muted p-2 rounded-md" _extra={{
             className: 'col-span-1',
-          }}><Text className="text-sm">3</Text></GridItem>
-          <GridItem className="bg-background-200 p-2 rounded-md" _extra={{
+          }}><Text className="text-sm text-muted-foreground">3</Text></GridItem>
+          <GridItem className="bg-muted p-2 rounded-md" _extra={{
             className: 'col-span-1',
-          }}><Text className="text-sm">4</Text></GridItem>
+          }}><Text className="text-sm text-muted-foreground">4</Text></GridItem>
         </Grid>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-3 rounded-md text-center"
+        className=" p-3 rounded-md text-center"
         _extra={{
           className: 'col-span-4',
         }}
       > 
-        <Grid className="gap-5" _extra={{
+        <Grid className="gap-2" _extra={{
           className: 'grid-cols-4',
         }}>
-          <GridItem className="bg-background-200 p-2 rounded-md" _extra={{
+          <GridItem className="bg-muted p-2 rounded-md" _extra={{
             className: 'col-span-4',
-          }}><Text className="text-sm">1</Text></GridItem>
-          <GridItem className="bg-background-200 p-2 rounded-md" _extra={{
+          }}><Text className="text-sm text-muted-foreground">1</Text></GridItem>
+          <GridItem className="bg-muted p-2 rounded-md" _extra={{
             className: 'col-span-4',
-          }}><Text className="text-sm">2</Text></GridItem>
+          }}><Text className="text-sm text-muted-foreground">2</Text></GridItem>
         </Grid>
       </GridItem>
     </Grid>
@@ -208,52 +208,52 @@ return (
       className: 'grid-cols-6',
     }}>
       <GridItem
-        className="bg-primary/10 p-4 rounded-md text-center"
+        className="bg-muted p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-6 md:col-span-3 lg:col-span-2',
         }}
       >
-        <Text className="text-sm">01</Text>
+        <Text className="text-sm text-muted-foreground">01</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-4 rounded-md text-center"
+        className="bg-muted p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-6 md:col-span-3 lg:col-span-2',
         }}
       >
-        <Text className="text-sm">02</Text>
+        <Text className="text-sm text-muted-foreground">02</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-4 rounded-md text-center"
+        className="bg-muted p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-6 md:col-span-3 lg:col-span-2',
         }}
       >
-        <Text className="text-sm">03</Text>
+        <Text className="text-sm text-muted-foreground">03</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-4 rounded-md text-center"
+        className="bg-muted p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-6 md:col-span-3 lg:col-span-2',
         }}
       >
-        <Text className="text-sm">04</Text>
+        <Text className="text-sm text-muted-foreground">04</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-4 rounded-md text-center"
+        className="bg-muted p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-6 md:col-span-3 lg:col-span-2',
         }}
       >
-        <Text className="text-sm">05</Text>
+        <Text className="text-sm text-muted-foreground">05</Text>
       </GridItem>
       <GridItem
-        className="bg-primary/10 p-4 rounded-md text-center"
+        className="bg-muted p-4 rounded-md text-center"
         _extra={{
           className: 'col-span-6 md:col-span-3 lg:col-span-2',
         }}
       >
-        <Text className="text-sm">06</Text>
+        <Text className="text-sm text-muted-foreground">06</Text>
       </GridItem>
     </Grid>
   )

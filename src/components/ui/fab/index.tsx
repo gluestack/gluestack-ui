@@ -36,9 +36,9 @@ const fabStyle = tva({
   base: 'group/fab bg-primary rounded-full z-20 p-4 flex-row items-center justify-center absolute hover:bg-primary/90 active:bg-primary/80 disabled:opacity-40 disabled:pointer-events-all disabled:cursor-not-allowed data-[focus=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-indicator-info shadow-hard-2',
   variants: {
     size: {
-      sm: 'px-2.5 py-2.5',
-      md: 'px-3 py-3',
-      lg: 'px-4 py-4',
+      sm: 'px-3.5 py-1.5',
+      md: 'px-4  py-2',
+      lg: 'px-5 py-3',
     },
     placement: {
       'top right': 'top-4 right-4',
@@ -67,17 +67,11 @@ const fabLabelStyle = tva({
       true: 'line-through',
     },
     size: {
-      '2xs': 'text-2xs',
-      'xs': 'text-xs',
+
       'sm': 'text-sm',
       'md': 'text-base',
       'lg': 'text-lg',
-      'xl': 'text-xl',
-      '2xl': 'text-2xl',
-      '3xl': 'text-3xl',
-      '4xl': 'text-4xl',
-      '5xl': 'text-5xl',
-      '6xl': 'text-6xl',
+    
     },
     sub: {
       true: 'text-xs',
@@ -102,12 +96,9 @@ const fabIconStyle = tva({
   base: 'text-primary-foreground/90 fill-none',
   variants: { 
     size: {
-      '2xs': 'h-3 w-3',
-      'xs': 'h-3.5 w-3.5',
-      'sm': 'h-4 w-4',
-      'md': 'w-[18px] h-[18px]',
+      'sm': 'h-3.5 w-3.5',
+      'md': 'h-4 w-4',
       'lg': 'h-5 w-5',
-      'xl': 'h-6 w-6',
     },
   },
 });

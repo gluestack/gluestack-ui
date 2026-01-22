@@ -17,7 +17,7 @@ function Example() {
     },
   ];
   return (
-    <Box className='border rounded-lg border-border/80 p-6 bg-background/90 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'>
+    <Box className='max-w-96 w-full border rounded-lg border-border/80 p-6 bg-background/90'>
       <VStack space='md'>
         {data.map((chatData, index) => {
           return (
@@ -42,7 +42,7 @@ function Example() {
           );
         })}
       </VStack>
-      <Fab size='lg' className='bg-primary/90 hover:bg-primary/80 active:bg-primary/70'>
+      <Fab size='md' >
         <FabIcon as={EditIcon}/>
       </Fab>
     </Box>

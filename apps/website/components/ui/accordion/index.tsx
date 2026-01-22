@@ -40,11 +40,11 @@ const accordionHeaderStyle = tva({
 });
 
 const accordionContentStyle = tva({
-  base: 'pb-4 px-4 pt-1',
+  base: 'pb-4 pt-1',
 });
 
 const accordionTriggerStyle = tva({
-  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10 px-4',
+  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10  gap-3',
 });
 
 const Header = (

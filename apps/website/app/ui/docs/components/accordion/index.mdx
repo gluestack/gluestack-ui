@@ -153,11 +153,11 @@ const accordionHeaderStyle = tva({
 });
 
 const accordionContentStyle = tva({
-  base: 'pb-4 px-4 pt-1',
+  base: 'pb-4 pt-1',
 });
 
 const accordionTriggerStyle = tva({
-  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10 px-4',
+  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10  gap-3',
 });
 
 const Header = (
@@ -598,11 +598,11 @@ The Examples section provides visual representations of the different variants o
   code={`function App(){
     return (
       <Accordion
-      className=""
+      className="w-[90%]"
       type="multiple"
     >
       <AccordionItem value="a"
-           className="border-b border-input dark:border-input/[0.15]"
+           className="border-b border-border"
         >
         <AccordionHeader 
         >
@@ -631,7 +631,7 @@ The Examples section provides visual representations of the different variants o
       </AccordionItem>
       <AccordionItem
         value="b"
-        className="border-b border-input dark:border-input/[0.15]"
+        className="border-b border-border"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -698,8 +698,8 @@ The Examples section provides visual representations of the different variants o
   <CodePreviewer
   code={`function App(){
     return (
-          <Accordion className="m-5 w-[80%] max-w-[640px] bg-transparent">
-      <AccordionItem value="item-1" className="rounded-lg">
+          <Accordion className="rounded-sm w-[90%] border border-border max-w-[640px] bg-transparent">
+      <AccordionItem value="item-1" className="rounded-lg px-4">
         <AccordionHeader>
           <AccordionTrigger
             className="focus:web:rounded-lg"
@@ -708,9 +708,9 @@ The Examples section provides visual representations of the different variants o
               return (
                 <>
                   {isExpanded ? (
-                    <AccordionIcon as={RemoveIcon} className="mr-3"/>
+                    <AccordionIcon as={RemoveIcon}/>
                   ) : (
-                    <AccordionIcon as={AddIcon} className="mr-3"/>
+                    <AccordionIcon as={AddIcon}/>
                   )}
                   <AccordionTitleText>
                     How do I place an order?
@@ -720,7 +720,7 @@ The Examples section provides visual representations of the different variants o
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent className="ml-9">
+        <AccordionContent>
           <AccordionContentText>
             To place an order, simply select the products you want, proceed to
             checkout, provide shipping and payment information, and finalize
@@ -728,16 +728,17 @@ The Examples section provides visual representations of the different variants o
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-2" className="mt-5 rounded-lg">
+        <Divider className="bg-border" />
+      <AccordionItem value="item-2" className="rounded-lg px-4">
         <AccordionHeader>
           <AccordionTrigger className="focus:web:rounded-lg">
             {({ isExpanded }) => {
               return (
                 <>
                   {isExpanded ? (
-                    <AccordionIcon as={RemoveIcon} className="mr-3"/>
+                    <AccordionIcon as={RemoveIcon} />
                   ) : (
-                    <AccordionIcon as={AddIcon} className="mr-3"/>
+                    <AccordionIcon as={AddIcon} />
                   )}
                   <AccordionTitleText>
                    What payment methods do you accept?
@@ -747,7 +748,7 @@ The Examples section provides visual representations of the different variants o
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent className="ml-9">
+        <AccordionContent>
           <AccordionContentText>
             We accept all major credit cards, including Visa, Mastercard, and
             American Express. We also support payments through PayPal.
@@ -770,9 +771,9 @@ The Examples section provides visual representations of the different variants o
   <CodePreviewer
   code={`function App(){
     return (
-          <Accordion variant="unfilled" className="m-5 w-[90%]">
+          <Accordion variant="unfilled" className="w-[90%]">
       <AccordionItem value="item-1" isDisabled={true}
-      className= "border-b border-border/70"
+      className= "border-b border-border"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -937,10 +938,8 @@ The Examples section provides visual representations of the different variants o
   <CodePreviewer
   code={`function App(){
     return (
-            <Accordion
-      className="m-5 border border-border/70 w-[80%] max-w-[640px] rounded-md"
-    >
-      <AccordionItem value="a">
+            <Accordion className="bg-background border border-border w-[90%] rounded-md">
+      <AccordionItem value="a" className="px-4">
         <AccordionHeader className="bg-background">
           <AccordionTrigger>
             {({ isExpanded }) => (
@@ -959,7 +958,7 @@ The Examples section provides visual representations of the different variants o
         </AccordionHeader>
         <AccordionContent className="pb-0">
           <Accordion className="w-full border border-border/70 rounded-md">
-            <AccordionItem value="b">
+            <AccordionItem value="b" className="px-4">
               <AccordionHeader>
                 <AccordionTrigger>
                   {({ isExpanded }) => (
@@ -985,7 +984,7 @@ The Examples section provides visual representations of the different variants o
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          <Accordion className="w-full mt-5 bg-background">
+          <Accordion className="w-full bg-background">
             <AccordionItem value="c">
               <AccordionHeader>
                 <AccordionTrigger>
@@ -1032,7 +1031,7 @@ The Examples section provides visual representations of the different variants o
     const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2']);
     return (
     <Accordion type="multiple" value={selectedValues} onValueChange={(item) => setSelectedValues(item)} className="m-5 w-[95%]">
-      <AccordionItem value="item-1" className="border-t border-b border-border/70"
+      <AccordionItem value="item-1" className=" border-b border-border"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -1059,6 +1058,7 @@ The Examples section provides visual representations of the different variants o
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2"
+      className=" border-b border-border"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -1085,7 +1085,6 @@ The Examples section provides visual representations of the different variants o
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3"
-      className="border-t border-b border-border/70"
       >
         <AccordionHeader>
           <AccordionTrigger>

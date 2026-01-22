@@ -69,11 +69,11 @@ return (
 const ExampleCustomizedComponent = () => {
 return (
       <Accordion
-      className=""
+      className="w-[90%]"
       type="multiple"
     >
       <AccordionItem value="a"
-           className="border-b border-input dark:border-input/[0.15]"
+           className="border-b border-border"
         >
         <AccordionHeader 
         >
@@ -102,7 +102,7 @@ return (
       </AccordionItem>
       <AccordionItem
         value="b"
-        className="border-b border-input dark:border-input/[0.15]"
+        className="border-b border-border"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -159,8 +159,8 @@ return (
 
 const ExampleRoundedCorners = () => {
 return (
-          <Accordion className="m-5 w-[80%] max-w-[640px] bg-transparent">
-      <AccordionItem value="item-1" className="rounded-lg">
+          <Accordion className="rounded-sm w-[90%] border border-border max-w-[640px] bg-transparent">
+      <AccordionItem value="item-1" className="rounded-lg px-4">
         <AccordionHeader>
           <AccordionTrigger
             className="focus:web:rounded-lg"
@@ -169,9 +169,9 @@ return (
               return (
                 <>
                   {isExpanded ? (
-                    <AccordionIcon as={RemoveIcon} className="mr-3"/>
+                    <AccordionIcon as={RemoveIcon}/>
                   ) : (
-                    <AccordionIcon as={AddIcon} className="mr-3"/>
+                    <AccordionIcon as={AddIcon}/>
                   )}
                   <AccordionTitleText>
                     How do I place an order?
@@ -181,7 +181,7 @@ return (
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent className="ml-9">
+        <AccordionContent>
           <AccordionContentText>
             To place an order, simply select the products you want, proceed to
             checkout, provide shipping and payment information, and finalize
@@ -189,16 +189,17 @@ return (
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-2" className="mt-5 rounded-lg">
+        <Divider className="bg-border" />
+      <AccordionItem value="item-2" className="rounded-lg px-4">
         <AccordionHeader>
           <AccordionTrigger className="focus:web:rounded-lg">
             {({ isExpanded }) => {
               return (
                 <>
                   {isExpanded ? (
-                    <AccordionIcon as={RemoveIcon} className="mr-3"/>
+                    <AccordionIcon as={RemoveIcon} />
                   ) : (
-                    <AccordionIcon as={AddIcon} className="mr-3"/>
+                    <AccordionIcon as={AddIcon} />
                   )}
                   <AccordionTitleText>
                    What payment methods do you accept?
@@ -208,7 +209,7 @@ return (
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent className="ml-9">
+        <AccordionContent>
           <AccordionContentText>
             We accept all major credit cards, including Visa, Mastercard, and
             American Express. We also support payments through PayPal.
@@ -221,9 +222,9 @@ return (
 
 const ExampleDisabledItem = () => {
 return (
-          <Accordion variant="unfilled" className="m-5 w-[90%]">
+          <Accordion variant="unfilled" className="w-[90%]">
       <AccordionItem value="item-1" isDisabled={true}
-      className= "border-b border-border/70"
+      className= "border-b border-border"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -368,10 +369,8 @@ return (
 
 const ExampleNestedComponents = () => {
 return (
-            <Accordion
-      className="m-5 border border-border/70 w-[80%] max-w-[640px] rounded-md"
-    >
-      <AccordionItem value="a">
+            <Accordion className="bg-background border border-border w-[90%] rounded-md">
+      <AccordionItem value="a" className="px-4">
         <AccordionHeader className="bg-background">
           <AccordionTrigger>
             {({ isExpanded }) => (
@@ -390,7 +389,7 @@ return (
         </AccordionHeader>
         <AccordionContent className="pb-0">
           <Accordion className="w-full border border-border/70 rounded-md">
-            <AccordionItem value="b">
+            <AccordionItem value="b" className="px-4">
               <AccordionHeader>
                 <AccordionTrigger>
                   {({ isExpanded }) => (
@@ -416,7 +415,7 @@ return (
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          <Accordion className="w-full mt-5 bg-background">
+          <Accordion className="w-full bg-background">
             <AccordionItem value="c">
               <AccordionHeader>
                 <AccordionTrigger>
@@ -453,7 +452,7 @@ const ExampleControlledAccordion = () => {
 const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2']);
     return (
     <Accordion type="multiple" value={selectedValues} onValueChange={(item) => setSelectedValues(item)} className="m-5 w-[95%]">
-      <AccordionItem value="item-1" className="border-t border-b border-border/70"
+      <AccordionItem value="item-1" className=" border-b border-border"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -480,6 +479,7 @@ const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2'])
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2"
+      className=" border-b border-border"
       >
         <AccordionHeader>
           <AccordionTrigger>
@@ -506,7 +506,6 @@ const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2'])
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3"
-      className="border-t border-b border-border/70"
       >
         <AccordionHeader>
           <AccordionTrigger>

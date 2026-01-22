@@ -7,7 +7,7 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
     return (
-      <Center className="bg-primary/80 h-[150px] w-[250px]">
+      <Center className="bg-primary h-[150px] w-[250px]">
         <Text className="text-primary-foreground font-bold">This is the center.</Text>
       </Center>
     )

@@ -18,7 +18,7 @@ import { UsageVariantFlatList } from '@/components/custom/component-presentation
 
 const ExampleBasic = () => {
 return (
-    <Box className="h-[230px] w-60 bg-background-50 rounded-md">
+    <Box className="h-[230px] w-full min-w-60 max-w-96 bg-muted border border-border rounded-md">
       <Fab
         size="sm"
         placement="bottom right"
@@ -35,7 +35,7 @@ return (
 
 const SizeMd = () => {
 return (
-    <Box className="h-[230px] w-60 bg-background-50 rounded-md">
+    <Box className="h-[230px] w-full min-w-60 max-w-96 bg-muted border border-border rounded-md">
       <Fab
         size="md"
         placement="bottom right"
@@ -52,7 +52,7 @@ return (
 
 const SizeLg = () => {
 return (
-    <Box className="h-[230px] w-60 bg-background-50 rounded-md">
+    <Box className="h-[230px] w-full min-w-60 max-w-96 bg-muted border border-border rounded-md">
       <Fab
         size="lg"
         placement="bottom right"
@@ -86,7 +86,7 @@ const data = [
     },
   ];
   return (
-    <Box className='border rounded-lg border-border/80 p-6 bg-background/90 min-w-[240px] sm:min-w-[360px] md:min-w-[476px]'>
+    <Box className='max-w-96 w-full border rounded-lg border-border/80 p-6 bg-background/90'>
       <VStack space='md'>
         {data.map((chatData, index) => {
           return (
@@ -111,7 +111,7 @@ const data = [
           );
         })}
       </VStack>
-      <Fab size='lg' className='bg-primary/90 hover:bg-primary/80 active:bg-primary/70'>
+      <Fab size='md' >
         <FabIcon as={EditIcon}/>
       </Fab>
     </Box>
@@ -182,7 +182,7 @@ return (
 
 const ExamplePlacement = () => {
 return (
-    <Box className='border rounded-lg border-border/70 py-4 bg-background mx-5'>
+    <Box className='max-w-96 border rounded-lg border-border/70  py-4 bg-background mx-5 '>
       <VStack space='lg' className='mb-2 px-6 py-2'>
         <Checkbox size="sm">
           <CheckboxIndicator>
@@ -215,7 +215,7 @@ return (
           </CheckboxLabel>
         </Checkbox>
       </VStack>
-      <Fab size='sm' placement='bottom center' className='top-0 relative'>
+      <Fab size='sm' placement='bottom center' >
         <FabIcon as={AddIcon} size='sm'/>
       </Fab>
     </Box>
@@ -224,7 +224,7 @@ return (
 
 const ExampleCustomPlacement = () => {
 return (
-    <Box className='max-w-96 border rounded-lg border-border/80 overflow-hidden mx-5 bg-background/90'>
+    <Box className='max-w-96 border rounded-lg border-border/80 overflow-hidden mx-5 bg-background/90 relative'>
       <Box>
         <Image
           className='h-[185px] w-[416px]'
@@ -256,7 +256,7 @@ return (
           </Text>
         </Link>
       </VStack>
-      <Fab size='lg' className='bg-primary/90 right-4 bottom-16 hover:bg-primary/80 active:bg-primary/70'>
+      <Fab size='lg' className='bottom-4 right-4'>
         <FabIcon as={ShoppingCartIcon} className='h-4 w-4'/>
       </Fab>
     </Box>
