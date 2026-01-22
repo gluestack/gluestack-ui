@@ -1,11 +1,36 @@
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
+import { Plus_Jakarta_Sans } from 'next/font/google';
+import { Source_Code_Pro } from 'next/font/google';
+import { Inter } from 'next/font/google';
+import { Space_Mono } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import './globals.css';
 import CanonicalLink from '@/components/custom/canonical/CanonicalLink';
 import { cookies } from 'next/headers';
 
 import { Provider } from './provider';
-
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-plus-jakarta-sans',
+});
+const sourceCodePro = Source_Code_Pro({
+  subsets: ['latin'],
+  variable: '--font-source-code-pro',
+});
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  variable: '--font-space-mono',
+  weight: ['400', '700'],
+});
+const roboto = Roboto({
+  subsets: ['latin'],
+  variable: '--font-roboto',
+});
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -18,7 +43,7 @@ export default async function RootLayout({
     | 'system';
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} ${plusJakartaSans.variable} ${sourceCodePro.variable} ${inter.variable} ${spaceMono.variable} ${roboto.variable}`} suppressHydrationWarning>
       <head>
         <meta name="robots" content="index, follow" />
 
