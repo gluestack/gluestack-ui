@@ -8,6 +8,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/web/sheet';
+import NewsletterModal from './NewsLetterModal';
 import GluestackLogo from '@/public/svg/gluestack_logo.svg';
 import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';
 import { Nav } from '@expo/html-elements';
@@ -21,6 +22,9 @@ import { UiDocSearch } from './Docsearch';
 import { MobileSidebarMenu } from './MobileSidebarMenu';
 import ProductDropdown from './ProductDropdown';
 import ResourcesDropdown from './ResourcesDropdown';
+import { HStack } from '@/components/ui/hstack';
+import { Link } from '@/components/ui/link';
+import { Text } from '@/components/ui/text';
 
 const Header = ({
   isOpenSidebar: propsIsOpenSidebar,
@@ -33,6 +37,7 @@ const Header = ({
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { colorMode, setColorMode } = useColorMode();
+  const [showModal, setShowModal] = useState(false);
 
   // Check if current route is documentation
   const isDocsRoute = pathname?.includes('/ui/docs/');
@@ -141,12 +146,35 @@ const Header = ({
                 <Moon className="absolute inset-0 h-[18px] w-[18px] rotate-180 scale-0 transition-all duration-300 text-foreground dark:rotate-0 dark:scale-100" />
               </div>
             </button>
-            <NextLink
+            {!isDocsRoute ? (<NextLink
               className="min-[1120px]:flex hidden"
               href="/ui/docs/home/overview/quick-start"
             >
-              <Button className="rounded-full">Get Started</Button>
-            </NextLink>
+              <Button className="rounded-full shadow-none px-4" size="sm">Get Started</Button>
+            </NextLink>) : (<HStack className="gap-3">
+              <Link
+                onPress={() => setShowModal(true)}
+                className="border border-outline-200 px-4 py-1.5 xl:flex hidden rounded"
+              >
+                <Text className="text-sm text-typography-900">
+                  Get Updates
+                </Text>
+              </Link>
+              <NewsletterModal
+                showModal={showModal}
+                setShowModal={setShowModal}
+              />
+              <Link
+                  href="https://rapidnative.com/?utm_source=gluestack.io&utm_medium=banner_docs&utm_campaign=brand-awareness"
+                  isExternal
+                className="bg-primary px-4 py-1.5 xl:flex hidden rounded"
+              >
+                <Text className="text-sm text-primary-foreground">
+                  Prompt to React Native
+                </Text>
+              </Link>
+            </HStack>)}
+
             {/* Mobile: Show hamburger menu button */}
 
             <Button
