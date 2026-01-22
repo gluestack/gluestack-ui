@@ -2,16 +2,19 @@ import React from 'react';
 import { cardStyle } from './styles';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-type ICardProps = React.ComponentPropsWithoutRef<'div'> &
-  VariantProps<typeof cardStyle>;
+type ICardProps = React.ComponentPropsWithoutRef<'div'> & 
+  VariantProps<typeof cardStyle> & { 
+    className?: string;
+    size?: 'default' | 'sm';
+  };
 
 const Card = React.forwardRef<HTMLDivElement, ICardProps>(function Card(
-  { className, size = 'md', variant = 'elevated', ...props },
+  { className, size = 'default', ...props },
   ref
 ) {
   return (
     <div
-      className={cardStyle({ size, variant, class: className })}
+      className={cardStyle({ size, class: className })}
       {...props}
       ref={ref}
     />

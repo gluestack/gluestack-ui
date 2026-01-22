@@ -3,16 +3,19 @@ import { Alert } from '@/components/ui/alert';
 import { AlertText } from '@/components/ui/alert';
 import { AlertIcon } from '@/components/ui/alert';
 import { InfoIcon } from '@/components/ui/icon';
+import { Center } from '@/components/ui/center';
 
 export default function Example() {
   return (
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Alert variant="{{variant}}">
+    
+    <Alert variant="{{variant}}" >
       <AlertIcon as={InfoIcon} />
-      <AlertText>You can add components to your app using the cli.</AlertText>
+      <AlertText>Description of alert!</AlertText>
     </Alert>
+   
   )
 }`}
       argTypes={{
@@ -27,7 +30,7 @@ export default function Example() {
     "defaultValue": "default"
   }
 }}
-      reactLive={{ Alert, AlertText, AlertIcon, InfoIcon }}
+      reactLive={{ Alert, AlertText, AlertIcon, InfoIcon, Center }}
     />
   );
 }

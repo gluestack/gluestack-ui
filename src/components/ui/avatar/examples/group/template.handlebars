@@ -10,6 +10,7 @@ function Example() {
   const remainingCount = extraAvatars.length;
   return (
     <AvatarGroup>
+  
       {avatars.slice(0, 3).map((avatar, index) => {
         return (
           <Avatar key={index} className={'border-2 border-background ' + avatar.color}>
@@ -17,9 +18,10 @@ function Example() {
           </Avatar>
         );
       })}
-      <Avatar size="lg">
+      <Avatar>
         <AvatarFallbackText>{"+ " + remainingCount + ""}</AvatarFallbackText>
       </Avatar>
+    
     </AvatarGroup>
   );
 } 

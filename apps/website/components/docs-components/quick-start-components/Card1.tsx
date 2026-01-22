@@ -12,11 +12,11 @@ import Expo1 from './Expo1';
 import ReactN from './ReactN';
 import VsCode from './VsCode';
 import NextLink from 'next/link';
+import Tilde from './Tilde';
 import Copied from './Copied';
 import Copy from './Copy';
 import Figma from './Figma';
 import Unitools from './Unitools';
-import { Terminal } from 'lucide-react';
 
 function Card1() {
   const [copied, setCopied] = useState(false);
@@ -62,6 +62,7 @@ function Card1() {
                 {showCopy ? (
                   <Button
                     onPress={copyToClipboard}
+                    // variant=""
                     variant="outline"
                     className="absolute right-3 p-0 web:cursor-pointer md:right-9 border-none data-[hover=true]:bg-none"
                   >

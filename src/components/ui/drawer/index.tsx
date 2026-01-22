@@ -1,7 +1,7 @@
 'use client';
 import { createModal as createDrawer } from '@gluestack-ui/core/modal/creator';
 import React from 'react';
-import { Dimensions, Pressable, ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
@@ -21,17 +21,10 @@ import Animated, {
   SlideOutDown,
   FadeIn,
   FadeOut,
+  Easing,
 } from 'react-native-reanimated';
 
 const SCOPE = 'MODAL';
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
-const sizes: { [key: string]: number } = {
-  sm: 0.25,
-  md: 0.5,
-  lg: 0.75,
-  full: 1,
-};
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -86,6 +79,88 @@ const drawerContentStyle = tva({
       bottom: 'w-full border-t border-border/80 rounded-t-xl',
     },
   },
+  parentCompoundVariants: [
+    {
+      size: 'sm',
+      anchor: 'left',
+      class: 'sm:w-1/4 w-2/5',
+    },
+    {
+      size: 'sm',
+      anchor: 'right',
+      class: 'sm:w-1/4 w-2/5',
+    },
+    {
+      size: 'sm',
+      anchor: 'top',
+      class: 'h-1/4',
+    },
+    {
+      size: 'sm',
+      anchor: 'bottom',
+      class: 'h-1/4',
+    },
+    {
+      size: 'md',
+      anchor: 'left',
+      class: 'w-1/2',
+    },
+    {
+      size: 'md',
+      anchor: 'right',
+      class: 'w-1/2',
+    },
+    {
+      size: 'md',
+      anchor: 'top',
+      class: 'h-1/2',
+    },
+    {
+      size: 'md',
+      anchor: 'bottom',
+      class: 'h-1/2',
+    },
+    {
+      size: 'lg',
+      anchor: 'left',
+      class: 'w-3/4',
+    },
+    {
+      size: 'lg',
+      anchor: 'right',
+      class: 'w-3/4',
+    },
+    {
+      size: 'lg',
+      anchor: 'top',
+      class: 'h-3/4',
+    },
+    {
+      size: 'lg',
+      anchor: 'bottom',
+      class: 'h-3/4',
+    },
+    {
+      size: 'full',
+      anchor: 'left',
+      class: 'w-full',
+    },
+    {
+      size: 'full',
+      anchor: 'right',
+      class: 'w-full',
+    },
+    {
+      size: 'full',
+      anchor: 'top',
+      class: 'h-full',
+    },
+    {
+      size: 'full',
+      anchor: 'bottom',
+      class: 'h-full',
+    },
+  ],
 });
 
 const drawerCloseButtonStyle = tva({
@@ -130,7 +205,7 @@ type IDrawerCloseButtonProps = React.ComponentProps<
 const Drawer = React.forwardRef<
   React.ComponentRef<typeof UIDrawer>,
   IDrawerProps
->(function Drawer({ className, size = 'sm', anchor = 'left', ...props }, ref) {
+>(function Drawer({ className, size = 'md', anchor = 'left', ...props }, ref) {
   return (
     <UIDrawer
       ref={ref}
@@ -149,7 +224,7 @@ const DrawerBackdrop = React.forwardRef<
   return (
     <UIDrawer.Backdrop
       ref={ref}
-      entering={FadeIn.duration(150)}
+      entering={FadeIn.duration(200).easing(Easing.in(Easing.cubic))}
       exiting={FadeOut.duration(150)}
       {...props}
       className={drawerBackdropStyle({
@@ -165,45 +240,34 @@ const DrawerContent = React.forwardRef<
 >(function DrawerContent({ className, ...props }, ref) {
   const { size: parentSize, anchor: parentAnchor } = useStyleContext(SCOPE);
 
-  // Calculate drawer dimensions based on size
-  const drawerHeight = screenHeight * (sizes[parentSize] || sizes.md);
-  const drawerWidth = screenWidth * (sizes[parentSize] || sizes.md);
-
-  const isHorizontal = parentAnchor === 'left' || parentAnchor === 'right';
-
   // Calculate positioning classes
-  const customClass = isHorizontal
-    ? `top-0 ${parentAnchor === 'left' ? 'left-0' : 'right-0'}`
-    : `left-0 ${parentAnchor === 'top' ? 'top-0' : 'bottom-0'}`;
-
-  // Calculate dynamic width/height based on size and anchor
-  const dynamicStyle = isHorizontal
-    ? { width: drawerWidth }
-    : { height: drawerHeight };
+  const customClass =
+    parentAnchor === 'left' || parentAnchor === 'right'
+      ? `top-0 ${parentAnchor === 'left' ? 'left-0' : 'right-0'}`
+      : `left-0 ${parentAnchor === 'top' ? 'top-0' : 'bottom-0'}`;
 
   // Select entering and exiting animations based on anchor
   const enteringAnimation =
     parentAnchor === 'left'
-      ? SlideInLeft.duration(150)
+      ? SlideInLeft.duration(200).easing(Easing.in(Easing.cubic))
       : parentAnchor === 'right'
-        ? SlideInRight.duration(150)
+        ? SlideInRight.duration(200)
         : parentAnchor === 'top'
-          ? SlideInUp.duration(150)
-          : SlideInDown.duration(150);
+          ? SlideInUp.duration(200)
+          : SlideInDown.duration(200);
 
   const exitingAnimation =
     parentAnchor === 'left'
-      ? SlideOutLeft.duration(150)
+        ? SlideOutLeft.duration(200)
       : parentAnchor === 'right'
-        ? SlideOutRight.duration(150)
+        ? SlideOutRight.duration(200)
         : parentAnchor === 'top'
-          ? SlideOutUp.duration(150)
-          : SlideOutDown.duration(150);
+          ? SlideOutUp.duration(200)
+          : SlideOutDown.duration(200);
 
   return (
     <UIDrawer.Content
       ref={ref}
-      style={dynamicStyle}
       entering={enteringAnimation}
       exiting={exitingAnimation}
       {...props}

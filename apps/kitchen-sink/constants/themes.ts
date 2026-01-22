@@ -60,6 +60,7 @@ export const themeConfigs = {
       '--ring': '212 212 212',
       '--accent': '247 247 247',
       '--accent-foreground': '52 52 52',
+      '--card-foreground': '10 10 10',
       ...calculateRadius('0.625rem'),
     }),
     dark: vars({
@@ -81,6 +82,7 @@ export const themeConfigs = {
       '--accent-foreground': '250 250 250',
       '--muted': '38 38 38',
       '--muted-foreground': '161 161 161',
+      '--card-foreground': '250 250 250',
       ...calculateRadius('0.625rem'),
     }),
   },

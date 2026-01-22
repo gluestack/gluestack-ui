@@ -16,7 +16,7 @@ return (
       <AvatarFallbackText>Jane Doe is test</AvatarFallbackText>
       <AvatarImage
         source={{
-          uri: "https://github.com/shadcn.png",
+          uri: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
         }}
       />
     </Avatar>
@@ -122,6 +122,7 @@ const avatars = [
   const remainingCount = extraAvatars.length;
   return (
     <AvatarGroup>
+  
       {avatars.slice(0, 3).map((avatar, index) => {
         return (
           <Avatar key={index} className={'border-2 border-background ' + avatar.color}>
@@ -129,9 +130,10 @@ const avatars = [
           </Avatar>
         );
       })}
-      <Avatar size="lg">
+      <Avatar>
         <AvatarFallbackText>{"+ " + remainingCount + ""}</AvatarFallbackText>
       </Avatar>
+    
     </AvatarGroup>
   )
 };
@@ -178,7 +180,7 @@ return (
 const ExampleAvatarGroupwithBadge = () => {
 return (
     <AvatarGroup>
-      <Avatar size="md">
+      <Avatar>
         <AvatarFallbackText>John Doe</AvatarFallbackText>
         <AvatarImage
           source={{
@@ -187,7 +189,7 @@ return (
         />
         <AvatarBadge />
       </Avatar>
-      <Avatar size="md">
+      <Avatar>
         <AvatarFallbackText>John Doe</AvatarFallbackText>
         <AvatarImage
           source={{
@@ -196,7 +198,7 @@ return (
         />
         <AvatarBadge/>
       </Avatar>
-      <Avatar size="md">
+      <Avatar>
         <AvatarFallbackText>John Doe</AvatarFallbackText>
         <AvatarImage
           source={{
@@ -205,7 +207,7 @@ return (
         />
         <AvatarBadge/>
       </Avatar>
-      <Avatar size="md">
+      <Avatar>
         <AvatarFallbackText>John Doe</AvatarFallbackText>
         <AvatarImage
           source={{
@@ -222,7 +224,7 @@ const ExampleCustom = () => {
 return (
     <VStack space="2xl">
       <HStack space="md">
-        <Avatar size="md" className='bg-indigo-300 border-2 border-indigo-600'>
+        <Avatar className='bg-indigo-300 border-2 border-indigo-600'>
           <Icon as={User} size="xl" className='text-indigo-600' />
         </Avatar>
         <VStack>
@@ -231,7 +233,7 @@ return (
         </VStack>
       </HStack>
       <HStack space="md">
-        <Avatar size="md" className='bg-pink-300 border-2 border-pink-600'>
+        <Avatar className='bg-pink-300 border-2 border-pink-600'>
           <Icon as={User} size="xl" className='text-pink-600' />
         </Avatar>
         <VStack>
@@ -246,7 +248,7 @@ return (
 const ExampleFallback = () => {
 return (
     <HStack space="md">
-      <Avatar size="md">
+      <Avatar>
         <AvatarFallbackText>John Doe</AvatarFallbackText>
         <AvatarImage
           source={{

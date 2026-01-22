@@ -1,20 +1,19 @@
 'use client';
 import React from 'react';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { View } from 'react-native';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { cardStyle } from './styles';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-const cardStyle = tva({
-  base: 'flex-col bg-background border border-border gap-6 rounded-xl shadow-sm p-4',
-});
-
-type ICardProps = React.ComponentPropsWithoutRef<typeof View> &
-  VariantProps<typeof cardStyle> & { className?: string };
+type ICardProps = React.ComponentPropsWithoutRef<typeof View> & 
+  VariantProps<typeof cardStyle> & { 
+    className?: string;
+    size?: 'default' | 'sm';
+  };
 
 const Card = React.forwardRef<React.ComponentRef<typeof View>, ICardProps>(
-  function Card({ className, ...props }, ref) {
+  function Card({ className, size = 'default', ...props }, ref) {
     return (
-      <View className={cardStyle({ class: className })} {...props} ref={ref} />
+      <View className={cardStyle({ size, class: className })} {...props} ref={ref} />
     );
   }
 );

@@ -1,5 +1,6 @@
 import { Alert, AlertText, AlertIcon } from '@/components/ui/alert'
 import { InfoIcon, Icon, CloseIcon, EyeIcon, EyeOffIcon } from '@/components/ui/icon'
+import { Center } from '@/components/ui/center'
 import { VStack } from '@/components/ui/vstack'
 import { Button, ButtonText } from '@/components/ui/button'
 import { CloudIcon, Bomb } from 'lucide-react-native'
@@ -13,19 +14,23 @@ import { UsageVariantFlatList } from '@/components/custom/component-presentation
 
 const ExampleBasic = () => {
 return (
-    <Alert variant="default">
+    
+    <Alert variant="default" >
       <AlertIcon as={InfoIcon} />
-      <AlertText>You can add components to your app using the cli.</AlertText>
+      <AlertText>Description of alert!</AlertText>
     </Alert>
+   
   )
 };
 
 const VariantDestructive = () => {
 return (
-    <Alert variant="destructive">
+    
+    <Alert variant="destructive" >
       <AlertIcon as={InfoIcon} />
-      <AlertText>You can add components to your app using the cli.</AlertText>
+      <AlertText>Description of alert!</AlertText>
     </Alert>
+   
   )
 };
 
