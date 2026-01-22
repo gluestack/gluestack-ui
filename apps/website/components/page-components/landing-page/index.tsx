@@ -41,9 +41,7 @@ const App = ({ referrer }: { referrer: string }) => {
       <WebsiteLayout>
         <div className=" h-full flex flex-row my-0  mx-auto max-w-[1440px] w-[85%]">
           <div className="flex flex-col md:w-1/2  h-[calc(100vh-100px)] justify-center md:items-end gap-5">
-            <div>
-              <AwardBadge />
-            </div>
+            <AwardBadge />
             <div className="flex flex-col gap-3">
               <h1 className="text-4xl font-bold tracking-[0.2px] leading-[120%] md:text-right">
                 React & React Native <br /> UI Components & Patterns
@@ -70,38 +68,19 @@ const App = ({ referrer }: { referrer: string }) => {
             </div>
 
             {/* Kitchensink QR Code */}
-            <HStack className="flex-1 gap-2 items-end">
-              <Box className="flex-1 md:flex hidden">
+            <HStack className="gap-2 items-center mt-10 border border-border rounded-md p-4 md:flex hidden">
                 <Image
                   alt="kitchensink qrcode"
                   src={kitchensink.qrCodeUri}
-                  height={256}
-                  width={256}
+                  height={156}
+                  width={156}
                   unoptimized
                 />
-              </Box>
-              <VStack className="flex-1 items-center">
-                <Text className="text-lg font-normal leading-[30px]  text-center md:flex hidden">
-                  Scan the QR code
+              <VStack className="max-w-[300px] items-center">
+                <Text className="text-base lg:text-lg font-semibold text-center">
+                  Kitchensink App
                 </Text>
-                <Text className="text-xs font-normal leading-[30px]  text-muted-foreground text-center md:flex hidden">
-                  Available in
-                </Text>
-                <VStack className="border border-border rounded-md items-center px-16 py-3 flex-1 gap-2 web:md:flex md:flex hidden web:hidden">
-                  <HStack className="flex-1 items-center justify-center gap-2">
-                    <IOS />
-                    <Text className="text-md font-normal leading-[30px] flex-1">
-                      ios
-                    </Text>
-                  </HStack>
-                  <Divider />
-                  <HStack className="flex-1 items-center justify-center gap-2">
-                    <Android />
-                    <Text className="text-md font-normal leading-[30px] flex-1">
-                      Andriod
-                    </Text>
-                  </HStack>
-                </VStack>
+                <Text className='text-sm text-muted-foreground text-center max-w-[250px]'>a Comprehensive demo app showcasing all the gluestack-ui components in action</Text>
               </VStack>
             </HStack>
             {/* Kitchensink QR Code end*/}
@@ -109,7 +88,7 @@ const App = ({ referrer }: { referrer: string }) => {
           <div className="hidden md:block md:w-1/2 items-start">
             <video
               poster="/videos/hero-poster.jpg"
-              className="lg:-ml-10 xl:-ml-24 w-[full] h-[calc(100vh-53px)] lg:object-cover object-contain"
+              className="lg:-ml-10 xl:-ml-24 w-[full] h-[calc(100vh-53px)] xl:object-cover"
               autoPlay
               loop
               preload="none"
