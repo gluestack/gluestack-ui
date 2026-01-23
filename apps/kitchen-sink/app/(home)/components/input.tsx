@@ -12,47 +12,7 @@ import { UsageVariantFlatList } from '@/components/custom/component-presentation
 
 const ExampleBasic = () => {
 return (
-    <Input variant="outline" size="md" isDisabled={ false } isInvalid={ false } isReadOnly={ false }>
-        <InputField placeholder="Enter Text here..." />
-    </Input>
-  )
-};
-
-const VariantRounded = () => {
-return (
-    <Input variant="rounded" size="md" isDisabled={ false } isInvalid={ false } isReadOnly={ false }>
-        <InputField placeholder="Enter Text here..." />
-    </Input>
-  )
-};
-
-const VariantUnderlined = () => {
-return (
-    <Input variant="underlined" size="md" isDisabled={ false } isInvalid={ false } isReadOnly={ false }>
-        <InputField placeholder="Enter Text here..." />
-    </Input>
-  )
-};
-
-const SizeSm = () => {
-return (
-    <Input variant="outline" size="sm" isDisabled={ false } isInvalid={ false } isReadOnly={ false }>
-        <InputField placeholder="Enter Text here..." />
-    </Input>
-  )
-};
-
-const SizeLg = () => {
-return (
-    <Input variant="outline" size="lg" isDisabled={ false } isInvalid={ false } isReadOnly={ false }>
-        <InputField placeholder="Enter Text here..." />
-    </Input>
-  )
-};
-
-const SizeXl = () => {
-return (
-    <Input variant="outline" size="xl" isDisabled={ false } isInvalid={ false } isReadOnly={ false }>
+    <Input variant="{{variant}}" size="{{size}}" isDisabled={ false } isInvalid={ false } isReadOnly={ false }>
         <InputField placeholder="Enter Text here..." />
     </Input>
   )
@@ -101,7 +61,7 @@ const [showPassword, setShowPassword] = React.useState(false);
 const ExampleInputWithIcons = () => {
 return (
     <Input>
-      <InputSlot className="pl-3">
+      <InputSlot>
         <InputIcon as={SearchIcon}/>
       </InputSlot>
       <InputField
@@ -116,31 +76,6 @@ const COMPONENT_VARIANTS = [
     value: "basic",
     label: "Basic",
     content: <ExampleBasic />,
-  },
-  {
-    value: "rounded",
-    label: "Rounded",
-    content: <VariantRounded />,
-  },
-  {
-    value: "underlined",
-    label: "Underlined",
-    content: <VariantUnderlined />,
-  },
-  {
-    value: "sm",
-    label: "Sm",
-    content: <SizeSm />,
-  },
-  {
-    value: "lg",
-    label: "Lg",
-    content: <SizeLg />,
-  },
-  {
-    value: "xl",
-    label: "Xl",
-    content: <SizeXl />,
   },
   {
     value: "input-with-formcontrol",
