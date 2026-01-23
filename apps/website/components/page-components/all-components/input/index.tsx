@@ -30,29 +30,6 @@ export default function Example() {
       "type": "boolean"
     },
     "defaultValue": false
-  },
-  "variant": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "outline",
-      "rounded",
-      "underlined"
-    ],
-    "defaultValue": "outline"
-  },
-  "size": {
-    "control": {
-      "type": "select"
-    },
-    "options": [
-      "sm",
-      "md",
-      "lg",
-      "xl"
-    ],
-    "defaultValue": "md"
   }
 }}
       reactLive={{ Input, InputField }}
