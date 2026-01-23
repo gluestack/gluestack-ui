@@ -37,14 +37,27 @@ const App = ({ referrer }: { referrer: string }) => {
       <SentryErrorHandler />
       <WebsiteLayout>
         <div className=" h-full flex flex-row my-0  mx-auto max-w-[1440px] w-[85%]">
+          <div className="hidden md:block md:w-1/2 h-[100vh-53px] mt-[53px]">
+            <video
+              poster="/videos/hero-poster.jpg"
+              className="lg:-mr-20 xl:-mr-24 h-[calc(100vh-110px)] xl:object-cover"
+              autoPlay
+              loop
+              preload="none"
+              playsInline
+              muted
+            >
+              <source src="/videos/KitchenSink.webm" type="video/webm" />
+            </video>
+          </div>
           <RapidNativeBanner />
-          <div className="flex flex-col md:w-1/2  h-[calc(100vh-100px)] justify-center md:items-end gap-5">
+          <div className="flex flex-col md:w-1/2  h-[calc(100vh-100px)] justify-center md:items-start gap-2 md:-ml-20 mt-[53px]">
             <AwardBadge />
             <div className="flex flex-col gap-3">
-              <h1 className="text-4xl font-bold tracking-[0.2px] leading-[120%] md:text-right">
+              <h1 className="text-4xl font-bold tracking-[0.2px] leading-[120%] md:text-left">
                 React & React Native <br /> UI Components & Patterns
               </h1>
-              <p className="font-sans text-sm text-muted-foreground md:text-right xl:max-w-[560px]">
+              <p className="font-sans text-sm text-muted-foreground md:text-left xl:max-w-[560px]">
                 Comprehensive React and React Native component library for
                 building modern, high-performance web and mobile apps.
                 Copy-paste UI components library & patterns crafted with
@@ -66,7 +79,7 @@ const App = ({ referrer }: { referrer: string }) => {
             </div>
 
             {/* Kitchensink QR Code */}
-            <HStack className="gap-2 items-center mt-10 border border-border rounded-md p-4 md:flex hidden">
+            <HStack className="gap-2 items-center mt-10 border border-border rounded-md p-4 lg:flex hidden">
               <Image
                 alt="kitchensink qrcode"
                 src={kitchensink.qrCodeUri}
@@ -83,19 +96,7 @@ const App = ({ referrer }: { referrer: string }) => {
             </HStack>
             {/* Kitchensink QR Code end*/}
           </div>
-          <div className="hidden md:block md:w-1/2 items-start">
-            <video
-              poster="/videos/hero-poster.jpg"
-              className="lg:-ml-10 xl:-ml-24 w-[full] h-[calc(100vh-53px)] xl:object-cover"
-              autoPlay
-              loop
-              preload="none"
-              playsInline
-              muted
-            >
-              <source src="/videos/KitchenSink.webm" type="video/webm" />
-            </video>
-          </div>
+
         </div>
         <div className="max-w-[1440px] w-[85%] my-0 mx-auto">
           <Fold1 />
