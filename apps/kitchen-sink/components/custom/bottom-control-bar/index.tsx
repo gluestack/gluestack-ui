@@ -6,7 +6,7 @@ import { useAppTheme } from '@/contexts/app-theme-context';
 import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
-import { useRouter } from 'expo-router';
+import { usePathname, useRouter } from 'expo-router';
 import { PaletteIcon } from 'lucide-react-native';
 import { cssInterop } from 'nativewind';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
@@ -79,6 +79,7 @@ const BottomControlBar = memo(
     children,
   }: BottomControlBarProps) => {
     const router = useRouter();
+    const pathname = usePathname();
     const [showComponentMenu, setShowComponentMenu] = useState(false);
     const [showThemeMenu, setShowThemeMenu] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
@@ -167,9 +168,13 @@ const BottomControlBar = memo(
         setSearchQuery('');
 
         // Navigate directly to the component page
-        router.push(`/(home)/components/${component.path}` as any);
+        if(component.path.includes('showcase')) {
+          router.push(`/(home)/showcases/${component.path}` as any);
+        } else {
+          router.push(`/(home)/components/${component.path}` as any);
+        }
       },
-      [router]
+      [router, pathname]
     );
 
     const handlePillPress = useCallback(() => {
