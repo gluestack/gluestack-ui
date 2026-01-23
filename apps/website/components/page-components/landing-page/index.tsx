@@ -51,7 +51,7 @@ const App = ({ referrer }: { referrer: string }) => {
             </video>
           </div>
           <RapidNativeBanner />
-          <div className="flex flex-col md:w-1/2  h-[calc(100vh-100px)] justify-center md:items-start gap-2 md:-ml-20 mt-[53px]">
+          <div className="flex flex-col md:w-1/2  h-[calc(100vh-100px)] justify-center md:items-start gap-5 md:-ml-20 mt-[53px]">
             <AwardBadge />
             <div className="flex flex-col gap-3">
               <h1 className="text-4xl font-bold tracking-[0.2px] leading-[120%] md:text-left">
@@ -66,7 +66,7 @@ const App = ({ referrer }: { referrer: string }) => {
             </div>
             <div className="gap-4 flex flex-col lg:flex-row md:items-end lg:items-center">
               <NextLink href="/ui/docs/home/overview/quick-start">
-                <Button className="rounded-full h-14 px-8">
+                <Button className="rounded-full h-12 px-8">
                   Get Started
                   <ArrowUpRight className="text-primary-foreground" />
                 </Button>
