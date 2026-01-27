@@ -8,7 +8,8 @@ import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
 import { usePathname, useRouter } from 'expo-router';
 import { PaletteIcon } from 'lucide-react-native';
-import { cssInterop } from 'nativewind';
+import { cssInterop } from 'nativewind';  
+import { GlassView } from 'expo-glass-effect';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Modal,
@@ -28,6 +29,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 const AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedGlassView = Animated.createAnimatedComponent(GlassView);
 Platform.OS === 'web' ? cssInterop(AnimatedView, { className: 'style' }) : null;
 // Theme color mapping for the theme button indicator
 const THEME_COLORS: Record<ThemeName, string[]> = {
@@ -197,15 +199,27 @@ const BottomControlBar = memo(
             {/* Dark/Light Mode Toggle */}
             <Pressable
               onPress={handleToggleColorMode}
-              className="w-16 h-16 rounded-full border border-input dark:bg-input/[0.075] items-center justify-center"
+              className="border border-input dark:border-background rounded-full"
             >
-              <AnimatedView style={colorModeAnimatedStyle}>
+              <AnimatedGlassView
+                glassEffectStyle="clear"
+                style={[
+                  colorModeAnimatedStyle,
+                  {
+                    width: 56,
+                    height: 56,
+                    borderRadius: 28,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  },
+                ]}
+              >
                 <Icon
                   as={isDark ? SunIcon : MoonIcon}
                   className="text-foreground"
                   size="md"
                 />
-              </AnimatedView>
+              </AnimatedGlassView>
             </Pressable>
 
             {/* Theme Selector Button */}
@@ -219,9 +233,24 @@ const BottomControlBar = memo(
             >
               <Pressable
                 onPress={() => setShowThemeMenu(true)}
-                className="w-16 h-16 rounded-full border border-input dark:bg-input/[0.075] items-center justify-center"
+                className="border border-input dark:border-background rounded-full"
               >
-                <Icon as={PaletteIcon} className="text-foreground" size="md" />
+                <GlassView
+                  glassEffectStyle="clear"
+                  style={{
+                    width: 56,
+                    height: 56,
+                    borderRadius: 28,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Icon
+                    as={PaletteIcon}
+                    className="text-foreground"
+                    size="md"
+                  />
+                </GlassView>
               </Pressable>
             </View>
 
@@ -236,18 +265,29 @@ const BottomControlBar = memo(
                     setComponentButtonLayout({ x, y, width: w, height: h });
                   });
                 }}
+                className="border border-input dark:border-background rounded-full"
               >
-                <Pressable
-                  onPress={handlePillPress}
-                  className="px-6 py-5 bg-primary rounded-full"
+                <GlassView
+                  glassEffectStyle="clear"
                   style={{
                     width: pillWidth,
+                    borderRadius: 100,
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
-                  <Text className=" text-base font-sans text-primary-foreground font-medium text-center">
-                    {pillLabel}
-                  </Text>
-                </Pressable>
+                  <Pressable
+                    onPress={handlePillPress}
+                    className="px-6 py-5  rounded-full"
+                    style={{
+                      width: pillWidth,
+                    }}
+                  >
+                    <Text className=" text-base font-sans text-foreground font-medium text-center">
+                      {pillLabel}
+                    </Text>
+                  </Pressable>
+                </GlassView>
               </View>
             ) : null}
           </View>
@@ -335,8 +375,8 @@ const BottomControlBar = memo(
                 </View>
 
                 <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
-                {/* Component List */}
-                {/* <ScrollView
+                  {/* Component List */}
+                  {/* <ScrollView
                   className="flex-1"
                   showsVerticalScrollIndicator={false}
                   bounces={false}
@@ -370,7 +410,7 @@ const BottomControlBar = memo(
                     )}
                   </View>
                   {/* </ScrollView> */}
-                  </KeyboardAwareScrollView>
+                </KeyboardAwareScrollView>
               </AnimatedView>
             </View>
           </Modal>
