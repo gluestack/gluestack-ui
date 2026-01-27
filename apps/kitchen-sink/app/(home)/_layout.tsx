@@ -11,10 +11,6 @@ export default function HomeLayout() {
         <NativeTabs.Trigger.Label>Showcases</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf="sparkles" md="auto_awesome" />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="themes">
-        <NativeTabs.Trigger.Label>Themes</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf="paintpalette.fill" md="palette" />
-      </NativeTabs.Trigger>
     </NativeTabs>
   );
 }

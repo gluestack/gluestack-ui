@@ -192,7 +192,7 @@ const BottomControlBar = memo(
         {/* Bottom Control Bar */}
         <View
           className="absolute left-0 right-0 items-center"
-          style={{ bottom: bottomOffset }}
+          style={{ top: bottomOffset }}
           pointerEvents="box-none"
         >
           <View className="flex-row items-center gap-3">
