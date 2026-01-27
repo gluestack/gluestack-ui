@@ -7,7 +7,7 @@ import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
 import { HStack } from '@/components/ui/hstack';
 import { VStack } from '@/components/ui/vstack';
-import { getChangelogEntryBySlug, getAllChangelogSlugs } from '@/components/page-components/changelog-page/changelog-data';
+import { getChangelogEntryBySlug, getAllChangelogSlugs } from '@/app/ui/docs/changelog/changelog-data';
 import { ArrowLeft } from 'lucide-react';
 
 export function generateStaticParams() {

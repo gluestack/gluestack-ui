@@ -1,4 +1,17 @@
-import { ChangelogEntry } from './ChangelogItem';
+export interface ChangelogEntry {
+  title: string;
+  slug: string;
+  date: string;
+  authors: Array<{
+    id: number;
+    name: string;
+    avatar_url: string;
+    occupation?: string;
+  }>;
+  excerpt?: string;
+  image?: string;
+  content?: string;
+}
 
 export const changelogEntries: ChangelogEntry[] = [
   {

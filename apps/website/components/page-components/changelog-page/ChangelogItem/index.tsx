@@ -6,21 +6,7 @@ import { HStack } from '@/components/ui/hstack';
 import { VStack } from '@/components/ui/vstack';
 import { Text } from '@/components/ui/text';
 import { Heading } from '@/components/ui/heading';
-
-export interface ChangelogEntry {
-  title: string;
-  slug: string;
-  date: string;
-  authors: Array<{
-    id: number;
-    name: string;
-    avatar_url: string;
-    occupation?: string;
-  }>;
-  excerpt?: string;
-  image?: string;
-  content?: string;
-}
+import type { ChangelogEntry } from '@/app/ui/docs/changelog/changelog-data';
 
 export const ChangelogItem = ({ entry }: { entry: ChangelogEntry }) => {
   const date = parseISO(entry.date);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { getChangelogEntryBySlug } from '@/components/page-components/changelog-page/changelog-data';
+import { getChangelogEntryBySlug } from '@/app/ui/docs/changelog/changelog-data';
 
 export async function generateMetadata({
   params,

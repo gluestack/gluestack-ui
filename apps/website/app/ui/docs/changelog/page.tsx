@@ -9,7 +9,7 @@ import { Text } from '@/components/ui/text';
 import { HStack } from '@/components/ui/hstack';
 import { VStack } from '@/components/ui/vstack';
 import { ChangelogItem } from '@/components/page-components/changelog-page/ChangelogItem';
-import { changelogEntries } from '@/components/page-components/changelog-page/changelog-data';
+import { changelogEntries } from '@/app/ui/docs/changelog/changelog-data';
 
 const ChangelogPage = () => {
   const sortedEntries = [...changelogEntries].sort((a, b) => {
