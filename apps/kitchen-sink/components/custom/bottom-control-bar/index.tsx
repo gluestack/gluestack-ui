@@ -7,7 +7,7 @@ import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
 import { usePathname, useRouter } from 'expo-router';
-import { PaletteIcon } from 'lucide-react-native';
+import { HomeIcon, PaletteIcon } from 'lucide-react-native';
 import { cssInterop } from 'nativewind';  
 import { GlassView } from 'expo-glass-effect';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
@@ -76,7 +76,7 @@ const BottomControlBar = memo(
     onPillPress,
     components,
     currentComponent,
-    bottomOffset = 34,
+    bottomOffset = 24,
     pillWidth = 200,
     children,
   }: BottomControlBarProps) => {
@@ -191,13 +191,13 @@ const BottomControlBar = memo(
       <>
         {/* Bottom Control Bar */}
         <View
-          className="absolute left-0 right-0 items-center"
-          style={{ top: bottomOffset }}
+          className="absolute z-10 justify-between flex-row px-4 left-0 right-0 items-center"
+          style={{ bottom: bottomOffset }}
           pointerEvents="box-none"
         >
-          <View className="flex-row items-center gap-3">
+          <View className="flex-row items-center  w-full justify-between gap-3">
             {/* Dark/Light Mode Toggle */}
-            <Pressable
+            {/* <Pressable
               onPress={handleToggleColorMode}
               className="border border-input dark:border-background rounded-full"
             >
@@ -220,7 +220,7 @@ const BottomControlBar = memo(
                   size="md"
                 />
               </AnimatedGlassView>
-            </Pressable>
+            </Pressable> */}
 
             {/* Theme Selector Button */}
             <View
@@ -260,17 +260,13 @@ const BottomControlBar = memo(
             ) : showPill ? (
               <View
                 ref={componentButtonRef}
-                onLayout={() => {
-                  componentButtonRef.current?.measureInWindow((x, y, w, h) => {
-                    setComponentButtonLayout({ x, y, width: w, height: h });
-                  });
-                }}
+           
                 className="border border-input dark:border-background rounded-full"
               >
                 <GlassView
                   glassEffectStyle="clear"
                   style={{
-                    width: pillWidth,
+                    width: 56,
                     borderRadius: 100,
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -279,13 +275,9 @@ const BottomControlBar = memo(
                   <Pressable
                     onPress={handlePillPress}
                     className="px-6 py-5  rounded-full"
-                    style={{
-                      width: pillWidth,
-                    }}
+                  
                   >
-                    <Text className=" text-base font-sans text-foreground font-medium text-center">
-                      {pillLabel}
-                    </Text>
+                    <Icon as={HomeIcon} size="md" />
                   </Pressable>
                 </GlassView>
               </View>
