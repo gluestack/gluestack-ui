@@ -24,7 +24,7 @@ const ChangelogPage = () => {
   const moreEntries = sortedEntries.slice(5);
 
   return (
-    <Box className="w-full max-w-[1200px] mx-auto py-8 md:py-12">
+    <Box className="w-full mx-auto py-8 md:py-12">
       {/* Header */}
       <VStack className="gap-4 mb-12">
         <Heading className="text-4xl md:text-5xl font-bold text-foreground">

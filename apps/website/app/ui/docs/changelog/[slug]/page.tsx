@@ -171,7 +171,7 @@ async function ChangelogEntryPage({ params }: { params: Promise<{ slug: string }
   };
 
   return (
-    <Box className="w-full max-w-[1200px] mx-auto py-8 md:py-12 px-4 md:px-6 lg:px-8">
+    <Box className="w-full mx-auto py-8 md:py-12 border-b border-border/80 mb-8">
       {/* Back Link */}
       <NextLink
         href="/ui/docs/changelog"
@@ -227,9 +227,9 @@ async function ChangelogEntryPage({ params }: { params: Promise<{ slug: string }
             <Image
               src={entry.image}
               alt={entry.title}
-              width={1200}
+              width={800}
               height={675}
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover max-w-[800px] max-h-[675px]"
             />
           </Box>
         )}
@@ -243,17 +243,6 @@ async function ChangelogEntryPage({ params }: { params: Promise<{ slug: string }
           </VStack>
         </Box>
       )}
-
-      {/* Back to top link */}
-      <Box className="mt-12 pt-8 border-t border-border">
-        <NextLink
-          href="/ui/docs/changelog"
-          className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <Text className="text-sm font-medium">Back to Changelog</Text>
-        </NextLink>
-      </Box>
     </Box>
   );
 }
