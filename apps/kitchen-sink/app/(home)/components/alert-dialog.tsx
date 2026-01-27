@@ -115,7 +115,7 @@ const [showAlertDialog, setShowAlertDialog] = React.useState(false);
                 className="stroke-foreground h-6 w-6"
               />
             </Box>
-            <VStack className="gap-1">
+            <VStack space="xs">
               <Heading className="text-foreground font-semibold text-lg">
                 Cloud storage full!
               </Heading>
