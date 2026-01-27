@@ -1,15 +1,18 @@
-import { View, Pressable, StyleSheet } from 'react-native';
+import { View, Pressable, Text } from 'react-native';
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
-import Animated, { Layout, FadeIn, FadeOut } from 'react-native-reanimated';
 import { useRouter, Slot } from 'expo-router';
-import { Icon } from '@/components/ui/icon';
+import { Grid, Sparkles } from 'lucide-react-native';
 import { useState } from 'react';
+
+/* -------------------------------------------------------------------------- */
+/*                                   LAYOUT                                   */
+/* -------------------------------------------------------------------------- */
 
 export default function HomeLayout() {
   const supportsLiquidGlass = isLiquidGlassAvailable();
 
-  // ✅ Native iOS Liquid Glass tabs
+  // ✅ Native iOS Liquid Glass (UNCHANGED)
   if (supportsLiquidGlass) {
     return (
       <NativeTabs>
@@ -26,19 +29,14 @@ export default function HomeLayout() {
     );
   }
 
-  // ❌ Fallback → Custom Reanimated Tabs
+  // ❌ No Liquid Glass → Docs-style Custom Tabs
   return (
-    <View style={{ flex: 1 }}>
+    <View className="flex-1">
       <Slot />
-
       <CustomTabs />
     </View>
   );
 }
-
-/* -------------------------------------------------------------------------- */
-/*                               CUSTOM TABS                                  */
-/* -------------------------------------------------------------------------- */
 
 function CustomTabs() {
   const router = useRouter();
@@ -52,89 +50,47 @@ function CustomTabs() {
   }
 
   return (
-    <View style={styles.container}>
+    <View className="absolute bottom-6 left-4 right-4 flex-row gap-2 p-2 rounded-full bg-black/90 justify-between">
       <TabItem
         active={active === 'components'}
         label="Components"
-        icon={{ sf: 'square.grid.2x2', md: 'view_module' }}
+        Icon={Grid}
         onPress={() => onTabPress('components')}
       />
 
       <TabItem
         active={active === 'showcases'}
         label="Showcases"
-        icon={{ sf: 'sparkles', md: 'auto_awesome' }}
+        Icon={Sparkles}
         onPress={() => onTabPress('showcases')}
       />
     </View>
   );
 }
-
 function TabItem({
   active,
   label,
-  icon,
+  Icon,
   onPress,
 }: {
   active: boolean;
   label: string;
-  icon: { sf?: string; md?: string };
+  Icon: React.ComponentType<{ size?: number; color?: string }>;
   onPress: () => void;
 }) {
   return (
     <Pressable onPress={onPress}>
-      <Animated.View
-        layout={Layout.springify().damping(22)}
-        style={[styles.tab, active && styles.activeTab]}
+      <View
+        className={`h-11 px-4 rounded-full flex-row items-center gap-2 ${
+          active ? 'bg-white/15' : ''
+        }`}
       >
-        <Icon sf={icon.sf} md={icon.md} size="sm" />
+        <Icon size={18} color="white" />
 
         {active && (
-          <Animated.Text
-            entering={FadeIn}
-            exiting={FadeOut}
-            style={styles.label}
-          >
-            {label}
-          </Animated.Text>
+          <Text className="text-white text-sm font-medium">{label}</Text>
         )}
-      </Animated.View>
+      </View>
     </Pressable>
   );
 }
-
-/* -------------------------------------------------------------------------- */
-/*                                   STYLES                                   */
-/* -------------------------------------------------------------------------- */
-
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    left: 16,
-    right: 16,
-    bottom: 24,
-    flexDirection: 'row',
-    gap: 8,
-    padding: 6,
-    borderRadius: 32,
-    backgroundColor: 'rgba(20,20,20,0.9)',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  tab: {
-    height: 44,
-    paddingHorizontal: 16,
-    borderRadius: 22,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  activeTab: {
-    backgroundColor: 'rgba(255,255,255,0.15)',
-  },
-  label: {
-    color: 'white',
-    fontSize: 13,
-    fontWeight: '500',
-  },
-});
