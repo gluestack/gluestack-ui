@@ -6,23 +6,30 @@ import { VStack } from '@/components/ui/vstack';
 import { ColorMode, ThemeName, themeConfigs } from '@/constants/themes';
 import { useAppTheme } from '@/contexts/app-theme-context';
 import { LucideIcon, Moon, Palette, Sun } from 'lucide-react-native';
-import React from 'react';
-import { Pressable, View, ViewStyle } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { LayoutChangeEvent, Pressable, View, ViewStyle } from 'react-native';
+import { GlassView } from 'expo-glass-effect';
+
 import Animated, {
+  Easing,
   FadeInDown,
+  interpolate,
+  runOnJS,
+  SharedValue,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
+  withTiming,
 } from 'react-native-reanimated';
 import Svg, { Circle, Path } from 'react-native-svg';
 
+const AnimatedGlassView = Animated.createAnimatedComponent(GlassView);
 // ============================================================================
 // Constants
 // ============================================================================
 
 const COLORS = {
   surface: { dark: '#1c1c1e', light: '#f2f2f7' },
-  surfaceElevated: { dark: '#2c2c2e', light: '#ffffff' },
   textPrimary: { dark: '#ffffff', light: '#000000' },
   textSecondary: { dark: '#8e8e93', light: '#6c6c70' },
   textMuted: { dark: '#8e8e93', light: '#8e8e93' },
@@ -153,7 +160,7 @@ interface ThemePieChartProps {
 const ThemePieChart: React.FC<ThemePieChartProps> = ({
   themeName,
   isActive,
-  onPress
+  onPress,
 }) => {
   const colors = THEME_PREVIEW_COLORS[themeName];
   const themeConfig = themeConfigs[themeName];
@@ -214,47 +221,44 @@ interface SegmentButtonProps {
   label: string;
   activeIconClass: string;
   onPress: () => void;
+  /** When true, active state doesn’t add background so a parent sliding indicator can show it */
+  transparentActiveBg?: boolean;
+  elevateContent?: boolean;
+  revealProgress?: SharedValue<number>;
 }
 
 const SegmentButton: React.FC<SegmentButtonProps> = ({
-  mode,
-  currentMode,
-  isDark,
   icon,
   label,
-  activeIconClass,
   onPress,
+  elevateContent = false,
+  revealProgress,
 }) => {
-  const isActive = currentMode === mode;
+  const animatedElevationStyle = useAnimatedStyle(() => {
+    if (!revealProgress) return { zIndex: 0, opacity: 1 };
+    const p = revealProgress.value;
+    return {
+      zIndex: Math.round(interpolate(p, [0, 1], [0, 200])),
+      position: 'relative' as const,
+      opacity: interpolate(p, [0, 1], [0.7, 1]),
+    };
+  });
 
   return (
-    <Pressable
-      onPress={onPress}
-      className="flex-1 flex-row items-center justify-center py-3 px-4 rounded-xl"
-      style={{
-        backgroundColor: isActive
-          ? getColor('surfaceElevated', isDark)
-          : 'transparent',
-        ...createShadowStyle(isActive, isDark),
-      }}
+    <Animated.View
+      style={[
+        { flex: 1 },
+        revealProgress ? animatedElevationStyle : { zIndex: 0 },
+      ]}
     >
-      <Icon
-        as={icon}
-        size="sm"
-        className={isActive ? activeIconClass : 'text-foreground/40'}
-      />
-      <Text
-        className="ml-2 text-sm"
-        style={{
-          color: isActive
-            ? getColor('textPrimary', isDark)
-            : getColor('textMuted', isDark),
-          fontWeight: isActive ? '600' : '500',
-        }}
+      <Pressable
+        onPress={onPress}
+        className="flex-1 flex-row items-center justify-center py-3 px-4 rounded-xl"
       >
-        {label}
-      </Text>
-    </Pressable>
+        <Icon as={icon} size="sm" />
+        <Text className="ml-2 text-sm">{label}</Text>
+      </Pressable>
+    </Animated.View>
   );
 };
 
@@ -278,15 +282,91 @@ const APPEARANCE_SEGMENTS: Array<{
   },
 ];
 
+const ANIMATION_DURATION = 400;
+const INDICATOR_EASING = Easing.out(Easing.ease);
+
+const REVEAL_DURATION_MS = 300;
+
 const AppearanceSegmentedControl: React.FC = () => {
   const { isDark, colorMode, setColorMode } = useAppTheme();
+  const [labelsOnTop, setLabelsOnTop] = useState(true);
+  const segmentWidth = useSharedValue(0);
+  const indicatorPosition = useSharedValue(colorMode === 'dark' ? 1 : 0);
+  const transitionProgress = useSharedValue(1);
+  const labelsRevealProgress = useSharedValue(1);
+
+  const onSlideComplete = () => {
+    setLabelsOnTop(true);
+    labelsRevealProgress.value = withTiming(1, {
+      duration: REVEAL_DURATION_MS,
+      easing: Easing.out(Easing.ease),
+    });
+  };
+
+  useEffect(() => {
+    setLabelsOnTop(false);
+    labelsRevealProgress.value = 0;
+    transitionProgress.value = 0;
+    const target = colorMode === 'dark' ? 1 : 0;
+    indicatorPosition.value = withTiming(target, {
+      duration: ANIMATION_DURATION,
+      easing: INDICATOR_EASING,
+    });
+    transitionProgress.value = withTiming(
+      1,
+      { duration: ANIMATION_DURATION, easing: INDICATOR_EASING },
+      (finished) => {
+        if (finished) runOnJS(onSlideComplete)();
+      }
+    );
+  }, [colorMode]);
+
+  const onSegmentLayout = (e: LayoutChangeEvent) => {
+    const { width } = e.nativeEvent.layout;
+    segmentWidth.value = width / 2;
+  };
+
+  const indicatorStyle = useAnimatedStyle(() => {
+    // const opacity = interpolate(transitionProgress.value, [0, 1], [0.9, 0.5]);
+    const scale = interpolate(transitionProgress.value, [0, 1], [1.5, 1]);
+    return {
+      // opacity,
+      transform: [
+        { translateX: indicatorPosition.value * (segmentWidth.value - 16) },
+        { scale },
+      ],
+      width: segmentWidth.value,
+    };
+  });
 
   return (
-    <Animated.View
-      entering={FadeInDown.duration(400).delay(100).springify()}
-      style={{ backgroundColor: getColor('surface', isDark), padding:4 , borderRadius:16 }}
-    >
-      <View className="flex-row">
+    <Animated.View>
+      <View
+        className="flex-row rounded-xl p-4"
+        style={{
+          position: 'relative',
+          backgroundColor: getColor('surface', isDark),
+          ...createCardShadowStyle(isDark),
+        }}
+        onLayout={onSegmentLayout}
+      >
+        <AnimatedGlassView
+          glassEffectStyle="clear"
+          style={[
+            {
+              width: segmentWidth.value - 16,
+              top: 16,
+              left: 8,
+
+              height: '100%',
+              borderRadius: 100,
+              position: 'absolute',
+              zIndex: 100,
+            },
+            indicatorStyle,
+          ]}
+        ></AnimatedGlassView>
+
         {APPEARANCE_SEGMENTS.map((segment) => (
           <SegmentButton
             key={segment.mode}
@@ -297,6 +377,9 @@ const AppearanceSegmentedControl: React.FC = () => {
             label={segment.label}
             activeIconClass={segment.activeIconClass}
             onPress={() => setColorMode(segment.mode)}
+            transparentActiveBg
+            elevateContent={labelsOnTop}
+            revealProgress={labelsRevealProgress}
           />
         ))}
       </View>
@@ -433,7 +516,8 @@ export default function ThemesTab() {
             style={{
               backgroundColor: getColor('surface', isDark),
               ...createCardShadowStyle(isDark),
-              padding:16 , borderRadius:16
+              padding: 16,
+              borderRadius: 16,
             }}
           >
             <View className="flex-row flex-wrap gap-2">
