@@ -2,7 +2,7 @@ import { ChangelogEntry } from './ChangelogItem';
 
 export const changelogEntries: ChangelogEntry[] = [
   {
-    title: "We've released gluestack-ui v4 (alpha) 🚀",
+    title: "gluestack-ui v4 (alpha) release",
     slug: 'v4-alpha-release',
     date: '2026-01-23T00:00:00Z',
     authors: [
@@ -14,7 +14,7 @@ export const changelogEntries: ChangelogEntry[] = [
       },
     ],
     excerpt: 'This version introduces a shadcn-inspired design system and a refreshed animation foundation powered by react-native-reanimated.',
-    image: '/images/blogs/banner-1.png',
+    image: '/images/blogs/expo55-beta.png',
     content: `This version introduces a shadcn-inspired design system and a refreshed animation foundation powered by react-native-reanimated.
 
 ## Highlights
@@ -23,6 +23,7 @@ export const changelogEntries: ChangelogEntry[] = [
 ◆ Migration to react-native-reanimated for animations
 ◆ Upgraded KitchenSink demo app for previews and testing
 ◆ New documentation available at [https://v4.gluestack.io](https://v4.gluestack.io)
+◆ Expo 55 (beta) support
 
 ## Why react-native-reanimated?
 
@@ -35,7 +36,6 @@ It's easier for modern developers and designers to follow a common design langua
 
 ## What's coming next:
 
-◆ Expo 55 (beta) support
 ◆ Uniwind support
 ◆ NativeWind v5 support
 

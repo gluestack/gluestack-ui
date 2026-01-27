@@ -178,7 +178,6 @@ async function ChangelogEntryPage({ params }: { params: Promise<{ slug: string }
         className="inline-flex items-center gap-2 text-foreground/70 hover:text-foreground mb-8 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
-        <Text className="text-sm">Back to Changelog</Text>
       </NextLink>
 
       {/* Header */}
