@@ -28,14 +28,16 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   const fluidLayout =
     pathname.includes('docs/apps') ||
     pathname.includes('docs/components/all-components') ||
-    pathname.includes('overview/quick-start');
+    pathname.includes('overview/quick-start') ||
+    pathname.includes('docs/changelog');
 
   const tocLayout =
     fluidLayout ||
     pathname.includes('docs/mcp-server') ||
     pathname.includes('guides/tutorials') ||
     pathname.includes('/guides/more/releases') ||
-    pathname.includes('guides/more/discord-faqs');
+    pathname.includes('guides/more/discord-faqs') ||
+    pathname.includes('docs/changelog');
   // Reset scroll position when pathname changes
   useEffect(() => {
     const layoutElement = docsLayoutRef.current;

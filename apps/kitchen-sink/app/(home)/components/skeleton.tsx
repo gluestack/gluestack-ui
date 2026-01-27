@@ -15,7 +15,7 @@ return (
     <Box className="w-[300px] gap-4 p-3">
       <Skeleton variant="sharp" className="h-[100px]" />
       <SkeletonText _lines={3} className="h-2" />
-      <HStack className="gap-1 align-middle">
+      <HStack space="xs" className="align-middle">
         <Skeleton variant="circular" className="h-[24px] w-[28px] mr-2" />
         <SkeletonText _lines={2} gap={1} className="h-2 w-2/5" />
       </HStack>
@@ -34,7 +34,7 @@ return (
           }}
            />
         </Skeleton>
-        <VStack className="gap-2">
+        <VStack space="sm">
           <Text className="text-muted-foreground text-sm">May 15, 2023</Text>
           <Text className="text-foreground font-bold">
           The Power of Positive Thinking
@@ -44,7 +44,7 @@ return (
           boost your confidence, and help you overcome challenges.
           </Text>
         </VStack>
-        <HStack className="gap-2 items-center">
+        <HStack space="sm" className="items-center">
         <Avatar size="xs" className="bg-primary">
           <AvatarFallbackText className="text-primary-foreground">John Smith</AvatarFallbackText>
         </Avatar>
