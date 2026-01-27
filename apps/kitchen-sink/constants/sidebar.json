@@ -564,6 +564,10 @@
                 "path": "/ui/docs/guides/more/releases"
               },
               {
+                "title": "Changelog",
+                "path": "/ui/docs/changelog"
+              },
+              {
                 "title": "Roadmap",
                 "path": "/ui/docs/guides/more/roadmap"
               },
