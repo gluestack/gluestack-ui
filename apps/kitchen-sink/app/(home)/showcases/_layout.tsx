@@ -10,7 +10,9 @@ function ShowcasesLayout() {
         fullScreenGestureEnabled: true,
         animation: 'slide_from_right',
       }}
-    />
+    >
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+    </Stack>
   );
 }
 

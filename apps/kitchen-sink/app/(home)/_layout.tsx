@@ -1,27 +1,20 @@
-import { Stack } from "expo-router";
+import { NativeTabs } from 'expo-router/unstable-native-tabs';
 
 export default function HomeLayout() {
-
   return (
-    <Stack>
-      {/* Home tabs screen - no header */}
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-
-      {/* Components group - header managed by nested layout */}
-      <Stack.Screen
-        name="components"
-        options={{
-          headerShown: false,
-        }}
-      />
-
-      {/* Showcases group - header managed by nested layout */}
-      <Stack.Screen
-        name="showcases"
-        options={{
-          headerShown: false,
-        }}
-      />
-    </Stack>
+    <NativeTabs>
+      <NativeTabs.Trigger name="components">
+        <NativeTabs.Trigger.Label>Components</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="square.grid.2x2" md="view_module" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="showcases">
+        <NativeTabs.Trigger.Label>Showcases</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="sparkles" md="auto_awesome" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="themes">
+        <NativeTabs.Trigger.Label>Themes</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="paintpalette.fill" md="palette" />
+      </NativeTabs.Trigger>
+    </NativeTabs>
   );
 }
