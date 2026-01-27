@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@/components/ui/box';
 import HeaderWithSidebar from './HeaderWithSidebar';
+import GluestackV4Banner from '../Gluestack-v4-banner';
 
 function WebsiteLayout({
   children,
@@ -18,6 +19,7 @@ function WebsiteLayout({
     >
       <HeaderWithSidebar />
       <Box>{children}</Box>
+      <GluestackV4Banner />
     </div>
   );
 }
