@@ -88,20 +88,22 @@ function CustomTabs() {
   }
 
   return (
-    <View className="absolute bottom-6 left-4 right-4 flex-row gap-2 p-2 rounded-full bg-black/90 justify-between">
-      <TabItem
-        active={currentTab === 'components'}
-        label="Components"
-        Icon={Grid}
-        onPress={() => onTabPress('components')}
-      />
+    <View className="absolute bottom-6 left-0 right-0 z-10 items-center">
+      <View className="flex-row gap-2 p-2 rounded-full bg-black/90 justify-center">
+        <TabItem
+          active={currentTab === 'components'}
+          label="Components"
+          Icon={Grid}
+          onPress={() => onTabPress('components')}
+        />
 
-      <TabItem
-        active={currentTab === 'showcases'}
-        label="Showcases"
-        Icon={Sparkles}
-        onPress={() => onTabPress('showcases')}
-      />
+        <TabItem
+          active={currentTab === 'showcases'}
+          label="Showcases"
+          Icon={Sparkles}
+          onPress={() => onTabPress('showcases')}
+        />
+      </View>
     </View>
   );
 }
@@ -119,7 +121,7 @@ function TabItem({
   return (
     <Pressable onPress={onPress}>
       <View
-        className={`h-11 px-4 rounded-full flex-row items-center gap-2 ${
+        className={`h-11 px-4 rounded-full flex-col items-center gap-2 ${
           active ? 'bg-white/15' : ''
         }`}
       >
