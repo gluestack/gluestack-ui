@@ -97,6 +97,7 @@ const ShowcaseCard = memo(
     const ShowcaseComponent = item.component;
 
     return (
+
       <View
         style={{
           width: cardWidth + spacing,
@@ -141,6 +142,7 @@ const ShowcaseCard = memo(
           </Pressable>
         </Animated.View>
       </View>
+
     );
   }
 );
@@ -255,7 +257,7 @@ export default function ShowcasesTab() {
   );
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 bg-background">
       <Animated.FlatList
         ref={listRef}
         data={showcases}
