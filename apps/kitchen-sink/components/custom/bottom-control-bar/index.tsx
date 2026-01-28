@@ -207,7 +207,7 @@ const BottomControlBar = memo(
             >
               <Pressable
                 onPress={() => setShowThemeMenu(true)}
-                className="border border-input dark:border-background rounded-full"
+                className="border border-input bg-muted/50 rounded-full"
               >
                 <GlassView
                   glassEffectStyle="clear"
@@ -239,7 +239,7 @@ const BottomControlBar = memo(
                     setComponentButtonLayout({ x, y, width: w, height: h });
                   });
                 }}
-                className="border border-input dark:border-background rounded-full"
+                className="border border-input bg-muted/50 rounded-full"
               >
                 <GlassView
                   glassEffectStyle="clear"

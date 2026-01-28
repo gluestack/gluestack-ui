@@ -252,7 +252,7 @@ export default function ComponentsTab() {
 
   const Header = useMemo(() => {
     return (
-      <View className="items-center justify-center z-10 mt-40 gap-2">
+      <View className="items-center justify-center z-10 mt-20 gap-2">
         <HStack className="items-center gap-2">
           <Image
             source={{
