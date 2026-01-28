@@ -1,9 +1,25 @@
 import { View, Pressable, Text } from 'react-native';
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
-import { useRouter, Slot } from 'expo-router';
+import { useRouter, Slot, useSegments } from 'expo-router';
 import { Grid, Sparkles } from 'lucide-react-native';
-import { useState } from 'react';
+import { useState, createContext, useContext } from 'react';
+
+/* -------------------------------------------------------------------------- */
+/*                             TAB VISIBILITY CONTEXT                         */
+/* -------------------------------------------------------------------------- */
+
+type TabBarContextValue = {
+  hidden: boolean;
+  setHidden: (hidden: boolean) => void;
+};
+
+const TabBarContext = createContext<TabBarContextValue>({
+  hidden: false,
+  setHidden: () => {},
+});
+
+export const useTabBar = () => useContext(TabBarContext);
 
 /* -------------------------------------------------------------------------- */
 /*                                   LAYOUT                                   */
@@ -11,55 +27,77 @@ import { useState } from 'react';
 
 export default function HomeLayout() {
   const supportsLiquidGlass = isLiquidGlassAvailable();
+  const segments = useSegments();
+  const [hidden, setHidden] = useState(false);
 
-  // ✅ Native iOS Liquid Glass (UNCHANGED)
+  // Auto-hide native tabs on detail screens based on route depth
+  // Show tabs only on root tab screens (e.g., /components or /showcases)
+  // Hide tabs on detail screens (e.g., /components/button or /showcases/showcase-1)
+  const shouldHideTabs = segments.length > 2;
+
+  // ✅ Native iOS Liquid Glass with automatic tab visibility control
   if (supportsLiquidGlass) {
     return (
-      <NativeTabs>
-        <NativeTabs.Trigger name="components">
-          <NativeTabs.Trigger.Label>Components</NativeTabs.Trigger.Label>
-          <NativeTabs.Trigger.Icon sf="square.grid.2x2" md="view_module" />
-        </NativeTabs.Trigger>
+      <TabBarContext.Provider value={{ hidden: shouldHideTabs, setHidden }}>
+        <NativeTabs hidden={shouldHideTabs}>
+          <NativeTabs.Trigger name="components">
+            <NativeTabs.Trigger.Label>Components</NativeTabs.Trigger.Label>
+            <NativeTabs.Trigger.Icon sf="square.grid.2x2" md="view_module" />
+          </NativeTabs.Trigger>
 
-        <NativeTabs.Trigger name="showcases">
-          <NativeTabs.Trigger.Label>Showcases</NativeTabs.Trigger.Label>
-          <NativeTabs.Trigger.Icon sf="sparkles" md="auto_awesome" />
-        </NativeTabs.Trigger>
-      </NativeTabs>
+          <NativeTabs.Trigger name="showcases">
+            <NativeTabs.Trigger.Label>Showcases</NativeTabs.Trigger.Label>
+            <NativeTabs.Trigger.Icon sf="sparkles" md="auto_awesome" />
+          </NativeTabs.Trigger>
+        </NativeTabs>
+      </TabBarContext.Provider>
     );
   }
 
-  // ❌ No Liquid Glass → Docs-style Custom Tabs
+  // ✅ Custom Tabs with route-based visibility
   return (
-    <View className="flex-1">
-      <Slot />
-      <CustomTabs />
-    </View>
+    <TabBarContext.Provider value={{ hidden: shouldHideTabs, setHidden }}>
+      <View className="flex-1">
+        <Slot />
+        <CustomTabs />
+      </View>
+    </TabBarContext.Provider>
   );
 }
 
 function CustomTabs() {
   const router = useRouter();
-  const [active, setActive] = useState<'components' | 'showcases'>(
-    'components'
-  );
+  const segments = useSegments();
+
+  // Determine current active tab from route segments
+  const currentTab = (segments[1] as 'components' | 'showcases') || 'components';
 
   function onTabPress(tab: 'components' | 'showcases') {
-    setActive(tab);
-    router.replace(`/(home)/${tab}`);
+    // Only navigate if we're not already on this tab
+    if (currentTab !== tab) {
+      router.replace(`/(home)/${tab}`);
+    }
+  }
+
+  // Hide tabs on detail screens (e.g., /components/button or /showcases/showcase-1)
+  // Show tabs only on root tab screens (e.g., /components or /showcases)
+  const shouldHideTabs = segments.length > 2; // ['(home)', 'components'] = 2, ['(home)', 'components', 'button'] = 3
+
+  if (shouldHideTabs) {
+    return null;
   }
 
   return (
     <View className="absolute bottom-6 left-4 right-4 flex-row gap-2 p-2 rounded-full bg-black/90 justify-between">
       <TabItem
-        active={active === 'components'}
+        active={currentTab === 'components'}
         label="Components"
         Icon={Grid}
         onPress={() => onTabPress('components')}
       />
 
       <TabItem
-        active={active === 'showcases'}
+        active={currentTab === 'showcases'}
         label="Showcases"
         Icon={Sparkles}
         onPress={() => onTabPress('showcases')}
@@ -87,9 +125,7 @@ function TabItem({
       >
         <Icon size={18} color="white" />
 
-        {active && (
-          <Text className="text-white text-sm font-medium">{label}</Text>
-        )}
+        <Text className="text-white text-sm font-medium">{label}</Text>
       </View>
     </Pressable>
   );
