@@ -7,17 +7,23 @@ This directory contains Claude Code skills for contributing to gluestack-ui. The
 ```
 .claude/skills/
 ├── README.md                            # This file
-├── contribute.md                        # Main entry skill
-└── contribute/                          # Sub-skills directory
-    ├── create-component.md              # Component creation workflow
-    ├── enhance-component.md             # Component enhancement workflow
-    ├── create-package.md                # Package development workflow
-    ├── create-docs.md                   # Documentation workflow
-    ├── test-component.md                # Testing workflow
-    └── review-pr.md                     # PR review checklist
+├── contribute/
+│   └── SKILL.md                         # Main entry skill
+├── create-component/
+│   └── SKILL.md                         # Component creation workflow
+├── enhance-component/
+│   └── SKILL.md                         # Component enhancement workflow
+├── create-package/
+│   └── SKILL.md                         # Package development workflow
+├── create-docs/
+│   └── SKILL.md                         # Documentation workflow
+├── test-component/
+│   └── SKILL.md                         # Testing workflow
+└── review-pr/
+    └── SKILL.md                         # PR review checklist
 ```
 
-All skills are organized hierarchically under the `/contribute` namespace for better organization and discoverability.
+All skills are organized as separate directories, each containing a `SKILL.md` file that Claude Code automatically detects.
 
 ## Available Skills
 
@@ -34,7 +40,7 @@ Main hub for all contributor workflows. Use this to see all available sub-skills
 
 ### 🆕 Component Creation
 
-#### `/contribute/create-component`
+#### `/create-component`
 **Most comprehensive skill** - Creates a new React Native/Expo component with complete guided workflow.
 
 **Features:**
@@ -63,14 +69,14 @@ Main hub for all contributor workflows. Use this to see all available sub-skills
 8. Finalization
 
 ```bash
-/contribute/create-component
+/create-component
 ```
 
 ---
 
 ### 🔧 Component Enhancement
 
-#### `/contribute/enhance-component`
+#### `/enhance-component`
 Improve or extend existing components with new features, variants, or fixes.
 
 **When to use:**
@@ -81,14 +87,14 @@ Improve or extend existing components with new features, variants, or fixes.
 - Enhancing performance
 
 ```bash
-/contribute/enhance-component
+/enhance-component
 ```
 
 ---
 
 ### 📦 Package Development
 
-#### `/contribute/create-package`
+#### `/create-package`
 Work with gluestack-core and gluestack-utils packages.
 
 **When to use:**
@@ -98,14 +104,14 @@ Work with gluestack-core and gluestack-utils packages.
 - Modifying core package code
 
 ```bash
-/contribute/create-package
+/create-package
 ```
 
 ---
 
 ### 📝 Documentation
 
-#### `/contribute/create-docs`
+#### `/create-docs`
 Create or update component documentation.
 
 **When to use:**
@@ -115,14 +121,14 @@ Create or update component documentation.
 - Writing guides/tutorials
 
 ```bash
-/contribute/create-docs
+/create-docs
 ```
 
 ---
 
 ### 🧪 Testing
 
-#### `/contribute/test-component`
+#### `/test-component`
 Comprehensive testing across platforms and apps.
 
 **When to use:**
@@ -132,14 +138,14 @@ Comprehensive testing across platforms and apps.
 - Integration testing
 
 ```bash
-/contribute/test-component
+/test-component
 ```
 
 ---
 
 ### ✅ PR Review
 
-#### `/contribute/review-pr`
+#### `/review-pr`
 Pre-submission checklist for quality assurance.
 
 **When to use:**
@@ -148,7 +154,7 @@ Pre-submission checklist for quality assurance.
 - Want to ensure quality
 
 ```bash
-/contribute/review-pr
+/review-pr
 ```
 
 ---
@@ -301,7 +307,7 @@ Skills handle:
 ### Creating a Dropdown Component
 
 ```bash
-/contribute/create-component
+/create-component
 ```
 
 **Agent:** "I'll help you create a new component. Let me analyze existing patterns first."
@@ -397,12 +403,11 @@ Skills handle:
 ## Troubleshooting
 
 ### "Skill not found"
-Make sure you're using the correct hierarchical path:
+Make sure you're using the correct command:
 ```bash
-/contribute/create-component     # Correct ✅
-/create-component                # Wrong (old path) ❌
-/createcomponent                 # Wrong ❌
-/create component                # Wrong ❌
+/create-component     # Correct ✅
+/createcomponent      # Wrong ❌
+/create component     # Wrong ❌
 ```
 
 ### "Generated files modified"
@@ -466,13 +471,13 @@ Instructions and workflow...
 Skills are organized hierarchically:
 
 ```
-/contribute                              # Main entry point
-├── /contribute/create-component         # Most comprehensive workflow
-├── /contribute/enhance-component        # For modifications
-├── /contribute/create-package           # For core work
-├── /contribute/create-docs              # For documentation
-├── /contribute/test-component           # For testing
-└── /contribute/review-pr                # For final check
+/contribute           # Main entry point
+/create-component     # Most comprehensive workflow
+/enhance-component    # For modifications
+/create-package       # For core work
+/create-docs          # For documentation
+/test-component       # For testing
+/review-pr            # For final check
 ```
 
 This organization:

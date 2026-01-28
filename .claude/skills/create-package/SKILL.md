@@ -1,6 +1,5 @@
 ---
-name: contribute/create-package
-parent: contribute
+name: create-package
 description: Create or modify gluestack-core and gluestack-utils packages for component creators and utilities
 ---
 

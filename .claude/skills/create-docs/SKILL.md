@@ -1,6 +1,5 @@
 ---
-name: contribute/create-docs
-parent: contribute
+name: create-docs
 description: Create or update component documentation with examples, API reference, and best practices
 ---
 

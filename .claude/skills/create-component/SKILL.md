@@ -1,6 +1,5 @@
 ---
-name: contribute/create-component
-parent: contribute
+name: create-component
 description: Create a new React Native/Expo component with guided workflow following compound component API pattern
 ---
 

@@ -1,6 +1,5 @@
 ---
-name: contribute/enhance-component
-parent: contribute
+name: enhance-component
 description: Improve or extend an existing gluestack-ui component with new features, variants, or fixes
 ---
 

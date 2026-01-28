@@ -1,6 +1,5 @@
 ---
-name: contribute/review-pr
-parent: contribute
+name: review-pr
 description: Pre-submission PR checklist for gluestack-ui contributions
 ---
 

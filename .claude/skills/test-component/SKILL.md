@@ -1,6 +1,5 @@
 ---
-name: contribute/test-component
-parent: contribute
+name: test-component
 description: Comprehensive testing of gluestack-ui components across platforms and apps
 ---
 
