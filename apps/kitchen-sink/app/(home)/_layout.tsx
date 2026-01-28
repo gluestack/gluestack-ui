@@ -86,7 +86,7 @@ function CustomTabs() {
   // Update animation when tab changes
   useEffect(() => {
     // Approximate tab width + gap (adjust these values based on your actual measurements)
-    const TAB_WIDTH = 120; // Width of each tab item
+    const TAB_WIDTH = 100; // Width of each tab item
     const GAP = 0; // Gap between tabs
 
     if (currentTab === 'components') {
@@ -125,11 +125,11 @@ function CustomTabs() {
 
   return (
     <View className="absolute bottom-6 left-0 right-0 items-center">
-      <View className="flex-row  p-1 rounded-full bg-white dark:bg-muted/50 justify-center shadow-hard-5">
+      <View className="flex-row  p-1 rounded-full bg-white dark:bg-muted justify-center shadow-hard-5">
         {/* Animated Background Indicator */}
         <Animated.View
           style={[animatedStyle]}
-          className="absolute left-1 top-1 bottom-1 w-[120px] bg-primary/15 rounded-full"
+          className="absolute left-1 top-1 bottom-1 w-[100px] dark:bg-white/15 bg-black/10  rounded-full"
         />
 
         <TabItem
@@ -163,15 +163,15 @@ function TabItem({
 }) {
   return (
     <Pressable onPress={onPress}>
-      <View className="px-4 py-2 rounded-full flex-col items-center gap-1 w-[120px]">
+      <View className=" py-2 rounded-full flex-col items-center gap-1 w-[100px]">
         <Icon
           as={IconComponent}
-          size="sm"
-          className={active ? 'text-primary' : 'text-foreground/60'}
+          size="lg"
+          className={active ? 'text-blue-500' : 'text-foreground/60'}
         />
 
         <Text
-          className={`text-xs font-medium ${active ? 'text-primary' : 'text-foreground/60'}`}
+          className={`text-[10px] font-medium  ${active ? 'text-blue-500' : 'text-foreground/60'}`}
         >
           {label}
         </Text>

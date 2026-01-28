@@ -270,7 +270,7 @@ export default function ShowcasesTab() {
             onPress={() => handleCardPress(item.path)}
           />
         )}
-        className="mt-10"
+        className="mt-20"
         keyExtractor={(item) => item.path}
         getItemLayout={(_, index) => ({
           length: CARD_WIDTH + SPACING,
