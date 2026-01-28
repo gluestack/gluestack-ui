@@ -88,7 +88,7 @@ function CustomTabs() {
   }
 
   return (
-    <View className="absolute bottom-6 left-0 right-0 z-10 items-center">
+    <View className="absolute  bottom-6 left-0 right-0  items-center">
       <View className="flex-row gap-2 p-2 rounded-full bg-black/90 justify-center">
         <TabItem
           active={currentTab === 'components'}
