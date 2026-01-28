@@ -7,7 +7,7 @@ import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
 import { usePathname, useRouter } from 'expo-router';
-import { HomeIcon, PaletteIcon } from 'lucide-react-native';
+import { Search, PaletteIcon } from 'lucide-react-native';
 import { cssInterop } from 'nativewind';  
 import { GlassView } from 'expo-glass-effect';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
@@ -207,7 +207,7 @@ const BottomControlBar = memo(
             >
               <Pressable
                 onPress={() => setShowThemeMenu(true)}
-                className="border border-input bg-muted/50 rounded-full"
+                className="border border-input dark:bg-muted/5 shadow-hard-5 rounded-full"
               >
                 <GlassView
                   glassEffectStyle="clear"
@@ -239,7 +239,7 @@ const BottomControlBar = memo(
                     setComponentButtonLayout({ x, y, width: w, height: h });
                   });
                 }}
-                className="border border-input bg-muted/50 rounded-full"
+                className="border border-input dark:bg-muted/5  shadow-hard-5 rounded-full"
               >
                 <GlassView
                   glassEffectStyle="clear"
@@ -254,7 +254,7 @@ const BottomControlBar = memo(
                     onPress={handlePillPress}
                     className="px-6 py-5 rounded-full"
                   >
-                    <Icon as={HomeIcon} size="md" />
+                    <Icon as={Search} size="md" />
                   </Pressable>
                 </GlassView>
               </View>
@@ -437,7 +437,10 @@ const BottomControlBar = memo(
                 {/* Dark/Light Mode Toggle */}
                 <View className="items-center">
                   <Pressable
-                    onPress={handleToggleColorMode}
+                    onPress={() => {
+                      handleToggleColorMode();
+                      setShowThemeMenu(false);
+                    }}
                     className="border border-input rounded-full"
                   >
                     <AnimatedGlassView

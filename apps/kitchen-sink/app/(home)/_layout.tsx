@@ -2,10 +2,11 @@ import { View, Pressable } from 'react-native';
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import { useRouter, Slot, useSegments } from 'expo-router';
-import { Grid, Sparkles } from 'lucide-react-native';
+import { LayoutGrid, Sparkles } from 'lucide-react-native';
 import { useState, createContext, useContext, useEffect } from 'react';
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
+
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -135,7 +136,7 @@ function CustomTabs() {
         <TabItem
           active={currentTab === 'components'}
           label="Components"
-          IconComponent={Grid}
+          IconComponent={LayoutGrid}
           onPress={() => onTabPress('components')}
         />
 
@@ -163,15 +164,15 @@ function TabItem({
 }) {
   return (
     <Pressable onPress={onPress}>
-      <View className=" py-2 rounded-full flex-col items-center gap-1 w-[100px]">
+      <View className=" py-2 rounded-full flex-col items-center gap-0.5 w-[100px]">
         <Icon
           as={IconComponent}
-          size="lg"
-          className={active ? 'text-blue-500' : 'text-foreground/60'}
+          size="xl"
+          className={`stroke-[1.5] ${IconComponent === Sparkles && active ? 'fill-blue-400 stroke-blue-400' : IconComponent === Sparkles ? 'fill-foreground stroke-foreground' : IconComponent===LayoutGrid&&active ? 'fill-none stroke-blue-400' : IconComponent===LayoutGrid ? 'fill-none stroke-foreground' : ''}`}
         />
 
         <Text
-          className={`text-[10px] font-medium  ${active ? 'text-blue-500' : 'text-foreground/60'}`}
+          className={`text-[10px] font-medium  ${active ? 'text-blue-400' : 'text-foreground/60'}`}
         >
           {label}
         </Text>
