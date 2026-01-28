@@ -1,9 +1,11 @@
-import { View, Pressable, Text } from 'react-native';
+import { View, Pressable } from 'react-native';
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import { useRouter, Slot, useSegments } from 'expo-router';
 import { Grid, Sparkles } from 'lucide-react-native';
 import { useState, createContext, useContext } from 'react';
+import { Icon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
 
 /* -------------------------------------------------------------------------- */
 /*                             TAB VISIBILITY CONTEXT                         */
@@ -88,46 +90,55 @@ function CustomTabs() {
   }
 
   return (
-    <View className="absolute  bottom-6 left-0 right-0  items-center">
-      <View className="flex-row gap-2 p-2 rounded-full bg-black/90 justify-center">
+    <View className="absolute bottom-6 left-0 right-0 items-center">
+      <View className="flex-row gap-2 p-2 rounded-full bg-white dark:bg-muted/50 justify-center shadow-hard-5">
         <TabItem
           active={currentTab === 'components'}
           label="Components"
-          Icon={Grid}
+          IconComponent={Grid}
           onPress={() => onTabPress('components')}
         />
 
         <TabItem
           active={currentTab === 'showcases'}
           label="Showcases"
-          Icon={Sparkles}
+          IconComponent={Sparkles}
           onPress={() => onTabPress('showcases')}
         />
       </View>
     </View>
   );
 }
+
 function TabItem({
   active,
   label,
-  Icon,
+  IconComponent,
   onPress,
 }: {
   active: boolean;
   label: string;
-  Icon: React.ComponentType<{ size?: number; color?: string }>;
+  IconComponent: React.ComponentType<any>;
   onPress: () => void;
 }) {
   return (
     <Pressable onPress={onPress}>
       <View
-        className={`h-11 px-4 rounded-full flex-col items-center gap-2 ${
-          active ? 'bg-white/15' : ''
+        className={`px-4 py-2 rounded-full flex-col items-center gap-1 ${
+          active ? 'bg-primary/15' : ''
         }`}
       >
-        <Icon size={18} color="white" />
+        <Icon
+          as={IconComponent}
+          size="sm"
+          className={active ? 'text-blue-500' : 'text-foreground'}
+        />
 
-        <Text className="text-white text-sm font-medium">{label}</Text>
+        <Text
+          className={`text-xs font-medium ${active ? 'text-blue-500' : 'text-foreground'}`}
+        >
+          {label}
+        </Text>
       </View>
     </Pressable>
   );
