@@ -3,9 +3,15 @@ import { NativeTabs } from 'expo-router/unstable-native-tabs';
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import { useRouter, Slot, useSegments } from 'expo-router';
 import { Grid, Sparkles } from 'lucide-react-native';
-import { useState, createContext, useContext } from 'react';
+import { useState, createContext, useContext, useEffect } from 'react';
 import { Icon } from '@/components/ui/icon';
 import { Text } from '@/components/ui/text';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  Easing,
+} from 'react-native-reanimated';
 
 /* -------------------------------------------------------------------------- */
 /*                             TAB VISIBILITY CONTEXT                         */
@@ -74,6 +80,34 @@ function CustomTabs() {
   // Determine current active tab from route segments
   const currentTab = (segments[1] as 'components' | 'showcases') || 'components';
 
+  // Animated value for sliding indicator
+  const translateX = useSharedValue(0);
+
+  // Update animation when tab changes
+  useEffect(() => {
+    // Approximate tab width + gap (adjust these values based on your actual measurements)
+    const TAB_WIDTH = 120; // Width of each tab item
+    const GAP = 0; // Gap between tabs
+
+    if (currentTab === 'components') {
+      translateX.value = withTiming(0, {
+        duration: 300,
+        easing: Easing.linear, // Ease-in-out cubic
+      });
+    } else {
+      translateX.value = withTiming(TAB_WIDTH + GAP, {
+        duration: 300,
+        easing: Easing.linear, // Ease-in-out cubic
+      });
+    }
+  }, [currentTab]);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: translateX.value }],
+    };
+  });
+
   function onTabPress(tab: 'components' | 'showcases') {
     // Only navigate if we're not already on this tab
     if (currentTab !== tab) {
@@ -91,7 +125,13 @@ function CustomTabs() {
 
   return (
     <View className="absolute bottom-6 left-0 right-0 items-center">
-      <View className="flex-row gap-2 p-2 rounded-full bg-white dark:bg-muted/50 justify-center shadow-hard-5">
+      <View className="flex-row  p-1 rounded-full bg-white dark:bg-muted/50 justify-center shadow-hard-5">
+        {/* Animated Background Indicator */}
+        <Animated.View
+          style={[animatedStyle]}
+          className="absolute left-1 top-1 bottom-1 w-[120px] bg-primary/15 rounded-full"
+        />
+
         <TabItem
           active={currentTab === 'components'}
           label="Components"
@@ -123,19 +163,15 @@ function TabItem({
 }) {
   return (
     <Pressable onPress={onPress}>
-      <View
-        className={`px-4 py-2 rounded-full flex-col items-center gap-1 ${
-          active ? 'bg-primary/15' : ''
-        }`}
-      >
+      <View className="px-4 py-2 rounded-full flex-col items-center gap-1 w-[120px]">
         <Icon
           as={IconComponent}
           size="sm"
-          className={active ? 'text-blue-500' : 'text-foreground'}
+          className={active ? 'text-primary' : 'text-foreground/60'}
         />
 
         <Text
-          className={`text-xs font-medium ${active ? 'text-blue-500' : 'text-foreground'}`}
+          className={`text-xs font-medium ${active ? 'text-primary' : 'text-foreground/60'}`}
         >
           {label}
         </Text>
