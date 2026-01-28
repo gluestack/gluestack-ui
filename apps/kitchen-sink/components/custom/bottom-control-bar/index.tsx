@@ -195,33 +195,7 @@ const BottomControlBar = memo(
           style={{ bottom: bottomOffset }}
           pointerEvents="box-none"
         >
-          <View className="flex-row items-center  w-full justify-between gap-3">
-            {/* Dark/Light Mode Toggle */}
-            {/* <Pressable
-              onPress={handleToggleColorMode}
-              className="border border-input dark:border-background rounded-full"
-            >
-              <AnimatedGlassView
-                glassEffectStyle="clear"
-                style={[
-                  colorModeAnimatedStyle,
-                  {
-                    width: 56,
-                    height: 56,
-                    borderRadius: 28,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  },
-                ]}
-              >
-                <Icon
-                  as={isDark ? SunIcon : MoonIcon}
-                  className="text-foreground"
-                  size="md"
-                />
-              </AnimatedGlassView>
-            </Pressable> */}
-
+          <View className="flex-row items-center w-full justify-between gap-3">
             {/* Theme Selector Button */}
             <View
               ref={themeButtonRef}
@@ -260,7 +234,11 @@ const BottomControlBar = memo(
             ) : showPill ? (
               <View
                 ref={componentButtonRef}
-           
+                onLayout={() => {
+                  componentButtonRef.current?.measureInWindow((x, y, w, h) => {
+                    setComponentButtonLayout({ x, y, width: w, height: h });
+                  });
+                }}
                 className="border border-input dark:border-background rounded-full"
               >
                 <GlassView
@@ -274,8 +252,7 @@ const BottomControlBar = memo(
                 >
                   <Pressable
                     onPress={handlePillPress}
-                    className="px-6 py-5  rounded-full"
-                  
+                    className="px-6 py-5 rounded-full"
                   >
                     <Icon as={HomeIcon} size="md" />
                   </Pressable>
@@ -457,6 +434,40 @@ const BottomControlBar = memo(
             >
               {/* Theme Content */}
               <View className="gap-6">
+                {/* Dark/Light Mode Toggle */}
+                <View className="items-center">
+                  <Pressable
+                    onPress={handleToggleColorMode}
+                    className="border border-input rounded-full"
+                  >
+                    <AnimatedGlassView
+                      glassEffectStyle="clear"
+                      style={[
+                        colorModeAnimatedStyle,
+                        {
+                          width: 56,
+                          height: 56,
+                          borderRadius: 28,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        },
+                      ]}
+                    >
+                      <Icon
+                        as={isDark ? SunIcon : MoonIcon}
+                        className="text-foreground"
+                        size="md"
+                      />
+                    </AnimatedGlassView>
+                  </Pressable>
+                  <Text className="text-foreground/60 font-outfit text-sm mt-2">
+                    {isDark ? 'Dark Mode' : 'Light Mode'}
+                  </Text>
+                </View>
+
+                {/* Divider */}
+                <View className="h-px bg-border" />
+
                 {/* Color Palettes */}
                 <View className="flex-row justify-center gap-3">
                   {availableThemes
