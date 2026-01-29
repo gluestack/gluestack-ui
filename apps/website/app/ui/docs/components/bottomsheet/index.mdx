@@ -768,7 +768,9 @@ It is React Native's [TextInput](https://reactnative.dev/docs/textinput) compone
   const [showBottomSheet, setShowBottomSheet] = React.useState(false)
   const handleClose = () => setShowBottomSheet(false)
 
-  const items = Array.from({ length: 20 }, (_, i) => `Item ${i + 1}`)
+const items = React.useMemo(
+  () => Array.from({ length: 20 }, (_, i) => 'Item ' + (i + 1)),[])
+
 
   return (
     <>

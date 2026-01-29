@@ -251,6 +251,7 @@ const BottomSheetDragIndicator = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIBottomSheet.DragIndicator
+    hitSlop={20}
       ref={ref}
       className={bottomSheetDragIndicatorStyle({
         class: className,
@@ -267,7 +268,6 @@ const BottomSheetDragIndicatorWrapper = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIBottomSheet.DragIndicatorWrapper
-      hitSlop={20}
       ref={ref}
       className={bottomSheetDragIndicatorWrapperStyle({
         class: className,
