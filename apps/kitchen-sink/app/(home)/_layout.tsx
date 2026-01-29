@@ -125,8 +125,21 @@ function CustomTabs() {
   }
 
   return (
-    <View className="absolute bottom-6 left-0 right-0 items-center">
-      <View className="flex-row  p-1 rounded-full bg-white dark:bg-muted justify-center shadow-hard-5">
+    <View className="absolute web:bottom-4 bottom-safe left-0 right-0 items-center">
+      <View
+        style={{
+          shadowColor: 'rgba(0, 0, 0, 0.4)',
+          shadowOffset: {
+            width: 0,
+            height: 12,
+          },
+          shadowOpacity: 0.3,
+          shadowRadius: 16.0,
+
+          elevation: 30,
+        }}
+        className="flex-row  p-1 rounded-full bg-white dark:bg-muted justify-center "
+      >
         {/* Animated Background Indicator */}
         <Animated.View
           style={[animatedStyle]}

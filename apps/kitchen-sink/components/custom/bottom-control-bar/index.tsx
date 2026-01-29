@@ -10,6 +10,7 @@ import { Stack, usePathname, useRouter } from 'expo-router';
 import { Search, PaletteIcon } from 'lucide-react-native';
 import { cssInterop } from 'nativewind';  
 import { GlassView } from 'expo-glass-effect';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Modal,
@@ -109,7 +110,7 @@ const BottomControlBar = memo(
     const { isDark, toggleColorMode, currentTheme, setTheme, availableThemes } =
       useAppTheme();
     const { width, height } = useWindowDimensions();
-
+    const insets = useSafeAreaInsets();
     const { reduceTransparencyEnabled } = useAccessibilityInfo();
     const applyBlur = !reduceTransparencyEnabled && Platform.OS !== 'web';
  const supportsLiquidGlass = isLiquidGlassAvailable();
@@ -190,12 +191,15 @@ const BottomControlBar = memo(
       }
     }, [onPillPress, components]);
 
+    const bottom = supportsLiquidGlass || Platform.OS === "web"
+  ? bottomOffset : insets.bottom;
+
     return (
       <>
         {/* Bottom Control Bar */}
         <View
           className="absolute z-[20] justify-between flex-row px-4 left-0 right-0 items-center"
-          style={{ bottom: bottomOffset }}
+          style={{ bottom: bottom }}
           pointerEvents="box-none"
         >
           <View className="flex-row items-center w-full justify-between gap-3">
@@ -242,6 +246,7 @@ const BottomControlBar = memo(
                     setComponentButtonLayout({ x, y, width: w, height: h });
                   });
                 }}
+              
                 className={`${supportsLiquidGlass ? '' : 'border border-input dark:bg-muted/5 bg-background'}  shadow-hard-5 rounded-full`}
               >
                 <GlassView
@@ -429,19 +434,27 @@ const BottomControlBar = memo(
 
             {/* Menu Content - Positioned above the button */}
             <AnimatedView
-            entering={ZoomIn.duration(200).withInitialValues({
-              transform: [{ scale: 0.9 }],
-            })}
-          
+              entering={ZoomIn.duration(200).withInitialValues({
+                transform: [{ scale: 0.9 }],
+              })}
               className={`absolute rounded-3xl ${supportsLiquidGlass ? 'bg-tranparent' : 'bg-background border border-input'}`}
               style={{
                 bottom: height - themeButtonLayout.y + 12,
-                width: width*0.9,
+                width: width * 0.9,
               }}
             >
-              <GlassView glassEffectStyle="regular" style={{width:"100%",height:"100%",borderRadius:16,padding:16,gap:16}}>
-              {/* Theme Content */}
-            
+              <GlassView
+                glassEffectStyle="regular"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: 16,
+                  padding: 16,
+                  gap: 16,
+                }}
+              >
+                {/* Theme Content */}
+
                 {/* Dark/Light Mode Toggle */}
                 <View className="items-center">
                   <Pressable
@@ -450,9 +463,7 @@ const BottomControlBar = memo(
                       handleToggleColorMode();
                     }}
                   >
-                    <View
-                    className="border border-foreground/10 rounded-full p-4"
-                    >
+                    <View className="border border-foreground/10 rounded-full p-4">
                       <Icon
                         as={isDark ? SunIcon : MoonIcon}
                         className="text-foreground"
@@ -523,7 +534,6 @@ const BottomControlBar = memo(
                     Reset to Default
                   </Text>
                 </Pressable>
-  
               </GlassView>
             </AnimatedView>
           </View>
