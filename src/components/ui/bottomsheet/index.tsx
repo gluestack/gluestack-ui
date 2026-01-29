@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { createBottomSheet } from '@gluestack-ui/bottomsheet/creator';
+import { createBottomSheet } from '@gluestack-ui/core/bottomsheet/creator';
 import {
   Pressable,
   View,
@@ -11,8 +11,8 @@ import {
   TextInput,
   PressableProps,
 } from 'react-native';
-import { tva } from '@gluestack-ui/nativewind-utils';
-import type { VariantProps } from '@gluestack-ui/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import Animated, {
   FadeIn,
@@ -73,15 +73,15 @@ const bottomSheetStyle = tva({
 });
 
 const bottomSheetContentStyle = tva({
-  base: 'items-center rounded-t-3xl p-6 bg-background-0 web:pointer-events-auto web:select-none max-h-[90vh] pb-safe',
+  base: 'items-center rounded-t-3xl p-6 bg-background web:pointer-events-auto web:select-none border-t border-border dark:border-border/10 max-h-[90vh] pb-safe',
 });
 
 const bottomSheetItemStyle = tva({
-  base: 'w-full flex-row items-center p-3 rounded-sm data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-auto data-[disabled=true]:web:cursor-not-allowed data-[hover=true]:bg-background-50 data-[active=true]:bg-background-100 data-[focus=true]:bg-background-100 web:data-[focus-visible=true]:bg-background-100',
+  base: 'w-full flex-row items-center p-3 rounded-sm data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-auto data-[disabled=true]:web:cursor-not-allowed data-[hover=true]:bg-accent data-[active=true]:bg-accent data-[focus=true]:bg-accent web:data-[focus-visible=true]:bg-accent',
 });
 
 const bottomSheetItemTextStyle = tva({
-  base: 'text-typography-700 font-normal font-body text-base',
+  base: 'text-foreground font-normal font-body text-base',
   variants: {
     isTruncated: {
       true: '',
@@ -99,15 +99,15 @@ const bottomSheetItemTextStyle = tva({
 });
 
 const bottomSheetDragIndicatorStyle = tva({
-  base: 'w-16 h-1 bg-background-400 rounded-full',
+  base: 'w-[100px] h-2 bg-muted rounded-full',
 });
 
 const bottomSheetDragIndicatorWrapperStyle = tva({
-  base: 'w-full py-1 items-center',
+  base: 'w-full py-2 items-center',
 });
 
 const bottomSheetBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-background-950/40 web:cursor-default web:pointer-events-auto',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default web:pointer-events-auto',
 });
 
 const bottomSheetScrollViewStyle = tva({
@@ -123,7 +123,7 @@ const bottomSheetSectionListStyle = tva({
 });
 
 const bottomSheetTextInputStyle = tva({
-  base: 'text-typography-900 p-2 border-outline-300 border rounded font-body',
+  base: 'text-foreground p-2 border-border border rounded font-body',
 });
 
 type IBottomSheetProps = VariantProps<typeof bottomSheetStyle> &
@@ -251,6 +251,7 @@ const BottomSheetDragIndicator = React.forwardRef<
 >(({ className, ...props }, ref) => {
   return (
     <UIBottomSheet.DragIndicator
+    hitSlop={20}
       ref={ref}
       className={bottomSheetDragIndicatorStyle({
         class: className,

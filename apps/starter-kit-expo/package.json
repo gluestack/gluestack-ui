@@ -29,6 +29,7 @@
     "expo-font": "~55.0.1",
     "expo-linking": "~55.0.2",
     "expo-router": "~55.0.0-beta.2",
+    "expo-screen-orientation": "~55.0.2",
     "expo-splash-screen": "~55.0.1",
     "expo-status-bar": "~55.0.1",
     "expo-system-ui": "~55.0.1",

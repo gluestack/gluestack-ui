@@ -20,6 +20,7 @@
     "alert",
     "alert-dialog",
     "avatar",
+    "bottomsheet",
     "button",
     "checkbox",
     "fab",
@@ -157,6 +158,9 @@
       ],
       "tooltip/creator": [
         "./lib/esm/tooltip/creator/index.d.ts"
+      ],
+      "bottomsheet/creator": [
+        "./lib/esm/bottomsheet/creator/index.d.ts"
       ]
     }
   },

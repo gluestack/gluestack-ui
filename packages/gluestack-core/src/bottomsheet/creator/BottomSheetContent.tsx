@@ -58,6 +58,28 @@ function BottomSheetContent(
       const [animatedViewSheetHeight, setAnimatedViewSheetHeight] =
         React.useState(0);
 
+      const [activeSnapIndex, setActiveSnapIndex] = React.useState(snapToIndex);
+
+      // Calculate the maximum snap point height
+      const maxSnapPoint = React.useMemo(() => {
+        if (!snapPoints || snapPoints.length === 0) return 100;
+        return Math.max(...snapPoints);
+      }, [snapPoints]);
+
+      // Reset active snap index and position when sheet opens
+      React.useEffect(() => {
+        if (visible) {
+          setActiveSnapIndex(snapToIndex);
+          // Start from off-screen and animate in
+          const initialSnapHeight = snapPoints?.[snapToIndex] || 50;
+          const maxHeight = (maxSnapPoint * windowHeight) / 100;
+          const targetHeight = (initialSnapHeight * windowHeight) / 100;
+          const offset = maxHeight - targetHeight;
+
+          pan.setValue({ x: 0, y: offset });
+        }
+      }, [visible, snapToIndex, snapPoints, maxSnapPoint, pan]);
+
       const handleCloseCallback = React.useCallback(handleClose, [
         BottomSheetContext,
         handleClose,
@@ -118,6 +140,10 @@ function BottomSheetContent(
               pan={pan}
               handleClose={handleCloseCallback}
               handleCloseBackdrop={handleCloseBackdrop}
+              snapPoints={snapPoints}
+              activeSnapIndex={activeSnapIndex}
+              setActiveSnapIndex={setActiveSnapIndex}
+              maxSnapPoint={maxSnapPoint}
             >
               {children}
             </BottomSheetContentProvider>
@@ -133,6 +159,7 @@ function BottomSheetContent(
             transform: [{ translateY: pan.y }],
             width: '100%',
             height: '100%',
+            justifyContent: 'flex-end',
           }}
           onLayout={(event) => {
             const { height } = event.nativeEvent.layout;
@@ -147,9 +174,7 @@ function BottomSheetContent(
               {
                 height:
                   snapPoints && snapPoints.length > 0
-                    ? (snapPoints[Math.min(snapToIndex, snapPoints.length - 1)] *
-                        windowHeight) /
-                      100
+                    ? (maxSnapPoint * windowHeight) / 100
                     : undefined,
               },
             ]}
@@ -168,6 +193,9 @@ function BottomSheetContent(
               handleClose={handleCloseCallback}
               handleCloseBackdrop={handleCloseBackdrop}
               snapPoints={snapPoints}
+              activeSnapIndex={activeSnapIndex}
+              setActiveSnapIndex={setActiveSnapIndex}
+              maxSnapPoint={maxSnapPoint}
             >
               {focusScope ? (
                 <FocusScope
