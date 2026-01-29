@@ -13,9 +13,9 @@ import { Center } from '@/components/ui/center';
 export default function Tab1() {
   return (
     <Center className="flex-1 bg-background">
-      <Tabs defaultValue="account" variant="filled">
+      <Tabs defaultValue="account" variant="filled" orentation="vertical">
         <TabsList>
-          <TabsIndicator className="h-1"/>
+          <TabsIndicator/>
           <TabsTrigger value="account">
             <TabsTriggerText>Account</TabsTriggerText>
           </TabsTrigger>

@@ -68,13 +68,13 @@ export const TabsAnimatedIndicator = React.forwardRef<
         return {
           transform: [{ translateX: animatedX.value },{translateY:animatedY.value}],
           width: animatedWidth.value,
-          height: '100%',
+          height: animatedHeight.value,
         };
       } else {
         return {
           transform: [{ translateY: animatedY.value },{translateX:animatedX.value}],
           height: animatedHeight.value,
-          width: '100%',
+          width: animatedWidth.value,
         };
       }
     }, [
@@ -91,17 +91,18 @@ export const TabsAnimatedIndicator = React.forwardRef<
 
     return (
       <Animated.View
+      className={className}
         style={[
           animatedStyle,
 
           {
-       
+ 
             position: 'absolute',
-            borderRadius: 9999,
+          
           },
         ]}
       >
-        <View className={className} />
+      
       </Animated.View>
     );
   }

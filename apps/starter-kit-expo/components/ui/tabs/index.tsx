@@ -41,8 +41,7 @@ const tabsTriggerStyle = tva({
     },
     variant: {
       underlined: '',
-      filled:
-        'rounded-lg  ',
+      filled: 'rounded-lg  ',
       enclosed:
         'border border-transparent data-[selected=true]:border-border rounded-t',
     },
@@ -76,11 +75,13 @@ const tabsContentStyle = tva({
 });
 
 const tabsIndicatorStyle = tva({
-  base: ' bg-blue-500 pointer-events-none overflow-hidden',
-  variants: {
-    orientation: {
-      horizontal: 'bottom-0 h-0.5',
-      vertical: 'left-0 w-0.5',
+  base: '  pointer-events-none overflow-hidden',
+  parentVariants: {
+    variant: {
+      underlined: 'border-b',
+      filled: 'bg-primary/20',
+      enclosed:
+        'border border-transparent data-[selected=true]:border-border rounded-t',
     },
   },
 });
