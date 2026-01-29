@@ -290,14 +290,14 @@ const TabsIndicator = React.forwardRef<
   }
 
   const { selectedKey, orientation, triggerLayouts } = context;
-
+  const { variant } = useStyleContext(SCOPE);
   return (
     <TabsAnimatedIndicator
       ref={ref}
       selectedKey={selectedKey}
       orientation={orientation}
       triggerLayouts={triggerLayouts}
-      className={tabsIndicatorStyle({ orientation, class: className })}
+      className={tabsIndicatorStyle({ parentVariants: { variant }, class: className })}
       {...props}
     />
   );
