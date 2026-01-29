@@ -92,12 +92,12 @@ function CustomTabs() {
 
     if (currentTab === 'components') {
       translateX.value = withTiming(0, {
-        duration: 300,
+        duration: 150,
         easing: Easing.linear, // Ease-in-out cubic
       });
     } else {
       translateX.value = withTiming(TAB_WIDTH + GAP, {
-        duration: 300,
+        duration: 150,
         easing: Easing.linear, // Ease-in-out cubic
       });
     }
