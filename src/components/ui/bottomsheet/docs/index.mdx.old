@@ -1,0 +1,220 @@
+---
+title: gluestack-ui Bottomsheet Component | React Native Bottom Sheet
+
+description: Implement a dynamic bottom sheet in React & React Native with gluestack's bottomsheet component. Learn how to integrate and customize the Bottom Sheet in React Native.
+
+pageTitle: BottomSheet
+
+pageDescription: Implement a dynamic bottom sheet in React & React Native with gluestack's bottomsheet component. Learn how to integrate and customize the Bottom Sheet in React Native.
+
+showHeader: true
+
+tag: alpha
+---
+
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import ManualInstallationNote from '@/docs-components/manual-installation-note';
+
+# BottomSheet
+
+Implement a dynamic bottom sheet in React & React Native with gluestack's bottomsheet component. Learn how to integrate and customize the Bottom Sheet in React Native.
+
+<br />
+
+## Installation
+
+### Run the following command:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add bottomsheet`} language="bash" />
+
+<ManualInstallationNote />
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  BottomSheet,
+  BottomSheetBackdrop,
+  BottomSheetContent,
+  BottomSheetDragIndicator,
+  BottomSheetItem,
+  BottomSheetItemText,
+  BottomSheetPortal,
+  BottomSheetTrigger,
+} from '@/components/ui/bottomsheet';
+```
+
+```jsx
+export default () => (
+  <BottomSheet>
+    <BottomSheetTrigger>
+      <Text>Open BottomSheet</Text>
+    </BottomSheetTrigger>
+    <BottomSheetPortal
+      snapPoints={['25%', '50%']}
+      backdropComponent={BottomSheetBackdrop}
+      handleComponent={BottomSheetDragIndicator}
+    >
+      <BottomSheetContent>
+        <BottomSheetItem>
+          <BottomSheetItemText>Item 1</BottomSheetItemText>
+        </BottomSheetItem>
+        <BottomSheetItem>
+          <BottomSheetItemText>Item 2</BottomSheetItemText>
+        </BottomSheetItem>
+        <BottomSheetItem>
+          <BottomSheetItemText>Item 3</BottomSheetItemText>
+        </BottomSheetItem>
+      </BottomSheetContent>
+    </BottomSheetPortal>
+  </BottomSheet>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### BottomSheet
+
+It is a context provider for entire bottomsheet api.
+
+### Props
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>
+            Prop
+          </TableHeaderCell>
+          <TableHeaderCell>
+            Type
+          </TableHeaderCell>
+          <TableHeaderCell>
+            Default
+          </TableHeaderCell>
+          <TableHeaderCell>
+            Description
+          </TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>snapToIndex</InlineCode>
+          </TableCell>
+          <TableCell>
+            number
+          </TableCell>
+          <TableCell>
+            1
+          </TableCell>
+          <TableCell>
+            {`index of snapPoints at which bottomsheet initially opens.`}
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>onOpen</InlineCode>
+          </TableCell>
+          <TableCell>
+            () => void
+          </TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>
+            {`callback function which trigger when bottomsheet is opened.`}
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>onClose</InlineCode>
+          </TableCell>
+          <TableCell>
+            () => void
+          </TableCell>
+          <TableCell>-</TableCell>
+          <TableCell>
+            {`callback function which trigger when bottomsheet is closed.`}
+          </TableCell>
+        </TableRow>
+      </TableBody>
+
+  </Table>
+
+#### BottomSheetTrigger
+
+It inherits all the properties of React Native's [pressable](https://reactnative.dev/docs/pressable) component.
+
+#### BottomSheetPortal
+
+it's a gorhom BottomSheet component. inherits all the properties of [gorhom BottomSheet](https://ui.gorhom.dev/components/bottom-sheet/props#configuration).
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHeaderCell>
+            Prop
+          </TableHeaderCell>
+          <TableHeaderCell>
+            Type
+          </TableHeaderCell>
+          <TableHeaderCell>
+            Default
+          </TableHeaderCell>
+          <TableHeaderCell>
+            Description
+          </TableHeaderCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <InlineCode>snapPoints</InlineCode>
+          </TableCell>
+          <TableCell>
+            {`Array<string | number>`}
+          </TableCell>
+          <TableCell>-</TableCell>
+            <TableCell>{`Points for the bottom sheet to snap to. It accepts array of number, string or mix. String values should be a percentage.`}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+
+#### BottomSheetContent
+
+It inherits all the properties of [gorhom BottomSheetView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetview).
+
+#### BottomSheetItem
+
+It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+
+#### BottomSheetItemText
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### BottomSheetTextInput
+
+It inherits all the properties of [gorhom BottomSheetTextInput](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheettextinput).
+
+#### BottomSheetScrollView
+
+It inherits all the properties of [gorhom BottomSheetScrollView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetscrollview).
+
+#### BottomSheetFlatList
+
+It inherits all the properties of [gorhom BottomSheetFlatList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetflatlist).
+
+#### BottomSheetSectionList
+
+It inherits all the properties of [gorhom BottomSheetSectionList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetsectionlist).

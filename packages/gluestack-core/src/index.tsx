@@ -4,6 +4,7 @@ export * from './actionsheet/creator';
 export * from './alert/creator';
 export * from './alert-dialog/creator';
 export * from './avatar/creator';
+export * from './bottomsheet/creator';
 export * from './button/aria';
 export * from './button/creator';
 export * from './checkbox/aria';
