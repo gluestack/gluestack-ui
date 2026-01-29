@@ -68,6 +68,8 @@ const nextConfig = withExpo({
     '@gluestack-ui/core',
     '@gluestack-ui/utils',
     '@gluestack-ui/core',
+    'react-native-reanimated',
+    'react-native-worklets',
     // Add other packages that need transpiling
   ],
   images: {
