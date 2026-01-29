@@ -16,6 +16,12 @@ You are helping create a new component for gluestack-ui, a cross-platform React 
 5. **ALWAYS use AskUserQuestion** to gather requirements and preferences
 6. **ALWAYS discuss tradeoffs** before making design decisions
 7. **NEVER edit generated files** in `apps/*/components/ui/` - only edit `src/`
+8. **ALWAYS use latest color tokens** from `src/components/ui/gluestack-ui-provider/config.ts`
+9. **ALWAYS respect user's animation library preference** - ask explicitly and use their choice
+10. **ALWAYS use correct package imports** - e.g., `@gluestack-ui/core/bottomsheet/creator` not `@gluestack-ui/bottomsheet`
+11. **ALWAYS define exports properly** - barrel exports in `packages/gluestack-core/src/[component]/index.tsx` and package.json typesVersions
+12. **ALWAYS research similar components** on the web to understand best practices and functionality patterns
+13. **NEVER manually modify apps/ directory** - changes propagate automatically through mappers
 
 ---
 
@@ -28,39 +34,134 @@ You are helping create a new component for gluestack-ui, a cross-platform React 
 Use EnterPlanMode tool to enter planning mode. You will explore the codebase and design the component before implementation.
 ```
 
-**Step 1.2: Analyze Existing Patterns**
+**Step 1.2: Gather Initial Requirements**
 
-Read and understand these files to learn the patterns:
+Use AskUserQuestion tool to gather basic information:
+
+**Initial Questions (Must Ask First):**
+```yaml
+questions:
+  - question: "What is the name of the component you want to create?"
+    header: "Component Name"
+    multiSelect: false
+    options:
+      - label: "Single-word component (e.g., dropdown, tooltip, badge)"
+        description: "Simple kebab-case name for basic components"
+      - label: "Multi-word component (e.g., bottom-sheet, file-upload, date-picker)"
+        description: "Compound kebab-case name for complex components"
+
+  - question: "What category does this component belong to?"
+    header: "Category"
+    multiSelect: false
+    options:
+      - label: "Overlays (Recommended for modals, sheets, tooltips)"
+        description: "Components that appear above other content (modals, sheets, popovers, tooltips)"
+      - label: "Data Display (Recommended for cards, lists, tables)"
+        description: "Components that display information (cards, badges, avatars, tables)"
+      - label: "Forms (Recommended for inputs, selects)"
+        description: "Form-related components (inputs, checkboxes, selects, switches)"
+      - label: "Layout (Recommended for containers, grids)"
+        description: "Structural components (containers, stacks, grids, dividers)"
+
+  - question: "What problem does this component solve?"
+    header: "Purpose"
+    multiSelect: false
+    options:
+      - label: "User interaction (buttons, inputs, controls)"
+        description: "Allows users to interact with the application"
+      - label: "Information display (cards, badges, alerts)"
+        description: "Shows information or status to users"
+      - label: "Navigation (menus, tabs, breadcrumbs)"
+        description: "Helps users navigate the application"
+      - label: "Feedback (toasts, alerts, progress)"
+        description: "Provides feedback about actions or states"
+
+  - question: "What animation library do you prefer for this component?"
+    header: "Animation"
+    multiSelect: false
+    options:
+      - label: "react-native-reanimated (Recommended)"
+        description: "Better performance, runs on UI thread, most components use this"
+      - label: "@legendapp/motion"
+        description: "Simple declarative animations, good for basic transitions"
+      - label: "No animations"
+        description: "Static component without animations"
+```
+
+After getting these answers, ask the user to describe in their own words:
+- What is the specific problem this component addresses?
+- What are the key features it must have?
+- Any specific design references or inspirations?
+
+**Step 1.3: Research Similar Components**
+
+**IMPORTANT: Research on the web first before designing!**
+
+Use WebSearch tool to research:
+1. Search for "[component-name] component best practices" (e.g., "bottom sheet component best practices")
+2. Search for "[component-name] accessibility patterns" (e.g., "bottom sheet accessibility")
+3. Search for "React Native [component-name] implementation"
+4. Look for inspiration from popular UI libraries:
+   - Material Design guidelines for this component
+   - iOS Human Interface Guidelines
+   - Chakra UI, Ant Design, Material-UI implementations
+   - React Native Paper, NativeBase implementations
+
+Analyze the research to understand:
+- Common features and patterns
+- Accessibility best practices
+- Animation patterns
+- API design conventions
+- Edge cases to handle
+
+Present research findings to user:
+```markdown
+## Research Findings: [ComponentName]
+
+### Industry Best Practices:
+- [Finding 1 with source]
+- [Finding 2 with source]
+- [Finding 3 with source]
+
+### Common Features Found:
+- [Feature 1 - seen in Library A, Library B]
+- [Feature 2 - recommended by Material Design]
+- [Feature 3 - iOS HIG standard]
+
+### Accessibility Standards:
+- [ARIA pattern to follow]
+- [Keyboard interactions needed]
+- [Screen reader considerations]
+
+### Recommended Features for Our Component:
+Based on research, we should include:
+1. [Feature with justification]
+2. [Feature with justification]
+3. [Feature with justification]
+```
+
+Ask user:
+- Do you agree with these recommendations?
+- Any features you want to add/remove based on the research?
+- Any concerns about complexity vs functionality?
+
+**Step 1.4: Analyze Existing Patterns**
+
+Read and understand these files to learn gluestack-ui patterns:
 1. `/Users/sanchitkumar/Downloads/new_folder/gluestack-ui/CONTRIBUTING.md` - Complete contribution guidelines
 2. `/Users/sanchitkumar/Downloads/new_folder/gluestack-ui/src/components/ui/accordion/index.tsx` - Example compound component
 3. `/Users/sanchitkumar/Downloads/new_folder/gluestack-ui/src/components/ui/button/index.tsx` - Example with style context
 4. `/Users/sanchitkumar/Downloads/new_folder/gluestack-ui/src/components/ui/alert-dialog/index.tsx` - Example with animations
 5. `/Users/sanchitkumar/Downloads/new_folder/gluestack-ui/packages/gluestack-core/src/accordion/creator/index.tsx` - Example creator pattern
+6. **Color tokens:** `/Users/sanchitkumar/Downloads/new_folder/gluestack-ui/src/components/ui/gluestack-ui-provider/config.ts` - Latest color system
 
 Use Glob/Grep to find more examples if needed.
 
-**Step 1.3: Gather Requirements**
+**Step 1.5: Gather Detailed Requirements**
 
-Use AskUserQuestion tool to ask:
+Use AskUserQuestion tool to ask additional questions:
 
-**Question 1: Component Name & Purpose**
-```yaml
-questions:
-  - question: "What should the component be called?"
-    header: "Component Name"
-    multiSelect: false
-    options:
-      - label: "Simple name (e.g., dropdown, tooltip)"
-        description: "Single-word kebab-case name"
-      - label: "Compound name (e.g., file-upload, date-picker)"
-        description: "Multi-word kebab-case name"
-```
-
-After getting the name, ask:
-- What problem does this component solve?
-- What's the primary use case?
-
-**Question 2: Component Type**
+**Question 1: Component Type**
 ```yaml
 questions:
   - question: "What type of component is this?"
@@ -79,7 +180,7 @@ questions:
         description: "Container, Grid, Stack - structural layout"
 ```
 
-**Question 3: Platform Requirements**
+**Question 2: Platform Requirements**
 ```yaml
 questions:
   - question: "Which platforms should this component support?"
@@ -96,7 +197,7 @@ questions:
         description: "Needs separate index.web.tsx file for web-only code"
 ```
 
-**Question 4: Accessibility Requirements**
+**Question 3: Accessibility Requirements**
 ```yaml
 questions:
   - question: "Does this component need ARIA support and accessibility features?"
@@ -115,24 +216,43 @@ questions:
 
 If ARIA is needed, ask which pattern applies (dialog, menu, button, checkbox, etc.)
 
-**Question 5: Animation Requirements**
+**Question 4: Animation Details**
+
+Based on the animation library chosen earlier, ask specifics:
+
+If **react-native-reanimated** was chosen:
 ```yaml
 questions:
-  - question: "Does this component need animations?"
-    header: "Animations"
-    multiSelect: false
+  - question: "What type of animations does this component need?"
+    header: "Animation Type"
+    multiSelect: true
     options:
-      - label: "No animations"
-        description: "Static component"
-      - label: "Simple animations"
-        description: "Opacity, scale using react-native-reanimated"
-      - label: "Complex animations"
-        description: "Gesture-driven, spring physics, complex transitions"
-      - label: "Entrance/exit only"
-        description: "Mount/unmount animations (FadeIn, ZoomIn, SlideIn)"
+      - label: "Entrance/exit animations (Recommended)"
+        description: "FadeIn, SlideIn, ZoomIn when mounting/unmounting"
+      - label: "Gesture-driven animations"
+        description: "Swipe, drag, pinch interactions"
+      - label: "Spring physics"
+        description: "Natural motion with spring animations"
+      - label: "Layout animations"
+        description: "Animate position and size changes"
 ```
 
-**Question 6: Styling & Variants**
+If **@legendapp/motion** was chosen:
+```yaml
+questions:
+  - question: "What type of animations does this component need?"
+    header: "Animation Type"
+    multiSelect: true
+    options:
+      - label: "Opacity transitions"
+        description: "Fade in/out effects"
+      - label: "Scale transitions"
+        description: "Zoom in/out effects"
+      - label: "Position transitions"
+        description: "Slide movements"
+```
+
+**Question 5: Styling & Variants**
 
 Ask the user:
 - What variants should this component support? (e.g., size: sm/md/lg, variant: default/outline/ghost)
@@ -140,7 +260,12 @@ Ask the user:
 - Does it need parent-child style context? (if compound component)
 - Should it support custom theming?
 
-**Question 7: Sub-components (if compound)**
+**IMPORTANT: Always use color tokens from `src/components/ui/gluestack-ui-provider/config.ts` for styling:**
+- Use semantic tokens like `bg-background`, `text-foreground`, `border-border`
+- These tokens support both light and dark modes automatically
+- Never hardcode color values like `#000000` or `rgb(0,0,0)`
+
+**Question 6: Sub-components (if compound)**
 
 If it's a compound component, ask:
 - List all sub-components needed (e.g., Dropdown, DropdownTrigger, DropdownContent, DropdownItem)
@@ -148,26 +273,31 @@ If it's a compound component, ask:
 - What state/context needs to be shared?
 - What's the typical usage pattern?
 
-**Question 8: Dependencies**
+**Question 7: Dependencies**
+
+The animation library is already determined (user chose earlier). Ask about other dependencies:
+
 ```yaml
 questions:
-  - question: "Which external dependencies does this component need?"
+  - question: "Which additional external dependencies does this component need?"
     header: "Dependencies"
     multiSelect: true
     options:
       - label: "None (Recommended)"
-        description: "Use only React Native core primitives"
+        description: "Use only React Native core primitives + chosen animation library"
       - label: "react-native-svg"
         description: "For custom icons or SVG elements"
-      - label: "react-native-reanimated"
-        description: "For animations"
       - label: "@floating-ui/react-native"
-        description: "For positioning (popovers, tooltips)"
+        description: "For positioning (popovers, tooltips, dropdowns)"
+      - label: "react-native-gesture-handler"
+        description: "For complex touch gestures"
       - label: "Other (specify)"
         description: "Other npm packages needed"
 ```
 
 If "Other" is selected, ask the user to specify which packages and why.
+
+**IMPORTANT: Remember the user's animation library choice and NEVER substitute it with a different library during implementation!**
 
 ---
 
@@ -448,6 +578,29 @@ packages/gluestack-core/src/[component-name]/
 
 ### 🔧 Core Package Implementation
 
+**CRITICAL: Proper Exports Configuration**
+
+When creating a new component in gluestack-core, you MUST configure exports properly:
+
+1. **Barrel Export:** Create `packages/gluestack-core/src/[component-name]/index.tsx`:
+```typescript
+export * from './creator';
+export * from './creator/types';  // if types exist
+export * from './aria';  // if aria exists
+```
+
+2. **Update Main Index:** Add to `packages/gluestack-core/src/index.tsx`:
+```typescript
+export * from './[component-name]';
+```
+
+3. **Package.json Updates:** The barrel exports for deep imports (e.g., `@gluestack-ui/core/[component]/creator`) are auto-generated by `scripts/generate-barrel-exports.js` during build. The script:
+   - Scans `src/` for component directories
+   - Creates barrel files in the component root directory (e.g., `bottomsheet/creator.ts`)
+   - These files export from `lib/esm/[component]/[subdir]`
+
+4. **TypesVersions:** For TypeScript to find the deep imports, typesVersions in package.json will be updated in the next package release
+
 **File:** `packages/gluestack-core/src/[component-name]/creator/index.tsx`
 
 ```typescript
@@ -484,15 +637,43 @@ export function use[ComponentName]({
 
 ### 🎨 UI Component Implementation
 
+**CRITICAL: Use Correct Import Paths**
+
+Always import from the deep path, not the component name directly:
+- ✅ CORRECT: `import { create[ComponentName] } from '@gluestack-ui/core/[component-name]/creator';`
+- ❌ WRONG: `import { create[ComponentName] } from '@gluestack-ui/[component-name]';`
+
+**CRITICAL: Use User's Animation Library Choice**
+
+Use the animation library the user specified during requirements gathering:
+- If user chose **react-native-reanimated**: Use `Animated` from `react-native-reanimated`
+- If user chose **@legendapp/motion**: Use motion components from `@legendapp/motion`
+- If user chose **No animations**: Don't import any animation library
+
+**CRITICAL: Use Latest Color Tokens**
+
+Always use semantic color tokens from the gluestack-ui theme system:
+- Use tokens like: `bg-background`, `bg-card`, `text-foreground`, `border-border`, `bg-primary`, `bg-secondary`
+- These are defined in `src/components/ui/gluestack-ui-provider/config.ts`
+- They automatically support light/dark mode
+- Never use hardcoded colors like `bg-white`, `text-black`, `#000000`
+
 **File:** `src/components/ui/[component-name]/index.tsx`
 
 ```typescript
 'use client';
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { create[ComponentName] } from '@gluestack-ui/[component-name]';
-import { tva, withStyleContext, useStyleContext, type VariantProps } from '@gluestack-ui/nativewind-utils';
+// CORRECT import path - use deep import from core package
+import { create[ComponentName] } from '@gluestack-ui/core/[component-name]/creator';
+import { tva, withStyleContext, useStyleContext, type VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { [componentName]Style, [subComponent]Style } from './styles';
+
+// Import animation library based on user's choice
+// Example with react-native-reanimated:
+import Animated, { FadeIn, SlideInUp } from 'react-native-reanimated';
+// OR with @legendapp/motion:
+// import { Motion } from '@legendapp/motion';
 
 // Create context-aware root
 const Root = withStyleContext(View, '[COMPONENT_NAME]');
@@ -547,7 +728,12 @@ export { [ComponentName], [SubComponent], /* ... other exports */ };
 **File:** `src/components/ui/[component-name]/styles.tsx`
 
 ```typescript
-import { tva } from '@gluestack-ui/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+
+// CRITICAL: Always use semantic color tokens from config.ts
+// Available tokens: --background, --foreground, --card, --primary, --secondary,
+// --muted, --accent, --destructive, --border, --input, --ring, --popover
+// Use as: bg-background, text-foreground, border-border, bg-card, bg-primary, etc.
 
 export const [componentName]Style = tva({
   base: 'flex-col rounded-md',
@@ -558,8 +744,11 @@ export const [componentName]Style = tva({
       lg: 'p-6 gap-6',
     },
     variant: {
+      // Use semantic tokens - these work in light AND dark mode automatically
       default: 'bg-background border border-border',
       outline: 'bg-transparent border border-border',
+      ghost: 'bg-transparent',
+      card: 'bg-card border border-border',
     },
   },
   defaultVariants: {
@@ -679,6 +868,16 @@ Show the complete plan and ask:
 
 **Step 6.1: Setup Local Package Development**
 
+**CRITICAL: Never Manually Edit apps/ Directory**
+
+The `apps/` directory contains generated code that is automatically synced from `src/components/ui/`:
+- `apps/kitchen-sink/components/ui/` - Auto-generated via mapper
+- `apps/website/components/ui/` - Auto-generated via mapper
+- `apps/starter-kit-expo/components/ui/` - Auto-generated via mapper
+- `apps/starter-kit-next/components/ui/` - Auto-generated via mapper
+
+**ONLY edit files in `src/components/ui/[component-name]/`** and changes will propagate automatically when you run `yarn sync`.
+
 ```bash
 # Link packages for development
 yarn link:create
@@ -692,15 +891,30 @@ yarn link:apps
 1. Create directory structure:
 ```bash
 mkdir -p packages/gluestack-core/src/[component-name]/creator
-mkdir -p packages/gluestack-core/src/[component-name]/aria
+mkdir -p packages/gluestack-core/src/[component-name]/aria  # only if ARIA hook needed
 ```
 
 2. Implement creator function (follow pattern from accordion/creator/index.tsx)
 3. Implement ARIA hook if needed (follow pattern from accordion/aria/index.tsx)
-4. Export from packages/gluestack-core/src/[component-name]/index.tsx
-5. Update packages/gluestack-core/src/index.tsx to export new component
+4. **CRITICAL: Create barrel export** `packages/gluestack-core/src/[component-name]/index.tsx`:
+```typescript
+export * from './creator';
+export * from './creator/types';  // if types exist
+export * from './aria';  // if aria exists
+```
+5. **CRITICAL: Update main index** `packages/gluestack-core/src/index.tsx`:
+```typescript
+export * from './[component-name]';
+```
+6. The `generate-barrel-exports.js` script will auto-create deep import files during build
 
 **Step 6.3: Implement UI Component**
+
+**CRITICAL REMINDERS for this step:**
+- ✅ Import from `@gluestack-ui/core/[component-name]/creator` (deep import)
+- ✅ Use the animation library the USER CHOSE (don't substitute!)
+- ✅ Use semantic color tokens: `bg-background`, `text-foreground`, `border-border`, etc.
+- ✅ Only edit `src/components/ui/` - NEVER touch `apps/` directories
 
 1. Create directory:
 ```bash
@@ -708,9 +922,19 @@ mkdir -p src/components/ui/[component-name]/docs
 mkdir -p src/components/ui/[component-name]/examples/basic
 ```
 
-2. Create `src/components/ui/[component-name]/index.tsx` with compound component
-3. Create `src/components/ui/[component-name]/styles.tsx` with tva() styles
-4. Create `src/components/ui/[component-name]/dependencies.json` if needed
+2. Create `src/components/ui/[component-name]/index.tsx` with compound component:
+   - Import creator using deep path: `@gluestack-ui/core/[component-name]/creator`
+   - Import utils from: `@gluestack-ui/utils/nativewind-utils`
+   - Use user's chosen animation library (react-native-reanimated or @legendapp/motion)
+   - Use semantic color tokens in className props
+
+3. Create `src/components/ui/[component-name]/styles.tsx` with tva() styles:
+   - Import tva from: `@gluestack-ui/utils/nativewind-utils`
+   - Use only semantic color tokens (bg-background, text-foreground, etc.)
+   - Support both light and dark modes automatically
+
+4. Create `src/components/ui/[component-name]/dependencies.json` if external deps needed
+
 5. Create web-specific `src/components/ui/[component-name]/index.web.tsx` if needed
 
 **Step 6.4: Create Examples**
@@ -971,10 +1195,27 @@ Go through this checklist:
 - [ ] dependencies.ts updated (if needed)
 - [ ] Only necessary dependencies added
 
-### Exports
-- [ ] Exported from src/components/ui/index.tsx
+### Exports & Package Configuration
+- [ ] Barrel export created: packages/gluestack-core/src/[component]/index.tsx
+- [ ] Main index updated: packages/gluestack-core/src/index.tsx
+- [ ] Deep imports work: @gluestack-ui/core/[component]/creator
+- [ ] UI component exported from src/components/ui/index.tsx
 - [ ] All sub-components exported
 - [ ] No missing exports
+
+### Import Patterns
+- [ ] Uses correct deep import: @gluestack-ui/core/[component]/creator
+- [ ] Uses @gluestack-ui/utils/nativewind-utils for tva, withStyleContext
+- [ ] Uses user's chosen animation library (not substituted)
+
+### Color Tokens
+- [ ] All colors use semantic tokens (bg-background, text-foreground, etc.)
+- [ ] No hardcoded color values (#000, rgb(), etc.)
+- [ ] Light and dark mode both work
+
+### Apps Directory
+- [ ] Did NOT manually edit any files in apps/ directories
+- [ ] Only edited src/components/ui/[component]/
 
 ### Git
 - [ ] Only source files (no generated files from apps/)
@@ -1032,14 +1273,31 @@ Would you like me to help you create the PR?
 
 1. **NEVER skip user confirmations** - there are 6 checkpoints
 2. **ALWAYS read CONTRIBUTING.md** at the start
-3. **ALWAYS analyze existing components** for patterns
-4. **ALWAYS use EnterPlanMode** at the beginning
-5. **ALWAYS use AskUserQuestion** for requirements
-6. **NEVER edit generated files** in apps/ directories
-7. **ALWAYS test in multiple apps** before finalizing
-8. **ALWAYS create complete documentation** with examples
-9. **ALWAYS follow the compound component API pattern** for multi-part components
-10. **ALWAYS discuss tradeoffs** before making design decisions
+3. **ALWAYS research similar components on the web** before designing (use WebSearch)
+4. **ALWAYS analyze existing components** for patterns
+5. **ALWAYS use EnterPlanMode** at the beginning
+6. **ALWAYS use AskUserQuestion** for requirements including:
+   - Component name and category
+   - Problem it solves
+   - **Animation library preference** (and NEVER substitute the user's choice!)
+7. **NEVER edit generated files** in apps/ directories - only edit src/
+8. **ALWAYS use correct import paths**:
+   - ✅ `@gluestack-ui/core/[component]/creator` (deep import)
+   - ✅ `@gluestack-ui/utils/nativewind-utils`
+   - ❌ NOT `@gluestack-ui/[component]` (wrong!)
+9. **ALWAYS use semantic color tokens**:
+   - ✅ `bg-background`, `text-foreground`, `border-border`, etc.
+   - ❌ NOT `#000`, `rgb()`, `bg-white`, `text-black`
+   - Reference: `src/components/ui/gluestack-ui-provider/config.ts`
+10. **ALWAYS configure exports properly**:
+    - Barrel export in `packages/gluestack-core/src/[component]/index.tsx`
+    - Update `packages/gluestack-core/src/index.tsx`
+    - Scripts auto-generate deep import files
+11. **ALWAYS respect user's animation library choice** - if they want react-native-reanimated, don't use @legendapp/motion!
+12. **ALWAYS test in multiple apps** before finalizing
+13. **ALWAYS create complete documentation** with examples
+14. **ALWAYS follow the compound component API pattern** for multi-part components
+15. **ALWAYS discuss tradeoffs** before making design decisions
 
 ## Error Recovery
 

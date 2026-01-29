@@ -16,6 +16,14 @@ Help improve or extend an existing gluestack-ui component. This skill guides you
 - Enhancing performance
 - Updating to new dependencies
 
+## Critical Requirements When Enhancing
+
+1. **ALWAYS use correct import paths** - `@gluestack-ui/core/[component]/creator` not `@gluestack-ui/[component]`
+2. **ALWAYS use semantic color tokens** from `src/components/ui/gluestack-ui-provider/config.ts`
+3. **ALWAYS respect existing animation library** - don't switch libraries without user approval
+4. **NEVER edit apps/ directory** - only edit `src/components/ui/`
+5. **ALWAYS maintain proper exports** in core package barrel files
+
 ## Workflow
 
 ### PHASE 1: Component Selection & Analysis
@@ -191,22 +199,33 @@ yarn dev
 
 **Step 4.2: Implement Changes**
 
+**CRITICAL REMINDERS:**
+- ✅ Keep existing import paths (use deep imports: `@gluestack-ui/core/[component]/creator`)
+- ✅ Use semantic color tokens only: `bg-background`, `text-foreground`, `border-border`
+- ✅ Maintain the existing animation library (don't switch without user approval)
+- ✅ Only edit `src/components/ui/` - NEVER manually edit `apps/` directories
+- ✅ Ensure barrel exports remain correct in core package
+
 Make changes in order:
 
 1. **Update Core Package** (if needed)
-   - Modify creator function
+   - Modify creator function in `packages/gluestack-core/src/[component]/creator/index.tsx`
    - Add new functionality
    - Update TypeScript types
+   - **Verify barrel export** in `packages/gluestack-core/src/[component]/index.tsx` is still correct
 
 2. **Update UI Component**
-   - Modify index.tsx
+   - Modify `src/components/ui/[component]/index.tsx`
+   - **Keep deep import path**: `@gluestack-ui/core/[component]/creator`
    - Add new props/sub-components
    - Update forwardRef types
+   - Use existing animation library
 
 3. **Update Styles**
-   - Add new variants to styles.tsx
+   - Add new variants to `src/components/ui/[component]/styles.tsx`
    - Update tva() configuration
-   - Add responsive/dark mode styles
+   - **Use semantic color tokens** (bg-background, not bg-white)
+   - Add responsive/dark mode styles using token system
 
 4. **Update TypeScript Types**
    - Export new interfaces
