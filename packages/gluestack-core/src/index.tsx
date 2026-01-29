@@ -31,6 +31,7 @@ export * from './slider/creator';
 export * from './spinner/creator';
 export * from './switch/aria';
 export * from './switch/creator';
+export * from './tabs/creator';
 export * from './textarea/creator';
 export * from './toast/creator';
 export * from './tooltip/creator';

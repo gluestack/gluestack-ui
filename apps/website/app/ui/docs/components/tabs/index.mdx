@@ -1,0 +1,790 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs as DocTabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Tabs
+
+Create an organized UI using the gluestack-ui Tabs component in React & React Native. Add tabbed navigation seamlessly with animations.
+
+This is an illustration of **Tabs** component.
+
+<!-- Failed to load CodePreviewer for Example:basic -->
+
+<br />
+## Installation
+
+<DocTabs>
+<TabItem label="CLI">
+
+### Run the following command:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add tabs`} language="bash" />
+
+
+</TabItem>
+<TabItem label="Manual">
+
+
+
+> Note: At present, we have integrated `react-native-reanimated` for animations. You have the option to remove this and implement your own custom animation wrapper.
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i react-native-reanimated
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+'use client';
+import React from 'react';
+import { createTabs, TabsContext } from '@gluestack-ui/core/tabs/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import {
+  tva,
+  withStyleContext,
+  useStyleContext,
+  type VariantProps,
+} from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import { Pressable, Text, View, FlatList } from 'react-native';
+import Animated from 'react-native-reanimated';
+import { TabsAnimatedIndicator } from './TabsAnimatedIndicator';
+
+const SCOPE = 'TABS';
+
+/** Styles */
+
+const tabsStyle = tva({
+  base: 'w-full',
+});
+
+const tabsListStyle = tva({
+  base: 'flex relative',
+  variants: {
+    orientation: {
+      horizontal: 'flex-row',
+      vertical: 'flex-col',
+    },
+  },
+});
+
+const tabsTriggerStyle = tva({
+  base: 'justify-center items-center web:outline-none data-[disabled=true]:opacity-40 data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary/20',
+  parentVariants: {
+    size: {
+      sm: 'px-3 py-2 gap-1',
+      md: 'px-4 py-2.5 gap-2',
+      lg: 'px-5 py-3 gap-2',
+    },
+    variant: {
+      underlined: '',
+      filled:
+        'rounded-lg data-[selected=true]:bg-primary/10 data-[hover=true]:bg-muted/50',
+      enclosed:
+        'border border-transparent data-[selected=true]:border-border rounded-t',
+    },
+  },
+});
+
+const tabsTriggerTextStyle = tva({
+  base: 'text-foreground/70 data-[selected=true]:text-foreground font-medium data-[hover=true]:text-foreground/90',
+  parentVariants: {
+    size: {
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+    },
+  },
+});
+
+const tabsTriggerIconStyle = tva({
+  base: 'text-foreground/70 data-[selected=true]:text-foreground fill-none',
+  parentVariants: {
+    size: {
+      sm: 'h-4 w-4',
+      md: 'h-5 w-5',
+      lg: 'h-6 w-6',
+    },
+  },
+});
+
+const tabsContentStyle = tva({
+  base: 'pt-4',
+});
+
+const tabsIndicatorStyle = tva({
+  base: 'absolute pointer-events-none overflow-hidden',
+  variants: {
+    orientation: {
+      horizontal: 'bottom-0 h-0.5',
+      vertical: 'left-0 w-0.5',
+    },
+  },
+});
+
+/** Creator */
+
+const Root = withStyleContext(View, SCOPE);
+
+const UITabs = createTabs({
+  Root,
+  List: View,
+  Trigger: Pressable,
+  Content: View,
+  TriggerText: Text,
+  TriggerIcon: UIIcon,
+  Indicator: View,
+});
+
+cssInterop(PrimitiveIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
+});
+
+/** Type definitions */
+
+type ITabsProps = React.ComponentPropsWithoutRef<typeof UITabs> &
+  VariantProps<typeof tabsStyle> & {
+    variant?: 'underlined' | 'filled' | 'enclosed';
+    size?: 'sm' | 'md' | 'lg';
+  };
+
+type ITabsListProps = React.ComponentPropsWithoutRef<typeof UITabs.List> & {
+  scrollable?: boolean;
+};
+
+type ITabsTriggerProps = React.ComponentPropsWithoutRef<typeof UITabs.Trigger>;
+
+type ITabsContentProps = React.ComponentPropsWithoutRef<typeof UITabs.Content>;
+
+type ITabsTriggerTextProps = React.ComponentPropsWithoutRef<
+  typeof UITabs.TriggerText
+>;
+
+type ITabsTriggerIconProps = React.ComponentPropsWithoutRef<
+  typeof UITabs.TriggerIcon
+> & {
+  as?: React.ElementType;
+  height?: number;
+  width?: number;
+};
+
+type ITabsIndicatorProps = React.ComponentPropsWithoutRef<
+  typeof UITabs.Indicator
+>;
+
+/** Components */
+
+const Tabs = React.forwardRef<React.ComponentRef<typeof UITabs>, ITabsProps>(
+  ({ className, variant = 'underlined', size = 'md', ...props }, ref) => {
+    return (
+      <UITabs
+        ref={ref}
+        {...props}
+        className={tabsStyle({ class: className })}
+        // @ts-ignore - pass variants to context
+        context={{ variant, size }}
+      />
+    );
+  }
+);
+
+const TabsList = React.forwardRef<
+  React.ComponentRef<typeof UITabs.List>,
+  ITabsListProps
+>(({ className, scrollable = false, children, ...props }, ref) => {
+  const context = React.useContext(TabsContext);
+  const orientation = context?.orientation || 'horizontal';
+
+  // For scrollable tabs, use FlatList for better performance
+  if (scrollable && orientation === 'horizontal') {
+    // Convert children to array for FlatList
+    const childArray = React.Children.toArray(children);
+
+    // Separate triggers from indicator
+    const triggers = childArray.filter(
+      (child: any) => child?.type?.displayName !== 'TabsIndicator'
+    );
+    const indicator = childArray.find(
+      (child: any) => child?.type?.displayName === 'TabsIndicator'
+    );
+
+    return (
+      <View className={tabsListStyle({ orientation, class: className })}>
+        <FlatList
+          ref={ref}
+          data={triggers}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item: any, index) =>
+            item?.props?.value || `tab-${index}`
+          }
+          renderItem={({ item }) => item}
+          contentContainerStyle={{ alignItems: 'center' }}
+          {...props}
+        />
+        {indicator}
+      </View>
+    );
+  }
+
+  // Default non-scrollable or vertical tabs
+  return (
+    <UITabs.List
+      ref={ref}
+      {...props}
+      className={tabsListStyle({ orientation, class: className })}
+    >
+      {children}
+    </UITabs.List>
+  );
+});
+
+const TabsTrigger = React.forwardRef<
+  React.ComponentRef<typeof UITabs.Trigger>,
+  ITabsTriggerProps
+>(({ className, ...props }, ref) => {
+  const { variant, size } = useStyleContext(SCOPE);
+
+  return (
+    <UITabs.Trigger
+      ref={ref}
+      {...props}
+      className={tabsTriggerStyle({
+        parentVariants: { variant, size },
+        class: className,
+      })}
+    />
+  );
+});
+
+const TabsContent = React.forwardRef<
+  React.ComponentRef<typeof UITabs.Content>,
+  ITabsContentProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UITabs.Content
+      ref={ref}
+      {...props}
+      className={tabsContentStyle({ class: className })}
+    />
+  );
+});
+
+const TabsTriggerText = React.forwardRef<
+  React.ComponentRef<typeof UITabs.TriggerText>,
+  ITabsTriggerTextProps
+>(({ className, ...props }, ref) => {
+  const { size } = useStyleContext(SCOPE);
+
+  return (
+    <UITabs.TriggerText
+      ref={ref}
+      {...props}
+      className={tabsTriggerTextStyle({
+        parentVariants: { size },
+        class: className,
+      })}
+    />
+  );
+});
+
+const TabsTriggerIcon = React.forwardRef<
+  React.ComponentRef<typeof UITabs.TriggerIcon>,
+  ITabsTriggerIconProps
+>(({ className, ...props }, ref) => {
+  const { size } = useStyleContext(SCOPE);
+
+  return (
+    <UITabs.TriggerIcon
+      ref={ref}
+      {...props}
+      className={tabsTriggerIconStyle({
+        parentVariants: { size },
+        class: className,
+      })}
+    />
+  );
+});
+
+const TabsIndicator = React.forwardRef<
+  React.ComponentRef<typeof UITabs.Indicator>,
+  ITabsIndicatorProps
+>(({ className, ...props }, ref) => {
+  const context = React.useContext(TabsContext);
+
+  if (!context) {
+    return null;
+  }
+
+  const { selectedKey, orientation, triggerLayouts } = context;
+
+  return (
+    <TabsAnimatedIndicator
+      ref={ref}
+      selectedKey={selectedKey}
+      orientation={orientation}
+      triggerLayouts={triggerLayouts}
+      className={tabsIndicatorStyle({ orientation, class: className })}
+      {...props}
+    />
+  );
+});
+
+Tabs.displayName = 'Tabs';
+TabsList.displayName = 'TabsList';
+TabsTrigger.displayName = 'TabsTrigger';
+TabsContent.displayName = 'TabsContent';
+TabsTriggerText.displayName = 'TabsTriggerText';
+TabsTriggerIcon.displayName = 'TabsTriggerIcon';
+TabsIndicator.displayName = 'TabsIndicator';
+
+export {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  TabsTriggerText,
+  TabsTriggerIcon,
+  TabsIndicator,
+};
+
+```
+
+```jsx
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from 'react-native-reanimated';
+import type { LayoutData } from '@gluestack-ui/core/tabs/creator';
+import { tabsAnimationConfig } from './animation-config';
+
+interface TabsAnimatedIndicatorProps {
+  selectedKey: any;
+  orientation: 'horizontal' | 'vertical';
+  triggerLayouts: Map<any, LayoutData>;
+  className?: string;
+  style?: any;
+}
+
+export const TabsAnimatedIndicator = React.forwardRef<
+  any,
+  TabsAnimatedIndicatorProps
+>(({ selectedKey, orientation, triggerLayouts, className, style, ...props }, ref) => {
+  const animatedX = useSharedValue(0);
+  const animatedY = useSharedValue(0);
+  const animatedWidth = useSharedValue(0);
+  const animatedHeight = useSharedValue(0);
+  const [hasLayout, setHasLayout] = useState(false);
+
+  useEffect(() => {
+    if (selectedKey && triggerLayouts.has(selectedKey)) {
+      const layout = triggerLayouts.get(selectedKey);
+
+      if (layout && layout.width > 0) {
+        // Determine if this is the first time we're setting values
+        const isFirstRender = !hasLayout;
+        const duration = isFirstRender ? 0 : tabsAnimationConfig.indicatorDuration;
+
+        animatedX.value = withTiming(layout.x, { duration });
+        animatedY.value = withTiming(layout.y, { duration });
+        animatedWidth.value = withTiming(layout.width, { duration });
+        animatedHeight.value = withTiming(layout.height, { duration });
+
+        if (!hasLayout) {
+          setHasLayout(true);
+        }
+      }
+    }
+  }, [selectedKey, triggerLayouts, hasLayout, animatedX, animatedY, animatedWidth, animatedHeight]);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    if (orientation === 'horizontal') {
+      return {
+        transform: [{ translateX: animatedX.value }],
+        width: animatedWidth.value,
+        height: '100%',
+      };
+    } else {
+      return {
+        transform: [{ translateY: animatedY.value }],
+        height: animatedHeight.value,
+        width: '100%',
+      };
+    }
+  });
+
+  // Don't render indicator until we have valid layout data
+  if (!hasLayout) {
+    return null;
+  }
+
+  return (
+    <View ref={ref} className={className} style={style} {...props}>
+      <Animated.View
+        style={[
+          animatedStyle,
+          {
+            backgroundColor: "red",
+            borderRadius: 9999,
+          }
+        ]}
+      />
+    </View>
+  );
+});
+
+TabsAnimatedIndicator.displayName = 'TabsAnimatedIndicator';
+
+```
+
+```jsx
+export const tabsAnimationConfig = {
+  indicatorDuration: 200,
+};
+
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</DocTabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  TabsTriggerText,
+  TabsTriggerIcon,
+  TabsIndicator,
+} from '@/components/ui/tabs';
+```
+
+```tsx
+export default () => (
+  <Tabs defaultValue="tab1">
+    <TabsList>
+      <TabsTrigger value="tab1">
+        <TabsTriggerIcon as={IconComponent} />
+        <TabsTriggerText>Tab 1</TabsTriggerText>
+      </TabsTrigger>
+      <TabsTrigger value="tab2">
+        <TabsTriggerText>Tab 2</TabsTriggerText>
+      </TabsTrigger>
+      <TabsIndicator />
+    </TabsList>
+    <TabsContent value="tab1">
+      <Text>Content for Tab 1</Text>
+    </TabsContent>
+    <TabsContent value="tab2">
+      <Text>Content for Tab 2</Text>
+    </TabsContent>
+  </Tabs>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Tabs
+
+Contains all the tabs component parts.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>value</InlineCode></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The controlled value of the tab to activate. Use with onValueChange.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>defaultValue</InlineCode></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The value of the tab that should be active when initially rendered. Use when you do not need to control the state.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>onValueChange</InlineCode></TableCell>
+      <TableCell>(value: string) =&gt; void</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Event handler called when the value changes.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>orientation</InlineCode></TableCell>
+      <TableCell>'horizontal' | 'vertical'</TableCell>
+      <TableCell>'horizontal'</TableCell>
+      <TableCell>The orientation of the tabs.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>activationMode</InlineCode></TableCell>
+      <TableCell>'automatic' | 'manual'</TableCell>
+      <TableCell>'automatic'</TableCell>
+      <TableCell>Whether tabs activate automatically on focus or manually with Enter/Space.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>disabled</InlineCode></TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>When true, prevents the user from interacting with the tabs.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>variant</InlineCode></TableCell>
+      <TableCell>'underlined' | 'filled' | 'enclosed'</TableCell>
+      <TableCell>'underlined'</TableCell>
+      <TableCell>The visual style variant of the tabs.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>size</InlineCode></TableCell>
+      <TableCell>'sm' | 'md' | 'lg'</TableCell>
+      <TableCell>'md'</TableCell>
+      <TableCell>The size of the tabs.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### TabsList
+
+Contains the triggers that are aligned along the edge of the active content.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>scrollable</InlineCode></TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>When true, enables horizontal scrolling for overflow tabs.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>snapToCenter</InlineCode></TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>When scrollable is true, snaps the selected tab to center.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### TabsTrigger
+
+The button that activates its associated content.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>value</InlineCode></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>A unique value that associates the trigger with a content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>disabled</InlineCode></TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>When true, prevents the user from interacting with the tab.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### TabsContent
+
+Contains the content associated with each trigger.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>value</InlineCode></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>A unique value that associates the content with a trigger.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>forceMount</InlineCode></TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>Used to force mounting when more control is needed. Useful for animation.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### TabsTriggerText
+
+The text displayed within a tab trigger.
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### TabsTriggerIcon
+
+The icon displayed within a tab trigger.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>as</InlineCode></TableCell>
+      <TableCell>React.ComponentType</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The icon component to render.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### TabsIndicator
+
+The animated indicator that shows which tab is currently selected. Place this component inside TabsList to control its position.
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Accessibility
+
+Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+
+#### Keyboard Interactions
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Key</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>Tab</InlineCode></TableCell>
+      <TableCell>When focus moves onto the tabs, focuses the active trigger. When a trigger is focused, moves focus to the active content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>ArrowDown</InlineCode></TableCell>
+      <TableCell>Moves focus to the next trigger in vertical orientation and activates its associated content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>ArrowUp</InlineCode></TableCell>
+      <TableCell>Moves focus to the previous trigger in vertical orientation and activates its associated content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>ArrowLeft</InlineCode></TableCell>
+      <TableCell>Moves focus to the previous trigger in horizontal orientation and activates its associated content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>ArrowRight</InlineCode></TableCell>
+      <TableCell>Moves focus to the next trigger in horizontal orientation and activates its associated content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>Home</InlineCode></TableCell>
+      <TableCell>Moves focus to the first trigger and activates its associated content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>End</InlineCode></TableCell>
+      <TableCell>Moves focus to the last trigger and activates its associated content.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+## Examples
+
+### Basic
+
+<!-- Failed to load CodePreviewer for Example:basic -->
+
+### With Indicator
+
+<!-- Failed to load CodePreviewer for Example:with-indicator -->
+
+### Vertical Orientation
+
+<!-- Failed to load CodePreviewer for Example:vertical -->
+
+### With Icons
+
+<!-- Failed to load CodePreviewer for Example:with-icons -->
+
+### Variants
+
+<!-- Failed to load CodePreviewer for Example:variants -->
+
+### Sizes
+
+<!-- Failed to load CodePreviewer for Example:sizes -->
+
+### Scrollable
+
+<!-- Failed to load CodePreviewer for Example:scrollable -->
+
+### Manual Activation
+
+<!-- Failed to load CodePreviewer for Example:manual-activation -->
+
+### Controlled
+
+<!-- Failed to load CodePreviewer for Example:controlled -->
