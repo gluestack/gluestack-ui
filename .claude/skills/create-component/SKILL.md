@@ -549,32 +549,36 @@ Generate detailed plan:
 
 ### 📁 File Structure
 
-```
-src/components/ui/[component-name]/
-├── index.tsx                          # Main component exports
-├── index.web.tsx                      # Web-specific (if needed)
-├── styles.tsx                         # Tailwind styles with tva()
-├── dependencies.json                  # NPM dependencies
-├── docs/
-│   └── index.mdx                      # Component documentation
-└── examples/
-    ├── basic/
-    │   ├── meta.json
-    │   └── template.handlebars
-    ├── customized-component/
-    │   ├── meta.json
-    │   └── template.handlebars
-    └── [other-examples]/
-        ├── meta.json
-        └── template.handlebars
+**CRITICAL: Follow this EXACT structure as per CONTRIBUTING.md:**
 
-packages/gluestack-core/src/[component-name]/
+```
+src/components/ui/<component-name>/
+├── index.tsx                          # Main component file (copy-pasteable)
+├── index.web.tsx                      # Web-specific (if needed)
+├── styles.tsx                         # Tailwind styles with tva() (optional)
+├── dependencies.json                  # NPM dependencies (if needed)
+├── examples/                          # Usage examples
+│   ├── basic/                         # Basic example (REQUIRED)
+│   │   ├── meta.json                  # Example metadata with reactLive imports
+│   │   └── template.handlebars        # Handlebars template (no imports)
+│   ├── customized-component/          # Customized variant
+│   │   ├── meta.json
+│   │   └── template.handlebars
+│   └── [other-examples]/              # Additional examples (3-5 total recommended)
+│       ├── meta.json
+│       └── template.handlebars
+└── docs/                              # Main documentation
+    └── index.mdx                      # Component documentation page
+
+packages/gluestack-core/src/<component-name>/
 ├── creator/
 │   └── index.tsx                      # create[ComponentName] factory
 ├── aria/
-│   └── index.tsx                      # use[ComponentName] hook
+│   └── index.tsx                      # use[ComponentName] hook (if needed)
 └── index.tsx                          # Barrel export
 ```
+
+**Note:** Use `<component-name>` in kebab-case (e.g., `bottom-sheet`, `alert-dialog`)
 
 ### 🔧 Core Package Implementation
 
@@ -793,14 +797,56 @@ export const [subComponent]Style = tva({
 
 ### 🎯 Examples
 
-Create 3-5 examples:
-1. **basic/** - Simple usage
-2. **customized-component/** - Styled variant
-3. **[use-case-specific]/** - Real-world examples
+**CRITICAL: Follow exact format and structure from existing components!**
 
-Each example needs:
-- `meta.json` - Example metadata
-- `template.handlebars` - Handlebars template
+Create 3-5 comprehensive examples demonstrating different use cases:
+
+1. **basic/** - REQUIRED - Simple, default usage
+2. **customized-component/** - Customized styling with variants
+3. **controlled/** - Controlled state management (if applicable)
+4. **with-[feature]/** - Specific features (e.g., with-icons, with-image)
+5. **[real-world-scenario]/** - Practical use case (e.g., delete-post, invite-friends)
+
+**Example Structure Checklist:**
+
+Each example MUST have:
+- ✅ `meta.json` with proper structure:
+  - `title`: Short, descriptive title
+  - `description`: Clear explanation of what the example demonstrates
+  - `argTypes`: Interactive controls (optional, only if example needs them)
+  - `reactLive`: **REQUIRED** - ALL components used must be listed here
+- ✅ `template.handlebars` with proper format:
+  - Start with single space + `function Example()`
+  - NO imports (they're in reactLive)
+  - NO export statements
+  - Use Handlebars variables for argTypes: `{{size}}`, `{{variant}}`
+  - Can use React hooks (useState, useEffect, etc.)
+
+**Analyze Existing Examples:**
+
+Before creating examples, read similar components to understand patterns:
+```bash
+# Look at accordion examples
+src/components/ui/accordion/examples/*/meta.json
+src/components/ui/accordion/examples/*/template.handlebars
+
+# Look at button examples
+src/components/ui/button/examples/*/meta.json
+src/components/ui/button/examples/*/template.handlebars
+
+# Look at modal examples for overlay patterns
+src/components/ui/modal/examples/*/meta.json
+src/components/ui/modal/examples/*/template.handlebars
+```
+
+**Common Example Patterns:**
+
+- **Stateful examples:** Use `React.useState` for interactive demos
+- **Render props:** Show function-as-child patterns like `{({ isExpanded }) => ...}`
+- **Variants:** Demonstrate different size/variant combinations
+- **Icons:** Show icon integration with `as={IconName}` pattern
+- **Composition:** Show how to compose with other components (Button, Text, Icon)
+- **Real scenarios:** Show practical use cases users will implement
 
 ### 🔗 Exports & Configuration
 
@@ -939,133 +985,441 @@ mkdir -p src/components/ui/[component-name]/examples/basic
 
 **Step 6.4: Create Examples**
 
+**CRITICAL: Follow exact format used by existing components!**
+
+**Step 6.4.1: Analyze Existing Examples First**
+
+Before creating any examples, read and analyze similar existing components:
+
+1. **Find similar components:**
+```bash
+# Use Glob to find all examples
+Glob: "src/components/ui/*/examples/*/meta.json"
+Glob: "src/components/ui/*/examples/*/template.handlebars"
+```
+
+2. **Read 3-5 relevant examples** from similar components:
+   - If creating overlay component: Read modal, popover, actionsheet examples
+   - If creating form component: Read input, checkbox, select examples
+   - If creating layout component: Read accordion, tabs, card examples
+
+3. **Understand the patterns:**
+   - How do they structure meta.json?
+   - What components are listed in reactLive?
+   - How do they format template.handlebars?
+   - Do they use argTypes? Which ones?
+   - How do they handle state in examples?
+   - What Handlebars variables do they use?
+
+4. **Present findings to user:**
+```markdown
+## Example Pattern Analysis
+
+Based on analyzing [ComponentX], [ComponentY], [ComponentZ]:
+
+### meta.json patterns found:
+- All include title, description
+- reactLive lists every component used including icons
+- argTypes only used when interactive controls needed
+- Common argTypes: size (sm/md/lg), variant (default/outline)
+
+### template.handlebars patterns found:
+- All start with single space + function Example()
+- State management with React.useState
+- Handlebars variables: {{size}}, {{variant}}
+- Common structure: [pattern description]
+
+### Recommended approach for our component:
+1. [Recommendation based on patterns]
+2. [Recommendation based on patterns]
+```
+
+**Step 6.4.2: Create Examples**
+
 For each example (basic, customized, etc.):
 
-1. Create example directory
-2. Create `meta.json`:
+1. **Create example directory:**
+```bash
+mkdir -p src/components/ui/[component-name]/examples/basic
+mkdir -p src/components/ui/[component-name]/examples/customized-component
+# Add more as needed
+```
+
+2. **Create `meta.json`** following this EXACT format:
+
 ```json
 {
   "title": "Basic Example",
-  "description": "A basic example of [ComponentName]"
+  "description": "A basic usage example showing the default behavior of [ComponentName]",
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg"],
+      "defaultValue": "md"
+    }
+  },
+  "reactLive": {
+    "[ComponentName]": "@/components/ui/[component-name]",
+    "[SubComponent1]": "@/components/ui/[component-name]",
+    "[SubComponent2]": "@/components/ui/[component-name]",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Text": "@/components/ui/text"
+  }
 }
 ```
 
-3. Create `template.handlebars`:
-```handlebars
-<script>
-import React from 'react';
-import { [ComponentName], [SubComponent] } from '@/components/ui/[component-name]';
+**Notes on `meta.json`:**
+- `title`: Short, descriptive title
+- `description`: Clear explanation of what the example demonstrates
+- `argTypes`: (optional) Interactive controls - only include if example has controllable props
+- `reactLive`: **REQUIRED** - Maps ALL component names used in template to their import paths
+  - Use `@/components/ui/[component-name]` format
+  - Include all sub-components from the same component
+  - Include any external components used (Button, Text, Icon, etc.)
 
-const Example = () => {
+3. **Create `template.handlebars`** following this EXACT format:
+
+```handlebars
+ function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
-    <[ComponentName]>
-      <[SubComponent]>
-        Content here
-      </[SubComponent]>
+    <[ComponentName] size="{{size}}">
+      <[SubComponent1]>
+        <Text>Content here</Text>
+      </[SubComponent1]
+      <[SubComponent2]>
+        More content
+      </[SubComponent2]>
     </[ComponentName]>
   );
-};
+}
+```
 
-export default Example;
-</script>
+**CRITICAL rules for `template.handlebars`:**
+- ✅ Start with a SINGLE SPACE then `function Example()`
+- ✅ NO imports - they come from `reactLive` in meta.json
+- ✅ Use Handlebars variables for argTypes: `{{size}}`, `{{variant}}`, etc.
+- ✅ Return JSX directly (can wrap in `<>...</>` if multiple root elements)
+- ✅ Use React hooks (useState, useEffect, etc.) - React is available globally
+- ❌ NO `import` statements
+- ❌ NO `export default`
+- ❌ NO script tags
+
+**Example of a complete working example:**
+
+`examples/basic/meta.json`:
+```json
+{
+  "title": "Basic",
+  "description": "A simple example showing the component in its default state",
+  "argTypes": {},
+  "reactLive": {
+    "Accordion": "@/components/ui/accordion",
+    "AccordionItem": "@/components/ui/accordion",
+    "AccordionHeader": "@/components/ui/accordion",
+    "AccordionTrigger": "@/components/ui/accordion",
+    "AccordionTitleText": "@/components/ui/accordion",
+    "AccordionContent": "@/components/ui/accordion",
+    "AccordionContentText": "@/components/ui/accordion",
+    "AccordionIcon": "@/components/ui/accordion",
+    "AddIcon": "@/components/ui/icon",
+    "RemoveIcon": "@/components/ui/icon"
+  }
+}
+```
+
+`examples/basic/template.handlebars`:
+```handlebars
+ function Example() {
+  return (
+    <Accordion className="w-[90%] m-5">
+      <AccordionItem value="item-1">
+        <AccordionHeader>
+          <AccordionTrigger>
+            {({ isExpanded }) => (
+              <>
+                <AccordionTitleText>
+                  How do I get started?
+                </AccordionTitleText>
+                {isExpanded ? (
+                  <AccordionIcon as={RemoveIcon} />
+                ) : (
+                  <AccordionIcon as={AddIcon} />
+                )}
+              </>
+            )}
+          </AccordionTrigger>
+        </AccordionHeader>
+        <AccordionContent>
+          <AccordionContentText>
+            To get started, follow our quick start guide.
+          </AccordionContentText>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}
 ```
 
 **Step 6.5: Create Documentation**
+
+**CRITICAL: Follow exact format from CONTRIBUTING.md and existing components!**
 
 Create `src/components/ui/[component-name]/docs/index.mdx`:
 
 ```mdx
 ---
-title: [ComponentName] | gluestack-ui
-description: A description of the component
+title: [ComponentName] Component | gluestack-ui | Installation, Usage & API
+
+description: [SEO-friendly description of the component, its use cases, and platforms]
+
+pageTitle: [ComponentName]
+
+pageDescription: [Same as description above]
+
+showHeader: true
 ---
-
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
-
-<Meta title="[ComponentName]" />
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { Tabs, TabItem } from '@/docs-components/tabs';
 
 # [ComponentName]
 
-Description of what the component does.
+[Brief description of what the component does and its main use cases]
+
+This is an illustration of **[ComponentName]** component.
 
 /// {Example:basic} ///
 
+<br />
 ## Installation
 
 <Tabs>
-<TabItem value="cli" label="CLI">
-
+<TabItem label="CLI">
 ### Run the following command:
-\`\`\`bash
-npx gluestack-ui add [component-name]
-\`\`\`
-
+<CodeBlock code={\`\${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add [component-name]\`} language="bash" />
 </TabItem>
-<TabItem value="manual" label="Manual">
+<TabItem label="Manual">
 
-### Install dependencies:
+### Step 1: Install the following dependencies:
+
 \`\`\`bash
-npm install [dependencies]
+npm i [list dependencies if any, e.g., @expo/html-elements]
 \`\`\`
 
-### Copy and paste the component:
-Copy from src/components/ui/[component-name]/index.tsx
+### Step 2: Copy and paste the following code into your project.
+
+\`\`\`jsx
+%%-- File: src/components/ui/[component-name]/index.tsx --%%
+\`\`\`
+
+### Step 3: Update the import paths to match your project setup.
 
 </TabItem>
 </Tabs>
 
-## Usage
-
-\`\`\`jsx
-import { [ComponentName] } from '@/components/ui/[component-name]';
-
-<[ComponentName]>
-  Content
-</[ComponentName]>
-\`\`\`
-
 ## API Reference
 
-### [ComponentName]
+To use this component in your project, include the following import statement in your file.
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| size | 'sm' \| 'md' \| 'lg' | 'md' | Size variant |
-| variant | 'default' \| 'outline' | 'default' | Visual variant |
+\`\`\`ts
+import {
+  [ComponentName],
+  [SubComponent1],
+  [SubComponent2],
+} from '@/components/ui/[component-name]';
+\`\`\`
 
-[Add all props...]
+\`\`\`ts
+export default () => (
+  <[ComponentName]>
+    <[SubComponent1]>
+      <[SubComponent2] />
+    </[SubComponent1]>
+  </[ComponentName]>
+);
+\`\`\`
 
-## Accessibility
+### Component Props
 
-- Supports keyboard navigation
-- ARIA labels included
-- Screen reader friendly
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
 
-## Examples
+#### [ComponentName]
 
-### Basic
-/// {Example:basic} ///
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-### Customized
+<br />
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>"sm" | "md" | "lg"</TableCell>
+        <TableCell>"md"</TableCell>
+        <TableCell>
+          The size of the component.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>variant</InlineCode>
+        </TableCell>
+        <TableCell>"default" | "outline"</TableCell>
+        <TableCell>"default"</TableCell>
+        <TableCell>
+          The visual variant of the component.
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### [SubComponent1]
+
+[Description of what this sub-component does]
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>propName</InlineCode>
+        </TableCell>
+        <TableCell>type</TableCell>
+        <TableCell>default</TableCell>
+        <TableCell>
+          Description of the prop
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+[Repeat for each sub-component...]
+
+### Accessibility
+
+Adheres to the [ComponentName] [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/[pattern-name]/).
+
+We have outlined the various features that ensure the [ComponentName] component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+- [Accessibility feature 1]
+- [Accessibility feature 2]
+- [Accessibility feature 3]
+
+### Keyboard Interactions
+
+- \`Space\` - [What happens when Space is pressed]
+- \`Enter\` - [What happens when Enter is pressed]
+- \`Tab\` - Moves focus to the next focusable element.
+- \`Shift + Tab\` - Moves focus to the previous focusable element.
+
+### Screen Reader
+
+- VoiceOver: [Describe what VoiceOver announces]
+
+### Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
 /// {Example:customized-component} ///
+
+/// {Example:with-variants} ///
+
+/// {Example:controlled} ///
+
+[Add more examples as needed...]
 ```
 
-**Step 6.6: Update Exports**
+**Documentation Best Practices (from CONTRIBUTING.md):**
+- ✅ Include comprehensive examples showing different variants and use cases
+- ✅ Document all props with types and descriptions using Table components
+- ✅ Provide accessibility guidelines following WAI-ARIA patterns
+- ✅ Include keyboard interactions section
+- ✅ Include screen reader behavior description
+- ✅ Include common patterns and best practices
+- ✅ Use the `/// {Example:example-name} ///` syntax to embed examples
+- ✅ Use proper frontmatter with title, description, pageTitle, pageDescription
+- ✅ Use \`<Tabs>\` and \`<TabItem>\` for CLI vs Manual installation
+- ✅ Use \`%%-- File: path --%%\` to include source code in manual installation
 
-1. Add to `src/components/ui/index.tsx`:
+**Step 6.6: Update Exports and Configuration**
+
+**CRITICAL: Update all necessary configuration files!**
+
+1. **Add to `src/components/ui/index.tsx`:**
 ```typescript
 export * from './[component-name]';
 ```
 
-2. Update `src/sidebar.json` to add component to navigation:
+2. **Update `src/sidebar.json`** to add component to documentation navigation:
+
+Find the appropriate section (e.g., "Components") and add:
 ```json
 {
   "title": "[ComponentName]",
-  "path": "/ui/[component-name]"
+  "path": "/ui/docs/components/[component-name]"
 }
 ```
 
-3. If dependencies needed, update `packages/gluestack-ui/src/dependencies.ts`
+**Note:** Follow the existing pattern in sidebar.json:
+- Use proper path format: `/ui/docs/components/[component-name]`
+- Place in the correct section based on component category
+- Maintain alphabetical order within the section
+- Use PascalCase for the title
+
+3. **If dependencies needed, update `packages/gluestack-ui/src/dependencies.ts`:**
+
+Add dependencies to the appropriate project types:
+```typescript
+const projectBasedDependencies: Dependencies = {
+  nextjs: {
+    dependencies: {
+      '[package-name]': '^x.x.x',
+    },
+  },
+  expo: {
+    dependencies: {
+      '[package-name]': '^x.x.x',
+    },
+  },
+  // ... other project types
+};
+```
+
+**Best Practices:**
+- ✅ Always update sidebar.json when adding new components
+- ✅ Use semantic versioning for dependencies
+- ✅ Only add dependencies if truly needed
+- ✅ Test that the component appears in documentation navigation after update
 
 **Step 6.7: Verify Build**
 
@@ -1177,11 +1531,36 @@ Go through this checklist:
 - [ ] Screen reader tested
 
 ### Documentation
-- [ ] docs/index.mdx created
-- [ ] Props documented in API table
-- [ ] Examples created (basic + advanced)
-- [ ] Installation instructions included
-- [ ] Sidebar.json updated
+- [ ] docs/index.mdx created following exact format from existing components
+- [ ] Frontmatter includes: title, description, pageTitle, pageDescription, showHeader
+- [ ] Proper imports for doc components (Table, InlineCode, Tabs, etc.)
+- [ ] Installation section with CLI and Manual tabs
+- [ ] Manual installation uses `%%-- File: path --%%` syntax
+- [ ] API Reference section with component anatomy
+- [ ] Props documented in Table components with proper structure
+- [ ] Accessibility section with WAI-ARIA pattern reference
+- [ ] Keyboard Interactions section documenting all keys
+- [ ] Screen Reader section describing VoiceOver behavior
+- [ ] Examples section using `/// {Example:name} ///` syntax
+- [ ] All sub-components documented with their own prop tables
+
+### Examples
+- [ ] At least 3-5 examples created (basic is REQUIRED)
+- [ ] Each example has meta.json with proper structure
+- [ ] meta.json includes title, description
+- [ ] meta.json includes reactLive section with ALL components used
+- [ ] template.handlebars follows exact format (space + function, no imports)
+- [ ] Examples use Handlebars variables for argTypes: `{{size}}`
+- [ ] Examples demonstrate different use cases and variants
+- [ ] Examples follow patterns from similar existing components
+- [ ] Stateful examples use React.useState properly
+- [ ] Examples are practical and realistic
+
+### Configuration Updates
+- [ ] Component exported from src/components/ui/index.tsx
+- [ ] Component added to src/sidebar.json with correct path
+- [ ] Sidebar entry in correct section and alphabetical order
+- [ ] Dependencies added to packages/gluestack-ui/src/dependencies.ts (if needed)
 
 ### Testing
 - [ ] Works in kitchen-sink (iOS, Android, Web)
@@ -1274,7 +1653,7 @@ Would you like me to help you create the PR?
 1. **NEVER skip user confirmations** - there are 6 checkpoints
 2. **ALWAYS read CONTRIBUTING.md** at the start
 3. **ALWAYS research similar components on the web** before designing (use WebSearch)
-4. **ALWAYS analyze existing components** for patterns
+4. **ALWAYS analyze existing components** for patterns - read their examples and docs!
 5. **ALWAYS use EnterPlanMode** at the beginning
 6. **ALWAYS use AskUserQuestion** for requirements including:
    - Component name and category
@@ -1295,9 +1674,19 @@ Would you like me to help you create the PR?
     - Scripts auto-generate deep import files
 11. **ALWAYS respect user's animation library choice** - if they want react-native-reanimated, don't use @legendapp/motion!
 12. **ALWAYS test in multiple apps** before finalizing
-13. **ALWAYS create complete documentation** with examples
-14. **ALWAYS follow the compound component API pattern** for multi-part components
-15. **ALWAYS discuss tradeoffs** before making design decisions
+13. **ALWAYS create complete documentation following exact format**:
+    - Use proper frontmatter (title, description, pageTitle, pageDescription, showHeader)
+    - Use Table components for props documentation
+    - Include Accessibility, Keyboard Interactions, Screen Reader sections
+    - Use `/// {Example:name} ///` to embed examples
+14. **ALWAYS create examples following exact format**:
+    - `meta.json` with title, description, argTypes (optional), reactLive (REQUIRED)
+    - `template.handlebars` starting with space + function, NO imports, NO exports
+    - Use Handlebars variables: `{{size}}`, `{{variant}}`
+    - List ALL components in reactLive section
+15. **ALWAYS follow the compound component API pattern** for multi-part components
+16. **ALWAYS discuss tradeoffs** before making design decisions
+17. **ALWAYS update sidebar.json** with correct path format: `/ui/docs/components/[component-name]`
 
 ## Error Recovery
 
