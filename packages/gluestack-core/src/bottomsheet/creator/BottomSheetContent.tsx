@@ -14,14 +14,6 @@ import { mergeRefs, findNodeHandle } from '@gluestack-ui/utils/common';
 import { useDialog } from '@gluestack-ui/utils/aria';
 import { usePreventScroll } from '../../overlay/aria';
 
-// Dimensions not giving proper window height on web
-const windowHeight =
-  Platform.OS === 'web'
-    ? typeof window !== 'undefined'
-      ? window.innerHeight
-      : Dimensions.get('screen').height
-    : Dimensions.get('screen').height;
-
 function BottomSheetContent(
   StyledBottomSheetContent: any
 ) {
@@ -60,11 +52,47 @@ function BottomSheetContent(
 
       const [activeSnapIndex, setActiveSnapIndex] = React.useState(snapToIndex);
 
+      // Track window height dynamically for orientation changes
+      const [windowHeight, setWindowHeight] = React.useState(() =>
+        Platform.OS === 'web'
+          ? typeof window !== 'undefined'
+            ? window.innerHeight
+            : Dimensions.get('window').height
+          : Dimensions.get('window').height
+      );
+
       // Calculate the maximum snap point height
       const maxSnapPoint = React.useMemo(() => {
         if (!snapPoints || snapPoints.length === 0) return 100;
         return Math.max(...snapPoints);
       }, [snapPoints]);
+
+      // Handle orientation/dimension changes
+      React.useEffect(() => {
+        const handleDimensionChange = ({ window: windowDim }: any) => {
+          const newHeight =
+            Platform.OS === 'web' && typeof window !== 'undefined'
+              ? (window as any).innerHeight || windowDim.height
+              : windowDim.height;
+
+          setWindowHeight(newHeight);
+
+          // Recalculate position for current snap point
+          if (visible && snapPoints && snapPoints.length > 0) {
+            const maxHeight = (maxSnapPoint * newHeight) / 100;
+            const currentSnapPoint = snapPoints[activeSnapIndex] || snapPoints[0];
+            const targetY = maxHeight - (currentSnapPoint * newHeight) / 100;
+
+            pan.setValue({ x: 0, y: targetY });
+          }
+        };
+
+        const subscription = Dimensions.addEventListener('change', handleDimensionChange);
+
+        return () => {
+          subscription?.remove();
+        };
+      }, [visible, snapPoints, activeSnapIndex, maxSnapPoint, pan]);
 
       // Reset active snap index and position when sheet opens
       React.useEffect(() => {
@@ -78,7 +106,7 @@ function BottomSheetContent(
 
           pan.setValue({ x: 0, y: offset });
         }
-      }, [visible, snapToIndex, snapPoints, maxSnapPoint, pan]);
+      }, [visible, snapToIndex, snapPoints, maxSnapPoint, pan, windowHeight]);
 
       const handleCloseCallback = React.useCallback(handleClose, [
         BottomSheetContext,
@@ -95,7 +123,7 @@ function BottomSheetContent(
           snapPoints.length - 1
         );
         return windowHeight - (snapPoints[snapPointIndex] * windowHeight) / 100;
-      }, [snapPoints, snapToIndex, animatedViewSheetHeight, contentSheetHeightState]);
+      }, [snapPoints, snapToIndex, animatedViewSheetHeight, contentSheetHeightState, windowHeight]);
 
       const contentRef = React.useRef(null);
       React.useEffect(() => {
@@ -144,6 +172,7 @@ function BottomSheetContent(
               activeSnapIndex={activeSnapIndex}
               setActiveSnapIndex={setActiveSnapIndex}
               maxSnapPoint={maxSnapPoint}
+              windowHeight={windowHeight}
             >
               {children}
             </BottomSheetContentProvider>
@@ -196,6 +225,7 @@ function BottomSheetContent(
               activeSnapIndex={activeSnapIndex}
               setActiveSnapIndex={setActiveSnapIndex}
               maxSnapPoint={maxSnapPoint}
+              windowHeight={windowHeight}
             >
               {focusScope ? (
                 <FocusScope

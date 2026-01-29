@@ -1,13 +1,6 @@
 import React, { forwardRef } from 'react';
-import { Animated, Dimensions, PanResponder, Platform } from 'react-native';
+import { Animated, PanResponder } from 'react-native';
 import { useBottomSheetContent } from './BottomSheetContentContext';
-
-const windowHeight =
-  Platform.OS === 'web'
-    ? typeof window !== 'undefined'
-      ? window.innerHeight
-      : Dimensions.get('window').height
-    : Dimensions.get('window').height;
 
 export function BottomSheetDragIndicatorWrapper<T>(
   StyledBottomSheetDragIndicatorWrapper: React.ComponentType<T>
@@ -22,6 +15,7 @@ export function BottomSheetDragIndicatorWrapper<T>(
       activeSnapIndex,
       setActiveSnapIndex,
       maxSnapPoint,
+      windowHeight,
     } = useBottomSheetContent('BottomSheetContentContext');
 
     // Keep handleClose ref updated to avoid capturing stale state
