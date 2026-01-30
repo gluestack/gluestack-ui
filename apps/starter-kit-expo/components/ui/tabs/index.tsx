@@ -12,15 +12,16 @@ import { cssInterop } from 'nativewind';
 import { Pressable, Text, View, FlatList } from 'react-native';
 import Animated, {
   useAnimatedStyle,
-  withTiming,
   useSharedValue,
-  Easing,
   withSpring,
+  useAnimatedScrollHandler,
+  runOnJS,
 } from 'react-native-reanimated';
 import { TabsAnimatedIndicator } from './TabsAnimatedIndicator';
 
 const SCOPE = 'TABS';
 const AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 /** Styles */
 
@@ -183,13 +184,18 @@ const TabsList = React.forwardRef<
 
   const { orientation, setScrollOffset, selectedKey } = context;
 
-  // Store container ref in context for position measurements
+  // Create animated scroll offset shared value for synchronized scrolling
+  const animatedScrollOffset = useSharedValue(0);
+
+  // Store container ref and animated scroll offset in context for position measurements
   React.useEffect(() => {
     if (containerRef.current && context) {
       // @ts-ignore
       context.listRef = containerRef;
+      // @ts-ignore - Store animated scroll offset for indicator synchronization
+      context.animatedScrollOffset = animatedScrollOffset;
     }
-  }, [context]);
+  }, [context, animatedScrollOffset]);
 
   // Scroll to selected tab when it changes
   useEffect(() => {
@@ -203,25 +209,35 @@ const TabsList = React.forwardRef<
       );
 
       if (selectedIndex >= 0 && flatListRef.current) {
-        setTimeout(() => {
-          flatListRef.current?.scrollToIndex({
-            index: selectedIndex,
-            animated: true,
-            viewPosition: 0.5, // Center the item
-          });
-        },10);
+        // Use a longer timeout to ensure FlatList is fully mounted
+        const timer = setTimeout(() => {
+          try {
+            flatListRef.current?.scrollToIndex({
+              index: selectedIndex,
+              animated: true,
+              viewPosition: 0.5, // Center the item
+            });
+          } catch (error) {
+            // Silently handle error - normal on first render
+            console.warn('scrollToIndex failed:', error);
+          }
+        }, 100);
+
+        return () => clearTimeout(timer);
       }
     }
   }, [selectedKey, orientation, children]);
 
-  // Handle scroll to track offset
-  const handleScroll = useCallback(
-    (event: any) => {
-      const offsetX = event.nativeEvent.contentOffset.x;
-      setScrollOffset(offsetX);
+  // Animated scroll handler for synchronized scrolling with indicator
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      'worklet';
+      animatedScrollOffset.value = event.contentOffset.x;
+      // Also update context for backward compatibility with non-animated code
+      // Use runOnJS to call JS function from worklet
+      runOnJS(setScrollOffset)(event.contentOffset.x);
     },
-    [setScrollOffset]
-  );
+  });
 
   // Use FlatList for horizontal tabs
   if (orientation === 'horizontal') {
@@ -235,7 +251,7 @@ const TabsList = React.forwardRef<
 
     return (
       <View ref={containerRef} className={tabsListStyle({ orientation, class: className })}>
-        <FlatList
+        <AnimatedFlatList
           ref={flatListRef}
           data={triggers}
           horizontal
@@ -244,15 +260,23 @@ const TabsList = React.forwardRef<
             item?.props?.value || `tab-${index}`
           }
           renderItem={({ item }) => item as any}
-          onScroll={handleScroll}
+          onScroll={scrollHandler}
           scrollEventThrottle={16}
           onScrollToIndexFailed={(info) => {
-            setTimeout(() => {
-              flatListRef.current?.scrollToIndex({
-                index: info.index,
-                animated: true,
-              });
-            }, 1000);
+            // Wait for the list to settle and retry
+            const wait = new Promise((resolve) => setTimeout(resolve, 500));
+            wait.then(() => {
+              try {
+                flatListRef.current?.scrollToIndex({
+                  index: info.index,
+                  animated: false,
+                  viewPosition: 0.5,
+                });
+              } catch (error) {
+                // Silently handle retry failure
+                console.warn('Retry scrollToIndex failed');
+              }
+            });
           }}
           {...props}
         />
@@ -390,7 +414,7 @@ const TabsIndicator = React.forwardRef<
   ITabsIndicatorProps
 >(({ className, ...props }, ref) => {
   const context = React.useContext(TabsContext);
- 
+
   const { variant } = useStyleContext(SCOPE);
 
   if (!context) {
@@ -398,6 +422,8 @@ const TabsIndicator = React.forwardRef<
   }
 
   const { selectedKey, orientation, triggerLayouts, scrollOffset } = context;
+  // @ts-ignore - Get animated scroll offset from context
+  const animatedScrollOffset = context.animatedScrollOffset;
 
   return (
     <TabsAnimatedIndicator
@@ -406,6 +432,7 @@ const TabsIndicator = React.forwardRef<
       orientation={orientation}
       triggerLayouts={triggerLayouts}
       scrollOffset={scrollOffset}
+      animatedScrollOffset={animatedScrollOffset}
       className={tabsIndicatorStyle({
         parentVariants: { variant },
         class: className,

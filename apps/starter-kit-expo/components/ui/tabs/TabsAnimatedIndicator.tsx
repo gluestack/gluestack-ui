@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
   withDelay,
   Easing,
+  SharedValue,
 } from 'react-native-reanimated';
 import type { LayoutData } from '@gluestack-ui/core/tabs/creator';
 import { tabsAnimationConfig } from './animation-config';
@@ -15,6 +15,7 @@ interface TabsAnimatedIndicatorProps {
   orientation: 'horizontal' | 'vertical';
   triggerLayouts: Map<any, LayoutData>;
   scrollOffset?: number;
+  animatedScrollOffset?: SharedValue<number>;
   className?: string;
   style?: any;
 }
@@ -29,9 +30,9 @@ export const TabsAnimatedIndicator = React.forwardRef<
       orientation,
       triggerLayouts,
       scrollOffset = 0,
+      animatedScrollOffset,
       className,
       style,
-      ...props
     },
     ref
   ) => {
@@ -40,6 +41,16 @@ export const TabsAnimatedIndicator = React.forwardRef<
     const animatedWidth = useSharedValue(0);
     const animatedHeight = useSharedValue(0);
     const [hasLayout, setHasLayout] = useState(false);
+
+    // Create a shared value for scroll offset to use in worklet
+    const scrollOffsetShared = useSharedValue(scrollOffset);
+
+    // Update scroll offset shared value when scrollOffset changes
+    useEffect(() => {
+      if (!animatedScrollOffset) {
+        scrollOffsetShared.value = scrollOffset;
+      }
+    }, [scrollOffset, scrollOffsetShared, animatedScrollOffset]);
 
     useEffect(() => {
       if (selectedKey && triggerLayouts.has(selectedKey)) {
@@ -52,12 +63,10 @@ export const TabsAnimatedIndicator = React.forwardRef<
             ? 0
             : tabsAnimationConfig.indicatorDuration;
 
-          // Adjust x position by scroll offset to get position relative to visible viewport
-          const adjustedX = layout.x - scrollOffset;
-
+          // Store the absolute x position (not adjusted for scroll)
           animatedX.value = withDelay(
             20,
-            withTiming(adjustedX, {
+            withTiming(layout.x, {
               duration: duration,
               easing: Easing.ease,
             })
@@ -83,7 +92,6 @@ export const TabsAnimatedIndicator = React.forwardRef<
     }, [
       selectedKey,
       triggerLayouts,
-      scrollOffset,
       hasLayout,
       animatedX,
       animatedY,
@@ -92,10 +100,16 @@ export const TabsAnimatedIndicator = React.forwardRef<
     ]);
 
     const animatedStyle = useAnimatedStyle(() => {
+      'worklet';
+      // Use animated scroll offset if available for smooth synchronization
+      const scrollOffsetValue = animatedScrollOffset
+        ? animatedScrollOffset.value
+        : scrollOffsetShared.value;
+
       if (orientation === 'horizontal') {
         return {
           transform: [
-            { translateX: animatedX.value },
+            { translateX: animatedX.value - scrollOffsetValue },
             { translateY: animatedY.value },
           ],
           width: animatedWidth.value,
@@ -111,12 +125,7 @@ export const TabsAnimatedIndicator = React.forwardRef<
           width: animatedWidth.value,
         };
       }
-    }, [
-      animatedX.value,
-      animatedY.value,
-      animatedWidth.value,
-      animatedHeight.value,
-    ]);
+    }, [orientation]);
 
     // Don't render indicator until we have valid layout data
     if (!hasLayout) {
@@ -125,17 +134,18 @@ export const TabsAnimatedIndicator = React.forwardRef<
 
     return (
       <Animated.View
+        ref={ref}
         className={className}
         style={[
           animatedStyle,
-
+          style,
           {
             borderWidth: 2,
             borderColor: 'red',
             position: 'absolute',
           },
         ]}
-      ></Animated.View>
+      />
     );
   }
 );
