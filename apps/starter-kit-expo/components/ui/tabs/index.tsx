@@ -9,7 +9,7 @@ import {
   type VariantProps,
 } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import { Pressable, Text, View, FlatList } from 'react-native';
+import { Pressable, Text, View, FlatList, Platform } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -22,7 +22,7 @@ import { TabsAnimatedIndicator } from './TabsAnimatedIndicator';
 const SCOPE = 'TABS';
 const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-
+Platform.OS === 'web' ? cssInterop(AnimatedView,{className:{target:'style'}}) : AnimatedView
 /** Styles */
 
 const tabsStyle = tva({

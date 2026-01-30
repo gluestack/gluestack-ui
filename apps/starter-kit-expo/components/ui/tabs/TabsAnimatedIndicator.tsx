@@ -9,6 +9,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import type { LayoutData } from '@gluestack-ui/core/tabs/creator';
 import { tabsAnimationConfig } from './animation-config';
+import { Platform } from 'react-native';
+import { cssInterop } from 'nativewind';
 
 interface TabsAnimatedIndicatorProps {
   selectedKey: any;
@@ -19,7 +21,7 @@ interface TabsAnimatedIndicatorProps {
   className?: string;
   style?: any;
 }
-
+Platform.OS === 'web' ? cssInterop(Animated.View,{className:{target:'style'}}) : Animated.View
 export const TabsAnimatedIndicator = React.forwardRef<
   any,
   TabsAnimatedIndicatorProps
