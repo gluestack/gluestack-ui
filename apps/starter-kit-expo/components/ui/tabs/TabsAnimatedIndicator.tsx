@@ -24,7 +24,15 @@ export const TabsAnimatedIndicator = React.forwardRef<
   TabsAnimatedIndicatorProps
 >(
   (
-    { selectedKey, orientation, triggerLayouts, scrollOffset = 0, className, style, ...props },
+    {
+      selectedKey,
+      orientation,
+      triggerLayouts,
+      scrollOffset = 0,
+      className,
+      style,
+      ...props
+    },
     ref
   ) => {
     const animatedX = useSharedValue(0);
@@ -36,7 +44,6 @@ export const TabsAnimatedIndicator = React.forwardRef<
     useEffect(() => {
       if (selectedKey && triggerLayouts.has(selectedKey)) {
         const layout = triggerLayouts.get(selectedKey);
-
 
         if (layout && layout.width > 0) {
           // Determine if this is the first time we're setting values
@@ -51,20 +58,28 @@ export const TabsAnimatedIndicator = React.forwardRef<
           animatedX.value = withDelay(
             20,
             withTiming(adjustedX, {
-              duration:100,
+              duration: duration,
               easing: Easing.ease,
             })
           );
-          animatedY.value = withTiming(layout.y, { duration:100, easing: Easing.ease });
-          animatedWidth.value = withTiming(layout.width, { duration:100, easing: Easing.ease });
-          animatedHeight.value = withTiming(layout.height, { duration:100, easing: Easing.ease });
+          animatedY.value = withTiming(layout.y, {
+            duration: duration,
+            easing: Easing.ease,
+          });
+          animatedWidth.value = withTiming(layout.width, {
+            duration: duration,
+            easing: Easing.ease,
+          });
+          animatedHeight.value = withTiming(layout.height, {
+            duration: duration,
+            easing: Easing.ease,
+          });
 
           if (!hasLayout) {
             setHasLayout(true);
           }
         }
       }
-
     }, [
       selectedKey,
       triggerLayouts,
@@ -79,13 +94,19 @@ export const TabsAnimatedIndicator = React.forwardRef<
     const animatedStyle = useAnimatedStyle(() => {
       if (orientation === 'horizontal') {
         return {
-          transform: [{ translateX: animatedX.value }, { translateY: animatedY.value }],
+          transform: [
+            { translateX: animatedX.value },
+            { translateY: animatedY.value },
+          ],
           width: animatedWidth.value,
           height: animatedHeight.value,
         };
       } else {
         return {
-          transform: [{ translateY: animatedY.value }, { translateX: animatedX.value }],
+          transform: [
+            { translateY: animatedY.value },
+            { translateX: animatedX.value },
+          ],
           height: animatedHeight.value,
           width: animatedWidth.value,
         };
@@ -104,20 +125,17 @@ export const TabsAnimatedIndicator = React.forwardRef<
 
     return (
       <Animated.View
-      className={className}
+        className={className}
         style={[
           animatedStyle,
 
           {
- borderWidth:2,
- borderColor:'red',
+            borderWidth: 2,
+            borderColor: 'red',
             position: 'absolute',
-          
           },
         ]}
-      >
-      
-      </Animated.View>
+      ></Animated.View>
     );
   }
 );
