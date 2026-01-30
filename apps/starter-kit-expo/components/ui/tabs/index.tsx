@@ -10,10 +10,15 @@ import {
 } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import { Pressable, Text, View, FlatList } from 'react-native';
-import Animated from 'react-native-reanimated';
+import Animated, {
+  useAnimatedStyle,
+  withTiming,
+  useSharedValue,
+} from 'react-native-reanimated';
 import { TabsAnimatedIndicator } from './TabsAnimatedIndicator';
 
 const SCOPE = 'TABS';
+const AnimatedView = Animated.createAnimatedComponent(View);
 
 /** Styles */
 
@@ -72,6 +77,10 @@ const tabsContentStyle = tva({
   base: 'pt-4',
 });
 
+const tabsContentWrapperStyle = tva({
+  base: 'overflow-hidden',
+});
+
 const tabsIndicatorStyle = tva({
   base: 'pointer-events-none rounded-full',
   parentVariants: {
@@ -91,6 +100,7 @@ const UITabs = createTabs({
   List: View,
   Trigger: Pressable,
   Content: View,
+  ContentWrapper: AnimatedView,
   TriggerText: Text,
   TriggerIcon: UIIcon,
   Indicator: View,
@@ -122,6 +132,10 @@ type ITabsListProps = React.ComponentPropsWithoutRef<typeof UITabs.List>;
 type ITabsTriggerProps = React.ComponentPropsWithoutRef<typeof UITabs.Trigger>;
 
 type ITabsContentProps = React.ComponentPropsWithoutRef<typeof UITabs.Content>;
+
+type ITabsContentWrapperProps = React.ComponentPropsWithoutRef<
+  typeof UITabs.ContentWrapper
+>;
 
 type ITabsTriggerTextProps = React.ComponentPropsWithoutRef<
   typeof UITabs.TriggerText
@@ -288,6 +302,51 @@ const TabsContent = React.forwardRef<
   );
 });
 
+const TabsContentWrapper = React.forwardRef<
+  React.ComponentRef<typeof UITabs.ContentWrapper>,
+  ITabsContentWrapperProps
+>(({ className, targetHeight, ...props }: any, ref) => {
+  const context = React.useContext(TabsContext);
+
+  // Get the height of the selected content from the layouts Map
+  const selectedLayout = context?.selectedKey
+    ? context.contentLayouts.get(context.selectedKey)
+    : null;
+  const height = selectedLayout?.height || 0;
+
+  // Use shared value for Reanimated
+  const heightValue = useSharedValue(height);
+
+  // Update shared value when height changes
+  React.useEffect(() => {
+
+    if (height > 0) {
+      heightValue.value = height;
+    
+    }
+  }, [height, heightValue]);
+
+ 
+
+  // Animated style for height transitions
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      height: withTiming(heightValue.value, {
+        duration: 100,
+      })
+    };
+  },[heightValue]);
+
+  return (
+    <UITabs.ContentWrapper
+      ref={ref}
+      style={animatedStyle}
+      {...props}
+      className={tabsContentWrapperStyle({ class: className })}
+    />
+  );
+});
+
 const TabsTriggerText = React.forwardRef<
   React.ComponentRef<typeof UITabs.TriggerText>,
   ITabsTriggerTextProps
@@ -329,6 +388,7 @@ const TabsIndicator = React.forwardRef<
   ITabsIndicatorProps
 >(({ className, ...props }, ref) => {
   const context = React.useContext(TabsContext);
+ 
   const { variant } = useStyleContext(SCOPE);
 
   if (!context) {
@@ -357,6 +417,7 @@ Tabs.displayName = 'Tabs';
 TabsList.displayName = 'TabsList';
 TabsTrigger.displayName = 'TabsTrigger';
 TabsContent.displayName = 'TabsContent';
+TabsContentWrapper.displayName = 'TabsContentWrapper';
 TabsTriggerText.displayName = 'TabsTriggerText';
 TabsTriggerIcon.displayName = 'TabsTriggerIcon';
 TabsIndicator.displayName = 'TabsIndicator';
@@ -366,6 +427,7 @@ export {
   TabsList,
   TabsTrigger,
   TabsContent,
+  TabsContentWrapper,
   TabsTriggerText,
   TabsTriggerIcon,
   TabsIndicator,

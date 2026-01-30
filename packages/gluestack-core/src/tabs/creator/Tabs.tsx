@@ -40,6 +40,11 @@ export const Tabs = (StyledTabs: any) =>
         Map<Key, LayoutData>
       >(new Map());
 
+      // Layout tracking for content heights
+      const [contentLayouts, setContentLayouts] = useState<
+        Map<Key, LayoutData>
+      >(new Map());
+
       // Scroll offset for FlatList positioning
       const [scrollOffset, setScrollOffset] = useState<number>(0);
 
@@ -59,6 +64,22 @@ export const Tabs = (StyledTabs: any) =>
         });
       }, []);
 
+      const registerContent = useCallback((key: Key, layout: LayoutData) => {
+        setContentLayouts((prev) => {
+          const next = new Map(prev);
+          next.set(key, layout);
+          return next;
+        });
+      }, []);
+
+      const unregisterContent = useCallback((key: Key) => {
+        setContentLayouts((prev) => {
+          const next = new Map(prev);
+          next.delete(key);
+          return next;
+        });
+      }, []);
+
       const contextValue = useMemo(
         () => ({
           selectedKey,
@@ -69,6 +90,9 @@ export const Tabs = (StyledTabs: any) =>
           triggerLayouts,
           registerTrigger,
           unregisterTrigger,
+          contentLayouts,
+          registerContent,
+          unregisterContent,
           scrollOffset,
           setScrollOffset,
         }),
@@ -81,6 +105,9 @@ export const Tabs = (StyledTabs: any) =>
           triggerLayouts,
           registerTrigger,
           unregisterTrigger,
+          contentLayouts,
+          registerContent,
+          unregisterContent,
           scrollOffset,
           setScrollOffset,
         ]

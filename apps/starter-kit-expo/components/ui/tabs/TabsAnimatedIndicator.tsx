@@ -36,7 +36,7 @@ export const TabsAnimatedIndicator = React.forwardRef<
     useEffect(() => {
       if (selectedKey && triggerLayouts.has(selectedKey)) {
         const layout = triggerLayouts.get(selectedKey);
-        console.log(triggerLayouts)
+
 
         if (layout && layout.width > 0) {
           // Determine if this is the first time we're setting values
