@@ -14,6 +14,8 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
   useSharedValue,
+  Easing,
+  withSpring,
 } from 'react-native-reanimated';
 import { TabsAnimatedIndicator } from './TabsAnimatedIndicator';
 
@@ -331,7 +333,7 @@ const TabsContentWrapper = React.forwardRef<
   // Animated style for height transitions
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      height: withTiming(heightValue.value, {
+      height: withSpring(heightValue.value, {
         duration: 100,
       })
     };

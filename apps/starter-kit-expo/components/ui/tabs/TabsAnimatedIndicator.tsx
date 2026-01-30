@@ -55,9 +55,9 @@ export const TabsAnimatedIndicator = React.forwardRef<
               easing: Easing.ease,
             })
           );
-          animatedY.value = withTiming(layout.y, { duration });
-          animatedWidth.value = withTiming(layout.width, { duration });
-          animatedHeight.value = withTiming(layout.height, { duration });
+          animatedY.value = withTiming(layout.y, { duration:100, easing: Easing.ease });
+          animatedWidth.value = withTiming(layout.width, { duration:100, easing: Easing.ease });
+          animatedHeight.value = withTiming(layout.height, { duration:100, easing: Easing.ease });
 
           if (!hasLayout) {
             setHasLayout(true);
