@@ -53,7 +53,7 @@ export default function Tab1() {
 
         <TabsContentWrapper className="border border-input">
           <TabsContent value="account">
-            <View className="p-4">
+            <View className="p-1">
               <Text className="text-foreground font-semibold mb-2">
                 Account Settings
               </Text>
@@ -67,7 +67,7 @@ export default function Tab1() {
           </TabsContent>
 
           <TabsContent value="password">
-            <View className="p-4">
+            <View className="p-1">
               <Text className="text-foreground font-semibold mb-2">
                 Password Settings
               </Text>
@@ -78,7 +78,7 @@ export default function Tab1() {
           </TabsContent>
 
           <TabsContent value="team">
-            <View className="p-4">
+            <View className="">
               <Text className="text-foreground font-semibold mb-2">
                 Team Settings
               </Text>
@@ -89,7 +89,7 @@ export default function Tab1() {
           </TabsContent>
 
           <TabsContent value="billing">
-            <View className="p-4">
+            <View className="">
               <Text className="text-foreground font-semibold mb-2">
                 Billing Settings
               </Text>
@@ -100,7 +100,7 @@ export default function Tab1() {
           </TabsContent>
 
           <TabsContent value="notifications">
-            <View className="p-4">
+            <View className="">
               <Text className="text-foreground font-semibold mb-2">
                 Notification Settings
               </Text>
@@ -111,7 +111,7 @@ export default function Tab1() {
           </TabsContent>
 
           <TabsContent value="security">
-            <View className="p-4">
+            <View className="">
               <Text className="text-foreground font-semibold mb-2">
                 Security Settings
               </Text>
@@ -122,7 +122,7 @@ export default function Tab1() {
           </TabsContent>
 
           <TabsContent value="integrations">
-            <View className="p-4">
+            <View className="">
               <Text className="text-foreground font-semibold mb-2">
                 Integrations
               </Text>
@@ -133,7 +133,7 @@ export default function Tab1() {
           </TabsContent>
 
           <TabsContent value="appearance">
-            <View className="p-4">
+            <View className="">
               <Text className="text-foreground font-semibold mb-2">
                 Appearance Settings
               </Text>

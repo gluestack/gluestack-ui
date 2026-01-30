@@ -26,11 +26,11 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 /** Styles */
 
 const tabsStyle = tva({
-  base: 'w-full',
+  base: 'w-full gap-1',
 });
 
 const tabsListStyle = tva({
-  base: 'flex relative z-10 bg-muted p-1',
+  base: 'flex relative z-10 bg-muted p-1 rounded-lg',
   variants: {
     orientation: {
       horizontal: 'flex-row',
@@ -40,13 +40,8 @@ const tabsListStyle = tva({
 });
 
 const tabsTriggerStyle = tva({
-  base: 'justify-center relative z-30 items-center web:outline-none data-[disabled=true]:opacity-40 data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary/20',
+  base: 'justify-center relative z-30 items-center web:outline-none data-[disabled=true]:opacity-40 data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary/20  px-3 py-1.5',
   parentVariants: {
-    size: {
-      sm: 'px-3 py-2 gap-1',
-      md: 'px-4 py-2.5 gap-2',
-      lg: 'px-5 py-3 gap-2',
-    },
     variant: {
       underlined: '',
       filled: 'rounded-lg',
@@ -56,40 +51,28 @@ const tabsTriggerStyle = tva({
 
 const tabsTriggerTextStyle = tva({
   base: 'text-foreground/70 data-[selected=true]:text-foreground font-medium data-[hover=true]:text-foreground/90 ',
-  parentVariants: {
-    size: {
-      sm: 'text-sm',
-      md: 'text-base',
-      lg: 'text-lg',
-    },
-  },
+ 
 });
 
 const tabsTriggerIconStyle = tva({
   base: 'text-foreground/70 data-[selected=true]:text-foreground fill-none',
-  parentVariants: {
-    size: {
-      sm: 'h-4 w-4',
-      md: 'h-5 w-5',
-      lg: 'h-6 w-6',
-    },
-  },
+
 });
 
 const tabsContentStyle = tva({
-  base: 'pt-4',
+  base: 'p-2 h-auto',
 });
 
 const tabsContentWrapperStyle = tva({
-  base: 'overflow-hidden',
+  base: 'overflow-hidden rounded-lg',
 });
 
 const tabsIndicatorStyle = tva({
-  base: 'pointer-events-none  rounded-full',
+  base: 'pointer-events-none  rounded-lg',
   parentVariants: {
     variant: {
       underlined: 'border-b-2 border-primary',
-      filled: 'bg-background/50 z-20',
+      filled: 'bg-background z-20',
     },
   },
 });
@@ -127,7 +110,7 @@ cssInterop(PrimitiveIcon, {
 type ITabsProps = React.ComponentPropsWithoutRef<typeof UITabs> &
   VariantProps<typeof tabsStyle> & {
     variant?: 'underlined' | 'filled';
-    size?: 'sm' | 'md' | 'lg';
+   
   };
 
 type ITabsListProps = React.ComponentPropsWithoutRef<typeof UITabs.List>;
@@ -159,14 +142,14 @@ type ITabsIndicatorProps = React.ComponentPropsWithoutRef<
 /** Components */
 
 const Tabs = React.forwardRef<React.ComponentRef<typeof UITabs>, ITabsProps>(
-  ({ className, variant = 'underlined', size = 'md', ...props }, ref) => {
+  ({ className, variant = 'underlined', ...props }, ref) => {
     return (
       <UITabs
         ref={ref}
         {...props}
         className={tabsStyle({ class: className })}
         // @ts-ignore - pass variants to context
-        context={{ variant, size }}
+        context={{ variant}}
       />
     );
   }
@@ -302,14 +285,14 @@ const TabsTrigger = React.forwardRef<
   React.ComponentRef<typeof UITabs.Trigger>,
   ITabsTriggerProps
 >(({ className, ...props }, ref) => {
-  const { variant, size } = useStyleContext(SCOPE);
+  const { variant } = useStyleContext(SCOPE);
 
   return (
     <UITabs.Trigger
       ref={ref}
       {...props}
       className={tabsTriggerStyle({
-        parentVariants: { variant, size },
+        parentVariants: { variant  },
         class: className,
       })}
     />
@@ -378,14 +361,14 @@ const TabsTriggerText = React.forwardRef<
   React.ComponentRef<typeof UITabs.TriggerText>,
   ITabsTriggerTextProps
 >(({ className, ...props }, ref) => {
-  const { size } = useStyleContext(SCOPE);
+  
 
   return (
     <UITabs.TriggerText
       ref={ref}
       {...props}
       className={tabsTriggerTextStyle({
-        parentVariants: { size },
+       
         class: className,
       })}
     />
@@ -396,14 +379,14 @@ const TabsTriggerIcon = React.forwardRef<
   React.ComponentRef<typeof UITabs.TriggerIcon>,
   ITabsTriggerIconProps
 >(({ className, ...props }, ref) => {
-  const { size } = useStyleContext(SCOPE);
+ 
 
   return (
     <UITabs.TriggerIcon
       ref={ref}
       {...props}
       className={tabsTriggerIconStyle({
-        parentVariants: { size },
+      
         class: className,
       })}
     />
