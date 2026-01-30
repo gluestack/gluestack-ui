@@ -70,6 +70,10 @@ export default function ComponentsLayout() {
       }}
     >
       <Stack.Screen
+        name="index"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name="accordion"
         options={{
           header: () => <CustomHeader title="Accordion" />,

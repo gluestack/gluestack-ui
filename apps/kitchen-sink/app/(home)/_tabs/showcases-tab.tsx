@@ -71,9 +71,9 @@ const ShowcaseCard = memo(
     const { width, height } = useWindowDimensions();
     const applyOpacity = reduceTransparencyEnabled;
 
-    const cardWidth = width * 0.6;
-    const cardHeight = height * 0.6;
-    const SCALE = 0.6;
+    const cardWidth = width * 0.7;
+    const cardHeight = height * 0.7;
+    const SCALE = 0.7;
 
     const animatedStyle = useAnimatedStyle(() => {
       const inputRange = [
@@ -87,7 +87,7 @@ const ShowcaseCard = memo(
           ? interpolate(
               scrollX.get(),
               inputRange,
-              [0.6, 1, 0.6],
+              [0.7, 1, 0.7],
               Extrapolation.CLAMP
             )
           : 1,
@@ -97,6 +97,7 @@ const ShowcaseCard = memo(
     const ShowcaseComponent = item.component;
 
     return (
+
       <View
         style={{
           width: cardWidth + spacing,
@@ -141,6 +142,7 @@ const ShowcaseCard = memo(
           </Pressable>
         </Animated.View>
       </View>
+
     );
   }
 );
@@ -156,7 +158,7 @@ export default function ShowcasesTab() {
   const { isDark } = useAppTheme();
   const { width } = useWindowDimensions();
 
-  const CARD_WIDTH = width * 0.6;
+  const CARD_WIDTH = width * 0.7;
   const SPACING = 100;
   const SIDE_OFFSET = (width - CARD_WIDTH) / 2 - SPACING / 2;
 
@@ -255,7 +257,7 @@ export default function ShowcasesTab() {
   );
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 bg-background">
       <Animated.FlatList
         ref={listRef}
         data={showcases}
@@ -268,7 +270,7 @@ export default function ShowcasesTab() {
             onPress={() => handleCardPress(item.path)}
           />
         )}
-        className="mt-10"
+        className="mt-20"
         keyExtractor={(item) => item.path}
         getItemLayout={(_, index) => ({
           length: CARD_WIDTH + SPACING,
