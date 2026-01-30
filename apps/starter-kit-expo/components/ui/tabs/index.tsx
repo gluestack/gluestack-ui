@@ -236,7 +236,7 @@ const TabsList = React.forwardRef<
                 index: info.index,
                 animated: true,
               });
-            }, 100);
+            }, 50);
           }}
           {...props}
         />

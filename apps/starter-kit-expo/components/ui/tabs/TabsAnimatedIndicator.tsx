@@ -4,6 +4,7 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
+  withDelay,
 } from 'react-native-reanimated';
 import type { LayoutData } from '@gluestack-ui/core/tabs/creator';
 import { tabsAnimationConfig } from './animation-config';
@@ -46,7 +47,8 @@ export const TabsAnimatedIndicator = React.forwardRef<
           const adjustedX = layout.x - scrollOffset;
 console.log(adjustedX,"adjustedX")
 console.log(layout.x,"layout.x")
-          animatedX.value = withTiming(adjustedX, { duration });
+console.log(scrollOffset,"scrollOffset")
+          animatedX.value = withDelay(50, withTiming(adjustedX, { duration }));
           animatedY.value = withTiming(layout.y, { duration });
           animatedWidth.value = withTiming(layout.width, { duration });
           animatedHeight.value = withTiming(layout.height, { duration });
