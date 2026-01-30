@@ -12,6 +12,7 @@ interface TabsAnimatedIndicatorProps {
   selectedKey: any;
   orientation: 'horizontal' | 'vertical';
   triggerLayouts: Map<any, LayoutData>;
+  scrollOffset?: number;
   className?: string;
   style?: any;
 }
@@ -21,7 +22,7 @@ export const TabsAnimatedIndicator = React.forwardRef<
   TabsAnimatedIndicatorProps
 >(
   (
-    { selectedKey, orientation, triggerLayouts, className, style, ...props },
+    { selectedKey, orientation, triggerLayouts, scrollOffset = 0, className, style, ...props },
     ref
   ) => {
     const animatedX = useSharedValue(0);
@@ -41,7 +42,11 @@ export const TabsAnimatedIndicator = React.forwardRef<
             ? 0
             : tabsAnimationConfig.indicatorDuration;
 
-          animatedX.value = withTiming(layout.x, { duration });
+          // Adjust x position by scroll offset to get position relative to visible viewport
+          const adjustedX = layout.x - scrollOffset;
+console.log(adjustedX,"adjustedX")
+console.log(layout.x,"layout.x")
+          animatedX.value = withTiming(adjustedX, { duration });
           animatedY.value = withTiming(layout.y, { duration });
           animatedWidth.value = withTiming(layout.width, { duration });
           animatedHeight.value = withTiming(layout.height, { duration });
@@ -55,6 +60,7 @@ export const TabsAnimatedIndicator = React.forwardRef<
     }, [
       selectedKey,
       triggerLayouts,
+      scrollOffset,
       hasLayout,
       animatedX,
       animatedY,
@@ -64,15 +70,14 @@ export const TabsAnimatedIndicator = React.forwardRef<
 
     const animatedStyle = useAnimatedStyle(() => {
       if (orientation === 'horizontal') {
-
         return {
-          transform: [{ translateX: animatedX.value },{translateY:animatedY.value}],
+          transform: [{ translateX: animatedX.value }, { translateY: animatedY.value }],
           width: animatedWidth.value,
           height: animatedHeight.value,
         };
       } else {
         return {
-          transform: [{ translateY: animatedY.value },{translateX:animatedX.value}],
+          transform: [{ translateY: animatedY.value }, { translateX: animatedX.value }],
           height: animatedHeight.value,
           width: animatedWidth.value,
         };

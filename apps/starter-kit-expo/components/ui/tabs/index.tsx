@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { createTabs, TabsContext } from '@gluestack-ui/core/tabs/creator';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 import {
@@ -41,9 +41,7 @@ const tabsTriggerStyle = tva({
     },
     variant: {
       underlined: '',
-      filled: 'rounded-lg  ',
-      enclosed:
-        'border border-transparent data-[selected=true]:border-border rounded-t',
+      filled: 'rounded-lg',
     },
   },
 });
@@ -75,13 +73,11 @@ const tabsContentStyle = tva({
 });
 
 const tabsIndicatorStyle = tva({
-  base: '  pointer-events-none overflow-hidden',
+  base: 'pointer-events-none rounded-full',
   parentVariants: {
     variant: {
-      underlined: 'border-b',
+      underlined: 'border-b-2 border-primary',
       filled: 'bg-primary/20',
-      enclosed:
-        'border border-transparent data-[selected=true]:border-border rounded-t',
     },
   },
 });
@@ -117,13 +113,11 @@ cssInterop(PrimitiveIcon, {
 
 type ITabsProps = React.ComponentPropsWithoutRef<typeof UITabs> &
   VariantProps<typeof tabsStyle> & {
-    variant?: 'underlined' | 'filled' | 'enclosed';
+    variant?: 'underlined' | 'filled';
     size?: 'sm' | 'md' | 'lg';
   };
 
-type ITabsListProps = React.ComponentPropsWithoutRef<typeof UITabs.List> & {
-  scrollable?: boolean;
-};
+type ITabsListProps = React.ComponentPropsWithoutRef<typeof UITabs.List>;
 
 type ITabsTriggerProps = React.ComponentPropsWithoutRef<typeof UITabs.Trigger>;
 
@@ -164,16 +158,58 @@ const Tabs = React.forwardRef<React.ComponentRef<typeof UITabs>, ITabsProps>(
 const TabsList = React.forwardRef<
   React.ComponentRef<typeof UITabs.List>,
   ITabsListProps
->(({ className, scrollable = false, children, ...props }, ref) => {
+>(({ className, children, ...props }, ref) => {
   const context = React.useContext(TabsContext);
-  const orientation = context?.orientation || 'horizontal';
+  const flatListRef = useRef<any>(null);
+  const containerRef = useRef<any>(null);
 
-  // For scrollable tabs, use FlatList for better performance
-  if (scrollable && orientation === 'horizontal') {
-    // Convert children to array for FlatList
+  if (!context) return null;
+
+  const { orientation, setScrollOffset, selectedKey } = context;
+
+  // Store container ref in context for position measurements
+  React.useEffect(() => {
+    if (containerRef.current && context) {
+      // @ts-ignore
+      context.listRef = containerRef;
+    }
+  }, [context]);
+
+  // Scroll to selected tab when it changes
+  useEffect(() => {
+    if (orientation === 'horizontal' && selectedKey) {
+      const childArray = React.Children.toArray(children);
+      const triggers = childArray.filter(
+        (child: any) => child?.type?.displayName !== 'TabsIndicator'
+      );
+      const selectedIndex = triggers.findIndex(
+        (child: any) => child?.props?.value === selectedKey
+      );
+
+      if (selectedIndex >= 0 && flatListRef.current) {
+        setTimeout(() => {
+          flatListRef.current?.scrollToIndex({
+            index: selectedIndex,
+            animated: true,
+            viewPosition: 0.5, // Center the item
+          });
+        }, 100);
+      }
+    }
+  }, [selectedKey, orientation, children]);
+
+  // Handle scroll to track offset
+  const handleScroll = useCallback(
+    (event: any) => {
+      const offsetX = event.nativeEvent.contentOffset.x;
+      setScrollOffset(offsetX);
+    },
+    [setScrollOffset]
+  );
+
+  // Use FlatList for horizontal tabs
+  if (orientation === 'horizontal') {
     const childArray = React.Children.toArray(children);
-
-    // Separate triggers from indicator
     const triggers = childArray.filter(
       (child: any) => child?.type?.displayName !== 'TabsIndicator'
     );
@@ -182,17 +218,26 @@ const TabsList = React.forwardRef<
     );
 
     return (
-      <View className={tabsListStyle({ orientation, class: className })}>
+      <View ref={containerRef} className={tabsListStyle({ orientation, class: className })}>
         <FlatList
-          ref={ref}
+          ref={flatListRef}
           data={triggers}
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item: any, index) =>
             item?.props?.value || `tab-${index}`
           }
-          renderItem={({ item }) => item}
-          contentContainerStyle={{ alignItems: 'center' }}
+          renderItem={({ item }) => item as any}
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
+          onScrollToIndexFailed={(info) => {
+            setTimeout(() => {
+              flatListRef.current?.scrollToIndex({
+                index: info.index,
+                animated: true,
+              });
+            }, 100);
+          }}
           {...props}
         />
         {indicator}
@@ -200,7 +245,7 @@ const TabsList = React.forwardRef<
     );
   }
 
-  // Default non-scrollable or vertical tabs
+  // Vertical orientation
   return (
     <UITabs.List
       ref={ref}
@@ -284,20 +329,25 @@ const TabsIndicator = React.forwardRef<
   ITabsIndicatorProps
 >(({ className, ...props }, ref) => {
   const context = React.useContext(TabsContext);
+  const { variant } = useStyleContext(SCOPE);
 
   if (!context) {
     return null;
   }
 
-  const { selectedKey, orientation, triggerLayouts } = context;
-  const { variant } = useStyleContext(SCOPE);
+  const { selectedKey, orientation, triggerLayouts, scrollOffset } = context;
+
   return (
     <TabsAnimatedIndicator
       ref={ref}
       selectedKey={selectedKey}
       orientation={orientation}
       triggerLayouts={triggerLayouts}
-      className={tabsIndicatorStyle({ parentVariants: { variant }, class: className })}
+      scrollOffset={scrollOffset}
+      className={tabsIndicatorStyle({
+        parentVariants: { variant },
+        class: className,
+      })}
       {...props}
     />
   );

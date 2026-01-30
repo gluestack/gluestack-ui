@@ -19,6 +19,7 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
       registerTrigger,
       unregisterTrigger,
       activationMode,
+      listRef,
     } = context;
 
     const isSelected = selectedKey === value;
@@ -35,8 +36,39 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
       (event: any) => {
         const layout = event.nativeEvent?.layout;
 
-        if (layout) {
-          // On React Native, onLayout gives us position relative to parent
+        // Use measureLayout for accurate positioning when listRef is available
+        if (Platform.OS !== 'web' && innerRef.current && listRef?.current) {
+          // Delay to ensure layout is complete
+          setTimeout(() => {
+            innerRef.current?.measureLayout(
+              listRef.current,
+              (x: number, y: number, width: number, height: number) => {
+                const layoutData = {
+                  x: x || 0,
+                  y: y || 0,
+                  width: width || 0,
+                  height: height || 0,
+                };
+                console.log('measureLayout result:', layoutData, 'for value:', value);
+                registerTrigger(value, layoutData);
+              },
+              () => {
+                console.error('measureLayout failed for', value);
+                // Fallback to onLayout data
+                if (layout) {
+                  const layoutData = {
+                    x: layout.x || 0,
+                    y: layout.y || 0,
+                    width: layout.width || 0,
+                    height: layout.height || 0,
+                  };
+                  registerTrigger(value, layoutData);
+                }
+              }
+            );
+          }, 50);
+        } else if (layout) {
+          // Fallback: use onLayout data
           const layoutData = {
             x: layout.x || 0,
             y: layout.y || 0,
@@ -48,7 +80,7 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
           // Web fallback: calculate relative position
           const element = innerRef.current;
           const rect = element.getBoundingClientRect();
-          const parent = element.parentElement;
+          const parent = listRef?.current || element.parentElement;
           const parentRect = parent?.getBoundingClientRect();
 
           if (rect && parentRect) {
@@ -62,7 +94,7 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
           }
         }
       },
-      [value, registerTrigger]
+      [value, registerTrigger, listRef]
     );
 
     // Unregister on unmount

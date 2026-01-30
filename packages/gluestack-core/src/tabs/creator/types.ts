@@ -63,6 +63,9 @@ export interface TabsContextValue {
   triggerLayouts: Map<Key, LayoutData>;
   registerTrigger: (key: Key, layout: LayoutData) => void;
   unregisterTrigger: (key: Key) => void;
+  scrollOffset: number;
+  setScrollOffset: (offset: number) => void;
+  listRef?: React.RefObject<any>;
 }
 
 export interface TabsTriggerContextValue {

@@ -40,6 +40,9 @@ export const Tabs = (StyledTabs: any) =>
         Map<Key, LayoutData>
       >(new Map());
 
+      // Scroll offset for FlatList positioning
+      const [scrollOffset, setScrollOffset] = useState<number>(0);
+
       const registerTrigger = useCallback((key: Key, layout: LayoutData) => {
         setTriggerLayouts((prev) => {
           const next = new Map(prev);
@@ -66,6 +69,8 @@ export const Tabs = (StyledTabs: any) =>
           triggerLayouts,
           registerTrigger,
           unregisterTrigger,
+          scrollOffset,
+          setScrollOffset,
         }),
         [
           selectedKey,
@@ -76,6 +81,8 @@ export const Tabs = (StyledTabs: any) =>
           triggerLayouts,
           registerTrigger,
           unregisterTrigger,
+          scrollOffset,
+          setScrollOffset,
         ]
       );
 
