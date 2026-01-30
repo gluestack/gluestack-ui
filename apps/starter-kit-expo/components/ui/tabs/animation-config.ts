@@ -1,3 +1,3 @@
 export const tabsAnimationConfig = {
-  indicatorDuration: 100,
+  indicatorDuration: 200,
 };

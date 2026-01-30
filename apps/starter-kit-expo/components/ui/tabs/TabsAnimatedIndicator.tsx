@@ -140,9 +140,8 @@ export const TabsAnimatedIndicator = React.forwardRef<
           animatedStyle,
           style,
           {
-            borderWidth: 2,
-            borderColor: 'red',
             position: 'absolute',
+            zIndex:1,
           },
         ]}
       />

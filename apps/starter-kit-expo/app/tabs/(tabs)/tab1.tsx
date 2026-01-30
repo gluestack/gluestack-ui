@@ -16,8 +16,6 @@ export default function Tab1() {
     <Center className="flex-1 bg-background px-4">
       <Tabs defaultValue="account" variant="filled" isScrollable>
         <TabsList>
-          <TabsIndicator />
-
           <TabsTrigger value="account">
             <TabsTriggerText>Account</TabsTriggerText>
           </TabsTrigger>
@@ -49,6 +47,8 @@ export default function Tab1() {
           <TabsTrigger value="appearance">
             <TabsTriggerText>Appearance</TabsTriggerText>
           </TabsTrigger>
+
+          <TabsIndicator />
         </TabsList>
 
         <TabsContentWrapper className="border border-input">

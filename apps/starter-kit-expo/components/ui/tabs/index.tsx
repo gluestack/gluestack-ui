@@ -30,7 +30,7 @@ const tabsStyle = tva({
 });
 
 const tabsListStyle = tva({
-  base: 'flex relative',
+  base: 'flex relative z-10 bg-muted p-1',
   variants: {
     orientation: {
       horizontal: 'flex-row',
@@ -40,7 +40,7 @@ const tabsListStyle = tva({
 });
 
 const tabsTriggerStyle = tva({
-  base: 'justify-center items-center web:outline-none data-[disabled=true]:opacity-40 data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary/20',
+  base: 'justify-center relative z-30 items-center web:outline-none data-[disabled=true]:opacity-40 data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary/20',
   parentVariants: {
     size: {
       sm: 'px-3 py-2 gap-1',
@@ -55,7 +55,7 @@ const tabsTriggerStyle = tva({
 });
 
 const tabsTriggerTextStyle = tva({
-  base: 'text-foreground/70 data-[selected=true]:text-foreground font-medium data-[hover=true]:text-foreground/90',
+  base: 'text-foreground/70 data-[selected=true]:text-foreground font-medium data-[hover=true]:text-foreground/90 ',
   parentVariants: {
     size: {
       sm: 'text-sm',
@@ -85,11 +85,11 @@ const tabsContentWrapperStyle = tva({
 });
 
 const tabsIndicatorStyle = tva({
-  base: 'pointer-events-none rounded-full',
+  base: 'pointer-events-none  rounded-full',
   parentVariants: {
     variant: {
       underlined: 'border-b-2 border-primary',
-      filled: 'bg-primary/20',
+      filled: 'bg-background/50 z-20',
     },
   },
 });
@@ -251,8 +251,10 @@ const TabsList = React.forwardRef<
 
     return (
       <View ref={containerRef} className={tabsListStyle({ orientation, class: className })}>
+        {indicator}
         <AnimatedFlatList
           ref={flatListRef}
+          style={{zIndex:100}}
           data={triggers}
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -280,7 +282,6 @@ const TabsList = React.forwardRef<
           }}
           {...props}
         />
-        {indicator}
       </View>
     );
   }
