@@ -324,28 +324,30 @@ const TabsContentWrapper = React.forwardRef<
     : null;
   const height = selectedLayout?.height || 0;
 
-  // Use shared value for Reanimated
+  // Use shared value for Reanimated with initial height
   const heightValue = useSharedValue(height);
+  const isFirstRender = React.useRef(true);
 
   // Update shared value when height changes
   React.useEffect(() => {
-
     if (height > 0) {
-      heightValue.value = height;
-    
+      if (isFirstRender.current) {
+        // Set initial height without animation
+        heightValue.value = height;
+        isFirstRender.current = false;
+      } else {
+        // Animate height changes
+        heightValue.value = withSpring(height,{duration:100});
+      }
     }
   }, [height, heightValue]);
-
- 
 
   // Animated style for height transitions
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      height: withSpring(heightValue.value, {
-        duration: 100,
-      })
+      height: heightValue.value > 0 ? heightValue.value : 'auto',
     };
-  },[heightValue]);
+  }, []);
 
   return (
     <UITabs.ContentWrapper
