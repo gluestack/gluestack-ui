@@ -101,6 +101,7 @@ import {
   SectionList,
   TextInput,
   PressableProps,
+  Platform,
 } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
@@ -285,10 +286,15 @@ const BottomSheetContent = React.forwardRef<
   React.ElementRef<typeof UIBottomSheet.Content>,
   IBottomSheetContentProps
 >(({ className, ...props }, ref) => {
+  // On web, skip exiting animation to prevent conflict with drag-to-close animation
+  // The drag gesture handles the exit animation, and for other close methods,
+  // instant unmount is acceptable on web
+  const exitingAnimation = Platform.OS === 'web' ? undefined : SlideOutDown.duration(200);
+
   return (
     <UIBottomSheet.Content
       entering={SlideInDown.duration(300).springify()}
-      exiting={SlideOutDown.duration(200)}
+      exiting={exitingAnimation}
       pointerEvents="auto"
       ref={ref}
       className={bottomSheetContentStyle({
