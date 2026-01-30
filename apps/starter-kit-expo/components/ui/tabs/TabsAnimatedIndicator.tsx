@@ -5,6 +5,7 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
   withDelay,
+  Easing,
 } from 'react-native-reanimated';
 import type { LayoutData } from '@gluestack-ui/core/tabs/creator';
 import { tabsAnimationConfig } from './animation-config';
@@ -46,10 +47,14 @@ export const TabsAnimatedIndicator = React.forwardRef<
 
           // Adjust x position by scroll offset to get position relative to visible viewport
           const adjustedX = layout.x - scrollOffset;
-console.log(adjustedX,"adjustedX")
-console.log(layout.x,"layout.x")
-console.log(scrollOffset,"scrollOffset")
-          animatedX.value = withDelay(50, withTiming(adjustedX, { duration }));
+
+          animatedX.value = withDelay(
+            20,
+            withTiming(adjustedX, {
+              duration:100,
+              easing: Easing.ease,
+            })
+          );
           animatedY.value = withTiming(layout.y, { duration });
           animatedWidth.value = withTiming(layout.width, { duration });
           animatedHeight.value = withTiming(layout.height, { duration });

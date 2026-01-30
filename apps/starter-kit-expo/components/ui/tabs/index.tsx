@@ -193,7 +193,7 @@ const TabsList = React.forwardRef<
             animated: true,
             viewPosition: 0.5, // Center the item
           });
-        }, 100);
+        },10);
       }
     }
   }, [selectedKey, orientation, children]);
@@ -236,7 +236,7 @@ const TabsList = React.forwardRef<
                 index: info.index,
                 animated: true,
               });
-            }, 50);
+            }, 1000);
           }}
           {...props}
         />
