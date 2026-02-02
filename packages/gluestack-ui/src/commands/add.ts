@@ -45,7 +45,7 @@ export const add = new Command()
     false
   )
   .option(
-    '--yes, -y',
+    '-y, --yes',
     'Answer yes to all prompts (for non-interactive environments)',
     false
   )

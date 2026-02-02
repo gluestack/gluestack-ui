@@ -46,7 +46,7 @@ export const init = new Command()
     'library'
   )
   .option(
-    '--yes, -y',
+    '-y, --yes',
     'Answer yes to all prompts (for non-interactive environments)',
     false
   )
