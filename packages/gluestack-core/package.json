@@ -42,6 +42,7 @@
     "textarea",
     "toast",
     "tooltip",
+    "datetimepicker",
     "README.md",
     "LICENSE"
   ],
@@ -161,6 +162,9 @@
       ],
       "bottomsheet/creator": [
         "./lib/esm/bottomsheet/creator/index.d.ts"
+      ],
+      "datetimepicker/creator": [
+        "./lib/esm/datetimepicker/creator/index.d.ts"
       ]
     }
   },

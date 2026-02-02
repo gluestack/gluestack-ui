@@ -1,0 +1,574 @@
+---
+title: gluestack-ui DateTimePicker Component | DateTimePicker React Native Installation, Usage & API
+
+description: A comprehensive date and time picker component for React Native. Supports date-only, time-only, and datetime modes with range selection capabilities.
+
+pageTitle: DateTimePicker
+
+pageDescription: A comprehensive date and time picker component for React Native. Supports date-only, time-only, and datetime modes with range selection capabilities.
+
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableContainer,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableText,
+  TableHeaderCell,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# DateTimePicker
+
+A comprehensive date and time picker component for React Native. Supports date-only, time-only, and datetime modes with range selection capabilities.
+
+This is an illustration of **DateTimePicker** component.
+/// {Example:basic} ///
+
+<br />
+
+## Installation
+
+<Tabs>
+  <TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add datetimepicker`} language="bash" />
+
+  </TabItem>
+  <TabItem label="Manual">
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @react-native-community/datetimepicker
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```tsx
+%%-- File: src/components/ui/datetimepicker/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  DateTimePicker,
+  DateTimePickerTrigger,
+  DateTimePickerInput,
+  DateTimePickerIcon,
+  DateTimePickerPortal,
+  DateTimePickerBackdrop,
+  DateTimePickerContent,
+  DateTimePickerCalendar,
+  DateTimePickerCalendarHeader,
+  DateTimePickerCalendarGrid,
+  DateTimePickerCalendarDay,
+  DateTimePickerTimePicker,
+  DateTimePickerModeToggle,
+  DateTimePickerActionBar,
+  DateTimePickerActionButton,
+  DateTimePickerRangeLabel,
+} from '@/components/ui/datetimepicker';
+```
+
+```ts
+export default () => (
+  <DateTimePicker>
+    <DateTimePickerTrigger>
+      <DateTimePickerInput />
+      <DateTimePickerIcon as={IconComponent} />
+    </DateTimePickerTrigger>
+    <DateTimePickerPortal>
+      <DateTimePickerBackdrop />
+      <DateTimePickerContent>
+        <DateTimePickerCalendar>
+          <DateTimePickerCalendarHeader />
+          <DateTimePickerCalendarGrid />
+        </DateTimePickerCalendar>
+        <DateTimePickerActionBar>
+          <DateTimePickerActionButton action="today" />
+          <DateTimePickerActionButton action="cancel" />
+          <DateTimePickerActionButton action="confirm" />
+        </DateTimePickerActionBar>
+      </DateTimePickerContent>
+    </DateTimePickerPortal>
+  </DateTimePicker>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### DateTimePicker
+
+Contains all the parts of a date time picker.
+
+<TableContainer>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>
+          <TableText>Prop</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Type</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Default</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Description</TableText>
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>mode</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'date' | 'time' | 'datetime'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'date'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The mode of the picker.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>rangeSelection</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>boolean</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>false</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Enable range selection mode.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>value</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Date | [Date, Date] | null</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The controlled value of the picker.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>defaultValue</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Date | [Date, Date] | null</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>null</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The default value for uncontrolled state.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>onValueChange</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>(value: Date | [Date, Date] | null) => void</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Callback when value changes.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>isOpen</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>boolean</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The controlled open state.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>minDate</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Date</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The minimum selectable date.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>maxDate</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Date</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The maximum selectable date.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>dateFormat</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>string</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'MM/DD/YYYY'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The date format string (e.g., 'DD-MM-YYYY').</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>timeFormat</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'12h' | '24h'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'12h'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The time format.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>closeOnSelect</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>boolean</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>true</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Close the picker when a date is selected.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>firstDayOfWeek</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>0 | 1</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>0</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>First day of the week (0=Sunday, 1=Monday).</TableText>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+
+#### DateTimePickerTrigger
+
+The trigger that opens the picker.
+
+#### DateTimePickerInput
+
+Displays the selected date/time value.
+
+<TableContainer>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>
+          <TableText>Prop</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Type</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Default</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Description</TableText>
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>placeholder</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>string</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Placeholder text when no value is selected.</TableText>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+
+#### DateTimePickerIcon
+
+Renders an icon inside the trigger (typically a calendar icon).
+
+#### DateTimePickerPortal
+
+Portal container for the picker content.
+
+#### DateTimePickerBackdrop
+
+Backdrop that closes the picker when clicked.
+
+#### DateTimePickerContent
+
+The main content container for the picker.
+
+#### DateTimePickerCalendar
+
+Container for the calendar view.
+
+#### DateTimePickerCalendarHeader
+
+Header showing month/year with navigation buttons.
+
+#### DateTimePickerCalendarGrid
+
+Grid displaying the calendar days.
+
+#### DateTimePickerCalendarDay
+
+Individual day cell in the calendar.
+
+<TableContainer>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>
+          <TableText>Prop</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Type</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Default</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Description</TableText>
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>date</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Date</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The date this cell represents.</TableText>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+
+#### DateTimePickerTimePicker
+
+Time picker component (uses native picker on mobile).
+
+#### DateTimePickerModeToggle
+
+Toggle between date and time views in datetime mode.
+
+#### DateTimePickerActionBar
+
+Container for action buttons.
+
+#### DateTimePickerActionButton
+
+Action button (Today, Cancel, Confirm).
+
+<TableContainer>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>
+          <TableText>Prop</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Type</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Default</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Description</TableText>
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>action</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'today' | 'cancel' | 'confirm'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The action this button performs.</TableText>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+
+#### DateTimePickerRangeLabel
+
+Label showing which range date is being selected (Start/End).
+
+<TableContainer>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>
+          <TableText>Prop</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Type</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Default</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Description</TableText>
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>type</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'start' | 'end'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Which date in the range this label represents.</TableText>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+
+### Features
+
+- Supports **date-only**, **time-only**, and **datetime** modes
+- **Range selection** for selecting date ranges
+- **Min/max date** constraints
+- **Custom date formats** (MM/DD/YYYY, DD-MM-YYYY, etc.)
+- **12-hour and 24-hour time formats**
+- **Today button** for quick selection
+- **Accessible** with keyboard navigation support
+- **Animated** with react-native-reanimated
+- **FormControl integration** for validation states
+- **Customizable styling** with NativeWind
+- **Controlled and uncontrolled** state management
+
+### Accessibility
+
+- Keyboard navigation support
+- Screen reader compatible
+- Focus management
+- ARIA attributes for semantic meaning
+
+### Dependencies
+
+- `@react-native-community/datetimepicker` - Native time picker for iOS/Android
+- `react-native-reanimated` - Smooth animations
+
+## Examples
+
+### Date Only
+
+Select a single date with calendar view.
+
+### Time Only
+
+Select a time using native time picker.
+
+### Date and Time
+
+Sequential selection of date then time.
+
+### Range Selection
+
+Select a start and end date range.
+
+### With Constraints
+
+Restrict selectable dates with min/max dates.
+
+### Custom Format
+
+Use custom date format strings like DD-MM-YYYY.
+
+### With FormControl
+
+Integrate with FormControl for validation.

@@ -1,0 +1,1518 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, DateTimePickerPortal, DateTimePickerBackdrop, DateTimePickerContent, DateTimePickerCalendar, DateTimePickerCalendarHeader, DateTimePickerCalendarGrid, DateTimePickerCalendarDay, DateTimePickerActionBar, DateTimePickerActionButton } from '@/components/ui/datetimepicker';
+import { CalendarDaysIcon } from '@/components/ui/icon';
+import { useState } from 'react';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableContainer,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableText,
+  TableHeaderCell,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# DateTimePicker
+
+A comprehensive date and time picker component for React Native. Supports date-only, time-only, and datetime modes with range selection capabilities.
+
+This is an illustration of **DateTimePicker** component.
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  return (
+    <DateTimePicker
+      mode="{{mode}}"
+      value={selectedDate}
+      onValueChange={setSelectedDate}
+    >
+      <DateTimePickerTrigger variant="{{variant}}" size="{{size}}">
+        <DateTimePickerInput placeholder="Select date" />
+        <DateTimePickerIcon>
+          <CalendarDaysIcon />
+        </DateTimePickerIcon>
+      </DateTimePickerTrigger>
+      <DateTimePickerPortal>
+        <DateTimePickerBackdrop />
+        <DateTimePickerContent>
+          <DateTimePickerCalendar>
+            <DateTimePickerCalendarHeader />
+            <DateTimePickerCalendarGrid />
+          </DateTimePickerCalendar>
+          <DateTimePickerActionBar>
+            <DateTimePickerActionButton action="today" />
+            <DateTimePickerActionButton action="cancel" />
+            <DateTimePickerActionButton action="confirm" />
+          </DateTimePickerActionBar>
+        </DateTimePickerContent>
+      </DateTimePickerPortal>
+    </DateTimePicker>
+  );
+}`}
+  argTypes={{
+  "mode": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "date",
+      "time",
+      "datetime"
+    ],
+    "defaultValue": "date"
+  },
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "underlined",
+      "outline",
+      "rounded"
+    ],
+    "defaultValue": "outline"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, DateTimePickerPortal, DateTimePickerBackdrop, DateTimePickerContent, DateTimePickerCalendar, DateTimePickerCalendarHeader, DateTimePickerCalendarGrid, DateTimePickerCalendarDay, DateTimePickerActionBar, DateTimePickerActionButton, CalendarDaysIcon, useState }}
+  importMap={{"@/components/ui/datetimepicker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon","DateTimePickerPortal","DateTimePickerBackdrop","DateTimePickerContent","DateTimePickerCalendar","DateTimePickerCalendarHeader","DateTimePickerCalendarGrid","DateTimePickerCalendarDay","DateTimePickerActionBar","DateTimePickerActionButton"],"@/components/ui/icon":["CalendarDaysIcon"],"react":["useState"]}}
+/>
+
+<br />
+
+## Installation
+
+<Tabs>
+  <TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add datetimepicker`} language="bash" />
+
+  </TabItem>
+  <TabItem label="Manual">
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i @react-native-community/datetimepicker
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```tsx
+'use client';
+
+import React from 'react';
+import { View, Pressable, Text, Platform, ScrollView } from 'react-native';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  createDateTimePicker,
+  useDateTimePickerContext,
+  generateCalendarGrid,
+  getDayNames,
+  DateTimePickerMain,
+  DateTimePickerTrigger as CoreTrigger,
+  DateTimePickerInput as CoreInput,
+  DateTimePickerIcon as CoreIcon,
+  DateTimePickerPortal as CorePortal,
+  DateTimePickerBackdrop as CoreBackdrop,
+  DateTimePickerContent as CoreContent,
+  DateTimePickerCalendar as CoreCalendar,
+  DateTimePickerCalendarHeader as CoreCalendarHeader,
+  DateTimePickerCalendarGrid as CoreCalendarGrid,
+  DateTimePickerCalendarDay as CoreCalendarDay,
+  DateTimePickerTimePicker as CoreTimePicker,
+  DateTimePickerModeToggle as CoreModeToggle,
+  DateTimePickerActionBar as CoreActionBar,
+  DateTimePickerActionButton as CoreActionButton,
+  DateTimePickerRangeLabel as CoreRangeLabel,
+} from '@gluestack-ui/core/datetimepicker/creator';
+import { cssInterop } from 'nativewind';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+
+// Wrap components for styling
+const DateTimePickerTriggerWrapper = React.forwardRef<
+  React.ComponentRef<typeof Pressable>,
+  React.ComponentProps<typeof Pressable>
+>(function DateTimePickerTriggerWrapper({ ...props }, ref) {
+  return <Pressable {...props} ref={ref} />;
+});
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const AnimatedView = Animated.View;
+
+// TVA Styles
+const dateTimePickerStyle = tva({
+  base: '',
+});
+
+const dateTimePickerTriggerStyle = tva({
+  base: 'border border-border rounded flex-row items-center overflow-hidden data-[hover=true]:border-primary/80 data-[focus=true]:border-primary/80 data-[disabled=true]:opacity-40',
+  variants: {
+    size: {
+      sm: 'h-9',
+      md: 'h-10',
+      lg: 'h-11',
+      xl: 'h-12',
+    },
+    variant: {
+      outline:
+        'data-[focus=true]:border-primary/80 data-[focus=true]:web:shadow-[inset_0_0_0_1px] data-[focus=true]:web:shadow-primary/80 data-[invalid=true]:border-destructive data-[invalid=true]:web:shadow-destructive',
+      underlined:
+        'border-0 border-b rounded-none data-[focus=true]:border-primary/80 data-[invalid=true]:border-destructive',
+      rounded:
+        'rounded-full data-[focus=true]:border-primary/80 data-[focus=true]:web:shadow-[inset_0_0_0_1px] data-[focus=true]:web:shadow-primary/80 data-[invalid=true]:border-destructive',
+    },
+  },
+});
+
+const dateTimePickerInputStyle = tva({
+  base: 'px-3 text-foreground/90 web:outline-none flex-1',
+  parentVariants: {
+    size: {
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
+      xl: 'text-xl',
+    },
+    variant: {
+      outline: '',
+      underlined: 'px-0',
+      rounded: 'px-4',
+    },
+  },
+});
+
+const dateTimePickerIconStyle = tva({
+  base: 'text-foreground/50 mx-2',
+  parentVariants: {
+    size: {
+      sm: 'h-4 w-4',
+      md: 'h-[18px] w-[18px]',
+      lg: 'h-5 w-5',
+      xl: 'h-6 w-6',
+    },
+  },
+});
+
+const dateTimePickerBackdropStyle = tva({
+  base: 'absolute top-0 bottom-0 left-0 right-0 bg-black/40 web:cursor-default items-center justify-center',
+});
+
+const dateTimePickerContentStyle = tva({
+  base: 'bg-background rounded-lg p-4 border border-border shadow-lg max-w-xs w-full mx-4 z-50 mt-safe',
+  variants: {
+    placement: {
+      top: 'self-start',
+      bottom: 'self-end',
+      left: 'self-start',
+      right: 'self-end',
+    },
+  },
+});
+
+const dateTimePickerCalendarStyle = tva({
+  base: 'gap-2',
+});
+
+const dateTimePickerCalendarHeaderStyle = tva({
+  base: 'flex-row items-center justify-between mb-4 px-2',
+});
+
+const dateTimePickerCalendarHeaderButtonStyle = tva({
+  base: 'w-8 h-8 items-center justify-center rounded',
+});
+
+const dateTimePickerCalendarHeaderTextStyle = tva({
+  base: 'text-lg font-semibold text-foreground',
+});
+
+const dateTimePickerCalendarGridStyle = tva({
+  base: 'gap-1',
+});
+
+const dateTimePickerCalendarDayStyle = tva({
+  base: 'w-10 h-10 items-center justify-center rounded-md',
+  variants: {
+    isSelected: {
+      true: 'bg-primary',
+    },
+    isInRange: {
+      true: 'bg-primary/20',
+    },
+    isToday: {
+      true: 'border border-primary',
+    },
+    isDisabled: {
+      true: 'opacity-40',
+    },
+    isOutsideMonth: {
+      true: 'text-muted-foreground',
+    },
+  },
+});
+
+const dateTimePickerTimePickerStyle = tva({
+  base: 'items-center justify-center py-4',
+});
+
+const dateTimePickerModeToggleStyle = tva({
+  base: 'flex-row gap-2 mb-4',
+});
+
+const dateTimePickerActionBarStyle = tva({
+  base: 'flex-row gap-2 mt-4 justify-end',
+});
+
+const dateTimePickerActionButtonStyle = tva({
+  base: 'py-2 px-4 rounded',
+  variants: {
+    action: {
+      today: 'mr-auto',
+      cancel: 'border border-border',
+      confirm: 'bg-primary',
+    },
+  },
+});
+
+const dateTimePickerRangeLabelStyle = tva({
+  base: 'py-2 px-3 rounded border border-border mb-2',
+  variants: {
+    isActive: {
+      true: 'border-primary bg-primary/10',
+    },
+  },
+});
+
+// Create DateTimePicker
+const UIDateTimePicker = createDateTimePicker({
+  Root: DateTimePickerMain,
+  Trigger: CoreTrigger(withStyleContext(DateTimePickerTriggerWrapper)),
+  Input: CoreInput,
+  Icon: CoreIcon,
+  Portal: CorePortal,
+  Backdrop: CoreBackdrop,
+  Content: CoreContent,
+  Calendar: CoreCalendar,
+  CalendarHeader: CoreCalendarHeader,
+  CalendarGrid: CoreCalendarGrid,
+  CalendarDay: CoreCalendarDay,
+  TimePicker: CoreTimePicker,
+  ModeToggle: CoreModeToggle,
+  ActionBar: CoreActionBar,
+  ActionButton: CoreActionButton,
+  RangeLabel: CoreRangeLabel,
+});
+
+// CSS Interop
+cssInterop(UIDateTimePicker, { className: 'style' });
+cssInterop(DateTimePickerTriggerWrapper, { className: 'style' });
+cssInterop(UIDateTimePicker.Input, { className: 'style' });
+cssInterop(UIDateTimePicker.Icon, { className: 'style' });
+cssInterop(UIDateTimePicker.Backdrop, { className: 'style' });
+cssInterop(UIDateTimePicker.Content, { className: 'style' });
+cssInterop(UIDateTimePicker.Calendar, { className: 'style' });
+cssInterop(UIDateTimePicker.CalendarHeader, { className: 'style' });
+cssInterop(UIDateTimePicker.CalendarGrid, { className: 'style' });
+cssInterop(UIDateTimePicker.CalendarDay, { className: 'style' });
+cssInterop(UIDateTimePicker.TimePicker, { className: 'style' });
+cssInterop(UIDateTimePicker.ModeToggle, { className: 'style' });
+cssInterop(UIDateTimePicker.ActionBar, { className: 'style' });
+cssInterop(UIDateTimePicker.ActionButton, { className: 'style' });
+cssInterop(UIDateTimePicker.RangeLabel, { className: 'style' });
+
+// Styled Components
+type IDateTimePickerProps = VariantProps<typeof dateTimePickerStyle> &
+  React.ComponentProps<typeof UIDateTimePicker> & { className?: string };
+
+const DateTimePicker = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker>,
+  IDateTimePickerProps
+>(function DateTimePicker({ className, ...props }, ref) {
+  return (
+    <UIDateTimePicker
+      className={dateTimePickerStyle({ class: className })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+type IDateTimePickerTriggerProps = VariantProps<
+  typeof dateTimePickerTriggerStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.Trigger> & {
+    className?: string;
+  };
+
+const DateTimePickerTrigger = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.Trigger>,
+  IDateTimePickerTriggerProps
+>(function DateTimePickerTrigger(
+  { className, size = 'md', variant = 'outline', ...props },
+  ref
+) {
+  return (
+    <UIDateTimePicker.Trigger
+      className={dateTimePickerTriggerStyle({ class: className, size, variant })}
+      ref={ref}
+      context={{ size, variant }}
+      {...props}
+    />
+  );
+});
+
+type IDateTimePickerInputProps = VariantProps<typeof dateTimePickerInputStyle> &
+  React.ComponentProps<typeof UIDateTimePicker.Input> & { className?: string };
+
+const DateTimePickerInput = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.Input>,
+  IDateTimePickerInputProps
+>(function DateTimePickerInput({ className, ...props }, ref) {
+  const { size: parentSize, variant: parentVariant } = useStyleContext();
+  return (
+    <UIDateTimePicker.Input
+      className={dateTimePickerInputStyle({
+        class: className,
+        parentVariants: { size: parentSize, variant: parentVariant },
+      })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+type IDateTimePickerIconProps = VariantProps<typeof dateTimePickerIconStyle> &
+  React.ComponentProps<typeof UIDateTimePicker.Icon> & { className?: string };
+
+const DateTimePickerIcon = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.Icon>,
+  IDateTimePickerIconProps
+>(function DateTimePickerIcon({ className, ...props }, ref) {
+  const { size: parentSize } = useStyleContext();
+  return (
+    <UIDateTimePicker.Icon
+      className={dateTimePickerIconStyle({
+        class: className,
+        parentVariants: { size: parentSize },
+      })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+const DateTimePickerPortal = UIDateTimePicker.Portal;
+
+type IDateTimePickerBackdropProps = VariantProps<
+  typeof dateTimePickerBackdropStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.Backdrop> & {
+    className?: string;
+  };
+
+const DateTimePickerBackdrop = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.Backdrop>,
+  IDateTimePickerBackdropProps
+>(function DateTimePickerBackdrop({ className, ...props }, ref) {
+  return (
+    <UIDateTimePicker.Backdrop
+      className={dateTimePickerBackdropStyle({ class: className })}
+      entering={FadeIn.duration(200)}
+      exiting={FadeOut.duration(150)}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+type IDateTimePickerContentProps = VariantProps<
+  typeof dateTimePickerContentStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.Content> & {
+    className?: string;
+  };
+
+const DateTimePickerContent = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.Content>,
+  IDateTimePickerContentProps
+>(function DateTimePickerContent({ className, ...props }, ref) {
+  return (
+    <UIDateTimePicker.Content
+      className={dateTimePickerContentStyle({ class: className })}
+      entering={FadeIn.duration(200)}
+      exiting={FadeOut.duration(150)}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+type IDateTimePickerCalendarProps = VariantProps<
+  typeof dateTimePickerCalendarStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.Calendar> & {
+    className?: string;
+  };
+
+const DateTimePickerCalendar = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.Calendar>,
+  IDateTimePickerCalendarProps
+>(function DateTimePickerCalendar({ className, children, ...props }, ref) {
+  const { mode, activeView } = useDateTimePickerContext();
+
+  // In datetime mode, only show calendar when activeView is 'date'
+  if (mode === 'datetime' && activeView !== 'date') {
+    return null;
+  }
+
+  return (
+    <UIDateTimePicker.Calendar
+      className={dateTimePickerCalendarStyle({ class: className })}
+      ref={ref}
+      {...props}
+    >
+      {children}
+    </UIDateTimePicker.Calendar>
+  );
+});
+
+type IDateTimePickerCalendarHeaderProps = VariantProps<
+  typeof dateTimePickerCalendarHeaderStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.CalendarHeader> & {
+    className?: string;
+  };
+
+const DateTimePickerCalendarHeader = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.CalendarHeader>,
+  IDateTimePickerCalendarHeaderProps
+>(function DateTimePickerCalendarHeader({ className, children, ...props }, ref) {
+  // If children provided, use custom rendering
+  if (children) {
+    return (
+      <UIDateTimePicker.CalendarHeader
+        className={dateTimePickerCalendarHeaderStyle({ class: className })}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </UIDateTimePicker.CalendarHeader>
+    );
+  }
+
+  // Default rendering with navigation
+  return (
+    <UIDateTimePicker.CalendarHeader
+      className={dateTimePickerCalendarHeaderStyle({ class: className })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+type IDateTimePickerCalendarGridProps = VariantProps<
+  typeof dateTimePickerCalendarGridStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.CalendarGrid> & {
+    className?: string;
+  };
+
+const DateTimePickerCalendarGrid = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.CalendarGrid>,
+  IDateTimePickerCalendarGridProps
+>(function DateTimePickerCalendarGrid({ className, children, ...props }, ref) {
+  // Get date picker context
+  const {
+    currentMonth,
+    firstDayOfWeek,
+    locale,
+    calendarView,
+    handleMonthSelect,
+    handleYearSelect,
+  } = useDateTimePickerContext();
+
+  // Generate calendar data directly
+  const calendarGrid = React.useMemo(
+    () =>
+      generateCalendarGrid(
+        currentMonth.getFullYear(),
+        currentMonth.getMonth(),
+        firstDayOfWeek
+      ),
+    [currentMonth, firstDayOfWeek]
+  );
+
+  const dayNames = React.useMemo(
+    () => getDayNames(firstDayOfWeek, locale),
+    [firstDayOfWeek, locale]
+  );
+
+  // Month names for month picker
+  const monthNames = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
+
+  // Generate years for year picker (current year ± 50 years)
+  const currentYear = currentMonth.getFullYear();
+  const years = Array.from({ length: 101 }, (_, i) => currentYear - 50 + i);
+
+  // If children provided, use custom rendering
+  if (children) {
+    return (
+      <UIDateTimePicker.CalendarGrid
+        className={dateTimePickerCalendarGridStyle({ class: className })}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </UIDateTimePicker.CalendarGrid>
+    );
+  }
+
+  return (
+    <UIDateTimePicker.CalendarGrid
+      className={dateTimePickerCalendarGridStyle({ class: className })}
+      ref={ref}
+      {...props}
+    >
+      {calendarView === 'calendar' && (
+        <>
+          {/* Day names header */}
+          <View className="flex-row mb-2">
+            {dayNames.map((dayName: string, index: number) => (
+              <View key={index} className="flex-1 items-center py-1">
+                <Text className="text-muted-foreground text-xs font-semibold uppercase">
+                  {dayName}
+                </Text>
+              </View>
+            ))}
+          </View>
+
+          {/* Calendar grid - 7 columns x 6 rows */}
+          <View className="gap-1">
+            {Array.from({ length: 6 }).map((_, weekIndex) => (
+              <View key={weekIndex} className="flex-row gap-1">
+                {Array.from({ length: 7 }).map((_, dayIndex) => {
+                  const cellIndex = weekIndex * 7 + dayIndex;
+                  const dayData = calendarGrid[cellIndex];
+
+                  if (!dayData) return <View key={cellIndex} className="flex-1" />;
+
+                  return (
+                    <DateTimePickerCalendarDay
+                      key={cellIndex}
+                      date={dayData.date}
+                      className={`flex-1 min-h-[40px] ${
+                        !dayData.isCurrentMonth ? 'opacity-40' : ''
+                      }`}
+                    >
+                      <Text
+                        className={`text-center text-sm ${
+                          dayData.isToday ? 'font-bold text-primary' : 'text-foreground'
+                        }`}
+                      >
+                        {dayData.date.getDate()}
+                      </Text>
+                    </DateTimePickerCalendarDay>
+                  );
+                })}
+              </View>
+            ))}
+          </View>
+        </>
+      )}
+
+      {calendarView === 'month' && (
+        <View className="gap-2">
+          {/* Month picker - 3 rows x 4 columns */}
+          {Array.from({ length: 3 }).map((_, rowIndex) => (
+            <View key={rowIndex} className="flex-row gap-2">
+              {Array.from({ length: 4 }).map((_, colIndex) => {
+                const monthIndex = rowIndex * 4 + colIndex;
+                const isCurrentMonth = monthIndex === currentMonth.getMonth();
+
+                return (
+                  <Pressable
+                    key={monthIndex}
+                    className={`flex-1 py-3 px-4 rounded items-center justify-center ${
+                      isCurrentMonth ? 'bg-primary' : 'bg-muted'
+                    }`}
+                    onPress={() => handleMonthSelect(monthIndex)}
+                  >
+                    <Text
+                      className={`text-sm font-medium ${
+                        isCurrentMonth ? 'text-primary-foreground' : 'text-foreground'
+                      }`}
+                    >
+                      {monthNames[monthIndex]}
+                    </Text>
+                  </Pressable>
+                );
+              })}
+            </View>
+          ))}
+        </View>
+      )}
+
+      {calendarView === 'year' && (
+        <View className="max-h-[300px]">
+          <View className="gap-2">
+            {/* Year picker - scrollable list */}
+            {years.map((year) => {
+              const isCurrentYear = year === currentYear;
+
+              return (
+                <Pressable
+                  key={year}
+                  className={`py-3 px-4 rounded items-center justify-center ${
+                    isCurrentYear ? 'bg-primary' : 'bg-muted'
+                  }`}
+                  onPress={() => handleYearSelect(year)}
+                >
+                  <Text
+                    className={`text-sm font-medium ${
+                      isCurrentYear ? 'text-primary-foreground' : 'text-foreground'
+                    }`}
+                  >
+                    {year}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
+        </View>
+      )}
+    </UIDateTimePicker.CalendarGrid>
+  );
+});
+
+type IDateTimePickerCalendarDayProps = VariantProps<
+  typeof dateTimePickerCalendarDayStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.CalendarDay> & {
+    className?: string;
+  };
+
+const DateTimePickerCalendarDay = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.CalendarDay>,
+  IDateTimePickerCalendarDayProps
+>(function DateTimePickerCalendarDay({ className, ...props }, ref) {
+  return (
+    <UIDateTimePicker.CalendarDay
+      className={dateTimePickerCalendarDayStyle({ class: className })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+type IDateTimePickerTimePickerProps = VariantProps<
+  typeof dateTimePickerTimePickerStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.TimePicker> & {
+    className?: string;
+  };
+
+const DateTimePickerTimePicker = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.TimePicker>,
+  IDateTimePickerTimePickerProps
+>(function DateTimePickerTimePicker({ className, children, ...props }, ref) {
+  const { value, handleTimeSelect, timeFormat, mode, activeView } = useDateTimePickerContext();
+  const [NativeDateTimePicker, setNativeDateTimePicker] = React.useState<any>(null);
+
+  // Only show time picker in time mode or when activeView is 'time' in datetime mode
+  const shouldShow = mode === 'time' || (mode === 'datetime' && activeView === 'time');
+
+  // Dynamically import the native date picker
+  React.useEffect(() => {
+    import('@react-native-community/datetimepicker')
+      .then((module) => {
+        setNativeDateTimePicker(() => module.default);
+      })
+      .catch((error) => {
+        console.warn('Failed to load @react-native-community/datetimepicker:', error);
+      });
+  }, []);
+
+  // Get current time value
+  const timeValue = React.useMemo(() => {
+    if (value && !Array.isArray(value)) {
+      return value;
+    }
+    return new Date();
+  }, [value]);
+
+  // Don't render if not in correct mode/view
+  if (!shouldShow) {
+    return null;
+  }
+
+  // If children provided, use custom rendering
+  if (children) {
+    return (
+      <UIDateTimePicker.TimePicker
+        className={dateTimePickerTimePickerStyle({ class: className })}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </UIDateTimePicker.TimePicker>
+    );
+  }
+
+  return (
+    <UIDateTimePicker.TimePicker
+      className={dateTimePickerTimePickerStyle({ class: className })}
+      ref={ref}
+      {...props}
+    >
+      {NativeDateTimePicker && Platform.OS !== 'web' ? (
+        <NativeDateTimePicker
+          value={timeValue}
+          mode="time"
+          is24Hour={timeFormat === '24h'}
+          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+          onChange={(event: any, selectedDate?: Date) => {
+            if (event.type === 'set' && selectedDate) {
+              handleTimeSelect(selectedDate);
+            }
+          }}
+        />
+      ) : (
+        <View className="py-8">
+          <Text className="text-center text-foreground mb-4">
+            {timeValue.toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: timeFormat === '12h',
+            })}
+          </Text>
+          <Text className="text-center text-muted-foreground text-sm">
+            Time picker available on mobile
+          </Text>
+        </View>
+      )}
+    </UIDateTimePicker.TimePicker>
+  );
+});
+
+type IDateTimePickerModeToggleProps = VariantProps<
+  typeof dateTimePickerModeToggleStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.ModeToggle> & {
+    className?: string;
+  };
+
+const DateTimePickerModeToggle = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.ModeToggle>,
+  IDateTimePickerModeToggleProps
+>(function DateTimePickerModeToggle({ className, children, ...props }, ref) {
+  const { mode, activeView, setActiveView } = useDateTimePickerContext();
+
+  // Only show in datetime mode
+  if (mode !== 'datetime') {
+    return null;
+  }
+
+  // If children provided, use custom rendering
+  if (children) {
+    return (
+      <UIDateTimePicker.ModeToggle
+        className={dateTimePickerModeToggleStyle({ class: className })}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </UIDateTimePicker.ModeToggle>
+    );
+  }
+
+  return (
+    <UIDateTimePicker.ModeToggle
+      className={dateTimePickerModeToggleStyle({ class: className })}
+      ref={ref}
+      {...props}
+    >
+      <View className="flex-row gap-2 mb-4">
+        <Pressable
+          className={`flex-1 py-2 px-4 rounded items-center justify-center border ${
+            activeView === 'date'
+              ? 'bg-primary border-primary'
+              : 'border-border bg-transparent'
+          }`}
+          onPress={() => setActiveView('date')}
+        >
+          <Text
+            className={`text-sm font-medium ${
+              activeView === 'date' ? 'text-primary-foreground' : 'text-foreground'
+            }`}
+          >
+            Date
+          </Text>
+        </Pressable>
+        <Pressable
+          className={`flex-1 py-2 px-4 rounded items-center justify-center border ${
+            activeView === 'time'
+              ? 'bg-primary border-primary'
+              : 'border-border bg-transparent'
+          }`}
+          onPress={() => setActiveView('time')}
+        >
+          <Text
+            className={`text-sm font-medium ${
+              activeView === 'time' ? 'text-primary-foreground' : 'text-foreground'
+            }`}
+          >
+            Time
+          </Text>
+        </Pressable>
+      </View>
+    </UIDateTimePicker.ModeToggle>
+  );
+});
+
+type IDateTimePickerActionBarProps = VariantProps<
+  typeof dateTimePickerActionBarStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.ActionBar> & {
+    className?: string;
+  };
+
+const DateTimePickerActionBar = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.ActionBar>,
+  IDateTimePickerActionBarProps
+>(function DateTimePickerActionBar({ className, ...props }, ref) {
+  return (
+    <UIDateTimePicker.ActionBar
+      className={dateTimePickerActionBarStyle({ class: className })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+type IDateTimePickerActionButtonProps = VariantProps<
+  typeof dateTimePickerActionButtonStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.ActionButton> & {
+    className?: string;
+  };
+
+const DateTimePickerActionButton = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.ActionButton>,
+  IDateTimePickerActionButtonProps
+>(function DateTimePickerActionButton({ className, ...props }, ref) {
+  return (
+    <UIDateTimePicker.ActionButton
+      className={dateTimePickerActionButtonStyle({ class: className })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+type IDateTimePickerRangeLabelProps = VariantProps<
+  typeof dateTimePickerRangeLabelStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.RangeLabel> & {
+    className?: string;
+  };
+
+const DateTimePickerRangeLabel = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.RangeLabel>,
+  IDateTimePickerRangeLabelProps
+>(function DateTimePickerRangeLabel({ className, ...props }, ref) {
+  return (
+    <UIDateTimePicker.RangeLabel
+      className={dateTimePickerRangeLabelStyle({ class: className })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+// Display names
+DateTimePicker.displayName = 'DateTimePicker';
+DateTimePickerTrigger.displayName = 'DateTimePickerTrigger';
+DateTimePickerInput.displayName = 'DateTimePickerInput';
+DateTimePickerIcon.displayName = 'DateTimePickerIcon';
+DateTimePickerBackdrop.displayName = 'DateTimePickerBackdrop';
+DateTimePickerContent.displayName = 'DateTimePickerContent';
+DateTimePickerCalendar.displayName = 'DateTimePickerCalendar';
+DateTimePickerCalendarHeader.displayName = 'DateTimePickerCalendarHeader';
+DateTimePickerCalendarGrid.displayName = 'DateTimePickerCalendarGrid';
+DateTimePickerCalendarDay.displayName = 'DateTimePickerCalendarDay';
+DateTimePickerTimePicker.displayName = 'DateTimePickerTimePicker';
+DateTimePickerModeToggle.displayName = 'DateTimePickerModeToggle';
+DateTimePickerActionBar.displayName = 'DateTimePickerActionBar';
+DateTimePickerActionButton.displayName = 'DateTimePickerActionButton';
+DateTimePickerRangeLabel.displayName = 'DateTimePickerRangeLabel';
+
+export {
+  DateTimePicker,
+  DateTimePickerTrigger,
+  DateTimePickerInput,
+  DateTimePickerIcon,
+  DateTimePickerPortal,
+  DateTimePickerBackdrop,
+  DateTimePickerContent,
+  DateTimePickerCalendar,
+  DateTimePickerCalendarHeader,
+  DateTimePickerCalendarGrid,
+  DateTimePickerCalendarDay,
+  DateTimePickerTimePicker,
+  DateTimePickerModeToggle,
+  DateTimePickerActionBar,
+  DateTimePickerActionButton,
+  DateTimePickerRangeLabel,
+};
+
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  DateTimePicker,
+  DateTimePickerTrigger,
+  DateTimePickerInput,
+  DateTimePickerIcon,
+  DateTimePickerPortal,
+  DateTimePickerBackdrop,
+  DateTimePickerContent,
+  DateTimePickerCalendar,
+  DateTimePickerCalendarHeader,
+  DateTimePickerCalendarGrid,
+  DateTimePickerCalendarDay,
+  DateTimePickerTimePicker,
+  DateTimePickerModeToggle,
+  DateTimePickerActionBar,
+  DateTimePickerActionButton,
+  DateTimePickerRangeLabel,
+} from '@/components/ui/datetimepicker';
+```
+
+```ts
+export default () => (
+  <DateTimePicker>
+    <DateTimePickerTrigger>
+      <DateTimePickerInput />
+      <DateTimePickerIcon as={IconComponent} />
+    </DateTimePickerTrigger>
+    <DateTimePickerPortal>
+      <DateTimePickerBackdrop />
+      <DateTimePickerContent>
+        <DateTimePickerCalendar>
+          <DateTimePickerCalendarHeader />
+          <DateTimePickerCalendarGrid />
+        </DateTimePickerCalendar>
+        <DateTimePickerActionBar>
+          <DateTimePickerActionButton action="today" />
+          <DateTimePickerActionButton action="cancel" />
+          <DateTimePickerActionButton action="confirm" />
+        </DateTimePickerActionBar>
+      </DateTimePickerContent>
+    </DateTimePickerPortal>
+  </DateTimePicker>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### DateTimePicker
+
+Contains all the parts of a date time picker.
+
+<TableContainer>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>
+          <TableText>Prop</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Type</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Default</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Description</TableText>
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>mode</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'date' | 'time' | 'datetime'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'date'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The mode of the picker.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>rangeSelection</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>boolean</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>false</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Enable range selection mode.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>value</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Date | [Date, Date] | null</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The controlled value of the picker.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>defaultValue</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Date | [Date, Date] | null</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>null</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The default value for uncontrolled state.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>onValueChange</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>(value: Date | [Date, Date] | null) => void</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Callback when value changes.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>isOpen</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>boolean</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The controlled open state.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>minDate</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Date</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The minimum selectable date.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>maxDate</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Date</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The maximum selectable date.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>dateFormat</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>string</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'MM/DD/YYYY'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The date format string (e.g., 'DD-MM-YYYY').</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>timeFormat</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'12h' | '24h'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'12h'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The time format.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>closeOnSelect</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>boolean</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>true</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Close the picker when a date is selected.</TableText>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>firstDayOfWeek</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>0 | 1</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>0</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>First day of the week (0=Sunday, 1=Monday).</TableText>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+
+#### DateTimePickerTrigger
+
+The trigger that opens the picker.
+
+#### DateTimePickerInput
+
+Displays the selected date/time value.
+
+<TableContainer>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>
+          <TableText>Prop</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Type</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Default</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Description</TableText>
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>placeholder</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>string</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Placeholder text when no value is selected.</TableText>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+
+#### DateTimePickerIcon
+
+Renders an icon inside the trigger (typically a calendar icon).
+
+#### DateTimePickerPortal
+
+Portal container for the picker content.
+
+#### DateTimePickerBackdrop
+
+Backdrop that closes the picker when clicked.
+
+#### DateTimePickerContent
+
+The main content container for the picker.
+
+#### DateTimePickerCalendar
+
+Container for the calendar view.
+
+#### DateTimePickerCalendarHeader
+
+Header showing month/year with navigation buttons.
+
+#### DateTimePickerCalendarGrid
+
+Grid displaying the calendar days.
+
+#### DateTimePickerCalendarDay
+
+Individual day cell in the calendar.
+
+<TableContainer>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>
+          <TableText>Prop</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Type</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Default</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Description</TableText>
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>date</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Date</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The date this cell represents.</TableText>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+
+#### DateTimePickerTimePicker
+
+Time picker component (uses native picker on mobile).
+
+#### DateTimePickerModeToggle
+
+Toggle between date and time views in datetime mode.
+
+#### DateTimePickerActionBar
+
+Container for action buttons.
+
+#### DateTimePickerActionButton
+
+Action button (Today, Cancel, Confirm).
+
+<TableContainer>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>
+          <TableText>Prop</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Type</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Default</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Description</TableText>
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>action</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'today' | 'cancel' | 'confirm'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>The action this button performs.</TableText>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+
+#### DateTimePickerRangeLabel
+
+Label showing which range date is being selected (Start/End).
+
+<TableContainer>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>
+          <TableText>Prop</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Type</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Default</TableText>
+        </TableHeaderCell>
+        <TableHeaderCell>
+          <TableText>Description</TableText>
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <TableText><InlineCode>type</InlineCode></TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>'start' | 'end'</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>-</TableText>
+        </TableCell>
+        <TableCell>
+          <TableText>Which date in the range this label represents.</TableText>
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+
+### Features
+
+- Supports **date-only**, **time-only**, and **datetime** modes
+- **Range selection** for selecting date ranges
+- **Min/max date** constraints
+- **Custom date formats** (MM/DD/YYYY, DD-MM-YYYY, etc.)
+- **12-hour and 24-hour time formats**
+- **Today button** for quick selection
+- **Accessible** with keyboard navigation support
+- **Animated** with react-native-reanimated
+- **FormControl integration** for validation states
+- **Customizable styling** with NativeWind
+- **Controlled and uncontrolled** state management
+
+### Accessibility
+
+- Keyboard navigation support
+- Screen reader compatible
+- Focus management
+- ARIA attributes for semantic meaning
+
+### Dependencies
+
+- `@react-native-community/datetimepicker` - Native time picker for iOS/Android
+- `react-native-reanimated` - Smooth animations
+
+## Examples
+
+### Date Only
+
+Select a single date with calendar view.
+
+### Time Only
+
+Select a time using native time picker.
+
+### Date and Time
+
+Sequential selection of date then time.
+
+### Range Selection
+
+Select a start and end date range.
+
+### With Constraints
+
+Restrict selectable dates with min/max dates.
+
+### Custom Format
+
+Use custom date format strings like DD-MM-YYYY.
+
+### With FormControl
+
+Integrate with FormControl for validation.

@@ -282,6 +282,12 @@
                 "darkUrl": "https://i.imgur.com/I2zxm8c.png"
               },
               {
+                "title": "DateTimePicker",
+                "path": "/ui/docs/components/datetimepicker",
+                "url": "https://i.imgur.com/I9xTmZ4.png",
+                "darkUrl": "https://i.imgur.com/I2zxm8c.png"
+              },
+              {
                 "title": "Link",
                 "path": "/ui/docs/components/link",
                 "url": "https://i.imgur.com/4wQcdzK.png",

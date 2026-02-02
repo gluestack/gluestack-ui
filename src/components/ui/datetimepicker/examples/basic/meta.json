@@ -1,0 +1,43 @@
+{
+  "title": "Basic",
+  "argTypes": {
+    "mode": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["date", "time", "datetime"],
+      "defaultValue": "date"
+    },
+    "variant": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["underlined", "outline", "rounded"],
+      "defaultValue": "outline"
+    },
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg", "xl"],
+      "defaultValue": "md"
+    }
+  },
+  "reactLive": {
+    "DateTimePicker": "@/components/ui/datetimepicker",
+    "DateTimePickerTrigger": "@/components/ui/datetimepicker",
+    "DateTimePickerInput": "@/components/ui/datetimepicker",
+    "DateTimePickerIcon": "@/components/ui/datetimepicker",
+    "DateTimePickerPortal": "@/components/ui/datetimepicker",
+    "DateTimePickerBackdrop": "@/components/ui/datetimepicker",
+    "DateTimePickerContent": "@/components/ui/datetimepicker",
+    "DateTimePickerCalendar": "@/components/ui/datetimepicker",
+    "DateTimePickerCalendarHeader": "@/components/ui/datetimepicker",
+    "DateTimePickerCalendarGrid": "@/components/ui/datetimepicker",
+    "DateTimePickerCalendarDay": "@/components/ui/datetimepicker",
+    "DateTimePickerActionBar": "@/components/ui/datetimepicker",
+    "DateTimePickerActionButton": "@/components/ui/datetimepicker",
+    "CalendarDaysIcon": "@/components/ui/icon",
+    "useState": "react"
+  }
+}

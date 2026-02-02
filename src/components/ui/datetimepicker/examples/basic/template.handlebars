@@ -1,0 +1,32 @@
+function Example() {
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  return (
+    <DateTimePicker
+      mode="{{mode}}"
+      value={selectedDate}
+      onValueChange={setSelectedDate}
+    >
+      <DateTimePickerTrigger variant="{{variant}}" size="{{size}}">
+        <DateTimePickerInput placeholder="Select date" />
+        <DateTimePickerIcon>
+          <CalendarDaysIcon />
+        </DateTimePickerIcon>
+      </DateTimePickerTrigger>
+      <DateTimePickerPortal>
+        <DateTimePickerBackdrop />
+        <DateTimePickerContent>
+          <DateTimePickerCalendar>
+            <DateTimePickerCalendarHeader />
+            <DateTimePickerCalendarGrid />
+          </DateTimePickerCalendar>
+          <DateTimePickerActionBar>
+            <DateTimePickerActionButton action="today" />
+            <DateTimePickerActionButton action="cancel" />
+            <DateTimePickerActionButton action="confirm" />
+          </DateTimePickerActionBar>
+        </DateTimePickerContent>
+      </DateTimePickerPortal>
+    </DateTimePicker>
+  );
+}

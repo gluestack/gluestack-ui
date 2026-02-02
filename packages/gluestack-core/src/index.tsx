@@ -9,6 +9,7 @@ export * from './button/aria';
 export * from './button/creator';
 export * from './checkbox/aria';
 export * from './checkbox/creator';
+export * from './datetimepicker/creator';
 export * from './divider/creator';
 export * from './fab/creator';
 export * from './form-control/creator';
