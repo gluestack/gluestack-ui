@@ -21,6 +21,7 @@ const initOptionsSchema = z.object({
   path: z.string().optional(),
   templateOnly: z.boolean(),
   projectType: z.string(),
+  yes: z.boolean().optional().default(false),
 });
 
 export const init = new Command()
@@ -44,9 +45,15 @@ export const init = new Command()
     'Type of project to initialize',
     'library'
   )
+  .option(
+    '--yes, -y',
+    'Answer yes to all prompts (for non-interactive environments)',
+    false
+  )
   .action(async (opts) => {
     try {
       const options = initOptionsSchema.parse({ ...opts });
+      if (options.yes) config.yesToAll = true;
       const isTemplate = options.templateOnly;
       console.log('\n\x1b[1mWelcome to gluestack-ui v4 alpha!\x1b[0m\n');
       const cwd = process.cwd();

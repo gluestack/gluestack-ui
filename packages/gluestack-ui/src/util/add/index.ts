@@ -114,11 +114,13 @@ const isComponentInProject = async (
   );
 
   if (existingComponents.length > 0) {
-    const shouldContinue = await confirm({
-      message: `\x1b[33mThe following components are already present in your project: ${existingComponents.join(
-        ', '
-      )}. Do you want to overwrite them?\x1b[0m`,
-    });
+    const shouldContinue = config.yesToAll
+      ? true
+      : await confirm({
+          message: `\x1b[33mThe following components are already present in your project: ${existingComponents.join(
+            ', '
+          )}. Do you want to overwrite them?\x1b[0m`,
+        });
 
     const componentsToAdd = shouldContinue
       ? allComponentsToInstall

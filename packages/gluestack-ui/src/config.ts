@@ -14,6 +14,7 @@ const config = {
   gluestackUIPattern: '@/components/ui/',
   templatesDir: 'packages/gluestack-ui/templates',
   packageManager: null as string | null,
+  yesToAll: false,
   ignoreComponents: ['utils'] as readonly string[],
 };
 

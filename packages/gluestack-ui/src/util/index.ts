@@ -205,6 +205,9 @@ function getPackageMangerFlag(options: any) {
 }
 
 export const promptVersionManager = async (): Promise<any> => {
+  if (config.yesToAll) {
+    return 'npm';
+  }
   const packageManager = await select({
     message:
       'No lockfile detected. Please select a package manager to install dependencies:',
@@ -454,6 +457,9 @@ async function detectProjectType(directoryPath: string): Promise<string> {
 }
 
 async function getConfirmation(message: string): Promise<boolean> {
+  if (config.yesToAll) {
+    return true;
+  }
   const confirmInput = await confirm({
     message: message,
   });
@@ -465,6 +471,9 @@ async function getConfirmation(message: string): Promise<boolean> {
 }
 
 async function getFrameworkInput(): Promise<string> {
+  if (config.yesToAll) {
+    return 'library';
+  }
   const frameworkInput = await select({
     message: 'Please select the framework you are using:',
     options: [
@@ -497,6 +506,9 @@ function isValidPath(path: string): boolean {
 }
 
 const checkWritablePath = async (path: string): Promise<boolean> => {
+  if (config.yesToAll) {
+    return true;
+  }
   const confirmPath = await getConfirmation(
     `\x1b[33mContinue writing components in the above path? :\x1b[0m [If the path is incorrect, please provide the path from the root of the project]
      \n\x1b[34m${join(projectRootPath, path)}

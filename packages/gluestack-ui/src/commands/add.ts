@@ -26,6 +26,7 @@ const addOptionsSchema = z.object({
   useBun: z.boolean(),
   path: z.string().optional(),
   templateOnly: z.boolean(),
+  yes: z.boolean().optional().default(false),
 });
 
 export const add = new Command()
@@ -43,12 +44,18 @@ export const add = new Command()
     'Only install the template without installing dependencies',
     false
   )
+  .option(
+    '--yes, -y',
+    'Answer yes to all prompts (for non-interactive environments)',
+    false
+  )
   .action(async (components, opts, command) => {
     try {
       const options = addOptionsSchema.parse({
         components: command.args.length > 0 ? command.args : [],
         ...opts,
       });
+      if (options.yes) config.yesToAll = true;
 
       const isTemplate = options.templateOnly;
       !isTemplate && log.info('\n\x1b[1mWelcome to gluestack-ui v4 alpha!\x1b[0m\n');

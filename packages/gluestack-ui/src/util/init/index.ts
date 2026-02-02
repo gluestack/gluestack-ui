@@ -594,6 +594,9 @@ async function overrideWarning(files: string[]) {
   if (files.length === 0) {
     return true;
   }
+  if (config.yesToAll) {
+    return true;
+  }
   const boxLength = 90;
   console.log(`\x1b[33m
   ┌${'─'.repeat(boxLength)}┐
