@@ -1,8 +1,21 @@
 {
   "name": "@gluestack/ui-next-adapter",
   "author": "gluestack",
-  "version": "3.0.3",
+  "version": "4.0.0-alpha.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gluestack/gluestack-ui.git"
+  },
+  "description": "Next.js adapter for Gluestack UI",
+  "keywords": [
+    "react",
+    "react-native",
+    "nextjs",
+    "gluestack-ui",
+    "ui-next-adapter",
+    "gluestack-next-adapter"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
