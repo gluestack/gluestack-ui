@@ -19,7 +19,7 @@ import { InlineCode } from '@/docs-components/inline-code';
 
 # Installation
 
-To get started with **gluestack-ui v3**, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+To get started with **gluestack-ui {`${process.env.NEXT_PUBLIC_GLUESTACK_VERSION || 'v4'}`}**, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
 
 <Tabs>
 <TabItem label="CLI">
@@ -107,7 +107,8 @@ It's recommended to use the `--legacy-peer-deps` flag due to peer dependency res
 npm i @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-svg @gluestack/ui-next-adapter@alpha react-native-web react-native --legacy-peer-deps
 ```
 
-> **For React Native CLI:** Make sure to install `react-dom` as well as it is required by some of the Gluestack UI components.
+> **For React Native CLI:** Make sure to install `react-dom` as well as it is required by some of the Gluestack UI components. `npm i react-dom`
+
 
 ### Step 4: Copy required components
 
