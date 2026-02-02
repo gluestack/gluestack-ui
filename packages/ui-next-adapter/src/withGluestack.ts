@@ -7,13 +7,14 @@ import findWorkspaceRoot from 'find-yarn-workspace-root';
 
 const gluestackDeps = [
   '@gluestack-ui',
-  '@gluestack-ui',
   '@react-native-aria',
   '@gluestack',
   '@expo',
   '@legendapp',
   'expo-',
   'nativewind',
+  'react-native-worklets',
+  'react-native-reanimated',
 ];
 
 const reactNativeDeps = [
