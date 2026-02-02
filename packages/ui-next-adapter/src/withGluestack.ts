@@ -113,10 +113,10 @@ export default function withGluestackUI(nextConfig: any = {}) {
       'react-native': 'react-native-web',
     },
     resolveExtensions: [
-      '.next15.js',
-      '.next15.ts',
-      '.next15.tsx',
-      '.next15.jsx',
+      '.next.js',
+      '.next.ts',
+      '.next.tsx',
+      '.next.jsx',
       '.web.js',
       '.web.jsx',
       '.web.ts',
@@ -178,10 +178,10 @@ export default function withGluestackUI(nextConfig: any = {}) {
 
       // Add web-specific extensions first
       config.resolve.extensions = [
-        '.next15.js',
-        '.next15.ts',
-        '.next15.tsx',
-        '.next15.jsx',
+        '.next.js',
+        '.next.ts',
+        '.next.tsx',
+        '.next.jsx',
         '.web.js',
         '.web.jsx',
         '.web.ts',

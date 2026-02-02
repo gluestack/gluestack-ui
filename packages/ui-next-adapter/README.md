@@ -122,7 +122,7 @@ The adapter handles these configurations automatically:
 
 ### Webpack Extensions Priority
 
-1. `.next15.js`, `.next15.jsx`, `.next15.ts`, `.next15.tsx`
+1. `.next.js`, `.next.jsx`, `.next.ts`, `.next.tsx`
 2. `.web.js`, `.web.jsx`, `.web.ts`, `.web.tsx`
 3. `.js`, `.jsx`, `.ts`, `.tsx`
 4. `.json`, `.mjs`
