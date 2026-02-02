@@ -43,7 +43,7 @@ const App = ({ referrer }: { referrer: string }) => {
               className="lg:-mr-20 xl:-mr-24 h-[calc(100vh-110px)] xl:object-cover"
               autoPlay
               loop
-              preload="none"
+              preload="auto"
               playsInline
               muted
             >
