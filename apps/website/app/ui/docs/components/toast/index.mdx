@@ -101,10 +101,6 @@ This is an illustration of **Toast** component.
   importMap={{"@/components/ui/toast":["Toast","ToastTitle","ToastDescription","useToast"],"@/components/ui/button":["Button","ButtonText"]}}
 />
 
-### Platform Support
-
-**The Tooltip component is currently only supported on web platform**. Native mobile support (iOS/Android) is not available at this time. For more information, see [issue #1555](https://github.com/gluestack/gluestack-ui/issues/1555#issuecomment-1876602492).
-
 <br />
 
 ## Installation
@@ -119,8 +115,15 @@ This is an illustration of **Toast** component.
   </TabItem>
   <TabItem label="Manual">
 
+> Note: At present, we have integrated `react-native-reanimated` for animation. You have the option to remove this and implement your own custom animation wrapper.
 
-### Step 1: Copy and paste the following code into your project.
+### Step 1: Install the following dependencies:
+
+```bash
+npm i react-native-reanimated
+```
+
+### Step 2: Copy and paste the following code into your project.
 
 ```jsx
 'use client';
@@ -378,7 +381,7 @@ export { Toast, ToastDescription, ToastTitle, useToast };
 
 ```
 
-### Step 2: Update the import paths to match your project setup.
+### Step 3: Update the import paths to match your project setup.
 
 </TabItem>
 </Tabs>
@@ -519,10 +522,10 @@ Toast component is created using View component from react-native. It extends al
           <InlineCode>action</InlineCode>
         </TableCell>
         <TableCell>
-          <InlineCode>error | warning | success | info | attention</InlineCode>
+          <InlineCode>error | warning | success | info | muted</InlineCode>
         </TableCell>
         <TableCell>
-          <InlineCode>attention</InlineCode>
+          <InlineCode>muted</InlineCode>
         </TableCell>
       </TableRow>
       <TableRow>
@@ -530,7 +533,7 @@ Toast component is created using View component from react-native. It extends al
           <InlineCode>variant</InlineCode>
         </TableCell>
         <TableCell>
-          <InlineCode>solid | outline | accent</InlineCode>
+          <InlineCode>solid | outline</InlineCode>
         </TableCell>
         <TableCell>
           <InlineCode>solid</InlineCode>
