@@ -67,6 +67,8 @@ const nextConfig = withExpo({
     'react-native-safe-area-context',
     '@gluestack-ui/core',
     '@gluestack-ui/utils',
+    'react-native-reanimated',
+    'react-native-worklets',
     // Add other packages that need transpiling
   ],
   images: {
