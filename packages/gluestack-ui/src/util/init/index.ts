@@ -59,7 +59,7 @@ const InitializeGlueStack = async ({
       ? true
       : await overrideWarning(filesToOverride(projectType));
 
-    console.log(`\n\x1b[1mInitializing gluestack-ui v3...\x1b[0m\n`);
+    console.log(`\n\x1b[1mInitializing gluestack-ui v4 alpha...\x1b[0m\n`);
     await cloneRepositoryAtRoot(join(_homeDir, config.gluestackDir));
     const inputComponent = [config.providerComponent];
 
