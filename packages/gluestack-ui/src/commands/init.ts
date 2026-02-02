@@ -52,8 +52,11 @@ export const init = new Command()
   )
   .action(async (opts) => {
     try {
+      // Set yesToAll first (from --yes or -y) so all prompts are skipped in non-interactive environments
+      if (opts.yes === true || (opts as { y?: boolean }).y === true) {
+        config.yesToAll = true;
+      }
       const options = initOptionsSchema.parse({ ...opts });
-      if (options.yes) config.yesToAll = true;
       const isTemplate = options.templateOnly;
       console.log('\n\x1b[1mWelcome to gluestack-ui v4 alpha!\x1b[0m\n');
       const cwd = process.cwd();

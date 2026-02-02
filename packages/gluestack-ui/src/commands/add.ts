@@ -51,11 +51,14 @@ export const add = new Command()
   )
   .action(async (components, opts, command) => {
     try {
+      // Set yesToAll first (from --yes or -y) so all prompts are skipped in non-interactive environments
+      if (opts.yes === true || (opts as { y?: boolean }).y === true) {
+        config.yesToAll = true;
+      }
       const options = addOptionsSchema.parse({
         components: command.args.length > 0 ? command.args : [],
         ...opts,
       });
-      if (options.yes) config.yesToAll = true;
 
       const isTemplate = options.templateOnly;
       !isTemplate && log.info('\n\x1b[1mWelcome to gluestack-ui v4 alpha!\x1b[0m\n');
