@@ -9,21 +9,84 @@ import {
 
 # Default Tokens
 
-gluestack-ui v3 ships with default tokens, including colored tokens that provide access to theme values and flexibility to build and customize your own themed UI components.
+gluestack-ui v4 ships with shadcn-inspired default tokens, including colored tokens that provide access to theme values and flexibility to build and customize your own themed UI components.
 
 <br />
 
-Theming in `@gluestack-ui v3` is based on the [Styled System Theme Specification](https://github.com/system-ui/theme-specification).
+Theming in gluestack-ui is based on the [Styled System Theme Specification](https://github.com/system-ui/theme-specification) and follows the [shadcn/ui](https://ui.shadcn.com) design principles.
 
 ## Colors
 
-We recommend adding a palette that ranges from 50 to 900. Tools like [JSON Color Palette Generator](https://json-color-palette-generator.vercel.app), [Smart Swatch](https://smart-swatch.netlify.app/) or [Palx](https://palx.jxnblk.com/) are available to generate these palettes.
+gluestack-ui v4 uses a **semantic color token system** inspired by shadcn/ui. Instead of using numerical color scales (50-900), we use purpose-driven color names that adapt automatically to light and dark modes.
 
-Below are the default color palette tokens provided in the gluestack-ui default config.
+### Semantic Color Tokens
+
+The color system is organized around **semantic tokens** that describe their purpose rather than their appearance:
+
+#### Base Colors
+- **`background`** - Default page background
+- **`foreground`** - Default text color
+
+#### Component Colors
+- **`card`** - Card backgrounds
+- **`popover`** - Popover/dropdown backgrounds
+- **`popover-foreground`** - Text color for popovers
+
+#### Semantic Colors with Foregrounds
+Each semantic color has a corresponding `-foreground` token for optimal contrast:
+
+- **`primary`** / **`primary-foreground`** - Primary actions and highlights
+- **`secondary`** / **`secondary-foreground`** - Secondary actions
+- **`accent`** / **`accent-foreground`** - Accent elements
+- **`muted`** / **`muted-foreground`** - Muted/subtle content
+- **`destructive`** - Destructive actions (errors, delete buttons)
+
+#### Form & Border Colors
+- **`border`** - Default border color
+- **`input`** - Input field borders
+- **`ring`** - Focus ring color
+
+### Color Palette
+
+Below are the default color tokens provided in gluestack-ui v4. These automatically adapt between light and dark modes:
 
 <ColorPaletteComponent />
 
-To add custom color or update token. Please refer [tailwind CSS documentation](https://tailwindcss.com/docs/customizing-colors).
+### How It Works
+
+The color tokens use **RGB values without the `rgb()` wrapper**, allowing for opacity modifications using Tailwind's opacity syntax:
+
+```jsx
+// In config.ts
+export const config = {
+  light: vars({
+    '--primary': '23 23 23',           // Almost black in light mode
+    '--primary-foreground': '250 250 250', // Almost white text
+  }),
+  dark: vars({
+    '--primary': '255 245 245',        // Almost white in dark mode
+    '--primary-foreground': '23 23 23',    // Almost black text
+  }),
+};
+```
+
+Usage with opacity:
+```jsx
+// Full opacity
+<Box className="bg-primary" />
+
+// 50% opacity
+<Box className="bg-primary/50" />
+```
+
+### Benefits of This System
+
+1. **Semantic naming** - Colors describe their purpose, not their shade
+2. **Automatic dark mode** - Tokens adapt to light/dark mode automatically
+3. **Guaranteed contrast** - Foreground tokens ensure readable text
+4. **Design system consistency** - Follows industry-standard patterns
+
+To customize colors, update `gluestack-ui-provider/config.ts` and `tailwind.config.js`. For detailed instructions, see [Customizing Theme](/ui/docs/home/theme-configuration/customizing-theme).
 
 ## Typography
 
