@@ -2,82 +2,262 @@ import { CodeBlock } from "@/components/custom/markdown/code-block";
 
 # Customizing Theme
 
-Customize your UI theme in gluestack-ui v3 by defining a theme config and applying it via GluestackUIProvider. Tailwind CSS theme support lets you style your app seamlessly.
+Customize your UI theme in gluestack-ui v4 using shadcn-inspired semantic color tokens. Define your theme in config.ts and apply it via GluestackUIProvider for consistent, accessible styling.
 
 <br />
 
 ## Customizing Tokens
 
-gluestack-ui v3, seamlessly accommodates the default Tailwind CSS [theme](https://tailwindcss.com/docs/theme), allowing users to effortlessly expand and customize it to suit their needs.
+gluestack-ui v4 uses a **semantic color token system** inspired by shadcn/ui. The tokens are defined separately for light and dark modes, and they automatically adapt when the mode changes.
 
-gluestack-ui v3 also ships with a set of handpicked default color palette tokens which are mapped separately with each mode. For example, the default color palette for light mode is `light` and the default color palette for dark mode is `dark`.
+The color system uses semantic names (like `primary`, `secondary`, `background`) rather than numerical scales (50-900), making your theme more maintainable and meaningful.
+
+### Understanding the Token Structure
+
+Color tokens are defined in RGB format **without the `rgb()` wrapper**, which allows Tailwind to apply opacity modifiers:
+
+```jsx
+// Instead of: 'rgb(23, 23, 23)'
+// Use: '23 23 23'
+```
+
+This enables opacity syntax like `bg-primary/50` for 50% opacity.
+
+### Customizing Colors
 
 To customize tokens, follow these steps:
 
-1. Go to `gluestack-ui-provider/config.ts` file. Update or add new tokens as per your requirements.
+#### Step 1: Update color values in `gluestack-ui-provider/config.ts`
+
+```jsx
+import { vars } from 'nativewind';
+
+export const config = {
+  light: vars({
+    // Base colors
+    '--background': '255 255 255',     // White background
+    '--foreground': '10 10 10',        // Almost black text
+
+    // Primary brand color
+    '--primary': '59 130 246',         // Blue-500
+    '--primary-foreground': '255 255 255', // White text on primary
+
+    // Secondary color
+    '--secondary': '245 245 245',      // Gray-100
+    '--secondary-foreground': '23 23 23', // Dark text on secondary
+
+    // Accent color
+    '--accent': '251 146 60',          // Orange-400
+    '--accent-foreground': '255 255 255', // White text on accent
+
+    // Muted elements
+    '--muted': '245 245 245',          // Gray-100
+    '--muted-foreground': '115 115 115', // Gray-500
+
+    // Destructive/error color
+    '--destructive': '239 68 68',      // Red-500
+
+    // Component backgrounds
+    '--card': '255 255 255',           // White cards
+    '--popover': '255 255 255',        // White popovers
+    '--popover-foreground': '10 10 10', // Dark text in popovers
+
+    // Borders and inputs
+    '--border': '229 229 229',         // Gray-200
+    '--input': '229 229 229',          // Gray-200
+    '--ring': '59 130 246',            // Blue-500 focus ring
+  }),
+
+  dark: vars({
+    // Base colors
+    '--background': '10 10 10',        // Almost black background
+    '--foreground': '250 250 250',     // Almost white text
+
+    // Primary brand color (inverted for dark mode)
+    '--primary': '147 197 253',        // Blue-300
+    '--primary-foreground': '23 23 23', // Dark text on primary
+
+    // Secondary color
+    '--secondary': '38 38 38',         // Gray-800
+    '--secondary-foreground': '250 250 250', // Light text on secondary
+
+    // Accent color
+    '--accent': '251 146 60',          // Orange-400
+    '--accent-foreground': '255 255 255', // White text on accent
+
+    // Muted elements
+    '--muted': '38 38 38',             // Gray-800
+    '--muted-foreground': '161 161 161', // Gray-400
+
+    // Destructive/error color
+    '--destructive': '252 165 165',    // Red-300
+
+    // Component backgrounds
+    '--card': '23 23 23',              // Dark cards
+    '--popover': '23 23 23',           // Dark popovers
+    '--popover-foreground': '250 250 250', // Light text in popovers
+
+    // Borders and inputs
+    '--border': '46 46 46',            // Gray-700
+    '--input': '46 46 46',             // Gray-700
+    '--ring': '147 197 253',           // Blue-300 focus ring
+  }),
+};
+```
+
+#### Step 2: Map tokens to Tailwind in `tailwind.config.js`
+
+Ensure your Tailwind config maps the CSS variables to Tailwind classes:
+
+```jsx
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        border: 'rgb(var(--border))',
+        input: 'rgb(var(--input))',
+        ring: 'rgb(var(--ring))',
+        background: 'rgb(var(--background))',
+        foreground: 'rgb(var(--foreground))',
+        primary: {
+          DEFAULT: 'rgb(var(--primary))',
+          foreground: 'rgb(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'rgb(var(--secondary))',
+          foreground: 'rgb(var(--secondary-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'rgb(var(--destructive))',
+        },
+        muted: {
+          DEFAULT: 'rgb(var(--muted))',
+          foreground: 'rgb(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'rgb(var(--accent))',
+          foreground: 'rgb(var(--accent-foreground))',
+        },
+        popover: {
+          DEFAULT: 'rgb(var(--popover))',
+          foreground: 'rgb(var(--popover-foreground))',
+        },
+        card: {
+          DEFAULT: 'rgb(var(--card))',
+        },
+      },
+    },
+  },
+};
+```
+
+### Usage in Components
+
+Once configured, use the semantic tokens in your components:
+
+```jsx
+// Primary button
+<Button className="bg-primary text-primary-foreground">
+  <ButtonText>Primary Action</ButtonText>
+</Button>
+
+// Secondary button
+<Button className="bg-secondary text-secondary-foreground">
+  <ButtonText>Secondary Action</ButtonText>
+</Button>
+
+// Card with proper contrast
+<Box className="bg-card border border-border p-4">
+  <Text className="text-foreground">Card content</Text>
+  <Text className="text-muted-foreground">Muted description</Text>
+</Box>
+
+// Destructive action
+<Button className="bg-destructive text-primary-foreground">
+  <ButtonText>Delete</ButtonText>
+</Button>
+
+// With opacity
+<Box className="bg-primary/10">
+  <Text className="text-primary">Subtle primary background</Text>
+</Box>
+```
+
+### Adding Custom Tokens
+
+You can add your own custom tokens following the same pattern:
+
+#### Step 1: Add to config.ts
 
 ```jsx
 export const config = {
   light: vars({
-
-    ... // other tokens
-    //updated '--color-primary-0' value
-    '--color-primary-0': '#C0C0C0',
-
-    /* Added a new background color for light mode */
-    '--color-background-new': '#BAE7FC',
-
-   /* Add a new token with custom font-size */
-   '--custom-font-size': '80'
-
+    // ... existing tokens
+    '--success': '34 197 94',          // Green-500
+    '--success-foreground': '255 255 255',
+    '--warning': '251 146 60',         // Orange-400
+    '--warning-foreground': '255 255 255',
   }),
   dark: vars({
-     ... // other tokens
-      /* Added a new background color for dark mode */
-    '--color-background-new': '#89D6FA',
-
-   /* Add a new token with custom font-size */
-   '--custom-font-size': '80'
+    // ... existing tokens
+    '--success': '134 239 172',        // Green-300
+    '--success-foreground': '23 23 23',
+    '--warning': '253 186 116',        // Orange-300
+    '--warning-foreground': '23 23 23',
   }),
 };
-
 ```
 
-2. In case you are adding a new color in your config file, you need to update it in the tailwind.config.js file as well.
+#### Step 2: Add to tailwind.config.js
 
 ```jsx
- theme: {
-    extend: {
-      colors: {
-        background: {
-          ... // other color values,
-          /* Added a new background color */
-          new: 'var(--color-background-new)',
-        },
-      },
-        fontSize: {
-          ... // other font size values,
-          /* Added a new font size token */
-         'custom-heading-xl':'var(--custom-font-size)'
-      },
-    },
-    plugins: [],
+colors: {
+  // ... existing colors
+  success: {
+    DEFAULT: 'rgb(var(--success))',
+    foreground: 'rgb(var(--success-foreground))',
   },
+  warning: {
+    DEFAULT: 'rgb(var(--warning))',
+    foreground: 'rgb(var(--warning-foreground))',
+  },
+}
 ```
 
-You can customize all the tokens in `config`. For a complete list of tokens and default values, please check [default Tokens](https://gluestack.io/ui/docs/home/theme-configuration/default-tokens).
+### Adding Custom Font Sizes
 
-By utilizing this approach, you can seamlessly modify the primary color tokens of the theme while maintaining the overall theme configuration intact.
+You can also add custom typography tokens:
 
-If you want to extend the default tailwind config and add fonts, breakpoints, border radius values, and more, please refer to the [tailwindcss](https://tailwindcss.com/docs/theme#customizing-the-default-theme) documentation.
-
-In order for `custom-heading-xl` to work, you also will need to pass an additional config for the [tva](https://gluestack.io/ui/docs/home/getting-started/gluestack-ui-nativewind-utils#tva-tailwind-variant-authority) function when defining a component, for [Text](https://gluestack.io/ui/docs/components/text) it will be:
+#### Step 1: Add to config.ts
 
 ```jsx
-// Text style props are from here https://gluestack.io/ui/docs/components/text (step 3, the one from styles.tsx)
-const textStyleProps = {};
+export const config = {
+  light: vars({
+    // ... existing tokens
+    '--font-size-custom': '80',        // 80px
+  }),
+  dark: vars({
+    // ... existing tokens
+    '--font-size-custom': '80',
+  }),
+};
+```
 
-//ref @see https://www.tailwind-variants.org/docs/api-reference#config-optional
+#### Step 2: Add to tailwind.config.js
+
+```jsx
+fontSize: {
+  'custom-heading-xl': 'var(--font-size-custom)',
+}
+```
+
+#### Step 3: Configure tva for the component
+
+For custom font sizes to work with `tva` (Tailwind Variants Authority), add configuration:
+
+```jsx
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+
 const config = {
   twMerge: true,
   twMergeConfig: {
@@ -91,7 +271,26 @@ const config = {
   },
 };
 
-export const textStyle = tva(...textStyleProps, config);
+export const textStyle = tva({
+  base: 'text-foreground',
+  variants: {
+    size: {
+      'custom-heading-xl': 'text-custom-heading-xl',
+    },
+  },
+}, config);
 ```
 
-Another way to solve this is by setting [global tailwind-variants config](https://www.tailwind-variants.org/docs/config#global-config), but it will affect all components. Maybe it's not your case and you want to have a custom font-size only for a specific component/part of the app.
+Alternatively, set a [global tailwind-variants config](https://www.tailwind-variants.org/docs/config#global-config) to affect all components.
+
+### Best Practices
+
+1. **Use semantic names** - Name tokens by purpose (`primary`, `secondary`) not appearance (`blue`, `gray`)
+2. **Maintain contrast** - Always provide foreground tokens for colored backgrounds
+3. **Test both modes** - Verify your colors work in both light and dark mode
+4. **Use opacity sparingly** - The `/50` syntax is great for subtle backgrounds
+5. **Follow the pattern** - Keep the RGB format without `rgb()` wrapper for Tailwind compatibility
+
+For a complete list of default tokens, see [Default Tokens](/ui/docs/home/theme-configuration/default-tokens).
+
+For extending Tailwind config (fonts, breakpoints, border radius, etc.), refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/theme#customizing-the-default-theme).
