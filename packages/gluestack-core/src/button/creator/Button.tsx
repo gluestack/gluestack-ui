@@ -74,6 +74,11 @@ export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
               disabled: isDisabled,
               focusVisible: isFocusVisibleProp || isFocusVisible,
             }}
+            data-hover={isHoveredProp || isHovered ? 'true' : 'false'}
+            data-focus={isFocusedProp || isFocused ? 'true' : 'false'}
+            data-active={isPressedProp || isPressed ? 'true' : 'false'}
+            data-disabled={isDisabled ? 'true' : 'false'}
+            data-focus-visible={isFocusVisibleProp || isFocusVisible ? 'true' : 'false'}
             dataSet={{
               hover: isHoveredProp || isHovered ? 'true' : 'false',
               focus: isFocusedProp || isFocused ? 'true' : 'false',

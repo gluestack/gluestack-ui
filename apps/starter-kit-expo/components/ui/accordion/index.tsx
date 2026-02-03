@@ -230,4 +230,3 @@ AccordionContent.displayName = 'AccordionContent';
 export {
   Accordion, AccordionContent, AccordionContentText, AccordionHeader, AccordionIcon, AccordionItem, AccordionTitleText, AccordionTrigger
 };
-

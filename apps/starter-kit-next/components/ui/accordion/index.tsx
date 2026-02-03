@@ -5,6 +5,7 @@ import {
   AccordionItemContext,
 } from '@gluestack-ui/core/accordion/creator';
 import { UIIcon } from '@/components/ui/icon';
+import { withDataSet } from '@/helpers/withDataSet';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import React from 'react';
 import { Platform, Pressable, Text, TextProps, View } from 'react-native';
@@ -43,8 +44,7 @@ const accordionContentStyle = tva({
 });
 
 const accordionTriggerStyle = tva({
-  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10 px-4 disabled:opacity-40 disabled:cursor-not-allowed focus:bg-background/10',
-  // TODO: remove disabled:opacity-40 disabled:cursor-not-allowed focus:bg-background/10 after data-attribute support
+  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10 px-4',
 });
 
 const Header = (
@@ -56,7 +56,7 @@ const UIAccordion = createAccordion({
   Root: View,
   Item: View,
   Header: Header,
-  Trigger: Pressable,
+  Trigger: withDataSet(Pressable),
   Icon: UIIcon,
   TitleText: Text,
   ContentText: Text,
@@ -230,4 +230,3 @@ AccordionContent.displayName = 'AccordionContent';
 export {
   Accordion, AccordionContent, AccordionContentText, AccordionHeader, AccordionIcon, AccordionItem, AccordionTitleText, AccordionTrigger
 };
-
