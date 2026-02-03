@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Platform, View } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -7,10 +8,26 @@ import Animated, {
   Easing,
   SharedValue,
 } from 'react-native-reanimated';
-import type { LayoutData } from '@gluestack-ui GitHub Workflow/core/tabs/creator';
+import type { LayoutData } from '@gluestack-ui/core/tabs/creator';
 import { tabsAnimationConfig } from './animation-config';
-import { Platform } from 'react-native';
 import { cssInterop } from 'nativewind';
+
+/* -------------------------------------------------- */
+/* Animated View (REQUIRED for native)                */
+/* -------------------------------------------------- */
+
+const AnimatedView = Animated.createAnimatedComponent(View);
+
+/* -------------------------------------------------- */
+/* NativeWind interop (REQUIRED for web)              */
+/* -------------------------------------------------- */
+if (Platform.OS === 'web') {
+  cssInterop(AnimatedView, {
+    className: { target: 'style' },
+  });
+}
+
+/* -------------------------------------------------- */
 
 interface TabsAnimatedIndicatorProps {
   selectedKey: any;
@@ -22,12 +39,8 @@ interface TabsAnimatedIndicatorProps {
   style?: any;
 }
 
-cssInterop(Animated.View, {
-  className: { target: 'style' },
-});
-
 export const TabsAnimatedIndicator = React.forwardRef<
-  any,
+  View,
   TabsAnimatedIndicatorProps
 >(
   (
@@ -42,50 +55,59 @@ export const TabsAnimatedIndicator = React.forwardRef<
     },
     ref
   ) => {
-    const animatedX = useSharedValue(0);
-    const animatedY = useSharedValue(0);
-    const animatedWidth = useSharedValue(0);
-    const animatedHeight = useSharedValue(0);
+    /* ---------------------------------------------- */
+    /* Shared values                                  */
+    /* ---------------------------------------------- */
 
-    const [hasLayout, setHasLayout] = useState(false); // Fallback shared value for web / non-animated scroll
+    const translateX = useSharedValue(0);
+    const translateY = useSharedValue(0);
+    const width = useSharedValue(0);
+    const height = useSharedValue(0);
 
-    const scrollOffsetShared = useSharedValue(scrollOffset);
+    const [hasLayout, setHasLayout] = useState(false);
+
+    /* ---------------------------------------------- */
+    /* Scroll offset fallback (web / non-reanimated)  */
+    /* ---------------------------------------------- */
+
+    const scrollFallback = useSharedValue(scrollOffset);
 
     useEffect(() => {
       if (!animatedScrollOffset) {
-        scrollOffsetShared.value = scrollOffset;
+        scrollFallback.value = scrollOffset;
       }
-    }, [scrollOffset, animatedScrollOffset, scrollOffsetShared]); /**
-     * Update indicator layout
-     */
+    }, [scrollOffset, animatedScrollOffset]);
+
+    /* ---------------------------------------------- */
+    /* Update indicator position                      */
+    /* ---------------------------------------------- */
 
     useEffect(() => {
       const layout = triggerLayouts.get(selectedKey);
-      console.log('layout', layout);
-      if (!layout || layout.width <= 0) return;
+      if (!layout || layout.width <= 0 || layout.height <= 0) return;
 
       const isFirst = !hasLayout;
       const duration = isFirst ? 0 : tabsAnimationConfig.indicatorDuration;
 
-      animatedX.value = withDelay(
-        20,
+      translateX.value = withDelay(
+        isFirst ? 0 : 20,
         withTiming(layout.x, {
           duration,
           easing: Easing.ease,
         })
       );
 
-      animatedY.value = withTiming(layout.y, {
+      translateY.value = withTiming(layout.y, {
         duration,
         easing: Easing.ease,
       });
 
-      animatedWidth.value = withTiming(layout.width, {
+      width.value = withTiming(layout.width, {
         duration,
         easing: Easing.ease,
       });
 
-      animatedHeight.value = withTiming(layout.height, {
+      height.value = withTiming(layout.height, {
         duration,
         easing: Easing.ease,
       });
@@ -93,57 +115,46 @@ export const TabsAnimatedIndicator = React.forwardRef<
       if (!hasLayout) {
         setHasLayout(true);
       }
-    }, [
-      selectedKey,
-      triggerLayouts,
-      hasLayout,
-      animatedX,
-      animatedY,
-      animatedWidth,
-      animatedHeight,
-    ]); /**
-     *  Platform-aware animated style
-     */
+    }, [selectedKey, triggerLayouts, hasLayout]);
+
+    /* ---------------------------------------------- */
+    /* Animated style (TRANSFORM ONLY)                */
+    /* ---------------------------------------------- */
 
     const animatedStyle = useAnimatedStyle(() => {
-      const scroll = animatedScrollOffset?.value ?? scrollOffsetShared.value;
-      console.log(orientation, animatedX.value, scroll);
+      const scroll = animatedScrollOffset?.value ?? scrollFallback.value;
+
       const x =
         orientation === 'horizontal'
-          ? animatedX.value - scroll
-          : animatedX.value; //  WEB: use left/top
-
-      if (Platform.OS === 'web') {
-        return {
-          left: x,
-          top: animatedY.value,
-          width: animatedWidth.value,
-          height: animatedHeight.value,
-        };
-      } //  NATIVE: use transform
+          ? translateX.value - scroll
+          : translateX.value;
 
       return {
-        transform: [{ translateX: x }, { translateY: animatedY.value }],
-        width: animatedWidth.value,
-        height: animatedHeight.value,
+        transform: [{ translateX: x }, { translateY: translateY.value }],
+        width: width.value,
+        height: height.value,
       };
-    }, [orientation, animatedX, animatedY, animatedWidth, animatedHeight]);
+    }, [orientation,translateX,translateY,width,height]);
+
+    /* ---------------------------------------------- */
 
     if (!hasLayout) {
       return null;
     }
 
     return (
-      <Animated.View
+      <AnimatedView
         ref={ref}
         className={className}
         style={[
-          animatedStyle,
-          style,
           {
             position: 'absolute',
+            left: 0, // 🔑 IMPORTANT: reset base position
+            top: 0, // 🔑 makes transform identical on web & native
             zIndex: 1,
           },
+          animatedStyle,
+          style,
         ]}
       />
     );
