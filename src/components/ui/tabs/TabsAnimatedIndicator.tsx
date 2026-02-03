@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -22,9 +22,9 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 /* NativeWind interop (REQUIRED for web)              */
 /* -------------------------------------------------- */
 
-cssInterop(AnimatedView, {
+  Platform.OS === 'web' ? cssInterop(AnimatedView, {
   className: { target: 'style' },
-});
+}) : "";
 
 /* -------------------------------------------------- */
 

@@ -21,11 +21,10 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 /* -------------------------------------------------- */
 /* NativeWind interop (REQUIRED for web)              */
 /* -------------------------------------------------- */
-if (Platform.OS === 'web') {
-  cssInterop(AnimatedView, {
-    className: { target: 'style' },
-  });
-}
+
+  Platform.OS === 'web' ? cssInterop(AnimatedView, {
+  className: { target: 'style' },
+}) : "";
 
 /* -------------------------------------------------- */
 
