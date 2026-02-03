@@ -1,0 +1,21 @@
+{
+  "title": "With Icons",
+  "description": "Use TabsTriggerIcon with the as prop to add icons alongside the trigger text in each tab.",
+  "argTypes": {},
+  "reactLive": {
+    "Tabs": "@/components/ui/tabs",
+    "TabsList": "@/components/ui/tabs",
+    "TabsTrigger": "@/components/ui/tabs",
+    "TabsContent": "@/components/ui/tabs",
+    "TabsContentWrapper": "@/components/ui/tabs",
+    "TabsTriggerText": "@/components/ui/tabs",
+    "TabsTriggerIcon": "@/components/ui/tabs",
+    "TabsIndicator": "@/components/ui/tabs",
+    "Box": "@/components/ui/box",
+    "Text": "@/components/ui/text",
+    "SearchIcon": "@/components/ui/icon",
+    "MailIcon": "@/components/ui/icon",
+    "StarIcon": "@/components/ui/icon",
+    "BellIcon": "@/components/ui/icon"
+  }
+}

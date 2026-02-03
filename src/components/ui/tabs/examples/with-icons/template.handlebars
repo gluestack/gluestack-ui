@@ -1,0 +1,60 @@
+function Example() {
+  return (
+    <Tabs defaultValue="explore" variant="filled">
+      <TabsList>
+        <TabsTrigger value="explore">
+          <TabsTriggerIcon as={SearchIcon} />
+          <TabsTriggerText>Explore</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="messages">
+          <TabsTriggerIcon as={MailIcon} />
+          <TabsTriggerText>Messages</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="favourites">
+          <TabsTriggerIcon as={StarIcon} />
+          <TabsTriggerText>Favourites</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="notifications">
+          <TabsTriggerIcon as={BellIcon} />
+          <TabsTriggerText>Alerts</TabsTriggerText>
+        </TabsTrigger>
+        <TabsIndicator />
+      </TabsList>
+
+      <TabsContentWrapper>
+        <TabsContent value="explore">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Explore</Text>
+            <Text className="text-foreground/70">
+              Discover new content and trending topics.
+            </Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="messages">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Messages</Text>
+            <Text className="text-foreground/70">
+              Your recent conversations and direct messages.
+            </Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="favourites">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Favourites</Text>
+            <Text className="text-foreground/70">
+              Items and pages you have starred for quick access.
+            </Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="notifications">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Alerts</Text>
+            <Text className="text-foreground/70">
+              Stay up to date with your latest notifications.
+            </Text>
+          </Box>
+        </TabsContent>
+      </TabsContentWrapper>
+    </Tabs>
+  );
+}

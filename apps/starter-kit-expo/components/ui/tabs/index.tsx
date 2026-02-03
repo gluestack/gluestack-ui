@@ -428,6 +428,7 @@ const TabsIndicator = React.forwardRef<
   );
 });
 
+
 Tabs.displayName = 'Tabs';
 TabsList.displayName = 'TabsList';
 TabsTrigger.displayName = 'TabsTrigger';
@@ -435,7 +436,7 @@ TabsContent.displayName = 'TabsContent';
 TabsContentWrapper.displayName = 'TabsContentWrapper';
 TabsTriggerText.displayName = 'TabsTriggerText';
 TabsTriggerIcon.displayName = 'TabsTriggerIcon';
-TabsIndicator.displayName = 'TabsIndicator';
+TabsIndicator.displayName = 'TabsIndicator'
 
 export {
   Tabs,

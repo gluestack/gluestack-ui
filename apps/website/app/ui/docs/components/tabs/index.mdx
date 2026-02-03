@@ -1,4 +1,9 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
+import { Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, TabsTriggerIcon } from '@/components/ui/tabs';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { SearchIcon, MailIcon, StarIcon, BellIcon } from '@/components/ui/icon';
+import { Button, ButtonText } from '@/components/ui/button';
 
 import { CodeBlock } from "@/components/custom/markdown/code-block"; 
 
@@ -20,7 +25,52 @@ Create an organized UI using the gluestack-ui Tabs component in React & React Na
 
 This is an illustration of **Tabs** component.
 
-<!-- Failed to load CodePreviewer for Example:basic -->
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Tabs defaultValue="home">
+      <TabsList>
+        <TabsTrigger value="home">
+          <TabsTriggerText>Home</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="profile">
+          <TabsTriggerText>Profile</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="settings">
+          <TabsTriggerText>Settings</TabsTriggerText>
+        </TabsTrigger>
+        <TabsIndicator />
+      </TabsList>
+
+      <TabsContentWrapper>
+        <TabsContent value="home">
+          <Box className="p-4">
+            <Text className="text-foreground">Welcome to the Home tab!</Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="profile">
+          <Box className="p-4">
+            <Text className="text-foreground">Your profile information</Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="settings">
+          <Box className="p-4">
+            <Text className="text-foreground">Settings and preferences</Text>
+          </Box>
+        </TabsContent>
+      </TabsContentWrapper>
+    </Tabs>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text }}
+  importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"]}}
+/>
 
 <br />
 ## Installation
@@ -50,7 +100,7 @@ npm i react-native-reanimated
 
 ```jsx
 'use client';
-import React from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { createTabs, TabsContext } from '@gluestack-ui/core/tabs/creator';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 import {
@@ -60,20 +110,28 @@ import {
   type VariantProps,
 } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import { Pressable, Text, View, FlatList } from 'react-native';
-import Animated from 'react-native-reanimated';
+import { Pressable, Text, View, FlatList, Platform } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  useAnimatedScrollHandler,
+  runOnJS,
+} from 'react-native-reanimated';
 import { TabsAnimatedIndicator } from './TabsAnimatedIndicator';
 
 const SCOPE = 'TABS';
-
+const AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+Platform.OS === 'web' ? cssInterop(AnimatedView,{className:{target:'style'}}) : AnimatedView
 /** Styles */
 
 const tabsStyle = tva({
-  base: 'w-full',
+  base: 'w-full gap-1',
 });
 
 const tabsListStyle = tva({
-  base: 'flex relative',
+  base: 'flex relative z-10 bg-muted p-1 rounded-lg',
   variants: {
     orientation: {
       horizontal: 'flex-row',
@@ -83,55 +141,39 @@ const tabsListStyle = tva({
 });
 
 const tabsTriggerStyle = tva({
-  base: 'justify-center items-center web:outline-none data-[disabled=true]:opacity-40 data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary/20',
+  base: 'justify-center relative z-30 items-center web:outline-none data-[disabled=true]:opacity-40 data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary/20  px-3 py-1.5',
   parentVariants: {
-    size: {
-      sm: 'px-3 py-2 gap-1',
-      md: 'px-4 py-2.5 gap-2',
-      lg: 'px-5 py-3 gap-2',
-    },
     variant: {
       underlined: '',
-      filled:
-        'rounded-lg data-[selected=true]:bg-primary/10 data-[hover=true]:bg-muted/50',
-      enclosed:
-        'border border-transparent data-[selected=true]:border-border rounded-t',
+      filled: 'rounded-lg',
     },
   },
 });
 
 const tabsTriggerTextStyle = tva({
-  base: 'text-foreground/70 data-[selected=true]:text-foreground font-medium data-[hover=true]:text-foreground/90',
-  parentVariants: {
-    size: {
-      sm: 'text-sm',
-      md: 'text-base',
-      lg: 'text-lg',
-    },
-  },
+  base: 'text-foreground/70 data-[selected=true]:text-foreground font-medium data-[hover=true]:text-foreground/90 ',
+ 
 });
 
 const tabsTriggerIconStyle = tva({
   base: 'text-foreground/70 data-[selected=true]:text-foreground fill-none',
-  parentVariants: {
-    size: {
-      sm: 'h-4 w-4',
-      md: 'h-5 w-5',
-      lg: 'h-6 w-6',
-    },
-  },
+
 });
 
 const tabsContentStyle = tva({
-  base: 'pt-4',
+  base: 'p-2 h-auto',
+});
+
+const tabsContentWrapperStyle = tva({
+  base: 'overflow-hidden rounded-lg',
 });
 
 const tabsIndicatorStyle = tva({
-  base: 'absolute pointer-events-none overflow-hidden',
-  variants: {
-    orientation: {
-      horizontal: 'bottom-0 h-0.5',
-      vertical: 'left-0 w-0.5',
+  base: 'pointer-events-none  rounded-lg',
+  parentVariants: {
+    variant: {
+      underlined: 'border-b-2 border-primary',
+      filled: 'bg-background z-20',
     },
   },
 });
@@ -145,6 +187,7 @@ const UITabs = createTabs({
   List: View,
   Trigger: Pressable,
   Content: View,
+  ContentWrapper: AnimatedView,
   TriggerText: Text,
   TriggerIcon: UIIcon,
   Indicator: View,
@@ -167,17 +210,19 @@ cssInterop(PrimitiveIcon, {
 
 type ITabsProps = React.ComponentPropsWithoutRef<typeof UITabs> &
   VariantProps<typeof tabsStyle> & {
-    variant?: 'underlined' | 'filled' | 'enclosed';
-    size?: 'sm' | 'md' | 'lg';
+    variant?: 'underlined' | 'filled';
+   
   };
 
-type ITabsListProps = React.ComponentPropsWithoutRef<typeof UITabs.List> & {
-  scrollable?: boolean;
-};
+type ITabsListProps = React.ComponentPropsWithoutRef<typeof UITabs.List>;
 
 type ITabsTriggerProps = React.ComponentPropsWithoutRef<typeof UITabs.Trigger>;
 
 type ITabsContentProps = React.ComponentPropsWithoutRef<typeof UITabs.Content>;
+
+type ITabsContentWrapperProps = React.ComponentPropsWithoutRef<
+  typeof UITabs.ContentWrapper
+>;
 
 type ITabsTriggerTextProps = React.ComponentPropsWithoutRef<
   typeof UITabs.TriggerText
@@ -198,14 +243,14 @@ type ITabsIndicatorProps = React.ComponentPropsWithoutRef<
 /** Components */
 
 const Tabs = React.forwardRef<React.ComponentRef<typeof UITabs>, ITabsProps>(
-  ({ className, variant = 'underlined', size = 'md', ...props }, ref) => {
+  ({ className, variant = 'underlined', ...props }, ref) => {
     return (
       <UITabs
         ref={ref}
         {...props}
         className={tabsStyle({ class: className })}
         // @ts-ignore - pass variants to context
-        context={{ variant, size }}
+        context={{ variant}}
       />
     );
   }
@@ -214,16 +259,73 @@ const Tabs = React.forwardRef<React.ComponentRef<typeof UITabs>, ITabsProps>(
 const TabsList = React.forwardRef<
   React.ComponentRef<typeof UITabs.List>,
   ITabsListProps
->(({ className, scrollable = false, children, ...props }, ref) => {
+>(({ className, children, ...props }, ref) => {
   const context = React.useContext(TabsContext);
-  const orientation = context?.orientation || 'horizontal';
+  const flatListRef = useRef<any>(null);
+  const containerRef = useRef<any>(null);
 
-  // For scrollable tabs, use FlatList for better performance
-  if (scrollable && orientation === 'horizontal') {
-    // Convert children to array for FlatList
+  if (!context) return null;
+
+  const { orientation, setScrollOffset, selectedKey } = context;
+
+  // Create animated scroll offset shared value for synchronized scrolling
+  const animatedScrollOffset = useSharedValue(0);
+
+  // Store container ref and animated scroll offset in context for position measurements
+  React.useEffect(() => {
+    if (containerRef.current && context) {
+      // @ts-ignore
+      context.listRef = containerRef;
+      // @ts-ignore - Store animated scroll offset for indicator synchronization
+      context.animatedScrollOffset = animatedScrollOffset;
+    }
+  }, [context, animatedScrollOffset]);
+
+  // Scroll to selected tab when it changes
+  useEffect(() => {
+    if (orientation === 'horizontal' && selectedKey) {
+      const childArray = React.Children.toArray(children);
+      const triggers = childArray.filter(
+        (child: any) => child?.type?.displayName !== 'TabsIndicator'
+      );
+      const selectedIndex = triggers.findIndex(
+        (child: any) => child?.props?.value === selectedKey
+      );
+
+      if (selectedIndex >= 0 && flatListRef.current) {
+        // Use a longer timeout to ensure FlatList is fully mounted
+        const timer = setTimeout(() => {
+          try {
+            flatListRef.current?.scrollToIndex({
+              index: selectedIndex,
+              animated: true,
+              viewPosition: 0.5, // Center the item
+            });
+          } catch (error) {
+            // Silently handle error - normal on first render
+            console.warn('scrollToIndex failed:', error);
+          }
+        }, 100);
+
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [selectedKey, orientation, children]);
+
+  // Animated scroll handler for synchronized scrolling with indicator
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      'worklet';
+      animatedScrollOffset.value = event.contentOffset.x;
+      // Also update context for backward compatibility with non-animated code
+      // Use runOnJS to call JS function from worklet
+      runOnJS(setScrollOffset)(event.contentOffset.x);
+    },
+  });
+
+  // Use FlatList for horizontal tabs
+  if (orientation === 'horizontal') {
     const childArray = React.Children.toArray(children);
-
-    // Separate triggers from indicator
     const triggers = childArray.filter(
       (child: any) => child?.type?.displayName !== 'TabsIndicator'
     );
@@ -232,25 +334,43 @@ const TabsList = React.forwardRef<
     );
 
     return (
-      <View className={tabsListStyle({ orientation, class: className })}>
-        <FlatList
-          ref={ref}
+      <View ref={containerRef} className={tabsListStyle({ orientation, class: className })}>
+        {indicator}
+        <AnimatedFlatList
+          ref={flatListRef}
+          style={{zIndex:100}}
           data={triggers}
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item: any, index) =>
             item?.props?.value || `tab-${index}`
           }
-          renderItem={({ item }) => item}
-          contentContainerStyle={{ alignItems: 'center' }}
+          renderItem={({ item }) => item as any}
+          onScroll={scrollHandler}
+          scrollEventThrottle={16}
+          onScrollToIndexFailed={(info) => {
+            // Wait for the list to settle and retry
+            const wait = new Promise((resolve) => setTimeout(resolve, 500));
+            wait.then(() => {
+              try {
+                flatListRef.current?.scrollToIndex({
+                  index: info.index,
+                  animated: false,
+                  viewPosition: 0.5,
+                });
+              } catch (error) {
+                // Silently handle retry failure
+                console.warn('Retry scrollToIndex failed');
+              }
+            });
+          }}
           {...props}
         />
-        {indicator}
       </View>
     );
   }
 
-  // Default non-scrollable or vertical tabs
+  // Vertical orientation
   return (
     <UITabs.List
       ref={ref}
@@ -266,14 +386,14 @@ const TabsTrigger = React.forwardRef<
   React.ComponentRef<typeof UITabs.Trigger>,
   ITabsTriggerProps
 >(({ className, ...props }, ref) => {
-  const { variant, size } = useStyleContext(SCOPE);
+  const { variant } = useStyleContext(SCOPE);
 
   return (
     <UITabs.Trigger
       ref={ref}
       {...props}
       className={tabsTriggerStyle({
-        parentVariants: { variant, size },
+        parentVariants: { variant  },
         class: className,
       })}
     />
@@ -293,18 +413,65 @@ const TabsContent = React.forwardRef<
   );
 });
 
+const TabsContentWrapper = React.forwardRef<
+  React.ComponentRef<typeof UITabs.ContentWrapper>,
+  ITabsContentWrapperProps
+>(({ className, targetHeight, ...props }: any, ref) => {
+  const context = React.useContext(TabsContext);
+
+  // Get the height of the selected content from the layouts Map
+  const selectedLayout = context?.selectedKey
+    ? context.contentLayouts.get(context.selectedKey)
+    : null;
+  const height = selectedLayout?.height || 0;
+
+  // Use shared value for Reanimated with initial height
+  const heightValue = useSharedValue(height);
+  const isFirstRender = React.useRef(true);
+
+  // Update shared value when height changes
+  React.useEffect(() => {
+    if (height > 0) {
+      if (isFirstRender.current) {
+        // Set initial height without animation
+        heightValue.value = height;
+        isFirstRender.current = false;
+      } else {
+        // Animate height changes
+        heightValue.value = withSpring(height,{duration:100});
+      }
+    }
+  }, [height, heightValue]);
+
+  // Animated style for height transitions
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      height: heightValue.value > 0 ? heightValue.value : 'auto',
+    };
+  }, []);
+
+  return (
+    <UITabs.ContentWrapper
+      ref={ref}
+      style={animatedStyle}
+      {...props}
+      className={tabsContentWrapperStyle({ class: className })}
+    />
+  );
+});
+
 const TabsTriggerText = React.forwardRef<
   React.ComponentRef<typeof UITabs.TriggerText>,
   ITabsTriggerTextProps
 >(({ className, ...props }, ref) => {
-  const { size } = useStyleContext(SCOPE);
+  
 
   return (
     <UITabs.TriggerText
       ref={ref}
       {...props}
       className={tabsTriggerTextStyle({
-        parentVariants: { size },
+       
         class: className,
       })}
     />
@@ -315,14 +482,14 @@ const TabsTriggerIcon = React.forwardRef<
   React.ComponentRef<typeof UITabs.TriggerIcon>,
   ITabsTriggerIconProps
 >(({ className, ...props }, ref) => {
-  const { size } = useStyleContext(SCOPE);
+ 
 
   return (
     <UITabs.TriggerIcon
       ref={ref}
       {...props}
       className={tabsTriggerIconStyle({
-        parentVariants: { size },
+      
         class: className,
       })}
     />
@@ -335,11 +502,15 @@ const TabsIndicator = React.forwardRef<
 >(({ className, ...props }, ref) => {
   const context = React.useContext(TabsContext);
 
+  const { variant } = useStyleContext(SCOPE);
+
   if (!context) {
     return null;
   }
 
-  const { selectedKey, orientation, triggerLayouts } = context;
+  const { selectedKey, orientation, triggerLayouts, scrollOffset } = context;
+  // @ts-ignore - Get animated scroll offset from context
+  const animatedScrollOffset = context.animatedScrollOffset;
 
   return (
     <TabsAnimatedIndicator
@@ -347,25 +518,33 @@ const TabsIndicator = React.forwardRef<
       selectedKey={selectedKey}
       orientation={orientation}
       triggerLayouts={triggerLayouts}
-      className={tabsIndicatorStyle({ orientation, class: className })}
+      scrollOffset={scrollOffset}
+      animatedScrollOffset={animatedScrollOffset}
+      className={tabsIndicatorStyle({
+        parentVariants: { variant },
+        class: className,
+      })}
       {...props}
     />
   );
 });
 
+
 Tabs.displayName = 'Tabs';
 TabsList.displayName = 'TabsList';
 TabsTrigger.displayName = 'TabsTrigger';
 TabsContent.displayName = 'TabsContent';
+TabsContentWrapper.displayName = 'TabsContentWrapper';
 TabsTriggerText.displayName = 'TabsTriggerText';
 TabsTriggerIcon.displayName = 'TabsTriggerIcon';
-TabsIndicator.displayName = 'TabsIndicator';
+TabsIndicator.displayName = 'TabsIndicator'
 
 export {
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
+  TabsContentWrapper,
   TabsTriggerText,
   TabsTriggerIcon,
   TabsIndicator,
@@ -375,89 +554,157 @@ export {
 
 ```jsx
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
+  withDelay,
+  Easing,
+  SharedValue,
 } from 'react-native-reanimated';
 import type { LayoutData } from '@gluestack-ui/core/tabs/creator';
 import { tabsAnimationConfig } from './animation-config';
+import { Platform } from 'react-native';
+import { cssInterop } from 'nativewind';
 
 interface TabsAnimatedIndicatorProps {
   selectedKey: any;
   orientation: 'horizontal' | 'vertical';
   triggerLayouts: Map<any, LayoutData>;
+  scrollOffset?: number;
+  animatedScrollOffset?: SharedValue<number>;
   className?: string;
   style?: any;
 }
-
+Platform.OS === 'web' ? cssInterop(Animated.View,{className:{target:'style'}}) : Animated.View
 export const TabsAnimatedIndicator = React.forwardRef<
   any,
   TabsAnimatedIndicatorProps
->(({ selectedKey, orientation, triggerLayouts, className, style, ...props }, ref) => {
-  const animatedX = useSharedValue(0);
-  const animatedY = useSharedValue(0);
-  const animatedWidth = useSharedValue(0);
-  const animatedHeight = useSharedValue(0);
-  const [hasLayout, setHasLayout] = useState(false);
+>(
+  (
+    {
+      selectedKey,
+      orientation,
+      triggerLayouts,
+      scrollOffset = 0,
+      animatedScrollOffset,
+      className,
+      style,
+    },
+    ref
+  ) => {
+    const animatedX = useSharedValue(0);
+    const animatedY = useSharedValue(0);
+    const animatedWidth = useSharedValue(0);
+    const animatedHeight = useSharedValue(0);
+    const [hasLayout, setHasLayout] = useState(false);
 
-  useEffect(() => {
-    if (selectedKey && triggerLayouts.has(selectedKey)) {
-      const layout = triggerLayouts.get(selectedKey);
+    // Create a shared value for scroll offset to use in worklet
+    const scrollOffsetShared = useSharedValue(scrollOffset);
 
-      if (layout && layout.width > 0) {
-        // Determine if this is the first time we're setting values
-        const isFirstRender = !hasLayout;
-        const duration = isFirstRender ? 0 : tabsAnimationConfig.indicatorDuration;
+    // Update scroll offset shared value when scrollOffset changes
+    useEffect(() => {
+      if (!animatedScrollOffset) {
+        scrollOffsetShared.value = scrollOffset;
+      }
+    }, [scrollOffset, scrollOffsetShared, animatedScrollOffset]);
 
-        animatedX.value = withTiming(layout.x, { duration });
-        animatedY.value = withTiming(layout.y, { duration });
-        animatedWidth.value = withTiming(layout.width, { duration });
-        animatedHeight.value = withTiming(layout.height, { duration });
+    useEffect(() => {
+      if (selectedKey && triggerLayouts.has(selectedKey)) {
+        const layout = triggerLayouts.get(selectedKey);
 
-        if (!hasLayout) {
-          setHasLayout(true);
+        if (layout && layout.width > 0) {
+          // Determine if this is the first time we're setting values
+          const isFirstRender = !hasLayout;
+          const duration = isFirstRender
+            ? 0
+            : tabsAnimationConfig.indicatorDuration;
+
+          // Store the absolute x position (not adjusted for scroll)
+          animatedX.value = withDelay(
+            20,
+            withTiming(layout.x, {
+              duration: duration,
+              easing: Easing.ease,
+            })
+          );
+          animatedY.value = withTiming(layout.y, {
+            duration: duration,
+            easing: Easing.ease,
+          });
+          animatedWidth.value = withTiming(layout.width, {
+            duration: duration,
+            easing: Easing.ease,
+          });
+          animatedHeight.value = withTiming(layout.height, {
+            duration: duration,
+            easing: Easing.ease,
+          });
+
+          if (!hasLayout) {
+            setHasLayout(true);
+          }
         }
       }
+    }, [
+      selectedKey,
+      triggerLayouts,
+      hasLayout,
+      animatedX,
+      animatedY,
+      animatedWidth,
+      animatedHeight,
+    ]);
+
+    const animatedStyle = useAnimatedStyle(() => {
+      'worklet';
+      // Use animated scroll offset if available for smooth synchronization
+      const scrollOffsetValue = animatedScrollOffset
+        ? animatedScrollOffset.value
+        : scrollOffsetShared.value;
+
+      if (orientation === 'horizontal') {
+        return {
+          transform: [
+            { translateX: animatedX.value - scrollOffsetValue },
+            { translateY: animatedY.value },
+          ],
+          width: animatedWidth.value,
+          height: animatedHeight.value,
+        };
+      } else {
+        return {
+          transform: [
+            { translateY: animatedY.value },
+            { translateX: animatedX.value },
+          ],
+          height: animatedHeight.value,
+          width: animatedWidth.value,
+        };
+      }
+    }, [orientation]);
+
+    // Don't render indicator until we have valid layout data
+    if (!hasLayout) {
+      return null;
     }
-  }, [selectedKey, triggerLayouts, hasLayout, animatedX, animatedY, animatedWidth, animatedHeight]);
 
-  const animatedStyle = useAnimatedStyle(() => {
-    if (orientation === 'horizontal') {
-      return {
-        transform: [{ translateX: animatedX.value }],
-        width: animatedWidth.value,
-        height: '100%',
-      };
-    } else {
-      return {
-        transform: [{ translateY: animatedY.value }],
-        height: animatedHeight.value,
-        width: '100%',
-      };
-    }
-  });
-
-  // Don't render indicator until we have valid layout data
-  if (!hasLayout) {
-    return null;
-  }
-
-  return (
-    <View ref={ref} className={className} style={style} {...props}>
+    return (
       <Animated.View
+        ref={ref}
+        className={className}
         style={[
           animatedStyle,
+          style,
           {
-            backgroundColor: "red",
-            borderRadius: 9999,
-          }
+            position: 'absolute',
+            zIndex:1,
+          },
         ]}
       />
-    </View>
-  );
-});
+    );
+  }
+);
 
 TabsAnimatedIndicator.displayName = 'TabsAnimatedIndicator';
 
@@ -755,36 +1002,511 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
 
 ### Basic
 
-<!-- Failed to load CodePreviewer for Example:basic -->
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Tabs defaultValue="home">
+      <TabsList>
+        <TabsTrigger value="home">
+          <TabsTriggerText>Home</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="profile">
+          <TabsTriggerText>Profile</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="settings">
+          <TabsTriggerText>Settings</TabsTriggerText>
+        </TabsTrigger>
+        <TabsIndicator />
+      </TabsList>
+
+      <TabsContentWrapper>
+        <TabsContent value="home">
+          <Box className="p-4">
+            <Text className="text-foreground">Welcome to the Home tab!</Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="profile">
+          <Box className="p-4">
+            <Text className="text-foreground">Your profile information</Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="settings">
+          <Box className="p-4">
+            <Text className="text-foreground">Settings and preferences</Text>
+          </Box>
+        </TabsContent>
+      </TabsContentWrapper>
+    </Tabs>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text }}
+  importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"]}}
+/>
 
 ### With Indicator
 
-<!-- Failed to load CodePreviewer for Example:with-indicator -->
+
+  #### With Indicator
+
+  The TabsIndicator animates between the selected tab trigger. It is positioned absolutely inside the TabsList and slides to follow the active tab.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Tabs defaultValue="account" variant="underlined">
+      <TabsList>
+        <TabsTrigger value="account">
+          <TabsTriggerText>Account</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="password">
+          <TabsTriggerText>Password</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="team">
+          <TabsTriggerText>Team</TabsTriggerText>
+        </TabsTrigger>
+        <TabsIndicator />
+      </TabsList>
+
+      <TabsContentWrapper>
+        <TabsContent value="account">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-2">
+              Account Settings
+            </Text>
+            <Text className="text-foreground/70">
+              Manage your account settings and set email preferences.
+            </Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="password">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-2">
+              Password Settings
+            </Text>
+            <Text className="text-foreground/70">
+              Change your password and update security settings.
+            </Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="team">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-2">
+              Team Settings
+            </Text>
+            <Text className="text-foreground/70">
+              Manage your team members and their access levels.
+            </Text>
+          </Box>
+        </TabsContent>
+      </TabsContentWrapper>
+    </Tabs>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text }}
+  importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"]}}
+/>
 
 ### Vertical Orientation
 
-<!-- Failed to load CodePreviewer for Example:vertical -->
+
+  #### Vertical
+
+  Set orientation to vertical to render the tab list along the left side. The indicator animates vertically between the selected triggers.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Tabs defaultValue="overview" orientation="vertical" variant="filled">
+      <Box className="flex-row gap-4">
+        <TabsList>
+          <TabsTrigger value="overview">
+            <TabsTriggerText>Overview</TabsTriggerText>
+          </TabsTrigger>
+          <TabsTrigger value="analytics">
+            <TabsTriggerText>Analytics</TabsTriggerText>
+          </TabsTrigger>
+          <TabsTrigger value="reports">
+            <TabsTriggerText>Reports</TabsTriggerText>
+          </TabsTrigger>
+          <TabsTrigger value="notifications">
+            <TabsTriggerText>Notifications</TabsTriggerText>
+          </TabsTrigger>
+          <TabsIndicator />
+        </TabsList>
+
+        <Box className="flex-1">
+          <TabsContentWrapper>
+            <TabsContent value="overview">
+              <Box className="p-4 bg-muted rounded-lg">
+                <Text className="text-foreground font-semibold mb-2">Overview</Text>
+                <Text className="text-foreground/70">
+                  View a summary of your account activity and statistics.
+                </Text>
+              </Box>
+            </TabsContent>
+            <TabsContent value="analytics">
+              <Box className="p-4 bg-muted rounded-lg">
+                <Text className="text-foreground font-semibold mb-2">Analytics</Text>
+                <Text className="text-foreground/70">
+                  Detailed analytics and insights about your performance.
+                </Text>
+              </Box>
+            </TabsContent>
+            <TabsContent value="reports">
+              <Box className="p-4 bg-muted rounded-lg">
+                <Text className="text-foreground font-semibold mb-2">Reports</Text>
+                <Text className="text-foreground/70">
+                  Generate and download custom reports.
+                </Text>
+              </Box>
+            </TabsContent>
+            <TabsContent value="notifications">
+              <Box className="p-4 bg-muted rounded-lg">
+                <Text className="text-foreground font-semibold mb-2">Notifications</Text>
+                <Text className="text-foreground/70">
+                  Manage your notification preferences.
+                </Text>
+              </Box>
+            </TabsContent>
+          </TabsContentWrapper>
+        </Box>
+      </Box>
+    </Tabs>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text }}
+  importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"]}}
+/>
 
 ### With Icons
 
-<!-- Failed to load CodePreviewer for Example:with-icons -->
+
+  #### With Icons
+
+  Use TabsTriggerIcon with the as prop to add icons alongside the trigger text in each tab.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Tabs defaultValue="explore" variant="filled">
+      <TabsList>
+        <TabsTrigger value="explore">
+          <TabsTriggerIcon as={SearchIcon} />
+          <TabsTriggerText>Explore</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="messages">
+          <TabsTriggerIcon as={MailIcon} />
+          <TabsTriggerText>Messages</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="favourites">
+          <TabsTriggerIcon as={StarIcon} />
+          <TabsTriggerText>Favourites</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="notifications">
+          <TabsTriggerIcon as={BellIcon} />
+          <TabsTriggerText>Alerts</TabsTriggerText>
+        </TabsTrigger>
+        <TabsIndicator />
+      </TabsList>
+
+      <TabsContentWrapper>
+        <TabsContent value="explore">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Explore</Text>
+            <Text className="text-foreground/70">
+              Discover new content and trending topics.
+            </Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="messages">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Messages</Text>
+            <Text className="text-foreground/70">
+              Your recent conversations and direct messages.
+            </Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="favourites">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Favourites</Text>
+            <Text className="text-foreground/70">
+              Items and pages you have starred for quick access.
+            </Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="notifications">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Alerts</Text>
+            <Text className="text-foreground/70">
+              Stay up to date with your latest notifications.
+            </Text>
+          </Box>
+        </TabsContent>
+      </TabsContentWrapper>
+    </Tabs>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsTriggerIcon, TabsIndicator, Box, Text, SearchIcon, MailIcon, StarIcon, BellIcon }}
+  importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsTriggerIcon","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/icon":["SearchIcon","MailIcon","StarIcon","BellIcon"]}}
+/>
 
 ### Variants
 
-<!-- Failed to load CodePreviewer for Example:variants -->
 
-### Sizes
+  #### Variants
 
-<!-- Failed to load CodePreviewer for Example:sizes -->
+  Tabs supports two variants: underlined shows a sliding underline indicator beneath the active tab, and filled shows a filled background pill that slides between tabs.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Box className="gap-8">
+      <Box>
+        <Text className="text-foreground font-semibold mb-2">Underlined</Text>
+        <Tabs defaultValue="tab1" variant="underlined">
+          <TabsList>
+            <TabsTrigger value="tab1">
+              <TabsTriggerText>Tab 1</TabsTriggerText>
+            </TabsTrigger>
+            <TabsTrigger value="tab2">
+              <TabsTriggerText>Tab 2</TabsTriggerText>
+            </TabsTrigger>
+            <TabsTrigger value="tab3">
+              <TabsTriggerText>Tab 3</TabsTriggerText>
+            </TabsTrigger>
+            <TabsIndicator />
+          </TabsList>
+          <TabsContentWrapper>
+            <TabsContent value="tab1">
+              <Box className="p-4">
+                <Text className="text-foreground/70">Underlined tab content 1</Text>
+              </Box>
+            </TabsContent>
+            <TabsContent value="tab2">
+              <Box className="p-4">
+                <Text className="text-foreground/70">Underlined tab content 2</Text>
+              </Box>
+            </TabsContent>
+            <TabsContent value="tab3">
+              <Box className="p-4">
+                <Text className="text-foreground/70">Underlined tab content 3</Text>
+              </Box>
+            </TabsContent>
+          </TabsContentWrapper>
+        </Tabs>
+      </Box>
+
+      <Box>
+        <Text className="text-foreground font-semibold mb-2">Filled</Text>
+        <Tabs defaultValue="tab1" variant="filled">
+          <TabsList>
+            <TabsTrigger value="tab1">
+              <TabsTriggerText>Tab 1</TabsTriggerText>
+            </TabsTrigger>
+            <TabsTrigger value="tab2">
+              <TabsTriggerText>Tab 2</TabsTriggerText>
+            </TabsTrigger>
+            <TabsTrigger value="tab3">
+              <TabsTriggerText>Tab 3</TabsTriggerText>
+            </TabsTrigger>
+            <TabsIndicator />
+          </TabsList>
+          <TabsContentWrapper>
+            <TabsContent value="tab1">
+              <Box className="p-4">
+                <Text className="text-foreground/70">Filled tab content 1</Text>
+              </Box>
+            </TabsContent>
+            <TabsContent value="tab2">
+              <Box className="p-4">
+                <Text className="text-foreground/70">Filled tab content 2</Text>
+              </Box>
+            </TabsContent>
+            <TabsContent value="tab3">
+              <Box className="p-4">
+                <Text className="text-foreground/70">Filled tab content 3</Text>
+              </Box>
+            </TabsContent>
+          </TabsContentWrapper>
+        </Tabs>
+      </Box>
+    </Box>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text }}
+  importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"]}}
+/>
+
 
 ### Scrollable
 
-<!-- Failed to load CodePreviewer for Example:scrollable -->
 
-### Manual Activation
+  #### Scrollable
 
-<!-- Failed to load CodePreviewer for Example:manual-activation -->
+  When there are more tabs than the available width, the TabsList scrolls horizontally. The animated indicator stays synchronized with the scroll position.
+  
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Tabs defaultValue="monday" variant="underlined">
+      <TabsList>
+        <TabsTrigger value="monday">
+          <TabsTriggerText>Monday</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="tuesday">
+          <TabsTriggerText>Tuesday</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="wednesday">
+          <TabsTriggerText>Wednesday</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="thursday">
+          <TabsTriggerText>Thursday</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="friday">
+          <TabsTriggerText>Friday</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="saturday">
+          <TabsTriggerText>Saturday</TabsTriggerText>
+        </TabsTrigger>
+        <TabsTrigger value="sunday">
+          <TabsTriggerText>Sunday</TabsTriggerText>
+        </TabsTrigger>
+        <TabsIndicator />
+      </TabsList>
+
+      <TabsContentWrapper>
+        <TabsContent value="monday">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Monday</Text>
+            <Text className="text-foreground/70">Start the week strong with your planned tasks.</Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="tuesday">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Tuesday</Text>
+            <Text className="text-foreground/70">Keep the momentum going with focused work.</Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="wednesday">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Wednesday</Text>
+            <Text className="text-foreground/70">Midweek checkpoint — review your progress.</Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="thursday">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Thursday</Text>
+            <Text className="text-foreground/70">Push through with energy to finish the week.</Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="friday">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Friday</Text>
+            <Text className="text-foreground/70">Wrap up the week and celebrate your wins.</Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="saturday">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Saturday</Text>
+            <Text className="text-foreground/70">Rest, recharge, and enjoy your weekend.</Text>
+          </Box>
+        </TabsContent>
+        <TabsContent value="sunday">
+          <Box className="p-4">
+            <Text className="text-foreground font-semibold mb-1">Sunday</Text>
+            <Text className="text-foreground/70">Prepare and plan for the upcoming week ahead.</Text>
+          </Box>
+        </TabsContent>
+      </TabsContentWrapper>
+    </Tabs>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text }}
+  importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"]}}
+/>
+
 
 ### Controlled
 
-<!-- Failed to load CodePreviewer for Example:controlled -->
+
+  #### Controlled
+
+  A controlled Tabs component manages its active tab via the value and onValueChange props. This allows external UI to programmatically switch between tabs.
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [activeTab, setActiveTab] = React.useState('tab1');
+
+  return (
+    <Box className="gap-4">
+      <Box className="flex-row gap-2">
+        <Button size="sm" onPress={() => setActiveTab('tab1')}>
+          <ButtonText>Go to Tab 1</ButtonText>
+        </Button>
+        <Button size="sm" onPress={() => setActiveTab('tab2')}>
+          <ButtonText>Go to Tab 2</ButtonText>
+        </Button>
+        <Button size="sm" onPress={() => setActiveTab('tab3')}>
+          <ButtonText>Go to Tab 3</ButtonText>
+        </Button>
+      </Box>
+
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <TabsList>
+          <TabsTrigger value="tab1">
+            <TabsTriggerText>Tab 1</TabsTriggerText>
+          </TabsTrigger>
+          <TabsTrigger value="tab2">
+            <TabsTriggerText>Tab 2</TabsTriggerText>
+          </TabsTrigger>
+          <TabsTrigger value="tab3">
+            <TabsTriggerText>Tab 3</TabsTriggerText>
+          </TabsTrigger>
+          <TabsIndicator />
+        </TabsList>
+
+        <TabsContentWrapper>
+          <TabsContent value="tab1">
+            <Box className="p-4">
+              <Text className="text-foreground">Content for Tab 1</Text>
+              <Text className="text-foreground/70 mt-2">
+                Active tab: {activeTab}
+              </Text>
+            </Box>
+          </TabsContent>
+          <TabsContent value="tab2">
+            <Box className="p-4">
+              <Text className="text-foreground">Content for Tab 2</Text>
+              <Text className="text-foreground/70 mt-2">
+                Active tab: {activeTab}
+              </Text>
+            </Box>
+          </TabsContent>
+          <TabsContent value="tab3">
+            <Box className="p-4">
+              <Text className="text-foreground">Content for Tab 3</Text>
+              <Text className="text-foreground/70 mt-2">
+                Active tab: {activeTab}
+              </Text>
+            </Box>
+          </TabsContent>
+        </TabsContentWrapper>
+      </Tabs>
+    </Box>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text, Button, ButtonText }}
+  importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/button":["Button","ButtonText"]}}
+/>
