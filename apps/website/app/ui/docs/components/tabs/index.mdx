@@ -261,6 +261,7 @@ const TabsList = React.forwardRef<
   ITabsListProps
 >(({ className, children, ...props }, ref) => {
   const context = React.useContext(TabsContext);
+
   const flatListRef = useRef<any>(null);
   const containerRef = useRef<any>(null);
 
@@ -268,101 +269,120 @@ const TabsList = React.forwardRef<
 
   const { orientation, setScrollOffset, selectedKey } = context;
 
-  // Create animated scroll offset shared value for synchronized scrolling
+  // Shared value for indicator sync
   const animatedScrollOffset = useSharedValue(0);
 
-  // Store container ref and animated scroll offset in context for position measurements
-  React.useEffect(() => {
-    if (containerRef.current && context) {
+  /**
+   * Expose refs + shared value to context
+   */
+  useEffect(() => {
+    if (context) {
       // @ts-ignore
       context.listRef = containerRef;
-      // @ts-ignore - Store animated scroll offset for indicator synchronization
+      // @ts-ignore
       context.animatedScrollOffset = animatedScrollOffset;
     }
   }, [context, animatedScrollOffset]);
 
-  // Scroll to selected tab when it changes
+  /**
+   * Auto scroll to selected tab
+   */
   useEffect(() => {
-    if (orientation === 'horizontal' && selectedKey) {
-      const childArray = React.Children.toArray(children);
-      const triggers = childArray.filter(
-        (child: any) => child?.type?.displayName !== 'TabsIndicator'
-      );
-      const selectedIndex = triggers.findIndex(
-        (child: any) => child?.props?.value === selectedKey
-      );
+    if (orientation !== 'horizontal' || !selectedKey) return;
 
-      if (selectedIndex >= 0 && flatListRef.current) {
-        // Use a longer timeout to ensure FlatList is fully mounted
-        const timer = setTimeout(() => {
-          try {
-            flatListRef.current?.scrollToIndex({
-              index: selectedIndex,
-              animated: true,
-              viewPosition: 0.5, // Center the item
-            });
-          } catch (error) {
-            // Silently handle error - normal on first render
-            console.warn('scrollToIndex failed:', error);
-          }
-        }, 100);
-
-        return () => clearTimeout(timer);
-      }
-    }
-  }, [selectedKey, orientation, children]);
-
-  // Animated scroll handler for synchronized scrolling with indicator
-  const scrollHandler = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      'worklet';
-      animatedScrollOffset.value = event.contentOffset.x;
-      // Also update context for backward compatibility with non-animated code
-      // Use runOnJS to call JS function from worklet
-      runOnJS(setScrollOffset)(event.contentOffset.x);
-    },
-  });
-
-  // Use FlatList for horizontal tabs
-  if (orientation === 'horizontal') {
     const childArray = React.Children.toArray(children);
     const triggers = childArray.filter(
       (child: any) => child?.type?.displayName !== 'TabsIndicator'
     );
+
+    const selectedIndex = triggers.findIndex(
+      (child: any) => child?.props?.value === selectedKey
+    );
+
+    if (selectedIndex >= 0 && flatListRef.current) {
+      const timer = setTimeout(() => {
+        try {
+          flatListRef.current.scrollToIndex({
+            index: selectedIndex,
+            animated: true,
+            viewPosition: 0.5,
+          });
+        } catch {}
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [selectedKey, orientation, children]);
+
+  /**
+   * Native animated scroll handler (ONLY for iOS / Android)
+   */
+  const nativeScrollHandler =
+    Platform.OS === 'web'
+      ? undefined
+      : useAnimatedScrollHandler({
+          onScroll: (event) => {
+            'worklet';
+            const x = event.contentOffset.x;
+            animatedScrollOffset.value = x;
+            runOnJS(setScrollOffset)(x);
+          },
+        });
+
+  /**
+   * Web scroll handler (JS thread)
+   */
+  const handleWebScroll = (e: any) => {
+    const x = e.nativeEvent.contentOffset.x;
+    animatedScrollOffset.value = x;
+    setScrollOffset(x);
+  };
+
+  /**
+   * Horizontal tabs → FlatList
+   */
+  if (orientation === 'horizontal') {
+    const childArray = React.Children.toArray(children);
+
+    const triggers = childArray.filter(
+      (child: any) => child?.type?.displayName !== 'TabsIndicator'
+    );
+
     const indicator = childArray.find(
       (child: any) => child?.type?.displayName === 'TabsIndicator'
     );
 
     return (
-      <View ref={containerRef} className={tabsListStyle({ orientation, class: className })}>
+      <View
+        ref={containerRef}
+        className={tabsListStyle({ orientation, class: className })}
+      >
         {indicator}
+
         <AnimatedFlatList
           ref={flatListRef}
-          style={{zIndex:100}}
-          data={triggers}
           horizontal
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item: any, index) =>
-            item?.props?.value || `tab-${index}`
-          }
+          data={triggers}
           renderItem={({ item }) => item as any}
-          onScroll={scrollHandler}
+          keyExtractor={(item: any, index) =>
+            item?.props?.value ?? `tab-${index}`
+          }
+          showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16}
+          style={{ zIndex: 100 }}
+          onScroll={
+            Platform.OS === 'web' ? handleWebScroll : nativeScrollHandler
+          }
           onScrollToIndexFailed={(info) => {
-            // Wait for the list to settle and retry
-            const wait = new Promise((resolve) => setTimeout(resolve, 500));
-            wait.then(() => {
+            setTimeout(() => {
               try {
                 flatListRef.current?.scrollToIndex({
                   index: info.index,
                   animated: false,
                   viewPosition: 0.5,
                 });
-              } catch (error) {
-                // Silently handle retry failure
-                console.warn('Retry scrollToIndex failed');
-              }
-            });
+              } catch {}
+            }, 500);
           }}
           {...props}
         />
@@ -370,7 +390,9 @@ const TabsList = React.forwardRef<
     );
   }
 
-  // Vertical orientation
+  /**
+   * Vertical tabs → default List
+   */
   return (
     <UITabs.List
       ref={ref}
@@ -381,6 +403,7 @@ const TabsList = React.forwardRef<
     </UITabs.List>
   );
 });
+
 
 const TabsTrigger = React.forwardRef<
   React.ComponentRef<typeof UITabs.Trigger>,
@@ -482,19 +505,26 @@ const TabsTriggerIcon = React.forwardRef<
   React.ComponentRef<typeof UITabs.TriggerIcon>,
   ITabsTriggerIconProps
 >(({ className, ...props }, ref) => {
- 
+  // Remove `dataSet` ONLY on web to avoid React DOM warning
+  const safeProps =
+    Platform.OS === 'web'
+      ? (() => {
+          const { dataSet, ...rest } = props as any;
+          return rest;
+        })()
+      : props;
 
   return (
     <UITabs.TriggerIcon
       ref={ref}
-      {...props}
+      {...safeProps}
       className={tabsTriggerIconStyle({
-      
         class: className,
       })}
     />
   );
 });
+
 
 const TabsIndicator = React.forwardRef<
   React.ComponentRef<typeof UITabs.Indicator>,
