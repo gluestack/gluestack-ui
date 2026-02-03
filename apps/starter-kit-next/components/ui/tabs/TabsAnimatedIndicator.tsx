@@ -103,30 +103,22 @@ export const TabsAnimatedIndicator = React.forwardRef<
 
     const animatedStyle = useAnimatedStyle(() => {
       'worklet';
-      // Use animated scroll offset if available for smooth synchronization
       const scrollOffsetValue = animatedScrollOffset
         ? animatedScrollOffset.value
         : scrollOffsetShared.value;
 
-      if (orientation === 'horizontal') {
-        return {
-          transform: [
-            { translateX: animatedX.value - scrollOffsetValue },
-            { translateY: animatedY.value },
-          ],
-          width: animatedWidth.value,
-          height: animatedHeight.value,
-        };
-      } else {
-        return {
-          transform: [
-            { translateY: animatedY.value },
-            { translateX: animatedX.value },
-          ],
-          height: animatedHeight.value,
-          width: animatedWidth.value,
-        };
-      }
+      const x = orientation === 'horizontal'
+        ? animatedX.value - scrollOffsetValue
+        : animatedX.value;
+
+      return {
+        transform: [
+          { translateX: x } as { translateX: number },
+          { translateY: animatedY.value } as { translateY: number },
+        ],
+        width: animatedWidth.value,
+        height: animatedHeight.value,
+      };
     }, [orientation]);
 
     // Don't render indicator until we have valid layout data
