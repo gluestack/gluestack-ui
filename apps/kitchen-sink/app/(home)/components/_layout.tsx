@@ -309,6 +309,24 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="VStack" />,
         }}
       />
+          <Stack.Screen
+        name="scroll-view"
+        options={{
+          header: () => <CustomHeader title="tabs" />,
+        }}
+      />
+          <Stack.Screen
+        name="scroll-area"
+        options={{
+          header: () => <CustomHeader title="ScrollArea" />,
+        }}
+      />
+      <Stack.Screen
+        name="tabs"
+        options={{
+          header: () => <CustomHeader title="Tabs" />,
+        }}
+      />
     </Stack>
   );
 }
