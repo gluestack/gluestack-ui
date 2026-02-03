@@ -43,7 +43,8 @@ export const TabsAnimatedIndicator = React.forwardRef<
     const animatedWidth = useSharedValue(0);
     const animatedHeight = useSharedValue(0);
     const [hasLayout, setHasLayout] = useState(false);
-
+ const layout = triggerLayouts.get(selectedKey);
+ console.log('layout', layout);
     // Create a shared value for scroll offset to use in worklet
     const scrollOffsetShared = useSharedValue(scrollOffset);
 

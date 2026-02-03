@@ -6,7 +6,7 @@ import React, {
   forwardRef,
   useRef,
 } from 'react';
-import { Platform } from 'react-native';
+import { Platform, findNodeHandle } from 'react-native';
 import { TabsContext, TabsTriggerContext } from './Context';
 import { composeEventHandlers } from '@gluestack-ui/utils/common';
 
@@ -15,7 +15,7 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
     ({ value, disabled = false, children, ...props }: any, ref?: any) => {
       const context = React.useContext(TabsContext);
       const innerRef = useRef<any>(null);
-
+//change the mesurement methods for web
       if (!context) {
         throw new Error('TabsTrigger must be used within a Tabs component');
       }
@@ -40,7 +40,7 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
       const [isPressed, setIsPressed] = useState(false);
 
       /**
-       * 🔥 Cross-platform layout measurement
+       * ✅ Cross-platform layout measurement
        */
       const measureTrigger = useCallback(() => {
         const node = innerRef.current;
@@ -48,23 +48,35 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
 
         if (!node || !parent) return;
 
-        // WEB (DOM based)
+        // 🌐 WEB (DOM)
         if (Platform.OS === 'web') {
-          const rect = node.getBoundingClientRect();
-          const parentRect = parent.getBoundingClientRect?.();
+          // Resolve real DOM nodes
+          const domNode =
+            // @ts-ignore
+            node?.unstable_getDOMNode?.() ??
+            (node instanceof HTMLElement ? node : null);
 
-          if (rect && parentRect) {
-            registerTrigger(value, {
-              x: rect.left - parentRect.left,
-              y: rect.top - parentRect.top,
-              width: rect.width,
-              height: rect.height,
-            });
-          }
+          const parentDom =
+            // @ts-ignore
+            parent?.unstable_getDOMNode?.() ??
+            (parent instanceof HTMLElement ? parent : null);
+
+          if (!domNode || !parentDom) return;
+
+          const rect = domNode.getBoundingClientRect();
+          const parentRect = parentDom.getBoundingClientRect();
+
+          registerTrigger(value, {
+            x: rect.left - parentRect.left,
+            y: rect.top - parentRect.top,
+            width: rect.width,
+            height: rect.height,
+          });
+
           return;
         }
 
-        // NATIVE (iOS + Android)
+        // 📱 NATIVE (iOS / Android)
         requestAnimationFrame(() => {
           node.measureInWindow(
             (x: number, y: number, width: number, height: number) => {
@@ -82,14 +94,23 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
       }, [value, registerTrigger, listRef]);
 
       /**
-       * Measure on mount & layout changes
+       * Measure on layout
        */
       const handleLayout = useCallback(() => {
         measureTrigger();
       }, [measureTrigger]);
 
       /**
-       * Unregister on unmount
+       * Measure after mount on WEB (onLayout is unreliable)
+       */
+      useEffect(() => {
+        if (Platform.OS === 'web') {
+          requestAnimationFrame(measureTrigger);
+        }
+      }, [measureTrigger]);
+
+      /**
+       * Cleanup
        */
       useEffect(() => {
         return () => {
@@ -121,7 +142,7 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
       }, []);
 
       /**
-       * Merge forwarded ref
+       * Merge refs
        */
       const setRefs = useCallback(
         (node: any) => {
@@ -160,6 +181,17 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
         ]
       );
 
+      /**
+       * 🚫 Remove dataSet on WEB to avoid React DOM warning
+       */
+      const safeProps =
+        Platform.OS === 'web'
+          ? (() => {
+              const { dataSet, ...rest } = props as any;
+              return rest;
+            })()
+          : props;
+
       return (
         <TabsTriggerContext.Provider value={triggerContextValue}>
           <StyledTabsTrigger
@@ -170,21 +202,21 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
             aria-controls={`tabpanel-${value}`}
             disabled={isDisabled}
             onPress={handlePress}
-            onFocus={composeEventHandlers(props?.onFocus, handleFocus)}
-            onBlur={composeEventHandlers(props?.onBlur, handleBlur)}
-            onMouseEnter={composeEventHandlers(props?.onMouseEnter, () =>
+            onFocus={composeEventHandlers(safeProps?.onFocus, handleFocus)}
+            onBlur={composeEventHandlers(safeProps?.onBlur, handleBlur)}
+            onMouseEnter={composeEventHandlers(safeProps?.onMouseEnter, () =>
               setIsHovered(true)
             )}
-            onMouseLeave={composeEventHandlers(props?.onMouseLeave, () =>
+            onMouseLeave={composeEventHandlers(safeProps?.onMouseLeave, () =>
               setIsHovered(false)
             )}
-            onPressIn={composeEventHandlers(props?.onPressIn, () =>
+            onPressIn={composeEventHandlers(safeProps?.onPressIn, () =>
               setIsPressed(true)
             )}
-            onPressOut={composeEventHandlers(props?.onPressOut, () =>
+            onPressOut={composeEventHandlers(safeProps?.onPressOut, () =>
               setIsPressed(false)
             )}
-            onLayout={composeEventHandlers(props?.onLayout, handleLayout)}
+            onLayout={composeEventHandlers(safeProps?.onLayout, handleLayout)}
             states={{
               selected: isSelected,
               disabled: isDisabled,
@@ -193,16 +225,7 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
               focusVisible: isFocusVisible,
               active: isPressed,
             }}
-            dataSet={{
-              value,
-              'selected': isSelected,
-              'disabled': isDisabled,
-              'hover': isHovered,
-              'focus': isFocused,
-              'focus-visible': isFocusVisible,
-              'pressed': isPressed,
-            }}
-            {...props}
+            {...safeProps}
           >
             {children}
           </StyledTabsTrigger>
