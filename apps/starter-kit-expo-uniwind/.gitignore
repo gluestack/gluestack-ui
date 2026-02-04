@@ -1,0 +1,8 @@
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.pem
+.env
+.env.local
+.env.*.local
