@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@import 'uniwind';
 /* ─── UniWind theme variants ─────────────────────────────────────
    Switched at runtime via Uniwind.setTheme('light' | 'dark' | 'adaptive').
    Variable values match the nativewind config.ts tokens so that the
