@@ -1,11 +1,9 @@
 import { Dimensions, useWindowDimensions } from 'react-native';
 import { useEffect, useState } from 'react';
 
-import resolveConfig from 'tailwindcss/resolveConfig';
-import * as tailwindConfig from '../../tailwind.config';
+import { theme } from '../../tailwind.config';
 
-const TailwindTheme = resolveConfig(tailwindConfig as any);
-const screenSize = TailwindTheme.theme.screens;
+const screenSize = theme.screens;
 
 type breakpoints = keyof typeof screenSize | 'default';
 
