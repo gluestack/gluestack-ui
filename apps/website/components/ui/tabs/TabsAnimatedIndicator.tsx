@@ -22,6 +22,8 @@ interface TabsAnimatedIndicatorProps {
   style?: any;
 }
 Platform.OS === 'web' ? cssInterop(Animated.View,{className:{target:'style'}}) : Animated.View
+const isWeb = Platform.OS === 'web';
+
 export const TabsAnimatedIndicator = React.forwardRef<
   any,
   TabsAnimatedIndicatorProps
@@ -43,7 +45,6 @@ export const TabsAnimatedIndicator = React.forwardRef<
     const animatedWidth = useSharedValue(0);
     const animatedHeight = useSharedValue(0);
     const [hasLayout, setHasLayout] = useState(false);
-
     // Create a shared value for scroll offset to use in worklet
     const scrollOffsetShared = useSharedValue(scrollOffset);
 
@@ -103,23 +104,36 @@ export const TabsAnimatedIndicator = React.forwardRef<
 
     const animatedStyle = useAnimatedStyle(() => {
       'worklet';
+
       const scrollOffsetValue = animatedScrollOffset
         ? animatedScrollOffset.value
         : scrollOffsetShared.value;
 
-      const x = orientation === 'horizontal'
+      const xPos = orientation === 'horizontal'
         ? animatedX.value - scrollOffsetValue
         : animatedX.value;
 
+      // Web: react-native-reanimated does not reliably flush the transform
+      // array to a CSS transform string, so use left/top instead.
+      // Native: keep transform for GPU-accelerated UI-thread animation.
+      if (isWeb) {
+        return {
+          left: xPos,
+          top: animatedY.value,
+          width: animatedWidth.value,
+          height: animatedHeight.value,
+        };
+      }
+
       return {
         transform: [
-          { translateX: x } as { translateX: number },
+          { translateX: xPos } as { translateX: number },
           { translateY: animatedY.value } as { translateY: number },
         ],
         width: animatedWidth.value,
         height: animatedHeight.value,
       };
-    }, [orientation]);
+    }, [orientation, animatedX, animatedY, animatedWidth, animatedHeight]);
 
     // Don't render indicator until we have valid layout data
     if (!hasLayout) {

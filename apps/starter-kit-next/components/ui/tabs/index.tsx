@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 import { createTabs, TabsContext } from '@gluestack-ui/core/tabs/creator';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 import {
@@ -240,17 +240,23 @@ const TabsList = React.forwardRef<
   /**
    * Horizontal tabs → FlatList
    */
-  if (orientation === 'horizontal') {
+  // Memoize the split so FlatList's `data` prop stays referentially stable
+  // across scroll-driven re-renders (scrollOffset in context ticks on every
+  // scroll event; without this, FlatList re-renders every cell every frame,
+  // firing onLayout → measureTrigger on every scroll tick).
+  const { triggers, indicator } = useMemo(() => {
     const childArray = React.Children.toArray(children);
+    return {
+      triggers: childArray.filter(
+        (child: any) => child?.type?.displayName !== 'TabsIndicator'
+      ),
+      indicator: childArray.find(
+        (child: any) => child?.type?.displayName === 'TabsIndicator'
+      ),
+    };
+  }, [children]);
 
-    const triggers = childArray.filter(
-      (child: any) => child?.type?.displayName !== 'TabsIndicator'
-    );
-
-    const indicator = childArray.find(
-      (child: any) => child?.type?.displayName === 'TabsIndicator'
-    );
-
+  if (orientation === 'horizontal') {
     return (
       <View
         ref={containerRef}

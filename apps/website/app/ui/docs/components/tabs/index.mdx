@@ -100,7 +100,7 @@ npm i react-native-reanimated
 
 ```jsx
 'use client';
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 import { createTabs, TabsContext } from '@gluestack-ui/core/tabs/creator';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 import {
@@ -341,17 +341,23 @@ const TabsList = React.forwardRef<
   /**
    * Horizontal tabs → FlatList
    */
-  if (orientation === 'horizontal') {
+  // Memoize the split so FlatList's `data` prop stays referentially stable
+  // across scroll-driven re-renders (scrollOffset in context ticks on every
+  // scroll event; without this, FlatList re-renders every cell every frame,
+  // firing onLayout → measureTrigger on every scroll tick).
+  const { triggers, indicator } = useMemo(() => {
     const childArray = React.Children.toArray(children);
+    return {
+      triggers: childArray.filter(
+        (child: any) => child?.type?.displayName !== 'TabsIndicator'
+      ),
+      indicator: childArray.find(
+        (child: any) => child?.type?.displayName === 'TabsIndicator'
+      ),
+    };
+  }, [children]);
 
-    const triggers = childArray.filter(
-      (child: any) => child?.type?.displayName !== 'TabsIndicator'
-    );
-
-    const indicator = childArray.find(
-      (child: any) => child?.type?.displayName === 'TabsIndicator'
-    );
-
+  if (orientation === 'horizontal') {
     return (
       <View
         ref={containerRef}
@@ -607,6 +613,8 @@ interface TabsAnimatedIndicatorProps {
   style?: any;
 }
 Platform.OS === 'web' ? cssInterop(Animated.View,{className:{target:'style'}}) : Animated.View
+const isWeb = Platform.OS === 'web';
+
 export const TabsAnimatedIndicator = React.forwardRef<
   any,
   TabsAnimatedIndicatorProps
@@ -628,7 +636,6 @@ export const TabsAnimatedIndicator = React.forwardRef<
     const animatedWidth = useSharedValue(0);
     const animatedHeight = useSharedValue(0);
     const [hasLayout, setHasLayout] = useState(false);
-
     // Create a shared value for scroll offset to use in worklet
     const scrollOffsetShared = useSharedValue(scrollOffset);
 
@@ -688,23 +695,36 @@ export const TabsAnimatedIndicator = React.forwardRef<
 
     const animatedStyle = useAnimatedStyle(() => {
       'worklet';
+
       const scrollOffsetValue = animatedScrollOffset
         ? animatedScrollOffset.value
         : scrollOffsetShared.value;
 
-      const x = orientation === 'horizontal'
+      const xPos = orientation === 'horizontal'
         ? animatedX.value - scrollOffsetValue
         : animatedX.value;
 
+      // Web: react-native-reanimated does not reliably flush the transform
+      // array to a CSS transform string, so use left/top instead.
+      // Native: keep transform for GPU-accelerated UI-thread animation.
+      if (isWeb) {
+        return {
+          left: xPos,
+          top: animatedY.value,
+          width: animatedWidth.value,
+          height: animatedHeight.value,
+        };
+      }
+
       return {
         transform: [
-          { translateX: x } as { translateX: number },
+          { translateX: xPos } as { translateX: number },
           { translateY: animatedY.value } as { translateY: number },
         ],
         width: animatedWidth.value,
         height: animatedHeight.value,
       };
-    }, [orientation]);
+    }, [orientation, animatedX, animatedY, animatedWidth, animatedHeight]);
 
     // Don't render indicator until we have valid layout data
     if (!hasLayout) {
