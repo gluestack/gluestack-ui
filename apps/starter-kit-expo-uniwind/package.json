@@ -11,10 +11,11 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/html-elements": "^0.13.8",
     "@gluestack-ui/core": "^4.0.0-alpha.0",
     "@gluestack-ui/utils": "^4.0.0-alpha.0",
     "@legendapp/motion": "^2.4.0",
-    "@react-aria/utils": "^3.29.0",
+    "@react-aria/utils": "^3.33.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "buffer": "^6.0.3",
     "expo": "^55.0.0-preview.5",
