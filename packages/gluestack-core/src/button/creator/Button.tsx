@@ -19,20 +19,20 @@ export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
         ...props
       }: Omit<IButtonProps, 'children'> & {
         children?:
-          | (({
-              hovered,
-              pressed,
-              focused,
-              focusVisible,
-              disabled,
-            }: {
-              hovered?: boolean;
-              pressed?: boolean;
-              focused?: boolean;
-              focusVisible?: boolean;
-              disabled?: boolean;
-            }) => React.ReactNode)
-          | React.ReactNode;
+        | (({
+          hovered,
+          pressed,
+          focused,
+          focusVisible,
+          disabled,
+        }: {
+          hovered?: boolean;
+          pressed?: boolean;
+          focused?: boolean;
+          focusVisible?: boolean;
+          disabled?: boolean;
+        }) => React.ReactNode)
+        | React.ReactNode;
       },
       ref?: any
     ) => {
@@ -74,6 +74,13 @@ export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
               disabled: isDisabled,
               focusVisible: isFocusVisibleProp || isFocusVisible,
             }}
+            data-hover={isHoveredProp || isHovered ? 'true' : 'false'}
+            data-focus={isFocusedProp || isFocused ? 'true' : 'false'}
+            data-active={isPressedProp || isPressed ? 'true' : 'false'}
+            data-disabled={isDisabled ? 'true' : 'false'}
+            data-focus-visible={
+              isFocusVisibleProp || isFocusVisible ? 'true' : 'false'
+            }
             dataSet={{
               hover: isHoveredProp || isHovered ? 'true' : 'false',
               focus: isFocusedProp || isFocused ? 'true' : 'false',
@@ -115,15 +122,15 @@ export const Button = <T,>(StyledButton: React.ComponentType<T>) =>
           >
             {typeof children === 'function'
               ? children({
-                  hovered: isHovered,
-                  focused: isFocused,
-                  pressed: isPressed,
-                  disabled: props.disabled ?? undefined,
-                  focusVisible: isFocusVisible,
-                })
+                hovered: isHovered,
+                focused: isFocused,
+                pressed: isPressed,
+                disabled: props.disabled ?? undefined,
+                focusVisible: isFocusVisible,
+              })
               : children}
           </StyledButton>
-        </ButtonContext.Provider>
+        </ButtonContext.Provider >
       );
     }
   );
