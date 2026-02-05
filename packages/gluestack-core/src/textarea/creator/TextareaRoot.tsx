@@ -43,6 +43,15 @@ export const TextareaRoot = (StyledTextareaRoot: any) =>
             required: isRequired || inputProps.isRequired,
             focusVisible: isFocusVisibleProp || isFocusVisible,
           }}
+          // data attributes for uniwind
+          data-hover={isHovered || isHoveredProp ? 'true' : 'false'}
+          data-focus={isFocusedProp || isFocused ? 'true' : 'false'}
+          data-disabled={isDisabled || inputProps.isDisabled ? 'true' : 'false'}
+          data-invalid={isInvalid || inputProps.isInvalid ? 'true' : 'false'}
+          data-readonly={isReadOnly || inputProps.isReadOnly ? 'true' : 'false'}
+          data-required={isRequired || inputProps.isRequired ? 'true' : 'false'}
+          data-focus-visible={isFocusVisibleProp || isFocusVisible ? 'true' : 'false'}
+          // data attributes for nativewind
           dataSet={{
             hover: isHovered || isHoveredProp ? 'true' : 'false',
             focus: isFocusedProp || isFocused ? 'true' : 'false',

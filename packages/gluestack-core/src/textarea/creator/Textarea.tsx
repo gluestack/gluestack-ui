@@ -47,6 +47,15 @@ export const Textarea = (StyledTextarea: any) =>
             focusVisible: isFocusVisible,
             disabled: isDisabled || textareaProps.isDisabled,
           }}
+          // data attributes for uniwind
+          data-focus={isFocused ? 'true' : 'false'}
+          data-invalid={isInvalid ? 'true' : 'false'}
+          data-readonly={isReadOnly ? 'true' : 'false'}
+          data-required={isRequired ? 'true' : 'false'}
+          data-hover={isHovered ? 'true' : 'false'}
+          data-focus-visible={isFocusVisible ? 'true' : 'false'}
+          data-disabled={isDisabled || textareaProps.isDisabled ? 'true' : 'false'}
+          // data attributes for nativewind
           dataSet={{
             focus: isFocused ? 'true' : 'false',
             invalid: isInvalid ? 'true' : 'false',
