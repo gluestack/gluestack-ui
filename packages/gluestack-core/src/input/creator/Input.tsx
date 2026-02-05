@@ -69,6 +69,15 @@ export const Input = (StyledInput: any) =>
             focusVisible: isFocusVisible,
             disabled: isDisabled || inputProps.isDisabled,
           }}
+          // data attributes for uniwind
+          data-focus={isFocused ? 'true' : 'false'}
+          data-invalid={isInvalid ? 'true' : 'false'}
+          data-readonly={isReadOnly ? 'true' : 'false'}
+          data-required={isRequired ? 'true' : 'false'}
+          data-hover={isHovered ? 'true' : 'false'}
+          data-focus-visible={isFocusVisible ? 'true' : 'false'}
+          data-disabled={isDisabled || inputProps.isDisabled ? 'true' : 'false'}
+          // data attributes for nativewind
           dataSet={{
             focus: isFocused ? 'true' : 'false',
             invalid: isInvalid ? 'true' : 'false',
