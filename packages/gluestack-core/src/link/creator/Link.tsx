@@ -71,6 +71,13 @@ export const Link = <LinkProps,>(StyledLink: React.ComponentType<LinkProps>) =>
               disabled: isDisabled,
               focusVisible: isFocusVisibleProp || isFocusVisible,
             }}
+            // data attributes for uniwind
+            data-hover={isHoveredProp || isHovered ? 'true' : 'false'}
+            data-focus={isFocusedProp || isFocused ? 'true' : 'false'}
+            data-active={isPressedProp || isPressed ? 'true' : 'false'}
+            data-disabled={isDisabled ? 'true' : 'false'}
+            data-focus-visible={isFocusVisibleProp || isFocusVisible ? 'true' : 'false'}
+            // data attributes for nativewind
             dataSet={{
               hover: isHoveredProp || isHovered ? 'true' : 'false',
               focus: isFocusedProp || isFocused ? 'true' : 'false',

@@ -15,6 +15,13 @@ export const LinkText = (StyledButtonText: any) =>
           disabled: isDisabled,
           focusVisible: isFocusVisible,
         }}
+        // data attributes for uniwind
+        data-hover={isHovered ? 'true' : 'false'}
+        data-focus={isFocused ? 'true' : 'false'}
+        data-active={isPressed ? 'true' : 'false'}
+        data-disabled={isDisabled ? 'true' : 'false'}
+        data-focus-visible={isFocusVisible ? 'true' : 'false'}
+        // data attributes for nativewind
         dataSet={{
           hover: isHovered,
           focus: isFocused,
