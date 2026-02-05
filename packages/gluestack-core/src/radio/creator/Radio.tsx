@@ -82,6 +82,17 @@ const RadioComponent = memo(
             focus: isFocused || isFocusedProp,
             active: isPressed || isPressedProp,
           }}
+          // data attributes for uniwind
+          data-readonly={isReadOnly || isReadOnlyProp ? 'true' : 'false'}
+          data-intermediate={isIndeterminate || isIndeterminateProp ? 'true' : 'false'}
+          data-checked={isChecked || isCheckedProp ? 'true' : 'false'}
+          data-focus-visible={isFocusVisible || isFocusVisibleProp ? 'true' : 'false'}
+          data-disabled={isDisabled || isDisabledProp ? 'true' : 'false'}
+          data-invalid={isInvalid || isInvalidProp ? 'true' : 'false'}
+          data-hover={isHovered || isHoveredProp ? 'true' : 'false'}
+          data-focus={isFocused || isFocusedProp ? 'true' : 'false'}
+          data-active={isPressed || isPressedProp ? 'true' : 'false'}
+          // data attributes for nativewind
           dataSet={{
             readonly: isReadOnly || isReadOnlyProp ? 'true' : 'false',
             intermediate:

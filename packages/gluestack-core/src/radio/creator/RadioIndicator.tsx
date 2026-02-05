@@ -28,6 +28,16 @@ export const RadioIndicator = (StyledRadioIndicator: any) =>
           focus: isFocused,
           active: isPressed,
         }}
+        // data attributes for uniwind
+        data-checked={isChecked ? 'true' : 'false'}
+        data-disabled={isDisabled ? 'true' : 'false'}
+        data-focus-visible={isFocused || isFocusVisible ? 'true' : 'false'}
+        data-invalid={isInvalid ? 'true' : 'false'}
+        data-readonly={isReadOnly ? 'true' : 'false'}
+        data-indeterminate={isIndeterminate ? 'true' : 'false'}
+        data-focus={isFocused ? 'true' : 'false'}
+        data-active={isPressed ? 'true' : 'false'}
+        // data attributes for nativewind
         dataSet={{
           checked: isChecked ? 'true' : 'false',
           disabled: isDisabled ? 'true' : 'false',
