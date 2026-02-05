@@ -47,6 +47,13 @@ export const AccordionTrigger = (StyledAccordionTrigger: any) =>
             focusVisible: isFocusVisibleProp || isFocusVisible,
             active: isPressedProp || isPressed,
           }}
+          // data attributes for uniwind
+          data-hover={isHoveredProp || isHovered ? 'true' : 'false'}
+          data-focus={isFocusedProp || isFocused ? 'true' : 'false'}
+          data-active={isPressedProp || isPressed ? 'true' : 'false'}
+          data-focus-visible={isFocusVisibleProp || isFocusVisible ? 'true' : 'false'}
+          data-disabled={isDisabled ? 'true' : 'false'}
+          // data attributes for nativewind
           dataSet={{
             disabled: isDisabled ? 'true' : 'false',
             hover: isHoveredProp || isHovered ? 'true' : 'false',
