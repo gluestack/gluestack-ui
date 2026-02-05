@@ -46,6 +46,13 @@ function Pressable<T>(StyledPressable: React.ComponentType<T>) {
             disabled: props.disabled,
             focusVisible: isFocusVisible,
           }}
+          // data attributes for uniwind
+          data-hover={isHovered ? 'true' : 'false'}
+          data-focus={isFocused ? 'true' : 'false'}
+          data-active={isPressed ? 'true' : 'false'}
+          data-disabled={props.disabled ? 'true' : 'false'}
+          data-focus-visible={isFocusVisible ? 'true' : 'false'}
+          // data attributes for nativewind
           dataSet={{
             hover: isHovered ? 'true' : 'false',
             focus: isFocused ? 'true' : 'false',
