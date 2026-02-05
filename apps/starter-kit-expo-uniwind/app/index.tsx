@@ -246,7 +246,9 @@ export default function Home() {
           placement="top"
           offset={5}
           disabledKeys={['Settings']}
+          onSelectionChange={(keys) => console.log('Menu selection changed', keys)}
           onClose={() => console.log('Menu closed')}
+          closeOnSelect
           trigger={({ ...triggerProps }) => {
             return (
               <Button {...triggerProps}>
@@ -290,7 +292,7 @@ export default function Home() {
             </Text>
           </AlertDialogBody>
           <AlertDialogFooter>
-            <Button variant="outline" onPress={handleClose}>
+            <Button variant="outline" onPress={handleCloseAlertDialog}>
               <ButtonText>Cancel</ButtonText>
             </Button>
             <Button onPress={handleCloseAlertDialog}>
