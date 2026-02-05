@@ -398,7 +398,6 @@ export function transformCssInteropToUniwind(
     if (handled.has(call.statement)) continue;
 
     const name = call.name!;
-    const indent = indentOf(call.statement);
     const stmtRange = lineRange(call.statement);
     const varInfo = varDecls.get(name);
 
@@ -411,10 +410,14 @@ export function transformCssInteropToUniwind(
     } else if (varInfo) {
       addVarDeclRename(name);
       const exportPrefix = varInfo.isExported ? 'export ' : '';
+      // Erase the cssInterop call; insert the wrapper right after the
+      // renamed declaration so it is available before any createX() call.
+      replacements.push({ start: stmtRange.start, end: stmtRange.end, text: '' });
+      const declRange = lineRange(varInfo.statement);
       replacements.push({
-        start: stmtRange.start,
-        end: stmtRange.end,
-        text: `${indent}${exportPrefix}const ${name} = withUniwind(_${name});\n`,
+        start: declRange.end,
+        end: declRange.end,
+        text: `${indentOf(varInfo.statement)}${exportPrefix}const ${name} = withUniwind(_${name});\n`,
       });
     } else {
       warnings.push(
