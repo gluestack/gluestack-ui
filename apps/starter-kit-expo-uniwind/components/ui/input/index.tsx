@@ -6,7 +6,7 @@ import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon as _PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'INPUT';
 
@@ -17,7 +17,7 @@ const UIInput = createInput({
   Input: TextInput,
 });
 
-const PrimitiveIcon = withUniwind(_PrimitiveIcon);
+const UIIcon = withUniwind(_UIIcon);
 
 const inputStyle = tva({
   base: 'h-9 w-full flex-row items-center rounded-md border border-border  dark:bg-input/30 bg-transparent shadow-xs transition-[color,box-shadow] overflow-hidden data-[focus=true]:outline-none data-[focus=true]:border-ring dark:data-[focus=true]:border-ring data-[focus=true]:web:ring-[3px] data-[focus=true]:web:ring-ring/50 data-[invalid=true]:border-destructive/40 dark:data-[invalid=true]:border-destructive/40 data-[invalid=true]:web:ring-destructive/20 dark:data-[invalid=true]:web:ring-destructive/40 data-[disabled=true]:pointer-events-none data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50 px-3 gap-2',

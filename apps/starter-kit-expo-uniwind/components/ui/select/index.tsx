@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon as _PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 import {
   withStyleContext,
   useStyleContext,
@@ -119,7 +119,7 @@ const UISelect = Object.assign(
 ) as typeof _UISelect;
 const SelectTriggerWrapper = withUniwind(_SelectTriggerWrapper);
 
-const PrimitiveIcon = withUniwind(_PrimitiveIcon);
+const UIIcon = withUniwind(_UIIcon);
 
 type ISelectProps = VariantProps<typeof selectStyle> &
   React.ComponentProps<typeof UISelect> & { className?: string };

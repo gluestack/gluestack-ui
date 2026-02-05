@@ -9,7 +9,7 @@ import {
 } from '@gluestack-ui/utils/nativewind-utils';
 import { withUniwind } from 'uniwind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
-import { PrimitiveIcon as _PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 const SCOPE = 'BUTTON';
 const Root = withStyleContext(Pressable, SCOPE);
 const UIButton = createButton({
@@ -19,7 +19,7 @@ const UIButton = createButton({
   Spinner: ActivityIndicator,
   Icon: UIIcon,
 });
-const PrimitiveIcon = withUniwind(_PrimitiveIcon);
+const UIIcon = withUniwind(_UIIcon);
 const buttonStyle = tva({
   base: 'rounded-md flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2 h-fit',
   variants: {
@@ -49,7 +49,7 @@ const buttonTextStyle = tva({
     variant: {
       default: 'text-primary-foreground',
       destructive: 'text-white',
-      outline:'text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
+      outline: 'text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground',
       secondary: 'text-secondary-foreground',
       ghost: 'text-foreground ',
       link: 'text-primary data-[hover=true]:underline data-[active=true]:underline',
@@ -173,7 +173,7 @@ type IButtonIcon = React.ComponentPropsWithoutRef<typeof UIButton.Icon> &
     as?: React.ElementType;
     height?: number;
     width?: number;
-};
+  };
 const ButtonIcon = React.forwardRef<
   React.ElementRef<typeof UIButton.Icon>,
   IButtonIcon

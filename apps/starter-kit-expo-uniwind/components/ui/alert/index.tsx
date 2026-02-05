@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon as _PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'ALERT';
 
@@ -49,7 +49,7 @@ export const UIAlert = createAlert({
   Icon: UIIcon,
 });
 
-const PrimitiveIcon = withUniwind(_PrimitiveIcon);
+const UIIcon = withUniwind(_UIIcon);
 
 type IAlertProps = Omit<
   React.ComponentPropsWithoutRef<typeof UIAlert>,

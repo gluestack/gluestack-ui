@@ -4,11 +4,7 @@ import { createCheckbox } from '@gluestack-ui/core/checkbox/creator';
 import { View, Pressable, Text, Platform } from 'react-native';
 import type { TextProps, ViewProps } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  PrimitiveIcon as _PrimitiveIcon,
-  IPrimitiveIcon,
-  UIIcon,
-} from '@gluestack-ui/core/icon/creator';
+import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
@@ -28,8 +24,8 @@ const LabelWrapper = React.forwardRef<
 });
 
 const IconWrapper = React.forwardRef<
-  React.ComponentRef<typeof PrimitiveIcon>,
-  IPrimitiveIcon
+  React.ComponentRef<typeof UIIcon>,
+  React.ComponentPropsWithoutRef<typeof UIIcon>
 >(function IconWrapper({ ...props }, ref) {
   return <UIIcon {...props} ref={ref} />;
 });
@@ -47,7 +43,7 @@ const UICheckbox = createCheckbox({
   Indicator: IndicatorWrapper,
 });
 
-const PrimitiveIcon = withUniwind(_PrimitiveIcon);
+const UIIcon = withUniwind(_UIIcon);
 
 const checkboxStyle = tva({
   base: 'group/checkbox flex-row items-center justify-start gap-2 web:cursor-pointer data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import {
   withStyleContext,
   useStyleContext,
@@ -117,7 +117,7 @@ cssInterop(UISelect.Input, {
 });
 cssInterop(SelectTriggerWrapper, { className: 'style' });
 
-cssInterop(PrimitiveIcon, {
+cssInterop(UIIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {

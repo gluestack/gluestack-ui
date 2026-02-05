@@ -1,7 +1,7 @@
 'use client';
 import React, { useMemo } from 'react';
 import { Text, View } from 'react-native';
-import { PrimitiveIcon as _PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
@@ -52,7 +52,7 @@ const badgeIconStyle = tva({
 
 const ContextView = withStyleContext(View, SCOPE);
 
-const PrimitiveIcon = withUniwind(_PrimitiveIcon);
+const UIIcon = withUniwind(_UIIcon);
 
 type IBadgeProps = React.ComponentPropsWithoutRef<typeof ContextView> &
   VariantProps<typeof badgeStyle>;
@@ -97,7 +97,7 @@ const BadgeText = React.forwardRef<
   );
 });
 
-type IBadgeIconProps = React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
+type IBadgeIconProps = React.ComponentPropsWithoutRef<typeof UIIcon> &
   VariantProps<typeof badgeIconStyle> & {
     size?: number;
   };

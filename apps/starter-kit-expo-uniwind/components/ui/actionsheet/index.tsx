@@ -13,7 +13,7 @@ import {
   PressableProps,
   ViewStyle,
 } from 'react-native';
-import { PrimitiveIcon as _PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { withUniwind } from 'uniwind';
@@ -24,7 +24,7 @@ import {
   MotionComponentProps,
 } from '@legendapp/motion';
 
-const _ItemWrapper = React.forwardRef<
+const ItemWrapper = React.forwardRef<
   React.ComponentRef<typeof Pressable>,
   PressableProps
 >(function ItemWrapper({ ...props }, ref) {
@@ -64,6 +64,7 @@ export const UIActionsheet = Object.assign(
   withUniwind(_UIActionsheet),
   {
     Content: withUniwind(_UIActionsheet.Content),
+    Item: withUniwind(_UIActionsheet.Item),
     ItemText: withUniwind(_UIActionsheet.ItemText),
     DragIndicator: withUniwind(_UIActionsheet.DragIndicator),
     DragIndicatorWrapper: withUniwind(_UIActionsheet.DragIndicatorWrapper),
@@ -75,9 +76,8 @@ export const UIActionsheet = Object.assign(
     SectionHeaderText: withUniwind(_UIActionsheet.SectionHeaderText),
   }
 ) as typeof _UIActionsheet;
-const ItemWrapper = withUniwind(_ItemWrapper);
 
-const PrimitiveIcon = withUniwind(_PrimitiveIcon);
+const UIIcon = withUniwind(_UIIcon);
 
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 

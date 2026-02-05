@@ -12,7 +12,7 @@ import {
   SectionList,
   ViewStyle,
 } from 'react-native';
-import { PrimitiveIcon as _PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
@@ -71,7 +71,7 @@ export const UIActionsheet = Object.assign(
     SectionHeaderText: withUniwind(_UIActionsheet.SectionHeaderText),
   }
 ) as typeof _UIActionsheet;
-const PrimitiveIcon = withUniwind(_PrimitiveIcon);
+const UIIcon = withUniwind(_UIIcon);
 
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 

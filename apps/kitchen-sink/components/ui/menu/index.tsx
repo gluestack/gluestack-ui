@@ -3,11 +3,11 @@ import React, { useEffect } from 'react';
 import { createMenu } from '@gluestack-ui/core/menu/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import Animated, { FadeOut, ZoomIn, ZoomOut } from 'react-native-reanimated';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-const AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedView = Animated.createAnimatedComponent(ScrollView);
 
 const menuStyle = tva({
   base: 'rounded-md bg-popover text-popover-foreground border border-border p-1 shadow-hard-5 max-h-[300px] overflow-y-auto',

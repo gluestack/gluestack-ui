@@ -9,7 +9,7 @@ import {
 } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'FAB';
 const Root = withStyleContext(Pressable, SCOPE);
@@ -19,7 +19,7 @@ const UIFab = createFab({
   Icon: UIIcon,
 });
 
-cssInterop(PrimitiveIcon, {
+cssInterop(UIIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {
@@ -71,7 +71,7 @@ const fabLabelStyle = tva({
       'sm': 'text-sm',
       'md': 'text-base',
       'lg': 'text-lg',
-    
+
     },
     sub: {
       true: 'text-xs',
@@ -94,7 +94,7 @@ const fabLabelStyle = tva({
 
 const fabIconStyle = tva({
   base: 'text-primary-foreground/90 fill-none',
-  variants: { 
+  variants: {
     size: {
       'sm': 'h-3.5 w-3.5',
       'md': 'h-4 w-4',

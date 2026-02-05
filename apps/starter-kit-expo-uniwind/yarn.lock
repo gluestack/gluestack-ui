@@ -998,6 +998,11 @@
     resolve-from "^5.0.0"
     semver "^7.6.0"
 
+"@expo/html-elements@^0.13.8":
+  version "0.13.8"
+  resolved "https://registry.npmjs.org/@expo/html-elements/-/html-elements-0.13.8.tgz#c53c0cd009b2a5568192c70f3a2ca77092b36cc9"
+  integrity sha512-dY8cbf9dkigI7YqIcz5k1Y2GpVG++WKPLp51q5xAGHYNyW7RyuGUPKjgiwK4Th0GBcQFBVCZuu/XZerPqMFA7g==
+
 "@expo/image-utils@^0.8.12":
   version "0.8.12"
   resolved "https://registry.npmjs.org/@expo/image-utils/-/image-utils-0.8.12.tgz#56e34b9555745ad4d11c972fe0d1ce71c7c64c41"
@@ -2243,7 +2248,7 @@
     "@react-types/shared" "^3.33.0"
     "@swc/helpers" "^0.5.0"
 
-"@react-aria/utils@^3.29.0", "@react-aria/utils@^3.33.0":
+"@react-aria/utils@^3.33.0":
   version "3.33.0"
   resolved "https://registry.npmjs.org/@react-aria/utils/-/utils-3.33.0.tgz#12772f84e12c0149f66f247c02c8df959d8f83e8"
   integrity sha512-yvz7CMH8d2VjwbSa5nGXqjU031tYhD8ddax95VzJsHSPyqHDEGfxul8RkhGV6oO7bVqZxVs6xY66NIgae+FHjw==
@@ -2956,9 +2961,9 @@
     "@react-types/shared" "^3.33.0"
 
 "@sinclair/typebox@^0.27.8":
-  version "0.27.8"
-  resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
-  integrity sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==
+  version "0.27.10"
+  resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.27.10.tgz#beefe675f1853f73676aecc915b2bd2ac98c4fc6"
+  integrity sha512-MTBk/3jGLNB2tVxv6uLlFh1iu64iYOQ2PbdOSK3NW8JZsmlaOh2q6sdtKowBhfw8QFLmYNzTW4/oK4uATIi6ZA==
 
 "@sinonjs/commons@^3.0.0":
   version "3.0.1"
@@ -4175,7 +4180,7 @@ expo-symbols@^55.0.3:
     "@expo-google-fonts/material-symbols" "^0.4.1"
     sf-symbols-typescript "^2.0.0"
 
-expo@^55.0.0-preview.5:
+expo@^55.0.0-preview.9:
   version "55.0.0-preview.9"
   resolved "https://registry.npmjs.org/expo/-/expo-55.0.0-preview.9.tgz#812247a1aa25259730fc6b723f1e87b6c2b53511"
   integrity sha512-/JtS2+U8Yq6wziNXIpG4tFpI4xLYtizlHrDe0biuZTY2UirtDSaCI3fBuGHQXKleUJpKArC9INEzXWLLFOPj+w==
@@ -5773,10 +5778,10 @@ react-native-screens@~4.22.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
-react-native-svg@^15.15.2:
-  version "15.15.2"
-  resolved "https://registry.npmjs.org/react-native-svg/-/react-native-svg-15.15.2.tgz#75756fd32aa2faff65ecd2cedf40d180130da0b4"
-  integrity sha512-lpaSwA2i+eLvcEdDZyGgMEInQW99K06zjJqfMFblE0yxI0SCN5E4x6in46f0IYi6i3w2t2aaq3oOnyYBe+bo4w==
+react-native-svg@15.15.1:
+  version "15.15.1"
+  resolved "https://registry.npmjs.org/react-native-svg/-/react-native-svg-15.15.1.tgz#0b08716f5c389ef8550a73492c985c7b23849d65"
+  integrity sha512-ZUD1xwc3Hwo4cOmOLumjJVoc7lEf9oQFlHnLmgccLC19fNm6LVEdtB+Cnip6gEi0PG3wfvVzskViEtrySQP8Fw==
   dependencies:
     css-select "^5.1.0"
     css-tree "^1.1.3"

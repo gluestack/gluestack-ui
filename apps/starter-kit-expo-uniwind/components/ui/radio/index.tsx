@@ -6,7 +6,7 @@ import { tva, useStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon as _PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'Radio';
 
@@ -14,15 +14,15 @@ const UIRadio = createRadio({
   Root: (Platform.OS === 'web'
     ? withStyleContext(View, SCOPE)
     : withStyleContext(Pressable, SCOPE)) as ReturnType<
-    typeof withStyleContext<typeof Pressable>
-  >,
+      typeof withStyleContext<typeof Pressable>
+    >,
   Group: View,
   Icon: UIIcon,
   Indicator: View,
   Label: Text,
 });
 
-const PrimitiveIcon = withUniwind(_PrimitiveIcon);
+const UIIcon = withUniwind(_UIIcon);
 
 const radioStyle = tva({
   base: 'group/radio flex-row justify-start items-center gap-2 web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed data-[disabled=true]:opacity-50',

@@ -9,7 +9,7 @@ import {
 } from '@gluestack-ui/utils/nativewind-utils';
 import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon as _PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'FAB';
 const Root = withStyleContext(Pressable, SCOPE);
@@ -19,7 +19,7 @@ const UIFab = createFab({
   Icon: UIIcon,
 });
 
-const PrimitiveIcon = withUniwind(_PrimitiveIcon);
+const UIIcon = withUniwind(_UIIcon);
 
 const fabStyle = tva({
   base: 'group/fab bg-primary rounded-full z-20 p-4 flex-row items-center justify-center absolute hover:bg-primary/90 active:bg-primary/80 disabled:opacity-40 disabled:pointer-events-all disabled:cursor-not-allowed data-[focus=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-indicator-info shadow-hard-2',
@@ -60,7 +60,7 @@ const fabLabelStyle = tva({
       'sm': 'text-sm',
       'md': 'text-base',
       'lg': 'text-lg',
-    
+
     },
     sub: {
       true: 'text-xs',
@@ -83,7 +83,7 @@ const fabLabelStyle = tva({
 
 const fabIconStyle = tva({
   base: 'text-primary-foreground/90 fill-none',
-  variants: { 
+  variants: {
     size: {
       'sm': 'h-3.5 w-3.5',
       'md': 'h-4 w-4',

@@ -4,7 +4,7 @@ import {
   createAccordion,
   AccordionItemContext,
 } from '@gluestack-ui/core/accordion/creator';
-import { PrimitiveIcon as _PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withUniwind } from 'uniwind';
 import React from 'react';
@@ -44,7 +44,8 @@ const accordionContentStyle = tva({
 });
 
 const accordionTriggerStyle = tva({
-  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10  gap-3',
+
+  base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10 gap-3',
 });
 
 const Header = (
@@ -63,7 +64,7 @@ const UIAccordion = createAccordion({
   Content: View,
 });
 
-const PrimitiveIcon = withUniwind(_PrimitiveIcon);
+const UIIcon = withUniwind(_UIIcon);
 
 const H3 = withUniwind(_H3);
 

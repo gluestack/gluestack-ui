@@ -172,6 +172,18 @@ export function transformCssInteropToUniwind(
   // Nothing to transform
   if (cssInteropCalls.length === 0) return { code: source, warnings };
 
+  // End position of the last import statement (used to hoist withUniwind
+  // declarations for imported identifiers, which must be declared before any
+  // code that references them — unlike cssInterop which mutated in place).
+  let lastImportEnd = 0;
+  for (const statement of sourceFile.statements) {
+    if (ts.isImportDeclaration(statement)) {
+      let end = statement.getEnd();
+      if (end < source.length && source[end] === '\n') end++;
+      lastImportEnd = Math.max(lastImportEnd, end);
+    }
+  }
+
   // ── Analysis ──────────────────────────────────────────────────────────
   const identCalls = cssInteropCalls.filter((c) => c.targetType === 'identifier');
   const memberCalls = cssInteropCalls.filter((c) => c.targetType === 'member');
@@ -187,6 +199,9 @@ export function transformCssInteropToUniwind(
 
   // ── Replacement generation ───────────────────────────────────────────
   const replacements: Replacement[] = [];
+  // Declarations for imported identifiers that must be hoisted above all
+  // non-import statements (collected in sections 2 & 3, emitted after 4).
+  const postImportDecls: string[] = [];
 
   // Helper: full-line range of a node (start-of-line → after trailing \n)
   function lineRange(node: ts.Node): { start: number; end: number } {
@@ -389,11 +404,10 @@ export function transformCssInteropToUniwind(
 
     if (isImported(name)) {
       addImportRename(name);
-      replacements.push({
-        start: stmtRange.start,
-        end: stmtRange.end,
-        text: `${indent}const ${name} = withUniwind(_${name});\n`,
-      });
+      // Erase the cssInterop call here; the const declaration is hoisted
+      // to right after the imports so it is available before any createX() call.
+      replacements.push({ start: stmtRange.start, end: stmtRange.end, text: '' });
+      postImportDecls.push(`const ${name} = withUniwind(_${name});`);
     } else if (varInfo) {
       addVarDeclRename(name);
       const exportPrefix = varInfo.isExported ? 'export ' : '';
@@ -423,6 +437,15 @@ export function transformCssInteropToUniwind(
       text: `${indent}${call.objectName}.${call.propertyName} = withUniwind(${call.objectName}.${call.propertyName});\n`,
     });
     handled.add(call.statement);
+  }
+
+  // ── 5. Emit hoisted declarations right after the import block ────────
+  if (postImportDecls.length > 0) {
+    replacements.push({
+      start: lastImportEnd,
+      end: lastImportEnd,
+      text: '\n' + postImportDecls.join('\n') + '\n',
+    });
   }
 
   // ── Apply replacements (reverse order preserves positions) ──────────
