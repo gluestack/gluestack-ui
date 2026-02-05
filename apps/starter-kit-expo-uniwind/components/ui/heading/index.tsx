@@ -4,17 +4,18 @@ import { headingStyle } from './styles';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { withUniwind } from 'uniwind';
 
-type IHeadingProps = VariantProps<typeof headingStyle> &
-  React.ComponentPropsWithoutRef<typeof H1> & {
-    as?: React.ElementType;
-  };
-
 const H1 = withUniwind(_H1);
 const H2 = withUniwind(_H2);
 const H3 = withUniwind(_H3);
 const H4 = withUniwind(_H4);
 const H5 = withUniwind(_H5);
 const H6 = withUniwind(_H6);
+
+type IHeadingProps = VariantProps<typeof headingStyle> &
+  React.ComponentPropsWithoutRef<typeof H1> & {
+    as?: React.ElementType;
+  };
+
 
 const MappedHeading = memo(
   forwardRef<React.ComponentRef<typeof H1>, IHeadingProps>(

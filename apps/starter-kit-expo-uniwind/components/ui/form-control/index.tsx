@@ -8,6 +8,8 @@ import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 
+const UIIcon = withUniwind(_UIIcon);
+
 const SCOPE = 'FORM_CONTROL';
 
 const formControlStyle = tva({
@@ -170,7 +172,6 @@ export const UIFormControl = createFormControl({
   HelperText: Text,
 });
 
-const UIIcon = withUniwind(_UIIcon);
 
 type IFormControlProps = React.ComponentProps<typeof UIFormControl> &
   VariantProps<typeof formControlStyle>;

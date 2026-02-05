@@ -10,6 +10,8 @@ import {
 import { withUniwind } from 'uniwind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
+
+const UIIcon = withUniwind(_UIIcon);
 const SCOPE = 'BUTTON';
 const Root = withStyleContext(Pressable, SCOPE);
 const UIButton = createButton({
@@ -19,7 +21,6 @@ const UIButton = createButton({
   Spinner: ActivityIndicator,
   Icon: UIIcon,
 });
-const UIIcon = withUniwind(_UIIcon);
 const buttonStyle = tva({
   base: 'rounded-md flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2 h-fit',
   variants: {

@@ -11,6 +11,8 @@ import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 
+const UIIcon = withUniwind(_UIIcon);
+
 const SCOPE = 'ALERT';
 
 const alertStyle = tva({
@@ -49,7 +51,6 @@ export const UIAlert = createAlert({
   Icon: UIIcon,
 });
 
-const UIIcon = withUniwind(_UIIcon);
 
 type IAlertProps = Omit<
   React.ComponentPropsWithoutRef<typeof UIAlert>,

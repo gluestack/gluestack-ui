@@ -8,6 +8,8 @@ import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 
+const UIIcon = withUniwind(_UIIcon);
+
 const SCOPE = 'Radio';
 
 const UIRadio = createRadio({
@@ -22,7 +24,6 @@ const UIRadio = createRadio({
   Label: Text,
 });
 
-const UIIcon = withUniwind(_UIIcon);
 
 const radioStyle = tva({
   base: 'group/radio flex-row justify-start items-center gap-2 web:cursor-pointer data-[disabled=true]:web:cursor-not-allowed data-[disabled=true]:opacity-50',

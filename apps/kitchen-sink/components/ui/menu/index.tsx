@@ -1,11 +1,11 @@
 'use client';
-import React, { useEffect } from 'react';
 import { createMenu } from '@gluestack-ui/core/menu/creator';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
+import React from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
-import Animated, { FadeOut, ZoomIn, ZoomOut } from 'react-native-reanimated';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import Animated, { FadeOut, ZoomIn } from 'react-native-reanimated';
 
 const AnimatedView = Animated.createAnimatedComponent(ScrollView);
 
@@ -56,7 +56,7 @@ const menuItemLabelStyle = tva({
 const BackdropPressable = React.forwardRef<
   React.ComponentRef<typeof Pressable>,
   React.ComponentPropsWithoutRef<typeof Pressable> &
-    VariantProps<typeof menuBackdropStyle>
+  VariantProps<typeof menuBackdropStyle>
 >(function BackdropPressable({ className, ...props }, ref) {
   return (
     <Pressable
@@ -91,7 +91,7 @@ const Item = React.forwardRef<
 const Separator = React.forwardRef<
   React.ComponentRef<typeof View>,
   React.ComponentPropsWithoutRef<typeof View> &
-    VariantProps<typeof menuSeparatorStyle>
+  VariantProps<typeof menuSeparatorStyle>
 >(function Separator({ className, ...props }, ref) {
   return (
     <View
@@ -102,6 +102,8 @@ const Separator = React.forwardRef<
   );
 });
 
+cssInterop(AnimatedView, { className: 'style' });
+
 export const UIMenu = createMenu({
   Root: AnimatedView,
   Item: Item,
@@ -110,7 +112,6 @@ export const UIMenu = createMenu({
   Separator: Separator,
 });
 
-cssInterop(AnimatedView, { className: 'style' });
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle> & { className?: string };

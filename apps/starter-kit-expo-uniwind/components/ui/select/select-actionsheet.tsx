@@ -26,6 +26,8 @@ import {
 
 import React from 'react';
 
+const UIIcon = withUniwind(_UIIcon);
+
 type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
   MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
 
@@ -71,7 +73,6 @@ export const UIActionsheet = Object.assign(
     SectionHeaderText: withUniwind(_UIActionsheet.SectionHeaderText),
   }
 ) as typeof _UIActionsheet;
-const UIIcon = withUniwind(_UIIcon);
 
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 

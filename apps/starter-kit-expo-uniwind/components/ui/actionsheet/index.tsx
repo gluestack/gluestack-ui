@@ -24,6 +24,8 @@ import {
   MotionComponentProps,
 } from '@legendapp/motion';
 
+const UIIcon = withUniwind(_UIIcon);
+
 const ItemWrapper = React.forwardRef<
   React.ComponentRef<typeof Pressable>,
   PressableProps
@@ -77,7 +79,6 @@ export const UIActionsheet = Object.assign(
   }
 ) as typeof _UIActionsheet;
 
-const UIIcon = withUniwind(_UIIcon);
 
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 

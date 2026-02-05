@@ -9,6 +9,8 @@ import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
+const UIIcon = withUniwind(_UIIcon);
+
 const IndicatorWrapper = React.forwardRef<
   React.ComponentRef<typeof View>,
   ViewProps
@@ -43,7 +45,6 @@ const UICheckbox = createCheckbox({
   Indicator: IndicatorWrapper,
 });
 
-const UIIcon = withUniwind(_UIIcon);
 
 const checkboxStyle = tva({
   base: 'group/checkbox flex-row items-center justify-start gap-2 web:cursor-pointer data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',

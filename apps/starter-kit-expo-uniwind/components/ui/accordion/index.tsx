@@ -13,6 +13,9 @@ import { AnimatedHeight } from './AccordionAnimatedHeight';
 import { AnimatedIcon } from './AccordionAnimatedIcon';
 import { accordionAnimationConfig } from './animation-config';
 
+const UIIcon = withUniwind(_UIIcon);
+const H3 = withUniwind(_H3);
+
 /** Styles */
 
 const accordionStyle = tva({
@@ -64,9 +67,7 @@ const UIAccordion = createAccordion({
   Content: View,
 });
 
-const UIIcon = withUniwind(_UIIcon);
 
-const H3 = withUniwind(_H3);
 
 type IAccordionProps = React.ComponentPropsWithoutRef<typeof UIAccordion>;
 

@@ -11,6 +11,8 @@ import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 import { Svg } from 'react-native-svg';
+
+const UIIcon = withUniwind(_UIIcon);
 const SCOPE = 'BADGE';
 
 const badgeStyle = tva({
@@ -52,7 +54,6 @@ const badgeIconStyle = tva({
 
 const ContextView = withStyleContext(View, SCOPE);
 
-const UIIcon = withUniwind(_UIIcon);
 
 type IBadgeProps = React.ComponentPropsWithoutRef<typeof ContextView> &
   VariantProps<typeof badgeStyle>;

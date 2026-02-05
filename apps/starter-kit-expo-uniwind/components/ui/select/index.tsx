@@ -26,6 +26,8 @@ import {
 } from './select-actionsheet';
 import { Pressable, View, TextInput } from 'react-native';
 
+const UIIcon = withUniwind(_UIIcon);
+
 const _SelectTriggerWrapper = React.forwardRef<
   React.ComponentRef<typeof Pressable>,
   React.ComponentProps<typeof Pressable>
@@ -119,7 +121,6 @@ const UISelect = Object.assign(
 ) as typeof _UISelect;
 const SelectTriggerWrapper = withUniwind(_SelectTriggerWrapper);
 
-const UIIcon = withUniwind(_UIIcon);
 
 type ISelectProps = VariantProps<typeof selectStyle> &
   React.ComponentProps<typeof UISelect> & { className?: string };

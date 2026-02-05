@@ -11,6 +11,8 @@ import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
 
+const UIIcon = withUniwind(_UIIcon);
+
 const SCOPE = 'FAB';
 const Root = withStyleContext(Pressable, SCOPE);
 const UIFab = createFab({
@@ -19,7 +21,6 @@ const UIFab = createFab({
   Icon: UIIcon,
 });
 
-const UIIcon = withUniwind(_UIIcon);
 
 const fabStyle = tva({
   base: 'group/fab bg-primary rounded-full z-20 p-4 flex-row items-center justify-center absolute hover:bg-primary/90 active:bg-primary/80 disabled:opacity-40 disabled:pointer-events-all disabled:cursor-not-allowed data-[focus=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-indicator-info shadow-hard-2',

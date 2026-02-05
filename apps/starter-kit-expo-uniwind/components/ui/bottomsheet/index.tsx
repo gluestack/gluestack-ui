@@ -22,6 +22,14 @@ import { Pressable, Text } from 'react-native';
 import { withUniwind } from 'uniwind';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 
+const GorhomBottomSheetBackdrop = withUniwind(_GorhomBottomSheetBackdrop);
+const BottomSheetHandle = withUniwind(_BottomSheetHandle);
+const GorhomBottomSheetView = withUniwind(_GorhomBottomSheetView);
+const GorhomBottomSheetInput = withUniwind(_GorhomBottomSheetInput);
+const GorhomBottomSheetScrollView = withUniwind(_GorhomBottomSheetScrollView);
+const GorhomBottomSheetFlatList = withUniwind(_GorhomBottomSheetFlatList);
+const GorhomBottomSheetSectionList = withUniwind(_GorhomBottomSheetSectionList);
+
 const bottomSheetBackdropStyle = tva({
   base: 'absolute inset-0 flex-1 touch-none select-none bg-black opacity-0',
 });
@@ -175,7 +183,6 @@ export const BottomSheetBackdrop = ({
   );
 };
 
-const GorhomBottomSheetBackdrop = withUniwind(_GorhomBottomSheetBackdrop);
 
 type IBottomSheetDragIndicator = React.ComponentProps<typeof BottomSheetHandle>;
 
@@ -197,7 +204,6 @@ export const BottomSheetDragIndicator = ({
   );
 };
 
-const BottomSheetHandle = withUniwind(_BottomSheetHandle);
 
 type IBottomSheetContent = React.ComponentProps<typeof GorhomBottomSheetView>;
 
@@ -249,7 +255,6 @@ export const BottomSheetContent = ({ ...props }: IBottomSheetContent) => {
   );
 };
 
-const GorhomBottomSheetView = withUniwind(_GorhomBottomSheetView);
 
 export const BottomSheetItem = ({
   children,
@@ -288,7 +293,3 @@ export const BottomSheetFlatList = GorhomBottomSheetFlatList;
 export const BottomSheetSectionList = GorhomBottomSheetSectionList;
 export const BottomSheetTextInput = GorhomBottomSheetInput;
 
-const GorhomBottomSheetInput = withUniwind(_GorhomBottomSheetInput);
-const GorhomBottomSheetScrollView = withUniwind(_GorhomBottomSheetScrollView);
-const GorhomBottomSheetFlatList = withUniwind(_GorhomBottomSheetFlatList);
-const GorhomBottomSheetSectionList = withUniwind(_GorhomBottomSheetSectionList);
