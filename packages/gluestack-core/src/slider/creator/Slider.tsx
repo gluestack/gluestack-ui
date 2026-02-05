@@ -133,6 +133,13 @@ function Slider<StyledSliderProps>(
               focusVisible: isFocusVisible || isFocusVisibleProp,
               active: isPressed || isPressedProp,
             }}
+            // data attributes for uniwind
+            data-hover={isHovered || isHoveredProp ? 'true' : 'false'}
+            data-disabled={isDisabled || isDisabledProp ? 'true' : 'false'}
+            data-focus={isFocused || isFocusedProp ? 'true' : 'false'}
+            data-focus-visible={isFocusVisible || isFocusVisibleProp ? 'true' : 'false'}
+            data-active={isPressed || isPressedProp ? 'true' : 'false'}
+            // data attributes for nativewind
             dataSet={{
               hover: isHovered || isHoveredProp ? 'true' : 'false',
               disabled: isDisabled || isDisabledProp ? 'true' : 'false',
