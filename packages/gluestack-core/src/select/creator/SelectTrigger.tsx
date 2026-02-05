@@ -33,6 +33,13 @@ export const SelectTrigger = (StyledSelectTrigger: any) =>
           disabled: isDisabled,
           invalid: isInvalid,
         }}
+        // data attributes for uniwind
+        data-focus={isFocused ? 'true' : 'false'}
+        data-focus-visible={isFocusVisible ? 'true' : 'false'}
+        data-hover={isHovered ? 'true' : 'false'}
+        data-disabled={isDisabled ? 'true' : 'false'}
+        data-invalid={isInvalid ? 'true' : 'false'}
+        // data attributes for nativewind
         dataSet={{
           focus: isFocused ? 'true' : 'false',
           focusVisible: isFocusVisible ? 'true' : 'false',
