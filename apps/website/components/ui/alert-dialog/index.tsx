@@ -1,21 +1,20 @@
 'use client';
-import React from 'react';
 import { createAlertDialog } from '@gluestack-ui/core/alert-dialog/creator';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
   tva,
   useStyleContext,
   withStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import React from 'react';
+import { Pressable, ScrollView, View } from 'react-native';
 import Animated, {
+  Easing,
   FadeIn,
   FadeOut,
-  ZoomIn,
-  ZoomOut,
-  Easing,
+  ZoomIn
 } from 'react-native-reanimated';
-import { Pressable, ScrollView, View } from 'react-native';
-import { cssInterop } from 'nativewind';
 
 const SCOPE = 'ALERT_DIALOG';
 
@@ -250,5 +249,6 @@ export {
   AlertDialogCloseButton,
   AlertDialogContent,
   AlertDialogFooter,
-  AlertDialogHeader,
+  AlertDialogHeader
 };
+

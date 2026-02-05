@@ -42,10 +42,42 @@ import {
   PlayIcon,
   SettingsIcon,
 } from '@/components/ui/icon';
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogBody,
+  AlertDialogBackdrop,
+} from '@/components/ui/alert-dialog';
+import {
+  Drawer,
+  DrawerBackdrop,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  DrawerCloseButton,
+} from '@/components/ui/drawer';
+import { CloseIcon } from '@/components/ui/icon';
+import {
+  Modal,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+} from '@/components/ui/modal';
+
 
 export default function Home() {
+  const [showAlertDialog, setShowAlertDialog] = React.useState(false);
+  const handleCloseAlertDialog = () => setShowAlertDialog(false);
   const [showActionsheet, setShowActionsheet] = useState(false);
   const handleClose = () => setShowActionsheet(false);
+  const [showDrawer, setShowDrawer] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(false);
   return (
     <Box className="flex-1 bg-background">
       <Center className="flex-1 gap-5">
@@ -240,7 +272,115 @@ export default function Home() {
             <MenuItemLabel >Settings</MenuItemLabel>
           </MenuItem>
         </Menu>
-
+        <Button onPress={() => setShowAlertDialog(true)}>
+        <ButtonText>Open Dialog</ButtonText>
+      </Button>
+      <AlertDialog isOpen={showAlertDialog} onClose={handleCloseAlertDialog}>
+        <AlertDialogBackdrop />
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <Heading className="text-foreground font-semibold text-lg">
+              Are you sure you want to delete this post?
+            </Heading>
+          </AlertDialogHeader>
+          <AlertDialogBody className="mt-3 mb-4">
+            <Text className="text-sm text-muted-foreground">
+              Deleting the post will remove it permanently and cannot be undone.
+              Please confirm if you want to proceed.
+            </Text>
+          </AlertDialogBody>
+          <AlertDialogFooter>
+            <Button variant="outline" onPress={handleClose}>
+              <ButtonText>Cancel</ButtonText>
+            </Button>
+            <Button onPress={handleCloseAlertDialog}>
+              <ButtonText>Delete</ButtonText>
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+        </AlertDialog>
+        <Button
+        onPress={() => {
+          setShowDrawer(true);
+        }}
+      >
+        <ButtonText>Open Drawer</ButtonText>
+      </Button>
+      <Drawer
+        isOpen={showDrawer}
+        size="sm"
+        anchor="left"
+        onClose={() => {
+          setShowDrawer(false);
+        }}
+      >
+        <DrawerBackdrop />
+        <DrawerContent className="pt-safe">
+          <DrawerHeader>
+            <Heading size="lg" className="text-foreground font-semibold">
+              Drawer
+            </Heading>
+            <DrawerCloseButton>
+              <Icon as={CloseIcon} className="stroke-foreground" size="lg" />
+            </DrawerCloseButton>
+          </DrawerHeader>
+          <DrawerBody>
+            <Text>This is the basic drawer component.</Text>
+          </DrawerBody>
+          <DrawerFooter>
+            <Button
+              variant="outline"
+              onPress={() => {
+                setShowDrawer(false);
+              }}
+            >
+              <ButtonText>Cancel</ButtonText>
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
+        </Drawer>
+        <Button onPress={() => setShowModal(true)}>
+        <ButtonText>Open Modal</ButtonText>
+      </Button>
+      <Modal
+        isOpen={showModal}
+        onClose={() => {
+          setShowModal(false);
+        }}
+        size="md"
+      >
+        <ModalBackdrop />
+        <ModalContent>
+          <ModalHeader>
+            <Heading size="lg">Modal Title</Heading>
+            <ModalCloseButton>
+              <Icon as={CloseIcon} />
+            </ModalCloseButton>
+          </ModalHeader>
+          <ModalBody>
+            <Text>This is the modal body. You can add any content here.</Text>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              variant="outline"
+              action="secondary"
+              className="mr-3"
+              onPress={() => {
+                setShowModal(false);
+              }}
+            >
+              <ButtonText>Cancel</ButtonText>
+            </Button>
+            <Button
+              onPress={() => {
+                setShowModal(false);
+              }}
+            >
+              <ButtonText>Save</ButtonText>
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       </Center>
     </Box>
   );

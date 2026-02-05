@@ -27,7 +27,9 @@ import Animated, {
 const SCOPE = 'MODAL';
 
 const _AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const AnimatedPressable = withUniwind(_AnimatedPressable);
 const _AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedView = withUniwind(_AnimatedView);
 
 const UIDrawer = createDrawer({
   Root: withStyleContext(View as any, SCOPE),
@@ -39,8 +41,6 @@ const UIDrawer = createDrawer({
   Header: View,
 });
 
-const AnimatedPressable = withUniwind(_AnimatedPressable);
-const AnimatedView = withUniwind(_AnimatedView);
 const drawerStyle = tva({
   base: 'w-full h-full web:pointer-events-none relative',
   variants: {

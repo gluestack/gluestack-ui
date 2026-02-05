@@ -34,6 +34,7 @@ const _SelectTriggerWrapper = React.forwardRef<
 >(function SelectTriggerWrapper({ ...props }, ref) {
   return <Pressable {...props} ref={ref} />;
 });
+const SelectTriggerWrapper = withUniwind(_SelectTriggerWrapper);
 
 const selectIconStyle = tva({
   base: 'text-foreground/50 fill-none',
@@ -119,7 +120,6 @@ const UISelect = Object.assign(
     Input: withUniwind(_UISelect.Input),
   }
 ) as typeof _UISelect;
-const SelectTriggerWrapper = withUniwind(_SelectTriggerWrapper);
 
 
 type ISelectProps = VariantProps<typeof selectStyle> &

@@ -1,28 +1,29 @@
 'use client';
-import React from 'react';
 import { createAlertDialog } from '@gluestack-ui/core/alert-dialog/creator';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
   tva,
   useStyleContext,
   withStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { withUniwind } from 'uniwind';
+import React from 'react';
+import { Pressable, ScrollView, View } from 'react-native';
 import Animated, {
+  Easing,
   FadeIn,
   FadeOut,
-  ZoomIn,
-  ZoomOut,
-  Easing,
+  ZoomIn
 } from 'react-native-reanimated';
-import { Pressable, ScrollView, View } from 'react-native';
-import { withUniwind } from 'uniwind';
 
 const SCOPE = 'ALERT_DIALOG';
 
 const RootComponent = withStyleContext(View, SCOPE);
 
 const _AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const AnimatedPressable = withUniwind(_AnimatedPressable);
 const _AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedView = withUniwind(_AnimatedView);
 
 const UIAccessibleAlertDialog = createAlertDialog({
   Root: RootComponent,
@@ -34,8 +35,6 @@ const UIAccessibleAlertDialog = createAlertDialog({
   Backdrop: AnimatedPressable,
 });
 
-const AnimatedPressable = withUniwind(_AnimatedPressable);
-const AnimatedView = withUniwind(_AnimatedView);
 
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
@@ -250,5 +249,6 @@ export {
   AlertDialogCloseButton,
   AlertDialogContent,
   AlertDialogFooter,
-  AlertDialogHeader,
+  AlertDialogHeader
 };
+

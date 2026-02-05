@@ -16,6 +16,7 @@ const _UIIcon = createIcon({
   React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
     React.RefAttributes<React.ComponentRef<typeof Svg>>
 >;
+export const UIIcon = withUniwind(_UIIcon);
 
 const iconStyle = tva({
   base: 'text-foreground fill-none pointer-events-none',
@@ -31,7 +32,6 @@ const iconStyle = tva({
   },
 });
 
-export const UIIcon = withUniwind(_UIIcon);
 
 type IIConProps = IPrimitiveIcon &
   VariantProps<typeof iconStyle> &

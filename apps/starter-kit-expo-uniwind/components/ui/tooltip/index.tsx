@@ -16,6 +16,7 @@ type IMotionViewProps = React.ComponentProps<typeof View> &
   MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
 
 const _MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+const MotionView = withUniwind(_MotionView);
 
 export const UITooltip = createTooltip({
   Root: withStyleContext(View),
@@ -24,7 +25,6 @@ export const UITooltip = createTooltip({
   AnimatePresence: AnimatePresence,
 });
 
-const MotionView = withUniwind(_MotionView);
 
 const tooltipStyle = tva({
   base: 'w-full h-full web:pointer-events-none',

@@ -17,7 +17,9 @@ import Animated, {
 } from 'react-native-reanimated';
 
 const _AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const AnimatedPressable = withUniwind(_AnimatedPressable);
 const _AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedView = withUniwind(_AnimatedView);
 
 const SCOPE = 'POPOVER';
 
@@ -32,8 +34,6 @@ const UIPopover = createPopover({
   Header: View,
 });
 
-const AnimatedView = withUniwind(_AnimatedView);
-const AnimatedPressable = withUniwind(_AnimatedPressable);
 
 const popoverStyle = tva({
   base: 'group/popover w-full h-full justify-center items-center web:pointer-events-none',
