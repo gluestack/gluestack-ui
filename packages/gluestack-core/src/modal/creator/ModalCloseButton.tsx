@@ -53,6 +53,12 @@ const ModalCloseButton = (StyledModalCloseButton: any) =>
           active: isPressed,
           focusVisible: isFocusVisible,
         }}
+        // data attributes for uniwind
+        data-hover={isHovered ? 'true' : 'false'}
+        data-focus={isFocused ? 'true' : 'false'}
+        data-active={isPressed ? 'true' : 'false'}
+        data-focus-visible={isFocusVisible ? 'true' : 'false'}
+        // data attributes for nativewind
         dataSet={{
           hover: isHovered ? 'true' : 'false',
           focus: isFocused ? 'true' : 'false',
