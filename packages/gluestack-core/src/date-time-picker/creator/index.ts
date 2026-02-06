@@ -4,6 +4,16 @@ import { DateTimePickerInput } from './DateTimePickerInput';
 import { DateTimePickerIcon } from './DateTimePickerIcon';
 import type { IDateTimePickerComponentType } from './types';
 
+export {
+  DateTimePickerContext,
+  useDateTimePicker,
+  DateTimePickerProvider,
+} from './DateTimePickerContext';
+export type {
+  DateTimePickerContextValue,
+  DateTimePickerMode,
+} from './DateTimePickerContext';
+
 export function createDateTimePicker<
   DateTimePickerProps,
   DateTimePickerTriggerProps,

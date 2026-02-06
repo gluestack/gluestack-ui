@@ -1,14 +1,18 @@
 'use client';
 
 import React, { useState, useCallback, useMemo } from 'react';
-import { View, Pressable, TextInput, Platform } from 'react-native';
+import { View, Pressable, TextInput } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { createDateTimePicker } from '@gluestack-ui/core/date-time-picker/creator';
+import {
+  createDateTimePicker,
+  DateTimePickerProvider,
+  useDateTimePicker,
+} from '@gluestack-ui/core/date-time-picker/creator';
 import { cssInterop } from 'nativewind';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 import Animated, {
@@ -79,26 +83,6 @@ cssInterop(PrimitiveIcon, {
 type IDateTimePickerProps = VariantProps<typeof dateTimePickerStyle> &
   DateTimePickerProps & { className?: string };
 
-const DateTimePickerContext = React.createContext<{
-  value?: Date;
-  onChange?: (date: Date | undefined) => void;
-  mode: DateTimePickerMode;
-  minimumDate?: Date;
-  maximumDate?: Date;
-  locale?: string;
-  timeZoneOffsetInMinutes?: number;
-  is24Hour?: boolean;
-  disabled?: boolean;
-  placeholder?: string;
-  format?: string;
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
-}>({
-  mode: 'datetime',
-  isOpen: false,
-  setIsOpen: () => {},
-});
-
 const DateTimePicker = React.forwardRef<
   React.ComponentRef<typeof UIDateTimePicker>,
   IDateTimePickerProps
@@ -121,25 +105,19 @@ const DateTimePicker = React.forwardRef<
   },
   ref
 ) {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <DateTimePickerContext.Provider
-      value={{
-        value,
-        onChange,
-        mode,
-        minimumDate,
-        maximumDate,
-        locale,
-        timeZoneOffsetInMinutes,
-        is24Hour,
-        disabled,
-        placeholder,
-        format,
-        isOpen,
-        setIsOpen,
-      }}
+    <DateTimePickerProvider
+      value={value}
+      onChange={onChange}
+      mode={mode}
+      minimumDate={minimumDate}
+      maximumDate={maximumDate}
+      locale={locale}
+      timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+      is24Hour={is24Hour}
+      disabled={disabled}
+      placeholder={placeholder}
+      format={format}
     >
       <UIDateTimePicker
         className={dateTimePickerStyle({ class: className })}
@@ -147,21 +125,15 @@ const DateTimePicker = React.forwardRef<
         {...props}
       >
         {children}
-        {isOpen && (
-          <WebDateTimePickerContent onClose={() => setIsOpen(false)} />
-        )}
       </UIDateTimePicker>
-    </DateTimePickerContext.Provider>
+      <WebDateTimePickerContent />
+    </DateTimePickerProvider>
   );
 });
 
-interface WebDateTimePickerContentProps {
-  onClose: () => void;
-}
-
-function WebDateTimePickerContent({ onClose }: WebDateTimePickerContentProps) {
-  const { value, onChange, mode, minimumDate, maximumDate, is24Hour } =
-    React.useContext(DateTimePickerContext);
+function WebDateTimePickerContent() {
+  const { value, onChange, mode, minimumDate, maximumDate, isOpen, setIsOpen } =
+    useDateTimePicker();
 
   const [tempDate, setTempDate] = useState(value || new Date());
 
@@ -171,12 +143,14 @@ function WebDateTimePickerContent({ onClose }: WebDateTimePickerContentProps) {
 
   const handleConfirm = useCallback(() => {
     onChange?.(tempDate);
-    onClose();
-  }, [tempDate, onChange, onClose]);
+    setIsOpen(false);
+  }, [tempDate, onChange, setIsOpen]);
 
   const handleCancel = useCallback(() => {
-    onClose();
-  }, [onClose]);
+    setIsOpen(false);
+  }, [setIsOpen]);
+
+  if (!isOpen) return null;
 
   return (
     <Animated.View
@@ -261,7 +235,7 @@ const DateTimePickerTrigger = React.forwardRef<
   { className, size = 'md', variant = 'outline', ...props },
   ref
 ) {
-  const { disabled, setIsOpen } = React.useContext(DateTimePickerContext);
+  const { disabled, setIsOpen } = useDateTimePicker();
 
   return (
     <UIDateTimePicker.Trigger
@@ -287,9 +261,7 @@ const DateTimePickerInput = React.forwardRef<
   IDateTimePickerInputProps
 >(function DateTimePickerInput({ className, ...props }, ref) {
   const { size: parentSize, variant: parentVariant } = useStyleContext(SCOPE);
-  const { value, placeholder, format } = React.useContext(
-    DateTimePickerContext
-  );
+  const { value, placeholder, format } = useDateTimePicker();
 
   const displayValue = useMemo(() => {
     if (!value) return '';
@@ -369,5 +341,4 @@ export {
   DateTimePickerTrigger,
   DateTimePickerInput,
   DateTimePickerIcon,
-  DateTimePickerContext,
 };

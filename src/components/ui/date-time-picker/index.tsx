@@ -1,14 +1,7 @@
 'use client';
 
-import React, { useState, useCallback, useMemo } from 'react';
-import {
-  View,
-  Pressable,
-  TextInput,
-  Platform,
-  Modal,
-  TouchableOpacity,
-} from 'react-native';
+import React, { useCallback, useMemo } from 'react';
+import { View, Pressable, TextInput, Platform, Modal } from 'react-native';
 import DateTimePickerNative from '@react-native-community/datetimepicker';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
@@ -16,15 +9,13 @@ import {
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { createDateTimePicker } from '@gluestack-ui/core/date-time-picker/creator';
+import {
+  createDateTimePicker,
+  DateTimePickerProvider,
+  useDateTimePicker,
+} from '@gluestack-ui/core/date-time-picker/creator';
 import { cssInterop } from 'nativewind';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
-import Animated, {
-  FadeIn,
-  FadeOut,
-  SlideInUp,
-  SlideOutDown,
-} from 'react-native-reanimated';
 import {
   dateTimePickerStyle,
   dateTimePickerTriggerStyle,
@@ -87,26 +78,6 @@ cssInterop(PrimitiveIcon, {
 type IDateTimePickerProps = VariantProps<typeof dateTimePickerStyle> &
   DateTimePickerProps & { className?: string };
 
-const DateTimePickerContext = React.createContext<{
-  value?: Date;
-  onChange?: (date: Date | undefined) => void;
-  mode: DateTimePickerMode;
-  minimumDate?: Date;
-  maximumDate?: Date;
-  locale?: string;
-  timeZoneOffsetInMinutes?: number;
-  is24Hour?: boolean;
-  disabled?: boolean;
-  placeholder?: string;
-  format?: string;
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
-}>({
-  mode: 'datetime',
-  isOpen: false,
-  setIsOpen: () => {},
-});
-
 const DateTimePicker = React.forwardRef<
   React.ComponentRef<typeof UIDateTimePicker>,
   IDateTimePickerProps
@@ -129,11 +100,9 @@ const DateTimePicker = React.forwardRef<
   },
   ref
 ) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleChange = useCallback(
+  const handleNativeChange = useCallback(
     (event: any, selectedDate?: Date) => {
-      setIsOpen(false);
+      // The native picker handles its own close
       if (selectedDate) {
         onChange?.(selectedDate);
       }
@@ -142,22 +111,18 @@ const DateTimePicker = React.forwardRef<
   );
 
   return (
-    <DateTimePickerContext.Provider
-      value={{
-        value,
-        onChange,
-        mode,
-        minimumDate,
-        maximumDate,
-        locale,
-        timeZoneOffsetInMinutes,
-        is24Hour,
-        disabled,
-        placeholder,
-        format,
-        isOpen,
-        setIsOpen,
-      }}
+    <DateTimePickerProvider
+      value={value}
+      onChange={onChange}
+      mode={mode}
+      minimumDate={minimumDate}
+      maximumDate={maximumDate}
+      locale={locale}
+      timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+      is24Hour={is24Hour}
+      disabled={disabled}
+      placeholder={placeholder}
+      format={format}
     >
       <UIDateTimePicker
         className={dateTimePickerStyle({ class: className })}
@@ -166,20 +131,201 @@ const DateTimePicker = React.forwardRef<
       >
         {children}
       </UIDateTimePicker>
-      {isOpen && (
-        <DateTimePickerNative
-          value={value || new Date()}
-          mode={mode}
-          minimumDate={minimumDate}
-          maximumDate={maximumDate}
-          timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
-          is24Hour={is24Hour}
-          onChange={handleChange}
-        />
-      )}
-    </DateTimePickerContext.Provider>
+      {/* Native picker is rendered directly on iOS/Android */}
+      <DateTimePickerNativeWrapper
+        value={value}
+        mode={mode}
+        minimumDate={minimumDate}
+        maximumDate={maximumDate}
+        timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+        is24Hour={is24Hour}
+        onChange={handleNativeChange}
+      />
+    </DateTimePickerProvider>
   );
 });
+
+// Separate component to handle the native picker display
+function DateTimePickerNativeWrapper({
+  value,
+  mode,
+  minimumDate,
+  maximumDate,
+  timeZoneOffsetInMinutes,
+  is24Hour,
+  onChange,
+}: {
+  value?: Date;
+  mode: DateTimePickerMode;
+  minimumDate?: Date;
+  maximumDate?: Date;
+  timeZoneOffsetInMinutes?: number;
+  is24Hour?: boolean;
+  onChange: (event: any, date?: Date) => void;
+}) {
+  const { isOpen, setIsOpen } = useDateTimePicker();
+  const [shouldRender, setShouldRender] = React.useState(isOpen);
+
+  // Handle delayed unmount for Android to prevent dismiss error
+  React.useEffect(() => {
+    if (isOpen) {
+      setShouldRender(true);
+    } else {
+      // Delay unmount to allow picker to clean up properly
+      const timer = setTimeout(() => {
+        setShouldRender(false);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
+  const handleChange = useCallback(
+    (event: any, selectedDate?: Date) => {
+      setIsOpen(false);
+      onChange(event, selectedDate);
+    },
+    [onChange, setIsOpen]
+  );
+
+  // iOS uses default display (spinner in modal)
+  if (Platform.OS === 'ios') {
+    if (!isOpen) return null;
+    return (
+      <DateTimePickerNative
+        value={value || new Date()}
+        mode={mode}
+        display="spinner"
+        minimumDate={minimumDate}
+        maximumDate={maximumDate}
+        timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+        is24Hour={is24Hour}
+        onChange={handleChange}
+      />
+    );
+  }
+
+  // Android doesn't support 'datetime' mode - use two-step picker
+  if (mode === 'datetime') {
+    return (
+      <AndroidDateTimePicker
+        value={value}
+        minimumDate={minimumDate}
+        maximumDate={maximumDate}
+        is24Hour={is24Hour}
+        isOpen={isOpen}
+        shouldRender={shouldRender}
+        onChange={onChange}
+        setIsOpen={setIsOpen}
+      />
+    );
+  }
+
+  // Android: Use display="default" which opens system dialogs for date/time
+  if (!shouldRender) return null;
+
+  return (
+    <DateTimePickerNative
+      key={`picker-${mode}`}
+      value={value || new Date()}
+      mode={mode}
+      display="default"
+      minimumDate={minimumDate}
+      maximumDate={maximumDate}
+      timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+      is24Hour={is24Hour}
+      onChange={handleChange}
+    />
+  );
+}
+
+// Android-specific datetime picker (uses two separate pickers)
+function AndroidDateTimePicker({
+  value,
+  minimumDate,
+  maximumDate,
+  is24Hour,
+  isOpen,
+  shouldRender,
+  onChange,
+  setIsOpen,
+}: {
+  value?: Date;
+  minimumDate?: Date;
+  maximumDate?: Date;
+  is24Hour?: boolean;
+  isOpen: boolean;
+  shouldRender: boolean;
+  onChange: (event: any, date?: Date) => void;
+  setIsOpen: (open: boolean) => void;
+}) {
+  const [step, setStep] = React.useState<'date' | 'time' | null>(null);
+  const [tempDate, setTempDate] = React.useState<Date | undefined>(value);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setStep('date');
+      setTempDate(value || new Date());
+    } else {
+      setStep(null);
+    }
+  }, [isOpen, value]);
+
+  const handleDateChange = React.useCallback(
+    (event: any, selectedDate?: Date) => {
+      if (selectedDate) {
+        setTempDate(selectedDate);
+        setStep('time');
+      } else {
+        setIsOpen(false);
+      }
+    },
+    [setIsOpen]
+  );
+
+  const handleTimeChange = React.useCallback(
+    (event: any, selectedTime?: Date) => {
+      setIsOpen(false);
+      setStep(null);
+      if (selectedTime && tempDate) {
+        // Combine date and time
+        const combinedDate = new Date(tempDate);
+        combinedDate.setHours(selectedTime.getHours());
+        combinedDate.setMinutes(selectedTime.getMinutes());
+        onChange(event, combinedDate);
+      } else if (selectedTime) {
+        onChange(event, selectedTime);
+      }
+    },
+    [tempDate, onChange, setIsOpen]
+  );
+
+  if (!shouldRender || !step) return null;
+
+  if (step === 'date') {
+    return (
+      <DateTimePickerNative
+        key="android-date"
+        value={tempDate || new Date()}
+        mode="date"
+        display="default"
+        minimumDate={minimumDate}
+        maximumDate={maximumDate}
+        onChange={handleDateChange}
+      />
+    );
+  }
+
+  return (
+    <DateTimePickerNative
+      key="android-time"
+      value={tempDate || new Date()}
+      mode="time"
+      display="default"
+      is24Hour={is24Hour}
+      onChange={handleTimeChange}
+    />
+  );
+}
 
 type IDateTimePickerTriggerProps = VariantProps<
   typeof dateTimePickerTriggerStyle
@@ -195,7 +341,7 @@ const DateTimePickerTrigger = React.forwardRef<
   { className, size = 'md', variant = 'outline', ...props },
   ref
 ) {
-  const { disabled, setIsOpen } = React.useContext(DateTimePickerContext);
+  const { disabled, setIsOpen } = useDateTimePicker();
 
   return (
     <UIDateTimePicker.Trigger
@@ -221,9 +367,7 @@ const DateTimePickerInput = React.forwardRef<
   IDateTimePickerInputProps
 >(function DateTimePickerInput({ className, ...props }, ref) {
   const { size: parentSize, variant: parentVariant } = useStyleContext(SCOPE);
-  const { value, placeholder, format, disabled } = React.useContext(
-    DateTimePickerContext
-  );
+  const { value, placeholder, format } = useDateTimePicker();
 
   const displayValue = useMemo(() => {
     if (!value) return '';
@@ -303,5 +447,4 @@ export {
   DateTimePickerTrigger,
   DateTimePickerInput,
   DateTimePickerIcon,
-  DateTimePickerContext,
 };
