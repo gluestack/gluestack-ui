@@ -4,6 +4,9 @@ import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
+import { SafeAreaListener } from 'react-native-safe-area-context';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Uniwind } from 'uniwind';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -18,12 +21,20 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
+  const [colorMode, setColorMode] = useState<'light' | 'dark'>('dark');
 
   return (
-    <GluestackUIProvider mode={colorMode}>
-      <StatusBar style={colorMode === 'dark' ? 'light' : 'dark'} />
-      <Slot />
-    </GluestackUIProvider>
+    <SafeAreaListener
+      onChange={({ insets }) => {
+        Uniwind.updateInsets(insets);
+      }}
+    >
+      <GestureHandlerRootView style={{ flex: 1 }}>
+      <GluestackUIProvider mode={colorMode}>
+        <StatusBar style={colorMode === 'dark' ? 'light' : 'dark'} />
+        <Slot />
+        </GluestackUIProvider>
+      </GestureHandlerRootView>
+    </SafeAreaListener>
   );
 }

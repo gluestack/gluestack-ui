@@ -7,7 +7,7 @@ import { Uniwind } from 'uniwind';
 export type ModeType = 'light' | 'dark' | 'system';
 
 export function GluestackUIProvider({
-  mode = 'light',
+  mode = 'dark',
   ...props
 }: {
   mode?: ModeType;
@@ -16,7 +16,7 @@ export function GluestackUIProvider({
 }) {
   useEffect(() => {
     if (mode === 'system') {
-      Uniwind.setTheme('adaptive');
+      Uniwind.setTheme('system');
     } else {
       Uniwind.setTheme(mode);
     }
