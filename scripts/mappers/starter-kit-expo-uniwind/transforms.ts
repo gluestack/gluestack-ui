@@ -581,7 +581,7 @@ export function transformCssInteropToUniwind(
       replacements.push({
         start: stmtRange.start,
         end: stmtRange.end,
-        text: `${indent}${call.objectName}.${call.propertyName} = withUniwind(${call.objectName}.${call.propertyName});\n`,
+        text: `${indent}${call.objectName}.${call.propertyName} = withUniwind(${call.objectName}.${call.propertyName}) as any;\n`,
       });
     } else {
       // Just remove the cssInterop call

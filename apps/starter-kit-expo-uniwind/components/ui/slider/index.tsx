@@ -21,7 +21,7 @@ export const UISlider = createSlider({
   ThumbInteraction: View,
 });
 
-UISlider.Track = withUniwind(UISlider.Track);
+UISlider.Track = withUniwind(UISlider.Track) as any;
 
 const sliderStyle = tva({
   base: 'justify-center items-center data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-none',
