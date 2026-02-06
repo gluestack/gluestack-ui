@@ -90,6 +90,14 @@ function Tooltip<StyledTooltipProp>(
                 }
               }
             ),
+            'onLongPress': composeEventHandlers<any>(
+              // newChildren.props.onLongPress,
+              openWithDelay
+            ),
+            'onPressOut': composeEventHandlers<any>(
+              // newChildren.props.onPressOut,
+              closeWithDelay
+            ),
             'onFocus': composeEventHandlers<any>(
               // newChildren.props.onFocus,
               openWithDelay
