@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { SafeAreaListener } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Uniwind } from 'uniwind';
+import { ThemeSwitcher } from '@/components/custom/ThemeSwitcher';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -32,7 +33,8 @@ function RootLayoutNav() {
       <GestureHandlerRootView style={{ flex: 1 }}>
       <GluestackUIProvider mode={colorMode}>
         <StatusBar style={colorMode === 'dark' ? 'light' : 'dark'} />
-        <Slot />
+          <Slot />
+          <ThemeSwitcher />
         </GluestackUIProvider>
       </GestureHandlerRootView>
     </SafeAreaListener>
