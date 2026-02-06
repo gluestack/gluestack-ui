@@ -53,6 +53,8 @@ interface CssInteropCall {
   // member target (e.g. UIActionsheet.Content)
   objectName?: string;
   propertyName?: string;
+  // Whether this cssInterop has nativeStyleToProp config (needs wrapping)
+  needsWrapping?: boolean;
 }
 
 interface VarDeclInfo {
@@ -140,22 +142,40 @@ export function transformCssInteropToUniwind(
         call.expression.text === 'cssInterop'
       ) {
         const target = call.arguments[0];
+        const config = call.arguments[1];
+
+        // Only wrap Icon and H1-H6 heading components
+        // Other components work fine with tva/className without withUniwind
+        let needsWrapping = false;
+
         if (ts.isIdentifier(target)) {
+          // Check if it's an Icon or heading component (H1, H2, H3, H4, H5, H6)
+          const isIconComponent = target.text.includes('Icon');
+          const isHeadingComponent = /^H[1-6]$/.test(target.text);
+          needsWrapping = isIconComponent || isHeadingComponent;
+
           cssInteropCalls.push({
             statement: node,
             targetType: 'identifier',
             name: target.text,
+            needsWrapping,
           });
         } else if (
           ts.isPropertyAccessExpression(target) &&
           ts.isIdentifier(target.expression) &&
           ts.isIdentifier(target.name)
         ) {
+          // For member access (e.g., UISlider.Track), if cssInterop exists,
+          // it means that sub-component needs className support
+          // So we always need to wrap it (it will be wrapped inline in the factory call)
+          needsWrapping = true;
+
           cssInteropCalls.push({
             statement: node,
             targetType: 'member',
             objectName: target.expression.text,
             propertyName: target.name.text,
+            needsWrapping,
           });
         } else {
           warnings.push(
@@ -345,9 +365,126 @@ export function transformCssInteropToUniwind(
     if (!rootCall) continue;
 
     const subCalls = memberCalls.filter((c) => c.objectName === rootName);
+
+    // Skip if neither root nor any sub-components need wrapping
+    const rootNeedsWrapping = rootCall.needsWrapping ?? false;
+    const anySubNeedsWrapping = subCalls.some((sc) => sc.needsWrapping ?? false);
+
+    if (!rootNeedsWrapping && !anySubNeedsWrapping) {
+      // Just remove all cssInterop calls without wrapping
+      const rootRange = lineRange(rootCall.statement);
+      replacements.push({ start: rootRange.start, end: rootRange.end, text: '' });
+      handled.add(rootCall.statement);
+
+      for (const sc of subCalls) {
+        const scRange = lineRange(sc.statement);
+        replacements.push({ start: scRange.start, end: scRange.end, text: '' });
+        handled.add(sc.statement);
+      }
+      continue;
+    }
     const varInfo = varDecls.get(rootName);
 
-    // Rename the source (import or declaration)
+    // Check if this is a factory-created component (createSelect, createButton, etc.)
+    // by looking for a pattern like: const Root = createXxx({...})
+    let factoryCallNode: ts.CallExpression | null = null;
+    if (varInfo) {
+      const decl = varInfo.statement.declarationList.declarations.find(
+        (d) => ts.isIdentifier(d.name) && d.name.text === rootName
+      );
+      if (
+        decl?.initializer &&
+        ts.isCallExpression(decl.initializer) &&
+        ts.isIdentifier(decl.initializer.expression) &&
+        decl.initializer.expression.text.startsWith('create')
+      ) {
+        factoryCallNode = decl.initializer;
+      }
+    }
+
+    // If this is a factory-created component, wrap primitives inline in the factory call
+    if (factoryCallNode && factoryCallNode.arguments[0]) {
+      const firstArg = factoryCallNode.arguments[0];
+      if (ts.isObjectLiteralExpression(firstArg)) {
+        // Find properties that match sub-component cssInterop calls
+        for (const sc of subCalls) {
+          const prop = firstArg.properties.find(
+            (p) =>
+              ts.isPropertyAssignment(p) &&
+              ts.isIdentifier(p.name) &&
+              p.name.text === sc.propertyName &&
+              ts.isIdentifier(p.initializer)
+          ) as ts.PropertyAssignment | undefined;
+
+          if (prop && ts.isIdentifier(prop.initializer)) {
+            const propValue = prop.initializer.text;
+            // Only wrap if this sub-component needs wrapping
+            const scNeedsWrapping = sc.needsWrapping ?? false;
+
+            if (scNeedsWrapping) {
+              // Wrap primitive components (TextInput, View, etc.) inline
+              // Skip already-wrapped components (those in varDecls or with "UI" prefix)
+              const isAlreadyWrapped =
+                varDecls.has(propValue) ||
+                propValue.startsWith('UI') ||
+                propValue.startsWith('_');
+
+              if (!isAlreadyWrapped) {
+                replacements.push({
+                  start: prop.initializer.getStart(sourceFile),
+                  end: prop.initializer.getEnd(),
+                  text: `withUniwind(${propValue})`,
+                });
+              }
+            }
+
+            // Mark this sub-component as handled and remove cssInterop call
+            handled.add(sc.statement);
+            const scRange = lineRange(sc.statement);
+            replacements.push({
+              start: scRange.start,
+              end: scRange.end,
+              text: '',
+            });
+          }
+        }
+      }
+    }
+
+    // Check if all sub-components were handled inline
+    const remainingSubCalls = subCalls.filter((sc) => !handled.has(sc.statement));
+
+    // If no remaining sub-components and root needs wrapping, just rename and wrap the root
+    if (remainingSubCalls.length === 0) {
+      if (rootNeedsWrapping) {
+        if (varInfo) {
+          addVarDeclRename(rootName);
+        } else if (isImported(rootName)) {
+          addImportRename(rootName);
+        }
+
+        const indent = indentOf(rootCall.statement);
+        const exportPrefix = varInfo?.isExported ? 'export ' : '';
+        const rootRange = lineRange(rootCall.statement);
+        replacements.push({
+          start: rootRange.start,
+          end: rootRange.end,
+          text: `${indent}${exportPrefix}const ${rootName} = withUniwind(_${rootName});\n`,
+        });
+      } else {
+        // Root doesn't need wrapping, just remove cssInterop call
+        const rootRange = lineRange(rootCall.statement);
+        replacements.push({
+          start: rootRange.start,
+          end: rootRange.end,
+          text: '',
+        });
+      }
+      handled.add(rootCall.statement);
+      continue;
+    }
+
+    // Otherwise, use Object.assign for remaining sub-components
     if (varInfo) {
       addVarDeclRename(rootName);
     } else if (isImported(rootName)) {
@@ -358,11 +495,9 @@ export function transformCssInteropToUniwind(
       );
     }
 
-    // Build the Object.assign replacement that wraps root AND re-attaches
-    // wrapped sub-components, preserving the compound component shape.
     const indent = indentOf(rootCall.statement);
     const exportPrefix = varInfo?.isExported ? 'export ' : '';
-    const subLines = subCalls.map(
+    const subLines = remainingSubCalls.map(
       (sc) =>
         `${indent}    ${sc.propertyName}: withUniwind(_${rootName}.${sc.propertyName})`
     );
@@ -375,7 +510,6 @@ export function transformCssInteropToUniwind(
       `${indent}  }\n` +
       `${indent}) as typeof _${rootName};`;
 
-    // Replace the root cssInterop call with the Object.assign block
     const rootRange = lineRange(rootCall.statement);
     replacements.push({
       start: rootRange.start,
@@ -384,8 +518,7 @@ export function transformCssInteropToUniwind(
     });
     handled.add(rootCall.statement);
 
-    // Remove every sub-component cssInterop call (merged into Object.assign)
-    for (const sc of subCalls) {
+    for (const sc of remainingSubCalls) {
       const scRange = lineRange(sc.statement);
       replacements.push({ start: scRange.start, end: scRange.end, text: '' });
       handled.add(sc.statement);
@@ -400,6 +533,14 @@ export function transformCssInteropToUniwind(
     const name = call.name!;
     const stmtRange = lineRange(call.statement);
     const varInfo = varDecls.get(name);
+    const needsWrapping = call.needsWrapping ?? false;
+
+    if (!needsWrapping) {
+      // Just remove the cssInterop call without wrapping
+      replacements.push({ start: stmtRange.start, end: stmtRange.end, text: '' });
+      handled.add(call.statement);
+      continue;
+    }
 
     if (isImported(name)) {
       addImportRename(name);
@@ -432,13 +573,24 @@ export function transformCssInteropToUniwind(
   for (const call of memberCalls) {
     if (handled.has(call.statement)) continue;
 
+    const needsWrapping = call.needsWrapping ?? false;
     const indent = indentOf(call.statement);
     const stmtRange = lineRange(call.statement);
-    replacements.push({
-      start: stmtRange.start,
-      end: stmtRange.end,
-      text: `${indent}${call.objectName}.${call.propertyName} = withUniwind(${call.objectName}.${call.propertyName});\n`,
-    });
+
+    if (needsWrapping) {
+      replacements.push({
+        start: stmtRange.start,
+        end: stmtRange.end,
+        text: `${indent}${call.objectName}.${call.propertyName} = withUniwind(${call.objectName}.${call.propertyName});\n`,
+      });
+    } else {
+      // Just remove the cssInterop call
+      replacements.push({
+        start: stmtRange.start,
+        end: stmtRange.end,
+        text: '',
+      });
+    }
     handled.add(call.statement);
   }
 
