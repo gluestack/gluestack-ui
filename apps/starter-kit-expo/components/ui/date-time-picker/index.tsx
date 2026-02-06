@@ -164,20 +164,6 @@ function DateTimePickerNativeWrapper({
   onChange: (event: any, date?: Date) => void;
 }) {
   const { isOpen, setIsOpen } = useDateTimePicker();
-  const [shouldRender, setShouldRender] = React.useState(isOpen);
-
-  // Handle delayed unmount for Android to prevent dismiss error
-  React.useEffect(() => {
-    if (isOpen) {
-      setShouldRender(true);
-    } else {
-      // Delay unmount to allow picker to clean up properly
-      const timer = setTimeout(() => {
-        setShouldRender(false);
-      }, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen]);
 
   const handleChange = useCallback(
     (event: any, selectedDate?: Date) => {
@@ -213,7 +199,6 @@ function DateTimePickerNativeWrapper({
         maximumDate={maximumDate}
         is24Hour={is24Hour}
         isOpen={isOpen}
-        shouldRender={shouldRender}
         onChange={onChange}
         setIsOpen={setIsOpen}
       />
@@ -221,7 +206,7 @@ function DateTimePickerNativeWrapper({
   }
 
   // Android: Use display="default" which opens system dialogs for date/time
-  if (!shouldRender) return null;
+  if (!isOpen) return null;
 
   return (
     <DateTimePickerNative
@@ -245,7 +230,6 @@ function AndroidDateTimePicker({
   maximumDate,
   is24Hour,
   isOpen,
-  shouldRender,
   onChange,
   setIsOpen,
 }: {
@@ -254,7 +238,6 @@ function AndroidDateTimePicker({
   maximumDate?: Date;
   is24Hour?: boolean;
   isOpen: boolean;
-  shouldRender: boolean;
   onChange: (event: any, date?: Date) => void;
   setIsOpen: (open: boolean) => void;
 }) {
@@ -299,7 +282,7 @@ function AndroidDateTimePicker({
     [tempDate, onChange, setIsOpen]
   );
 
-  if (!shouldRender || !step) return null;
+  if (!isOpen || !step) return null;
 
   if (step === 'date') {
     return (
