@@ -1,0 +1,382 @@
+---
+title: gluestack-ui Tabs Component | React Native Tabs Installation
+
+description: Create an organized UI using the gluestack-ui Tabs component in React & React Native. Add tabbed navigation seamlessly with animations.
+
+pageTitle: Tabs
+
+pageDescription: Create an organized UI using the gluestack-ui Tabs component in React & React Native. Add tabbed navigation seamlessly with animations.
+
+showHeader: true
+---
+
+import { Tabs as DocTabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+
+# Tabs
+
+Create an organized UI using the gluestack-ui Tabs component in React & React Native. Add tabbed navigation seamlessly with animations.
+
+This is an illustration of **Tabs** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+<DocTabs>
+<TabItem label="CLI">
+
+### Run the following command:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add tabs`} language="bash" />
+
+
+</TabItem>
+<TabItem label="Manual">
+
+
+
+> Note: At present, we have integrated `react-native-reanimated` for animations. You have the option to remove this and implement your own custom animation wrapper.
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i react-native-reanimated
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/tabs/index.tsx --%%
+```
+
+```jsx
+%%-- File: src/components/ui/tabs/TabsAnimatedIndicator.tsx --%%
+```
+
+```jsx
+%%-- File: src/components/ui/tabs/animation-config.ts --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</DocTabs>
+
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  TabsTriggerText,
+  TabsTriggerIcon,
+  TabsIndicator,
+} from '@/components/ui/tabs';
+```
+
+```tsx
+export default () => (
+  <Tabs defaultValue="tab1">
+    <TabsList>
+      <TabsTrigger value="tab1">
+        <TabsTriggerIcon as={IconComponent} />
+        <TabsTriggerText>Tab 1</TabsTriggerText>
+      </TabsTrigger>
+      <TabsTrigger value="tab2">
+        <TabsTriggerText>Tab 2</TabsTriggerText>
+      </TabsTrigger>
+      <TabsIndicator />
+    </TabsList>
+    <TabsContent value="tab1">
+      <Text>Content for Tab 1</Text>
+    </TabsContent>
+    <TabsContent value="tab2">
+      <Text>Content for Tab 2</Text>
+    </TabsContent>
+  </Tabs>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Tabs
+
+Contains all the tabs component parts.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>value</InlineCode></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The controlled value of the tab to activate. Use with onValueChange.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>defaultValue</InlineCode></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The value of the tab that should be active when initially rendered. Use when you do not need to control the state.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>onValueChange</InlineCode></TableCell>
+      <TableCell>(value: string) =&gt; void</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Event handler called when the value changes.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>orientation</InlineCode></TableCell>
+      <TableCell>'horizontal' | 'vertical'</TableCell>
+      <TableCell>'horizontal'</TableCell>
+      <TableCell>The orientation of the tabs.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>activationMode</InlineCode></TableCell>
+      <TableCell>'automatic' | 'manual'</TableCell>
+      <TableCell>'automatic'</TableCell>
+      <TableCell>Whether tabs activate automatically on focus or manually with Enter/Space.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>disabled</InlineCode></TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>When true, prevents the user from interacting with the tabs.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>variant</InlineCode></TableCell>
+      <TableCell>'underlined' | 'filled' | 'enclosed'</TableCell>
+      <TableCell>'underlined'</TableCell>
+      <TableCell>The visual style variant of the tabs.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>size</InlineCode></TableCell>
+      <TableCell>'sm' | 'md' | 'lg'</TableCell>
+      <TableCell>'md'</TableCell>
+      <TableCell>The size of the tabs.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### TabsList
+
+Contains the triggers that are aligned along the edge of the active content.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>scrollable</InlineCode></TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>When true, enables horizontal scrolling for overflow tabs.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>snapToCenter</InlineCode></TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>When scrollable is true, snaps the selected tab to center.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### TabsTrigger
+
+The button that activates its associated content.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>value</InlineCode></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>A unique value that associates the trigger with a content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>disabled</InlineCode></TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>When true, prevents the user from interacting with the tab.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### TabsContent
+
+Contains the content associated with each trigger.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>value</InlineCode></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>A unique value that associates the content with a trigger.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>forceMount</InlineCode></TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>Used to force mounting when more control is needed. Useful for animation.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### TabsTriggerText
+
+The text displayed within a tab trigger.
+
+It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+#### TabsTriggerIcon
+
+The icon displayed within a tab trigger.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>as</InlineCode></TableCell>
+      <TableCell>React.ComponentType</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The icon component to render.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### TabsIndicator
+
+The animated indicator that shows which tab is currently selected. Place this component inside TabsList to control its position.
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Accessibility
+
+Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+
+#### Keyboard Interactions
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Key</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>Tab</InlineCode></TableCell>
+      <TableCell>When focus moves onto the tabs, focuses the active trigger. When a trigger is focused, moves focus to the active content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>ArrowDown</InlineCode></TableCell>
+      <TableCell>Moves focus to the next trigger in vertical orientation and activates its associated content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>ArrowUp</InlineCode></TableCell>
+      <TableCell>Moves focus to the previous trigger in vertical orientation and activates its associated content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>ArrowLeft</InlineCode></TableCell>
+      <TableCell>Moves focus to the previous trigger in horizontal orientation and activates its associated content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>ArrowRight</InlineCode></TableCell>
+      <TableCell>Moves focus to the next trigger in horizontal orientation and activates its associated content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>Home</InlineCode></TableCell>
+      <TableCell>Moves focus to the first trigger and activates its associated content.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>End</InlineCode></TableCell>
+      <TableCell>Moves focus to the last trigger and activates its associated content.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+## Examples
+
+### Basic
+
+/// {Example:basic} ///
+
+### With Indicator
+
+/// {Example:with-indicator} ///
+
+### Vertical Orientation
+
+/// {Example:vertical} ///
+
+### With Icons
+
+/// {Example:with-icons} ///
+
+### Variants
+
+/// {Example:variants} ///
+
+
+### Scrollable
+
+/// {Example:scrollable} ///
+
+
+### Controlled
+
+/// {Example:controlled} ///

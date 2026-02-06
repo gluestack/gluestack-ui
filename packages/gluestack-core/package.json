@@ -41,6 +41,7 @@
     "switch",
     "textarea",
     "toast",
+    "tabs",
     "tooltip",
     "README.md",
     "LICENSE"
@@ -161,6 +162,9 @@
       ],
       "bottomsheet/creator": [
         "./lib/esm/bottomsheet/creator/index.d.ts"
+      ],
+      "tabs/creator": [
+        "./lib/esm/tabs/creator/index.d.ts"
       ]
     }
   },

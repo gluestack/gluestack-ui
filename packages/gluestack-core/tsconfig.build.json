@@ -10,7 +10,7 @@
       "moduleResolution": "node",
       "jsx": "preserve",
       "target": "es2015",
-      "removeComments": true,
+      "removeComments": false,
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true
     },
