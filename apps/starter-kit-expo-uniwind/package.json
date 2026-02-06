@@ -16,6 +16,7 @@
     "@gluestack-ui/utils": "^4.0.0-alpha.0",
     "@legendapp/motion": "^2.4.0",
     "@react-aria/utils": "^3.33.0",
+    "@react-native-async-storage/async-storage": "^2.2.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "buffer": "^6.0.3",
     "expo": "^55.0.0-preview.9",
