@@ -23,6 +23,7 @@
     "bottomsheet",
     "button",
     "checkbox",
+    "date-time-picker",
     "fab",
     "form-control",
     "icon",
@@ -88,7 +89,10 @@
       "checkbox/aria": [
         "./lib/esm/checkbox/aria/index.d.ts"
       ],
-      "fab/creator": [
+      "date-time-picker/creator": [
+        "./lib/esm/date-time-picker/creator/index.d.ts"
+      ],
+        "fab/creator": [
         "./lib/esm/fab/creator/index.d.ts"
       ],
       "form-control/creator": [

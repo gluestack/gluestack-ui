@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@react-native-community/datetimepicker": "^8.4.4",
+    "react-native-reanimated": "^3.0.0"
+  }
+}

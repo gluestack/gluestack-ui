@@ -1,0 +1,33 @@
+<script>
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { 
+  DateTimePicker, 
+  DateTimePickerTrigger, 
+  DateTimePickerInput, 
+  DateTimePickerIcon 
+} from '@/components/ui/date-time-picker';
+import { CalendarDays } from 'lucide-react-native';
+
+const Example = () => {
+  const [date, setDate] = useState(new Date());
+
+  return (
+    <View className="p-4">
+      <DateTimePicker
+        value={date}
+        onChange={setDate}
+        mode="datetime"
+        placeholder="Select date and time"
+      >
+        <DateTimePickerTrigger>
+          <DateTimePickerInput />
+          <DateTimePickerIcon as={CalendarDays} />
+        </DateTimePickerTrigger>
+      </DateTimePicker>
+    </View>
+  );
+};
+
+export default Example;
+</script>

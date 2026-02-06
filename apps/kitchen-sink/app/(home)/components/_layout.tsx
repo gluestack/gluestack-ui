@@ -309,6 +309,12 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="VStack" />,
         }}
       />
+          <Stack.Screen
+        name="date-time-picker"
+        options={{
+          header: () => <CustomHeader title="DateTimePicker" />,
+        }}
+      />
     </Stack>
   );
 }

@@ -54,6 +54,7 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: "Card", path: "card", count: 5, icon: CardIcon },
   { title: "Center", path: "center", count: 1, icon: CenterIcon },
   { title: "Checkbox", path: "checkbox", count: 9, icon: CheckboxIcon },
+  { title: "DateTimePicker", path: "date-time-picker", count: 1 },
   { title: "Divider", path: "divider", count: 5, icon: DividerIcon },
   { title: "Drawer", path: "drawer", count: 3, icon: DrawerIcon },
   { title: "Fab", path: "fab", count: 5, icon: FabIcon },
