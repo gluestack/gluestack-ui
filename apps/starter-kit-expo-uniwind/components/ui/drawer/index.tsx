@@ -26,10 +26,8 @@ import Animated, {
 
 const SCOPE = 'MODAL';
 
-const _AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-const AnimatedPressable = withUniwind(_AnimatedPressable);
-const _AnimatedView = Animated.createAnimatedComponent(View);
-const AnimatedView = withUniwind(_AnimatedView);
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const AnimatedView = Animated.createAnimatedComponent(View);
 
 const UIDrawer = createDrawer({
   Root: withStyleContext(View as any, SCOPE),

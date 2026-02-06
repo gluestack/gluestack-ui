@@ -14,6 +14,31 @@ import {
   ActionsheetBackdrop,
 } from '@/components/ui/actionsheet';
 import {
+  Select,
+  SelectTrigger,
+  SelectInput,
+  SelectIcon,
+  SelectPortal,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectItem,
+} from '@/components/ui/select';
+import {
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from '@/components/ui/slider';
+import {
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
+  CheckboxIcon,
+} from '@/components/ui/checkbox';
+import { CheckIcon } from '@/components/ui/icon';
+import {
   Accordion,
   AccordionItem,
   AccordionHeader,
@@ -69,6 +94,7 @@ import {
   ModalBody,
   ModalFooter,
 } from '@/components/ui/modal';
+import { ScrollView } from 'react-native';
 
 
 export default function Home() {
@@ -79,7 +105,7 @@ export default function Home() {
   const [showDrawer, setShowDrawer] = React.useState(false);
   const [showModal, setShowModal] = React.useState(false);
   return (
-    <Box className="flex-1 bg-background">
+    <ScrollView className="flex-1 bg-background">
       <Center className="flex-1 gap-5">
         <VStack className="items-center gap-2">
           <Text className="text-2xl font-bold text-foreground">
@@ -364,8 +390,6 @@ export default function Home() {
           </ModalBody>
           <ModalFooter>
             <Button
-              variant="outline"
-              action="secondary"
               className="mr-3"
               onPress={() => {
                 setShowModal(false);
@@ -382,8 +406,47 @@ export default function Home() {
             </Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
+        </Modal>
+        <Select>
+      <SelectTrigger variant="outline" size="md">
+        <SelectInput placeholder="Select option" />
+        <SelectIcon className="mr-3" as={ChevronDownIcon} />
+      </SelectTrigger>
+      <SelectPortal>
+        <SelectBackdrop />
+        <SelectContent>
+          <SelectDragIndicatorWrapper>
+            <SelectDragIndicator />
+          </SelectDragIndicatorWrapper>
+          <SelectItem label="UX Research" value="ux" />
+          <SelectItem label="Web Development" value="web" />
+          <SelectItem
+            label="Cross Platform Development Process"
+            value="Cross Platform Development Process"
+          />
+          <SelectItem label="UI Designing" value="ui" isDisabled={true} />
+          <SelectItem label="Backend Development" value="backend" />
+        </SelectContent>
+      </SelectPortal>
+        </Select>
+        <Checkbox isDisabled={false} isInvalid={false} size="md">
+      <CheckboxIndicator>
+        <CheckboxIcon as={CheckIcon} />
+      </CheckboxIndicator>
+      <CheckboxLabel>Label</CheckboxLabel>
+        </Checkbox>
+        <Slider
+        defaultValue={30}
+        orientation="horizontal"
+        isDisabled={false}
+        isReversed={false}
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
       </Center>
-    </Box>
+    </ScrollView>
   );
 }

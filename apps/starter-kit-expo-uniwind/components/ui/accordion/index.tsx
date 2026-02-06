@@ -1,5 +1,5 @@
 'use client';
-import { H3 as _H3 } from '@expo/html-elements';
+import { H3 } from '@expo/html-elements';
 import {
   createAccordion,
   AccordionItemContext,
@@ -14,7 +14,6 @@ import { AnimatedIcon } from './AccordionAnimatedIcon';
 import { accordionAnimationConfig } from './animation-config';
 
 const UIIcon = withUniwind(_UIIcon);
-const H3 = withUniwind(_H3);
 
 /** Styles */
 

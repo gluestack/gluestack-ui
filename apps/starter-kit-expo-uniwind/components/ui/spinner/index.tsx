@@ -1,10 +1,8 @@
 'use client';
-import { ActivityIndicator as _ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import React from 'react';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withUniwind } from 'uniwind';
-
-const ActivityIndicator = withUniwind(_ActivityIndicator);
 
 
 const spinnerStyle = tva({});

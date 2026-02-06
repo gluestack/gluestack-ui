@@ -11,17 +11,11 @@ import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const SCOPE = 'PROGRESS';
-const _UIProgress = createProgress({
+export const UIProgress = createProgress({
   Root: withStyleContext(View, SCOPE),
   FilledTrack: View,
 });
 
-export const UIProgress = Object.assign(
-  withUniwind(_UIProgress),
-  {
-    FilledTrack: withUniwind(_UIProgress.FilledTrack),
-  }
-) as typeof _UIProgress;
 
 const progressStyle = tva({
   base: 'bg-primary/20 relative h-2 w-full overflow-hidden rounded-full',

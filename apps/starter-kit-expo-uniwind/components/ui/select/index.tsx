@@ -28,13 +28,12 @@ import { Pressable, View, TextInput } from 'react-native';
 
 const UIIcon = withUniwind(_UIIcon);
 
-const _SelectTriggerWrapper = React.forwardRef<
+const SelectTriggerWrapper = React.forwardRef<
   React.ComponentRef<typeof Pressable>,
   React.ComponentProps<typeof Pressable>
 >(function SelectTriggerWrapper({ ...props }, ref) {
   return <Pressable {...props} ref={ref} />;
 });
-const SelectTriggerWrapper = withUniwind(_SelectTriggerWrapper);
 
 const selectIconStyle = tva({
   base: 'text-foreground/50 fill-none',
@@ -91,7 +90,7 @@ const selectInputStyle = tva({
   },
 });
 
-const _UISelect = createSelect(
+const UISelect = createSelect(
   {
     Root: View,
     Trigger: withStyleContext(SelectTriggerWrapper),
@@ -114,12 +113,6 @@ const _UISelect = createSelect(
   }
 );
 
-const UISelect = Object.assign(
-  withUniwind(_UISelect),
-  {
-    Input: withUniwind(_UISelect.Input),
-  }
-) as typeof _UISelect;
 
 
 type ISelectProps = VariantProps<typeof selectStyle> &

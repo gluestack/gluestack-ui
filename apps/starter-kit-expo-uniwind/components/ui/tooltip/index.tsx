@@ -15,8 +15,7 @@ import { withUniwind } from 'uniwind';
 type IMotionViewProps = React.ComponentProps<typeof View> &
   MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
 
-const _MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
-const MotionView = withUniwind(_MotionView);
+const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
 
 export const UITooltip = createTooltip({
   Root: withStyleContext(View),

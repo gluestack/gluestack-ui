@@ -9,17 +9,11 @@ import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 import React from 'react';
-const _UILink = createLink({
+export const UILink = createLink({
   Root: withStyleContext(Pressable),
   Text: Text,
 });
 
-export const UILink = Object.assign(
-  withUniwind(_UILink),
-  {
-    Text: withUniwind(_UILink.Text),
-  }
-) as typeof _UILink;
 
 const linkStyle = tva({
   base: 'group/link web:outline-0 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-indicator-primary data-[focus-visible=true]:web:outline-0 data-[disabled=true]:opacity-4 ',

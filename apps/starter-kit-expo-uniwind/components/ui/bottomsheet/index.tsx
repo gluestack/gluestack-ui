@@ -1,11 +1,11 @@
 import GorhomBottomSheet, {
-  BottomSheetBackdrop as _GorhomBottomSheetBackdrop,
-  BottomSheetView as _GorhomBottomSheetView,
-  BottomSheetHandle as _BottomSheetHandle,
-  BottomSheetTextInput as _GorhomBottomSheetInput,
-  BottomSheetScrollView as _GorhomBottomSheetScrollView,
-  BottomSheetFlatList as _GorhomBottomSheetFlatList,
-  BottomSheetSectionList as _GorhomBottomSheetSectionList,
+  BottomSheetBackdrop as GorhomBottomSheetBackdrop,
+  BottomSheetView as GorhomBottomSheetView,
+  BottomSheetHandle,
+  BottomSheetTextInput as GorhomBottomSheetInput,
+  BottomSheetScrollView as GorhomBottomSheetScrollView,
+  BottomSheetFlatList as GorhomBottomSheetFlatList,
+  BottomSheetSectionList as GorhomBottomSheetSectionList,
 } from '@gorhom/bottom-sheet';
 import { Platform } from 'react-native';
 import type { PressableProps, TextProps } from 'react-native';
@@ -21,14 +21,6 @@ import React, {
 import { Pressable, Text } from 'react-native';
 import { withUniwind } from 'uniwind';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-
-const GorhomBottomSheetBackdrop = withUniwind(_GorhomBottomSheetBackdrop);
-const BottomSheetHandle = withUniwind(_BottomSheetHandle);
-const GorhomBottomSheetView = withUniwind(_GorhomBottomSheetView);
-const GorhomBottomSheetInput = withUniwind(_GorhomBottomSheetInput);
-const GorhomBottomSheetScrollView = withUniwind(_GorhomBottomSheetScrollView);
-const GorhomBottomSheetFlatList = withUniwind(_GorhomBottomSheetFlatList);
-const GorhomBottomSheetSectionList = withUniwind(_GorhomBottomSheetSectionList);
 
 const bottomSheetBackdropStyle = tva({
   base: 'absolute inset-0 flex-1 touch-none select-none bg-black opacity-0',

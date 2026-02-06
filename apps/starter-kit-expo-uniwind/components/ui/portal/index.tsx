@@ -1,9 +1,7 @@
 'use client';
 import React from 'react';
-import { Overlay as _Overlay } from '@gluestack-ui/core/overlay/creator';
+import { Overlay } from '@gluestack-ui/core/overlay/creator';
 import { withUniwind } from 'uniwind';
-
-const Overlay = withUniwind(_Overlay);
 
 
 const Portal = React.forwardRef<

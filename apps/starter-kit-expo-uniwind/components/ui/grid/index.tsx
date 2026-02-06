@@ -104,7 +104,7 @@ type IGridProps = ViewProps &
       className: string;
     };
   };
-const _Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
+const Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
   function Grid({ className, _extra, children, ...props }, ref) {
     const [calculatedWidth, setCalculatedWidth] = useState<number | null>(null);
     const gridClass = _extra?.className;
@@ -181,7 +181,6 @@ const _Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
     );
   }
 );
-const Grid = withUniwind(_Grid);
 type IGridItemProps = ViewProps &
   VariantProps<typeof gridItemStyle> & {
     index?: number;

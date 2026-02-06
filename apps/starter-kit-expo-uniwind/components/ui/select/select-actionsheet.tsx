@@ -40,7 +40,7 @@ type IMotionViewProps = React.ComponentProps<typeof View> &
 
 const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
 
-const _UIActionsheet = createActionsheet({
+export const UIActionsheet = createActionsheet({
   Root: View,
   Content: withStyleContext(MotionView),
   Item: withStyleContext(Pressable),
@@ -57,22 +57,6 @@ const _UIActionsheet = createActionsheet({
   AnimatePresence: AnimatePresence,
 });
 
-export const UIActionsheet = Object.assign(
-  withUniwind(_UIActionsheet),
-  {
-    Content: withUniwind(_UIActionsheet.Content),
-    Item: withUniwind(_UIActionsheet.Item),
-    ItemText: withUniwind(_UIActionsheet.ItemText),
-    DragIndicator: withUniwind(_UIActionsheet.DragIndicator),
-    DragIndicatorWrapper: withUniwind(_UIActionsheet.DragIndicatorWrapper),
-    Backdrop: withUniwind(_UIActionsheet.Backdrop),
-    ScrollView: withUniwind(_UIActionsheet.ScrollView),
-    VirtualizedList: withUniwind(_UIActionsheet.VirtualizedList),
-    FlatList: withUniwind(_UIActionsheet.FlatList),
-    SectionList: withUniwind(_UIActionsheet.SectionList),
-    SectionHeaderText: withUniwind(_UIActionsheet.SectionHeaderText),
-  }
-) as typeof _UIActionsheet;
 
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 

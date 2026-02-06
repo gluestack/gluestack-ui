@@ -7,8 +7,7 @@ import React from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import Animated, { FadeOut, ZoomIn } from 'react-native-reanimated';
 
-const _AnimatedView = Animated.createAnimatedComponent(ScrollView);
-const AnimatedView = withUniwind(_AnimatedView);
+const AnimatedView = Animated.createAnimatedComponent(ScrollView);
 
 const menuStyle = tva({
   base: 'rounded-md bg-popover text-popover-foreground border border-border p-1 shadow-hard-5 max-h-[300px] overflow-y-auto',

@@ -17,10 +17,8 @@ import {
 import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
-const _AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-const AnimatedPressable = withUniwind(_AnimatedPressable);
-const _AnimatedView = Animated.createAnimatedComponent(View);
-const AnimatedView = withUniwind(_AnimatedView);
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const AnimatedView = Animated.createAnimatedComponent(View);
 const SCOPE = 'MODAL';
 
 const UIModal = createModal({
