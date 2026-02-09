@@ -119,13 +119,7 @@ const DateTimePicker = React.forwardRef<
       placeholder={placeholder}
       format={format}
     >
-      <UIDateTimePicker
-        className={dateTimePickerStyle({ class: className })}
-        ref={ref}
-        {...props}
-      >
-        {children}
-      </UIDateTimePicker>
+ 
       <WebDateTimePickerContent />
     </DateTimePickerProvider>
   );
@@ -150,18 +144,12 @@ function WebDateTimePickerContent() {
     setIsOpen(false);
   }, [setIsOpen]);
 
-  if (!isOpen) return null;
+
 
   return (
-    <Animated.View
-      entering={FadeIn}
-      exiting={FadeOut}
-      className="absolute inset-0 z-50 items-center justify-center bg-black/50"
-      onTouchStart={handleCancel}
-    >
-      <Animated.View
-        entering={SlideInUp}
-        exiting={SlideOutDown}
+ 
+      <View
+       
         className="bg-background rounded-lg shadow-xl overflow-hidden min-w-[320px] max-w-[90vw]"
         onTouchStart={(e) => e.stopPropagation()}
       >
@@ -199,8 +187,8 @@ function WebDateTimePickerContent() {
             <span className="text-primary-foreground">Confirm</span>
           </Pressable>
         </View>
-      </Animated.View>
-    </Animated.View>
+      </View>
+
   );
 }
 
