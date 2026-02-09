@@ -30,18 +30,16 @@ const Calendar = React.forwardRef<
       <DayPicker
         showOutsideDays={showOutsideDays}
         className="w-fit"
+        numberOfMonths={2}
         classNames={{
           months: 'flex flex-col sm:flex-row gap-4 relative',
           month: 'flex flex-col w-full gap-4',
           nav: 'flex items-center gap-1 w-full absolute top-0 inset-x-0 justify-between px-1',
-          button_previous: cx(
+          button_previous:
             'size-9 flex items-center justify-center rounded-md bg-transparent text-foreground hover:bg-accent',
-            defaultClassNames.button_previous
-          ),
-          button_next: cx(
+
+          button_next:
             'size-9 flex items-center justify-center rounded-md bg-transparent text-foreground hover:bg-accent',
-            defaultClassNames.button_next
-          ),
           month_caption: 'flex items-center justify-center h-9 w-full px-9',
           caption_label: 'text-sm font-medium text-foreground',
           table: 'w-full border-collapse',
@@ -50,11 +48,9 @@ const Calendar = React.forwardRef<
             'text-muted-foreground rounded-md flex-1 font-normal text-xs select-none h-9 w-9 text-center',
           week: 'flex w-full mt-2',
           day: 'relative w-full h-full p-0 text-center aspect-square select-none',
-          day_button: cx(
+          day_button:
             'size-9 flex items-center justify-center rounded-md text-sm font-normal transition-colors',
-            defaultClassNames.day
-          ),
-          selected: 'bg-primary !text-white rounded-full',
+          selected: 'bg-primary text-primary-foreground rounded-lg',
           today: 'bg-accent text-accent-foreground rounded-md',
           outside: 'text-muted-foreground opacity-50',
           disabled: 'text-muted-foreground opacity-50',
@@ -67,9 +63,9 @@ const Calendar = React.forwardRef<
           Chevron: ({ orientation, className: iconClassName }) => {
             const baseClass = 'size-4 text-foreground';
             if (orientation === 'left') {
-              return <ChevronLeft className={cx(baseClass, iconClassName)} />;
+              return <ChevronLeft />;
             }
-            return <ChevronRight className={cx(baseClass, iconClassName)} />;
+            return <ChevronRight/>;
           },
         }}
         {...props}
