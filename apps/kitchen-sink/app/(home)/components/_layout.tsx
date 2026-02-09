@@ -315,6 +315,12 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="DateTimePicker" />,
         }}
       />
+          <Stack.Screen
+        name="calendar"
+        options={{
+          header: () => <CustomHeader title="Calendar" />,
+        }}
+      />
     </Stack>
   );
 }

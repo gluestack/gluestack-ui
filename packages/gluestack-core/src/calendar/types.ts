@@ -1,0 +1,113 @@
+export type CalendarMode = 'single' | 'multiple' | 'range';
+
+export interface MarkedDate {
+  marked?: boolean;
+  dotColor?: string;
+  dots?: Array<{ key: string; color: string }>;
+  selected?: boolean;
+  selectedColor?: string;
+  disabled?: boolean;
+  disableTouchEvent?: boolean;
+  period?: {
+    startingDay?: boolean;
+    endingDay?: boolean;
+    color: string;
+  };
+  periods?: Array<{
+    startingDay?: boolean;
+    endingDay?: boolean;
+    color: string;
+  }>;
+  customStyles?: {
+    container?: any;
+    text?: any;
+  };
+}
+
+export type MarkedDates = Record<string, MarkedDate>;
+
+export interface CalendarContextValue {
+  mode: CalendarMode;
+  selected: Date | Date[] | { from: Date; to: Date } | undefined;
+  onSelect: (date: Date | Date[] | { from: Date; to: Date }) => void;
+  currentMonth: Date;
+  setCurrentMonth: (date: Date) => void;
+  markedDates?: MarkedDates;
+  markingType?: MarkingType;
+  minDate?: Date;
+  maxDate?: Date;
+  disabledDates?: Date[];
+  firstDayOfWeek: number;
+  showWeekNumbers: boolean;
+  hideExtraDays: boolean;
+  theme?: CalendarTheme;
+}
+
+export type MarkingType =
+  | 'dot'
+  | 'multi-dot'
+  | 'period'
+  | 'multi-period'
+  | 'custom';
+
+export interface CalendarTheme {
+  backgroundColor?: string;
+  calendarBackground?: string;
+  textSectionTitleColor?: string;
+  textSectionTitleDisabledColor?: string;
+  selectedDayBackgroundColor?: string;
+  selectedDayTextColor?: string;
+  todayTextColor?: string;
+  todayBackgroundColor?: string;
+  dayTextColor?: string;
+  textDisabledColor?: string;
+  dotColor?: string;
+  selectedDotColor?: string;
+  arrowColor?: string;
+  disabledArrowColor?: string;
+  monthTextColor?: string;
+  indicatorColor?: string;
+  textDayFontFamily?: string;
+  textMonthFontFamily?: string;
+  textDayHeaderFontFamily?: string;
+  textDayFontWeight?: string;
+  textMonthFontWeight?: string;
+  textDayHeaderFontWeight?: string;
+  textDayFontSize?: number;
+  textMonthFontSize?: number;
+  textDayHeaderFontSize?: number;
+}
+
+export interface CalendarProps {
+  mode?: CalendarMode;
+  selected?: Date | Date[] | { from: Date; to: Date };
+  onSelect?: (date: Date | Date[] | { from: Date; to: Date }) => void;
+  minDate?: Date;
+  maxDate?: Date;
+  disabledDates?: Date[];
+  markedDates?: MarkedDates;
+  markingType?: MarkingType;
+  initialDate?: Date;
+  showWeekNumbers?: boolean;
+  hideExtraDays?: boolean;
+  showSixWeeks?: boolean;
+  firstDayOfWeek?: number;
+  enableSwipeMonths?: boolean;
+  onMonthChange?: (month: Date) => void;
+  onDayPress?: (date: Date) => void;
+  onDayLongPress?: (date: Date) => void;
+  theme?: CalendarTheme;
+  displayLoadingIndicator?: boolean;
+  renderDay?: (date: Date, state: DayState) => React.ReactNode;
+  renderHeader?: (date: Date) => React.ReactNode;
+  renderArrow?: (direction: 'left' | 'right') => React.ReactNode;
+  className?: string;
+  style?: any;
+  animate?: boolean;
+}
+
+export interface DayState {
+  disabled?: boolean;
+  selected?: boolean;
+  marking?: MarkedDate;
+}
