@@ -35,6 +35,13 @@ function SliderTrack<StyledSliderTrackProps>(
           focusVisible: isFocusVisible,
           active: isPressed,
         }}
+        // data attributes for uniwind
+        data-hover={isHovered ? 'true' : 'false'}
+        data-disabled={isDisabled ? 'true' : 'false'}
+        data-focus={isFocused ? 'true' : 'false'}
+        data-focus-visible={isFocusVisible ? 'true' : 'false'}
+        data-active={isPressed ? 'true' : 'false'}
+        // data attributes for nativewind
         dataSet={{
           hover: isHovered ? 'true' : 'false',
           disabled: isDisabled ? 'true' : 'false',

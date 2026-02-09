@@ -225,6 +225,9 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
                 exit={exitAnimatedStyles}
                 style={popoverContentStyle}
                 ref={mergedRef}
+                // data attributes for uniwind
+                data-flip={isFlipped ? 'true' : 'false'}
+                // data attributes for nativewind
                 dataSet={{ flip: isFlipped }}
                 states={{
                   flip: isFlipped,

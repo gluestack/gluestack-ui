@@ -125,6 +125,17 @@ export const Checkbox = (StyledCheckbox: any) =>
           indeterminate: isIndeterminate || isIndeterminateProp,
           focusVisible: isFocusVisible || isFocusVisibleProp,
         }}
+        // data attributes for uniwind
+        data-checked={isChecked || isCheckedProp ? 'true' : 'false'}
+        data-disabled={isDisabled || isDisabledProp ? 'true' : 'false'}
+        data-hover={isHovered || isHoveredProp ? 'true' : 'false'}
+        data-invalid={isInvalid || isInvalidProp ? 'true' : 'false'}
+        data-readonly={isReadOnly || isReadOnlyProp ? 'true' : 'false'}
+        data-active={isPressed ? 'true' : 'false'}
+        data-focus={isFocused ? 'true' : 'false'}
+        data-indeterminate={isIndeterminate || isIndeterminateProp ? 'true' : 'false'}
+        data-focus-visible={isFocusVisible || isFocusVisibleProp ? 'true' : 'false'}
+        // data attributes for nativewind
         dataSet={{
           checked: isChecked || isCheckedProp ? 'true' : 'false',
           disabled: isDisabled || isDisabledProp ? 'true' : 'false',

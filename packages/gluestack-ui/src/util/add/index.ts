@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import os from 'os';
 import { join } from 'path';
 import { log, confirm } from '@clack/prompts';
-import { config } from '../../config';
+import { config, setStylingEngine } from '../../config';
 import {
   checkComponentDependencies,
   getAllComponents,
@@ -11,6 +11,7 @@ import {
   projectRootPath,
   findLockFileType,
   promptVersionManager,
+  detectStylingEngine,
 } from '..';
 
 const _homeDir = os.homedir();
@@ -24,6 +25,10 @@ const componentAdder = async ({
   componentArgs?: Array<string>;
 }) => {
   try {
+    // Detect and set styling engine from the project
+    const stylingEngine = detectStylingEngine();
+    setStylingEngine(stylingEngine);
+
     let componentsToAdd = componentArgs;
 
     if (componentsToAdd.length > 0 || addAll) {
@@ -156,10 +161,16 @@ const writeComponent = async (component: string, targetPath: string) => {
   try {
     await fs.ensureDir(targetPath);
 
+    // Detect styling engine and use appropriate component path
+    const stylingEngine = detectStylingEngine();
+    const componentsPath = stylingEngine === 'uniwind'
+      ? config.uniwindComponentsPath
+      : config.componentsResourcePath;
+
     const sourcePath = join(
       _homeDir,
       config.gluestackDir,
-      config.componentsResourcePath,
+      componentsPath,
       component
     );
 

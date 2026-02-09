@@ -16,6 +16,9 @@ export const SelectInput = (StyledSelectInput: any) =>
         states={{
           disabled: isDisabled,
         }}
+        // data attributes for uniwind
+        data-disabled={isDisabled ? 'true' : 'false'}
+        // data attributes for nativewind
         dataSet={{
           disabled: isDisabled ? 'true' : 'false',
         }}

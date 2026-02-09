@@ -30,10 +30,41 @@ const getPackageJsonPath = (): string => {
 const rootPackageJsonPath = getPackageJsonPath();
 const projectRootPath: string = dirname(rootPackageJsonPath);
 
+// Detect styling engine from the current project
+const detectStylingEngine = (): 'nativewind' | 'uniwind' => {
+  try {
+    // Check for uniwind-types.d.ts in project root
+    if (fs.existsSync(join(projectRootPath, 'uniwind-types.d.ts'))) {
+      return 'uniwind';
+    }
+
+    // Check for uniwind in package.json dependencies
+    const packageJsonPath = join(projectRootPath, 'package.json');
+    if (fs.existsSync(packageJsonPath)) {
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+      if (packageJson.dependencies?.uniwind || packageJson.devDependencies?.uniwind) {
+        return 'uniwind';
+      }
+    }
+
+    // Default to nativewind
+    return 'nativewind';
+  } catch (error) {
+    // If detection fails, default to nativewind
+    return 'nativewind';
+  }
+};
+
 const getAllComponents = async (): Promise<string[]> => {
+  // Detect styling engine and use appropriate component path
+  const stylingEngine = detectStylingEngine();
+  const componentsPath = stylingEngine === 'uniwind'
+    ? config.uniwindComponentsPath
+    : config.componentsResourcePath;
+
   const componentList = fs
     .readdirSync(
-      join(homeDir, config.gluestackDir, config.componentsResourcePath)
+      join(homeDir, config.gluestackDir, componentsPath)
     )
     .filter(
       (file) =>
@@ -397,6 +428,126 @@ const installDependencies = async (
   }
 };
 
+// Install native dependencies with proper version resolution
+const installNativeDependencies = async (
+  projectType: string
+): Promise<void> => {
+  try {
+    const s = spinner();
+    s.start('⏳ Installing native dependencies with version resolution...');
+
+    try {
+      if (projectType === config.expoProject) {
+        // Use expo install for Expo projects to ensure version compatibility
+        const nativeDeps = ['react-native-reanimated', 'react-native-worklets'];
+        const result = spawnSync('npx', ['expo', 'install', ...nativeDeps], {
+          cwd: currDir,
+          stdio: 'inherit',
+          shell: true,
+        });
+
+        if (result.error) {
+          throw new Error(
+            `Failed to install native dependencies: ${result.error.message}`
+          );
+        }
+        if (result.status !== 0) {
+          throw new Error(
+            `Expo install command failed with exit code ${result.status}`
+          );
+        }
+      } else if (projectType === config.reactNativeCLIProject) {
+        // For React Native CLI, install react-dom + native deps
+        const nativeDeps = ['react-native-reanimated', 'react-native-worklets', 'react-dom'];
+        const versionManager = config.packageManager || findLockFileType();
+        if (!versionManager) {
+          throw new Error('No package manager found');
+        }
+
+        const commands: { [key: string]: string } = {
+          npm: 'npm install',
+          yarn: 'yarn add',
+          pnpm: 'pnpm add',
+          bun: 'bun add',
+        };
+
+        const installCmd = commands[versionManager];
+        const installArgs = `${installCmd} ${nativeDeps.join(' ')}`.split(' ');
+        const cmd = installArgs.shift();
+
+        const result = spawnSync(cmd!, installArgs, {
+          cwd: currDir,
+          stdio: 'inherit',
+          shell: true,
+        });
+
+        if (result.error) {
+          throw new Error(
+            `Failed to install native dependencies: ${result.error.message}`
+          );
+        }
+        if (result.status !== 0) {
+          throw new Error(
+            `Install command failed with exit code ${result.status}`
+          );
+        }
+      } else if (projectType === config.nextJsProject) {
+        // For Next.js, install react-native-reanimated and react-native-worklets
+        const nativeDeps = ['react-native-reanimated', 'react-native-worklets'];
+        const versionManager = config.packageManager || findLockFileType();
+        if (!versionManager) {
+          throw new Error('No package manager found');
+        }
+
+        const commands: { [key: string]: string } = {
+          npm: 'npm install',
+          yarn: 'yarn add',
+          pnpm: 'pnpm add',
+          bun: 'bun add',
+        };
+
+        const installCmd = commands[versionManager];
+        const installArgs = `${installCmd} ${nativeDeps.join(' ')}`.split(' ');
+        const cmd = installArgs.shift();
+
+        const result = spawnSync(cmd!, installArgs, {
+          cwd: currDir,
+          stdio: 'inherit',
+          shell: true,
+        });
+
+        if (result.error) {
+          throw new Error(
+            `Failed to install native dependencies: ${result.error.message}`
+          );
+        }
+        if (result.status !== 0) {
+          throw new Error(
+            `Install command failed with exit code ${result.status}`
+          );
+        }
+      }
+
+      s.stop('✅ Native dependencies installed successfully.');
+    } catch (err) {
+      s.stop('\x1b[31mFailed to install native dependencies.\x1b[0m');
+      log.error(
+        `\x1b[31mError installing native dependencies: ${
+          (err as Error).message
+        }\x1b[0m`
+      );
+      log.warning(
+        '\x1b[33mPlease install the required native dependencies manually.\x1b[0m'
+      );
+      // Don't throw - allow the process to continue
+    }
+  } catch (err) {
+    log.warning(
+      `\x1b[33mCould not install native dependencies automatically. Please install them manually.\x1b[0m`
+    );
+  }
+};
+
 //function to detect type of project
 async function detectProjectType(directoryPath: string): Promise<string> {
   try {
@@ -613,10 +764,12 @@ export {
   cloneRepositoryAtRoot,
   getAllComponents,
   detectProjectType,
+  detectStylingEngine,
   isValidPath,
   checkWritablePath,
   projectRootPath,
   installDependencies,
+  installNativeDependencies,
   removeHyphen,
   getRelativePath,
   ensureFilesPromise,

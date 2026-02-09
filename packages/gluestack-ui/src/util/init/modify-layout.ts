@@ -166,29 +166,79 @@ async function modifyExpoLayout(
   const cssImportPath = getCssImportPath(cssPath);
   const providerImportPath = `@/${componentsPath}/gluestack-ui-provider`;
 
-  const imports = [
-    `import { GluestackUIProvider } from '${providerImportPath}';`,
-    `import '${cssImportPath}';`,
-  ].join('\n');
+  // Check if using UniWind
+  const isUniwind = config.style === 'uniwind';
+
+  let imports: string;
+  if (isUniwind) {
+    // UniWind specific imports
+    imports = [
+      `import { GluestackUIProvider } from '${providerImportPath}';`,
+      `import '${cssImportPath}';`,
+      `import { SafeAreaListener } from 'react-native-safe-area-context';`,
+      `import { GestureHandlerRootView } from 'react-native-gesture-handler';`,
+      `import { Uniwind } from 'uniwind';`,
+    ].join('\n');
+  } else {
+    // NativeWind imports
+    imports = [
+      `import { GluestackUIProvider } from '${providerImportPath}';`,
+      `import '${cssImportPath}';`,
+    ].join('\n');
+  }
 
   // Add imports at the top
   let modifiedContent = addImportsToFile(content, imports);
 
   // Wrap the return content with provider
   if (content.includes('<Slot />')) {
-    modifiedContent = modifiedContent.replace(
-      /(\s*<Slot\s*\/>\s*)/g,
-      `\n    <GluestackUIProvider mode="dark">\n      <Slot />\n    </GluestackUIProvider>\n    `
-    );
+    if (isUniwind) {
+      // UniWind wrapper structure with SafeAreaListener
+      modifiedContent = modifiedContent.replace(
+        /(\s*<Slot\s*\/>\s*)/g,
+        `\n    <SafeAreaListener
+      onChange={({ insets }) => {
+        Uniwind.updateInsets(insets);
+      }}
+    >
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <GluestackUIProvider mode="dark">
+          <Slot />
+        </GluestackUIProvider>
+      </GestureHandlerRootView>
+    </SafeAreaListener>\n    `
+      );
+    } else {
+      // NativeWind wrapper structure
+      modifiedContent = modifiedContent.replace(
+        /(\s*<Slot\s*\/>\s*)/g,
+        `\n    <GluestackUIProvider mode="dark">\n      <Slot />\n    </GluestackUIProvider>\n    `
+      );
+    }
   } else if (content.includes('return (')) {
     // Find the main return statement and wrap its content
     modifiedContent = modifiedContent.replace(
       /(return\s*\(\s*)([\s\S]*?)(\s*\);?\s*})/,
       (match, returnPart, content, closingPart) => {
-        if (content.trim().startsWith('<GluestackUIProvider')) {
+        if (content.trim().startsWith('<GluestackUIProvider') || content.trim().startsWith('<SafeAreaListener')) {
           return match; // Already wrapped
         }
-        return `${returnPart}\n    <GluestackUIProvider mode="dark">\n      ${content.trim()}\n    </GluestackUIProvider>\n  ${closingPart}`;
+
+        if (isUniwind) {
+          return `${returnPart}\n    <SafeAreaListener
+      onChange={({ insets }) => {
+        Uniwind.updateInsets(insets);
+      }}
+    >
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <GluestackUIProvider mode="dark">
+          ${content.trim()}
+        </GluestackUIProvider>
+      </GestureHandlerRootView>
+    </SafeAreaListener>\n  ${closingPart}`;
+        } else {
+          return `${returnPart}\n    <GluestackUIProvider mode="dark">\n      ${content.trim()}\n    </GluestackUIProvider>\n  ${closingPart}`;
+        }
       }
     );
   }
@@ -208,10 +258,26 @@ async function modifyReactNativeLayout(
   const cssImportPath = getCssImportPath(cssPath);
   const providerImportPath = `@/${componentsPath}/gluestack-ui-provider`;
 
-  const imports = [
-    `import { GluestackUIProvider } from '${providerImportPath}';`,
-    `import '${cssImportPath}';`,
-  ].join('\n');
+  // Check if using UniWind
+  const isUniwind = config.style === 'uniwind';
+
+  let imports: string;
+  if (isUniwind) {
+    // UniWind specific imports
+    imports = [
+      `import { GluestackUIProvider } from '${providerImportPath}';`,
+      `import '${cssImportPath}';`,
+      `import { SafeAreaListener } from 'react-native-safe-area-context';`,
+      `import { GestureHandlerRootView } from 'react-native-gesture-handler';`,
+      `import { Uniwind } from 'uniwind';`,
+    ].join('\n');
+  } else {
+    // NativeWind imports
+    imports = [
+      `import { GluestackUIProvider } from '${providerImportPath}';`,
+      `import '${cssImportPath}';`,
+    ].join('\n');
+  }
 
   // Add imports at the top
   let modifiedContent = addImportsToFile(content, imports);
@@ -221,10 +287,25 @@ async function modifyReactNativeLayout(
     modifiedContent = modifiedContent.replace(
       /(return\s*\(\s*)([\s\S]*?)(\s*\);?\s*})/,
       (match, returnPart, content, closingPart) => {
-        if (content.trim().startsWith('<GluestackUIProvider')) {
+        if (content.trim().startsWith('<GluestackUIProvider') || content.trim().startsWith('<SafeAreaListener')) {
           return match; // Already wrapped
         }
-        return `${returnPart}\n    <GluestackUIProvider mode="dark">\n      ${content.trim()}\n    </GluestackUIProvider>\n  ${closingPart}`;
+
+        if (isUniwind) {
+          return `${returnPart}\n    <SafeAreaListener
+      onChange={({ insets }) => {
+        Uniwind.updateInsets(insets);
+      }}
+    >
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <GluestackUIProvider mode="dark">
+          ${content.trim()}
+        </GluestackUIProvider>
+      </GestureHandlerRootView>
+    </SafeAreaListener>\n  ${closingPart}`;
+        } else {
+          return `${returnPart}\n    <GluestackUIProvider mode="dark">\n      ${content.trim()}\n    </GluestackUIProvider>\n  ${closingPart}`;
+        }
       }
     );
   }

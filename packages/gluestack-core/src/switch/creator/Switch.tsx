@@ -45,6 +45,12 @@ export function Switch(StyledSwitch: any) {
             invalid: isInvalid || combinedProps.isInvalid,
             checked: value || checked,
           }}
+          // data attributes for uniwind
+          data-hover={isHovered ? 'true' : 'false'}
+          data-disabled={disabled || isDisabled || combinedProps.isDisabled ? 'true' : 'false'}
+          data-invalid={isInvalid || combinedProps.isInvalid ? 'true' : 'false'}
+          data-checked={value || checked ? 'true' : 'false'}
+          // data attributes for nativewind
           dataSet={{
             hover: isHovered ? 'true' : 'false',
             disabled:

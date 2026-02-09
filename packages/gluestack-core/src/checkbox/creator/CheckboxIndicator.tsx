@@ -28,6 +28,17 @@ const CheckboxIndicator = (StyledCheckboxIndicator: any) =>
           focused: isFocused,
           indeterminate: isIndeterminate,
         }}
+        // data attributes for uniwind
+        data-hover={isHovered ? 'true' : 'false'}
+        data-checked={isChecked ? 'true' : 'false'}
+        data-disabled={isDisabled ? 'true' : 'false'}
+        data-focus-visible={isFocusVisible ? 'true' : 'false'}
+        data-invalid={isInvalid ? 'true' : 'false'}
+        data-readonly={isReadOnly ? 'true' : 'false'}
+        data-active={isPressed ? 'true' : 'false'}
+        data-focused={isFocused ? 'true' : 'false'}
+        data-indeterminate={isIndeterminate ? 'true' : 'false'}
+        // data attributes for nativewind
         dataSet={{
           hover: isHovered ? 'true' : 'false',
           checked: isChecked ? 'true' : 'false',

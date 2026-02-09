@@ -6,7 +6,7 @@ import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'INPUT';
 
@@ -17,7 +17,7 @@ const UIInput = createInput({
   Input: TextInput,
 });
 
-cssInterop(PrimitiveIcon, {
+cssInterop(UIIcon, {
   className: {
     target: 'style',
     nativeStyleToProp: {

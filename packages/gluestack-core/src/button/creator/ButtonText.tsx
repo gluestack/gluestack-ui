@@ -16,6 +16,13 @@ export const ButtonText = (StyledButtonText: any) =>
           disabled: disabled,
           focusVisible: focusVisible,
         }}
+        // data attributes for uniwind
+        data-hover={hover ? 'true' : 'false'}
+        data-focus={focus ? 'true' : 'false'}
+        data-active={active ? 'true' : 'false'}
+        data-disabled={disabled ? 'true' : 'false'}
+        data-focus-visible={focusVisible ? 'true' : 'false'}
+        // data attributes for nativewind
         dataSet={{
           hover: hover,
           focus: focus,

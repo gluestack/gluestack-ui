@@ -18,6 +18,10 @@ const FormControl = <T,>(StyledFormControlBox: React.ComponentType<T>) =>
             disabled: isDisabled,
             invalid: isInvalid,
           }}
+          // data attributes for uniwind
+          data-disabled={isDisabled ? 'true' : 'false'}
+          data-invalid={isInvalid ? 'true' : 'false'}
+          // data attributes for nativewind
           dataSet={{
             disabled: isDisabled ? 'true' : 'false',
             invalid: isInvalid ? 'true' : 'false',

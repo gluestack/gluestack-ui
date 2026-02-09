@@ -41,6 +41,9 @@ export const SelectItem = (StyledSelectItem: any, StyledSelectItemText: any) =>
             states={{
               checked: activeValue === value,
             }}
+            // data attributes for uniwind
+            data-checked={activeValue === value ? 'true' : 'false'}
+            // data attributes for nativewind
             dataSet={{
               checked: activeValue == value ? 'true' : 'false',
             }}

@@ -20,6 +20,9 @@ export const InputSlot = (StyledInputSlot: any) =>
           states={{
             disabled: isDisabled || inputProps.isDisabled,
           }}
+          // data attributes for uniwind
+          data-disabled={isDisabled || inputProps.isDisabled ? 'true' : 'false'}
+          // data attributes for nativewind
           dataSet={{
             disabled: isDisabled || inputProps.isDisabled ? 'true' : 'false',
           }}

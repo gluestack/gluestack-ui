@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "starter-kit-expo-uniwind",
+    "slug": "starter-kit-expo-uniwind",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "starterkitexpoUniwind",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

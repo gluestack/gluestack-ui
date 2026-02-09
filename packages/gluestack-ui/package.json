@@ -1,6 +1,6 @@
 {
   "name": "gluestack-ui",
-  "version": "4.0.0-alpha.5",
+  "version": "4.1.0-alpha.0",
   "main": "dist/index.js",
   "repository": {
     "type": "git",

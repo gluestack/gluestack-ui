@@ -1,11 +1,9 @@
 import { Dimensions, useWindowDimensions } from 'react-native';
 import { useEffect, useState } from 'react';
 
-import resolveConfig from 'tailwindcss/resolveConfig';
-import * as tailwindConfig from '../../tailwind.config';
+import { theme } from '../../tailwind.config';
 
-const TailwindTheme = resolveConfig(tailwindConfig as any);
-const screenSize = TailwindTheme.theme.screens;
+const screenSize = theme.screens;
 
 type breakpoints = keyof typeof screenSize | 'default';
 
@@ -18,13 +16,11 @@ type MediaQueriesBreakpoints = {
 
 type BreakPointValue = Partial<Record<breakpoints, unknown>>;
 
-const resolveScreenWidth: Record<breakpoints, number> = {
-  default: 0,
-};
+const resolveScreenWidth = { default: 0 } as Record<breakpoints, number>;
 
 Object.entries(screenSize).forEach(([key, value]) => {
   if (typeof value === 'string') {
-    resolveScreenWidth[key] = parseInt(value.replace('px', ''), 10);
+    resolveScreenWidth[key as breakpoints] = parseInt(value.replace('px', ''), 10);
   }
 });
 
@@ -42,13 +38,13 @@ export const getBreakPointValue = (
       isValid: true,
     },
   ];
-  Object.keys(resolveScreenWidth).forEach((key) => {
+  (Object.keys(resolveScreenWidth) as breakpoints[]).forEach((key) => {
     const isValid = isValidBreakpoint(resolveScreenWidth[key], width);
 
     mediaQueriesBreakpoints.push({
-      key: key,
+      key,
       breakpoint: resolveScreenWidth[key],
-      isValid: isValid,
+      isValid,
     });
   });
 

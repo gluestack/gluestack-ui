@@ -85,6 +85,14 @@ export function MenuItem({
         selected: state.selectionManager.isSelected(item.key),
         disabled: state.selectionManager.isDisabled(item.key),
       }}
+      // data attributes for uniwind
+      data-hover={isHovered ? 'true' : 'false'}
+      data-focus={isFocused ? 'true' : 'false'}
+      data-active={isPressed ? 'true' : 'false'}
+      data-focus-visible={isFocusVisible ? 'true' : 'false'}
+      data-selected={state.selectionManager.isSelected(item.key) ? 'true' : 'false'}
+      data-disabled={state.selectionManager.isDisabled(item.key) ? 'true' : 'false'}
+      // data attributes for nativewind
       dataSet={{
         hover: isHovered ? 'true' : 'false',
         focus: isFocused ? 'true' : 'false',

@@ -59,26 +59,26 @@ export const Checkbox = (StyledCheckbox: any) =>
 
       const { inputProps: groupItemInputProps } = checkboxGroupContext
         ? // eslint-disable-next-line react-hooks/rules-of-hooks
-          useCheckboxGroupItem(
-            {
-              ...combinedProps,
-              'aria-label': ariaLabel,
-              'value': combinedProps.value,
-            },
-            checkboxGroupContext.state,
-            //@ts-ignore
-            mergedRef
-          )
+        useCheckboxGroupItem(
+          {
+            ...combinedProps,
+            'aria-label': ariaLabel,
+            'value': combinedProps.value,
+          },
+          checkboxGroupContext.state,
+          //@ts-ignore
+          mergedRef
+        )
         : // eslint-disable-next-line react-hooks/rules-of-hooks
-          useCheckbox(
-            {
-              ...combinedProps,
-              'aria-label': ariaLabel,
-            },
-            state,
-            //@ts-ignore
-            mergedRef
-          );
+        useCheckbox(
+          {
+            ...combinedProps,
+            'aria-label': ariaLabel,
+          },
+          state,
+          //@ts-ignore
+          mergedRef
+        );
 
       const inputProps = React.useMemo(
         () => groupItemInputProps,
@@ -138,6 +138,17 @@ export const Checkbox = (StyledCheckbox: any) =>
             indeterminate: isIndeterminate || isIndeterminateProp,
             focusVisible: isFocusVisible,
           }}
+          // data attributes for uniwind
+          data-checked={isChecked || isCheckedProp ? 'true' : 'false'}
+          data-disabled={isDisabled || isDisabledProp ? 'true' : 'false'}
+          data-hover={isHovered || isHoveredProp ? 'true' : 'false'}
+          data-invalid={isInvalid || isInvalidProp ? 'true' : 'false'}
+          data-readonly={isReadOnly || isReadOnlyProp ? 'true' : 'false'}
+          data-active={isPressed ? 'true' : 'false'}
+          data-focus={isFocused ? 'true' : 'false'}
+          data-indeterminate={isIndeterminate || isIndeterminateProp ? 'true' : 'false'}
+          data-focus-visible={isFocusVisible ? 'true' : 'false'}
+          // data attributes for nativewind
           dataSet={{
             checked: isChecked || isCheckedProp ? 'true' : 'false',
             disabled: isDisabled || isDisabledProp ? 'true' : 'false',
