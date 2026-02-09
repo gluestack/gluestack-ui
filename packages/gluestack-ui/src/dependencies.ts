@@ -35,8 +35,6 @@ const projectBasedDependencies: Dependencies = {
       '@gluestack-ui/utils': '^4.0.0-alpha.0',
       '@gluestack/ui-next-adapter': '^4.0.0-alpha.0',
       'react-native-safe-area-context': '^5.6.1',
-      'react-native-reanimated': '~4.1.0',
-      'react-native-worklets': '^0.5.1',
     },
     devDependencies: {
       '@types/react-native': '0.72.8',
@@ -50,8 +48,6 @@ const projectBasedDependencies: Dependencies = {
     dependencies: {
       'nativewind': '^4.1.23',
       'react-native-safe-area-context': '^5.6.1',
-      'react-native-reanimated': '~4.1.0',
-      'react-native-worklets': '^0.5.1',
       'react-aria': '^3.45.0',
       '@expo/html-elements': '^0.12.5',
       'tailwind-variants': '^0.1.20',
@@ -77,8 +73,6 @@ const projectBasedDependencies: Dependencies = {
       '@legendapp/motion': '^2.5.3',
       'react-native-svg': '^15.13.0',
       'react-stately': '^3.39.0',
-      'react-native-reanimated': '~4.1.0',
-      'react-native-worklets': '^0.5.1',
       '@gluestack-ui/core': '^4.0.0-alpha.0',
       '@gluestack-ui/utils': '^4.0.0-alpha.0',
     },
@@ -92,8 +86,6 @@ const projectBasedDependencies: Dependencies = {
     dependencies: {
       'uniwind': '^1.3.0',
       'react-native-safe-area-context': '^5.6.1',
-      'react-native-reanimated': '~4.1.0',
-      'react-native-worklets': '^0.5.1',
       'react-aria': '^3.45.0',
       '@expo/html-elements': '^0.12.5',
       'tailwind-variants': '^0.1.20',
@@ -122,8 +114,6 @@ const projectBasedDependencies: Dependencies = {
       '@gluestack-ui/utils': '^4.1.0-alpha.0',
       '@gluestack/ui-next-adapter': '^4.0.0-alpha.0',
       'react-native-safe-area-context': '^5.6.1',
-      'react-native-reanimated': '~4.1.0',
-      'react-native-worklets': '^0.5.1',
     },
     devDependencies: {
       '@types/react-native': '0.72.8',
@@ -141,8 +131,6 @@ const projectBasedDependencies: Dependencies = {
       '@legendapp/motion': '^2.5.3',
       'react-native-svg': '^15.13.0',
       'react-stately': '^3.39.0',
-      'react-native-reanimated': '~4.1.0',
-      'react-native-worklets': '^0.5.1',
       '@gluestack-ui/core': '^4.1.0-alpha.0',
       '@gluestack-ui/utils': '^4.1.0-alpha.0',
     },

@@ -9,6 +9,7 @@ import {
   cloneRepositoryAtRoot,
   findLockFileType,
   installDependencies,
+  installNativeDependencies,
   promptVersionManager,
   checkComponentDependencies,
 } from '..';
@@ -136,6 +137,10 @@ const InitializeGlueStack = async ({
       versionManager,
       additionalDependencies
     );
+
+    // Install native dependencies separately with proper version resolution
+    await installNativeDependencies(projectType);
+
     const s = spinner();
     s.start(
       '⏳ Generating project configuration. This might take a couple of minutes...'
