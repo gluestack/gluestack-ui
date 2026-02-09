@@ -9,12 +9,7 @@ import React, {
 } from 'react';
 import { View } from 'react-native';
 import { Calendar as RNCalendar } from 'react-native-calendars';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import type { CalendarProps, MarkedDates, MarkedDate } from './types';
-
-const SCOPE = 'CALENDAR';
 
 // Create context locally
 interface CalendarContextValue {
@@ -92,19 +87,8 @@ const convertMarkedDates = (
   return converted;
 };
 
-const calendarStyle = tva({
-  base: 'w-full bg-background',
-  variants: {
-    size: {
-      sm: 'max-w-[280px]',
-      md: 'max-w-[350px]',
-      lg: 'max-w-[400px]',
-    },
-  },
-  defaultVariants: {
-    size: 'md',
-  },
-});
+// Simple style class (no tva needed)
+const calendarClassName = 'w-full bg-background';
 
 const CalendarComponent = React.forwardRef<
   React.ComponentRef<typeof View>,
@@ -197,7 +181,7 @@ const CalendarComponent = React.forwardRef<
   return (
     <View
       ref={ref}
-      className={calendarStyle({ class: className })}
+      className={`${calendarClassName} ${className || ''}`}
       style={style}
     >
       <RNCalendar
