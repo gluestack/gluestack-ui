@@ -1,8 +1,8 @@
 import os from 'os';
-import { config } from '../../config';
+import { config, setStylingEngine } from '../../config';
 import { promisify } from 'util';
 import path, { join } from 'path';
-import { log, confirm, spinner } from '@clack/prompts';
+import { log, confirm, spinner, select, isCancel, cancel } from '@clack/prompts';
 import fs, { existsSync, writeFile } from 'fs-extra';
 import { checkIfInitialized, generateMonoRepoConfig } from '../config';
 import {
@@ -38,6 +38,58 @@ interface TSConfig {
   };
 }
 
+const stylingEngineOptions: Record<string, Array<{ value: string; label: string; hint: string }>> = {
+  'nextjs': [
+    { value: 'nativewind', label: 'NativeWind (Tailwind v3)', hint: 'Stable, production-ready' },
+    // UniWind for Next.js coming soon
+  ],
+  'expo': [
+    { value: 'nativewind', label: 'NativeWind (Tailwind v3)', hint: 'Stable, production-ready' },
+    { value: 'uniwind', label: 'UniWind (Tailwind v4)', hint: 'Latest Tailwind with new features' },
+  ],
+  'react-native-cli': [
+    { value: 'nativewind', label: 'NativeWind (Tailwind v3)', hint: 'Stable, production-ready' },
+    // UniWind for RN CLI coming soon
+  ],
+};
+
+async function promptStylingEngine(projectType: string): Promise<'nativewind' | 'uniwind'> {
+  // Skip if already set via CLI flag (if style was changed from default) or if yesToAll
+  const defaultStyle: 'nativewind' | 'uniwind' = 'nativewind';
+  if (config.style !== defaultStyle || config.yesToAll) {
+    // If uniwind was selected but not supported for this project type, fall back
+    const options = stylingEngineOptions[projectType] || [];
+    if (config.style === 'uniwind' && options.length <= 1) {
+      log.warning(
+        `\x1b[33mUniWind is not yet supported for ${projectType} projects. ` +
+        `Falling back to NativeWind.\x1b[0m`
+      );
+      return 'nativewind';
+    }
+    return config.style;
+  }
+
+  const options = stylingEngineOptions[projectType] || [];
+
+  // If only one option, auto-select
+  if (options.length <= 1) {
+    return 'nativewind';
+  }
+
+  // Multiple options: prompt user
+  const selection = await select({
+    message: 'Which \x1b[36mstyling engine\x1b[0m would you like to use?',
+    options: options,
+  });
+
+  if (isCancel(selection)) {
+    cancel('Operation cancelled.');
+    process.exit(0);
+  }
+
+  return selection as 'nativewind' | 'uniwind';
+}
+
 const InitializeGlueStack = async ({
   projectType = 'library',
   isTemplate = false,
@@ -54,6 +106,10 @@ const InitializeGlueStack = async ({
       process.exit(1);
     }
     const isNextjs15 = await checkNextVersion();
+
+    // Prompt for styling engine if needed
+    const stylingEngine = await promptStylingEngine(projectType);
+    setStylingEngine(stylingEngine);
 
     const confirmOverride = isTemplate
       ? true
@@ -115,12 +171,14 @@ async function addProvider(isNextjs15: boolean | undefined) {
       config.writableComponentsPath,
       config.providerComponent
     );
-    const sourcePath = join(
-      _homeDir,
-      config.gluestackDir,
-      config.componentsResourcePath,
-      config.providerComponent
-    );
+
+    // Determine source path based on styling engine
+    let sourcePath: string;
+    if (config.style === 'uniwind') {
+      sourcePath = join(_homeDir, config.gluestackDir, config.uniwindComponentsPath, config.providerComponent);
+    } else {
+      sourcePath = join(_homeDir, config.gluestackDir, config.componentsResourcePath, config.providerComponent);
+    }
 
     await fs.ensureDir(targetPath);
 
@@ -136,7 +194,9 @@ async function addProvider(isNextjs15: boolean | undefined) {
         );
       }
     }
-    if (isNextjs15) {
+
+    // Special handling for Next.js 15 with NativeWind
+    if (isNextjs15 && config.style === 'nativewind') {
       const templatesPath = getTemplatesPath();
       const providerContent = await readFile(
         join(templatesPath, 'nextjs', 'next15', 'index.web.tsx'),
@@ -166,12 +226,14 @@ async function addEssentialComponents(components: string[]) {
         config.writableComponentsPath,
         component
       );
-      const sourcePath = join(
-        _homeDir,
-        config.gluestackDir,
-        config.componentsResourcePath,
-        component
-      );
+
+      // Determine source path based on styling engine
+      let sourcePath: string;
+      if (config.style === 'uniwind') {
+        sourcePath = join(_homeDir, config.gluestackDir, config.uniwindComponentsPath, component);
+      } else {
+        sourcePath = join(_homeDir, config.gluestackDir, config.componentsResourcePath, component);
+      }
 
       await fs.ensureDir(targetPath);
 
@@ -200,6 +262,10 @@ async function addEssentialComponents(components: string[]) {
 //update tailwind.config.js
 async function updateTailwindConfig(resolvedConfig: any, projectType: string) {
   try {
+    // Skip tailwind.config.js for UniWind (uses CSS-based config)
+    if (config.style === 'uniwind') {
+      return;
+    }
     const templatesPath = getTemplatesPath();
     const tailwindConfigRootPath = join(templatesPath, 'tailwind.config.js');
     const tailwindConfigPath = resolvedConfig.tailwind.config;
@@ -244,20 +310,29 @@ async function updateTSConfig(
   try {
     const configPath = resolvedConfig.config.tsConfig;
     let tsConfig: TSConfig = await readTSConfig(configPath);
-    let tailwindConfig = resolvedConfig.tailwind.config;
-    const tailwindConfigFileName = path.basename(tailwindConfig);
 
     tsConfig.compilerOptions = tsConfig.compilerOptions || {};
     tsConfig.compilerOptions.paths = tsConfig.compilerOptions.paths || {};
 
     // Next.js project specific configuration
     if (projectType === config.nextJsProject) {
-      tsConfig.compilerOptions.jsxImportSource = 'nativewind';
+      if (config.style === 'nativewind') {
+        tsConfig.compilerOptions.jsxImportSource = 'nativewind';
+      } else {
+        // For uniwind, remove jsxImportSource
+        delete tsConfig.compilerOptions.jsxImportSource;
+      }
     }
     updatePaths(tsConfig.compilerOptions.paths, '@/*', ['./*']);
-    updatePaths(tsConfig.compilerOptions.paths, 'tailwind.config', [
-      `./${tailwindConfigFileName}`,
-    ]);
+
+    // Only add tailwind.config path for NativeWind (v4 doesn't use it)
+    if (config.style === 'nativewind') {
+      let tailwindConfig = resolvedConfig.tailwind.config;
+      const tailwindConfigFileName = path.basename(tailwindConfig);
+      updatePaths(tsConfig.compilerOptions.paths, 'tailwind.config', [
+        `./${tailwindConfigFileName}`,
+      ]);
+    }
 
     await writeFileAsync(configPath, JSON.stringify(tsConfig, null, 2), 'utf8');
   } catch (err) {
@@ -274,17 +349,32 @@ async function updateGlobalCss(resolvedConfig: any): Promise<void> {
   try {
     const globalCSSPath = resolvedConfig.tailwind.css;
     const templatesPath = getTemplatesPath();
-
-    // Determine which template to use based on the target filename
     const cssFileName = path.basename(globalCSSPath);
-    const templateCSSFile =
-      cssFileName === 'globals.css' ? 'globals.css' : 'global.css';
+
+    // Determine template file based on styling engine
+    let templateCSSFile: string;
+    if (config.style === 'uniwind') {
+      // UniWind only supports Expo/RN CLI which use global.css
+      templateCSSFile = 'global-uniwind.css';
+    } else {
+      // NativeWind supports both globals.css (Next.js) and global.css (Expo/RN CLI)
+      const isGlobalsCss = cssFileName === 'globals.css';
+      templateCSSFile = isGlobalsCss ? 'globals.css' : 'global.css';
+    }
 
     const templateContent = await fs.readFile(
       join(templatesPath, 'common', templateCSSFile),
       'utf8'
     );
 
+    // For UniWind, replace entire content (can't merge v4 with v3)
+    if (config.style === 'uniwind') {
+      await fs.writeFile(globalCSSPath, templateContent, 'utf8');
+      log.info(`✅ Updated ${cssFileName} with UniWind (Tailwind v4) directives`);
+      return;
+    }
+
+    // For NativeWind, use existing merge logic
     // Read existing content
     let existingContent = '';
     try {
@@ -426,8 +516,27 @@ async function commonInitialization(
       //if any fileName in resourcePath matches with the resolvedConfigFileNames, copy the file
       await Promise.all(
         filesAndFolders.map(async (file) => {
-          const templateFileName = path.parse(file).name;
+          let templateFileName = path.parse(file).name;
           const templateFileExt = path.parse(file).ext;
+
+          // Strip .uniwind/.nativewind suffix for template matching
+          const isUniwindTemplate = templateFileName.endsWith('.uniwind');
+          const isNativewindTemplate = templateFileName.endsWith('.nativewind');
+
+          // Skip uniwind templates when using nativewind and vice versa
+          if (config.style === 'uniwind' && isNativewindTemplate) {
+            return;
+          }
+          if (config.style === 'nativewind' && isUniwindTemplate) {
+            return;
+          }
+
+          // Remove styling-specific suffix for matching
+          if (isUniwindTemplate) {
+            templateFileName = templateFileName.replace('.uniwind', '');
+          } else if (isNativewindTemplate) {
+            templateFileName = templateFileName.replace('.nativewind', '');
+          }
 
           // Check if any resolved config file matches this template file
           const matchingConfigFile = resolvedConfigFileNames.find(
@@ -498,14 +607,14 @@ async function commonInitialization(
       );
     }
 
-    //add nativewind-env.d.ts contents
-    const nativewindEnvPath = join(
-      templatesPath,
-      'common',
-      'nativewind-env.d.ts'
-    );
-
-    await fs.copy(nativewindEnvPath, join(_currDir, 'nativewind-env.d.ts'));
+    // Add styling-specific type definitions
+    if (config.style === 'uniwind') {
+      const uniwindTypesPath = join(templatesPath, 'common', 'uniwind-types.d.ts');
+      await fs.copy(uniwindTypesPath, join(_currDir, 'uniwind-types.d.ts'));
+    } else {
+      const nativewindEnvPath = join(templatesPath, 'common', 'nativewind-env.d.ts');
+      await fs.copy(nativewindEnvPath, join(_currDir, 'nativewind-env.d.ts'));
+    }
 
     permission && (await updateTSConfig(projectType, resolvedConfig));
     permission && (await updateGlobalCss(resolvedConfig));
@@ -556,33 +665,32 @@ async function generateProjectConfigAndInit(
 
 //files to override in the project directory data
 const filesToOverride = (projectType: string) => {
+  let files: string[] = [];
+
   switch (projectType) {
     case config.nextJsProject:
-      return [
-        'next.config.*',
-        'tailwind.config.*',
-        'postcss.config.*',
-        'globals.css',
-        'tsconfig.json',
-      ];
+      files = ['next.config.*', 'globals.css', 'tsconfig.json'];
+      if (config.style === 'nativewind') {
+        files.push('tailwind.config.*', 'postcss.config.*');
+      }
+      break;
     case config.expoProject:
-      return [
-        'babel.config.js',
-        'metro.config.js',
-        'tailwind.config.*',
-        'global.css',
-        'tsconfig.json',
-      ];
+      files = ['babel.config.js', 'metro.config.js', 'global.css', 'tsconfig.json'];
+      if (config.style === 'nativewind') {
+        files.push('tailwind.config.*');
+      }
+      break;
     case config.reactNativeCLIProject:
-      return [
-        'babel.config.js',
-        'metro.config.js',
-        'global.css',
-        'tsconfig.json',
-      ];
+      files = ['babel.config.js', 'metro.config.js', 'global.css', 'tsconfig.json'];
+      if (config.style === 'nativewind') {
+        files.push('tailwind.config.*');
+      }
+      break;
     default:
-      return [];
+      break;
   }
+
+  return files;
 };
 
 // Helper function to calculate the length of the string without ANSI escape codes

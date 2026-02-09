@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { handleError } from '../util/handle-error';
 import { log } from '@clack/prompts';
 import { InitializeGlueStack } from '../util/init';
-import { config } from '../config';
+import { config, setStylingEngine } from '../config';
 import {
   checkWritablePath,
   detectProjectType,
@@ -22,6 +22,8 @@ const initOptionsSchema = z.object({
   templateOnly: z.boolean(),
   projectType: z.string(),
   yes: z.boolean().optional().default(false),
+  nativewind: z.boolean().optional().default(false),
+  uniwind: z.boolean().optional().default(false),
 });
 
 export const init = new Command()
@@ -50,6 +52,8 @@ export const init = new Command()
     'Answer yes to all prompts (for non-interactive environments)',
     false
   )
+  .option('--nativewind', 'Use NativeWind (Tailwind v3) styling engine', false)
+  .option('--uniwind', 'Use UniWind (Tailwind v4) styling engine', false)
   .action(async (opts) => {
     try {
       // Set yesToAll first (from --yes or -y) so all prompts are skipped in non-interactive environments
@@ -57,6 +61,21 @@ export const init = new Command()
         config.yesToAll = true;
       }
       const options = initOptionsSchema.parse({ ...opts });
+
+      // Validate conflicting flags
+      if (options.nativewind && options.uniwind) {
+        log.error('Cannot specify both --nativewind and --uniwind. Please choose one.');
+        process.exit(1);
+      }
+
+      // Set styling engine based on flags
+      if (options.uniwind) {
+        setStylingEngine('uniwind');
+      } else if (options.nativewind) {
+        setStylingEngine('nativewind');
+      }
+      // else: keep default (nativewind) for backward compatibility
+
       const isTemplate = options.templateOnly;
       console.log('\n\x1b[1mWelcome to gluestack-ui v4 alpha!\x1b[0m\n');
       const cwd = process.cwd();
