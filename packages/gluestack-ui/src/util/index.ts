@@ -30,10 +30,41 @@ const getPackageJsonPath = (): string => {
 const rootPackageJsonPath = getPackageJsonPath();
 const projectRootPath: string = dirname(rootPackageJsonPath);
 
+// Detect styling engine from the current project
+const detectStylingEngine = (): 'nativewind' | 'uniwind' => {
+  try {
+    // Check for uniwind-types.d.ts in project root
+    if (fs.existsSync(join(projectRootPath, 'uniwind-types.d.ts'))) {
+      return 'uniwind';
+    }
+
+    // Check for uniwind in package.json dependencies
+    const packageJsonPath = join(projectRootPath, 'package.json');
+    if (fs.existsSync(packageJsonPath)) {
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+      if (packageJson.dependencies?.uniwind || packageJson.devDependencies?.uniwind) {
+        return 'uniwind';
+      }
+    }
+
+    // Default to nativewind
+    return 'nativewind';
+  } catch (error) {
+    // If detection fails, default to nativewind
+    return 'nativewind';
+  }
+};
+
 const getAllComponents = async (): Promise<string[]> => {
+  // Detect styling engine and use appropriate component path
+  const stylingEngine = detectStylingEngine();
+  const componentsPath = stylingEngine === 'uniwind'
+    ? config.uniwindComponentsPath
+    : config.componentsResourcePath;
+
   const componentList = fs
     .readdirSync(
-      join(homeDir, config.gluestackDir, config.componentsResourcePath)
+      join(homeDir, config.gluestackDir, componentsPath)
     )
     .filter(
       (file) =>
@@ -613,6 +644,7 @@ export {
   cloneRepositoryAtRoot,
   getAllComponents,
   detectProjectType,
+  detectStylingEngine,
   isValidPath,
   checkWritablePath,
   projectRootPath,
