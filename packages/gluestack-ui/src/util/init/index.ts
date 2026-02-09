@@ -116,7 +116,7 @@ const InitializeGlueStack = async ({
       ? true
       : await overrideWarning(filesToOverride(projectType));
 
-    console.log(`\n\x1b[1mInitializing gluestack-ui v4 alpha...\x1b[0m\n`);
+    console.log(`\n\x1b[1mInitializing gluestack-ui v4.1 alpha...\x1b[0m\n`);
     await cloneRepositoryAtRoot(join(_homeDir, config.gluestackDir));
     const inputComponent = [config.providerComponent];
 
@@ -161,7 +161,7 @@ const InitializeGlueStack = async ({
       'Please refer the above link for more details --> \x1b[33mhttps://gluestack.io/ui/docs/home/overview/introduction \x1b[0m'
     );
     log.success(
-      `\x1b[32mDone!\x1b[0m Initialized \x1b[1mgluestack-ui v4 alpha\x1b[0m in the project`
+      `\x1b[32mDone!\x1b[0m Initialized \x1b[1mgluestack-ui v4.1 alpha\x1b[0m in the project`
     );
   } catch (err) {
     log.error(`\x1b[31mError occured in init. (${err as Error})\x1b[0m`);

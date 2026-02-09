@@ -77,7 +77,7 @@ export const init = new Command()
       // else: keep default (nativewind) for backward compatibility
 
       const isTemplate = options.templateOnly;
-      console.log('\n\x1b[1mWelcome to gluestack-ui v4 alpha!\x1b[0m\n');
+      console.log('\n\x1b[1mWelcome to gluestack-ui v4.1 alpha!\x1b[0m\n');
       const cwd = process.cwd();
 
       if (!fs.existsSync(path.join(cwd, 'package.json'))) {
