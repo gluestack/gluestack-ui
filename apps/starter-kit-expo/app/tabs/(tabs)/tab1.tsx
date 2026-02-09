@@ -95,17 +95,7 @@ export default function DateTimePickerDemo() {
             <Text className="text-lg font-semibold text-foreground mb-4">
               Date & Time
             </Text>
-            <DateTimePicker
-              value={dateTime}
-              onChange={setDateTime}
-              mode="datetime"
-              placeholder="Select date and time"
-            >
-              <DateTimePickerTrigger size="md" variant="outline">
-                <DateTimePickerInput />
-                <DateTimePickerIcon as={CalendarDays} className="mr-3" />
-              </DateTimePickerTrigger>
-            </DateTimePicker>
+
             {dateTime && (
               <Text className="text-sm text-muted-foreground mt-2">
                 Selected: {dateTime.toLocaleString()}
@@ -412,6 +402,17 @@ export default function DateTimePickerDemo() {
               required!
             </Text>
           </Box>
+          <DateTimePicker
+            value={dateTime}
+            onChange={setDateTime}
+            mode="datetime"
+            placeholder="Select date and time"
+          >
+            <DateTimePickerTrigger size="md" variant="outline">
+              <DateTimePickerInput />
+              <DateTimePickerIcon as={CalendarDays} className="mr-3" />
+            </DateTimePickerTrigger>
+          </DateTimePicker>
         </VStack>
       </Box>
     </ScrollView>
