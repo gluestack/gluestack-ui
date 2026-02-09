@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@expo/html-elements": "^0.13.8",
-    "@gluestack-ui/core": "^4.0.0-alpha.0",
-    "@gluestack-ui/utils": "^4.0.0-alpha.0",
+    "@gluestack-ui/core": "^4.1.0-alpha.0",
+    "@gluestack-ui/utils": "^4.1.0-alpha.0",
     "@legendapp/motion": "^2.4.0",
     "@react-aria/utils": "^3.33.0",
     "@react-native-async-storage/async-storage": "^2.2.0",
