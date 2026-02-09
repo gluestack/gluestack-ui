@@ -1,7 +1,14 @@
 'use client';
 
 import React, { useCallback, useMemo } from 'react';
-import { View, Pressable, TextInput, Platform, Modal } from 'react-native';
+import {
+  View,
+  Pressable,
+  TextInput,
+  Text,
+  Platform,
+  Modal,
+} from 'react-native';
 import DateTimePickerNative from '@react-native-community/datetimepicker';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
@@ -39,6 +46,7 @@ export interface DateTimePickerProps {
   disabled?: boolean;
   placeholder?: string;
   format?: string;
+  display?: 'modal' | 'inline'; // iOS only: 'modal' shows picker in modal with backdrop, 'inline' shows picker directly
   children?: React.ReactNode;
 }
 
@@ -95,6 +103,7 @@ const DateTimePicker = React.forwardRef<
     disabled,
     placeholder,
     format,
+    display = 'modal', // Default to modal for iOS
     children,
     ...props
   },
@@ -109,6 +118,44 @@ const DateTimePicker = React.forwardRef<
     },
     [onChange]
   );
+
+  // On iOS, use custom trigger + spinner in modal or inline
+  if (Platform.OS === 'ios') {
+    return (
+      <DateTimePickerProvider
+        value={value}
+        onChange={onChange}
+        mode={mode}
+        minimumDate={minimumDate}
+        maximumDate={maximumDate}
+        locale={locale}
+        timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+        is24Hour={is24Hour}
+        disabled={disabled}
+        placeholder={placeholder}
+        format={format}
+      >
+        <UIDateTimePicker
+          className={dateTimePickerStyle({ class: className })}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </UIDateTimePicker>
+        {/* iOS spinner picker shown in modal or inline based on display prop */}
+        <IOSDateTimePicker
+          value={value}
+          mode={mode}
+          minimumDate={minimumDate}
+          maximumDate={maximumDate}
+          timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+          is24Hour={is24Hour}
+          display={display}
+          onChange={handleNativeChange}
+        />
+      </DateTimePickerProvider>
+    );
+  }
 
   return (
     <DateTimePickerProvider
@@ -131,7 +178,7 @@ const DateTimePicker = React.forwardRef<
       >
         {children}
       </UIDateTimePicker>
-      {/* Native picker is rendered directly on iOS/Android */}
+      {/* Native picker is rendered directly on Android */}
       <DateTimePickerNativeWrapper
         value={value}
         mode={mode}
@@ -145,7 +192,7 @@ const DateTimePicker = React.forwardRef<
   );
 });
 
-// Separate component to handle the native picker display
+// Separate component to handle the native picker display (Android only)
 function DateTimePickerNativeWrapper({
   value,
   mode,
@@ -172,23 +219,6 @@ function DateTimePickerNativeWrapper({
     },
     [onChange, setIsOpen]
   );
-
-  // iOS uses default display (spinner in modal)
-  if (Platform.OS === 'ios') {
-    if (!isOpen) return null;
-    return (
-      <DateTimePickerNative
-        value={value || new Date()}
-        mode={mode}
-        display="spinner"
-        minimumDate={minimumDate}
-        maximumDate={maximumDate}
-        timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
-        is24Hour={is24Hour}
-        onChange={handleChange}
-      />
-    );
-  }
 
   // Android doesn't support 'datetime' mode - use two-step picker
   if (mode === 'datetime') {
@@ -310,6 +340,128 @@ function AndroidDateTimePicker({
   );
 }
 
+// iOS-specific picker with spinner in modal or inline
+function IOSDateTimePicker({
+  value,
+  mode,
+  minimumDate,
+  maximumDate,
+  timeZoneOffsetInMinutes,
+  is24Hour,
+  display,
+  onChange,
+}: {
+  value?: Date;
+  mode: DateTimePickerMode;
+  minimumDate?: Date;
+  maximumDate?: Date;
+  timeZoneOffsetInMinutes?: number;
+  is24Hour?: boolean;
+  display: 'modal' | 'inline';
+  onChange: (event: any, date?: Date) => void;
+}) {
+  const { isOpen, setIsOpen } = useDateTimePicker();
+  const [tempValue, setTempValue] = React.useState(value || new Date());
+
+  // Update temp value when picker opens
+  React.useEffect(() => {
+    if (isOpen) {
+      setTempValue(value || new Date());
+    }
+  }, [isOpen, value]);
+
+  const handleChange = React.useCallback(
+    (event: any, selectedDate?: Date) => {
+      if (selectedDate) {
+        setTempValue(selectedDate);
+        // Update the parent immediately for live feedback
+        onChange(event, selectedDate);
+      }
+    },
+    [onChange]
+  );
+
+  const handleDone = React.useCallback(() => {
+    setIsOpen(false);
+  }, [setIsOpen]);
+
+  const handleCancel = React.useCallback(() => {
+    setIsOpen(false);
+    // Revert to original value
+    if (value) {
+      onChange({ type: 'dismissed' }, value);
+    }
+  }, [setIsOpen, onChange, value]);
+
+  if (!isOpen) return null;
+
+  // Inline mode: show picker directly without modal
+  if (display === 'inline') {
+    return (
+      <View className="w-full">
+        <DateTimePickerNative
+          value={tempValue}
+          mode={mode}
+          display="spinner"
+          minimumDate={minimumDate}
+          maximumDate={maximumDate}
+          timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+          is24Hour={is24Hour}
+          onChange={handleChange}
+        />
+      </View>
+    );
+  }
+
+  // Modal mode: show picker in modal with backdrop
+  return (
+    <Modal
+      visible={isOpen}
+      transparent={true}
+      animationType="slide"
+      onRequestClose={handleCancel}
+    >
+      <View className="flex-1 justify-end">
+        {/* Backdrop - separate touchable area */}
+        <Pressable
+          className="absolute inset-0 bg-black/50"
+          onPress={handleCancel}
+        />
+        {/* Picker container */}
+        <View className="bg-background rounded-t-lg p-4 relative">
+          <View className="flex-row justify-between items-center mb-4 border-b border-border pb-2">
+            <Pressable onPress={handleCancel}>
+              <Text className="text-primary font-semibold text-base">
+                Cancel
+              </Text>
+            </Pressable>
+            <Text className="text-foreground font-semibold text-base">
+              {mode === 'date'
+                ? 'Select Date'
+                : mode === 'time'
+                  ? 'Select Time'
+                  : 'Select Date & Time'}
+            </Text>
+            <Pressable onPress={handleDone}>
+              <Text className="text-primary font-semibold text-base">Done</Text>
+            </Pressable>
+          </View>
+          <DateTimePickerNative
+            value={tempValue}
+            mode={mode}
+            display="spinner"
+            minimumDate={minimumDate}
+            maximumDate={maximumDate}
+            timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+            is24Hour={is24Hour}
+            onChange={handleChange}
+          />
+        </View>
+      </View>
+    </Modal>
+  );
+}
+
 type IDateTimePickerTriggerProps = VariantProps<
   typeof dateTimePickerTriggerStyle
 > &
@@ -373,7 +525,7 @@ const DateTimePickerInput = React.forwardRef<
       value={displayValue}
       placeholder={placeholder}
       editable={false}
-      pointerEvents="none"
+      style={{ pointerEvents: 'none' }}
       {...props}
     />
   );
