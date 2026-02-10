@@ -19,10 +19,9 @@ export default function DateTimePickerDemo() {
         mode="single"
         selected={singleDate}
         onSelect={setSingleDate}
-        enableSwipeMonths
-       
+        className="w-full"
       />
-      <Text className="text-sm text-gray-600 mt-1">
+      <Text className="text-sm text-muted-foreground mt-1">
         Selected: {singleDate ? singleDate.toDateString() : 'None'}
       </Text>
 
@@ -31,9 +30,9 @@ export default function DateTimePickerDemo() {
         mode="multiple"
         selected={multipleDates}
         onSelect={setMultipleDates}
-        enableSwipeMonths
+        className="w-full"
       />
-      <Text className="text-sm text-gray-600 mt-1">
+      <Text className="text-sm text-muted-foreground mt-1">
         Selected:{' '}
         {multipleDates.length > 0
           ? multipleDates.map((d) => d.toDateString()).join(', ')
@@ -45,9 +44,9 @@ export default function DateTimePickerDemo() {
         mode="range"
         selected={dateRange}
         onSelect={setDateRange}
-        enableSwipeMonths
+        className="w-full"
       />
-      <Text className="text-sm text-gray-600 mt-1">
+      <Text className="text-sm text-muted-foreground mt-1">
         Range:{' '}
         {dateRange
           ? `${dateRange.from.toDateString()} - ${dateRange.to.toDateString()}`
