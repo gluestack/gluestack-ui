@@ -15,6 +15,63 @@ export interface ChangelogEntry {
 
 export const changelogEntries: ChangelogEntry[] = [
   {
+    title: "gluestack-ui v4.1 (alpha) release",
+    slug: 'v4-1-alpha-release',
+    date: '2026-02-10T00:00:00Z',
+    authors: [
+      {
+        id: 1,
+        name: 'Sanchit Kumar',
+        avatar_url: 'https://avatars.githubusercontent.com/u/101696945?v=4',
+        occupation: 'Building gluestack-ui',
+      },
+    ],
+    excerpt: 'Uniwind and Tailwind v4 support now available for Expo projects, delivering significant performance improvements.',
+    image: '',
+    content: `We're excited to announce gluestack-ui v4.1 alpha, bringing Uniwind and Tailwind v4 support to your Expo projects with impressive performance gains.
+
+## What's New
+
+### Uniwind + Tailwind v4 Support
+
+gluestack-ui v4.1 alpha now supports Uniwind with Tailwind v4 for Expo projects, offering:
+
+- **Significant Performance Improvements**: Measurably faster rendering
+- **Tailwind v4 Features**: Access to all the latest Tailwind CSS v4 utilities and improvements
+- **Unified Styling**: Write styles once, share across platforms
+- **Better Developer Experience**: Improved IntelliSense and build-time optimizations
+
+### Performance Gains
+
+Our internal testing shows substantial performance improvements when using gluestack-ui with Uniwind, particularly in:
+
+- Component render times
+- Style processing efficiency
+- Overall app responsiveness
+
+## Getting Started
+
+### For New Projects
+
+\`\`\`bash
+npm create gluestack@alpha
+\`\`\`
+
+### For Existing Projects
+
+\`\`\`bash
+npx gluestack-ui@alpha init
+\`\`\`
+
+## Platform Support
+
+Currently available for **Expo projects only**. Web support coming soon.
+
+Check out our updated documentation at [https://v4.gluestack.io](https://v4.gluestack.io) for migration guides and detailed examples.
+
+We're actively gathering feedback as we continue evolving v4.`,
+  },
+  {
     title: "gluestack-ui v4 (alpha) release",
     slug: 'v4-alpha-release',
     date: '2026-01-23T00:00:00Z',
@@ -32,16 +89,16 @@ export const changelogEntries: ChangelogEntry[] = [
 
 ## Highlights
 
-◆ Components redesigned to closely align with shadcn UI
-◆ Migration to react-native-reanimated for animations
-◆ Upgraded KitchenSink demo app for previews and testing
-◆ New documentation available at [https://v4.gluestack.io](https://v4.gluestack.io)
-◆ Expo 55 (beta) support
+- Components redesigned to closely align with shadcn UI
+- Migration to react-native-reanimated for animations
+- Upgraded KitchenSink demo app for previews and testing
+- New documentation available at [https://v4.gluestack.io](https://v4.gluestack.io)
+- Expo 55 (beta) support
 
 ## Why react-native-reanimated?
 
-◆ Native-first performance (UI thread)
-◆ Better Expo & RN ecosystem alignment
+- Native-first performance (UI thread)
+- Better Expo & RN ecosystem alignment
 
 ## Why shadcn UI replica design system?
 
@@ -49,8 +106,8 @@ It's easier for modern developers and designers to follow a common design langua
 
 ## What's coming next:
 
-◆ Uniwind support
-◆ NativeWind v5 support
+- Uniwind support
+- NativeWind v5 support
 
 We're actively gathering feedback as we continue evolving v4.`,
   },
