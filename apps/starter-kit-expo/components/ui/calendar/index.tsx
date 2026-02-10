@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { Calendar as RNCalendar } from 'react-native-calendars';
-import { View } from 'react-native';
+import { View,Text } from 'react-native';
 import type { CalendarProps, MarkedDates } from './types';
 
 // Helper: Convert Date to YYYY-MM-DD string
@@ -174,7 +174,6 @@ export function Calendar({
   return (
     <View>
       <RNCalendar
-        {...rest}
         initialDate={initialDate?.toISOString().split('T')[0]}
         minDate={minDate?.toISOString().split('T')[0]}
         maxDate={maxDate?.toISOString().split('T')[0]}
@@ -195,9 +194,15 @@ export function Calendar({
         onDayLongPress={(day: { dateString: string }) =>
           userOnDayLongPress?.(toDate(day.dateString))
         }
+        dayComponent={() => (
+          <View>
+            <Text>1</Text>
+          </View>
+        )}
         onMonthChange={(month: { dateString: string }) =>
           onMonthChange?.(toDate(month.dateString))
         }
+        {...rest}
       />
     </View>
   );

@@ -48,6 +48,7 @@ const Calendar = React.forwardRef<
           showOutsideDays={showOutsideDays}
           className="w-fit"
           numberOfMonths={1}
+        
           classNames={{
             months: 'flex flex-col sm:flex-row gap-4 relative',
             month: 'flex flex-col w-full gap-4',

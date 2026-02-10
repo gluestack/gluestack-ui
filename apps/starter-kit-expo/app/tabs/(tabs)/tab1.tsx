@@ -20,6 +20,9 @@ export default function DateTimePickerDemo() {
         selected={singleDate}
         onSelect={setSingleDate}
         enableSwipeMonths
+        renderDay={() => {
+          return <Text>2</Text>;
+        }}
       />
       <Text className="text-sm text-gray-600 mt-1">
         Selected: {singleDate ? singleDate.toDateString() : 'None'}
