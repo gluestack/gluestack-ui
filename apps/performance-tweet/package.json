@@ -1,0 +1,21 @@
+{
+  "name": "performance-tweet",
+  "version": "1.0.0",
+  "description": "Performance comparison video for gluestack-ui",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render",
+    "render": "remotion render PerformanceComparison out/performance.mp4"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.228"
+  },
+  "devDependencies": {
+    "@remotion/cli": "^4.0.228",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,6 @@
+node_modules
+out
+.remotion
+dist
+*.log
+.DS_Store
