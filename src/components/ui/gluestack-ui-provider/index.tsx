@@ -14,7 +14,7 @@ export type ModeType = 'light' | 'dark' | 'system';
 // Re-export color hooks
 export const useGluestackColors = useGluestackColorsHook;
 export const useCalendarTheme = useCalendarThemeHook;
-export type { ColorPalette, CalendarTheme } from './useGluestackColors';
+export type { GluestackColors } from './useGluestackColors';
 
 export function GluestackUIProvider({
   mode = 'light',

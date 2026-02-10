@@ -322,9 +322,9 @@ export default function DateTimePickerDemo() {
               markingType="period"
               enableSwipeMonths
               theme={{
-                selectedDayBackgroundColor: '#8b5cf6',
-                todayTextColor: '#8b5cf6',
-                arrowColor: '#8b5cf6',
+                selectedDayBackgroundColor: calendarTheme.selectedDayBackgroundColor,
+                todayTextColor: calendarTheme.todayTextColor,
+                arrowColor: calendarTheme.arrowColor,
               }}
             />
             {rangeDates && (
@@ -360,7 +360,8 @@ export default function DateTimePickerDemo() {
               showWeekNumbers
               firstDayOfWeek={1}
               theme={{
-                selectedDayBackgroundColor: '#ec4899',
+                backgroundColor: calendarTheme.backgroundColor,
+                selectedDayBackgroundColor: calendarTheme.selectedDayBackgroundColor,
                 todayTextColor: '#ec4899',
                 arrowColor: '#ec4899',
               }}

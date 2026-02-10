@@ -8,9 +8,14 @@ import { Button, ButtonText } from '@/components/ui/button';
 import { useRouter } from 'expo-router';
 import { VStack } from '@/components/ui/vstack';
 import { Center } from '@/components/ui/center';
+import { useColorScheme } from 'react-native';
+import { useGluestackColors } from '@/components/ui/gluestack-ui-provider/useGluestackColors';
 
 export default function Home() {
   const router = useRouter();
+
+  const colors = useGluestackColors();
+  console.log(colors.primary, colors.primaryForeground);
   return (
     <Box className="flex-1 bg-background">
       <Center className="flex-1 gap-5">
@@ -21,7 +26,8 @@ export default function Home() {
         </Text>
         <Button
           size="default"
-          className="bg-primary px-6 py-2 rounded-full"
+          style={{ backgroundColor: colors.primary }}
+          className={`bg-[${colors.primaryForeground}] px-6 py-2 rounded-full`}
           onPress={() => {
             router.push('/tabs/tab1');
           }}
