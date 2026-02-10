@@ -14,11 +14,6 @@ cssInterop(View, {
   },
 });
 
-// Simple className helper (replaces cn)
-const cx = (...classes: (string | undefined | false)[]) => {
-  return classes.filter(Boolean).join(' ');
-};
-
 const Calendar = React.forwardRef<
   React.ComponentRef<typeof View>,
   CalendarProps & { className?: string }
@@ -26,7 +21,7 @@ const Calendar = React.forwardRef<
   const defaultClassNames = getDefaultClassNames();
 
   return (
-    <View ref={ref} className={cx('p-2 bg-background', className)}>
+    <View ref={ref} className={`p-2 bg-background ${className}`}>
       <DayPicker
         showOutsideDays={showOutsideDays}
         className="w-fit"
@@ -65,7 +60,7 @@ const Calendar = React.forwardRef<
             if (orientation === 'left') {
               return <ChevronLeft />;
             }
-            return <ChevronRight/>;
+            return <ChevronRight />;
           },
         }}
         {...props}
