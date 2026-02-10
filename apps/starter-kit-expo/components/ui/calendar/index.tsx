@@ -12,8 +12,6 @@ import { Calendar as RNCalendar } from 'react-native-calendars';
 import { useCalendarTheme } from '../gluestack-ui-provider/useGluestackColors';
 import type { CalendarProps, MarkedDates, MarkedDate } from './types';
 import { useGluestackColors } from '../gluestack-ui-provider/useGluestackColors';
-
-
 // Create context locally
 interface CalendarContextValue {
   currentMonth: Date;
@@ -205,16 +203,6 @@ const CalendarComponent = React.forwardRef<
         displayLoadingIndicator={displayLoadingIndicator}
         theme={{
           backgroundColor: colors.background,
-          calendarBackground: colors.background,
-          textSectionTitleColor: '#b6c1cd',
-          selectedDayBackgroundColor: colors.primary,
-          selectedDayTextColor: colors.primaryForeground,
-          todayTextColor: colors.primary,
-          dayTextColor: colors.foreground,
-          textDisabledColor: colors.mutedForeground,
-          arrowColor: colors.foreground,
-          monthTextColor: colors.foreground,
-          
         }}
         onDayPress={handleDayPress}
         onDayLongPress={(day: any) =>
