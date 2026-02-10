@@ -2,6 +2,9 @@ import React from 'react';
 import { parseISO, format } from 'date-fns';
 import NextLink from 'next/link';
 import Image from 'next/image';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
 import { Box } from '@/components/ui/box';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
@@ -44,131 +47,6 @@ async function ChangelogEntryPage({ params }: { params: Promise<{ slug: string }
 
   const date = parseISO(entry.date);
   const formattedDate = format(date, 'MMMM d, yyyy');
-
-  // Parse content and render markdown-like formatting
-  const renderContent = (content: string) => {
-    const lines = content.split('\n');
-    const elements: React.ReactNode[] = [];
-    let currentParagraph: string[] = [];
-    let inList = false;
-
-    lines.forEach((line, index) => {
-      const trimmedLine = line.trim();
-
-      if (trimmedLine.startsWith('## ')) {
-        // Heading
-        if (currentParagraph.length > 0) {
-          elements.push(
-            <Text key={`p-${index}`} className="text-base text-foreground/80 leading-relaxed mb-4">
-              {currentParagraph.join(' ')}
-            </Text>
-          );
-          currentParagraph = [];
-        }
-        elements.push(
-          <Heading key={`h2-${index}`} className="text-2xl font-semibold text-foreground mt-8 mb-4">
-            {trimmedLine.replace('## ', '')}
-          </Heading>
-        );
-      } else if (trimmedLine.startsWith('### ')) {
-        // Subheading
-        if (currentParagraph.length > 0) {
-          elements.push(
-            <Text key={`p-${index}`} className="text-base text-foreground/80 leading-relaxed mb-4">
-              {currentParagraph.join(' ')}
-            </Text>
-          );
-          currentParagraph = [];
-        }
-        elements.push(
-          <Heading key={`h3-${index}`} className="text-xl font-semibold text-foreground mt-6 mb-3">
-            {trimmedLine.replace('### ', '')}
-          </Heading>
-        );
-      } else if (trimmedLine.startsWith('◆')) {
-        // List item
-        if (!inList) {
-          inList = true;
-          if (currentParagraph.length > 0) {
-            elements.push(
-              <Text key={`p-${index}`} className="text-base text-foreground/80 leading-relaxed mb-4">
-                {currentParagraph.join(' ')}
-              </Text>
-            );
-            currentParagraph = [];
-          }
-        }
-        const listText = trimmedLine.replace('◆', '').trim();
-        // Check for markdown links
-        const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/;
-        const linkMatch = listText.match(linkRegex);
-        
-        if (linkMatch) {
-          const beforeLink = listText.substring(0, linkMatch.index);
-          const linkText = linkMatch[1];
-          const linkUrl = linkMatch[2];
-          const afterLink = listText.substring((linkMatch.index || 0) + linkMatch[0].length);
-          
-          elements.push(
-            <HStack key={`li-${index}`} className="items-start gap-2 mb-2">
-              <Text className="text-primary text-sm">◆</Text>
-              <Text className="text-base text-foreground/80 flex-1">
-                {beforeLink}
-                <NextLink
-                  href={linkUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary underline hover:text-primary/80"
-                >
-                  {linkText}
-                </NextLink>
-                {afterLink}
-              </Text>
-            </HStack>
-          );
-        } else {
-          elements.push(
-            <HStack key={`li-${index}`} className="items-start gap-2 mb-2">
-              <Text className="text-primary text-sm">◆</Text>
-              <Text className="text-base text-foreground/80 flex-1">
-                {listText}
-              </Text>
-            </HStack>
-          );
-        }
-      } else if (trimmedLine === '') {
-        // Empty line - end list or paragraph
-        if (inList) {
-          inList = false;
-        }
-        if (currentParagraph.length > 0) {
-          elements.push(
-            <Text key={`p-${index}`} className="text-base text-foreground/80 leading-relaxed mb-4">
-              {currentParagraph.join(' ')}
-            </Text>
-          );
-          currentParagraph = [];
-        }
-      } else {
-        // Regular paragraph text
-        if (inList) {
-          inList = false;
-        }
-        currentParagraph.push(trimmedLine);
-      }
-    });
-
-    // Add remaining paragraph
-    if (currentParagraph.length > 0) {
-      elements.push(
-        <Text key="p-final" className="text-base text-foreground/80 leading-relaxed mb-4">
-          {currentParagraph.join(' ')}
-        </Text>
-      );
-    }
-
-    return elements;
-  };
 
   return (
     <Box className="w-full mx-auto py-8 md:py-12 border-b border-border/80 mb-8">
@@ -237,10 +115,50 @@ async function ChangelogEntryPage({ params }: { params: Promise<{ slug: string }
 
       {/* Content */}
       {entry.content && (
-        <Box className="prose prose-lg max-w-none">
-          <VStack className="gap-0">
-            {renderContent(entry.content)}
-          </VStack>
+        <Box className="prose prose-lg max-w-none changelog-content">
+          <ReactMarkdown
+            rehypePlugins={[rehypeRaw]}
+            remarkPlugins={[remarkGfm]}
+            components={{
+              h2: ({ children }) => (
+                <Heading className="text-2xl font-semibold text-foreground mt-8 mb-4">
+                  {children}
+                </Heading>
+              ),
+              h3: ({ children }) => (
+                <Heading className="text-xl font-semibold text-foreground mt-6 mb-3">
+                  {children}
+                </Heading>
+              ),
+              p: ({ children }) => (
+                <Text className="text-base text-foreground/80 leading-relaxed mb-4">
+                  {children}
+                </Text>
+              ),
+              a: ({ href, children }) => (
+                <NextLink
+                  href={href || '#'}
+                  target={href?.startsWith('http') ? '_blank' : undefined}
+                  rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="text-primary underline hover:text-primary/80"
+                >
+                  {children}
+                </NextLink>
+              ),
+              code: ({ children, className }) => (
+                <code className={`${className} bg-muted px-1.5 py-0.5 rounded text-sm font-mono`}>
+                  {children}
+                </code>
+              ),
+              pre: ({ children }) => (
+                <pre className="bg-muted p-4 rounded-lg overflow-x-auto mb-4">
+                  {children}
+                </pre>
+              ),
+            }}
+          >
+            {entry.content}
+          </ReactMarkdown>
         </Box>
       )}
     </Box>
