@@ -1,32 +1,10 @@
 'use client';
 
-import React, {
-  useCallback,
-  useMemo,
-  createContext,
-  useContext,
-  useState,
-} from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { View } from 'react-native';
 import { Calendar as RNCalendar } from 'react-native-calendars';
 import { useCalendarTheme } from '../gluestack-ui-provider/useGluestackColors';
-import type { CalendarProps, MarkedDates, MarkedDate } from './types';
-
-// Create context locally
-interface CalendarContextValue {
-  currentMonth: Date;
-  setCurrentMonth: (date: Date) => void;
-}
-
-const CalendarContext = createContext<CalendarContextValue | null>(null);
-
-const useCalendar = () => {
-  const context = useContext(CalendarContext);
-  if (!context) {
-    throw new Error('useCalendar must be used within a CalendarProvider');
-  }
-  return context;
-};
+import type { CalendarProps, MarkedDates } from './types';
 
 // Convert markedDates to react-native-calendars format
 const convertMarkedDates = (
@@ -37,21 +15,19 @@ const convertMarkedDates = (
 ): any => {
   const converted: any = {};
 
-  // Add marked dates
   if (markedDates) {
     Object.entries(markedDates).forEach(([date, marking]) => {
       converted[date] = { ...marking };
     });
   }
 
-  // Add selected dates
   if (selected) {
     if (mode === 'single' && selected instanceof Date) {
       const dateStr = selected.toISOString().split('T')[0];
       converted[dateStr] = {
         ...converted[dateStr],
         selected: true,
-        selectedColor: theme?.selectedDayBackgroundColor || '#00adf5',
+        selectedColor: theme?.selectedDayBackgroundColor || '#171717',
       };
     } else if (mode === 'multiple' && Array.isArray(selected)) {
       selected.forEach((date) => {
@@ -59,7 +35,7 @@ const convertMarkedDates = (
         converted[dateStr] = {
           ...converted[dateStr],
           selected: true,
-          selectedColor: theme?.selectedDayBackgroundColor || '#00adf5',
+          selectedColor: theme?.selectedDayBackgroundColor || '#171717',
         };
       });
     } else if (mode === 'range' && selected && 'from' in selected) {
@@ -77,9 +53,8 @@ const convertMarkedDates = (
           selected: true,
           startingDay: isStart,
           endingDay: isEnd,
-          color: theme?.selectedDayBackgroundColor || '#00adf5',
+          color: theme?.selectedDayBackgroundColor || '#171717',
         };
-
         current.setDate(current.getDate() + 1);
       }
     }
@@ -88,10 +63,7 @@ const convertMarkedDates = (
   return converted;
 };
 
-// Simple style class (no tva needed)
-const calendarClassName = 'w-full bg-background';
-
-const CalendarComponent = React.forwardRef<
+export const Calendar = React.forwardRef<
   React.ComponentRef<typeof View>,
   CalendarProps
 >(function Calendar(
@@ -101,7 +73,6 @@ const CalendarComponent = React.forwardRef<
     onSelect,
     minDate,
     maxDate,
-    disabledDates,
     markedDates,
     markingType = 'dot',
     initialDate,
@@ -114,19 +85,12 @@ const CalendarComponent = React.forwardRef<
     onDayPress,
     onDayLongPress,
     theme: customTheme,
-    displayLoadingIndicator,
-    renderDay,
-    renderHeader,
-    renderArrow,
     className,
     style,
   },
   ref
 ) {
-  const { currentMonth, setCurrentMonth } = useCalendar();
   const gluestackTheme = useCalendarTheme();
-
-  // Use custom theme if provided, otherwise use gluestack theme
   const theme = customTheme || gluestackTheme;
 
   const mergedMarkedDates = useMemo(() => {
@@ -136,10 +100,7 @@ const CalendarComponent = React.forwardRef<
   const handleDayPress = useCallback(
     (day: any) => {
       const date = new Date(day.dateString);
-
-      if (onDayPress) {
-        onDayPress(date);
-      }
+      onDayPress?.(date);
 
       if (onSelect) {
         if (mode === 'single') {
@@ -172,21 +133,10 @@ const CalendarComponent = React.forwardRef<
     [mode, onSelect, onDayPress, selected]
   );
 
-  const handleMonthChange = useCallback(
-    (month: any) => {
-      const date = new Date(month.dateString);
-      setCurrentMonth(date);
-      if (onMonthChange) {
-        onMonthChange(date);
-      }
-    },
-    [onMonthChange, setCurrentMonth]
-  );
-
   return (
     <View
       ref={ref}
-      className={`${calendarClassName} ${className || ''}`}
+      className={`w-full bg-background ${className || ''}`}
       style={style}
     >
       <RNCalendar
@@ -200,35 +150,17 @@ const CalendarComponent = React.forwardRef<
         hideExtraDays={hideExtraDays}
         showSixWeeks={showSixWeeks}
         enableSwipeMonths={enableSwipeMonths}
-        displayLoadingIndicator={displayLoadingIndicator}
         theme={theme}
         onDayPress={handleDayPress}
         onDayLongPress={(day: any) =>
           onDayLongPress?.(new Date(day.dateString))
         }
-        onMonthChange={handleMonthChange}
-        dayComponent={renderDay}
-        customHeader={renderHeader}
-        renderArrow={renderArrow}
+        onMonthChange={(month: any) =>
+          onMonthChange?.(new Date(month.dateString))
+        }
       />
     </View>
   );
 });
 
-const Calendar = React.forwardRef<
-  React.ComponentRef<typeof View>,
-  CalendarProps
->(function CalendarWithProvider(props, ref) {
-  const [currentMonth, setCurrentMonth] = React.useState(
-    props.initialDate || new Date()
-  );
-
-  return (
-    <CalendarContext.Provider value={{ currentMonth, setCurrentMonth }}>
-      <CalendarComponent ref={ref} {...props} />
-    </CalendarContext.Provider>
-  );
-});
-
-export { Calendar };
 export type { CalendarProps };

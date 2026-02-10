@@ -52,9 +52,42 @@ export interface CalendarTheme {
   textDayFontFamily?: string;
   textMonthFontFamily?: string;
   textDayHeaderFontFamily?: string;
-  textDayFontWeight?: string;
-  textMonthFontWeight?: string;
-  textDayHeaderFontWeight?: string;
+  textDayFontWeight?:
+    | 'normal'
+    | 'bold'
+    | '100'
+    | '200'
+    | '300'
+    | '400'
+    | '500'
+    | '600'
+    | '700'
+    | '800'
+    | '900';
+  textMonthFontWeight?:
+    | 'normal'
+    | 'bold'
+    | '100'
+    | '200'
+    | '300'
+    | '400'
+    | '500'
+    | '600'
+    | '700'
+    | '800'
+    | '900';
+  textDayHeaderFontWeight?:
+    | 'normal'
+    | 'bold'
+    | '100'
+    | '200'
+    | '300'
+    | '400'
+    | '500'
+    | '600'
+    | '700'
+    | '800'
+    | '900';
   textDayFontSize?: number;
   textMonthFontSize?: number;
   textDayHeaderFontSize?: number;

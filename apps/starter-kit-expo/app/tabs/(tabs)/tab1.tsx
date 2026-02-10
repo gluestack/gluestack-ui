@@ -1,92 +1,59 @@
 import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
-import {
-  DateTimePicker,
-  DateTimePickerTrigger,
-  DateTimePickerInput,
-  DateTimePickerIcon,
-} from '@/components/ui/date-time-picker';
+import { ScrollView, Text, View } from 'react-native';
 import { Calendar } from '@/components/ui/calendar';
-import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
-import { VStack } from '@/components/ui/vstack';
-import { HStack } from '@/components/ui/hstack';
-import { CalendarDays, Clock } from 'lucide-react-native';
-import { useCalendarTheme } from '@/components/ui/gluestack-ui-provider/useGluestackColors';
-import { useGluestackColors } from '@/components/ui/gluestack-ui-provider/useGluestackColors';
-export default function DateTimePickerDemo() {
-  const calendarTheme = useCalendarTheme();
-  const colors = useGluestackColors();
-  const [dateTime, setDateTime] = useState<Date | undefined>(new Date());
-  const [dateOnly, setDateOnly] = useState<Date | undefined>(undefined);
-  const [timeOnly, setTimeOnly] = useState<Date | undefined>(undefined);
-  const [formattedDate, setFormattedDate] = useState<Date | undefined>(
-    new Date()
-  );
-  const [minMaxDate, setMinMaxDate] = useState<Date | undefined>(new Date());
 
-  // Calendar states
+export default function DateTimePickerDemo() {
   const [singleDate, setSingleDate] = useState<Date | undefined>(new Date());
   const [multipleDates, setMultipleDates] = useState<Date[]>([]);
-  const [rangeDates, setRangeDates] = useState<
+  const [dateRange, setDateRange] = useState<
     { from: Date; to: Date } | undefined
-  >(undefined);
-  const [markedDate, setMarkedDate] = useState<Date | undefined>(new Date());
-
-  // Calendar handlers with proper type casting
-  const handleSingleSelect = (
-    date: Date | Date[] | { from: Date; to: Date }
-  ) => {
-    if (date instanceof Date) {
-      setSingleDate(date);
-    }
-  };
-
-  const handleMultipleSelect = (
-    date: Date | Date[] | { from: Date; to: Date }
-  ) => {
-    if (Array.isArray(date)) {
-      setMultipleDates(date);
-    }
-  };
-
-  const handleRangeSelect = (
-    date: Date | Date[] | { from: Date; to: Date }
-  ) => {
-    if (date && typeof date === 'object' && 'from' in date) {
-      setRangeDates(date);
-    }
-  };
-
-  const handleMarkedSelect = (
-    date: Date | Date[] | { from: Date; to: Date }
-  ) => {
-    if (date instanceof Date) {
-      setMarkedDate(date);
-    }
-  };
-
-  // Set min/max dates for the last example
-  const today = new Date();
-  const minDate = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() - 7
-  );
-  const maxDate = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() + 7
-  );
+  >({
+    from: new Date(),
+    to: new Date(),
+  });
 
   return (
-    <ScrollView className="flex-1 bg-background">
+    <ScrollView className="flex-1 bg-background p-4">
+      <Text className="text-lg font-bold mb-2">Single Select</Text>
+      <Calendar
+        mode="single"
+        selected={singleDate}
+        onSelect={setSingleDate}
+        enableSwipeMonths
+      />
+      <Text className="text-sm text-gray-600 mt-1">
+        Selected: {singleDate ? singleDate.toDateString() : 'None'}
+      </Text>
+
+      <Text className="text-lg font-bold mt-6 mb-2">Multiple Select</Text>
       <Calendar
         mode="multiple"
         selected={multipleDates}
-        onSelect={handleMultipleSelect}
+        onSelect={setMultipleDates}
         enableSwipeMonths
       />
+      <Text className="text-sm text-gray-600 mt-1">
+        Selected:{' '}
+        {multipleDates.length > 0
+          ? multipleDates.map((d) => d.toDateString()).join(', ')
+          : 'None'}
+      </Text>
+
+      <Text className="text-lg font-bold mt-6 mb-2">Range Select</Text>
+      <Calendar
+        mode="range"
+        selected={dateRange}
+        onSelect={setDateRange}
+        enableSwipeMonths
+      />
+      <Text className="text-sm text-gray-600 mt-1">
+        Range:{' '}
+        {dateRange
+          ? `${dateRange.from.toDateString()} - ${dateRange.to.toDateString()}`
+          : 'None'}
+      </Text>
+
+      <View className="h-10" />
     </ScrollView>
   );
 }
