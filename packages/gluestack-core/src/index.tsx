@@ -1,6 +1,7 @@
 export * from './accordion/aria';
 export * from './accordion/creator';
 export * from './actionsheet/creator';
+export * from './calendar/creator';
 export * from './alert/creator';
 export * from './alert-dialog/creator';
 export * from './avatar/creator';

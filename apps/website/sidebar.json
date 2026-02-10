@@ -257,6 +257,10 @@
                 "darkUrl": "https://i.imgur.com/1c2clr3.png"
               },
               {
+                "title": "Calendar",
+                "path": "/ui/docs/components/calendar"
+              },
+              {
                 "title": "FormControl",
                 "path": "/ui/docs/components/form-control",
                 "url": "https://i.imgur.com/8QpwG4G.png",
