@@ -8,6 +8,9 @@ export interface MarkedDate {
   selectedColor?: string;
   disabled?: boolean;
   disableTouchEvent?: boolean;
+  startingDay?: boolean;
+  endingDay?: boolean;
+  color?: string;
   period?: {
     startingDay?: boolean;
     endingDay?: boolean;
@@ -103,7 +106,7 @@ export type MarkingType =
 export interface CalendarProps {
   mode?: CalendarMode;
   selected?: Date | Date[] | { from: Date; to: Date };
-  onSelect?: (date: Date | Date[] | { from: Date; to: Date }) => void;
+  onSelect?: (value: any) => void;
   minDate?: Date;
   maxDate?: Date;
   disabledDates?: Date[];
