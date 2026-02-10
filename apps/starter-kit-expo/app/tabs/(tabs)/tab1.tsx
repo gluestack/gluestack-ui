@@ -12,8 +12,13 @@ import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { HStack } from '@/components/ui/hstack';
 import { CalendarDays, Clock } from 'lucide-react-native';
-
+import { useCalendarTheme } from '@/components/ui/gluestack-ui-provider/useGluestackColors';
+import { useGluestackColors } from '@/components/ui/gluestack-ui-provider/useGluestackColors';
 export default function DateTimePickerDemo() {
+  const calendarTheme = useCalendarTheme();
+  console.log(calendarTheme);
+  const colors = useGluestackColors();
+  console.log(colors);
   const [dateTime, setDateTime] = useState<Date | undefined>(new Date());
   const [dateOnly, setDateOnly] = useState<Date | undefined>(undefined);
   const [timeOnly, setTimeOnly] = useState<Date | undefined>(undefined);

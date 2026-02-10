@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import { View } from 'react-native';
 import { Calendar as RNCalendar } from 'react-native-calendars';
+import { useCalendarTheme } from '../gluestack-ui-provider/useGluestackColors';
 import type { CalendarProps, MarkedDates, MarkedDate } from './types';
 
 // Create context locally
@@ -112,7 +113,7 @@ const CalendarComponent = React.forwardRef<
     onMonthChange,
     onDayPress,
     onDayLongPress,
-    theme,
+    theme: customTheme,
     displayLoadingIndicator,
     renderDay,
     renderHeader,
@@ -123,6 +124,10 @@ const CalendarComponent = React.forwardRef<
   ref
 ) {
   const { currentMonth, setCurrentMonth } = useCalendar();
+  const gluestackTheme = useCalendarTheme();
+
+  // Use custom theme if provided, otherwise use gluestack theme
+  const theme = customTheme || gluestackTheme;
 
   const mergedMarkedDates = useMemo(() => {
     return convertMarkedDates(markedDates, selected, mode, theme);
