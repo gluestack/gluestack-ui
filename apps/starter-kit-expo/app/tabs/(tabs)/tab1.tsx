@@ -16,9 +16,7 @@ import { useCalendarTheme } from '@/components/ui/gluestack-ui-provider/useGlues
 import { useGluestackColors } from '@/components/ui/gluestack-ui-provider/useGluestackColors';
 export default function DateTimePickerDemo() {
   const calendarTheme = useCalendarTheme();
-  console.log(calendarTheme);
   const colors = useGluestackColors();
-  console.log(colors);
   const [dateTime, setDateTime] = useState<Date | undefined>(new Date());
   const [dateOnly, setDateOnly] = useState<Date | undefined>(undefined);
   const [timeOnly, setTimeOnly] = useState<Date | undefined>(undefined);
@@ -274,11 +272,7 @@ export default function DateTimePickerDemo() {
               }}
               markingType="dot"
               enableSwipeMonths
-              theme={{
-                selectedDayBackgroundColor: '#00adf5',
-                todayTextColor: '#00adf5',
-                arrowColor: '#00adf5',
-              }}
+           
             />
             {singleDate && (
               <Text className="text-sm text-muted-foreground mt-4">
