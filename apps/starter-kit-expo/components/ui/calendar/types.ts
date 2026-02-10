@@ -107,6 +107,7 @@ export interface CalendarProps {
   mode?: CalendarMode;
   selected?: Date | Date[] | { from: Date; to: Date };
   onSelect?: (value: any) => void;
+  showOutsideDays?: boolean;
   minDate?: Date;
   maxDate?: Date;
   disabledDates?: Date[];
