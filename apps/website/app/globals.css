@@ -128,3 +128,37 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+/* Changelog content styles */
+.changelog-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+.changelog-content ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.changelog-content ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+}
+
+.changelog-content video {
+  width: 100%;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.changelog-content em {
+  font-style: italic;
+  color: hsl(var(--foreground) / 0.7);
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
