@@ -44,7 +44,7 @@ const UICalendar = createCalendar({
   Week: RNView,
   Days: Grid,
   Content: RNView,
-  Date: GridItem,
+  Date: RNPressable,
 });
 
 cssInterop(PrimitiveIcon, {
@@ -100,7 +100,7 @@ const CalendarHeaderPrev = React.forwardRef<
       {...props}
       className={calendarNavStyle({ class: className })}
     >
-      <UIIcon as={ChevronLeft} className="text-typography-800 w-3.5 h-3.5" />
+      <UIIcon as={ChevronLeft} className="text-foreground w-3.5 h-3.5" />
     </UICalendar.HeaderPrev>
   );
 });
@@ -115,7 +115,7 @@ const CalendarHeaderNext = React.forwardRef<
       {...props}
       className={calendarNavStyle({ class: className })}
     >
-      <UIIcon as={ChevronRight} className="text-typography-800 w-3.5 h-3.5" />
+      <UIIcon as={ChevronRight} className="text-foreground w-3.5 h-3.5" />
     </UICalendar.HeaderNext>
   );
 });
@@ -195,7 +195,10 @@ const CalendarDate = React.forwardRef<
   }
 >(({ className, day, render, ...props }, ref) => {
   if (render) {
-    return <UICalendar.Date ref={ref} day={day} render={render} {...props} _extra={{className: "col-span-1"}}/>;
+    return 
+    (<GridItem _extra={{className: "col-span-1"}}>
+      <UICalendar.Date ref={ref} day={day} render={render} {...props}/>
+    </GridItem>);
   }
 
   return (
@@ -208,7 +211,7 @@ const CalendarDate = React.forwardRef<
         hasDay: day ? true : false,
       })}
     >
-      <RNText className="text-typography-800 group-data-[selected=true]:text-typography-0 group-data-[disabled=true]:text-typography-400">
+      <RNText className="text-foreground group-data-[selected=true]:text-typography-0 group-data-[disabled=true]:text-typography-400">
         {day?.getDate()}
       </RNText>
     </UICalendar.Date>
@@ -242,7 +245,7 @@ const CalendarDays = React.forwardRef<
         (({ day, ...dayProps }: any) => {
           return (
             <CalendarDate {...dayProps} day={day}>
-              <RNText className="text-typography-800 group-data-[selected=true]:text-typography-0 group-data-[disabled=true]:text-typography-400">
+              <RNText className="text-foreground group-data-[selected=true]:text-typography-0 group-data-[disabled=true]:text-typography-400">
                 {day?.getDate()}
               </RNText>
             </CalendarDate>
