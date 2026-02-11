@@ -2,11 +2,11 @@ import { tva } from '@gluestack-ui/utils';
 import { isWeb } from '@gluestack-ui/utils';
 
 export const calendarStyle = tva({
-  base: 'flex flex-col border border-border rounded-lg bg-background',
+  base: 'flex flex-col border border-border rounded-lg bg-background web:max-w-56',
 });
 
 export const calendarNavStyle = tva({
-  base: 'w-7 h-7 p-1 flex items-center justify-center rounded-md border border-border hover:bg-accent active:bg-accent/80 data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed',
+  base: 'w-7 h-7 p-1 flex items-center justify-center rounded-md border border-border hover:bg-accent active:bg-accent/80 data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed ',
 });
 
 export const calendarTitleStyle = tva({
