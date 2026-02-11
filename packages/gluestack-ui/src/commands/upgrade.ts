@@ -15,6 +15,185 @@ function isOldGluestackPackage(pkg: string): boolean {
   );
 }
 
+// Detect current gluestack-ui version from package.json
+async function detectCurrentVersion(): Promise<'v2' | 'v3' | 'v4' | 'unknown'> {
+  const packageJsonPath = path.join(process.cwd(), 'package.json');
+  if (!fs.existsSync(packageJsonPath)) return 'unknown';
+
+  const pkgJson = await fs.readJSON(packageJsonPath);
+  const deps = { ...pkgJson.dependencies, ...pkgJson.devDependencies };
+
+  // v2 indicators
+  if (deps['@gluestack-ui/themed'] || deps['@gluestack-ui/config']) {
+    return 'v2';
+  }
+
+  // v4 indicators
+  const coreVersion = deps['@gluestack-ui/core'];
+  if (coreVersion) {
+    if (coreVersion.includes('4.0.0') || coreVersion.includes('4.1.0') ||
+        coreVersion.startsWith('^4') || coreVersion.startsWith('~4')) {
+      return 'v4';
+    }
+    if (coreVersion.includes('3.0') || coreVersion.startsWith('^3') ||
+        coreVersion.startsWith('~3')) {
+      return 'v3';
+    }
+  }
+
+  return 'unknown';
+}
+
+// Detect project type (Next.js, Expo, or React Native CLI)
+async function detectProjectType(): Promise<'nextjs' | 'expo' | 'react-native-cli' | 'unknown'> {
+  const packageJsonPath = path.join(process.cwd(), 'package.json');
+  if (!fs.existsSync(packageJsonPath)) return 'unknown';
+
+  const pkgJson = await fs.readJSON(packageJsonPath);
+  const deps = { ...pkgJson.dependencies, ...pkgJson.devDependencies };
+
+  if (deps['next']) return 'nextjs';
+  if (deps['expo']) return 'expo';
+  if (deps['react-native'] && !deps['expo']) return 'react-native-cli';
+
+  return 'unknown';
+}
+
+// Detect package manager from lock files
+function detectPackageManager(): string {
+  if (fs.existsSync(path.join(process.cwd(), 'yarn.lock'))) return 'yarn';
+  if (fs.existsSync(path.join(process.cwd(), 'pnpm-lock.yaml'))) return 'pnpm';
+  if (fs.existsSync(path.join(process.cwd(), 'bun.lockb'))) return 'bun';
+  return 'npm';
+}
+
+// Install v4 packages based on project type
+function installV4Packages(
+  packageManager: string,
+  projectType: 'nextjs' | 'expo' | 'react-native-cli' | 'unknown'
+): void {
+  const s = spinner();
+  s.start('Installing gluestack-ui v4 packages...');
+
+  const cmds: { [key: string]: string } = {
+    npm: 'npm install',
+    yarn: 'yarn add',
+    pnpm: 'pnpm i',
+    bun: 'bun add',
+  };
+
+  const cmd = cmds[packageManager];
+  if (!cmd) throw new Error('Unsupported package manager');
+
+  // Base v4 packages (all projects)
+  const packages = [
+    '@gluestack-ui/core@^4.0.0-alpha.0',
+    '@gluestack-ui/utils@^4.0.0-alpha.0',
+    'react-native-reanimated@~4.2.1',
+    'react-native-worklets@^0.7.1',
+    '@legendapp/motion@^2.4.0',
+    'tailwind-variants@^0.1.20',
+    'react-native-svg@^15.12.0',
+    'nativewind@^4.1.23',
+  ];
+
+  // Next.js specific packages
+  if (projectType === 'nextjs') {
+    packages.push(
+      '@gluestack/ui-next-adapter@^4.0.0-alpha.0',
+      'react-native-web@^0.20.0',
+      'react-native-safe-area-context@^5.6.1',
+      'react-aria@^3.41.1',
+      'react-stately@^3.39.0',
+      'dom-helpers@^5.2.1'
+    );
+  }
+
+  // Expo/React Native CLI specific packages
+  if (projectType === 'expo' || projectType === 'react-native-cli') {
+    packages.push(
+      'react-native-safe-area-context@^5.6.1',
+      'react-aria@^3.41.1',
+      '@expo/html-elements@^0.12.5',
+      'react-stately@^3.39.0'
+    );
+  }
+
+  const result = spawnSync(cmd, packages, {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+    shell: true,
+  });
+
+  if (result.error || result.status !== 0) {
+    throw new Error('Failed to install v4 packages');
+  }
+
+  s.stop('v4 packages installed.');
+}
+
+// Update babel.config.js to add react-native-worklets/plugin
+async function updateBabelConfig(): Promise<void> {
+  const s = spinner();
+  s.start('Updating babel config...');
+
+  const babelPath = path.join(process.cwd(), 'babel.config.js');
+  if (!fs.existsSync(babelPath)) {
+    s.stop('No babel.config.js found. Skipping babel update.');
+    return;
+  }
+
+  try {
+    const content = await fs.readFile(babelPath, 'utf8');
+
+    // Check if worklets plugin already exists
+    if (content.includes('react-native-worklets/plugin')) {
+      s.stop('Babel config already has worklets plugin.');
+      return;
+    }
+
+    let newContent = content;
+    let updated = false;
+
+    // Try to add worklets plugin to plugins array
+    // Look for plugins: [ ... ] pattern
+    const pluginsArrayRegex = /(plugins:\s*\[)([\s\S]*?)(\])/;
+    const match = newContent.match(pluginsArrayRegex);
+
+    if (match) {
+      // Add worklets plugin at the end of plugins array
+      const beforePlugins = match[1];
+      const pluginsContent = match[2];
+      const afterPlugins = match[3];
+
+      // Add comma if plugins array is not empty
+      const needsComma = pluginsContent.trim().length > 0;
+      const newPlugin = needsComma
+        ? `,\n    'react-native-worklets/plugin'`
+        : `'react-native-worklets/plugin'`;
+
+      newContent = newContent.replace(
+        pluginsArrayRegex,
+        `${beforePlugins}${pluginsContent}${newPlugin}\n  ${afterPlugins}`
+      );
+      updated = true;
+    }
+
+    if (updated) {
+      await fs.writeFile(babelPath, newContent, 'utf8');
+      log.info('✓ Added react-native-worklets/plugin to babel.config.js');
+    } else {
+      log.warning('⚠ Could not automatically update babel.config.js');
+      log.warning('  Please manually add "react-native-worklets/plugin" to your plugins array');
+    }
+
+    s.stop('Babel config processed.');
+  } catch (error) {
+    s.stop('Failed to update babel config.');
+    log.warning('⚠ Please manually add "react-native-worklets/plugin" to babel.config.js');
+  }
+}
+
 // Detect old gluestack packages in package.json
 async function detectOldPackages(): Promise<string[]> {
   const packageJsonPath = path.join(process.cwd(), 'package.json');
@@ -206,7 +385,7 @@ async function updateTailwindConfig(): Promise<void> {
 
       // Remove the plugin from the plugins array
       const pluginRegex = /plugins:\s*\[([^\]]*gluestackPlugin[^\]]*)\]/g;
-      newContent = newContent.replace(pluginRegex, (match, pluginsContent) => {
+      newContent = newContent.replace(pluginRegex, (_match, pluginsContent) => {
         // Remove gluestackPlugin from the plugins array
         const updatedPlugins = pluginsContent
           .split(',')
@@ -417,51 +596,142 @@ async function updateFileImports(filePath: string): Promise<boolean> {
   }
 }
 
+// Upgrade from v2 to v3
+async function upgradeV2ToV3(packageManager: string): Promise<void> {
+  const oldPackages = await detectOldPackages();
+  if (oldPackages.length) {
+    log.info('Found old packages:');
+    oldPackages.forEach((pkg: string) => log.info('  - ' + pkg));
+  }
+
+  await updateTailwindConfig();
+
+  // Do not remove packages that we want to keep/install
+  const retainSet = new Set(['@gluestack-ui/core', '@gluestack-ui/utils']);
+  const packagesToRemove = oldPackages.filter(
+    (pkg: string) => !retainSet.has(pkg)
+  );
+
+  // Remove old packages first, then install required ones
+  removePackages(packagesToRemove, packageManager);
+  installPackages(packageManager);
+  cleanAndReinstall(packageManager);
+  await updateRegistryFile();
+  await updateNextConfig();
+  await updateImports();
+}
+
+// Upgrade from v3 to v4
+async function upgradeV3ToV4(packageManager: string): Promise<void> {
+  // Detect project type
+  const projectType = await detectProjectType();
+  log.info(`Detected project type: ${projectType}`);
+
+  if (projectType === 'unknown') {
+    log.warning('Could not auto-detect project type.');
+    const proceed = await confirm({
+      message: 'Continue with default configuration?',
+    });
+    if (isCancel(proceed) || !proceed) {
+      cancel('Upgrade cancelled.');
+      process.exit(0);
+    }
+  }
+
+  // Step 1: Install v4 packages
+  installV4Packages(packageManager, projectType);
+
+  // Step 2: Update babel config for worklets (Expo/RN CLI only)
+  if (projectType === 'expo' || projectType === 'react-native-cli') {
+    await updateBabelConfig();
+  }
+
+  // Step 3: Clean and reinstall all dependencies
+  cleanAndReinstall(packageManager);
+
+  // Step 4: Update Next.js specific files if applicable
+  if (projectType === 'nextjs') {
+    await updateRegistryFile();
+    await updateNextConfig();
+  }
+
+  // Step 5: No import updates needed (v3 and v4 use same format)
+  log.info('✓ Import statements are already compatible with v4!');
+
+  log.success('✓ v3 to v4 upgrade complete!');
+}
+
 export const upgrade = new Command()
   .name('upgrade')
-  .description('Upgrade from old gluestack packages to gluestack-ui')
+  .description('Upgrade gluestack-ui to the latest version')
   .action(async () => {
     try {
-      log.info('\n\x1b[1mGluestack UI Upgrade\x1b[0m');
-      const oldPackages = await detectOldPackages();
-      if (!oldPackages.length) {
-        log.info('No old gluestack packages found.');
+      log.info('\n\x1b[1m🚀 Gluestack UI Upgrade\x1b[0m\n');
+
+      // Step 1: Detect current version
+      const currentVersion = await detectCurrentVersion();
+
+      if (currentVersion === 'unknown') {
+        log.error('❌ Could not detect gluestack-ui installation.');
+        log.info('Please ensure gluestack-ui is installed in your project.');
+        process.exit(1);
+      }
+
+      if (currentVersion === 'v4') {
+        log.success('✓ Already on v4! No upgrade needed.');
         return;
       }
-      log.info('Found old packages:');
-      oldPackages.forEach((pkg: string) => log.info('  - ' + pkg));
+
+      log.info(`Current version: ${currentVersion}`);
+      log.info(`Target version: v4\n`);
+
+      // Step 2: Git safety check
       if (await hasUncommittedChanges()) {
-        log.warning(
-          'You have uncommitted git changes. Please commit before upgrading.'
-        );
+        log.warning('⚠ You have uncommitted git changes.');
+        log.warning('It is recommended to commit your changes before upgrading.\n');
         const proceed = await confirm({ message: 'Continue anyway?' });
         if (isCancel(proceed) || !proceed) {
           cancel('Upgrade cancelled.');
           process.exit(0);
         }
       }
-      // Detect package manager
-      let packageManager: string = 'npm';
-      if (fs.existsSync('yarn.lock')) packageManager = 'yarn';
-      else if (fs.existsSync('pnpm-lock.yaml')) packageManager = 'pnpm';
-      else if (fs.existsSync('bun.lockb')) packageManager = 'bun';
-      await updateTailwindConfig();
-      // Do not remove packages that we want to keep/install
-      const retainSet = new Set(['@gluestack-ui/core', '@gluestack-ui/utils']);
-      const packagesToRemove = oldPackages.filter(
-        (pkg: string) => !retainSet.has(pkg)
-      );
-      // Remove old packages first, then install required ones
-      removePackages(packagesToRemove, packageManager);
-      installPackages(packageManager);
-      cleanAndReinstall(packageManager);
-      await updateRegistryFile();
-      await updateNextConfig();
-      await updateImports();
-      log.success('\x1b[32mUpgrade complete!\x1b[0m');
-      log.info('All imports have been updated to use @gluestack-ui/*');
+
+      // Step 3: Detect package manager
+      const packageManager = detectPackageManager();
+      log.info(`Package manager: ${packageManager}\n`);
+
+      // Step 4: Route to appropriate upgrade path
+      if (currentVersion === 'v2') {
+        log.info('📦 Upgrading from v2 to v3...\n');
+        await upgradeV2ToV3(packageManager);
+        log.success('✓ Successfully upgraded to v3!\n');
+
+        // Ask if user wants to continue to v4
+        const continueToV4 = await confirm({
+          message: 'Continue upgrading to v4?',
+        });
+
+        if (isCancel(continueToV4) || !continueToV4) {
+          log.success('✓ Upgrade complete! You are now on v3.');
+          log.info('\nRun "npx gluestack-ui upgrade" again to upgrade to v4.');
+          return;
+        }
+
+        log.info('\n📦 Continuing to v4...\n');
+      }
+
+      // Upgrade to v4 (from v3 or after v2→v3)
+      log.info('📦 Upgrading to v4...\n');
+      await upgradeV3ToV4(packageManager);
+
+      log.success('\n✅ \x1b[32mUpgrade to v4 complete!\x1b[0m\n');
+      log.info('Next steps:');
+      log.info('1. Review the changes made to your project');
+      log.info('2. Test your application thoroughly');
+      log.info('3. Check the v4 migration guide for any manual steps');
+
     } catch (err: any) {
-      log.error((err && err.message) || String(err));
+      log.error(`\n❌ Upgrade failed: ${(err && err.message) || String(err)}`);
       process.exit(1);
     }
   });

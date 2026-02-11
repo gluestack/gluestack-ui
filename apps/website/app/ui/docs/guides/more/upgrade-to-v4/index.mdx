@@ -1,0 +1,652 @@
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHeaderCell,
+  TableCell,
+} from '@/docs-components/table';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Upgrade to gluestack-ui v4
+
+## Why gluestack-ui v4?
+
+### Evolution to v4
+
+**gluestack-ui v4** introduces significant improvements to the animation system, performance optimizations, and enhanced compatibility with the latest React Native ecosystem. Building on the solid foundation of v3, v4 brings a modern animation engine and better developer experience.
+
+#### What's New in v4
+
+- **shadcn-Inspired Color System**: Modern color token system with semantic naming (primary, secondary, accent, muted, etc.)
+- **New Animation Engine**: Migration from `@legendapp/motion` to `react-native-reanimated` (~4.2.1) for most animated components
+- **Enhanced Performance**: Better performance with the new animation system and worklets support
+- **Tailwind v4 Support**: Full compatibility with Tailwind CSS v4 (via Uniwind)
+- **Modern Dependencies**: Updated to latest React Native ecosystem packages
+- **Improved Type Safety**: Enhanced TypeScript support with better type definitions
+- **Better Web Support**: Enhanced Next.js adapter with improved SSR capabilities
+
+## Migration from v3 to v4
+
+### What's Changed:
+
+**gluestack-ui v4** introduces important dependency, configuration, and theming changes:
+
+- **Color Token System**: ⚠️ **Breaking Change** - Migrated to shadcn-like color tokens
+  - New color naming convention (e.g., `primary`, `secondary`, `accent`, `muted`, etc.)
+  - Updates required in `tailwind.config.js` and `gluestack-ui-provider/config.ts`
+  - All component styles updated to use new tokens
+- **Animation System**: Most components now use `react-native-reanimated` instead of `@legendapp/motion`
+- **Component Styles**: ⚠️ **Breaking Change** - All components have updated styles
+  - Components use new color tokens
+  - Animation library changes in some components
+  - **Must re-copy components** from CLI using `npx gluestack-ui add <component>`
+- **New Dependencies**: Added `react-native-worklets`, `react-native-reanimated@~4.2.1`, updated other packages
+- **Babel Configuration**: Required babel plugin for worklets support (Expo/RN CLI)
+- **Package Versions**: Updated to v4 alpha packages
+- **Next.js Adapter**: Updated `@gluestack/ui-next-adapter` to v4
+
+### What Stays the Same:
+
+- **Component APIs** remain exactly the same
+- **Import patterns** are unchanged (v3 and v4 use identical imports)
+- **Copy-paste philosophy** maintained
+- **Overall theming approach** stays the same (only token names changed)
+
+### Migration Benefits
+
+- **Automatic CLI Upgrade**: Simple upgrade process with `npx gluestack-ui upgrade` command
+- **Modern Color System**: shadcn-like color tokens for better theming consistency
+- **Semantic Color Naming**: More intuitive color names (primary, secondary, accent, muted, etc.)
+- **Better Performance**: New animation engine with react-native-reanimated
+- **Enhanced Stability**: Bug fixes and improved reliability
+- **Future-Ready**: Foundation for upcoming features and Tailwind v4 support
+- **Improved Animation Capabilities**: Smoother animations with worklets
+- **No Import Changes**: v3 and v4 use identical import patterns (though components must be re-copied)
+
+# Automated Upgrade (Recommended)
+
+The easiest way to upgrade is using our automated CLI command:
+
+<CodeBlock code="npx gluestack-ui upgrade" language="bash" />
+
+This command will:
+- Auto-detect your current version (v2 or v3)
+- Upgrade to v4 automatically
+- Install all required dependencies
+- Update configuration files (babel.config.js for Expo/RN CLI)
+- Handle platform-specific packages (Next.js, Expo, React Native CLI)
+
+> **Important:** After running the automated upgrade, you still need to:
+> 1. Update color tokens in `tailwind.config.js` and `gluestack-ui-provider/config.ts` (see Step 4 below)
+> 2. Re-copy all components using `npx gluestack-ui add <component>` (see Step 5 below)
+
+For monorepos or custom setups, please follow the manual installation guide below.
+
+# Manual Migration to gluestack-ui v4
+
+This guide provides detailed manual steps to migrate from gluestack-ui v3 to v4. Follow these steps carefully to ensure a smooth transition.
+
+## Migration Overview
+
+The migration process involves several key steps:
+
+1. **Backup and Preparation** - Secure your codebase
+2. **Package Management** - Install new v4 packages
+3. **Configuration Updates** - Update Babel and Next.js configurations
+4. **Color Token Migration** - Update to shadcn-like color system
+5. **Re-copy Components** - Get updated component styles
+6. **Clean Installation** - Ensure dependency integrity
+7. **Verification** - Test your application
+
+### Understanding the Color Token Changes
+
+v4 introduces a new color token system inspired by shadcn/ui. This provides better semantic naming and more consistent theming:
+
+**New Color Tokens:**
+- `background` / `foreground` - Base application colors
+- `card` / `card-foreground` - Card surfaces
+- `popover` / `popover-foreground` - Popover/dropdown surfaces
+- `primary` / `primary-foreground` - Primary brand color
+- `secondary` / `secondary-foreground` - Secondary brand color
+- `muted` / `muted-foreground` - Muted/subtle content
+- `accent` / `accent-foreground` - Accent highlights
+- `destructive` / `destructive-foreground` - Error/danger states
+- `border` - Border colors
+- `input` - Input field borders
+- `ring` - Focus ring colors
+
+These tokens use HSL color space with CSS variables for easy theming and dark mode support.
+
+## Step 1: Backup and Preparation
+
+### Check Git Status
+
+Before proceeding, ensure your project has no uncommitted changes:
+
+<CodeBlock code="git status" language="bash" />
+
+If you have uncommitted changes, either commit them or stash them:
+
+<CodeBlock code={`# Commit changes
+git add .
+git commit -m "Pre-migration to v4 backup"
+
+# Or stash changes
+git stash`} language="bash" />
+
+### Verify Current Version
+
+Check your `package.json` to confirm you're on v3:
+
+```json
+{
+  "dependencies": {
+    "@gluestack-ui/core": "^3.0.10",
+    "@gluestack-ui/utils": "^3.0.11"
+  }
+}
+```
+
+## Step 2: Install v4 Packages
+
+### Install New Packages
+
+Install the new gluestack-ui v4 packages and required dependencies:
+
+<Tabs>
+<TabItem label="Next.js">
+<CodeBlock code="npm install @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1 @legendapp/motion@^2.4.0 tailwind-variants@^0.1.20 react-native-svg@^15.12.0 nativewind@^4.1.23 @gluestack/ui-next-adapter@alpha react-native-web@^0.20.0 react-native-safe-area-context@^5.6.1 react-aria@^3.41.1 react-stately@^3.39.0 dom-helpers@^5.2.1" language="bash" />
+
+Or with yarn:
+
+<CodeBlock code="yarn add @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1 @legendapp/motion@^2.4.0 tailwind-variants@^0.1.20 react-native-svg@^15.12.0 nativewind@^4.1.23 @gluestack/ui-next-adapter@alpha react-native-web@^0.20.0 react-native-safe-area-context@^5.6.1 react-aria@^3.41.1 react-stately@^3.39.0 dom-helpers@^5.2.1" language="bash" />
+</TabItem>
+<TabItem label="Expo">
+<CodeBlock code="npm install @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1 @legendapp/motion@^2.4.0 tailwind-variants@^0.1.20 react-native-svg@^15.12.0 nativewind@^4.1.23 react-native-safe-area-context@^5.6.1 react-aria@^3.41.1 @expo/html-elements@^0.12.5 react-stately@^3.39.0" language="bash" />
+
+Or with yarn:
+
+<CodeBlock code="yarn add @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1 @legendapp/motion@^2.4.0 tailwind-variants@^0.1.20 react-native-svg@^15.12.0 nativewind@^4.1.23 react-native-safe-area-context@^5.6.1 react-aria@^3.41.1 @expo/html-elements@^0.12.5 react-stately@^3.39.0" language="bash" />
+</TabItem>
+<TabItem label="React Native CLI">
+<CodeBlock code="npm install @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1 @legendapp/motion@^2.4.0 tailwind-variants@^0.1.20 react-native-svg@^15.12.0 nativewind@^4.1.23 react-native-safe-area-context@^5.6.1 react-aria@^3.41.1 @expo/html-elements@^0.12.5 react-stately@^3.39.0" language="bash" />
+
+Or with yarn:
+
+<CodeBlock code="yarn add @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1 @legendapp/motion@^2.4.0 tailwind-variants@^0.1.20 react-native-svg@^15.12.0 nativewind@^4.1.23 react-native-safe-area-context@^5.6.1 react-aria@^3.41.1 @expo/html-elements@^0.12.5 react-stately@^3.39.0" language="bash" />
+</TabItem>
+</Tabs>
+
+> **Note:** Use `--legacy-peer-deps` flag if you encounter peer dependency resolution issues.
+
+### New Dependencies Explained
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Package</TableHeaderCell>
+      <TableHeaderCell>Purpose</TableHeaderCell>
+      <TableHeaderCell>Required For</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell><InlineCode>react-native-reanimated@~4.2.1</InlineCode></TableCell>
+      <TableCell>Primary animation engine for v4</TableCell>
+      <TableCell>All Projects</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>react-native-worklets@^0.7.1</InlineCode></TableCell>
+      <TableCell>Required by react-native-reanimated</TableCell>
+      <TableCell>All Projects</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>@legendapp/motion@^2.4.0</InlineCode></TableCell>
+      <TableCell>Used by some components (Tooltip, ActionSheet, Select)</TableCell>
+      <TableCell>All Projects</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>tailwind-variants@^0.1.20</InlineCode></TableCell>
+      <TableCell>Enhanced variant system</TableCell>
+      <TableCell>All Projects</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell><InlineCode>nativewind@^4.1.23</InlineCode></TableCell>
+      <TableCell>Updated styling engine</TableCell>
+      <TableCell>All Projects</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+## Step 3: Update Configuration Files
+
+### Step 3.1: Update Babel Config (Expo/React Native CLI Only)
+
+For Expo and React Native CLI projects, you **must** add the `react-native-worklets/plugin` to your `babel.config.js`:
+
+**Before:**
+<CodeBlock code={`module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      // your existing plugins
+    ],
+  };
+};`} language="javascript" />
+
+**After:**
+<CodeBlock code={`module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      // your existing plugins
+      'react-native-worklets/plugin', // Add this line
+    ],
+  };
+};`} language="javascript" />
+
+> **Important:** The `react-native-worklets/plugin` **must** be included for react-native-reanimated to work properly.
+
+### Step 3.2: Update Next.js Configuration (Next.js Only)
+
+Ensure your `@gluestack/ui-next-adapter` is updated to v4. The configuration syntax remains the same:
+
+<CodeBlock code={`import { withGluestackUI } from '@gluestack/ui-next-adapter';
+
+const nextConfig = {
+  // ... your config
+};
+
+export default withGluestackUI(nextConfig);`} language="typescript" />
+
+## Step 4: Update Color Tokens (Breaking Change)
+
+### Step 4.1: Update Tailwind Config
+
+⚠️ **Important:** v4 introduces a new shadcn-like color token system. You need to update your `tailwind.config.js` with the new color definitions.
+
+Replace your existing color configuration with the new v4 color tokens:
+
+<CodeBlock code={`/** @type {import('tailwindcss').Config} */
+module.exports = {
+  // ... other config
+  theme: {
+    extend: {
+      colors: {
+        // New v4 color tokens (shadcn-like)
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+      },
+    },
+  },
+};`} language="javascript" />
+
+### Step 4.2: Update GluestackUIProvider Config
+
+Update your `components/ui/gluestack-ui-provider/config.ts` (or wherever your provider config is located) with the new color token definitions:
+
+<CodeBlock code={`export const config = {
+  light: {
+    '--background': '0 0% 100%',
+    '--foreground': '240 10% 3.9%',
+    '--card': '0 0% 100%',
+    '--card-foreground': '240 10% 3.9%',
+    '--popover': '0 0% 100%',
+    '--popover-foreground': '240 10% 3.9%',
+    '--primary': '240 5.9% 10%',
+    '--primary-foreground': '0 0% 98%',
+    '--secondary': '240 4.8% 95.9%',
+    '--secondary-foreground': '240 5.9% 10%',
+    '--muted': '240 4.8% 95.9%',
+    '--muted-foreground': '240 3.8% 46.1%',
+    '--accent': '240 4.8% 95.9%',
+    '--accent-foreground': '240 5.9% 10%',
+    '--destructive': '0 84.2% 60.2%',
+    '--destructive-foreground': '0 0% 98%',
+    '--border': '240 5.9% 90%',
+    '--input': '240 5.9% 90%',
+    '--ring': '240 5.9% 10%',
+  },
+  dark: {
+    '--background': '240 10% 3.9%',
+    '--foreground': '0 0% 98%',
+    '--card': '240 10% 3.9%',
+    '--card-foreground': '0 0% 98%',
+    '--popover': '240 10% 3.9%',
+    '--popover-foreground': '0 0% 98%',
+    '--primary': '0 0% 98%',
+    '--primary-foreground': '240 5.9% 10%',
+    '--secondary': '240 3.7% 15.9%',
+    '--secondary-foreground': '0 0% 98%',
+    '--muted': '240 3.7% 15.9%',
+    '--muted-foreground': '240 5% 64.9%',
+    '--accent': '240 3.7% 15.9%',
+    '--accent-foreground': '0 0% 98%',
+    '--destructive': '0 62.8% 30.6%',
+    '--destructive-foreground': '0 0% 98%',
+    '--border': '240 3.7% 15.9%',
+    '--input': '240 3.7% 15.9%',
+    '--ring': '240 4.9% 83.9%',
+  },
+};`} language="typescript" />
+
+> **Note:** These are the default color tokens. You can customize them to match your brand colors.
+
+## Step 5: Re-copy All Components
+
+⚠️ **Critical Step:** Due to the color token changes and animation library updates, you **must re-copy all components** from the CLI.
+
+### Re-copy Components One by One
+
+For each component you're using, run:
+
+<CodeBlock code={`# Example: Re-copy Button component
+npx gluestack-ui add button
+
+# Re-copy all components you're using
+npx gluestack-ui add accordion
+npx gluestack-ui add alert
+npx gluestack-ui add avatar
+# ... etc`} language="bash" />
+
+When prompted to overwrite existing components, select **Yes** to replace them with the v4 versions.
+
+> **Important:** The CLI will automatically:
+> - Update component styles to use new color tokens
+> - Replace `@legendapp/motion` with `react-native-reanimated` where applicable
+> - Ensure components use the correct animation imports
+
+### Backup Custom Changes
+
+If you've customized any component styles:
+
+1. **Before re-copying**: Backup your customizations
+   <CodeBlock code="cp -r components/ui components/ui-backup" language="bash" />
+
+2. **After re-copying**: Manually re-apply your customizations to the new component files
+
+## Step 7: Clean Installation
+
+To ensure all dependencies are properly resolved, perform a clean installation:
+
+<Tabs>
+<TabItem label="npm">
+<CodeBlock code={`# Remove node_modules and package-lock.json
+rm -rf node_modules package-lock.json
+
+# Reinstall dependencies
+npm install`} language="bash" />
+</TabItem>
+<TabItem label="yarn">
+<CodeBlock code={`# Remove node_modules and yarn.lock
+rm -rf node_modules yarn.lock
+
+# Reinstall dependencies
+yarn install`} language="bash" />
+</TabItem>
+<TabItem label="pnpm">
+<CodeBlock code={`# Remove node_modules and pnpm-lock.yaml
+rm -rf node_modules pnpm-lock.yaml
+
+# Reinstall dependencies
+pnpm install`} language="bash" />
+</TabItem>
+<TabItem label="bun">
+<CodeBlock code={`# Remove node_modules and bun.lockb
+rm -rf node_modules bun.lockb
+
+# Reinstall dependencies
+bun install`} language="bash" />
+</TabItem>
+</Tabs>
+
+## Step 8: No Import Changes Required! 🎉
+
+Great news! **v3 and v4 use identical import patterns**, so you don't need to update any import statements:
+
+```typescript
+// These imports work in both v3 and v4!
+import { createButton } from '@gluestack-ui/core/button/creator';
+import { createRadio } from '@gluestack-ui/core/radio/creator';
+import { flush } from '@gluestack-ui/utils/nativewind-utils';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+```
+
+> **However:** While imports don't change, you still need to re-copy components (Step 5) due to internal style and animation changes.
+
+## Step 9: Verification and Testing
+
+### Verify Migration Success
+
+After completing the migration:
+
+#### 1. Check for compilation errors:
+
+<CodeBlock code="npm run build" language="bash" />
+
+#### 2. Run your development server:
+
+<Tabs>
+<TabItem label="Next.js">
+<CodeBlock code="npm run dev" language="bash" />
+</TabItem>
+<TabItem label="Expo">
+<CodeBlock code="npx expo start" language="bash" />
+</TabItem>
+<TabItem label="React Native CLI">
+<CodeBlock code={`# iOS
+npm run ios
+
+# Android
+npm run android`} language="bash" />
+</TabItem>
+</Tabs>
+
+#### 3. Test animated components:
+
+Test components that use the new animation system:
+- Accordion
+- Drawer
+- Modal
+- Menu
+- Popover
+- Toast
+
+#### 4. Test your application functionality:
+
+Ensure all your components render and behave correctly.
+
+## Common Issues and Solutions
+
+### Babel Plugin Not Working
+
+**Issue:** Animated components not working in Expo/React Native.
+
+**Solution:** Ensure `react-native-worklets/plugin` is added to `babel.config.js` and restart your development server:
+
+<CodeBlock code={`# Clear cache and restart
+npx expo start --clear
+
+# For React Native CLI
+npx react-native start --reset-cache`} language="bash" />
+
+### Metro Bundler Issues
+
+**Issue:** Metro bundler errors after upgrade.
+
+**Solution:** Clear Metro cache and restart:
+
+<CodeBlock code={`# Expo
+npx expo start --clear
+
+# React Native CLI
+npx react-native start --reset-cache`} language="bash" />
+
+### Build Errors
+
+**Issue:** Build fails with dependency resolution errors.
+
+**Solution:**
+1. Use `--legacy-peer-deps` flag:
+   <CodeBlock code="npm install --legacy-peer-deps" language="bash" />
+
+2. Or try clearing cache:
+   <CodeBlock code={`npm cache clean --force
+   rm -rf node_modules package-lock.json
+   npm install`} language="bash" />
+
+### Animation Performance Issues
+
+**Issue:** Animations are laggy or not smooth.
+
+**Solution:** Ensure Hermes is enabled (it's required for react-native-reanimated):
+
+For React Native CLI, check `android/app/build.gradle`:
+```gradle
+project.ext.react = [
+    enableHermes: true,
+]
+```
+
+For Expo, Hermes is enabled by default in SDK 50+.
+
+## Migration Checklist
+
+Use this checklist to track your migration progress:
+
+- **Preparation**
+  - [ ] Committed or stashed all changes
+  - [ ] Verified current version is v3
+  - [ ] Created project backup
+
+- **Package Management**
+  - [ ] Installed v4 packages
+  - [ ] Installed react-native-reanimated and worklets
+  - [ ] Updated Next.js adapter (if applicable)
+
+- **Configuration Updates**
+  - [ ] Updated babel.config.js (Expo/RN CLI)
+  - [ ] Verified Next.js configuration (Next.js)
+  - [ ] Updated tailwind.config.js with new color tokens
+  - [ ] Updated gluestack-ui-provider/config.ts with new color tokens
+
+- **Component Updates**
+  - [ ] Backed up custom component changes
+  - [ ] Re-copied all components using CLI
+  - [ ] Re-applied custom modifications (if any)
+  - [ ] Verified component styles look correct
+
+- **Clean Installation**
+  - [ ] Performed clean installation
+  - [ ] Cleared Metro/build cache
+
+- **Testing**
+  - [ ] Project builds successfully
+  - [ ] Development server runs
+  - [ ] Animated components work correctly
+  - [ ] Color theming works in light mode
+  - [ ] Color theming works in dark mode
+  - [ ] All functionality tested
+
+- **Finalization**
+  - [ ] Committed changes
+  - [ ] Updated documentation
+  - [ ] Deployed to staging for testing
+
+## Platform-Specific Notes
+
+### Next.js Projects
+
+- Ensure `@gluestack/ui-next-adapter@alpha` is installed
+- No babel configuration changes needed
+- SSR/RSC continues to work as before
+
+### Expo Projects
+
+- Works with Expo SDK 50+
+- Hermes is enabled by default
+- Make sure to add worklets plugin to babel.config.js
+- Clear cache with `npx expo start --clear`
+
+### React Native CLI Projects
+
+- Enable Hermes in build configuration
+- Add worklets plugin to babel.config.js
+- Clear cache with `npx react-native start --reset-cache`
+
+## Animation System Changes
+
+### Components Using react-native-reanimated (New in v4)
+
+These components now use `react-native-reanimated` for better performance:
+- Accordion
+- Drawer
+- Modal
+- Menu
+- Popover
+- Toast
+
+### Components Still Using @legendapp/motion
+
+These components continue to use `@legendapp/motion`:
+- Tooltip
+- ActionSheet
+- Select
+
+> **Note:** Both animation libraries are automatically installed and configured by the CLI.
+
+## Next Steps
+
+After successful migration:
+
+1. **Test thoroughly**: Test all components in your application
+2. **Monitor performance**: Check if animations perform better with the new engine
+3. **Update documentation**: Revise any project-specific documentation
+4. **Stay updated**: Follow gluestack-ui releases for future updates
+
+## Support
+
+If you encounter issues during migration:
+- Check the [gluestack-ui documentation](https://gluestack.io/ui/docs)
+- Review common issues in this guide
+- Join our [Discord community](https://discord.gg/gluestack) for help
+- Report bugs on [GitHub](https://github.com/gluestack/gluestack-ui/issues)
+
+Remember to test thoroughly in a development environment before deploying to production!
