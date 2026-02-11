@@ -18,7 +18,6 @@ import Copy from './Copy';
 import Figma from './Figma';
 import Unitools from './Unitools';
 
-
 function Card1() {
   const [copied, setCopied] = useState(false);
   const [showCopy, setShowCopy] = useState(false);
@@ -32,25 +31,37 @@ function Card1() {
     }, 2000);
   };
 
-  const partnerKits = [
-    {
-      name: 'RapidNative',
-      logo: '/icon/logo/rapidnative/logo.png',
-      url: 'https://rapidnative.com/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
-      description: 'Generate native apps instantly with AI prompts.',
-    },
-    {
-      name: 'AppLighter',
-      logo: '/icon/logo/applighter/logo.png',
-      url: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
-      description: 'AI-Ready Full-Stack Expo Starter Kit.',
-    },
-    {
-      name: 'FlyDash',
-      logo: '/icon/logo/flydash/logo.png',
-      url: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
-      description: 'AI-Powered Internal Tools & Dashboard Builder.',
-    },
+  const partnerAppsRows = [
+    [
+      {
+        name: 'RapidNative',
+        logo: '/icon/logo/rapidnative/logo.png',
+        url: 'https://rapidnative.com/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
+        description: 'Prompt to React Native app',
+      },
+      {
+        name: 'AppLighter',
+        logo: '/icon/logo/applighter/logo.png',
+        url: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
+        description: 'React Native Templates',
+      },
+    ],
+    [
+      {
+        name: 'ScopeDesk',
+        logo: '/icon/logo/scopedesk/logo.svg',
+        url: 'https://scopedesk.com/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
+        description: 'AI-Powered Project Scoping',
+      },
+    ],
+    [
+      {
+        name: 'FlyDash',
+        logo: '/icon/logo/flydash/logo.png',
+        url: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
+        description: 'Dashboard builder',
+      },
+    ],
   ];
 
   return (
@@ -99,7 +110,7 @@ function Card1() {
           <Box className="p-6">
             <VStack space="lg">
               <Text className="text-xl font-bold font-plus-jakarta">
-                Manual Installation
+                Manual Installation 223ddd
               </Text>
               <HStack className="flex-wrap gap-2.5">
                 <NextLink
@@ -165,14 +176,14 @@ function Card1() {
               <Text className="text-xl font-bold font-plus-jakarta">
                 Figma UI Kit
               </Text>
-              <HStack className="flex-wrap gap-2.5">
+              <HStack className="flex-wrap gap-2.5 ">
                 <Link
                   href="https://www.figma.com/@gluestack"
                   isExternal
                   style={{
                     height: 100,
                   }}
-                  className="rounded-lg bg-secondary-0 flex items-center justify-center"
+                  className="rounded-lg bg-secondary-0 flex items-center justify-center h-full"
                 >
                   <Figma />
                 </Link>
@@ -183,35 +194,47 @@ function Card1() {
         <Box className="rounded-xl border lg:flex-1 border-outline-50 bg-background-50 ">
           <Box className="p-6">
             <VStack space="lg">
-              <Text className="text-xl font-bold font-plus-jakarta">
-                Our Partners
-              </Text>
-              <HStack className="flex-wrap gap-3">
-                {partnerKits.map((kit) => (
-                  <Link
-                    key={kit.name}
-                    href={kit.url}
-                    isExternal
-                    className="rounded-lg bg-secondary-0 flex-1 min-w-[120px] flex flex-col items-center gap-2 px-3 py-4 hover:bg-background-100 transition-colors"
+              <VStack>
+                <Text className="text-xl font-bold font-plus-jakarta">
+                  Our Partners
+                </Text>
+                <Text className="text-sm text-typography-500">
+                  Trusted tools built by our partners
+                </Text>
+              </VStack>
+              <VStack className="gap-3">
+                {partnerAppsRows.map((row, rowIndex) => (
+                  <HStack
+                    key={rowIndex}
+                    className={`gap-3 ${row.length > 1 ? 'flex-row' : 'flex-col'}`}
                   >
-                    <Box className="h-6 w-6 relative">
-                      <img
-                        src={kit.logo}
-                        alt={`${kit.name} logo`}
-                        className="object-contain absolute inset-0 w-full h-full"
-                      />
-                    </Box>
-                    <VStack className="gap-0.5 items-center">
-                      <Text className="text-sm font-bold text-typography-900">
-                        {kit.name}
-                      </Text>
-                      <Text className="text-xs text-typography-500 text-center">
-                        {kit.description}
-                      </Text>
-                    </VStack>
-                  </Link>
+                    {row.map((app) => (
+                      <Link
+                        key={app.name}
+                        href={app.url}
+                        isExternal
+                        className="rounded-lg bg-secondary-0 flex-1 flex flex-row items-center gap-3 px-3 py-3 hover:bg-background-100 transition-colors"
+                      >
+                        <Box className="h-8 w-8 relative flex-shrink-0">
+                          <img
+                            src={app.logo}
+                            alt={`${app.name} logo`}
+                            className="object-contain absolute inset-0 w-full h-full"
+                          />
+                        </Box>
+                        <VStack className="gap-0">
+                          <Text className="text-sm font-bold text-typography-900">
+                            {app.name}
+                          </Text>
+                          <Text className="text-xs text-typography-500">
+                            {app.description}
+                          </Text>
+                        </VStack>
+                      </Link>
+                    ))}
+                  </HStack>
                 ))}
-              </HStack>
+              </VStack>
             </VStack>
           </Box>
         </Box>
