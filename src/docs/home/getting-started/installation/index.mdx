@@ -101,26 +101,60 @@ Setup nativewind in your project following [NativeWind documentation](https://ww
 
 Install the dependencies and devDependencies of gluestack-ui in your project. This can be done using the following command:
 
+<Tabs>
+<TabItem label="Next.js">
 ```bash
-yarn add @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-svg @gluestack/ui-next-adapter@alpha react-native-web react-native
+npm i @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1 @legendapp/motion@^2.4.0 tailwind-variants@^0.1.20 react-native-svg@^15.12.0 nativewind@^4.1.23 @gluestack/ui-next-adapter@alpha react-native-web@^0.20.0 react-native-safe-area-context@^5.6.1 react-aria@^3.41.1 react-stately@^3.39.0 dom-helpers@^5.2.1
 ```
 
 OR
 
 ```bash
-npm i @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-svg @gluestack/ui-next-adapter@alpha react-native-web react-native
+yarn add @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1 @legendapp/motion@^2.4.0 tailwind-variants@^0.1.20 react-native-svg@^15.12.0 nativewind@^4.1.23 @gluestack/ui-next-adapter@alpha react-native-web@^0.20.0 react-native-safe-area-context@^5.6.1 react-aria@^3.41.1 react-stately@^3.39.0 dom-helpers@^5.2.1
 ```
+</TabItem>
+<TabItem label="Expo / React Native">
+```bash
+npm i @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1 @legendapp/motion@^2.4.0 tailwind-variants@^0.1.20 react-native-svg@^15.12.0 nativewind@^4.1.23 react-native-safe-area-context@^5.6.1 react-aria@^3.41.1 @expo/html-elements@^0.12.5 react-stately@^3.39.0
+```
+
+OR
+
+```bash
+yarn add @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1 @legendapp/motion@^2.4.0 tailwind-variants@^0.1.20 react-native-svg@^15.12.0 nativewind@^4.1.23 react-native-safe-area-context@^5.6.1 react-aria@^3.41.1 @expo/html-elements@^0.12.5 react-stately@^3.39.0
+```
+</TabItem>
+</Tabs>
 
 It's recommended to use the `--legacy-peer-deps` flag due to peer dependency resolution issues.
 
 ```bash
-npm i @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-svg @gluestack/ui-next-adapter@alpha react-native-web react-native --legacy-peer-deps
+npm i <packages> --legacy-peer-deps
 ```
 
-> **For React Native CLI:** Make sure to install `react-dom` as well as it is required by some of the Gluestack UI components. `npm i react-dom`
+> **Animation Libraries:** In gluestack-ui v4, we use `react-native-reanimated` (~4.2.1) for most animated components (Accordion, Drawer, Modal, Menu, Popover, Toast) and `@legendapp/motion` (^2.4.0) for other components (Tooltip, ActionSheet, Select). The CLI automatically installs the required dependencies for your project.
 
-> **Animation Libraries:** In gluestack-ui v4, we primarily use `react-native-reanimated` (~4.1.0) for most animated components (Accordion, Drawer, Modal, Menu, Popover, Toast). Some components still use `@legendapp/motion` (Tooltip, ActionSheet, Select). The CLI automatically installs the required dependencies for your project.
+### Step 3: Configure Babel (Expo/React Native only)
 
+For Expo and React Native CLI projects, you need to add the `react-native-worklets/plugin` to your `babel.config.js`:
+
+```js
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: [
+      // your existing presets
+      'babel-preset-expo', // or '@react-native/babel-preset' for RN CLI
+    ],
+    plugins: [
+      // your existing plugins
+      'react-native-worklets/plugin', // Add this line
+    ],
+  };
+};
+```
+
+> **Note:** The `react-native-worklets/plugin` must be included for `react-native-reanimated` to work properly.
 
 ### Step 4: Copy required components
 
@@ -135,6 +169,8 @@ You need to update the following configuration files in the root of your project
 #### Step 5.1: Update Tailwind configuration
 
 Update the `tailwind.config.js` file with the following code and also the `content` property with paths to the files where components are used.
+
+> **Note:** gluestack-ui v4 uses a shadcn-inspired color token system with semantic naming (primary, secondary, accent, muted, etc.) for better theming consistency.
 
 ```js
 %%-- File: packages/gluestack-ui/templates/tailwind.config.js --%%

@@ -1,7 +1,7 @@
 {
   "name": "@gluestack-ui/core",
   "description": "Universal UI components for React Native, Expo, and Next.js",
-  "version": "4.1.0-alpha.0",
+  "version": "4.1.0-alpha.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gluestack/gluestack-ui.git"
