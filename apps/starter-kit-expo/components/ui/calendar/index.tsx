@@ -1,147 +1,344 @@
+'use client';
 import React from 'react';
-import DateTimePicker, {
-  DateType,
-  useDefaultClassNames,
-} from 'react-native-ui-datepicker';
-import { View } from 'react-native';
-import { CalendarProps } from './types';
+import {
+  View as RNView,
+  Pressable as RNPressable,
+  Text as RNText,
+} from 'react-native';
+import { createCalendar } from '@gluestack-ui/core/calendar/creator';
+import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { ChevronRight, ChevronLeft } from 'lucide-react-native';
+import {
+  calendarStyle,
+  calendarContentStyle,
+  calendarWeekStyle,
+  calendarDaysStyle,
+  calendarHeaderStyle,
+  calendarNavStyle,
+  calendarTitleStyle,
+  calendarWeekCellStyle,
+  calendarDateStyle,
+} from './style';
+import type { ICalendarProps } from './types';
 
-// Shadcn/ui inspired default classNames
-const getShadcnClassNames = () => ({
-  // Container
-  container: '',
+const SCOPE = 'CALENDAR';
 
-  // Header section
-  header: 'flex flex-row items-center justify-between px-1 ',
+const Root = withStyleContext(RNView, SCOPE);
 
-  // Month/Year text in header
-  month_text: 'text-sm font-medium text-foreground',
-  year_text: 'text-sm font-medium text-foreground',
-
-  // Navigation buttons
-  button_prev:
-    'h-7 w-7 flex items-center justify-center rounded-md hover:bg-accent active:bg-accent/80',
-  button_next:
-    'h-7 w-7 flex items-center justify-center rounded-md hover:bg-accent active:bg-accent/80',
-
-  // Dropdowns for month/year selection
-  dropdown: '',
-  dropdown_root: '',
-
-  // Weekday headers (Sun, Mon, etc.)
-  weekday:
-    'text-muted-foreground text-[0.8rem] font-normal w-9 h-9 flex items-center justify-center',
-
-  // Day cells container
-  weekdays: 'flex flex-row',
-
-  // Week container
-  week: 'flex flex-row mt-2',
-
-  // Individual day cell
-  day: 'h-8 w-8  font-normal aria-selected:opacity-100',
-
-  // Day text/label
-  day_label: 'text-sm text-foreground',
-
-  // Today
-  today: 'bg-accent text-accent-foreground rounded-md',
-  today_label: '',
-
-  // Selected (single mode)
-  selected:
-    'bg-primary rounded-md hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground',
-  selected_label: 'text-primary-foreground',
-
-  // Range selection
-  range_start:
-    'bg-primary rounded-l-md rounded-r-none hover:bg-primary hover:text-primary-foreground',
-  range_start_label: 'text-primary-foreground',
-  range_end:
-    'bg-primary text-primary-foreground rounded-r-md rounded-l-none hover:bg-primary hover:text-primary-foreground',
-  range_end_label: 'text-primary-foreground',
-  range_middle:
-    'bg-muted text-muted-foreground rounded-none hover:bg-muted hover:text-muted-foreground',
-  range_middle_label: '',
-
-  // Disabled
-  disabled: 'text-muted-foreground opacity-50',
-  disabled_label: '',
-
-  // Outside current month
-  outside:
-    'text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30',
-  outside_label: '',
-
-  // Hidden
-  hidden: 'invisible',
-
-  // Week numbers
-  week_number: 'text-[0.8rem] text-muted-foreground w-9',
-  week_number_header: 'text-[0.8rem] text-muted-foreground w-9',
+cssInterop(Root, {
+  className: {
+    target: 'style',
+  },
 });
 
-export function Calendar({
-  mode = 'single',
-  selected,
-  onSelect,
-  minDate,
-  maxDate,
-  className,
-  classNames: customClassNames,
-}: CalendarProps) {
-  const defaultClassNames = useDefaultClassNames();
-  const shadcnClassNames = getShadcnClassNames();
+// Create the calendar using gluestack-ui creator
+const UICalendar = createCalendar({
+  Root: Root,
+  HeaderPrev: RNPressable,
+  HeaderTitle: RNText,
+  HeaderNext: RNPressable,
+  Header: RNView,
+  Week: RNView,
+  Days: RNView,
+  Content: RNView,
+  Date: RNPressable,
+});
 
-  // Merge classNames: defaults < shadcn < custom
-  const mergedClassNames = {
-    ...defaultClassNames,
-    ...shadcnClassNames,
-    ...customClassNames,
-  };
+cssInterop(PrimitiveIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
+});
 
-  const getPickerProps = () => {
-    switch (mode) {
-      case 'single':
-        return {
-          mode: 'single' as const,
-          date: selected as DateType,
-          onChange: (params: { date: DateType }) => onSelect?.(params.date),
-        };
-      case 'range': {
-        const range = selected as { from: Date; to: Date } | undefined;
-        return {
-          mode: 'range' as const,
-          startDate: range?.from,
-          endDate: range?.to,
-          onChange: (params: { startDate: DateType; endDate: DateType }) => {
-            if (params.startDate && params.endDate) {
-              onSelect?.({ from: params.startDate, to: params.endDate });
-            }
-          },
-        };
-      }
-      case 'multiple':
-        return {
-          mode: 'multiple' as const,
-          dates: selected as Date[] | undefined,
-          onChange: (params: { dates: DateType[] }) => onSelect?.(params.dates),
-        };
-      default:
-        return { mode: 'single' as const };
-    }
-  };
+// Type definitions
+type ICalendarComponentProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar
+>;
+type ICalendarContentProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar.Content
+>;
+type ICalendarWeekProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar.Week
+>;
+type ICalendarDaysProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar.Days
+>;
+type ICalendarHeaderProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar.Header
+>;
+type ICalendarHeaderPrevProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar.HeaderPrev
+>;
+type ICalendarHeaderNextProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar.HeaderNext
+>;
+type ICalendarHeaderTitleProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar.HeaderTitle
+>;
+type ICalendarDateProps = React.ComponentPropsWithoutRef<
+  typeof UICalendar.Date
+>;
+
+// Compound Components
+const CalendarHeaderPrev = React.forwardRef<
+  React.ElementRef<typeof UICalendar.HeaderPrev>,
+  ICalendarHeaderPrevProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UICalendar.HeaderPrev
+      ref={ref}
+      {...props}
+      className={calendarNavStyle({ class: className })}
+    >
+      <UIIcon as={ChevronLeft} className="text-typography-800 w-3.5 h-3.5" />
+    </UICalendar.HeaderPrev>
+  );
+});
+
+const CalendarHeaderNext = React.forwardRef<
+  React.ElementRef<typeof UICalendar.HeaderNext>,
+  ICalendarHeaderNextProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UICalendar.HeaderNext
+      ref={ref}
+      {...props}
+      className={calendarNavStyle({ class: className })}
+    >
+      <UIIcon as={ChevronRight} className="text-typography-800 w-3.5 h-3.5" />
+    </UICalendar.HeaderNext>
+  );
+});
+
+const CalendarHeaderTitle = React.forwardRef<
+  React.ElementRef<typeof UICalendar.HeaderTitle>,
+  ICalendarHeaderTitleProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UICalendar.HeaderTitle
+      ref={ref}
+      {...props}
+      className={calendarTitleStyle({ class: className })}
+    />
+  );
+});
+
+const CalendarHeader = React.forwardRef<
+  React.ElementRef<typeof UICalendar.Header>,
+  ICalendarHeaderProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UICalendar.Header
+      ref={ref}
+      {...props}
+      className={calendarHeaderStyle({ class: className })}
+    />
+  );
+});
+
+const CalendarContent = React.forwardRef<
+  React.ElementRef<typeof UICalendar.Content>,
+  ICalendarContentProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UICalendar.Content
+      ref={ref}
+      {...props}
+      className={calendarContentStyle({ class: className })}
+    />
+  );
+});
+
+const CalendarWeek = React.forwardRef<
+  React.ElementRef<typeof UICalendar.Week>,
+  ICalendarWeekProps & { format?: 'min' | 'short' | 'full' }
+>(({ className, format = 'min', ...props }, ref) => {
+  return (
+    <UICalendar.Week
+      ref={ref}
+      {...props}
+      format={format}
+      className={calendarWeekStyle({ class: className })}
+      render={({ weekday }: any) => {
+        return (
+          <RNText className={calendarWeekCellStyle({ class: className })}>
+            {weekday}
+          </RNText>
+        );
+      }}
+    />
+  );
+});
+
+const CalendarDate = React.forwardRef<
+  React.ElementRef<typeof UICalendar.Date>,
+  ICalendarDateProps & {
+    render?: (props: {
+      day: Date | null;
+      isSelected: boolean;
+      isRangeStart: boolean;
+      isRangeEnd: boolean;
+      isRangeMiddle: boolean;
+      isToday: boolean;
+      isDisabled: boolean;
+    }) => React.ReactNode;
+  }
+>(({ className, day, render, ...props }, ref) => {
+  if (render) {
+    return <UICalendar.Date ref={ref} day={day} render={render} {...props} />;
+  }
 
   return (
-    <View className={className}>
-      <DateTimePicker
-        {...getPickerProps()}
-        minDate={minDate}
-        maxDate={maxDate}
-        classNames={mergedClassNames}
-      />
-    </View>
+    <UICalendar.Date
+      ref={ref}
+      day={day}
+      {...props}
+      className={calendarDateStyle({
+        class: className,
+        hasDay: day ? true : false,
+      })}
+    >
+      <RNText className="text-typography-800 group-data-[selected=true]:text-typography-0 group-data-[disabled=true]:text-typography-400">
+        {day?.getDate()}
+      </RNText>
+    </UICalendar.Date>
   );
+});
+
+const CalendarDays = React.forwardRef<
+  React.ElementRef<typeof UICalendar.Days>,
+  ICalendarDaysProps & {
+    render?: (props: {
+      day: Date | null;
+      isSelected: boolean;
+      isRangeStart: boolean;
+      isRangeEnd: boolean;
+      isRangeMiddle: boolean;
+      isToday: boolean;
+      isDisabled: boolean;
+    }) => React.ReactNode;
+  }
+>(({ className, render, ...props }, ref) => {
+  return (
+    <UICalendar.Days
+      ref={ref}
+      {...props}
+      className={calendarDaysStyle({
+        class: className,
+      })}
+      render={
+        render ??
+        (({ day, ...dayProps }: any) => {
+          return (
+            <CalendarDate {...dayProps} day={day}>
+              <RNText className="text-typography-800 group-data-[selected=true]:text-typography-0 group-data-[disabled=true]:text-typography-400">
+                {day?.getDate()}
+              </RNText>
+            </CalendarDate>
+          );
+        })
+      }
+    />
+  );
+});
+
+// Main Calendar Component
+interface CalendarComponent extends React.ForwardRefExoticComponent<
+  ICalendarComponentProps &
+    ICalendarProps &
+    React.RefAttributes<typeof UICalendar>
+> {
+  Header: typeof CalendarHeader;
+  HeaderPrev: typeof CalendarHeaderPrev;
+  HeaderNext: typeof CalendarHeaderNext;
+  HeaderTitle: typeof CalendarHeaderTitle;
+  Content: typeof CalendarContent;
+  Week: typeof CalendarWeek;
+  Days: typeof CalendarDays;
+  Date: typeof CalendarDate;
 }
 
-export type { CalendarProps };
+const Calendar = React.forwardRef<
+  React.ElementRef<typeof UICalendar>,
+  ICalendarComponentProps & ICalendarProps
+>(({ children, className, ...props }, ref) => {
+  return children ? (
+    <UICalendar
+      ref={ref}
+      {...props}
+      className={calendarStyle({ class: className })}
+    >
+      {children}
+    </UICalendar>
+  ) : (
+    <UICalendar
+      ref={ref}
+      {...props}
+      className={calendarStyle({ class: className })}
+    >
+      <CalendarHeader>
+        <CalendarHeaderPrev />
+        <CalendarHeaderTitle />
+        <CalendarHeaderNext />
+      </CalendarHeader>
+      <CalendarContent>
+        <CalendarWeek />
+        <CalendarDays />
+      </CalendarContent>
+    </UICalendar>
+  );
+}) as CalendarComponent;
+
+Calendar.displayName = 'Calendar';
+CalendarHeaderPrev.displayName = 'Calendar.HeaderPrev';
+CalendarHeaderNext.displayName = 'Calendar.HeaderNext';
+CalendarHeaderTitle.displayName = 'Calendar.HeaderTitle';
+CalendarHeader.displayName = 'Calendar.Header';
+CalendarContent.displayName = 'Calendar.Content';
+CalendarWeek.displayName = 'Calendar.Week';
+CalendarDays.displayName = 'Calendar.Days';
+CalendarDate.displayName = 'Calendar.Date';
+
+// Attach sub-components
+Calendar.Header = CalendarHeader;
+Calendar.HeaderPrev = CalendarHeaderPrev;
+Calendar.HeaderNext = CalendarHeaderNext;
+Calendar.HeaderTitle = CalendarHeaderTitle;
+Calendar.Content = CalendarContent;
+Calendar.Week = CalendarWeek;
+Calendar.Days = CalendarDays;
+Calendar.Date = CalendarDate;
+
+export {
+  Calendar,
+  CalendarHeaderPrev,
+  CalendarHeaderNext,
+  CalendarHeaderTitle,
+  CalendarHeader,
+  CalendarContent,
+  CalendarWeek,
+  CalendarDays,
+  CalendarDate,
+};
+
+export type {
+  ICalendarProps as CalendarProps,
+  ICalendarComponentProps,
+  ICalendarContentProps,
+  ICalendarWeekProps,
+  ICalendarDaysProps,
+  ICalendarHeaderProps,
+  ICalendarHeaderPrevProps,
+  ICalendarHeaderNextProps,
+  ICalendarHeaderTitleProps,
+  ICalendarDateProps,
+};

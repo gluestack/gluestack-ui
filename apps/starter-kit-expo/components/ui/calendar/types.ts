@@ -1,44 +1,52 @@
 export type CalendarMode = 'single' | 'multiple' | 'range';
 
-export interface CalendarClassNames {
-  container?: string;
-  header?: string;
-  month_text?: string;
-  year_text?: string;
-  button_prev?: string;
-  button_next?: string;
-  dropdown?: string;
-  dropdown_root?: string;
-  weekday?: string;
-  weekdays?: string;
-  week?: string;
-  day?: string;
-  day_label?: string;
-  today?: string;
-  today_label?: string;
-  selected?: string;
-  selected_label?: string;
-  range_start?: string;
-  range_end?: string;
-  range_middle?: string;
-  range_start_label?: string;
-  range_end_label?: string;
-  range_middle_label?: string;
-  disabled?: string;
-  disabled_label?: string;
-  outside?: string;
-  outside_label?: string;
-  hidden?: string;
-  week_number?: string;
-  week_number_header?: string;
-}
+import type React from 'react';
 
 export interface CalendarProps {
+  /**
+   * The mode of selection
+   */
   mode?: CalendarMode;
-  selected?: Date | Date[] | { from: Date; to: Date };
-  onSelect?: (value: any) => void;
+  /**
+   * The value of the date (for single mode).
+   */
+  value?: Date;
+  /**
+   * The values of the dates (for multiple mode).
+   */
+  values?: Date[];
+  /**
+   * The range value (for range mode).
+   */
+  rangeValue?: { start: Date; end: Date };
+  /**
+   * Event handler called when the selection of the date changes (single mode).
+   */
+  onChange?: (date: Date) => void;
+  /**
+   * Event handler called when multiple dates change.
+   */
+  onValuesChange?: (dates: Date[]) => void;
+  /**
+   * Event handler called when range changes.
+   */
+  onRangeChange?: (range: { start: Date; end: Date }) => void;
+  /**
+   * The minimum date that can be selected.
+   */
   minDate?: Date;
+  /**
+   * The maximum date that can be selected.
+   */
   maxDate?: Date;
+  /**
+   * Additional CSS class names
+   */
   className?: string;
-  classNames?: CalendarClassNames;
+  /**
+   * Children components for compound API
+   */
+  children?: React.ReactNode;
 }
+
+export type ICalendarProps = CalendarProps;
