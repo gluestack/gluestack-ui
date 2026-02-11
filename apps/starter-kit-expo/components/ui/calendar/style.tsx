@@ -2,7 +2,7 @@ import { tva } from '@gluestack-ui/utils';
 import { isWeb } from '@gluestack-ui/utils';
 
 export const calendarStyle = tva({
-  base: 'flex flex-col border border-border rounded-lg bg-background web:max-w-56',
+  base: 'flex flex-col border border-border rounded-lg bg-background max-w-56',
 });
 
 export const calendarNavStyle = tva({

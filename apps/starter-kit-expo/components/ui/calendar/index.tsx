@@ -5,6 +5,7 @@ import {
   Pressable as RNPressable,
   Text as RNText,
 } from 'react-native';
+import { Grid, GridItem } from '@/components/ui/grid';
 import { createCalendar } from '@gluestack-ui/core/calendar/creator';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
@@ -41,9 +42,9 @@ const UICalendar = createCalendar({
   HeaderNext: RNPressable,
   Header: RNView,
   Week: RNView,
-  Days: RNView,
+  Days: Grid,
   Content: RNView,
-  Date: RNPressable,
+  Date: GridItem,
 });
 
 cssInterop(PrimitiveIcon, {
@@ -194,7 +195,7 @@ const CalendarDate = React.forwardRef<
   }
 >(({ className, day, render, ...props }, ref) => {
   if (render) {
-    return <UICalendar.Date ref={ref} day={day} render={render} {...props} />;
+    return <UICalendar.Date ref={ref} day={day} render={render} {...props} _extra={{className: "col-span-1"}}/>;
   }
 
   return (
@@ -235,6 +236,7 @@ const CalendarDays = React.forwardRef<
       className={calendarDaysStyle({
         class: className,
       })}
+      _extra={{className: "grid-cols-7"}}
       render={
         render ??
         (({ day, ...dayProps }: any) => {
