@@ -44,8 +44,8 @@ const footerItems = [
         href: 'https://github.com/gluestack/gluestack-ui-starter-kits/',
       },
       {
-        title: 'theappmarket',
-        href: 'https://theappmarket.io/',
+        title: 'gluestack-ui pro',
+        href: 'https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=site-navigation',
       },
     ],
   },
@@ -82,6 +82,11 @@ const footerItems = [
       {
         title: 'AppLighter',
         href: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
+        isExternal: true,
+      },
+      {
+        title: 'SkopeDesk',
+        href: 'https://scopedesk.ai/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
         isExternal: true,
       },
     ],

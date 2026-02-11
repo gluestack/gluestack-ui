@@ -2,25 +2,37 @@ import Image from 'next/image';
 import GeekyantsLogo from '@/public/svg/geekyants-logo.svg';
 import HireTeamButton from './HireTeamButton';
 
-const partnerApps = [
-  {
-    name: 'RapidNative',
-    logo: '/icon/logo/rapidnative/logo.png',
-    description: 'Generate native apps instantly with AI prompts.',
-    url: 'https://rapidnative.com/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
-  },
-  {
-    name: 'AppLighter',
-    logo: '/icon/logo/applighter/logo.png',
-    description: 'AI-Ready Full-Stack Expo Starter Kit.',
-    url: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
-  },
-  {
-    name: 'FlyDash',
-    logo: '/icon/logo/flydash/logo.png',
-    description: 'AI-Powered Internal Tools & Dashboard Builder.',
-    url: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
-  },
+const partnerAppsRows = [
+  [
+    {
+      name: 'RapidNative',
+      logo: '/icon/logo/rapidnative/logo.png',
+      url: 'https://rapidnative.com/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
+      description: 'Prompt to React Native app',
+    },
+    {
+      name: 'AppLighter',
+      logo: '/icon/logo/applighter/logo.png',
+      url: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
+      description: 'React Native Templates',
+    },
+  ],
+  [
+    {
+      name: 'ScopeDesk',
+      logo: '/icon/logo/scopedesk/logo.svg',
+      url: 'https://scopedesk.com/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
+      description: 'AI-Powered Project Scoping',
+    },
+  ],
+  [
+    {
+      name: 'FlyDash',
+      logo: '/icon/logo/flydash/logo.png',
+      url: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
+      description: 'Dashboard builder',
+    },
+  ],
 ];
 
 const HireTeam = () => {
@@ -70,30 +82,37 @@ const HireTeam = () => {
           </p>
 
           {/* App List */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {partnerApps.map((app) => (
-              <a
-                key={app.name}
-                href={app.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col items-center text-center p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+          <div className="flex flex-col gap-3">
+            {partnerAppsRows.map((row, rowIndex) => (
+              <div
+                key={rowIndex}
+                className={`grid gap-3 ${row.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}
               >
-                <div className="h-12 w-12 relative mb-3">
-                  <Image
-                    src={app.logo}
-                    alt={`${app.name} logo`}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <span className="text-white text-base font-semibold mb-1">
-                  {app.name}
-                </span>
-                <span className="text-gray-400 text-sm">
-                  {app.description}
-                </span>
-              </a>
+                {row.map((app) => (
+                  <a
+                    key={app.name}
+                    href={app.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                  >
+                    <div className="h-10 w-10 relative flex-shrink-0">
+                      <Image
+                        src={app.logo}
+                        alt={`${app.name} logo`}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <span className="text-white text-base font-semibold">
+                      {app.name}
+                      <p className="text-gray-400 text-xs">
+                        {app.description}
+                      </p>
+                    </span>
+                  </a>
+                ))}
+              </div>
             ))}
           </div>
         </div>

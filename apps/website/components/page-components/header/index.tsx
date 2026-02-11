@@ -75,7 +75,7 @@ const Header = ({
         dark: RapidNativelogo,
       },
       title: 'RapidNative',
-      description: 'Generate native apps instantly with AI prompts.',
+      description: 'Generate native apps instantly with AI prompts',
       badge: {
         text: 'Partner',
         action: 'info',
@@ -88,7 +88,7 @@ const Header = ({
         dark: AppLighterLogo,
       },
       title: 'AppLighter',
-      description: 'AI-Ready Full-Stack Expo Starter Kit.',
+      description: 'Premium React Native & Expo Templates',
       badge: {
         text: 'Partner',
         action: 'info',
@@ -101,9 +101,22 @@ const Header = ({
         dark: StarterKitLogoDark,
       },
       title: 'gluestack-ui pro',
-      description: 'The only React Native templateyou’ll ever need.',
+      description: 'The only React Native templateyou’ll ever need',
       badge: {
         text: 'PAID',
+        action: 'info',
+      },
+    },
+    {
+      href: 'https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation',
+      logo: {
+        light: StarterKitLogo,
+        dark: StarterKitLogoDark,
+      },
+      title: 'ScopeDesk',
+      description: 'AI-Powered Project Scoping',
+      badge: {
+        text: 'Partner',
         action: 'info',
       },
     },
@@ -114,7 +127,7 @@ const Header = ({
         dark: FlyDashLogo,
       },
       title: 'FlyDash',
-      description: 'AI-Powered Internal Tools & Dashboard Builder.',
+      description: 'AI-Powered Internal Tools & Dashboard Builder',
       badge: {
         text: 'Partner',
         action: 'info',
@@ -195,9 +208,12 @@ const Header = ({
                   );
                 }}
               >
-                <MenuItem className='min-w-fit px-5 py-2' onPress={() => {
-                  window.open('https://v4.gluestack.io', '_blank');
-                }}>
+                <MenuItem
+                  className="min-w-fit px-5 py-2"
+                  onPress={() => {
+                    window.open('https://v4.gluestack.io', '_blank');
+                  }}
+                >
                   v4 alpha
                 </MenuItem>
                 <MenuItem className="min-w-fit px-5 py-2">v3</MenuItem>
@@ -225,11 +241,11 @@ const Header = ({
                     <Pressable focusable={false} tabIndex={-1}>
                       <NextLink
                         className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary-50/10 active:bg-primary-50/20 outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                        href="/ui/docs/mcp-server/mcp-server"
+                        href="https://www.applighter.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation"
                       >
                         <Box className="rounded-full items-center justify-center">
                           <Text className="leading-normal font-normal text-sm text-typography-700">
-                            MCP Server
+                            Templates
                           </Text>
                         </Box>
                       </NextLink>
