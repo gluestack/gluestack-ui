@@ -195,10 +195,10 @@ const CalendarDate = React.forwardRef<
   }
 >(({ className, day, render, ...props }, ref) => {
   if (render) {
-    return 
-    (<GridItem _extra={{className: "col-span-1"}}>
-      <UICalendar.Date ref={ref} day={day} render={render} {...props}/>
-    </GridItem>);
+    return;
+    <GridItem _extra={{ className: 'col-span-1' }}>
+      <UICalendar.Date ref={ref} day={day} render={render} {...props} />
+    </GridItem>;
   }
 
   return (
@@ -211,7 +211,7 @@ const CalendarDate = React.forwardRef<
         hasDay: day ? true : false,
       })}
     >
-      <RNText className="text-foreground group-data-[selected=true]:text-typography-0 group-data-[disabled=true]:text-typography-400">
+      <RNText className="text-foreground group-data-[selected=true]:text-primary-foreground group-data-[range-start=true]:text-primary-foreground group-data-[range-end=true]:text-primary-foreground group-data-[disabled=true]:text-muted-foreground">
         {day?.getDate()}
       </RNText>
     </UICalendar.Date>
@@ -239,13 +239,13 @@ const CalendarDays = React.forwardRef<
       className={calendarDaysStyle({
         class: className,
       })}
-      _extra={{className: "grid-cols-7"}}
+      _extra={{ className: 'grid-cols-7' }}
       render={
         render ??
         (({ day, ...dayProps }: any) => {
           return (
             <CalendarDate {...dayProps} day={day}>
-              <RNText className="text-foreground group-data-[selected=true]:text-typography-0 group-data-[disabled=true]:text-typography-400">
+              <RNText className="text-foreground group-data-[selected=true]:text-primary-foreground group-data-[range-start=true]:text-primary-foreground group-data-[range-end=true]:text-primary-foreground group-data-[disabled=true]:text-muted-foreground">
                 {day?.getDate()}
               </RNText>
             </CalendarDate>

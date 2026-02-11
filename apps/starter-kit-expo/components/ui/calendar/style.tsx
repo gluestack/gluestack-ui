@@ -31,7 +31,18 @@ export const calendarDateStyle = tva({
   }`,
   variants: {
     hasDay: {
-      true: 'cursor-pointer data-[today=true]:bg-accent data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:bg-muted data-[disabled=true]:opacity-50 data-[disabled=true]:cursor-not-allowed data-[outside=true]:opacity-50 rounded-md',
+      true: `
+        cursor-pointer rounded-md
+        data-[today=true]:bg-accent data-[today=true]:text-foreground
+        data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground
+        data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-start=true]:rounded-l-md data-[range-start=true]:rounded-r-none
+        data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-end=true]:rounded-r-md data-[range-end=true]:rounded-l-none
+        data-[range-middle=true]:bg-muted data-[range-middle=true]:text-foreground data-[range-middle=true]:rounded-none
+        data-[active=true]:bg-accent data-[active=true]:text-accent-foreground
+        data-[disabled=true]:opacity-50 data-[disabled=true]:cursor-not-allowed
+        data-[outside=true]:opacity-50
+        hover:bg-accent hover:text-accent-foreground
+      `,
       false: 'cursor-default',
     },
   },
