@@ -85,7 +85,7 @@ const footerItems = [
         isExternal: true,
       },
       {
-        title: 'SkopeDesk',
+        title: 'ScopeDesk',
         href: 'https://scopedesk.ai/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
         isExternal: true,
       },

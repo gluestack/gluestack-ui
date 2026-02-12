@@ -22,6 +22,7 @@ import AppLaunchKitLogoDark from '@/public/icon/logo/app-launch-kit/light-mode.s
 import StarterKitLogo from '@/public/icon/logo/gluestack/logo-dark.svg';
 import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
 import AppMarketLogo from '@/public/icon/logo/theappmarket/appmarket-logo.svg';
+import ScopeDeskLogo from '@/public/icon/logo/scopedesk/logo.svg';
 import GluestackMarketLogo from '@/public/icon/logo/gluestack-market/logo.png';
 import RapidNativelogo from '@/public/icon/logo/rapidnative/logo.png';
 import AppLighterLogo from '@/public/icon/logo/applighter/logo.png';
@@ -108,10 +109,10 @@ const Header = ({
       },
     },
     {
-      href: 'https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation',
+      href: 'https://scopedesk.ai/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation',
       logo: {
-        light: StarterKitLogo,
-        dark: StarterKitLogoDark,
+        light: ScopeDeskLogo,
+        dark: ScopeDeskLogo,
       },
       title: 'ScopeDesk',
       description: 'AI-Powered Project Scoping',
@@ -304,23 +305,25 @@ const Header = ({
                                   href={option.href}
                                 >
                                   <HStack className="gap-3 justify-between w-full flex items-start mt-1">
-                                    <Image
-                                      alt="product logo"
-                                      className="w-6 h-6 mt-1"
-                                      src={
-                                        colorMode === 'dark'
-                                          ? option.logo.dark
-                                          : option.logo.light
-                                      }
-                                    />
-                                    <VStack>
-                                      <Text className="leading-normal font-medium text-sm text-typography-700 mb-1">
-                                        {option.title}
-                                      </Text>
-                                      <Text className="text-xs font-normal text-typography-500 leading-normal">
-                                        {option.description}
-                                      </Text>
-                                    </VStack>
+                                    <HStack className="gap-2">
+                                      <Image
+                                        alt="product logo"
+                                        className="w-6 h-6 mt-1"
+                                        src={
+                                          colorMode === 'dark'
+                                            ? option.logo.dark
+                                            : option.logo.light
+                                        }
+                                      />
+                                      <VStack>
+                                        <Text className="leading-normal font-medium text-sm text-typography-700 mb-1">
+                                          {option.title}
+                                        </Text>
+                                        <Text className="text-xs font-normal text-typography-500 leading-normal">
+                                          {option.description}
+                                        </Text>
+                                      </VStack>
+                                    </HStack>
                                     <Badge
                                       className="h-fit w-fit"
                                       variant="solid"
