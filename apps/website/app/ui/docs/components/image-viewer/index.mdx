@@ -119,28 +119,22 @@ import {
   GestureDetector,
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
-import { cssInterop } from 'nativewind';
-import { Image as GluestackImage } from '../image';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-// Create animated components - no cssInterop needed for animated components
 const AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedImage = Animated.createAnimatedComponent(RNImage);
 
-// Create animated image without cssInterop - use style prop directly
-const ReanimatedImage = Animated.createAnimatedComponent(RNImage);
-
-/** Styles */
 const imageViewerStyle = tva({
   base: 'w-full h-full',
 });
 
 const imageViewerModalStyle = tva({
-  base: 'flex-1 bg-black',
+  base: 'flex-1 bg-black/95',
 });
 
 const imageViewerContentStyle = tva({
-  base: 'flex-1 justify-center items-center',
+  base: 'flex-1 justify-center items-center overflow-hidden',
 });
 
 const imageViewerCloseButtonStyle = tva({
@@ -183,16 +177,14 @@ interface ImageViewerTriggerProps {
   onPress?: () => void;
 }
 
-// Zoomable Image Component
+// Single Zoomable Image Component
 const ZoomableImage = React.memo(function ZoomableImage({
-  uri,
-  alt,
+  image,
   onSwipeLeft,
   onSwipeRight,
   onDismiss,
 }: {
-  uri: string;
-  alt?: string;
+  image: ImageItem;
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
   onDismiss: () => void;
@@ -257,31 +249,26 @@ const ZoomableImage = React.memo(function ZoomableImage({
         }
 
         // Horizontal swipe for navigation
-        const swipeThreshold = SCREEN_WIDTH * 0.15; // 15% of screen width
+        const swipeThreshold = SCREEN_WIDTH * 0.15;
         if (event.translationX > swipeThreshold) {
-          // Swipe right - go to previous image
           runOnJS(onSwipeRight)();
         } else if (event.translationX < -swipeThreshold) {
-          // Swipe left - go to next image
           runOnJS(onSwipeLeft)();
         }
       }
     });
 
-  // Store last tap position for double-tap zoom
   const lastTapX = useSharedValue(0);
   const lastTapY = useSharedValue(0);
 
   const doubleTapGesture = Gesture.Tap()
     .numberOfTaps(2)
     .onBegin((event) => {
-      // Capture tap location when double tap starts
       lastTapX.value = event.x;
       lastTapY.value = event.y;
     })
     .onEnd(() => {
       if (scale.value > 1) {
-        // Zoom out to center
         scale.value = withSpring(1);
         savedScale.value = 1;
         translateX.value = withSpring(0);
@@ -289,24 +276,14 @@ const ZoomableImage = React.memo(function ZoomableImage({
         savedTranslateX.value = 0;
         savedTranslateY.value = 0;
       } else {
-        // Zoom in to tap point
         const zoomScale = 2.5;
         scale.value = withSpring(zoomScale);
         savedScale.value = zoomScale;
 
-        // Calculate translation to center the tap point
-        // The tap point is relative to the view (0,0 is top-left)
-        // Center of view is at (SCREEN_WIDTH/2, SCREEN_HEIGHT*0.4)
         const centerX = SCREEN_WIDTH / 2;
         const centerY = SCREEN_HEIGHT * 0.4;
-
-        // Calculate how much to translate to center the tap point
-        // If tap is at (100, 100) and we want to zoom to 2.5x
-        // We need to shift the image so that (100, 100) moves to center
         const deltaX = centerX - lastTapX.value;
         const deltaY = centerY - lastTapY.value;
-
-        // Apply translation (multiply by scale factor since we're zooming)
         const targetX = (deltaX * zoomScale) / zoomScale;
         const targetY = (deltaY * zoomScale) / zoomScale;
 
@@ -333,9 +310,9 @@ const ZoomableImage = React.memo(function ZoomableImage({
 
   return (
     <GestureDetector gesture={composedGesture}>
-      <ReanimatedImage
-        source={{ uri }}
-        alt={alt}
+      <AnimatedImage
+        source={{ uri: image.url }}
+        alt={image.alt}
         resizeMode="contain"
         style={[
           { width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 },
@@ -343,6 +320,76 @@ const ZoomableImage = React.memo(function ZoomableImage({
         ]}
       />
     </GestureDetector>
+  );
+});
+
+// Slidable Image Gallery Component
+const SlidableImageGallery = React.memo(function SlidableImageGallery({
+  images,
+  currentIndex,
+  onIndexChange,
+  onDismiss,
+}: {
+  images: ImageItem[];
+  currentIndex: number;
+  onIndexChange: (index: number) => void;
+  onDismiss: () => void;
+}) {
+  const galleryTranslateX = useSharedValue(-currentIndex * SCREEN_WIDTH);
+
+  useEffect(() => {
+    galleryTranslateX.value = withTiming(-currentIndex * SCREEN_WIDTH, {
+      duration: 300,
+      easing: Easing.out(Easing.cubic),
+    });
+  }, [currentIndex]);
+
+  const goNext = useCallback(() => {
+    if (currentIndex < images.length - 1) {
+      onIndexChange(currentIndex + 1);
+    }
+  }, [currentIndex, images.length, onIndexChange]);
+
+  const goPrevious = useCallback(() => {
+    if (currentIndex > 0) {
+      onIndexChange(currentIndex - 1);
+    }
+  }, [currentIndex, onIndexChange]);
+
+  const galleryStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: galleryTranslateX.value }],
+  }));
+
+  return (
+    <Animated.View
+      style={[
+        {
+          flexDirection: 'row',
+          width: SCREEN_WIDTH * images.length,
+          height: SCREEN_HEIGHT * 0.8,
+        },
+        galleryStyle,
+      ]}
+    >
+      {images.map((image, index) => (
+        <View
+          key={index}
+          style={{
+            width: SCREEN_WIDTH,
+            height: SCREEN_HEIGHT * 0.8,
+          }}
+        >
+          {Math.abs(index - currentIndex) <= 1 && (
+            <ZoomableImage
+              image={image}
+              onSwipeLeft={goNext}
+              onSwipeRight={goPrevious}
+              onDismiss={onDismiss}
+            />
+          )}
+        </View>
+      ))}
+    </Animated.View>
   );
 });
 
@@ -389,8 +436,7 @@ const ImageViewer = React.forwardRef<View, ImageViewerProps>(
     const isControlled = controlledIsOpen !== undefined;
     const isOpen = isControlled ? controlledIsOpen : uncontrolledIsOpen;
 
-    // Notify parent when index changes
-    React.useEffect(() => {
+    useEffect(() => {
       onIndexChange?.(currentIndex);
     }, [currentIndex, onIndexChange]);
 
@@ -484,11 +530,16 @@ const ImageViewerContent = React.forwardRef<
           className={imageViewerModalStyle({})}
         >
           <View ref={ref} className={imageViewerContentStyle({})}>
-            <ZoomableImage
-              uri={currentImage.url}
-              alt={currentImage.alt}
-              onSwipeLeft={goNext}
-              onSwipeRight={goPrevious}
+            <SlidableImageGallery
+              images={images}
+              currentIndex={currentIndex}
+              onIndexChange={(newIndex) => {
+                if (newIndex > currentIndex) {
+                  goNext();
+                } else if (newIndex < currentIndex) {
+                  goPrevious();
+                }
+              }}
               onDismiss={close}
             />
             {children}
