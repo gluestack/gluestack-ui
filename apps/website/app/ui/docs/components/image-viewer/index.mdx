@@ -100,6 +100,7 @@ import {
   Dimensions,
   Modal,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import Animated, {
   useSharedValue,
@@ -328,7 +329,7 @@ const ZoomableImage = React.memo(function ZoomableImage({
   );
 });
 
-// Slidable Image Gallery with Pan Gesture
+// FlatList-based Image Gallery Component
 const SlidableImageGallery = React.memo(function SlidableImageGallery({
   images,
   currentIndex,
@@ -340,51 +341,33 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
   onIndexChange: (index: number) => void;
   onDismiss: () => void;
 }) {
-  // Container holds 3 images: [prev, current, next]
-  // Initial position: translate left by SCREEN_WIDTH to show middle (current) image
-  const containerTranslateX = useSharedValue(-SCREEN_WIDTH);
-  const containerOpacity = useSharedValue(1);
-  const [displayIndex, setDisplayIndex] = useState(currentIndex);
-  const previousIndexRef = useRef(currentIndex);
+  const flatListRef = useRef<FlatList>(null);
+  const [localIndex, setLocalIndex] = useState(currentIndex);
 
-  // When currentIndex changes from outside (button press), animate the slide
+  // Scroll to index when currentIndex changes from outside (button press)
   useEffect(() => {
-    if (currentIndex !== previousIndexRef.current) {
-      const isGoingNext = currentIndex > previousIndexRef.current;
-
-      // Animate slide
-      // If going next: slide left (more negative), if going prev: slide right (less negative)
-      const targetTranslate = isGoingNext ? -SCREEN_WIDTH * 2 : 0;
-
-      containerTranslateX.value = withTiming(
-        targetTranslate,
-        {
-          duration: 300,
-          easing: Easing.out(Easing.cubic),
-        },
-        (finished) => {
-          if (finished) {
-            // 1. Fade out instantly (no flicker visible)
-            containerOpacity.value = 0;
-
-            // 2. Update state while invisible
-            runOnJS(setDisplayIndex)(currentIndex);
-
-            // 3. Reset position immediately
-            containerTranslateX.value = -SCREEN_WIDTH;
-
-            // 4. Fade back in with 1-frame delay (16ms) + 50ms fade
-            containerOpacity.value = withDelay(
-              16,
-              withTiming(1, { duration: 50 })
-            );
-          }
-        }
-      );
-
-      previousIndexRef.current = currentIndex;
+    if (currentIndex !== localIndex && flatListRef.current) {
+      flatListRef.current.scrollToIndex({
+        index: currentIndex,
+        animated: true,
+      });
+      setLocalIndex(currentIndex);
     }
-  }, [currentIndex]);
+  }, [currentIndex, localIndex]);
+
+  // Handle scroll end - update parent with new index
+  const handleMomentumScrollEnd = useCallback(
+    (event: any) => {
+      const contentOffsetX = event.nativeEvent.contentOffset.x;
+      const newIndex = Math.round(contentOffsetX / SCREEN_WIDTH);
+
+      if (newIndex !== localIndex && newIndex >= 0 && newIndex < images.length) {
+        setLocalIndex(newIndex);
+        onIndexChange(newIndex);
+      }
+    },
+    [localIndex, images.length, onIndexChange]
+  );
 
   const goNext = useCallback(() => {
     if (currentIndex < images.length - 1) {
@@ -398,61 +381,56 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
     }
   }, [currentIndex, onIndexChange]);
 
-  const prevImage = displayIndex > 0 ? images[displayIndex - 1] : null;
-  const currentImage = images[displayIndex];
-  const nextImage = displayIndex < images.length - 1 ? images[displayIndex + 1] : null;
+  // Render each image item
+  const renderItem = useCallback(
+    ({ item, index }: { item: ImageItem; index: number }) => (
+      <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
+        <ZoomableImage
+          image={item}
+          onSwipeLeft={goNext}
+          onSwipeRight={goPrevious}
+          onDismiss={onDismiss}
+        />
+      </View>
+    ),
+    [goNext, goPrevious, onDismiss]
+  );
 
-  const containerStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: containerTranslateX.value }],
-    opacity: containerOpacity.value,
-  }));
+  // Get item layout for better performance
+  const getItemLayout = useCallback(
+    (_: any, index: number) => ({
+      length: SCREEN_WIDTH,
+      offset: SCREEN_WIDTH * index,
+      index,
+    }),
+    []
+  );
+
+  const keyExtractor = useCallback(
+    (item: ImageItem, index: number) => `image-${index}-${item.url}`,
+    []
+  );
 
   return (
-    <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8, overflow: 'hidden' }}>
-      <Animated.View
-        style={[
-          {
-            flexDirection: 'row',
-            width: SCREEN_WIDTH * 3,
-            height: SCREEN_HEIGHT * 0.8,
-          },
-          containerStyle,
-        ]}
-      >
-        {/* Previous Image */}
-        <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
-          {prevImage && (
-            <ZoomableImage
-              image={prevImage}
-              onSwipeLeft={goNext}
-              onSwipeRight={goPrevious}
-              onDismiss={onDismiss}
-            />
-          )}
-        </View>
-
-        {/* Current Image */}
-        <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
-          <ZoomableImage
-            image={currentImage}
-            onSwipeLeft={goNext}
-            onSwipeRight={goPrevious}
-            onDismiss={onDismiss}
-          />
-        </View>
-
-        {/* Next Image */}
-        <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
-          {nextImage && (
-            <ZoomableImage
-              image={nextImage}
-              onSwipeLeft={goNext}
-              onSwipeRight={goPrevious}
-              onDismiss={onDismiss}
-            />
-          )}
-        </View>
-      </Animated.View>
+    <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
+      <FlatList
+        ref={flatListRef}
+        data={images}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        horizontal
+        pagingEnabled={false}
+        showsHorizontalScrollIndicator={false}
+        onMomentumScrollEnd={handleMomentumScrollEnd}
+        getItemLayout={getItemLayout}
+        initialScrollIndex={currentIndex}
+        bounces={true}
+        scrollEventThrottle={16}
+        decelerationRate="normal"
+        snapToInterval={SCREEN_WIDTH}
+        snapToAlignment="center"
+        disableIntervalMomentum={true}
+      />
     </View>
   );
 });

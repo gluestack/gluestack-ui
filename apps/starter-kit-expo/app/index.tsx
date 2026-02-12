@@ -12,6 +12,7 @@ import {
   ImageViewerNavigation,
   ImageViewerCounter,
 } from '@/components/ui/image-viewer';
+import { Input, InputField } from '@/components/ui/input';
 
 export default function App() {
   // Track the current image index
@@ -86,6 +87,9 @@ export default function App() {
             </ImageViewer>
           </VStack>
         </View>
+        <Input>
+          <InputField placeholder="Enter your email" multiline={true} />
+        </Input>
       </ScrollView>
     </GestureHandlerRootView>
   );
