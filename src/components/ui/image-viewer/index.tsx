@@ -44,7 +44,7 @@ const imageViewerStyle = tva({
 });
 
 const imageViewerModalStyle = tva({
-  base: 'flex-1 bg-black/95',
+  base: 'flex-1 bg-black',
 });
 
 const imageViewerContentStyle = tva({
@@ -163,18 +163,32 @@ const ZoomableImage = React.memo(function ZoomableImage({
           dismissProgress.value = withTiming(0, { duration: 200 });
         }
 
-        if (event.translationX > SCREEN_WIDTH * 0.25) {
+        // Horizontal swipe for navigation
+        const swipeThreshold = SCREEN_WIDTH * 0.15; // 15% of screen width
+        if (event.translationX > swipeThreshold) {
+          // Swipe right - go to previous image
           runOnJS(onSwipeRight)();
-        } else if (event.translationX < -SCREEN_WIDTH * 0.25) {
+        } else if (event.translationX < -swipeThreshold) {
+          // Swipe left - go to next image
           runOnJS(onSwipeLeft)();
         }
       }
     });
 
+  // Store last tap position for double-tap zoom
+  const lastTapX = useSharedValue(0);
+  const lastTapY = useSharedValue(0);
+
   const doubleTapGesture = Gesture.Tap()
     .numberOfTaps(2)
+    .onBegin((event) => {
+      // Capture tap location when double tap starts
+      lastTapX.value = event.x;
+      lastTapY.value = event.y;
+    })
     .onEnd(() => {
       if (scale.value > 1) {
+        // Zoom out to center
         scale.value = withSpring(1);
         savedScale.value = 1;
         translateX.value = withSpring(0);
@@ -182,8 +196,31 @@ const ZoomableImage = React.memo(function ZoomableImage({
         savedTranslateX.value = 0;
         savedTranslateY.value = 0;
       } else {
-        scale.value = withSpring(2.5);
-        savedScale.value = 2.5;
+        // Zoom in to tap point
+        const zoomScale = 2.5;
+        scale.value = withSpring(zoomScale);
+        savedScale.value = zoomScale;
+
+        // Calculate translation to center the tap point
+        // The tap point is relative to the view (0,0 is top-left)
+        // Center of view is at (SCREEN_WIDTH/2, SCREEN_HEIGHT*0.4)
+        const centerX = SCREEN_WIDTH / 2;
+        const centerY = SCREEN_HEIGHT * 0.4;
+
+        // Calculate how much to translate to center the tap point
+        // If tap is at (100, 100) and we want to zoom to 2.5x
+        // We need to shift the image so that (100, 100) moves to center
+        const deltaX = centerX - lastTapX.value;
+        const deltaY = centerY - lastTapY.value;
+
+        // Apply translation (multiply by scale factor since we're zooming)
+        const targetX = (deltaX * (zoomScale )) / zoomScale;
+        const targetY = (deltaY * (zoomScale )) / zoomScale;
+
+        translateX.value = withSpring(targetX);
+        translateY.value = withSpring(targetY);
+        savedTranslateX.value = targetX;
+        savedTranslateY.value = targetY;
       }
     });
 

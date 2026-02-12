@@ -21,7 +21,7 @@ export default function App() {
       alt: 'Mountain landscape',
     },
     {
-      url: 'https://images.unsplash.com/photo-1682687221038-404670e01d4c?w=800&auto=format&fit=crop&q=60',
+      url: 'https://images.stockcake.com/public/8/8/9/889c1161-ac90-403a-b63f-23d708e67520_large/sunset-mountain-landscape-stockcake.jpg',
       alt: 'Ocean waves',
     },
     {
