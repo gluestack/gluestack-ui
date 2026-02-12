@@ -1,209 +1,269 @@
-import React, { useCallback, useMemo } from 'react';
-import { Calendar as RNCalendar } from 'react-native-calendars';
-import { View,Text } from 'react-native';
-import type { CalendarProps, MarkedDates } from './types';
+'use client';
 
-// Helper: Convert Date to YYYY-MM-DD string
-const toDateString = (date: Date): string => {
-  return date.toISOString().split('T')[0];
-};
+import React from 'react';
+import { View, Text, Pressable } from 'react-native';
+import { createCalendar, type ICalendarProps } from '@gluestack-ui/core/calendar/creator';
+import { cssInterop } from 'nativewind';
+import {
+  calendarStyle,
+  calendarHeaderStyle,
+  calendarHeaderButtonStyle,
+  calendarHeaderTitleStyle,
+  calendarHeaderSelectStyle,
+  calendarWeekDaysHeaderStyle,
+  calendarWeekDayStyle,
+  calendarWeekDayTextStyle,
+  calendarBodyStyle,
+  calendarGridStyle,
+  calendarWeekStyle,
+  calendarDayStyle,
+  calendarDayTextStyle,
+  calendarDayIndicatorStyle,
+  calendarWeekNumberStyle,
+  calendarWeekNumberTextStyle,
+  calendarFooterStyle,
+} from './styles';
 
-// Helper: Convert YYYY-MM-DD string to Date
-const toDate = (dateString: string): Date => {
-  return new Date(dateString);
-};
+// Apply cssInterop for NativeWind support
+cssInterop(View, { className: 'style' });
+cssInterop(Text, { className: 'style' });
+cssInterop(Pressable, { className: 'style' });
 
-// Build markedDates for single mode
-const buildSingleMarkedDates = (
-  selected: Date | undefined,
-  theme: any
-): MarkedDates => {
-  if (!selected) return {};
-  return {
-    [toDateString(selected)]: {
-      selected: true,
-      selectedColor: theme?.selectedDayBackgroundColor || '#171717',
-    },
-  };
-};
+// Styled Root Component
+const CalendarRoot = React.forwardRef<
+  React.ElementRef<typeof View>,
+  ICalendarProps & React.ComponentProps<typeof View> & { className?: string }
+>(({ className, ...props }, ref) => {
+  return <View ref={ref} className={calendarStyle({ class: className })} {...props} />;
+});
 
-// Build markedDates for multiple mode
-const buildMultipleMarkedDates = (
-  selected: Date[] | undefined,
-  theme: any
-): MarkedDates => {
-  if (!selected || selected.length === 0) return {};
-  const marked: MarkedDates = {};
-  selected.forEach((date) => {
-    marked[toDateString(date)] = {
-      selected: true,
-      selectedColor: theme?.selectedDayBackgroundColor || '#171717',
-    };
-  });
-  return marked;
-};
+// Styled Header
+const CalendarHeaderRoot = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View> & { className?: string }
+>(({ className, ...props }, ref) => {
+  return <View ref={ref} className={calendarHeaderStyle({ class: className })} {...props} />;
+});
 
-// Build markedDates for range mode
-const buildRangeMarkedDates = (
-  selected: { from: Date; to: Date } | undefined,
-  theme: any
-): MarkedDates => {
-  if (!selected) return {};
-  const marked: MarkedDates = {};
-  const start = new Date(selected.from);
-  const end = new Date(selected.to);
-  let current = new Date(start);
-
-  while (current <= end) {
-    const dateStr = toDateString(current);
-    const isStart = dateStr === toDateString(start);
-    const isEnd = dateStr === toDateString(end);
-
-    marked[dateStr] = {
-      selected: true,
-      startingDay: isStart,
-      endingDay: isEnd,
-      color: theme?.selectedDayBackgroundColor || '#171717',
-    };
-
-    current.setDate(current.getDate() + 1);
-  }
-
-  return marked;
-};
-
-// Merge user markedDates with selection markedDates
-const mergeMarkedDates = (
-  selectionMarked: MarkedDates,
-  userMarked?: MarkedDates
-): MarkedDates => {
-  if (!userMarked) return selectionMarked;
-  return { ...userMarked, ...selectionMarked };
-};
-
-export function Calendar({
-  mode = 'single',
-  selected,
-  onSelect,
-  minDate,
-  maxDate,
-  initialDate,
-  markedDates: userMarkedDates,
-  onDayPress: userOnDayPress,
-  onDayLongPress: userOnDayLongPress,
-  onMonthChange,
-  theme,
-  ...rest
-}: CalendarProps) {
-  // Build markedDates based on mode
-  const selectionMarkedDates = useMemo(() => {
-    switch (mode) {
-      case 'single':
-        return buildSingleMarkedDates(selected as Date | undefined, theme);
-      case 'multiple':
-        return buildMultipleMarkedDates(selected as Date[] | undefined, theme);
-      case 'range':
-        return buildRangeMarkedDates(
-          selected as { from: Date; to: Date } | undefined,
-          theme
-        );
-      default:
-        return {};
-    }
-  }, [selected, mode, theme]);
-
-  // Merge with user's markedDates
-  const mergedMarkedDates = useMemo(() => {
-    return mergeMarkedDates(selectionMarkedDates, userMarkedDates);
-  }, [selectionMarkedDates, userMarkedDates]);
-
-  // Handle day press with mode logic
-  const handleDayPress = useCallback(
-    (day: { dateString: string }) => {
-      const date = toDate(day.dateString);
-
-      // Call user's onDayPress if provided
-      userOnDayPress?.(date);
-
-      if (!onSelect) return;
-
-      switch (mode) {
-        case 'single':
-          onSelect(date);
-          break;
-
-        case 'multiple': {
-          const currentSelection = (selected as Date[]) || [];
-          const dateStr = day.dateString;
-          const exists = currentSelection.find(
-            (d) => toDateString(d) === dateStr
-          );
-
-          if (exists) {
-            onSelect(
-              currentSelection.filter((d) => toDateString(d) !== dateStr)
-            );
-          } else {
-            onSelect([...currentSelection, date]);
-          }
-          break;
-        }
-
-        case 'range': {
-          const currentRange = selected as { from: Date; to: Date } | undefined;
-          if (
-            !currentRange ||
-            currentRange.from.getTime() !== currentRange.to.getTime()
-          ) {
-            onSelect({ from: date, to: date });
-          } else {
-            const start = currentRange.from;
-            if (date < start) {
-              onSelect({ from: date, to: start });
-            } else {
-              onSelect({ from: start, to: date });
-            }
-          }
-          break;
-        }
-      }
-    },
-    [mode, onSelect, userOnDayPress, selected]
-  );
-
+const CalendarHeaderPrevButtonRoot = React.forwardRef<
+  React.ElementRef<typeof Pressable>,
+  React.ComponentProps<typeof Pressable> & { className?: string; disabled?: boolean }
+>(({ className, disabled, ...props }, ref) => {
   return (
-    <View>
-      <RNCalendar
-        initialDate={initialDate?.toISOString().split('T')[0]}
-        minDate={minDate?.toISOString().split('T')[0]}
-        maxDate={maxDate?.toISOString().split('T')[0]}
-        markedDates={mergedMarkedDates}
-        markingType={mode === 'range' ? 'period' : 'dot'}
-        theme={{
-          backgroundColor: '#ffffff',
-          calendarBackground: '#ffffff',
-          textSectionTitleColor: '#b6c1cd',
-          selectedDayBackgroundColor: '#171717',
-          selectedDayTextColor: '#ffffff',
-          todayTextColor: '#171717',
-          dayTextColor: '#2d4150',
-          textDisabledColor: '#dd99ee',
-          ...theme,
-        }}
-        onDayPress={handleDayPress}
-        onDayLongPress={(day: { dateString: string }) =>
-          userOnDayLongPress?.(toDate(day.dateString))
-        }
-        dayComponent={() => (
-          <View>
-            <Text>1</Text>
-          </View>
-        )}
-        onMonthChange={(month: { dateString: string }) =>
-          onMonthChange?.(toDate(month.dateString))
-        }
-        {...rest}
-      />
+    <Pressable
+      ref={ref}
+      className={calendarHeaderButtonStyle({ class: className })}
+      data-disabled={disabled}
+      {...props}
+    />
+  );
+});
+
+const CalendarHeaderNextButtonRoot = React.forwardRef<
+  React.ElementRef<typeof Pressable>,
+  React.ComponentProps<typeof Pressable> & { className?: string; disabled?: boolean }
+>(({ className, disabled, ...props }, ref) => {
+  return (
+    <Pressable
+      ref={ref}
+      className={calendarHeaderButtonStyle({ class: className })}
+      data-disabled={disabled}
+      {...props}
+    />
+  );
+});
+
+const CalendarHeaderTitleRoot = React.forwardRef<
+  React.ElementRef<typeof Text>,
+  React.ComponentProps<typeof Text> & { className?: string }
+>(({ className, ...props }, ref) => {
+  return <Text ref={ref} className={calendarHeaderTitleStyle({ class: className })} {...props} />;
+});
+
+const CalendarHeaderMonthSelectRoot = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View> & { className?: string }
+>(({ className, ...props }, ref) => {
+  return <View ref={ref} className={calendarHeaderSelectStyle({ class: className })} {...props} />;
+});
+
+const CalendarHeaderYearSelectRoot = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View> & { className?: string }
+>(({ className, ...props }, ref) => {
+  return <View ref={ref} className={calendarHeaderSelectStyle({ class: className })} {...props} />;
+});
+
+// Styled Week Days Header
+const CalendarWeekDaysHeaderRoot = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View> & { className?: string }
+>(({ className, ...props }, ref) => {
+  return <View ref={ref} className={calendarWeekDaysHeaderStyle({ class: className })} {...props} />;
+});
+
+const CalendarWeekDayRoot = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View> & { className?: string }
+>(({ className, children, ...props }, ref) => {
+  return (
+    <View ref={ref} className={calendarWeekDayStyle({ class: className })} {...props}>
+      {typeof children === 'string' ? (
+        <Text className={calendarWeekDayTextStyle({ class: '' })}>{children}</Text>
+      ) : (
+        children
+      )}
     </View>
   );
-}
+});
+
+// Styled Body & Grid
+const CalendarBodyRoot = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View> & { className?: string }
+>(({ className, ...props }, ref) => {
+  return <View ref={ref} className={calendarBodyStyle({ class: className })} {...props} />;
+});
+
+const CalendarGridRoot = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View> & { className?: string }
+>(({ className, ...props }, ref) => {
+  return <View ref={ref} className={calendarGridStyle({ class: className })} {...props} />;
+});
+
+const CalendarWeekRoot = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View> & { className?: string }
+>(({ className, ...props }, ref) => {
+  return <View ref={ref} className={calendarWeekStyle({ class: className })} {...props} />;
+});
+
+// Styled Day
+const CalendarDayRoot = React.forwardRef<
+  React.ElementRef<typeof Pressable>,
+  React.ComponentProps<typeof Pressable> & { className?: string; 'data-state'?: string }
+>(({ className, 'data-state': dataState, ...props }, ref) => {
+  return (
+    <Pressable
+      ref={ref}
+      className={calendarDayStyle({
+        state: dataState as any,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+
+const CalendarDayTextRoot = React.forwardRef<
+  React.ElementRef<typeof Text>,
+  React.ComponentProps<typeof Text> & { className?: string; state?: any }
+>(({ className, state, ...props }, ref) => {
+  return (
+    <Text
+      ref={ref}
+      className={calendarDayTextStyle({
+        state: state?.isSelected && state?.isRangeStart ? 'range-start' :
+              state?.isSelected && state?.isRangeEnd ? 'range-end' :
+              state?.isInRange ? 'range-middle' :
+              state?.isSelected ? 'selected' :
+              state?.isToday ? 'today' :
+              state?.isDisabled ? 'disabled' :
+              state?.isOutsideMonth ? 'outside-month' :
+              'default',
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+
+const CalendarDayIndicatorRoot = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View> & { className?: string; 'data-type'?: string }
+>(({ className, 'data-type': dataType, ...props }, ref) => {
+  return (
+    <View
+      ref={ref}
+      className={calendarDayIndicatorStyle({
+        type: dataType as any,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+
+// Styled Week Number
+const CalendarWeekNumberRoot = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View> & { className?: string }
+>(({ className, children, ...props }, ref) => {
+  return (
+    <View ref={ref} className={calendarWeekNumberStyle({ class: className })} {...props}>
+      {typeof children === 'string' || typeof children === 'number' ? (
+        <Text className={calendarWeekNumberTextStyle({ class: '' })}>{children}</Text>
+      ) : (
+        children
+      )}
+    </View>
+  );
+});
+
+// Styled Footer
+const CalendarFooterRoot = React.forwardRef<
+  React.ElementRef<typeof View>,
+  React.ComponentProps<typeof View> & { className?: string }
+>(({ className, ...props }, ref) => {
+  return <View ref={ref} className={calendarFooterStyle({ class: className })} {...props} />;
+});
+
+// Create Calendar using the factory
+const UICalendar = createCalendar({
+  Root: CalendarRoot,
+  Header: CalendarHeaderRoot,
+  HeaderPrevButton: CalendarHeaderPrevButtonRoot,
+  HeaderNextButton: CalendarHeaderNextButtonRoot,
+  HeaderTitle: CalendarHeaderTitleRoot,
+  HeaderMonthSelect: CalendarHeaderMonthSelectRoot,
+  HeaderYearSelect: CalendarHeaderYearSelectRoot,
+  WeekDaysHeader: CalendarWeekDaysHeaderRoot,
+  WeekDay: CalendarWeekDayRoot,
+  Body: CalendarBodyRoot,
+  Grid: CalendarGridRoot,
+  Week: CalendarWeekRoot,
+  Day: CalendarDayRoot,
+  DayText: CalendarDayTextRoot,
+  DayIndicator: CalendarDayIndicatorRoot,
+  WeekNumber: CalendarWeekNumberRoot,
+  Footer: CalendarFooterRoot,
+});
+
+// Export components
+export const Calendar = UICalendar;
+export const CalendarHeader = UICalendar.Header;
+export const CalendarHeaderPrevButton = UICalendar.HeaderPrevButton;
+export const CalendarHeaderNextButton = UICalendar.HeaderNextButton;
+export const CalendarHeaderTitle = UICalendar.HeaderTitle;
+export const CalendarHeaderMonthSelect = UICalendar.HeaderMonthSelect;
+export const CalendarHeaderYearSelect = UICalendar.HeaderYearSelect;
+export const CalendarWeekDaysHeader = UICalendar.WeekDaysHeader;
+export const CalendarWeekDay = UICalendar.WeekDay;
+export const CalendarBody = UICalendar.Body;
+export const CalendarGrid = UICalendar.Grid;
+export const CalendarWeek = UICalendar.Week;
+export const CalendarDay = UICalendar.Day;
+export const CalendarDayText = UICalendar.DayText;
+export const CalendarDayIndicator = UICalendar.DayIndicator;
+export const CalendarWeekNumber = UICalendar.WeekNumber;
+export const CalendarFooter = UICalendar.Footer;
+
+// Re-export types
+export type {
+  ICalendarProps,
+  CalendarMode,
+  CalendarMarker,
+  CalendarMarkers,
+  DayState,
+} from '@gluestack-ui/core/calendar/creator';
