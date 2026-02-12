@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { createCalendar } from '@gluestack-ui/core/calendar/creator';
+import { createCalendar, type ICalendarProps } from '@gluestack-ui/core/calendar/creator';
 import { cssInterop } from 'nativewind';
 import {
   calendarStyle,
@@ -32,7 +32,7 @@ cssInterop(Pressable, { className: 'style' });
 // Styled Root Component
 const CalendarRoot = React.forwardRef<
   React.ElementRef<typeof View>,
-  React.ComponentProps<typeof View> & { className?: string }
+  ICalendarProps & React.ComponentProps<typeof View> & { className?: string }
 >(({ className, ...props }, ref) => {
   return <View ref={ref} className={calendarStyle({ class: className })} {...props} />;
 });

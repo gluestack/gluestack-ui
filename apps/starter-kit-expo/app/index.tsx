@@ -28,6 +28,25 @@ export default function CalendarDemo() {
     to: undefined,
   });
 
+  // Type-safe handlers
+  const handleSingleChange = (value: Date | Date[] | { from: Date; to?: Date }) => {
+    if (value instanceof Date) {
+      setSingleDate(value);
+    }
+  };
+
+  const handleMultipleChange = (value: Date | Date[] | { from: Date; to?: Date }) => {
+    if (Array.isArray(value)) {
+      setMultipleDates(value);
+    }
+  };
+
+  const handleRangeChange = (value: Date | Date[] | { from: Date; to?: Date }) => {
+    if (value && typeof value === 'object' && 'from' in value) {
+      setDateRange(value as { from: Date; to?: Date });
+    }
+  };
+
   // Demo markers
   const markers = {
     [new Date(2024, 11, 25).toISOString().split('T')[0]]: {
@@ -60,7 +79,7 @@ export default function CalendarDemo() {
             Selected: {singleDate.toDateString()}
           </Text>
 
-          <Calendar mode="single" value={singleDate} onValueChange={setSingleDate}>
+          <Calendar mode="single" value={singleDate} onValueChange={handleSingleChange}>
             <CalendarHeader>
               <CalendarHeaderPrevButton>
                 <Icon as={ChevronLeftIcon} className="text-typography-900" />
@@ -91,7 +110,7 @@ export default function CalendarDemo() {
           <Calendar
             mode="multiple"
             value={multipleDates}
-            onValueChange={setMultipleDates}
+            onValueChange={handleMultipleChange}
           >
             <CalendarHeader>
               <CalendarHeaderPrevButton>
@@ -119,7 +138,7 @@ export default function CalendarDemo() {
             {dateRange.to && ` → To: ${dateRange.to.toDateString()}`}
           </Text>
 
-          <Calendar mode="range" value={dateRange} onValueChange={setDateRange}>
+          <Calendar mode="range" value={dateRange} onValueChange={handleRangeChange}>
             <CalendarHeader>
               <CalendarHeaderPrevButton>
                 <Icon as={ChevronLeftIcon} className="text-typography-900" />
@@ -148,7 +167,7 @@ export default function CalendarDemo() {
           <Calendar
             mode="single"
             value={singleDate}
-            onValueChange={setSingleDate}
+            onValueChange={handleSingleChange}
             markers={markers}
           >
             <CalendarHeader>
@@ -179,7 +198,7 @@ export default function CalendarDemo() {
           <Calendar
             mode="single"
             value={singleDate}
-            onValueChange={setSingleDate}
+            onValueChange={handleSingleChange}
             minDate={new Date()}
             maxDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
           >
@@ -208,7 +227,7 @@ export default function CalendarDemo() {
           <Calendar
             mode="single"
             value={singleDate}
-            onValueChange={setSingleDate}
+            onValueChange={handleSingleChange}
             showWeekNumbers={true}
           >
             <CalendarHeader>
