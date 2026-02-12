@@ -14,6 +14,7 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
   withTiming,
+  withDelay,
   interpolate,
   Extrapolate,
   FadeIn,
@@ -250,6 +251,7 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
   // Container holds 3 images: [prev, current, next]
   // Initial position: translate left by SCREEN_WIDTH to show middle (current) image
   const containerTranslateX = useSharedValue(-SCREEN_WIDTH);
+  const containerOpacity = useSharedValue(1);
   const [displayIndex, setDisplayIndex] = useState(currentIndex);
   const previousIndexRef = useRef(currentIndex);
 
@@ -270,9 +272,20 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
         },
         (finished) => {
           if (finished) {
-            // Update the display index and reset position
+            // 1. Fade out instantly (no flicker visible)
+            containerOpacity.value = 0;
+
+            // 2. Update state while invisible
             runOnJS(setDisplayIndex)(currentIndex);
+
+            // 3. Reset position immediately
             containerTranslateX.value = -SCREEN_WIDTH;
+
+            // 4. Fade back in with 1-frame delay (16ms) + 50ms fade
+            containerOpacity.value = withDelay(
+              16,
+              withTiming(1, { duration: 50 })
+            );
           }
         }
       );
@@ -299,6 +312,7 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
 
   const containerStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: containerTranslateX.value }],
+    opacity: containerOpacity.value,
   }));
 
   return (
