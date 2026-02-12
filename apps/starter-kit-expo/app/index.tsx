@@ -25,7 +25,7 @@ export default function App() {
       alt: 'Mountain landscape',
     },
     {
-      url: 'https://images.unsplash.com/photo-1682687221038-404670e01d4c?w=800&auto=format&fit=crop&q=60',
+      url: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcROHqfjDC6tC2haATRs3-EDemIzD3cMraKzQtaawteqjZqBzTZB',
       alt: 'Ocean waves',
     },
     {
