@@ -16,6 +16,7 @@ export * from './fab/creator';
 export * from './form-control/creator';
 export * from './icon/creator';
 export * from './image/creator';
+export * from './image-viewer/creator';
 export * from './input/creator';
 export * from './link/creator';
 export * from './menu/aria';

@@ -361,6 +361,10 @@
                 "path": "/ui/docs/components/tooltip",
                 "url": "https://i.imgur.com/OyRsX4f.png",
                 "darkUrl": "https://i.imgur.com/VzxzCVU.png"
+              },
+              {
+                "title": "Image Viewer",
+                "path": "/ui/docs/components/image-viewer"
               }
             ]
           },

@@ -321,6 +321,12 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="Calendar" />,
         }}
       />
+          <Stack.Screen
+        name="image-viewer"
+        options={{
+          header: () => <CustomHeader title="Image Viewer" />,
+        }}
+      />
     </Stack>
   );
 }

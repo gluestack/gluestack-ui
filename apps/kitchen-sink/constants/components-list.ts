@@ -65,6 +65,7 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: "HStack", path: "hstack", count: 2, icon: HStackIcon },
   { title: "Icon", path: "icon", count: 4, icon: IconIcon },
   { title: "Image", path: "image", count: 2, icon: ImageIcon },
+  { title: "Image Viewer", path: "image-viewer", count: 1 },
   { title: "Input", path: "input", count: 3, icon: InputIcon },
   { title: "Link", path: "link", count: 3, icon: LinkIcon },
   { title: "Menu", path: "menu", count: 3, icon: MenuIcon },
