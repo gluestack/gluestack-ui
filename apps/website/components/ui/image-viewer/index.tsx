@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import {
   View,
   Pressable,
@@ -18,6 +18,10 @@ import Animated, {
   Extrapolate,
   FadeIn,
   FadeOut,
+  SlideInLeft,
+  SlideInRight,
+  SlideOutLeft,
+  SlideOutRight,
   Easing,
   runOnJS,
 } from 'react-native-reanimated';
@@ -231,7 +235,7 @@ const ZoomableImage = React.memo(function ZoomableImage({
   );
 });
 
-// Slidable Image Gallery Component
+// Slidable Image Gallery with Pan Gesture
 const SlidableImageGallery = React.memo(function SlidableImageGallery({
   images,
   currentIndex,
@@ -243,13 +247,38 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
   onIndexChange: (index: number) => void;
   onDismiss: () => void;
 }) {
-  const galleryTranslateX = useSharedValue(-currentIndex * SCREEN_WIDTH);
+  // Container holds 3 images: [prev, current, next]
+  // Initial position: translate left by SCREEN_WIDTH to show middle (current) image
+  const containerTranslateX = useSharedValue(-SCREEN_WIDTH);
+  const [displayIndex, setDisplayIndex] = useState(currentIndex);
+  const previousIndexRef = useRef(currentIndex);
 
+  // When currentIndex changes from outside (button press), animate the slide
   useEffect(() => {
-    galleryTranslateX.value = withTiming(-currentIndex * SCREEN_WIDTH, {
-      duration: 300,
-      easing: Easing.out(Easing.cubic),
-    });
+    if (currentIndex !== previousIndexRef.current) {
+      const isGoingNext = currentIndex > previousIndexRef.current;
+
+      // Animate slide
+      // If going next: slide left (more negative), if going prev: slide right (less negative)
+      const targetTranslate = isGoingNext ? -SCREEN_WIDTH * 2 : 0;
+
+      containerTranslateX.value = withTiming(
+        targetTranslate,
+        {
+          duration: 300,
+          easing: Easing.out(Easing.cubic),
+        },
+        (finished) => {
+          if (finished) {
+            // Update the display index and reset position
+            runOnJS(setDisplayIndex)(currentIndex);
+            containerTranslateX.value = -SCREEN_WIDTH;
+          }
+        }
+      );
+
+      previousIndexRef.current = currentIndex;
+    }
   }, [currentIndex]);
 
   const goNext = useCallback(() => {
@@ -264,40 +293,61 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
     }
   }, [currentIndex, onIndexChange]);
 
-  const galleryStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: galleryTranslateX.value }],
+  const prevImage = displayIndex > 0 ? images[displayIndex - 1] : null;
+  const currentImage = images[displayIndex];
+  const nextImage = displayIndex < images.length - 1 ? images[displayIndex + 1] : null;
+
+  const containerStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: containerTranslateX.value }],
   }));
 
   return (
-    <Animated.View
-      style={[
-        {
-          flexDirection: 'row',
-          width: SCREEN_WIDTH * images.length,
-          height: SCREEN_HEIGHT * 0.8,
-        },
-        galleryStyle,
-      ]}
-    >
-      {images.map((image, index) => (
-        <View
-          key={index}
-          style={{
-            width: SCREEN_WIDTH,
+    <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8, overflow: 'hidden' }}>
+      <Animated.View
+        style={[
+          {
+            flexDirection: 'row',
+            width: SCREEN_WIDTH * 3,
             height: SCREEN_HEIGHT * 0.8,
-          }}
-        >
-          {Math.abs(index - currentIndex) <= 1 && (
+          },
+          containerStyle,
+        ]}
+      >
+        {/* Previous Image */}
+        <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
+          {prevImage && (
             <ZoomableImage
-              image={image}
+              image={prevImage}
               onSwipeLeft={goNext}
               onSwipeRight={goPrevious}
               onDismiss={onDismiss}
             />
           )}
         </View>
-      ))}
-    </Animated.View>
+
+        {/* Current Image */}
+        <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
+          <ZoomableImage
+            image={currentImage}
+            onSwipeLeft={goNext}
+            onSwipeRight={goPrevious}
+            onDismiss={onDismiss}
+          />
+        </View>
+
+        {/* Next Image */}
+        <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
+          {nextImage && (
+            <ZoomableImage
+              image={nextImage}
+              onSwipeLeft={goNext}
+              onSwipeRight={goPrevious}
+              onDismiss={onDismiss}
+            />
+          )}
+        </View>
+      </Animated.View>
+    </View>
   );
 });
 
