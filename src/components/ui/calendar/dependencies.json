@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "react-native-calendars": "^1.1300.0",
-    "react-day-picker": "^8.10.0",
-    "date-fns": "^3.0.0"
-  }
-}
