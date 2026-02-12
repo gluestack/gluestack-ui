@@ -132,43 +132,41 @@ const ZoomableImage = React.memo(function ZoomableImage({
       }
     });
 
+  // Pan gesture for when zoomed - allows free movement
   const panGesture = Gesture.Pan()
+    .enabled(scale.value > 1)
     .onUpdate((event) => {
-      if (scale.value > 1) {
-        translateX.value = savedTranslateX.value + event.translationX;
-        translateY.value = savedTranslateY.value + event.translationY;
-      } else {
-        dismissProgress.value =
-          Math.abs(event.translationY) / (SCREEN_HEIGHT * 0.3);
-        translateY.value = event.translationY;
-        opacity.value = interpolate(
-          dismissProgress.value,
-          [0, 1],
-          [1, 0.3],
-          Extrapolate.CLAMP
-        );
-      }
+      translateX.value = savedTranslateX.value + event.translationX;
+      translateY.value = savedTranslateY.value + event.translationY;
+    })
+    .onEnd(() => {
+      savedTranslateX.value = translateX.value;
+      savedTranslateY.value = translateY.value;
+    });
+
+  // Vertical pan gesture for dismiss - only when NOT zoomed
+  const dismissGesture = Gesture.Pan()
+    .enabled(scale.value <= 1)
+    .activeOffsetY([-10, 10]) // Activate only for vertical movement
+    .failOffsetX([-20, 20]) // Fail if horizontal movement is too much
+    .onUpdate((event) => {
+      dismissProgress.value =
+        Math.abs(event.translationY) / (SCREEN_HEIGHT * 0.3);
+      translateY.value = event.translationY;
+      opacity.value = interpolate(
+        dismissProgress.value,
+        [0, 1],
+        [1, 0.3],
+        Extrapolate.CLAMP
+      );
     })
     .onEnd((event) => {
-      if (scale.value > 1) {
-        savedTranslateX.value = translateX.value;
-        savedTranslateY.value = translateY.value;
+      if (Math.abs(event.translationY) > 120) {
+        runOnJS(onDismiss)();
       } else {
-        if (Math.abs(event.translationY) > 120) {
-          runOnJS(onDismiss)();
-        } else {
-          translateY.value = withSpring(0);
-          opacity.value = withTiming(1, { duration: 200 });
-          dismissProgress.value = withTiming(0, { duration: 200 });
-        }
-
-        // Horizontal swipe for navigation
-        const swipeThreshold = SCREEN_WIDTH * 0.15;
-        if (event.translationX > swipeThreshold) {
-          runOnJS(onSwipeRight)();
-        } else if (event.translationX < -swipeThreshold) {
-          runOnJS(onSwipeLeft)();
-        }
+        translateY.value = withSpring(0);
+        opacity.value = withTiming(1, { duration: 200 });
+        dismissProgress.value = withTiming(0, { duration: 200 });
       }
     });
 
@@ -208,9 +206,12 @@ const ZoomableImage = React.memo(function ZoomableImage({
       }
     });
 
-  const composedGesture = Gesture.Simultaneous(
-    pinchGesture,
-    Gesture.Exclusive(panGesture, doubleTapGesture)
+  const composedGesture = Gesture.Race(
+    doubleTapGesture,
+    Gesture.Simultaneous(
+      pinchGesture,
+      Gesture.Exclusive(panGesture, dismissGesture)
+    )
   );
 
   const animatedStyle = useAnimatedStyle(() => ({
