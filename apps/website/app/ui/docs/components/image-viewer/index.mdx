@@ -184,25 +184,59 @@ interface ImageViewerTriggerProps {
 }
 
 // Single Zoomable Image Component
-const ZoomableImage = React.memo(function ZoomableImage({
-  image,
-  onSwipeLeft,
-  onSwipeRight,
-  onDismiss,
-}: {
-  image: ImageItem;
-  onSwipeLeft: () => void;
-  onSwipeRight: () => void;
-  onDismiss: () => void;
-}) {
-  const scale = useSharedValue(1);
-  const savedScale = useSharedValue(1);
-  const translateX = useSharedValue(0);
-  const translateY = useSharedValue(0);
-  const savedTranslateX = useSharedValue(0);
-  const savedTranslateY = useSharedValue(0);
-  const dismissProgress = useSharedValue(0);
-  const opacity = useSharedValue(1);
+const ZoomableImage = React.memo(
+  React.forwardRef(function ZoomableImage(
+    {
+      image,
+      index,
+      currentIndex,
+      onSwipeLeft,
+      onSwipeRight,
+      onDismiss,
+      onZoomChange,
+    }: {
+      image: ImageItem;
+      index: number;
+      currentIndex: number;
+      onSwipeLeft: () => void;
+      onSwipeRight: () => void;
+      onDismiss: () => void;
+      onZoomChange?: (isZoomed: boolean) => void;
+    },
+    ref
+  ) {
+    const scale = useSharedValue(1);
+    const savedScale = useSharedValue(1);
+    const translateX = useSharedValue(0);
+    const translateY = useSharedValue(0);
+    const savedTranslateX = useSharedValue(0);
+    const savedTranslateY = useSharedValue(0);
+    const dismissProgress = useSharedValue(0);
+    const opacity = useSharedValue(1);
+
+    // Notify parent when zoom changes
+    useEffect(() => {
+      const isZoomed = scale.value > 1;
+      if (index === currentIndex && onZoomChange) {
+        onZoomChange(isZoomed);
+      }
+    }, [scale.value, index, currentIndex, onZoomChange]);
+
+    // Expose reset method to parent
+    React.useImperativeHandle(ref, () => ({
+      resetZoom: () => {
+        scale.value = 1;
+        savedScale.value = 1;
+        translateX.value = 0;
+        translateY.value = 0;
+        savedTranslateX.value = 0;
+        savedTranslateY.value = 0;
+        if (onZoomChange) {
+          onZoomChange(false);
+        }
+      },
+      isZoomed: () => scale.value > 1,
+    }));
 
   const pinchGesture = Gesture.Pinch()
     .onUpdate((event) => {
@@ -216,24 +250,75 @@ const ZoomableImage = React.memo(function ZoomableImage({
         translateY.value = withSpring(0);
         savedTranslateX.value = 0;
         savedTranslateY.value = 0;
+        if (onZoomChange) runOnJS(onZoomChange)(false);
       } else if (scale.value > 4) {
         scale.value = withSpring(4);
         savedScale.value = 4;
+        if (onZoomChange) runOnJS(onZoomChange)(true);
       } else {
         savedScale.value = scale.value;
+        if (onZoomChange) runOnJS(onZoomChange)(scale.value > 1);
       }
     });
 
-  // Pan gesture for when zoomed - allows free movement
+  // Pan gesture for when zoomed - allows free movement with edge detection
   const panGesture = Gesture.Pan()
     .enabled(scale.value > 1)
     .onUpdate((event) => {
-      translateX.value = savedTranslateX.value + event.translationX;
-      translateY.value = savedTranslateY.value + event.translationY;
+      // Calculate max translation bounds for zoomed image
+      const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
+      const maxTranslateY = ((scale.value - 1) * SCREEN_HEIGHT * 0.8) / 2;
+
+      // Allow panning within bounds
+      const newTranslateX = savedTranslateX.value + event.translationX;
+      const newTranslateY = savedTranslateY.value + event.translationY;
+
+      // Clamp to bounds
+      translateX.value = Math.max(
+        -maxTranslateX,
+        Math.min(maxTranslateX, newTranslateX)
+      );
+      translateY.value = Math.max(
+        -maxTranslateY,
+        Math.min(maxTranslateY, newTranslateY)
+      );
     })
-    .onEnd(() => {
-      savedTranslateX.value = translateX.value;
-      savedTranslateY.value = translateY.value;
+    .onEnd((event) => {
+      const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
+
+      // Check if at horizontal edge and swiped further (outer range offset)
+      const isAtRightEdge = translateX.value >= maxTranslateX - 5;
+      const isAtLeftEdge = translateX.value <= -maxTranslateX + 5;
+      const swipeThreshold = 50;
+
+      // If at edge and swiped with enough velocity/distance, navigate
+      if (isAtLeftEdge && event.translationX > swipeThreshold && event.velocityX > 0) {
+        // At left edge, swiped right -> go to previous
+        runOnJS(onSwipeRight)();
+        // Reset zoom after navigation
+        scale.value = withSpring(1);
+        savedScale.value = 1;
+        translateX.value = withSpring(0);
+        translateY.value = withSpring(0);
+        savedTranslateX.value = 0;
+        savedTranslateY.value = 0;
+        if (onZoomChange) runOnJS(onZoomChange)(false);
+      } else if (isAtRightEdge && event.translationX < -swipeThreshold && event.velocityX < 0) {
+        // At right edge, swiped left -> go to next
+        runOnJS(onSwipeLeft)();
+        // Reset zoom after navigation
+        scale.value = withSpring(1);
+        savedScale.value = 1;
+        translateX.value = withSpring(0);
+        translateY.value = withSpring(0);
+        savedTranslateX.value = 0;
+        savedTranslateY.value = 0;
+        if (onZoomChange) runOnJS(onZoomChange)(false);
+      } else {
+        // Save position within bounds
+        savedTranslateX.value = translateX.value;
+        savedTranslateY.value = translateY.value;
+      }
     });
 
   // Vertical pan gesture for dismiss - only when NOT zoomed
@@ -279,6 +364,7 @@ const ZoomableImage = React.memo(function ZoomableImage({
         translateY.value = withSpring(0);
         savedTranslateX.value = 0;
         savedTranslateY.value = 0;
+        if (onZoomChange) runOnJS(onZoomChange)(false);
       } else {
         const zoomScale = 2.5;
         scale.value = withSpring(zoomScale);
@@ -295,6 +381,7 @@ const ZoomableImage = React.memo(function ZoomableImage({
         translateY.value = withSpring(targetY);
         savedTranslateX.value = targetX;
         savedTranslateY.value = targetY;
+        if (onZoomChange) runOnJS(onZoomChange)(true);
       }
     });
 
@@ -315,20 +402,21 @@ const ZoomableImage = React.memo(function ZoomableImage({
     opacity: opacity.value,
   }));
 
-  return (
-    <GestureDetector gesture={composedGesture}>
-      <AnimatedImage
-        source={{ uri: image.url }}
-        alt={image.alt}
-        resizeMode="contain"
-        style={[
-          { width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 },
-          animatedStyle,
-        ]}
-      />
-    </GestureDetector>
-  );
-});
+    return (
+      <GestureDetector gesture={composedGesture}>
+        <AnimatedImage
+          source={{ uri: image.url }}
+          alt={image.alt}
+          resizeMode="contain"
+          style={[
+            { width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 },
+            animatedStyle,
+          ]}
+        />
+      </GestureDetector>
+    );
+  })
+);
 
 // FlatList-based Image Gallery Component
 const SlidableImageGallery = React.memo(function SlidableImageGallery({
@@ -344,10 +432,24 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
 }) {
   const flatListRef = useRef<FlatList>(null);
   const [localIndex, setLocalIndex] = useState(currentIndex);
+  const scrollOffsetRef = useRef(0);
+  const imageRefsRef = useRef<Map<number, any>>(new Map());
+  const [isCurrentImageZoomed, setIsCurrentImageZoomed] = useState(false);
+
+  // Handle zoom change from current image
+  const handleZoomChange = useCallback((isZoomed: boolean) => {
+    setIsCurrentImageZoomed(isZoomed);
+  }, []);
 
   // Scroll to index when currentIndex changes from outside (button press)
   useEffect(() => {
     if (currentIndex !== localIndex && flatListRef.current) {
+      // Reset zoom on current image before scrolling to new one
+      const currentImageRef = imageRefsRef.current.get(localIndex);
+      if (currentImageRef?.resetZoom) {
+        currentImageRef.resetZoom();
+      }
+
       flatListRef.current.scrollToIndex({
         index: currentIndex,
         animated: true,
@@ -356,7 +458,12 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
     }
   }, [currentIndex, localIndex]);
 
-  // Handle scroll end - update parent with new index
+  // Handle scroll - track position without updating state
+  const handleScroll = useCallback((event: any) => {
+    scrollOffsetRef.current = event.nativeEvent.contentOffset.x;
+  }, []);
+
+  // Handle scroll end - update index when scroll completes
   const handleMomentumScrollEnd = useCallback(
     (event: any) => {
       const contentOffsetX = event.nativeEvent.contentOffset.x;
@@ -387,14 +494,24 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
     ({ item, index }: { item: ImageItem; index: number }) => (
       <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
         <ZoomableImage
+          ref={(ref) => {
+            if (ref) {
+              imageRefsRef.current.set(index, ref);
+            } else {
+              imageRefsRef.current.delete(index);
+            }
+          }}
           image={item}
+          index={index}
+          currentIndex={localIndex}
           onSwipeLeft={goNext}
           onSwipeRight={goPrevious}
           onDismiss={onDismiss}
+          onZoomChange={index === localIndex ? handleZoomChange : undefined}
         />
       </View>
     ),
-    [goNext, goPrevious, onDismiss]
+    [localIndex, goNext, goPrevious, onDismiss, handleZoomChange]
   );
 
   // Get item layout for better performance
@@ -421,7 +538,9 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
         keyExtractor={keyExtractor}
         horizontal
         pagingEnabled={false}
+        scrollEnabled={!isCurrentImageZoomed}
         showsHorizontalScrollIndicator={false}
+        onScroll={handleScroll}
         onMomentumScrollEnd={handleMomentumScrollEnd}
         getItemLayout={getItemLayout}
         initialScrollIndex={currentIndex}
