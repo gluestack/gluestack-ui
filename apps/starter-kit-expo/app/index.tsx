@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Heading } from '@/components/ui/heading';
@@ -14,6 +14,10 @@ import {
 } from '@/components/ui/image-viewer';
 
 export default function App() {
+  // Track the current image index
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+
   // Sample images for the ImageViewer demo
   const images = [
     {
@@ -21,7 +25,7 @@ export default function App() {
       alt: 'Mountain landscape',
     },
     {
-      url: 'https://images.stockcake.com/public/8/8/9/889c1161-ac90-403a-b63f-23d708e67520_large/sunset-mountain-landscape-stockcake.jpg',
+      url: 'https://images.unsplash.com/photo-1682687221038-404670e01d4c?w=800&auto=format&fit=crop&q=60',
       alt: 'Ocean waves',
     },
     {
@@ -29,6 +33,16 @@ export default function App() {
       alt: 'Desert sunset',
     },
   ];
+
+  // Handle index change from viewer navigation
+  const handleIndexChange = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  // Handle viewer open/close
+  const handleOpenChange = (open: boolean) => {
+    setIsViewerOpen(open);
+  };
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -49,11 +63,17 @@ export default function App() {
               zoom, swipe to navigate, slide to dismiss.
             </Text>
 
-            <ImageViewer images={images}>
+            <ImageViewer
+              images={images}
+              isOpen={isViewerOpen}
+              onOpenChange={handleOpenChange}
+              onIndexChange={handleIndexChange}
+              initialIndex={currentIndex}
+            >
               <ImageViewerTrigger>
                 <Image
-                  source={{ uri: images[0].url }}
-                  alt="Gallery thumbnail"
+                  source={{ uri: images[currentIndex].url }}
+                  alt={images[currentIndex].alt}
                   className="w-full h-64 rounded-lg"
                   resizeMode="cover"
                 />

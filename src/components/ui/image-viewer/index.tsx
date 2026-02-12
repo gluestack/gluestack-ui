@@ -81,6 +81,7 @@ interface ImageViewerProps {
   defaultOpen?: boolean;
   isOpen?: boolean;
   onOpenChange?: (isOpen: boolean) => void;
+  onIndexChange?: (index: number) => void;
   initialIndex?: number;
   children?: React.ReactNode;
 }
@@ -214,8 +215,8 @@ const ZoomableImage = React.memo(function ZoomableImage({
         const deltaY = centerY - lastTapY.value;
 
         // Apply translation (multiply by scale factor since we're zooming)
-        const targetX = (deltaX * (zoomScale )) / zoomScale;
-        const targetY = (deltaY * (zoomScale )) / zoomScale;
+        const targetX = (deltaX * zoomScale) / zoomScale;
+        const targetY = (deltaY * zoomScale) / zoomScale;
 
         translateX.value = withSpring(targetX);
         translateY.value = withSpring(targetY);
@@ -284,6 +285,7 @@ const ImageViewer = React.forwardRef<View, ImageViewerProps>(
       defaultOpen = false,
       isOpen: controlledIsOpen,
       onOpenChange,
+      onIndexChange,
       initialIndex = 0,
       children,
     },
@@ -294,6 +296,11 @@ const ImageViewer = React.forwardRef<View, ImageViewerProps>(
 
     const isControlled = controlledIsOpen !== undefined;
     const isOpen = isControlled ? controlledIsOpen : uncontrolledIsOpen;
+
+    // Notify parent when index changes
+    React.useEffect(() => {
+      onIndexChange?.(currentIndex);
+    }, [currentIndex, onIndexChange]);
 
     const open = useCallback(() => {
       if (!isControlled) {
