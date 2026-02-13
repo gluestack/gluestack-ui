@@ -7,6 +7,42 @@ import BlogsPageLayout from '@/components/page-components/blogs-page/BlogsPageLa
 
 const blogs = [
   {
+    title: 'gluestack-ui v4.1 Alpha: Universal Performance with Uniwind and Tailwind v4',
+    cover: '/images/og-image.png',
+    slug: 'gluestack-ui-v4-1-alpha-release',
+    published_at: {
+      start: '2026-02-10T00:00:00Z',
+    },
+    reading_time: 10,
+    author: [
+      {
+        id: 11,
+        avatar_url: 'https://avatars.githubusercontent.com/u/101696945?v=4',
+        email: '',
+        name: 'Sanchit Kumar',
+        occupation: 'Building gluestack-ui',
+      },
+    ],
+  },
+  {
+    title: 'Introducing gluestack-ui v4 Alpha: Modern Design, Powerful Animations, and Enhanced Developer Experience',
+    cover: '/images/blogs/expo55-beta.png',
+    slug: 'gluestack-ui-v4-alpha-release',
+    published_at: {
+      start: '2026-01-23T00:00:00Z',
+    },
+    reading_time: 12,
+    author: [
+      {
+        id: 11,
+        avatar_url: 'https://avatars.githubusercontent.com/u/101696945?v=4',
+        email: '',
+        name: 'Sanchit Kumar',
+        occupation: 'Building gluestack-ui',
+      },
+    ],
+  },
+  {
     title: 'React Native ARIA & gluestack-ui Security Incident Report',
     cover: '/images/blogs/rn-aria-incident-report.png',
     slug: 'public-incident-report',
