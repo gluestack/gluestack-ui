@@ -3,6 +3,7 @@ import { ScrollView, Text, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Heading } from '@/components/ui/heading';
 import { VStack } from '@/components/ui/vstack';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from '@/components/ui/image';
 import {
   ImageViewer,
@@ -12,6 +13,18 @@ import {
   ImageViewerNavigation,
   ImageViewerCounter,
 } from '@/components/ui/image-viewer';
+import {
+  Calendar,
+  CalendarHeader,
+  CalendarHeaderPrevButton,
+  CalendarHeaderNextButton,
+  CalendarHeaderTitle,
+  CalendarWeekDaysHeader,
+  CalendarBody,
+  CalendarGrid,
+} from '@/components/ui/calendar';
+import { Icon } from '@/components/ui/icon';
+import { ChevronLeftIcon, ChevronRightIcon } from '@/components/ui/icon';
 import { Input, InputField } from '@/components/ui/input';
 
 export default function App() {
@@ -45,52 +58,64 @@ export default function App() {
     setIsViewerOpen(open);
   };
 
+  // Calendar states
+  const [singleDate, setSingleDate] = useState(new Date());
+  const [dateRange, setDateRange] = useState<{ from: Date; to?: Date }>({
+    from: new Date(),
+    to: undefined,
+  });
+  const [multipleDates, setMultipleDates] = useState<Date[]>([]);
+
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <ScrollView className="flex-1 bg-background">
-        <View className="p-6 gap-8">
-          <VStack space="md">
-            <Heading size="2xl">gluestack-ui Demo</Heading>
-            <Text className="text-typography-500">
-              Interactive Image Viewer component demo
-            </Text>
-          </VStack>
+    <SafeAreaView style={{ flex: 1 }}>
+    
+        <ScrollView className="flex-1 bg-background">
+          <ImageViewer
+            images={images}
+            isOpen={isViewerOpen}
+            onOpenChange={handleOpenChange}
+            onIndexChange={handleIndexChange}
+            initialIndex={currentIndex}
+          >
+            <ImageViewerTrigger>
+              <Image
+                source={{ uri: images[currentIndex].url }}
+                alt={images[currentIndex].alt}
+                className="w-full h-64 rounded-lg"
+                resizeMode="cover"
+              />
+            </ImageViewerTrigger>
+            <ImageViewerContent>
+              <ImageViewerCloseButton />
+              <ImageViewerNavigation />
+              <ImageViewerCounter />
+            </ImageViewerContent>
+          </ImageViewer>
 
-          {/* Image Viewer Demo */}
-          <VStack space="md">
-            <Heading size="lg">Image Viewer</Heading>
-            <Text className="text-typography-500 text-sm">
-              Tap the image to open viewer. Features: pinch to zoom, double-tap
-              zoom, swipe to navigate, slide to dismiss.
-            </Text>
-
-            <ImageViewer
-              images={images}
-              isOpen={isViewerOpen}
-              onOpenChange={handleOpenChange}
-              onIndexChange={handleIndexChange}
-              initialIndex={currentIndex}
-            >
-              <ImageViewerTrigger>
-                <Image
-                  source={{ uri: images[currentIndex].url }}
-                  alt={images[currentIndex].alt}
-                  className="w-full h-64 rounded-lg"
-                  resizeMode="cover"
-                />
-              </ImageViewerTrigger>
-              <ImageViewerContent>
-                <ImageViewerCloseButton />
-                <ImageViewerNavigation />
-                <ImageViewerCounter />
-              </ImageViewerContent>
-            </ImageViewer>
-          </VStack>
-        </View>
-        <Input>
-          <InputField placeholder="Enter your email" multiline={true} />
-        </Input>
-      </ScrollView>
-    </GestureHandlerRootView>
+          <Calendar
+            mode="single"
+            value={singleDate}
+            onValueChange={setSingleDate}
+          >
+            <CalendarHeader>
+              <CalendarHeaderPrevButton>
+                <Icon as={ChevronLeftIcon} className="w-4 h-4" />
+              </CalendarHeaderPrevButton>
+              <CalendarHeaderTitle />
+              <CalendarHeaderNextButton>
+                <Icon as={ChevronRightIcon} className="w-4 h-4" />
+              </CalendarHeaderNextButton>
+            </CalendarHeader>
+            <CalendarWeekDaysHeader />
+            <CalendarBody>
+              <CalendarGrid />
+            </CalendarBody>
+          </Calendar>
+          <Text className="text-sm text-typography-700">
+            Selected: {singleDate.toLocaleDateString()}
+          </Text>
+        </ScrollView>
+     
+    </SafeAreaView>
   );
 }

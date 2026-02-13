@@ -29,7 +29,6 @@
     "form-control",
     "icon",
     "image",
-    "image-viewer",
     "input",
     "link",
     "menu",
@@ -108,9 +107,6 @@
       ],
       "image/creator": [
         "./lib/esm/image/creator/index.d.ts"
-      ],
-      "image-viewer/creator": [
-        "./lib/esm/image-viewer/creator/index.d.ts"
       ],
       "link/creator": [
         "./lib/esm/link/creator/index.d.ts"
