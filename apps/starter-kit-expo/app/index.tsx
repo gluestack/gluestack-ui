@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Heading } from '@/components/ui/heading';
 import { VStack } from '@/components/ui/vstack';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from '@/components/ui/image';
 import {
   ImageViewer,
@@ -25,7 +24,6 @@ import {
 } from '@/components/ui/calendar';
 import { Icon } from '@/components/ui/icon';
 import { ChevronLeftIcon, ChevronRightIcon } from '@/components/ui/icon';
-import { Input, InputField } from '@/components/ui/input';
 
 export default function App() {
   // Track the current image index
@@ -66,56 +64,159 @@ export default function App() {
   });
   const [multipleDates, setMultipleDates] = useState<Date[]>([]);
 
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-    
-        <ScrollView className="flex-1 bg-background">
-          <ImageViewer
-            images={images}
-            isOpen={isViewerOpen}
-            onOpenChange={handleOpenChange}
-            onIndexChange={handleIndexChange}
-            initialIndex={currentIndex}
-          >
-            <ImageViewerTrigger>
-              <Image
-                source={{ uri: images[currentIndex].url }}
-                alt={images[currentIndex].alt}
-                className="w-full h-64 rounded-lg"
-                resizeMode="cover"
-              />
-            </ImageViewerTrigger>
-            <ImageViewerContent>
-              <ImageViewerCloseButton />
-              <ImageViewerNavigation />
-              <ImageViewerCounter />
-            </ImageViewerContent>
-          </ImageViewer>
+  // Properly typed handlers for calendar
+  const handleSingleDateChange = (value: Date | Date[] | { from: Date; to?: Date }) => {
+    if (value instanceof Date) {
+      setSingleDate(value);
+    }
+  };
 
-          <Calendar
-            mode="single"
-            value={singleDate}
-            onValueChange={setSingleDate}
-          >
-            <CalendarHeader>
-              <CalendarHeaderPrevButton>
-                <Icon as={ChevronLeftIcon} className="w-4 h-4" />
-              </CalendarHeaderPrevButton>
-              <CalendarHeaderTitle />
-              <CalendarHeaderNextButton>
-                <Icon as={ChevronRightIcon} className="w-4 h-4" />
-              </CalendarHeaderNextButton>
-            </CalendarHeader>
-            <CalendarWeekDaysHeader />
-            <CalendarBody>
-              <CalendarGrid />
-            </CalendarBody>
-          </Calendar>
-          <Text className="text-sm text-typography-700">
-            Selected: {singleDate.toLocaleDateString()}
-          </Text>
-        </ScrollView>
-     
+  const handleDateRangeChange = (value: Date | Date[] | { from: Date; to?: Date }) => {
+    if (value && typeof value === 'object' && 'from' in value) {
+      setDateRange(value as { from: Date; to?: Date });
+    }
+  };
+
+  const handleMultipleDatesChange = (value: Date | Date[] | { from: Date; to?: Date }) => {
+    if (Array.isArray(value)) {
+      setMultipleDates(value);
+    }
+  };
+
+  return (
+    <SafeAreaView style={{ flex: 1 }} className="bg-background">
+      <ScrollView className="flex-1" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 32 }}>
+        <View className="p-4 gap-6">
+          {/* Header */}
+          <VStack space="sm">
+            <Heading size="2xl">gluestack-ui Components</Heading>
+            <Text className="text-typography-500">
+              Interactive demos for Image Viewer and Calendar
+            </Text>
+          </VStack>
+
+          {/* Image Viewer Demo */}
+          <VStack space="sm">
+            <Heading size="lg">Image Viewer</Heading>
+            <Text className="text-typography-500 text-sm mb-2">
+              Tap to open with zoom, swipe & dismiss
+            </Text>
+            <ImageViewer
+              images={images}
+              isOpen={isViewerOpen}
+              onOpenChange={handleOpenChange}
+              onIndexChange={handleIndexChange}
+              initialIndex={currentIndex}
+            >
+              <ImageViewerTrigger>
+                <Image
+                  source={{ uri: images[currentIndex].url }}
+                  alt={images[currentIndex].alt}
+                  className="w-full h-64 rounded-lg"
+                  resizeMode="cover"
+                />
+              </ImageViewerTrigger>
+              <ImageViewerContent>
+                <ImageViewerCloseButton />
+                <ImageViewerNavigation />
+                <ImageViewerCounter />
+              </ImageViewerContent>
+            </ImageViewer>
+          </VStack>
+
+          {/* Calendar - Single Date */}
+          <VStack space="sm">
+            <Heading size="lg">Calendar - Single Date</Heading>
+            <Text className="text-typography-500 text-sm mb-2">
+              Select a single date
+            </Text>
+            <Calendar
+          mode="single"
+          value={singleDate}
+          onValueChange={handleSingleDateChange}
+        >
+          <CalendarHeader>
+            <CalendarHeaderPrevButton>
+              <Icon as={ChevronLeftIcon} className="w-5 h-5" />
+            </CalendarHeaderPrevButton>
+            <CalendarHeaderTitle />
+            <CalendarHeaderNextButton>
+              <Icon as={ChevronRightIcon} className="w-5 h-5" />
+            </CalendarHeaderNextButton>
+          </CalendarHeader>
+          <CalendarWeekDaysHeader />
+          <CalendarBody>
+            <CalendarGrid />
+          </CalendarBody>
+        </Calendar>
+        <Text className="text-sm text-typography-700 mt-2">
+          Selected: {singleDate.toLocaleDateString()}
+        </Text>
+          </VStack>
+
+          {/* Calendar - Date Range */}
+          <VStack space="sm">
+            <Heading size="lg">Calendar - Date Range</Heading>
+            <Text className="text-typography-500 text-sm mb-2">
+              Select start and end dates
+            </Text>
+            <Calendar
+          mode="range"
+          value={dateRange}
+          onValueChange={handleDateRangeChange}
+        >
+          <CalendarHeader>
+            <CalendarHeaderPrevButton>
+              <Icon as={ChevronLeftIcon} className="w-5 h-5" />
+            </CalendarHeaderPrevButton>
+            <CalendarHeaderTitle />
+            <CalendarHeaderNextButton>
+              <Icon as={ChevronRightIcon} className="w-5 h-5" />
+            </CalendarHeaderNextButton>
+          </CalendarHeader>
+          <CalendarWeekDaysHeader />
+          <CalendarBody>
+            <CalendarGrid />
+          </CalendarBody>
+        </Calendar>
+        <Text className="text-sm text-typography-700 mt-2">
+          From: {dateRange.from?.toLocaleDateString() || 'Not selected'}
+          {'\n'}
+          To: {dateRange.to?.toLocaleDateString() || 'Not selected'}
+        </Text>
+          </VStack>
+
+          {/* Calendar - Multiple Dates */}
+          <VStack space="sm">
+            <Heading size="lg">Calendar - Multiple Dates</Heading>
+            <Text className="text-typography-500 text-sm mb-2">
+              Select multiple dates
+            </Text>
+            <Calendar
+          mode="multiple"
+          value={multipleDates}
+          onValueChange={handleMultipleDatesChange}
+        >
+          <CalendarHeader>
+            <CalendarHeaderPrevButton>
+              <Icon as={ChevronLeftIcon} className="w-5 h-5" />
+            </CalendarHeaderPrevButton>
+            <CalendarHeaderTitle />
+            <CalendarHeaderNextButton>
+              <Icon as={ChevronRightIcon} className="w-5 h-5" />
+            </CalendarHeaderNextButton>
+          </CalendarHeader>
+          <CalendarWeekDaysHeader />
+          <CalendarBody>
+            <CalendarGrid />
+          </CalendarBody>
+        </Calendar>
+        <Text className="text-sm text-typography-700 mt-2">
+          Selected {multipleDates.length} date(s)
+        </Text>
+          </VStack>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

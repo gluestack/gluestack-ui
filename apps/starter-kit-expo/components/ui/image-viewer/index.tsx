@@ -40,7 +40,7 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedImage = Animated.createAnimatedComponent(RNImage);
 
 const imageViewerStyle = tva({
-  base: 'w-full h-full',
+  base: 'w-full',
 });
 
 const imageViewerModalStyle = tva({
