@@ -7,7 +7,7 @@ import BlogsPageLayout from '@/components/page-components/blogs-page/BlogsPageLa
 
 const blogs = [
   {
-    title: 'gluestack-ui v4.1 Alpha: Universal Performance with Uniwind and Tailwind v4',
+    title: 'gluestack-ui v4.1 Alpha: Supercharged Expo Apps with Uniwind and Tailwind v4',
     cover: '/images/og-image.png',
     slug: 'gluestack-ui-v4-1-alpha-release',
     published_at: {
@@ -298,7 +298,7 @@ const Blogs = () => {
       </Heading>
       <Box>
         {sortedBlogs &&
-          sortedBlogs.map((blog: any, index: number) => {
+          sortedBlogs.map((blog: any) => {
             return <BlogListItem key={blog.slug} blog={blog} />;
           })}
       </Box>
