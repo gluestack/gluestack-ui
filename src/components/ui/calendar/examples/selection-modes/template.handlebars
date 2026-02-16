@@ -1,0 +1,41 @@
+function Example() {
+  const [singleDate, setSingleDate] = React.useState(new Date());
+  const [multipleDates, setMultipleDates] = React.useState([new Date()]);
+  const [dateRange, setDateRange] = React.useState({ from: new Date(), to: null });
+
+  const renderCalendar = (mode, value, onChange, title) => (
+    <Box className="p-4 border border-border rounded-lg bg-card">
+      <Text className="text-sm font-semibold mb-3 text-card-foreground">{title}</Text>
+      <Calendar
+        mode={mode}
+        value={value}
+        onValueChange={onChange}
+        className="w-full"
+      >
+        <CalendarHeader>
+          <CalendarHeaderPrevButton>
+            <Icon as={ChevronLeftIcon} size="sm" />
+          </CalendarHeaderPrevButton>
+          <CalendarHeaderTitle />
+          <CalendarHeaderNextButton>
+            <Icon as={ChevronRightIcon} size="sm" />
+          </CalendarHeaderNextButton>
+        </CalendarHeader>
+
+        <CalendarWeekDaysHeader />
+
+        <CalendarBody>
+          <CalendarGrid />
+        </CalendarBody>
+      </Calendar>
+    </Box>
+  );
+
+  return (
+    <VStack space="lg" className="w-full">
+      {renderCalendar("single", singleDate, setSingleDate, "Single Date Selection")}
+      {renderCalendar("multiple", multipleDates, setMultipleDates, "Multiple Dates Selection")}
+      {renderCalendar("range", dateRange, setDateRange, "Date Range Selection")}
+    </VStack>
+  );
+}

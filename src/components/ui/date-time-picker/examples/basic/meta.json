@@ -1,4 +1,13 @@
 {
-  "title": "Basic DateTimePicker",
-  "description": "A basic example of the DateTimePicker component with date and time selection"
+  "title": "Basic",
+  "description": "A basic DateTimePicker with date and time selection",
+  "argTypes": {},
+  "reactLive": {
+    "DateTimePicker": "@/components/ui/date-time-picker",
+    "DateTimePickerTrigger": "@/components/ui/date-time-picker",
+    "DateTimePickerInput": "@/components/ui/date-time-picker",
+    "DateTimePickerIcon": "@/components/ui/date-time-picker",
+    "Box": "@/components/ui/box",
+    "CalendarDaysIcon": "@/components/ui/icon"
+  }
 }

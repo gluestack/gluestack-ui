@@ -146,169 +146,177 @@ const ZoomableImage = React.memo(
       isZoomed: () => scale.value > 1,
     }));
 
-  const pinchGesture = Gesture.Pinch()
-    .onUpdate((event) => {
-      scale.value = savedScale.value * event.scale;
-    })
-    .onEnd(() => {
-      if (scale.value < 1) {
-        scale.value = withSpring(1);
-        savedScale.value = 1;
-        translateX.value = withSpring(0);
-        translateY.value = withSpring(0);
-        savedTranslateX.value = 0;
-        savedTranslateY.value = 0;
-        if (onZoomChange) runOnJS(onZoomChange)(false);
-      } else if (scale.value > 4) {
-        scale.value = withSpring(4);
-        savedScale.value = 4;
-        if (onZoomChange) runOnJS(onZoomChange)(true);
-      } else {
-        savedScale.value = scale.value;
-        if (onZoomChange) runOnJS(onZoomChange)(scale.value > 1);
-      }
-    });
+    const pinchGesture = Gesture.Pinch()
+      .onUpdate((event) => {
+        scale.value = savedScale.value * event.scale;
+      })
+      .onEnd(() => {
+        if (scale.value < 1) {
+          scale.value = withSpring(1);
+          savedScale.value = 1;
+          translateX.value = withSpring(0);
+          translateY.value = withSpring(0);
+          savedTranslateX.value = 0;
+          savedTranslateY.value = 0;
+          if (onZoomChange) runOnJS(onZoomChange)(false);
+        } else if (scale.value > 4) {
+          scale.value = withSpring(4);
+          savedScale.value = 4;
+          if (onZoomChange) runOnJS(onZoomChange)(true);
+        } else {
+          savedScale.value = scale.value;
+          if (onZoomChange) runOnJS(onZoomChange)(scale.value > 1);
+        }
+      });
 
-  // Pan gesture for when zoomed - allows free movement with edge detection
-  const panGesture = Gesture.Pan()
-    .enabled(scale.value > 1)
-    .onUpdate((event) => {
-      // Calculate max translation bounds for zoomed image
-      const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
-      const maxTranslateY = ((scale.value - 1) * SCREEN_HEIGHT * 0.8) / 2;
+    // Pan gesture for when zoomed - allows free movement with edge detection
+    const panGesture = Gesture.Pan()
+      .enabled(scale.value > 1)
+      .onUpdate((event) => {
+        // Calculate max translation bounds for zoomed image
+        const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
+        const maxTranslateY = ((scale.value - 1) * SCREEN_HEIGHT * 0.8) / 2;
 
-      // Allow panning within bounds
-      const newTranslateX = savedTranslateX.value + event.translationX;
-      const newTranslateY = savedTranslateY.value + event.translationY;
+        // Allow panning within bounds
+        const newTranslateX = savedTranslateX.value + event.translationX;
+        const newTranslateY = savedTranslateY.value + event.translationY;
 
-      // Clamp to bounds
-      translateX.value = Math.max(
-        -maxTranslateX,
-        Math.min(maxTranslateX, newTranslateX)
-      );
-      translateY.value = Math.max(
-        -maxTranslateY,
-        Math.min(maxTranslateY, newTranslateY)
-      );
-    })
-    .onEnd((event) => {
-      const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
+        // Clamp to bounds
+        translateX.value = Math.max(
+          -maxTranslateX,
+          Math.min(maxTranslateX, newTranslateX)
+        );
+        translateY.value = Math.max(
+          -maxTranslateY,
+          Math.min(maxTranslateY, newTranslateY)
+        );
+      })
+      .onEnd((event) => {
+        const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
 
-      // Check if at horizontal edge and swiped further (outer range offset)
-      const isAtRightEdge = translateX.value >= maxTranslateX - 5;
-      const isAtLeftEdge = translateX.value <= -maxTranslateX + 5;
-      const swipeThreshold = 50;
+        // Check if at horizontal edge and swiped further (outer range offset)
+        const isAtRightEdge = translateX.value >= maxTranslateX - 5;
+        const isAtLeftEdge = translateX.value <= -maxTranslateX + 5;
+        const swipeThreshold = 50;
 
-      // If at edge and swiped with enough velocity/distance, navigate
-      if (isAtLeftEdge && event.translationX > swipeThreshold && event.velocityX > 0) {
-        // At left edge, swiped right -> go to previous
-        runOnJS(onSwipeRight)();
-        // Reset zoom after navigation
-        scale.value = withSpring(1);
-        savedScale.value = 1;
-        translateX.value = withSpring(0);
-        translateY.value = withSpring(0);
-        savedTranslateX.value = 0;
-        savedTranslateY.value = 0;
-        if (onZoomChange) runOnJS(onZoomChange)(false);
-      } else if (isAtRightEdge && event.translationX < -swipeThreshold && event.velocityX < 0) {
-        // At right edge, swiped left -> go to next
-        runOnJS(onSwipeLeft)();
-        // Reset zoom after navigation
-        scale.value = withSpring(1);
-        savedScale.value = 1;
-        translateX.value = withSpring(0);
-        translateY.value = withSpring(0);
-        savedTranslateX.value = 0;
-        savedTranslateY.value = 0;
-        if (onZoomChange) runOnJS(onZoomChange)(false);
-      } else {
-        // Save position within bounds
-        savedTranslateX.value = translateX.value;
-        savedTranslateY.value = translateY.value;
-      }
-    });
+        // If at edge and swiped with enough velocity/distance, navigate
+        if (
+          isAtLeftEdge &&
+          event.translationX > swipeThreshold &&
+          event.velocityX > 0
+        ) {
+          // At left edge, swiped right -> go to previous
+          runOnJS(onSwipeRight)();
+          // Reset zoom after navigation
+          scale.value = withSpring(1);
+          savedScale.value = 1;
+          translateX.value = withSpring(0);
+          translateY.value = withSpring(0);
+          savedTranslateX.value = 0;
+          savedTranslateY.value = 0;
+          if (onZoomChange) runOnJS(onZoomChange)(false);
+        } else if (
+          isAtRightEdge &&
+          event.translationX < -swipeThreshold &&
+          event.velocityX < 0
+        ) {
+          // At right edge, swiped left -> go to next
+          runOnJS(onSwipeLeft)();
+          // Reset zoom after navigation
+          scale.value = withSpring(1);
+          savedScale.value = 1;
+          translateX.value = withSpring(0);
+          translateY.value = withSpring(0);
+          savedTranslateX.value = 0;
+          savedTranslateY.value = 0;
+          if (onZoomChange) runOnJS(onZoomChange)(false);
+        } else {
+          // Save position within bounds
+          savedTranslateX.value = translateX.value;
+          savedTranslateY.value = translateY.value;
+        }
+      });
 
-  // Vertical pan gesture for dismiss - only when NOT zoomed
-  const dismissGesture = Gesture.Pan()
-    .enabled(scale.value <= 1)
-    .activeOffsetY([-10, 10]) // Activate only for vertical movement
-    .failOffsetX([-20, 20]) // Fail if horizontal movement is too much
-    .onUpdate((event) => {
-      dismissProgress.value =
-        Math.abs(event.translationY) / (SCREEN_HEIGHT * 0.3);
-      translateY.value = event.translationY;
-      opacity.value = interpolate(
-        dismissProgress.value,
-        [0, 1],
-        [1, 0.3],
-        Extrapolate.CLAMP
-      );
-    })
-    .onEnd((event) => {
-      if (Math.abs(event.translationY) > 120) {
-        runOnJS(onDismiss)();
-      } else {
-        translateY.value = withSpring(0);
-        opacity.value = withTiming(1, { duration: 200 });
-        dismissProgress.value = withTiming(0, { duration: 200 });
-      }
-    });
+    // Vertical pan gesture for dismiss - only when NOT zoomed
+    const dismissGesture = Gesture.Pan()
+      .enabled(scale.value <= 1)
+      .activeOffsetY([-10, 10]) // Activate only for vertical movement
+      .failOffsetX([-20, 20]) // Fail if horizontal movement is too much
+      .onUpdate((event) => {
+        dismissProgress.value =
+          Math.abs(event.translationY) / (SCREEN_HEIGHT * 0.3);
+        translateY.value = event.translationY;
+        opacity.value = interpolate(
+          dismissProgress.value,
+          [0, 1],
+          [1, 0.3],
+          Extrapolate.CLAMP
+        );
+      })
+      .onEnd((event) => {
+        if (Math.abs(event.translationY) > 120) {
+          runOnJS(onDismiss)();
+        } else {
+          translateY.value = withSpring(0);
+          opacity.value = withTiming(1, { duration: 200 });
+          dismissProgress.value = withTiming(0, { duration: 200 });
+        }
+      });
 
-  const lastTapX = useSharedValue(0);
-  const lastTapY = useSharedValue(0);
+    const lastTapX = useSharedValue(0);
+    const lastTapY = useSharedValue(0);
 
-  const doubleTapGesture = Gesture.Tap()
-    .numberOfTaps(2)
-    .onBegin((event) => {
-      lastTapX.value = event.x;
-      lastTapY.value = event.y;
-    })
-    .onEnd(() => {
-      if (scale.value > 1) {
-        scale.value = withSpring(1);
-        savedScale.value = 1;
-        translateX.value = withSpring(0);
-        translateY.value = withSpring(0);
-        savedTranslateX.value = 0;
-        savedTranslateY.value = 0;
-        if (onZoomChange) runOnJS(onZoomChange)(false);
-      } else {
-        const zoomScale = 2.5;
-        scale.value = withSpring(zoomScale);
-        savedScale.value = zoomScale;
+    const doubleTapGesture = Gesture.Tap()
+      .numberOfTaps(2)
+      .onBegin((event) => {
+        lastTapX.value = event.x;
+        lastTapY.value = event.y;
+      })
+      .onEnd(() => {
+        if (scale.value > 1) {
+          scale.value = withSpring(1);
+          savedScale.value = 1;
+          translateX.value = withSpring(0);
+          translateY.value = withSpring(0);
+          savedTranslateX.value = 0;
+          savedTranslateY.value = 0;
+          if (onZoomChange) runOnJS(onZoomChange)(false);
+        } else {
+          const zoomScale = 2.5;
+          scale.value = withSpring(zoomScale);
+          savedScale.value = zoomScale;
 
-        const centerX = SCREEN_WIDTH / 2;
-        const centerY = SCREEN_HEIGHT * 0.4;
-        const deltaX = centerX - lastTapX.value;
-        const deltaY = centerY - lastTapY.value;
-        const targetX = (deltaX * zoomScale) / zoomScale;
-        const targetY = (deltaY * zoomScale) / zoomScale;
+          const centerX = SCREEN_WIDTH / 2;
+          const centerY = SCREEN_HEIGHT * 0.4;
+          const deltaX = centerX - lastTapX.value;
+          const deltaY = centerY - lastTapY.value;
+          const targetX = (deltaX * zoomScale) / zoomScale;
+          const targetY = (deltaY * zoomScale) / zoomScale;
 
-        translateX.value = withSpring(targetX);
-        translateY.value = withSpring(targetY);
-        savedTranslateX.value = targetX;
-        savedTranslateY.value = targetY;
-        if (onZoomChange) runOnJS(onZoomChange)(true);
-      }
-    });
+          translateX.value = withSpring(targetX);
+          translateY.value = withSpring(targetY);
+          savedTranslateX.value = targetX;
+          savedTranslateY.value = targetY;
+          if (onZoomChange) runOnJS(onZoomChange)(true);
+        }
+      });
 
-  const composedGesture = Gesture.Race(
-    doubleTapGesture,
-    Gesture.Simultaneous(
-      pinchGesture,
-      Gesture.Exclusive(panGesture, dismissGesture)
-    )
-  );
+    const composedGesture = Gesture.Race(
+      doubleTapGesture,
+      Gesture.Simultaneous(
+        pinchGesture,
+        Gesture.Exclusive(panGesture, dismissGesture)
+      )
+    );
 
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateX: translateX.value },
-      { translateY: translateY.value },
-      { scale: scale.value },
-    ],
-    opacity: opacity.value,
-  }));
+    const animatedStyle = useAnimatedStyle(() => ({
+      transform: [
+        { translateX: translateX.value },
+        { translateY: translateY.value },
+        { scale: scale.value },
+      ],
+      opacity: opacity.value,
+    }));
 
     return (
       <GestureDetector gesture={composedGesture}>
@@ -377,7 +385,11 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
       const contentOffsetX = event.nativeEvent.contentOffset.x;
       const newIndex = Math.round(contentOffsetX / SCREEN_WIDTH);
 
-      if (newIndex !== localIndex && newIndex >= 0 && newIndex < images.length) {
+      if (
+        newIndex !== localIndex &&
+        newIndex >= 0 &&
+        newIndex < images.length
+      ) {
         setLocalIndex(newIndex);
         onIndexChange(newIndex);
       }
@@ -438,7 +450,10 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
   );
 
   return (
-    <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }} className="web:my-auto">
+    <View
+      style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}
+      className="web:my-auto"
+    >
       <FlatList
         ref={flatListRef}
         data={images}
@@ -598,9 +613,23 @@ const ImageViewerContent = React.forwardRef<
           entering={FadeIn.duration(300).easing(Easing.out(Easing.ease))}
           exiting={FadeOut.duration(200).easing(Easing.in(Easing.ease))}
           className={imageViewerModalStyle({})}
-          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
         >
-          <View ref={ref} className={imageViewerContentStyle({})} style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <View
+            ref={ref}
+            className={imageViewerContentStyle({})}
+            style={{
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             <SlidableImageGallery
               images={images}
               currentIndex={currentIndex}

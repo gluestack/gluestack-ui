@@ -3,11 +3,11 @@ import { tva } from '@gluestack-ui/utils/nativewind-utils';
 // Main Calendar container
 // Full width on native, max-width on web
 export const calendarStyle = tva({
-  base: 'w-full web:max-w-md bg-background border border-border rounded-lg p-4 gap-4',
+  base: 'w-full web:w-fit bg-background border border-border rounded-lg p-4 gap-2',
   variants: {
     size: {
       sm: 'p-2 gap-2',
-      md: 'p-4 gap-4',
+      md: 'p-2 gap-1',
       lg: 'p-6 gap-6',
     },
   },
@@ -34,12 +34,12 @@ export const calendarHeaderTitleStyle = tva({
 
 // Week Days Header
 export const calendarWeekDaysHeaderStyle = tva({
-  base: 'flex-row gap-1 mb-2',
+  base: 'flex-row gap-0 mb-2',
   variants: {},
 });
 
 export const calendarWeekDayStyle = tva({
-  base: 'flex-1 items-center justify-center h-9 min-w-[2.25rem]',
+  base: 'flex-1 items-center justify-center min-w-[2.0rem] web:max-w-[2.5rem]',
   variants: {},
 });
 
@@ -51,29 +51,29 @@ export const calendarWeekDayTextStyle = tva({
 
 // Body & Grid
 export const calendarBodyStyle = tva({
-  base: 'gap-1',
+  base: 'gap-0',
   variants: {},
 });
 
 export const calendarGridStyle = tva({
-  base: 'gap-1',
+  base: 'gap-0',
   variants: {},
 });
 
 export const calendarWeekStyle = tva({
-  base: 'flex-row gap-1',
+  base: 'flex-row gap-0',
   variants: {},
 });
 
 // Day
 export const calendarDayStyle = tva({
-  base: 'flex-1 aspect-square items-center justify-center rounded-md min-w-[2.25rem] relative transition-colors',
+  base: 'flex-1 aspect-square items-center justify-center rounded-md web:max-w-[2.25rem] relative transition-colors',
   variants: {
     state: {
-      default: 'hover:bg-accent active:bg-accent/80',
-      selected: 'bg-primary hover:bg-primary/90 active:bg-primary/80',
-      today: 'bg-accent',
-      disabled: 'opacity-40 cursor-not-allowed',
+      'default': 'hover:bg-accent active:bg-accent/80',
+      'selected': 'bg-primary hover:bg-primary/90 active:bg-primary/80',
+      'today': 'bg-accent',
+      'disabled': 'opacity-40 cursor-not-allowed',
       'outside-month': 'opacity-30',
       'range-start': 'bg-primary rounded-r-md',
       'range-end': 'bg-primary rounded-l-md',
@@ -86,10 +86,10 @@ export const calendarDayTextStyle = tva({
   base: 'text-foreground text-sm font-normal z-10',
   variants: {
     state: {
-      default: 'text-foreground',
-      selected: 'text-primary-foreground font-semibold',
-      today: 'text-accent-foreground font-semibold',
-      disabled: 'text-muted-foreground',
+      'default': 'text-foreground',
+      'selected': 'text-primary-foreground ',
+      'today': 'text-accent-foreground',
+      'disabled': 'text-muted-foreground',
       'outside-month': 'text-muted-foreground',
       'range-start': 'text-primary-foreground font-semibold',
       'range-end': 'text-primary-foreground font-semibold',
@@ -103,9 +103,9 @@ export const calendarDayIndicatorStyle = tva({
   base: 'absolute bottom-1 flex-row gap-0.5 z-0',
   variants: {
     type: {
-      dot: 'flex-row gap-0.5',
+      'dot': 'flex-row gap-0.5',
       'multi-dot': 'flex-row gap-0.5',
-      period: 'absolute inset-0 rounded-md opacity-20',
+      'period': 'absolute inset-0 rounded-md opacity-20',
     },
   },
 });

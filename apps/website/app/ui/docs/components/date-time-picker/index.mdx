@@ -1,4 +1,10 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
+import { DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon } from '@/components/ui/date-time-picker';
+import { Box } from '@/components/ui/box';
+import { CalendarDaysIcon, ClockIcon, AlertCircleIcon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorText, FormControlErrorIcon } from '@/components/ui/form-control';
 
 import { CodeBlock } from "@/components/custom/markdown/code-block"; 
 
@@ -264,30 +270,19 @@ Example: `format="YYYY-MM-DD HH:mm"` displays as "2024-01-15 14:30"
 
 ## Examples
 
-### Basic
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs.
 
 
-  #### Basic DateTimePicker
+  
 
-  A basic example of the DateTimePicker component with date and time selection
+  A basic DateTimePicker with date and time selection
   
   <CodePreviewer
-  code={`<script>
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import { 
-  DateTimePicker, 
-  DateTimePickerTrigger, 
-  DateTimePickerInput, 
-  DateTimePickerIcon 
-} from '@/components/ui/date-time-picker';
-import { CalendarDays } from 'lucide-react-native';
-
-const Example = () => {
-  const [date, setDate] = useState(new Date());
+  code={`function Example() {
+  const [date, setDate] = React.useState(new Date());
 
   return (
-    <View className="p-4">
+    <Box className="p-4 w-full">
       <DateTimePicker
         value={date}
         onChange={setDate}
@@ -296,24 +291,257 @@ const Example = () => {
       >
         <DateTimePickerTrigger>
           <DateTimePickerInput />
-          <DateTimePickerIcon as={CalendarDays} />
+          <DateTimePickerIcon as={CalendarDaysIcon} />
         </DateTimePickerTrigger>
       </DateTimePicker>
-    </View>
+    </Box>
   );
-};
-
-export default Example;
-</script>`}
+}`}
   argTypes={{}}
-  reactLive={{  }}
-  importMap={{}}
+  reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, Box, CalendarDaysIcon }}
+  importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/box":["Box"],"@/components/ui/icon":["CalendarDaysIcon"]}}
 />
 
-### With Form Control
 
-<!-- Failed to load CodePreviewer for Example:form-control -->
+  #### Different Modes
 
-### Date Range Selection
+  DateTimePicker supports three modes: date only, time only, and combined datetime selection
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [date, setDate] = React.useState(new Date());
+  const [time, setTime] = React.useState(new Date());
+  const [dateTime, setDateTime] = React.useState(new Date());
 
-<!-- Failed to load CodePreviewer for Example:date-range -->
+  return (
+    <VStack space="lg" className="w-full">
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Date Only</Text>
+        <DateTimePicker
+          value={date}
+          onChange={setDate}
+          mode="date"
+          placeholder="Select a date"
+        >
+          <DateTimePickerTrigger>
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Time Only (12-hour)</Text>
+        <DateTimePicker
+          value={time}
+          onChange={setTime}
+          mode="time"
+          placeholder="Select time"
+        >
+          <DateTimePickerTrigger>
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={ClockIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Date & Time</Text>
+        <DateTimePicker
+          value={dateTime}
+          onChange={setDateTime}
+          mode="datetime"
+          placeholder="Select date and time"
+        >
+          <DateTimePickerTrigger>
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+    </VStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, Box, Text, VStack, CalendarDaysIcon, ClockIcon }}
+  importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["CalendarDaysIcon","ClockIcon"]}}
+/>
+
+
+  #### Variants & Sizes
+
+  DateTimePicker supports multiple visual variants (outline, underlined, rounded) and sizes (sm, md, lg, xl)
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [date, setDate] = React.useState(new Date());
+
+  return (
+    <VStack space="lg" className="w-full">
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Outline Variant (Default)</Text>
+        <DateTimePicker
+          value={date}
+          onChange={setDate}
+          mode="date"
+          placeholder="Select date"
+        >
+          <DateTimePickerTrigger variant="outline">
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Underlined Variant</Text>
+        <DateTimePicker
+          value={date}
+          onChange={setDate}
+          mode="date"
+          placeholder="Select date"
+        >
+          <DateTimePickerTrigger variant="underlined">
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Rounded Variant</Text>
+        <DateTimePicker
+          value={date}
+          onChange={setDate}
+          mode="date"
+          placeholder="Select date"
+        >
+          <DateTimePickerTrigger variant="rounded">
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Different Sizes</Text>
+        <VStack space="md">
+          <DateTimePicker
+            value={date}
+            onChange={setDate}
+            mode="date"
+          >
+            <DateTimePickerTrigger size="sm" variant="outline">
+              <DateTimePickerInput />
+              <DateTimePickerIcon as={CalendarDaysIcon} size="sm" />
+            </DateTimePickerTrigger>
+          </DateTimePicker>
+
+          <DateTimePicker
+            value={date}
+            onChange={setDate}
+            mode="date"
+          >
+            <DateTimePickerTrigger size="md" variant="outline">
+              <DateTimePickerInput />
+              <DateTimePickerIcon as={CalendarDaysIcon} size="md" />
+            </DateTimePickerTrigger>
+          </DateTimePicker>
+
+          <DateTimePicker
+            value={date}
+            onChange={setDate}
+            mode="date"
+          >
+            <DateTimePickerTrigger size="lg" variant="outline">
+              <DateTimePickerInput />
+              <DateTimePickerIcon as={CalendarDaysIcon} size="lg" />
+            </DateTimePickerTrigger>
+          </DateTimePicker>
+        </VStack>
+      </Box>
+    </VStack>
+  );
+}`}
+  argTypes={{
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "outline",
+      "underlined",
+      "rounded"
+    ],
+    "defaultValue": "outline"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, Box, Text, VStack, CalendarDaysIcon }}
+  importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["CalendarDaysIcon"]}}
+/>
+
+
+  #### With Form Control
+
+  Use DateTimePicker with FormControl for proper labeling, helper text, and validation states
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [date, setDate] = React.useState(null);
+  const [isInvalid, setIsInvalid] = React.useState(false);
+
+  // Validate that date is not in the past
+  React.useEffect(() => {
+    if (date) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      setIsInvalid(date < today);
+    }
+  }, [date]);
+
+  return (
+    <FormControl isInvalid={isInvalid} className="w-full">
+      <FormControlLabel>
+        <FormControlLabelText>Event Date</FormControlLabelText>
+      </FormControlLabel>
+      <DateTimePicker
+        value={date}
+        onChange={setDate}
+        mode="date"
+        placeholder="Select event date"
+      >
+        <DateTimePickerTrigger isInvalid={isInvalid}>
+          <DateTimePickerInput />
+          <DateTimePickerIcon as={CalendarDaysIcon} />
+        </DateTimePickerTrigger>
+      </DateTimePicker>
+      <FormControlHelper>
+        <FormControlHelperText>
+          Choose a future date for your event
+        </FormControlHelperText>
+      </FormControlHelper>
+      <FormControlError>
+        <FormControlErrorIcon as={AlertCircleIcon} />
+        <FormControlErrorText>
+          Event date cannot be in the past
+        </FormControlErrorText>
+      </FormControlError>
+    </FormControl>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorText, FormControlErrorIcon, CalendarDaysIcon, AlertCircleIcon }}
+  importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/form-control":["FormControl","FormControlLabel","FormControlLabelText","FormControlHelper","FormControlHelperText","FormControlError","FormControlErrorText","FormControlErrorIcon"],"@/components/ui/icon":["CalendarDaysIcon","AlertCircleIcon"]}}
+/>

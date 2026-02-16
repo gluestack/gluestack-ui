@@ -1,0 +1,59 @@
+function Example() {
+  const [selected, setSelected] = React.useState(new Date());
+
+  return (
+    <VStack space="lg" className="w-full">
+      <Box className="p-4 border border-border rounded-xl bg-primary/5">
+        <Text className="text-sm font-semibold mb-3 text-primary">Primary Theme</Text>
+        <Calendar
+          mode="single"
+          value={selected}
+          onValueChange={setSelected}
+          className="{{size}}"
+        >
+          <CalendarHeader className="bg-primary/10 rounded-t-lg p-2">
+            <CalendarHeaderPrevButton className="bg-background rounded-full p-1 shadow-sm">
+              <Icon as={ChevronLeftIcon} size="sm" className="text-primary" />
+            </CalendarHeaderPrevButton>
+            <CalendarHeaderTitle className="text-primary font-bold" />
+            <CalendarHeaderNextButton className="bg-background rounded-full p-1 shadow-sm">
+              <Icon as={ChevronRightIcon} size="sm" className="text-primary" />
+            </CalendarHeaderNextButton>
+          </CalendarHeader>
+
+          <CalendarWeekDaysHeader className="bg-primary/5" />
+
+          <CalendarBody className="bg-background rounded-b-lg">
+            <CalendarGrid />
+          </CalendarBody>
+        </Calendar>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-xl bg-secondary/30">
+        <Text className="text-sm font-semibold mb-3 text-secondary-foreground">Secondary Theme</Text>
+        <Calendar
+          mode="single"
+          value={selected}
+          onValueChange={setSelected}
+          className="{{size}}"
+        >
+          <CalendarHeader className="bg-secondary rounded-t-lg p-2">
+            <CalendarHeaderPrevButton className="bg-background rounded-full p-1 shadow-sm">
+              <Icon as={ChevronLeftIcon} size="sm" className="text-secondary-foreground" />
+            </CalendarHeaderPrevButton>
+            <CalendarHeaderTitle className="text-secondary-foreground font-bold" />
+            <CalendarHeaderNextButton className="bg-background rounded-full p-1 shadow-sm">
+              <Icon as={ChevronRightIcon} size="sm" className="text-secondary-foreground" />
+            </CalendarHeaderNextButton>
+          </CalendarHeader>
+
+          <CalendarWeekDaysHeader className="bg-secondary/50" />
+
+          <CalendarBody className="bg-background rounded-b-lg">
+            <CalendarGrid />
+          </CalendarBody>
+        </Calendar>
+      </Box>
+    </VStack>
+  );
+}

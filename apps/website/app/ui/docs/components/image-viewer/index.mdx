@@ -3,6 +3,10 @@ import { ImageViewer, ImageViewerTrigger, ImageViewerContent, ImageViewerCloseBu
 import { Image } from '@/components/ui/image';
 import { Text } from '@/components/ui/text';
 import { View } from '@/components/ui/view';
+import { VStack } from '@/components/ui/vstack';
+import { HStack } from '@/components/ui/hstack';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Pressable } from '@/components/ui/pressable';
 
 import { CodeBlock } from "@/components/custom/markdown/code-block"; 
 
@@ -45,13 +49,15 @@ This is an illustration of **Image Viewer** component.
     }
   ];
 
+  const thumbnailSource = { uri: images[0].url };
+
   return (
     <View className="p-4">
       <Text className="text-lg font-medium mb-4">Tap an image to view gallery</Text>
       <ImageViewer images={images}>
         <ImageViewerTrigger>
           <Image
-            source={{ uri: images[0].url }}
+            source={thumbnailSource}
             alt="Gallery thumbnail"
             className="w-full h-64 rounded-lg"
             resizeMode="cover"
@@ -132,7 +138,7 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedImage = Animated.createAnimatedComponent(RNImage);
 
 const imageViewerStyle = tva({
-  base: 'w-full h-full',
+  base: 'w-full',
 });
 
 const imageViewerModalStyle = tva({
@@ -140,7 +146,7 @@ const imageViewerModalStyle = tva({
 });
 
 const imageViewerContentStyle = tva({
-  base: 'flex-1 justify-center items-center overflow-hidden',
+  base: 'flex-1 justify-center items-center overflow-hidden web:flex web:justify-center web:items-center',
 });
 
 const imageViewerCloseButtonStyle = tva({
@@ -238,169 +244,177 @@ const ZoomableImage = React.memo(
       isZoomed: () => scale.value > 1,
     }));
 
-  const pinchGesture = Gesture.Pinch()
-    .onUpdate((event) => {
-      scale.value = savedScale.value * event.scale;
-    })
-    .onEnd(() => {
-      if (scale.value < 1) {
-        scale.value = withSpring(1);
-        savedScale.value = 1;
-        translateX.value = withSpring(0);
-        translateY.value = withSpring(0);
-        savedTranslateX.value = 0;
-        savedTranslateY.value = 0;
-        if (onZoomChange) runOnJS(onZoomChange)(false);
-      } else if (scale.value > 4) {
-        scale.value = withSpring(4);
-        savedScale.value = 4;
-        if (onZoomChange) runOnJS(onZoomChange)(true);
-      } else {
-        savedScale.value = scale.value;
-        if (onZoomChange) runOnJS(onZoomChange)(scale.value > 1);
-      }
-    });
+    const pinchGesture = Gesture.Pinch()
+      .onUpdate((event) => {
+        scale.value = savedScale.value * event.scale;
+      })
+      .onEnd(() => {
+        if (scale.value < 1) {
+          scale.value = withSpring(1);
+          savedScale.value = 1;
+          translateX.value = withSpring(0);
+          translateY.value = withSpring(0);
+          savedTranslateX.value = 0;
+          savedTranslateY.value = 0;
+          if (onZoomChange) runOnJS(onZoomChange)(false);
+        } else if (scale.value > 4) {
+          scale.value = withSpring(4);
+          savedScale.value = 4;
+          if (onZoomChange) runOnJS(onZoomChange)(true);
+        } else {
+          savedScale.value = scale.value;
+          if (onZoomChange) runOnJS(onZoomChange)(scale.value > 1);
+        }
+      });
 
-  // Pan gesture for when zoomed - allows free movement with edge detection
-  const panGesture = Gesture.Pan()
-    .enabled(scale.value > 1)
-    .onUpdate((event) => {
-      // Calculate max translation bounds for zoomed image
-      const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
-      const maxTranslateY = ((scale.value - 1) * SCREEN_HEIGHT * 0.8) / 2;
+    // Pan gesture for when zoomed - allows free movement with edge detection
+    const panGesture = Gesture.Pan()
+      .enabled(scale.value > 1)
+      .onUpdate((event) => {
+        // Calculate max translation bounds for zoomed image
+        const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
+        const maxTranslateY = ((scale.value - 1) * SCREEN_HEIGHT * 0.8) / 2;
 
-      // Allow panning within bounds
-      const newTranslateX = savedTranslateX.value + event.translationX;
-      const newTranslateY = savedTranslateY.value + event.translationY;
+        // Allow panning within bounds
+        const newTranslateX = savedTranslateX.value + event.translationX;
+        const newTranslateY = savedTranslateY.value + event.translationY;
 
-      // Clamp to bounds
-      translateX.value = Math.max(
-        -maxTranslateX,
-        Math.min(maxTranslateX, newTranslateX)
-      );
-      translateY.value = Math.max(
-        -maxTranslateY,
-        Math.min(maxTranslateY, newTranslateY)
-      );
-    })
-    .onEnd((event) => {
-      const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
+        // Clamp to bounds
+        translateX.value = Math.max(
+          -maxTranslateX,
+          Math.min(maxTranslateX, newTranslateX)
+        );
+        translateY.value = Math.max(
+          -maxTranslateY,
+          Math.min(maxTranslateY, newTranslateY)
+        );
+      })
+      .onEnd((event) => {
+        const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
 
-      // Check if at horizontal edge and swiped further (outer range offset)
-      const isAtRightEdge = translateX.value >= maxTranslateX - 5;
-      const isAtLeftEdge = translateX.value <= -maxTranslateX + 5;
-      const swipeThreshold = 50;
+        // Check if at horizontal edge and swiped further (outer range offset)
+        const isAtRightEdge = translateX.value >= maxTranslateX - 5;
+        const isAtLeftEdge = translateX.value <= -maxTranslateX + 5;
+        const swipeThreshold = 50;
 
-      // If at edge and swiped with enough velocity/distance, navigate
-      if (isAtLeftEdge && event.translationX > swipeThreshold && event.velocityX > 0) {
-        // At left edge, swiped right -> go to previous
-        runOnJS(onSwipeRight)();
-        // Reset zoom after navigation
-        scale.value = withSpring(1);
-        savedScale.value = 1;
-        translateX.value = withSpring(0);
-        translateY.value = withSpring(0);
-        savedTranslateX.value = 0;
-        savedTranslateY.value = 0;
-        if (onZoomChange) runOnJS(onZoomChange)(false);
-      } else if (isAtRightEdge && event.translationX < -swipeThreshold && event.velocityX < 0) {
-        // At right edge, swiped left -> go to next
-        runOnJS(onSwipeLeft)();
-        // Reset zoom after navigation
-        scale.value = withSpring(1);
-        savedScale.value = 1;
-        translateX.value = withSpring(0);
-        translateY.value = withSpring(0);
-        savedTranslateX.value = 0;
-        savedTranslateY.value = 0;
-        if (onZoomChange) runOnJS(onZoomChange)(false);
-      } else {
-        // Save position within bounds
-        savedTranslateX.value = translateX.value;
-        savedTranslateY.value = translateY.value;
-      }
-    });
+        // If at edge and swiped with enough velocity/distance, navigate
+        if (
+          isAtLeftEdge &&
+          event.translationX > swipeThreshold &&
+          event.velocityX > 0
+        ) {
+          // At left edge, swiped right -> go to previous
+          runOnJS(onSwipeRight)();
+          // Reset zoom after navigation
+          scale.value = withSpring(1);
+          savedScale.value = 1;
+          translateX.value = withSpring(0);
+          translateY.value = withSpring(0);
+          savedTranslateX.value = 0;
+          savedTranslateY.value = 0;
+          if (onZoomChange) runOnJS(onZoomChange)(false);
+        } else if (
+          isAtRightEdge &&
+          event.translationX < -swipeThreshold &&
+          event.velocityX < 0
+        ) {
+          // At right edge, swiped left -> go to next
+          runOnJS(onSwipeLeft)();
+          // Reset zoom after navigation
+          scale.value = withSpring(1);
+          savedScale.value = 1;
+          translateX.value = withSpring(0);
+          translateY.value = withSpring(0);
+          savedTranslateX.value = 0;
+          savedTranslateY.value = 0;
+          if (onZoomChange) runOnJS(onZoomChange)(false);
+        } else {
+          // Save position within bounds
+          savedTranslateX.value = translateX.value;
+          savedTranslateY.value = translateY.value;
+        }
+      });
 
-  // Vertical pan gesture for dismiss - only when NOT zoomed
-  const dismissGesture = Gesture.Pan()
-    .enabled(scale.value <= 1)
-    .activeOffsetY([-10, 10]) // Activate only for vertical movement
-    .failOffsetX([-20, 20]) // Fail if horizontal movement is too much
-    .onUpdate((event) => {
-      dismissProgress.value =
-        Math.abs(event.translationY) / (SCREEN_HEIGHT * 0.3);
-      translateY.value = event.translationY;
-      opacity.value = interpolate(
-        dismissProgress.value,
-        [0, 1],
-        [1, 0.3],
-        Extrapolate.CLAMP
-      );
-    })
-    .onEnd((event) => {
-      if (Math.abs(event.translationY) > 120) {
-        runOnJS(onDismiss)();
-      } else {
-        translateY.value = withSpring(0);
-        opacity.value = withTiming(1, { duration: 200 });
-        dismissProgress.value = withTiming(0, { duration: 200 });
-      }
-    });
+    // Vertical pan gesture for dismiss - only when NOT zoomed
+    const dismissGesture = Gesture.Pan()
+      .enabled(scale.value <= 1)
+      .activeOffsetY([-10, 10]) // Activate only for vertical movement
+      .failOffsetX([-20, 20]) // Fail if horizontal movement is too much
+      .onUpdate((event) => {
+        dismissProgress.value =
+          Math.abs(event.translationY) / (SCREEN_HEIGHT * 0.3);
+        translateY.value = event.translationY;
+        opacity.value = interpolate(
+          dismissProgress.value,
+          [0, 1],
+          [1, 0.3],
+          Extrapolate.CLAMP
+        );
+      })
+      .onEnd((event) => {
+        if (Math.abs(event.translationY) > 120) {
+          runOnJS(onDismiss)();
+        } else {
+          translateY.value = withSpring(0);
+          opacity.value = withTiming(1, { duration: 200 });
+          dismissProgress.value = withTiming(0, { duration: 200 });
+        }
+      });
 
-  const lastTapX = useSharedValue(0);
-  const lastTapY = useSharedValue(0);
+    const lastTapX = useSharedValue(0);
+    const lastTapY = useSharedValue(0);
 
-  const doubleTapGesture = Gesture.Tap()
-    .numberOfTaps(2)
-    .onBegin((event) => {
-      lastTapX.value = event.x;
-      lastTapY.value = event.y;
-    })
-    .onEnd(() => {
-      if (scale.value > 1) {
-        scale.value = withSpring(1);
-        savedScale.value = 1;
-        translateX.value = withSpring(0);
-        translateY.value = withSpring(0);
-        savedTranslateX.value = 0;
-        savedTranslateY.value = 0;
-        if (onZoomChange) runOnJS(onZoomChange)(false);
-      } else {
-        const zoomScale = 2.5;
-        scale.value = withSpring(zoomScale);
-        savedScale.value = zoomScale;
+    const doubleTapGesture = Gesture.Tap()
+      .numberOfTaps(2)
+      .onBegin((event) => {
+        lastTapX.value = event.x;
+        lastTapY.value = event.y;
+      })
+      .onEnd(() => {
+        if (scale.value > 1) {
+          scale.value = withSpring(1);
+          savedScale.value = 1;
+          translateX.value = withSpring(0);
+          translateY.value = withSpring(0);
+          savedTranslateX.value = 0;
+          savedTranslateY.value = 0;
+          if (onZoomChange) runOnJS(onZoomChange)(false);
+        } else {
+          const zoomScale = 2.5;
+          scale.value = withSpring(zoomScale);
+          savedScale.value = zoomScale;
 
-        const centerX = SCREEN_WIDTH / 2;
-        const centerY = SCREEN_HEIGHT * 0.4;
-        const deltaX = centerX - lastTapX.value;
-        const deltaY = centerY - lastTapY.value;
-        const targetX = (deltaX * zoomScale) / zoomScale;
-        const targetY = (deltaY * zoomScale) / zoomScale;
+          const centerX = SCREEN_WIDTH / 2;
+          const centerY = SCREEN_HEIGHT * 0.4;
+          const deltaX = centerX - lastTapX.value;
+          const deltaY = centerY - lastTapY.value;
+          const targetX = (deltaX * zoomScale) / zoomScale;
+          const targetY = (deltaY * zoomScale) / zoomScale;
 
-        translateX.value = withSpring(targetX);
-        translateY.value = withSpring(targetY);
-        savedTranslateX.value = targetX;
-        savedTranslateY.value = targetY;
-        if (onZoomChange) runOnJS(onZoomChange)(true);
-      }
-    });
+          translateX.value = withSpring(targetX);
+          translateY.value = withSpring(targetY);
+          savedTranslateX.value = targetX;
+          savedTranslateY.value = targetY;
+          if (onZoomChange) runOnJS(onZoomChange)(true);
+        }
+      });
 
-  const composedGesture = Gesture.Race(
-    doubleTapGesture,
-    Gesture.Simultaneous(
-      pinchGesture,
-      Gesture.Exclusive(panGesture, dismissGesture)
-    )
-  );
+    const composedGesture = Gesture.Race(
+      doubleTapGesture,
+      Gesture.Simultaneous(
+        pinchGesture,
+        Gesture.Exclusive(panGesture, dismissGesture)
+      )
+    );
 
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateX: translateX.value },
-      { translateY: translateY.value },
-      { scale: scale.value },
-    ],
-    opacity: opacity.value,
-  }));
+    const animatedStyle = useAnimatedStyle(() => ({
+      transform: [
+        { translateX: translateX.value },
+        { translateY: translateY.value },
+        { scale: scale.value },
+      ],
+      opacity: opacity.value,
+    }));
 
     return (
       <GestureDetector gesture={composedGesture}>
@@ -469,7 +483,11 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
       const contentOffsetX = event.nativeEvent.contentOffset.x;
       const newIndex = Math.round(contentOffsetX / SCREEN_WIDTH);
 
-      if (newIndex !== localIndex && newIndex >= 0 && newIndex < images.length) {
+      if (
+        newIndex !== localIndex &&
+        newIndex >= 0 &&
+        newIndex < images.length
+      ) {
         setLocalIndex(newIndex);
         onIndexChange(newIndex);
       }
@@ -530,7 +548,10 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
   );
 
   return (
-    <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
+    <View
+      style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}
+      className="web:my-auto"
+    >
       <FlatList
         ref={flatListRef}
         data={images}
@@ -690,8 +711,23 @@ const ImageViewerContent = React.forwardRef<
           entering={FadeIn.duration(300).easing(Easing.out(Easing.ease))}
           exiting={FadeOut.duration(200).easing(Easing.in(Easing.ease))}
           className={imageViewerModalStyle({})}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
         >
-          <View ref={ref} className={imageViewerContentStyle({})}>
+          <View
+            ref={ref}
+            className={imageViewerContentStyle({})}
+            style={{
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             <SlidableImageGallery
               images={images}
               currentIndex={currentIndex}
@@ -1104,3 +1140,178 @@ interface ImageViewerProps {
   initialIndex?: number;
 }
 ```
+
+## Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs.
+
+
+  
+
+  A basic image viewer with zoom, swipe navigation, and slide-to-dismiss gestures
+  
+  <CodePreviewer
+  code={`function Example() {
+  const images = [
+    {
+      url: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&auto=format&fit=crop&q=60',
+      alt: 'Mountain landscape'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1682687221038-404670e01d4c?w=800&auto=format&fit=crop&q=60',
+      alt: 'Ocean waves'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&auto=format&fit=crop&q=60',
+      alt: 'Desert sunset'
+    }
+  ];
+
+  const thumbnailSource = { uri: images[0].url };
+
+  return (
+    <View className="p-4">
+      <Text className="text-lg font-medium mb-4">Tap an image to view gallery</Text>
+      <ImageViewer images={images}>
+        <ImageViewerTrigger>
+          <Image
+            source={thumbnailSource}
+            alt="Gallery thumbnail"
+            className="w-full h-64 rounded-lg"
+            resizeMode="cover"
+          />
+        </ImageViewerTrigger>
+        <ImageViewerContent>
+          <ImageViewerCloseButton />
+          <ImageViewerNavigation />
+          <ImageViewerCounter />
+        </ImageViewerContent>
+      </ImageViewer>
+    </View>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ ImageViewer, ImageViewerTrigger, ImageViewerContent, ImageViewerCloseButton, ImageViewerNavigation, ImageViewerCounter, Image, Text, View }}
+  importMap={{"@/components/ui/image-viewer":["ImageViewer","ImageViewerTrigger","ImageViewerContent","ImageViewerCloseButton","ImageViewerNavigation","ImageViewerCounter"],"@/components/ui/image":["Image"],"@/components/ui/text":["Text"],"@/components/ui/view":["View"]}}
+/>
+
+
+  #### Controlled Mode
+
+  Use controlled props to programmatically control the image viewer state and track current image index
+  
+  <CodePreviewer
+  code={`function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+
+  const images = [
+    {
+      url: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&auto=format&fit=crop&q=60',
+      alt: 'Mountain landscape'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1682687221038-404670e01d4c?w=800&auto=format&fit=crop&q=60',
+      alt: 'Ocean waves'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&auto=format&fit=crop&q=60',
+      alt: 'Desert sunset'
+    }
+  ];
+
+  return (
+    <VStack space="md" className="p-4">
+      <Text className="text-lg font-medium">Controlled Mode</Text>
+      <Text className="text-muted-foreground text-sm mb-4">
+        Current index: {currentIndex + 1} / {images.length} | Viewer is {isOpen ? 'open' : 'closed'}
+      </Text>
+      
+      <Button onPress={() => setIsOpen(true)} variant="outline">
+        <ButtonText>Open Image Viewer</ButtonText>
+      </Button>
+      
+      <HStack space="sm" className="flex-wrap">
+        {images.map((image, index) => (
+          <Pressable
+            key={index}
+            onPress={() => {
+              setCurrentIndex(index);
+              setIsOpen(true);
+            }}
+          >
+            <Image
+              source=\\{{ uri: image.url }}
+              alt={image.alt}
+              className="w-20 h-20 rounded-md"
+              resizeMode="cover"
+            />
+          </Pressable>
+        ))}
+      </HStack>
+
+      <ImageViewer 
+        images={images}
+        isOpen={isOpen}
+        onOpenChange={setIsOpen}
+        onIndexChange={setCurrentIndex}
+        initialIndex={currentIndex}
+      >
+        <ImageViewerContent>
+          <ImageViewerCloseButton />
+          <ImageViewerNavigation />
+          <ImageViewerCounter />
+        </ImageViewerContent>
+      </ImageViewer>
+    </VStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ ImageViewer, ImageViewerContent, ImageViewerCloseButton, ImageViewerNavigation, ImageViewerCounter, Image, Text, VStack, HStack, Button, ButtonText, Pressable }}
+  importMap={{"@/components/ui/image-viewer":["ImageViewer","ImageViewerContent","ImageViewerCloseButton","ImageViewerNavigation","ImageViewerCounter"],"@/components/ui/image":["Image"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/pressable":["Pressable"]}}
+/>
+
+
+  #### Single Image
+
+  Image viewer works great with single images too, providing zoom and pan capabilities
+  
+  <CodePreviewer
+  code={`function Example() {
+  const images = [
+    {
+      url: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&auto=format&fit=crop&q=60',
+      alt: 'Mountain landscape'
+    }
+  ];
+
+  const thumbnailSource = { uri: images[0].url };
+
+  return (
+    <VStack space="md" className="p-4">
+      <Text className="text-lg font-medium">Single Image</Text>
+      <Text className="text-muted-foreground text-sm mb-4">
+        Tap the image to view it in full screen with zoom support
+      </Text>
+      
+      <ImageViewer images={images}>
+        <ImageViewerTrigger>
+          <Image
+            source={thumbnailSource}
+            alt="Gallery thumbnail"
+            className="w-full h-64 rounded-lg"
+            resizeMode="cover"
+          />
+        </ImageViewerTrigger>
+        <ImageViewerContent>
+          <ImageViewerCloseButton />
+          <ImageViewerCounter />
+        </ImageViewerContent>
+      </ImageViewer>
+    </VStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ ImageViewer, ImageViewerTrigger, ImageViewerContent, ImageViewerCloseButton, ImageViewerCounter, Image, Text, VStack }}
+  importMap={{"@/components/ui/image-viewer":["ImageViewer","ImageViewerTrigger","ImageViewerContent","ImageViewerCloseButton","ImageViewerCounter"],"@/components/ui/image":["Image"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"]}}
+/>

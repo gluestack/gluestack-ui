@@ -1,0 +1,76 @@
+function Example() {
+  const [selected, setSelected] = React.useState(new Date());
+  
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  
+  // Create markers for the current month with shadcn-style colors
+  const markers = {
+    [`${year}-${month}-05`]: { 
+      type: 'dot', 
+      color: 'hsl(var(--primary))' 
+    },
+    [`${year}-${month}-12`]: { 
+      type: 'multi-dot', 
+      dots: [
+        { color: 'hsl(var(--primary))', key: '1' },
+        { color: 'hsl(var(--destructive))', key: '2' }
+      ]
+    },
+    [`${year}-${month}-20`]: { 
+      type: 'period', 
+      color: 'hsl(var(--secondary))' 
+    },
+    [`${year}-${month}-25`]: { 
+      type: 'dot', 
+      color: 'hsl(var(--accent))' 
+    }
+  };
+
+  return (
+    <VStack space="md">
+      <Calendar
+        mode="single"
+        value={selected}
+        onValueChange={setSelected}
+        markers={markers}
+      >
+        <CalendarHeader>
+          <CalendarHeaderPrevButton>
+            <Icon as={ChevronLeftIcon} size="sm" />
+          </CalendarHeaderPrevButton>
+          <CalendarHeaderTitle />
+          <CalendarHeaderNextButton>
+            <Icon as={ChevronRightIcon} size="sm" />
+          </CalendarHeaderNextButton>
+        </CalendarHeader>
+
+        <CalendarWeekDaysHeader />
+
+        <CalendarBody>
+          <CalendarGrid />
+        </CalendarBody>
+      </Calendar>
+      
+      <HStack space="sm" className="mt-4 flex-wrap">
+        <HStack space="xs" className="items-center">
+          <Box className="w-2 h-2 rounded-full bg-primary" />
+          <Text className="text-xs text-muted-foreground">Meeting</Text>
+        </HStack>
+        <HStack space="xs" className="items-center">
+          <Box className="w-2 h-2 rounded-full bg-destructive" />
+          <Text className="text-xs text-muted-foreground">Reminder</Text>
+        </HStack>
+        <HStack space="xs" className="items-center">
+          <Box className="w-2 h-2 rounded-full bg-secondary" />
+          <Text className="text-xs text-muted-foreground">Event</Text>
+        </HStack>
+        <HStack space="xs" className="items-center">
+          <Box className="w-2 h-2 rounded-full bg-accent" />
+          <Text className="text-xs text-muted-foreground">Deadline</Text>
+        </HStack>
+      </HStack>
+    </VStack>
+  );
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Variants & Sizes",
+  "description": "DateTimePicker supports multiple visual variants (outline, underlined, rounded) and sizes (sm, md, lg, xl)",
+  "argTypes": {
+    "variant": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["outline", "underlined", "rounded"],
+      "defaultValue": "outline"
+    },
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg", "xl"],
+      "defaultValue": "md"
+    }
+  },
+  "reactLive": {
+    "DateTimePicker": "@/components/ui/date-time-picker",
+    "DateTimePickerTrigger": "@/components/ui/date-time-picker",
+    "DateTimePickerInput": "@/components/ui/date-time-picker",
+    "DateTimePickerIcon": "@/components/ui/date-time-picker",
+    "Box": "@/components/ui/box",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "CalendarDaysIcon": "@/components/ui/icon"
+  }
+}

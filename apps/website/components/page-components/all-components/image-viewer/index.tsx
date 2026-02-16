@@ -28,13 +28,15 @@ export default function Example() {
     }
   ];
 
+  const thumbnailSource = { uri: images[0].url };
+
   return (
     <View className="p-4">
       <Text className="text-lg font-medium mb-4">Tap an image to view gallery</Text>
       <ImageViewer images={images}>
         <ImageViewerTrigger>
           <Image
-            source={{ uri: images[0].url }}
+            source={thumbnailSource}
             alt="Gallery thumbnail"
             className="w-full h-64 rounded-lg"
             resizeMode="cover"
