@@ -251,6 +251,13 @@
                 "url": "https://i.imgur.com/xS7rIHh.png",
                 "darkUrl": "https://i.imgur.com/r6HtWus.png"
               }
+              ,  {
+                "title": "Tabs",
+                "path": "/ui/docs/components/tabs",
+                "tags": ["alpha"],
+                "url": "https://i.imgur.com/xS7rIHh.png",
+                "darkUrl": "https://i.imgur.com/r6HtWus.png"
+              }
             ]
           },
           {

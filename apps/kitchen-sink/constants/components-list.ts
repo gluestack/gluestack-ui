@@ -78,6 +78,7 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: "Spinner", path: "spinner", count: 3, icon: SpinnerIcon },
   { title: "Switch", path: "switch", count: 3, icon: SwitchIcon },
   { title: "Table", path: "table", count: 5, icon: TableIcon },
+  { title: "Tabs", path: "tabs", count: 7 },
   { title: "Text", path: "text", count: 2, icon: TextIcon },
   { title: "Textarea", path: "textarea", count: 2, icon: TextareaIcon },
   { title: "Toast", path: "toast", count: 5, icon: ToastIcon },

@@ -309,6 +309,12 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="VStack" />,
         }}
       />
+          <Stack.Screen
+        name="tabs"
+        options={{
+          header: () => <CustomHeader title="Tabs" />,
+        }}
+      />
     </Stack>
   );
 }
