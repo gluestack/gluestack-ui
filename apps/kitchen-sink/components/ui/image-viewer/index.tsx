@@ -316,7 +316,7 @@ const ZoomableImage = React.memo(
         { scale: scale.value },
       ],
       opacity: opacity.value,
-    }));
+    }),[translateX.value, translateY.value, scale.value, opacity.value]);
 
     return (
       <GestureDetector gesture={composedGesture}>

@@ -414,7 +414,7 @@ const ZoomableImage = React.memo(
         { scale: scale.value },
       ],
       opacity: opacity.value,
-    }));
+    }),[translateX.value, translateY.value, scale.value, opacity.value]);
 
     return (
       <GestureDetector gesture={composedGesture}>
@@ -1144,56 +1144,6 @@ interface ImageViewerProps {
 ## Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs.
-
-
-  
-
-  A basic image viewer with zoom, swipe navigation, and slide-to-dismiss gestures
-  
-  <CodePreviewer
-  code={`function Example() {
-  const images = [
-    {
-      url: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&auto=format&fit=crop&q=60',
-      alt: 'Mountain landscape'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1682687221038-404670e01d4c?w=800&auto=format&fit=crop&q=60',
-      alt: 'Ocean waves'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&auto=format&fit=crop&q=60',
-      alt: 'Desert sunset'
-    }
-  ];
-
-  const thumbnailSource = { uri: images[0].url };
-
-  return (
-    <View className="p-4">
-      <Text className="text-lg font-medium mb-4">Tap an image to view gallery</Text>
-      <ImageViewer images={images}>
-        <ImageViewerTrigger>
-          <Image
-            source={thumbnailSource}
-            alt="Gallery thumbnail"
-            className="w-full h-64 rounded-lg"
-            resizeMode="cover"
-          />
-        </ImageViewerTrigger>
-        <ImageViewerContent>
-          <ImageViewerCloseButton />
-          <ImageViewerNavigation />
-          <ImageViewerCounter />
-        </ImageViewerContent>
-      </ImageViewer>
-    </View>
-  );
-}`}
-  argTypes={{}}
-  reactLive={{ ImageViewer, ImageViewerTrigger, ImageViewerContent, ImageViewerCloseButton, ImageViewerNavigation, ImageViewerCounter, Image, Text, View }}
-  importMap={{"@/components/ui/image-viewer":["ImageViewer","ImageViewerTrigger","ImageViewerContent","ImageViewerCloseButton","ImageViewerNavigation","ImageViewerCounter"],"@/components/ui/image":["Image"],"@/components/ui/text":["Text"],"@/components/ui/view":["View"]}}
-/>
 
 
   #### Controlled Mode

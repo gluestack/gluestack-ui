@@ -29,26 +29,6 @@ const [date, setDate] = React.useState(new Date());
   )
 };
 
-const ExampleBasic = () => {
-const [date, setDate] = React.useState(new Date());
-
-  return (
-    <Box className="p-4 w-full">
-      <DateTimePicker
-        value={date}
-        onChange={setDate}
-        mode="datetime"
-        placeholder="Select date and time"
-      >
-        <DateTimePickerTrigger>
-          <DateTimePickerInput />
-          <DateTimePickerIcon as={CalendarDaysIcon} />
-        </DateTimePickerTrigger>
-      </DateTimePicker>
-    </Box>
-  )
-};
-
 const ExampleDifferentModes = () => {
 const [date, setDate] = React.useState(new Date());
   const [time, setTime] = React.useState(new Date());
@@ -240,11 +220,6 @@ const [date, setDate] = React.useState(null);
 };
 
 const COMPONENT_VARIANTS = [
-  {
-    value: "basic",
-    label: "Basic",
-    content: <ExampleBasic />,
-  },
   {
     value: "basic",
     label: "Basic",

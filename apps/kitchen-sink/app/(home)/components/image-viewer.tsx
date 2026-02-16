@@ -51,46 +51,6 @@ const images = [
   )
 };
 
-const ExampleBasic = () => {
-const images = [
-    {
-      url: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&auto=format&fit=crop&q=60',
-      alt: 'Mountain landscape'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1682687221038-404670e01d4c?w=800&auto=format&fit=crop&q=60',
-      alt: 'Ocean waves'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&auto=format&fit=crop&q=60',
-      alt: 'Desert sunset'
-    }
-  ];
-
-  const thumbnailSource = { uri: images[0].url };
-
-  return (
-    <View className="p-4">
-      <Text className="text-lg font-medium mb-4">Tap an image to view gallery</Text>
-      <ImageViewer images={images}>
-        <ImageViewerTrigger>
-          <Image
-            source={thumbnailSource}
-            alt="Gallery thumbnail"
-            className="w-full h-64 rounded-lg"
-            resizeMode="cover"
-          />
-        </ImageViewerTrigger>
-        <ImageViewerContent>
-          <ImageViewerCloseButton />
-          <ImageViewerNavigation />
-          <ImageViewerCounter />
-        </ImageViewerContent>
-      </ImageViewer>
-    </View>
-  )
-};
-
 const ExampleControlledMode = () => {
 const [isOpen, setIsOpen] = React.useState(false);
   const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -193,11 +153,6 @@ const images = [
 };
 
 const COMPONENT_VARIANTS = [
-  {
-    value: "basic",
-    label: "Basic",
-    content: <ExampleBasic />,
-  },
   {
     value: "basic",
     label: "Basic",

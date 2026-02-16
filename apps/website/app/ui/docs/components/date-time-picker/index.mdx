@@ -1189,36 +1189,6 @@ When using the `format` prop, you can use these patterns:
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs.
 
 
-  
-
-  A basic DateTimePicker with date and time selection
-  
-  <CodePreviewer
-  code={`function Example() {
-  const [date, setDate] = React.useState(new Date());
-
-  return (
-    <Box className="p-4 w-full">
-      <DateTimePicker
-        value={date}
-        onChange={setDate}
-        mode="datetime"
-        placeholder="Select date and time"
-      >
-        <DateTimePickerTrigger>
-          <DateTimePickerInput />
-          <DateTimePickerIcon as={CalendarDaysIcon} />
-        </DateTimePickerTrigger>
-      </DateTimePicker>
-    </Box>
-  );
-}`}
-  argTypes={{}}
-  reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, Box, CalendarDaysIcon }}
-  importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/box":["Box"],"@/components/ui/icon":["CalendarDaysIcon"]}}
-/>
-
-
   #### Different Modes
 
   DateTimePicker supports three modes: date only, time only, and combined datetime selection
