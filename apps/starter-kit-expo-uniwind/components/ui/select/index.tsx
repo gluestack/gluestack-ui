@@ -27,6 +27,7 @@ import {
 import { Pressable, View, TextInput } from 'react-native';
 
 const UIIcon = withUniwind(_UIIcon);
+const WrappedTextInput = withUniwind(TextInput);
 
 const SelectTriggerWrapper = React.forwardRef<
   React.ComponentRef<typeof Pressable>,
@@ -94,7 +95,7 @@ const UISelect = createSelect(
   {
     Root: View,
     Trigger: withStyleContext(SelectTriggerWrapper),
-    Input: TextInput,
+    Input: WrappedTextInput,
     Icon: UIIcon,
   },
   {

@@ -10,10 +10,12 @@ import {
 import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
+const WrappedView = withUniwind(View);
+
 const SCOPE = 'PROGRESS';
 export const UIProgress = createProgress({
   Root: withStyleContext(View, SCOPE),
-  FilledTrack: View,
+  FilledTrack: WrappedView,
 });
 
 

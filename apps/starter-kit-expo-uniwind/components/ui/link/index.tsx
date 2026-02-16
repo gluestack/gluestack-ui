@@ -9,9 +9,11 @@ import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 import React from 'react';
+
+const WrappedText = withUniwind(Text);
 export const UILink = createLink({
   Root: withStyleContext(Pressable),
-  Text: Text,
+  Text: WrappedText,
 });
 
 

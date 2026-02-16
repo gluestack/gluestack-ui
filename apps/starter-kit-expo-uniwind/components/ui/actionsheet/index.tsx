@@ -25,6 +25,13 @@ import {
 } from '@legendapp/motion';
 
 const UIIcon = withUniwind(_UIIcon);
+const WrappedText = withUniwind(Text);
+const WrappedView = withUniwind(View);
+const WrappedScrollView = withUniwind(ScrollView);
+const WrappedVirtualizedList = withUniwind(VirtualizedList);
+const WrappedFlatList = withUniwind(FlatList);
+const WrappedSectionList = withUniwind(SectionList);
+const WrappedH4 = withUniwind(H4);
 
 const ItemWrapper = React.forwardRef<
   React.ComponentRef<typeof Pressable>,
@@ -45,23 +52,29 @@ const AnimatedPressable = createMotionAnimatedComponent(
   Pressable
 ) as React.ComponentType<IAnimatedPressableProps>;
 
-export const UIActionsheet = createActionsheet({
+const _UIActionsheet = createActionsheet({
   Root: View,
   Content: MotionView,
   Item: ItemWrapper,
-  ItemText: Text,
-  DragIndicator: View,
+  ItemText: WrappedText,
+  DragIndicator: WrappedView,
   IndicatorWrapper: View,
   Backdrop: AnimatedPressable,
-  ScrollView: ScrollView,
-  VirtualizedList: VirtualizedList,
-  FlatList: FlatList,
-  SectionList: SectionList,
-  SectionHeaderText: H4,
+  ScrollView: WrappedScrollView,
+  VirtualizedList: WrappedVirtualizedList,
+  FlatList: WrappedFlatList,
+  SectionList: WrappedSectionList,
+  SectionHeaderText: WrappedH4,
   Icon: UIIcon,
   AnimatePresence: AnimatePresence,
 });
 
+export const UIActionsheet = Object.assign(
+  withUniwind(_UIActionsheet),
+  {
+    DragIndicatorWrapper: withUniwind(_UIActionsheet.DragIndicatorWrapper),
+  }
+) as typeof _UIActionsheet;
 
 
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });

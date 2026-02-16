@@ -27,6 +27,13 @@ import {
 import React from 'react';
 
 const UIIcon = withUniwind(_UIIcon);
+const WrappedText = withUniwind(Text);
+const WrappedView = withUniwind(View);
+const WrappedScrollView = withUniwind(ScrollView);
+const WrappedVirtualizedList = withUniwind(VirtualizedList);
+const WrappedFlatList = withUniwind(FlatList);
+const WrappedSectionList = withUniwind(SectionList);
+const WrappedH4 = withUniwind(H4);
 
 type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
   MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
@@ -40,23 +47,31 @@ type IMotionViewProps = React.ComponentProps<typeof View> &
 
 const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
 
-export const UIActionsheet = createActionsheet({
+const _UIActionsheet = createActionsheet({
   Root: View,
   Content: withStyleContext(MotionView),
   Item: withStyleContext(Pressable),
-  ItemText: Text,
-  DragIndicator: View,
+  ItemText: WrappedText,
+  DragIndicator: WrappedView,
   IndicatorWrapper: View,
   Backdrop: AnimatedPressable,
-  ScrollView: ScrollView,
-  VirtualizedList: VirtualizedList,
-  FlatList: FlatList,
-  SectionList: SectionList,
-  SectionHeaderText: H4,
+  ScrollView: WrappedScrollView,
+  VirtualizedList: WrappedVirtualizedList,
+  FlatList: WrappedFlatList,
+  SectionList: WrappedSectionList,
+  SectionHeaderText: WrappedH4,
   Icon: UIIcon,
   AnimatePresence: AnimatePresence,
 });
 
+export const UIActionsheet = Object.assign(
+  withUniwind(_UIActionsheet),
+  {
+    Content: withUniwind(_UIActionsheet.Content),
+    Item: withUniwind(_UIActionsheet.Item),
+    DragIndicatorWrapper: withUniwind(_UIActionsheet.DragIndicatorWrapper),
+  }
+) as typeof _UIActionsheet;
 
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 

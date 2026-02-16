@@ -301,6 +301,8 @@ export function transformCssInteropToUniwind(
 
   // Statements already processed (avoids double-replacement)
   const handled = new Set<ts.ExpressionStatement>();
+  // Const declarations for wrapped primitives in factory calls (hoisted to after imports)
+  const factoryWrappedDecls: string[] = [];
 
   // ── Helper: add import rename for a target ─────────────────────────
   function addImportRename(name: string) {
@@ -402,7 +404,7 @@ export function transformCssInteropToUniwind(
       }
     }
 
-    // If this is a factory-created component, wrap primitives inline in the factory call
+    // If this is a factory-created component, wrap primitives with const declarations
     if (factoryCallNode && factoryCallNode.arguments[0]) {
       const firstArg = factoryCallNode.arguments[0];
       if (ts.isObjectLiteralExpression(firstArg)) {
@@ -422,7 +424,7 @@ export function transformCssInteropToUniwind(
             const scNeedsWrapping = sc.needsWrapping ?? false;
 
             if (scNeedsWrapping) {
-              // Wrap primitive components (TextInput, View, etc.) inline
+              // Wrap primitive components (TextInput, View, etc.) with const declarations
               // Skip already-wrapped components (those in varDecls or with "UI" prefix)
               const isAlreadyWrapped =
                 varDecls.has(propValue) ||
@@ -430,10 +432,15 @@ export function transformCssInteropToUniwind(
                 propValue.startsWith('_');
 
               if (!isAlreadyWrapped) {
+                // Create a const declaration to be hoisted after imports
+                const wrappedName = `Wrapped${propValue}`;
+                factoryWrappedDecls.push(`const ${wrappedName} = withUniwind(${propValue});`);
+
+                // Replace the property value to use the wrapped const
                 replacements.push({
                   start: prop.initializer.getStart(sourceFile),
                   end: prop.initializer.getEnd(),
-                  text: `withUniwind(${propValue})`,
+                  text: wrappedName,
                 });
               }
             }
@@ -595,16 +602,23 @@ export function transformCssInteropToUniwind(
   }
 
   // ── 5. Emit hoisted declarations right after the import block ────────
-  if (postImportDecls.length > 0) {
+  const allHoistedDecls = [...postImportDecls, ...factoryWrappedDecls];
+  if (allHoistedDecls.length > 0) {
     replacements.push({
       start: lastImportEnd,
       end: lastImportEnd,
-      text: '\n' + postImportDecls.join('\n') + '\n',
+      text: '\n' + allHoistedDecls.join('\n') + '\n',
     });
   }
 
   // ── Apply replacements (reverse order preserves positions) ──────────
-  replacements.sort((a, b) => b.start - a.start);
+  // Sort by start position (descending), then by end position (descending)
+  // This ensures that when multiple replacements have the same start,
+  // insertions (start === end) are processed after replacements
+  replacements.sort((a, b) => {
+    if (b.start !== a.start) return b.start - a.start;
+    return b.end - a.end;
+  });
 
   // Sanity check for overlapping ranges
   for (let i = 1; i < replacements.length; i++) {
