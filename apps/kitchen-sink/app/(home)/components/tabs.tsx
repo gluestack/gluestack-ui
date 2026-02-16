@@ -45,43 +45,6 @@ return (
   )
 };
 
-const ExampleBasic = () => {
-return (
-    <Tabs defaultValue="home">
-      <TabsList>
-        <TabsTrigger value="home">
-          <TabsTriggerText>Home</TabsTriggerText>
-        </TabsTrigger>
-        <TabsTrigger value="profile">
-          <TabsTriggerText>Profile</TabsTriggerText>
-        </TabsTrigger>
-        <TabsTrigger value="settings">
-          <TabsTriggerText>Settings</TabsTriggerText>
-        </TabsTrigger>
-        <TabsIndicator />
-      </TabsList>
-
-      <TabsContentWrapper>
-        <TabsContent value="home">
-          <Box className="p-4">
-            <Text className="text-foreground">Welcome to the Home tab!</Text>
-          </Box>
-        </TabsContent>
-        <TabsContent value="profile">
-          <Box className="p-4">
-            <Text className="text-foreground">Your profile information</Text>
-          </Box>
-        </TabsContent>
-        <TabsContent value="settings">
-          <Box className="p-4">
-            <Text className="text-foreground">Settings and preferences</Text>
-          </Box>
-        </TabsContent>
-      </TabsContentWrapper>
-    </Tabs>
-  )
-};
-
 const ExampleWithIndicator = () => {
 return (
     <Tabs defaultValue="account" variant="underlined">
@@ -471,11 +434,6 @@ const [activeTab, setActiveTab] = React.useState('tab1');
 };
 
 const COMPONENT_VARIANTS = [
-  {
-    value: "basic",
-    label: "Basic",
-    content: <ExampleBasic />,
-  },
   {
     value: "basic",
     label: "Basic",
