@@ -3,7 +3,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { View, Pressable, TextInput } from 'react-native';
 import { cssInterop } from 'nativewind';
-import { Calendar } from '../calendar';
+import { Calendar } from '@/components/ui/calendar';
 import { PrimitiveIcon } from '@gluestack-ui/core/icon/creator';
 
 // Apply cssInterop for Tailwind support

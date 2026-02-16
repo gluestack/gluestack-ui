@@ -114,29 +114,29 @@ const [selected, setSelected] = React.useState(new Date());
   
   const today = new Date();
   const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const monthNum = today.getMonth() + 1;
+  const month = monthNum < 10 ? '0' + monthNum : monthNum;
   
   // Create markers for the current month with shadcn-style colors
-  const markers = {
-    [`${year}-${month}-05`]: { 
-      type: 'dot', 
-      color: 'hsl(var(--primary))' 
-    },
-    [`${year}-${month}-12`]: { 
-      type: 'multi-dot', 
-      dots: [
-        { color: 'hsl(var(--primary))', key: '1' },
-        { color: 'hsl(var(--destructive))', key: '2' }
-      ]
-    },
-    [`${year}-${month}-20`]: { 
-      type: 'period', 
-      color: 'hsl(var(--secondary))' 
-    },
-    [`${year}-${month}-25`]: { 
-      type: 'dot', 
-      color: 'hsl(var(--accent))' 
-    }
+  const markers = {};
+  markers[year + '-' + month + '-05'] = { 
+    type: 'dot', 
+    color: 'hsl(var(--primary))' 
+  };
+  markers[year + '-' + month + '-12'] = { 
+    type: 'multi-dot', 
+    dots: [
+      { color: 'hsl(var(--primary))', key: '1' },
+      { color: 'hsl(var(--destructive))', key: '2' }
+    ]
+  };
+  markers[year + '-' + month + '-20'] = { 
+    type: 'period', 
+    color: 'hsl(var(--secondary))' 
+  };
+  markers[year + '-' + month + '-25'] = { 
+    type: 'dot', 
+    color: 'hsl(var(--accent))' 
   };
 
   return (
