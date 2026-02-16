@@ -48,7 +48,7 @@ const imageViewerModalStyle = tva({
 });
 
 const imageViewerContentStyle = tva({
-  base: 'flex-1 justify-center items-center overflow-hidden',
+  base: 'flex-1 justify-center items-center overflow-hidden web:flex web:justify-center web:items-center',
 });
 
 const imageViewerCloseButtonStyle = tva({
@@ -438,7 +438,7 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
   );
 
   return (
-    <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
+    <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }} className="web:my-auto">
       <FlatList
         ref={flatListRef}
         data={images}
@@ -598,8 +598,9 @@ const ImageViewerContent = React.forwardRef<
           entering={FadeIn.duration(300).easing(Easing.out(Easing.ease))}
           exiting={FadeOut.duration(200).easing(Easing.in(Easing.ease))}
           className={imageViewerModalStyle({})}
+          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         >
-          <View ref={ref} className={imageViewerContentStyle({})}>
+          <View ref={ref} className={imageViewerContentStyle({})} style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <SlidableImageGallery
               images={images}
               currentIndex={currentIndex}
