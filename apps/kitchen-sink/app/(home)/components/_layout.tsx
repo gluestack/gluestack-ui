@@ -327,6 +327,12 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="Image Viewer" />,
         }}
       />
+          <Stack.Screen
+        name="tabs"
+        options={{
+          header: () => <CustomHeader title="Tabs" />,
+        }}
+      />
     </Stack>
   );
 }

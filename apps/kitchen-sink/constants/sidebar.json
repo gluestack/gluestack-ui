@@ -263,6 +263,12 @@
                 "darkUrl": "https://i.imgur.com/1c2clr3.png"
               },
               {
+                "title": "Tabs",
+                "path": "/ui/docs/components/tabs",
+                "url": "https://i.imgur.com/fZPMCl3.png",
+                "darkUrl": "https://i.imgur.com/1c2clr3.png"
+              },
+              {
                 "title": "FormControl",
                 "path": "/ui/docs/components/form-control",
                 "url": "https://i.imgur.com/8QpwG4G.png",
