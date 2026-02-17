@@ -15,6 +15,13 @@ function isOldGluestackPackage(pkg: string): boolean {
   );
 }
 
+// Extract the major version number from a semver string (e.g. "^3.0.10" → 3)
+function getMajorVersion(versionStr: string): number | null {
+  const cleaned = versionStr.replace(/^[\^~>=<]+/, '');
+  const match = cleaned.match(/^(\d+)/);
+  return match ? parseInt(match[1], 10) : null;
+}
+
 // Detect current gluestack-ui version from package.json
 async function detectCurrentVersion(): Promise<'v2' | 'v3' | 'v4' | 'unknown'> {
   const packageJsonPath = path.join(process.cwd(), 'package.json');
@@ -28,17 +35,19 @@ async function detectCurrentVersion(): Promise<'v2' | 'v3' | 'v4' | 'unknown'> {
     return 'v2';
   }
 
-  // v4 indicators
+  // Check major version of @gluestack-ui/core
   const coreVersion = deps['@gluestack-ui/core'];
   if (coreVersion) {
-    if (coreVersion.includes('4.0.0') || coreVersion.includes('4.1.0') ||
-        coreVersion.startsWith('^4') || coreVersion.startsWith('~4')) {
-      return 'v4';
+    const major = getMajorVersion(coreVersion);
+    if (major !== null) {
+      if (major >= 4) return 'v4';
+      if (major === 3) return 'v3';
     }
-    if (coreVersion.includes('3.0') || coreVersion.startsWith('^3') ||
-        coreVersion.startsWith('~3')) {
-      return 'v3';
-    }
+  }
+
+  // Fallback v3 indicator: nativewind-utils package (pre-v4 package)
+  if (deps['@gluestack-ui/nativewind-utils']) {
+    return 'v3';
   }
 
   return 'unknown';
@@ -75,58 +84,118 @@ function installV4Packages(
   const s = spinner();
   s.start('Installing gluestack-ui v4 packages...');
 
+  // Gluestack packages that are always installed via the regular package manager
+  const gluestackPackages = [
+    '@gluestack-ui/core@^4.0.0-alpha.0',
+    '@gluestack-ui/utils@^4.0.0-alpha.0',
+    'tailwind-variants@^0.1.20',
+    'nativewind@^4.1.23',
+  ];
+
+  if (projectType === 'nextjs') {
+    gluestackPackages.push('@gluestack/ui-next-adapter@^4.0.0-alpha.0');
+  }
+
   const cmds: { [key: string]: string } = {
     npm: 'npm install',
     yarn: 'yarn add',
     pnpm: 'pnpm i',
     bun: 'bun add',
   };
-
   const cmd = cmds[packageManager];
   if (!cmd) throw new Error('Unsupported package manager');
 
-  // Base v4 packages (all projects)
-  const packages = [
-    '@gluestack-ui/core@^4.0.0-alpha.0',
-    '@gluestack-ui/utils@^4.0.0-alpha.0',
-    'react-native-reanimated@~4.2.1',
-    'react-native-worklets@^0.7.1',
-    '@legendapp/motion@^2.4.0',
-    'tailwind-variants@^0.1.20',
-    'react-native-svg@^15.12.0',
-    'nativewind@^4.1.23',
-  ];
-
-  // Next.js specific packages
-  if (projectType === 'nextjs') {
-    packages.push(
-      '@gluestack/ui-next-adapter@^4.0.0-alpha.0',
-      'react-native-web@^0.20.0',
-      'react-native-safe-area-context@^5.6.1',
-      'react-aria@^3.41.1',
-      'react-stately@^3.39.0',
-      'dom-helpers@^5.2.1'
-    );
-  }
-
-  // Expo/React Native CLI specific packages
-  if (projectType === 'expo' || projectType === 'react-native-cli') {
-    packages.push(
-      'react-native-safe-area-context@^5.6.1',
-      'react-aria@^3.41.1',
-      '@expo/html-elements@^0.12.5',
-      'react-stately@^3.39.0'
-    );
-  }
-
-  const result = spawnSync(cmd, packages, {
+  const gluestackResult = spawnSync(cmd, gluestackPackages, {
     cwd: process.cwd(),
     stdio: 'inherit',
     shell: true,
   });
+  if (gluestackResult.error || gluestackResult.status !== 0) {
+    s.stop('Failed to install gluestack v4 packages.');
+    throw new Error('Failed to install gluestack v4 packages');
+  }
 
-  if (result.error || result.status !== 0) {
-    throw new Error('Failed to install v4 packages');
+  let nativeResult;
+
+  if (projectType === 'expo') {
+    // For Expo projects use `npx expo install` so Expo resolves the exact
+    // package versions that are compatible with the installed Expo SDK.
+    // This is critical for native packages like react-native-reanimated whose
+    // native binary is baked into the Expo Go app — installing the wrong JS
+    // version causes a "Mismatch between JavaScript part and native part of
+    // Worklets" error at runtime.
+    //
+    // NOTE: react-native-worklets is intentionally omitted here. It is a peer
+    // dependency of react-native-reanimated; after `expo install reanimated`
+    // resolves the correct reanimated version, running `expo install --fix`
+    // ensures peer deps (including worklets) are also resolved at the matching
+    // SDK-compatible version instead of defaulting to npm latest.
+    const expoNativePackages = [
+      'react-native-reanimated',
+      '@legendapp/motion',
+      'react-native-svg',
+      'react-native-safe-area-context',
+      '@expo/html-elements',
+    ];
+
+    nativeResult = spawnSync('npx expo install', expoNativePackages, {
+      cwd: process.cwd(),
+      stdio: 'inherit',
+      shell: true,
+    });
+
+    if (nativeResult.error || nativeResult.status !== 0) {
+      s.stop('Failed to install native v4 packages.');
+      throw new Error('Failed to install native v4 packages');
+    }
+
+    // Resolve peer dependencies (including react-native-worklets) at the
+    // SDK-compatible version chosen by expo install above.
+    const fixResult = spawnSync('npx expo install --fix', [], {
+      cwd: process.cwd(),
+      stdio: 'inherit',
+      shell: true,
+    });
+
+    if (fixResult.error || fixResult.status !== 0) {
+      log.warning('⚠ expo install --fix failed. Check your peer dependencies manually.');
+    }
+  } else {
+    // For non-Expo projects use pinned tested versions.
+    const versionedNativePackages = [
+      'react-native-reanimated@~4.2.1',
+      // react-native-worklets must stay in the same minor as reanimated's
+      // bundled native worklets binary (4.2.x bundles worklets 0.7.x).
+      'react-native-worklets@~0.7.1',
+      '@legendapp/motion@^2.4.0',
+      'react-native-svg@^15.12.0',
+    ];
+
+    if (projectType === 'nextjs') {
+      versionedNativePackages.push(
+        'react-native-web@^0.20.0',
+        'react-native-safe-area-context@^5.6.1',
+        'dom-helpers@^5.2.1'
+      );
+    }
+
+    if (projectType === 'react-native-cli') {
+      versionedNativePackages.push(
+        'react-native-safe-area-context@^5.6.1',
+        '@expo/html-elements@^0.12.5',
+      );
+    }
+
+    nativeResult = spawnSync(cmd, versionedNativePackages, {
+      cwd: process.cwd(),
+      stdio: 'inherit',
+      shell: true,
+    });
+
+    if (nativeResult.error || nativeResult.status !== 0) {
+      s.stop('Failed to install native v4 packages.');
+      throw new Error('Failed to install native v4 packages');
+    }
   }
 
   s.stop('v4 packages installed.');
@@ -286,8 +355,11 @@ function cleanAndReinstall(packageManager: string): void {
   }
 }
 
-// Install new packages
-function installPackages(packageManager: string): void {
+// Install new packages for v2→v3 upgrade
+function installPackages(
+  packageManager: string,
+  projectType: 'nextjs' | 'expo' | 'react-native-cli' | 'unknown'
+): void {
   const s = spinner();
   s.start('Installing @gluestack-ui/core and @gluestack-ui/utils...');
   const cmds: { [key: string]: string } = {
@@ -302,8 +374,11 @@ function installPackages(packageManager: string): void {
     '@gluestack-ui/core@3.0.10',
     '@gluestack-ui/utils@3.0.11',
     'react-native-svg@15.13.0',
-    '@gluestack/ui-next-adapter@3.0.3',
   ];
+  // Only install the Next.js adapter for Next.js projects
+  if (projectType === 'nextjs') {
+    pkgs.push('@gluestack/ui-next-adapter@3.0.3');
+  }
   const result = spawnSync(cmd, pkgs, {
     cwd: process.cwd(),
     stdio: 'inherit',
@@ -598,6 +673,9 @@ async function updateFileImports(filePath: string): Promise<boolean> {
 
 // Upgrade from v2 to v3
 async function upgradeV2ToV3(packageManager: string): Promise<void> {
+  const projectType = await detectProjectType();
+  log.info(`Detected project type: ${projectType}`);
+
   const oldPackages = await detectOldPackages();
   if (oldPackages.length) {
     log.info('Found old packages:');
@@ -614,7 +692,7 @@ async function upgradeV2ToV3(packageManager: string): Promise<void> {
 
   // Remove old packages first, then install required ones
   removePackages(packagesToRemove, packageManager);
-  installPackages(packageManager);
+  installPackages(packageManager, projectType);
   cleanAndReinstall(packageManager);
   await updateRegistryFile();
   await updateNextConfig();
@@ -638,25 +716,56 @@ async function upgradeV3ToV4(packageManager: string): Promise<void> {
     }
   }
 
-  // Step 1: Install v4 packages
+  // Step 1: Detect and remove old v3 packages (excluding ones being replaced by v4)
+  const oldPackages = await detectOldPackages();
+  if (oldPackages.length > 0) {
+    log.info('Found old gluestack packages to remove:');
+    oldPackages.forEach((pkg: string) => log.info('  - ' + pkg));
+    removePackages(oldPackages, packageManager);
+  }
+
+  // Step 2: Install v4 packages
   installV4Packages(packageManager, projectType);
 
-  // Step 2: Update babel config for worklets (Expo/RN CLI only)
+  // Step 3: Update babel config for worklets (Expo/RN CLI only)
   if (projectType === 'expo' || projectType === 'react-native-cli') {
     await updateBabelConfig();
   }
 
-  // Step 3: Clean and reinstall all dependencies
+  // Step 4: Clean and reinstall all dependencies
   cleanAndReinstall(packageManager);
 
-  // Step 4: Update Next.js specific files if applicable
+  // Step 5: Update Next.js specific files if applicable
   if (projectType === 'nextjs') {
     await updateRegistryFile();
     await updateNextConfig();
   }
 
-  // Step 5: No import updates needed (v3 and v4 use same format)
+  // Step 6: No import updates needed (v3 and v4 use same format)
   log.info('✓ Import statements are already compatible with v4!');
+
+  // Step 7: Remind about native rebuild. For Expo Go (managed workflow) the
+  // native runtime is baked into the Expo Go app itself — expo install already
+  // resolved the correct compatible versions so no rebuild is needed.
+  // For bare Expo / React Native CLI projects a native rebuild IS required.
+  if (projectType === 'expo') {
+    const hasBareNative =
+      fs.existsSync(path.join(process.cwd(), 'ios')) ||
+      fs.existsSync(path.join(process.cwd(), 'android'));
+
+    if (hasBareNative) {
+      log.warning(
+        '⚠ Bare workflow detected. Rebuild your native app to pick up the new native binaries:'
+      );
+      log.info('  iOS:     cd ios && pod install && npx expo run:ios');
+      log.info('  Android: npx expo run:android');
+    }
+    // Managed workflow (Expo Go): expo install already ensured correct versions — nothing more to do.
+  } else if (projectType === 'react-native-cli') {
+    log.warning('⚠ Rebuild your native app to apply the new native binaries:');
+    log.info('  iOS:     cd ios && pod install && npx react-native run-ios');
+    log.info('  Android: npx react-native run-android');
+  }
 
   log.success('✓ v3 to v4 upgrade complete!');
 }
