@@ -35,7 +35,7 @@ const bottomSheetContentStyle = tva({
 });
 
 const bottomSheetTriggerStyle = tva({
-  base: '',
+  base: 'p-4 rounded-lg border border-border/90',
 });
 
 const bottomSheetHandleStyle = tva({
