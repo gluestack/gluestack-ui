@@ -1,11 +1,11 @@
 ---
-title: gluestack-ui Bottomsheet Component | React Native Bottom Sheet
+title: gluestack-ui BottomSheet Component | React Native Bottom Sheet
 
-description: Implement a dynamic bottom sheet in React & React Native with gluestack's bottomsheet component. Learn how to integrate and customize the Bottom Sheet in React Native.
+description: A bottom sheet component for React Native built on top of @gorhom/bottom-sheet with gluestack-ui styling support.
 
 pageTitle: BottomSheet
 
-pageDescription: Implement a dynamic bottom sheet in React & React Native with gluestack's bottomsheet component. Learn how to integrate and customize the Bottom Sheet in React Native.
+pageDescription: A bottom sheet component for React Native built on top of @gorhom/bottom-sheet with gluestack-ui styling support.
 
 showHeader: true
 
@@ -26,7 +26,9 @@ import ManualInstallationNote from '@/docs-components/manual-installation-note';
 
 # BottomSheet
 
-Implement a dynamic bottom sheet in React & React Native with gluestack's bottomsheet component. Learn how to integrate and customize the Bottom Sheet in React Native.
+A bottom sheet component for React Native built on top of [@gorhom/bottom-sheet](https://ui.gorhom.dev/components/bottom-sheet) with gluestack-ui styling and NativeWind className support.
+
+> **Note:** BottomSheet is **not supported in Next.js**. It is intended for React Native and Expo (mobile/web via React Native) environments only. `@gorhom/bottom-sheet` relies on React Native Reanimated and Gesture Handler which are not compatible with Next.js.
 
 <br />
 
@@ -48,9 +50,14 @@ import {
   BottomSheetBackdrop,
   BottomSheetContent,
   BottomSheetDragIndicator,
+  BottomSheetFlatList,
+  BottomSheetFooter,
   BottomSheetItem,
   BottomSheetItemText,
   BottomSheetPortal,
+  BottomSheetScrollView,
+  BottomSheetSectionList,
+  BottomSheetTextInput,
   BottomSheetTrigger,
 } from '@/components/ui/bottomsheet';
 ```
@@ -88,133 +95,277 @@ This section provides a comprehensive reference list for the component props, de
 
 #### BottomSheet
 
-It is a context provider for entire bottomsheet api.
+The root context provider for the entire BottomSheet. Accepts a `ref` to control the sheet imperatively.
 
 ### Props
 
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHeaderCell>
-            Prop
-          </TableHeaderCell>
-          <TableHeaderCell>
-            Type
-          </TableHeaderCell>
-          <TableHeaderCell>
-            Default
-          </TableHeaderCell>
-          <TableHeaderCell>
-            Description
-          </TableHeaderCell>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell>
-            <InlineCode>snapToIndex</InlineCode>
-          </TableCell>
-          <TableCell>
-            number
-          </TableCell>
-          <TableCell>
-            1
-          </TableCell>
-          <TableCell>
-            {`index of snapPoints at which bottomsheet initially opens.`}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <InlineCode>onOpen</InlineCode>
-          </TableCell>
-          <TableCell>
-            () => void
-          </TableCell>
-          <TableCell>-</TableCell>
-          <TableCell>
-            {`callback function which trigger when bottomsheet is opened.`}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <InlineCode>onClose</InlineCode>
-          </TableCell>
-          <TableCell>
-            () => void
-          </TableCell>
-          <TableCell>-</TableCell>
-          <TableCell>
-            {`callback function which trigger when bottomsheet is closed.`}
-          </TableCell>
-        </TableRow>
-      </TableBody>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>defaultSnapIndex</InlineCode></TableCell>
+        <TableCell>number</TableCell>
+        <TableCell>0</TableCell>
+        <TableCell>{`The index of snapPoints at which the bottom sheet initially opens when triggered.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>onOpen</InlineCode></TableCell>
+        <TableCell>() => void</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Callback fired when the bottom sheet opens.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>onClose</InlineCode></TableCell>
+        <TableCell>() => void</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Callback fired when the bottom sheet closes.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>onChange</InlineCode></TableCell>
+        <TableCell>(index: number) => void</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Callback fired whenever the sheet snaps to a new index. Receives the current snap index (-1 when closed).`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 
+### Ref Methods
+
+`BottomSheet` forwards a ref exposing the following imperative methods:
+
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Method</TableHeaderCell>
+        <TableHeaderCell>Signature</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>open</InlineCode></TableCell>
+        <TableCell>(index?: number) => void</TableCell>
+        <TableCell>{`Opens the bottom sheet. Optionally pass a snap index; defaults to defaultSnapIndex.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>close</InlineCode></TableCell>
+        <TableCell>() => void</TableCell>
+        <TableCell>{`Closes the bottom sheet.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>snapToIndex</InlineCode></TableCell>
+        <TableCell>(index: number) => void</TableCell>
+        <TableCell>{`Snaps the sheet to the given snap point index.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>expand</InlineCode></TableCell>
+        <TableCell>() => void</TableCell>
+        <TableCell>{`Expands the sheet to the highest snap point.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>collapse</InlineCode></TableCell>
+        <TableCell>() => void</TableCell>
+        <TableCell>{`Collapses the sheet to the lowest snap point.`}</TableCell>
+      </TableRow>
+    </TableBody>
   </Table>
 
 #### BottomSheetTrigger
 
-It inherits all the properties of React Native's [pressable](https://reactnative.dev/docs/pressable) component.
+Wraps React Native's [Pressable](https://reactnative.dev/docs/pressable). Pressing it opens the bottom sheet.
+
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>index</InlineCode></TableCell>
+        <TableCell>number</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Snap index to open the sheet at. Overrides defaultSnapIndex when provided.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+
+Also inherits all props of React Native's [Pressable](https://reactnative.dev/docs/pressable).
 
 #### BottomSheetPortal
 
-it's a gorhom BottomSheet component. inherits all the properties of [gorhom BottomSheet](https://ui.gorhom.dev/components/bottom-sheet/props#configuration).
+The actual gorhom BottomSheet container. Inherits all props from [gorhom BottomSheet](https://ui.gorhom.dev/components/bottom-sheet/props).
 
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHeaderCell>
-            Prop
-          </TableHeaderCell>
-          <TableHeaderCell>
-            Type
-          </TableHeaderCell>
-          <TableHeaderCell>
-            Default
-          </TableHeaderCell>
-          <TableHeaderCell>
-            Description
-          </TableHeaderCell>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell>
-            <InlineCode>snapPoints</InlineCode>
-          </TableCell>
-          <TableCell>
-            {`Array<string | number>`}
-          </TableCell>
-          <TableCell>-</TableCell>
-            <TableCell>{`Points for the bottom sheet to snap to. It accepts array of number, string or mix. String values should be a percentage.`}</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>snapPoints</InlineCode></TableCell>
+        <TableCell>{`Array<string | number>`}</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Required. Points for the bottom sheet to snap to. Accepts numbers or percentage strings (e.g. '50%').`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>enablePanDownToClose</InlineCode></TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>true</TableCell>
+        <TableCell>{`Enables closing the sheet by panning downward.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>enableDynamicSizing</InlineCode></TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>{`Enables the sheet height to be determined dynamically by its content.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>closeOnBackdropPress</InlineCode></TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>true</TableCell>
+        <TableCell>{`Closes the sheet when the backdrop is pressed.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>backgroundClassName</InlineCode></TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`NativeWind className applied to the sheet background surface.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>handleIndicatorClassName</InlineCode></TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`NativeWind className applied to the drag handle indicator.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+
+#### BottomSheetBackdrop
+
+Renders a semi-transparent backdrop behind the sheet. Inherits all props from [gorhom BottomSheetBackdrop](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetbackdrop).
+
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>disappearsOnIndex</InlineCode></TableCell>
+        <TableCell>number</TableCell>
+        <TableCell>-1</TableCell>
+        <TableCell>{`Snap index at which the backdrop disappears.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>appearsOnIndex</InlineCode></TableCell>
+        <TableCell>number</TableCell>
+        <TableCell>0</TableCell>
+        <TableCell>{`Snap index at which the backdrop appears.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>opacity</InlineCode></TableCell>
+        <TableCell>number</TableCell>
+        <TableCell>0.5</TableCell>
+        <TableCell>{`Opacity of the backdrop overlay.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>pressBehavior</InlineCode></TableCell>
+        <TableCell>'close' | 'collapse' | 'none'</TableCell>
+        <TableCell>'close'</TableCell>
+        <TableCell>{`Defines what happens when the backdrop is pressed.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+
+#### BottomSheetDragIndicator
+
+The drag handle shown at the top of the sheet. Inherits all props from [gorhom BottomSheetHandle](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheethandle).
 
 #### BottomSheetContent
 
-It inherits all the properties of [gorhom BottomSheetView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetview).
+The scrollable content area inside the sheet. Inherits all props from [gorhom BottomSheetView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetview).
+
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>focusScope</InlineCode></TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>true</TableCell>
+        <TableCell>{`When true, wraps content in a FocusScope on web for keyboard accessibility (traps focus and restores it on close).`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+
+#### BottomSheetFooter
+
+A sticky footer pinned to the bottom of the sheet. Inherits all props from [gorhom BottomSheetFooter](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetfooter).
 
 #### BottomSheetItem
 
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+A pressable row item inside the sheet content. Inherits all props from React Native's [Pressable](https://reactnative.dev/docs/pressable).
+
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>closeOnSelect</InlineCode></TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>true</TableCell>
+        <TableCell>{`Automatically closes the sheet when the item is pressed.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
 
 #### BottomSheetItemText
 
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
-
-#### BottomSheetTextInput
-
-It inherits all the properties of [gorhom BottomSheetTextInput](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheettextinput).
+The text label for a `BottomSheetItem`. Inherits all props from React Native's [Text](https://reactnative.dev/docs/text).
 
 #### BottomSheetScrollView
 
-It inherits all the properties of [gorhom BottomSheetScrollView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetscrollview).
+Direct re-export of [gorhom BottomSheetScrollView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetscrollview). Use inside `BottomSheetPortal` for scrollable content.
 
 #### BottomSheetFlatList
 
-It inherits all the properties of [gorhom BottomSheetFlatList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetflatlist).
+Direct re-export of [gorhom BottomSheetFlatList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetflatlist). Use inside `BottomSheetPortal` for list content.
 
 #### BottomSheetSectionList
 
-It inherits all the properties of [gorhom BottomSheetSectionList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetsectionlist).
+Direct re-export of [gorhom BottomSheetSectionList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetsectionlist). Use inside `BottomSheetPortal` for sectioned list content.
+
+#### BottomSheetTextInput
+
+Direct re-export of [gorhom BottomSheetTextInput](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheettextinput). Use this instead of the standard `TextInput` inside the sheet to avoid keyboard layout issues.
