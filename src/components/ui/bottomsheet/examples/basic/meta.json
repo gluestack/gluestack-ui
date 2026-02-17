@@ -1,0 +1,14 @@
+{
+  "title": "Basic",
+  "reactLive": {
+    "BottomSheet": "@/components/ui/bottomsheet",
+    "BottomSheetTrigger": "@/components/ui/bottomsheet",
+    "BottomSheetContent": "@/components/ui/bottomsheet",
+    "BottomSheetBackdrop": "@/components/ui/bottomsheet",
+    "BottomSheetDragIndicator": "@/components/ui/bottomsheet",
+    "BottomSheetItem": "@/components/ui/bottomsheet",
+    "BottomSheetItemText": "@/components/ui/bottomsheet",
+    "BottomSheetPortal": "@/components/ui/bottomsheet",
+    "Text": "@/components/ui/text"
+  }
+}

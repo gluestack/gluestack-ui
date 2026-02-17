@@ -101,7 +101,7 @@ const getComponentsFromSidebar = (sidebarData: any) => {
 
   // Filter out any empty or undefined values and components we don't want to show
   return components.filter(
-    (component: string) => component && component !== 'bottomsheet'
+    (component: string) => component && component !== ''
   );
 };
 
