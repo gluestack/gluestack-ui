@@ -135,9 +135,7 @@ function installV4Packages(
       '@legendapp/motion',
       'react-native-svg',
       'react-native-safe-area-context',
-      'react-aria',
       '@expo/html-elements',
-      'react-stately',
     ];
 
     nativeResult = spawnSync('npx expo install', expoNativePackages, {
@@ -177,8 +175,6 @@ function installV4Packages(
       versionedNativePackages.push(
         'react-native-web@^0.20.0',
         'react-native-safe-area-context@^5.6.1',
-        'react-aria@^3.41.1',
-        'react-stately@^3.39.0',
         'dom-helpers@^5.2.1'
       );
     }
@@ -186,9 +182,7 @@ function installV4Packages(
     if (projectType === 'react-native-cli') {
       versionedNativePackages.push(
         'react-native-safe-area-context@^5.6.1',
-        'react-aria@^3.41.1',
         '@expo/html-elements@^0.12.5',
-        'react-stately@^3.39.0'
       );
     }
 
