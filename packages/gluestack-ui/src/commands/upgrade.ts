@@ -72,7 +72,8 @@ async function detectProjectType(): Promise<'nextjs' | 'expo' | 'react-native-cl
 function detectPackageManager(): string {
   if (fs.existsSync(path.join(process.cwd(), 'yarn.lock'))) return 'yarn';
   if (fs.existsSync(path.join(process.cwd(), 'pnpm-lock.yaml'))) return 'pnpm';
-  if (fs.existsSync(path.join(process.cwd(), 'bun.lockb'))) return 'bun';
+  if (fs.existsSync(path.join(process.cwd(), 'bun.lock')) ||
+      fs.existsSync(path.join(process.cwd(), 'bun.lockb'))) return 'bun';
   return 'npm';
 }
 
@@ -99,7 +100,7 @@ function installV4Packages(
   const cmds: { [key: string]: string } = {
     npm: 'npm install',
     yarn: 'yarn add',
-    pnpm: 'pnpm i',
+    pnpm: 'pnpm add',
     bun: 'bun add',
   };
   const cmd = cmds[packageManager];
@@ -312,11 +313,11 @@ function cleanAndReinstall(packageManager: string): void {
   s.start('Cleaning node_modules and reinstalling dependencies...');
 
   const nodeModulesPath = path.join(process.cwd(), 'node_modules');
-  const lockFiles: { [key: string]: string } = {
-    npm: 'package-lock.json',
-    yarn: 'yarn.lock',
-    pnpm: 'pnpm-lock.yaml',
-    bun: 'bun.lockb',
+  const lockFiles: { [key: string]: string[] } = {
+    npm: ['package-lock.json'],
+    yarn: ['yarn.lock'],
+    pnpm: ['pnpm-lock.yaml'],
+    bun: ['bun.lock', 'bun.lockb'],
   };
 
   try {
@@ -325,10 +326,13 @@ function cleanAndReinstall(packageManager: string): void {
       fs.removeSync(nodeModulesPath);
     }
 
-    // Remove lock file
-    const lockFile = lockFiles[packageManager];
-    if (lockFile && fs.existsSync(path.join(process.cwd(), lockFile))) {
-      fs.removeSync(path.join(process.cwd(), lockFile));
+    // Remove lock file(s)
+    const lockFilesToRemove = lockFiles[packageManager] ?? [];
+    for (const lockFile of lockFilesToRemove) {
+      const lockFilePath = path.join(process.cwd(), lockFile);
+      if (fs.existsSync(lockFilePath)) {
+        fs.removeSync(lockFilePath);
+      }
     }
 
     // Reinstall all dependencies
@@ -365,7 +369,7 @@ function installPackages(
   const cmds: { [key: string]: string } = {
     npm: 'npm install',
     yarn: 'yarn add',
-    pnpm: 'pnpm i',
+    pnpm: 'pnpm add',
     bun: 'bun add',
   };
   const cmd = cmds[packageManager];
