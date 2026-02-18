@@ -246,6 +246,32 @@ export const headerItems: SidebarSectionProps[] = [
         ),
       },
       {
+        title: 'ScopeDesk',
+        link: 'https://scopedesk.ai/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation',
+        description: 'AI-Powered Project Scoping.',
+        logo: (
+          <Image
+            alt="ScopeDesk logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/scopedesk/logo.svg')}
+          />
+        ),
+        logoDark: (
+          <Image
+            alt="ScopeDesk logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/scopedesk/logo.svg')}
+          />
+        ),
+        badge: (
+          <Badge variant='default'>
+            <BadgeText>Partner</BadgeText>
+          </Badge>
+        ),
+      },
+      {
         title: 'FlyDash',
         link: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
         description: 'AI-Powered Internal Tools & Dashboard Builder.',
