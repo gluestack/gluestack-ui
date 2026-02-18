@@ -76,11 +76,14 @@ export const Menu = ({
       );
 
       const updatedTrigger = () => {
-        return trigger({
-          ...menuTriggerProps,
-          onPress: handleOpen,
-          ref: triggerRef,
-        });
+        return trigger(
+          {
+            ...menuTriggerProps,
+            onPress: handleOpen,
+            ref: triggerRef,
+          },
+          { open: state.isOpen }
+        );
       };
 
       if (_experimentalOverlay) {
