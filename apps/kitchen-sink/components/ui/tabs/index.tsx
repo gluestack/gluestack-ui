@@ -162,22 +162,19 @@ const TabsList = React.forwardRef<
   const context = React.useContext(TabsContext);
 
   const flatListRef = useRef<any>(null);
-  const containerRef = useRef<any>(null);
 
   if (!context) return null;
 
-  const { orientation, setScrollOffset, selectedKey } = context;
+  const { orientation, setScrollOffset, selectedKey, listRef } = context;
 
   // Shared value for indicator sync
   const animatedScrollOffset = useSharedValue(0);
 
   /**
-   * Expose refs + shared value to context
+   * Expose shared value to context
    */
   useEffect(() => {
     if (context) {
-      // @ts-ignore
-      context.listRef = containerRef;
       // @ts-ignore
       context.animatedScrollOffset = animatedScrollOffset;
     }
@@ -259,7 +256,7 @@ const TabsList = React.forwardRef<
   if (orientation === 'horizontal') {
     return (
       <View
-        ref={containerRef}
+        ref={listRef}
         className={tabsListStyle({ orientation, class: className })}
       >
         {indicator}

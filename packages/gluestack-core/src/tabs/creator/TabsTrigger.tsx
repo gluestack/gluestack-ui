@@ -122,6 +122,15 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
       }, [measureTrigger]);
 
       /**
+       * Retry measurement on native if parent ref becomes available later
+       */
+      useEffect(() => {
+        if (Platform.OS !== 'web' && listRef?.current) {
+          requestAnimationFrame(measureTrigger);
+        }
+      }, [listRef?.current, measureTrigger]);
+
+      /**
        * Cleanup
        */
       useEffect(() => {
