@@ -141,7 +141,7 @@ const tabsListStyle = tva({
 });
 
 const tabsTriggerStyle = tva({
-  base: 'justify-center relative z-30 items-center web:outline-none data-[disabled=true]:opacity-40 data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary/20  px-3 py-1.5',
+  base: 'justify-center relative z-30 items-center web:outline-none data-[disabled=true]:opacity-40 data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-primary/20  px-3 py-1.5 flex-row gap-1',
   parentVariants: {
     variant: {
       underlined: '',
@@ -156,7 +156,7 @@ const tabsTriggerTextStyle = tva({
 });
 
 const tabsTriggerIconStyle = tva({
-  base: 'text-foreground/70 data-[selected=true]:text-foreground fill-none',
+  base: 'h-4 w-4 fill-none pointer-events-none shrink-0 text-foreground/70 data-[selected=true]:text-foreground',
 
 });
 
@@ -232,8 +232,6 @@ type ITabsTriggerIconProps = React.ComponentPropsWithoutRef<
   typeof UITabs.TriggerIcon
 > & {
   as?: React.ElementType;
-  height?: number;
-  width?: number;
 };
 
 type ITabsIndicatorProps = React.ComponentPropsWithoutRef<
@@ -508,6 +506,8 @@ const TabsTriggerIcon = React.forwardRef<
   React.ComponentRef<typeof UITabs.TriggerIcon>,
   ITabsTriggerIconProps
 >(({ className, ...props }, ref) => {
+  const { variant } = useStyleContext(SCOPE);
+
   // Remove `dataSet` ONLY on web to avoid React DOM warning
   const safeProps =
     Platform.OS === 'web'
@@ -522,6 +522,7 @@ const TabsTriggerIcon = React.forwardRef<
       ref={ref}
       {...safeProps}
       className={tabsTriggerIconStyle({
+        parentVariants: { variant },
         class: className,
       })}
     />
