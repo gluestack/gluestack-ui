@@ -37,6 +37,55 @@ const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 const AnimatedView = Animated.createAnimatedComponent(View);
 Platform.OS === 'web' ? cssInterop(AnimatedView, { className: 'style' }) : null;
 
+type VariantNameItemProps = {
+  item: UsageVariant;
+  index: number;
+  width: number;
+  scrollX: SharedValue<number>;
+  itemPositionsRef: React.MutableRefObject<number[]>;
+};
+
+const VariantNameItem = memo(
+  ({ item, index, width, scrollX, itemPositionsRef }: VariantNameItemProps) => {
+    const rVariantNameStyle = useAnimatedStyle(() => {
+      const inputRange = [
+        (index - 1) * width,
+        index * width,
+        (index + 1) * width,
+      ];
+      const opacity = interpolate(
+        scrollX.value,
+        inputRange,
+        [0.3, 1, 0.3],
+        Extrapolation.CLAMP
+      );
+      const scale = interpolate(
+        scrollX.value,
+        inputRange,
+        [0.85, 1, 0.85],
+        Extrapolation.CLAMP
+      );
+      return { opacity, transform: [{ scale }] };
+    });
+
+    return (
+      <AnimatedView
+        className="px-3"
+        style={rVariantNameStyle}
+        onLayout={(event) => {
+          const { x, width: itemWidth } = event.nativeEvent.layout;
+          itemPositionsRef.current[index] = x + itemWidth / 2;
+        }}
+      >
+        <Text className="text-foreground font-sans font-medium">
+          {item.label}
+        </Text>
+      </AnimatedView>
+    );
+  }
+);
+VariantNameItem.displayName = 'VariantNameItem';
+
 interface UsageVariantFlatListProps {
   data: UsageVariant[];
   scrollEnabled?: boolean;
@@ -126,6 +175,11 @@ export const UsageVariantFlatList = ({
   const itemWidth = width;
 
   const applyBlur = Platform.OS === 'ios';
+
+  // For components that use internal horizontal FlatLists (e.g. tabs),
+  // skip the outer horizontal FlatList pager to avoid nested same-orientation
+  // FlatList conflicts. Render the first variant directly instead.
+  const isDirectRender = derivedComponentPath === 'tabs';
 
   const listRef = useRef<FlatList<UsageVariant>>(null);
   const variantNamesScrollRef = useRef<ScrollView>(null);
@@ -222,6 +276,24 @@ export const UsageVariantFlatList = ({
     };
   });
 
+  if (isDirectRender) {
+    return (
+      <>
+        <View className="flex-1 justify-center items-center p-4">
+          {data[0]?.content}
+        </View>
+        <BottomControlBar
+          bottomOffset={insets.bottom + 34}
+          pillLabel={currentComponent?.title}
+          showPill={true}
+          components={COMPONENTS_LIST}
+          currentComponent={currentComponent}
+          onComponentSelect={handleComponentSelect}
+        />
+      </>
+    );
+  }
+
   return (
     <>
       <Animated.FlatList
@@ -282,51 +354,16 @@ export const UsageVariantFlatList = ({
             paddingHorizontal: width / 2,
           }}
         >
-          {data.map((item, index) => {
-            const rVariantNameStyle = useAnimatedStyle(() => {
-              const inputRange = [
-                (index - 1) * width,
-                index * width,
-                (index + 1) * width,
-              ];
-
-              const opacity = interpolate(
-                scrollX.value,
-                inputRange,
-                [0.3, 1, 0.3],
-                Extrapolation.CLAMP
-              );
-
-              const scale = interpolate(
-                scrollX.value,
-                inputRange,
-                [0.85, 1, 0.85],
-                Extrapolation.CLAMP
-              );
-
-              return {
-                opacity,
-                transform: [{ scale }],
-              };
-            });
-
-            return (
-              <AnimatedView
-                key={index}
-                className="px-3"
-                style={rVariantNameStyle}
-                onLayout={(event) => {
-                  // Measure and store position of each item
-                  const { x, width: itemWidth } = event.nativeEvent.layout;
-                  itemPositionsRef.current[index] = x + itemWidth / 2;
-                }}
-              >
-                <Text className="text-foreground font-sans font-medium">
-                  {item.label}
-                </Text>
-              </AnimatedView>
-            );
-          })}
+          {data.map((item, index) => (
+            <VariantNameItem
+              key={item.value}
+              item={item}
+              index={index}
+              width={width}
+              scrollX={scrollX}
+              itemPositionsRef={itemPositionsRef}
+            />
+          ))}
         </ScrollView>
       </View>
       <BottomControlBar

@@ -310,21 +310,9 @@ export default function ComponentsLayout() {
         }}
       />
           <Stack.Screen
-        name="date-time-picker"
+        name="tabs"
         options={{
-          header: () => <CustomHeader title="DateTimePicker" />,
-        }}
-      />
-          <Stack.Screen
-        name="calendar"
-        options={{
-          header: () => <CustomHeader title="Calendar" />,
-        }}
-      />
-          <Stack.Screen
-        name="image-viewer"
-        options={{
-          header: () => <CustomHeader title="Image Viewer" />,
+          header: () => <CustomHeader title="Tabs" />,
         }}
       />
     </Stack>

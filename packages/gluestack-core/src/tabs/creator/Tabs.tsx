@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, forwardRef } from 'react';
+import React, { useState, useCallback, useMemo, forwardRef, useRef } from 'react';
 import type { Key } from 'react';
 import { TabsContext } from './Context';
 import type { LayoutData } from './types';
@@ -24,6 +24,9 @@ export const Tabs = (StyledTabs: any) =>
       );
 
       const selectedKey = value !== undefined ? value : selectedKeyState;
+
+      // List ref for measuring trigger layouts on native
+      const listRef = useRef<any>(null);
 
       const setSelectedKey = useCallback(
         (key: Key) => {
@@ -95,6 +98,7 @@ export const Tabs = (StyledTabs: any) =>
           unregisterContent,
           scrollOffset,
           setScrollOffset,
+          listRef,
         }),
         [
           selectedKey,
