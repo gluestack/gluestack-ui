@@ -86,7 +86,7 @@ const [selected, setSelected] = React.useState(new Date());
       value={selected}
       onValueChange={setSelected}
       enableMonthYearPicker={true}
-      minYear={2020}
+      minYear={2000}
       maxYear={2030}
     >
       <CalendarHeader>

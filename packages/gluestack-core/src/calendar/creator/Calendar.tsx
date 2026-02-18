@@ -11,6 +11,8 @@ import {
   isDateSelectedRange,
   dateToKey,
   isSameDay,
+  isSameMonth,
+  isToday,
   addMonths,
   subMonths,
   getYear,
@@ -117,12 +119,8 @@ export const CalendarMain = (StyledCalendar: any) =>
     const getDayState = useCallback(
       (date: Date): DayState => {
         const disabled = isDateDisabled(date);
-        const outsideMonth = !calendarGrid.some((week) =>
-          week.days.some((day) => day.isCurrentMonth && isSameDay(day.date, date))
-        );
-        const today = calendarGrid
-          .flatMap((week) => week.days)
-          .find((day) => isSameDay(day.date, date))?.isToday ?? false;
+        const outsideMonth = !isSameMonth(date, currentMonth);
+        const today = isToday(date);
 
         const key = dateToKey(date);
         const marker = markers?.[key];
@@ -157,7 +155,7 @@ export const CalendarMain = (StyledCalendar: any) =>
           marker,
         };
       },
-      [mode, value, isDateDisabled, calendarGrid, markers]
+      [mode, value, isDateDisabled, currentMonth, markers]
     );
 
     // Selection handlers (migrated from existing implementation)
