@@ -13,7 +13,7 @@ import { useColorScheme } from '@/components/useColorScheme';
 import { Slot, usePathname } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Fab, FabIcon } from '@/components/ui/fab';
-import { MoonIcon, SunIcon } from '@/components/ui/icon';
+import { MoonIcon, SunIcon, SlashIcon } from '@/components/ui/icon';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -44,21 +44,35 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const pathname = usePathname();
-  const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
+  const systemColorScheme = useColorScheme();
+  const [mode, setMode] = useState<'system' | 'light' | 'dark'>('system');
+
+  // Determine effective color scheme
+  const effectiveColorScheme = mode === 'system'
+    ? (systemColorScheme ?? 'light')
+    : mode;
+
+  const handleToggleTheme = () => {
+    if (mode === 'system') {
+      setMode('light');
+    } else if (mode === 'light') {
+      setMode('dark');
+    } else {
+      setMode('system');
+    }
+  };
 
   return (
-    <GluestackUIProvider mode={colorMode}>
-      <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
+    <GluestackUIProvider mode={mode}>
+      <ThemeProvider value={effectiveColorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Slot />
         {pathname === '/' && (
           <Fab
-            onPress={() =>
-              setColorMode(colorMode === 'dark' ? 'light' : 'dark')
-            }
+            onPress={handleToggleTheme}
             className="m-6"
             size="lg"
           >
-            <FabIcon as={colorMode === 'dark' ? MoonIcon : SunIcon} />
+            <FabIcon as={mode === 'system' ? SlashIcon : (effectiveColorScheme === 'dark' ? MoonIcon : SunIcon)} />
           </Fab>
         )}
       </ThemeProvider>
