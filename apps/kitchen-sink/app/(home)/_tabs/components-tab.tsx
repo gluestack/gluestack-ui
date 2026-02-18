@@ -162,7 +162,7 @@ const ComponentCard = memo(
                     {item.title}
                   </Text>
                   <Text className="text-slate-50 text-sm font-sans">
-                    {item.count}  Variants
+                    {item.count} Variants
                   </Text>
                 </View>
               </View>

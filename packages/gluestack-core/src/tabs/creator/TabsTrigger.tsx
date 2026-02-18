@@ -8,8 +8,8 @@ import React, {
 } from 'react';
 import { Platform, findNodeHandle } from 'react-native';
 import { TabsContext, TabsTriggerContext } from './Context';
-import { composeEventHandlers } from '@gluestack-ui/utils/common';
-
+import { composeEventHandlers } from '@gluestack-ui/utils/common'
+//this is the trigger component for the tabs for testing 
 export const TabsTrigger = (StyledTabsTrigger: any) =>
   forwardRef(
     ({ value, disabled = false, children, ...props }: any, ref?: any) => {
@@ -17,7 +17,7 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
       const innerRef = useRef<any>(null);
 
       if (!context) {
-        throw new Error('TabsTrigger must be used within a Tabs component');
+        throw new Error('TabsTrigger must be used within a Tabs component')
       }
 
       const {
@@ -120,6 +120,15 @@ export const TabsTrigger = (StyledTabsTrigger: any) =>
           requestAnimationFrame(measureTrigger);
         }
       }, [measureTrigger]);
+
+      /**
+       * Retry measurement on native if parent ref becomes available later
+       */
+      useEffect(() => {
+        if (Platform.OS !== 'web' && listRef?.current) {
+          requestAnimationFrame(measureTrigger);
+        }
+      }, [listRef?.current, measureTrigger]);
 
       /**
        * Cleanup
