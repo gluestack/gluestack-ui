@@ -1,15 +1,34 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, TabsTriggerIcon } from '@/components/ui/tabs'
-import { Box } from '@/components/ui/box'
-import { Text } from '@/components/ui/text'
-import { SearchIcon, MailIcon, StarIcon, BellIcon } from '@/components/ui/icon'
-import { Button, ButtonText } from '@/components/ui/button'
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  TabsContentWrapper,
+  TabsTriggerText,
+  TabsIndicator,
+  TabsTriggerIcon,
+} from '@/components/ui/tabs';
+import { Box } from '@/components/ui/box';
+import { Text } from '@/components/ui/text';
+import { SearchIcon, MailIcon, StarIcon, BellIcon } from '@/components/ui/icon';
+import { Button, ButtonText } from '@/components/ui/button';
 
-
-import React from 'react';
-import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
+import React, { useCallback } from 'react';
+import { Platform } from 'react-native';
+import { useRouter, usePathname } from 'expo-router';
+import * as Haptics from 'expo-haptics';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {
+  BottomControlBar,
+  type ComponentItem,
+} from '@/components/custom/bottom-control-bar';
+import {
+  COMPONENTS_LIST,
+  getComponentByPath,
+} from '@/constants/components-list';
 
 const ExampleBasic = () => {
-return (
+  return (
     <Tabs defaultValue="home">
       <TabsList>
         <TabsTrigger value="home">
@@ -42,11 +61,11 @@ return (
         </TabsContent>
       </TabsContentWrapper>
     </Tabs>
-  )
+  );
 };
 
 const ExampleWithIndicator = () => {
-return (
+  return (
     <Tabs defaultValue="account" variant="underlined">
       <TabsList>
         <TabsTrigger value="account">
@@ -94,11 +113,11 @@ return (
         </TabsContent>
       </TabsContentWrapper>
     </Tabs>
-  )
+  );
 };
 
 const ExampleVertical = () => {
-return (
+  return (
     <Tabs defaultValue="overview" orientation="vertical" variant="filled">
       <Box className="flex-row gap-4">
         <TabsList>
@@ -121,7 +140,9 @@ return (
           <TabsContentWrapper>
             <TabsContent value="overview">
               <Box className="p-4 bg-muted rounded-lg">
-                <Text className="text-foreground font-semibold mb-2">Overview</Text>
+                <Text className="text-foreground font-semibold mb-2">
+                  Overview
+                </Text>
                 <Text className="text-foreground/70">
                   View a summary of your account activity and statistics.
                 </Text>
@@ -129,7 +150,9 @@ return (
             </TabsContent>
             <TabsContent value="analytics">
               <Box className="p-4 bg-muted rounded-lg">
-                <Text className="text-foreground font-semibold mb-2">Analytics</Text>
+                <Text className="text-foreground font-semibold mb-2">
+                  Analytics
+                </Text>
                 <Text className="text-foreground/70">
                   Detailed analytics and insights about your performance.
                 </Text>
@@ -137,7 +160,9 @@ return (
             </TabsContent>
             <TabsContent value="reports">
               <Box className="p-4 bg-muted rounded-lg">
-                <Text className="text-foreground font-semibold mb-2">Reports</Text>
+                <Text className="text-foreground font-semibold mb-2">
+                  Reports
+                </Text>
                 <Text className="text-foreground/70">
                   Generate and download custom reports.
                 </Text>
@@ -145,7 +170,9 @@ return (
             </TabsContent>
             <TabsContent value="notifications">
               <Box className="p-4 bg-muted rounded-lg">
-                <Text className="text-foreground font-semibold mb-2">Notifications</Text>
+                <Text className="text-foreground font-semibold mb-2">
+                  Notifications
+                </Text>
                 <Text className="text-foreground/70">
                   Manage your notification preferences.
                 </Text>
@@ -155,11 +182,11 @@ return (
         </Box>
       </Box>
     </Tabs>
-  )
+  );
 };
 
 const ExampleWithIcons = () => {
-return (
+  return (
     <Tabs defaultValue="explore" variant="filled">
       <TabsList>
         <TabsTrigger value="explore">
@@ -200,7 +227,9 @@ return (
         </TabsContent>
         <TabsContent value="favourites">
           <Box className="p-4">
-            <Text className="text-foreground font-semibold mb-1">Favourites</Text>
+            <Text className="text-foreground font-semibold mb-1">
+              Favourites
+            </Text>
             <Text className="text-foreground/70">
               Items and pages you have starred for quick access.
             </Text>
@@ -216,11 +245,11 @@ return (
         </TabsContent>
       </TabsContentWrapper>
     </Tabs>
-  )
+  );
 };
 
 const ExampleVariants = () => {
-return (
+  return (
     <Box className="gap-8">
       <Box>
         <Text className="text-foreground font-semibold mb-2">Underlined</Text>
@@ -240,17 +269,23 @@ return (
           <TabsContentWrapper>
             <TabsContent value="tab1">
               <Box className="p-4">
-                <Text className="text-foreground/70">Underlined tab content 1</Text>
+                <Text className="text-foreground/70">
+                  Underlined tab content 1
+                </Text>
               </Box>
             </TabsContent>
             <TabsContent value="tab2">
               <Box className="p-4">
-                <Text className="text-foreground/70">Underlined tab content 2</Text>
+                <Text className="text-foreground/70">
+                  Underlined tab content 2
+                </Text>
               </Box>
             </TabsContent>
             <TabsContent value="tab3">
               <Box className="p-4">
-                <Text className="text-foreground/70">Underlined tab content 3</Text>
+                <Text className="text-foreground/70">
+                  Underlined tab content 3
+                </Text>
               </Box>
             </TabsContent>
           </TabsContentWrapper>
@@ -292,11 +327,11 @@ return (
         </Tabs>
       </Box>
     </Box>
-  )
+  );
 };
 
 const ExampleScrollable = () => {
-return (
+  return (
     <Tabs defaultValue="monday" variant="underlined">
       <TabsList>
         <TabsTrigger value="monday">
@@ -327,52 +362,68 @@ return (
         <TabsContent value="monday">
           <Box className="p-4">
             <Text className="text-foreground font-semibold mb-1">Monday</Text>
-            <Text className="text-foreground/70">Start the week strong with your planned tasks.</Text>
+            <Text className="text-foreground/70">
+              Start the week strong with your planned tasks.
+            </Text>
           </Box>
         </TabsContent>
         <TabsContent value="tuesday">
           <Box className="p-4">
             <Text className="text-foreground font-semibold mb-1">Tuesday</Text>
-            <Text className="text-foreground/70">Keep the momentum going with focused work.</Text>
+            <Text className="text-foreground/70">
+              Keep the momentum going with focused work.
+            </Text>
           </Box>
         </TabsContent>
         <TabsContent value="wednesday">
           <Box className="p-4">
-            <Text className="text-foreground font-semibold mb-1">Wednesday</Text>
-            <Text className="text-foreground/70">Midweek checkpoint — review your progress.</Text>
+            <Text className="text-foreground font-semibold mb-1">
+              Wednesday
+            </Text>
+            <Text className="text-foreground/70">
+              Midweek checkpoint — review your progress.
+            </Text>
           </Box>
         </TabsContent>
         <TabsContent value="thursday">
           <Box className="p-4">
             <Text className="text-foreground font-semibold mb-1">Thursday</Text>
-            <Text className="text-foreground/70">Push through with energy to finish the week.</Text>
+            <Text className="text-foreground/70">
+              Push through with energy to finish the week.
+            </Text>
           </Box>
         </TabsContent>
         <TabsContent value="friday">
           <Box className="p-4">
             <Text className="text-foreground font-semibold mb-1">Friday</Text>
-            <Text className="text-foreground/70">Wrap up the week and celebrate your wins.</Text>
+            <Text className="text-foreground/70">
+              Wrap up the week and celebrate your wins.
+            </Text>
           </Box>
         </TabsContent>
         <TabsContent value="saturday">
           <Box className="p-4">
             <Text className="text-foreground font-semibold mb-1">Saturday</Text>
-            <Text className="text-foreground/70">Rest, recharge, and enjoy your weekend.</Text>
+            <Text className="text-foreground/70">
+              Rest, recharge, and enjoy your weekend.
+            </Text>
           </Box>
         </TabsContent>
         <TabsContent value="sunday">
           <Box className="p-4">
             <Text className="text-foreground font-semibold mb-1">Sunday</Text>
-            <Text className="text-foreground/70">Prepare and plan for the upcoming week ahead.</Text>
+            <Text className="text-foreground/70">
+              Prepare and plan for the upcoming week ahead.
+            </Text>
           </Box>
         </TabsContent>
       </TabsContentWrapper>
     </Tabs>
-  )
+  );
 };
 
 const ExampleControlled = () => {
-const [activeTab, setActiveTab] = React.useState('tab1');
+  const [activeTab, setActiveTab] = React.useState('tab1');
 
   return (
     <Box className="gap-4">
@@ -430,47 +481,80 @@ const [activeTab, setActiveTab] = React.useState('tab1');
         </TabsContentWrapper>
       </Tabs>
     </Box>
-  )
+  );
 };
 
 const COMPONENT_VARIANTS = [
   {
-    value: "basic",
-    label: "Basic",
+    value: 'basic',
+    label: 'Basic',
     content: <ExampleBasic />,
   },
   {
-    value: "with-indicator",
-    label: "With Indicator",
+    value: 'with-indicator',
+    label: 'With Indicator',
     content: <ExampleWithIndicator />,
   },
   {
-    value: "vertical",
-    label: "Vertical",
+    value: 'vertical',
+    label: 'Vertical',
     content: <ExampleVertical />,
   },
   {
-    value: "with-icons",
-    label: "With Icons",
+    value: 'with-icons',
+    label: 'With Icons',
     content: <ExampleWithIcons />,
   },
   {
-    value: "variants",
-    label: "Variants",
+    value: 'variants',
+    label: 'Variants',
     content: <ExampleVariants />,
   },
   {
-    value: "scrollable",
-    label: "Scrollable",
+    value: 'scrollable',
+    label: 'Scrollable',
     content: <ExampleScrollable />,
   },
   {
-    value: "controlled",
-    label: "Controlled",
+    value: 'controlled',
+    label: 'Controlled',
     content: <ExampleControlled />,
-  }
+  },
 ];
 
 export default function TabsScreen() {
-  return <UsageVariantFlatList data={COMPONENT_VARIANTS} />;
+  const router = useRouter();
+  const pathname = usePathname();
+  const insets = useSafeAreaInsets();
+
+  const derivedComponentPath = pathname?.split('/').pop() || '';
+  const currentComponent = derivedComponentPath
+    ? getComponentByPath(derivedComponentPath)
+    : undefined;
+
+  const handleComponentSelect = useCallback(
+    (component: ComponentItem) => {
+      if (Platform.OS === 'ios') {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      }
+      router.push(`/(home)/components/${component.path}` as any);
+    },
+    [router]
+  );
+
+  return (
+    <>
+      <Box className="flex-1 justify-center items-center p-4">
+        <ExampleScrollable />
+      </Box>
+      <BottomControlBar
+        bottomOffset={insets.bottom + 34}
+        pillLabel={currentComponent?.title}
+        showPill={true}
+        components={COMPONENTS_LIST}
+        currentComponent={currentComponent}
+        onComponentSelect={handleComponentSelect}
+      />
+    </>
+  );
 }
