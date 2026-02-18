@@ -1,0 +1,85 @@
+function App() {
+  const ref = React.useRef(null);
+  const [selected, setSelected] = React.useState([]);
+
+  const items = [
+    'Copy Link',
+    'Save to Library',
+    'Set as Wallpaper',
+    'Share via...',
+    'Delete',
+  ];
+
+  const toggle = (item) => {
+    setSelected(prev =>
+      prev.includes(item) ? prev.filter(i => i !== item) : [...prev, item]
+    );
+  };
+
+  const footer = React.useCallback((props) => (
+    <BottomSheetFooter {...props} className="bg-background">
+      <HStack className="gap-3">
+        <Button
+          variant="outline"
+          className="flex-1 rounded-xl"
+          onPress={() => ref.current?.close()}
+        >
+          <ButtonText>Cancel</ButtonText>
+        </Button>
+        <Button
+          className="flex-1 rounded-xl"
+          isDisabled={selected.length === 0}
+          onPress={() => ref.current?.close()}
+        >
+          <ButtonText>
+            {selected.length > 0 ? 'Confirm (' + selected.length + ')' : 'Confirm'}
+          </ButtonText>
+        </Button>
+      </HStack>
+    </BottomSheetFooter>
+  ), [selected.length]);
+
+  return (
+    <BottomSheet ref={ref}>
+      <BottomSheetTrigger>
+        <Text>Open with Footer</Text>
+      </BottomSheetTrigger>
+      <BottomSheetPortal
+        snapPoints={['50%']}
+        backdropComponent={BottomSheetBackdrop}
+        handleComponent={BottomSheetDragIndicator}
+        footerComponent={footer}
+      >
+        <BottomSheetScrollView contentContainerClassName="pb-24" showsVerticalScrollIndicator={false}>
+          <VStack className="px-4 pt-2 pb-2">
+            <Text className="text-lg font-bold text-foreground">Choose Actions</Text>
+            <Text className="text-xs text-foreground/50 mt-0.5">Select one or more options</Text>
+          </VStack>
+
+          {items.map(item => {
+            const isSelected = selected.includes(item);
+            return (
+              <BottomSheetItem
+                key={item}
+                closeOnSelect={false}
+                onPress={() => toggle(item)}
+                className={isSelected ? 'bg-primary/5' : ''}
+              >
+                <HStack className="flex-1 items-center justify-between">
+                  <BottomSheetItemText
+                    className={isSelected ? 'text-primary font-semibold' : ''}
+                  >
+                    {item}
+                  </BottomSheetItemText>
+                  {isSelected && (
+                    <Text className="text-primary text-base">✓</Text>
+                  )}
+                </HStack>
+              </BottomSheetItem>
+            );
+          })}
+        </BottomSheetScrollView>
+      </BottomSheetPortal>
+    </BottomSheet>
+  );
+}

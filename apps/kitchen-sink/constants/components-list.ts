@@ -49,6 +49,7 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: "AlertDialog", path: "alert-dialog", count: 4, icon: AlertDialogIcon },
   { title: "Avatar", path: "avatar", count: 9, icon: AvatarIcon },
   { title: "Badge", path: "badge", count: 3, icon: BadgeIcon },
+  { title: "BottomSheet", path: "bottomsheet", count: 4 },
   { title: "Box", path: "box", count: 1, icon: BoxIcon },
   { title: "Button", path: "button", count: 6, icon: ButtonIcon },
   { title: "Card", path: "card", count: 5, icon: CardIcon },

@@ -1,0 +1,55 @@
+function App() {
+  const [query, setQuery] = React.useState('');
+
+  const items = [
+    'Design', 'Development', 'Marketing', 'Product',
+    'Research', 'Engineering', 'Sales', 'Support',
+  ];
+
+  const filtered = items.filter(item =>
+    item.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return (
+    <BottomSheet>
+      <BottomSheetTrigger>
+        <Text>Open Search Sheet</Text>
+      </BottomSheetTrigger>
+      <BottomSheetPortal
+        snapPoints={['60%']}
+        backdropComponent={BottomSheetBackdrop}
+        handleComponent={BottomSheetDragIndicator}
+      >
+        <BottomSheetScrollView
+          keyboardShouldPersistTaps="handled"
+          contentContainerClassName="pb-8"
+        >
+          <VStack className="px-4 pt-2 pb-3 gap-3">
+            <Text className="text-lg font-bold text-foreground">Search Categories</Text>
+            <BottomSheetTextInput
+              placeholder="Type to filter..."
+              value={query}
+              onChangeText={setQuery}
+              className="h-11 border border-border rounded-lg px-3 text-sm text-foreground"
+            />
+            <Text className="text-xs text-foreground/50">
+              {filtered.length} result{filtered.length !== 1 ? 's' : ''}
+            </Text>
+          </VStack>
+
+          {filtered.length === 0 ? (
+            <VStack className="py-8 items-center">
+              <Text className="text-sm text-foreground/40">No results for "{query}"</Text>
+            </VStack>
+          ) : (
+            filtered.map(item => (
+              <BottomSheetItem key={item}>
+                <BottomSheetItemText>{item}</BottomSheetItemText>
+              </BottomSheetItem>
+            ))
+          )}
+        </BottomSheetScrollView>
+      </BottomSheetPortal>
+    </BottomSheet>
+  );
+}

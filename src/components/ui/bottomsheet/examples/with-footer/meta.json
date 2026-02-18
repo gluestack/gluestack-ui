@@ -1,0 +1,21 @@
+{
+  "title": "With Footer",
+  "description": "A bottom sheet with a sticky BottomSheetFooter containing action buttons. Items can be multi-selected without closing the sheet, and the Confirm button shows the selected count.",
+  "argTypes": {},
+  "reactLive": {
+    "BottomSheet": "@/components/ui/bottomsheet",
+    "BottomSheetTrigger": "@/components/ui/bottomsheet",
+    "BottomSheetPortal": "@/components/ui/bottomsheet",
+    "BottomSheetBackdrop": "@/components/ui/bottomsheet",
+    "BottomSheetDragIndicator": "@/components/ui/bottomsheet",
+    "BottomSheetScrollView": "@/components/ui/bottomsheet",
+    "BottomSheetItem": "@/components/ui/bottomsheet",
+    "BottomSheetItemText": "@/components/ui/bottomsheet",
+    "BottomSheetFooter": "@/components/ui/bottomsheet",
+    "Text": "@/components/ui/text",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "HStack": "@/components/ui/hstack",
+    "VStack": "@/components/ui/vstack"
+  }
+}

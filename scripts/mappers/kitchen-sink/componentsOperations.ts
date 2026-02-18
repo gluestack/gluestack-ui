@@ -27,7 +27,6 @@ const EXCLUDED_DIRS = [
   'gluestack-ui-provider',
   'utils',
   'my-component',
-  'bottomsheet',
 ];
 
 // Count variants by checking examples directory

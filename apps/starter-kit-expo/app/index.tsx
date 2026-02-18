@@ -1,14 +1,12 @@
-import React from 'react';
-import Gradient from '@/assets/icons/Gradient';
 import Logo from '@/assets/icons/Logo';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
+import React from 'react';
 
+import { BottomSheet, BottomSheetBackdrop, BottomSheetContent, BottomSheetDragIndicator, BottomSheetItem, BottomSheetItemText, BottomSheetPortal, BottomSheetTrigger } from '@/components/ui/bottomsheet';
 import { Button, ButtonText } from '@/components/ui/button';
-import { useRouter } from 'expo-router';
-import { VStack } from '@/components/ui/vstack';
 import { Center } from '@/components/ui/center';
-import { BottomSheetItem, BottomSheet, BottomSheetBackdrop, BottomSheetContent, BottomSheetDragIndicator, BottomSheetPortal, BottomSheetTrigger, BottomSheetItemText } from '@/components/ui/bottomsheet';
+import { useRouter } from 'expo-router';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function Home() {

@@ -313,6 +313,12 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="VStack" />,
         }}
       />
+          <Stack.Screen
+        name="bottomsheet"
+        options={{
+          header: () => <CustomHeader title="BottomSheet" />,
+        }}
+      />
     </Stack>
   );
 }

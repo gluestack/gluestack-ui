@@ -9,10 +9,9 @@ export const copyComponentsDocs = (component: string, event: string) => {
     'apps/kitchen-sink/app/(home)/components'
   );
 
-  // Skip all-components and bottomsheet pages - they should not be copied to new kitchen-sink
+  // Skip all-components and utils - they should not be copied to new kitchen-sink
   if (
     component === 'all-components' ||
-    component === 'bottomsheet' ||
     component === 'gluestack-ui-provider' ||
     component === 'utils'
   ) {

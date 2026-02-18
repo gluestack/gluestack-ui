@@ -1,0 +1,17 @@
+{
+  "title": "With Snap Points",
+  "description": "A bottom sheet with multiple snap points controlled programmatically via a ref. Demonstrates open, close, expand, collapse, and snapToIndex using the imperative BottomSheetRef handle.",
+  "argTypes": {},
+  "reactLive": {
+    "BottomSheet": "@/components/ui/bottomsheet",
+    "BottomSheetPortal": "@/components/ui/bottomsheet",
+    "BottomSheetBackdrop": "@/components/ui/bottomsheet",
+    "BottomSheetDragIndicator": "@/components/ui/bottomsheet",
+    "BottomSheetContent": "@/components/ui/bottomsheet",
+    "Text": "@/components/ui/text",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "HStack": "@/components/ui/hstack",
+    "VStack": "@/components/ui/vstack"
+  }
+}

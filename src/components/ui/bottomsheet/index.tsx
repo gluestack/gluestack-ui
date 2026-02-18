@@ -23,8 +23,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import type { PressableProps, TextProps } from 'react-native';
-import { Platform, Pressable, Text, View } from 'react-native';
+import type { PressableProps, TextInputProps, TextProps } from 'react-native';
+import { Keyboard, Platform, Pressable, Text, View } from 'react-native';
 
 const bottomSheetBackdropStyle = tva({
   base: 'absolute inset-0 bg-black/50',
@@ -53,10 +53,15 @@ const bottomSheetFooterStyle = tva({
   base: 'p-4 border-t border-border/90',
 });
 
+const bottomSheetTextInputStyle = tva({
+  base: 'flex-1 text-foreground text-sm md:text-sm py-1 placeholder:text-muted-foreground  web:outline-none ios:leading-[0px] web:cursor-text  h-9 w-full flex-row items-center rounded-md border border-border  dark:bg-input/30 bg-transparent shadow-xs transition-[color,box-shadow] overflow-hidden px-3 gap-2',
+});
+
 type BottomSheetContextValue = {
   visible: boolean;
   bottomSheetRef: React.RefObject<GorhomBottomSheet>;
   handleClose: () => void;
+  handleNaturalClose: () => void;
   handleOpen: (index?: number) => void;
   snapToIndex: (index: number) => void;
   currentIndex: number;
@@ -66,6 +71,7 @@ const BottomSheetContext = createContext<BottomSheetContextValue>({
   visible: false,
   bottomSheetRef: { current: null! },
   handleClose: () => { },
+  handleNaturalClose: () => { },
   handleOpen: () => { },
   snapToIndex: () => { },
   currentIndex: -1,
@@ -104,8 +110,15 @@ export const BottomSheet = forwardRef<BottomSheetRef, IBottomSheetRootProps>(
       [defaultSnapIndex, onOpen]
     );
 
+    // Triggers the close animation only — state updates happen via onChange chain
     const handleClose = useCallback(() => {
+      Keyboard.dismiss();
       bottomSheetRef.current?.close();
+    }, []);
+
+    // Updates React state after sheet has naturally closed (index reached -1)
+    const handleNaturalClose = useCallback(() => {
+      Keyboard.dismiss();
       setVisible(false);
       setCurrentIndex(-1);
       onClose?.();
@@ -141,11 +154,12 @@ export const BottomSheet = forwardRef<BottomSheetRef, IBottomSheetRootProps>(
         visible,
         bottomSheetRef,
         handleClose,
+        handleNaturalClose,
         handleOpen,
         snapToIndex,
         currentIndex,
       }),
-      [visible, handleClose, handleOpen, snapToIndex, currentIndex]
+      [visible, handleClose, handleNaturalClose, handleOpen, snapToIndex, currentIndex]
     );
 
     return (
@@ -185,17 +199,17 @@ export const BottomSheetPortal = ({
   onChange,
   ...props
 }: IBottomSheetPortalProps) => {
-  const { bottomSheetRef, handleClose } = useContext(BottomSheetContext);
+  const { bottomSheetRef, handleNaturalClose } = useContext(BottomSheetContext);
 
   const handleSheetChanges = useCallback(
     (idx: number) => {
       onChange?.(idx);
-      // Only close if the sheet is fully closed (index -1)
+      // Sheet reached closed position naturally — update React state
       if (idx === -1) {
-        handleClose();
+        handleNaturalClose();
       }
     },
-    [handleClose, onChange]
+    [handleNaturalClose, onChange]
   );
 
   return (
@@ -253,8 +267,6 @@ export const BottomSheetBackdrop = ({
   pressBehavior = 'close',
   ...props
 }: Partial<IBottomSheetBackdropProps>) => {
-  const { handleClose } = useContext(BottomSheetContext);
-
   return (
     <GorhomBottomSheetBackdrop
       // @ts-ignore
@@ -263,7 +275,6 @@ export const BottomSheetBackdrop = ({
       appearsOnIndex={appearsOnIndex}
       opacity={opacity}
       pressBehavior={pressBehavior}
-      onPress={pressBehavior === 'close' ? handleClose : undefined}
       {...props}
     />
   );
@@ -408,11 +419,16 @@ export const BottomSheetItemText = ({
   return <Text {...props} className={bottomSheetItemTextStyle({ className })} />;
 };
 
+export const BottomSheetTextInput = ({
+  className,
+  ...props
+}: TextInputProps) => {
+  return <GorhomBottomSheetInput {...props} className={bottomSheetTextInputStyle({ className })} />;
+};
 // Scrollable components with className support
 export const BottomSheetScrollView = GorhomBottomSheetScrollView;
 export const BottomSheetFlatList = GorhomBottomSheetFlatList;
 export const BottomSheetSectionList = GorhomBottomSheetSectionList;
-export const BottomSheetTextInput = GorhomBottomSheetInput;
 
 // Configure cssInterop for all Gorhom components to support className
 cssInterop(GorhomBottomSheet, {
