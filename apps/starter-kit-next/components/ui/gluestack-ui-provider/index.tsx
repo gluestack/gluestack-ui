@@ -4,8 +4,17 @@ import { View, ViewProps } from 'react-native';
 import { OverlayProvider } from '@gluestack-ui/core/overlay/creator';
 import { ToastProvider } from '@gluestack-ui/core/toast/creator';
 import { useColorScheme } from 'nativewind';
+import {
+  useGluestackColors as useGluestackColorsHook,
+  useCalendarTheme as useCalendarThemeHook,
+} from './useGluestackColors';
 
 export type ModeType = 'light' | 'dark' | 'system';
+
+// Re-export color hooks
+export const useGluestackColors = useGluestackColorsHook;
+export const useCalendarTheme = useCalendarThemeHook;
+export type { GluestackColors } from './useGluestackColors';
 
 export function GluestackUIProvider({
   mode = 'light',

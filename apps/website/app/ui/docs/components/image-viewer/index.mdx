@@ -1,0 +1,1106 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { ImageViewer, ImageViewerTrigger, ImageViewerContent, ImageViewerCloseButton, ImageViewerNavigation, ImageViewerCounter } from '@/components/ui/image-viewer';
+import { Image } from '@/components/ui/image';
+import { Text } from '@/components/ui/text';
+import { View } from '@/components/ui/view';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+# Image Viewer
+
+The Image Viewer component provides an interactive way to display images with advanced gesture support. It includes pinch-to-zoom, double-tap zoom, swipe navigation between images, and slide-to-dismiss functionality. Built with React Native Reanimated for smooth 60fps animations that run on the UI thread.
+
+This is an illustration of **Image Viewer** component.
+
+
+  
+
+  A basic image viewer with zoom, swipe navigation, and slide-to-dismiss gestures
+  
+  <CodePreviewer
+  code={`function Example() {
+  const images = [
+    {
+      url: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&auto=format&fit=crop&q=60',
+      alt: 'Mountain landscape'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1682687221038-404670e01d4c?w=800&auto=format&fit=crop&q=60',
+      alt: 'Ocean waves'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&auto=format&fit=crop&q=60',
+      alt: 'Desert sunset'
+    }
+  ];
+
+  return (
+    <View className="p-4">
+      <Text className="text-lg font-medium mb-4">Tap an image to view gallery</Text>
+      <ImageViewer images={images}>
+        <ImageViewerTrigger>
+          <Image
+            source={{ uri: images[0].url }}
+            alt="Gallery thumbnail"
+            className="w-full h-64 rounded-lg"
+            resizeMode="cover"
+          />
+        </ImageViewerTrigger>
+        <ImageViewerContent>
+          <ImageViewerCloseButton />
+          <ImageViewerNavigation />
+          <ImageViewerCounter />
+        </ImageViewerContent>
+      </ImageViewer>
+    </View>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ ImageViewer, ImageViewerTrigger, ImageViewerContent, ImageViewerCloseButton, ImageViewerNavigation, ImageViewerCounter, Image, Text, View }}
+  importMap={{"@/components/ui/image-viewer":["ImageViewer","ImageViewerTrigger","ImageViewerContent","ImageViewerCloseButton","ImageViewerNavigation","ImageViewerCounter"],"@/components/ui/image":["Image"],"@/components/ui/text":["Text"],"@/components/ui/view":["View"]}}
+/>
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add image-viewer`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i react-native-gesture-handler
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+'use client';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
+import {
+  View,
+  Pressable,
+  Text,
+  Image as RNImage,
+  Dimensions,
+  Modal,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+  withTiming,
+  withDelay,
+  interpolate,
+  Extrapolate,
+  FadeIn,
+  FadeOut,
+  SlideInLeft,
+  SlideInRight,
+  SlideOutLeft,
+  SlideOutRight,
+  Easing,
+  runOnJS,
+} from 'react-native-reanimated';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  Gesture,
+  GestureDetector,
+  GestureHandlerRootView,
+} from 'react-native-gesture-handler';
+
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+
+const AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedImage = Animated.createAnimatedComponent(RNImage);
+
+const imageViewerStyle = tva({
+  base: 'w-full h-full',
+});
+
+const imageViewerModalStyle = tva({
+  base: 'flex-1 bg-black/95',
+});
+
+const imageViewerContentStyle = tva({
+  base: 'flex-1 justify-center items-center overflow-hidden',
+});
+
+const imageViewerCloseButtonStyle = tva({
+  base: 'absolute top-12 right-4 z-50 w-10 h-10 rounded-full bg-black/60 justify-center items-center',
+});
+
+const imageViewerNavigationStyle = tva({
+  base: 'absolute inset-0 flex-row justify-between items-center px-2',
+});
+
+const imageViewerNavButtonStyle = tva({
+  base: 'w-12 h-12 rounded-full bg-black/50 justify-center items-center',
+});
+
+const imageViewerCounterStyle = tva({
+  base: 'absolute bottom-12 left-0 right-0 items-center',
+});
+
+const imageViewerCounterTextStyle = tva({
+  base: 'text-white text-sm font-medium bg-black/60 px-4 py-2 rounded-full',
+});
+
+interface ImageItem {
+  url: string;
+  alt?: string;
+}
+
+interface ImageViewerProps {
+  images: ImageItem[];
+  defaultOpen?: boolean;
+  isOpen?: boolean;
+  onOpenChange?: (isOpen: boolean) => void;
+  onIndexChange?: (index: number) => void;
+  initialIndex?: number;
+  children?: React.ReactNode;
+}
+
+interface ImageViewerTriggerProps {
+  children: React.ReactNode;
+  onPress?: () => void;
+}
+
+// Single Zoomable Image Component
+const ZoomableImage = React.memo(
+  React.forwardRef(function ZoomableImage(
+    {
+      image,
+      index,
+      currentIndex,
+      onSwipeLeft,
+      onSwipeRight,
+      onDismiss,
+      onZoomChange,
+    }: {
+      image: ImageItem;
+      index: number;
+      currentIndex: number;
+      onSwipeLeft: () => void;
+      onSwipeRight: () => void;
+      onDismiss: () => void;
+      onZoomChange?: (isZoomed: boolean) => void;
+    },
+    ref
+  ) {
+    const scale = useSharedValue(1);
+    const savedScale = useSharedValue(1);
+    const translateX = useSharedValue(0);
+    const translateY = useSharedValue(0);
+    const savedTranslateX = useSharedValue(0);
+    const savedTranslateY = useSharedValue(0);
+    const dismissProgress = useSharedValue(0);
+    const opacity = useSharedValue(1);
+
+    // Notify parent when zoom changes
+    useEffect(() => {
+      const isZoomed = scale.value > 1;
+      if (index === currentIndex && onZoomChange) {
+        onZoomChange(isZoomed);
+      }
+    }, [scale.value, index, currentIndex, onZoomChange]);
+
+    // Expose reset method to parent
+    React.useImperativeHandle(ref, () => ({
+      resetZoom: () => {
+        scale.value = 1;
+        savedScale.value = 1;
+        translateX.value = 0;
+        translateY.value = 0;
+        savedTranslateX.value = 0;
+        savedTranslateY.value = 0;
+        if (onZoomChange) {
+          onZoomChange(false);
+        }
+      },
+      isZoomed: () => scale.value > 1,
+    }));
+
+  const pinchGesture = Gesture.Pinch()
+    .onUpdate((event) => {
+      scale.value = savedScale.value * event.scale;
+    })
+    .onEnd(() => {
+      if (scale.value < 1) {
+        scale.value = withSpring(1);
+        savedScale.value = 1;
+        translateX.value = withSpring(0);
+        translateY.value = withSpring(0);
+        savedTranslateX.value = 0;
+        savedTranslateY.value = 0;
+        if (onZoomChange) runOnJS(onZoomChange)(false);
+      } else if (scale.value > 4) {
+        scale.value = withSpring(4);
+        savedScale.value = 4;
+        if (onZoomChange) runOnJS(onZoomChange)(true);
+      } else {
+        savedScale.value = scale.value;
+        if (onZoomChange) runOnJS(onZoomChange)(scale.value > 1);
+      }
+    });
+
+  // Pan gesture for when zoomed - allows free movement with edge detection
+  const panGesture = Gesture.Pan()
+    .enabled(scale.value > 1)
+    .onUpdate((event) => {
+      // Calculate max translation bounds for zoomed image
+      const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
+      const maxTranslateY = ((scale.value - 1) * SCREEN_HEIGHT * 0.8) / 2;
+
+      // Allow panning within bounds
+      const newTranslateX = savedTranslateX.value + event.translationX;
+      const newTranslateY = savedTranslateY.value + event.translationY;
+
+      // Clamp to bounds
+      translateX.value = Math.max(
+        -maxTranslateX,
+        Math.min(maxTranslateX, newTranslateX)
+      );
+      translateY.value = Math.max(
+        -maxTranslateY,
+        Math.min(maxTranslateY, newTranslateY)
+      );
+    })
+    .onEnd((event) => {
+      const maxTranslateX = ((scale.value - 1) * SCREEN_WIDTH) / 2;
+
+      // Check if at horizontal edge and swiped further (outer range offset)
+      const isAtRightEdge = translateX.value >= maxTranslateX - 5;
+      const isAtLeftEdge = translateX.value <= -maxTranslateX + 5;
+      const swipeThreshold = 50;
+
+      // If at edge and swiped with enough velocity/distance, navigate
+      if (isAtLeftEdge && event.translationX > swipeThreshold && event.velocityX > 0) {
+        // At left edge, swiped right -> go to previous
+        runOnJS(onSwipeRight)();
+        // Reset zoom after navigation
+        scale.value = withSpring(1);
+        savedScale.value = 1;
+        translateX.value = withSpring(0);
+        translateY.value = withSpring(0);
+        savedTranslateX.value = 0;
+        savedTranslateY.value = 0;
+        if (onZoomChange) runOnJS(onZoomChange)(false);
+      } else if (isAtRightEdge && event.translationX < -swipeThreshold && event.velocityX < 0) {
+        // At right edge, swiped left -> go to next
+        runOnJS(onSwipeLeft)();
+        // Reset zoom after navigation
+        scale.value = withSpring(1);
+        savedScale.value = 1;
+        translateX.value = withSpring(0);
+        translateY.value = withSpring(0);
+        savedTranslateX.value = 0;
+        savedTranslateY.value = 0;
+        if (onZoomChange) runOnJS(onZoomChange)(false);
+      } else {
+        // Save position within bounds
+        savedTranslateX.value = translateX.value;
+        savedTranslateY.value = translateY.value;
+      }
+    });
+
+  // Vertical pan gesture for dismiss - only when NOT zoomed
+  const dismissGesture = Gesture.Pan()
+    .enabled(scale.value <= 1)
+    .activeOffsetY([-10, 10]) // Activate only for vertical movement
+    .failOffsetX([-20, 20]) // Fail if horizontal movement is too much
+    .onUpdate((event) => {
+      dismissProgress.value =
+        Math.abs(event.translationY) / (SCREEN_HEIGHT * 0.3);
+      translateY.value = event.translationY;
+      opacity.value = interpolate(
+        dismissProgress.value,
+        [0, 1],
+        [1, 0.3],
+        Extrapolate.CLAMP
+      );
+    })
+    .onEnd((event) => {
+      if (Math.abs(event.translationY) > 120) {
+        runOnJS(onDismiss)();
+      } else {
+        translateY.value = withSpring(0);
+        opacity.value = withTiming(1, { duration: 200 });
+        dismissProgress.value = withTiming(0, { duration: 200 });
+      }
+    });
+
+  const lastTapX = useSharedValue(0);
+  const lastTapY = useSharedValue(0);
+
+  const doubleTapGesture = Gesture.Tap()
+    .numberOfTaps(2)
+    .onBegin((event) => {
+      lastTapX.value = event.x;
+      lastTapY.value = event.y;
+    })
+    .onEnd(() => {
+      if (scale.value > 1) {
+        scale.value = withSpring(1);
+        savedScale.value = 1;
+        translateX.value = withSpring(0);
+        translateY.value = withSpring(0);
+        savedTranslateX.value = 0;
+        savedTranslateY.value = 0;
+        if (onZoomChange) runOnJS(onZoomChange)(false);
+      } else {
+        const zoomScale = 2.5;
+        scale.value = withSpring(zoomScale);
+        savedScale.value = zoomScale;
+
+        const centerX = SCREEN_WIDTH / 2;
+        const centerY = SCREEN_HEIGHT * 0.4;
+        const deltaX = centerX - lastTapX.value;
+        const deltaY = centerY - lastTapY.value;
+        const targetX = (deltaX * zoomScale) / zoomScale;
+        const targetY = (deltaY * zoomScale) / zoomScale;
+
+        translateX.value = withSpring(targetX);
+        translateY.value = withSpring(targetY);
+        savedTranslateX.value = targetX;
+        savedTranslateY.value = targetY;
+        if (onZoomChange) runOnJS(onZoomChange)(true);
+      }
+    });
+
+  const composedGesture = Gesture.Race(
+    doubleTapGesture,
+    Gesture.Simultaneous(
+      pinchGesture,
+      Gesture.Exclusive(panGesture, dismissGesture)
+    )
+  );
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateX: translateX.value },
+      { translateY: translateY.value },
+      { scale: scale.value },
+    ],
+    opacity: opacity.value,
+  }));
+
+    return (
+      <GestureDetector gesture={composedGesture}>
+        <AnimatedImage
+          source={{ uri: image.url }}
+          alt={image.alt}
+          resizeMode="contain"
+          style={[
+            { width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 },
+            animatedStyle,
+          ]}
+        />
+      </GestureDetector>
+    );
+  })
+);
+
+// FlatList-based Image Gallery Component
+const SlidableImageGallery = React.memo(function SlidableImageGallery({
+  images,
+  currentIndex,
+  onIndexChange,
+  onDismiss,
+}: {
+  images: ImageItem[];
+  currentIndex: number;
+  onIndexChange: (index: number) => void;
+  onDismiss: () => void;
+}) {
+  const flatListRef = useRef<FlatList>(null);
+  const [localIndex, setLocalIndex] = useState(currentIndex);
+  const scrollOffsetRef = useRef(0);
+  const imageRefsRef = useRef<Map<number, any>>(new Map());
+  const [isCurrentImageZoomed, setIsCurrentImageZoomed] = useState(false);
+
+  // Handle zoom change from current image
+  const handleZoomChange = useCallback((isZoomed: boolean) => {
+    setIsCurrentImageZoomed(isZoomed);
+  }, []);
+
+  // Scroll to index when currentIndex changes from outside (button press)
+  useEffect(() => {
+    if (currentIndex !== localIndex && flatListRef.current) {
+      // Reset zoom on current image before scrolling to new one
+      const currentImageRef = imageRefsRef.current.get(localIndex);
+      if (currentImageRef?.resetZoom) {
+        currentImageRef.resetZoom();
+      }
+
+      flatListRef.current.scrollToIndex({
+        index: currentIndex,
+        animated: true,
+      });
+      setLocalIndex(currentIndex);
+    }
+  }, [currentIndex, localIndex]);
+
+  // Handle scroll - track position without updating state
+  const handleScroll = useCallback((event: any) => {
+    scrollOffsetRef.current = event.nativeEvent.contentOffset.x;
+  }, []);
+
+  // Handle scroll end - update index when scroll completes
+  const handleMomentumScrollEnd = useCallback(
+    (event: any) => {
+      const contentOffsetX = event.nativeEvent.contentOffset.x;
+      const newIndex = Math.round(contentOffsetX / SCREEN_WIDTH);
+
+      if (newIndex !== localIndex && newIndex >= 0 && newIndex < images.length) {
+        setLocalIndex(newIndex);
+        onIndexChange(newIndex);
+      }
+    },
+    [localIndex, images.length, onIndexChange]
+  );
+
+  const goNext = useCallback(() => {
+    if (currentIndex < images.length - 1) {
+      onIndexChange(currentIndex + 1);
+    }
+  }, [currentIndex, images.length, onIndexChange]);
+
+  const goPrevious = useCallback(() => {
+    if (currentIndex > 0) {
+      onIndexChange(currentIndex - 1);
+    }
+  }, [currentIndex, onIndexChange]);
+
+  // Render each image item
+  const renderItem = useCallback(
+    ({ item, index }: { item: ImageItem; index: number }) => (
+      <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
+        <ZoomableImage
+          ref={(ref) => {
+            if (ref) {
+              imageRefsRef.current.set(index, ref);
+            } else {
+              imageRefsRef.current.delete(index);
+            }
+          }}
+          image={item}
+          index={index}
+          currentIndex={localIndex}
+          onSwipeLeft={goNext}
+          onSwipeRight={goPrevious}
+          onDismiss={onDismiss}
+          onZoomChange={index === localIndex ? handleZoomChange : undefined}
+        />
+      </View>
+    ),
+    [localIndex, goNext, goPrevious, onDismiss, handleZoomChange]
+  );
+
+  // Get item layout for better performance
+  const getItemLayout = useCallback(
+    (_: any, index: number) => ({
+      length: SCREEN_WIDTH,
+      offset: SCREEN_WIDTH * index,
+      index,
+    }),
+    []
+  );
+
+  const keyExtractor = useCallback(
+    (item: ImageItem, index: number) => `image-${index}-${item.url}`,
+    []
+  );
+
+  return (
+    <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT * 0.8 }}>
+      <FlatList
+        ref={flatListRef}
+        data={images}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        horizontal
+        pagingEnabled={false}
+        scrollEnabled={!isCurrentImageZoomed}
+        showsHorizontalScrollIndicator={false}
+        onScroll={handleScroll}
+        onMomentumScrollEnd={handleMomentumScrollEnd}
+        getItemLayout={getItemLayout}
+        initialScrollIndex={currentIndex}
+        bounces={true}
+        scrollEventThrottle={16}
+        decelerationRate="normal"
+        snapToInterval={SCREEN_WIDTH}
+        snapToAlignment="center"
+        disableIntervalMomentum={true}
+      />
+    </View>
+  );
+});
+
+// Context for ImageViewer
+interface ImageViewerContextType {
+  images: ImageItem[];
+  currentIndex: number;
+  isOpen: boolean;
+  open: () => void;
+  close: () => void;
+  goNext: () => void;
+  goPrevious: () => void;
+}
+
+const ImageViewerContext = React.createContext<
+  ImageViewerContextType | undefined
+>(undefined);
+
+const useImageViewerContext = () => {
+  const context = React.useContext(ImageViewerContext);
+  if (!context) {
+    throw new Error('useImageViewerContext must be used within ImageViewer');
+  }
+  return context;
+};
+
+// Main ImageViewer Component
+const ImageViewer = React.forwardRef<View, ImageViewerProps>(
+  function ImageViewer(
+    {
+      images,
+      defaultOpen = false,
+      isOpen: controlledIsOpen,
+      onOpenChange,
+      onIndexChange,
+      initialIndex = 0,
+      children,
+    },
+    ref
+  ) {
+    const [uncontrolledIsOpen, setUncontrolledIsOpen] = useState(defaultOpen);
+    const [currentIndex, setCurrentIndex] = useState(initialIndex);
+
+    const isControlled = controlledIsOpen !== undefined;
+    const isOpen = isControlled ? controlledIsOpen : uncontrolledIsOpen;
+
+    useEffect(() => {
+      onIndexChange?.(currentIndex);
+    }, [currentIndex, onIndexChange]);
+
+    const open = useCallback(() => {
+      if (!isControlled) {
+        setUncontrolledIsOpen(true);
+      }
+      onOpenChange?.(true);
+    }, [isControlled, onOpenChange]);
+
+    const close = useCallback(() => {
+      if (!isControlled) {
+        setUncontrolledIsOpen(false);
+      }
+      onOpenChange?.(false);
+    }, [isControlled, onOpenChange]);
+
+    const goNext = useCallback(() => {
+      setCurrentIndex((prev) => Math.min(prev + 1, images.length - 1));
+    }, [images.length]);
+
+    const goPrevious = useCallback(() => {
+      setCurrentIndex((prev) => Math.max(prev - 1, 0));
+    }, []);
+
+    const contextValue = React.useMemo(
+      () => ({
+        images,
+        currentIndex,
+        isOpen,
+        open,
+        close,
+        goNext,
+        goPrevious,
+      }),
+      [images, currentIndex, isOpen, open, close, goNext, goPrevious]
+    );
+
+    return (
+      <ImageViewerContext.Provider value={contextValue}>
+        <View ref={ref} className={imageViewerStyle({})}>
+          {children}
+        </View>
+      </ImageViewerContext.Provider>
+    );
+  }
+);
+
+// Trigger Component
+const ImageViewerTrigger = React.forwardRef<
+  React.ElementRef<typeof Pressable>,
+  ImageViewerTriggerProps
+>(function ImageViewerTrigger({ children, onPress, ...props }, ref) {
+  const { open } = useImageViewerContext();
+
+  const handlePress = useCallback(() => {
+    onPress?.();
+    open();
+  }, [onPress, open]);
+
+  return (
+    <Pressable ref={ref} onPress={handlePress} {...props}>
+      {children}
+    </Pressable>
+  );
+});
+
+// Content Component (The Modal)
+const ImageViewerContent = React.forwardRef<
+  View,
+  { children?: React.ReactNode }
+>(function ImageViewerContent({ children }, ref) {
+  const { images, currentIndex, isOpen, close, goNext, goPrevious } =
+    useImageViewerContext();
+  const currentImage = images[currentIndex];
+
+  if (!isOpen || !currentImage) return null;
+
+  return (
+    <Modal
+      visible={isOpen}
+      transparent
+      animationType="none"
+      onRequestClose={close}
+      statusBarTranslucent
+    >
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <AnimatedView
+          entering={FadeIn.duration(300).easing(Easing.out(Easing.ease))}
+          exiting={FadeOut.duration(200).easing(Easing.in(Easing.ease))}
+          className={imageViewerModalStyle({})}
+        >
+          <View ref={ref} className={imageViewerContentStyle({})}>
+            <SlidableImageGallery
+              images={images}
+              currentIndex={currentIndex}
+              onIndexChange={(newIndex) => {
+                if (newIndex > currentIndex) {
+                  goNext();
+                } else if (newIndex < currentIndex) {
+                  goPrevious();
+                }
+              }}
+              onDismiss={close}
+            />
+            {children}
+          </View>
+        </AnimatedView>
+      </GestureHandlerRootView>
+    </Modal>
+  );
+});
+
+// Close Button Component
+const ImageViewerCloseButton = React.forwardRef<
+  React.ElementRef<typeof Pressable>,
+  { className?: string }
+>(function ImageViewerCloseButton({ className, ...props }, ref) {
+  const { close } = useImageViewerContext();
+
+  return (
+    <TouchableOpacity
+      ref={ref}
+      onPress={close}
+      className={imageViewerCloseButtonStyle({ class: className })}
+      accessibilityLabel="Close image viewer"
+      accessibilityRole="button"
+      {...props}
+    >
+      <Text className="text-white text-xl font-bold">✕</Text>
+    </TouchableOpacity>
+  );
+});
+
+// Navigation Component
+const ImageViewerNavigation = React.forwardRef<View, { className?: string }>(
+  function ImageViewerNavigation({ className }, ref) {
+    const { goPrevious, goNext, currentIndex, images } =
+      useImageViewerContext();
+
+    const canGoPrevious = currentIndex > 0;
+    const canGoNext = currentIndex < images.length - 1;
+
+    return (
+      <View
+        ref={ref}
+        className={imageViewerNavigationStyle({ class: className })}
+      >
+        {canGoPrevious && (
+          <TouchableOpacity
+            onPress={goPrevious}
+            className={imageViewerNavButtonStyle({})}
+            accessibilityLabel="Previous image"
+            accessibilityRole="button"
+          >
+            <Text className="text-white text-2xl font-bold">‹</Text>
+          </TouchableOpacity>
+        )}
+        <View className="flex-1" />
+        {canGoNext && (
+          <TouchableOpacity
+            onPress={goNext}
+            className={imageViewerNavButtonStyle({})}
+            accessibilityLabel="Next image"
+            accessibilityRole="button"
+          >
+            <Text className="text-white text-2xl font-bold">›</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    );
+  }
+);
+
+// Counter Component
+const ImageViewerCounter = React.forwardRef<View, { className?: string }>(
+  function ImageViewerCounter({ className }, ref) {
+    const { currentIndex, images } = useImageViewerContext();
+
+    return (
+      <View ref={ref} className={imageViewerCounterStyle({ class: className })}>
+        <Text className={imageViewerCounterTextStyle({})}>
+          {currentIndex + 1} / {images.length}
+        </Text>
+      </View>
+    );
+  }
+);
+
+export {
+  ImageViewer,
+  ImageViewerTrigger,
+  ImageViewerContent,
+  ImageViewerCloseButton,
+  ImageViewerNavigation,
+  ImageViewerCounter,
+};
+
+export type { ImageItem, ImageViewerProps, ImageViewerTriggerProps };
+
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  ImageViewer,
+  ImageViewerTrigger,
+  ImageViewerContent,
+  ImageViewerCloseButton,
+  ImageViewerNavigation,
+  ImageViewerCounter,
+} from '@/components/ui/image-viewer';
+```
+
+```tsx
+export default () => (
+  <ImageViewer images={images}>
+    <ImageViewerTrigger>
+      <Image source={{ uri: '...' }} />
+    </ImageViewerTrigger>
+    <ImageViewerContent>
+      <ImageViewerCloseButton />
+      <ImageViewerNavigation />
+      <ImageViewerCounter />
+    </ImageViewerContent>
+  </ImageViewer>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### ImageViewer
+
+The root component that manages the image viewer state and provides context to child components.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>images</InlineCode>
+        </TableCell>
+        <TableCell>ImageItem[]</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Array of images to display. Each item should have url and optional
+          alt.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>defaultOpen</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          Whether the viewer is open by default (uncontrolled).
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isOpen</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Controlled open state. Use with onOpenChange for controlled mode.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onOpenChange</InlineCode>
+        </TableCell>
+        <TableCell>(isOpen: boolean) ={'>'} void</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Callback when open state changes.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>initialIndex</InlineCode>
+        </TableCell>
+        <TableCell>number</TableCell>
+        <TableCell>0</TableCell>
+        <TableCell>Index of the image to show initially.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### ImageViewerTrigger
+
+The trigger element that opens the image viewer when pressed.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>children</InlineCode>
+        </TableCell>
+        <TableCell>React.ReactNode</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Content to render as the trigger (usually an Image).
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onPress</InlineCode>
+        </TableCell>
+        <TableCell>() ={'>'} void</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Additional callback when trigger is pressed.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### ImageViewerContent
+
+The modal content that displays the image with gesture support.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>children</InlineCode>
+        </TableCell>
+        <TableCell>React.ReactNode</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Child components like CloseButton, Navigation, Counter.
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### ImageViewerCloseButton
+
+A button to close the image viewer.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>className</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Additional Tailwind classes for styling.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### ImageViewerNavigation
+
+Navigation buttons to move between images in the gallery.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>className</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Additional Tailwind classes for styling.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### ImageViewerCounter
+
+Displays the current image index and total count (e.g., "3 / 10").
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>className</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Additional Tailwind classes for styling.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Gestures
+
+The Image Viewer supports the following gestures:
+
+- **Pinch to Zoom**: Use two fingers to zoom in and out of images
+- **Double Tap**: Double tap to zoom in (2.5x) or reset zoom
+- **Pan**: When zoomed in, drag to pan around the image
+- **Swipe Left/Right**: Navigate between images in the gallery
+- **Swipe Up/Down**: Dismiss the viewer by swiping vertically
+
+### Accessibility
+
+Adheres to the Dialog [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
+
+We have outlined the various features that ensure the Image Viewer component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+- **ARIA Labels**: All interactive elements have appropriate ARIA labels
+- **Keyboard Navigation**: Full keyboard support with Tab, Enter, Escape, and Arrow keys
+- **Focus Management**: Focus is trapped within the modal when open
+- **Screen Reader Support**: Images announce their alt text to screen readers
+
+### Keyboard Interactions
+
+- `Tab` - Moves focus to the next focusable element.
+- `Shift + Tab` - Moves focus to the previous focusable element.
+- `Enter` or `Space` - Activates the focused button.
+- `Escape` - Closes the image viewer.
+- `Left Arrow` - Navigate to previous image.
+- `Right Arrow` - Navigate to next image.
+
+### Screen Reader
+
+- VoiceOver: Announces image alt text and current position (e.g., "Image 3 of 10")
+- TalkBack: Provides similar announcements on Android
+
+## Types
+
+```typescript
+interface ImageItem {
+  url: string;
+  alt?: string;
+}
+
+interface ImageViewerProps {
+  images: ImageItem[];
+  defaultOpen?: boolean;
+  isOpen?: boolean;
+  onOpenChange?: (isOpen: boolean) => void;
+  initialIndex?: number;
+}
+```

@@ -1,103 +1,14 @@
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-  TabsContentWrapper,
-  TabsTriggerText,
-  TabsIndicator,
-} from '@/components/ui/tabs';
-import { Box } from '@/components/ui/box';
-import { Text } from '@/components/ui/text';
+import React, { useState } from 'react';
+import { ScrollView, Text, View } from 'react-native';
+import { Calendar } from '@/components/ui/calendar';
 
-export default function Example() {
+export default function DateTimePickerDemo() {
+
+
   return (
-    <Tabs defaultValue="monday" variant="underlined">
-      <TabsList>
-        <TabsTrigger value="monday">
-          <TabsTriggerText>Monday</TabsTriggerText>
-        </TabsTrigger>
-        <TabsTrigger value="tuesday">
-          <TabsTriggerText>Tuesday</TabsTriggerText>
-        </TabsTrigger>
-        <TabsTrigger value="wednesday">
-          <TabsTriggerText>Wednesday</TabsTriggerText>
-        </TabsTrigger>
-        <TabsTrigger value="thursday">
-          <TabsTriggerText>Thursday</TabsTriggerText>
-        </TabsTrigger>
-        <TabsTrigger value="friday">
-          <TabsTriggerText>Friday</TabsTriggerText>
-        </TabsTrigger>
-        <TabsTrigger value="saturday">
-          <TabsTriggerText>Saturday</TabsTriggerText>
-        </TabsTrigger>
-        <TabsTrigger value="sunday">
-          <TabsTriggerText>Sunday</TabsTriggerText>
-        </TabsTrigger>
-        <TabsIndicator />
-      </TabsList>
-
-      <TabsContentWrapper>
-        <TabsContent value="monday">
-          <Box className="p-4">
-            <Text className="text-foreground font-semibold mb-1">Monday</Text>
-            <Text className="text-foreground/70">
-              Start the week strong with your planned tasks.
-            </Text>
-          </Box>
-        </TabsContent>
-        <TabsContent value="tuesday">
-          <Box className="p-4">
-            <Text className="text-foreground font-semibold mb-1">Tuesday</Text>
-            <Text className="text-foreground/70">
-              Keep the momentum going with focused work.
-            </Text>
-          </Box>
-        </TabsContent>
-        <TabsContent value="wednesday">
-          <Box className="p-4">
-            <Text className="text-foreground font-semibold mb-1">
-              Wednesday
-            </Text>
-            <Text className="text-foreground/70">
-              Midweek checkpoint — review your progress.
-            </Text>
-          </Box>
-        </TabsContent>
-        <TabsContent value="thursday">
-          <Box className="p-4">
-            <Text className="text-foreground font-semibold mb-1">Thursday</Text>
-            <Text className="text-foreground/70">
-              Push through with energy to finish the week.
-            </Text>
-          </Box>
-        </TabsContent>
-        <TabsContent value="friday">
-          <Box className="p-4">
-            <Text className="text-foreground font-semibold mb-1">Friday</Text>
-            <Text className="text-foreground/70">
-              Wrap up the week and celebrate your wins.
-            </Text>
-          </Box>
-        </TabsContent>
-        <TabsContent value="saturday">
-          <Box className="p-4">
-            <Text className="text-foreground font-semibold mb-1">Saturday</Text>
-            <Text className="text-foreground/70">
-              Rest, recharge, and enjoy your weekend.
-            </Text>
-          </Box>
-        </TabsContent>
-        <TabsContent value="sunday">
-          <Box className="p-4">
-            <Text className="text-foreground font-semibold mb-1">Sunday</Text>
-            <Text className="text-foreground/70">
-              Prepare and plan for the upcoming week ahead.
-            </Text>
-          </Box>
-        </TabsContent>
-      </TabsContentWrapper>
-    </Tabs>
+    <ScrollView className="flex-1 bg-background p-4">
+      <Text className="text-lg font-bold mb-2">Single Select</Text>
+     
+    </ScrollView>
   );
 }

@@ -1,6 +1,7 @@
 export * from './accordion/aria';
 export * from './accordion/creator';
 export * from './actionsheet/creator';
+export * from './calendar/creator';
 export * from './alert/creator';
 export * from './alert-dialog/creator';
 export * from './avatar/creator';
@@ -9,6 +10,7 @@ export * from './button/aria';
 export * from './button/creator';
 export * from './checkbox/aria';
 export * from './checkbox/creator';
+export * from './date-time-picker/creator';
 export * from './divider/creator';
 export * from './fab/creator';
 export * from './form-control/creator';

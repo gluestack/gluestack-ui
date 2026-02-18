@@ -1,8 +1,8 @@
-'use client';
 import { vars } from 'nativewind';
 
-export const config = {
-  light: vars({
+// Raw color values - update these and they sync everywhere
+export const colors = {
+  light: {
     '--primary': '23 23 23',
     '--primary-foreground': '250 250 250',
     '--card': '255 255 255',
@@ -20,8 +20,8 @@ export const config = {
     '--ring': '212 212 212',
     '--accent': '247 247 247',
     '--accent-foreground': '52 52 52',
-  }),
-  dark: vars({
+  },
+  dark: {
     '--primary-foreground': '23 23 23',
     '--primary': '255 245 245',
     '--card': '23 23 23',
@@ -39,5 +39,11 @@ export const config = {
     '--accent': '38 38 38',
     '--accent-foreground': '250 250 250',
     '--ring': '115 115 115',
-  }),
+  },
+};
+
+// Config for nativewind vars() - used by provider
+export const config = {
+  light: vars(colors.light),
+  dark: vars(colors.dark),
 };
