@@ -169,11 +169,11 @@ const tabsContentWrapperStyle = tva({
 });
 
 const tabsIndicatorStyle = tva({
-  base: 'pointer-events-none  rounded-lg',
+  base: 'pointer-events-none',
   parentVariants: {
     variant: {
-      underlined: 'border-b-2 border-primary',
-      filled: 'bg-background z-20',
+      underlined: 'border-b  border-primary',
+      filled: 'bg-background z-20  rounded-lg',
     },
   },
 });
@@ -243,7 +243,7 @@ type ITabsIndicatorProps = React.ComponentPropsWithoutRef<
 /** Components */
 
 const Tabs = React.forwardRef<React.ComponentRef<typeof UITabs>, ITabsProps>(
-  ({ className, variant = 'underlined', ...props }, ref) => {
+  ({ className, variant = 'filled', ...props }, ref) => {
     return (
       <UITabs
         ref={ref}
