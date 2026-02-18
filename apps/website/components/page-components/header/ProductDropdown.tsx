@@ -61,11 +61,11 @@ const ProductDropdown = () => {
                   rel="noopener noreferrer"
                   href={product.link}
                 >
-                  <div className="flex flex-row gap-3 justify-between w-full items-start">
+                  <div className="flex flex-row gap-3 w-full items-start">
                     <div className="w-6 h-6 mt-1 flex items-center justify-center flex-shrink-0">
                       {logoElement}
                     </div>
-                    <div className="flex flex-row items-center gap-1">
+                    <div className="flex flex-row items-center gap-1 justify-between w-full">
                       <div className='flex flex-col'>
                         <span className="leading-normal font-medium text-sm text-foreground/70 mb-1">
                           {product.title}
