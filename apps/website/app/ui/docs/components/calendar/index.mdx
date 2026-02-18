@@ -83,6 +83,8 @@ import { View, Text, Pressable } from 'react-native';
 import {
   createCalendar,
   type ICalendarProps,
+  type CalendarMode,
+  type CalendarMarkers,
 } from '@gluestack-ui/core/calendar/creator';
 import { cssInterop } from 'nativewind';
 import {
@@ -413,8 +415,47 @@ const UICalendar = createCalendar({
   Footer: CalendarFooterRoot,
 });
 
+// Mode-specific discriminated union props so onValueChange is correctly
+// narrowed per mode (prevents TypeScript errors when passing setState).
+type OmittedCalendarKeys = 'mode' | 'value' | 'defaultValue' | 'onValueChange';
+
+type SingleModeProps = {
+  mode?: 'single';
+  value?: Date;
+  defaultValue?: Date;
+  onValueChange?: (value: Date) => void;
+};
+
+type MultipleModeProps = {
+  mode: 'multiple';
+  value?: Date[];
+  defaultValue?: Date[];
+  onValueChange?: (value: Date[]) => void;
+};
+
+type RangeModeProps = {
+  mode: 'range';
+  value?: { from: Date; to?: Date };
+  defaultValue?: { from: Date; to?: Date };
+  onValueChange?: (value: { from: Date; to?: Date }) => void;
+};
+
+type CalendarProps = (SingleModeProps | MultipleModeProps | RangeModeProps) &
+  Omit<ICalendarProps, OmittedCalendarKeys> &
+  Omit<React.ComponentProps<typeof View>, OmittedCalendarKeys> & {
+    className?: string;
+  };
+
+const CalendarComponent = React.forwardRef<
+  React.ElementRef<typeof View>,
+  CalendarProps
+>((props, ref) => {
+  return <UICalendar ref={ref} {...(props as any)} />;
+});
+CalendarComponent.displayName = 'Calendar';
+
 // Export components
-export const Calendar = UICalendar;
+export const Calendar = CalendarComponent;
 export const CalendarHeader = UICalendar.Header;
 export const CalendarHeaderPrevButton = UICalendar.HeaderPrevButton;
 export const CalendarHeaderNextButton = UICalendar.HeaderNextButton;
@@ -440,6 +481,8 @@ export type {
   CalendarMarkers,
   DayState,
 } from '@gluestack-ui/core/calendar/creator';
+
+export type { CalendarProps };
 
 ```
 
