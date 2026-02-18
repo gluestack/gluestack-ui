@@ -25,6 +25,7 @@ import ResourcesDropdown from './ResourcesDropdown';
 import { HStack } from '@/components/ui/hstack';
 import { Link } from '@/components/ui/link';
 import { Text } from '@/components/ui/text';
+import { Box } from '@/components/ui/box';
 
 const Header = ({
   isOpenSidebar: propsIsOpenSidebar,
@@ -59,10 +60,10 @@ const Header = ({
             : 'w-[85%] max-w-[1440px]'
             }`}
         >
-          <div className="flex flex-row gap-6 items-center">
+          <div className="flex flex-row gap-6 items-center shrink-0">
             <NextLink
               href="/"
-              className="no-underline z-1 flex flex-row gap-1 items-center"
+              className="no-underline z-1 flex sm:flex-row gap-1 items-center"
             >
               <Image
                 alt="gluestack-ui logo"
@@ -98,6 +99,16 @@ const Header = ({
               </NextLink>
               <ProductDropdown />
               <ResourcesDropdown />
+              <NextLink
+                        className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                        href="https://www.applighter.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation"
+                      >
+                        <Box className="rounded-full items-center justify-center">
+                          <Text className="leading-normal font-normal text-sm text-foreground/70">
+                            Templates
+                          </Text>
+                        </Box>
+                      </NextLink>
               {/* )} */}
             </div>
           </div>
