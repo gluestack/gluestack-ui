@@ -13,19 +13,8 @@ import { Text } from '@/components/ui/text';
 import { SearchIcon, MailIcon, StarIcon, BellIcon } from '@/components/ui/icon';
 import { Button, ButtonText } from '@/components/ui/button';
 
-import React, { useCallback } from 'react';
-import { Platform } from 'react-native';
-import { useRouter, usePathname } from 'expo-router';
-import * as Haptics from 'expo-haptics';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import {
-  BottomControlBar,
-  type ComponentItem,
-} from '@/components/custom/bottom-control-bar';
-import {
-  COMPONENTS_LIST,
-  getComponentByPath,
-} from '@/constants/components-list';
+import React from 'react';
+import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
 
 const ExampleBasic = () => {
   return (
@@ -523,38 +512,5 @@ const COMPONENT_VARIANTS = [
 ];
 
 export default function TabsScreen() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const insets = useSafeAreaInsets();
-
-  const derivedComponentPath = pathname?.split('/').pop() || '';
-  const currentComponent = derivedComponentPath
-    ? getComponentByPath(derivedComponentPath)
-    : undefined;
-
-  const handleComponentSelect = useCallback(
-    (component: ComponentItem) => {
-      if (Platform.OS === 'ios') {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-      }
-      router.push(`/(home)/components/${component.path}` as any);
-    },
-    [router]
-  );
-
-  return (
-    <>
-      <Box className="flex-1 justify-center items-center p-4">
-        <ExampleScrollable />
-      </Box>
-      <BottomControlBar
-        bottomOffset={insets.bottom + 34}
-        pillLabel={currentComponent?.title}
-        showPill={true}
-        components={COMPONENTS_LIST}
-        currentComponent={currentComponent}
-        onComponentSelect={handleComponentSelect}
-      />
-    </>
-  );
+  return <UsageVariantFlatList data={COMPONENT_VARIANTS} />;
 }
