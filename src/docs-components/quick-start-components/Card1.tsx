@@ -110,7 +110,7 @@ function Card1() {
           <Box className="p-6">
             <VStack space="lg">
               <Text className="text-xl font-bold font-plus-jakarta">
-                Manual Installation 223ddd
+                Manual Installation
               </Text>
               <HStack className="flex-wrap gap-2.5">
                 <NextLink
