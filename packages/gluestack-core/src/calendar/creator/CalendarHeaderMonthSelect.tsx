@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { useCalendarContext } from './CalendarContext';
 import type { ICalendarHeaderSelectProps } from './types';
-import { getMonth, format } from './utils/dateUtils';
+import { getMonth } from './utils/dateUtils';
 
 const MONTHS = [
   'January',
@@ -31,22 +31,20 @@ export const CalendarHeaderMonthSelectMain = (StyledCalendarHeaderMonthSelect: a
       setMonth(newMonth);
     };
 
+    const items = MONTHS.map((month, index) => ({
+      label: renderOption ? String(renderOption(month)) : month,
+      value: index,
+    }));
+
     return (
       <StyledCalendarHeaderMonthSelect
         ref={ref}
-        value={currentMonthIndex}
-        onSelect={handleSelect}
+        items={items}
+        selectedValue={currentMonthIndex}
+        onValueChange={handleSelect}
         {...rest}
       >
-        {children || MONTHS.map((month, index) => (
-          <MonthOption key={index} value={index}>
-            {renderOption ? renderOption(month) : month}
-          </MonthOption>
-        ))}
+        {children}
       </StyledCalendarHeaderMonthSelect>
     );
   });
-
-const MonthOption = ({ value, children }: { value: number; children: React.ReactNode }) => {
-  return <option value={value}>{children}</option>;
-};

@@ -28,6 +28,7 @@ import {
   calendarWeekNumberTextStyle,
   calendarFooterStyle,
 } from './styles';
+import { Menu, MenuItem, MenuItemLabel } from '../menu';
 
 // Apply cssInterop for NativeWind support
 cssInterop(View, { className: 'style' });
@@ -109,29 +110,83 @@ const CalendarHeaderTitleRoot = React.forwardRef<
   );
 });
 
+const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+type SelectRootProps = React.ComponentProps<typeof View> & {
+  className?: string;
+  items?: Array<{ label: string; value: number }>;
+  selectedValue?: number;
+  onValueChange?: (value: number) => void;
+};
+
 const CalendarHeaderMonthSelectRoot = React.forwardRef<
   React.ElementRef<typeof View>,
-  React.ComponentProps<typeof View> & { className?: string }
->(({ className, ...props }, ref) => {
+  SelectRootProps
+>(({ className, items = [], selectedValue, onValueChange, ...props }, ref) => {
+  const label = selectedValue !== undefined ? MONTH_NAMES[selectedValue] : 'Month';
   return (
-    <View
-      ref={ref}
-      className={calendarHeaderSelectStyle({ class: className })}
-      {...props}
-    />
+    <View ref={ref} className={calendarHeaderSelectStyle({ class: className })} {...props}>
+      <Menu
+        placement="bottom"
+        offset={4}
+        trigger={({ ...triggerProps }) => (
+          <Pressable {...triggerProps} className="px-2 py-1 rounded-md flex-row items-center">
+            <Text className="text-sm font-medium text-foreground">{label}</Text>
+          </Pressable>
+        )}
+      >
+        {items.map((item) => (
+          <MenuItem
+            key={item.value}
+            textValue={item.label}
+            onPress={() => onValueChange?.(item.value)}
+          >
+            <MenuItemLabel
+              className={item.value === selectedValue ? 'text-primary font-semibold' : ''}
+            >
+              {item.label}
+            </MenuItemLabel>
+          </MenuItem>
+        ))}
+      </Menu>
+    </View>
   );
 });
 
 const CalendarHeaderYearSelectRoot = React.forwardRef<
   React.ElementRef<typeof View>,
-  React.ComponentProps<typeof View> & { className?: string }
->(({ className, ...props }, ref) => {
+  SelectRootProps
+>(({ className, items = [], selectedValue, onValueChange, ...props }, ref) => {
+  const label = selectedValue !== undefined ? String(selectedValue) : 'Year';
   return (
-    <View
-      ref={ref}
-      className={calendarHeaderSelectStyle({ class: className })}
-      {...props}
-    />
+    <View ref={ref} className={calendarHeaderSelectStyle({ class: className })} {...props}>
+      <Menu
+        placement="bottom"
+        offset={4}
+        trigger={({ ...triggerProps }) => (
+          <Pressable {...triggerProps} className="px-2 py-1 rounded-md flex-row items-center">
+            <Text className="text-sm font-medium text-foreground">{label}</Text>
+          </Pressable>
+        )}
+      >
+        {items.map((item) => (
+          <MenuItem
+            key={item.value}
+            textValue={item.label}
+            onPress={() => onValueChange?.(item.value)}
+          >
+            <MenuItemLabel
+              className={item.value === selectedValue ? 'text-primary font-semibold' : ''}
+            >
+              {item.label}
+            </MenuItemLabel>
+          </MenuItem>
+        ))}
+      </Menu>
+    </View>
   );
 });
 

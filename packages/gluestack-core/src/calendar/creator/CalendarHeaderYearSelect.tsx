@@ -21,22 +21,20 @@ export const CalendarHeaderYearSelectMain = (StyledCalendarHeaderYearSelect: any
       setYear(year);
     };
 
+    const items = years.map((year) => ({
+      label: renderOption ? String(renderOption(year)) : String(year),
+      value: year,
+    }));
+
     return (
       <StyledCalendarHeaderYearSelect
         ref={ref}
-        value={currentYear}
-        onSelect={handleSelect}
+        items={items}
+        selectedValue={currentYear}
+        onValueChange={handleSelect}
         {...rest}
       >
-        {children || years.map((year) => (
-          <YearOption key={year} value={year}>
-            {renderOption ? renderOption(year) : year}
-          </YearOption>
-        ))}
+        {children}
       </StyledCalendarHeaderYearSelect>
     );
   });
-
-const YearOption = ({ value, children }: { value: number; children: React.ReactNode }) => {
-  return <option value={value}>{children}</option>;
-};

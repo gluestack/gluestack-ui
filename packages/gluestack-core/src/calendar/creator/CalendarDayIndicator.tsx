@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { View } from 'react-native';
 import type { ICalendarDayIndicatorProps } from './types';
 
 export const CalendarDayIndicatorMain = (StyledCalendarDayIndicator: any) =>
@@ -40,5 +41,14 @@ export const CalendarDayIndicatorMain = (StyledCalendarDayIndicator: any) =>
 
 // Simple dot indicator component
 const DotIndicator = ({ color }: { color: string }) => {
-  return <span style={{ backgroundColor: color }} className="calendar-dot" />;
+  return (
+    <View
+      style={{
+        width: 6,
+        height: 6,
+        borderRadius: 3,
+        backgroundColor: color,
+      }}
+    />
+  );
 };
