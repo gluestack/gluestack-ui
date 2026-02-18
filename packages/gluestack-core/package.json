@@ -20,8 +20,11 @@
     "alert",
     "alert-dialog",
     "avatar",
+    "bottomsheet",
     "button",
+    "calendar",
     "checkbox",
+    "date-time-picker",
     "fab",
     "form-control",
     "icon",
@@ -40,6 +43,7 @@
     "switch",
     "textarea",
     "toast",
+    "tabs",
     "tooltip",
     "README.md",
     "LICENSE"
@@ -65,6 +69,9 @@
       "button/creator": [
         "./lib/esm/button/creator/index.d.ts"
       ],
+      "calendar/creator": [
+        "./lib/esm/calendar/creator/index.d.ts"
+      ],
       "accordion/aria": [
         "./lib/esm/accordion/aria/index.d.ts"
       ],
@@ -85,6 +92,9 @@
       ],
       "checkbox/aria": [
         "./lib/esm/checkbox/aria/index.d.ts"
+      ],
+      "date-time-picker/creator": [
+        "./lib/esm/date-time-picker/creator/index.d.ts"
       ],
       "fab/creator": [
         "./lib/esm/fab/creator/index.d.ts"
@@ -157,6 +167,12 @@
       ],
       "tooltip/creator": [
         "./lib/esm/tooltip/creator/index.d.ts"
+      ],
+      "bottomsheet/creator": [
+        "./lib/esm/bottomsheet/creator/index.d.ts"
+      ],
+      "tabs/creator": [
+        "./lib/esm/tabs/creator/index.d.ts"
       ]
     }
   },
@@ -164,18 +180,18 @@
     "@gluestack-ui/utils": ">=4.0.0-alpha.0",
     "react": ">=16.8.0",
     "react-native": ">=0.64.0",
+    "react-native-safe-area-context": ">=4.0.0",
     "react-native-svg": ">=12.0.0",
-    "react-native-web": ">=0.19.0",
-    "react-native-safe-area-context": ">=4.0.0"
+    "react-native-web": ">=0.19.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.0",
     "@types/react-native": "^0.72.0",
     "react": "^18.3.1",
     "react-native": "^0.72.0",
+    "react-native-safe-area-context": ">=4.0.0",
     "react-native-web": "^0.19.0",
-    "typescript": "^5.8.3",
-    "react-native-safe-area-context": ">=4.0.0"
+    "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">=18"
@@ -188,5 +204,7 @@
     "cross-platform",
     "ui-components"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "date-fns": "^4.1.0"
+  }
 }

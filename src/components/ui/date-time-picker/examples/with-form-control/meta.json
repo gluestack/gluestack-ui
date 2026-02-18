@@ -1,0 +1,21 @@
+{
+  "title": "With Form Control",
+  "description": "Use DateTimePicker with FormControl for proper labeling, helper text, and validation states",
+  "argTypes": {},
+  "reactLive": {
+    "DateTimePicker": "@/components/ui/date-time-picker",
+    "DateTimePickerTrigger": "@/components/ui/date-time-picker",
+    "DateTimePickerInput": "@/components/ui/date-time-picker",
+    "DateTimePickerIcon": "@/components/ui/date-time-picker",
+    "FormControl": "@/components/ui/form-control",
+    "FormControlLabel": "@/components/ui/form-control",
+    "FormControlLabelText": "@/components/ui/form-control",
+    "FormControlHelper": "@/components/ui/form-control",
+    "FormControlHelperText": "@/components/ui/form-control",
+    "FormControlError": "@/components/ui/form-control",
+    "FormControlErrorText": "@/components/ui/form-control",
+    "FormControlErrorIcon": "@/components/ui/form-control",
+    "CalendarDaysIcon": "@/components/ui/icon",
+    "AlertCircleIcon": "@/components/ui/icon"
+  }
+}

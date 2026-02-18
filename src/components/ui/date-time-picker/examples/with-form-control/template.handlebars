@@ -1,0 +1,43 @@
+function Example() {
+  const [date, setDate] = React.useState(null);
+  const [isInvalid, setIsInvalid] = React.useState(false);
+
+  // Validate that date is not in the past
+  React.useEffect(() => {
+    if (date) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      setIsInvalid(date < today);
+    }
+  }, [date]);
+
+  return (
+    <FormControl isInvalid={isInvalid} className="w-full">
+      <FormControlLabel>
+        <FormControlLabelText>Event Date</FormControlLabelText>
+      </FormControlLabel>
+      <DateTimePicker
+        value={date}
+        onChange={setDate}
+        mode="date"
+        placeholder="Select event date"
+      >
+        <DateTimePickerTrigger isInvalid={isInvalid}>
+          <DateTimePickerInput />
+          <DateTimePickerIcon as={CalendarDaysIcon} />
+        </DateTimePickerTrigger>
+      </DateTimePicker>
+      <FormControlHelper>
+        <FormControlHelperText>
+          Choose a future date for your event
+        </FormControlHelperText>
+      </FormControlHelper>
+      <FormControlError>
+        <FormControlErrorIcon as={AlertCircleIcon} />
+        <FormControlErrorText>
+          Event date cannot be in the past
+        </FormControlErrorText>
+      </FormControlError>
+    </FormControl>
+  );
+}

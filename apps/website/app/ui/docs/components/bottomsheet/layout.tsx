@@ -3,8 +3,8 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "gluestack-ui Bottomsheet Component | React Native Bottom Sheet",
-  description: "Implement a dynamic bottom sheet in React & React Native with gluestack's bottomsheet component. Learn how to integrate and customize the Bottom Sheet in React Native."
+  title: "gluestack-ui BottomSheet | Installation, Usage & API",
+  description: "Discover gluestack-ui's BottomSheet for Expo, React & React Native. Create smooth bottom sheets with ease. Check our docs to learn more"
 }
 
 export default function Layout({

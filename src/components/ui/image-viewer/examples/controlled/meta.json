@@ -1,0 +1,19 @@
+{
+  "title": "Controlled Mode",
+  "description": "Use controlled props to programmatically control the image viewer state and track current image index",
+  "argTypes": {},
+  "reactLive": {
+    "ImageViewer": "@/components/ui/image-viewer",
+    "ImageViewerContent": "@/components/ui/image-viewer",
+    "ImageViewerCloseButton": "@/components/ui/image-viewer",
+    "ImageViewerNavigation": "@/components/ui/image-viewer",
+    "ImageViewerCounter": "@/components/ui/image-viewer",
+    "Image": "@/components/ui/image",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "HStack": "@/components/ui/hstack",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button",
+    "Pressable": "@/components/ui/pressable"
+  }
+}

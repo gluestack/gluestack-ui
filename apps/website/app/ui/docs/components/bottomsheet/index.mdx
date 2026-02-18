@@ -1,7 +1,12 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
+import { BottomSheet, BottomSheetContent, BottomSheetItem, BottomSheetItemText, BottomSheetDragIndicator, BottomSheetDragIndicatorWrapper, BottomSheetBackdrop, BottomSheetScrollView } from '@/components/ui/bottomsheet';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Text } from 'react-native';
 
 import { CodeBlock } from "@/components/custom/markdown/code-block"; 
 
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import ManualInstallationNote from '@/docs-components/manual-installation-note';
 import {
   Table,
   TableHeader,
@@ -11,65 +16,512 @@ import {
   TableRow,
 } from '@/docs-components/table';
 import { InlineCode } from '@/docs-components/inline-code';
-import ManualInstallationNote from '@/docs-components/manual-installation-note';
 
 # BottomSheet
 
-Implement a dynamic bottom sheet in React & React Native with gluestack's bottomsheet component. Learn how to integrate and customize the Bottom Sheet in React Native.
+Discover the BottomSheet component for Expo, React & React Native. Easily create intuitive bottom sheets in your app with gluestack-ui. Learn more in our detailed documentation!
+
+This is an illustration of **BottomSheet** component.
+
+  
+
+  
+  
+  <CodePreviewer
+  code={`function App() {
+  const [showBottomSheet, setShowBottomSheet] = React.useState(false)
+  const handleClose = () => setShowBottomSheet(false)
+  return (
+    <>
+      <Button onPress={() => setShowBottomSheet(true)}>
+        <ButtonText>Open Bottom Sheet</ButtonText>
+      </Button>
+      <BottomSheet isOpen={showBottomSheet} onClose={handleClose} snapPoints={[50]}>
+        <BottomSheetBackdrop />
+        <BottomSheetContent>
+          <BottomSheetDragIndicatorWrapper>
+            <BottomSheetDragIndicator />
+          </BottomSheetDragIndicatorWrapper>
+          <BottomSheetItem onPress={handleClose}>
+            <BottomSheetItemText>Share</BottomSheetItemText>
+          </BottomSheetItem>
+          <BottomSheetItem onPress={handleClose}>
+            <BottomSheetItemText>Download</BottomSheetItemText>
+          </BottomSheetItem>
+          <BottomSheetItem onPress={handleClose}>
+            <BottomSheetItemText>Copy Link</BottomSheetItemText>
+          </BottomSheetItem>
+          <BottomSheetItem onPress={handleClose}>
+            <BottomSheetItemText>Report</BottomSheetItemText>
+          </BottomSheetItem>
+        </BottomSheetContent>
+      </BottomSheet>
+    </>
+  )
+}`}
+  argTypes={{}}
+  reactLive={{ BottomSheet, BottomSheetContent, BottomSheetItem, BottomSheetItemText, BottomSheetDragIndicator, BottomSheetDragIndicatorWrapper, BottomSheetBackdrop, Button, ButtonText }}
+  importMap={{"@/components/ui/bottomsheet":["BottomSheet","BottomSheetContent","BottomSheetItem","BottomSheetItemText","BottomSheetDragIndicator","BottomSheetDragIndicatorWrapper","BottomSheetBackdrop"],"@/components/ui/button":["Button","ButtonText"]}}
+/>
 
 <br />
 
 ## Installation
 
+<Tabs>
+<TabItem label="CLI">
+
 ### Run the following command:
 
 <CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add bottomsheet`} language="bash" />
 
-<ManualInstallationNote />
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i react-native-reanimated
+```
+
+> Note: `react-native-reanimated` is typically already installed in Expo and React Native projects. If not, follow the [official installation guide](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/getting-started/).
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+'use client';
+import React from 'react';
+import { createBottomSheet } from '@gluestack-ui/core/bottomsheet/creator';
+import {
+  Pressable,
+  View,
+  Text,
+  ScrollView,
+  FlatList,
+  SectionList,
+  TextInput,
+  PressableProps,
+  Platform,
+} from 'react-native';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import Animated, {
+  FadeIn,
+  FadeOut,
+  SlideInDown,
+  SlideOutDown,
+} from 'react-native-reanimated';
+
+const ItemWrapper = React.forwardRef<
+  React.ComponentRef<typeof Pressable>,
+  PressableProps
+>(function ItemWrapper({ ...props }, ref) {
+  return <Pressable {...props} ref={ref} />;
+});
+
+const AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+
+export const UIBottomSheet = createBottomSheet({
+  Root: View,
+  Content: AnimatedView,
+  Item: ItemWrapper,
+  ItemText: Text,
+  DragIndicator: View,
+  IndicatorWrapper: View,
+  Backdrop: AnimatedPressable,
+  ScrollView: ScrollView,
+  FlatList: FlatList,
+  SectionList: SectionList,
+  TextInput: TextInput,
+});
+
+cssInterop(UIBottomSheet, { className: 'style' });
+cssInterop(AnimatedView, { className: 'style' });
+cssInterop(ItemWrapper, { className: 'style' });
+cssInterop(UIBottomSheet.ItemText, { className: 'style' });
+cssInterop(UIBottomSheet.DragIndicator, { className: 'style' });
+cssInterop(UIBottomSheet.DragIndicatorWrapper, { className: 'style' });
+cssInterop(AnimatedPressable, { className: 'style' });
+cssInterop(UIBottomSheet.ScrollView, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
+cssInterop(UIBottomSheet.FlatList, {
+  className: 'style',
+  ListFooterComponentClassName: 'ListFooterComponentStyle',
+  ListHeaderComponentClassName: 'ListHeaderComponentStyle',
+  columnWrapperClassName: 'columnWrapperStyle',
+  contentContainerClassName: 'contentContainerStyle',
+  indicatorClassName: 'indicatorStyle',
+});
+cssInterop(UIBottomSheet.SectionList, { className: 'style' });
+cssInterop(UIBottomSheet.TextInput, { className: 'style' });
+
+const bottomSheetStyle = tva({
+  base: 'w-full h-full web:pointer-events-none'
+});
+
+const bottomSheetContentStyle = tva({
+  base: 'items-center rounded-t-3xl p-6 bg-background web:pointer-events-auto web:select-none border-t border-border dark:border-border/10 max-h-[90vh] pb-safe',
+});
+
+const bottomSheetItemStyle = tva({
+  base: 'w-full flex-row items-center p-3 rounded-sm data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-auto data-[disabled=true]:web:cursor-not-allowed data-[hover=true]:bg-accent data-[active=true]:bg-accent data-[focus=true]:bg-accent web:data-[focus-visible=true]:bg-accent',
+});
+
+const bottomSheetItemTextStyle = tva({
+  base: 'text-foreground font-normal font-body text-base',
+  variants: {
+    isTruncated: {
+      true: '',
+    },
+    bold: {
+      true: 'font-bold',
+    },
+    underline: {
+      true: 'underline',
+    },
+    strikeThrough: {
+      true: 'line-through',
+    },
+  },
+});
+
+const bottomSheetDragIndicatorStyle = tva({
+  base: 'w-[100px] h-2 bg-muted rounded-full',
+});
+
+const bottomSheetDragIndicatorWrapperStyle = tva({
+  base: 'w-full py-2 items-center',
+});
+
+const bottomSheetBackdropStyle = tva({
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default web:pointer-events-auto',
+});
+
+const bottomSheetScrollViewStyle = tva({
+  base: 'w-full h-auto',
+});
+
+const bottomSheetFlatListStyle = tva({
+  base: 'w-full h-auto',
+});
+
+const bottomSheetSectionListStyle = tva({
+  base: 'w-full h-auto',
+});
+
+const bottomSheetTextInputStyle = tva({
+  base: 'text-foreground p-2 border-border border rounded font-body',
+});
+
+type IBottomSheetProps = VariantProps<typeof bottomSheetStyle> &
+  React.ComponentPropsWithoutRef<typeof UIBottomSheet>;
+
+type IBottomSheetContentProps = VariantProps<typeof bottomSheetContentStyle> &
+  React.ComponentPropsWithoutRef<typeof UIBottomSheet.Content> & {
+    className?: string;
+  };
+
+type IBottomSheetItemProps = VariantProps<typeof bottomSheetItemStyle> &
+  React.ComponentPropsWithoutRef<typeof UIBottomSheet.Item>;
+
+type IBottomSheetItemTextProps = VariantProps<typeof bottomSheetItemTextStyle> &
+  React.ComponentPropsWithoutRef<typeof UIBottomSheet.ItemText>;
+
+type IBottomSheetDragIndicatorProps = VariantProps<
+  typeof bottomSheetDragIndicatorStyle
+> &
+  React.ComponentPropsWithoutRef<typeof UIBottomSheet.DragIndicator>;
+
+type IBottomSheetDragIndicatorWrapperProps = VariantProps<
+  typeof bottomSheetDragIndicatorWrapperStyle
+> &
+  React.ComponentPropsWithoutRef<typeof UIBottomSheet.DragIndicatorWrapper>;
+
+type IBottomSheetBackdropProps = VariantProps<typeof bottomSheetBackdropStyle> &
+  React.ComponentPropsWithoutRef<typeof UIBottomSheet.Backdrop> & {
+    className?: string;
+  };
+
+type IBottomSheetScrollViewProps = VariantProps<
+  typeof bottomSheetScrollViewStyle
+> &
+  React.ComponentPropsWithoutRef<typeof UIBottomSheet.ScrollView>;
+
+type IBottomSheetFlatListProps = VariantProps<typeof bottomSheetFlatListStyle> &
+  React.ComponentPropsWithoutRef<typeof UIBottomSheet.FlatList>;
+
+type IBottomSheetSectionListProps = VariantProps<
+  typeof bottomSheetSectionListStyle
+> &
+  React.ComponentPropsWithoutRef<typeof UIBottomSheet.SectionList>;
+
+type IBottomSheetTextInputProps = VariantProps<
+  typeof bottomSheetTextInputStyle
+> &
+  React.ComponentPropsWithoutRef<typeof UIBottomSheet.TextInput>;
+
+const BottomSheet = React.forwardRef<
+  React.ElementRef<typeof UIBottomSheet>,
+  IBottomSheetProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIBottomSheet
+      ref={ref}
+      className={bottomSheetStyle({
+        class: className,
+      })}
+      pointerEvents="box-none"
+      {...props}
+    />
+  );
+});
+BottomSheet.displayName = 'BottomSheet';
+
+const BottomSheetContent = React.forwardRef<
+  React.ElementRef<typeof UIBottomSheet.Content>,
+  IBottomSheetContentProps
+>(({ className, ...props }, ref) => {
+  // On web, skip exiting animation to prevent conflict with drag-to-close animation
+  // The drag gesture handles the exit animation, and for other close methods,
+  // instant unmount is acceptable on web
+  const exitingAnimation = Platform.OS === 'web' ? undefined : SlideOutDown.duration(200);
+
+  return (
+    <UIBottomSheet.Content
+      entering={SlideInDown.duration(300).springify()}
+      exiting={exitingAnimation}
+      pointerEvents="auto"
+      ref={ref}
+      className={bottomSheetContentStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+BottomSheetContent.displayName = 'BottomSheet.Content';
+
+const BottomSheetItem = React.forwardRef<
+  React.ElementRef<typeof UIBottomSheet.Item>,
+  IBottomSheetItemProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIBottomSheet.Item
+      ref={ref}
+      className={bottomSheetItemStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+BottomSheetItem.displayName = 'BottomSheet.Item';
+
+const BottomSheetItemText = React.forwardRef<
+  React.ElementRef<typeof UIBottomSheet.ItemText>,
+  IBottomSheetItemTextProps
+>(({ className, isTruncated, bold, underline, strikeThrough, ...props }, ref) => {
+  return (
+    <UIBottomSheet.ItemText
+      ref={ref}
+      className={bottomSheetItemTextStyle({
+        isTruncated,
+        bold,
+        underline,
+        strikeThrough,
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+BottomSheetItemText.displayName = 'BottomSheet.ItemText';
+
+const BottomSheetDragIndicator = React.forwardRef<
+  React.ElementRef<typeof UIBottomSheet.DragIndicator>,
+  IBottomSheetDragIndicatorProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIBottomSheet.DragIndicator
+    hitSlop={20}
+      ref={ref}
+      className={bottomSheetDragIndicatorStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+BottomSheetDragIndicator.displayName = 'BottomSheet.DragIndicator';
+
+const BottomSheetDragIndicatorWrapper = React.forwardRef<
+  React.ElementRef<typeof UIBottomSheet.DragIndicatorWrapper>,
+  IBottomSheetDragIndicatorWrapperProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIBottomSheet.DragIndicatorWrapper
+    hitSlop={20}
+      ref={ref}
+      className={bottomSheetDragIndicatorWrapperStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+BottomSheetDragIndicatorWrapper.displayName = 'BottomSheet.DragIndicatorWrapper';
+
+const BottomSheetBackdrop = React.forwardRef<
+  React.ElementRef<typeof UIBottomSheet.Backdrop>,
+  IBottomSheetBackdropProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIBottomSheet.Backdrop
+      entering={FadeIn.duration(200)}
+      exiting={FadeOut.duration(200)}
+      ref={ref}
+      className={bottomSheetBackdropStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+BottomSheetBackdrop.displayName = 'BottomSheet.Backdrop';
+
+const BottomSheetScrollView = React.forwardRef<
+  React.ElementRef<typeof UIBottomSheet.ScrollView>,
+  IBottomSheetScrollViewProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIBottomSheet.ScrollView
+      ref={ref}
+      className={bottomSheetScrollViewStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+BottomSheetScrollView.displayName = 'BottomSheet.ScrollView';
+
+const BottomSheetFlatList = React.forwardRef<
+  React.ElementRef<typeof UIBottomSheet.FlatList>,
+  IBottomSheetFlatListProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIBottomSheet.FlatList
+      ref={ref}
+      className={bottomSheetFlatListStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+}) as <ItemT = any>(
+  props: IBottomSheetFlatListProps &
+    React.RefAttributes<React.ElementRef<typeof UIBottomSheet.FlatList>>
+) => React.ReactElement;
+
+const BottomSheetSectionList = React.forwardRef<
+  React.ElementRef<typeof UIBottomSheet.SectionList>,
+  IBottomSheetSectionListProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIBottomSheet.SectionList
+      ref={ref}
+      className={bottomSheetSectionListStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+}) as <ItemT = any, SectionT = any>(
+  props: IBottomSheetSectionListProps &
+    React.RefAttributes<React.ElementRef<typeof UIBottomSheet.SectionList>>
+) => React.ReactElement;
+
+const BottomSheetTextInput = React.forwardRef<
+  React.ElementRef<typeof UIBottomSheet.TextInput>,
+  IBottomSheetTextInputProps
+>(({ className, ...props }, ref) => {
+  return (
+    <UIBottomSheet.TextInput
+      ref={ref}
+      className={bottomSheetTextInputStyle({
+        class: className,
+      })}
+      {...props}
+    />
+  );
+});
+BottomSheetTextInput.displayName = 'BottomSheet.TextInput';
+
+export {
+  BottomSheet,
+  BottomSheetContent,
+  BottomSheetItem,
+  BottomSheetItemText,
+  BottomSheetDragIndicator,
+  BottomSheetDragIndicatorWrapper,
+  BottomSheetBackdrop,
+  BottomSheetScrollView,
+  BottomSheetFlatList,
+  BottomSheetSectionList,
+  BottomSheetTextInput,
+};
+
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
 
 ## API Reference
 
 To use this component in your project, include the following import statement in your file.
 
-```jsx
+```ts
+export default () => (
+  <BottomSheet>
+    <BottomSheetBackdrop />
+    <BottomSheetContent>
+      <BottomSheetDragIndicatorWrapper>
+        <BottomSheetDragIndicator />
+      </BottomSheetDragIndicatorWrapper>
+      <BottomSheetItem>
+        <BottomSheetItemText />
+      </BottomSheetItem>
+    </BottomSheetContent>
+  </BottomSheet>
+);
+```
+
+<br/>
+
+```ts
 import {
   BottomSheet,
   BottomSheetBackdrop,
   BottomSheetContent,
   BottomSheetDragIndicator,
+  BottomSheetDragIndicatorWrapper,
   BottomSheetItem,
   BottomSheetItemText,
-  BottomSheetPortal,
-  BottomSheetTrigger,
+  BottomSheetScrollView,
+  BottomSheetFlatList,
+  BottomSheetSectionList,
+  BottomSheetTextInput,
 } from '@/components/ui/bottomsheet';
 ```
 
-```jsx
-export default () => (
-  <BottomSheet>
-    <BottomSheetTrigger>
-      <Text>Open BottomSheet</Text>
-    </BottomSheetTrigger>
-    <BottomSheetPortal
-      snapPoints={['25%', '50%']}
-      backdropComponent={BottomSheetBackdrop}
-      handleComponent={BottomSheetDragIndicator}
-    >
-      <BottomSheetContent>
-        <BottomSheetItem>
-          <BottomSheetItemText>Item 1</BottomSheetItemText>
-        </BottomSheetItem>
-        <BottomSheetItem>
-          <BottomSheetItemText>Item 2</BottomSheetItemText>
-        </BottomSheetItem>
-        <BottomSheetItem>
-          <BottomSheetItemText>Item 3</BottomSheetItemText>
-        </BottomSheetItem>
-      </BottomSheetContent>
-    </BottomSheetPortal>
-  </BottomSheet>
-);
-```
+<br />
 
 ### Component Props
 
@@ -77,133 +529,398 @@ This section provides a comprehensive reference list for the component props, de
 
 #### BottomSheet
 
-It is a context provider for entire bottomsheet api.
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
 
-### Props
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Name</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>`isOpen`</TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>Whether the bottom sheet is open.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>`onClose`</TableCell>
+      <TableCell>() => void</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Callback function when the bottom sheet is closed.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>`onOpen`</TableCell>
+      <TableCell>() => void</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Callback function when the bottom sheet is opened.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>`snapPoints`</TableCell>
+      <TableCell>number[]</TableCell>
+      <TableCell>[50]</TableCell>
+      <TableCell>
+        Array of numbers representing the snap points as percentages (0-100).
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>`snapToIndex`</TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>0</TableCell>
+      <TableCell>
+        The index of the snap point to initially snap to.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>`closeOnOverlayClick`</TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>
+        Whether the bottom sheet should close when the backdrop is clicked.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>`initialFocusRef`</TableCell>
+      <TableCell>React.RefObject&lt;any&gt;</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        Ref for the element that should be focused when the bottom sheet opens.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>`finalFocusRef`</TableCell>
+      <TableCell>React.RefObject&lt;any&gt;</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>
+        Ref for the element that should be focused when the bottom sheet closes.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>`trapFocus`</TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>
+        Whether focus should be trapped within the bottom sheet.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>`preventScroll`</TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>
+        Whether to prevent scrolling on the body when the bottom sheet is open (web only).
+      </TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
 
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHeaderCell>
-            Prop
-          </TableHeaderCell>
-          <TableHeaderCell>
-            Type
-          </TableHeaderCell>
-          <TableHeaderCell>
-            Default
-          </TableHeaderCell>
-          <TableHeaderCell>
-            Description
-          </TableHeaderCell>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell>
-            <InlineCode>snapToIndex</InlineCode>
-          </TableCell>
-          <TableCell>
-            number
-          </TableCell>
-          <TableCell>
-            1
-          </TableCell>
-          <TableCell>
-            {`index of snapPoints at which bottomsheet initially opens.`}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <InlineCode>onOpen</InlineCode>
-          </TableCell>
-          <TableCell>
-            () => void
-          </TableCell>
-          <TableCell>-</TableCell>
-          <TableCell>
-            {`callback function which trigger when bottomsheet is opened.`}
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>
-            <InlineCode>onClose</InlineCode>
-          </TableCell>
-          <TableCell>
-            () => void
-          </TableCell>
-          <TableCell>-</TableCell>
-          <TableCell>
-            {`callback function which trigger when bottomsheet is closed.`}
-          </TableCell>
-        </TableRow>
-      </TableBody>
+#### BottomSheetBackdrop
 
-  </Table>
-
-#### BottomSheetTrigger
-
-It inherits all the properties of React Native's [pressable](https://reactnative.dev/docs/pressable) component.
-
-#### BottomSheetPortal
-
-it's a gorhom BottomSheet component. inherits all the properties of [gorhom BottomSheet](https://ui.gorhom.dev/components/bottom-sheet/props#configuration).
-
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHeaderCell>
-            Prop
-          </TableHeaderCell>
-          <TableHeaderCell>
-            Type
-          </TableHeaderCell>
-          <TableHeaderCell>
-            Default
-          </TableHeaderCell>
-          <TableHeaderCell>
-            Description
-          </TableHeaderCell>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell>
-            <InlineCode>snapPoints</InlineCode>
-          </TableCell>
-          <TableCell>
-            {`Array<string | number>`}
-          </TableCell>
-          <TableCell>-</TableCell>
-            <TableCell>{`Points for the bottom sheet to snap to. It accepts array of number, string or mix. String values should be a percentage.`}</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [react-native-reanimated's](https://docs.swmansion.com/react-native-reanimated/) `Animated.createAnimatedComponent()` function. Animations are applied using the `entering` and `exiting` props with `FadeIn` and `FadeOut` effects.
 
 #### BottomSheetContent
 
-It inherits all the properties of [gorhom BottomSheetView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetview).
+It is React Native's [View](https://reactnative.dev/docs/view) component, created using [react-native-reanimated's](https://docs.swmansion.com/react-native-reanimated/) `Animated.createAnimatedComponent()` function. The sheet slides in from the bottom using `SlideInDown` animation and slides out with `SlideOutDown`.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Name</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>`focusScope`</TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>
+        Whether to apply focus scope to the content.
+      </TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+#### BottomSheetDragIndicatorWrapper
+
+It is React Native's [View](https://reactnative.dev/docs/view) component that wraps the drag indicator and handles pan gestures for dragging the sheet.
+
+#### BottomSheetDragIndicator
+
+It is React Native's [View](https://reactnative.dev/docs/view) component that displays the visual drag handle.
 
 #### BottomSheetItem
 
-It inherits all the properties of React Native's [Pressable](https://reactnative.dev/docs/pressable) component.
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable) component that handles item press events.
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Name</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>`closeOnPress`</TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>
+        Whether the bottom sheet should close when the item is pressed.
+      </TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>`isDisabled`</TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>
+        Whether the item is disabled.
+      </TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
 
 #### BottomSheetItemText
 
-It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
-
-#### BottomSheetTextInput
-
-It inherits all the properties of [gorhom BottomSheetTextInput](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheettextinput).
+It is React Native's [Text](https://reactnative.dev/docs/text) component.
 
 #### BottomSheetScrollView
 
-It inherits all the properties of [gorhom BottomSheetScrollView](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetscrollview).
+It is React Native's [ScrollView](https://reactnative.dev/docs/scrollview) component for scrollable content.
 
 #### BottomSheetFlatList
 
-It inherits all the properties of [gorhom BottomSheetFlatList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetflatlist).
+It is React Native's [FlatList](https://reactnative.dev/docs/flatlist) component for rendering lists efficiently.
 
 #### BottomSheetSectionList
 
-It inherits all the properties of [gorhom BottomSheetSectionList](https://ui.gorhom.dev/components/bottom-sheet/components/bottomsheetsectionlist).
+It is React Native's [SectionList](https://reactnative.dev/docs/sectionlist) component for rendering sectioned lists.
+
+#### BottomSheetTextInput
+
+It is React Native's [TextInput](https://reactnative.dev/docs/textinput) component for text input within the bottom sheet.
+
+## Examples
+
+### Multiple Snap Points
+
+
+  #### With Snap Points
+
+  
+  
+  <CodePreviewer
+  code={`function App() {
+  const [showBottomSheet, setShowBottomSheet] = React.useState(false)
+  const handleClose = () => setShowBottomSheet(false)
+  return (
+    <>
+      <Button onPress={() => setShowBottomSheet(true)}>
+        <ButtonText>Open Bottom Sheet</ButtonText>
+      </Button>
+      <BottomSheet
+        isOpen={showBottomSheet}
+        onClose={handleClose}
+        snapPoints={[25, 50, 90]}
+        snapToIndex={1}
+      >
+        <BottomSheetBackdrop />
+        <BottomSheetContent>
+          <BottomSheetDragIndicatorWrapper>
+            <BottomSheetDragIndicator />
+          </BottomSheetDragIndicatorWrapper>
+          <Text style={{ padding: 16, fontSize: 16, fontWeight: 'bold' }}>
+            Multiple Snap Points
+          </Text>
+          <Text style={{ padding: 16, color: '#666' }}>
+            This bottom sheet can snap to 25%, 50%, or 90% of the screen height.
+            Try dragging it up and down to see the snap points in action.
+          </Text>
+          <BottomSheetItem onPress={handleClose}>
+            <BottomSheetItemText>Option 1</BottomSheetItemText>
+          </BottomSheetItem>
+          <BottomSheetItem onPress={handleClose}>
+            <BottomSheetItemText>Option 2</BottomSheetItemText>
+          </BottomSheetItem>
+          <BottomSheetItem onPress={handleClose}>
+            <BottomSheetItemText>Option 3</BottomSheetItemText>
+          </BottomSheetItem>
+        </BottomSheetContent>
+      </BottomSheet>
+    </>
+  )
+}`}
+  argTypes={{}}
+  reactLive={{ BottomSheet, BottomSheetContent, BottomSheetItem, BottomSheetItemText, BottomSheetDragIndicator, BottomSheetDragIndicatorWrapper, BottomSheetBackdrop, Button, ButtonText, Text }}
+  importMap={{"@/components/ui/bottomsheet":["BottomSheet","BottomSheetContent","BottomSheetItem","BottomSheetItemText","BottomSheetDragIndicator","BottomSheetDragIndicatorWrapper","BottomSheetBackdrop"],"@/components/ui/button":["Button","ButtonText"],"react-native":["Text"]}}
+/>
+
+### Scrollable Content
+
+
+  #### With ScrollView
+
+  
+  
+  <CodePreviewer
+  code={`function App() {
+  const [showBottomSheet, setShowBottomSheet] = React.useState(false)
+  const handleClose = () => setShowBottomSheet(false)
+
+const items = React.useMemo(
+  () => Array.from({ length: 20 }, (_, i) => 'Item ' + (i + 1)),[])
+
+
+  return (
+    <>
+      <Button onPress={() => setShowBottomSheet(true)}>
+        <ButtonText>Open Bottom Sheet</ButtonText>
+      </Button>
+      <BottomSheet isOpen={showBottomSheet} onClose={handleClose} snapPoints={[75]}>
+        <BottomSheetBackdrop />
+        <BottomSheetContent>
+          <BottomSheetDragIndicatorWrapper>
+            <BottomSheetDragIndicator />
+          </BottomSheetDragIndicatorWrapper>
+          <Text style={{ padding: 16, fontSize: 16, fontWeight: 'bold' }}>
+            Scrollable Content
+          </Text>
+          <BottomSheetScrollView>
+            {items.map((item, index) => (
+              <BottomSheetItem key={index} onPress={handleClose}>
+                <BottomSheetItemText>{item}</BottomSheetItemText>
+              </BottomSheetItem>
+            ))}
+          </BottomSheetScrollView>
+        </BottomSheetContent>
+      </BottomSheet>
+    </>
+  )
+}`}
+  argTypes={{}}
+  reactLive={{ BottomSheet, BottomSheetContent, BottomSheetScrollView, BottomSheetItem, BottomSheetItemText, BottomSheetDragIndicator, BottomSheetDragIndicatorWrapper, BottomSheetBackdrop, Button, ButtonText, Text }}
+  importMap={{"@/components/ui/bottomsheet":["BottomSheet","BottomSheetContent","BottomSheetScrollView","BottomSheetItem","BottomSheetItemText","BottomSheetDragIndicator","BottomSheetDragIndicatorWrapper","BottomSheetBackdrop"],"@/components/ui/button":["Button","ButtonText"],"react-native":["Text"]}}
+/>
+
+## Migration from v0.x (gorhom/bottom-sheet)
+
+If you're upgrading from the previous version that used `@gorhom/bottom-sheet`, here are the key changes:
+
+### API Changes
+
+**Before:**
+```jsx
+<BottomSheet snapToIndex={1} onOpen={...} onClose={...}>
+  <BottomSheetTrigger>
+    <Button>Open</Button>
+  </BottomSheetTrigger>
+  <BottomSheetPortal
+    snapPoints={['25%', '50%']}
+    backdropComponent={BottomSheetBackdrop}
+    handleComponent={BottomSheetDragIndicator}
+  >
+    <BottomSheetContent>
+      <BottomSheetItem>
+        <BottomSheetItemText>Item 1</BottomSheetItemText>
+      </BottomSheetItem>
+    </BottomSheetContent>
+  </BottomSheetPortal>
+</BottomSheet>
+```
+
+**After:**
+```jsx
+<BottomSheet
+  isOpen={isOpen}
+  onClose={() => setIsOpen(false)}
+  onOpen={() => setIsOpen(true)}
+  snapPoints={[25, 50]}
+  snapToIndex={1}
+>
+  <BottomSheetBackdrop />
+  <BottomSheetContent>
+    <BottomSheetDragIndicatorWrapper>
+      <BottomSheetDragIndicator />
+    </BottomSheetDragIndicatorWrapper>
+    <BottomSheetItem>
+      <BottomSheetItemText>Item 1</BottomSheetItemText>
+    </BottomSheetItem>
+  </BottomSheetContent>
+</BottomSheet>
+
+{/* Separate trigger button */}
+<Button onPress={() => setIsOpen(true)}>
+  <ButtonText>Open</ButtonText>
+</Button>
+```
+
+### Key Migration Steps
+
+1. **Remove `BottomSheetPortal` and `BottomSheetTrigger`** - These components are no longer needed.
+
+2. **Manage `isOpen` state externally** - Use controlled state like other gluestack components (Modal, AlertDialog).
+
+3. **Update `snapPoints` format** - Use numbers (25, 50, 90) instead of strings ('25%', '50%', '90%').
+
+4. **Move props to root component** - Props like `snapPoints` now go on the main `BottomSheet` component.
+
+5. **Add components explicitly** - `BottomSheetBackdrop` and drag indicators must be added as children.
+
+6. **Update dependencies** - Remove `@gorhom/bottom-sheet` from your dependencies. The new implementation uses `react-native-reanimated` for animations (typically already installed in most projects).
+
+### Benefits of Migration
+
+- **Consistency** - Follows the same patterns as other gluestack-ui overlay components
+- **Better TypeScript support** - Improved type definitions and autocomplete
+- **Smaller bundle size** - Removes external dependency
+- **More control** - Full control over animations and behavior
+- **Cross-platform** - Better web support with consistent API
+
+## Accessibility
+
+We have outlined the various features that ensure the BottomSheet component is accessible to all users, including those with disabilities.
+
+### Keyboard Navigation
+
+- `Escape` - Closes the bottom sheet when pressed
+- `Tab` - Moves focus to the next focusable element within the bottom sheet
+
+### Screen Reader Support
+
+- The bottom sheet content is announced when opened
+- Focus is trapped within the sheet when open
+- Focus returns to the trigger element when closed
+
+### Focus Management
+
+- Initial focus can be set using `initialFocusRef`
+- Final focus can be set using `finalFocusRef`
+- Focus scope contains focus within the sheet
+
+## Styling
+
+The BottomSheet component uses Tailwind CSS classes for styling. You can customize the appearance by passing custom className props to any of the components.
+
+```jsx
+<BottomSheet>
+  <BottomSheetBackdrop className="bg-black/60" />
+  <BottomSheetContent className="bg-white dark:bg-gray-900 rounded-t-2xl">
+    <BottomSheetDragIndicatorWrapper className="py-2">
+      <BottomSheetDragIndicator className="w-12 h-1 bg-gray-300" />
+    </BottomSheetDragIndicatorWrapper>
+    <BottomSheetItem className="hover:bg-gray-100">
+      <BottomSheetItemText className="text-gray-900">
+        Custom Styled Item
+      </BottomSheetItemText>
+    </BottomSheetItem>
+  </BottomSheetContent>
+</BottomSheet>
+```

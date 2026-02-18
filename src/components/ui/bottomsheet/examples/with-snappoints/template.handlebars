@@ -1,0 +1,40 @@
+function App() {
+  const [showBottomSheet, setShowBottomSheet] = React.useState(false)
+  const handleClose = () => setShowBottomSheet(false)
+  return (
+    <>
+      <Button onPress={() => setShowBottomSheet(true)}>
+        <ButtonText>Open Bottom Sheet</ButtonText>
+      </Button>
+      <BottomSheet
+        isOpen={showBottomSheet}
+        onClose={handleClose}
+        snapPoints={[25, 50, 90]}
+        snapToIndex={1}
+      >
+        <BottomSheetBackdrop />
+        <BottomSheetContent>
+          <BottomSheetDragIndicatorWrapper>
+            <BottomSheetDragIndicator />
+          </BottomSheetDragIndicatorWrapper>
+          <Text style={{ padding: 16, fontSize: 16, fontWeight: 'bold' }}>
+            Multiple Snap Points
+          </Text>
+          <Text style={{ padding: 16, color: '#666' }}>
+            This bottom sheet can snap to 25%, 50%, or 90% of the screen height.
+            Try dragging it up and down to see the snap points in action.
+          </Text>
+          <BottomSheetItem onPress={handleClose}>
+            <BottomSheetItemText>Option 1</BottomSheetItemText>
+          </BottomSheetItem>
+          <BottomSheetItem onPress={handleClose}>
+            <BottomSheetItemText>Option 2</BottomSheetItemText>
+          </BottomSheetItem>
+          <BottomSheetItem onPress={handleClose}>
+            <BottomSheetItemText>Option 3</BottomSheetItemText>
+          </BottomSheetItem>
+        </BottomSheetContent>
+      </BottomSheet>
+    </>
+  )
+}

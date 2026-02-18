@@ -1,0 +1,304 @@
+---
+title: gluestack-ui DateTimePicker Component | DateTimePicker Installation in React Native
+description: A cross-platform date and time picker component for React & React Native that uses native pickers on iOS/Android and a custom implementation on web.
+pageTitle: DateTimePicker
+pageDescription: A cross-platform date and time picker component for React & React Native that uses native pickers on iOS/Android and a custom implementation on web.
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# DateTimePicker
+
+A comprehensive date and time picker component that provides a native experience on mobile platforms and a custom-built interface for web. Perfect for forms, scheduling, and any date/time input needs.
+
+This is an illustration of **DateTimePicker** component.
+
+///{Example:basic}///
+
+<br />
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add date-time-picker`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Install dependencies
+
+```bash
+npm install @react-native-community/datetimepicker
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/date-time-picker/index.tsx --%%
+```
+
+### Step 3: Copy and paste the web implementation code.
+
+```jsx
+%%-- File: src/components/ui/date-time-picker/index.web.tsx --%%
+```
+
+### Step 4: Copy and paste the styles.
+
+```jsx
+%%-- File: src/components/ui/date-time-picker/styles.tsx --%%
+```
+
+### Step 5: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  DateTimePicker,
+  DateTimePickerTrigger,
+  DateTimePickerInput,
+  DateTimePickerIcon,
+} from '@/components/ui/date-time-picker';
+```
+
+### Component Anatomy
+
+```jsx
+export default () => (
+  <DateTimePicker>
+    <DateTimePickerTrigger>
+      <DateTimePickerInput />
+      <DateTimePickerIcon />
+    </DateTimePickerTrigger>
+  </DateTimePicker>
+);
+```
+
+### DateTimePicker Props
+
+<>
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>value</InlineCode>
+      </TableCell>
+      <TableCell>Date</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The currently selected date/time.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onChange</InlineCode>
+      </TableCell>
+      <TableCell>{'(date: Date | undefined) => void'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Callback when date/time changes.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>mode</InlineCode>
+      </TableCell>
+      <TableCell>'date' | 'time' | 'datetime'</TableCell>
+      <TableCell>'datetime'</TableCell>
+      <TableCell>Selection mode.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>minimumDate</InlineCode>
+      </TableCell>
+      <TableCell>Date</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Minimum selectable date.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>maximumDate</InlineCode>
+      </TableCell>
+      <TableCell>Date</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Maximum selectable date.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>locale</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Locale for formatting (e.g., 'en-US').</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>is24Hour</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Use 24-hour format for time (Android only).</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>disabled</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>Disable the picker.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>placeholder</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Placeholder text when no date selected.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>format</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Custom display format (e.g., 'YYYY-MM-DD HH:mm').</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+### DateTimePickerTrigger Props
+
+<>
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
+      <TableCell>'sm' | 'md' | 'lg' | 'xl'</TableCell>
+      <TableCell>'md'</TableCell>
+      <TableCell>Size of the trigger.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>variant</InlineCode>
+      </TableCell>
+      <TableCell>'outline' | 'underlined' | 'rounded'</TableCell>
+      <TableCell>'outline'</TableCell>
+      <TableCell>Visual variant.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+### DateTimePickerInput Props
+
+Displays the selected date/time value. Inherits all TextInput props.
+
+### DateTimePickerIcon Props
+
+<>
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>as</InlineCode>
+      </TableCell>
+      <TableCell>Component</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Icon component to render.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
+      <TableCell>'2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'</TableCell>
+      <TableCell>'md'</TableCell>
+      <TableCell>Size of the icon.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+## Format Patterns
+
+When using the `format` prop, you can use these patterns:
+
+| Pattern | Description          | Example |
+| ------- | -------------------- | ------- |
+| YYYY    | Full year            | 2024    |
+| MM      | Month (01-12)        | 01      |
+| DD      | Day of month (01-31) | 15      |
+| HH      | Hours (00-23)        | 14      |
+| mm      | Minutes (00-59)      | 30      |
+| ss      | Seconds (00-59)      | 45      |
+
+## Features
+
+- **Cross-platform**: Uses native pickers on iOS/Android, custom on web
+- **Expo Go compatible**: Works without ejecting or building
+- **Multiple modes**: Date only, Time only, or DateTime combined
+- **Fully accessible**: Keyboard navigation, screen reader support
+- **Customizable styling**: Support for sizes, variants, and custom themes
+- **Min/Max date restrictions**: Limit selectable date ranges
+- **Locale support**: International date/time formatting
+
+## Accessibility
+
+- **Keyboard Navigation**: Tab to focus, Enter/Space to open, Escape to close
+- **Screen Readers**: Announces selected date and picker state
+- **ARIA Labels**: Proper labeling for input and dialog
+
+## Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs.
+
+/// {Example:modes} ///
+
+/// {Example:variants-sizes} ///
+
+/// {Example:with-form-control} ///

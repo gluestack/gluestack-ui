@@ -80,6 +80,12 @@ export default function ComponentsLayout() {
         }}
       />
       <Stack.Screen
+        name="calendar"
+        options={{
+          header: () => <CustomHeader title="Calendar" />,
+        }}
+      />
+      <Stack.Screen
         name="alert"
         options={{
           header: () => <CustomHeader title="Alert" />,
@@ -103,7 +109,7 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="Form Control" />,
         }}
       />
-          <Stack.Screen
+      <Stack.Screen
         name="actionsheet"
         options={{
           header: () => <CustomHeader title="Actionsheet" />,
@@ -313,6 +319,25 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="VStack" />,
         }}
       />
+          <Stack.Screen
+            name="tabs"
+            options={{
+              header: () => <CustomHeader title="Tabs" />,
+            }}
+          />
+          <Stack.Screen
+            name="date-time-picker"
+            options={{
+              header: () => <CustomHeader title="Date Time Picker" />,
+            }}
+          />
+          <Stack.Screen
+            name="image-viewer"
+            options={{
+              header: () => <CustomHeader title="Image Viewer" />,
+            }}
+          />
+     
     </Stack>
   );
 }

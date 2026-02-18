@@ -1,0 +1,54 @@
+function Example() {
+  const [date, setDate] = React.useState(new Date());
+  const [time, setTime] = React.useState(new Date());
+  const [dateTime, setDateTime] = React.useState(new Date());
+
+  return (
+    <VStack space="lg" className="w-full">
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Date Only</Text>
+        <DateTimePicker
+          value={date}
+          onChange={setDate}
+          mode="date"
+          placeholder="Select a date"
+        >
+          <DateTimePickerTrigger>
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Time Only (12-hour)</Text>
+        <DateTimePicker
+          value={time}
+          onChange={setTime}
+          mode="time"
+          placeholder="Select time"
+        >
+          <DateTimePickerTrigger>
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={ClockIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Date & Time</Text>
+        <DateTimePicker
+          value={dateTime}
+          onChange={setDateTime}
+          mode="datetime"
+          placeholder="Select date and time"
+        >
+          <DateTimePickerTrigger>
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+    </VStack>
+  );
+}

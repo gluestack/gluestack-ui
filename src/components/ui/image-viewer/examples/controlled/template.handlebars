@@ -1,0 +1,65 @@
+function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+
+  const images = [
+    {
+      url: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&auto=format&fit=crop&q=60',
+      alt: 'Mountain landscape'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1682687221038-404670e01d4c?w=800&auto=format&fit=crop&q=60',
+      alt: 'Ocean waves'
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&auto=format&fit=crop&q=60',
+      alt: 'Desert sunset'
+    }
+  ];
+
+  return (
+    <VStack space="md" className="p-4">
+      <Text className="text-lg font-medium">Controlled Mode</Text>
+      <Text className="text-muted-foreground text-sm mb-4">
+        Current index: {currentIndex + 1} / {images.length} | Viewer is {isOpen ? 'open' : 'closed'}
+      </Text>
+      
+      <Button onPress={() => setIsOpen(true)} variant="outline">
+        <ButtonText>Open Image Viewer</ButtonText>
+      </Button>
+      
+      <HStack space="sm" className="flex-wrap">
+        {images.map((image, index) => (
+          <Pressable
+            key={index}
+            onPress={() => {
+              setCurrentIndex(index);
+              setIsOpen(true);
+            }}
+          >
+            <Image
+              source=\\{{ uri: image.url }}
+              alt={image.alt}
+              className="w-20 h-20 rounded-md"
+              resizeMode="cover"
+            />
+          </Pressable>
+        ))}
+      </HStack>
+
+      <ImageViewer 
+        images={images}
+        isOpen={isOpen}
+        onOpenChange={setIsOpen}
+        onIndexChange={setCurrentIndex}
+        initialIndex={currentIndex}
+      >
+        <ImageViewerContent>
+          <ImageViewerCloseButton />
+          <ImageViewerNavigation />
+          <ImageViewerCounter />
+        </ImageViewerContent>
+      </ImageViewer>
+    </VStack>
+  );
+}

@@ -1,0 +1,19 @@
+{
+  "title": "With Week Numbers",
+  "description": "Display ISO week numbers alongside the calendar for business and project planning use cases",
+  "argTypes": {},
+  "reactLive": {
+    "Calendar": "@/components/ui/calendar",
+    "CalendarHeader": "@/components/ui/calendar",
+    "CalendarHeaderPrevButton": "@/components/ui/calendar",
+    "CalendarHeaderNextButton": "@/components/ui/calendar",
+    "CalendarHeaderTitle": "@/components/ui/calendar",
+    "CalendarWeekDaysHeader": "@/components/ui/calendar",
+    "CalendarWeekNumber": "@/components/ui/calendar",
+    "CalendarBody": "@/components/ui/calendar",
+    "CalendarGrid": "@/components/ui/calendar",
+    "Icon": "@/components/ui/icon",
+    "ChevronLeftIcon": "@/components/ui/icon",
+    "ChevronRightIcon": "@/components/ui/icon"
+  }
+}
