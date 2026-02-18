@@ -109,82 +109,82 @@ const [selected, setSelected] = React.useState(new Date());
   )
 };
 
-const ExampleWithEventMarkers = () => {
-const [selected, setSelected] = React.useState(new Date());
+// const ExampleWithEventMarkers = () => {
+// const [selected, setSelected] = React.useState(new Date());
   
-  const today = new Date();
-  const year = today.getFullYear();
-  const monthNum = today.getMonth() + 1;
-  const month = monthNum < 10 ? '0' + monthNum : monthNum;
+//   const today = new Date();
+//   const year = today.getFullYear();
+//   const monthNum = today.getMonth() + 1;
+//   const month = monthNum < 10 ? '0' + monthNum : monthNum;
   
-  // Create markers for the current month with shadcn-style colors
-  const markers = {};
-  markers[year + '-' + month + '-05'] = { 
-    type: 'dot', 
-    color: 'hsl(var(--primary))' 
-  };
-  markers[year + '-' + month + '-12'] = { 
-    type: 'multi-dot', 
-    dots: [
-      { color: 'hsl(var(--primary))', key: '1' },
-      { color: 'hsl(var(--destructive))', key: '2' }
-    ]
-  };
-  markers[year + '-' + month + '-20'] = { 
-    type: 'period', 
-    color: 'hsl(var(--secondary))' 
-  };
-  markers[year + '-' + month + '-25'] = { 
-    type: 'dot', 
-    color: 'hsl(var(--accent))' 
-  };
+//   // Create markers for the current month with shadcn-style colors
+//   const markers = {};
+//   markers[year + '-' + month + '-05'] = { 
+//     type: 'dot', 
+//     color: 'hsl(var(--primary))' 
+//   };
+//   markers[year + '-' + month + '-12'] = { 
+//     type: 'multi-dot', 
+//     dots: [
+//       { color: 'hsl(var(--primary))', key: '1' },
+//       { color: 'hsl(var(--destructive))', key: '2' }
+//     ]
+//   };
+//   markers[year + '-' + month + '-20'] = { 
+//     type: 'period', 
+//     color: 'hsl(var(--secondary))' 
+//   };
+//   markers[year + '-' + month + '-25'] = { 
+//     type: 'dot', 
+//     color: 'hsl(var(--accent))' 
+//   };
 
-  return (
-    <VStack space="md">
-      <Calendar
-        mode="single"
-        value={selected}
-        onValueChange={setSelected}
-        markers={markers}
-      >
-        <CalendarHeader>
-          <CalendarHeaderPrevButton>
-            <Icon as={ChevronLeftIcon} size="sm" />
-          </CalendarHeaderPrevButton>
-          <CalendarHeaderTitle />
-          <CalendarHeaderNextButton>
-            <Icon as={ChevronRightIcon} size="sm" />
-          </CalendarHeaderNextButton>
-        </CalendarHeader>
+//   return (
+//     <VStack space="md">
+//       <Calendar
+//         mode="single"
+//         value={selected}
+//         onValueChange={setSelected}
+//         markers={markers}
+//       >
+//         <CalendarHeader>
+//           <CalendarHeaderPrevButton>
+//             <Icon as={ChevronLeftIcon} size="sm" />
+//           </CalendarHeaderPrevButton>
+//           <CalendarHeaderTitle />
+//           <CalendarHeaderNextButton>
+//             <Icon as={ChevronRightIcon} size="sm" />
+//           </CalendarHeaderNextButton>
+//         </CalendarHeader>
 
-        <CalendarWeekDaysHeader />
+//         <CalendarWeekDaysHeader />
 
-        <CalendarBody>
-          <CalendarGrid />
-        </CalendarBody>
-      </Calendar>
+//         <CalendarBody>
+//           <CalendarGrid />
+//         </CalendarBody>
+//       </Calendar>
       
-      <HStack space="sm" className="mt-4 flex-wrap">
-        <HStack space="xs" className="items-center">
-          <Box className="w-2 h-2 rounded-full bg-primary" />
-          <Text className="text-xs text-muted-foreground">Meeting</Text>
-        </HStack>
-        <HStack space="xs" className="items-center">
-          <Box className="w-2 h-2 rounded-full bg-destructive" />
-          <Text className="text-xs text-muted-foreground">Reminder</Text>
-        </HStack>
-        <HStack space="xs" className="items-center">
-          <Box className="w-2 h-2 rounded-full bg-secondary" />
-          <Text className="text-xs text-muted-foreground">Event</Text>
-        </HStack>
-        <HStack space="xs" className="items-center">
-          <Box className="w-2 h-2 rounded-full bg-accent" />
-          <Text className="text-xs text-muted-foreground">Deadline</Text>
-        </HStack>
-      </HStack>
-    </VStack>
-  )
-};
+//       <HStack space="sm" className="mt-4 flex-wrap">
+//         <HStack space="xs" className="items-center">
+//           <Box className="w-2 h-2 rounded-full bg-primary" />
+//           <Text className="text-xs text-muted-foreground">Meeting</Text>
+//         </HStack>
+//         <HStack space="xs" className="items-center">
+//           <Box className="w-2 h-2 rounded-full bg-destructive" />
+//           <Text className="text-xs text-muted-foreground">Reminder</Text>
+//         </HStack>
+//         <HStack space="xs" className="items-center">
+//           <Box className="w-2 h-2 rounded-full bg-secondary" />
+//           <Text className="text-xs text-muted-foreground">Event</Text>
+//         </HStack>
+//         <HStack space="xs" className="items-center">
+//           <Box className="w-2 h-2 rounded-full bg-accent" />
+//           <Text className="text-xs text-muted-foreground">Deadline</Text>
+//         </HStack>
+//       </HStack>
+//     </VStack>
+//   )
+// };
 
 const ExampleWithDisabledDates = () => {
 const [selected, setSelected] = React.useState(new Date());
@@ -363,31 +363,31 @@ const COMPONENT_VARIANTS = [
     label: "Selection Modes",
     content: <ExampleSelectionModes />,
   },
-  {
-    value: "month-year-picker",
-    label: "Month & Year Picker",
-    content: <ExampleMonthYearPicker />,
-  },
-  {
-    value: "with-event-markers",
-    label: "With Event Markers",
-    content: <ExampleWithEventMarkers />,
-  },
-  {
-    value: "with-disabled-dates",
-    label: "With Disabled Dates",
-    content: <ExampleWithDisabledDates />,
-  },
-  {
-    value: "with-week-numbers",
-    label: "With Week Numbers",
-    content: <ExampleWithWeekNumbers />,
-  },
-  {
-    value: "customized-styling",
-    label: "Customized Styling",
-    content: <ExampleCustomizedStyling />,
-  }
+  // {
+  //   value: "month-year-picker",
+  //   label: "Month & Year Picker",
+  //   content: <ExampleMonthYearPicker />,
+  // },
+  // // {
+  // //   value: "with-event-markers",
+  // //   label: "With Event Markers",
+  // //   content: <ExampleWithEventMarkers />,
+  // // },
+  // {
+  //   value: "with-disabled-dates",
+  //   label: "With Disabled Dates",
+  //   content: <ExampleWithDisabledDates />,
+  // },
+  // {
+  //   value: "with-week-numbers",
+  //   label: "With Week Numbers",
+  //   content: <ExampleWithWeekNumbers />,
+  // },
+  // {
+  //   value: "customized-styling",
+  //   label: "Customized Styling",
+  //   content: <ExampleCustomizedStyling />,
+  // }
 ];
 
 export default function CalendarScreen() {
