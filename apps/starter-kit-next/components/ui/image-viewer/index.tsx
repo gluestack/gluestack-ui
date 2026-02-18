@@ -6,7 +6,6 @@ import {
   Text,
   Image as RNImage,
   Dimensions,
-  Modal,
   TouchableOpacity,
   FlatList,
 } from 'react-native';
@@ -15,15 +14,10 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
   withTiming,
-  withDelay,
   interpolate,
   Extrapolate,
   FadeIn,
   FadeOut,
-  SlideInLeft,
-  SlideInRight,
-  SlideOutLeft,
-  SlideOutRight,
   Easing,
   runOnJS,
 } from 'react-native-reanimated';
@@ -33,6 +27,7 @@ import {
   GestureDetector,
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
+import { Overlay } from '@gluestack-ui/core/overlay/creator';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -90,6 +85,32 @@ interface ImageViewerTriggerProps {
   children: React.ReactNode;
   onPress?: () => void;
 }
+
+// Context for ImageViewer - with default values to prevent errors
+interface ImageViewerContextType {
+  images: ImageItem[];
+  currentIndex: number;
+  isOpen: boolean;
+  open: () => void;
+  close: () => void;
+  goNext: () => void;
+  goPrevious: () => void;
+}
+
+const ImageViewerContext = React.createContext<ImageViewerContextType>({
+  images: [],
+  currentIndex: 0,
+  isOpen: false,
+  open: () => {},
+  close: () => {},
+  goNext: () => {},
+  goPrevious: () => {},
+});
+
+const useImageViewerContext = () => {
+  const context = React.useContext(ImageViewerContext);
+  return context;
+};
 
 // Single Zoomable Image Component
 const ZoomableImage = React.memo(
@@ -316,7 +337,7 @@ const ZoomableImage = React.memo(
         { scale: scale.value },
       ],
       opacity: opacity.value,
-    }),[translateX.value, translateY.value, scale.value, opacity.value]);
+    }));
 
     return (
       <GestureDetector gesture={composedGesture}>
@@ -357,9 +378,13 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
     setIsCurrentImageZoomed(isZoomed);
   }, []);
 
+  // Track previous currentIndex to detect external changes
+  const prevCurrentIndexRef = useRef(currentIndex);
+
   // Scroll to index when currentIndex changes from outside (button press)
   useEffect(() => {
-    if (currentIndex !== localIndex && flatListRef.current) {
+    // Only scroll if currentIndex changed externally (not from manual scroll)
+    if (currentIndex !== prevCurrentIndexRef.current && flatListRef.current) {
       // Reset zoom on current image before scrolling to new one
       const currentImageRef = imageRefsRef.current.get(localIndex);
       if (currentImageRef?.resetZoom) {
@@ -371,8 +396,9 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
         animated: true,
       });
       setLocalIndex(currentIndex);
+      prevCurrentIndexRef.current = currentIndex;
     }
-  }, [currentIndex, localIndex]);
+  }, [currentIndex]);
 
   // Handle scroll - track position without updating state
   const handleScroll = useCallback((event: any) => {
@@ -391,6 +417,7 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
         newIndex < images.length
       ) {
         setLocalIndex(newIndex);
+        prevCurrentIndexRef.current = newIndex; // Update ref to prevent effect from scrolling back
         onIndexChange(newIndex);
       }
     },
@@ -478,29 +505,6 @@ const SlidableImageGallery = React.memo(function SlidableImageGallery({
   );
 });
 
-// Context for ImageViewer
-interface ImageViewerContextType {
-  images: ImageItem[];
-  currentIndex: number;
-  isOpen: boolean;
-  open: () => void;
-  close: () => void;
-  goNext: () => void;
-  goPrevious: () => void;
-}
-
-const ImageViewerContext = React.createContext<
-  ImageViewerContextType | undefined
->(undefined);
-
-const useImageViewerContext = () => {
-  const context = React.useContext(ImageViewerContext);
-  if (!context) {
-    throw new Error('useImageViewerContext must be used within ImageViewer');
-  }
-  return context;
-};
-
 // Main ImageViewer Component
 const ImageViewer = React.forwardRef<View, ImageViewerProps>(
   function ImageViewer(
@@ -561,11 +565,11 @@ const ImageViewer = React.forwardRef<View, ImageViewerProps>(
     );
 
     return (
-      <ImageViewerContext.Provider value={contextValue}>
-        <View ref={ref} className={imageViewerStyle({})}>
+      <View ref={ref} className={imageViewerStyle({})}>
+        <ImageViewerContext.Provider value={contextValue}>
           {children}
-        </View>
-      </ImageViewerContext.Provider>
+        </ImageViewerContext.Provider>
+      </View>
     );
   }
 );
@@ -589,64 +593,65 @@ const ImageViewerTrigger = React.forwardRef<
   );
 });
 
-// Content Component (The Modal)
+// Content Component (Uses gluestack Overlay for proper portal rendering)
+// Context provider is placed INSIDE the Overlay so portaled content has access
 const ImageViewerContent = React.forwardRef<
   View,
   { children?: React.ReactNode }
 >(function ImageViewerContent({ children }, ref) {
-  const { images, currentIndex, isOpen, close, goNext, goPrevious } =
-    useImageViewerContext();
+  const context = useImageViewerContext();
+  const { images, currentIndex, isOpen, close, goNext, goPrevious } = context;
   const currentImage = images[currentIndex];
 
-  if (!isOpen || !currentImage) return null;
-
   return (
-    <Modal
-      visible={isOpen}
-      transparent
-      animationType="none"
+    <Overlay
+      isOpen={isOpen}
       onRequestClose={close}
-      statusBarTranslucent
+      isKeyboardDismissable={true}
     >
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <AnimatedView
-          entering={FadeIn.duration(300).easing(Easing.out(Easing.ease))}
-          exiting={FadeOut.duration(200).easing(Easing.in(Easing.ease))}
-          className={imageViewerModalStyle({})}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <View
-            ref={ref}
-            className={imageViewerContentStyle({})}
+      <ImageViewerContext.Provider value={context}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <AnimatedView
+            entering={FadeIn.duration(300).easing(Easing.out(Easing.ease))}
+            exiting={FadeOut.duration(200).easing(Easing.in(Easing.ease))}
+            className={imageViewerModalStyle({})}
             style={{
-              width: '100%',
-              height: '100%',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
             }}
           >
-            <SlidableImageGallery
-              images={images}
-              currentIndex={currentIndex}
-              onIndexChange={(newIndex) => {
-                if (newIndex > currentIndex) {
-                  goNext();
-                } else if (newIndex < currentIndex) {
-                  goPrevious();
-                }
+            <View
+              ref={ref}
+              className={imageViewerContentStyle({})}
+              style={{
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
-              onDismiss={close}
-            />
-            {children}
-          </View>
-        </AnimatedView>
-      </GestureHandlerRootView>
-    </Modal>
+            >
+              {currentImage && (
+                <SlidableImageGallery
+                  images={images}
+                  currentIndex={currentIndex}
+                  onIndexChange={(newIndex) => {
+                    if (newIndex > currentIndex) {
+                      goNext();
+                    } else if (newIndex < currentIndex) {
+                      goPrevious();
+                    }
+                  }}
+                  onDismiss={close}
+                />
+              )}
+              {children}
+            </View>
+          </AnimatedView>
+        </GestureHandlerRootView>
+      </ImageViewerContext.Provider>
+    </Overlay>
   );
 });
 

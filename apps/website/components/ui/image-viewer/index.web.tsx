@@ -1,7 +1,7 @@
 'use client';
 import React, { useCallback, useState, useEffect } from 'react';
-import { Modal } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { Overlay } from '@gluestack-ui/core/overlay/creator';
 
 interface ImageItem {
   url: string;
@@ -23,9 +23,9 @@ interface ImageViewerTriggerProps {
   onPress?: () => void;
 }
 
-// Web-specific styles - using z-[9999] to ensure it's on top of everything
+// Web-specific styles
 const imageViewerModalStyle = tva({
-  base: 'fixed inset-0 bg-black z-[9999]',
+  base: 'absolute inset-0 bg-black/95',
 });
 
 const imageViewerContentStyle = tva({
@@ -33,7 +33,7 @@ const imageViewerContentStyle = tva({
 });
 
 const imageViewerCloseButtonStyle = tva({
-  base: 'absolute top-2 right-4 z-[10000] w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white text-xl font-bold cursor-pointer backdrop-blur-sm',
+  base: 'absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white text-xl font-bold cursor-pointer backdrop-blur-sm',
 });
 
 const imageViewerNavigationStyle = tva({
@@ -52,7 +52,7 @@ const imageViewerCounterTextStyle = tva({
   base: 'text-white text-sm font-medium bg-black/60 px-4 py-2 rounded-full',
 });
 
-// Context for ImageViewer
+// Context for ImageViewer - with default values to prevent errors when used outside provider
 interface ImageViewerContextType {
   images: ImageItem[];
   currentIndex: number;
@@ -63,15 +63,18 @@ interface ImageViewerContextType {
   goPrevious: () => void;
 }
 
-const ImageViewerContext = React.createContext<
-  ImageViewerContextType | undefined
->(undefined);
+const ImageViewerContext = React.createContext<ImageViewerContextType>({
+  images: [],
+  currentIndex: 0,
+  isOpen: false,
+  open: () => {},
+  close: () => {},
+  goNext: () => {},
+  goPrevious: () => {},
+});
 
 const useImageViewerContext = () => {
   const context = React.useContext(ImageViewerContext);
-  if (!context) {
-    throw new Error('useImageViewerContext must be used within ImageViewer');
-  }
   return context;
 };
 
@@ -135,11 +138,11 @@ const ImageViewer = React.forwardRef<HTMLDivElement, ImageViewerProps>(
     );
 
     return (
-      <ImageViewerContext.Provider value={contextValue}>
-        <div ref={ref} className="w-full">
+      <div ref={ref} className="w-full">
+        <ImageViewerContext.Provider value={contextValue}>
           {children}
-        </div>
-      </ImageViewerContext.Provider>
+        </ImageViewerContext.Provider>
+      </div>
     );
   }
 );
@@ -163,18 +166,19 @@ const ImageViewerTrigger = React.forwardRef<
   );
 });
 
-// Content Component (The Modal)
+// Content Component (Uses gluestack Overlay for proper portal rendering)
+// Context provider is placed INSIDE the Overlay so portaled content has access
 const ImageViewerContent = React.forwardRef<
   HTMLDivElement,
   { children?: React.ReactNode }
 >(function ImageViewerContent({ children }, ref) {
-  const { images, currentIndex, isOpen, close, goNext, goPrevious } =
-    useImageViewerContext();
+  const context = useImageViewerContext();
+  const { images, currentIndex, isOpen, close, goNext, goPrevious } = context;
   const currentImage = images[currentIndex];
 
-  // Handle keyboard navigation - must be before any early return
+  // Handle keyboard navigation
   useEffect(() => {
-    if (!isOpen || !currentImage) return;
+    if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close();
@@ -189,21 +193,29 @@ const ImageViewerContent = React.forwardRef<
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
-  }, [isOpen, currentImage, close, goNext, goPrevious]);
-
-  if (!isOpen || !currentImage) return null;
+  }, [isOpen, close, goNext, goPrevious]);
 
   return (
-    <div className={imageViewerModalStyle({})}>
-      <div ref={ref} className={imageViewerContentStyle({})}>
-        <img
-          src={currentImage.url}
-          alt={currentImage.alt || `Image ${currentIndex + 1}`}
-          className="max-w-full max-h-[80vh] object-contain"
-        />
-        {children}
-      </div>
-    </div>
+    <Overlay
+      isOpen={isOpen}
+      onRequestClose={close}
+      isKeyboardDismissable={true}
+    >
+      <ImageViewerContext.Provider value={context}>
+        <div className={imageViewerModalStyle({})}>
+          <div ref={ref} className={imageViewerContentStyle({})}>
+            {currentImage && (
+              <img
+                src={currentImage.url}
+                alt={currentImage.alt || `Image ${currentIndex + 1}`}
+                className="max-w-full max-h-[80vh] object-contain"
+              />
+            )}
+            {children}
+          </div>
+        </div>
+      </ImageViewerContext.Provider>
+    </Overlay>
   );
 });
 
