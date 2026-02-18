@@ -25,12 +25,14 @@ export function CodePreviewer({
   argTypes,
   reactLive,
   importMap,
+  nativeOnly,
 }: {
   code: string;
   message: string;
   argTypes: Record<string, any>;
   reactLive: any;
   importMap?: Record<string, string[]>;
+  nativeOnly?: boolean;
 }) {
   // Initialize state with default values from args
   const [values, setValues] = useState<Record<string, any>>({});
@@ -154,11 +156,21 @@ export function CodePreviewer({
     <Box className="flex flex-col w-full my-2">
       <Box className="-mb-2 border border-border rounded-t-lg flex-col flex w-full min-h-[200px] md:flex-row">
         <Box className="p-4 md:border-r border-border flex-1 flex items-center justify-center w-full ">
-          {isReady && (
-            <LiveProvider code={compiledCode} scope={{ ...reactLive }}>
-              <LiveError />
-              <LivePreview className=" flex items-center justify-center  w-full" />
-            </LiveProvider>
+          {nativeOnly ? (
+            <Box className="flex flex-col items-center justify-center gap-2 py-4 px-6 text-center">
+              <Text className="text-2xl">📱</Text>
+              <Text className="text-sm font-semibold text-foreground">React Native / Expo only</Text>
+              <Text className="text-xs text-muted-foreground max-w-[260px]">
+                This component is not supported in Next.js. Preview it in a React Native or Expo environment.
+              </Text>
+            </Box>
+          ) : (
+            isReady && (
+              <LiveProvider code={compiledCode} scope={{ ...reactLive }}>
+                <LiveError />
+                <LivePreview className=" flex items-center justify-center  w-full" />
+              </LiveProvider>
+            )
           )}
         </Box>
         {Object.keys(argTypes).length > 0 && (
