@@ -17,7 +17,7 @@ import React from 'react';
 import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
 
 const ExampleBasic = () => {
-  return (
+return (
     <Tabs defaultValue="home">
       <TabsList>
         <TabsTrigger value="home">
@@ -50,7 +50,7 @@ const ExampleBasic = () => {
         </TabsContent>
       </TabsContentWrapper>
     </Tabs>
-  );
+  )
 };
 
 const ExampleWithIndicator = () => {
@@ -480,8 +480,8 @@ const COMPONENT_VARIANTS = [
     content: <ExampleBasic />,
   },
   {
-    value: 'with-indicator',
-    label: 'With Indicator',
+    value: "with-indicator",
+    label: "With Indicator",
     content: <ExampleWithIndicator />,
   },
   {

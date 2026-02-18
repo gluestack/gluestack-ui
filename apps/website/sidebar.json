@@ -265,7 +265,15 @@
               },
               {
                 "title": "Calendar",
-                "path": "/ui/docs/components/calendar"
+                "path": "/ui/docs/components/calendar",
+                "url": "https://i.imgur.com/fZPMCl3.png",
+                "darkUrl": "https://i.imgur.com/1c2clr3.png"
+              },
+              {
+                "title": "Tabs",
+                "path": "/ui/docs/components/tabs",
+                "url": "https://i.imgur.com/fZPMCl3.png",
+                "darkUrl": "https://i.imgur.com/1c2clr3.png"
               },
               {
                 "title": "FormControl",
@@ -371,7 +379,9 @@
               },
               {
                 "title": "Image Viewer",
-                "path": "/ui/docs/components/image-viewer"
+                "path": "/ui/docs/components/image-viewer",
+                "url": "https://i.imgur.com/OyRsX4f.png",
+                "darkUrl": "https://i.imgur.com/VzxzCVU.png"
               }
             ]
           },

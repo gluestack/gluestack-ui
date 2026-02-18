@@ -1,0 +1,16 @@
+{
+  "title": "Different Modes",
+  "description": "DateTimePicker supports three modes: date only, time only, and combined datetime selection",
+  "argTypes": {},
+  "reactLive": {
+    "DateTimePicker": "@/components/ui/date-time-picker",
+    "DateTimePickerTrigger": "@/components/ui/date-time-picker",
+    "DateTimePickerInput": "@/components/ui/date-time-picker",
+    "DateTimePickerIcon": "@/components/ui/date-time-picker",
+    "Box": "@/components/ui/box",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "CalendarDaysIcon": "@/components/ui/icon",
+    "ClockIcon": "@/components/ui/icon"
+  }
+}

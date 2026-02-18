@@ -1,0 +1,29 @@
+{
+  "title": "Customized Styling",
+  "description": "Customize the calendar appearance with different sizes, colors, and styles using Tailwind classes",
+  "argTypes": {
+    "size": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["sm", "md", "lg"],
+      "defaultValue": "md"
+    }
+  },
+  "reactLive": {
+    "Calendar": "@/components/ui/calendar",
+    "CalendarHeader": "@/components/ui/calendar",
+    "CalendarHeaderPrevButton": "@/components/ui/calendar",
+    "CalendarHeaderNextButton": "@/components/ui/calendar",
+    "CalendarHeaderTitle": "@/components/ui/calendar",
+    "CalendarWeekDaysHeader": "@/components/ui/calendar",
+    "CalendarBody": "@/components/ui/calendar",
+    "CalendarGrid": "@/components/ui/calendar",
+    "Box": "@/components/ui/box",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "Icon": "@/components/ui/icon",
+    "ChevronLeftIcon": "@/components/ui/icon",
+    "ChevronRightIcon": "@/components/ui/icon"
+  }
+}

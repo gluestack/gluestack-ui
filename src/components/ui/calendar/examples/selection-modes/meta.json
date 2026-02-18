@@ -1,0 +1,33 @@
+{
+  "title": "Selection Modes",
+  "description": "Calendar supports three selection modes: single date, multiple dates, and date range selection",
+  "argTypes": {
+    "mode": {
+      "control": {
+        "type": "select"
+      },
+      "options": ["single", "multiple", "range"],
+      "defaultValue": "single"
+    }
+  },
+  "reactLive": {
+    "Calendar": "@/components/ui/calendar",
+    "CalendarHeader": "@/components/ui/calendar",
+    "CalendarHeaderPrevButton": "@/components/ui/calendar",
+    "CalendarHeaderNextButton": "@/components/ui/calendar",
+    "CalendarHeaderTitle": "@/components/ui/calendar",
+    "CalendarWeekDaysHeader": "@/components/ui/calendar",
+    "CalendarBody": "@/components/ui/calendar",
+    "CalendarGrid": "@/components/ui/calendar",
+    "CalendarDay": "@/components/ui/calendar",
+    "CalendarDayText": "@/components/ui/calendar",
+    "CalendarDayIndicator": "@/components/ui/calendar",
+    "Box": "@/components/ui/box",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "HStack": "@/components/ui/hstack",
+    "Icon": "@/components/ui/icon",
+    "ChevronLeftIcon": "@/components/ui/icon",
+    "ChevronRightIcon": "@/components/ui/icon"
+  }
+}

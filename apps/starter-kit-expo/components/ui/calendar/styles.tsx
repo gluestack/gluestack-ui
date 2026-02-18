@@ -70,10 +70,10 @@ export const calendarDayStyle = tva({
   base: 'flex-1 aspect-square items-center justify-center rounded-md web:max-w-[2.25rem] relative transition-colors',
   variants: {
     state: {
-      default: 'hover:bg-accent active:bg-accent/80',
-      selected: 'bg-primary hover:bg-primary/90 active:bg-primary/80',
-      today: 'bg-accent',
-      disabled: 'opacity-40 cursor-not-allowed',
+      'default': 'hover:bg-accent active:bg-accent/80',
+      'selected': 'bg-primary hover:bg-primary/90 active:bg-primary/80',
+      'today': 'bg-accent',
+      'disabled': 'opacity-40 cursor-not-allowed',
       'outside-month': 'opacity-30',
       'range-start': 'bg-primary rounded-r-md',
       'range-end': 'bg-primary rounded-l-md',
@@ -86,10 +86,10 @@ export const calendarDayTextStyle = tva({
   base: 'text-foreground text-sm font-normal z-10',
   variants: {
     state: {
-      default: 'text-foreground',
-      selected: 'text-primary-foreground ',
-      today: 'text-accent-foreground',
-      disabled: 'text-muted-foreground',
+      'default': 'text-foreground',
+      'selected': 'text-primary-foreground ',
+      'today': 'text-accent-foreground',
+      'disabled': 'text-muted-foreground',
       'outside-month': 'text-muted-foreground',
       'range-start': 'text-primary-foreground font-semibold',
       'range-end': 'text-primary-foreground font-semibold',
@@ -103,9 +103,9 @@ export const calendarDayIndicatorStyle = tva({
   base: 'absolute bottom-1 flex-row gap-0.5 z-0',
   variants: {
     type: {
-      dot: 'flex-row gap-0.5',
+      'dot': 'flex-row gap-0.5',
       'multi-dot': 'flex-row gap-0.5',
-      period: 'absolute inset-0 rounded-md opacity-20',
+      'period': 'absolute inset-0 rounded-md opacity-20',
     },
   },
 });

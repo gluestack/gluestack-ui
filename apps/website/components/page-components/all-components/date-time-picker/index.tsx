@@ -1,25 +1,19 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
-
+import { DateTimePicker } from '@/components/ui/date-time-picker';
+import { DateTimePickerTrigger } from '@/components/ui/date-time-picker';
+import { DateTimePickerInput } from '@/components/ui/date-time-picker';
+import { DateTimePickerIcon } from '@/components/ui/date-time-picker';
+import { Box } from '@/components/ui/box';
+import { CalendarDaysIcon } from '@/components/ui/icon';
 
 export default function Example() {
   return (
     <ComponentPreviewer
-      code={`<script>
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import { 
-  DateTimePicker, 
-  DateTimePickerTrigger, 
-  DateTimePickerInput, 
-  DateTimePickerIcon 
-} from '@/components/ui/date-time-picker';
-import { CalendarDays } from 'lucide-react-native';
-
-const Example = () => {
-  const [date, setDate] = useState(new Date());
+      code={`function Example() {
+  const [date, setDate] = React.useState(new Date());
 
   return (
-    <View className="p-4">
+    <Box className="p-4 w-full">
       <DateTimePicker
         value={date}
         onChange={setDate}
@@ -28,17 +22,14 @@ const Example = () => {
       >
         <DateTimePickerTrigger>
           <DateTimePickerInput />
-          <DateTimePickerIcon as={CalendarDays} />
+          <DateTimePickerIcon as={CalendarDaysIcon} />
         </DateTimePickerTrigger>
       </DateTimePicker>
-    </View>
+    </Box>
   );
-};
-
-export default Example;
-</script>`}
+}`}
       argTypes={{}}
-      reactLive={{  }}
+      reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, Box, CalendarDaysIcon }}
     />
   );
 }
