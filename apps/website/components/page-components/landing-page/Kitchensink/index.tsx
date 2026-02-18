@@ -98,7 +98,7 @@ const Kitchensink = () => {
                         ios
                       </Text>
                     </HStack>
-                    <Divider />
+                    <Divider className="bg-border w-full" />
                     <HStack className="flex-1 items-center justify-center gap-2">
                       <Android />
                       <Text className="text-md font-normal leading-[30px] flex-1">

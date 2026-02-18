@@ -29,7 +29,7 @@ import { InlineCode } from '@/docs-components/inline-code';
 
 # Installation
 
-To get started with **gluestack-ui v3**, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
+To get started with **gluestack-ui {`${process.env.NEXT_PUBLIC_GLUESTACK_VERSION || 'v4'}`}**, check out this quick installation guide. It provides simple steps to help you install and use the library in your projects.
 
 <Tabs>
 <TabItem label="CLI">
@@ -102,22 +102,25 @@ Setup nativewind in your project following [NativeWind documentation](https://ww
 Install the dependencies and devDependencies of gluestack-ui in your project. This can be done using the following command:
 
 ```bash
-yarn add @gluestack-ui/core @gluestack-ui/utils react-native-svg @gluestack/ui-next-adapter react-native-web react-native
+yarn add @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-svg @gluestack/ui-next-adapter@alpha react-native-web react-native
 ```
 
 OR
 
 ```bash
-npm i @gluestack-ui/core @gluestack-ui/utils react-native-svg @gluestack/ui-next-adapter react-native-web react-native
+npm i @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-svg @gluestack/ui-next-adapter@alpha react-native-web react-native
 ```
 
-For Next.js 14, it's recommended to use the `--legacy-peer-deps` flag due to peer dependency resolution issues.
+It's recommended to use the `--legacy-peer-deps` flag due to peer dependency resolution issues.
 
 ```bash
-npm i @gluestack-ui/core @gluestack-ui/utils react-native-svg @gluestack/ui-next-adapter react-native-web react-native --legacy-peer-deps
+npm i @gluestack-ui/core@alpha @gluestack-ui/utils@alpha react-native-svg @gluestack/ui-next-adapter@alpha react-native-web react-native --legacy-peer-deps
 ```
 
-> **For React Native CLI:** Make sure to install `react-dom` as well as it is required by some of the Gluestack UI components.
+> **For React Native CLI:** Make sure to install `react-dom` as well as it is required by some of the Gluestack UI components. `npm i react-dom`
+
+> **Animation Libraries:** In gluestack-ui v4, we primarily use `react-native-reanimated` (~4.1.0) for most animated components (Accordion, Drawer, Modal, Menu, Popover, Toast). Some components still use `@legendapp/motion` (Tooltip, ActionSheet, Select). The CLI automatically installs the required dependencies for your project.
+
 
 ### Step 4: Copy required components
 
@@ -182,13 +185,13 @@ It's also recommended to set up your server-side rendering (SSR) correctly. To d
 
 <Tabs>
 <TabItem label="App Router">
-(**For Next-15 only**) For Next.js App Routers we will create a new `registry.tsx` file in the `app` folder of your project and use the flush function from `utils/gluestack-utils/nativewind-utils/flush`
+(**For Next-15+ only**) For Next.js App Routers we will create a new `registry.tsx` file in the `app` folder of your project and use the flush function from `utils/gluestack-utils/nativewind-utils/flush`
 
 ```tsx
 %%-- File: packages/gluestack-ui/templates/nextjs/next15/registry.tsx --%%
 ```
 
-- (**For Next-15 only**) We also need to wrap `children` with `StyledJsxRegistry` in the `layout.tsx` file.
+- (**For Next-15+ only**) We also need to wrap `children` with `StyledJsxRegistry` in the `layout.tsx` file.
 
 ```jsx
 "use client";

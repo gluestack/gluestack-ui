@@ -108,7 +108,7 @@ const NavigationContent = ({ show }: { show: boolean }) => {
             <Button
               onPress={() => setShowAlertDialog(true)}
               className="flex-1"
-              size="md"
+              size="default"
             >
               <ButtonText className="text-center text-sm">
                 Open Alert Dialog

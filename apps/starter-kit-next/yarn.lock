@@ -447,10 +447,10 @@
     react-stately "^3.39.0"
     tailwind-variants "0.1.20"
 
-"@gluestack/ui-next-adapter@^3.0.3":
-  version "3.0.3"
-  resolved "https://registry.npmjs.org/@gluestack/ui-next-adapter/-/ui-next-adapter-3.0.3.tgz#e22df43f6ed1c56c33e1f3e25b8a5b198828412b"
-  integrity sha512-KqddPNq5YsTa9f4GQL4DcSEwbbfBWMahR1blj37Z7oJYLwPHF6aAVn00ZaOHI75lE4eh9KjIWMbyJAJ2h0x5/A==
+"@gluestack/ui-next-adapter@^4.0.0-alpha.0":
+  version "4.0.0-alpha.0"
+  resolved "https://registry.npmjs.org/@gluestack/ui-next-adapter/-/ui-next-adapter-4.0.0-alpha.0.tgz#837eca4523448542687788d433dedb7f31e71050"
+  integrity sha512-jdnMoZiFWyZXyNJ8GcGZ92Zl5xBjXP21P6LU6VMFPtE/Lq6NdE6cTGM01N6qDz70hxzXu2hhixjJUg51/WBl4A==
   dependencies:
     find-yarn-workspace-root "^2.0.0"
     fs-extra "^11.1.0"

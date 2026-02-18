@@ -26,6 +26,7 @@ const addOptionsSchema = z.object({
   useBun: z.boolean(),
   path: z.string().optional(),
   templateOnly: z.boolean(),
+  yes: z.boolean().optional().default(false),
 });
 
 export const add = new Command()
@@ -43,8 +44,17 @@ export const add = new Command()
     'Only install the template without installing dependencies',
     false
   )
+  .option(
+    '-y, --yes',
+    'Answer yes to all prompts (for non-interactive environments)',
+    false
+  )
   .action(async (components, opts, command) => {
     try {
+      // Set yesToAll first (from --yes or -y) so all prompts are skipped in non-interactive environments
+      if (opts.yes === true || (opts as { y?: boolean }).y === true) {
+        config.yesToAll = true;
+      }
       const options = addOptionsSchema.parse({
         components: command.args.length > 0 ? command.args : [],
         ...opts,

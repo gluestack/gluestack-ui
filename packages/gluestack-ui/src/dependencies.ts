@@ -33,7 +33,7 @@ const projectBasedDependencies: Dependencies = {
       'react-stately': '^3.39.0',
       '@gluestack-ui/core': '^4.0.0-alpha.0',
       '@gluestack-ui/utils': '^4.0.0-alpha.0',
-      '@gluestack/ui-next-adapter': '^3.0.3',
+      '@gluestack/ui-next-adapter': '^4.0.0-alpha.0',
       'react-native-safe-area-context': '^5.6.1',
       'react-native-reanimated': '~4.1.0',
       'react-native-worklets': '^0.5.1',

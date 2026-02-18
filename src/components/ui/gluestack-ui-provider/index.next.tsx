@@ -1,4 +1,4 @@
-// This is a Next.js 15 compatible version of the GluestackUIProvider
+// This is a Next.js 15+ compatible version of the GluestackUIProvider
 'use client';
 import React, { useEffect, useLayoutEffect } from 'react';
 import { config } from './config';

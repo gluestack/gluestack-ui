@@ -6,9 +6,11 @@ import { useAppTheme } from '@/contexts/app-theme-context';
 import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { BlurView } from 'expo-blur';
 import * as Haptics from 'expo-haptics';
-import { usePathname, useRouter } from 'expo-router';
-import { PaletteIcon } from 'lucide-react-native';
-import { cssInterop } from 'nativewind';
+import { Stack, usePathname, useRouter } from 'expo-router';
+import { Search, PaletteIcon } from 'lucide-react-native';
+import { cssInterop } from 'nativewind';  
+import { GlassView } from 'expo-glass-effect';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Modal,
@@ -18,6 +20,7 @@ import {
   useWindowDimensions,
   View
 } from 'react-native';
+import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import Animated, {
   Easing,
@@ -26,8 +29,11 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
+  ZoomIn,
+  ZoomOut,
 } from 'react-native-reanimated';
 const AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedGlassView = Animated.createAnimatedComponent(GlassView);
 Platform.OS === 'web' ? cssInterop(AnimatedView, { className: 'style' }) : null;
 // Theme color mapping for the theme button indicator
 const THEME_COLORS: Record<ThemeName, string[]> = {
@@ -74,7 +80,7 @@ const BottomControlBar = memo(
     onPillPress,
     components,
     currentComponent,
-    bottomOffset = 34,
+    bottomOffset = 24,
     pillWidth = 200,
     children,
   }: BottomControlBarProps) => {
@@ -104,10 +110,10 @@ const BottomControlBar = memo(
     const { isDark, toggleColorMode, currentTheme, setTheme, availableThemes } =
       useAppTheme();
     const { width, height } = useWindowDimensions();
-
+    const insets = useSafeAreaInsets();
     const { reduceTransparencyEnabled } = useAccessibilityInfo();
     const applyBlur = !reduceTransparencyEnabled && Platform.OS !== 'web';
-
+ const supportsLiquidGlass = isLiquidGlassAvailable();
     // Autofocus search input when component menu opens
     useEffect(() => {
       if (showComponentMenu) {
@@ -185,29 +191,18 @@ const BottomControlBar = memo(
       }
     }, [onPillPress, components]);
 
+    const bottom = supportsLiquidGlass || Platform.OS === "web"
+  ? bottomOffset : insets.bottom;
+
     return (
       <>
         {/* Bottom Control Bar */}
         <View
-          className="absolute left-0 right-0 items-center"
-          style={{ bottom: bottomOffset }}
+          className="absolute z-[20] justify-between flex-row px-4 left-0 right-0 items-center"
+          style={{ bottom: bottom }}
           pointerEvents="box-none"
         >
-          <View className="flex-row items-center gap-3">
-            {/* Dark/Light Mode Toggle */}
-            <Pressable
-              onPress={handleToggleColorMode}
-              className="w-16 h-16 rounded-full border border-input dark:bg-input/[0.075] items-center justify-center"
-            >
-              <AnimatedView style={colorModeAnimatedStyle}>
-                <Icon
-                  as={isDark ? SunIcon : MoonIcon}
-                  className="text-foreground"
-                  size="md"
-                />
-              </AnimatedView>
-            </Pressable>
-
+          <View className="flex-row items-center w-full justify-between gap-3">
             {/* Theme Selector Button */}
             <View
               ref={themeButtonRef}
@@ -219,9 +214,24 @@ const BottomControlBar = memo(
             >
               <Pressable
                 onPress={() => setShowThemeMenu(true)}
-                className="w-16 h-16 rounded-full border border-input dark:bg-input/[0.075] items-center justify-center"
+                className={`${supportsLiquidGlass ? '' : 'border border-input dark:bg-muted/5 bg-background'} shadow-hard-5 rounded-full`}
               >
-                <Icon as={PaletteIcon} className="text-foreground" size="md" />
+                <GlassView
+                  glassEffectStyle="clear"
+                  style={{
+                    width: 56,
+                    height: 56,
+                    borderRadius: 28,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Icon
+                    as={PaletteIcon}
+                    className="text-foreground"
+                    size="md"
+                  />
+                </GlassView>
               </Pressable>
             </View>
 
@@ -236,18 +246,25 @@ const BottomControlBar = memo(
                     setComponentButtonLayout({ x, y, width: w, height: h });
                   });
                 }}
+              
+                className={`${supportsLiquidGlass ? '' : 'border border-input dark:bg-muted/5 bg-background'}  shadow-hard-5 rounded-full`}
               >
-                <Pressable
-                  onPress={handlePillPress}
-                  className="px-6 py-5 bg-primary rounded-full"
+                <GlassView
+                  glassEffectStyle="clear"
                   style={{
-                    width: pillWidth,
+                    width: 56,
+                    borderRadius: 100,
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
-                  <Text className=" text-base font-sans text-primary-foreground font-medium text-center">
-                    {pillLabel}
-                  </Text>
-                </Pressable>
+                  <Pressable
+                    onPress={handlePillPress}
+                    className="px-6 py-5 rounded-full"
+                  >
+                    <Icon as={Search} size="md" />
+                  </Pressable>
+                </GlassView>
               </View>
             ) : null}
           </View>
@@ -296,19 +313,19 @@ const BottomControlBar = memo(
 
               {/* Menu Content - Positioned above the button */}
               <AnimatedView
-                entering={FadeIn.duration(200)
-                  .springify()
-                  .damping(40)
-                  .stiffness(200)}
-                exiting={FadeOut.duration(150)}
-                className="absolute bg-popover border border-border rounded-2xl"
+                className={`${supportsLiquidGlass ? 'bg-tranparent' : 'bg-background border border-input'} absolute rounded-2xl`}
+                entering={ZoomIn.duration(200).withInitialValues({
+                  transform: [{ scale: 0.9 }],
+                  opacity: 0,
+                })}
+                exiting={FadeOut.duration(200)}
                 style={{
                   bottom: height - componentButtonLayout.y + 12,
                   right:
                     width -
                     componentButtonLayout.x -
                     componentButtonLayout.width,
-                  width: Math.min(350),
+                  width: (width * 2) / 3,
                   maxHeight: height * 0.5,
                   shadowColor: isDark ? '#fff' : '#000',
                   shadowOffset: { width: 0, height: -4 },
@@ -317,60 +334,65 @@ const BottomControlBar = memo(
                   elevation: 12,
                 }}
               >
-                {/* Search Input */}
-                <View className="px-3 py-3 border-b border-input">
-                  <Input className="flex-row items-center h-11 rounded-full border border-input bg-background">
-                    <InputSlot className="pl-3 justify-center items-center">
-                      <Icon as={SearchIcon} size="sm" />
-                    </InputSlot>
-                    <InputField
-                      ref={searchInputRef}
-                      placeholder="Search..."
-                      value={searchQuery}
-                      onChangeText={setSearchQuery}
-                      autoCapitalize="none"
-                      autoCorrect={false}
-                    />
-                  </Input>
-                </View>
+                <GlassView
+                  glassEffectStyle="regular"
+                  style={{ width: '100%', height: '100%', borderRadius: 16 }}
+                >
+                  {/* Search Input */}
+                  <View className="px-3 py-3 border-b border-foreground/10">
+                    <Input className="flex-row items-center h-11 data-[focus=true]:border-foreground/10 rounded-full border border-foreground/10 relative ">
+                      <InputSlot className="pl-3 justify-center items-center">
+                        <Icon as={SearchIcon} size="sm" />
+                      </InputSlot>
+                      <InputField
+                        ref={searchInputRef}
+                        placeholder="Search..."
+                        value={searchQuery}
+                        onChangeText={setSearchQuery}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                      />
+                    </Input>
+                  </View>
 
-                <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
-                {/* Component List */}
-                {/* <ScrollView
+                  <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
+                    {/* Component List */}
+                    {/* <ScrollView
                   className="flex-1"
                   showsVerticalScrollIndicator={false}
                   bounces={false}
                 > */}
-                  <View className="py-2 gap-1">
-                    {filteredComponents.map((item, index) => (
-                      <Pressable
-                        key={item.path}
-                        onPress={() => handleComponentSelect(item, index)}
-                        className={`px-3 py-2.5 mx-1.5 rounded-lg flex-row items-center gap-2.5 ${
-                          currentComponent?.path === item.path
-                            ? 'bg-secondary/70'
-                            : 'active:bg-primary/10'
-                        }`}
-                      >
-                        <Text
-                          className={`text-sm font-medium ${
+                    <View className="py-2 gap-1">
+                      {filteredComponents.map((item, index) => (
+                        <Pressable
+                          key={item.path}
+                          onPress={() => handleComponentSelect(item, index)}
+                          className={`px-3 py-2.5 mx-1.5 rounded-lg flex-row items-center gap-2.5 ${
                             currentComponent?.path === item.path
-                              ? 'text-secondary-foreground'
-                              : ''
+                              ? 'bg-secondary/70'
+                              : 'active:bg-primary/10'
                           }`}
                         >
-                          {item.title}
+                          <Text
+                            className={`text-sm font-medium ${
+                              currentComponent?.path === item.path
+                                ? 'text-secondary-foreground'
+                                : ''
+                            }`}
+                          >
+                            {item.title}
+                          </Text>
+                        </Pressable>
+                      ))}
+                      {filteredComponents.length === 0 && (
+                        <Text className="text-foreground text-sm p-2.5 text-center">
+                          No components found
                         </Text>
-                      </Pressable>
-                    ))}
-                    {filteredComponents.length === 0 && (
-                      <Text className="text-foreground text-sm p-2.5 text-center">
-                        No components found
-                      </Text>
-                    )}
-                  </View>
-                  {/* </ScrollView> */}
+                      )}
+                    </View>
+                    {/* </ScrollView> */}
                   </KeyboardAwareScrollView>
+                </GlassView>
               </AnimatedView>
             </View>
           </Modal>
@@ -412,19 +434,51 @@ const BottomControlBar = memo(
 
             {/* Menu Content - Positioned above the button */}
             <AnimatedView
-              entering={FadeIn.duration(200)
-                .springify()
-                .damping(40)
-                .stiffness(200)}
-              exiting={FadeOut.duration(150)}
-              className="absolute bg-card rounded-3xl p-6"
+              entering={ZoomIn.duration(200).withInitialValues({
+                transform: [{ scale: 0.9 }],
+              })}
+              className={`absolute rounded-3xl ${supportsLiquidGlass ? 'bg-tranparent' : 'bg-background border border-input'}`}
               style={{
                 bottom: height - themeButtonLayout.y + 12,
-                width: Math.min(width - 80, 340),
+                width: width * 0.9,
               }}
             >
-              {/* Theme Content */}
-              <View className="gap-6">
+              <GlassView
+                glassEffectStyle="regular"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: 16,
+                  padding: 16,
+                  gap: 16,
+                }}
+              >
+                {/* Theme Content */}
+
+                {/* Dark/Light Mode Toggle */}
+                <View className="items-center">
+                  <Pressable
+                    onPress={() => {
+                      setShowThemeMenu(false);
+                      handleToggleColorMode();
+                    }}
+                  >
+                    <View className="border border-foreground/10 rounded-full p-4">
+                      <Icon
+                        as={isDark ? SunIcon : MoonIcon}
+                        className="text-foreground"
+                        size="md"
+                      />
+                    </View>
+                  </Pressable>
+                  <Text className="text-foreground/60 font-outfit text-sm mt-2">
+                    {isDark ? 'Dark Mode' : 'Light Mode'}
+                  </Text>
+                </View>
+
+                {/* Divider */}
+                <View className="h-px bg-foreground/10" />
+
                 {/* Color Palettes */}
                 <View className="flex-row justify-center gap-3">
                   {availableThemes
@@ -459,7 +513,7 @@ const BottomControlBar = memo(
                 </View>
 
                 {/* Current Theme Indicator */}
-                <View className="items-center px-6 py-4 border border-input rounded-full">
+                <View className="items-center px-6 py-4 border border-foreground/10 rounded-full">
                   <Text className="text-foreground font-outfit font-medium text-base capitalize">
                     {currentTheme === 'default'
                       ? 'Default'
@@ -480,7 +534,7 @@ const BottomControlBar = memo(
                     Reset to Default
                   </Text>
                 </Pressable>
-              </View>
+              </GlassView>
             </AnimatedView>
           </View>
         </Modal>

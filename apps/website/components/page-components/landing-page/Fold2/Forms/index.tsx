@@ -292,7 +292,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
                 <AccordionTrigger>
                   {({ isExpanded }: { isExpanded: boolean }) => {
                     return (
-                      < HStack className='gap-3 items-center justify-center'>
+                      < HStack className='gap-3 items-center mx-4'>
                     
                           <AccordionIcon as={ChevronDownIcon}  />
                       
@@ -304,7 +304,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
                   }}
                 </AccordionTrigger>
               </AccordionHeader>
-              <AccordionContent className="ml-8">
+              <AccordionContent className="ml-12 mr-2">
                 <AccordionContentText>
                   To place an order, simply select the products you want,
                   proceed to checkout, provide shipping and payment information,
@@ -320,7 +320,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
                 <AccordionTrigger>
                   {({ isExpanded }: { isExpanded: boolean }) => {
                     return (
-                      < HStack className='gap-3 items-center justify-center'>
+                      < HStack className='gap-3 items-center mx-4'>
                     
                           <AccordionIcon as={ChevronDownIcon}  />
                       
@@ -332,7 +332,7 @@ const FormsContent = ({ show }: { show: boolean }) => {
                   }}
                 </AccordionTrigger>
               </AccordionHeader>
-              <AccordionContent className="ml-8">
+              <AccordionContent className="ml-12 mr-2">
                 <AccordionContentText>
                   We accept all major credit cards, including Visa, Mastercard,
                   and American Express. We also support payments through PayPal.
