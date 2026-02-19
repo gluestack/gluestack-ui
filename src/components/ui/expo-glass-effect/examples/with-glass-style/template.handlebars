@@ -10,17 +10,19 @@ function Example() {
       <View className="flex-1 flex-row items-center justify-center gap-4 px-5">
         <GlassView
           glassEffectStyle="regular"
-          className="flex-1 h-28 rounded-2xl items-center justify-center gap-1.5"
+          isInteractive
+          className="flex-1 h-28 rounded-3xl items-center justify-center gap-1.5"
         >
-          <Text className="text-white font-semibold">Regular</Text>
-          <Text className="text-white/70 text-xs text-center">Frosted</Text>
+          <Text className="text-foreground/90 font-semibold">Regular</Text>
+          <Text className="text-foreground/70 text-xs text-center">Frosted</Text>
         </GlassView>
         <GlassView
           glassEffectStyle="clear"
-          className="flex-1 h-28 rounded-2xl items-center justify-center gap-1.5"
+          isInteractive
+          className="flex-1 h-28 rounded-3xl items-center justify-center gap-1.5"
         >
-          <Text className="text-white font-semibold">Clear</Text>
-          <Text className="text-white/70 text-xs text-center">Transparent</Text>
+          <Text className="text-foreground/90 font-semibold">Clear</Text>
+          <Text className="text-foreground/70 text-xs text-center">Transparent</Text>
         </GlassView>
       </View>
     </View>

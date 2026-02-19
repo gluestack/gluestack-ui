@@ -9,21 +9,21 @@ function Example() {
 
       {/* GlassContainer merges adjacent GlassViews */}
       <View className="p-4">
-        <GlassContainer spacing={8} className="rounded-2xl">
+        <GlassContainer spacing={10} className="rounded-3xl bg-background/30">
           <VStack className="gap-2 p-2">
-            <GlassView className="p-4 rounded-xl">
-              <HStack className="gap-3 items-center">
+            <GlassView className="p-4 rounded-full" isInteractive>
+              <HStack className="gap-3 items-center px-4">
                 <VStack className="gap-0.5">
-                  <Text className="text-white font-semibold">Notifications</Text>
-                  <Text className="text-white/70 text-sm">3 new alerts</Text>
+                  <Text className="text-foreground/90 font-semibold">Notifications</Text>
+                  <Text className="text-foreground/70 text-sm">3 new alerts</Text>
                 </VStack>
               </HStack>
             </GlassView>
-            <GlassView className="p-4 rounded-xl">
-              <HStack className="gap-3 items-center">
+            <GlassView className="p-4 rounded-full" isInteractive>
+              <HStack className="gap-3 items-center px-4">
                 <VStack className="gap-0.5">
-                  <Text className="text-white font-semibold">Messages</Text>
-                  <Text className="text-white/70 text-sm">2 unread</Text>
+                  <Text className="text-foreground/90 font-semibold">Messages</Text>
+                  <Text className="text-foreground/70 text-sm">2 unread</Text>
                 </VStack>
               </HStack>
             </GlassView>

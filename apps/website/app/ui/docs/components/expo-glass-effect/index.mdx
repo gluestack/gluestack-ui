@@ -42,9 +42,9 @@ This is an illustration of the **GlassEffect** component.
 
       {/* Glass card */}
       <View className="flex-1 items-center justify-center p-4">
-        <GlassView className="p-5 rounded-2xl items-center gap-1.5">
-          <Text className="text-white text-lg font-semibold">Glass Effect</Text>
-          <Text className="text-white/80 text-sm text-center">
+        <GlassView className="p-5 rounded-2xl items-center gap-1.5" glassEffectStyle="clear">
+          <Text className="text-foreground/90 text-lg font-semibold">Glass Effect</Text>
+          <Text className="text-foreground/70 text-sm text-center">
             Built with expo-glass-effect
           </Text>
         </GlassView>
@@ -74,21 +74,21 @@ This is an illustration of the **GlassEffect** component.
 
       {/* GlassContainer merges adjacent GlassViews */}
       <View className="p-4">
-        <GlassContainer spacing={8} className="rounded-2xl">
+        <GlassContainer spacing={10} className="rounded-3xl bg-background/30">
           <VStack className="gap-2 p-2">
-            <GlassView className="p-4 rounded-xl">
-              <HStack className="gap-3 items-center">
+            <GlassView className="p-4 rounded-full" isInteractive>
+              <HStack className="gap-3 items-center px-4">
                 <VStack className="gap-0.5">
-                  <Text className="text-white font-semibold">Notifications</Text>
-                  <Text className="text-white/70 text-sm">3 new alerts</Text>
+                  <Text className="text-foreground/90 font-semibold">Notifications</Text>
+                  <Text className="text-foreground/70 text-sm">3 new alerts</Text>
                 </VStack>
               </HStack>
             </GlassView>
-            <GlassView className="p-4 rounded-xl">
-              <HStack className="gap-3 items-center">
+            <GlassView className="p-4 rounded-full" isInteractive>
+              <HStack className="gap-3 items-center px-4">
                 <VStack className="gap-0.5">
-                  <Text className="text-white font-semibold">Messages</Text>
-                  <Text className="text-white/70 text-sm">2 unread</Text>
+                  <Text className="text-foreground/90 font-semibold">Messages</Text>
+                  <Text className="text-foreground/70 text-sm">2 unread</Text>
                 </VStack>
               </HStack>
             </GlassView>
@@ -119,18 +119,20 @@ This is an illustration of the **GlassEffect** component.
       <View className="absolute top-4 right-12 w-14 h-14 rounded-full bg-rose-300 opacity-60" />
 
       <View className="flex-1 flex-row items-center justify-center gap-3 px-4">
-        <GlassView colorScheme="light" className="flex-1 h-24 rounded-xl items-center justify-center gap-1">
+        <GlassContainer className="flex-row gap-2">
+        <GlassView colorScheme="light" className="flex-1 h-24 rounded-xl items-center justify-center gap-1" glassEffectStyle="clear" isInteractive>
           <Text className="text-white font-semibold text-sm">Light</Text>
           <Text className="text-white/70 text-xs">Always light</Text>
         </GlassView>
-        <GlassView colorScheme="dark" className="flex-1 h-24 rounded-xl items-center justify-center gap-1">
+        <GlassView colorScheme="dark" className="flex-1 h-24 rounded-xl items-center justify-center gap-1" glassEffectStyle="clear" isInteractive>
           <Text className="text-white font-semibold text-sm">Dark</Text>
           <Text className="text-white/70 text-xs">Always dark</Text>
         </GlassView>
-        <GlassView colorScheme="auto" className="flex-1 h-24 rounded-xl items-center justify-center gap-1">
+        <GlassView colorScheme="auto" className="flex-1 h-24 rounded-xl items-center justify-center gap-1" glassEffectStyle="clear" isInteractive>
           <Text className="text-white font-semibold text-sm">Auto</Text>
           <Text className="text-white/70 text-xs">System</Text>
         </GlassView>
+        </GlassContainer>
       </View>
     </View>
   )
@@ -158,17 +160,19 @@ This is an illustration of the **GlassEffect** component.
       <View className="flex-1 flex-row items-center justify-center gap-4 px-5">
         <GlassView
           glassEffectStyle="regular"
-          className="flex-1 h-28 rounded-2xl items-center justify-center gap-1.5"
+          isInteractive
+          className="flex-1 h-28 rounded-3xl items-center justify-center gap-1.5"
         >
-          <Text className="text-white font-semibold">Regular</Text>
-          <Text className="text-white/70 text-xs text-center">Frosted</Text>
+          <Text className="text-foreground/90 font-semibold">Regular</Text>
+          <Text className="text-foreground/70 text-xs text-center">Frosted</Text>
         </GlassView>
         <GlassView
           glassEffectStyle="clear"
-          className="flex-1 h-28 rounded-2xl items-center justify-center gap-1.5"
+          isInteractive
+          className="flex-1 h-28 rounded-3xl items-center justify-center gap-1.5"
         >
-          <Text className="text-white font-semibold">Clear</Text>
-          <Text className="text-white/70 text-xs text-center">Transparent</Text>
+          <Text className="text-foreground/90 font-semibold">Clear</Text>
+          <Text className="text-foreground/70 text-xs text-center">Transparent</Text>
         </GlassView>
       </View>
     </View>
