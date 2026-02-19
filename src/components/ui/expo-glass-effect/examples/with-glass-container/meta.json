@@ -1,6 +1,7 @@
 {
   "title": "With GlassContainer",
   "description": "Use GlassContainer to group multiple GlassView elements so they visually merge together when close to each other.",
+  "nativeOnly": true,
   "argTypes": {},
   "reactLive": {
     "GlassView": "@/components/ui/expo-glass-effect",

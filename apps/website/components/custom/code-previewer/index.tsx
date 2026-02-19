@@ -158,7 +158,6 @@ export function CodePreviewer({
         <Box className="p-4 md:border-r border-border flex-1 flex items-center justify-center w-full ">
           {nativeOnly ? (
             <Box className="flex flex-col items-center justify-center gap-2 py-4 px-6 text-center">
-              <Text className="text-2xl">📱</Text>
               <Text className="text-sm font-semibold text-foreground">React Native / Expo only</Text>
               <Text className="text-xs text-muted-foreground max-w-[260px]">
                 This component is not supported in Next.js. Preview it in a React Native or Expo environment.

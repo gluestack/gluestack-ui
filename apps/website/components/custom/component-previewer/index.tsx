@@ -34,7 +34,6 @@ export function ComponentPreviewer({
   if (nativeOnly) {
     return (
       <div className="flex flex-col items-center justify-center gap-1 py-4 px-6 text-center">
-        <span className="text-2xl">📱</span>
         <span className="text-sm font-semibold">React Native / Expo only</span>
         <span className="text-xs text-gray-500 max-w-[240px]">
           This component is not supported in Next.js. Preview it in a React Native or Expo environment.

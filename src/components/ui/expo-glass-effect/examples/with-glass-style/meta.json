@@ -1,6 +1,7 @@
 {
   "title": "With Glass Style",
   "description": "Compare the 'regular' and 'clear' glass effect styles side by side.",
+  "nativeOnly": true,
   "argTypes": {},
   "reactLive": {
     "GlassView": "@/components/ui/expo-glass-effect",

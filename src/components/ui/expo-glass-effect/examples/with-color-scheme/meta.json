@@ -1,6 +1,7 @@
 {
   "title": "With Color Scheme",
   "description": "Override the glass effect's appearance independently from the system theme using the colorScheme prop.",
+  "nativeOnly": true,
   "argTypes": {},
   "reactLive": {
     "GlassView": "@/components/ui/expo-glass-effect",

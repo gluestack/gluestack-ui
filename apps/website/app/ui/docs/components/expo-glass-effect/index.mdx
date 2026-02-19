@@ -29,7 +29,7 @@ This is an illustration of the **GlassEffect** component.
   
 
   A simple GlassView displaying content with the default glass effect style.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -55,13 +55,14 @@ This is an illustration of the **GlassEffect** component.
   argTypes={{}}
   reactLive={{ GlassView, Text, VStack, View }}
   importMap={{"@/components/ui/expo-glass-effect":["GlassView"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"react-native":["View"]}}
+  nativeOnly
 />
 
 
   #### With GlassContainer
 
   Use GlassContainer to group multiple GlassView elements so they visually merge together when close to each other.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -101,13 +102,14 @@ This is an illustration of the **GlassEffect** component.
   argTypes={{}}
   reactLive={{ GlassView, GlassContainer, Text, VStack, HStack, View }}
   importMap={{"@/components/ui/expo-glass-effect":["GlassView","GlassContainer"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"react-native":["View"]}}
+  nativeOnly
 />
 
 
   #### With Color Scheme
 
   Override the glass effect's appearance independently from the system theme using the colorScheme prop.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -140,13 +142,14 @@ This is an illustration of the **GlassEffect** component.
   argTypes={{}}
   reactLive={{ GlassView, GlassContainer, Text, VStack, HStack, View }}
   importMap={{"@/components/ui/expo-glass-effect":["GlassView","GlassContainer"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"react-native":["View"]}}
+  nativeOnly
 />
 
 
   #### With Glass Style
 
   Compare the 'regular' and 'clear' glass effect styles side by side.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -181,6 +184,7 @@ This is an illustration of the **GlassEffect** component.
   argTypes={{}}
   reactLive={{ GlassView, Text, HStack, View }}
   importMap={{"@/components/ui/expo-glass-effect":["GlassView"],"@/components/ui/text":["Text"],"@/components/ui/hstack":["HStack"],"react-native":["View"]}}
+  nativeOnly
 />
 
 <br />

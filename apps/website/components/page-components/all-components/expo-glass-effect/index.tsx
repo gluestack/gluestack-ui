@@ -30,6 +30,7 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ GlassView, Text, VStack, View }}
+      nativeOnly
     />
   );
 }
