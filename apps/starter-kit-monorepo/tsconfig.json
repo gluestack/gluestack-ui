@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "jsxImportSource": "nativewind",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "lib": ["esnext", "dom"],
+    "target": "esnext"
+  }
+}

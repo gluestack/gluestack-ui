@@ -1,0 +1,28 @@
+{
+  "name": "@repo/ui",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./gluestack-ui-provider": {
+      "react-native": "./src/gluestack-ui-provider/index.tsx",
+      "default": "./src/gluestack-ui-provider/index.web.tsx"
+    },
+    "./components/button": "./src/components/button/index.tsx",
+    "./components/text": {
+      "react-native": "./src/components/text/index.tsx",
+      "default": "./src/components/text/index.web.tsx"
+    }
+  },
+  "peerDependencies": {
+    "@gluestack-ui/core": ">=4.0.0-alpha.0",
+    "@gluestack-ui/utils": ">=4.0.0-alpha.0",
+    "nativewind": ">=4.0.0",
+    "react": ">=19.0.0",
+    "react-native": ">=0.83.0"
+  }
+}
