@@ -26,6 +26,7 @@
     "@repo/tailwind-config": "workspace:*",
     "@repo/ui": "workspace:*",
     "babel-plugin-module-resolver": "^5.0.2",
+    "buffer": "^6.0.3",
     "dom-helpers": "^5.2.1",
     "expo": "^55.0.0-preview.5",
     "expo-font": "~55.0.1",
