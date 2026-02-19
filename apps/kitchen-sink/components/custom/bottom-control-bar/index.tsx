@@ -5,12 +5,12 @@ import { ThemeName } from '@/constants/themes';
 import { useAppTheme } from '@/contexts/app-theme-context';
 import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { BlurView } from 'expo-blur';
+import { isLiquidGlassAvailable } from 'expo-glass-effect';
+import { GlassView } from '@/components/ui/expo-glass-effect';
 import * as Haptics from 'expo-haptics';
-import { Stack, usePathname, useRouter } from 'expo-router';
-import { Search, PaletteIcon } from 'lucide-react-native';
-import { cssInterop } from 'nativewind';  
-import { GlassView } from 'expo-glass-effect';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { usePathname, useRouter } from 'expo-router';
+import { PaletteIcon, Search } from 'lucide-react-native';
+import { cssInterop } from 'nativewind';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Modal,
@@ -20,18 +20,16 @@ import {
   useWindowDimensions,
   View
 } from 'react-native';
-import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import Animated, {
   Easing,
-  FadeIn,
   FadeOut,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-  ZoomIn,
-  ZoomOut,
+  ZoomIn
 } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedGlassView = Animated.createAnimatedComponent(GlassView);
 Platform.OS === 'web' ? cssInterop(AnimatedView, { className: 'style' }) : null;
@@ -218,13 +216,8 @@ const BottomControlBar = memo(
               >
                 <GlassView
                   glassEffectStyle="clear"
-                  style={{
-                    width: 56,
-                    height: 56,
-                    borderRadius: 28,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
+                  className='w-14 h-14 rounded-full justify-center items-center'
+                  isInteractive
                 >
                   <Icon
                     as={PaletteIcon}
@@ -251,12 +244,8 @@ const BottomControlBar = memo(
               >
                 <GlassView
                   glassEffectStyle="clear"
-                  style={{
-                    width: 56,
-                    borderRadius: 100,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
+                  className='w-14 h-14 rounded-full justify-center items-center'
+                  isInteractive
                 >
                   <Pressable
                     onPress={handlePillPress}
