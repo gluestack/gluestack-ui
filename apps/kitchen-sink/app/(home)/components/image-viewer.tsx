@@ -13,19 +13,19 @@ import { UsageVariantFlatList } from '@/components/custom/component-presentation
 
 const ExampleBasic = () => {
 const images = [
-    {
-      url: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&auto=format&fit=crop&q=60',
-      alt: 'Mountain landscape'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1682687221038-404670e01d4c?w=800&auto=format&fit=crop&q=60',
-      alt: 'Ocean waves'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&auto=format&fit=crop&q=60',
-      alt: 'Desert sunset'
-    }
-  ];
+  {
+    url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSEDaMEoX0Tkzqw74YSBab3HI2czZ14hUpGxq1Wuko5h6hGPVhF',
+    alt: 'Mountain landscape',
+  },
+  {
+    url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSEDaMEoX0Tkzqw74YSBab3HI2czZ14hUpGxq1Wuko5h6hGPVhF',
+    alt: 'Ocean waves',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&auto=format&fit=crop&q=60',
+    alt: 'Desert sunset',
+  },
+];
 
   const thumbnailSource = { uri: images[0].url };
 
@@ -58,16 +58,16 @@ const [isOpen, setIsOpen] = React.useState(false);
   const images = [
     {
       url: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&auto=format&fit=crop&q=60',
-      alt: 'Mountain landscape'
+      alt: 'Mountain landscape',
     },
     {
-      url: 'https://images.unsplash.com/photo-1682687221038-404670e01d4c?w=800&auto=format&fit=crop&q=60',
-      alt: 'Ocean waves'
+      url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSEDaMEoX0Tkzqw74YSBab3HI2czZ14hUpGxq1Wuko5h6hGPVhF',
+      alt: 'Ocean waves',
     },
     {
       url: 'https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800&auto=format&fit=crop&q=60',
-      alt: 'Desert sunset'
-    }
+      alt: 'Desert sunset',
+    },
   ];
 
   return (
