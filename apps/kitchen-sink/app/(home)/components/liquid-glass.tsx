@@ -1,4 +1,4 @@
-import { GlassView, GlassContainer } from '@/components/ui/expo-glass-effect'
+import { GlassView, GlassContainer } from '@/components/ui/liquid-glass'
 import { Text } from '@/components/ui/text'
 import { VStack } from '@/components/ui/vstack'
 import { View } from 'react-native'
@@ -149,6 +149,6 @@ const COMPONENT_VARIANTS = [
   }
 ];
 
-export default function ExpoGlassEffectScreen() {
+export default function LiquidGlassScreen() {
   return <UsageVariantFlatList data={COMPONENT_VARIANTS} />;
 }

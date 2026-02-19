@@ -6,7 +6,7 @@ import { useAppTheme } from '@/contexts/app-theme-context';
 import { useAccessibilityInfo } from '@/helpers/use-accessability-info';
 import { BlurView } from 'expo-blur';
 import { isLiquidGlassAvailable } from 'expo-glass-effect';
-import { GlassView } from '@/components/ui/expo-glass-effect';
+import { GlassView } from '@/components/ui/liquid-glass';
 import * as Haptics from 'expo-haptics';
 import { usePathname, useRouter } from 'expo-router';
 import { PaletteIcon, Search } from 'lucide-react-native';

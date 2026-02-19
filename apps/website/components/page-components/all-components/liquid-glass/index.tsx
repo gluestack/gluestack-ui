@@ -1,5 +1,5 @@
 import { ComponentPreviewer } from '@/components/custom/component-previewer';
-import { GlassView } from '@/components/ui/expo-glass-effect';
+import { GlassView } from '@/components/ui/liquid-glass';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { View } from 'react-native';

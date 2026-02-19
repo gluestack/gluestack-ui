@@ -1,5 +1,5 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { GlassView, GlassContainer } from '@/components/ui/expo-glass-effect';
+import { GlassView, GlassContainer } from '@/components/ui/liquid-glass';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
 import { View } from 'react-native';
@@ -18,13 +18,13 @@ import {
 import { InlineCode } from '@/docs-components/inline-code';
 import ManualInstallationNote from '@/docs-components/manual-installation-note';
 
-# GlassEffect
+# LiquidGlass
 
 A glass effect component for React Native built on top of [expo-glass-effect](https://docs.expo.dev/versions/latest/sdk/glass-effect/) with gluestack-ui styling and NativeWind className support.
 
-> **Note:** GlassEffect is **not supported in Next.js**. It is intended for React Native and Expo environments only. `expo-glass-effect` requires native iOS/Android APIs that are not available in browser environments. On iOS, liquid glass requires **iOS 26+** (`isLiquidGlassAvailable`). On Android and older iOS, a standard glass blur fallback is used (`isGlassEffectAPIAvailable`).
+> **Note:** LiquidGlass is **not supported in Next.js**. It is intended for React Native and Expo environments only. `expo-glass-effect` requires native iOS/Android APIs that are not available in browser environments. On iOS, liquid glass requires **iOS 26+** (`isLiquidGlassAvailable`). On Android and older iOS, a standard glass blur fallback is used (`isGlassEffectAPIAvailable`).
 
-This is an illustration of the **GlassEffect** component.
+This is an illustration of the **LiquidGlass** component.
 
   
 
@@ -54,7 +54,7 @@ This is an illustration of the **GlassEffect** component.
 }`}
   argTypes={{}}
   reactLive={{ GlassView, Text, VStack, View }}
-  importMap={{"@/components/ui/expo-glass-effect":["GlassView"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"react-native":["View"]}}
+  importMap={{"@/components/ui/liquid-glass":["GlassView"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"react-native":["View"]}}
   nativeOnly
 />
 
@@ -101,7 +101,7 @@ This is an illustration of the **GlassEffect** component.
 }`}
   argTypes={{}}
   reactLive={{ GlassView, GlassContainer, Text, VStack, HStack, View }}
-  importMap={{"@/components/ui/expo-glass-effect":["GlassView","GlassContainer"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"react-native":["View"]}}
+  importMap={{"@/components/ui/liquid-glass":["GlassView","GlassContainer"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"react-native":["View"]}}
   nativeOnly
 />
 
@@ -141,7 +141,7 @@ This is an illustration of the **GlassEffect** component.
 }`}
   argTypes={{}}
   reactLive={{ GlassView, GlassContainer, Text, VStack, HStack, View }}
-  importMap={{"@/components/ui/expo-glass-effect":["GlassView","GlassContainer"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"react-native":["View"]}}
+  importMap={{"@/components/ui/liquid-glass":["GlassView","GlassContainer"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"react-native":["View"]}}
   nativeOnly
 />
 
@@ -183,7 +183,7 @@ This is an illustration of the **GlassEffect** component.
 }`}
   argTypes={{}}
   reactLive={{ GlassView, Text, HStack, View }}
-  importMap={{"@/components/ui/expo-glass-effect":["GlassView"],"@/components/ui/text":["Text"],"@/components/ui/hstack":["HStack"],"react-native":["View"]}}
+  importMap={{"@/components/ui/liquid-glass":["GlassView"],"@/components/ui/text":["Text"],"@/components/ui/hstack":["HStack"],"react-native":["View"]}}
   nativeOnly
 />
 
@@ -193,7 +193,7 @@ This is an illustration of the **GlassEffect** component.
 
 ### Run the following command:
 
-<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add expo-glass-effect`} language="bash" />
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add liquid-glass`} language="bash" />
 
 <ManualInstallationNote />
 
@@ -207,7 +207,7 @@ import {
   GlassContainer,
   isLiquidGlassAvailable,
   isGlassEffectAPIAvailable,
-} from '@/components/ui/expo-glass-effect';
+} from '@/components/ui/liquid-glass';
 ```
 
 ```jsx
@@ -313,7 +313,7 @@ Also inherits all props of React Native's [View](https://reactnative.dev/docs/vi
 #### isLiquidGlassAvailable
 
 ```ts
-import { isLiquidGlassAvailable } from '@/components/ui/expo-glass-effect';
+import { isLiquidGlassAvailable } from '@/components/ui/liquid-glass';
 ```
 
 Returns `true` on iOS 26+ devices that support the native liquid glass effect. Use this to conditionally render enhanced UI when the full liquid glass API is available.
@@ -321,7 +321,7 @@ Returns `true` on iOS 26+ devices that support the native liquid glass effect. U
 #### isGlassEffectAPIAvailable
 
 ```ts
-import { isGlassEffectAPIAvailable } from '@/components/ui/expo-glass-effect';
+import { isGlassEffectAPIAvailable } from '@/components/ui/liquid-glass';
 ```
 
 Returns `true` when any glass effect is supported (iOS and Android with blur fallback). Use this to gate glass-based UI behind a capability check.

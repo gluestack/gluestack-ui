@@ -320,9 +320,9 @@ export default function ComponentsLayout() {
         }}
       />
           <Stack.Screen
-        name="expo-glass-effect"
+        name="liquid-glass"
         options={{
-          header: () => <CustomHeader title="Expo Glass Effect" />,
+          header: () => <CustomHeader title="Liquid Glass" />,
         }}
       />
     </Stack>

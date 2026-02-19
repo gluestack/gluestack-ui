@@ -4,7 +4,7 @@
   "nativeOnly": true,
   "argTypes": {},
   "reactLive": {
-    "GlassView": "@/components/ui/expo-glass-effect",
+    "GlassView": "@/components/ui/liquid-glass",
     "Text": "@/components/ui/text",
     "VStack": "@/components/ui/vstack",
     "View": "react-native"
