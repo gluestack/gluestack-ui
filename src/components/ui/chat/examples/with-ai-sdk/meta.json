@@ -1,0 +1,20 @@
+{
+  "title": "With Vercel AI SDK",
+  "description": "Wired up to the Vercel AI SDK useChat hook for real streaming responses.",
+  "argTypes": {},
+  "reactLive": {
+    "ChatMessageList": "@/components/ui/chat",
+    "ChatBubble": "@/components/ui/chat",
+    "ChatBubbleAvatar": "@/components/ui/chat",
+    "ChatBubbleAvatarFallback": "@/components/ui/chat",
+    "ChatBubbleContent": "@/components/ui/chat",
+    "ChatBubbleMessage": "@/components/ui/chat",
+    "ChatBubbleTimestamp": "@/components/ui/chat",
+    "ChatTypingIndicator": "@/components/ui/chat",
+    "ChatInput": "@/components/ui/chat",
+    "ChatInputField": "@/components/ui/chat",
+    "ChatInputSend": "@/components/ui/chat",
+    "Text": "@/components/ui/text",
+    "View": "react-native"
+  }
+}

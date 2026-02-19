@@ -1,0 +1,63 @@
+function Example() {
+  const [input, setInput] = React.useState('');
+  const [isTyping, setIsTyping] = React.useState(false);
+  const [messages, setMessages] = React.useState<{ id: string; role: 'sent' | 'received'; content: string }[]>([
+    { id: '1', role: 'received', content: 'Hello! Ask me anything.' },
+  ]);
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    const userMsg: { id: string; role: 'sent' | 'received'; content: string } = { id: String(Date.now()), role: 'sent', content: input.trim() };
+    setMessages(prev => [...prev, userMsg]);
+    setInput('');
+    setIsTyping(true);
+
+    setTimeout(() => {
+      setIsTyping(false);
+      setMessages(prev => [
+        ...prev,
+        { id: String(Date.now() + 1), role: 'received', content: 'Thanks for your message! I\'m processing your request...' },
+      ]);
+    }, 2000);
+  };
+
+  return (
+    <View className="flex-1 bg-background h-[500px]">
+      <ChatScrollView>
+        {messages.map(msg => (
+          <ChatBubble key={msg.id} variant={msg.role}>
+            {msg.role === 'received' && (
+              <ChatBubbleAvatar>
+                <ChatBubbleAvatarFallback>AI</ChatBubbleAvatarFallback>
+              </ChatBubbleAvatar>
+            )}
+            <ChatBubbleContent>
+              <ChatBubbleMessage>{msg.content}</ChatBubbleMessage>
+            </ChatBubbleContent>
+          </ChatBubble>
+        ))}
+        {isTyping && (
+          <ChatBubble variant="received">
+            <ChatBubbleAvatar>
+              <ChatBubbleAvatarFallback>AI</ChatBubbleAvatarFallback>
+            </ChatBubbleAvatar>
+            <ChatBubbleContent>
+              <ChatTypingIndicator />
+            </ChatBubbleContent>
+          </ChatBubble>
+        )}
+      </ChatScrollView>
+      <ChatInput>
+        <ChatInputField
+          placeholder="Ask AI anything..."
+          value={input}
+          onChangeText={setInput}
+          onSubmitEditing={handleSend}
+        />
+        <ChatInputSend onPress={handleSend} disabled={isTyping}>
+          <Text className="text-primary-foreground font-bold text-base">↑</Text>
+        </ChatInputSend>
+      </ChatInput>
+    </View>
+  );
+}

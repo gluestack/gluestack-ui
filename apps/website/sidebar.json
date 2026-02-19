@@ -264,6 +264,12 @@
                 "darkUrl": "https://i.imgur.com/hS1TqJ7.png"
               },
               {
+                "title": "Chat",
+                "path": "/ui/docs/components/chat",
+                "url": "https://i.imgur.com/xfmvFSy.png",
+                "darkUrl": "https://i.imgur.com/C8yWYco.png"
+              },
+              {
                 "title": "Checkbox",
                 "path": "/ui/docs/components/checkbox",
                 "url": "https://i.imgur.com/fZPMCl3.png",

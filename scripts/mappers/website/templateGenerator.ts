@@ -32,6 +32,7 @@ export const generateCodePreviewer = (
     const meta = fileOps.readJsonFile(argsPath);
     const title = meta.title || '';
     const description = meta.description || '';
+    const nativeOnly = meta.nativeOnly === true;
     const argTypes = JSON.stringify(meta.argTypes || {}, null, 2);
     const reactLiveKeys = meta.reactLive ? Object.keys(meta.reactLive) : [];
     const reactLive = `{ ${reactLiveKeys.join(', ')} }`;
@@ -88,7 +89,8 @@ export const generateCodePreviewer = (
         imports,
         code.trim(),
         argTypes,
-        reactLive
+        reactLive,
+        nativeOnly
       );
 
       // Write the file
@@ -101,7 +103,8 @@ export const generateCodePreviewer = (
       reactLive,
       title,
       description,
-      importExampleMap
+      importExampleMap,
+      nativeOnly
     );
   } catch (error) {
     console.error(

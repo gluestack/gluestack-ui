@@ -319,6 +319,12 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="BottomSheet" />,
         }}
       />
+          <Stack.Screen
+        name="chat"
+        options={{
+          header: () => <CustomHeader title="Chat" />,
+        }}
+      />
     </Stack>
   );
 }

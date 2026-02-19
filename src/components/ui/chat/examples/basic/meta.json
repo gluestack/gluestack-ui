@@ -1,0 +1,19 @@
+{
+  "title": "Basic",
+  "description": "A simple chat UI with sent and received message bubbles.",
+  "argTypes": {},
+  "reactLive": {
+    "ChatScrollView": "@/components/ui/chat",
+    "ChatBubble": "@/components/ui/chat",
+    "ChatBubbleAvatar": "@/components/ui/chat",
+    "ChatBubbleAvatarFallback": "@/components/ui/chat",
+    "ChatBubbleContent": "@/components/ui/chat",
+    "ChatBubbleMessage": "@/components/ui/chat",
+    "ChatBubbleTimestamp": "@/components/ui/chat",
+    "ChatInput": "@/components/ui/chat",
+    "ChatInputField": "@/components/ui/chat",
+    "ChatInputSend": "@/components/ui/chat",
+    "Text": "@/components/ui/text",
+    "Box": "@/components/ui/box"
+  }
+}

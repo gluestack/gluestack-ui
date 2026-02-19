@@ -1,0 +1,70 @@
+function Example() {
+  // Install: npx expo install ai @ai-sdk/react @ai-sdk/openai
+  // Add API route at app/api/chat+api.ts and replace the state below with:
+  // const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({ api: '/api/chat' });
+
+  const [input, setInput] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [messages, setMessages] = React.useState([
+    { id: '1', role: 'assistant', content: "Hello! I'm your AI assistant. How can I help?" },
+  ]);
+
+  const handleSubmit = () => {
+    if (!input.trim() || isLoading) return;
+    const userContent = input.trim();
+    setMessages(prev => [...prev, { id: String(Date.now()), role: 'user', content: userContent }]);
+    setInput('');
+    setIsLoading(true);
+    setTimeout(() => {
+      setMessages(prev => [
+        ...prev,
+        { id: String(Date.now() + 1), role: 'assistant', content: 'This is a simulated response. Wire up useChat() from the Vercel AI SDK for real streaming.' },
+      ]);
+      setIsLoading(false);
+    }, 1500);
+  };
+
+  return (
+    <View className="flex-1 bg-background h-[500px]">
+      <ChatMessageList
+        data={messages}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <ChatBubble variant={item.role === 'user' ? 'sent' : 'received'}>
+            {item.role === 'assistant' && (
+              <ChatBubbleAvatar>
+                <ChatBubbleAvatarFallback>AI</ChatBubbleAvatarFallback>
+              </ChatBubbleAvatar>
+            )}
+            <ChatBubbleContent>
+              <ChatBubbleMessage>{item.content}</ChatBubbleMessage>
+            </ChatBubbleContent>
+          </ChatBubble>
+        )}
+        ListFooterComponent={
+          isLoading ? (
+            <ChatBubble variant="received">
+              <ChatBubbleAvatar>
+                <ChatBubbleAvatarFallback>AI</ChatBubbleAvatarFallback>
+              </ChatBubbleAvatar>
+              <ChatBubbleContent>
+                <ChatTypingIndicator />
+              </ChatBubbleContent>
+            </ChatBubble>
+          ) : null
+        }
+      />
+      <ChatInput>
+        <ChatInputField
+          placeholder="Ask AI..."
+          value={input}
+          onChangeText={setInput}
+          onSubmitEditing={handleSubmit}
+        />
+        <ChatInputSend onPress={handleSubmit} disabled={isLoading}>
+          <Text className="text-primary-foreground font-bold text-base">↑</Text>
+        </ChatInputSend>
+      </ChatInput>
+    </View>
+  );
+}

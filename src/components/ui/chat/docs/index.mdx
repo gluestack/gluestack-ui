@@ -1,0 +1,339 @@
+---
+title: gluestack-ui Chat Component | AI Chat UI for React Native & Web
+
+description: Composable chat UI components for building AI chatbot interfaces in React Native and Expo. Works with any AI backend including Vercel AI SDK, OpenAI, and more.
+
+pageTitle: Chat
+
+pageDescription: Composable chat UI components for building AI chatbot interfaces in React Native and Expo. Works with any AI backend including Vercel AI SDK, OpenAI, and more.
+
+showHeader: true
+
+tag: alpha
+---
+
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import ManualInstallationNote from '@/docs-components/manual-installation-note';
+
+# Chat
+
+Composable, unstyled-by-default chat UI primitives for building AI chatbot interfaces. Works with any AI backend — [Vercel AI SDK](https://sdk.vercel.ai/docs), OpenAI, Anthropic, or your own API. No AI SDK dependency required.
+
+This is an illustration of the **Chat** component.
+/// {Example:basic} ///
+
+/// {Example:with-typing-indicator} ///
+
+/// {Example:with-ai-sdk} ///
+
+<br />
+
+## Installation
+
+### Run the following command:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add chat`} language="bash" />
+
+<ManualInstallationNote />
+
+## Connecting to the Vercel AI SDK
+
+Install the AI SDK packages:
+
+```bash
+npx expo install ai @ai-sdk/react @ai-sdk/openai
+```
+
+Add an API route (`app/api/chat+api.ts` with Expo Router):
+
+```ts
+import { openai } from '@ai-sdk/openai';
+import { streamText } from 'ai';
+
+export async function POST(req: Request) {
+  const { messages } = await req.json();
+  const result = streamText({
+    model: openai('gpt-4o-mini'),
+    messages,
+  });
+  return result.toDataStreamResponse();
+}
+```
+
+Then wire up `useChat` in your screen:
+
+```tsx
+import { useChat } from '@ai-sdk/react';
+import {
+  ChatMessageList,
+  ChatBubble,
+  ChatBubbleAvatar,
+  ChatBubbleAvatarFallback,
+  ChatBubbleContent,
+  ChatBubbleMessage,
+  ChatTypingIndicator,
+  ChatInput,
+  ChatInputField,
+  ChatInputSend,
+} from '@/components/ui/chat';
+
+export default function ChatScreen() {
+  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+    api: '/api/chat',
+  });
+
+  return (
+    <View className="flex-1 bg-background">
+      <ChatMessageList
+        data={messages}
+        keyExtractor={(m) => m.id}
+        renderItem={({ item }) => (
+          <ChatBubble variant={item.role === 'user' ? 'sent' : 'received'}>
+            {item.role === 'assistant' && (
+              <ChatBubbleAvatar>
+                <ChatBubbleAvatarFallback>AI</ChatBubbleAvatarFallback>
+              </ChatBubbleAvatar>
+            )}
+            <ChatBubbleContent>
+              <ChatBubbleMessage>{item.content}</ChatBubbleMessage>
+            </ChatBubbleContent>
+          </ChatBubble>
+        )}
+        ListFooterComponent={isLoading ? (
+          <ChatBubble variant="received">
+            <ChatBubbleAvatar><ChatBubbleAvatarFallback>AI</ChatBubbleAvatarFallback></ChatBubbleAvatar>
+            <ChatBubbleContent><ChatTypingIndicator /></ChatBubbleContent>
+          </ChatBubble>
+        ) : null}
+      />
+      <ChatInput>
+        <ChatInputField
+          placeholder="Ask AI..."
+          value={input}
+          onChangeText={(text) => handleInputChange({ target: { value: text } } as any)}
+        />
+        <ChatInputSend onPress={() => handleSubmit()} disabled={isLoading}>
+          <Text className="text-primary-foreground font-bold">↑</Text>
+        </ChatInputSend>
+      </ChatInput>
+    </View>
+  );
+}
+```
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  ChatMessageList,
+  ChatScrollView,
+  ChatBubble,
+  ChatBubbleAvatar,
+  ChatBubbleAvatarFallback,
+  ChatBubbleAvatarImage,
+  ChatBubbleContent,
+  ChatBubbleMessage,
+  ChatBubbleTimestamp,
+  ChatTypingIndicator,
+  ChatInput,
+  ChatInputField,
+  ChatInputSend,
+} from '@/components/ui/chat';
+```
+
+### Component Props
+
+#### ChatMessageList
+
+A `FlatList`-based scrollable container for messages. Use when rendering a data array.
+
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>data</InlineCode></TableCell>
+        <TableCell>T[]</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Required. Array of message items to render.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>renderItem</InlineCode></TableCell>
+        <TableCell>ListRenderItem&lt;T&gt;</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Required. Render function for each message. Return a ChatBubble.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>ListFooterComponent</InlineCode></TableCell>
+        <TableCell>ReactNode</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Rendered after all items. Ideal for placing ChatTypingIndicator while the AI is streaming.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+
+Inherits all props from React Native's [FlatList](https://reactnative.dev/docs/flatlist).
+
+#### ChatScrollView
+
+A `ScrollView`-based alternative to `ChatMessageList`. Use when rendering messages manually without a data array.
+
+Inherits all props from React Native's [ScrollView](https://reactnative.dev/docs/scrollview).
+
+#### ChatBubble
+
+A message row. Sets alignment and passes `variant` context to all child components.
+
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>variant</InlineCode></TableCell>
+        <TableCell>'sent' | 'received'</TableCell>
+        <TableCell>'received'</TableCell>
+        <TableCell>{`Controls alignment and color. 'sent' aligns right with primary background; 'received' aligns left with muted background.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+
+Also inherits all props of React Native's [View](https://reactnative.dev/docs/view).
+
+#### ChatBubbleAvatar
+
+A circular container for the sender's avatar. Place `ChatBubbleAvatarFallback` or `ChatBubbleAvatarImage` inside.
+
+Inherits all props of React Native's [View](https://reactnative.dev/docs/view).
+
+#### ChatBubbleAvatarFallback
+
+Text initials shown when no avatar image is available.
+
+Inherits all props of React Native's [Text](https://reactnative.dev/docs/text).
+
+#### ChatBubbleAvatarImage
+
+An image inside the avatar circle.
+
+Inherits all props of React Native's [Image](https://reactnative.dev/docs/image).
+
+#### ChatBubbleContent
+
+Flex column wrapper that aligns children based on the parent `ChatBubble` variant.
+
+Inherits all props of React Native's [View](https://reactnative.dev/docs/view).
+
+#### ChatBubbleMessage
+
+The message bubble itself. Reads `variant` from `ChatBubble` context to apply the correct colors and border radius. Accepts a string child (auto-wrapped in `Text`) or any React node.
+
+Inherits all props of React Native's [View](https://reactnative.dev/docs/view).
+
+#### ChatBubbleTimestamp
+
+Small timestamp text displayed below the bubble.
+
+Inherits all props of React Native's [Text](https://reactnative.dev/docs/text).
+
+#### ChatTypingIndicator
+
+Three dots shown while the AI is generating a response. Renders as a received-style bubble.
+
+Inherits all props of React Native's [View](https://reactnative.dev/docs/view).
+
+#### ChatInput
+
+The sticky input bar at the bottom. A `View` container — place `ChatInputField` and `ChatInputSend` inside.
+
+Inherits all props of React Native's [View](https://reactnative.dev/docs/view).
+
+#### ChatInputField
+
+A multiline `TextInput` styled for chat. Grows vertically up to a max height.
+
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>placeholder</InlineCode></TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Placeholder text shown when the input is empty.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>value</InlineCode></TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Controlled input value.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>onChangeText</InlineCode></TableCell>
+        <TableCell>(text: string) => void</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Callback fired when the text changes.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+
+Also inherits all props of React Native's [TextInput](https://reactnative.dev/docs/textinput).
+
+#### ChatInputSend
+
+A circular pressable send button styled with the primary color.
+
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>onPress</InlineCode></TableCell>
+        <TableCell>() => void</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`Called when the send button is pressed.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>disabled</InlineCode></TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>{`When true, the button is dimmed and non-interactive. Use while the AI is streaming.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+
+Also inherits all props of React Native's [Pressable](https://reactnative.dev/docs/pressable).
