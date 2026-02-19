@@ -3,8 +3,9 @@ import {
   GlassContainer as ExpoGlassContainer,
   GlassView as ExpoGlassView,
   type GlassContainerProps,
-  type GlassViewProps,
+  type GlassViewProps
 } from 'expo-glass-effect';
+
 import { withUniwind } from 'uniwind';
 import React from 'react';
 
@@ -61,7 +62,7 @@ export type {
   GlassColorScheme,
   GlassContainerProps,
   GlassStyle,
-  GlassViewProps,
+  GlassViewProps
 } from 'expo-glass-effect';
 
 

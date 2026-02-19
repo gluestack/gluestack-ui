@@ -4,6 +4,7 @@
   "argTypes": {},
   "reactLive": {
     "GlassView": "@/components/ui/expo-glass-effect",
+    "GlassContainer": "@/components/ui/expo-glass-effect",
     "Text": "@/components/ui/text",
     "VStack": "@/components/ui/vstack",
     "HStack": "@/components/ui/hstack",
