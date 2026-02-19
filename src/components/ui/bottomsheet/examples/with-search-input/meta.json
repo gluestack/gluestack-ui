@@ -1,0 +1,20 @@
+{
+  "title": "With Search Input",
+  "description": "A bottom sheet with a keyboard-aware search input using BottomSheetTextInput. Typing filters the list in real time without dismissing the keyboard.",
+  "argTypes": {},
+  "reactLive": {
+    "BottomSheet": "@/components/ui/bottomsheet",
+    "BottomSheetTrigger": "@/components/ui/bottomsheet",
+    "BottomSheetPortal": "@/components/ui/bottomsheet",
+    "BottomSheetBackdrop": "@/components/ui/bottomsheet",
+    "BottomSheetDragIndicator": "@/components/ui/bottomsheet",
+    "BottomSheetScrollView": "@/components/ui/bottomsheet",
+    "BottomSheetItem": "@/components/ui/bottomsheet",
+    "BottomSheetItemText": "@/components/ui/bottomsheet",
+    "BottomSheetTextInput": "@/components/ui/bottomsheet",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "Button": "@/components/ui/button",
+    "ButtonText": "@/components/ui/button"
+  }
+}

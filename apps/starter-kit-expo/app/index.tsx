@@ -1,13 +1,11 @@
-import React from 'react';
-import Gradient from '@/assets/icons/Gradient';
 import Logo from '@/assets/icons/Logo';
 import { Box } from '@/components/ui/box';
 import { Text } from '@/components/ui/text';
+import React from 'react';
 
 import { Button, ButtonText } from '@/components/ui/button';
-import { useRouter } from 'expo-router';
-import { VStack } from '@/components/ui/vstack';
 import { Center } from '@/components/ui/center';
+import { useRouter } from 'expo-router';
 
 export default function Home() {
   const router = useRouter();

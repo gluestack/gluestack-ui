@@ -1,0 +1,55 @@
+function App() {
+  const ref = React.useRef(null);
+  const [currentSnap, setCurrentSnap] = React.useState(-1);
+
+  return (
+    <BottomSheet ref={ref} onChange={setCurrentSnap} onClose={() => setCurrentSnap(-1)}>
+      <VStack className="gap-4 items-start">
+        <Text className="text-sm text-foreground/60">
+          {currentSnap >= 0
+            ? 'Sheet open at snap index: ' + currentSnap
+            : 'Sheet is closed'}
+        </Text>
+
+        <VStack className="gap-2 w-full">
+          <Text className="text-xs font-semibold text-foreground/40 uppercase tracking-widest">
+            Open
+          </Text>
+          <HStack className="gap-2">
+            <Button onPress={() => ref.current?.open(0)}>
+              <ButtonText>Open at 30%</ButtonText>
+            </Button>
+            <Button onPress={() => ref.current?.open(1)}>
+              <ButtonText>Open at 75%</ButtonText>
+            </Button>
+          </HStack>
+        </VStack>
+      </VStack>
+
+      <BottomSheetPortal
+        snapPoints={['30%', '75%']}
+        backdropComponent={BottomSheetBackdrop}
+        handleComponent={BottomSheetDragIndicator}
+      >
+        <BottomSheetContent>
+          <VStack className="gap-4">
+            <VStack className="gap-1">
+              <Text className="text-lg font-bold text-foreground">Snap Points</Text>
+              <Text className="text-sm text-foreground/50">
+                Current snap index: {currentSnap}
+              </Text>
+            </VStack>
+            <HStack className="gap-2">
+              <Button className="flex-1" onPress={() => ref.current?.snapToIndex(0)}>
+                <ButtonText>Snap to 30%</ButtonText>
+              </Button>
+              <Button className="flex-1" variant="outline" onPress={() => ref.current?.snapToIndex(1)}>
+                <ButtonText>Snap to 75%</ButtonText>
+              </Button>
+            </HStack>
+          </VStack>
+        </BottomSheetContent>
+      </BottomSheetPortal>
+    </BottomSheet>
+  );
+}
