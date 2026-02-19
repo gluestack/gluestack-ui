@@ -34,6 +34,8 @@ import { Text } from '@/components/ui/text';
 
     import drawerComponent from './drawer'
 
+    import expoglass-effectComponent from './expo-glass-effect'
+
     import fabComponent from './fab'
 
     import formcontrolComponent from './form-control'
@@ -90,8 +92,8 @@ import { Text } from '@/components/ui/text';
   
   
 
-const componentsList = [accordionComponent,actionsheetComponent,alertComponent,alertdialogComponent,avatarComponent,badgeComponent,bottomsheetComponent,boxComponent,buttonComponent,cardComponent,centerComponent,checkboxComponent,dividerComponent,drawerComponent,fabComponent,formcontrolComponent,gridComponent,headingComponent,hstackComponent,iconComponent,imageComponent,inputComponent,linkComponent,menuComponent,modalComponent,popoverComponent,portalComponent,pressableComponent,progressComponent,radioComponent,selectComponent,skeletonComponent,sliderComponent,spinnerComponent,switchComponent,tableComponent,textComponent,textareaComponent,toastComponent,tooltipComponent,vstackComponent];
-const componentsNameList = ["accordion","actionsheet","alert","alert-dialog","avatar","badge","bottomsheet","box","button","card","center","checkbox","divider","drawer","fab","form-control","grid","heading","hstack","icon","image","input","link","menu","modal","popover","portal","pressable","progress","radio","select","skeleton","slider","spinner","switch","table","text","textarea","toast","tooltip","vstack"];
+const componentsList = [accordionComponent,actionsheetComponent,alertComponent,alertdialogComponent,avatarComponent,badgeComponent,bottomsheetComponent,boxComponent,buttonComponent,cardComponent,centerComponent,checkboxComponent,dividerComponent,drawerComponent,expoglass-effectComponent,fabComponent,formcontrolComponent,gridComponent,headingComponent,hstackComponent,iconComponent,imageComponent,inputComponent,linkComponent,menuComponent,modalComponent,popoverComponent,portalComponent,pressableComponent,progressComponent,radioComponent,selectComponent,skeletonComponent,sliderComponent,spinnerComponent,switchComponent,tableComponent,textComponent,textareaComponent,toastComponent,tooltipComponent,vstackComponent];
+const componentsNameList = ["accordion","actionsheet","alert","alert-dialog","avatar","badge","bottomsheet","box","button","card","center","checkbox","divider","drawer","expo-glass-effect","fab","form-control","grid","heading","hstack","icon","image","input","link","menu","modal","popover","portal","pressable","progress","radio","select","skeleton","slider","spinner","switch","table","text","textarea","toast","tooltip","vstack"];
 export default function AllComponents() {
   return (
     <Grid

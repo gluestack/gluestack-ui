@@ -1,0 +1,13 @@
+{
+  "title": "With GlassContainer",
+  "description": "Use GlassContainer to group multiple GlassView elements so they visually merge together when close to each other.",
+  "argTypes": {},
+  "reactLive": {
+    "GlassView": "@/components/ui/expo-glass-effect",
+    "GlassContainer": "@/components/ui/expo-glass-effect",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "HStack": "@/components/ui/hstack",
+    "View": "react-native"
+  }
+}

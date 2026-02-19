@@ -1,0 +1,11 @@
+{
+  "title": "With Glass Style",
+  "description": "Compare the 'regular' and 'clear' glass effect styles side by side.",
+  "argTypes": {},
+  "reactLive": {
+    "GlassView": "@/components/ui/expo-glass-effect",
+    "Text": "@/components/ui/text",
+    "HStack": "@/components/ui/hstack",
+    "View": "react-native"
+  }
+}

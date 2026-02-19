@@ -1,0 +1,11 @@
+{
+  "title": "Basic",
+  "description": "A simple GlassView displaying content with the default glass effect style.",
+  "argTypes": {},
+  "reactLive": {
+    "GlassView": "@/components/ui/expo-glass-effect",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "View": "react-native"
+  }
+}

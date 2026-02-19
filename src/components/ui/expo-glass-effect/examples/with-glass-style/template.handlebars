@@ -1,0 +1,28 @@
+function Example() {
+  return (
+    <View className="w-72 h-44 rounded-2xl overflow-hidden">
+      {/* Colorful background so the glass effect is visible */}
+      <View className="absolute inset-0 bg-orange-500" />
+      <View className="absolute top-0 right-0 w-36 h-36 rounded-full bg-red-400 translate-x-10 -translate-y-10" />
+      <View className="absolute bottom-0 left-0 w-32 h-32 rounded-full bg-amber-300 -translate-x-8 translate-y-8" />
+      <View className="absolute top-8 left-10 w-16 h-16 rounded-full bg-yellow-200 opacity-60" />
+
+      <View className="flex-1 flex-row items-center justify-center gap-4 px-5">
+        <GlassView
+          glassEffectStyle="regular"
+          className="flex-1 h-28 rounded-2xl items-center justify-center gap-1.5"
+        >
+          <Text className="text-white font-semibold">Regular</Text>
+          <Text className="text-white/70 text-xs text-center">Frosted</Text>
+        </GlassView>
+        <GlassView
+          glassEffectStyle="clear"
+          className="flex-1 h-28 rounded-2xl items-center justify-center gap-1.5"
+        >
+          <Text className="text-white font-semibold">Clear</Text>
+          <Text className="text-white/70 text-xs text-center">Transparent</Text>
+        </GlassView>
+      </View>
+    </View>
+  )
+}

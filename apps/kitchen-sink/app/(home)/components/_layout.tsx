@@ -319,6 +319,12 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="BottomSheet" />,
         }}
       />
+          <Stack.Screen
+        name="expo-glass-effect"
+        options={{
+          header: () => <CustomHeader title="Expo Glass Effect" />,
+        }}
+      />
     </Stack>
   );
 }

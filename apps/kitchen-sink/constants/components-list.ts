@@ -57,6 +57,7 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: "Checkbox", path: "checkbox", count: 9, icon: CheckboxIcon },
   { title: "Divider", path: "divider", count: 5, icon: DividerIcon },
   { title: "Drawer", path: "drawer", count: 3, icon: DrawerIcon },
+  { title: "Expo Glass Effect", path: "expo-glass-effect", count: 4 },
   { title: "Fab", path: "fab", count: 5, icon: FabIcon },
   { title: "FormControl", path: "form-control", count: 7, icon: FormControlIcon },
   { title: "Grid", path: "grid", count: 5, icon: GridIcon },

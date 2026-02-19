@@ -1,0 +1,35 @@
+function Example() {
+  return (
+    <View className="w-72 rounded-2xl overflow-hidden">
+      {/* Colorful background so the glass effect is visible */}
+      <View className="absolute inset-0 bg-teal-600" />
+      <View className="absolute top-0 right-0 w-36 h-36 rounded-full bg-emerald-400 translate-x-10 -translate-y-10" />
+      <View className="absolute bottom-0 left-0 w-32 h-32 rounded-full bg-cyan-400 -translate-x-8 translate-y-8" />
+      <View className="absolute top-1/2 left-1/4 w-20 h-20 rounded-full bg-lime-300 opacity-50" />
+
+      {/* GlassContainer merges adjacent GlassViews */}
+      <View className="p-4">
+        <GlassContainer spacing={8} className="rounded-2xl">
+          <VStack className="gap-2 p-2">
+            <GlassView className="p-4 rounded-xl">
+              <HStack className="gap-3 items-center">
+                <VStack className="gap-0.5">
+                  <Text className="text-white font-semibold">Notifications</Text>
+                  <Text className="text-white/70 text-sm">3 new alerts</Text>
+                </VStack>
+              </HStack>
+            </GlassView>
+            <GlassView className="p-4 rounded-xl">
+              <HStack className="gap-3 items-center">
+                <VStack className="gap-0.5">
+                  <Text className="text-white font-semibold">Messages</Text>
+                  <Text className="text-white/70 text-sm">2 unread</Text>
+                </VStack>
+              </HStack>
+            </GlassView>
+          </VStack>
+        </GlassContainer>
+      </View>
+    </View>
+  )
+}
