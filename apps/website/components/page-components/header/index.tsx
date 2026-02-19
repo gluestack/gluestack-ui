@@ -99,17 +99,18 @@ const Header = ({
               </NextLink>
               <ProductDropdown />
               <ResourcesDropdown />
-              <NextLink
-                        className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                        href="https://www.applighter.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation"
-                      >
-                        <Box className="rounded-full items-center justify-center">
-                          <Text className="leading-normal font-normal text-sm text-foreground/70">
-                            Templates
-                          </Text>
-                        </Box>
-                      </NextLink>
-              {/* )} */}
+              {!isDocsRoute && (
+                <NextLink
+                  className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  href="https://www.applighter.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation"
+                >
+                  <Box className="rounded-full items-center justify-center">
+                    <Text className="leading-normal font-normal text-sm text-foreground/70">
+                      Templates
+                    </Text>
+                  </Box>
+                </NextLink>
+              )}
             </div>
           </div>
           <div className="flex flex-row xl:gap-10 gap-6 items-center">
@@ -176,8 +177,8 @@ const Header = ({
                 setShowModal={setShowModal}
               />
               <Link
-                  href="https://rapidnative.com/?utm_source=gluestack.io&utm_medium=banner_docs&utm_campaign=brand-awareness"
-                  isExternal
+                href="https://rapidnative.com/?utm_source=gluestack.io&utm_medium=banner_docs&utm_campaign=brand-awareness"
+                isExternal
                 className="bg-primary px-4 py-1.5 xl:flex hidden rounded"
               >
                 <Text className="text-sm text-primary-foreground">
