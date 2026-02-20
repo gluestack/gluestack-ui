@@ -66,6 +66,7 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: "Image", path: "image", count: 2, icon: ImageIcon },
   { title: "Input", path: "input", count: 3, icon: InputIcon },
   { title: "Link", path: "link", count: 3, icon: LinkIcon },
+  { title: "Liquid Glass", path: "liquid-glass", count: 4 },
   { title: "Menu", path: "menu", count: 3, icon: MenuIcon },
   { title: "Modal", path: "modal", count: 5, icon: ModalIcon },
   { title: "Popover", path: "popover", count: 5, icon: PopoverIcon },

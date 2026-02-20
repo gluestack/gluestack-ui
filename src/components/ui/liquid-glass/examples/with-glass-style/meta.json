@@ -1,0 +1,12 @@
+{
+  "title": "With Glass Style",
+  "description": "Compare the 'regular' and 'clear' glass effect styles side by side.",
+  "nativeOnly": true,
+  "argTypes": {},
+  "reactLive": {
+    "GlassView": "@/components/ui/liquid-glass",
+    "Text": "@/components/ui/text",
+    "HStack": "@/components/ui/hstack",
+    "View": "react-native"
+  }
+}

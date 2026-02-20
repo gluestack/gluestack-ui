@@ -1,0 +1,14 @@
+{
+  "title": "With Color Scheme",
+  "description": "Override the glass effect's appearance independently from the system theme using the colorScheme prop.",
+  "nativeOnly": true,
+  "argTypes": {},
+  "reactLive": {
+    "GlassView": "@/components/ui/liquid-glass",
+    "GlassContainer": "@/components/ui/liquid-glass",
+    "Text": "@/components/ui/text",
+    "VStack": "@/components/ui/vstack",
+    "HStack": "@/components/ui/hstack",
+    "View": "react-native"
+  }
+}

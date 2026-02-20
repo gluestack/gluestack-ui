@@ -319,6 +319,12 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="BottomSheet" />,
         }}
       />
+          <Stack.Screen
+        name="liquid-glass"
+        options={{
+          header: () => <CustomHeader title="Liquid Glass" />,
+        }}
+      />
     </Stack>
   );
 }

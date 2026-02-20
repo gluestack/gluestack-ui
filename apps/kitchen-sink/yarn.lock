@@ -4595,10 +4595,10 @@ expo-font@~55.0.1:
   dependencies:
     fontfaceobserver "^2.1.0"
 
-expo-glass-effect@~55.0.1:
-  version "55.0.1"
-  resolved "https://registry.yarnpkg.com/expo-glass-effect/-/expo-glass-effect-55.0.1.tgz#fd1a1c57d3c9bf105f9572eb18ef9e3374176115"
-  integrity sha512-e2+OEJ5KJCauX/bv+tZ3AUee5Ve+poPNcBLgB991xl7xIsmizaP2H+Dfw8ve1mYNCunXV0pcOTXw7BRu9T2qaQ==
+expo-glass-effect@~55.0.6:
+  version "55.0.6"
+  resolved "https://registry.npmjs.org/expo-glass-effect/-/expo-glass-effect-55.0.6.tgz#7b7b590851b68b8693ea94dafd3810a6da6f95fc"
+  integrity sha512-1WL6SWe+9p4nFnysCiGXvVwuOXx75pp8i0BfoJlg1PZ+b188+lomzlzGYvsQ64cvgZE8c+nimKNHDTTCK0GE0w==
 
 expo-haptics@~55.0.1:
   version "55.0.1"

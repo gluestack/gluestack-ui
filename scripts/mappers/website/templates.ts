@@ -2,7 +2,8 @@ export const componentPreviewerTemplate = (
   imports: string,
   code: string,
   argTypes: string,
-  reactLive: string
+  reactLive: string,
+  nativeOnly?: boolean
 ) => `import { ComponentPreviewer } from '@/components/custom/component-previewer';
 ${imports}
 
@@ -12,6 +13,7 @@ export default function Example() {
       code={\`${code}\`}
       argTypes={${argTypes}}
       reactLive={${reactLive}}
+      ${nativeOnly ? 'nativeOnly' : ''}
     />
   );
 }`;
@@ -33,18 +35,20 @@ export const codePreviewerTemplate = (
   reactLive: string,
   title: string,
   description: string,
-  importMap: Record<string, string[]>
+  importMap: Record<string, string[]>,
+  nativeOnly?: boolean
 ) =>
   `
   ${title && title.toLowerCase() !== 'basic' ? `#### ${title}` : ''}
 
   ${description && `${description}`}
-  
+
   <CodePreviewer
   code={\`${code}\`}
   argTypes={${argTypes}}
   reactLive={${reactLive}}
   importMap={${JSON.stringify(importMap)}}
+  ${nativeOnly ? 'nativeOnly' : ''}
 />`;
 
 export const layoutTemplate = (frontMatter: Record<string, any>) => {

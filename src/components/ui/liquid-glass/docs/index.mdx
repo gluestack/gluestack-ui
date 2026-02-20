@@ -1,0 +1,179 @@
+---
+title: gluestack-ui LiquidGlass Component | Expo Glass Effect for React Native
+
+description: A glass effect component for React Native built on top of expo-glass-effect with gluestack-ui styling and NativeWind className support.
+
+pageTitle: LiquidGlass
+
+pageDescription: A glass effect component for React Native built on top of expo-glass-effect with gluestack-ui styling and NativeWind className support.
+
+showHeader: true
+
+tag: alpha
+---
+
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import ManualInstallationNote from '@/docs-components/manual-installation-note';
+
+# LiquidGlass
+
+A glass effect component for React Native built on top of [expo-glass-effect](https://docs.expo.dev/versions/latest/sdk/glass-effect/) with gluestack-ui styling and NativeWind className support.
+
+> **Note:** LiquidGlass is **not supported in Next.js**. It is intended for React Native and Expo environments only. `expo-glass-effect` requires native iOS/Android APIs that are not available in browser environments. On iOS, liquid glass requires **iOS 26+** (`isLiquidGlassAvailable`). On Android and older iOS, a standard glass blur fallback is used (`isGlassEffectAPIAvailable`).
+
+This is an illustration of the **LiquidGlass** component.
+/// {Example:basic} ///
+
+/// {Example:with-glass-container} ///
+
+/// {Example:with-color-scheme} ///
+
+/// {Example:with-glass-style} ///
+
+<br />
+
+## Installation
+
+### Run the following command:
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add liquid-glass`} language="bash" />
+
+<ManualInstallationNote />
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  GlassView,
+  GlassContainer,
+  isLiquidGlassAvailable,
+  isGlassEffectAPIAvailable,
+} from '@/components/ui/liquid-glass';
+```
+
+```jsx
+export default () => (
+  <GlassContainer className="p-4 rounded-2xl">
+    <GlassView className="p-6 rounded-xl items-center">
+      <Text className="text-foreground font-semibold">Glass Effect</Text>
+    </GlassView>
+  </GlassContainer>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### GlassView
+
+A view that applies a native glass blur effect. Extends React Native's [View](https://reactnative.dev/docs/view) with glass-specific props.
+
+### Props
+
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>glassEffectStyle</InlineCode></TableCell>
+        <TableCell>'regular' | 'clear'</TableCell>
+        <TableCell>'regular'</TableCell>
+        <TableCell>{`The visual style of the glass effect. 'regular' gives a frosted look; 'clear' is more transparent.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>tintColor</InlineCode></TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`A color tint applied on top of the glass blur effect.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>isInteractive</InlineCode></TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>{`When true, the glass effect responds to user interaction (e.g. press feedback on iOS 26+ liquid glass).`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>colorScheme</InlineCode></TableCell>
+        <TableCell>'auto' | 'light' | 'dark'</TableCell>
+        <TableCell>'auto'</TableCell>
+        <TableCell>{`Overrides the system appearance for the glass effect. Use when your app has its own theme toggle independent of the system setting.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>className</InlineCode></TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`NativeWind className for layout, sizing, border radius, and other style utilities.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+
+Also inherits all props of React Native's [View](https://reactnative.dev/docs/view).
+
+#### GlassContainer
+
+A container that groups multiple `GlassView` elements together. When glass views are close enough (controlled by `spacing`), they visually merge into one connected glass surface on iOS 26+ with liquid glass enabled.
+
+### Props
+
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell><InlineCode>spacing</InlineCode></TableCell>
+        <TableCell>number</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`The distance threshold at which glass elements start merging together. Controls when adjacent GlassView elements blend into one surface.`}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell><InlineCode>className</InlineCode></TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>{`NativeWind className for layout, sizing, padding, and other style utilities.`}</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+
+Also inherits all props of React Native's [View](https://reactnative.dev/docs/view).
+
+### Utility Functions
+
+#### isLiquidGlassAvailable
+
+```ts
+import { isLiquidGlassAvailable } from '@/components/ui/liquid-glass';
+```
+
+Returns `true` on iOS 26+ devices that support the native liquid glass effect. Use this to conditionally render enhanced UI when the full liquid glass API is available.
+
+#### isGlassEffectAPIAvailable
+
+```ts
+import { isGlassEffectAPIAvailable } from '@/components/ui/liquid-glass';
+```
+
+Returns `true` when any glass effect is supported (iOS and Android with blur fallback). Use this to gate glass-based UI behind a capability check.
