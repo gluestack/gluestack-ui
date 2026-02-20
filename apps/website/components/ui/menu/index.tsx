@@ -1,11 +1,11 @@
 'use client';
-import React, { useEffect } from 'react';
 import { createMenu } from '@gluestack-ui/core/menu/creator';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
-import { Pressable, Text, View, ScrollView } from 'react-native';
-import Animated, { FadeOut, ZoomIn, ZoomOut } from 'react-native-reanimated';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import React from 'react';
+import { Pressable, ScrollView, Text, View } from 'react-native';
+import Animated, { FadeOut, ZoomIn } from 'react-native-reanimated';
 
 const AnimatedView = Animated.createAnimatedComponent(ScrollView);
 
@@ -102,6 +102,8 @@ const Separator = React.forwardRef<
   );
 });
 
+cssInterop(AnimatedView, { className: 'style' });
+
 export const UIMenu = createMenu({
   Root: AnimatedView,
   Item: Item,
@@ -109,8 +111,6 @@ export const UIMenu = createMenu({
   Backdrop: BackdropPressable,
   Separator: Separator,
 });
-
-cssInterop(AnimatedView, { className: 'style' });
 
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle> & { className?: string };
@@ -121,7 +121,6 @@ const Menu = React.forwardRef<React.ComponentRef<typeof UIMenu>, IMenuProps>(
   function Menu({ className, ...props }, ref) {
     return (
       <UIMenu
-      showsVerticalScrollIndicator={false}
         entering={ZoomIn.duration(150).withInitialValues({
           transform: [{ scale: 0.9 }],
           opacity: 0,
