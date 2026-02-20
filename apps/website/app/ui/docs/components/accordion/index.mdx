@@ -26,7 +26,7 @@ This is an illustration of **Accordion** component.
   
 
   
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -90,6 +90,7 @@ This is an illustration of **Accordion** component.
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, ChevronDownIcon, ChevronUpIcon }}
   importMap={{"@/components/ui/accordion":["Accordion","AccordionItem","AccordionHeader","AccordionTrigger","AccordionTitleText","AccordionContent","AccordionContentText","AccordionIcon"],"@/components/ui/divider":["Divider"],"@/components/ui/icon":["ChevronDownIcon","ChevronUpIcon"]}}
+  
 />
 
 <br />
@@ -594,7 +595,7 @@ The Examples section provides visual representations of the different variants o
   #### Customized Component
 
   The following example demonstrates how easily you can customize the Accordion component to suit your needs.
-  
+
   <CodePreviewer
   code={`function App(){
     return (
@@ -689,13 +690,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, ChevronDownIcon, ChevronUpIcon }}
   importMap={{"@/components/ui/accordion":["Accordion","AccordionItem","AccordionHeader","AccordionTrigger","AccordionTitleText","AccordionContent","AccordionContentText","AccordionIcon"],"@/components/ui/divider":["Divider"],"@/components/ui/icon":["ChevronDownIcon","ChevronUpIcon"]}}
+  
 />
 
 
   #### Rounded corners
 
   The borderRadius prop can be used to create rounded corners for both the Accordion and AccordionItem components.
-  
+
   <CodePreviewer
   code={`function App(){
     return (
@@ -762,13 +764,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
   importMap={{"@/components/ui/accordion":["Accordion","AccordionItem","AccordionHeader","AccordionTrigger","AccordionTitleText","AccordionContent","AccordionContentText","AccordionIcon"],"@/components/ui/divider":["Divider"],"@/components/ui/icon":["AddIcon","RemoveIcon"]}}
+  
 />
 
 
   #### Disabled item
 
   You can disable an item by setting the isDisabled prop to true. This will prevent the user from interacting with the item and its content. You can also disable the whole accordion by setting the isDisabled prop to true on the Accordion component.
-  
+
   <CodePreviewer
   code={`function App(){
     return (
@@ -833,13 +836,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
   importMap={{"@/components/ui/accordion":["Accordion","AccordionItem","AccordionHeader","AccordionTrigger","AccordionTitleText","AccordionContent","AccordionContentText","AccordionIcon"],"@/components/ui/divider":["Divider"],"@/components/ui/icon":["AddIcon","RemoveIcon"]}}
+  
 />
 
 
   #### Default value
 
   Use the defaultValue prop to define the open item by default.
-  
+
   <CodePreviewer
   code={`function App(){
     return (
@@ -929,13 +933,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
   importMap={{"@/components/ui/accordion":["Accordion","AccordionItem","AccordionHeader","AccordionTrigger","AccordionTitleText","AccordionContent","AccordionContentText","AccordionIcon"],"@/components/ui/divider":["Divider"],"@/components/ui/icon":["AddIcon","RemoveIcon"]}}
+  
 />
 
 
   #### Nested Components
 
   You can nest Accordion components to create a nested accordion. This is useful when you want to group related content together. In the following example, we have created a nested accordion to group the states of USA by region.
-  
+
   <CodePreviewer
   code={`function App(){
     return (
@@ -1020,13 +1025,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
   importMap={{"@/components/ui/accordion":["Accordion","AccordionItem","AccordionHeader","AccordionTrigger","AccordionTitleText","AccordionContent","AccordionContentText","AccordionIcon"],"@/components/ui/divider":["Divider"],"@/components/ui/icon":["AddIcon","RemoveIcon"]}}
+  
 />
 
 
   #### Controlled Accordion
 
   A component is controlled when it's managed by its parent using props. You can make the Accordion component controlled by passing the value prop to the Accordion and setting the onValueChange to update the value prop. In the following example, we have created a controlled accordion to display the expanded state of the accordion.
-  
+
   <CodePreviewer
   code={`function App(){
     const [selectedValues, setSelectedValues] = React.useState(['item-1', 'item-2']);
@@ -1117,4 +1123,5 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, AddIcon, RemoveIcon }}
   importMap={{"@/components/ui/accordion":["Accordion","AccordionItem","AccordionHeader","AccordionTrigger","AccordionTitleText","AccordionContent","AccordionContentText","AccordionIcon"],"@/components/ui/divider":["Divider"],"@/components/ui/icon":["AddIcon","RemoveIcon"]}}
+  
 />

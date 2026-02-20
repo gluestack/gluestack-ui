@@ -44,6 +44,7 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ Calendar, CalendarHeader, CalendarHeaderPrevButton, CalendarHeaderNextButton, CalendarHeaderTitle, CalendarWeekDaysHeader, CalendarBody, CalendarGrid, CalendarWeek, CalendarDay, CalendarDayText, Icon, ChevronLeftIcon, ChevronRightIcon }}
+      
     />
   );
 }

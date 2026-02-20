@@ -49,6 +49,7 @@ export default function Example() {
   }
 }}
       reactLive={{ Tooltip, TooltipContent, TooltipText, Button, ButtonText }}
+      
     />
   );
 }

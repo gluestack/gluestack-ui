@@ -36,6 +36,7 @@ export default function Example() {
   }
 }}
       reactLive={{ Spinner }}
+      
     />
   );
 }

@@ -30,7 +30,7 @@ This is an illustration of **Calendar** component.
   #### Basic Calendar
 
   A simple calendar component with single date selection
-  
+
   <CodePreviewer
   code={`function Example() {
   const [selected, setSelected] = React.useState(new Date());
@@ -60,6 +60,7 @@ This is an illustration of **Calendar** component.
   argTypes={{}}
   reactLive={{ Calendar, CalendarHeader, CalendarHeaderPrevButton, CalendarHeaderNextButton, CalendarHeaderTitle, CalendarWeekDaysHeader, CalendarBody, CalendarGrid, CalendarWeek, CalendarDay, CalendarDayText, Icon, ChevronLeftIcon, ChevronRightIcon }}
   importMap={{"@/components/ui/calendar":["Calendar","CalendarHeader","CalendarHeaderPrevButton","CalendarHeaderNextButton","CalendarHeaderTitle","CalendarWeekDaysHeader","CalendarBody","CalendarGrid","CalendarWeek","CalendarDay","CalendarDayText"],"@/components/ui/icon":["Icon","ChevronLeftIcon","ChevronRightIcon"]}}
+  
 />
 
 <br />
@@ -1161,7 +1162,7 @@ The Examples section provides visual representations of the different variants o
   #### Selection Modes
 
   Calendar supports three selection modes: single date, multiple dates, and date range selection
-  
+
   <CodePreviewer
   code={`function Example() {
   const [singleDate, setSingleDate] = React.useState(new Date());
@@ -1219,13 +1220,14 @@ The Examples section provides visual representations of the different variants o
 }}
   reactLive={{ Calendar, CalendarHeader, CalendarHeaderPrevButton, CalendarHeaderNextButton, CalendarHeaderTitle, CalendarWeekDaysHeader, CalendarBody, CalendarGrid, CalendarDay, CalendarDayText, CalendarDayIndicator, Box, Text, VStack, HStack, Icon, ChevronLeftIcon, ChevronRightIcon }}
   importMap={{"@/components/ui/calendar":["Calendar","CalendarHeader","CalendarHeaderPrevButton","CalendarHeaderNextButton","CalendarHeaderTitle","CalendarWeekDaysHeader","CalendarBody","CalendarGrid","CalendarDay","CalendarDayText","CalendarDayIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"@/components/ui/icon":["Icon","ChevronLeftIcon","ChevronRightIcon"]}}
+  
 />
 
 
   #### Month & Year Picker
 
   Enable quick navigation with month and year dropdown selectors
-  
+
   <CodePreviewer
   code={`function Example() {
   const [selected, setSelected] = React.useState(new Date());
@@ -1261,13 +1263,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Calendar, CalendarHeader, CalendarHeaderPrevButton, CalendarHeaderNextButton, CalendarHeaderTitle, CalendarHeaderMonthSelect, CalendarHeaderYearSelect, CalendarWeekDaysHeader, CalendarBody, CalendarGrid, Icon, ChevronLeftIcon, ChevronRightIcon }}
   importMap={{"@/components/ui/calendar":["Calendar","CalendarHeader","CalendarHeaderPrevButton","CalendarHeaderNextButton","CalendarHeaderTitle","CalendarHeaderMonthSelect","CalendarHeaderYearSelect","CalendarWeekDaysHeader","CalendarBody","CalendarGrid"],"@/components/ui/icon":["Icon","ChevronLeftIcon","ChevronRightIcon"]}}
+  
 />
 
 
   #### With Event Markers
 
   Add visual indicators and markers to highlight specific dates with events or important information
-  
+
   <CodePreviewer
   code={`function Example() {
   const [selected, setSelected] = React.useState(new Date());
@@ -1348,13 +1351,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Calendar, CalendarHeader, CalendarHeaderPrevButton, CalendarHeaderNextButton, CalendarHeaderTitle, CalendarWeekDaysHeader, CalendarBody, CalendarGrid, CalendarDay, CalendarDayText, CalendarDayIndicator, Box, Text, HStack, VStack, Icon, ChevronLeftIcon, ChevronRightIcon, CircleIcon }}
   importMap={{"@/components/ui/calendar":["Calendar","CalendarHeader","CalendarHeaderPrevButton","CalendarHeaderNextButton","CalendarHeaderTitle","CalendarWeekDaysHeader","CalendarBody","CalendarGrid","CalendarDay","CalendarDayText","CalendarDayIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/hstack":["HStack"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["Icon","ChevronLeftIcon","ChevronRightIcon","CircleIcon"]}}
+  
 />
 
 
   #### With Disabled Dates
 
   Disable specific dates or date ranges using minDate, maxDate, or custom disabled dates function
-  
+
   <CodePreviewer
   code={`function Example() {
   const [selected, setSelected] = React.useState(new Date());
@@ -1435,13 +1439,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Calendar, CalendarHeader, CalendarHeaderPrevButton, CalendarHeaderNextButton, CalendarHeaderTitle, CalendarWeekDaysHeader, CalendarBody, CalendarGrid, Box, Text, VStack, Icon, ChevronLeftIcon, ChevronRightIcon }}
   importMap={{"@/components/ui/calendar":["Calendar","CalendarHeader","CalendarHeaderPrevButton","CalendarHeaderNextButton","CalendarHeaderTitle","CalendarWeekDaysHeader","CalendarBody","CalendarGrid"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["Icon","ChevronLeftIcon","ChevronRightIcon"]}}
+  
 />
 
 
   #### With Week Numbers
 
   Display ISO week numbers alongside the calendar for business and project planning use cases
-  
+
   <CodePreviewer
   code={`function Example() {
   const [selected, setSelected] = React.useState(new Date());
@@ -1474,13 +1479,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Calendar, CalendarHeader, CalendarHeaderPrevButton, CalendarHeaderNextButton, CalendarHeaderTitle, CalendarWeekDaysHeader, CalendarWeekNumber, CalendarBody, CalendarGrid, Icon, ChevronLeftIcon, ChevronRightIcon }}
   importMap={{"@/components/ui/calendar":["Calendar","CalendarHeader","CalendarHeaderPrevButton","CalendarHeaderNextButton","CalendarHeaderTitle","CalendarWeekDaysHeader","CalendarWeekNumber","CalendarBody","CalendarGrid"],"@/components/ui/icon":["Icon","ChevronLeftIcon","ChevronRightIcon"]}}
+  
 />
 
 
   #### Customized Styling
 
   Customize the calendar appearance with different sizes, colors, and styles using Tailwind classes
-  
+
   <CodePreviewer
   code={`function Example() {
   const [selected, setSelected] = React.useState(new Date());
@@ -1556,4 +1562,5 @@ The Examples section provides visual representations of the different variants o
 }}
   reactLive={{ Calendar, CalendarHeader, CalendarHeaderPrevButton, CalendarHeaderNextButton, CalendarHeaderTitle, CalendarWeekDaysHeader, CalendarBody, CalendarGrid, Box, Text, VStack, Icon, ChevronLeftIcon, ChevronRightIcon }}
   importMap={{"@/components/ui/calendar":["Calendar","CalendarHeader","CalendarHeaderPrevButton","CalendarHeaderNextButton","CalendarHeaderTitle","CalendarWeekDaysHeader","CalendarBody","CalendarGrid"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["Icon","ChevronLeftIcon","ChevronRightIcon"]}}
+  
 />

@@ -75,6 +75,7 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionTitleText, AccordionContent, AccordionContentText, AccordionIcon, Divider, ChevronDownIcon, ChevronUpIcon }}
+      
     />
   );
 }

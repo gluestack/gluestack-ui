@@ -21,6 +21,7 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ Avatar, AvatarFallbackText, AvatarImage, AvatarBadge }}
+      
     />
   );
 }

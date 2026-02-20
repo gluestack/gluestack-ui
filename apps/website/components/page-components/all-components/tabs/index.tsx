@@ -50,6 +50,7 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text }}
+      
     />
   );
 }

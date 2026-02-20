@@ -53,6 +53,7 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ ImageViewer, ImageViewerTrigger, ImageViewerContent, ImageViewerCloseButton, ImageViewerNavigation, ImageViewerCounter, Image, Text, View }}
+      
     />
   );
 }

@@ -320,7 +320,7 @@ export default function ComponentsLayout() {
         }}
       />
           <Stack.Screen
-<<<<<<< HEAD
+
         name="bottomsheet"
         options={{
           header: () => <CustomHeader title="BottomSheet" />,
@@ -332,7 +332,7 @@ export default function ComponentsLayout() {
           header: () => <CustomHeader title="Liquid Glass" />,
         }}
       />
-=======
+ <Stack.Screen
             name="tabs"
             options={{
               header: () => <CustomHeader title="Tabs" />,
@@ -351,7 +351,7 @@ export default function ComponentsLayout() {
             }}
           />
      
->>>>>>> main-v4-alpha-new-components
+
     </Stack>
   );
 }

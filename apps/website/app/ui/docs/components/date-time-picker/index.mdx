@@ -29,7 +29,7 @@ This is an illustration of **DateTimePicker** component.
   
 
   A basic DateTimePicker with date and time selection
-  
+
   <CodePreviewer
   code={`function Example() {
   const [date, setDate] = React.useState(new Date());
@@ -53,6 +53,7 @@ This is an illustration of **DateTimePicker** component.
   argTypes={{}}
   reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, Box, CalendarDaysIcon }}
   importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/box":["Box"],"@/components/ui/icon":["CalendarDaysIcon"]}}
+  
 />
 
 <br />
@@ -1192,7 +1193,7 @@ The Examples section provides visual representations of the different variants o
   #### Different Modes
 
   DateTimePicker supports three modes: date only, time only, and combined datetime selection
-  
+
   <CodePreviewer
   code={`function Example() {
   const [date, setDate] = React.useState(new Date());
@@ -1251,13 +1252,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, Box, Text, VStack, CalendarDaysIcon, ClockIcon }}
   importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["CalendarDaysIcon","ClockIcon"]}}
+  
 />
 
 
   #### Variants & Sizes
 
   DateTimePicker supports multiple visual variants (outline, underlined, rounded) and sizes (sm, md, lg, xl)
-  
+
   <CodePreviewer
   code={`function Example() {
   const [date, setDate] = React.useState(new Date());
@@ -1376,13 +1378,14 @@ The Examples section provides visual representations of the different variants o
 }}
   reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, Box, Text, VStack, CalendarDaysIcon }}
   importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["CalendarDaysIcon"]}}
+  
 />
 
 
   #### With Form Control
 
   Use DateTimePicker with FormControl for proper labeling, helper text, and validation states
-  
+
   <CodePreviewer
   code={`function Example() {
   const [date, setDate] = React.useState(null);
@@ -1430,4 +1433,5 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorText, FormControlErrorIcon, CalendarDaysIcon, AlertCircleIcon }}
   importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/form-control":["FormControl","FormControlLabel","FormControlLabelText","FormControlHelper","FormControlHelperText","FormControlError","FormControlErrorText","FormControlErrorIcon"],"@/components/ui/icon":["CalendarDaysIcon","AlertCircleIcon"]}}
+  
 />

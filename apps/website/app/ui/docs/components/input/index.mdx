@@ -30,7 +30,7 @@ This is an illustration of **Input** component.
   
 
   
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -61,6 +61,7 @@ This is an illustration of **Input** component.
 }}
   reactLive={{ Input, InputField }}
   importMap={{"@/components/ui/input":["Input","InputField"]}}
+  
 />
 
 ## Installation
@@ -373,7 +374,7 @@ The Examples section provides visual representations of the different variants o
   #### Input with FormControl
 
   The Input component integrates with an icon and a button, providing users with a comprehensive login window inside a FormControl component.
-  
+
   <CodePreviewer
   code={`function Example() {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -417,13 +418,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Input, InputField, InputIcon, InputSlot, FormControl, VStack, Heading, Text, Button, ButtonText, EyeIcon, EyeOffIcon }}
   importMap={{"@/components/ui/input":["Input","InputField","InputIcon","InputSlot"],"@/components/ui/form-control":["FormControl"],"@/components/ui/vstack":["VStack"],"@/components/ui/heading":["Heading"],"@/components/ui/text":["Text"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/icon":["EyeIcon","EyeOffIcon"]}}
+  
 />
 
 
   #### Input with Icons
 
   The Input with Icons is a variation of the Input component that displays icons next to input field. It's commonly used in apps for a more visual representation of options and easier navigation.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -440,4 +442,5 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Input, InputField, InputIcon, InputSlot, SearchIcon }}
   importMap={{"@/components/ui/input":["Input","InputField","InputIcon","InputSlot"],"@/components/ui/icon":["SearchIcon"]}}
+  
 />

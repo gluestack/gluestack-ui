@@ -31,7 +31,7 @@ This is an illustration of **Image Viewer** component.
   
 
   A basic image viewer with zoom, swipe navigation, and slide-to-dismiss gestures
-  
+
   <CodePreviewer
   code={`function Example() {
   const images = [
@@ -40,7 +40,7 @@ This is an illustration of **Image Viewer** component.
       alt: 'Mountain landscape'
     },
     {
-      url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSEDaMEoX0Tkzqw74YSBab3HI2czZ14hUpGxq1Wuko5h6hGPVhF',
+      url: 'https://images.unsplash.com/photo-1682687221038-404670e01d4c?w=800&auto=format&fit=crop&q=60',
       alt: 'Ocean waves'
     },
     {
@@ -75,6 +75,7 @@ This is an illustration of **Image Viewer** component.
   argTypes={{}}
   reactLive={{ ImageViewer, ImageViewerTrigger, ImageViewerContent, ImageViewerCloseButton, ImageViewerNavigation, ImageViewerCounter, Image, Text, View }}
   importMap={{"@/components/ui/image-viewer":["ImageViewer","ImageViewerTrigger","ImageViewerContent","ImageViewerCloseButton","ImageViewerNavigation","ImageViewerCounter"],"@/components/ui/image":["Image"],"@/components/ui/text":["Text"],"@/components/ui/view":["View"]}}
+  
 />
 
 <br />
@@ -1154,7 +1155,7 @@ The Examples section provides visual representations of the different variants o
   #### Controlled Mode
 
   Use controlled props to programmatically control the image viewer state and track current image index
-  
+
   <CodePreviewer
   code={`function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -1224,13 +1225,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ ImageViewer, ImageViewerContent, ImageViewerCloseButton, ImageViewerNavigation, ImageViewerCounter, Image, Text, VStack, HStack, Button, ButtonText, Pressable }}
   importMap={{"@/components/ui/image-viewer":["ImageViewer","ImageViewerContent","ImageViewerCloseButton","ImageViewerNavigation","ImageViewerCounter"],"@/components/ui/image":["Image"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/hstack":["HStack"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/pressable":["Pressable"]}}
+  
 />
 
 
   #### Single Image
 
   Image viewer works great with single images too, providing zoom and pan capabilities
-  
+
   <CodePreviewer
   code={`function Example() {
   const images = [
@@ -1269,4 +1271,5 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ ImageViewer, ImageViewerTrigger, ImageViewerContent, ImageViewerCloseButton, ImageViewerCounter, Image, Text, VStack }}
   importMap={{"@/components/ui/image-viewer":["ImageViewer","ImageViewerTrigger","ImageViewerContent","ImageViewerCloseButton","ImageViewerCounter"],"@/components/ui/image":["Image"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"]}}
+  
 />

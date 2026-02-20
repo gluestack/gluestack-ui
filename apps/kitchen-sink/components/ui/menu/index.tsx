@@ -1,6 +1,7 @@
 'use client';
 import { createMenu } from '@gluestack-ui/core/menu/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import React from 'react';
@@ -104,6 +105,8 @@ const Separator = React.forwardRef<
 
 cssInterop(AnimatedView, { className: 'style' });
 
+
+
 export const UIMenu = createMenu({
   Root: AnimatedView,
   Item: Item,
@@ -112,10 +115,7 @@ export const UIMenu = createMenu({
   Separator: Separator,
 });
 
-<<<<<<< HEAD
 
-=======
->>>>>>> main-v4-alpha-new-components
 type IMenuProps = React.ComponentProps<typeof UIMenu> &
   VariantProps<typeof menuStyle> & { className?: string };
 type IMenuItemLabelProps = React.ComponentProps<typeof UIMenu.ItemLabel> &

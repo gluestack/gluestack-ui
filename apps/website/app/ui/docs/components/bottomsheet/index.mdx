@@ -29,7 +29,7 @@ This is an illustration of the **BottomSheet** component.
   
 
   
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -60,14 +60,14 @@ This is an illustration of the **BottomSheet** component.
   argTypes={{}}
   reactLive={{ BottomSheet, BottomSheetTrigger, BottomSheetContent, BottomSheetBackdrop, BottomSheetDragIndicator, BottomSheetItem, BottomSheetItemText, BottomSheetPortal, Text }}
   importMap={{"@/components/ui/bottomsheet":["BottomSheet","BottomSheetTrigger","BottomSheetContent","BottomSheetBackdrop","BottomSheetDragIndicator","BottomSheetItem","BottomSheetItemText","BottomSheetPortal"],"@/components/ui/text":["Text"]}}
-  nativeOnly
+  
 />
 
 
   #### With Search Input
 
   A bottom sheet with a keyboard-aware search input using BottomSheetTextInput. Typing filters the list in real time without dismissing the keyboard.
-  
+
   <CodePreviewer
   code={`function App() {
   const [query, setQuery] = React.useState('');
@@ -127,14 +127,14 @@ This is an illustration of the **BottomSheet** component.
   argTypes={{}}
   reactLive={{ BottomSheet, BottomSheetTrigger, BottomSheetPortal, BottomSheetBackdrop, BottomSheetDragIndicator, BottomSheetScrollView, BottomSheetItem, BottomSheetItemText, BottomSheetTextInput, Text, VStack, Button, ButtonText }}
   importMap={{"@/components/ui/bottomsheet":["BottomSheet","BottomSheetTrigger","BottomSheetPortal","BottomSheetBackdrop","BottomSheetDragIndicator","BottomSheetScrollView","BottomSheetItem","BottomSheetItemText","BottomSheetTextInput"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/button":["Button","ButtonText"]}}
-  nativeOnly
+  
 />
 
 
   #### With Footer
 
   A bottom sheet with a sticky BottomSheetFooter containing action buttons. Items can be multi-selected without closing the sheet, and the Confirm button shows the selected count.
-  
+
   <CodePreviewer
   code={`function App() {
   const ref = React.useRef(null);
@@ -224,14 +224,14 @@ This is an illustration of the **BottomSheet** component.
   argTypes={{}}
   reactLive={{ BottomSheet, BottomSheetTrigger, BottomSheetPortal, BottomSheetBackdrop, BottomSheetDragIndicator, BottomSheetScrollView, BottomSheetItem, BottomSheetItemText, BottomSheetFooter, Text, Button, ButtonText, HStack, VStack }}
   importMap={{"@/components/ui/bottomsheet":["BottomSheet","BottomSheetTrigger","BottomSheetPortal","BottomSheetBackdrop","BottomSheetDragIndicator","BottomSheetScrollView","BottomSheetItem","BottomSheetItemText","BottomSheetFooter"],"@/components/ui/text":["Text"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/hstack":["HStack"],"@/components/ui/vstack":["VStack"]}}
-  nativeOnly
+  
 />
 
 
   #### With Snap Points
 
   A bottom sheet with multiple snap points controlled programmatically via a ref. Demonstrates open, close, expand, collapse, and snapToIndex using the imperative BottomSheetRef handle.
-  
+
   <CodePreviewer
   code={`function App() {
   const ref = React.useRef(null);
@@ -291,7 +291,7 @@ This is an illustration of the **BottomSheet** component.
   argTypes={{}}
   reactLive={{ BottomSheet, BottomSheetPortal, BottomSheetBackdrop, BottomSheetDragIndicator, BottomSheetContent, Text, Button, ButtonText, HStack, VStack }}
   importMap={{"@/components/ui/bottomsheet":["BottomSheet","BottomSheetPortal","BottomSheetBackdrop","BottomSheetDragIndicator","BottomSheetContent"],"@/components/ui/text":["Text"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/hstack":["HStack"],"@/components/ui/vstack":["VStack"]}}
-  nativeOnly
+  
 />
 
 <br />

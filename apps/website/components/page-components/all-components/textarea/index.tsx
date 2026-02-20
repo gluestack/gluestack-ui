@@ -51,6 +51,7 @@ export default function Example() {
   }
 }}
       reactLive={{ Textarea, TextareaInput }}
+      
     />
   );
 }

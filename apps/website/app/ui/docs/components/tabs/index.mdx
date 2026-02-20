@@ -29,7 +29,7 @@ This is an illustration of **Tabs** component.
   
 
   
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -70,6 +70,7 @@ This is an illustration of **Tabs** component.
   argTypes={{}}
   reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text }}
   importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"]}}
+  
 />
 
 <br />
@@ -1046,7 +1047,7 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   #### With Indicator
 
   The TabsIndicator animates between the selected tab trigger. It is positioned absolutely inside the TabsList and slides to follow the active tab.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -1102,6 +1103,7 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   argTypes={{}}
   reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text }}
   importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"]}}
+  
 />
 
 ### Vertical Orientation
@@ -1110,7 +1112,7 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   #### Vertical
 
   Set orientation to vertical to render the tab list along the left side. The indicator animates vertically between the selected triggers.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -1175,6 +1177,7 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   argTypes={{}}
   reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text }}
   importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"]}}
+  
 />
 
 ### With Icons
@@ -1183,7 +1186,7 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   #### With Icons
 
   Use TabsTriggerIcon with the as prop to add icons alongside the trigger text in each tab.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -1248,6 +1251,7 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   argTypes={{}}
   reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsTriggerIcon, TabsIndicator, Box, Text, SearchIcon, MailIcon, StarIcon, BellIcon }}
   importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsTriggerIcon","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/icon":["SearchIcon","MailIcon","StarIcon","BellIcon"]}}
+  
 />
 
 ### Variants
@@ -1256,7 +1260,7 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   #### Variants
 
   Tabs supports two variants: underlined shows a sliding underline indicator beneath the active tab, and filled shows a filled background pill that slides between tabs.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -1336,6 +1340,7 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   argTypes={{}}
   reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text }}
   importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"]}}
+  
 />
 
 
@@ -1345,7 +1350,7 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   #### Scrollable
 
   When there are more tabs than the available width, the TabsList scrolls horizontally. The animated indicator stays synchronized with the scroll position.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -1425,6 +1430,7 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   argTypes={{}}
   reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text }}
   importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"]}}
+  
 />
 
 
@@ -1434,7 +1440,7 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   #### Controlled
 
   A controlled Tabs component manages its active tab via the value and onValueChange props. This allows external UI to programmatically switch between tabs.
-  
+
   <CodePreviewer
   code={`function Example() {
   const [activeTab, setActiveTab] = React.useState('tab1');
@@ -1500,4 +1506,5 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   argTypes={{}}
   reactLive={{ Tabs, TabsList, TabsTrigger, TabsContent, TabsContentWrapper, TabsTriggerText, TabsIndicator, Box, Text, Button, ButtonText }}
   importMap={{"@/components/ui/tabs":["Tabs","TabsList","TabsTrigger","TabsContent","TabsContentWrapper","TabsTriggerText","TabsIndicator"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/button":["Button","ButtonText"]}}
+  
 />

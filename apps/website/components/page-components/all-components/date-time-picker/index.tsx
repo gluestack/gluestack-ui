@@ -30,6 +30,7 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, Box, CalendarDaysIcon }}
+      
     />
   );
 }
