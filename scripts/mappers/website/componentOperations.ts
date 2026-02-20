@@ -59,7 +59,7 @@ export const processSidebarFile = (filePath: string) => {
     const sidebar = fileOps.readJsonFile(filePath);
     let components = getComponentsFromSidebar(sidebar).sort();
     components = components.map(
-      (component: string) => component.replace('-', '') + 'Component'
+      (component: string) => component.replace(/-/g, '') + 'Component'
     );
     const componentsNameList = getComponentsFromSidebar(sidebar).sort();
     const componentMap = createComponentMap(components, componentsNameList);

@@ -1,16 +1,14 @@
-import EditScreenInfo from '@/components/EditScreenInfo';
-import { Center } from '@/components/ui/center';
-import { Divider } from '@/components/ui/divider';
-import { Heading } from '@/components/ui/heading';
-import { Text } from '@/components/ui/text';
+import React, { useState } from 'react';
+import { ScrollView, Text, View } from 'react-native';
+import { Calendar } from '@/components/ui/calendar';
 
-export default function Tab2() {
+export default function DateTimePickerDemo() {
+
+
   return (
-    <Center className="flex-1">
-      <Heading className="font-bold text-2xl">Expo - Tab 1</Heading>
-      <Divider className="my-[30px] w-[80%]" />
-      <Text className="p-4">Example below to use gluestack-ui components.</Text>
-      <EditScreenInfo path="app/(app)/(tabs)/tab1.tsx" />
-    </Center>
+    <ScrollView className="flex-1 bg-background p-4">
+      <Text className="text-lg font-bold mb-2">Single Select</Text>
+     
+    </ScrollView>
   );
 }

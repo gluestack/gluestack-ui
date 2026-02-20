@@ -1,0 +1,364 @@
+---
+title: Image Viewer Component | gluestack-ui | Installation, Usage & API
+
+description: A powerful, interactive image viewer component with zoom, swipe navigation, and slide-to-dismiss gestures. Works across iOS, Android, and Web with smooth 60fps animations powered by React Native Reanimated.
+
+pageTitle: Image Viewer
+
+pageDescription: A powerful, interactive image viewer component with zoom, swipe navigation, and slide-to-dismiss gestures. Works across iOS, Android, and Web with smooth 60fps animations powered by React Native Reanimated.
+
+showHeader: true
+---
+
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+
+# Image Viewer
+
+The Image Viewer component provides an interactive way to display images with advanced gesture support. It includes pinch-to-zoom, double-tap zoom, swipe navigation between images, and slide-to-dismiss functionality. Built with React Native Reanimated for smooth 60fps animations that run on the UI thread.
+
+This is an illustration of **Image Viewer** component.
+
+/// {Example:basic} ///
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add image-viewer`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Install the following dependencies:
+
+```bash
+npm i react-native-gesture-handler
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/image-viewer/index.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```ts
+import {
+  ImageViewer,
+  ImageViewerTrigger,
+  ImageViewerContent,
+  ImageViewerCloseButton,
+  ImageViewerNavigation,
+  ImageViewerCounter,
+} from '@/components/ui/image-viewer';
+```
+
+```tsx
+export default () => (
+  <ImageViewer images={images}>
+    <ImageViewerTrigger>
+      <Image source={{ uri: '...' }} />
+    </ImageViewerTrigger>
+    <ImageViewerContent>
+      <ImageViewerCloseButton />
+      <ImageViewerNavigation />
+      <ImageViewerCounter />
+    </ImageViewerContent>
+  </ImageViewer>
+);
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### ImageViewer
+
+The root component that manages the image viewer state and provides context to child components.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>images</InlineCode>
+        </TableCell>
+        <TableCell>ImageItem[]</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Array of images to display. Each item should have url and optional
+          alt.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>defaultOpen</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>
+          Whether the viewer is open by default (uncontrolled).
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isOpen</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Controlled open state. Use with onOpenChange for controlled mode.
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onOpenChange</InlineCode>
+        </TableCell>
+        <TableCell>(isOpen: boolean) ={'>'} void</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Callback when open state changes.</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>initialIndex</InlineCode>
+        </TableCell>
+        <TableCell>number</TableCell>
+        <TableCell>0</TableCell>
+        <TableCell>Index of the image to show initially.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### ImageViewerTrigger
+
+The trigger element that opens the image viewer when pressed.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>children</InlineCode>
+        </TableCell>
+        <TableCell>React.ReactNode</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Content to render as the trigger (usually an Image).
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>onPress</InlineCode>
+        </TableCell>
+        <TableCell>() ={'>'} void</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Additional callback when trigger is pressed.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### ImageViewerContent
+
+The modal content that displays the image with gesture support.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>children</InlineCode>
+        </TableCell>
+        <TableCell>React.ReactNode</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Child components like CloseButton, Navigation, Counter.
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### ImageViewerCloseButton
+
+A button to close the image viewer.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>className</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Additional Tailwind classes for styling.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### ImageViewerNavigation
+
+Navigation buttons to move between images in the gallery.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>className</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Additional Tailwind classes for styling.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### ImageViewerCounter
+
+Displays the current image index and total count (e.g., "3 / 10").
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>className</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Additional Tailwind classes for styling.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+### Gestures
+
+The Image Viewer supports the following gestures:
+
+- **Pinch to Zoom**: Use two fingers to zoom in and out of images
+- **Double Tap**: Double tap to zoom in (2.5x) or reset zoom
+- **Pan**: When zoomed in, drag to pan around the image
+- **Swipe Left/Right**: Navigate between images in the gallery
+- **Swipe Up/Down**: Dismiss the viewer by swiping vertically
+
+### Accessibility
+
+Adheres to the Dialog [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
+
+We have outlined the various features that ensure the Image Viewer component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.
+
+- **ARIA Labels**: All interactive elements have appropriate ARIA labels
+- **Keyboard Navigation**: Full keyboard support with Tab, Enter, Escape, and Arrow keys
+- **Focus Management**: Focus is trapped within the modal when open
+- **Screen Reader Support**: Images announce their alt text to screen readers
+
+### Keyboard Interactions
+
+- `Tab` - Moves focus to the next focusable element.
+- `Shift + Tab` - Moves focus to the previous focusable element.
+- `Enter` or `Space` - Activates the focused button.
+- `Escape` - Closes the image viewer.
+- `Left Arrow` - Navigate to previous image.
+- `Right Arrow` - Navigate to next image.
+
+### Screen Reader
+
+- VoiceOver: Announces image alt text and current position (e.g., "Image 3 of 10")
+- TalkBack: Provides similar announcements on Android
+
+## Types
+
+```typescript
+interface ImageItem {
+  url: string;
+  alt?: string;
+}
+
+interface ImageViewerProps {
+  images: ImageItem[];
+  defaultOpen?: boolean;
+  isOpen?: boolean;
+  onOpenChange?: (isOpen: boolean) => void;
+  initialIndex?: number;
+}
+```
+
+## Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs.
+
+/// {Example:controlled} ///
+
+/// {Example:single-image} ///

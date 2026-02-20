@@ -1,0 +1,90 @@
+function Example() {
+  const [date, setDate] = React.useState(new Date());
+
+  return (
+    <VStack space="lg" className="w-full">
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Outline Variant (Default)</Text>
+        <DateTimePicker
+          value={date}
+          onChange={setDate}
+          mode="date"
+          placeholder="Select date"
+        >
+          <DateTimePickerTrigger variant="outline">
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Underlined Variant</Text>
+        <DateTimePicker
+          value={date}
+          onChange={setDate}
+          mode="date"
+          placeholder="Select date"
+        >
+          <DateTimePickerTrigger variant="underlined">
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Rounded Variant</Text>
+        <DateTimePicker
+          value={date}
+          onChange={setDate}
+          mode="date"
+          placeholder="Select date"
+        >
+          <DateTimePickerTrigger variant="rounded">
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Different Sizes</Text>
+        <VStack space="md">
+          <DateTimePicker
+            value={date}
+            onChange={setDate}
+            mode="date"
+          >
+            <DateTimePickerTrigger size="sm" variant="outline">
+              <DateTimePickerInput />
+              <DateTimePickerIcon as={CalendarDaysIcon} size="sm" />
+            </DateTimePickerTrigger>
+          </DateTimePicker>
+
+          <DateTimePicker
+            value={date}
+            onChange={setDate}
+            mode="date"
+          >
+            <DateTimePickerTrigger size="md" variant="outline">
+              <DateTimePickerInput />
+              <DateTimePickerIcon as={CalendarDaysIcon} size="md" />
+            </DateTimePickerTrigger>
+          </DateTimePicker>
+
+          <DateTimePicker
+            value={date}
+            onChange={setDate}
+            mode="date"
+          >
+            <DateTimePickerTrigger size="lg" variant="outline">
+              <DateTimePickerInput />
+              <DateTimePickerIcon as={CalendarDaysIcon} size="lg" />
+            </DateTimePickerTrigger>
+          </DateTimePicker>
+        </VStack>
+      </Box>
+    </VStack>
+  );
+}
