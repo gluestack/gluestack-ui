@@ -1,5 +1,5 @@
-import { Button, ButtonText } from '@repo/ui/components/button';
-import { Text } from '@repo/ui/components/text';
+import { Button, ButtonText } from '@repo/components/ui/button';
+import { Text } from '@repo/components/ui/text';
 
 export default function Home() {
   return (

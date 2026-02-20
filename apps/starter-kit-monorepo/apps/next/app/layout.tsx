@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { GluestackUIProvider } from '@repo/ui/gluestack-ui-provider';
+import { GluestackUIProvider } from '@repo/components/ui/gluestack-ui-provider';
 import StyledJsxRegistry from './registry';
 
 export const metadata: Metadata = {

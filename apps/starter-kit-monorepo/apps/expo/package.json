@@ -24,7 +24,7 @@
     "@react-aria/utils": "^3.29.0",
     "@react-navigation/native": "^7.1.6",
     "@repo/tailwind-config": "workspace:*",
-    "@repo/ui": "workspace:*",
+    "@repo/components": "workspace:*",
     "babel-plugin-module-resolver": "^5.0.2",
     "buffer": "^6.0.3",
     "dom-helpers": "^5.2.1",

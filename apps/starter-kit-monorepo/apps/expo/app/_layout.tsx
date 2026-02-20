@@ -1,6 +1,10 @@
 import '@/global.css';
-import { GluestackUIProvider } from '@repo/ui/gluestack-ui-provider';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { GluestackUIProvider } from '@repo/components/ui/gluestack-ui-provider';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from '@react-navigation/native';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
@@ -24,7 +28,9 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
+  const [colorMode, setColorMode] = useState<'light' | 'dark' | 'system'>(
+    'system'
+  );
 
   return (
     <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>

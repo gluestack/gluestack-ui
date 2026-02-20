@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: process.env.DARK_MODE ? process.env.DARK_MODE : 'media',
+  darkMode: 'class',
   content: [],
   presets: [require('nativewind/preset')],
   important: 'html',
@@ -48,9 +48,11 @@ module.exports = {
           'DEFAULT': 'rgb(var(--sidebar) / <alpha-value>)',
           'foreground': 'rgb(var(--sidebar-foreground) / <alpha-value>)',
           'primary': 'rgb(var(--sidebar-primary) / <alpha-value>)',
-          'primary-foreground': 'rgb(var(--sidebar-primary-foreground) / <alpha-value>)',
+          'primary-foreground':
+            'rgb(var(--sidebar-primary-foreground) / <alpha-value>)',
           'accent': 'rgb(var(--sidebar-accent) / <alpha-value>)',
-          'accent-foreground': 'rgb(var(--sidebar-accent-foreground) / <alpha-value>)',
+          'accent-foreground':
+            'rgb(var(--sidebar-accent-foreground) / <alpha-value>)',
           'border': 'rgb(var(--sidebar-border))',
           'ring': 'rgb(var(--sidebar-ring) / <alpha-value>)',
         },

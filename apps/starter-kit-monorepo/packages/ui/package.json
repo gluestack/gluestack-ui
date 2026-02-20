@@ -1,5 +1,5 @@
 {
-  "name": "@repo/ui",
+  "name": "@repo/components",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,14 +8,25 @@
   },
   "exports": {
     ".": "./src/index.ts",
-    "./gluestack-ui-provider": {
-      "react-native": "./src/gluestack-ui-provider/index.tsx",
-      "default": "./src/gluestack-ui-provider/index.web.tsx"
+    "./ui/gluestack-ui-provider": {
+      "react-native": "./components/ui/gluestack-ui-provider/index.tsx",
+      "default": "./components/ui/gluestack-ui-provider/index.web.tsx"
     },
-    "./components/button": "./src/components/button/index.tsx",
-    "./components/text": {
-      "react-native": "./src/components/text/index.tsx",
-      "default": "./src/components/text/index.web.tsx"
+    "./ui/box": {
+      "react-native": "./components/ui/box/index.tsx",
+      "default": "./components/ui/box/index.web.tsx"
+    },
+    "./ui/card": {
+      "react-native": "./components/ui/card/index.tsx",
+      "default": "./components/ui/card/index.web.tsx"
+    },
+    "./ui/center": "./components/ui/center/index.tsx",
+    "./ui/hstack": "./components/ui/hstack/index.tsx",
+    "./ui/vstack": "./components/ui/vstack/index.tsx",
+    "./ui/button": "./components/ui/button/index.tsx",
+    "./ui/text": {
+      "react-native": "./components/ui/text/index.tsx",
+      "default": "./components/ui/text/index.web.tsx"
     }
   },
   "peerDependencies": {

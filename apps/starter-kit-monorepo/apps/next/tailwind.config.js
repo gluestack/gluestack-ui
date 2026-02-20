@@ -6,6 +6,6 @@ module.exports = {
   content: [
     './app/**/*.{html,js,jsx,ts,tsx,mdx}',
     './components/**/*.{html,js,jsx,ts,tsx,mdx}',
-    '../../packages/ui/src/**/*.{js,jsx,ts,tsx}',
+    '../../packages/ui/components/**/*.{js,jsx,ts,tsx}',
   ],
 };

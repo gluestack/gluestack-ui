@@ -18,7 +18,7 @@
     "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
     "@legendapp/motion": "^2.4.0",
     "@repo/tailwind-config": "workspace:*",
-    "@repo/ui": "workspace:*",
+    "@repo/components": "workspace:*",
     "dom-helpers": "^5.2.1",
     "lucide-react-native": "^0.510.0",
     "nativewind": "^4.1.23",
