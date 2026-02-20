@@ -28,17 +28,32 @@
       "react-native": "./components/ui/card/index.tsx",
       "default": "./components/ui/card/index.web.tsx"
     },
-    "./ui/center": "./components/ui/center/index.tsx",
+    "./ui/center": {
+      "react-native": "./components/ui/center/index.tsx",
+      "default": "./components/ui/center/index.web.tsx"
+    },
     "./ui/checkbox": "./components/ui/checkbox/index.tsx",
     "./ui/divider": "./components/ui/divider/index.tsx",
     "./ui/drawer": "./components/ui/drawer/index.tsx",
     "./ui/fab": "./components/ui/fab/index.tsx",
     "./ui/flat-list": "./components/ui/flat-list/index.tsx",
     "./ui/form-control": "./components/ui/form-control/index.tsx",
-    "./ui/grid": "./components/ui/grid/index.tsx",
-    "./ui/heading": "./components/ui/heading/index.tsx",
-    "./ui/hstack": "./components/ui/hstack/index.tsx",
-    "./ui/icon": "./components/ui/icon/index.tsx",
+    "./ui/grid": {
+      "react-native": "./components/ui/grid/index.tsx",
+      "default": "./components/ui/grid/index.web.tsx"
+    },
+    "./ui/heading": {
+      "react-native": "./components/ui/heading/index.tsx",
+      "default": "./components/ui/heading/index.web.tsx"
+    },
+    "./ui/hstack": {
+      "react-native": "./components/ui/hstack/index.tsx",
+      "default": "./components/ui/hstack/index.web.tsx"
+    },
+    "./ui/icon": {
+      "react-native": "./components/ui/icon/index.tsx",
+      "default": "./components/ui/icon/index.web.tsx"
+    },
     "./ui/image": "./components/ui/image/index.tsx",
     "./ui/input": "./components/ui/input/index.tsx",
     "./ui/link": "./components/ui/link/index.tsx",
@@ -51,11 +66,17 @@
     "./ui/scroll-view": "./components/ui/scroll-view/index.tsx",
     "./ui/section-list": "./components/ui/section-list/index.tsx",
     "./ui/select": "./components/ui/select/index.tsx",
-    "./ui/skeleton": "./components/ui/skeleton/index.tsx",
+    "./ui/skeleton": {
+      "react-native": "./components/ui/skeleton/index.tsx",
+      "default": "./components/ui/skeleton/index.web.tsx"
+    },
     "./ui/slider": "./components/ui/slider/index.tsx",
     "./ui/spinner": "./components/ui/spinner/index.tsx",
     "./ui/switch": "./components/ui/switch/index.tsx",
-    "./ui/table": "./components/ui/table/index.tsx",
+    "./ui/table": {
+      "react-native": "./components/ui/table/index.tsx",
+      "default": "./components/ui/table/index.web.tsx"
+    },
     "./ui/text": {
       "react-native": "./components/ui/text/index.tsx",
       "default": "./components/ui/text/index.web.tsx"
@@ -65,7 +86,10 @@
     "./ui/tooltip": "./components/ui/tooltip/index.tsx",
     "./ui/view": "./components/ui/view/index.tsx",
     "./ui/virtualized-list": "./components/ui/virtualized-list/index.tsx",
-    "./ui/vstack": "./components/ui/vstack/index.tsx"
+    "./ui/vstack": {
+      "react-native": "./components/ui/vstack/index.tsx",
+      "default": "./components/ui/vstack/index.web.tsx"
+    }
   },
   "peerDependencies": {
     "@gluestack-ui/core": ">=4.0.0-alpha.0",
