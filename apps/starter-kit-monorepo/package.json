@@ -1,0 +1,40 @@
+{
+  "name": "gluestack-monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "dev:next": "turbo dev --filter=@repo/next",
+    "dev:expo": "turbo dev --filter=@repo/expo",
+    "expo:ios": "pnpm --filter @repo/expo ios",
+    "expo:android": "pnpm --filter @repo/expo android",
+    "expo:web": "pnpm --filter @repo/expo web",
+    "build:next": "turbo build --filter=@repo/next",
+    "build:expo": "turbo build --filter=@repo/expo",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3",
+    "@gluestack-ui/core": "4.0.0-alpha.0",
+    "@gluestack-ui/utils": "4.0.0-alpha.0"
+  },
+  "packageManager": "pnpm@9.1.4",
+  "pnpm": {
+    "overrides": {
+      "react": "^19.2.0",
+      "react-dom": "^19.2.0",
+      "react-native-web": "^0.21.2",
+      "@gluestack-ui/utils": "4.0.0-alpha.0",
+      "@gluestack-ui/core": "4.0.0-alpha.0"
+    },
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+      }
+    }
+  }
+}

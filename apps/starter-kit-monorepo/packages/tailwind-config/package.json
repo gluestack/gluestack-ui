@@ -1,0 +1,15 @@
+{
+  "name": "@repo/tailwind-config",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "clean": "echo 'No build output to clean'"
+  },
+  "exports": {
+    "./tailwind.config": "./tailwind.config.js"
+  },
+  "peerDependencies": {
+    "nativewind": ">=4.0.0",
+    "tailwindcss": ">=3.0.0"
+  }
+}
