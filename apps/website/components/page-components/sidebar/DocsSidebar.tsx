@@ -14,240 +14,232 @@ import sidebarData from '@/sidebar.json';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';
 import GluestackLogo from '@/public/svg/gluestack_logo.svg';
 import { useColorMode } from '@/app/provider';
 import NextLink from 'next/link';
+
+const ChevronDownIcon = require('lucide-react-native')['ChevronDown'];
+const ChevronRightIcon = require('lucide-react-native')['ChevronRight'];
 
 interface NavigationItem {
   type?: string;
   title: string;
   path?: string;
   items?: NavigationItem[];
-  icons?: {
-    source: string;
-    name: string;
-    headerTitle: string;
-  };
+  icons?: { source: string; name: string; headerTitle: string };
   tags?: string[];
 }
 
 interface Section {
   type: string;
   title: string;
-  icons: {
-    source: string;
-    name: string;
-    headerTitle: string;
-  };
+  icons: { source: string; name: string; headerTitle: string };
   subsections: NavigationItem[];
 }
 
 interface Navigation {
-  navigation: {
-    sections: Section[];
-  };
+  navigation: { sections: Section[] };
 }
 
-const ResponsiveSidebarLink = ({
+const TagBadge = ({ tags }: { tags: string[] }) => {
+  if (!tags || tags.length === 0) return null;
+  const isAlpha = tags.includes('alpha');
+  return (
+    <span
+      className={`shrink-0 text-2xs uppercase font-roboto font-semibold rounded-sm px-1 py-0.5 ml-1.5 ${
+        isAlpha ? 'text-blue-500 bg-blue-500/10' : 'text-green-500 bg-green-500/10'
+      }`}
+    >
+      {tags.join(', ')}
+    </span>
+  );
+};
+
+const SidebarLink = ({
   item,
-  onItemClick,
+  depth = 1,
+  onClose,
 }: {
   item: NavigationItem;
-  onItemClick: () => void;
+  depth?: 1 | 2;
+  onClose: () => void;
 }) => {
   const pathname = usePathname();
   const isActive = pathname === item.path;
 
-  if (item.type === 'heading') {
-    return (
-      <div className="font-bold text-foreground py-2 pl-3 my-2 mt-4 uppercase font-geist-sans">
-        {item.title}
-      </div>
-    );
-  }
+  const basePl = depth === 2 ? 'pl-5' : 'pl-2';
+  const activePl = depth === 2 ? 'pl-[18px]' : 'pl-[6px]';
 
   return (
     <Link
       href={item.path || '#'}
-      onClick={onItemClick}
-      className={`text-sm font-medium block py-2 px-3.5 mr-2 my-0.5 text-muted-foreground hover:bg-accent hover:text-foreground pl-3 font-inter ${isActive ? 'bg-accent text-foreground border-l-[3px] border-primary' : ''
-        }`}
+      onClick={onClose}
+      className={`text-sm flex items-center py-1.5 pr-3 mr-1 my-0.5 rounded-md transition-colors font-inter ${
+        isActive
+          ? `bg-accent text-foreground font-medium border-l-2 border-primary ${activePl}`
+          : `text-muted-foreground hover:bg-accent/60 hover:text-foreground ${basePl}`
+      }`}
     >
-      <div className="flex items-center ">
-        <span>{item.title}</span>
-        {item.tags?.length && item.tags?.length > 0 && (
-          <span
-            className={`text-2xs uppercase font-roboto font-semibold rounded-sm px-1 py-0.5 m-2 ${item.tags?.includes('alpha')
-              ? 'text-blue-500 bg-blue-500/10'
-              : 'text-green-500 bg-green-500/10'
-              }`}
-          >
-            {item.tags?.map((tag) => tag).join(', ')}
-          </span>
-        )}
-      </div>
+      <span className="truncate flex-1">{item.title}</span>
+      {item.tags && item.tags.length > 0 && <TagBadge tags={item.tags} />}
     </Link>
   );
 };
 
-const ResponsiveSidebarSection = ({
-  section,
-  onItemClick,
+const SidebarGroup = ({
+  group,
+  onClose,
 }: {
-  section: Section;
-  onItemClick: () => void;
+  group: NavigationItem;
+  onClose: () => void;
 }) => {
-  return (
-    <div className="mb-6">
-      <div className="flex items-center gap-3 px-4 py-3 mb-2">
-        {section.icons && (
-          <Icon
-            as={
-              require('lucide-react-native')[section.icons.name ?? 'CircleHelp']
-            }
-          />
-        )}
-        <Text className="text-foreground font-bold uppercase text-sm tracking-wide">
-          {section.title}
-        </Text>
-      </div>
+  const [isOpen, setIsOpen] = useState(true);
 
-      {section.subsections && section.subsections.length > 0 && (
-        <div>
-          {section.subsections.map(
-            (subsection: NavigationItem, idx: number) => (
-              <div key={idx}>
-                <ResponsiveSidebarLink
-                  item={subsection}
-                  onItemClick={onItemClick}
-                />
-                {subsection.items && subsection.items.length > 0 && (
-                  <div className="ml-4">
-                    {subsection.items.map(
-                      (item: NavigationItem, itemIdx: number) => (
-                        <ResponsiveSidebarLink
-                          key={itemIdx}
-                          item={item}
-                          onItemClick={onItemClick}
-                        />
-                      )
-                    )}
-                  </div>
-                )}
-              </div>
-            )
-          )}
+  return (
+    <div className="mb-0.5">
+      <button
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="w-full flex items-center justify-between pl-2 pr-3 py-1.5 rounded-md text-left hover:bg-accent/40 transition-colors group cursor-pointer"
+      >
+        <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground group-hover:text-foreground font-geist-sans">
+          {group.title}
+        </span>
+        <Icon
+          as={isOpen ? ChevronDownIcon : ChevronRightIcon}
+          className="w-3 h-3 shrink-0 text-muted-foreground"
+        />
+      </button>
+
+      {isOpen && group.items && group.items.length > 0 && (
+        <div className="mt-0.5 mb-1">
+          {group.items.map((item, idx) => (
+            <SidebarLink key={idx} item={item} depth={2} onClose={onClose} />
+          ))}
         </div>
       )}
     </div>
   );
 };
 
-interface ResponsiveSidebarProps {
+const SidebarSection = ({
+  section,
+  onClose,
+}: {
+  section: Section;
+  onClose: () => void;
+}) => {
+  const pathname = usePathname();
+  const hasActiveDescendant = section.subsections.some((sub) => {
+    if (sub.path === pathname) return true;
+    return sub.items?.some((item) => item.path === pathname);
+  });
+
+  const [isOpen, setIsOpen] = useState(true);
+
+  return (
+    <div className="mb-0.5">
+      <button
+        onClick={() => setIsOpen((prev) => !prev)}
+        className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-left transition-colors cursor-pointer group ${
+          hasActiveDescendant
+            ? 'text-foreground'
+            : 'text-muted-foreground hover:text-foreground hover:bg-accent/40'
+        }`}
+      >
+        {section.icons && (
+          <Icon
+            as={require('lucide-react-native')[section.icons.name ?? 'CircleHelp']}
+            className={`w-4 h-4 shrink-0 ${
+              hasActiveDescendant
+                ? 'text-foreground'
+                : 'text-muted-foreground group-hover:text-foreground'
+            }`}
+          />
+        )}
+        <Text
+          className={`text-sm font-medium flex-1 ${
+            hasActiveDescendant
+              ? 'text-foreground'
+              : 'text-muted-foreground group-hover:text-foreground'
+          }`}
+        >
+          {section.title}
+        </Text>
+        <Icon
+          as={isOpen ? ChevronDownIcon : ChevronRightIcon}
+          className={`w-3.5 h-3.5 shrink-0 ${
+            hasActiveDescendant
+              ? 'text-muted-foreground'
+              : 'text-muted-foreground/60 group-hover:text-muted-foreground'
+          }`}
+        />
+      </button>
+
+      {isOpen && section.subsections.length > 0 && (
+        <div className="mt-0.5 mb-1 ml-5 border-l border-border">
+          {section.subsections.map((subsection, idx) => {
+            if (subsection.type === 'heading') {
+              return (
+                <SidebarGroup key={idx} group={subsection} onClose={onClose} />
+              );
+            }
+            return (
+              <SidebarLink key={idx} item={subsection} depth={1} onClose={onClose} />
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
+interface DocsSidebarProps {
   isOpen: boolean;
   setIsOpenSidebar: (value: boolean) => void;
 }
 
-const DocsSidebar: React.FC<ResponsiveSidebarProps> = ({
-  isOpen,
-  setIsOpenSidebar,
-}) => {
+const DocsSidebar: React.FC<DocsSidebarProps> = ({ isOpen, setIsOpenSidebar }) => {
   const navigation = (sidebarData as Navigation).navigation;
-  const [selectedSection, setSelectedSection] = useState<string>('Home');
-  const pathname = usePathname();
   const { colorMode } = useColorMode();
-  // Find the parent section that contains the current pathname
-  useEffect(() => {
-    const findParentSection = (
-      sections: Section[],
-      currentPath: string
-    ): string => {
-      for (const section of sections) {
-        const hasMatchingSubsection = section.subsections.some((subsection) => {
-          if (subsection.path === currentPath) return true;
-          return subsection.items?.some((item) => item.path === currentPath);
-        });
 
-        if (hasMatchingSubsection) {
-          return section.title;
-        }
-      }
-      return 'Home';
-    };
-
-    const parentSection = findParentSection(navigation.sections, pathname);
-    setSelectedSection(parentSection);
-  }, [pathname, navigation.sections]);
-
-  const handleSectionClick = (section: Section) => {
-    setSelectedSection(section.title);
-  };
-
-  const selectedSectionData = navigation.sections.find(
-    (section) => section.title === selectedSection
-  );
+  const handleClose = () => setIsOpenSidebar(false);
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpenSidebar}>
-      <SheetContent side="left" className="w-full sm:max-w-md p-0">
+      <SheetContent side="left" className="w-full sm:max-w-sm p-0 flex flex-col">
         <SheetHeader className="sr-only">
           <SheetTitle>Documentation Navigation</SheetTitle>
         </SheetHeader>
-        <SheetHeader className="p-4">
-          <NextLink href="/" onClick={() => {
-            setIsOpenSidebar(false);
-          }}>
-            <Image src={colorMode === 'dark' ? GluestackLogoDark : GluestackLogo} alt="gluestack-ui logo" className="h-[20px] w-full max-w-fit" />
+
+        {/* Logo */}
+        <div className="p-4 border-b border-border shrink-0">
+          <NextLink href="/" onClick={handleClose}>
+            <Image
+              src={colorMode === 'dark' ? GluestackLogoDark : GluestackLogo}
+              alt="gluestack-ui logo"
+              className="h-[20px] w-full max-w-fit"
+            />
           </NextLink>
-        </SheetHeader>
-        <ScrollArea className="h-full">
-          <div className="flex flex-col h-full">
-            {/* Fixed navigation at top */}
-            <div className="border-b border-border p-2 sticky top-0 bg-background z-10">
-              {navigation.sections.map((section, index) => (
-                <div
-                  key={index}
-                  className={`flex items-center gap-2 px-4 py-2 my-1 cursor-pointer rounded-md ${selectedSection === section.title
-                    ? 'bg-accent text-foreground'
-                    : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
-                    }`}
-                  onClick={() => handleSectionClick(section)}
-                >
-                  {section.icons && (
-                    <Icon
-                      as={
-                        require('lucide-react-native')[
-                        section.icons.name ?? 'CircleHelp'
-                        ]
-                      }
-                      className="w-5 h-5"
-                    />
-                  )}
-                  <Text className="font-medium">{section.title}</Text>
-                </div>
-              ))}
-            </div>
+        </div>
 
-            {/* Selected section content */}
-            {selectedSectionData && (
-              <div className="p-2 flex-1">
-                <ResponsiveSidebarSection
-                  section={selectedSectionData}
-                  onItemClick={() => setIsOpenSidebar(false)}
-                />
-              </div>
-            )}
-
-            {/* Color mode toggle button */}
-            <div className="border-t border-border p-4 flex justify-end">
-              <ToggleColorModeButton />
-            </div>
+        {/* Scrollable nav tree */}
+        <ScrollArea className="flex-1 min-h-0">
+          <div className="py-3 px-2">
+            {navigation.sections.map((section, idx) => (
+              <SidebarSection key={idx} section={section} onClose={handleClose} />
+            ))}
           </div>
         </ScrollArea>
+
+        {/* Color mode toggle */}
+        <div className="border-t border-border p-4 flex justify-end shrink-0">
+          <ToggleColorModeButton />
+        </div>
       </SheetContent>
     </Sheet>
   );
 };
+
 export default DocsSidebar;

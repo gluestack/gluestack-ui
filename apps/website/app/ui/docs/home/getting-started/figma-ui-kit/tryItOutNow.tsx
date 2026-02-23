@@ -8,11 +8,7 @@ export const TryItOutNow = () => {
   return (
     <Box className="mt-6 m-3 p-4 flex rounded-md border border-[#E6E6E6] dark:border-[#414141] mb-6">
       <HStack className="sm:items-center sm:justify-between flex-col sm:flex-row">
-        <Box
-          maxWidth="fit-content"
-          maxHeight="fit-content"
-          className="max-w-fit max-h-fit flex-1 text-sm gap-[6px]"
-        >
+        <Box className="max-w-fit max-h-fit flex-1 text-sm gap-[6px]">
           <Text className="text-lg font-semibold dark:text-[#FAFAFA] text-[#171717]">
             Try it out now!
           </Text>
