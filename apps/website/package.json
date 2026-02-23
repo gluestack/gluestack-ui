@@ -14,7 +14,7 @@
     "@docsearch/react": "^3.9.0",
     "@expo/html-elements": "^0.12.5",
     "@expo/next-adapter": "^6.0.0",
-    "@gluestack-ui/core": "^4.1.0-alpha.1",
+    "@gluestack-ui/core": "^4.1.0-alpha.2",
     "@gluestack-ui/utils": "^4.1.0-alpha.0",
     "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
     "@legendapp/motion": "^2.4.0",

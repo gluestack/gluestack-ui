@@ -17,7 +17,7 @@
   "dependencies": {
     "@expo/html-elements": "^0.12.5",
     "@expo/vector-icons": "^15.0.2",
-    "@gluestack-ui/core": "^4.0.0-alpha.0",
+    "@gluestack-ui/core": "^4.1.0-alpha.2",
     "@gluestack-ui/utils": "^4.0.0-alpha.0",
     "@gorhom/bottom-sheet": "^5",
     "@legendapp/motion": "^2.4.0",
@@ -44,13 +44,8 @@
     "react-aria": "^3.41.1",
     "react-dom": "19.2.0",
     "react-native": "0.83.1",
-<<<<<<< HEAD
     "react-native-gesture-handler": "^2.30.0",
     "react-native-reanimated": "^4.2.1",
-=======
-    "react-native-gesture-handler": "~2.30.0",
-    "react-native-reanimated": "~4.2.1",
->>>>>>> main-v4-alpha-new-components
     "react-native-safe-area-context": "^5.6.1",
     "react-native-screens": "~4.20.0",
     "react-native-svg": "15.15.1",
