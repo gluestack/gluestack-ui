@@ -40,7 +40,7 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ BottomSheet, BottomSheetTrigger, BottomSheetContent, BottomSheetBackdrop, BottomSheetDragIndicator, BottomSheetItem, BottomSheetItemText, BottomSheetPortal, Text }}
-      
+      nativeOnly
     />
   );
 }
