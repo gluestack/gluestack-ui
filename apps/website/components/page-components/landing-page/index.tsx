@@ -11,7 +11,6 @@ import Fold3 from './Fold3';
 import Footer from './Footer';
 import HireTeam from './HireTeam';
 import Kitchensink from './Kitchensink';
-import MCPServer from './MCPServer';
 import MeetCreators from './MeetCreators';
 import { Newsletter } from './Newsletter';
 import { developersData } from './Newsletter/data';
@@ -105,7 +104,6 @@ const App = ({ referrer }: { referrer: string }) => {
           <Fold3 />
           <PowerOfTailwind />
           <Kitchensink />
-          <MCPServer />
           <VadimStream />
           <SocialMediaGridTestimonial />
           <Inspiration />
