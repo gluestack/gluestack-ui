@@ -32,7 +32,7 @@ This is an illustration of **Avatar** component.
   
 
   
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -49,6 +49,7 @@ This is an illustration of **Avatar** component.
   argTypes={{}}
   reactLive={{ Avatar, AvatarFallbackText, AvatarImage, AvatarBadge }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarFallbackText","AvatarImage","AvatarBadge"]}}
+  
 />
 
 <br />
@@ -312,7 +313,7 @@ The Examples section provides visual representations of the different variants o
   #### Avatar with letters
 
   An Avatar component with text displays a stylized representation of a user or entity alongside accompanying text, providing a visual and textual identification within a user interface.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -342,13 +343,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/heading":["Heading"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"]}}
+  
 />
 
 
   #### Avatar with Icon
 
   An Avatar component with an icon combines a graphical symbol or icon with a user or entity representation, providing a visually appealing and easily recognizable identification within a user interface.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -377,13 +379,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack, Icon, User }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/heading":["Heading"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["Icon"],"lucide-react-native":["User"]}}
+  
 />
 
 
   #### Avatar with Image
 
   An Avatar component with an image incorporates a user or entity representation using a profile picture or image, adding a personalized touch and visual identification within a user interface.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -423,13 +426,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/heading":["Heading"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"]}}
+  
 />
 
 
   #### Avatar Group
 
   The avatar group allows users to group avatars and display them in a horizontal or vertical row for better visual representation and functionality.
-  
+
   <CodePreviewer
   code={`function Example() {
   const avatars = [
@@ -461,6 +465,7 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Avatar, AvatarGroup, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarGroup","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/hstack":["HStack"]}}
+  
 />
 
 > To reverse the order of avatars in case of multiple avatars use `flexDirection="row"` in `<AvatarGroup>`
@@ -469,7 +474,7 @@ The Examples section provides visual representations of the different variants o
   #### Avatar Group (Without Badge)
 
   An Avatar Group component without badges organizes multiple avatars in a visually cohesive manner, offering a streamlined display of user or entity representations without additional visual indicators or badges within a user interface.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -512,13 +517,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Avatar, AvatarGroup, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarGroup","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/hstack":["HStack"]}}
+  
 />
 
 
   #### Avatar Group (with Badge)
 
   An Avatar Group component with badges presents a collection of avatars with accompanying badges, providing visual indicators or additional information associated with each user or entity representation within a user interface.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -565,13 +571,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Avatar, AvatarGroup, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarGroup","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/hstack":["HStack"]}}
+  
 />
 
 
   #### Custom
 
   A custom Avatar component with text allows for personalized user or entity representations by combining customized visuals, such as an image or icon, with accompanying text, providing a unique and identifiable presentation within a user interface.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -600,13 +607,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, Heading, HStack, Text, VStack, Icon, User }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/heading":["Heading"],"@/components/ui/hstack":["HStack"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["Icon"],"lucide-react-native":["User"]}}
+  
 />
 
 
   #### Fallback
 
   Fallback text is shown when the image fails to load, the image is not available or the provided image url is not correct.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -625,4 +633,5 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Avatar, AvatarBadge, AvatarFallbackText, AvatarImage, HStack }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarBadge","AvatarFallbackText","AvatarImage"],"@/components/ui/hstack":["HStack"]}}
+  
 />

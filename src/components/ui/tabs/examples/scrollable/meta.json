@@ -1,0 +1,16 @@
+{
+  "title": "Scrollable",
+  "description": "When there are more tabs than the available width, the TabsList scrolls horizontally. The animated indicator stays synchronized with the scroll position.",
+  "argTypes": {},
+  "reactLive": {
+    "Tabs": "@/components/ui/tabs",
+    "TabsList": "@/components/ui/tabs",
+    "TabsTrigger": "@/components/ui/tabs",
+    "TabsContent": "@/components/ui/tabs",
+    "TabsContentWrapper": "@/components/ui/tabs",
+    "TabsTriggerText": "@/components/ui/tabs",
+    "TabsIndicator": "@/components/ui/tabs",
+    "Box": "@/components/ui/box",
+    "Text": "@/components/ui/text"
+  }
+}

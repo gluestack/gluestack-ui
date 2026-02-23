@@ -1,0 +1,128 @@
+import React, { useState, useCallback, useMemo, forwardRef, useRef } from 'react';
+import type { Key } from 'react';
+import { TabsContext } from './Context';
+import type { LayoutData } from './types';
+
+export const Tabs = (StyledTabs: any) =>
+  forwardRef(
+    (
+      {
+        value,
+        defaultValue,
+        onValueChange,
+        orientation = 'horizontal',
+        activationMode = 'automatic',
+        disabled = false,
+        children,
+        ...props
+      }: any,
+      ref?: any
+    ) => {
+      // State management - support both controlled and uncontrolled
+      const [selectedKeyState, setSelectedKeyState] = useState<Key | null>(
+        defaultValue ?? null
+      );
+
+      const selectedKey = value !== undefined ? value : selectedKeyState;
+
+      // List ref for measuring trigger layouts on native
+      const listRef = useRef<any>(null);
+
+      const setSelectedKey = useCallback(
+        (key: Key) => {
+          if (value === undefined) {
+            setSelectedKeyState(key);
+          }
+          onValueChange?.(String(key));
+        },
+        [value, onValueChange]
+      );
+
+      // Layout tracking for animated indicator
+      const [triggerLayouts, setTriggerLayouts] = useState<
+        Map<Key, LayoutData>
+      >(new Map());
+
+      // Layout tracking for content heights
+      const [contentLayouts, setContentLayouts] = useState<
+        Map<Key, LayoutData>
+      >(new Map());
+
+      // Scroll offset for FlatList positioning
+      const [scrollOffset, setScrollOffset] = useState<number>(0);
+
+      const registerTrigger = useCallback((key: Key, layout: LayoutData) => {
+        setTriggerLayouts((prev) => {
+          const next = new Map(prev);
+          next.set(key, layout);
+          return next;
+        });
+      }, []);
+
+      const unregisterTrigger = useCallback((key: Key) => {
+        setTriggerLayouts((prev) => {
+          const next = new Map(prev);
+          next.delete(key);
+          return next;
+        });
+      }, []);
+
+      const registerContent = useCallback((key: Key, layout: LayoutData) => {
+        setContentLayouts((prev) => {
+          const next = new Map(prev);
+          next.set(key, layout);
+          return next;
+        });
+      }, []);
+
+      const unregisterContent = useCallback((key: Key) => {
+        setContentLayouts((prev) => {
+          const next = new Map(prev);
+          next.delete(key);
+          return next;
+        });
+      }, []);
+
+      const contextValue = useMemo(
+        () => ({
+          selectedKey,
+          setSelectedKey,
+          orientation,
+          activationMode,
+          isDisabled: disabled,
+          triggerLayouts,
+          registerTrigger,
+          unregisterTrigger,
+          contentLayouts,
+          registerContent,
+          unregisterContent,
+          scrollOffset,
+          setScrollOffset,
+          listRef,
+        }),
+        [
+          selectedKey,
+          setSelectedKey,
+          orientation,
+          activationMode,
+          disabled,
+          triggerLayouts,
+          registerTrigger,
+          unregisterTrigger,
+          contentLayouts,
+          registerContent,
+          unregisterContent,
+          scrollOffset,
+          setScrollOffset,
+        ]
+      );
+
+      return (
+        <TabsContext.Provider value={contextValue}>
+          <StyledTabs ref={ref} {...props}>
+            {children}
+          </StyledTabs>
+        </TabsContext.Provider>
+      );
+    }
+  );

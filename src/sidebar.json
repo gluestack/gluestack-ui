@@ -118,18 +118,14 @@
               {
                 "title": "Heading",
                 "path": "/ui/docs/components/heading",
-                "tags": [
-                  "rsc"
-                ],
+                "tags": ["rsc"],
                 "url": "https://i.imgur.com/iLgtAcF.png",
                 "darkUrl": "https://i.imgur.com/or5K0UG.png"
               },
               {
                 "title": "Text",
                 "path": "/ui/docs/components/text",
-                "tags": [
-                  "rsc"
-                ],
+                "tags": ["rsc"],
                 "url": "https://i.imgur.com/vp6ui7d.png",
                 "darkUrl": "https://i.imgur.com/XMZvanC.png"
               }
@@ -142,18 +138,14 @@
               {
                 "title": "Box",
                 "path": "/ui/docs/components/box",
-                "tags": [
-                  "rsc"
-                ],
+                "tags": ["rsc"],
                 "url": "https://i.imgur.com/3rXWRNQ.png",
                 "darkUrl": "https://i.imgur.com/nA1FGmN.png"
               },
               {
                 "title": "Center",
                 "path": "/ui/docs/components/center",
-                "tags": [
-                  "rsc"
-                ],
+                "tags": ["rsc"],
                 "url": "https://i.imgur.com/fN5RCAV.png",
                 "darkUrl": "https://i.imgur.com/gmV2Fil.png"
               },
@@ -166,28 +158,21 @@
               {
                 "title": "HStack",
                 "path": "/ui/docs/components/hstack",
-                "tags": [
-                  "rsc"
-                ],
+                "tags": ["rsc"],
                 "url": "https://i.imgur.com/zMeYQ2r.png",
                 "darkUrl": "https://i.imgur.com/sxWxT2s.png"
               },
               {
                 "title": "VStack",
                 "path": "/ui/docs/components/vstack",
-                "tags": [
-                  "rsc"
-                ],
+                "tags": ["rsc"],
                 "url": "https://i.imgur.com/d7QcAkw.png",
                 "darkUrl": "https://i.imgur.com/2ivkRp7.png"
               },
               {
                 "title": "Grid",
                 "path": "/ui/docs/components/grid",
-                "tags": [
-                  "alpha",
-                  "rsc"
-                ],
+                "tags": ["alpha", "rsc"],
                 "url": "https://i.imgur.com/xS7rIHh.png",
                 "darkUrl": "https://i.imgur.com/r6HtWus.png"
               }
@@ -236,18 +221,21 @@
               {
                 "title": "Card",
                 "path": "/ui/docs/components/card",
-                "tags": [
-                  "rsc"
-                ],
+                "tags": ["rsc"],
                 "url": "https://i.imgur.com/At8sHdO.png",
                 "darkUrl": "https://i.imgur.com/g37yBPg.png"
               },
               {
                 "title": "Table",
                 "path": "/ui/docs/components/table",
-                "tags": [
-                  "alpha"
-                ],
+                "tags": ["alpha"],
+                "url": "https://i.imgur.com/xS7rIHh.png",
+                "darkUrl": "https://i.imgur.com/r6HtWus.png"
+              }
+              ,  {
+                "title": "Tabs",
+                "path": "/ui/docs/components/tabs",
+                "tags": ["alpha"],
                 "url": "https://i.imgur.com/xS7rIHh.png",
                 "darkUrl": "https://i.imgur.com/r6HtWus.png"
               }
@@ -266,6 +254,18 @@
               {
                 "title": "Checkbox",
                 "path": "/ui/docs/components/checkbox",
+                "url": "https://i.imgur.com/fZPMCl3.png",
+                "darkUrl": "https://i.imgur.com/1c2clr3.png"
+              },
+              {
+                "title": "DateTimePicker",
+                "path": "/ui/docs/components/date-time-picker",
+                "url": "https://i.imgur.com/fZPMCl3.png",
+                "darkUrl": "https://i.imgur.com/1c2clr3.png"
+              },
+              {
+                "title": "Calendar",
+                "path": "/ui/docs/components/calendar",
                 "url": "https://i.imgur.com/fZPMCl3.png",
                 "darkUrl": "https://i.imgur.com/1c2clr3.png"
               },
@@ -376,6 +376,12 @@
                 "path": "/ui/docs/components/tooltip",
                 "url": "https://i.imgur.com/OyRsX4f.png",
                 "darkUrl": "https://i.imgur.com/VzxzCVU.png"
+              },
+              {
+                "title": "Image Viewer",
+                "path": "/ui/docs/components/image-viewer",
+                "url": "https://i.imgur.com/OyRsX4f.png",
+                "darkUrl": "https://i.imgur.com/VzxzCVU.png"
               }
             ]
           },
@@ -398,9 +404,7 @@
               {
                 "title": "BottomSheet",
                 "path": "/ui/docs/components/bottomsheet",
-                "tags": [
-                  "alpha"
-                ]
+                "tags": ["alpha"]
               }
             ]
           },
@@ -423,9 +427,7 @@
               {
                 "title": "Icon",
                 "path": "/ui/docs/components/icon",
-                "tags": [
-                  "rsc"
-                ],
+                "tags": ["rsc"],
                 "url": "https://i.imgur.com/wrq05q6.png",
                 "darkUrl": "https://i.imgur.com/sCURs3s.png"
               }
@@ -444,10 +446,7 @@
               {
                 "title": "Skeleton",
                 "path": "/ui/docs/components/skeleton",
-                "tags": [
-                  "alpha",
-                  "rsc"
-                ],
+                "tags": ["alpha", "rsc"],
                 "url": "https://i.imgur.com/c65rk9I.png",
                 "darkUrl": "https://i.imgur.com/AGl2kYx.png"
               }

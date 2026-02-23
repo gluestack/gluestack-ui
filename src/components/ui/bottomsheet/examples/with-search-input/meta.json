@@ -16,5 +16,6 @@
     "VStack": "@/components/ui/vstack",
     "Button": "@/components/ui/button",
     "ButtonText": "@/components/ui/button"
-  }
+  },
+  "nativeOnly": true
 }

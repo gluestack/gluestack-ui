@@ -1,0 +1,31 @@
+function Example() {
+  const [selected, setSelected] = React.useState(new Date());
+
+  return (
+    <Calendar
+      mode="single"
+      value={selected}
+      onValueChange={setSelected}
+      enableMonthYearPicker={true}
+      minYear={2000}
+      maxYear={2030}
+    >
+      <CalendarHeader>
+        <CalendarHeaderPrevButton>
+          <Icon as={ChevronLeftIcon} size="sm" />
+        </CalendarHeaderPrevButton>
+        <CalendarHeaderMonthSelect />
+        <CalendarHeaderYearSelect />
+        <CalendarHeaderNextButton>
+          <Icon as={ChevronRightIcon} size="sm" />
+        </CalendarHeaderNextButton>
+      </CalendarHeader>
+
+      <CalendarWeekDaysHeader />
+
+      <CalendarBody>
+        <CalendarGrid />
+      </CalendarBody>
+    </Calendar>
+  );
+}

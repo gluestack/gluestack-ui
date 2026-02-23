@@ -1,0 +1,532 @@
+---
+title: gluestack-ui Calendar Component | Calendar Installation in React Native
+description: A versatile calendar component for React & React Native with support for single, multiple, and range date selection. Features include event markers, disabled dates, week numbers, and customizable styling.
+pageTitle: Calendar
+pageDescription: A versatile calendar component for React & React Native with support for single, multiple, and range date selection. Features include event markers, disabled dates, week numbers, and customizable styling.
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Calendar
+
+A versatile calendar component for React & React Native with support for single, multiple, and range date selection. Features include event markers, disabled dates, week numbers, and customizable styling.
+
+This is an illustration of **Calendar** component.
+
+///{Example:basic}///
+
+<br />
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add calendar`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: src/components/ui/calendar/index.tsx --%%
+```
+
+### Step 2: Copy and paste the following styles into your project.
+
+```jsx
+%%-- File: src/components/ui/calendar/styles.tsx --%%
+```
+
+### Step 3: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  Calendar,
+  CalendarHeader,
+  CalendarHeaderPrevButton,
+  CalendarHeaderNextButton,
+  CalendarHeaderTitle,
+  CalendarHeaderMonthSelect,
+  CalendarHeaderYearSelect,
+  CalendarWeekDaysHeader,
+  CalendarWeekDay,
+  CalendarBody,
+  CalendarGrid,
+  CalendarWeek,
+  CalendarDay,
+  CalendarDayText,
+  CalendarDayIndicator,
+  CalendarWeekNumber,
+  CalendarFooter,
+} from '@/components/ui/calendar';
+```
+
+### Component Anatomy
+
+```jsx
+export default () => (
+  <Calendar>
+    <CalendarHeader>
+      <CalendarHeaderPrevButton />
+      <CalendarHeaderMonthSelect />
+      <CalendarHeaderYearSelect />
+      <CalendarHeaderTitle />
+      <CalendarHeaderNextButton />
+    </CalendarHeader>
+    <CalendarWeekDaysHeader>
+      <CalendarWeekDay />
+    </CalendarWeekDaysHeader>
+    <CalendarBody>
+      <CalendarGrid>
+        <CalendarWeek>
+          <CalendarWeekNumber />
+          <CalendarDay>
+            <CalendarDayText />
+            <CalendarDayIndicator />
+          </CalendarDay>
+        </CalendarWeek>
+      </CalendarGrid>
+    </CalendarBody>
+    <CalendarFooter />
+  </Calendar>
+);
+```
+
+### Calendar Props
+
+Contains all the calendar related layout style props and actions.
+
+<>
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>mode</InlineCode>
+      </TableCell>
+      <TableCell>'single' | 'multiple' | 'range'</TableCell>
+      <TableCell>'single'</TableCell>
+      <TableCell>Selection mode for the calendar.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>value</InlineCode>
+      </TableCell>
+      <TableCell>Date | Date[] | {'{ from: Date; to?: Date }'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Controlled value of the calendar.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>defaultValue</InlineCode>
+      </TableCell>
+      <TableCell>Date | Date[] | {'{ from: Date; to?: Date }'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Default value for uncontrolled calendar.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onValueChange</InlineCode>
+      </TableCell>
+      <TableCell>{'(value) => void'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Callback when selection changes.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>minDate</InlineCode>
+      </TableCell>
+      <TableCell>Date</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Minimum selectable date.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>maxDate</InlineCode>
+      </TableCell>
+      <TableCell>Date</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Maximum selectable date.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>disabledDates</InlineCode>
+      </TableCell>
+      <TableCell>Date[] | {'(date: Date) => boolean'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Disabled dates or function to check disabled dates.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>initialMonth</InlineCode>
+      </TableCell>
+      <TableCell>Date</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Initial month to display.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>numberOfMonths</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>1</TableCell>
+      <TableCell>Number of months to display.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>showWeekNumbers</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>Show ISO week numbers.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>showOutsideDays</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>true</TableCell>
+      <TableCell>Show days from adjacent months.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>firstDayOfWeek</InlineCode>
+      </TableCell>
+      <TableCell>0-6</TableCell>
+      <TableCell>0</TableCell>
+      <TableCell>First day of week (0=Sunday).</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>fixedWeeks</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>Always show 6 weeks.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>markers</InlineCode>
+      </TableCell>
+      <TableCell>CalendarMarkers</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Event markers for specific dates.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>enableMonthYearPicker</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>Enable month/year dropdown selectors.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>minYear</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Minimum year in year picker.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>maxYear</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Maximum year in year picker.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>locale</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>'en-US'</TableCell>
+      <TableCell>Locale for date formatting.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isDisabled</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>Disable entire calendar.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>isReadOnly</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>Read-only mode.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onMonthChange</InlineCode>
+      </TableCell>
+      <TableCell>{'(month: Date) => void'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Called when month changes.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onDayPress</InlineCode>
+      </TableCell>
+      <TableCell>{'(date: Date) => void'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Called when day is pressed.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onDayLongPress</InlineCode>
+      </TableCell>
+      <TableCell>{'(date: Date) => void'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Called when day is long-pressed.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+### Marker Types
+
+Markers allow you to add visual indicators to dates.
+
+<>
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>dot</InlineCode>
+      </TableCell>
+      <TableCell>Single colored dot below the date.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>multi-dot</InlineCode>
+      </TableCell>
+      <TableCell>Multiple colored dots below the date.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>period</InlineCode>
+      </TableCell>
+      <TableCell>Highlighted period/background for the date.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+### Marker Colors
+
+Marker colors support shadcn-style design tokens using CSS variables:
+
+```jsx
+const markers = {
+  '2024-01-15': {
+    type: 'dot',
+    color: 'hsl(var(--primary))', // Primary color
+  },
+  '2024-01-20': {
+    type: 'multi-dot',
+    dots: [
+      { color: 'hsl(var(--primary))', key: '1' },
+      { color: 'hsl(var(--destructive))', key: '2' },
+    ],
+  },
+  '2024-01-25': {
+    type: 'period',
+    color: 'hsl(var(--secondary))', // Secondary color
+  },
+};
+```
+
+**Available color tokens:**
+
+- `hsl(var(--primary))` - Primary brand color
+- `hsl(var(--secondary))` - Secondary color
+- `hsl(var(--accent))` - Accent color
+- `hsl(var(--destructive))` - Destructive/error color
+- `hsl(var(--muted))` - Muted/neutral color
+
+### Sub-components
+
+#### CalendarHeader
+
+Container for the calendar header. Contains navigation buttons and title.
+
+#### CalendarHeaderPrevButton / CalendarHeaderNextButton
+
+Navigation buttons for moving between months. Use with Icon component.
+
+#### CalendarHeaderTitle
+
+Displays the current month and year.
+
+#### CalendarHeaderMonthSelect / CalendarHeaderYearSelect
+
+Dropdown selectors for quick month/year navigation. Requires `enableMonthYearPicker={true}`.
+
+#### CalendarWeekDaysHeader
+
+Container for the weekday labels row (Sun, Mon, Tue, etc.).
+
+#### CalendarWeekDay
+
+Individual weekday label cell.
+
+#### CalendarBody
+
+Container for the calendar body.
+
+#### CalendarGrid
+
+Grid container for the calendar days.
+
+#### CalendarWeek
+
+Individual week row container.
+
+#### CalendarDay
+
+Individual day cell. Supports `data-state` attribute for styling based on state.
+
+#### CalendarDayText
+
+Text component for displaying the day number. Automatically styles based on day state.
+
+#### CalendarDayIndicator
+
+Visual indicator for event markers. Use with `data-type` attribute.
+
+#### CalendarWeekNumber
+
+Displays ISO week numbers when `showWeekNumbers={true}`.
+
+#### CalendarFooter
+
+Footer container for additional content.
+
+## Features
+
+- **Three Selection Modes**: Single date, multiple dates, and date range selection
+- **Event Markers**: Dot, multi-dot, and period indicators for dates
+- **Date Constraints**: Min/max dates and custom disabled dates
+- **Week Numbers**: Optional ISO week number display
+- **Month/Year Picker**: Quick navigation with dropdown selectors
+- **Customizable**: Full Tailwind CSS styling support with shadcn-style tokens
+- **Accessible**: Built-in disabled and read-only states
+- **Internationalization**: Locale support via date-fns
+
+## Styling
+
+The Calendar component uses **shadcn-style design tokens** for consistent theming. These semantic color tokens automatically adapt to light and dark modes.
+
+### Available Color Tokens
+
+| Token                       | Light Mode  | Dark Mode  | Usage                           |
+| --------------------------- | ----------- | ---------- | ------------------------------- |
+| `bg-primary`                | Near black  | Off-white  | Selected dates, buttons         |
+| `text-primary-foreground`   | White       | Black      | Text on primary backgrounds     |
+| `bg-secondary`              | Light gray  | Dark gray  | Secondary backgrounds           |
+| `text-secondary-foreground` | Black       | White      | Text on secondary backgrounds   |
+| `bg-accent`                 | Off-white   | Dark gray  | Hover states, today marker      |
+| `text-accent-foreground`    | Dark gray   | White      | Text on accent backgrounds      |
+| `bg-destructive`            | Red         | Light red  | Error states, important markers |
+| `bg-background`             | White       | Near black | Component backgrounds           |
+| `text-foreground`           | Black       | White      | Primary text                    |
+| `text-muted-foreground`     | Medium gray | Light gray | Secondary text, placeholders    |
+| `border-border`             | Light gray  | Dark gray  | Borders                         |
+
+### Usage Example
+
+```jsx
+<Calendar className="bg-card border border-border">
+  <CalendarHeader className="bg-accent rounded-t-lg">
+    <CalendarHeaderTitle className="text-accent-foreground font-bold" />
+  </CalendarHeader>
+  <CalendarBody className="bg-background">
+    <CalendarGrid />
+  </CalendarBody>
+</Calendar>
+```
+
+### State-based Styling
+
+Day cells automatically receive state attributes for styling:
+
+- `data-state="selected"` - Selected date
+- `data-state="today"` - Today's date
+- `data-state="disabled"` - Disabled date
+- `data-state="outside-month"` - Date from adjacent month
+- `data-state="range-start"` / `data-state="range-end"` / `data-state="range-middle"` - Range selection states
+
+## Accessibility
+
+### Keyboard Navigation
+
+- **Tab**: Move focus between interactive elements
+- **Enter/Space**: Select a date or activate buttons
+- **Arrow Keys**: Navigate between dates (when focus is within calendar)
+
+### Screen Reader
+
+The calendar announces the current month, selected date(s), and day names appropriately.
+
+### ARIA Attributes
+
+- Dates have appropriate role and aria-label attributes
+- Selected dates are marked with aria-selected
+- Disabled dates have aria-disabled
+
+## Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs.
+
+/// {Example:selection-modes} ///
+
+/// {Example:month-year-picker} ///
+
+/// {Example:with-markers} ///
+
+/// {Example:with-disabled-dates} ///
+
+/// {Example:with-week-numbers} ///
+
+/// {Example:customized-styling} ///

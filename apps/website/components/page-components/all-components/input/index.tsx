@@ -33,6 +33,7 @@ export default function Example() {
   }
 }}
       reactLive={{ Input, InputField }}
+      
     />
   );
 }

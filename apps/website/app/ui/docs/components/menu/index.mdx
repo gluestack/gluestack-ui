@@ -28,7 +28,7 @@ This is an illustration of **Menu** component.
   
 
   
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -87,6 +87,7 @@ This is an illustration of **Menu** component.
 }}
   reactLive={{ Menu, MenuItem, MenuItemLabel, Button, ButtonText, Icon, AddIcon, GlobeIcon, PlayIcon, SettingsIcon }}
   importMap={{"@/components/ui/menu":["Menu","MenuItem","MenuItemLabel"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/icon":["Icon","AddIcon","GlobeIcon","PlayIcon","SettingsIcon"]}}
+  
 />
 
 <br />
@@ -114,6 +115,7 @@ npm i react-native-reanimated
 'use client';
 import { createMenu } from '@gluestack-ui/core/menu/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { cssInterop } from 'nativewind';
 import React from 'react';
@@ -216,6 +218,8 @@ const Separator = React.forwardRef<
 });
 
 cssInterop(AnimatedView, { className: 'style' });
+
+
 
 export const UIMenu = createMenu({
   Root: AnimatedView,
@@ -518,7 +522,7 @@ The Examples section provides visual representations of the different variants o
   #### Menu with Tag
 
   
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -576,13 +580,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Menu, MenuItem, MenuItemLabel, MenuSeparator, Button, ButtonIcon, MenuIcon, Badge, BadgeText }}
   importMap={{"@/components/ui/menu":["Menu","MenuItem","MenuItemLabel","MenuSeparator"],"@/components/ui/button":["Button","ButtonIcon"],"@/components/ui/icon":["MenuIcon"],"@/components/ui/badge":["Badge","BadgeText"]}}
+  
 />
 
 
   #### Menu with Selection
 
   
-  
+
   <CodePreviewer
   code={`function Example() {
   const [selected, setSelected] = React.useState(new Set([]));
@@ -646,4 +651,5 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Menu, MenuItem, MenuItemLabel, MenuSeparator, Button, ButtonText, Icon, SettingsIcon, HelpCircleIcon, MessageCircleIcon }}
   importMap={{"@/components/ui/menu":["Menu","MenuItem","MenuItemLabel","MenuSeparator"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/icon":["Icon","SettingsIcon","HelpCircleIcon","MessageCircleIcon"]}}
+  
 />

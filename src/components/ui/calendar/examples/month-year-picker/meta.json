@@ -1,0 +1,20 @@
+{
+  "title": "Month & Year Picker",
+  "description": "Enable quick navigation with month and year dropdown selectors",
+  "argTypes": {},
+  "reactLive": {
+    "Calendar": "@/components/ui/calendar",
+    "CalendarHeader": "@/components/ui/calendar",
+    "CalendarHeaderPrevButton": "@/components/ui/calendar",
+    "CalendarHeaderNextButton": "@/components/ui/calendar",
+    "CalendarHeaderTitle": "@/components/ui/calendar",
+    "CalendarHeaderMonthSelect": "@/components/ui/calendar",
+    "CalendarHeaderYearSelect": "@/components/ui/calendar",
+    "CalendarWeekDaysHeader": "@/components/ui/calendar",
+    "CalendarBody": "@/components/ui/calendar",
+    "CalendarGrid": "@/components/ui/calendar",
+    "Icon": "@/components/ui/icon",
+    "ChevronLeftIcon": "@/components/ui/icon",
+    "ChevronRightIcon": "@/components/ui/icon"
+  }
+}

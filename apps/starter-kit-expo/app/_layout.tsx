@@ -1,3 +1,9 @@
+// Polyfill buffer for react-native-svg
+import { Buffer } from 'buffer';
+if (typeof global.Buffer === 'undefined') {
+  global.Buffer = Buffer;
+}
+
 import { Fab, FabIcon } from '@/components/ui/fab';
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import { MoonIcon, SunIcon } from '@/components/ui/icon';
@@ -16,7 +22,7 @@ import { useEffect, useState } from 'react';
 
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary
+  ErrorBoundary,
 } from 'expo-router';
 
 SplashScreen.preventAutoHideAsync();

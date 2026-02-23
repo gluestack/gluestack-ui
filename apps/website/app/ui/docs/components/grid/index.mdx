@@ -25,7 +25,7 @@ This is an illustration of **Grid** component.
   
 
   
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -71,6 +71,7 @@ This is an illustration of **Grid** component.
   argTypes={{}}
   reactLive={{ Grid, GridItem }}
   importMap={{"@/components/ui/grid":["Grid","GridItem"]}}
+  
 />
 
 <br />
@@ -604,7 +605,7 @@ The Examples section provides visual representations of the different variants o
   #### Setting the gap between grid items
 
   Use the gap-* utilities to change the gap between both rows and columns in grid.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -641,13 +642,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
   importMap={{"@/components/ui/grid":["Grid","GridItem"],"@/components/ui/text":["Text"]}}
+  
 />
 
 
   #### Changing row and column gaps independently
 
   Use the gap-x-* and gap-y-* utilities to change the gap between columns and rows independently.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -708,13 +710,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
   importMap={{"@/components/ui/grid":["Grid","GridItem"],"@/components/ui/text":["Text"]}}
+  
 />
 
 
   #### Nested Grids
 
   The following example depicts how easily you can nest grids to create complex layouts with multiple levels of nesting.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -783,13 +786,14 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
   importMap={{"@/components/ui/grid":["Grid","GridItem"],"@/components/ui/text":["Text"]}}
+  
 />
 
 
   #### Responsive Grids
 
   You can pass different grid-cols-* and col-span-* values at different breakpoints to create a more responsive layout.
-  
+
   <CodePreviewer
   code={`function Example() {
   return (
@@ -850,6 +854,7 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Grid, GridItem, Text }}
   importMap={{"@/components/ui/grid":["Grid","GridItem"],"@/components/ui/text":["Text"]}}
+  
 />
 
 #### Why we introduced \_extra prop?

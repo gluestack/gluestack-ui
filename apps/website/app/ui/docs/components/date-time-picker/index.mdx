@@ -1,0 +1,1437 @@
+import { CodePreviewer } from '@/components/custom/code-previewer';
+import { DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon } from '@/components/ui/date-time-picker';
+import { Box } from '@/components/ui/box';
+import { CalendarDaysIcon, ClockIcon, AlertCircleIcon } from '@/components/ui/icon';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorText, FormControlErrorIcon } from '@/components/ui/form-control';
+
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# DateTimePicker
+
+A comprehensive date and time picker component that provides a native experience on mobile platforms and a custom-built interface for web. Perfect for forms, scheduling, and any date/time input needs.
+
+This is an illustration of **DateTimePicker** component.
+
+
+  
+
+  A basic DateTimePicker with date and time selection
+
+  <CodePreviewer
+  code={`function Example() {
+  const [date, setDate] = React.useState(new Date());
+
+  return (
+    <Box className="p-4 w-full">
+      <DateTimePicker
+        value={date}
+        onChange={setDate}
+        mode="datetime"
+        placeholder="Select date and time"
+      >
+        <DateTimePickerTrigger>
+          <DateTimePickerInput />
+          <DateTimePickerIcon as={CalendarDaysIcon} />
+        </DateTimePickerTrigger>
+      </DateTimePicker>
+    </Box>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, Box, CalendarDaysIcon }}
+  importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/box":["Box"],"@/components/ui/icon":["CalendarDaysIcon"]}}
+  
+/>
+
+<br />
+
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add date-time-picker`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Install dependencies
+
+```bash
+npm install @react-native-community/datetimepicker
+```
+
+### Step 2: Copy and paste the following code into your project.
+
+```jsx
+'use client';
+
+import React, { useCallback, useMemo } from 'react';
+import {
+  View,
+  Pressable,
+  TextInput,
+  Text,
+  Platform,
+  Modal,
+} from 'react-native';
+import DateTimePickerNative from '@react-native-community/datetimepicker';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  createDateTimePicker,
+  DateTimePickerProvider,
+  useDateTimePicker,
+} from '@gluestack-ui/core/date-time-picker/creator';
+import { cssInterop } from 'nativewind';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import {
+  dateTimePickerStyle,
+  dateTimePickerTriggerStyle,
+  dateTimePickerInputStyle,
+  dateTimePickerIconStyle,
+} from './styles';
+
+const SCOPE = 'DATE_TIME_PICKER';
+
+export type DateTimePickerMode = 'date' | 'time' | 'datetime';
+
+export interface DateTimePickerProps {
+  value?: Date;
+  onChange?: (date: Date | undefined) => void;
+  mode?: DateTimePickerMode;
+  minimumDate?: Date;
+  maximumDate?: Date;
+  locale?: string;
+  timeZoneOffsetInMinutes?: number;
+  is24Hour?: boolean;
+  disabled?: boolean;
+  placeholder?: string;
+  format?: string;
+  display?: 'modal' | 'inline'; // iOS only: 'modal' shows picker in modal with backdrop, 'inline' shows picker directly
+  children?: React.ReactNode;
+}
+
+const DateTimePickerTriggerWrapper = React.forwardRef<
+  React.ComponentRef<typeof Pressable>,
+  React.ComponentProps<typeof Pressable>
+>(function DateTimePickerTriggerWrapper({ ...props }, ref) {
+  return <Pressable {...props} ref={ref} />;
+});
+
+const UIDateTimePicker = createDateTimePicker({
+  Root: withStyleContext(View, SCOPE),
+  Trigger: withStyleContext(DateTimePickerTriggerWrapper, SCOPE),
+  Input: TextInput,
+  Icon: UIIcon,
+});
+
+cssInterop(UIDateTimePicker, { className: 'style' });
+cssInterop(UIDateTimePicker.Input, {
+  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
+});
+cssInterop(DateTimePickerTriggerWrapper, { className: 'style' });
+
+cssInterop(PrimitiveIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
+});
+
+type IDateTimePickerProps = VariantProps<typeof dateTimePickerStyle> &
+  DateTimePickerProps & { className?: string };
+
+const DateTimePicker = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker>,
+  IDateTimePickerProps
+>(function DateTimePicker(
+  {
+    className,
+    value,
+    onChange,
+    mode = 'datetime',
+    minimumDate,
+    maximumDate,
+    locale,
+    timeZoneOffsetInMinutes,
+    is24Hour,
+    disabled,
+    placeholder,
+    format,
+    display = 'modal', // Default to modal for iOS
+    children,
+    ...props
+  },
+  ref
+) {
+  const handleNativeChange = useCallback(
+    (event: any, selectedDate?: Date) => {
+      // The native picker handles its own close
+      if (selectedDate) {
+        onChange?.(selectedDate);
+      }
+    },
+    [onChange]
+  );
+
+  // On iOS, use custom trigger + spinner in modal or inline
+  if (Platform.OS === 'ios') {
+    return (
+      <DateTimePickerProvider
+        value={value}
+        onChange={onChange}
+        mode={mode}
+        minimumDate={minimumDate}
+        maximumDate={maximumDate}
+        locale={locale}
+        timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+        is24Hour={is24Hour}
+        disabled={disabled}
+        placeholder={placeholder}
+        format={format}
+      >
+        <UIDateTimePicker
+          className={dateTimePickerStyle({ class: className })}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </UIDateTimePicker>
+        {/* iOS spinner picker shown in modal or inline based on display prop */}
+        <IOSDateTimePicker
+          value={value}
+          mode={mode}
+          minimumDate={minimumDate}
+          maximumDate={maximumDate}
+          timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+          is24Hour={is24Hour}
+          display={display}
+          onChange={handleNativeChange}
+        />
+      </DateTimePickerProvider>
+    );
+  }
+
+  return (
+    <DateTimePickerProvider
+      value={value}
+      onChange={onChange}
+      mode={mode}
+      minimumDate={minimumDate}
+      maximumDate={maximumDate}
+      locale={locale}
+      timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+      is24Hour={is24Hour}
+      disabled={disabled}
+      placeholder={placeholder}
+      format={format}
+    >
+      <UIDateTimePicker
+        className={dateTimePickerStyle({ class: className })}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </UIDateTimePicker>
+      {/* Native picker is rendered directly on Android */}
+      <DateTimePickerNativeWrapper
+        value={value}
+        mode={mode}
+        minimumDate={minimumDate}
+        maximumDate={maximumDate}
+        timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+        is24Hour={is24Hour}
+        onChange={handleNativeChange}
+      />
+    </DateTimePickerProvider>
+  );
+});
+
+// Separate component to handle the native picker display (Android only)
+function DateTimePickerNativeWrapper({
+  value,
+  mode,
+  minimumDate,
+  maximumDate,
+  timeZoneOffsetInMinutes,
+  is24Hour,
+  onChange,
+}: {
+  value?: Date;
+  mode: DateTimePickerMode;
+  minimumDate?: Date;
+  maximumDate?: Date;
+  timeZoneOffsetInMinutes?: number;
+  is24Hour?: boolean;
+  onChange: (event: any, date?: Date) => void;
+}) {
+  const { isOpen, setIsOpen } = useDateTimePicker();
+
+  const handleChange = useCallback(
+    (event: any, selectedDate?: Date) => {
+      setIsOpen(false);
+      onChange(event, selectedDate);
+    },
+    [onChange, setIsOpen]
+  );
+
+  // Android doesn't support 'datetime' mode - use two-step picker
+  if (mode === 'datetime') {
+    return (
+      <AndroidDateTimePicker
+        value={value}
+        minimumDate={minimumDate}
+        maximumDate={maximumDate}
+        is24Hour={is24Hour}
+        isOpen={isOpen}
+        onChange={onChange}
+        setIsOpen={setIsOpen}
+      />
+    );
+  }
+
+  // Android: Use display="default" which opens system dialogs for date/time
+  if (!isOpen) return null;
+
+  return (
+    <DateTimePickerNative
+      key={`picker-${mode}`}
+      value={value || new Date()}
+      mode={mode}
+      display="default"
+      minimumDate={minimumDate}
+      maximumDate={maximumDate}
+      timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+      is24Hour={is24Hour}
+      onChange={handleChange}
+    />
+  );
+}
+
+// Android-specific datetime picker (uses two separate pickers)
+function AndroidDateTimePicker({
+  value,
+  minimumDate,
+  maximumDate,
+  is24Hour,
+  isOpen,
+  onChange,
+  setIsOpen,
+}: {
+  value?: Date;
+  minimumDate?: Date;
+  maximumDate?: Date;
+  is24Hour?: boolean;
+  isOpen: boolean;
+  onChange: (event: any, date?: Date) => void;
+  setIsOpen: (open: boolean) => void;
+}) {
+  const [step, setStep] = React.useState<'date' | 'time' | null>(null);
+  const [tempDate, setTempDate] = React.useState<Date | undefined>(value);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setStep('date');
+      setTempDate(value || new Date());
+    } else {
+      setStep(null);
+    }
+  }, [isOpen, value]);
+
+  const handleDateChange = React.useCallback(
+    (event: any, selectedDate?: Date) => {
+      if (selectedDate) {
+        setTempDate(selectedDate);
+        setStep('time');
+      } else {
+        setIsOpen(false);
+      }
+    },
+    [setIsOpen]
+  );
+
+  const handleTimeChange = React.useCallback(
+    (event: any, selectedTime?: Date) => {
+      setIsOpen(false);
+      setStep(null);
+      if (selectedTime && tempDate) {
+        // Combine date and time
+        const combinedDate = new Date(tempDate);
+        combinedDate.setHours(selectedTime.getHours());
+        combinedDate.setMinutes(selectedTime.getMinutes());
+        onChange(event, combinedDate);
+      } else if (selectedTime) {
+        onChange(event, selectedTime);
+      }
+    },
+    [tempDate, onChange, setIsOpen]
+  );
+
+  if (!isOpen || !step) return null;
+
+  if (step === 'date') {
+    return (
+      <DateTimePickerNative
+        key="android-date"
+        value={tempDate || new Date()}
+        mode="date"
+        display="default"
+        minimumDate={minimumDate}
+        maximumDate={maximumDate}
+        onChange={handleDateChange}
+      />
+    );
+  }
+
+  return (
+    <DateTimePickerNative
+      key="android-time"
+      value={tempDate || new Date()}
+      mode="time"
+      display="default"
+      is24Hour={is24Hour}
+      onChange={handleTimeChange}
+    />
+  );
+}
+
+// iOS-specific picker with spinner in modal or inline
+function IOSDateTimePicker({
+  value,
+  mode,
+  minimumDate,
+  maximumDate,
+  timeZoneOffsetInMinutes,
+  is24Hour,
+  display,
+  onChange,
+}: {
+  value?: Date;
+  mode: DateTimePickerMode;
+  minimumDate?: Date;
+  maximumDate?: Date;
+  timeZoneOffsetInMinutes?: number;
+  is24Hour?: boolean;
+  display: 'modal' | 'inline';
+  onChange: (event: any, date?: Date) => void;
+}) {
+  const { isOpen, setIsOpen } = useDateTimePicker();
+  const [tempValue, setTempValue] = React.useState(value || new Date());
+
+  // Update temp value when picker opens
+  React.useEffect(() => {
+    if (isOpen) {
+      setTempValue(value || new Date());
+    }
+  }, [isOpen, value]);
+
+  const handleChange = React.useCallback(
+    (event: any, selectedDate?: Date) => {
+      if (selectedDate) {
+        setTempValue(selectedDate);
+        // Update the parent immediately for live feedback
+        onChange(event, selectedDate);
+      }
+    },
+    [onChange]
+  );
+
+  const handleDone = React.useCallback(() => {
+    setIsOpen(false);
+  }, [setIsOpen]);
+
+  const handleCancel = React.useCallback(() => {
+    setIsOpen(false);
+    // Revert to original value
+    if (value) {
+      onChange({ type: 'dismissed' }, value);
+    }
+  }, [setIsOpen, onChange, value]);
+
+  if (!isOpen) return null;
+
+  // Inline mode: show picker directly without modal
+  if (display === 'inline') {
+    return (
+      <View className="w-full">
+        <DateTimePickerNative
+          value={tempValue}
+          mode={mode}
+          display="spinner"
+          minimumDate={minimumDate}
+          maximumDate={maximumDate}
+          timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+          is24Hour={is24Hour}
+          onChange={handleChange}
+        />
+      </View>
+    );
+  }
+
+  // Modal mode: show picker in modal with backdrop
+  return (
+    <Modal
+      visible={isOpen}
+      transparent={true}
+      animationType="slide"
+      onRequestClose={handleCancel}
+    >
+      <View className="flex-1 justify-end">
+        {/* Backdrop - separate touchable area */}
+        <Pressable
+          className="absolute inset-0 bg-black/50"
+          onPress={handleCancel}
+        />
+        {/* Picker container */}
+        <View className="bg-background rounded-t-lg p-4 relative">
+          <View className="flex-row justify-between items-center mb-4 border-b border-border pb-2">
+            <Pressable onPress={handleCancel}>
+              <Text className="text-primary font-semibold text-base">
+                Cancel
+              </Text>
+            </Pressable>
+            <Text className="text-foreground font-semibold text-base">
+              {mode === 'date'
+                ? 'Select Date'
+                : mode === 'time'
+                  ? 'Select Time'
+                  : 'Select Date & Time'}
+            </Text>
+            <Pressable onPress={handleDone}>
+              <Text className="text-primary font-semibold text-base">Done</Text>
+            </Pressable>
+          </View>
+          <DateTimePickerNative
+            value={tempValue}
+            mode={mode}
+            display="spinner"
+            minimumDate={minimumDate}
+            maximumDate={maximumDate}
+            timeZoneOffsetInMinutes={timeZoneOffsetInMinutes}
+            is24Hour={is24Hour}
+            onChange={handleChange}
+          />
+        </View>
+      </View>
+    </Modal>
+  );
+}
+
+type IDateTimePickerTriggerProps = VariantProps<
+  typeof dateTimePickerTriggerStyle
+> &
+  React.ComponentProps<typeof UIDateTimePicker.Trigger> & {
+    className?: string;
+  };
+
+const DateTimePickerTrigger = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.Trigger>,
+  IDateTimePickerTriggerProps
+>(function DateTimePickerTrigger(
+  { className, size = 'md', variant = 'outline', ...props },
+  ref
+) {
+  const { disabled, setIsOpen } = useDateTimePicker();
+
+  return (
+    <UIDateTimePicker.Trigger
+      className={dateTimePickerTriggerStyle({
+        class: className,
+        size,
+        variant,
+      })}
+      ref={ref}
+      context={{ size, variant }}
+      disabled={disabled}
+      onPress={() => !disabled && setIsOpen(true)}
+      {...props}
+    />
+  );
+});
+
+type IDateTimePickerInputProps = VariantProps<typeof dateTimePickerInputStyle> &
+  React.ComponentProps<typeof UIDateTimePicker.Input> & { className?: string };
+
+const DateTimePickerInput = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.Input>,
+  IDateTimePickerInputProps
+>(function DateTimePickerInput({ className, ...props }, ref) {
+  const { size: parentSize, variant: parentVariant } = useStyleContext(SCOPE);
+  const { value, placeholder, format } = useDateTimePicker();
+
+  const displayValue = useMemo(() => {
+    if (!value) return '';
+    if (format) {
+      return formatDate(value, format);
+    }
+    return value.toLocaleString();
+  }, [value, format]);
+
+  return (
+    <UIDateTimePicker.Input
+      className={dateTimePickerInputStyle({
+        class: className,
+        parentVariants: {
+          size: parentSize,
+          variant: parentVariant,
+        },
+      })}
+      ref={ref}
+      value={displayValue}
+      placeholder={placeholder}
+      editable={false}
+      style={{ pointerEvents: 'none' }}
+      {...props}
+    />
+  );
+});
+
+type IDateTimePickerIconProps = VariantProps<typeof dateTimePickerIconStyle> &
+  React.ComponentProps<typeof UIDateTimePicker.Icon> & { className?: string };
+
+const DateTimePickerIcon = React.forwardRef<
+  React.ComponentRef<typeof UIDateTimePicker.Icon>,
+  IDateTimePickerIconProps
+>(function DateTimePickerIcon({ className, size, ...props }, ref) {
+  const { size: parentSize } = useStyleContext(SCOPE);
+
+  if (typeof size === 'number') {
+    return (
+      <UIDateTimePicker.Icon
+        ref={ref}
+        {...props}
+        className={dateTimePickerIconStyle({ class: className })}
+        size={size}
+      />
+    );
+  }
+
+  return (
+    <UIDateTimePicker.Icon
+      className={dateTimePickerIconStyle({
+        class: className,
+        size,
+        parentVariants: {
+          size: parentSize,
+        },
+      })}
+      ref={ref}
+      {...props}
+    />
+  );
+});
+
+function formatDate(date: Date, format: string): string {
+  const pad = (n: number) => n.toString().padStart(2, '0');
+  return format
+    .replace('YYYY', date.getFullYear().toString())
+    .replace('MM', pad(date.getMonth() + 1))
+    .replace('DD', pad(date.getDate()))
+    .replace('HH', pad(date.getHours()))
+    .replace('mm', pad(date.getMinutes()))
+    .replace('ss', pad(date.getSeconds()));
+}
+
+export {
+  DateTimePicker,
+  DateTimePickerTrigger,
+  DateTimePickerInput,
+  DateTimePickerIcon,
+};
+
+```
+
+### Step 3: Copy and paste the web implementation code.
+
+```jsx
+'use client';
+
+import React, { useState, useCallback, useMemo } from 'react';
+import { View, Pressable, TextInput } from 'react-native';
+import { cssInterop } from 'nativewind';
+import { Calendar } from '@/components/ui/calendar';
+import { PrimitiveIcon } from '@gluestack-ui/core/icon/creator';
+
+// Apply cssInterop for Tailwind support
+cssInterop(View, {
+  className: {
+    target: 'style',
+  },
+});
+
+type DateTimePickerMode = 'date' | 'time' | 'datetime';
+
+interface DateTimePickerProps {
+  value?: Date;
+  onChange?: (date: Date | undefined) => void;
+  mode?: DateTimePickerMode;
+  minimumDate?: Date;
+  maximumDate?: Date;
+  disabled?: boolean;
+  placeholder?: string;
+  className?: string;
+  style?: any;
+}
+
+const DateTimePicker = React.forwardRef<
+  React.ComponentRef<typeof View>,
+  DateTimePickerProps
+>(function DateTimePicker(
+  {
+    value,
+    onChange,
+    mode = 'datetime',
+    minimumDate,
+    maximumDate,
+    disabled,
+    placeholder = 'Select date/time',
+    className,
+    style,
+  },
+  ref
+) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [tempDate, setTempDate] = useState<Date | undefined>(value);
+  const [tempTime, setTempTime] = useState(
+    value ? formatTimeForInput(value) : ''
+  );
+
+  const handleDateSelect = useCallback(
+    (date: Date | Date[] | { from: Date; to: Date }) => {
+      if (date instanceof Date) {
+        setTempDate(date);
+        if (mode === 'date') {
+          onChange?.(date);
+          setIsOpen(false);
+        }
+      }
+    },
+    [mode, onChange]
+  );
+
+  const handleTimeChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setTempTime(e.target.value);
+    },
+    []
+  );
+
+  const handleConfirm = useCallback(() => {
+    if (mode === 'time' && tempTime) {
+      const [hours, minutes] = tempTime.split(':').map(Number);
+      const newDate = new Date();
+      newDate.setHours(hours, minutes, 0, 0);
+      onChange?.(newDate);
+    } else if (tempDate) {
+      if (mode === 'datetime' && tempTime) {
+        const [hours, minutes] = tempTime.split(':').map(Number);
+        const combinedDate = new Date(tempDate);
+        combinedDate.setHours(hours, minutes, 0, 0);
+        onChange?.(combinedDate);
+      } else {
+        onChange?.(tempDate);
+      }
+    }
+    setIsOpen(false);
+  }, [mode, tempDate, tempTime, onChange]);
+
+  const handleCancel = useCallback(() => {
+    setTempDate(value);
+    setTempTime(value ? formatTimeForInput(value) : '');
+    setIsOpen(false);
+  }, [value]);
+
+  const displayValue = useMemo(() => {
+    if (!value) return '';
+    if (mode === 'time') return formatTimeForInput(value);
+    if (mode === 'date') return formatDate(value);
+    return `${formatDate(value)} ${formatTimeForInput(value)}`;
+  }, [value, mode]);
+
+  return (
+    <View ref={ref} className={`relative ${className || ''}`} style={style}>
+      {/* Trigger Input */}
+      <Pressable
+        onPress={() => !disabled && setIsOpen(true)}
+        className="w-full"
+      >
+        <View className="flex-row items-center border border-border rounded-md px-3 py-2 bg-background">
+          <TextInput
+            value={displayValue || placeholder}
+            editable={false}
+            className="flex-1 text-foreground text-sm"
+            pointerEvents="none"
+          />
+        </View>
+      </Pressable>
+
+      {/* Modal/Dropdown */}
+      {isOpen && (
+        <View className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-lg shadow-lg p-4 z-50">
+          {/* Date Picker */}
+          {(mode === 'date' || mode === 'datetime') && (
+            <View className="mb-4">
+              <Calendar
+                mode="single"
+                selected={tempDate}
+                onSelect={handleDateSelect}
+                initialDate={tempDate}
+                minDate={minimumDate}
+                maxDate={maximumDate}
+              />
+            </View>
+          )}
+
+          {/* Time Picker */}
+          {(mode === 'time' || mode === 'datetime') && (
+            <View className="mb-4">
+              <input
+                type="time"
+                value={tempTime}
+                onChange={handleTimeChange}
+                className="w-full p-2 border border-border rounded bg-background text-foreground text-sm"
+                aria-label="Time"
+              />
+            </View>
+          )}
+
+          {/* Actions */}
+          <View className="flex-row justify-end gap-2">
+            <Pressable
+              onPress={handleCancel}
+              className="px-4 py-2 rounded bg-muted"
+            >
+              <span className="text-muted-foreground text-sm">Cancel</span>
+            </Pressable>
+            <Pressable
+              onPress={handleConfirm}
+              className="px-4 py-2 rounded bg-primary"
+            >
+              <span className="text-primary-foreground text-sm">Confirm</span>
+            </Pressable>
+          </View>
+        </View>
+      )}
+    </View>
+  );
+});
+
+// Helper functions
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+
+function formatTimeForInput(date: Date): string {
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  return `${hours}:${minutes}`;
+}
+
+// Export additional components (simplified versions)
+const DateTimePickerTrigger = React.forwardRef<
+  React.ComponentRef<typeof Pressable>,
+  React.ComponentProps<typeof Pressable>
+>(function DateTimePickerTrigger({ children, ...props }, ref) {
+  return (
+    <Pressable ref={ref} {...props}>
+      {children}
+    </Pressable>
+  );
+});
+
+const DateTimePickerInput = React.forwardRef<
+  React.ComponentRef<typeof TextInput>,
+  React.ComponentProps<typeof TextInput>
+>(function DateTimePickerInput(props, ref) {
+  return <TextInput ref={ref} {...props} />;
+});
+
+const DateTimePickerIcon = React.forwardRef<
+  React.ComponentRef<typeof PrimitiveIcon>,
+  React.ComponentProps<typeof PrimitiveIcon>
+>(function DateTimePickerIcon(props, ref) {
+  return <PrimitiveIcon ref={ref} {...props} />;
+});
+
+export {
+  DateTimePicker,
+  DateTimePickerTrigger,
+  DateTimePickerInput,
+  DateTimePickerIcon,
+};
+export type { DateTimePickerProps, DateTimePickerMode };
+
+```
+
+### Step 4: Copy and paste the styles.
+
+```jsx
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+
+export const dateTimePickerStyle = tva({
+  base: '',
+});
+
+export const dateTimePickerTriggerStyle = tva({
+  base: 'border border-border rounded flex-row items-center overflow-hidden data-[hover=true]:border-primary/80 data-[focus=true]:border-primary/80 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[hover=true]:border-border/80',
+  variants: {
+    size: {
+      xl: 'h-12',
+      lg: 'h-11',
+      md: 'h-10',
+      sm: 'h-9',
+    },
+    variant: {
+      underlined:
+        'border-0 border-b rounded-none data-[hover=true]:border-primary/80 data-[focus=true]:border-primary/80 data-[focus=true]:web:shadow-[inset_0_-1px_0_0] data-[focus=true]:web:shadow-primary/80 data-[invalid=true]:border-destructive data-[invalid=true]:web:shadow-destructive',
+      outline:
+        'data-[focus=true]:border-primary/80 data-[focus=true]:web:shadow-[inset_0_0_0_1px] data-[focus=true]:data-[hover=true]:web:shadow-primary/80 data-[invalid=true]:web:shadow-[inset_0_0_0_1px] data-[invalid=true]:border-destructive data-[invalid=true]:web:shadow-destructive data-[invalid=true]:data-[hover=true]:border-destructive',
+      rounded:
+        'rounded-full data-[focus=true]:border-primary/80 data-[focus=true]:web:shadow-[inset_0_0_0_1px] data-[focus=true]:web:shadow-primary/80 data-[invalid=true]:border-destructive data-[invalid=true]:web:shadow-destructive',
+    },
+  },
+});
+
+export const dateTimePickerInputStyle = tva({
+  base: 'px-3 placeholder:text-muted-foreground web:w-full h-full text-foreground/90 pointer-events-none web:outline-none ios:leading-[0px] py-0',
+  parentVariants: {
+    size: {
+      xl: 'text-xl',
+      lg: 'text-lg',
+      md: 'text-base',
+      sm: 'text-sm',
+    },
+    variant: {
+      underlined: 'px-0',
+      outline: '',
+      rounded: 'px-4',
+    },
+  },
+});
+
+export const dateTimePickerIconStyle = tva({
+  base: 'text-foreground/50 fill-none',
+  parentVariants: {
+    size: {
+      '2xs': 'h-3 w-3',
+      'xs': 'h-3.5 w-3.5',
+      'sm': 'h-4 w-4',
+      'md': 'h-[18px] w-[18px]',
+      'lg': 'h-5 w-5',
+      'xl': 'h-6 w-6',
+    },
+  },
+});
+
+```
+
+### Step 5: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  DateTimePicker,
+  DateTimePickerTrigger,
+  DateTimePickerInput,
+  DateTimePickerIcon,
+} from '@/components/ui/date-time-picker';
+```
+
+### Component Anatomy
+
+```jsx
+export default () => (
+  <DateTimePicker>
+    <DateTimePickerTrigger>
+      <DateTimePickerInput />
+      <DateTimePickerIcon />
+    </DateTimePickerTrigger>
+  </DateTimePicker>
+);
+```
+
+### DateTimePicker Props
+
+<>
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>value</InlineCode>
+      </TableCell>
+      <TableCell>Date</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The currently selected date/time.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onChange</InlineCode>
+      </TableCell>
+      <TableCell>{'(date: Date | undefined) => void'}</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Callback when date/time changes.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>mode</InlineCode>
+      </TableCell>
+      <TableCell>'date' | 'time' | 'datetime'</TableCell>
+      <TableCell>'datetime'</TableCell>
+      <TableCell>Selection mode.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>minimumDate</InlineCode>
+      </TableCell>
+      <TableCell>Date</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Minimum selectable date.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>maximumDate</InlineCode>
+      </TableCell>
+      <TableCell>Date</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Maximum selectable date.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>locale</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Locale for formatting (e.g., 'en-US').</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>is24Hour</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Use 24-hour format for time (Android only).</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>disabled</InlineCode>
+      </TableCell>
+      <TableCell>boolean</TableCell>
+      <TableCell>false</TableCell>
+      <TableCell>Disable the picker.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>placeholder</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Placeholder text when no date selected.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>format</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Custom display format (e.g., 'YYYY-MM-DD HH:mm').</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+### DateTimePickerTrigger Props
+
+<>
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
+      <TableCell>'sm' | 'md' | 'lg' | 'xl'</TableCell>
+      <TableCell>'md'</TableCell>
+      <TableCell>Size of the trigger.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>variant</InlineCode>
+      </TableCell>
+      <TableCell>'outline' | 'underlined' | 'rounded'</TableCell>
+      <TableCell>'outline'</TableCell>
+      <TableCell>Visual variant.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+### DateTimePickerInput Props
+
+Displays the selected date/time value. Inherits all TextInput props.
+
+### DateTimePickerIcon Props
+
+<>
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>
+        <InlineCode>as</InlineCode>
+      </TableCell>
+      <TableCell>Component</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Icon component to render.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>size</InlineCode>
+      </TableCell>
+      <TableCell>'2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'</TableCell>
+      <TableCell>'md'</TableCell>
+      <TableCell>Size of the icon.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+## Format Patterns
+
+When using the `format` prop, you can use these patterns:
+
+| Pattern | Description          | Example |
+| ------- | -------------------- | ------- |
+| YYYY    | Full year            | 2024    |
+| MM      | Month (01-12)        | 01      |
+| DD      | Day of month (01-31) | 15      |
+| HH      | Hours (00-23)        | 14      |
+| mm      | Minutes (00-59)      | 30      |
+| ss      | Seconds (00-59)      | 45      |
+
+## Features
+
+- **Cross-platform**: Uses native pickers on iOS/Android, custom on web
+- **Expo Go compatible**: Works without ejecting or building
+- **Multiple modes**: Date only, Time only, or DateTime combined
+- **Fully accessible**: Keyboard navigation, screen reader support
+- **Customizable styling**: Support for sizes, variants, and custom themes
+- **Min/Max date restrictions**: Limit selectable date ranges
+- **Locale support**: International date/time formatting
+
+## Accessibility
+
+- **Keyboard Navigation**: Tab to focus, Enter/Space to open, Escape to close
+- **Screen Readers**: Announces selected date and picker state
+- **ARIA Labels**: Proper labeling for input and dialog
+
+## Examples
+
+The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs.
+
+
+  #### Different Modes
+
+  DateTimePicker supports three modes: date only, time only, and combined datetime selection
+
+  <CodePreviewer
+  code={`function Example() {
+  const [date, setDate] = React.useState(new Date());
+  const [time, setTime] = React.useState(new Date());
+  const [dateTime, setDateTime] = React.useState(new Date());
+
+  return (
+    <VStack space="lg" className="w-full">
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Date Only</Text>
+        <DateTimePicker
+          value={date}
+          onChange={setDate}
+          mode="date"
+          placeholder="Select a date"
+        >
+          <DateTimePickerTrigger>
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Time Only (12-hour)</Text>
+        <DateTimePicker
+          value={time}
+          onChange={setTime}
+          mode="time"
+          placeholder="Select time"
+        >
+          <DateTimePickerTrigger>
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={ClockIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Date & Time</Text>
+        <DateTimePicker
+          value={dateTime}
+          onChange={setDateTime}
+          mode="datetime"
+          placeholder="Select date and time"
+        >
+          <DateTimePickerTrigger>
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+    </VStack>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, Box, Text, VStack, CalendarDaysIcon, ClockIcon }}
+  importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["CalendarDaysIcon","ClockIcon"]}}
+  
+/>
+
+
+  #### Variants & Sizes
+
+  DateTimePicker supports multiple visual variants (outline, underlined, rounded) and sizes (sm, md, lg, xl)
+
+  <CodePreviewer
+  code={`function Example() {
+  const [date, setDate] = React.useState(new Date());
+
+  return (
+    <VStack space="lg" className="w-full">
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Outline Variant (Default)</Text>
+        <DateTimePicker
+          value={date}
+          onChange={setDate}
+          mode="date"
+          placeholder="Select date"
+        >
+          <DateTimePickerTrigger variant="outline">
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Underlined Variant</Text>
+        <DateTimePicker
+          value={date}
+          onChange={setDate}
+          mode="date"
+          placeholder="Select date"
+        >
+          <DateTimePickerTrigger variant="underlined">
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Rounded Variant</Text>
+        <DateTimePicker
+          value={date}
+          onChange={setDate}
+          mode="date"
+          placeholder="Select date"
+        >
+          <DateTimePickerTrigger variant="rounded">
+            <DateTimePickerInput />
+            <DateTimePickerIcon as={CalendarDaysIcon} />
+          </DateTimePickerTrigger>
+        </DateTimePicker>
+      </Box>
+
+      <Box className="p-4 border border-border rounded-lg bg-card">
+        <Text className="text-sm font-semibold mb-3 text-card-foreground">Different Sizes</Text>
+        <VStack space="md">
+          <DateTimePicker
+            value={date}
+            onChange={setDate}
+            mode="date"
+          >
+            <DateTimePickerTrigger size="sm" variant="outline">
+              <DateTimePickerInput />
+              <DateTimePickerIcon as={CalendarDaysIcon} size="sm" />
+            </DateTimePickerTrigger>
+          </DateTimePicker>
+
+          <DateTimePicker
+            value={date}
+            onChange={setDate}
+            mode="date"
+          >
+            <DateTimePickerTrigger size="md" variant="outline">
+              <DateTimePickerInput />
+              <DateTimePickerIcon as={CalendarDaysIcon} size="md" />
+            </DateTimePickerTrigger>
+          </DateTimePicker>
+
+          <DateTimePicker
+            value={date}
+            onChange={setDate}
+            mode="date"
+          >
+            <DateTimePickerTrigger size="lg" variant="outline">
+              <DateTimePickerInput />
+              <DateTimePickerIcon as={CalendarDaysIcon} size="lg" />
+            </DateTimePickerTrigger>
+          </DateTimePicker>
+        </VStack>
+      </Box>
+    </VStack>
+  );
+}`}
+  argTypes={{
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "outline",
+      "underlined",
+      "rounded"
+    ],
+    "defaultValue": "outline"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "defaultValue": "md"
+  }
+}}
+  reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, Box, Text, VStack, CalendarDaysIcon }}
+  importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/box":["Box"],"@/components/ui/text":["Text"],"@/components/ui/vstack":["VStack"],"@/components/ui/icon":["CalendarDaysIcon"]}}
+  
+/>
+
+
+  #### With Form Control
+
+  Use DateTimePicker with FormControl for proper labeling, helper text, and validation states
+
+  <CodePreviewer
+  code={`function Example() {
+  const [date, setDate] = React.useState(null);
+  const [isInvalid, setIsInvalid] = React.useState(false);
+
+  // Validate that date is not in the past
+  React.useEffect(() => {
+    if (date) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      setIsInvalid(date < today);
+    }
+  }, [date]);
+
+  return (
+    <FormControl isInvalid={isInvalid} className="w-full">
+      <FormControlLabel>
+        <FormControlLabelText>Event Date</FormControlLabelText>
+      </FormControlLabel>
+      <DateTimePicker
+        value={date}
+        onChange={setDate}
+        mode="date"
+        placeholder="Select event date"
+      >
+        <DateTimePickerTrigger isInvalid={isInvalid}>
+          <DateTimePickerInput />
+          <DateTimePickerIcon as={CalendarDaysIcon} />
+        </DateTimePickerTrigger>
+      </DateTimePicker>
+      <FormControlHelper>
+        <FormControlHelperText>
+          Choose a future date for your event
+        </FormControlHelperText>
+      </FormControlHelper>
+      <FormControlError>
+        <FormControlErrorIcon as={AlertCircleIcon} />
+        <FormControlErrorText>
+          Event date cannot be in the past
+        </FormControlErrorText>
+      </FormControlError>
+    </FormControl>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ DateTimePicker, DateTimePickerTrigger, DateTimePickerInput, DateTimePickerIcon, FormControl, FormControlLabel, FormControlLabelText, FormControlHelper, FormControlHelperText, FormControlError, FormControlErrorText, FormControlErrorIcon, CalendarDaysIcon, AlertCircleIcon }}
+  importMap={{"@/components/ui/date-time-picker":["DateTimePicker","DateTimePickerTrigger","DateTimePickerInput","DateTimePickerIcon"],"@/components/ui/form-control":["FormControl","FormControlLabel","FormControlLabelText","FormControlHelper","FormControlHelperText","FormControlError","FormControlErrorText","FormControlErrorIcon"],"@/components/ui/icon":["CalendarDaysIcon","AlertCircleIcon"]}}
+  
+/>

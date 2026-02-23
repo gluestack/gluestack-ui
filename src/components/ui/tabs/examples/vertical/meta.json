@@ -1,0 +1,16 @@
+{
+  "title": "Vertical",
+  "description": "Set orientation to vertical to render the tab list along the left side. The indicator animates vertically between the selected triggers.",
+  "argTypes": {},
+  "reactLive": {
+    "Tabs": "@/components/ui/tabs",
+    "TabsList": "@/components/ui/tabs",
+    "TabsTrigger": "@/components/ui/tabs",
+    "TabsContent": "@/components/ui/tabs",
+    "TabsContentWrapper": "@/components/ui/tabs",
+    "TabsTriggerText": "@/components/ui/tabs",
+    "TabsIndicator": "@/components/ui/tabs",
+    "Box": "@/components/ui/box",
+    "Text": "@/components/ui/text"
+  }
+}

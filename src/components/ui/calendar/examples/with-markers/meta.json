@@ -1,0 +1,26 @@
+{
+  "title": "With Event Markers",
+  "description": "Add visual indicators and markers to highlight specific dates with events or important information",
+  "argTypes": {},
+  "reactLive": {
+    "Calendar": "@/components/ui/calendar",
+    "CalendarHeader": "@/components/ui/calendar",
+    "CalendarHeaderPrevButton": "@/components/ui/calendar",
+    "CalendarHeaderNextButton": "@/components/ui/calendar",
+    "CalendarHeaderTitle": "@/components/ui/calendar",
+    "CalendarWeekDaysHeader": "@/components/ui/calendar",
+    "CalendarBody": "@/components/ui/calendar",
+    "CalendarGrid": "@/components/ui/calendar",
+    "CalendarDay": "@/components/ui/calendar",
+    "CalendarDayText": "@/components/ui/calendar",
+    "CalendarDayIndicator": "@/components/ui/calendar",
+    "Box": "@/components/ui/box",
+    "Text": "@/components/ui/text",
+    "HStack": "@/components/ui/hstack",
+    "VStack": "@/components/ui/vstack",
+    "Icon": "@/components/ui/icon",
+    "ChevronLeftIcon": "@/components/ui/icon",
+    "ChevronRightIcon": "@/components/ui/icon",
+    "CircleIcon": "@/components/ui/icon"
+  }
+}

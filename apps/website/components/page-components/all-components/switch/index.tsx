@@ -39,6 +39,7 @@ export default function Example() {
   }
 }}
       reactLive={{ Switch, Center }}
+      
     />
   );
 }

@@ -1,0 +1,16 @@
+{
+  "title": "Basic",
+  "description": "A basic image viewer with zoom, swipe navigation, and slide-to-dismiss gestures",
+  "argTypes": {},
+  "reactLive": {
+    "ImageViewer": "@/components/ui/image-viewer",
+    "ImageViewerTrigger": "@/components/ui/image-viewer",
+    "ImageViewerContent": "@/components/ui/image-viewer",
+    "ImageViewerCloseButton": "@/components/ui/image-viewer",
+    "ImageViewerNavigation": "@/components/ui/image-viewer",
+    "ImageViewerCounter": "@/components/ui/image-viewer",
+    "Image": "@/components/ui/image",
+    "Text": "@/components/ui/text",
+    "View": "@/components/ui/view"
+  }
+}

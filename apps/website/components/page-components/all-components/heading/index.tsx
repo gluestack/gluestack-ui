@@ -9,6 +9,7 @@ export default function Example() {
 }`}
       argTypes={{}}
       reactLive={{ Heading }}
+      
     />
   );
 }
