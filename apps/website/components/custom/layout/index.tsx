@@ -33,7 +33,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const tocLayout =
     fluidLayout ||
-    pathname.includes('docs/mcp-server') ||
     pathname.includes('guides/tutorials') ||
     pathname.includes('/guides/more/releases') ||
     pathname.includes('guides/more/discord-faqs') ||
