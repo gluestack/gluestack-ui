@@ -17,5 +17,6 @@
     "ButtonText": "@/components/ui/button",
     "HStack": "@/components/ui/hstack",
     "VStack": "@/components/ui/vstack"
-  }
+  },
+  "nativeOnly": true
 }

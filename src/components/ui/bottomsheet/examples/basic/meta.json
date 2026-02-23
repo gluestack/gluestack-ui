@@ -10,5 +10,6 @@
     "BottomSheetItemText": "@/components/ui/bottomsheet",
     "BottomSheetPortal": "@/components/ui/bottomsheet",
     "Text": "@/components/ui/text"
-  }
+  },
+  "nativeOnly": true
 }
