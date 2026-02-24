@@ -1,9 +1,7 @@
 'use client';
 import { createAvatar } from '@gluestack-ui/core/avatar/creator';
 import React from 'react';
-
 import { Image, Text, View } from 'react-native';
-
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 const SCOPE = 'AVATAR';
@@ -136,5 +134,5 @@ export {
   AvatarFallback,
   AvatarFallbackText,
   AvatarGroup,
-  AvatarImage,
+  AvatarImage
 };
