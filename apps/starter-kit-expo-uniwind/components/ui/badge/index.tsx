@@ -1,18 +1,16 @@
 'use client';
 import React, { useMemo } from 'react';
-import { Text, View } from 'react-native';
-import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
+import { Platform, Text, View } from 'react-native';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { withUniwind } from 'uniwind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-
 import { Svg } from 'react-native-svg';
 
-const UIIcon = withUniwind(_UIIcon);
 const SCOPE = 'BADGE';
 
 const badgeStyle = tva({
@@ -53,7 +51,6 @@ const badgeIconStyle = tva({
 });
 
 const ContextView = withStyleContext(View, SCOPE);
-
 
 type IBadgeProps = React.ComponentPropsWithoutRef<typeof ContextView> &
   VariantProps<typeof badgeStyle>;
@@ -98,10 +95,25 @@ const BadgeText = React.forwardRef<
   );
 });
 
-type IBadgeIconProps = React.ComponentPropsWithoutRef<typeof UIIcon> &
+type IBadgeIconProps = React.ComponentPropsWithoutRef<typeof PrimitiveIcon> &
   VariantProps<typeof badgeIconStyle> & {
     size?: number;
-  };
+};
+  
+const StyledUIIcon = styled(UIIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
+});
+
+const StyledBadgeIcon = Platform.OS === 'web' ? UIIcon : StyledUIIcon;
 
 const BadgeIcon = React.forwardRef<
   React.ComponentRef<typeof Svg>,
@@ -111,7 +123,7 @@ const BadgeIcon = React.forwardRef<
 
   if (typeof size === 'number') {
     return (
-      <UIIcon
+      <StyledBadgeIcon
         ref={ref}
         {...props}
         className={badgeIconStyle({ class: className })}
@@ -123,7 +135,7 @@ const BadgeIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <UIIcon
+      <StyledBadgeIcon
         ref={ref}
         {...props}
         className={badgeIconStyle({ class: className })}
@@ -131,7 +143,7 @@ const BadgeIcon = React.forwardRef<
     );
   }
   return (
-    <UIIcon
+    <StyledBadgeIcon
       className={badgeIconStyle({
         parentVariants: {
           variant: parentVariant,
