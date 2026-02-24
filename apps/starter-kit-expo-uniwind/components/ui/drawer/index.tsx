@@ -1,27 +1,25 @@
 'use client';
 import { createModal as createDrawer } from '@gluestack-ui/core/modal/creator';
-import React from 'react';
-import { Pressable, ScrollView, View } from 'react-native';
-
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
   tva,
   useStyleContext,
   withStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { withUniwind } from 'uniwind';
+import React from 'react';
+import { Pressable, ScrollView, View } from 'react-native';
 import Animated, {
+  Easing,
+  FadeIn,
+  FadeOut,
+  SlideInDown,
   SlideInLeft,
   SlideInRight,
   SlideInUp,
-  SlideInDown,
+  SlideOutDown,
   SlideOutLeft,
   SlideOutRight,
   SlideOutUp,
-  SlideOutDown,
-  FadeIn,
-  FadeOut,
-  Easing,
 } from 'react-native-reanimated';
 
 const SCOPE = 'MODAL';
@@ -58,7 +56,7 @@ const drawerStyle = tva({
 });
 
 const drawerBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-[#000]/50 web:cursor-default',
 });
 
 const drawerContentStyle = tva({
@@ -256,7 +254,7 @@ const DrawerContent = React.forwardRef<
 
   const exitingAnimation =
     parentAnchor === 'left'
-        ? SlideOutLeft.duration(200)
+      ? SlideOutLeft.duration(200)
       : parentAnchor === 'right'
         ? SlideOutRight.duration(200)
         : parentAnchor === 'top'
@@ -356,5 +354,5 @@ export {
   DrawerCloseButton,
   DrawerContent,
   DrawerFooter,
-  DrawerHeader,
+  DrawerHeader
 };
