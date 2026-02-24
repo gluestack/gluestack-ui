@@ -1,8 +1,8 @@
 'use client';
 import { H3 } from '@expo/html-elements';
 import {
-  createAccordion,
   AccordionItemContext,
+  createAccordion,
 } from '@gluestack-ui/core/accordion/creator';
 import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
@@ -48,25 +48,25 @@ const accordionTriggerStyle = tva({
   base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10 gap-3',
 });
 
-const StyledH3 = styled(H3, { className: "style" });
-const StyledUIIcon = styled(UIIcon, { className: "style" });
-
 const Header = (
-  Platform.OS === 'web' ? StyledH3 : View
+  Platform.OS === 'web' ? H3 : View
 ) as React.ComponentType<TextProps>;
 
+const StyledUIIcon = styled(UIIcon, {
+  className: "style",
+});
+const styledAccordionIcon = Platform.OS === 'web' ? UIIcon : StyledUIIcon;
 /** Creator */
 const UIAccordion = createAccordion({
   Root: View,
   Item: View,
   Header: Header,
   Trigger: Pressable,
-  Icon: StyledUIIcon,
+  Icon: styledAccordionIcon,
   TitleText: Text,
   ContentText: Text,
   Content: View,
 });
-
 
 
 type IAccordionProps = React.ComponentPropsWithoutRef<typeof UIAccordion>;
@@ -236,4 +236,3 @@ AccordionContent.displayName = 'AccordionContent';
 export {
   Accordion, AccordionContent, AccordionContentText, AccordionHeader, AccordionIcon, AccordionItem, AccordionTitleText, AccordionTrigger
 };
-
