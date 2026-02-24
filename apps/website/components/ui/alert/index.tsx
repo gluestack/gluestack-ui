@@ -1,15 +1,15 @@
 'use client';
 import { createAlert } from '@gluestack-ui/core/alert/creator';
-import { View, Text } from 'react-native';
+import { View, Text, Platform } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import React from 'react';
-import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { UIIcon } from '@gluestack-ui/core/icon/creator';
+import { styled } from 'nativewind';
 
 const SCOPE = 'ALERT';
 
@@ -24,7 +24,7 @@ const alertStyle = tva({
 });
 
 const alertTextStyle = tva({
-  base: 'font-medium tracking-tight text-sm flex-1',
+  base: 'font-medium tracking-tight text-sm',
   parentVariants: {
     variant: {
       default: 'text-card-foreground',
@@ -43,23 +43,15 @@ const alertIconStyle = tva({
   },
 });
 
+const StyledUIIcon = styled(UIIcon, {
+  className: "style",
+});
+const styledAlertIcon = Platform.OS === 'web' ? UIIcon : StyledUIIcon;
+
 export const UIAlert = createAlert({
   Root: withStyleContext(View, SCOPE),
   Text: Text,
-  Icon: UIIcon,
-});
-
-cssInterop(UIIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
+  Icon: styledAlertIcon,
 });
 
 type IAlertProps = Omit<
@@ -112,37 +104,14 @@ type IAlertIconProps = React.ComponentPropsWithoutRef<typeof UIAlert.Icon> &
 const AlertIcon = React.forwardRef<
   React.ComponentRef<typeof UIAlert.Icon>,
   IAlertIconProps
->(function AlertIcon({ className, size = 'sm', ...props }, ref) {
+>(function AlertIcon({ className, ...props }, ref) {
   const { variant: parentVariant } = useStyleContext(SCOPE);
-
-  if (typeof size === 'number') {
-    return (
-      <UIAlert.Icon
-        ref={ref}
-        {...props}
-        className={alertIconStyle({ class: className })}
-        size={size}
-      />
-    );
-  } else if (
-    (props.height !== undefined || props.width !== undefined) &&
-    size === undefined
-  ) {
-    return (
-      <UIAlert.Icon
-        ref={ref}
-        {...props}
-        className={alertIconStyle({ class: className })}
-      />
-    );
-  }
   return (
     <UIAlert.Icon
       className={alertIconStyle({
         parentVariants: {
           variant: parentVariant,
         },
-        size,
         class: className,
       })}
       {...props}
