@@ -121,35 +121,25 @@ This is an illustration of **Fab** component.
 'use client';
 import React from 'react';
 import { createFab } from '@gluestack-ui/core/fab/creator';
-import { Pressable, Text } from 'react-native';
+import { Platform, Pressable, Text } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'FAB';
 const Root = withStyleContext(Pressable, SCOPE);
+
+const StyledIcon = styled(UIIcon, { className: "style" });
+const StyledFabIcon = Platform.OS === 'web' ? UIIcon : StyledIcon;
 const UIFab = createFab({
   Root: Root,
   Label: Text,
-  Icon: UIIcon,
-});
-
-cssInterop(UIIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
+  Icon: StyledFabIcon,
 });
 
 const fabStyle = tva({

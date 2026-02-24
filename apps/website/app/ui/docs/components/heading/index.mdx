@@ -49,22 +49,29 @@ This is an illustration of **Heading** component.
 
 ```jsx
 import React, { forwardRef, memo } from 'react';
-import { H1, H2, H3, H4, H5, H6 } from '@expo/html-elements';
+import {
+  H1 as H1Base,
+  H2 as H2Base,
+  H3 as H3Base,
+  H4 as H4Base,
+  H5 as H5Base,
+  H6 as H6Base,
+} from '@expo/html-elements';
 import { headingStyle } from './styles';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 
 type IHeadingProps = VariantProps<typeof headingStyle> &
-  React.ComponentPropsWithoutRef<typeof H1> & {
+  React.ComponentPropsWithoutRef<typeof H1Base> & {
     as?: React.ElementType;
   };
 
-cssInterop(H1, { className: 'style' });
-cssInterop(H2, { className: 'style' });
-cssInterop(H3, { className: 'style' });
-cssInterop(H4, { className: 'style' });
-cssInterop(H5, { className: 'style' });
-cssInterop(H6, { className: 'style' });
+const H1 = styled(H1Base, { className: 'style' });
+const H2 = styled(H2Base, { className: 'style' });
+const H3 = styled(H3Base, { className: 'style' });
+const H4 = styled(H4Base, { className: 'style' });
+const H5 = styled(H5Base, { className: 'style' });
+const H6 = styled(H6Base, { className: 'style' });
 
 const MappedHeading = memo(
   forwardRef<React.ComponentRef<typeof H1>, IHeadingProps>(

@@ -1,26 +1,26 @@
 'use client';
 import React from 'react';
 import { createFab } from '@gluestack-ui/core/fab/creator';
-import { Pressable, Text } from 'react-native';
+import { Platform, Pressable, Text } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { withUniwind } from 'uniwind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
-
-const UIIcon = withUniwind(_UIIcon);
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'FAB';
 const Root = withStyleContext(Pressable, SCOPE);
+
+const StyledIcon = styled(UIIcon, { className: "style" });
+const StyledFabIcon = Platform.OS === 'web' ? UIIcon : StyledIcon;
 const UIFab = createFab({
   Root: Root,
   Label: Text,
-  Icon: UIIcon,
+  Icon: StyledFabIcon,
 });
-
 
 const fabStyle = tva({
   base: 'group/fab bg-primary rounded-full z-20 p-4 flex-row items-center justify-center absolute hover:bg-primary/90 active:bg-primary/80 disabled:opacity-40 disabled:pointer-events-all disabled:cursor-not-allowed data-[focus=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-indicator-info shadow-hard-2',
