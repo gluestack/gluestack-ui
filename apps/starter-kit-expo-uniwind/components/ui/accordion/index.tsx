@@ -1,20 +1,17 @@
 'use client';
-import { H3 as _H3 } from '@expo/html-elements';
+import { H3 } from '@expo/html-elements';
 import {
   createAccordion,
   AccordionItemContext,
 } from '@gluestack-ui/core/accordion/creator';
-import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { withUniwind } from 'uniwind';
+import { styled } from 'nativewind';
 import React from 'react';
 import { Platform, Pressable, Text, TextProps, View } from 'react-native';
 import { AnimatedHeight } from './AccordionAnimatedHeight';
 import { AnimatedIcon } from './AccordionAnimatedIcon';
 import { accordionAnimationConfig } from './animation-config';
-
-const UIIcon = withUniwind(_UIIcon);
-const H3 = withUniwind(_H3);
 
 /** Styles */
 
@@ -51,8 +48,11 @@ const accordionTriggerStyle = tva({
   base: 'w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10 gap-3',
 });
 
+const StyledH3 = styled(H3, { className: "style" });
+const StyledUIIcon = styled(UIIcon, { className: "style" });
+
 const Header = (
-  Platform.OS === 'web' ? H3 : View
+  Platform.OS === 'web' ? StyledH3 : View
 ) as React.ComponentType<TextProps>;
 
 /** Creator */
@@ -61,7 +61,7 @@ const UIAccordion = createAccordion({
   Item: View,
   Header: Header,
   Trigger: Pressable,
-  Icon: UIIcon,
+  Icon: StyledUIIcon,
   TitleText: Text,
   ContentText: Text,
   Content: View,
