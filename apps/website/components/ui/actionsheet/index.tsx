@@ -1,28 +1,29 @@
 'use client';
-import React from 'react';
 import { H4 } from '@expo/html-elements';
 import { createActionsheet } from '@gluestack-ui/core/actionsheet/creator';
-import {
-  Pressable,
-  View,
-  Text,
-  ScrollView,
-  VirtualizedList,
-  FlatList,
-  SectionList,
-  PressableProps,
-  ViewStyle,
-} from 'react-native';
 import { UIIcon } from '@gluestack-ui/core/icon/creator';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import {
-  Motion,
   AnimatePresence,
   createMotionAnimatedComponent,
+  Motion,
   MotionComponentProps,
 } from '@legendapp/motion';
+import { styled } from 'nativewind';
+import React from 'react';
+import {
+  FlatList,
+  Platform,
+  Pressable,
+  PressableProps,
+  ScrollView,
+  SectionList,
+  Text,
+  View,
+  ViewStyle,
+  VirtualizedList,
+} from 'react-native';
 
 const ItemWrapper = React.forwardRef<
   React.ComponentRef<typeof Pressable>,
@@ -43,6 +44,9 @@ const AnimatedPressable = createMotionAnimatedComponent(
   Pressable
 ) as React.ComponentType<IAnimatedPressableProps>;
 
+const StyledUIIcon = styled(UIIcon, { className: "style" });
+const StyledActionsheetIcon = Platform.OS === 'web' ? UIIcon : StyledUIIcon;
+
 export const UIActionsheet = createActionsheet({
   Root: View,
   Content: MotionView,
@@ -56,51 +60,8 @@ export const UIActionsheet = createActionsheet({
   FlatList: FlatList,
   SectionList: SectionList,
   SectionHeaderText: H4,
-  Icon: UIIcon,
+  Icon: StyledActionsheetIcon,
   AnimatePresence: AnimatePresence,
-});
-
-cssInterop(UIActionsheet, { className: 'style' });
-cssInterop(UIActionsheet.Content, { className: 'style' });
-cssInterop(UIActionsheet.Item, { className: 'style' });
-cssInterop(UIActionsheet.ItemText, { className: 'style' });
-cssInterop(UIActionsheet.DragIndicator, { className: 'style' });
-cssInterop(UIActionsheet.DragIndicatorWrapper, { className: 'style' });
-cssInterop(UIActionsheet.Backdrop, { className: 'style' });
-cssInterop(UIActionsheet.ScrollView, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-cssInterop(UIActionsheet.VirtualizedList, {
-  className: 'style',
-  ListFooterComponentClassName: 'ListFooterComponentStyle',
-  ListHeaderComponentClassName: 'ListHeaderComponentStyle',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-cssInterop(UIActionsheet.FlatList, {
-  className: 'style',
-  ListFooterComponentClassName: 'ListFooterComponentStyle',
-  ListHeaderComponentClassName: 'ListHeaderComponentStyle',
-  columnWrapperClassName: 'columnWrapperStyle',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-cssInterop(UIActionsheet.SectionList, { className: 'style' });
-cssInterop(UIActionsheet.SectionHeaderText, { className: 'style' });
-
-cssInterop(UIIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
 });
 
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
@@ -140,7 +101,7 @@ const actionsheetDragIndicatorWrapperStyle = tva({
 });
 
 const actionsheetBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default web:pointer-events-auto',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-[#000]/50 web:cursor-default web:pointer-events-auto',
 });
 
 const actionsheetScrollViewStyle = tva({
@@ -495,17 +456,8 @@ const ActionsheetIcon = React.forwardRef<
 });
 
 export {
-  Actionsheet,
-  ActionsheetContent,
-  ActionsheetItem,
-  ActionsheetItemText,
-  ActionsheetDragIndicator,
-  ActionsheetDragIndicatorWrapper,
-  ActionsheetBackdrop,
-  ActionsheetScrollView,
-  ActionsheetVirtualizedList,
-  ActionsheetFlatList,
-  ActionsheetSectionList,
-  ActionsheetSectionHeaderText,
-  ActionsheetIcon,
+  Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper, ActionsheetFlatList, ActionsheetIcon, ActionsheetItem,
+  ActionsheetItemText, ActionsheetScrollView, ActionsheetSectionHeaderText, ActionsheetSectionList, ActionsheetVirtualizedList
 };
+
