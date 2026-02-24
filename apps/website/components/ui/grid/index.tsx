@@ -8,7 +8,6 @@ import React, {
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { View, Platform, ViewProps } from 'react-native';
 import { gridStyle, gridItemStyle } from './styles';
-// import { cssInterop } from 'nativewind';
 import { useBreakpointValue } from '@gluestack-ui/utils/hooks';
 
 const GridContext = createContext<any>({});
@@ -150,25 +149,6 @@ const Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
     );
   }
 );
-// cssInterop(Grid, {
-//   className: {
-//     target: 'style',
-//     nativeStyleToProp: {
-//       gap: 'gap',
-//       rowGap: 'rowGap',
-//       columnGap: 'columnGap',
-//       flexDirection: 'flexDirection',
-//       padding: 'padding',
-//       paddingLeft: 'paddingLeft',
-//       paddingRight: 'paddingRight',
-//       paddingStart: 'paddingStart',
-//       paddingEnd: 'paddingEnd',
-//       borderWidth: 'borderWidth',
-//       borderLeftWidth: 'borderLeftWidth',
-//       borderRightWidth: 'borderRightWidth',
-//     },
-//   },
-// });
 
 type IGridItemProps = ViewProps &
   VariantProps<typeof gridItemStyle> & {
