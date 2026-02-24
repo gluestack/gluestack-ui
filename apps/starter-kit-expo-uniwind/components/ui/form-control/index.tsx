@@ -1,14 +1,12 @@
 'use client';
-import { Text, View } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import React from 'react';
 import { createFormControl } from '@gluestack-ui/core/form-control/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { withUniwind } from 'uniwind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
-
-const UIIcon = withUniwind(_UIIcon);
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'FORM_CONTROL';
 
@@ -160,11 +158,14 @@ const FormControlLabelAstrick = React.forwardRef<
   );
 });
 
+const StyledUIIcon = styled(UIIcon, { className: "style" });
+const StyledErrorIcon = Platform.OS === 'web' ? UIIcon : StyledUIIcon;
+
 export const UIFormControl = createFormControl({
   Root: withStyleContext(View, SCOPE),
   Error: View,
   ErrorText: Text,
-  ErrorIcon: UIIcon,
+  ErrorIcon: StyledErrorIcon,
   Label: View,
   LabelText: Text,
   LabelAstrick: FormControlLabelAstrick,
