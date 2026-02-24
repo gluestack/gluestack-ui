@@ -3,3 +3,91 @@
 @import "tailwindcss/utilities.css";
 @import "nativewind/theme";
 
+/* ─── Theme: design tokens (light / dark) ─────────────────────────
+   Light = default :root. Dark = system (prefers-color-scheme) or .dark class.
+   Same token names as gluestack-ui-provider config for consistent utilities. */
+@layer theme {
+  :root {
+    --primary: 23 23 23;
+    --primary-foreground: 250 250 250;
+    --card: 255 255 255;
+    --secondary: 245 245 245;
+    --secondary-foreground: 23 23 23;
+    --background: 255 255 255;
+    --popover: 255 255 255;
+    --popover-foreground: 10 10 10;
+    --muted: 245 245 245;
+    --muted-foreground: 115 115 115;
+    --destructive: 231 0 11;
+    --foreground: 10 10 10;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 212 212 212;
+    --accent: 247 247 247;
+    --accent-foreground: 52 52 52;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: 255 245 245;
+      --primary-foreground: 23 23 23;
+      --card: 23 23 23;
+      --secondary: 38 38 38;
+      --secondary-foreground: 250 250 250;
+      --background: 10 10 10;
+      --popover: 23 23 23;
+      --popover-foreground: 250 250 250;
+      --muted: 38 38 38;
+      --muted-foreground: 161 161 161;
+      --destructive: 255 100 103;
+      --foreground: 250 250 250;
+      --border: 46 46 46;
+      --input: 46 46 46;
+      --accent: 38 38 38;
+      --accent-foreground: 250 250 250;
+      --ring: 115 115 115;
+    }
+  }
+
+  .dark {
+    --primary: 255 245 245;
+    --primary-foreground: 23 23 23;
+    --card: 23 23 23;
+    --secondary: 38 38 38;
+    --secondary-foreground: 250 250 250;
+    --background: 10 10 10;
+    --popover: 23 23 23;
+    --popover-foreground: 250 250 250;
+    --muted: 38 38 38;
+    --muted-foreground: 161 161 161;
+    --destructive: 255 100 103;
+    --foreground: 250 250 250;
+    --border: 46 46 46;
+    --input: 46 46 46;
+    --accent: 38 38 38;
+    --accent-foreground: 250 250 250;
+    --ring: 115 115 115;
+  }
+}
+
+/* ─── Tailwind v4 color utilities ─────────────────────────────────
+   bg-primary, text-foreground, border-border, etc. */
+@theme inline {
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-card: rgb(var(--card));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-background: rgb(var(--background));
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-destructive: rgb(var(--destructive));
+  --color-foreground: rgb(var(--foreground));
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+}
