@@ -1,15 +1,12 @@
 'use client';
-import React from 'react';
 import { createCheckbox } from '@gluestack-ui/core/checkbox/creator';
-import { View, Pressable, Text, Platform } from 'react-native';
-import type { TextProps, ViewProps } from 'react-native';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
-import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { withUniwind } from 'uniwind';
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-
-const UIIcon = withUniwind(_UIIcon);
+import { tva, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import { styled } from 'nativewind';
+import React from 'react';
+import type { TextProps, ViewProps } from 'react-native';
+import { Platform, Pressable, Text, View } from 'react-native';
 
 const IndicatorWrapper = React.forwardRef<
   React.ComponentRef<typeof View>,
@@ -25,14 +22,30 @@ const LabelWrapper = React.forwardRef<
   return <Text {...props} ref={ref} />;
 });
 
+const StyledUIIcon = styled(UIIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
+});
+const StyledCheckboxIcon = Platform.OS === 'web' ? UIIcon : StyledUIIcon;
+
 const IconWrapper = React.forwardRef<
   React.ComponentRef<typeof UIIcon>,
   React.ComponentPropsWithoutRef<typeof UIIcon>
 >(function IconWrapper({ ...props }, ref) {
-  return <UIIcon {...props} ref={ref} />;
+  return <StyledCheckboxIcon {...props} ref={ref} />;
 });
 
 const SCOPE = 'CHECKBOX';
+
+
 const UICheckbox = createCheckbox({
   // @ts-expect-error : internal implementation for r-19/react-native-web
   Root:
@@ -162,9 +175,7 @@ CheckboxLabel.displayName = 'CheckboxLabel';
 CheckboxIcon.displayName = 'CheckboxIcon';
 
 export {
-  Checkbox,
-  CheckboxIndicator,
-  CheckboxLabel,
-  CheckboxIcon,
-  CheckboxGroup,
+  Checkbox, CheckboxGroup, CheckboxIcon, CheckboxIndicator,
+  CheckboxLabel
 };
+
