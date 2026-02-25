@@ -110,7 +110,7 @@ import {
   useStyleContext,
   type VariantProps,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import { Pressable, Text, View, FlatList, Platform } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -124,7 +124,6 @@ import { TabsAnimatedIndicator } from './TabsAnimatedIndicator';
 const SCOPE = 'TABS';
 const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
-Platform.OS === 'web' ? cssInterop(AnimatedView,{className:{target:'style'}}) : AnimatedView
 /** Styles */
 
 const tabsStyle = tva({
@@ -183,6 +182,10 @@ const tabsIndicatorStyle = tva({
 
 const Root = withStyleContext(View, SCOPE);
 
+const StyledUIIcon = styled(UIIcon, {
+  className: 'style',
+});
+
 const UITabs = createTabs({
   Root,
   List: View,
@@ -190,22 +193,10 @@ const UITabs = createTabs({
   Content: View,
   ContentWrapper: AnimatedView,
   TriggerText: Text,
-  TriggerIcon: UIIcon,
+  TriggerIcon: StyledUIIcon,
   Indicator: View,
 });
 
-cssInterop(PrimitiveIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
-});
 
 /** Type definitions */
 
