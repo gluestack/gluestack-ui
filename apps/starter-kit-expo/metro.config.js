@@ -9,4 +9,4 @@ config.resolver.extraNodeModules = {
   buffer: require.resolve('buffer'),
 };
 
-module.exports = withNativewind(config);
+module.exports = withNativewind(config, { inlineRem: 16 });
