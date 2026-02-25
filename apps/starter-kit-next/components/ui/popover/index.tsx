@@ -6,14 +6,12 @@ import {
   useStyleContext,
   withStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import React from 'react';
-import { Pressable, ScrollView, View } from 'react-native';
+import { Platform, Pressable, ScrollView, View } from 'react-native';
 import Animated, {
   FadeIn,
-  FadeOut,
-  ZoomIn,
-  ZoomOut,
+  FadeOut
 } from 'react-native-reanimated';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -21,19 +19,20 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 
 const SCOPE = 'POPOVER';
 
+const StyledAnimatedView = Platform.OS === 'web' ? AnimatedView : styled(AnimatedView, { className: 'style' });
+const StyledAnimatedPressable = Platform.OS === 'web' ? AnimatedPressable : styled(AnimatedPressable, { className: 'style' });
+
 const UIPopover = createPopover({
-  Root: withStyleContext(AnimatedView, SCOPE),
+  Root: withStyleContext(StyledAnimatedView, SCOPE),
   Arrow: View,
-  Backdrop: AnimatedPressable,
+  Backdrop: StyledAnimatedPressable,
   Body: ScrollView,
   CloseButton: Pressable,
   Content: View,
   Footer: View,
-  Header: View,
+  Header: View
 });
 
-cssInterop(AnimatedView, { className: 'style' });
-cssInterop(AnimatedPressable, { className: 'style' });
 
 const popoverStyle = tva({
   base: 'group/popover w-full h-full justify-center items-center web:pointer-events-none',
@@ -268,5 +267,5 @@ export {
   PopoverCloseButton,
   PopoverContent,
   PopoverFooter,
-  PopoverHeader,
+  PopoverHeader
 };
