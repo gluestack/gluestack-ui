@@ -1,15 +1,9 @@
 'use client';
 import { createSlider } from '@gluestack-ui/core/slider/creator';
-import { Pressable } from 'react-native';
-import { View } from 'react-native';
-import React from 'react';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  withStyleContext,
-  useStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { withUniwind } from 'uniwind';
+import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import React from 'react';
+import { Pressable, View } from 'react-native';
 
 const SCOPE = 'SLIDER';
 const Root = withStyleContext(View, SCOPE);
@@ -20,8 +14,6 @@ export const UISlider = createSlider({
   FilledTrack: View,
   ThumbInteraction: View,
 });
-
-UISlider.Track = withUniwind(UISlider.Track) as typeof UISlider.Track;
 
 const sliderStyle = tva({
   base: 'justify-center items-center data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-none',
@@ -178,4 +170,4 @@ const SliderFilledTrack = React.forwardRef<
   );
 });
 
-export { Slider, SliderThumb, SliderTrack, SliderFilledTrack };
+export { Slider, SliderFilledTrack, SliderThumb, SliderTrack };
