@@ -3,9 +3,9 @@ import { createMenu } from '@gluestack-ui/core/menu/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { withUniwind } from 'uniwind';
+import { styled } from 'nativewind';
 import React from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { Platform, Pressable, ScrollView, Text, View } from 'react-native';
 import Animated, { FadeOut, ZoomIn } from 'react-native-reanimated';
 
 const AnimatedView = Animated.createAnimatedComponent(ScrollView);
@@ -103,11 +103,12 @@ const Separator = React.forwardRef<
   );
 });
 
-
-
-
+const StyledAnimatedView = styled(AnimatedView, {
+  className: 'style',
+});
+const StyledAnimatedRoot = Platform.OS === 'web' ? AnimatedView : StyledAnimatedView;
 export const UIMenu = createMenu({
-  Root: AnimatedView,
+  Root: StyledAnimatedRoot,
   Item: Item,
   Label: Text,
   Backdrop: BackdropPressable,
