@@ -71,8 +71,8 @@ const buttonSpinnerStyle = tva({
   parentVariants: {
     size: {
       default: 'h-4 w-4',
-      sm: 'h-4 w-4',
-      lg: 'h-4 w-4',
+      sm: 'h-3 w-3',
+      lg: 'h-5 w-5',
       icon: 'h-4 w-4',
     },
   },
@@ -93,8 +93,8 @@ const buttonIconStyle = tva({
     },
     size: {
       default: 'h-4 w-4',
-      sm: 'h-4 w-4',
-      lg: 'h-4 w-4',
+      sm: 'h-3 w-3',
+      lg: 'h-5 w-5',
       icon: 'h-4 w-4',
     },
   },
