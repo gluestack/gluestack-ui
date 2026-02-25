@@ -2,14 +2,14 @@
 
 import React from 'react';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { createSelect } from '@gluestack-ui/core/select/creator';
-import { withUniwind } from 'uniwind';
+import { styled } from 'nativewind';
 import {
   Actionsheet,
   ActionsheetContent,
@@ -25,9 +25,6 @@ import {
   ActionsheetSectionHeaderText,
 } from './select-actionsheet';
 import { Pressable, View, TextInput } from 'react-native';
-
-const UIIcon = withUniwind(_UIIcon);
-const WrappedTextInput = withUniwind(TextInput);
 
 const SelectTriggerWrapper = React.forwardRef<
   React.ComponentRef<typeof Pressable>,
@@ -91,12 +88,18 @@ const selectInputStyle = tva({
   },
 });
 
+const StyledIcon = styled(UIIcon, {
+  className: {
+    target: 'style',
+  },
+});
+
 const UISelect = createSelect(
   {
     Root: View,
     Trigger: withStyleContext(SelectTriggerWrapper),
-    Input: WrappedTextInput,
-    Icon: UIIcon,
+    Input: TextInput,
+    Icon: StyledIcon,
   },
   {
     Portal: Actionsheet,
@@ -113,8 +116,6 @@ const UISelect = createSelect(
     SectionHeaderText: ActionsheetSectionHeaderText,
   }
 );
-
-
 
 type ISelectProps = VariantProps<typeof selectStyle> &
   React.ComponentProps<typeof UISelect> & { className?: string };

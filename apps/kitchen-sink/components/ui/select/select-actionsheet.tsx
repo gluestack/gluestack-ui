@@ -16,7 +16,7 @@ import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import {
   Motion,
   AnimatePresence,
@@ -38,43 +38,21 @@ type IMotionViewProps = React.ComponentProps<typeof View> &
 
 const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
 
-export const UIActionsheet = createActionsheet({
-  Root: View,
-  Content: withStyleContext(MotionView),
-  Item: withStyleContext(Pressable),
-  ItemText: Text,
-  DragIndicator: View,
-  IndicatorWrapper: View,
-  Backdrop: AnimatedPressable,
-  ScrollView: ScrollView,
-  VirtualizedList: VirtualizedList,
-  FlatList: FlatList,
-  SectionList: SectionList,
-  SectionHeaderText: H4,
-  Icon: UIIcon,
-  AnimatePresence: AnimatePresence,
-});
-
-cssInterop(UIActionsheet, { className: 'style' });
-cssInterop(UIActionsheet.Content, { className: 'style' });
-cssInterop(UIActionsheet.Item, { className: 'style' });
-cssInterop(UIActionsheet.ItemText, { className: 'style' });
-cssInterop(UIActionsheet.DragIndicator, { className: 'style' });
-cssInterop(UIActionsheet.DragIndicatorWrapper, { className: 'style' });
-cssInterop(UIActionsheet.Backdrop, { className: 'style' });
-cssInterop(UIActionsheet.ScrollView, {
+const StyledMotionView = styled(MotionView, { className: 'style' });
+const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
+const StyledScrollView = styled(ScrollView, {
   className: 'style',
   contentContainerClassName: 'contentContainerStyle',
   indicatorClassName: 'indicatorStyle',
 });
-cssInterop(UIActionsheet.VirtualizedList, {
+const StyledVirtualizedList = styled(VirtualizedList, {
   className: 'style',
   ListFooterComponentClassName: 'ListFooterComponentStyle',
   ListHeaderComponentClassName: 'ListHeaderComponentStyle',
   contentContainerClassName: 'contentContainerStyle',
   indicatorClassName: 'indicatorStyle',
 });
-cssInterop(UIActionsheet.FlatList, {
+const StyledFlatList = styled(FlatList, {
   className: 'style',
   ListFooterComponentClassName: 'ListFooterComponentStyle',
   ListHeaderComponentClassName: 'ListHeaderComponentStyle',
@@ -82,20 +60,31 @@ cssInterop(UIActionsheet.FlatList, {
   contentContainerClassName: 'contentContainerStyle',
   indicatorClassName: 'indicatorStyle',
 });
-cssInterop(UIActionsheet.SectionList, { className: 'style' });
-cssInterop(UIActionsheet.SectionHeaderText, { className: 'style' });
-cssInterop(UIIcon, {
+const StyledIcon = styled(UIIcon, {
   className: {
     target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
   },
 });
+const StyledSectionList = styled(SectionList, { className: 'style' });
+const StyledSectionHeaderText = styled(H4, { className: 'style' });
+
+export const UIActionsheet = createActionsheet({
+  Root: View,
+  Content: withStyleContext(StyledMotionView),
+  Item: withStyleContext(Pressable),
+  ItemText: Text,
+  DragIndicator: View,
+  IndicatorWrapper: View,
+  Backdrop: StyledAnimatedPressable,
+  ScrollView: StyledScrollView,
+  VirtualizedList: StyledVirtualizedList,
+  FlatList: StyledFlatList,
+  SectionList: StyledSectionList,
+  SectionHeaderText: StyledSectionHeaderText,
+  Icon: StyledIcon,
+  AnimatePresence: AnimatePresence,
+});
+
 
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 
@@ -104,7 +93,7 @@ const actionsheetContentStyle = tva({
 });
 
 const actionsheetItemStyle = tva({
-  base: 'w-full flex-row items-center p-3 rounded-sm data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-auto data-[disabled=true]:web:cursor-not-allowed hover:bg-background/10 active:bg-background/20 data-[focus=true]:bg-background/20 web:data-[focus-visible=true]:bg-background/20 data-[checked=true]:bg-background/20',
+  base: 'w-full flex-row items-center p-3 rounded-sm data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-auto data-[disabled=true]:web:cursor-not-allowed hover:bg-accent/40 active:bg-accent/50 data-[focus=true]:bg-accent/20 web:data-[focus-visible=true]:bg-accent/40 data-[checked=true]:bg-accent/40',
 });
 
 const actionsheetItemTextStyle = tva({
@@ -150,7 +139,7 @@ const actionsheetDragIndicatorWrapperStyle = tva({
 });
 
 const actionsheetBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default web:pointer-events-auto',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-[#000]/50 web:cursor-default web:pointer-events-auto',
 });
 
 const actionsheetScrollViewStyle = tva({
