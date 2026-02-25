@@ -1,16 +1,19 @@
 'use client';
-import React from 'react';
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import { createRadio } from '@gluestack-ui/core/radio/creator';
-import { Pressable, View, Platform, Text } from 'react-native';
-import { tva, useStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { UIIcon as _UIIcon } from '@gluestack-ui/core/icon/creator';
-
-const UIIcon = withUniwind(_UIIcon);
+import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import { styled } from 'nativewind';
+import React from 'react';
+import { Platform, Pressable, Text, View } from 'react-native';
 
 const SCOPE = 'Radio';
+
+const StyledIcon = styled(UIIcon, {
+  className: {
+    target: 'style',
+  },
+});
 
 const UIRadio = createRadio({
   Root: (Platform.OS === 'web'
@@ -19,7 +22,7 @@ const UIRadio = createRadio({
       typeof withStyleContext<typeof Pressable>
     >,
   Group: View,
-  Icon: UIIcon,
+  Icon: StyledIcon,
   Indicator: View,
   Label: Text,
 });
@@ -41,7 +44,7 @@ const radioGroupStyle = tva({
 });
 
 const radioIconStyle = tva({
-  base: 'rounded-full absolute stroke-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-primary h-2 w-2',
+  base: 'rounded-full absolute stroke-none fill-primary h-2 w-2',
   parentVariants: {
     size: {
       sm: 'h-[9px] w-[9px]',
@@ -204,4 +207,4 @@ RadioIndicator.displayName = 'RadioIndicator';
 RadioLabel.displayName = 'RadioLabel';
 RadioIcon.displayName = 'RadioIcon';
 
-export { Radio, RadioGroup, RadioIndicator, RadioLabel, RadioIcon };
+export { Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel };
