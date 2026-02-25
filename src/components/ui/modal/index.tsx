@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { createModal } from '@gluestack-ui/core/modal/creator';
-import { Pressable, View, ScrollView } from 'react-native';
+import { Pressable, View, ScrollView, Platform } from 'react-native';
 import Animated, {
   FadeIn,
   FadeOut,
@@ -14,25 +14,25 @@ import {
   withStyleContext,
   useStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedView = Animated.createAnimatedComponent(View);
 const SCOPE = 'MODAL';
 
+const StyledAnimatedPressable = Platform.OS === 'web' ? AnimatedPressable : styled(AnimatedPressable, { className: 'style' });
+const StyledAnimatedView = Platform.OS === 'web' ? AnimatedView : styled(AnimatedView, { className: 'style' });
 const UIModal = createModal({
   Root: withStyleContext(View as any, SCOPE),
-  Backdrop: AnimatedPressable,
-  Content: AnimatedView,
+  Backdrop: StyledAnimatedPressable,
+  Content: StyledAnimatedView,
   Body: ScrollView,
   CloseButton: Pressable,
   Footer: View,
   Header: View,
 });
 
-cssInterop(AnimatedPressable, { className: 'style' });
-cssInterop(AnimatedView, { className: 'style' });
 
 const modalStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
@@ -48,7 +48,7 @@ const modalStyle = tva({
 });
 
 const modalBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-[#000]/50 web:cursor-default',
 });
 
 const modalContentStyle = tva({
