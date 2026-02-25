@@ -5,7 +5,6 @@ import { Text } from 'react-native';
 
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 import React from 'react';
@@ -13,9 +12,6 @@ export const UILink = createLink({
   Root: withStyleContext(Pressable),
   Text: Text,
 });
-
-cssInterop(UILink, { className: 'style' });
-cssInterop(UILink.Text, { className: 'style' });
 
 const linkStyle = tva({
   base: 'group/link web:outline-0 data-[disabled=true]:web:cursor-not-allowed data-[focus-visible=true]:web:ring-2 data-[focus-visible=true]:web:ring-indicator-primary data-[focus-visible=true]:web:outline-0 data-[disabled=true]:opacity-4 ',
