@@ -4,7 +4,10 @@ import { styled } from 'nativewind';
 import Animated, { type AnimatedProps } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
-const StyledAnimatedScrollView = styled(AnimatedScrollView, { className: 'style' });
+const StyledAnimatedScrollView = styled(AnimatedScrollView, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+});
 interface Props extends AnimatedProps<ScrollViewProps> {
   className?: string;
   contentContainerClassName?: string;

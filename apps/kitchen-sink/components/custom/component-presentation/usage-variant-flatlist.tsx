@@ -32,10 +32,8 @@ import {
   getComponentByPath,
 } from '@/constants/components-list';
 import { useRouter, usePathname } from 'expo-router';
-import { cssInterop } from 'nativewind';
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 const AnimatedView = Animated.createAnimatedComponent(View);
-Platform.OS === 'web' ? cssInterop(AnimatedView, { className: 'style' }) : null;
 
 type VariantNameItemProps = {
   item: UsageVariant;

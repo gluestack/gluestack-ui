@@ -6,7 +6,7 @@ import {
   ThemeName,
 } from '@/constants/themes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useColorScheme } from 'nativewind';
+import { useColorScheme, VariableContextProvider } from 'nativewind';
 import React, {
   createContext,
   useCallback,
@@ -151,9 +151,11 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <AppThemeContext.Provider value={value}>
-      <View style={themeVars} className="flex-1">
-        {children}
-      </View>
+      <VariableContextProvider value={themeVars}>
+        <View className="flex-1">
+          {children}
+        </View>
+      </VariableContextProvider>
     </AppThemeContext.Provider>
   );
 };
