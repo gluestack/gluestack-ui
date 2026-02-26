@@ -5,18 +5,17 @@ import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { styled } from 'nativewind';
 import React from 'react';
-import { Platform, Pressable, Text } from 'react-native';
+import { Pressable, Text } from 'react-native';
 
 const SCOPE = 'FAB';
 const Root = withStyleContext(Pressable, SCOPE);
 
-const StyledIcon = styled(UIIcon, { className: "style" });
-const StyledFabIcon = Platform.OS === 'web' ? UIIcon : StyledIcon;
+const StyledUIIcon = styled(UIIcon, { className: "style" });
 
 const UIFab = createFab({
   Root: Root,
   Label: Text,
-  Icon: StyledFabIcon,
+  Icon: StyledUIIcon,
 });
 
 const fabStyle = tva({
