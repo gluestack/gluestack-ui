@@ -8,7 +8,7 @@ import {
 } from '@gluestack-ui/utils/nativewind-utils';
 import { styled } from 'nativewind';
 import React from 'react';
-import { Platform, Pressable, ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 import Animated, {
   FadeIn,
   FadeOut
@@ -19,8 +19,8 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 
 const SCOPE = 'POPOVER';
 
-const StyledAnimatedView = Platform.OS === 'web' ? AnimatedView : styled(AnimatedView, { className: 'style' });
-const StyledAnimatedPressable = Platform.OS === 'web' ? AnimatedPressable : styled(AnimatedPressable, { className: 'style' });
+const StyledAnimatedView = styled(AnimatedView, { className: 'style' });
+const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
 
 const UIPopover = createPopover({
   Root: withStyleContext(StyledAnimatedView, SCOPE),
