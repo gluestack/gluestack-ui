@@ -1,5 +1,5 @@
 'use client';
-import { Platform, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import React from 'react';
 import { createFormControl } from '@gluestack-ui/core/form-control/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
@@ -159,13 +159,12 @@ const FormControlLabelAstrick = React.forwardRef<
 });
 
 const StyledUIIcon = styled(UIIcon, { className: "style" });
-const StyledErrorIcon = Platform.OS === 'web' ? UIIcon : StyledUIIcon;
 
 export const UIFormControl = createFormControl({
   Root: withStyleContext(View, SCOPE),
   Error: View,
   ErrorText: Text,
-  ErrorIcon: StyledErrorIcon,
+  ErrorIcon: StyledUIIcon,
   Label: View,
   LabelText: Text,
   LabelAstrick: FormControlLabelAstrick,
