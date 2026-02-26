@@ -2,13 +2,14 @@
 import { createToastHook } from '@gluestack-ui/core/toast/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { withUniwind } from 'uniwind';
+import { styled } from 'nativewind';
 import React from 'react';
 import { AccessibilityInfo, Text, View } from 'react-native';
 import Animated, { SlideInUp } from 'react-native-reanimated';
 const useToast = createToastHook(View);
 const SCOPE = 'TOAST';
 const AnimatedView = Animated.createAnimatedComponent(View);
+const StyledAnimatedView = styled(AnimatedView, { className: 'style' });
 const toastStyle = tva({
   base: 'p-4 m-1 rounded-md gap-1 web:pointer-events-auto border-border',
   variants: {
@@ -160,7 +161,7 @@ const toastDescriptionStyle = tva({
   },
 });
 
-const Root = withStyleContext(AnimatedView, SCOPE);
+const Root = withStyleContext(StyledAnimatedView, SCOPE);
 type IToastProps = React.ComponentProps<typeof Root> & {
   className?: string;
 } & VariantProps<typeof toastStyle>;
