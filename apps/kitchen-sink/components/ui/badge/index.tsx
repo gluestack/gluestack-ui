@@ -1,14 +1,10 @@
 'use client';
-import React, { useMemo } from 'react';
-import { Platform, Text, View } from 'react-native';
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  withStyleContext,
-  useStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import { styled } from 'nativewind';
+import React from 'react';
+import { Text, View } from 'react-native';
 import { Svg } from 'react-native-svg';
 
 const SCOPE = 'BADGE';
@@ -113,7 +109,6 @@ const StyledUIIcon = styled(UIIcon, {
   },
 });
 
-const StyledBadgeIcon = Platform.OS === 'web' ? UIIcon : StyledUIIcon;
 
 const BadgeIcon = React.forwardRef<
   React.ComponentRef<typeof Svg>,
@@ -123,7 +118,7 @@ const BadgeIcon = React.forwardRef<
 
   if (typeof size === 'number') {
     return (
-      <StyledBadgeIcon
+      <StyledUIIcon
         ref={ref}
         {...props}
         className={badgeIconStyle({ class: className })}
@@ -135,7 +130,7 @@ const BadgeIcon = React.forwardRef<
     size === undefined
   ) {
     return (
-      <StyledBadgeIcon
+      <StyledUIIcon
         ref={ref}
         {...props}
         className={badgeIconStyle({ class: className })}
@@ -143,7 +138,7 @@ const BadgeIcon = React.forwardRef<
     );
   }
   return (
-    <StyledBadgeIcon
+    <StyledUIIcon
       className={badgeIconStyle({
         parentVariants: {
           variant: parentVariant,
