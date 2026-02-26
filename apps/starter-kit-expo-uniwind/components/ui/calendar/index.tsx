@@ -1,36 +1,31 @@
 'use client';
 
-import React from 'react';
-import { View, Text, Pressable } from 'react-native';
 import {
   createCalendar,
-  type ICalendarProps,
-  type CalendarMode,
-  type CalendarMarkers,
+  type ICalendarProps
 } from '@gluestack-ui/core/calendar/creator';
-import { withUniwind } from 'uniwind';
+import React from 'react';
+import { Pressable, Text, View } from 'react-native';
+import { Menu, MenuItem, MenuItemLabel } from '../menu';
 import {
-  calendarStyle,
-  calendarHeaderStyle,
+  calendarBodyStyle,
+  calendarDayIndicatorStyle,
+  calendarDayStyle,
+  calendarDayTextStyle,
+  calendarFooterStyle,
+  calendarGridStyle,
   calendarHeaderButtonStyle,
-  calendarHeaderTitleStyle,
   calendarHeaderSelectStyle,
+  calendarHeaderStyle,
+  calendarHeaderTitleStyle,
+  calendarStyle,
   calendarWeekDaysHeaderStyle,
   calendarWeekDayStyle,
   calendarWeekDayTextStyle,
-  calendarBodyStyle,
-  calendarGridStyle,
-  calendarWeekStyle,
-  calendarDayStyle,
-  calendarDayTextStyle,
-  calendarDayIndicatorStyle,
   calendarWeekNumberStyle,
   calendarWeekNumberTextStyle,
-  calendarFooterStyle,
+  calendarWeekStyle,
 } from './styles';
-import { Menu, MenuItem, MenuItemLabel } from '../menu';
-
-// Apply cssInterop for NativeWind support
 
 // Styled Root Component
 const CalendarRoot = React.forwardRef<
@@ -449,11 +444,8 @@ export const CalendarFooter = UICalendar.Footer;
 
 // Re-export types
 export type {
-  ICalendarProps,
-  CalendarMode,
   CalendarMarker,
-  CalendarMarkers,
-  DayState,
+  CalendarMarkers, CalendarMode, DayState, ICalendarProps
 } from '@gluestack-ui/core/calendar/creator';
 
 export type { CalendarProps };
