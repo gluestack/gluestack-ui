@@ -55,7 +55,7 @@ export const GlassContainer = React.forwardRef<
     Platform.OS === 'web' ? <View ref={ref} {...props} className={glassContainerStyle({ className: `overflow-hidden bg-background/0 backdrop-blur-md ${className ?? ""}`, })} /> : <StyledExpoGlassContainer
       ref={ref}
       {...props}
-      // @ts-ignore - className support via cssInterop
+      // @ts-ignore - className support via styled()
       className={glassContainerStyle({ className })}
     />
   );
