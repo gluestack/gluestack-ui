@@ -86,11 +86,9 @@ npx expo install expo-linear-gradient
 import React from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 import { LinearGradient as ExpoLinearGradient } from 'expo-linear-gradient';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 
-cssInterop(ExpoLinearGradient, {
-  className: 'style',
-});
+const StyledExpoLinearGradient = styled(ExpoLinearGradient, { className: 'style' });
 
 const linearGradientStyle = tva({
   base: '',
@@ -99,7 +97,7 @@ const linearGradientStyle = tva({
 export const LinearGradient = React.forwardRef(
   ({ className, ...props }: any, ref?: any) => {
     return (
-      <ExpoLinearGradient
+      <StyledExpoLinearGradient
         {...props}
         className={linearGradientStyle({ class: className })}
         ref={ref}
@@ -131,11 +129,9 @@ import React from 'react';
 import { tva } from '@gluestack-ui/nativewind-utils/tva';
 //@ts-ignore
 import { LinearGradient as RNLinearGradient } from 'react-native-linear-gradient';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 
-cssInterop(RNLinearGradient, {
-  className: 'style',
-});
+const StyledRNLinearGradient = styled(RNLinearGradient, { className: 'style' });
 
 const linearGradientStyle = tva({
   base: '',
@@ -144,7 +140,7 @@ const linearGradientStyle = tva({
 export const LinearGradient = React.forwardRef(
   ({ className, ...props }: any, ref?: any) => {
     return (
-      <RNLinearGradient
+      <StyledRNLinearGradient
         {...props}
         className={linearGradientStyle({ class: className })}
         ref={ref}
