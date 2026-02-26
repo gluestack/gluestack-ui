@@ -38,11 +38,17 @@ export const PrimitiveIcon = React.forwardRef<
     color = color ?? classNameColor;
     const sizeProps = React.useMemo(() => {
       if (size) return { size };
-      if (height && width) return { height, width };
-      if (height) return { height };
-      if (width) return { width };
+      // NativeWind v5 passes className-derived dimensions via the style prop.
+      // Extract height/width from style as fallback for components like Lucide icons
+      // that require explicit size props and don't read from the style object.
+      const styleObj = (Array.isArray(style) ? style[0] : style) as any;
+      const h = height ?? styleObj?.height;
+      const w = width ?? styleObj?.width;
+      if (h && w) return { height: h, width: w };
+      if (h) return { height: h };
+      if (w) return { width: w };
       return {};
-    }, [size, height, width]);
+    }, [size, height, width, style]);
 
     let colorProps = {};
     if (fill) {

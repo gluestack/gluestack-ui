@@ -1,9 +1,16 @@
 import React from 'react';
 import { createIcon } from '../createIcon';
 
-const accessClassName = (style: any) => {
-  const styleObject = Array.isArray(style) ? style[0] : style;
+const accessClassName = (style: any): string | undefined => {
+  if (!style) return undefined;
+  // NativeWind v5 (react-native-css) passes style as an array: [prevStyle, { $$css: true, <propKey>: classString }]
+  // Search for the $$css object regardless of its position in the array.
+  const styleObject = Array.isArray(style)
+    ? style.find((s: any) => s && typeof s === 'object' && '$$css' in s)
+    : style;
+  if (!styleObject) return undefined;
   const keys = Object.keys(styleObject);
+  if (keys.length < 2) return undefined;
   return styleObject[keys[1]];
 };
 
