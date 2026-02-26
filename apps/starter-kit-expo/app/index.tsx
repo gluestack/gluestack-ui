@@ -17,15 +17,6 @@ export default function Home() {
           Get started by editing{' '}
           <Text className="text-primary/70">app/index.tsx</Text>
         </Text>
-        <Button
-          size="default"
-          className="bg-primary px-6 py-2 rounded-full"
-          onPress={() => {
-            router.push('/tabs/tab1');
-          }}
-        >
-          <ButtonText>Explore Tab Navigation</ButtonText>
-        </Button>
       </Center>
     </Box>
   );
