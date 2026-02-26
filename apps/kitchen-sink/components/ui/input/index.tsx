@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { createInput } from '@gluestack-ui/core/input/creator';
-import { View, Pressable, TextInput, Platform } from 'react-native';
+import { View, Pressable, TextInput } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import { styled } from 'nativewind';
@@ -11,11 +11,10 @@ import { UIIcon } from '@gluestack-ui/core/icon/creator';
 const SCOPE = 'INPUT';
 
 const StyledUIIcon = styled(UIIcon, { className: "style" });
-const StyledInputIcon = Platform.OS === 'web' ? UIIcon : StyledUIIcon;
 
 const UIInput = createInput({
   Root: withStyleContext(View, SCOPE),
-  Icon: StyledInputIcon,
+  Icon: StyledUIIcon,
   Slot: Pressable,
   Input: TextInput,
 });
