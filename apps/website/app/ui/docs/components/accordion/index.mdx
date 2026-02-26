@@ -169,14 +169,13 @@ const Header = (
 const StyledUIIcon = styled(UIIcon, {
   className: "style",
 });
-const styledAccordionIcon = Platform.OS === 'web' ? UIIcon : StyledUIIcon;
 /** Creator */
 const UIAccordion = createAccordion({
   Root: View,
   Item: View,
   Header: Header,
   Trigger: Pressable,
-  Icon: styledAccordionIcon,
+  Icon: StyledUIIcon,
   TitleText: Text,
   ContentText: Text,
   Content: View,
