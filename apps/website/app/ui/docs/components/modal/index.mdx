@@ -130,30 +130,25 @@ npm i react-native-reanimated
 
 ```tsx
 'use client';
-import React from 'react';
 import { createModal } from '@gluestack-ui/core/modal/creator';
-import { Pressable, View, ScrollView, Platform } from 'react-native';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import { styled } from 'nativewind';
+import React from 'react';
+import { Pressable, ScrollView, View } from 'react-native';
 import Animated, {
+  Easing,
   FadeIn,
   FadeOut,
-  ZoomIn,
-  ZoomOut,
-  Easing,
+  ZoomIn
 } from 'react-native-reanimated';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  withStyleContext,
-  useStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedView = Animated.createAnimatedComponent(View);
 const SCOPE = 'MODAL';
 
-const StyledAnimatedPressable = Platform.OS === 'web' ? AnimatedPressable : styled(AnimatedPressable, { className: 'style' });
-const StyledAnimatedView = Platform.OS === 'web' ? AnimatedView : styled(AnimatedView, { className: 'style' });
+const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
+const StyledAnimatedView = styled(AnimatedView, { className: 'style' });
 const UIModal = createModal({
   Root: withStyleContext(View as any, SCOPE),
   Backdrop: StyledAnimatedPressable,
@@ -359,12 +354,7 @@ ModalCloseButton.displayName = 'ModalCloseButton';
 
 export {
   Modal,
-  ModalBackdrop,
-  ModalContent,
-  ModalCloseButton,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
+  ModalBackdrop, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader
 };
 
 ```
