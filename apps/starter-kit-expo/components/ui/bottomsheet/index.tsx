@@ -12,7 +12,7 @@ import GorhomBottomSheet, {
   BottomSheetView as GorhomBottomSheetView,
   type BottomSheetBackdropProps,
 } from '@gorhom/bottom-sheet';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import React, {
   createContext,
   forwardRef,
@@ -184,6 +184,12 @@ type IBottomSheetPortalProps = Omit<
   closeOnBackdropPress?: boolean;
 };
 
+const StyledGorhomBottomSheet = styled(GorhomBottomSheet, {
+  className: 'style',
+  backgroundClassName: 'backgroundStyle',
+  handleIndicatorClassName: 'handleIndicatorStyle',
+});
+
 export const BottomSheetPortal = ({
   snapPoints,
   handleComponent,
@@ -213,7 +219,7 @@ export const BottomSheetPortal = ({
   );
 
   return (
-    <GorhomBottomSheet
+    <StyledGorhomBottomSheet
       ref={bottomSheetRef}
       snapPoints={snapPoints}
       index={index}
@@ -223,14 +229,14 @@ export const BottomSheetPortal = ({
       onChange={handleSheetChanges}
       enablePanDownToClose={enablePanDownToClose}
       enableDynamicSizing={enableDynamicSizing}
-      // @ts-ignore - className support via cssInterop
+      // @ts-ignore - className support via styled()
       backgroundClassName={`${backgroundClassName} bg-background border border-border/90 rounded-xl`}
       // @ts-ignore
       handleIndicatorClassName={`${handleIndicatorClassName} bg-primary`}
       {...props}
     >
       {props.children}
-    </GorhomBottomSheet>
+    </StyledGorhomBottomSheet>
   );
 };
 
@@ -425,49 +431,23 @@ export const BottomSheetTextInput = ({
 }: TextInputProps) => {
   return <GorhomBottomSheetInput {...props} className={bottomSheetTextInputStyle({ className })} />;
 };
+
+const StyledGorhomBottomSheetScrollView = styled(GorhomBottomSheetScrollView, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+});
+
+const StyledGorhomBottomSheetFlatList = styled(GorhomBottomSheetFlatList, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+});
+
+const StyledGorhomBottomSheetSectionList = styled(GorhomBottomSheetSectionList, {
+  className: 'style',
+  contentContainerClassName: 'contentContainerStyle',
+});
+
 // Scrollable components with className support
-export const BottomSheetScrollView = GorhomBottomSheetScrollView;
-export const BottomSheetFlatList = GorhomBottomSheetFlatList;
-export const BottomSheetSectionList = GorhomBottomSheetSectionList;
-
-// Configure cssInterop for all Gorhom components to support className
-cssInterop(GorhomBottomSheet, {
-  className: 'style',
-  backgroundClassName: 'backgroundStyle',
-  handleIndicatorClassName: 'handleIndicatorStyle',
-});
-
-cssInterop(GorhomBottomSheetBackdrop, {
-  className: 'style',
-});
-
-cssInterop(GorhomBottomSheetHandle, {
-  className: 'style',
-});
-
-cssInterop(GorhomBottomSheetView, {
-  className: 'style',
-});
-
-cssInterop(GorhomBottomSheetFooter, {
-  className: 'style',
-});
-
-cssInterop(GorhomBottomSheetScrollView, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-});
-
-cssInterop(GorhomBottomSheetFlatList, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-});
-
-cssInterop(GorhomBottomSheetSectionList, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-});
-
-cssInterop(GorhomBottomSheetInput, {
-  className: 'style',
-});
+export const BottomSheetScrollView = StyledGorhomBottomSheetScrollView;
+export const BottomSheetFlatList = StyledGorhomBottomSheetFlatList;
+export const BottomSheetSectionList = StyledGorhomBottomSheetSectionList;
