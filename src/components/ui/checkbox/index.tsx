@@ -23,24 +23,14 @@ const LabelWrapper = React.forwardRef<
 });
 
 const StyledUIIcon = styled(UIIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
+  className: "style",
 });
-const StyledCheckboxIcon = Platform.OS === 'web' ? UIIcon : StyledUIIcon;
 
 const IconWrapper = React.forwardRef<
   React.ComponentRef<typeof UIIcon>,
   React.ComponentPropsWithoutRef<typeof UIIcon>
 >(function IconWrapper({ ...props }, ref) {
-  return <StyledCheckboxIcon {...props} ref={ref} />;
+  return <StyledUIIcon {...props} ref={ref} />;
 });
 
 const SCOPE = 'CHECKBOX';
@@ -178,4 +168,3 @@ export {
   Checkbox, CheckboxGroup, CheckboxIcon, CheckboxIndicator,
   CheckboxLabel
 };
-
