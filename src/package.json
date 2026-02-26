@@ -7,12 +7,13 @@
     "@expo/html-elements": "^0.12.5",
     "@gorhom/bottom-sheet": "^5.1.8",
     "@legendapp/motion": "^2.4.0",
-    "nativewind": "^4.1.23",
-    "react": "^18",
-    "react-native": "^0.79.2",
+    "nativewind": "^5.0.0-preview.2",
+    "react": "19.2.0",
+    "react-native": "0.83.2",
     "react-native-reanimated": "^4.2.1",
     "react-native-safe-area-context": "5.4.0",
-    "tailwind-variants": "^0.2.1"
+    "tailwind-variants": "^0.2.1",
+    "react-native-css": "^3.0.4"
   },
   "scripts": {
     "note": "echo 'This package.json is for development only. Components are copied to apps, not executed from here.'"
