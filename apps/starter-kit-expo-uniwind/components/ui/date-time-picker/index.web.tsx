@@ -2,11 +2,8 @@
 
 import React, { useState, useCallback, useMemo } from 'react';
 import { View, Pressable, TextInput } from 'react-native';
-import { withUniwind } from 'uniwind';
 import { Calendar } from '@/components/ui/calendar';
 import { PrimitiveIcon } from '@gluestack-ui/core/icon/creator';
-
-// Apply cssInterop for Tailwind support
 
 type DateTimePickerMode = 'date' | 'time' | 'datetime';
 
