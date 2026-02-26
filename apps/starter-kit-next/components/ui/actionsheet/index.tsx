@@ -14,7 +14,6 @@ import { styled } from 'nativewind';
 import React from 'react';
 import {
   FlatList,
-  Platform,
   Pressable,
   PressableProps,
   ScrollView,
@@ -45,7 +44,6 @@ const AnimatedPressable = createMotionAnimatedComponent(
 ) as React.ComponentType<IAnimatedPressableProps>;
 
 const StyledUIIcon = styled(UIIcon, { className: "style" });
-const StyledActionsheetIcon = Platform.OS === 'web' ? UIIcon : StyledUIIcon;
 
 export const UIActionsheet = createActionsheet({
   Root: View,
@@ -60,7 +58,7 @@ export const UIActionsheet = createActionsheet({
   FlatList: FlatList,
   SectionList: SectionList,
   SectionHeaderText: H4,
-  Icon: StyledActionsheetIcon,
+  Icon: StyledUIIcon,
   AnimatePresence: AnimatePresence,
 });
 
@@ -460,4 +458,3 @@ export {
   ActionsheetDragIndicatorWrapper, ActionsheetFlatList, ActionsheetIcon, ActionsheetItem,
   ActionsheetItemText, ActionsheetScrollView, ActionsheetSectionHeaderText, ActionsheetSectionList, ActionsheetVirtualizedList
 };
-
