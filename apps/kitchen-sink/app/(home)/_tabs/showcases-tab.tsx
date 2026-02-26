@@ -17,7 +17,7 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import { cssInterop } from 'react-native-css-interop';
+import { styled } from 'nativewind';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -32,7 +32,7 @@ import Showcase2 from '../showcases/showcase-2';
 import Showcase3 from '../showcases/showcase-3';
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
-cssInterop(Animated.FlatList, { className: 'style' });
+const StyledAnimatedFlatList = styled(Animated.FlatList, { className: 'style' });
 
 // Define showcases with their components in one place
 type ShowcaseItem = ComponentItem & {
@@ -261,7 +261,7 @@ export default function ShowcasesTab() {
 
   return (
     <View className="flex-1 bg-background">
-      <Animated.FlatList
+      <StyledAnimatedFlatList
         ref={listRef}
         data={showcases}
         renderItem={({ item, index }) => (

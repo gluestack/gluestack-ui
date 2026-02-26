@@ -1,10 +1,10 @@
 import { type FC, type PropsWithChildren } from 'react';
 import { Platform, ScrollView, type ScrollViewProps } from 'react-native';
-import { cssInterop } from 'react-native-css-interop';
+import { styled } from 'nativewind';
 import Animated, { type AnimatedProps } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
-cssInterop(AnimatedScrollView, { className: 'style' });
+const StyledAnimatedScrollView = styled(AnimatedScrollView, { className: 'style' });
 interface Props extends AnimatedProps<ScrollViewProps> {
   className?: string;
   contentContainerClassName?: string;
@@ -28,7 +28,7 @@ export const ScreenScrollView: FC<PropsWithChildren<Props>> = ({
   });
 
   return (
-    <AnimatedScrollView
+    <StyledAnimatedScrollView
       className={className}
       contentContainerClassName={contentContainerClassName}
       contentContainerStyle={{
@@ -39,6 +39,6 @@ export const ScreenScrollView: FC<PropsWithChildren<Props>> = ({
       {...props}
     >
       {children}
-    </AnimatedScrollView>
+    </StyledAnimatedScrollView>
   );
 };

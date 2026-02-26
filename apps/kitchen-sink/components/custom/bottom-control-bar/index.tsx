@@ -10,7 +10,7 @@ import { GlassView } from '@/components/ui/liquid-glass';
 import * as Haptics from 'expo-haptics';
 import { usePathname, useRouter } from 'expo-router';
 import { PaletteIcon, Search } from 'lucide-react-native';
-import { cssInterop } from 'nativewind';
+import { styled } from 'nativewind';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   Modal,
@@ -32,7 +32,7 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedGlassView = Animated.createAnimatedComponent(GlassView);
-Platform.OS === 'web' ? cssInterop(AnimatedView, { className: 'style' }) : null;
+const StyledAnimatedView = styled(AnimatedView, { className: 'style' });
 // Theme color mapping for the theme button indicator
 const THEME_COLORS: Record<ThemeName, string[]> = {
   default: ['#3b82f6', '#8b5cf6'], // Blue to purple gradient
@@ -301,7 +301,7 @@ const BottomControlBar = memo(
               </Pressable>
 
               {/* Menu Content - Positioned above the button */}
-              <AnimatedView
+              <StyledAnimatedView
                 className={`${supportsLiquidGlass ? 'bg-tranparent' : 'bg-background border border-input'} absolute rounded-2xl`}
                 entering={ZoomIn.duration(200).withInitialValues({
                   transform: [{ scale: 0.9 }],
@@ -382,7 +382,7 @@ const BottomControlBar = memo(
                     {/* </ScrollView> */}
                   </KeyboardAwareScrollView>
                 </GlassView>
-              </AnimatedView>
+              </StyledAnimatedView>
             </View>
           </Modal>
         )}
@@ -422,7 +422,7 @@ const BottomControlBar = memo(
             </Pressable>
 
             {/* Menu Content - Positioned above the button */}
-            <AnimatedView
+            <StyledAnimatedView
               entering={ZoomIn.duration(200).withInitialValues({
                 transform: [{ scale: 0.9 }],
               })}
@@ -524,7 +524,7 @@ const BottomControlBar = memo(
                   </Text>
                 </Pressable>
               </GlassView>
-            </AnimatedView>
+            </StyledAnimatedView>
           </View>
         </Modal>
       </>
