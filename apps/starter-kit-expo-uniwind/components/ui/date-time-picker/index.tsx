@@ -1,37 +1,33 @@
 'use client';
 
-import React, { useCallback, useMemo } from 'react';
-import {
-  View,
-  Pressable,
-  TextInput,
-  Text,
-  Platform,
-  Modal,
-} from 'react-native';
-import DateTimePickerNative from '@react-native-community/datetimepicker';
-import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  withStyleContext,
-  useStyleContext,
-} from '@gluestack-ui/utils/nativewind-utils';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
   createDateTimePicker,
   DateTimePickerProvider,
   useDateTimePicker,
 } from '@gluestack-ui/core/date-time-picker/creator';
-import { withUniwind } from 'uniwind';
-import { PrimitiveIcon as _PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
+  useStyleContext,
+  withStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import DateTimePickerNative from '@react-native-community/datetimepicker';
+import { styled } from 'nativewind';
+import React, { useCallback, useMemo } from 'react';
+import {
+  Modal,
+  Platform,
+  Pressable,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
+import {
+  dateTimePickerIconStyle,
+  dateTimePickerInputStyle,
   dateTimePickerStyle,
   dateTimePickerTriggerStyle,
-  dateTimePickerInputStyle,
-  dateTimePickerIconStyle,
 } from './styles';
-
-const PrimitiveIcon = withUniwind(_PrimitiveIcon);
-const WrappedTextInput = withUniwind(TextInput);
 
 const SCOPE = 'DATE_TIME_PICKER';
 
@@ -60,11 +56,19 @@ const DateTimePickerTriggerWrapper = React.forwardRef<
   return <Pressable {...props} ref={ref} />;
 });
 
+const StyledTextInput = styled(TextInput, {
+  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
+});
+
+const StyledUIIcon = styled(UIIcon, {
+  className: 'style',
+});
+
 const UIDateTimePicker = createDateTimePicker({
   Root: withStyleContext(View, SCOPE),
   Trigger: withStyleContext(DateTimePickerTriggerWrapper, SCOPE),
-  Input: WrappedTextInput,
-  Icon: UIIcon,
+  Input: StyledTextInput,
+  Icon: StyledUIIcon,
 });
 
 
@@ -564,8 +568,5 @@ function formatDate(date: Date, format: string): string {
 }
 
 export {
-  DateTimePicker,
-  DateTimePickerTrigger,
-  DateTimePickerInput,
-  DateTimePickerIcon,
+  DateTimePicker, DateTimePickerIcon, DateTimePickerInput, DateTimePickerTrigger
 };
