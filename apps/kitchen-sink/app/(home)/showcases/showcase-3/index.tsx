@@ -362,7 +362,6 @@ function Showcase3() {
                     </Box>
                     <Text
                       className="text-white text-xs font-medium text-center"
-                      numberOfLines={1}
                     >
                       {item.name}
                     </Text>
