@@ -23,16 +23,7 @@ const LabelWrapper = React.forwardRef<
 });
 
 const StyledUIIcon = styled(UIIcon, {
-  className: {
-    target: 'style',
-    nativeStyleToProp: {
-      height: true,
-      width: true,
-      fill: true,
-      color: 'classNameColor',
-      stroke: true,
-    },
-  },
+  className: "style",
 });
 
 const IconWrapper = React.forwardRef<
@@ -177,4 +168,3 @@ export {
   Checkbox, CheckboxGroup, CheckboxIcon, CheckboxIndicator,
   CheckboxLabel
 };
-
