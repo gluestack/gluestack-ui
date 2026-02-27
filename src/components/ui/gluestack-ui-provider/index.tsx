@@ -3,7 +3,7 @@ import { config } from './config';
 import { View, ViewProps } from 'react-native';
 import { OverlayProvider } from '@gluestack-ui/core/overlay/creator';
 import { ToastProvider } from '@gluestack-ui/core/toast/creator';
-import { useColorScheme } from 'nativewind';
+import { useColorScheme, Appearance, ColorSchemeName } from "react-native";
 import {
   useGluestackColors as useGluestackColorsHook,
   useCalendarTheme as useCalendarThemeHook,
@@ -24,11 +24,10 @@ export function GluestackUIProvider({
   children?: React.ReactNode;
   style?: ViewProps['style'];
 }) {
-  const { colorScheme, setColorScheme } = useColorScheme();
+  const colorScheme = useColorScheme();
 
   useEffect(() => {
-    setColorScheme(mode);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    Appearance.setColorScheme(mode as ColorSchemeName);
   }, [mode]);
 
   return (
