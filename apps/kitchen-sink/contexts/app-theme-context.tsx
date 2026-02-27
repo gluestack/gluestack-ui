@@ -15,7 +15,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 
 interface AppThemeContextType {
   currentTheme: ThemeName;
@@ -35,6 +35,15 @@ const AppThemeContext = createContext<AppThemeContextType | undefined>(
 
 const THEME_STORAGE_KEY = '@app_theme';
 const COLOR_MODE_STORAGE_KEY = '@app_color_mode';
+
+/** On web, dark mode is controlled by the `dark` class on <html>.
+ *  Calling nativewind's setColorScheme on web fails because
+ *  react-native-web's Appearance doesn't implement setColorScheme. */
+function applyColorModeToWeb(mode: ColorMode) {
+  if (Platform.OS === 'web' && typeof document !== 'undefined') {
+    document.documentElement.classList.toggle('dark', mode === 'dark');
+  }
+}
 
 export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -60,7 +69,11 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
         }
         if (savedMode) {
           setColorMode(savedMode as ColorMode);
-          setColorScheme(savedMode as ColorMode);
+          if (Platform.OS === 'web') {
+            applyColorModeToWeb(savedMode as ColorMode);
+          } else {
+            setColorScheme(savedMode as ColorMode);
+          }
         } else if (colorScheme) {
           setColorMode(colorScheme as ColorMode);
         }
@@ -90,7 +103,11 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   const handleSetColorMode = useCallback(
     async (newMode: ColorMode) => {
       setColorMode(newMode);
-      setColorScheme(newMode);
+      if (Platform.OS === 'web') {
+        applyColorModeToWeb(newMode);
+      } else {
+        setColorScheme(newMode);
+      }
       try {
         await AsyncStorage.setItem(COLOR_MODE_STORAGE_KEY, newMode);
       } catch (error) {
