@@ -229,7 +229,7 @@ const [showDrawer, setShowDrawer] = React.useState(false);
         }}
       >
         <DrawerBackdrop />
-        <DrawerContent className="px-4 py-3 w-[270px] md:w-[300px]">
+        <DrawerContent className="px-4 py-3 w-[270px] md:w-[300px] pt-safe">
           <DrawerHeader>
             <Heading size="md">FILTERS</Heading>
             <Button
