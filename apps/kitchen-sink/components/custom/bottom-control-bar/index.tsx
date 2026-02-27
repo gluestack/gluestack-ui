@@ -31,7 +31,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const AnimatedView = Animated.createAnimatedComponent(View);
-const AnimatedGlassView = Animated.createAnimatedComponent(GlassView);
 const StyledAnimatedView = styled(AnimatedView, { className: 'style' });
 // Theme color mapping for the theme button indicator
 const THEME_COLORS: Record<ThemeName, string[]> = {
@@ -126,12 +125,6 @@ const BottomControlBar = memo(
     // Rotation animation for color mode toggle
     const colorModeRotation = useSharedValue(0);
 
-    const colorModeAnimatedStyle = useAnimatedStyle(() => {
-      return {
-        transform: [{ rotate: `${colorModeRotation.value}deg` }],
-      };
-    });
-
     const handleToggleColorMode = useCallback(() => {
       if (Platform.OS === 'ios') {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -198,7 +191,6 @@ const BottomControlBar = memo(
         <View
           className="absolute z-[20] justify-between flex-row px-4 left-0 right-0 items-center"
           style={{ bottom: bottom }}
-          pointerEvents="box-none"
         >
           <View className="flex-row items-center w-full justify-between gap-3">
             {/* Theme Selector Button */}
@@ -212,7 +204,7 @@ const BottomControlBar = memo(
             >
               <Pressable
                 onPress={() => setShowThemeMenu(true)}
-                className={`${supportsLiquidGlass ? '' : 'border border-input dark:bg-muted/5 bg-background'} shadow-hard-5 rounded-full`}
+                className='border border-input dark:bg-muted/5 bg-background shadow-hard-5 rounded-full'
               >
                 <GlassView
                   glassEffectStyle="clear"
@@ -240,7 +232,7 @@ const BottomControlBar = memo(
                   });
                 }}
               
-                className={`${supportsLiquidGlass ? '' : 'border border-input dark:bg-muted/5 bg-background'}  shadow-hard-5 rounded-full`}
+                className='border border-input dark:bg-muted/5 bg-background shadow-hard-5 rounded-full'
               >
                 <GlassView
                   glassEffectStyle="clear"
@@ -251,7 +243,7 @@ const BottomControlBar = memo(
                     onPress={handlePillPress}
                     className="px-6 py-5 rounded-full"
                   >
-                    <Icon as={Search} size="md" />
+                    <Icon as={Search} size="md" className='text-foreground'/>
                   </Pressable>
                 </GlassView>
               </View>
@@ -434,6 +426,7 @@ const BottomControlBar = memo(
             >
               <GlassView
                 glassEffectStyle="regular"
+                colorScheme={isDark ? 'dark' : 'light'}
                 style={{
                   width: '100%',
                   height: '100%',

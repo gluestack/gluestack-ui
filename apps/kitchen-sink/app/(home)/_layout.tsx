@@ -125,7 +125,7 @@ function CustomTabs() {
   }
 
   return (
-    <View className="absolute web:bottom-4 bottom-safe left-0 right-0 items-center">
+    <View className="absolute web:bottom-4 bottom-safe left-0 right-0 items-center w-fit mx-auto">
       <View
         style={{
           shadowColor: 'rgba(0, 0, 0, 0.4)',
