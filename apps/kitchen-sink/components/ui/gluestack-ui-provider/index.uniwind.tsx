@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { View, ViewProps } from 'react-native';
 import { OverlayProvider } from '@gluestack-ui/core/overlay/creator';
 import { ToastProvider } from '@gluestack-ui/core/toast/creator';
-import { Appearance, ColorSchemeName } from "react-native";
+import { Uniwind } from 'uniwind';
 
 export type ModeType = 'light' | 'dark' | 'system';
 
 export function GluestackUIProvider({
-  mode = 'system',
+  mode = 'dark',
   ...props
 }: {
   mode?: ModeType;
@@ -15,16 +15,15 @@ export function GluestackUIProvider({
   style?: ViewProps['style'];
 }) {
   useEffect(() => {
-    Appearance.setColorScheme(mode as ColorSchemeName);
+    if (mode === 'system') {
+      Uniwind.setTheme('system');
+    } else {
+      Uniwind.setTheme(mode);
+    }
   }, [mode]);
 
   return (
-    <View
-      style={[
-        { flex: 1, height: '100%', width: '100%' },
-        props.style,
-      ]}
-    >
+    <View style={[{ flex: 1, height: '100%', width: '100%' }, props.style]}>
       <OverlayProvider>
         <ToastProvider>{props.children}</ToastProvider>
       </OverlayProvider>

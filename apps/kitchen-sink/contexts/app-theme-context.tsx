@@ -20,6 +20,7 @@ import { Platform, View } from 'react-native';
 interface AppThemeContextType {
   currentTheme: ThemeName;
   colorMode: ColorMode;
+  resolvedColorMode: 'light' | 'dark';
   isLight: boolean;
   isDark: boolean;
   setTheme: (theme: ThemeName) => void;
@@ -50,11 +51,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const { colorScheme, setColorScheme } = useColorScheme();
   const [currentTheme, setCurrentTheme] = useState<ThemeName>('default');
-  // Ensure colorMode is always a valid ColorMode, defaulting to colorScheme or 'light'
-  const [colorMode, setColorMode] = useState<ColorMode>(() => {
-    const scheme = colorScheme as ColorMode;
-    return scheme === 'light' || scheme === 'dark' ? scheme : 'light';
-  });
+  const [colorMode, setColorMode] = useState<ColorMode>('system');
   const [isThemeLoaded, setIsThemeLoaded] = useState(false);
 
   // Initialize theme from storage
@@ -67,15 +64,26 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
         if (savedTheme) {
           setCurrentTheme(savedTheme as ThemeName);
         }
-        if (savedMode) {
+        if (
+          savedMode &&
+          (savedMode === 'light' ||
+            savedMode === 'dark' ||
+            savedMode === 'system')
+        ) {
           setColorMode(savedMode as ColorMode);
-          if (Platform.OS === 'web') {
-            applyColorModeToWeb(savedMode as ColorMode);
+          if (savedMode !== 'system') {
+            const mode = savedMode as 'light' | 'dark';
+            if (Platform.OS === 'web') {
+              applyColorModeToWeb(mode);
+            } else {
+              setColorScheme(mode);
+            }
           } else {
-            setColorScheme(savedMode as ColorMode);
+            // For system mode, let the device decide
+            if (Platform.OS === 'web') {
+              applyColorModeToWeb(colorScheme === 'dark' ? 'dark' : 'light');
+            }
           }
-        } else if (colorScheme) {
-          setColorMode(colorScheme as ColorMode);
         }
       } catch (error) {
         console.error('Error loading theme:', error);
@@ -85,11 +93,23 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     };
 
     loadTheme();
-  }, []);
- 
+  }, [colorScheme]);
 
-  const isLight = useMemo(() => colorMode === 'light', [colorMode]);
-  const isDark = useMemo(() => colorMode === 'dark', [colorMode]);
+  const resolvedColorMode = useMemo<'light' | 'dark'>(() => {
+    if (colorMode === 'system') {
+      return colorScheme === 'dark' ? 'dark' : 'light';
+    }
+    return colorMode;
+  }, [colorMode, colorScheme]);
+
+  const isLight = useMemo(
+    () => resolvedColorMode === 'light',
+    [resolvedColorMode]
+  );
+  const isDark = useMemo(
+    () => resolvedColorMode === 'dark',
+    [resolvedColorMode]
+  );
 
   const setTheme = useCallback(async (newTheme: ThemeName) => {
     setCurrentTheme(newTheme);
@@ -103,10 +123,19 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   const handleSetColorMode = useCallback(
     async (newMode: ColorMode) => {
       setColorMode(newMode);
-      if (Platform.OS === 'web') {
-        applyColorModeToWeb(newMode);
+      if (newMode !== 'system') {
+        if (Platform.OS === 'web') {
+          applyColorModeToWeb(newMode);
+        } else {
+          setColorScheme(newMode);
+        }
       } else {
-        setColorScheme(newMode);
+        // For system mode, let the device decide
+        if (Platform.OS === 'web') {
+          applyColorModeToWeb(colorScheme === 'dark' ? 'dark' : 'light');
+        } else {
+          setColorScheme('light'); // Reset to light, nativewind will follow system
+        }
       }
       try {
         await AsyncStorage.setItem(COLOR_MODE_STORAGE_KEY, newMode);
@@ -114,13 +143,18 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
         console.error('Error saving color mode:', error);
       }
     },
-    [setColorScheme]
+    [setColorScheme, colorScheme]
   );
 
   const toggleColorMode = useCallback(async () => {
-    const newMode: ColorMode = colorMode === 'light' ? 'dark' : 'light';
+    let newMode: ColorMode;
+    if (colorMode === 'system') {
+      newMode = resolvedColorMode === 'light' ? 'dark' : 'light';
+    } else {
+      newMode = colorMode === 'light' ? 'dark' : 'light';
+    }
     handleSetColorMode(newMode);
-  }, [colorMode, handleSetColorMode]);
+  }, [colorMode, resolvedColorMode, handleSetColorMode]);
 
   const availableThemes = useMemo(() => {
     return Object.entries(themeConfigs).map(([key, config]) => ({
@@ -131,17 +165,18 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const themeVars = useMemo(() => {
-    return getThemeVars(currentTheme, colorMode);
-  }, [currentTheme, colorMode]);
+    return getThemeVars(currentTheme, colorMode, colorScheme);
+  }, [currentTheme, colorMode, colorScheme]);
 
   const fontSans = useMemo(() => {
-    return getThemeFontSans(currentTheme, colorMode);
-  }, [currentTheme, colorMode]);
+    return getThemeFontSans(currentTheme, colorMode, colorScheme);
+  }, [currentTheme, colorMode, colorScheme]);
 
   const value = useMemo(
     () => ({
       currentTheme,
       colorMode,
+      resolvedColorMode,
       isLight,
       isDark,
       setTheme,
@@ -153,6 +188,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     [
       currentTheme,
       colorMode,
+      resolvedColorMode,
       isLight,
       isDark,
       setTheme,
@@ -169,9 +205,7 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   return (
     <AppThemeContext.Provider value={value}>
       <VariableContextProvider value={themeVars}>
-        <View className="flex-1">
-          {children}
-        </View>
+        <View className="flex-1">{children}</View>
       </VariableContextProvider>
     </AppThemeContext.Provider>
   );

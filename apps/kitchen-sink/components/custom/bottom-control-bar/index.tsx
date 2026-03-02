@@ -9,7 +9,7 @@ import { isLiquidGlassAvailable } from 'expo-glass-effect';
 import { GlassView } from '@/components/ui/liquid-glass';
 import * as Haptics from 'expo-haptics';
 import { usePathname, useRouter } from 'expo-router';
-import { PaletteIcon, Search } from 'lucide-react-native';
+import { PaletteIcon, Search, Smartphone } from 'lucide-react-native';
 import { styled } from 'nativewind';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
@@ -18,7 +18,7 @@ import {
   Pressable,
   StyleSheet,
   useWindowDimensions,
-  View
+  View,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import Animated, {
@@ -27,7 +27,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-  ZoomIn
+  ZoomIn,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -104,13 +104,20 @@ const BottomControlBar = memo(
       height: 0,
     });
 
-    const { isDark, toggleColorMode, currentTheme, setTheme, availableThemes } =
-      useAppTheme();
+    const {
+      isDark,
+      toggleColorMode,
+      currentTheme,
+      setTheme,
+      availableThemes,
+      colorMode,
+      setColorMode,
+    } = useAppTheme();
     const { width, height } = useWindowDimensions();
     const insets = useSafeAreaInsets();
     const { reduceTransparencyEnabled } = useAccessibilityInfo();
     const applyBlur = !reduceTransparencyEnabled && Platform.OS !== 'web';
- const supportsLiquidGlass = isLiquidGlassAvailable();
+    const supportsLiquidGlass = isLiquidGlassAvailable();
     // Autofocus search input when component menu opens
     useEffect(() => {
       if (showComponentMenu) {
@@ -165,7 +172,7 @@ const BottomControlBar = memo(
         setSearchQuery('');
 
         // Navigate directly to the component page
-        if(component.path.includes('showcase')) {
+        if (component.path.includes('showcase')) {
           router.push(`/(home)/showcases/${component.path}` as any);
         } else {
           router.push(`/(home)/components/${component.path}` as any);
@@ -182,8 +189,10 @@ const BottomControlBar = memo(
       }
     }, [onPillPress, components]);
 
-    const bottom = supportsLiquidGlass || Platform.OS === "web"
-  ? bottomOffset : insets.bottom;
+    const bottom =
+      supportsLiquidGlass || Platform.OS === 'web'
+        ? bottomOffset
+        : insets.bottom;
 
     return (
       <>
@@ -204,11 +213,11 @@ const BottomControlBar = memo(
             >
               <Pressable
                 onPress={() => setShowThemeMenu(true)}
-                className='border border-input dark:bg-muted/5 bg-background shadow-hard-5 rounded-full'
+                className="border border-input dark:bg-muted/5 bg-background shadow-hard-5 rounded-full"
               >
                 <GlassView
                   glassEffectStyle="clear"
-                  className='w-14 h-14 rounded-full justify-center items-center'
+                  className="w-14 h-14 rounded-full justify-center items-center"
                   isInteractive
                 >
                   <Icon
@@ -231,19 +240,18 @@ const BottomControlBar = memo(
                     setComponentButtonLayout({ x, y, width: w, height: h });
                   });
                 }}
-              
-                className='border border-input dark:bg-muted/5 bg-background shadow-hard-5 rounded-full'
+                className="border border-input dark:bg-muted/5 bg-background shadow-hard-5 rounded-full"
               >
                 <GlassView
                   glassEffectStyle="clear"
-                  className='w-14 h-14 rounded-full justify-center items-center'
+                  className="w-14 h-14 rounded-full justify-center items-center"
                   isInteractive
                 >
                   <Pressable
                     onPress={handlePillPress}
                     className="px-6 py-5 rounded-full"
                   >
-                    <Icon as={Search} size="md" className='text-foreground'/>
+                    <Icon as={Search} size="md" className="text-foreground" />
                   </Pressable>
                 </GlassView>
               </View>
@@ -437,25 +445,91 @@ const BottomControlBar = memo(
               >
                 {/* Theme Content */}
 
-                {/* Dark/Light Mode Toggle */}
-                <View className="items-center">
-                  <Pressable
-                    onPress={() => {
-                      setShowThemeMenu(false);
-                      handleToggleColorMode();
-                    }}
-                  >
-                    <View className="border border-foreground/10 rounded-full p-4">
-                      <Icon
-                        as={isDark ? SunIcon : MoonIcon}
-                        className="text-foreground"
-                        size="md"
-                      />
-                    </View>
-                  </Pressable>
-                  <Text className="text-foreground/60 font-outfit text-sm mt-2">
-                    {isDark ? 'Dark Mode' : 'Light Mode'}
-                  </Text>
+                {/* Dark/Light/System Mode Toggle */}
+                <View className="flex-row justify-center gap-4">
+                  <View className="items-center">
+                    <Pressable
+                      onPress={() => {
+                        setShowThemeMenu(false);
+                        setColorMode('system');
+                      }}
+                    >
+                      <View
+                        className={`border rounded-full p-3 ${
+                          colorMode === 'system'
+                            ? 'border-primary bg-primary/10'
+                            : 'border-foreground/10'
+                        }`}
+                      >
+                        <Icon
+                          as={Smartphone}
+                          className={`text-foreground ${
+                            colorMode === 'system' ? 'text-primary' : ''
+                          }`}
+                          size="md"
+                        />
+                      </View>
+                    </Pressable>
+                    <Text className="text-foreground/60 font-outfit text-xs mt-1">
+                      System
+                    </Text>
+                  </View>
+
+                  <View className="items-center">
+                    <Pressable
+                      onPress={() => {
+                        setShowThemeMenu(false);
+                        setColorMode('light');
+                      }}
+                    >
+                      <View
+                        className={`border rounded-full p-3 ${
+                          colorMode === 'light'
+                            ? 'border-primary bg-primary/10'
+                            : 'border-foreground/10'
+                        }`}
+                      >
+                        <Icon
+                          as={SunIcon}
+                          className={`text-foreground ${
+                            colorMode === 'light' ? 'text-primary' : ''
+                          }`}
+                          size="md"
+                        />
+                      </View>
+                    </Pressable>
+                    <Text className="text-foreground/60 font-outfit text-xs mt-1">
+                      Light
+                    </Text>
+                  </View>
+
+                  <View className="items-center">
+                    <Pressable
+                      onPress={() => {
+                        setShowThemeMenu(false);
+                        setColorMode('dark');
+                      }}
+                    >
+                      <View
+                        className={`border rounded-full p-3 ${
+                          colorMode === 'dark'
+                            ? 'border-primary bg-primary/10'
+                            : 'border-foreground/10'
+                        }`}
+                      >
+                        <Icon
+                          as={MoonIcon}
+                          className={`text-foreground ${
+                            colorMode === 'dark' ? 'text-primary' : ''
+                          }`}
+                          size="md"
+                        />
+                      </View>
+                    </Pressable>
+                    <Text className="text-foreground/60 font-outfit text-xs mt-1">
+                      Dark
+                    </Text>
+                  </View>
                 </View>
 
                 {/* Divider */}

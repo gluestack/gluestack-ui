@@ -6,7 +6,7 @@ export type ThemeName =
   | 'claude'
   | 'twitter';
 
-export type ColorMode = 'light' | 'dark';
+export type ColorMode = 'light' | 'dark' | 'system';
 
 // Helper function to calculate radius values from a base radius
 function calculateRadius(baseRadius: string) {
@@ -107,7 +107,8 @@ export const themeConfigs: Record<
       '--ring': '0 0 0',
       '--font-sans': 'Geist',
       '--font-serif': 'Georgia',
-      '--font-mono': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      '--font-mono':
+        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
       ...calculateRadius('0.5rem'),
     },
     dark: {
@@ -131,7 +132,8 @@ export const themeConfigs: Record<
       '--ring': '164 164 164',
       '--font-sans': 'Geist',
       '--font-serif': 'Georgia',
-      '--font-mono': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      '--font-mono':
+        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
       ...calculateRadius('0.5rem'),
     },
   },
@@ -159,7 +161,8 @@ export const themeConfigs: Record<
       '--ring': '0 0 0',
       '--font-sans': 'Jakarta',
       '--font-serif': 'Lora_400Regular',
-      '--font-mono': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      '--font-mono':
+        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
       ...calculateRadius('1.4rem'),
     },
     dark: {
@@ -183,7 +186,8 @@ export const themeConfigs: Record<
       '--ring': '140 92 255',
       '--font-sans': 'Jakarta',
       '--font-serif': 'Lora_400Regular',
-      '--font-mono': 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+      '--font-mono':
+        'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
       ...calculateRadius('1.4rem'),
     },
   },
@@ -369,21 +373,44 @@ const themeFonts: Record<ThemeName, { light: string; dark: string }> = {
   },
 };
 
-export function getThemeVars(theme: ThemeName, mode: ColorMode): ThemeVars {
-  if (!theme || !mode || !themeConfigs[theme] || !themeConfigs[theme][mode]) {
-    console.warn(`Invalid theme config: theme=${theme}, mode=${mode}, falling back to default`);
+export function getThemeVars(
+  theme: ThemeName,
+  mode: ColorMode,
+  colorScheme: string | null | undefined = null
+): ThemeVars {
+  const resolvedMode =
+    mode === 'system' ? (colorScheme === 'dark' ? 'dark' : 'light') : mode;
+  if (
+    !theme ||
+    !resolvedMode ||
+    !themeConfigs[theme] ||
+    !themeConfigs[theme][resolvedMode as 'light' | 'dark']
+  ) {
+    console.warn(
+      `Invalid theme config: theme=${theme}, mode=${resolvedMode}, falling back to default`
+    );
     return themeConfigs['default']['light'];
   }
-  return themeConfigs[theme][mode];
+  return themeConfigs[theme][resolvedMode as 'light' | 'dark'];
 }
 
-export function getThemeFontSans(theme: ThemeName, mode: ColorMode): string {
-  if (!theme || !mode) {
-    console.warn(`Invalid theme font config: theme=${theme}, mode=${mode}, falling back to default`);
+export function getThemeFontSans(
+  theme: ThemeName,
+  mode: ColorMode,
+  colorScheme: string | null | undefined = null
+): string {
+  const resolvedMode =
+    mode === 'system' ? (colorScheme === 'dark' ? 'dark' : 'light') : mode;
+  if (!theme || !resolvedMode) {
+    console.warn(
+      `Invalid theme font config: theme=${theme}, mode=${resolvedMode}, falling back to default`
+    );
     return 'Outfit_400Regular';
   }
   if (theme === 'claude') {
     return 'system';
   }
-  return themeFonts[theme]?.[mode] || 'Outfit_400Regular';
+  return (
+    themeFonts[theme]?.[resolvedMode as 'light' | 'dark'] || 'Outfit_400Regular'
+  );
 }
