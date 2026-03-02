@@ -66,7 +66,8 @@ export const copySpecialFile = (sourcePath: string, destPath: string) => {
 export const processComponentChange = (
   component: string,
   event: string,
-  config: MapperConfig
+  config: MapperConfig,
+  filePath?: string
 ) => {
   if (!isValidComponent(component)) {
     return; // Skip silently for non-component files
@@ -75,11 +76,29 @@ export const processComponentChange = (
   console.log(`📝 Processing ${event} event for component: ${component}`);
 
   if (event === 'removed') {
-    // Handle component deletion
-    const destComponentPath = path.join(config.destPath, component);
-    if (fs.existsSync(destComponentPath)) {
-      fileOps.deletePath(destComponentPath);
-      console.log(`🗑️ Removed component: ${component}`);
+    if (filePath) {
+      // A specific file or subdirectory was removed — delete only that path in dest
+      const componentSourcePath = path.join(config.sourcePath, component);
+      const relPath = path.relative(componentSourcePath, filePath);
+      const destFilePath = path.join(config.destPath, component, relPath);
+
+      if (fs.existsSync(destFilePath)) {
+        const stats = fs.statSync(destFilePath);
+        if (stats.isDirectory()) {
+          fileOps.deletePath(destFilePath);
+          console.log(`🗑️ Removed subdirectory: ${relPath} from ${component}`);
+        } else {
+          fs.unlinkSync(destFilePath);
+          console.log(`🗑️ Removed file: ${relPath} from ${component}`);
+        }
+      }
+    } else {
+      // No specific file path — delete the entire component directory
+      const destComponentPath = path.join(config.destPath, component);
+      if (fs.existsSync(destComponentPath)) {
+        fileOps.deletePath(destComponentPath);
+        console.log(`🗑️ Removed component: ${component}`);
+      }
     }
   } else {
     // Handle component addition or change

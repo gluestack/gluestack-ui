@@ -86,13 +86,31 @@ const deleteComponent = (component: string) => {
   }
 };
 
-export const copyComponent = (component: string, event: string = 'added') => {
+export const copyComponent = (component: string, event: string = 'added', filePath?: string) => {
   if (!isValidComponent(component)) return;
 
   console.log(`📝 [${MAPPER_NAME}] ${event}: ${component}`);
 
   if (event === 'removed') {
-    deleteComponent(component);
+    if (filePath) {
+      // A specific file was removed — delete only that file in dest
+      const componentSourcePath = path.join(sourcePath, component);
+      const relPath = path.relative(componentSourcePath, filePath);
+      const destFilePath = path.join(destPath, component, relPath);
+
+      if (fs.existsSync(destFilePath)) {
+        const stats = fs.statSync(destFilePath);
+        if (stats.isDirectory()) {
+          fs.rmSync(destFilePath, { recursive: true, force: true });
+          console.log(`🗑️ Removed subdirectory: ${relPath} from ${component} in ${MAPPER_NAME}`);
+        } else {
+          fs.unlinkSync(destFilePath);
+          console.log(`🗑️ Removed file: ${relPath} from ${component} in ${MAPPER_NAME}`);
+        }
+      }
+    } else {
+      deleteComponent(component);
+    }
   } else {
     syncComponent(component);
   }

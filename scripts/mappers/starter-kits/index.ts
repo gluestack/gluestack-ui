@@ -1,8 +1,8 @@
 import * as componentOperations from './componentOperations';
 
 export default {
-  component: function (component: string, event = 'added') {
-    componentOperations.copyComponent(component, event);
+  component: function (component: string, event = 'added', filePath?: string) {
+    componentOperations.copyComponent(component, event, filePath);
   },
   nonComponent: function (path: string) {
     // Currently no special handling for non-component files

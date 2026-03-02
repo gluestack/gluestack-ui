@@ -12,19 +12,18 @@ const mapperConfig: MapperConfig = {
   ignoreFiles: ['docs', 'examples', 'dependencies.json'],
 };
 
-export const copyComponent = (component: string, event: string = 'added') => {
+export const copyComponent = (component: string, event: string = 'added', filePath?: string) => {
   // Skip excluded components
   if (EXCLUDED_DIRS.includes(component)) {
     console.log(`Skipping excluded component: ${component}`);
     return;
   }
-  processComponentChange(component, event, mapperConfig);
+  processComponentChange(component, event, mapperConfig, filePath);
 };
 
 // Directories to exclude (not actual components)
 const EXCLUDED_DIRS = [
   'all-components',
-  'gluestack-ui-provider',
   'utils',
   'my-component',
 ];

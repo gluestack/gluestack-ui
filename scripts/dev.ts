@@ -6,7 +6,7 @@ import mappers from './mappers';
 
 // Define mapper interface
 interface Mapper {
-  component?: (component: string, event?: string) => Promise<void> | void;
+  component?: (component: string, event?: string, filePath?: string) => Promise<void> | void;
   nonComponent?: (filePath: string) => Promise<void> | void;
 }
 
@@ -263,7 +263,7 @@ const processFileChange = async (event: string, filePath: string) => {
 
             if (component) {
               if (mapper && typeof mapper.component === 'function') {
-                await mapper.component(component, event);
+                await mapper.component(component, event, filePath);
               } else {
                 console.warn(`Mapper ${name} doesn't have required methods`);
               }

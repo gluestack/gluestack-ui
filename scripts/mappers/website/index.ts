@@ -3,10 +3,10 @@ import * as docsOperations from './docsOperations';
 
 export default {
   // this is for the component code and component docs sync
-  component: function (component: string, event = 'added') {
+  component: function (component: string, event = 'added', filePath?: string) {
     if (event === 'removed') {
       // delete the component code
-      componentOperations.deleteComponentDocs(component);
+      componentOperations.deleteComponentDocs(component, filePath);
     } else {
       // copy the component code
       componentOperations.copyComponent(component, event);

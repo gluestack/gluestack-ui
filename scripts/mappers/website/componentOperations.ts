@@ -1,4 +1,5 @@
 import path from 'path';
+import fs from 'fs';
 import {
   processComponentChange,
   copySpecialFile,
@@ -13,11 +14,34 @@ const mapperConfig: MapperConfig = {
   ignoreFiles: ['docs', 'examples', 'dependencies.json'],
 };
 
-export const copyComponent = (component: string, event: string = 'added') => {
-  processComponentChange(component, event, mapperConfig);
+export const copyComponent = (component: string, event: string = 'added', filePath?: string) => {
+  processComponentChange(component, event, mapperConfig, filePath);
 };
 
-export const deleteComponentDocs = (component: string) => {
+export const deleteComponentDocs = (component: string, filePath?: string) => {
+  if (filePath) {
+    // A specific file was removed — delete only the corresponding file in the component dest
+    const componentSourcePath = path.join(path.resolve('src/components/ui'), component);
+    const relPath = path.relative(componentSourcePath, filePath);
+    const destFilePath = path.join(path.resolve('apps/website/components/ui'), component, relPath);
+
+    try {
+      if (fileOps.pathExists(destFilePath)) {
+        const stats = fs.statSync(destFilePath);
+        if (stats.isDirectory()) {
+          fileOps.deletePath(destFilePath);
+          console.log(`🗑️ Removed subdirectory: ${relPath} from ${component} (website)`);
+        } else {
+          fs.unlinkSync(destFilePath);
+          console.log(`🗑️ Removed file: ${relPath} from ${component} (website)`);
+        }
+      }
+    } catch (error) {
+      console.error(`❌ Error deleting file ${relPath} from ${component}:`, error);
+    }
+    return;
+  }
+
   const paths = [
     {
       path: path.join(path.resolve('apps/website/app/ui/docs/components'), component),

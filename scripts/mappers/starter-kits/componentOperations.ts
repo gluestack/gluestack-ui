@@ -98,7 +98,7 @@ const deleteComponent = (component: string, config: StarterKitConfig) => {
   }
 };
 
-export const copyComponent = (component: string, event: string = 'added') => {
+export const copyComponent = (component: string, event: string = 'added', filePath?: string) => {
   if (!isValidComponent(component)) {
     return;
   }
@@ -109,7 +109,25 @@ export const copyComponent = (component: string, event: string = 'added') => {
 
   for (const config of starterKitConfigs) {
     if (event === 'removed') {
-      deleteComponent(component, config);
+      if (filePath) {
+        // A specific file was removed — delete only that file in dest
+        const componentSourcePath = path.join(config.sourcePath, component);
+        const relPath = path.relative(componentSourcePath, filePath);
+        const destFilePath = path.join(config.destPath, component, relPath);
+
+        if (fs.existsSync(destFilePath)) {
+          const stats = fs.statSync(destFilePath);
+          if (stats.isDirectory()) {
+            fs.rmSync(destFilePath, { recursive: true, force: true });
+            console.log(`🗑️ Removed subdirectory: ${relPath} from ${component} in ${config.name}`);
+          } else {
+            fs.unlinkSync(destFilePath);
+            console.log(`🗑️ Removed file: ${relPath} from ${component} in ${config.name}`);
+          }
+        }
+      } else {
+        deleteComponent(component, config);
+      }
     } else {
       copyComponentShallow(component, config);
     }
