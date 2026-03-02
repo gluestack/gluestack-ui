@@ -7,7 +7,7 @@ import { Appearance, ColorSchemeName } from "react-native";
 export type ModeType = 'light' | 'dark' | 'system';
 
 export function GluestackUIProvider({
-  mode = 'dark',
+  mode = 'system',
   ...props
 }: {
   mode?: ModeType;

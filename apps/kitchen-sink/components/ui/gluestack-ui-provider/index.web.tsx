@@ -16,6 +16,10 @@ export function GluestackUIProvider({
   mode?: ModeType;
   children?: React.ReactNode;
 }) {
+  const handleMediaQuery = React.useCallback((e: MediaQueryListEvent) => {
+    script(e.matches ? 'dark' : 'light');
+  }, []);
+
   useSafeLayoutEffect(() => {
     if (mode !== 'system') {
       const documentElement = document.documentElement;
@@ -29,15 +33,12 @@ export function GluestackUIProvider({
 
   useSafeLayoutEffect(() => {
     if (mode !== 'system') return;
-    const handleMediaQuery = (e: MediaQueryListEvent) => {
-      script(e.matches ? 'dark' : 'light');
-    };
     const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-    media.addEventListener('change', handleMediaQuery);
+    media.addListener(handleMediaQuery);
 
-    return () => media.removeEventListener('change', handleMediaQuery);
-  }, []);
+    return () => media.removeListener(handleMediaQuery);
+  }, [handleMediaQuery]);
 
   return (
     <>
