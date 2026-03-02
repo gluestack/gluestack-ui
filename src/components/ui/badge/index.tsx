@@ -128,7 +128,7 @@ function Badge({
 
   return (
     <ContextView
-      className={badgeStyle({ action, variant, class: className })}
+      className={badgeStyle({ action, variant, className })}
       {...props}
       context={contextValue}
     >
