@@ -42,7 +42,7 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const pathname = usePathname();
-  const [colorMode, setColorMode] = useState<'light' | 'dark' | 'system'>('system');
+  const [colorMode, setColorMode] = useState<'light' | 'dark' | 'system'>('dark');
 
   return (
     <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
