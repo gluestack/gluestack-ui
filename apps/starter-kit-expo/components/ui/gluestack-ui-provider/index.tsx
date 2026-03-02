@@ -1,31 +1,19 @@
 import React, { useEffect } from 'react';
-import { config } from './config';
 import { View, ViewProps } from 'react-native';
 import { OverlayProvider } from '@gluestack-ui/core/overlay/creator';
 import { ToastProvider } from '@gluestack-ui/core/toast/creator';
-import { useColorScheme, Appearance, ColorSchemeName } from "react-native";
-import {
-  useGluestackColors as useGluestackColorsHook,
-  useCalendarTheme as useCalendarThemeHook,
-} from './useGluestackColors';
+import { Appearance, ColorSchemeName } from "react-native";
 
 export type ModeType = 'light' | 'dark' | 'system';
 
-// Re-export color hooks
-export const useGluestackColors = useGluestackColorsHook;
-export const useCalendarTheme = useCalendarThemeHook;
-export type { GluestackColors } from './useGluestackColors';
-
 export function GluestackUIProvider({
-  mode = 'light',
+  mode = 'system',
   ...props
 }: {
   mode?: ModeType;
   children?: React.ReactNode;
   style?: ViewProps['style'];
 }) {
-  const colorScheme = useColorScheme();
-
   useEffect(() => {
     Appearance.setColorScheme(mode as ColorSchemeName);
   }, [mode]);
@@ -33,7 +21,6 @@ export function GluestackUIProvider({
   return (
     <View
       style={[
-        config[colorScheme!],
         { flex: 1, height: '100%', width: '100%' },
         props.style,
       ]}

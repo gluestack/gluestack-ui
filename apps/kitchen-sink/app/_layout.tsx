@@ -13,7 +13,6 @@ import {
   ReanimatedLogLevel,
 } from 'react-native-reanimated';
 import { AppThemeProvider } from '../contexts/app-theme-context';
-import { Box } from '@/components/ui/box';
 
 configureReanimatedLogger({
   level: ReanimatedLogLevel.warn,

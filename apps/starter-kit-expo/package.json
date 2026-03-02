@@ -28,7 +28,7 @@
     "buffer": "^6.0.3",
     "date-fns": "^4.1.0",
     "dom-helpers": "^5.2.1",
-    "expo": "~55.0.2",
+    "expo": "~55.0.4",
     "expo-font": "~55.0.1",
     "expo-glass-effect": "~55.0.7",
     "expo-linking": "~55.0.7",
