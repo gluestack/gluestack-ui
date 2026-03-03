@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import { isValidComponent } from '../utils/componentOperations';
-import { getProviderFileAction, transformCssInteropToUniwind } from './transforms';
+import { getProviderFileAction, transformCssInteropToUniwind, transformStyledToUniwind } from './transforms';
 
 const MAPPER_NAME = 'starter-kit-expo-uniwind';
 const sourcePath = path.resolve('src/components/ui');
@@ -52,18 +52,34 @@ const syncComponent = (component: string) => {
       continue;
     }
 
-    // For .tsx / .ts files: apply cssInterop → withUniwind transform if needed
+    // For .tsx / .ts files: apply nativewind → withUniwind transforms if needed
     const ext = path.extname(file.name);
     if (ext === '.tsx' || ext === '.ts') {
       const source = fs.readFileSync(srcFilePath, 'utf-8');
-      if (source.includes('cssInterop') && source.includes("'nativewind'")) {
-        const { code, warnings } = transformCssInteropToUniwind(
-          source,
-          file.name
-        );
-        if (warnings.length > 0) {
+      const hasCssInterop =
+        source.includes('cssInterop') && source.includes("'nativewind'");
+      // Use `styled(` to avoid false positives from withStyleContext / useStyleContext
+      const hasStyled =
+        source.includes('styled(') && source.includes("'nativewind'");
+
+      if (hasCssInterop || hasStyled) {
+        let code = source;
+        const allWarnings: string[] = [];
+
+        if (hasCssInterop) {
+          const result = transformCssInteropToUniwind(code, file.name);
+          code = result.code;
+          allWarnings.push(...result.warnings);
+        }
+        if (hasStyled) {
+          const result = transformStyledToUniwind(code, file.name);
+          code = result.code;
+          allWarnings.push(...result.warnings);
+        }
+
+        if (allWarnings.length > 0) {
           console.warn(`  ⚠️  ${component}/${file.name}:`);
-          warnings.forEach((w) => console.warn(`      ${w}`));
+          allWarnings.forEach((w) => console.warn(`      ${w}`));
         }
         fs.writeFileSync(destFilePath, code, 'utf-8');
         console.log(`  ✨ ${component}/${file.name} (transformed)`);

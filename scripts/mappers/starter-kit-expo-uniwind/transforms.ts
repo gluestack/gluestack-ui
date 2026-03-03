@@ -636,3 +636,154 @@ export function transformCssInteropToUniwind(
 
   return { code: result, warnings };
 }
+
+// ─── AST-based styled → withUniwind transform ──────────────────────────────
+//
+// styled (nativewind v5) is a HOC that returns a new component:
+//   const StyledComponent = styled(OriginalComponent, { className: 'style' });
+//   const StyledUIIcon = styled(UIIcon, { className: { target: 'style', nativeStyleToProp: {...} } });
+//
+// withUniwind is also a HOC, but takes no config — className→style mapping is
+// handled automatically.  The entire second argument is dropped:
+//   const StyledComponent = withUniwind(OriginalComponent);
+//
+// The nativewind import is replaced wholesale when styled is the only specifier;
+// otherwise only the `styled` specifier is removed and a new withUniwind import
+// is inserted on the following line.
+// ──────────────────────────────────────────────────────────────────────────────
+export function transformStyledToUniwind(
+  source: string,
+  fileName: string
+): { code: string; warnings: string[] } {
+  const warnings: string[] = [];
+  const sourceFile = ts.createSourceFile(
+    fileName,
+    source,
+    ts.ScriptTarget.Latest,
+    true,
+    ts.ScriptKind.TSX
+  );
+
+  const replacements: Replacement[] = [];
+  let nativewndImport: ts.ImportDeclaration | null = null;
+  const styledCallExprs: ts.CallExpression[] = [];
+
+  function collect(node: ts.Node) {
+    if (ts.isImportDeclaration(node)) {
+      const mod = node.moduleSpecifier;
+      if (ts.isStringLiteral(mod) && mod.text === 'nativewind') {
+        nativewndImport = node;
+      }
+    }
+
+    if (
+      ts.isCallExpression(node) &&
+      ts.isIdentifier(node.expression) &&
+      node.expression.text === 'styled'
+    ) {
+      styledCallExprs.push(node);
+    }
+
+    ts.forEachChild(node, collect);
+  }
+  collect(sourceFile);
+
+  if (styledCallExprs.length === 0) return { code: source, warnings };
+
+  // Helper: full-line range of a node (start-of-line → after trailing \n)
+  function lineRange(node: ts.Node): { start: number; end: number } {
+    let start = node.getStart(sourceFile);
+    while (start > 0 && source[start - 1] !== '\n') start--;
+    let end = node.getEnd();
+    if (end < source.length && source[end] === '\n') end++;
+    return { start, end };
+  }
+
+  // ── 1. Handle nativewind import ─────────────────────────────────────────
+  if (nativewndImport) {
+    const decl = nativewndImport as ts.ImportDeclaration;
+    const bindings = decl.importClause?.namedBindings;
+    const styledOnly =
+      bindings &&
+      ts.isNamedImports(bindings) &&
+      bindings.elements.length === 1 &&
+      bindings.elements[0].name.text === 'styled';
+
+    if (styledOnly) {
+      // Replace the entire import line
+      const range = lineRange(decl);
+      replacements.push({
+        start: range.start,
+        end: range.end,
+        text: "import { withUniwind } from 'uniwind';\n",
+      });
+    } else {
+      // Other specifiers exist — remove only `styled`, add withUniwind import
+      warnings.push(
+        `[${fileName}] nativewind import has other specifiers; styled removed but others preserved — review recommended`
+      );
+      if (bindings && ts.isNamedImports(bindings)) {
+        const elem = bindings.elements.find((e) => e.name.text === 'styled');
+        if (elem) {
+          let removeStart = elem.getStart(sourceFile);
+          let removeEnd = elem.getEnd();
+          const after = source.slice(removeEnd).match(/^,\s*/);
+          if (after) {
+            removeEnd += after[0].length;
+          } else {
+            const before = source.slice(0, removeStart);
+            const commaIdx = before.lastIndexOf(',');
+            if (commaIdx >= 0) removeStart = commaIdx;
+          }
+          replacements.push({ start: removeStart, end: removeEnd, text: '' });
+        }
+      }
+      const nEnd = decl.getEnd();
+      const insertPos = source[nEnd] === '\n' ? nEnd + 1 : nEnd;
+      replacements.push({
+        start: insertPos,
+        end: insertPos,
+        text: "import { withUniwind } from 'uniwind';\n",
+      });
+    }
+  }
+
+  // ── 2. Replace each styled(Component, config) → withUniwind(Component) ──
+  for (const call of styledCallExprs) {
+    if (call.arguments.length < 1) {
+      warnings.push(`[${fileName}] styled() call with no arguments — skipped`);
+      continue;
+    }
+    const firstArg = call.arguments[0];
+    const firstArgText = source.slice(
+      firstArg.getStart(sourceFile),
+      firstArg.getEnd()
+    );
+    replacements.push({
+      start: call.getStart(sourceFile),
+      end: call.getEnd(),
+      text: `withUniwind(${firstArgText})`,
+    });
+  }
+
+  // ── Apply replacements (reverse order preserves positions) ──────────────
+  replacements.sort((a, b) => {
+    if (b.start !== a.start) return b.start - a.start;
+    return b.end - a.end;
+  });
+
+  for (let i = 1; i < replacements.length; i++) {
+    if (replacements[i].end > replacements[i - 1].start) {
+      warnings.push(
+        `[${fileName}] Overlapping replacements at ${replacements[i].start}-${replacements[i].end} and ${replacements[i - 1].start}-${replacements[i - 1].end} — output may be incorrect`
+      );
+    }
+  }
+
+  let result = source;
+  for (const { start, end, text } of replacements) {
+    result = result.slice(0, start) + text + result.slice(end);
+  }
+
+  return { code: result, warnings };
+}
