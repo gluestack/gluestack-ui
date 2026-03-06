@@ -45,6 +45,7 @@ import {
 } from '@/components/ui/toast';
 import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip';
 import { View } from '@/components/ui/view';
+import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '@/components/ui/slider';
 
 import {
   Actionsheet,
@@ -226,6 +227,19 @@ export default function Home() {
             <ButtonText>Get Started</ButtonText>
           </Button>
           {/*========================================================================= */}
+          <Center className="w-[300px] h-[150px]">
+      <Slider
+        defaultValue={30}
+        orientation="horizontal"
+        isDisabled={false}
+        isReversed={false}
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+    </Center>
           <Accordion
             type="single"
             isCollapsible={true}

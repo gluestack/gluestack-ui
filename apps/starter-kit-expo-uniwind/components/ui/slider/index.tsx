@@ -2,6 +2,7 @@
 import { createSlider } from '@gluestack-ui/core/slider/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import { withUniwind } from 'uniwind';
 import React from 'react';
 import { Pressable, View } from 'react-native';
 
@@ -14,7 +15,7 @@ export const UISlider = createSlider({
   FilledTrack: View,
   ThumbInteraction: View,
 });
-
+const StyledTrack = withUniwind(UISlider.Track);
 const sliderStyle = tva({
   base: 'justify-center items-center data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-none',
   variants: {
@@ -131,7 +132,8 @@ const SliderTrack = React.forwardRef<
   } = useStyleContext(SCOPE);
 
   return (
-    <UISlider.Track
+    <StyledTrack
+      hitSlop={20}
       ref={ref}
       {...props}
       className={sliderTrackStyle({
