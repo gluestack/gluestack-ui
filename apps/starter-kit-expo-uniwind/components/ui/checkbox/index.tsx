@@ -3,7 +3,7 @@ import { createCheckbox } from '@gluestack-ui/core/checkbox/creator';
 import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import React from 'react';
 import type { TextProps, ViewProps } from 'react-native';
 import { Platform, Pressable, Text, View } from 'react-native';
@@ -22,9 +22,7 @@ const LabelWrapper = React.forwardRef<
   return <Text {...props} ref={ref} />;
 });
 
-const StyledUIIcon = styled(UIIcon, {
-  className: "style",
-});
+const StyledUIIcon = withUniwind(UIIcon);
 
 const IconWrapper = React.forwardRef<
   React.ComponentRef<typeof UIIcon>,

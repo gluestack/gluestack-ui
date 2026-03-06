@@ -1,6 +1,7 @@
 "use client";
 import { FocusScope } from '@gluestack-ui/utils/aria';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { Overlay } from '@gluestack-ui/core/overlay/creator';
 import GorhomBottomSheet, {
   BottomSheetBackdrop as GorhomBottomSheetBackdrop,
   BottomSheetFlatList as GorhomBottomSheetFlatList,
@@ -12,7 +13,7 @@ import GorhomBottomSheet, {
   BottomSheetView as GorhomBottomSheetView,
   type BottomSheetBackdropProps,
 } from '@gorhom/bottom-sheet';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import React, {
   createContext,
   forwardRef,
@@ -184,11 +185,7 @@ type IBottomSheetPortalProps = Omit<
   closeOnBackdropPress?: boolean;
 };
 
-const StyledGorhomBottomSheet = styled(GorhomBottomSheet, {
-  className: 'style',
-  backgroundClassName: 'backgroundStyle',
-  handleIndicatorClassName: 'handleIndicatorStyle',
-});
+const StyledGorhomBottomSheet = withUniwind(GorhomBottomSheet);
 
 export const BottomSheetPortal = ({
   snapPoints,
@@ -218,7 +215,7 @@ export const BottomSheetPortal = ({
     [handleNaturalClose, onChange]
   );
 
-  return (
+  const sheetContent = (
     <StyledGorhomBottomSheet
       ref={bottomSheetRef}
       snapPoints={snapPoints}
@@ -237,6 +234,14 @@ export const BottomSheetPortal = ({
     >
       {props.children}
     </StyledGorhomBottomSheet>
+  );
+
+  // Render sheet inside Overlay so it appears above other content (e.g. Card).
+  // Overlay portals content to the root overlay host from GluestackUIProvider.
+  return (
+    <Overlay isOpen={true} isKeyboardDismissable={false} style={{ flex: 1 }}>
+      {sheetContent}
+    </Overlay>
   );
 };
 
@@ -432,20 +437,11 @@ export const BottomSheetTextInput = ({
   return <GorhomBottomSheetInput {...props} className={bottomSheetTextInputStyle({ className })} />;
 };
 
-const StyledGorhomBottomSheetScrollView = styled(GorhomBottomSheetScrollView, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-});
+const StyledGorhomBottomSheetScrollView = withUniwind(GorhomBottomSheetScrollView);
 
-const StyledGorhomBottomSheetFlatList = styled(GorhomBottomSheetFlatList, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-});
+const StyledGorhomBottomSheetFlatList = withUniwind(GorhomBottomSheetFlatList);
 
-const StyledGorhomBottomSheetSectionList = styled(GorhomBottomSheetSectionList, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-});
+const StyledGorhomBottomSheetSectionList = withUniwind(GorhomBottomSheetSectionList);
 
 // Scrollable components with className support
 export const BottomSheetScrollView = StyledGorhomBottomSheetScrollView;

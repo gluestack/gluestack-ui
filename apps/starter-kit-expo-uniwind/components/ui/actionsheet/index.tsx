@@ -10,7 +10,7 @@ import {
   Motion,
   MotionComponentProps,
 } from '@legendapp/motion';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import React from 'react';
 import {
   FlatList,
@@ -43,7 +43,7 @@ const AnimatedPressable = createMotionAnimatedComponent(
   Pressable
 ) as React.ComponentType<IAnimatedPressableProps>;
 
-const StyledUIIcon = styled(UIIcon, { className: "style" });
+const StyledUIIcon = withUniwind(UIIcon);
 
 export const UIActionsheet = createActionsheet({
   Root: View,

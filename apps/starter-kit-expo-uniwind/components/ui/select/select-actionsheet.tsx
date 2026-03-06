@@ -16,7 +16,7 @@ import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import {
   Motion,
   AnimatePresence,
@@ -38,35 +38,14 @@ type IMotionViewProps = React.ComponentProps<typeof View> &
 
 const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
 
-const StyledMotionView = styled(MotionView, { className: 'style' });
-const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
-const StyledScrollView = styled(ScrollView, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-const StyledVirtualizedList = styled(VirtualizedList, {
-  className: 'style',
-  ListFooterComponentClassName: 'ListFooterComponentStyle',
-  ListHeaderComponentClassName: 'ListHeaderComponentStyle',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-const StyledFlatList = styled(FlatList, {
-  className: 'style',
-  ListFooterComponentClassName: 'ListFooterComponentStyle',
-  ListHeaderComponentClassName: 'ListHeaderComponentStyle',
-  columnWrapperClassName: 'columnWrapperStyle',
-  contentContainerClassName: 'contentContainerStyle',
-  indicatorClassName: 'indicatorStyle',
-});
-const StyledIcon = styled(UIIcon, {
-  className: {
-    target: 'style',
-  },
-});
-const StyledSectionList = styled(SectionList, { className: 'style' });
-const StyledSectionHeaderText = styled(H4, { className: 'style' });
+const StyledMotionView = withUniwind(MotionView);
+const StyledAnimatedPressable = withUniwind(AnimatedPressable);
+const StyledScrollView = withUniwind(ScrollView);
+const StyledVirtualizedList = withUniwind(VirtualizedList);
+const StyledFlatList = withUniwind(FlatList);
+const StyledIcon = withUniwind(UIIcon);
+const StyledSectionList = withUniwind(SectionList);
+const StyledSectionHeaderText = withUniwind(H4);
 
 export const UIActionsheet = createActionsheet({
   Root: View,

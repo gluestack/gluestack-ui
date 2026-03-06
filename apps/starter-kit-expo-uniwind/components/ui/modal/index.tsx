@@ -2,7 +2,7 @@
 import { createModal } from '@gluestack-ui/core/modal/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import React from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 import Animated, {
@@ -16,8 +16,8 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedView = Animated.createAnimatedComponent(View);
 const SCOPE = 'MODAL';
 
-const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
-const StyledAnimatedView = styled(AnimatedView, { className: 'style' });
+const StyledAnimatedPressable = withUniwind(AnimatedPressable);
+const StyledAnimatedView = withUniwind(AnimatedView);
 const UIModal = createModal({
   Root: withStyleContext(View as any, SCOPE),
   Backdrop: StyledAnimatedPressable,

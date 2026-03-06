@@ -8,7 +8,7 @@ import {
   useStyleContext,
   type VariantProps,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import { Pressable, Text, View, FlatList, Platform } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -80,9 +80,7 @@ const tabsIndicatorStyle = tva({
 
 const Root = withStyleContext(View, SCOPE);
 
-const StyledUIIcon = styled(UIIcon, {
-  className: 'style',
-});
+const StyledUIIcon = withUniwind(UIIcon);
 
 const UITabs = createTabs({
   Root,

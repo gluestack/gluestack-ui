@@ -1,6 +1,7 @@
 "use client";
 import { FocusScope } from '@gluestack-ui/utils/aria';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { Overlay } from '@gluestack-ui/core/overlay/creator';
 import GorhomBottomSheet, {
   BottomSheetBackdrop as GorhomBottomSheetBackdrop,
   BottomSheetFlatList as GorhomBottomSheetFlatList,
@@ -218,7 +219,7 @@ export const BottomSheetPortal = ({
     [handleNaturalClose, onChange]
   );
 
-  return (
+  const sheetContent = (
     <StyledGorhomBottomSheet
       ref={bottomSheetRef}
       snapPoints={snapPoints}
@@ -237,6 +238,14 @@ export const BottomSheetPortal = ({
     >
       {props.children}
     </StyledGorhomBottomSheet>
+  );
+
+  // Render sheet inside Overlay so it appears above other content (e.g. Card).
+  // Overlay portals content to the root overlay host from GluestackUIProvider.
+  return (
+    <Overlay isOpen={true} isKeyboardDismissable={false} style={{ flex: 1 }}>
+      {sheetContent}
+    </Overlay>
   );
 };
 

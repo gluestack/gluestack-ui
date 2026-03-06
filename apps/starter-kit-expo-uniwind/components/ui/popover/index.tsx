@@ -6,7 +6,7 @@ import {
   useStyleContext,
   withStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import React from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 import Animated, {
@@ -19,8 +19,8 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 
 const SCOPE = 'POPOVER';
 
-const StyledAnimatedView = styled(AnimatedView, { className: 'style' });
-const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
+const StyledAnimatedView = withUniwind(AnimatedView);
+const StyledAnimatedPressable = withUniwind(AnimatedPressable);
 
 const UIPopover = createPopover({
   Root: withStyleContext(StyledAnimatedView, SCOPE),

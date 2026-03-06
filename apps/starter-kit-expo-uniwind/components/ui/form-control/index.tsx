@@ -4,7 +4,7 @@ import React from 'react';
 import { createFormControl } from '@gluestack-ui/core/form-control/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { UIIcon } from '@gluestack-ui/core/icon/creator';
 
@@ -158,7 +158,7 @@ const FormControlLabelAstrick = React.forwardRef<
   );
 });
 
-const StyledUIIcon = styled(UIIcon, { className: "style" });
+const StyledUIIcon = withUniwind(UIIcon);
 
 export const UIFormControl = createFormControl({
   Root: withStyleContext(View, SCOPE),

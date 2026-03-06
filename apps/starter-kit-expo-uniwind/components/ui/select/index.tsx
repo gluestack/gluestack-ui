@@ -9,7 +9,7 @@ import {
 } from '@gluestack-ui/utils/nativewind-utils';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { createSelect } from '@gluestack-ui/core/select/creator';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import {
   Actionsheet,
   ActionsheetContent,
@@ -88,11 +88,7 @@ const selectInputStyle = tva({
   },
 });
 
-const StyledIcon = styled(UIIcon, {
-  className: {
-    target: 'style',
-  },
-});
+const StyledIcon = withUniwind(UIIcon);
 
 const UISelect = createSelect(
   {

@@ -2,12 +2,10 @@
 import { ActivityIndicator } from 'react-native';
 import React from 'react';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 
 
-const StyledActivityIndicator = styled(ActivityIndicator, {
-  className: { target: 'style', nativeStyleToProp: { color: true } },
-});
+const StyledActivityIndicator = withUniwind(ActivityIndicator);
 const spinnerStyle = tva({});
 
 const Spinner = React.forwardRef<

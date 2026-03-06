@@ -6,7 +6,7 @@ import {
 } from '@gluestack-ui/core/accordion/creator';
 import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import React from 'react';
 import { Platform, Pressable, Text, TextProps, View } from 'react-native';
 import { AnimatedHeight } from './AccordionAnimatedHeight';
@@ -52,9 +52,7 @@ const Header = (
   Platform.OS === 'web' ? H3 : View
 ) as React.ComponentType<TextProps>;
 
-const StyledUIIcon = styled(UIIcon, {
-  className: "style",
-});
+const StyledUIIcon = withUniwind(UIIcon);
 /** Creator */
 const UIAccordion = createAccordion({
   Root: View,

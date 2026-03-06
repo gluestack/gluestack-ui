@@ -12,7 +12,7 @@ import {
   withStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
 import DateTimePickerNative from '@react-native-community/datetimepicker';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import React, { useCallback, useMemo } from 'react';
 import {
   Modal,
@@ -56,13 +56,9 @@ const DateTimePickerTriggerWrapper = React.forwardRef<
   return <Pressable {...props} ref={ref} />;
 });
 
-const StyledTextInput = styled(TextInput, {
-  className: { target: 'style', nativeStyleToProp: { textAlign: true } },
-});
+const StyledTextInput = withUniwind(TextInput);
 
-const StyledUIIcon = styled(UIIcon, {
-  className: 'style',
-});
+const StyledUIIcon = withUniwind(UIIcon);
 
 const UIDateTimePicker = createDateTimePicker({
   Root: withStyleContext(View, SCOPE),

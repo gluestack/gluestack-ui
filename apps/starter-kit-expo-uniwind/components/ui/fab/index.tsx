@@ -3,14 +3,14 @@ import { createFab } from '@gluestack-ui/core/fab/creator';
 import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import React from 'react';
 import { Pressable, Text } from 'react-native';
 
 const SCOPE = 'FAB';
 const Root = withStyleContext(Pressable, SCOPE);
 
-const StyledUIIcon = styled(UIIcon, { className: "style" });
+const StyledUIIcon = withUniwind(UIIcon);
 
 const UIFab = createFab({
   Root: Root,

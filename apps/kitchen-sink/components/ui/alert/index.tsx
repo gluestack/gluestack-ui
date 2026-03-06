@@ -20,7 +20,7 @@ const alertStyle = tva({
 });
 
 const alertTextStyle = tva({
-  base: 'font-medium tracking-tight text-sm',
+  base: 'font-medium tracking-tight text-sm flex-1',
   parentVariants: {
     variant: {
       default: 'text-card-foreground',

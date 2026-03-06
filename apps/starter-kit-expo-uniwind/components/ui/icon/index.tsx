@@ -2,7 +2,7 @@ import React from 'react';
 import { createIcon } from '@gluestack-ui/core/icon/creator';
 import { Path } from 'react-native-svg';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import {
   PrimitiveIcon,
@@ -31,7 +31,7 @@ const iconStyle = tva({
   },
 });
 
-const StyledUIIcon = styled(UIIcon, { className: "style" });
+const StyledUIIcon = withUniwind(UIIcon);
 
 type IIConProps = IPrimitiveIcon &
   VariantProps<typeof iconStyle> &

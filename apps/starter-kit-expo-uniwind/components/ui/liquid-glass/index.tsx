@@ -5,7 +5,7 @@ import {
   type GlassContainerProps,
   type GlassViewProps
 } from 'expo-glass-effect';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import React from 'react';
 import { Platform, View } from 'react-native';
 
@@ -25,13 +25,9 @@ type IGlassContainerProps = GlassContainerProps & {
   className?: string;
 };
 
-const StyledExpoGlassView = styled(ExpoGlassView, {
-  className: 'style',
-});
+const StyledExpoGlassView = withUniwind(ExpoGlassView);
 
-const StyledExpoGlassContainer = styled(ExpoGlassContainer, {
-  className: 'style',
-});
+const StyledExpoGlassContainer = withUniwind(ExpoGlassContainer);
 export const GlassView = React.forwardRef<
   React.ComponentRef<typeof ExpoGlassView>,
   IGlassViewProps

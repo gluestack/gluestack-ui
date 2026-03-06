@@ -3,17 +3,13 @@ import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import { createRadio } from '@gluestack-ui/core/radio/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import React from 'react';
 import { Platform, Pressable, Text, View } from 'react-native';
 
 const SCOPE = 'Radio';
 
-const StyledIcon = styled(UIIcon, {
-  className: {
-    target: 'style',
-  },
-});
+const StyledIcon = withUniwind(UIIcon);
 
 const UIRadio = createRadio({
   Root: (Platform.OS === 'web'

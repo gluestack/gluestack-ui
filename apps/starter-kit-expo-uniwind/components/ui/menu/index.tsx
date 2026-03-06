@@ -3,7 +3,7 @@ import { createMenu } from '@gluestack-ui/core/menu/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { withUniwind } from 'uniwind';
 import React from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import Animated, { FadeOut, ZoomIn } from 'react-native-reanimated';
@@ -103,9 +103,7 @@ const Separator = React.forwardRef<
   );
 });
 
-const StyledAnimatedView = styled(AnimatedView, {
-  className: 'style',
-});
+const StyledAnimatedView = withUniwind(AnimatedView);
 export const UIMenu = createMenu({
   Root: StyledAnimatedView,
   Item: Item,
