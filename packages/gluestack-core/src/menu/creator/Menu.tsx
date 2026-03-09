@@ -80,7 +80,9 @@ export const Menu = ({
           ...menuTriggerProps,
           onPress: handleOpen,
           ref: triggerRef,
-        });
+        },
+          { open: state.isOpen }
+        );
       };
 
       if (_experimentalOverlay) {
@@ -94,7 +96,7 @@ export const Menu = ({
               isOpen={state.isOpen}
               AnimatePresence={AnimatePresence}
               autoFocus={state.focusStrategy || true}
-              onClose={() => state.close()}
+              onClose={handleClose}
               StyledMenu={StyledMenu}
               StyledMenuItem={StyledMenuItem}
               StyledSeparator={StyledSeparator}
@@ -125,7 +127,7 @@ export const Menu = ({
               isOpen={state.isOpen}
               AnimatePresence={AnimatePresence}
               autoFocus={state.focusStrategy || true}
-              onClose={() => state.close()}
+              onClose={handleClose}
               StyledMenu={StyledMenu}
               StyledMenuItem={StyledMenuItem}
               StyledSeparator={StyledSeparator}
