@@ -846,10 +846,10 @@
   resolved "https://registry.npmjs.org/@expo-google-fonts/material-symbols/-/material-symbols-0.4.24.tgz#6605ff691c3c7aeac8207d4ba4b473dcb2cad120"
   integrity sha512-1bJ63Yv2Bn8SN2MjrlbwLwUhnC8COOeejd15H88WjCtw5iNErqEPaBnpvmYyqciVYwudGo5drUIdY9C/5yPGbg==
 
-"@expo/cli@55.0.14":
-  version "55.0.14"
-  resolved "https://registry.npmjs.org/@expo/cli/-/cli-55.0.14.tgz#84654dae7b042f83720a4d001241bb5e806265cc"
-  integrity sha512-glXPSjjLCIz+KX/ezqLTGIF9eTE1lexiCxunvB3loRZNnGeBDGW3eF++cuPKudW26jeC6bqZkcqBG7Lp0Sp9qg==
+"@expo/cli@55.0.15":
+  version "55.0.15"
+  resolved "https://registry.npmjs.org/@expo/cli/-/cli-55.0.15.tgz#0bd700b826afe3047c24525a35804c660cf14e27"
+  integrity sha512-Qd4aF2+wT9LtdV7G/gULbx/t8FJ/OVtwuNkLcZt1XlosQ5XX/C/3ywZXYl+/bYcHUmuO1TBD3Fg05bNlmL6vrw==
   dependencies:
     "@expo/code-signing-certificates" "^0.0.6"
     "@expo/config" "~55.0.8"
@@ -4563,10 +4563,10 @@ expo-glass-effect@^55.0.7, expo-glass-effect@~55.0.7:
   resolved "https://registry.npmjs.org/expo-glass-effect/-/expo-glass-effect-55.0.7.tgz#e8584bc078c8987dbcc468dfcdd0d82a1df8b8e3"
   integrity sha512-G7Q9rUaEY0YC36fGE6irDljfsfvzz/y49zagARAKvSJSyQMUSrhR25WOr5LK5Cw7gQNNBEy9U1ctlr7yCay/fQ==
 
-expo-image@^55.0.5:
-  version "55.0.5"
-  resolved "https://registry.npmjs.org/expo-image/-/expo-image-55.0.5.tgz#b75ca581ce678af0f96632ca888c94e2b3251053"
-  integrity sha512-oejmMwy5O9EtC8po9NxkcurWHqND6p8xuJaj9FGNo8NXLt9e+w3cKWx7HuPzkH5y3qFXQ9Od+z+I/wxEci36fw==
+expo-image@^55.0.6:
+  version "55.0.6"
+  resolved "https://registry.npmjs.org/expo-image/-/expo-image-55.0.6.tgz#0aece1e86b2c861acdba0156ad2f3d5ac9c305a0"
+  integrity sha512-TKuu0uBmgTZlhd91Glv+V4vSBMlfl0bdQxfl97oKKZUo3OBC13l3eLik7v3VNLJN7PZbiwOAiXkZkqSOBx/Xsw==
   dependencies:
     sf-symbols-typescript "^2.2.0"
 
@@ -4593,17 +4593,17 @@ expo-modules-autolinking@55.0.8:
     chalk "^4.1.0"
     commander "^7.2.0"
 
-expo-modules-core@55.0.13:
-  version "55.0.13"
-  resolved "https://registry.npmjs.org/expo-modules-core/-/expo-modules-core-55.0.13.tgz#7707078561cf489f95a68cc6fcbf9bbf6bf0fd24"
-  integrity sha512-DYLQTOJAR7jD3M9S0sH9myZaPEtShdicHrPiWcupIXMeMkQxFzErx+adUI8gZPy4AU45BgeGgtaogRfT25iLfw==
+expo-modules-core@55.0.14:
+  version "55.0.14"
+  resolved "https://registry.npmjs.org/expo-modules-core/-/expo-modules-core-55.0.14.tgz#6ae33f8023acdcfeebcb9de992b576749494b419"
+  integrity sha512-eAerOnnhbZitUAKbY7B61kIudiabAz/m/oMGINms2+GeY1DRhdvrm5aAkhkHHmykPrg58PPryXtmF14YAYWViw==
   dependencies:
     invariant "^2.2.4"
 
-expo-router@~55.0.2:
-  version "55.0.3"
-  resolved "https://registry.npmjs.org/expo-router/-/expo-router-55.0.3.tgz#e1814971772258787b70cd1a5bac8a9bafa4294d"
-  integrity sha512-B3MQAeZq9B2SS5kgEybGqXYR0AY7QYM7fQ5E4bJwtvZLJjWPmWhDALhBpD26ovK/i1k0fi9VgW47FKJODxM5Jg==
+expo-router@~55.0.4:
+  version "55.0.4"
+  resolved "https://registry.npmjs.org/expo-router/-/expo-router-55.0.4.tgz#72aee1654893ebacac55cf4f875924e3affd6b24"
+  integrity sha512-wLKxc9l3IaE96UJFvwXKi2YYYjYK/VUttwAwcnljaUA2dLgDruNGmjsBS9A+g3aK3lt2/JJRu+cec7ZLJ9r6Wg==
   dependencies:
     "@expo/metro-runtime" "^55.0.6"
     "@expo/schema-utils" "^55.0.2"
@@ -4616,9 +4616,9 @@ expo-router@~55.0.2:
     debug "^4.3.4"
     escape-string-regexp "^4.0.0"
     expo-glass-effect "^55.0.7"
-    expo-image "^55.0.5"
+    expo-image "^55.0.6"
     expo-server "^55.0.6"
-    expo-symbols "^55.0.4"
+    expo-symbols "^55.0.5"
     fast-deep-equal "^3.1.3"
     invariant "^2.2.4"
     nanoid "^3.3.8"
@@ -4656,10 +4656,10 @@ expo-status-bar@~55.0.4:
   dependencies:
     react-native-is-edge-to-edge "^1.2.1"
 
-expo-symbols@^55.0.4:
-  version "55.0.4"
-  resolved "https://registry.npmjs.org/expo-symbols/-/expo-symbols-55.0.4.tgz#37fcd43eda786dfa44d679653e77bcbabb5c09ca"
-  integrity sha512-w9rxPlpta3gks0G4Tvpq/qQdiMp4R/XOeOzyjSruYUQakmsWbQBKA+Sd/fCVXs7qFJSvVTOGXiOhZm+YJRYZVg==
+expo-symbols@^55.0.5:
+  version "55.0.5"
+  resolved "https://registry.npmjs.org/expo-symbols/-/expo-symbols-55.0.5.tgz#fa9d01de255ccfd8894aa90001056e46e0715dcb"
+  integrity sha512-W/QYRvnYVes947ZYOHtuKL8Gobs7BUjeu9oknzbo4jGnou7Ks6bj1CwdT0ZWNBgaTopbS4/POXumJIkW4cTPSQ==
   dependencies:
     "@expo-google-fonts/material-symbols" "^0.4.1"
     sf-symbols-typescript "^2.0.0"
@@ -4677,13 +4677,13 @@ expo-web-browser@~55.0.9:
   resolved "https://registry.npmjs.org/expo-web-browser/-/expo-web-browser-55.0.9.tgz#b00fbc0dcc08bc8d577bac305dd589002e6aa05d"
   integrity sha512-PvAVsG401QmZabtTsYh1cYcpPiqvBPs8oiOkSrp0jIXnneiM466HxmeNtvo+fNxqJ2nwOBz9qLPiWRO91VBfsQ==
 
-expo@~55.0.4:
-  version "55.0.4"
-  resolved "https://registry.npmjs.org/expo/-/expo-55.0.4.tgz#69e10716a5260830f6281a4abdd66c5107d765dc"
-  integrity sha512-cbQBPYwmH6FRvh942KR8mSdEcrVdsIMkjdHthtf59zlpzgrk28FabhOdL/Pc9WuS+CsIP3EIQbZqmLkTjv6qPg==
+expo@~55.0.5:
+  version "55.0.5"
+  resolved "https://registry.npmjs.org/expo/-/expo-55.0.5.tgz#9d6dfc882c24300ef990d9231b8f3580bbe8d249"
+  integrity sha512-toVYbRU0gH50QSlIyrAswXD87RKi2pcJcHZpBDuqU3mIQZzJkTcWgRLWN/2R/wnd3kuJTtW5xlr5ndVG6xEWxQ==
   dependencies:
     "@babel/runtime" "^7.20.0"
-    "@expo/cli" "55.0.14"
+    "@expo/cli" "55.0.15"
     "@expo/config" "~55.0.8"
     "@expo/config-plugins" "~55.0.6"
     "@expo/devtools" "55.0.2"
@@ -4701,7 +4701,7 @@ expo@~55.0.4:
     expo-font "~55.0.4"
     expo-keep-awake "~55.0.4"
     expo-modules-autolinking "55.0.8"
-    expo-modules-core "55.0.13"
+    expo-modules-core "55.0.14"
     pretty-format "^29.7.0"
     react-refresh "^0.14.2"
     whatwg-url-minimum "^0.1.1"
