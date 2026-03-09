@@ -143,7 +143,7 @@ const Grid = forwardRef<React.ComponentRef<typeof View>, IGridProps>(
           }}
           {...props}
         >
-          {calculatedWidth && childrenWithProps}
+          {!!calculatedWidth && childrenWithProps}
         </View>
       </GridContext.Provider>
     );
