@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { FocusScope } from '@gluestack-ui/utils/aria';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { Overlay } from '@gluestack-ui/core/overlay/creator';
@@ -25,10 +25,11 @@ import React, {
   useState,
 } from 'react';
 import type { PressableProps, TextInputProps, TextProps } from 'react-native';
-import { Keyboard, Platform, Pressable, Text, View } from 'react-native';
+import { Keyboard, Platform, Text, View } from 'react-native';
+import { Pressable } from 'react-native';
 
 const bottomSheetBackdropStyle = tva({
-  base: 'absolute inset-0 bg-black/50',
+  base: 'absolute inset-0 bg-[#000]/50',
 });
 
 const bottomSheetContentStyle = tva({
@@ -44,7 +45,7 @@ const bottomSheetHandleStyle = tva({
 });
 
 const bottomSheetItemStyle = tva({
-  base: 'p-3 flex-row items-center rounded-sm w-full disabled:opacity-40 web:pointer-events-auto disabled:cursor-not-allowed hover:bg-background/90 active:bg-background/80 focus:bg-background/90 web:focus-visible:bg-background/90',
+  base: 'p-3 flex-row items-center rounded-sm w-full disabled:opacity-40 web:pointer-events-auto disabled:cursor-not-allowed hover:bg-accent/40 active:bg-accent/50 data-[focus=true]:bg-accent/20 web:data-[focus-visible=true]:bg-accent/40',
 });
 const bottomSheetItemTextStyle = tva({
   base: 'text-foreground font-normal text-sm',
@@ -55,7 +56,7 @@ const bottomSheetFooterStyle = tva({
 });
 
 const bottomSheetTextInputStyle = tva({
-  base: 'flex-1 text-foreground text-sm md:text-sm py-1 placeholder:text-muted-foreground  web:outline-none ios:leading-[0px] web:cursor-text  h-9 w-full flex-row items-center rounded-md border border-border  dark:bg-input/30 bg-transparent shadow-xs transition-[color,box-shadow] overflow-hidden px-3 gap-2',
+  base: 'flex-1 text-foreground text-sm md:text-sm py-1 placeholder:text-muted-foreground  web:outline-none ios:leading-[0px] web:cursor-text  h-9 w-full flex-row items-center rounded-md border border-border dark:bg-input/30 bg-transparent shadow-xs overflow-hidden px-3 gap-2',
 });
 
 type BottomSheetContextValue = {
@@ -71,10 +72,10 @@ type BottomSheetContextValue = {
 const BottomSheetContext = createContext<BottomSheetContextValue>({
   visible: false,
   bottomSheetRef: { current: null! },
-  handleClose: () => { },
-  handleNaturalClose: () => { },
-  handleOpen: () => { },
-  snapToIndex: () => { },
+  handleClose: () => {},
+  handleNaturalClose: () => {},
+  handleOpen: () => {},
+  snapToIndex: () => {},
   currentIndex: -1,
 });
 
@@ -160,7 +161,14 @@ export const BottomSheet = forwardRef<BottomSheetRef, IBottomSheetRootProps>(
         snapToIndex,
         currentIndex,
       }),
-      [visible, handleClose, handleNaturalClose, handleOpen, snapToIndex, currentIndex]
+      [
+        visible,
+        handleClose,
+        handleNaturalClose,
+        handleOpen,
+        snapToIndex,
+        currentIndex,
+      ]
     );
 
     return (
@@ -431,14 +439,21 @@ export const BottomSheetItemText = ({
   className,
   ...props
 }: IBottomSheetItemTextProps) => {
-  return <Text {...props} className={bottomSheetItemTextStyle({ className })} />;
+  return (
+    <Text {...props} className={bottomSheetItemTextStyle({ className })} />
+  );
 };
 
 export const BottomSheetTextInput = ({
   className,
   ...props
 }: TextInputProps) => {
-  return <GorhomBottomSheetInput {...props} className={bottomSheetTextInputStyle({ className })} />;
+  return (
+    <GorhomBottomSheetInput
+      {...props}
+      className={bottomSheetTextInputStyle({ className })}
+    />
+  );
 };
 
 const StyledGorhomBottomSheetScrollView = styled(GorhomBottomSheetScrollView, {
@@ -451,10 +466,13 @@ const StyledGorhomBottomSheetFlatList = styled(GorhomBottomSheetFlatList, {
   contentContainerClassName: 'contentContainerStyle',
 });
 
-const StyledGorhomBottomSheetSectionList = styled(GorhomBottomSheetSectionList, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-});
+const StyledGorhomBottomSheetSectionList = styled(
+  GorhomBottomSheetSectionList,
+  {
+    className: 'style',
+    contentContainerClassName: 'contentContainerStyle',
+  }
+);
 
 // Scrollable components with className support
 export const BottomSheetScrollView = StyledGorhomBottomSheetScrollView;

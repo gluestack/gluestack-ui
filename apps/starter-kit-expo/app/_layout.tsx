@@ -13,10 +13,11 @@ import { Slot, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
+  ErrorBoundary
 } from 'expo-router';
 
 SplashScreen.preventAutoHideAsync();
@@ -46,21 +47,23 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
-      <GluestackUIProvider mode={colorMode}>
-        <StatusBar style={colorMode === 'dark' ? 'light' : 'dark'} />
-        <Slot />
-        {pathname === '/' && (
-          <Fab
-            onPress={() =>
-              setColorMode(colorMode === 'dark' ? 'light' : 'dark')
-            }
-            className="m-6"
-            size="lg"
-          >
-            <FabIcon as={colorMode === 'dark' ? MoonIcon : SunIcon} />
-          </Fab>
-        )}
-      </GluestackUIProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <GluestackUIProvider mode={colorMode}>
+          <StatusBar style={colorMode === 'dark' ? 'light' : 'dark'} />
+          <Slot />
+          {pathname === '/' && (
+            <Fab
+              onPress={() =>
+                setColorMode(colorMode === 'dark' ? 'light' : 'dark')
+              }
+              className="m-6"
+              size="lg"
+            >
+              <FabIcon as={colorMode === 'dark' ? MoonIcon : SunIcon} />
+            </Fab>
+          )}
+        </GluestackUIProvider>
+      </GestureHandlerRootView>
     </ThemeProvider>
   );
 }
