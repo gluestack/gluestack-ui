@@ -1244,10 +1244,10 @@
   dependencies:
     tslib "^2.8.0"
 
-"@gluestack-ui/core@^4.1.0-alpha.2":
-  version "4.1.0-alpha.2"
-  resolved "https://registry.npmjs.org/@gluestack-ui/core/-/core-4.1.0-alpha.2.tgz#1bbd13e096cc865ad366cc727e332764419ad5fe"
-  integrity sha512-eFNgiuDmdGUgytVCIdi7qRrhdi+1YdJ7DnGH0YApNcAgXoKtpZ39d+GlKuF2vcaARb8taXRGIrRw3DTMmwRsAQ==
+"@gluestack-ui/core@^4.1.0-alpha.3":
+  version "4.1.0-alpha.3"
+  resolved "https://registry.npmjs.org/@gluestack-ui/core/-/core-4.1.0-alpha.3.tgz#97971e435e43cd6c34f9a99156d0e9cc03e4e013"
+  integrity sha512-FBzs9TvIo2Z7CaqNV6xXDUguXcdf2l7t5ugYxsEJVWGtyfo9W4Bsb8LHECsDaPIrRp7DOSn0LoI/dA7yeAyeag==
   dependencies:
     date-fns "^4.1.0"
 
