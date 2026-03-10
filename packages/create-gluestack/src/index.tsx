@@ -6,13 +6,13 @@ import chalk from 'chalk';
 import { cloneProject, gitInit, installDependencies } from './utils';
 
 export async function main(args: string[]) {
-  console.log(chalk.bold.magenta('\nWelcome to gluestack-ui v4.1 alpha!'));
-  console.log(chalk.yellow('Creating a new project with gluestack-ui v4.1 alpha.'));
+  console.log(chalk.bold.magenta('\nWelcome to gluestack-ui v5 alpha!'));
+  console.log(chalk.yellow('Creating a new project with gluestack-ui v5 alpha.'));
 
   const supportedFrameworkArgs = [
     '--starter-kit-expo',
     '--starter-kit-next',
-    '--universal',
+    '--starter-kit-monorepo',
     '--starter-kit-expo-uniwind',
   ];
 
@@ -90,7 +90,7 @@ export async function main(args: string[]) {
   }
 
   // Universal Template coming soon...
-  if (selectedFramework === 'universal') {
+  if (selectedFramework === 'monorepo') {
     console.log(chalk.bgGreen('\nComing Soon...\n'));
     process.exit(0);
   }
@@ -165,11 +165,11 @@ export async function main(args: string[]) {
 
   let message = '';
   if (selectedFramework === 'expo') {
-    message = `an Expo app with ${selectedStyling === 'uniwind' ? 'UniWind' : 'NativeWind'}`;
+    message = `an Expo app with ${selectedStyling === 'uniwind' ? 'UniWind' : 'NativeWind v5 (Tailwind v4)'}`;
   } else if (selectedFramework === 'next') {
-    message = `a Next.js app with NativeWind`;
-  } else if (selectedFramework === 'universal') {
-    message = 'a universal app';
+    message = `a Next.js app with NativeWind v5 (Tailwind v4)`;
+  } else if (selectedFramework === 'monorepo') {
+    message = 'a monorepo app with NativeWind v4 (Tailwind v3)';
   }
   console.log(
     `⏳ Creating ${message}. Hang tight, this may take a while...\n`
@@ -177,7 +177,7 @@ export async function main(args: string[]) {
 
   try {
     await cloneProject(projName, templateName);
-    if (selectedFramework !== 'universal') {
+    if (selectedFramework !== 'monorepo') {
       await installDependencies(projName, selectedPackageManager);
     }
     await gitInit(projName);

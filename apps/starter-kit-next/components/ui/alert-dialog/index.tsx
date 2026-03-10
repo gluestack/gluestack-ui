@@ -6,6 +6,7 @@ import {
   useStyleContext,
   withStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
 import React from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 import Animated, {
@@ -31,6 +32,9 @@ const UIAccessibleAlertDialog = createAlertDialog({
   Footer: View,
   Backdrop: AnimatedPressable,
 });
+
+cssInterop(AnimatedPressable, { className: 'style' });
+cssInterop(AnimatedView, { className: 'style' });
 
 const alertDialogStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',

@@ -1,21 +1,35 @@
 'use client';
-import { createFab } from '@gluestack-ui/core/fab/creator';
-import { UIIcon } from '@gluestack-ui/core/icon/creator';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
 import React from 'react';
+import { createFab } from '@gluestack-ui/core/fab/creator';
 import { Pressable, Text } from 'react-native';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
 
 const SCOPE = 'FAB';
 const Root = withStyleContext(Pressable, SCOPE);
-
-const StyledUIIcon = styled(UIIcon, { className: "style" });
-
 const UIFab = createFab({
   Root: Root,
   Label: Text,
-  Icon: StyledUIIcon,
+  Icon: UIIcon,
+});
+
+cssInterop(UIIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
 });
 
 const fabStyle = tva({
@@ -198,4 +212,4 @@ Fab.displayName = 'Fab';
 FabLabel.displayName = 'FabLabel';
 FabIcon.displayName = 'FabIcon';
 
-export { Fab, FabIcon, FabLabel };
+export { Fab, FabLabel, FabIcon };

@@ -14,11 +14,11 @@ const starterKitConfigs: StarterKitConfig[] = [
     sourcePath: path.resolve('src/components/ui'),
     destPath: path.resolve('apps/starter-kit-expo/components/ui'),
   },
-  {
-    name: 'starter-kit-next',
-    sourcePath: path.resolve('src/components/ui'),
-    destPath: path.resolve('apps/starter-kit-next/components/ui'),
-  },
+  // {
+  //   name: 'starter-kit-next',
+  //   sourcePath: path.resolve('src/components/ui'),
+  //   destPath: path.resolve('apps/starter-kit-next/components/ui'),
+  // },
 ];
 
 /**

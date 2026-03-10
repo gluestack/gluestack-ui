@@ -31,7 +31,7 @@ const data = {
         options: [
           {
             value: 'nativewind',
-            label: 'NativeWind (Tailwind v3)',
+            label: 'NativeWind v5 (Tailwind v4)',
             hint: 'Stable, production-ready',
             templateName: 'starter-kit-expo',
           },
@@ -55,7 +55,14 @@ const data = {
         ],
       },
       universal: {
-        options: [],
+        options: [
+          {
+            value: 'nativewind-v4',
+            label: 'NativeWind v4 (Tailwind v3)',
+            hint: 'Stable, production-ready',
+            templateName: 'starter-kit-monorepo',
+          }
+        ],
       },
     },
   },

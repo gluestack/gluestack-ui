@@ -4,7 +4,7 @@ import React from 'react';
 import { createFormControl } from '@gluestack-ui/core/form-control/creator';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { cssInterop } from 'nativewind';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { UIIcon } from '@gluestack-ui/core/icon/creator';
 
@@ -158,13 +158,11 @@ const FormControlLabelAstrick = React.forwardRef<
   );
 });
 
-const StyledUIIcon = styled(UIIcon, { className: "style" });
-
 export const UIFormControl = createFormControl({
   Root: withStyleContext(View, SCOPE),
   Error: View,
   ErrorText: Text,
-  ErrorIcon: StyledUIIcon,
+  ErrorIcon: UIIcon,
   Label: View,
   LabelText: Text,
   LabelAstrick: FormControlLabelAstrick,
@@ -172,6 +170,18 @@ export const UIFormControl = createFormControl({
   HelperText: Text,
 });
 
+cssInterop(UIIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: true,
+      stroke: true,
+    },
+  },
+});
 
 type IFormControlProps = React.ComponentProps<typeof UIFormControl> &
   VariantProps<typeof formControlStyle>;

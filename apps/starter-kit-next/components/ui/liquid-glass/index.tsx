@@ -5,9 +5,9 @@ import {
   type GlassContainerProps,
   type GlassViewProps
 } from 'expo-glass-effect';
-import { styled } from 'nativewind';
+
+import { cssInterop } from 'nativewind';
 import React from 'react';
-import { Platform, View } from 'react-native';
 
 const glassViewStyle = tva({
   base: 'overflow-hidden',
@@ -25,21 +25,15 @@ type IGlassContainerProps = GlassContainerProps & {
   className?: string;
 };
 
-const StyledExpoGlassView = styled(ExpoGlassView, {
-  className: 'style',
-});
-
-const StyledExpoGlassContainer = styled(ExpoGlassContainer, {
-  className: 'style',
-});
 export const GlassView = React.forwardRef<
   React.ComponentRef<typeof ExpoGlassView>,
   IGlassViewProps
 >(function GlassView({ className, ...props }, ref) {
   return (
-    Platform.OS === 'web' ? <View ref={ref} {...props} className={glassViewStyle({ className: `overflow-hidden bg-background/40 backdrop-blur-md ${className ?? ""}`, })} /> : <StyledExpoGlassView
+    <ExpoGlassView
       ref={ref}
       {...props}
+      // @ts-ignore - className support via cssInterop
       className={glassViewStyle({ className })}
     />
   );
@@ -52,10 +46,10 @@ export const GlassContainer = React.forwardRef<
   IGlassContainerProps
 >(function GlassContainer({ className, ...props }, ref) {
   return (
-    Platform.OS === 'web' ? <View ref={ref} {...props} className={glassContainerStyle({ className: `overflow-hidden bg-background/0 backdrop-blur-md ${className ?? ""}`, })} /> : <StyledExpoGlassContainer
+    <ExpoGlassContainer
       ref={ref}
       {...props}
-      // @ts-ignore - className support via styled()
+      // @ts-ignore - className support via cssInterop
       className={glassContainerStyle({ className })}
     />
   );
@@ -70,3 +64,11 @@ export type {
   GlassStyle,
   GlassViewProps
 } from 'expo-glass-effect';
+
+cssInterop(ExpoGlassView, {
+  className: 'style',
+});
+
+cssInterop(ExpoGlassContainer, {
+  className: 'style',
+});

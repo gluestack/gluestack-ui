@@ -6,12 +6,7 @@ export function displayHelp() {
   console.log(`    --starter-kit-next        Next.js with app router (NativeWind)
     --starter-kit-expo        Expo app with Expo router (NativeWind - default)
     --starter-kit-expo-uniwind Expo app with Expo router (UniWind)
-    --universal               Universal app (Coming Soon)
-    `);
-  // styling options
-  console.log('  styling options (optional):');
-  console.log(`    --nativewind              Use NativeWind (Tailwind v3) - default
-    --uniwind                 Use UniWind (Tailwind v4) - only for Expo
+    --starter-kit-monorepo   Monorepo with NativeWind v4 (Tailwind v3)
     `);
   // help options
   console.log('  help options:');
@@ -23,6 +18,7 @@ export function displayHelp() {
   create-gluestack my-app --starter-kit-expo --uniwind
   create-gluestack my-app --starter-kit-expo-uniwind
   create-gluestack my-app --starter-kit-next
+  create-gluestack my-app --starter-kit-monorepo
     `);
   process.exit(0);
 }

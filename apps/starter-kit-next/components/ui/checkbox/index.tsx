@@ -1,12 +1,13 @@
 'use client';
-import { createCheckbox } from '@gluestack-ui/core/checkbox/creator';
-import { UIIcon } from '@gluestack-ui/core/icon/creator';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { tva, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
 import React from 'react';
+import { createCheckbox } from '@gluestack-ui/core/checkbox/creator';
+import { View, Pressable, Text, Platform } from 'react-native';
 import type { TextProps, ViewProps } from 'react-native';
-import { Platform, Pressable, Text, View } from 'react-native';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
+import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const IndicatorWrapper = React.forwardRef<
   React.ComponentRef<typeof View>,
@@ -22,20 +23,14 @@ const LabelWrapper = React.forwardRef<
   return <Text {...props} ref={ref} />;
 });
 
-const StyledUIIcon = styled(UIIcon, {
-  className: "style",
-});
-
 const IconWrapper = React.forwardRef<
   React.ComponentRef<typeof UIIcon>,
   React.ComponentPropsWithoutRef<typeof UIIcon>
 >(function IconWrapper({ ...props }, ref) {
-  return <StyledUIIcon {...props} ref={ref} />;
+  return <UIIcon {...props} ref={ref} />;
 });
 
 const SCOPE = 'CHECKBOX';
-
-
 const UICheckbox = createCheckbox({
   // @ts-expect-error : internal implementation for r-19/react-native-web
   Root:
@@ -48,6 +43,18 @@ const UICheckbox = createCheckbox({
   Indicator: IndicatorWrapper,
 });
 
+cssInterop(UIIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
+});
 
 const checkboxStyle = tva({
   base: 'group/checkbox flex-row items-center justify-start gap-2 web:cursor-pointer data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50',
@@ -165,6 +172,9 @@ CheckboxLabel.displayName = 'CheckboxLabel';
 CheckboxIcon.displayName = 'CheckboxIcon';
 
 export {
-  Checkbox, CheckboxGroup, CheckboxIcon, CheckboxIndicator,
-  CheckboxLabel
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
+  CheckboxIcon,
+  CheckboxGroup,
 };
