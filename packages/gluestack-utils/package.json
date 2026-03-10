@@ -1,10 +1,16 @@
 {
   "name": "@gluestack-ui/utils",
-  "version": "4.1.0-alpha.0",
+  "version": "5.0.1-alpha.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gluestack/gluestack-ui.git"
   },
+  "bugs": {
+    "url": "https://github.com/gluestack/gluestack-ui/issues"
+  },
+  "contributors": [
+    "Sanchit Kumar <sanchitverma03032003@gmail.com> (https://github.com/Sanchitv3)"
+  ],
   "description": "Utility functions and hooks for gluestack-ui",
   "license": "MIT",
   "main": "./lib/esm/index.js",
