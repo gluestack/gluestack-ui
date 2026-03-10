@@ -23,6 +23,7 @@ const initOptionsSchema = z.object({
   projectType: z.string(),
   yes: z.boolean().optional().default(false),
   nativewind: z.boolean().optional().default(false),
+  nativewindV5: z.boolean().optional().default(false),
   uniwind: z.boolean().optional().default(false),
 });
 
@@ -52,7 +53,8 @@ export const init = new Command()
     'Answer yes to all prompts (for non-interactive environments)',
     false
   )
-  .option('--nativewind', 'Use NativeWind (Tailwind v3) styling engine', false)
+  .option('--nativewind', 'Use NativeWind v4 (Tailwind v3) styling engine', false)
+  .option('--nativewind-v5', 'Use NativeWind v5 (Tailwind v4) styling engine', false)
   .option('--uniwind', 'Use UniWind (Tailwind v4) styling engine', false)
   .action(async (opts) => {
     try {
@@ -63,13 +65,16 @@ export const init = new Command()
       const options = initOptionsSchema.parse({ ...opts });
 
       // Validate conflicting flags
-      if (options.nativewind && options.uniwind) {
-        log.error('Cannot specify both --nativewind and --uniwind. Please choose one.');
+      const selectedFlags = [options.nativewind, options.nativewindV5, options.uniwind].filter(Boolean).length;
+      if (selectedFlags > 1) {
+        log.error('Cannot specify multiple styling engine flags. Please choose one.');
         process.exit(1);
       }
 
       // Set styling engine based on flags
-      if (options.uniwind) {
+      if (options.nativewindV5) {
+        setStylingEngine('nativewind-v5');
+      } else if (options.uniwind) {
         setStylingEngine('uniwind');
       } else if (options.nativewind) {
         setStylingEngine('nativewind');

@@ -2,6 +2,7 @@ const config = {
   repoUrl: 'https://github.com/gluestack/gluestack-ui.git',
   gluestackDir: '.gluestack/cache/gluestack-ui',
   componentsResourcePath: 'src/components/ui',
+  nativewindV5ComponentsPath: 'apps/starter-kit-expo/components/ui',
   uniwindComponentsPath: 'apps/starter-kit-expo-uniwind/components/ui',
   nativeWindRootPath: 'nativewind',
   expoProject: 'expo',
@@ -10,7 +11,7 @@ const config = {
   tailwindConfigRootPath: 'src/gluestack-ui/templates/tailwind.config.js',
   writableComponentsPath: 'components/ui',
   branchName: 'main-v4-alpha',  // branch name for the gluestack-ui repo to be used for the CLI
-  style: 'nativewind' as 'nativewind' | 'uniwind',
+  style: 'nativewind' as 'nativewind' | 'nativewind-v5' | 'uniwind',
   providerComponent: 'gluestack-ui-provider',
   gluestackUIPattern: '@/components/ui/',
   templatesDir: 'packages/gluestack-ui/templates',
@@ -19,7 +20,7 @@ const config = {
   ignoreComponents: ['utils'] as readonly string[],
 };
 
-export function setStylingEngine(engine: 'nativewind' | 'uniwind') {
+export function setStylingEngine(engine: 'nativewind' | 'nativewind-v5' | 'uniwind') {
   config.style = engine;
 }
 

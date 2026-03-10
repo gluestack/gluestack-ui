@@ -31,26 +31,35 @@ const rootPackageJsonPath = getPackageJsonPath();
 const projectRootPath: string = dirname(rootPackageJsonPath);
 
 // Detect styling engine from the current project
-const detectStylingEngine = (): 'nativewind' | 'uniwind' => {
+const detectStylingEngine = (): 'nativewind' | 'nativewind-v5' | 'uniwind' => {
   try {
     // Check for uniwind-types.d.ts in project root
     if (fs.existsSync(join(projectRootPath, 'uniwind-types.d.ts'))) {
       return 'uniwind';
     }
 
-    // Check for uniwind in package.json dependencies
     const packageJsonPath = join(projectRootPath, 'package.json');
     if (fs.existsSync(packageJsonPath)) {
       const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+
       if (packageJson.dependencies?.uniwind || packageJson.devDependencies?.uniwind) {
         return 'uniwind';
       }
+
+      // Check nativewind major version — v5+ means NativeWind v5
+      const nativewindVersion = packageJson.dependencies?.nativewind || packageJson.devDependencies?.nativewind;
+      if (nativewindVersion) {
+        const cleaned = nativewindVersion.replace(/^[\^~>=<]+/, '');
+        const majorMatch = cleaned.match(/^(\d+)/);
+        if (majorMatch && parseInt(majorMatch[1]) >= 5) {
+          return 'nativewind-v5';
+        }
+      }
     }
 
-    // Default to nativewind
+    // Default to nativewind v4
     return 'nativewind';
   } catch (error) {
-    // If detection fails, default to nativewind
     return 'nativewind';
   }
 };
@@ -58,9 +67,11 @@ const detectStylingEngine = (): 'nativewind' | 'uniwind' => {
 const getAllComponents = async (): Promise<string[]> => {
   // Detect styling engine and use appropriate component path
   const stylingEngine = detectStylingEngine();
-  const componentsPath = stylingEngine === 'uniwind'
-    ? config.uniwindComponentsPath
-    : config.componentsResourcePath;
+  const componentsPath = stylingEngine === 'nativewind-v5'
+    ? config.nativewindV5ComponentsPath
+    : stylingEngine === 'uniwind'
+      ? config.uniwindComponentsPath
+      : config.componentsResourcePath;
 
   const componentList = fs
     .readdirSync(

@@ -24,6 +24,237 @@ import { modifyLayoutFilesAutomatically } from './modify-layout';
 const _currDir = process.cwd();
 const _homeDir = os.homedir();
 
+// NativeWind v5 provider files — inlined to avoid dependency on stale cloned repo cache
+const NATIVEWIND_V5_PROVIDER_INDEX = `import React, { useEffect } from 'react';
+import { View, ViewProps } from 'react-native';
+import { OverlayProvider } from '@gluestack-ui/core/overlay/creator';
+import { ToastProvider } from '@gluestack-ui/core/toast/creator';
+import { Appearance, ColorSchemeName } from "react-native";
+
+export type ModeType = 'light' | 'dark' | 'system';
+
+export function GluestackUIProvider({
+  mode = 'system',
+  ...props
+}: {
+  mode?: ModeType;
+  children?: React.ReactNode;
+  style?: ViewProps['style'];
+}) {
+  useEffect(() => {
+    Appearance.setColorScheme(mode as ColorSchemeName);
+  }, [mode]);
+
+  return (
+    <View
+      style={[
+        { flex: 1, height: '100%', width: '100%' },
+        props.style,
+      ]}
+    >
+      <OverlayProvider>
+        <ToastProvider>{props.children}</ToastProvider>
+      </OverlayProvider>
+    </View>
+  );
+}
+`;
+
+const NATIVEWIND_V5_PROVIDER_INDEX_WEB = `'use client';
+import React, { useEffect, useLayoutEffect } from 'react';
+import { OverlayProvider } from '@gluestack-ui/core/overlay/creator';
+import { ToastProvider } from '@gluestack-ui/core/toast/creator';
+import { script } from './script';
+
+export type ModeType = 'light' | 'dark' | 'system';
+
+export const useSafeLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
+export function GluestackUIProvider({
+  mode = 'light',
+  ...props
+}: {
+  mode?: ModeType;
+  children?: React.ReactNode;
+}) {
+  const handleMediaQuery = React.useCallback((e: MediaQueryListEvent) => {
+    script(e.matches ? 'dark' : 'light');
+  }, []);
+
+  useSafeLayoutEffect(() => {
+    if (mode !== 'system') {
+      const documentElement = document.documentElement;
+      if (documentElement) {
+        documentElement.classList.add(mode);
+        documentElement.classList.remove(mode === 'light' ? 'dark' : 'light');
+        documentElement.style.colorScheme = mode;
+      }
+    }
+  }, [mode]);
+
+  useSafeLayoutEffect(() => {
+    if (mode !== 'system') return;
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+    media.addListener(handleMediaQuery);
+
+    return () => media.removeListener(handleMediaQuery);
+  }, [handleMediaQuery]);
+
+  return (
+    <>
+      <script
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: \`(\${script.toString()})('\${mode}')\`,
+        }}
+      />
+      <OverlayProvider>
+        <ToastProvider>{props.children}</ToastProvider>
+      </OverlayProvider>
+    </>
+  );
+}
+`;
+
+const NATIVEWIND_V5_PROVIDER_SCRIPT = `export const script = (mode: string) => {
+  const documentElement = document.documentElement;
+
+  function getSystemColorMode() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
+  }
+
+  try {
+    const isSystem = mode === 'system';
+    const theme = isSystem ? getSystemColorMode() : mode;
+    documentElement.classList.remove(theme === 'light' ? 'dark' : 'light');
+    documentElement.classList.add(theme);
+    documentElement.style.colorScheme = theme;
+  } catch (e) {
+    console.error(e);
+  }
+};
+`;
+
+// NativeWind v5 global.css — inlined to avoid dependency on cloned repo having the file
+const NATIVEWIND_V5_GLOBAL_CSS = `@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+@import "nativewind/theme";
+
+/* ─── Theme: design tokens (light / dark) ─────────────────────────
+   1. :root              — light defaults (all platforms)
+   2. @media dark :root  — dark defaults; nativewind maps this to
+                           Appearance.getColorScheme() on native.
+   3. :root.dark / :root.light — higher specificity for web class toggle. */
+@layer theme {
+  :root {
+    --primary: 23 23 23;
+    --primary-foreground: 250 250 250;
+    --card: 255 255 255;
+    --secondary: 245 245 245;
+    --secondary-foreground: 23 23 23;
+    --background: 255 255 255;
+    --popover: 255 255 255;
+    --popover-foreground: 10 10 10;
+    --muted: 245 245 245;
+    --muted-foreground: 115 115 115;
+    --destructive: 231 0 11;
+    --foreground: 10 10 10;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 212 212 212;
+    --accent: 247 247 247;
+    --accent-foreground: 52 52 52;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: 255 245 245;
+      --primary-foreground: 23 23 23;
+      --card: 23 23 23;
+      --secondary: 38 38 38;
+      --secondary-foreground: 250 250 250;
+      --background: 10 10 10;
+      --popover: 23 23 23;
+      --popover-foreground: 250 250 250;
+      --muted: 38 38 38;
+      --muted-foreground: 161 161 161;
+      --destructive: 255 100 103;
+      --foreground: 250 250 250;
+      --border: 46 46 46;
+      --input: 46 46 46;
+      --accent: 38 38 38;
+      --accent-foreground: 250 250 250;
+      --ring: 115 115 115;
+    }
+  }
+
+  :root.dark {
+    --primary: 255 245 245;
+    --primary-foreground: 23 23 23;
+    --card: 23 23 23;
+    --secondary: 38 38 38;
+    --secondary-foreground: 250 250 250;
+    --background: 10 10 10;
+    --popover: 23 23 23;
+    --popover-foreground: 250 250 250;
+    --muted: 38 38 38;
+    --muted-foreground: 161 161 161;
+    --destructive: 255 100 103;
+    --foreground: 250 250 250;
+    --border: 46 46 46;
+    --input: 46 46 46;
+    --accent: 38 38 38;
+    --accent-foreground: 250 250 250;
+    --ring: 115 115 115;
+  }
+
+  :root.light {
+    --primary: 23 23 23;
+    --primary-foreground: 250 250 250;
+    --card: 255 255 255;
+    --secondary: 245 245 245;
+    --secondary-foreground: 23 23 23;
+    --background: 255 255 255;
+    --popover: 255 255 255;
+    --popover-foreground: 10 10 10;
+    --muted: 245 245 245;
+    --muted-foreground: 115 115 115;
+    --destructive: 231 0 11;
+    --foreground: 10 10 10;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 212 212 212;
+    --accent: 247 247 247;
+    --accent-foreground: 52 52 52;
+  }
+}
+
+@theme inline {
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-card: rgb(var(--card));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-background: rgb(var(--background));
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-destructive: rgb(var(--destructive));
+  --color-foreground: rgb(var(--foreground));
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+}
+`;
+
 // Get templates from GitHub repository
 const getTemplatesPath = () => {
   return join(_homeDir, config.gluestackDir, config.templatesDir);
@@ -41,40 +272,39 @@ interface TSConfig {
 
 const stylingEngineOptions: Record<string, Array<{ value: string; label: string; hint: string }>> = {
   'nextjs': [
-    { value: 'nativewind', label: 'NativeWind (Tailwind v3)', hint: 'Stable, production-ready' },
-    // UniWind for Next.js coming soon
+    { value: 'nativewind', label: 'NativeWind v4 (Tailwind v3)', hint: 'Stable, production-ready' },
+    // NativeWind v5 / UniWind for Next.js coming soon
   ],
   'expo': [
-    { value: 'nativewind', label: 'NativeWind (Tailwind v3)', hint: 'Stable, production-ready' },
-    { value: 'uniwind', label: 'UniWind (Tailwind v4)', hint: 'Latest Tailwind with new features' },
+    { value: 'nativewind-v5', label: 'NativeWind v5 (Tailwind v4)', hint: 'Latest NativeWind — CSS-first, no tailwind.config.js' },
+    { value: 'uniwind', label: 'UniWind (Tailwind v4)', hint: 'CSS-first theming with Tailwind v4' },
   ],
   'react-native-cli': [
-    { value: 'nativewind', label: 'NativeWind (Tailwind v3)', hint: 'Stable, production-ready' },
-    // UniWind for RN CLI coming soon
+    { value: 'nativewind', label: 'NativeWind v4 (Tailwind v3)', hint: 'Stable, production-ready' },
+    // NativeWind v5 / UniWind for RN CLI coming soon
   ],
 };
 
-async function promptStylingEngine(projectType: string): Promise<'nativewind' | 'uniwind'> {
-  // Skip if already set via CLI flag (if style was changed from default) or if yesToAll
-  const defaultStyle: 'nativewind' | 'uniwind' = 'nativewind';
-  if (config.style !== defaultStyle || config.yesToAll) {
-    // If uniwind was selected but not supported for this project type, fall back
-    const options = stylingEngineOptions[projectType] || [];
-    if (config.style === 'uniwind' && options.length <= 1) {
+async function promptStylingEngine(projectType: string): Promise<'nativewind' | 'nativewind-v5' | 'uniwind'> {
+  const options = stylingEngineOptions[projectType] || [];
+  const defaultStyle = (options[0]?.value ?? 'nativewind') as 'nativewind' | 'nativewind-v5' | 'uniwind';
+
+  // Skip prompt if already set via CLI flag or yesToAll
+  if (config.style !== 'nativewind' || config.yesToAll) {
+    const validValues = options.map(o => o.value);
+    if (!validValues.includes(config.style)) {
       log.warning(
-        `\x1b[33mUniWind is not yet supported for ${projectType} projects. ` +
-        `Falling back to NativeWind.\x1b[0m`
+        `\x1b[33m"${config.style}" is not yet supported for ${projectType} projects. ` +
+        `Falling back to ${defaultStyle}.\x1b[0m`
       );
-      return 'nativewind';
+      return defaultStyle;
     }
     return config.style;
   }
 
-  const options = stylingEngineOptions[projectType] || [];
-
-  // If only one option, auto-select
+  // If only one option, auto-select without prompting
   if (options.length <= 1) {
-    return 'nativewind';
+    return defaultStyle;
   }
 
   // Multiple options: prompt user
@@ -88,7 +318,38 @@ async function promptStylingEngine(projectType: string): Promise<'nativewind' | 
     process.exit(0);
   }
 
-  return selection as 'nativewind' | 'uniwind';
+  return selection as 'nativewind' | 'nativewind-v5' | 'uniwind';
+}
+
+// Add version overrides/resolutions to package.json for all package managers
+// yarn uses "resolutions", npm uses "overrides", pnpm uses "pnpm.overrides", bun uses "overrides"
+async function addResolutions(resolutions: Record<string, string>): Promise<void> {
+  try {
+    const pkgJsonPath = join(_currDir, 'package.json');
+    const pkgJson = await fs.readJSON(pkgJsonPath);
+    const versionManager = findLockFileType();
+
+    if (versionManager === 'yarn') {
+      pkgJson.resolutions = { ...(pkgJson.resolutions ?? {}), ...resolutions };
+    } else if (versionManager === 'pnpm') {
+      pkgJson.pnpm = pkgJson.pnpm ?? {};
+      pkgJson.pnpm.overrides = { ...(pkgJson.pnpm.overrides ?? {}), ...resolutions };
+    } else {
+      // npm and bun both use "overrides"
+      pkgJson.overrides = { ...(pkgJson.overrides ?? {}), ...resolutions };
+    }
+
+    // Also set resolutions as a fallback for yarn workspaces / legacy support
+    if (versionManager !== 'yarn') {
+      pkgJson.resolutions = { ...(pkgJson.resolutions ?? {}), ...resolutions };
+    }
+
+    await fs.writeJSON(pkgJsonPath, pkgJson, { spaces: 2 });
+    const entries = Object.entries(resolutions).map(([k, v]) => `${k}@${v}`).join(', ');
+    log.info(`✅ Added version overrides to package.json: ${entries}`);
+  } catch (err) {
+    log.warning(`⚠ Could not update package.json overrides: ${(err as Error).message}`);
+  }
 }
 
 const InitializeGlueStack = async ({
@@ -132,6 +393,13 @@ const InitializeGlueStack = async ({
     if (!versionManager) {
       versionManager = await promptVersionManager();
     }
+
+    // NativeWind v5 requires a pinned lightningcss version — must be written before install
+    // so the package manager picks it up during dependency resolution
+    if (stylingEngine === 'nativewind-v5') {
+      await addResolutions({ lightningcss: '1.30.1' });
+    }
+
     await installDependencies(
       inputComponent,
       versionManager,
@@ -179,7 +447,9 @@ async function addProvider(isNextjs15: boolean | undefined) {
 
     // Determine source path based on styling engine
     let sourcePath: string;
-    if (config.style === 'uniwind') {
+    if (config.style === 'nativewind-v5') {
+      sourcePath = join(_homeDir, config.gluestackDir, config.nativewindV5ComponentsPath, config.providerComponent);
+    } else if (config.style === 'uniwind') {
       sourcePath = join(_homeDir, config.gluestackDir, config.uniwindComponentsPath, config.providerComponent);
     } else {
       sourcePath = join(_homeDir, config.gluestackDir, config.componentsResourcePath, config.providerComponent);
@@ -187,16 +457,29 @@ async function addProvider(isNextjs15: boolean | undefined) {
 
     await fs.ensureDir(targetPath);
 
-    // Copy only files from the root directory, excluding subdirectories and dependencies.json
-    const files = await fs.readdir(sourcePath, { withFileTypes: true });
+    // For NativeWind v5, write inlined provider files directly (cache may be stale)
+    if (config.style === 'nativewind-v5') {
+      await fs.writeFile(join(targetPath, 'index.tsx'), NATIVEWIND_V5_PROVIDER_INDEX, 'utf8');
+      await fs.writeFile(join(targetPath, 'index.web.tsx'), NATIVEWIND_V5_PROVIDER_INDEX_WEB, 'utf8');
+      await fs.writeFile(join(targetPath, 'script.ts'), NATIVEWIND_V5_PROVIDER_SCRIPT, 'utf8');
+    } else {
+      // Whitelist of files to copy per styling engine
+      const allowedFiles: Record<string, string[]> = {
+        'nativewind': ['index.tsx', 'index.web.tsx', 'script.ts'],
+        'uniwind':    ['index.tsx', 'index.web.tsx', 'index.uniwind.tsx', 'script.ts'],
+      };
+      const allowed = allowedFiles[config.style] ?? [];
 
-    for (const file of files) {
-      if (file.isFile() && file.name !== 'dependencies.json') {
-        await fs.copy(
-          join(sourcePath, file.name),
-          join(targetPath, file.name),
-          { overwrite: true }
-        );
+      const files = await fs.readdir(sourcePath, { withFileTypes: true });
+
+      for (const file of files) {
+        if (file.isFile() && allowed.includes(file.name)) {
+          await fs.copy(
+            join(sourcePath, file.name),
+            join(targetPath, file.name),
+            { overwrite: true }
+          );
+        }
       }
     }
 
@@ -234,7 +517,9 @@ async function addEssentialComponents(components: string[]) {
 
       // Determine source path based on styling engine
       let sourcePath: string;
-      if (config.style === 'uniwind') {
+      if (config.style === 'nativewind-v5') {
+        sourcePath = join(_homeDir, config.gluestackDir, config.nativewindV5ComponentsPath, component);
+      } else if (config.style === 'uniwind') {
         sourcePath = join(_homeDir, config.gluestackDir, config.uniwindComponentsPath, component);
       } else {
         sourcePath = join(_homeDir, config.gluestackDir, config.componentsResourcePath, component);
@@ -267,8 +552,8 @@ async function addEssentialComponents(components: string[]) {
 //update tailwind.config.js
 async function updateTailwindConfig(resolvedConfig: any, projectType: string) {
   try {
-    // Skip tailwind.config.js for UniWind (uses CSS-based config)
-    if (config.style === 'uniwind') {
+    // Skip tailwind.config.js for UniWind and NativeWind v5 (both use CSS-based config)
+    if (config.style === 'uniwind' || config.style === 'nativewind-v5') {
       return;
     }
     const templatesPath = getTemplatesPath();
@@ -356,13 +641,19 @@ async function updateGlobalCss(resolvedConfig: any): Promise<void> {
     const templatesPath = getTemplatesPath();
     const cssFileName = path.basename(globalCSSPath);
 
+    // For NativeWind v5, inline the CSS content directly (template not yet in cloned repo)
+    if (config.style === 'nativewind-v5') {
+      await fs.writeFile(globalCSSPath, NATIVEWIND_V5_GLOBAL_CSS, 'utf8');
+      log.info(`✅ Updated ${cssFileName} with NativeWind v5 (Tailwind v4) directives`);
+      return;
+    }
+
     // Determine template file based on styling engine
     let templateCSSFile: string;
     if (config.style === 'uniwind') {
-      // UniWind only supports Expo/RN CLI which use global.css
       templateCSSFile = 'global-uniwind.css';
     } else {
-      // NativeWind supports both globals.css (Next.js) and global.css (Expo/RN CLI)
+      // NativeWind v4 supports both globals.css (Next.js) and global.css (Expo/RN CLI)
       const isGlobalsCss = cssFileName === 'globals.css';
       templateCSSFile = isGlobalsCss ? 'globals.css' : 'global.css';
     }
@@ -372,7 +663,7 @@ async function updateGlobalCss(resolvedConfig: any): Promise<void> {
       'utf8'
     );
 
-    // For UniWind, replace entire content (can't merge v4 with v3)
+    // For UniWind, replace entire content
     if (config.style === 'uniwind') {
       await fs.writeFile(globalCSSPath, templateContent, 'utf8');
       log.info(`✅ Updated ${cssFileName} with UniWind (Tailwind v4) directives`);
@@ -524,21 +815,21 @@ async function commonInitialization(
           let templateFileName = path.parse(file).name;
           const templateFileExt = path.parse(file).ext;
 
-          // Strip .uniwind/.nativewind suffix for template matching
+          // Strip styling-engine suffix for template matching
           const isUniwindTemplate = templateFileName.endsWith('.uniwind');
           const isNativewindTemplate = templateFileName.endsWith('.nativewind');
+          const isNativewindV5Template = templateFileName.endsWith('.nativewindv5');
 
-          // Skip uniwind templates when using nativewind and vice versa
-          if (config.style === 'uniwind' && isNativewindTemplate) {
-            return;
-          }
-          if (config.style === 'nativewind' && isUniwindTemplate) {
-            return;
-          }
+          // Skip templates that don't match the current styling engine
+          if (config.style === 'nativewind-v5' && (isNativewindTemplate || isUniwindTemplate)) return;
+          if (config.style === 'uniwind' && (isNativewindTemplate || isNativewindV5Template)) return;
+          if (config.style === 'nativewind' && (isUniwindTemplate || isNativewindV5Template)) return;
 
           // Remove styling-specific suffix for matching
           if (isUniwindTemplate) {
             templateFileName = templateFileName.replace('.uniwind', '');
+          } else if (isNativewindV5Template) {
+            templateFileName = templateFileName.replace('.nativewindv5', '');
           } else if (isNativewindTemplate) {
             templateFileName = templateFileName.replace('.nativewind', '');
           }
@@ -612,8 +903,22 @@ async function commonInitialization(
       );
     }
 
-    // Add styling-specific type definitions
-    if (config.style === 'uniwind') {
+    // Add styling-specific type definitions and extra config files
+    if (config.style === 'nativewind-v5') {
+      const nativewindEnvPath = join(templatesPath, 'common', 'nativewind-env.d.ts');
+      await fs.copy(nativewindEnvPath, join(_currDir, 'nativewind-env.d.ts'));
+      // Inline content for files not yet in the cloned repo
+      await fs.writeFile(
+        join(_currDir, 'react-native-css-env.d.ts'),
+        `/// <reference types="react-native-css/types" />\n\n// NOTE: This file should not be edited and should be committed with your source code. It is generated by react-native-css.\n`,
+        'utf8'
+      );
+      await fs.writeFile(
+        join(_currDir, 'postcss.config.mjs'),
+        `export default {\n  plugins: {\n    '@tailwindcss/postcss': {},\n  },\n};\n`,
+        'utf8'
+      );
+    } else if (config.style === 'uniwind') {
       const uniwindTypesPath = join(templatesPath, 'common', 'uniwind-types.d.ts');
       await fs.copy(uniwindTypesPath, join(_currDir, 'uniwind-types.d.ts'));
     } else {
@@ -683,6 +988,8 @@ const filesToOverride = (projectType: string) => {
       files = ['babel.config.js', 'metro.config.js', 'global.css', 'tsconfig.json'];
       if (config.style === 'nativewind') {
         files.push('tailwind.config.*');
+      } else if (config.style === 'nativewind-v5') {
+        files.push('postcss.config.*');
       }
       break;
     case config.reactNativeCLIProject:

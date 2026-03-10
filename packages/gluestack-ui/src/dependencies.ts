@@ -82,6 +82,26 @@ const projectBasedDependencies: Dependencies = {
       'prettier-plugin-tailwindcss': '^0.5.11',
     },
   },
+  'expo-nativewind-v5': {
+    dependencies: {
+      'nativewind': '^5.0.0-preview.2',
+      'react-native-safe-area-context': '^5.6.1',
+      'react-aria': '^3.45.0',
+      '@expo/html-elements': '^0.12.5',
+      'tailwind-variants': '^0.1.20',
+      '@legendapp/motion': '^2.4.0',
+      'react-native-svg': '^15.15.3',
+      'react-stately': '^3.39.0',
+      '@gluestack-ui/core': '^4.1.0-alpha.3',
+      '@gluestack-ui/utils': '^4.1.0-alpha.0',
+      'react-native-css': '^3.0.4',
+    },
+    devDependencies: {
+      'babel-plugin-module-resolver': '^5.0.0',
+      'tailwindcss': '^4.2.0',
+      '@tailwindcss/postcss': '^4.2.0',
+    },
+  },
   'expo-uniwind': {
     dependencies: {
       'uniwind': '^1.3.0',
@@ -148,7 +168,9 @@ async function getProjectBasedDependencies(
 ) {
   try {
     if (projectType && projectType !== 'library') {
-      const dependencyKey = style === 'uniwind' ? `${projectType}-uniwind` : projectType;
+      const dependencyKey = style === 'uniwind' ? `${projectType}-uniwind`
+        : style === 'nativewind-v5' ? `${projectType}-nativewind-v5`
+        : projectType;
 
       if (projectBasedDependencies[dependencyKey]) {
         return {
@@ -171,7 +193,9 @@ const getComponentDependencies = async (
   try {
     // Determine path based on styling engine
     let componentsPath: string;
-    if (config.style === 'uniwind') {
+    if (config.style === 'nativewind-v5') {
+      componentsPath = config.nativewindV5ComponentsPath;
+    } else if (config.style === 'uniwind') {
       componentsPath = config.uniwindComponentsPath;
     } else {
       componentsPath = config.componentsResourcePath;
