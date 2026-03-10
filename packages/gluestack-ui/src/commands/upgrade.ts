@@ -23,7 +23,7 @@ function getMajorVersion(versionStr: string): number | null {
 }
 
 // Detect current gluestack-ui version from package.json
-async function detectCurrentVersion(): Promise<'v2' | 'v3' | 'v4' | 'unknown'> {
+async function detectCurrentVersion(): Promise<'v2' | 'v3' | 'v4-nativewind' | 'v4-uniwind' | 'unknown'> {
   const packageJsonPath = path.join(process.cwd(), 'package.json');
   if (!fs.existsSync(packageJsonPath)) return 'unknown';
 
@@ -40,7 +40,10 @@ async function detectCurrentVersion(): Promise<'v2' | 'v3' | 'v4' | 'unknown'> {
   if (coreVersion) {
     const major = getMajorVersion(coreVersion);
     if (major !== null) {
-      if (major >= 4) return 'v4';
+      if (major >= 4) {
+        // Distinguish between NativeWind-based v4 and UniWind-based v4
+        return deps['uniwind'] ? 'v4-uniwind' : 'v4-nativewind';
+      }
       if (major === 3) return 'v3';
     }
   }
@@ -774,6 +777,358 @@ async function upgradeV3ToV4(packageManager: string): Promise<void> {
   log.success('✓ v3 to v4 upgrade complete!');
 }
 
+// UniWind global.css content (Tailwind v4 + :where() selectors)
+const UNIWIND_GLOBAL_CSS = `@import 'tailwindcss';
+@import 'uniwind';
+/* ─── UniWind theme variants ─────────────────────────────────────
+   Switched at runtime via Uniwind.setTheme('light' | 'dark' | 'system').
+   Uses :where(.dark, .dark *) selectors so that:
+     • Web:    selector matches html.dark directly, no nesting issues
+     • Native: ProcessorBuilder recognises :where(.dark) → theme-scoped vars  */
+@layer theme {
+  :where(.light, .light *) {
+    --primary: 23 23 23;
+    --primary-foreground: 250 250 250;
+    --card: 255 255 255;
+    --secondary: 245 245 245;
+    --secondary-foreground: 23 23 23;
+    --background: 255 255 255;
+    --popover: 255 255 255;
+    --popover-foreground: 10 10 10;
+    --muted: 245 245 245;
+    --muted-foreground: 115 115 115;
+    --destructive: 231 0 11;
+    --foreground: 10 10 10;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 212 212 212;
+    --accent: 247 247 247;
+    --accent-foreground: 52 52 52;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not(:where(.light, .light *, .dark, .dark *)) {
+      --primary: 23 23 23;
+      --primary-foreground: 250 250 250;
+      --card: 255 255 255;
+      --secondary: 245 245 245;
+      --secondary-foreground: 23 23 23;
+      --background: 255 255 255;
+      --popover: 255 255 255;
+      --popover-foreground: 10 10 10;
+      --muted: 245 245 245;
+      --muted-foreground: 115 115 115;
+      --destructive: 231 0 11;
+      --foreground: 10 10 10;
+      --border: 229 229 229;
+      --input: 229 229 229;
+      --ring: 212 212 212;
+      --accent: 247 247 247;
+      --accent-foreground: 52 52 52;
+    }
+  }
+
+  :where(.dark, .dark *) {
+    --primary: 255 245 245;
+    --primary-foreground: 23 23 23;
+    --card: 23 23 23;
+    --secondary: 38 38 38;
+    --secondary-foreground: 250 250 250;
+    --background: 10 10 10;
+    --popover: 23 23 23;
+    --popover-foreground: 250 250 250;
+    --muted: 38 38 38;
+    --muted-foreground: 161 161 161;
+    --destructive: 255 100 103;
+    --foreground: 250 250 250;
+    --border: 46 46 46;
+    --input: 46 46 46;
+    --accent: 38 38 38;
+    --accent-foreground: 250 250 250;
+    --ring: 115 115 115;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(:where(.light, .light *, .dark, .dark *)) {
+      --primary: 255 245 245;
+      --primary-foreground: 23 23 23;
+      --card: 23 23 23;
+      --secondary: 38 38 38;
+      --secondary-foreground: 250 250 250;
+      --background: 10 10 10;
+      --popover: 23 23 23;
+      --popover-foreground: 250 250 250;
+      --muted: 38 38 38;
+      --muted-foreground: 161 161 161;
+      --destructive: 255 100 103;
+      --foreground: 250 250 250;
+      --border: 46 46 46;
+      --input: 46 46 46;
+      --accent: 38 38 38;
+      --accent-foreground: 250 250 250;
+      --ring: 115 115 115;
+    }
+  }
+}
+
+/* ─── Tailwind v4 color mappings ─────────────────────────────────
+   Maps the theme CSS variables above to Tailwind color utilities.
+   bg-primary → rgb(var(--primary)), text-foreground → rgb(var(--foreground)), etc. */
+@theme inline {
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-card: rgb(var(--card));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-background: rgb(var(--background));
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-destructive: rgb(var(--destructive));
+  --color-foreground: rgb(var(--foreground));
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+}
+`;
+
+// UniWind types declaration file content
+const UNIWIND_TYPES_DTS = `// NOTE: This file is generated by uniwind and it should not be edited manually.
+/// <reference types="uniwind/types" />
+
+declare module 'uniwind' {
+    export interface UniwindConfig {
+        themes: readonly ['light', 'dark']
+    }
+}
+
+export {}
+`;
+
+// Install/remove packages for NativeWind → UniWind migration
+function migratePackagesToUniwind(packageManager: string): void {
+  const s = spinner();
+  s.start('Migrating packages from NativeWind to UniWind...');
+
+  const cmds: { [key: string]: string } = {
+    npm: 'npm install',
+    yarn: 'yarn add',
+    pnpm: 'pnpm add',
+    bun: 'bun add',
+  };
+  const removeCmds: { [key: string]: string } = {
+    npm: 'npm uninstall',
+    yarn: 'yarn remove',
+    pnpm: 'pnpm remove',
+    bun: 'bun remove',
+  };
+
+  const installCmd = cmds[packageManager];
+  const removeCmd = removeCmds[packageManager];
+  if (!installCmd || !removeCmd) throw new Error('Unsupported package manager');
+
+  // Remove NativeWind packages
+  const packagesToRemove = ['nativewind'];
+  const removeResult = spawnSync(removeCmd, packagesToRemove, {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+    shell: true,
+  });
+  if (removeResult.error || removeResult.status !== 0) {
+    s.stop('Warning: Failed to remove nativewind package.');
+    log.warning('⚠ Could not remove nativewind automatically. Remove it manually.');
+  }
+
+  // Install UniWind packages
+  const packagesToInstall = [
+    'uniwind@^1.3.0',
+    '@gluestack-ui/core@^4.1.0-alpha.0',
+    '@gluestack-ui/utils@^4.1.0-alpha.0',
+  ];
+  const installResult = spawnSync(installCmd, packagesToInstall, {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+    shell: true,
+  });
+  if (installResult.error || installResult.status !== 0) {
+    s.stop('Failed to install UniWind packages.');
+    throw new Error('Failed to install UniWind packages');
+  }
+
+  // Upgrade tailwindcss to v4 (dev dependency)
+  const devCmds: { [key: string]: string } = {
+    npm: 'npm install --save-dev',
+    yarn: 'yarn add --dev',
+    pnpm: 'pnpm add -D',
+    bun: 'bun add --dev',
+  };
+  const devCmd = devCmds[packageManager];
+  const devResult = spawnSync(devCmd, ['tailwindcss@^4.1.18'], {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+    shell: true,
+  });
+  if (devResult.error || devResult.status !== 0) {
+    log.warning('⚠ Could not upgrade tailwindcss to v4. Run manually: ' + devCmd + ' tailwindcss@^4.1.18');
+  }
+
+  s.stop('Packages migrated to UniWind.');
+}
+
+// Update metro.config.js from NativeWind to UniWind
+async function updateMetroConfigForUniwind(): Promise<void> {
+  const s = spinner();
+  s.start('Updating metro.config.js for UniWind...');
+
+  const metroConfigPath = path.join(process.cwd(), 'metro.config.js');
+  if (!fs.existsSync(metroConfigPath)) {
+    s.stop('No metro.config.js found. Skipping.');
+    return;
+  }
+
+  try {
+    let content = await fs.readFile(metroConfigPath, 'utf8');
+
+    // Replace nativewind/metro import with uniwind/metro
+    content = content.replace(
+      /require\(['"]nativewind\/metro['"]\)/g,
+      "require('uniwind/metro')"
+    );
+
+    // Replace withNativeWind with withUniwindConfig
+    content = content.replace(/\bwithNativeWind\b/g, 'withUniwindConfig');
+
+    // Replace NativeWind-specific options with UniWind options
+    // Matches: withUniwindConfig(config, { input: './global.css', inlineRem: 16 })
+    // or any variation with those keys
+    content = content.replace(
+      /withUniwindConfig\s*\(\s*(\w+)\s*,\s*\{[^}]*\}\s*\)/g,
+      (match, configVar) => {
+        return `withUniwindConfig(${configVar}, {\n  cssEntryFile: './global.css',\n  dtsFile: './uniwind-types.d.ts',\n  extraThemes: ['dark'],\n})`;
+      }
+    );
+
+    await fs.writeFile(metroConfigPath, content, 'utf8');
+    log.info('✓ Updated metro.config.js');
+    s.stop('metro.config.js updated.');
+  } catch (error) {
+    s.stop('Failed to update metro.config.js.');
+    log.warning('⚠ Please manually update metro.config.js:');
+    log.warning("  Replace: require('nativewind/metro') → require('uniwind/metro')");
+    log.warning("  Replace: withNativeWind → withUniwindConfig");
+    log.warning("  Update options: { cssEntryFile: './global.css', dtsFile: './uniwind-types.d.ts', extraThemes: ['dark'] }");
+  }
+}
+
+// Replace global.css content with UniWind CSS
+async function replaceGlobalCssForUniwind(): Promise<void> {
+  const s = spinner();
+  s.start('Updating global.css for UniWind (Tailwind v4)...');
+
+  const cssPath = path.join(process.cwd(), 'global.css');
+  if (!fs.existsSync(cssPath)) {
+    // Try globals.css (Next.js)
+    const globalsCssPath = path.join(process.cwd(), 'globals.css');
+    if (fs.existsSync(globalsCssPath)) {
+      await fs.writeFile(globalsCssPath, UNIWIND_GLOBAL_CSS, 'utf8');
+      log.info('✓ Updated globals.css with UniWind (Tailwind v4) theme');
+      s.stop('CSS updated.');
+      return;
+    }
+    // Create global.css if neither exists
+    await fs.writeFile(cssPath, UNIWIND_GLOBAL_CSS, 'utf8');
+    log.info('✓ Created global.css with UniWind (Tailwind v4) theme');
+  } else {
+    await fs.writeFile(cssPath, UNIWIND_GLOBAL_CSS, 'utf8');
+    log.info('✓ Replaced global.css with UniWind (Tailwind v4) theme');
+  }
+
+  s.stop('CSS updated.');
+}
+
+// Remove tailwind.config.js (not needed in Tailwind v4 / UniWind)
+async function removeTailwindConfig(): Promise<void> {
+  const tailwindConfigPaths = [
+    path.join(process.cwd(), 'tailwind.config.js'),
+    path.join(process.cwd(), 'tailwind.config.ts'),
+  ];
+
+  for (const configPath of tailwindConfigPaths) {
+    if (fs.existsSync(configPath)) {
+      const fileName = path.basename(configPath);
+      await fs.remove(configPath);
+      log.info(`✓ Removed ${fileName} (color tokens are now in global.css)`);
+    }
+  }
+}
+
+// Replace nativewind-env.d.ts with uniwind-types.d.ts
+async function migrateTypeDefinitions(): Promise<void> {
+  const s = spinner();
+  s.start('Migrating type definitions...');
+
+  const nativewindEnvPath = path.join(process.cwd(), 'nativewind-env.d.ts');
+  if (fs.existsSync(nativewindEnvPath)) {
+    await fs.remove(nativewindEnvPath);
+    log.info('✓ Removed nativewind-env.d.ts');
+  }
+
+  const uniwindTypesPath = path.join(process.cwd(), 'uniwind-types.d.ts');
+  await fs.writeFile(uniwindTypesPath, UNIWIND_TYPES_DTS, 'utf8');
+  log.info('✓ Created uniwind-types.d.ts');
+
+  s.stop('Type definitions updated.');
+}
+
+// Upgrade from v4-NativeWind to UniWind
+async function upgradeV4NativewindToUniwind(packageManager: string): Promise<void> {
+  const projectType = await detectProjectType();
+  log.info(`Detected project type: ${projectType}`);
+
+  if (projectType !== 'expo') {
+    log.warning('⚠ UniWind currently only supports Expo projects.');
+    log.info('  Support for Next.js and React Native CLI is coming soon.');
+    const proceed = await confirm({
+      message: 'Continue anyway? (configuration files will still be updated)',
+    });
+    if (isCancel(proceed) || !proceed) {
+      cancel('Upgrade cancelled.');
+      process.exit(0);
+    }
+  }
+
+  // Step 1: Migrate packages (remove nativewind, install uniwind)
+  migratePackagesToUniwind(packageManager);
+
+  // Step 2: Update metro.config.js
+  await updateMetroConfigForUniwind();
+
+  // Step 3: Replace global.css with UniWind CSS (Tailwind v4 + :where() selectors)
+  await replaceGlobalCssForUniwind();
+
+  // Step 4: Remove tailwind.config.js (Tailwind v4 is CSS-first, no JS config needed)
+  await removeTailwindConfig();
+
+  // Step 5: Migrate type definitions
+  await migrateTypeDefinitions();
+
+  // Step 6: Add worklets plugin to babel.config.js if not already present
+  await updateBabelConfig();
+
+  // Step 7: Inform about GluestackUIProvider changes
+  log.info('\n📋 Manual step required — update GluestackUIProvider:');
+  log.info('  Run: npx gluestack-ui add gluestack-ui-provider');
+  log.info('  Or update components/ui/gluestack-ui-provider/ manually:');
+  log.info('  • Native: use Uniwind.setTheme() instead of Appearance.setColorScheme()');
+  log.info('  • Web:    add script.ts for DOM class management and call Uniwind.setTheme()');
+  log.info('  • Docs:   https://gluestack.io/ui/docs/home/getting-started/installation');
+
+  log.success('✓ NativeWind → UniWind migration complete!');
+}
+
 export const upgrade = new Command()
   .name('upgrade')
   .description('Upgrade gluestack-ui to the latest version')
@@ -790,13 +1145,17 @@ export const upgrade = new Command()
         process.exit(1);
       }
 
-      if (currentVersion === 'v4') {
-        log.success('✓ Already on v4! No upgrade needed.');
+      if (currentVersion === 'v4-uniwind') {
+        log.success('✓ Already on the latest version (UniWind / Tailwind v4)! No upgrade needed.');
         return;
       }
 
-      log.info(`Current version: ${currentVersion}`);
-      log.info(`Target version: v4\n`);
+      const versionLabels: Record<string, string> = {
+        'v2': 'v2',
+        'v3': 'v3',
+        'v4-nativewind': 'v4 (NativeWind / Tailwind v3)',
+      };
+      log.info(`Current version: ${versionLabels[currentVersion] ?? currentVersion}`);
 
       // Step 2: Git safety check
       if (await hasUncommittedChanges()) {
@@ -819,29 +1178,78 @@ export const upgrade = new Command()
         await upgradeV2ToV3(packageManager);
         log.success('✓ Successfully upgraded to v3!\n');
 
-        // Ask if user wants to continue to v4
+        // Ask if user wants to continue to v4-nativewind
         const continueToV4 = await confirm({
-          message: 'Continue upgrading to v4?',
+          message: 'Continue upgrading to v4 (NativeWind)?',
         });
 
         if (isCancel(continueToV4) || !continueToV4) {
           log.success('✓ Upgrade complete! You are now on v3.');
-          log.info('\nRun "npx gluestack-ui upgrade" again to upgrade to v4.');
+          log.info('\nRun "npx gluestack-ui upgrade" again to continue upgrading.');
           return;
         }
 
-        log.info('\n📦 Continuing to v4...\n');
+        log.info('\n📦 Continuing to v4 (NativeWind)...\n');
+        await upgradeV3ToV4(packageManager);
+        log.success('\n✅ \x1b[32mUpgrade to v4 (NativeWind) complete!\x1b[0m\n');
+
+        // Ask if user wants to continue to UniWind
+        const continueToUniwind = await confirm({
+          message: 'Continue upgrading to UniWind (Tailwind v4 / NativeWind v5)?',
+        });
+        if (isCancel(continueToUniwind) || !continueToUniwind) {
+          log.success('✓ You are now on v4 (NativeWind).');
+          log.info('\nRun "npx gluestack-ui upgrade" again to migrate to UniWind.');
+          return;
+        }
+
+        log.info('\n📦 Migrating to UniWind...\n');
+        await upgradeV4NativewindToUniwind(packageManager);
+      } else if (currentVersion === 'v3') {
+        log.info(`Target version: v4 (NativeWind) → UniWind\n`);
+
+        log.info('📦 Upgrading from v3 to v4 (NativeWind)...\n');
+        await upgradeV3ToV4(packageManager);
+        log.success('\n✅ \x1b[32mUpgrade to v4 (NativeWind) complete!\x1b[0m\n');
+
+        // Ask if user wants to continue to UniWind
+        const continueToUniwind = await confirm({
+          message: 'Continue upgrading to UniWind (Tailwind v4 / NativeWind v5)?',
+        });
+        if (isCancel(continueToUniwind) || !continueToUniwind) {
+          log.success('✓ You are now on v4 (NativeWind).');
+          log.info('\nRun "npx gluestack-ui upgrade" again to migrate to UniWind.');
+          return;
+        }
+
+        log.info('\n📦 Migrating to UniWind...\n');
+        await upgradeV4NativewindToUniwind(packageManager);
+      } else if (currentVersion === 'v4-nativewind') {
+        log.info(`Target version: UniWind (Tailwind v4 / NativeWind v5)\n`);
+        log.info('This migration replaces NativeWind (Tailwind v3) with UniWind (Tailwind v4).');
+        log.info('Key changes:');
+        log.info('  • tailwind.config.js → color tokens moved to global.css @layer theme');
+        log.info('  • nativewind → uniwind package');
+        log.info('  • metro.config.js: withNativeWind → withUniwindConfig');
+        log.info('  • GluestackUIProvider: Appearance.setColorScheme → Uniwind.setTheme\n');
+
+        const proceedToUniwind = await confirm({
+          message: 'Upgrade to UniWind (Tailwind v4)?',
+        });
+        if (isCancel(proceedToUniwind) || !proceedToUniwind) {
+          cancel('Upgrade cancelled.');
+          process.exit(0);
+        }
+
+        await upgradeV4NativewindToUniwind(packageManager);
       }
 
-      // Upgrade to v4 (from v3 or after v2→v3)
-      log.info('📦 Upgrading to v4...\n');
-      await upgradeV3ToV4(packageManager);
-
-      log.success('\n✅ \x1b[32mUpgrade to v4 complete!\x1b[0m\n');
+      log.success('\n✅ \x1b[32mUpgrade complete!\x1b[0m\n');
       log.info('Next steps:');
       log.info('1. Review the changes made to your project');
-      log.info('2. Test your application thoroughly');
-      log.info('3. Check the v4 migration guide for any manual steps');
+      log.info('2. Update GluestackUIProvider: npx gluestack-ui add gluestack-ui-provider');
+      log.info('3. Test your application thoroughly');
+      log.info('4. Check the migration guide for any additional manual steps');
 
     } catch (err: any) {
       log.error(`\n❌ Upgrade failed: ${(err && err.message) || String(err)}`);

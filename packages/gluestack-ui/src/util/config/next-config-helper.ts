@@ -165,7 +165,7 @@ async function generateConfigNextApp(
     resolvedConfig.config.tsConfig,
     resolvedConfig.tailwind.css,
     resolvedConfig.config.postCssConfig,
-    pathResolver('nativewind-env.d.ts'),
+    pathResolver(config.style === 'uniwind' ? 'uniwind-types.d.ts' : 'nativewind-env.d.ts'),
   ];
   const filesEnsured = await ensureFilesPromise(filesTobeEnsured);
   if (permission && filesEnsured) {
