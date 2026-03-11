@@ -1,7 +1,7 @@
 import os from 'os';
 import fs, { stat } from 'fs-extra';
 import simpleGit from 'simple-git';
-import { config } from '../config';
+import { config, getActiveBranchName } from '../config';
 import { execSync, spawnSync } from 'child_process';
 import finder from 'find-package-json';
 import { join, dirname, extname, relative, basename } from 'path';
@@ -131,18 +131,36 @@ async function checkComponentDependencies(
 
 const cloneRepositoryAtRoot = async (rootPath: string) => {
   try {
+    const activeBranch = getActiveBranchName();
     const clonedRepoExists = await checkIfFolderExists(rootPath);
     if (clonedRepoExists) {
-      const git = simpleGit(rootPath);
-      const currBranch = await git.branchLocal();
-      if (currBranch.current !== config.branchName) {
+      // Check if the cached clone is valid before trying to read its branch.
+      // A corrupted or incomplete clone (e.g. from a previous failed attempt)
+      // will throw "failed to resolve HEAD as a valid ref" on branchLocal().
+      let currBranchName: string | null = null;
+      try {
+        const git = simpleGit(rootPath);
+        const currBranch = await git.branchLocal();
+        currBranchName = currBranch.current;
+      } catch {
+        // Cached repo is corrupt — wipe it and do a fresh clone below.
+        log.warning('⚠ Cached repository is in a bad state. Re-cloning...');
         fs.removeSync(rootPath);
-        await cloneComponentRepo(rootPath, config.repoUrl);
       }
 
-      if (currBranch.current === config.branchName) {
+      if (currBranchName !== null && currBranchName !== activeBranch) {
+        // Wrong branch cached — wipe and reclone on the correct branch.
+        fs.removeSync(rootPath);
+        await cloneComponentRepo(rootPath, config.repoUrl);
+      } else if (currBranchName === activeBranch) {
         log.step('Repository already cloned.');
         await pullComponentRepo(join(homeDir, config.gluestackDir));
+        return;
+      }
+
+      // currBranchName is null (was corrupt, now deleted) — fall through to clone.
+      if (!fs.existsSync(rootPath)) {
+        await cloneComponentRepo(rootPath, config.repoUrl);
       }
     } else {
       await cloneComponentRepo(rootPath, config.repoUrl);
@@ -159,17 +177,42 @@ const cloneComponentRepo = async (
 ): Promise<void> => {
   const git = simpleGit();
   const s = spinner();
-  s.start('⏳ Cloning repository...');
+  const branch = getActiveBranchName();
+  s.start(`⏳ Cloning repository (branch: ${branch})...`);
   try {
     await git.clone(gitURL, targetPath, [
       '--depth=1',
       '--branch',
-      config.branchName,
+      branch,
     ]);
     s.stop('\x1b[32m' + 'Cloning successful.' + '\x1b[0m');
   } catch (err) {
+    // If the target branch doesn't exist on remote, fall back to the v4 branch
+    // so the add command doesn't break entirely.
+    const errMsg = (err as Error).message ?? '';
+    const branchNotFound =
+      errMsg.includes('failed to resolve HEAD') ||
+      errMsg.includes('Remote branch') ||
+      errMsg.includes('not found in upstream');
+
+    if (branchNotFound && branch !== config.branchName) {
+      s.stop(`\x1b[33m⚠ Branch "${branch}" not found on remote. Falling back to "${config.branchName}".\x1b[0m`);
+      log.warning(`Branch "${branch}" is not yet available. Components will be copied from "${config.branchName}" as a fallback.`);
+      try {
+        await git.clone(gitURL, targetPath, [
+          '--depth=1',
+          '--branch',
+          config.branchName,
+        ]);
+        log.info('\x1b[32mCloning successful (fallback branch).\x1b[0m');
+        return;
+      } catch (fallbackErr) {
+        throw new Error((fallbackErr as Error).message);
+      }
+    }
+
     s.stop('\x1b[31m' + 'Cloning failed' + '\x1b[0m');
-    throw new Error((err as Error).message);
+    throw new Error(errMsg);
   }
 };
 
@@ -200,7 +243,7 @@ const pullComponentRepo = async (targetpath: string): Promise<void> => {
 const tryGitPull = async (targetPath: string): Promise<void> => {
   const git = simpleGit(targetPath);
   if (fs.existsSync(targetPath)) {
-    await git.pull('origin', config.branchName);
+    await git.pull('origin', getActiveBranchName());
   } else log.error('\x1b[31m' + 'Target path does not exist' + '\x1b[0m');
 };
 

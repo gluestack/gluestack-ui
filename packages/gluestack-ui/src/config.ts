@@ -10,7 +10,8 @@ const config = {
   reactNativeCLIProject: 'react-native-cli',
   tailwindConfigRootPath: 'src/gluestack-ui/templates/tailwind.config.js',
   writableComponentsPath: 'components/ui',
-  branchName: 'main-v4-alpha',  // branch name for the gluestack-ui repo to be used for the CLI
+  branchName: 'main-v4-alpha',       // NativeWind v4 branch
+  v5BranchName: 'feat/nw-v5-alpha',  // NativeWind v5 / UniWind branch
   style: 'nativewind' as 'nativewind' | 'nativewind-v5' | 'uniwind',
   providerComponent: 'gluestack-ui-provider',
   gluestackUIPattern: '@/components/ui/',
@@ -22,6 +23,13 @@ const config = {
 
 export function setStylingEngine(engine: 'nativewind' | 'nativewind-v5' | 'uniwind') {
   config.style = engine;
+}
+
+// Returns the correct repo branch for the active styling engine.
+export function getActiveBranchName(): string {
+  return config.style === 'nativewind-v5' || config.style === 'uniwind'
+    ? config.v5BranchName
+    : config.branchName;
 }
 
 export { config };

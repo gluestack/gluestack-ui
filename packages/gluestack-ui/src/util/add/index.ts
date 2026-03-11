@@ -165,7 +165,9 @@ const writeComponent = async (component: string, targetPath: string) => {
     const stylingEngine = detectStylingEngine();
     const componentsPath = stylingEngine === 'uniwind'
       ? config.uniwindComponentsPath
-      : config.componentsResourcePath;
+      : stylingEngine === 'nativewind-v5'
+        ? config.nativewindV5ComponentsPath
+        : config.componentsResourcePath;
 
     const sourcePath = join(
       _homeDir,

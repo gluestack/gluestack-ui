@@ -5,10 +5,11 @@ import { join } from 'path';
 import { handleError } from '../util/handle-error';
 import { log } from '@clack/prompts';
 import { componentAdder } from '../util/add';
-import { config } from '../config';
+import { config, setStylingEngine } from '../config';
 import {
   checkWritablePath,
   cloneRepositoryAtRoot,
+  detectStylingEngine,
   getPackageMangerFlag,
   isValidPath,
   projectRootPath,
@@ -107,6 +108,10 @@ export const add = new Command()
         await checkWritablePath(options.path);
         config.writableComponentsPath = options.path;
       }
+      // Detect and set styling engine BEFORE cloning so the correct branch
+      // (main-v4-alpha vs feat/nw-v5-alpha) is used for the clone/pull.
+      setStylingEngine(detectStylingEngine());
+
       !isTemplate &&
         (await cloneRepositoryAtRoot(join(_homeDir, config.gluestackDir)));
       // define args based on --all or components
