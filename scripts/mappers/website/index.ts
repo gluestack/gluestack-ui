@@ -5,11 +5,11 @@ export default {
   // this is for the component code and component docs sync
   component: function (component: string, event = 'added', filePath?: string) {
     if (event === 'removed') {
-      // delete the component code
-      componentOperations.deleteComponentDocs(component, filePath);
+      // TODO: uncomment when NativeWind v5 has Next.js support
+      // componentOperations.deleteComponentDocs(component, filePath);
     } else {
-      // copy the component code
-      componentOperations.copyComponent(component, event);
+      // TODO: uncomment when NativeWind v5 has Next.js support
+      // componentOperations.copyComponent(component, event);
       if (component !== 'gluestack-ui-provider' && component !== 'overlay') {
         docsOperations.copyComponentsDocs(component);
       }
@@ -26,13 +26,14 @@ export default {
       if (filePath.includes('/docs/') || filePath.includes('\\docs\\')) {
         docsOperations.copyNonComponentDocs(filePath);
       }
+      // TODO: uncomment when NativeWind v5 has Next.js support
       // for the docs components
-      if (
-        filePath.includes('/docs-components/') ||
-        filePath.includes('\\docs-components\\')
-      ) {
-        componentOperations.copyDocsComponents(filePath);
-      }
+      // if (
+      //   filePath.includes('/docs-components/') ||
+      //   filePath.includes('\\docs-components\\')
+      // ) {
+      //   componentOperations.copyDocsComponents(filePath);
+      // }
       // for the sidebar - only process if it's actually the sidebar.json file
       if (
         filePath === 'src/sidebar.json' ||
