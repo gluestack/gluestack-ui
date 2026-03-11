@@ -1601,6 +1601,55 @@ async function promptStylingEngineChoice(): Promise<'nativewind-v5' | 'uniwind' 
 }
 
 // Upgrade from v4-NativeWind to UniWind
+// Remove NativeWind-specific presets and plugins from babel.config.js.
+// Targets: 'nativewind/babel' preset and any plugin entry named 'nativewind/babel'.
+async function removeNativewindBabelEntries(): Promise<void> {
+  const s = spinner();
+  s.start('Removing NativeWind entries from babel.config.js...');
+
+  const babelConfigPath = path.join(process.cwd(), 'babel.config.js');
+  if (!fs.existsSync(babelConfigPath)) {
+    s.stop('No babel.config.js found. Skipping.');
+    return;
+  }
+
+  try {
+    let content = await fs.readFile(babelConfigPath, 'utf8');
+    const original = content;
+
+    // Remove standalone string entries: 'nativewind/babel' or "nativewind/babel"
+    // Covers both array entries with trailing comma and without.
+    content = content.replace(/,?\s*['"]nativewind\/babel['"]\s*,?/g, (match) => {
+      // If both sides had a comma, keep one comma to avoid syntax errors
+      const hadLeading = match.trimStart().startsWith(',') || match.startsWith('\n,');
+      const hadTrailing = match.trimEnd().endsWith(',');
+      return hadLeading && hadTrailing ? ',' : '';
+    });
+
+    // Remove array-wrapped entries: ['nativewind/babel', { ...options }]
+    content = content.replace(/,?\s*\[\s*['"]nativewind\/babel['"]\s*(?:,\s*\{[^}]*\})?\s*\]\s*,?/g, (match) => {
+      const hadLeading = match.trimStart().startsWith(',');
+      const hadTrailing = match.trimEnd().endsWith(',');
+      return hadLeading && hadTrailing ? ',' : '';
+    });
+
+    // Clean up any double commas or blank lines left behind
+    content = content.replace(/,(\s*,)+/g, ',');
+    content = content.replace(/\n{3,}/g, '\n\n');
+
+    if (content !== original) {
+      await fs.writeFile(babelConfigPath, content, 'utf8');
+      log.info('✓ Removed nativewind/babel from babel.config.js');
+    } else {
+      log.info('✓ No nativewind/babel entries found in babel.config.js');
+    }
+    s.stop('babel.config.js updated.');
+  } catch {
+    s.stop('Failed to update babel.config.js.');
+    log.warning('⚠ Manually remove "nativewind/babel" from presets/plugins in babel.config.js');
+  }
+}
+
 async function upgradeV4NativewindToUniwind(packageManager: string): Promise<void> {
   const projectType = await detectProjectType();
   log.info(`Detected project type: ${projectType}`);
@@ -1632,7 +1681,8 @@ async function upgradeV4NativewindToUniwind(packageManager: string): Promise<voi
   // Step 5: Migrate type definitions
   await migrateTypeDefinitions();
 
-  // Step 6: Add worklets plugin to babel.config.js if not already present
+  // Step 6: Remove nativewind/babel preset/plugin, then ensure worklets plugin is present
+  await removeNativewindBabelEntries();
   await updateBabelConfig();
 
   // Step 7: Inform about GluestackUIProvider changes
