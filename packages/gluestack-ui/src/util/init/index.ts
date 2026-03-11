@@ -7,6 +7,7 @@ import fs, { existsSync, writeFile } from 'fs-extra';
 import { checkIfInitialized, generateMonoRepoConfig } from '../config';
 import {
   cloneRepositoryAtRoot,
+  cloneTemplatesAtRoot,
   findLockFileType,
   installDependencies,
   installNativeDependencies,
@@ -255,9 +256,11 @@ const NATIVEWIND_V5_GLOBAL_CSS = `@import "tailwindcss/theme.css" layer(theme);
 }
 `;
 
-// Get templates from GitHub repository
+// Get templates from GitHub repository.
+// Templates always come from the v4 (main-v4-alpha) cache, since the
+// packages/gluestack-ui/templates directory only exists on that branch.
 const getTemplatesPath = () => {
-  return join(_homeDir, config.gluestackDir, config.templatesDir);
+  return join(_homeDir, config.gluestackTemplatesCacheDir, config.templatesDir);
 };
 
 const readFileAsync = promisify(fs.readFile);
@@ -379,6 +382,9 @@ const InitializeGlueStack = async ({
 
     console.log(`\n\x1b[1mInitializing gluestack-ui v5 alpha...\x1b[0m\n`);
     await cloneRepositoryAtRoot(join(_homeDir, config.gluestackDir));
+    // Templates always live on main-v4-alpha — clone separately so they are
+    // available even when the active styling engine uses feat/nw-v5-alpha.
+    await cloneTemplatesAtRoot(join(_homeDir, config.gluestackTemplatesCacheDir));
     const inputComponent = [config.providerComponent];
 
     // Check dependencies for the provider component

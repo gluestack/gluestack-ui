@@ -1,6 +1,7 @@
 const config = {
   repoUrl: 'https://github.com/gluestack/gluestack-ui.git',
   gluestackDir: '.gluestack/cache/gluestack-ui',
+  gluestackTemplatesCacheDir: '.gluestack/cache/gluestack-ui-templates',
   componentsResourcePath: 'src/components/ui',
   nativewindV5ComponentsPath: 'apps/starter-kit-expo/components/ui',
   uniwindComponentsPath: 'apps/starter-kit-expo-uniwind/components/ui',

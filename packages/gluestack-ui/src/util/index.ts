@@ -171,24 +171,56 @@ const cloneRepositoryAtRoot = async (rootPath: string) => {
   }
 };
 
-const cloneComponentRepo = async (
+// Clones the templates repo — always from main-v4-alpha regardless of styling
+// engine, since packages/gluestack-ui/templates only lives on that branch.
+const cloneTemplatesAtRoot = async (rootPath: string) => {
+  try {
+    const clonedRepoExists = await checkIfFolderExists(rootPath);
+    if (clonedRepoExists) {
+      let currBranchName: string | null = null;
+      try {
+        const git = simpleGit(rootPath);
+        const currBranch = await git.branchLocal();
+        currBranchName = currBranch.current;
+      } catch {
+        log.warning('⚠ Cached templates repository is in a bad state. Re-cloning...');
+        fs.removeSync(rootPath);
+      }
+
+      if (currBranchName !== null && currBranchName !== config.branchName) {
+        fs.removeSync(rootPath);
+        await cloneComponentRepoOnBranch(rootPath, config.repoUrl, config.branchName);
+      } else if (currBranchName === config.branchName) {
+        log.step('Templates repository already cloned.');
+        const git = simpleGit(rootPath);
+        await git.pull('origin', config.branchName);
+        return;
+      }
+
+      if (!fs.existsSync(rootPath)) {
+        await cloneComponentRepoOnBranch(rootPath, config.repoUrl, config.branchName);
+      }
+    } else {
+      await cloneComponentRepoOnBranch(rootPath, config.repoUrl, config.branchName);
+    }
+  } catch (err) {
+    log.error(`\x1b[31m Cloning templates failed.\x1b[0m`);
+    throw new Error((err as Error).message);
+  }
+};
+
+const cloneComponentRepoOnBranch = async (
   targetPath: string,
-  gitURL: string
+  gitURL: string,
+  branch: string
 ): Promise<void> => {
   const git = simpleGit();
   const s = spinner();
-  const branch = getActiveBranchName();
   s.start(`⏳ Cloning repository (branch: ${branch})...`);
   try {
-    await git.clone(gitURL, targetPath, [
-      '--depth=1',
-      '--branch',
-      branch,
-    ]);
+    await git.clone(gitURL, targetPath, ['--depth=1', '--branch', branch]);
     s.stop('\x1b[32m' + 'Cloning successful.' + '\x1b[0m');
   } catch (err) {
-    // If the target branch doesn't exist on remote, fall back to the v4 branch
-    // so the add command doesn't break entirely.
     const errMsg = (err as Error).message ?? '';
     const branchNotFound =
       errMsg.includes('failed to resolve HEAD') ||
@@ -199,11 +231,7 @@ const cloneComponentRepo = async (
       s.stop(`\x1b[33m⚠ Branch "${branch}" not found on remote. Falling back to "${config.branchName}".\x1b[0m`);
       log.warning(`Branch "${branch}" is not yet available. Components will be copied from "${config.branchName}" as a fallback.`);
       try {
-        await git.clone(gitURL, targetPath, [
-          '--depth=1',
-          '--branch',
-          config.branchName,
-        ]);
+        await git.clone(gitURL, targetPath, ['--depth=1', '--branch', config.branchName]);
         log.info('\x1b[32mCloning successful (fallback branch).\x1b[0m');
         return;
       } catch (fallbackErr) {
@@ -214,6 +242,13 @@ const cloneComponentRepo = async (
     s.stop('\x1b[31m' + 'Cloning failed' + '\x1b[0m');
     throw new Error(errMsg);
   }
+};
+
+const cloneComponentRepo = async (
+  targetPath: string,
+  gitURL: string
+): Promise<void> => {
+  await cloneComponentRepoOnBranch(targetPath, gitURL, getActiveBranchName());
 };
 
 const pullComponentRepo = async (targetpath: string): Promise<void> => {
@@ -816,6 +851,7 @@ const dashToPascal = (str: string): string => {
 
 export {
   cloneRepositoryAtRoot,
+  cloneTemplatesAtRoot,
   getAllComponents,
   detectProjectType,
   detectStylingEngine,
