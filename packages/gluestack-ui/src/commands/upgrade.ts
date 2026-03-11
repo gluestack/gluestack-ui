@@ -1703,6 +1703,15 @@ export const upgrade = new Command()
     try {
       log.info('\n\x1b[1m🚀 Gluestack UI Upgrade\x1b[0m\n');
 
+      // Block upgrade for Next.js projects — not supported yet.
+      const nextConfigFiles = ['next.config.js', 'next.config.mjs', 'next.config.ts'];
+      const isNextjs = nextConfigFiles.some((f) => fs.existsSync(path.join(process.cwd(), f)));
+      if (isNextjs) {
+        log.error('❌ Upgrade is not supported for Next.js projects yet.');
+        log.info('Next.js support is coming soon. Stay tuned!');
+        process.exit(0);
+      }
+
       // Step 1: Detect current version
       const currentVersion = await detectCurrentVersion();
 

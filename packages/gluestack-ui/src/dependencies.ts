@@ -1,4 +1,4 @@
-import { config } from './config';
+import { config, getActiveComponentsPath } from './config';
 import fs from 'fs-extra';
 import { join } from 'path';
 import os from 'os';
@@ -191,20 +191,10 @@ const getComponentDependencies = async (
   componentName: string
 ): Promise<ComponentConfig> => {
   try {
-    // Determine path based on styling engine
-    let componentsPath: string;
-    if (config.style === 'nativewind-v5') {
-      componentsPath = config.nativewindV5ComponentsPath;
-    } else if (config.style === 'uniwind') {
-      componentsPath = config.uniwindComponentsPath;
-    } else {
-      componentsPath = config.componentsResourcePath;
-    }
-
     const dependenciesPath = join(
       _homeDir,
       config.gluestackDir,
-      componentsPath,
+      getActiveComponentsPath(),
       componentName,
       'dependencies.json'
     );

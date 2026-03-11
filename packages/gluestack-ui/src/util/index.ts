@@ -1,7 +1,7 @@
 import os from 'os';
 import fs, { stat } from 'fs-extra';
 import simpleGit from 'simple-git';
-import { config, getActiveBranchName } from '../config';
+import { config, getActiveBranchName, getActiveComponentsPath } from '../config';
 import { execSync, spawnSync } from 'child_process';
 import finder from 'find-package-json';
 import { join, dirname, extname, relative, basename } from 'path';
@@ -65,17 +65,9 @@ const detectStylingEngine = (): 'nativewind' | 'nativewind-v5' | 'uniwind' => {
 };
 
 const getAllComponents = async (): Promise<string[]> => {
-  // Detect styling engine and use appropriate component path
-  const stylingEngine = detectStylingEngine();
-  const componentsPath = stylingEngine === 'nativewind-v5'
-    ? config.nativewindV5ComponentsPath
-    : stylingEngine === 'uniwind'
-      ? config.uniwindComponentsPath
-      : config.componentsResourcePath;
-
   const componentList = fs
     .readdirSync(
-      join(homeDir, config.gluestackDir, componentsPath)
+      join(homeDir, config.gluestackDir, getActiveComponentsPath())
     )
     .filter(
       (file) =>

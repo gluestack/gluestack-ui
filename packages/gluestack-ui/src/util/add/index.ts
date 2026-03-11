@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import os from 'os';
 import { join } from 'path';
 import { log, confirm } from '@clack/prompts';
-import { config, setStylingEngine } from '../../config';
+import { config, setStylingEngine, getActiveComponentsPath } from '../../config';
 import {
   checkComponentDependencies,
   getAllComponents,
@@ -161,13 +161,7 @@ const writeComponent = async (component: string, targetPath: string) => {
   try {
     await fs.ensureDir(targetPath);
 
-    // Detect styling engine and use appropriate component path
-    const stylingEngine = detectStylingEngine();
-    const componentsPath = stylingEngine === 'uniwind'
-      ? config.uniwindComponentsPath
-      : stylingEngine === 'nativewind-v5'
-        ? config.nativewindV5ComponentsPath
-        : config.componentsResourcePath;
+    const componentsPath = getActiveComponentsPath();
 
     const sourcePath = join(
       _homeDir,
