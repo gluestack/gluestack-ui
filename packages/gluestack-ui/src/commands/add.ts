@@ -62,7 +62,8 @@ export const add = new Command()
       });
 
       const isTemplate = options.templateOnly;
-      !isTemplate && log.info('\n\x1b[1mWelcome to gluestack-ui v4.1 alpha!\x1b[0m\n');
+      !isTemplate &&
+        log.info('\n\x1b[1mWelcome to gluestack-ui v5 alpha!\x1b[0m\n');
 
       if (
         (!options.all && options.components?.length === 0) ||

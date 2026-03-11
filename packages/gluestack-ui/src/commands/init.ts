@@ -53,8 +53,16 @@ export const init = new Command()
     'Answer yes to all prompts (for non-interactive environments)',
     false
   )
-  .option('--nativewind', 'Use NativeWind v4 (Tailwind v3) styling engine', false)
-  .option('--nativewind-v5', 'Use NativeWind v5 (Tailwind v4) styling engine', false)
+  .option(
+    '--nativewind',
+    'Use NativeWind v4 (Tailwind v3) styling engine',
+    false
+  )
+  .option(
+    '--nativewind-v5',
+    'Use NativeWind v5 (Tailwind v4) styling engine',
+    false
+  )
   .option('--uniwind', 'Use UniWind (Tailwind v4) styling engine', false)
   .action(async (opts) => {
     try {
@@ -65,9 +73,15 @@ export const init = new Command()
       const options = initOptionsSchema.parse({ ...opts });
 
       // Validate conflicting flags
-      const selectedFlags = [options.nativewind, options.nativewindV5, options.uniwind].filter(Boolean).length;
+      const selectedFlags = [
+        options.nativewind,
+        options.nativewindV5,
+        options.uniwind,
+      ].filter(Boolean).length;
       if (selectedFlags > 1) {
-        log.error('Cannot specify multiple styling engine flags. Please choose one.');
+        log.error(
+          'Cannot specify multiple styling engine flags. Please choose one.'
+        );
         process.exit(1);
       }
 
@@ -82,7 +96,7 @@ export const init = new Command()
       // else: keep default (nativewind) for backward compatibility
 
       const isTemplate = options.templateOnly;
-      console.log('\n\x1b[1mWelcome to gluestack-ui v4.1 alpha!\x1b[0m\n');
+      console.log('\n\x1b[1mWelcome to gluestack-ui v5 alpha!\x1b[0m\n');
       const cwd = process.cwd();
 
       if (!fs.existsSync(path.join(cwd, 'package.json'))) {
