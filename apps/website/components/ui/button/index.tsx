@@ -1,26 +1,35 @@
 'use client';
+import React from 'react';
 import { createButton } from '@gluestack-ui/core/button/creator';
-import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import {
   tva,
-  useStyleContext,
   withStyleContext,
+  useStyleContext,
   type VariantProps,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
-import React from 'react';
+import { cssInterop } from 'nativewind';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
 const SCOPE = 'BUTTON';
 const Root = withStyleContext(Pressable, SCOPE);
-const StyledUIIcon = styled(UIIcon, {
-  className: "style",
-});
 const UIButton = createButton({
   Root: Root,
   Text,
   Group: View,
   Spinner: ActivityIndicator,
-  Icon: StyledUIIcon,
+  Icon: UIIcon,
+});
+cssInterop(UIIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
 });
 const buttonStyle = tva({
   base: 'rounded-md flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2 h-fit',
@@ -70,8 +79,8 @@ const buttonSpinnerStyle = tva({
   parentVariants: {
     size: {
       default: 'h-4 w-4',
-      sm: 'h-3 w-3',
-      lg: 'h-5 w-5',
+      sm: 'h-4 w-4',
+      lg: 'h-4 w-4',
       icon: 'h-4 w-4',
     },
   },
@@ -92,8 +101,8 @@ const buttonIconStyle = tva({
     },
     size: {
       default: 'h-4 w-4',
-      sm: 'h-3 w-3',
-      lg: 'h-5 w-5',
+      sm: 'h-4 w-4',
+      lg: 'h-4 w-4',
       icon: 'h-4 w-4',
     },
   },
@@ -252,4 +261,4 @@ ButtonText.displayName = 'ButtonText';
 ButtonSpinner.displayName = 'ButtonSpinner';
 ButtonIcon.displayName = 'ButtonIcon';
 ButtonGroup.displayName = 'ButtonGroup';
-export { Button, ButtonGroup, ButtonIcon, ButtonSpinner, ButtonText };
+export { Button, ButtonText, ButtonSpinner, ButtonIcon, ButtonGroup };

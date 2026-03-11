@@ -1,31 +1,39 @@
 'use client';
 
+import React from 'react';
+import { View, Text, Pressable } from 'react-native';
 import {
   createCalendar,
-  type ICalendarProps
+  type ICalendarProps,
+  type CalendarMode,
+  type CalendarMarkers,
 } from '@gluestack-ui/core/calendar/creator';
-import React from 'react';
-import { Pressable, Text, View } from 'react-native';
-import { Menu, MenuItem, MenuItemLabel } from '../menu';
+import { cssInterop } from 'nativewind';
 import {
-  calendarBodyStyle,
-  calendarDayIndicatorStyle,
-  calendarDayStyle,
-  calendarDayTextStyle,
-  calendarFooterStyle,
-  calendarGridStyle,
-  calendarHeaderButtonStyle,
-  calendarHeaderSelectStyle,
-  calendarHeaderStyle,
-  calendarHeaderTitleStyle,
   calendarStyle,
+  calendarHeaderStyle,
+  calendarHeaderButtonStyle,
+  calendarHeaderTitleStyle,
+  calendarHeaderSelectStyle,
   calendarWeekDaysHeaderStyle,
   calendarWeekDayStyle,
   calendarWeekDayTextStyle,
+  calendarBodyStyle,
+  calendarGridStyle,
+  calendarWeekStyle,
+  calendarDayStyle,
+  calendarDayTextStyle,
+  calendarDayIndicatorStyle,
   calendarWeekNumberStyle,
   calendarWeekNumberTextStyle,
-  calendarWeekStyle,
+  calendarFooterStyle,
 } from './styles';
+import { Menu, MenuItem, MenuItemLabel } from '../menu';
+
+// Apply cssInterop for NativeWind support
+cssInterop(View, { className: 'style' });
+cssInterop(Text, { className: 'style' });
+cssInterop(Pressable, { className: 'style' });
 
 // Styled Root Component
 const CalendarRoot = React.forwardRef<
@@ -444,8 +452,11 @@ export const CalendarFooter = UICalendar.Footer;
 
 // Re-export types
 export type {
+  ICalendarProps,
+  CalendarMode,
   CalendarMarker,
-  CalendarMarkers, CalendarMode, DayState, ICalendarProps
+  CalendarMarkers,
+  DayState,
 } from '@gluestack-ui/core/calendar/creator';
 
 export type { CalendarProps };

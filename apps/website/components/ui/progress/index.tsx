@@ -1,15 +1,23 @@
 'use client';
-import { createProgress } from '@gluestack-ui/core/progress/creator';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 import React from 'react';
+import { createProgress } from '@gluestack-ui/core/progress/creator';
 import { View } from 'react-native';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const SCOPE = 'PROGRESS';
 export const UIProgress = createProgress({
   Root: withStyleContext(View, SCOPE),
   FilledTrack: View,
 });
+
+cssInterop(UIProgress, { className: 'style' });
+cssInterop(UIProgress.FilledTrack, { className: 'style' });
 
 const progressStyle = tva({
   base: 'bg-primary/20 relative h-2 w-full overflow-hidden rounded-full',

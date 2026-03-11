@@ -1,33 +1,38 @@
 'use client';
-import { createModal } from '@gluestack-ui/core/modal/creator';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
 import React from 'react';
-import { Pressable, ScrollView, View } from 'react-native';
+import { createModal } from '@gluestack-ui/core/modal/creator';
+import { Pressable, View, ScrollView } from 'react-native';
 import Animated, {
-  Easing,
   FadeIn,
   FadeOut,
-  ZoomIn
+  ZoomIn,
+  ZoomOut,
+  Easing,
 } from 'react-native-reanimated';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedView = Animated.createAnimatedComponent(View);
 const SCOPE = 'MODAL';
 
-const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
-const StyledAnimatedView = styled(AnimatedView, { className: 'style' });
 const UIModal = createModal({
   Root: withStyleContext(View as any, SCOPE),
-  Backdrop: StyledAnimatedPressable,
-  Content: StyledAnimatedView,
+  Backdrop: AnimatedPressable,
+  Content: AnimatedView,
   Body: ScrollView,
   CloseButton: Pressable,
   Footer: View,
   Header: View,
 });
 
+cssInterop(AnimatedPressable, { className: 'style' });
+cssInterop(AnimatedView, { className: 'style' });
 
 const modalStyle = tva({
   base: 'group/modal w-full h-full justify-center items-center web:pointer-events-none',
@@ -43,7 +48,7 @@ const modalStyle = tva({
 });
 
 const modalBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-[#000]/50 web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default',
 });
 
 const modalContentStyle = tva({
@@ -223,5 +228,10 @@ ModalCloseButton.displayName = 'ModalCloseButton';
 
 export {
   Modal,
-  ModalBackdrop, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader
+  ModalBackdrop,
+  ModalContent,
+  ModalCloseButton,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 };

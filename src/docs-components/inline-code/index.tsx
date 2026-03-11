@@ -1,8 +1,8 @@
 import React from 'react';
 import { Code } from '@expo/html-elements';
-import { styled } from 'nativewind';
+import { cssInterop } from 'nativewind';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-const StyledCode = styled(Code, { className: 'style' });
+const StyledCode = cssInterop(Code, { className: 'style' });
 const inlineStyle = tva({
   base: 'text-foreground text-md font-medium leading-6 px-[6px] py-[2px] bg-muted font-space-mono rounded-sm',
 });

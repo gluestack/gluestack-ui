@@ -15,9 +15,9 @@ const switchStyle = tva({
 
   variants: {
     size: {
-      sm: 'scale-[0.75]',
+      sm: 'scale-75',
       md: '',
-      lg: 'scale-[1.25]',
+      lg: 'scale-125',
     },
   },
 });

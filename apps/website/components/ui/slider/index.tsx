@@ -1,10 +1,15 @@
 'use client';
 import { createSlider } from '@gluestack-ui/core/slider/creator';
-import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
-import { tva, useStyleContext, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { Pressable } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
-import { Pressable, View } from 'react-native';
+import { tva } from '@gluestack-ui/utils/nativewind-utils';
+import {
+  withStyleContext,
+  useStyleContext,
+} from '@gluestack-ui/utils/nativewind-utils';
+import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
+import { cssInterop } from 'nativewind';
 
 const SCOPE = 'SLIDER';
 const Root = withStyleContext(View, SCOPE);
@@ -15,9 +20,9 @@ export const UISlider = createSlider({
   FilledTrack: View,
   ThumbInteraction: View,
 });
-const StyledTrack = styled(UISlider.Track, {
-  className: 'style',
-});
+
+cssInterop(UISlider.Track, { className: 'style' });
+
 const sliderStyle = tva({
   base: 'justify-center items-center data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-none',
   variants: {
@@ -134,8 +139,7 @@ const SliderTrack = React.forwardRef<
   } = useStyleContext(SCOPE);
 
   return (
-    <StyledTrack
-      hitSlop={20}
+    <UISlider.Track
       ref={ref}
       {...props}
       className={sliderTrackStyle({
@@ -174,4 +178,4 @@ const SliderFilledTrack = React.forwardRef<
   );
 });
 
-export { Slider, SliderFilledTrack, SliderThumb, SliderTrack };
+export { Slider, SliderThumb, SliderTrack, SliderFilledTrack };

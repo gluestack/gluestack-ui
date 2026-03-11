@@ -1,14 +1,14 @@
 'use client';
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 import { createTabs, TabsContext } from '@gluestack-ui/core/tabs/creator';
-import { UIIcon } from '@gluestack-ui/core/icon/creator';
+import { PrimitiveIcon, UIIcon } from '@gluestack-ui/core/icon/creator';
 import {
   tva,
   withStyleContext,
   useStyleContext,
   type VariantProps,
 } from '@gluestack-ui/utils/nativewind-utils';
-import { styled } from 'nativewind';
+import { cssInterop } from 'nativewind';
 import { Pressable, Text, View, FlatList, Platform } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -22,6 +22,7 @@ import { TabsAnimatedIndicator } from './TabsAnimatedIndicator';
 const SCOPE = 'TABS';
 const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+Platform.OS === 'web' ? cssInterop(AnimatedView,{className:{target:'style'}}) : AnimatedView
 /** Styles */
 
 const tabsStyle = tva({
@@ -80,10 +81,6 @@ const tabsIndicatorStyle = tva({
 
 const Root = withStyleContext(View, SCOPE);
 
-const StyledUIIcon = styled(UIIcon, {
-  className: 'style',
-});
-
 const UITabs = createTabs({
   Root,
   List: View,
@@ -91,10 +88,22 @@ const UITabs = createTabs({
   Content: View,
   ContentWrapper: AnimatedView,
   TriggerText: Text,
-  TriggerIcon: StyledUIIcon,
+  TriggerIcon: UIIcon,
   Indicator: View,
 });
 
+cssInterop(PrimitiveIcon, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: {
+      height: true,
+      width: true,
+      fill: true,
+      color: 'classNameColor',
+      stroke: true,
+    },
+  },
+});
 
 /** Type definitions */
 
