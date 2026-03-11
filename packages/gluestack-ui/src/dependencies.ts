@@ -92,8 +92,8 @@ const projectBasedDependencies: Dependencies = {
       '@legendapp/motion': '^2.4.0',
       'react-native-svg': '^15.15.3',
       'react-stately': '^3.39.0',
-      '@gluestack-ui/core': '^4.1.0-alpha.3',
-      '@gluestack-ui/utils': '^4.1.0-alpha.0',
+      '@gluestack-ui/core': '^5.0.0-alpha.0',
+      '@gluestack-ui/utils': '^5.0.1-alpha.0',
       'react-native-css': '^3.0.4',
     },
     devDependencies: {
@@ -112,8 +112,8 @@ const projectBasedDependencies: Dependencies = {
       '@legendapp/motion': '^2.5.3',
       'react-native-svg': '^15.13.0',
       'react-stately': '^3.39.0',
-      '@gluestack-ui/core': '^4.1.0-alpha.0',
-      '@gluestack-ui/utils': '^4.1.0-alpha.0',
+      '@gluestack-ui/core': '^5.0.0-alpha.0',
+      '@gluestack-ui/utils': '^5.0.1-alpha.0',
     },
     devDependencies: {
       'babel-plugin-module-resolver': '^5.0.0',
