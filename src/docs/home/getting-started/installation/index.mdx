@@ -29,12 +29,10 @@ import { InlineCode } from '@/docs-components/inline-code';
 
 # Installation
 
-To get started with **gluestack-ui**, choose your project type and preferred styling engine below.
-
 <Tabs>
 <TabItem label="CLI">
 
-The fastest way to get started. The CLI sets up `GluestackUIProvider`, installs dependencies, and configures all required files automatically.
+The fastest way to get started. The CLI detects your project type, prompts you to choose a styling engine, and automatically configures `GluestackUIProvider`, `metro.config.js`, `babel.config.js`, `global.css`, and your app entry file.
 
 ### Prerequisites
 
@@ -46,10 +44,6 @@ The fastest way to get started. The CLI sets up `GluestackUIProvider`, installs 
   </TableRow>
 </TableHeader>
 <TableBody>
-  <TableRow>
-    <TableCell><InlineCode>next</InlineCode></TableCell>
-    <TableCell>13 {"<="} version {"<="} 15</TableCell>
-  </TableRow>
   <TableRow>
     <TableCell><InlineCode>expo</InlineCode></TableCell>
     <TableCell>>= 50</TableCell>
@@ -65,6 +59,8 @@ The fastest way to get started. The CLI sets up `GluestackUIProvider`, installs 
 </TableBody>
 </Table>
 
+> **Note:** gluestack-ui v5 does not currently support Next.js. Next.js support will be available as soon as NativeWind v5 adds web support. For Next.js projects, refer to the [v4 documentation](https://v4.gluestack.io).
+
 ### Step 1: Initialize
 
 Run the following command at the root of your project:
@@ -74,7 +70,10 @@ Run the following command at the root of your project:
   language="bash"
 />
 
-The CLI will detect your project type and configure everything — including `GluestackUIProvider`, `metro.config.js`, `babel.config.js`, `tailwind.config.js` (or `global.css` for v5), and your entry file.
+The CLI prompts you to select a styling engine:
+
+- **NativeWind v5** — Expo & React Native CLI, powered by Tailwind CSS v4 + PostCSS
+- **UniWind** — Expo-only, powered by Tailwind CSS v4 with no PostCSS build step
 
 ### Step 2: Add components
 
@@ -86,9 +85,463 @@ The CLI will detect your project type and configure everything — including `Gl
 See the [CLI guide](/ui/docs/home/getting-started/cli) for all available commands and options.
 
 </TabItem>
+<TabItem label="Manual">
+
+<Tabs>
+<TabItem label="Expo">
+
+<Tabs>
+<TabItem label="NativeWind v5">
+
+Uses **NativeWind v5** with **Tailwind CSS v4** (CSS-first). Theme tokens live in `global.css` — no `tailwind.config.js` needed.
+
+### Step 1: Pin `lightningcss` in `package.json`
+
+Add this **before** installing packages to avoid build errors caused by version conflicts:
+
+```json
+{
+  "overrides": { "lightningcss": "1.30.1" },
+  "resolutions": { "lightningcss": "1.30.1" }
+}
+```
+
+### Step 2: Install dependencies
+
+<Tabs>
+<TabItem label="npm">
+```bash
+npm i @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
+```
+```bash
+npm i --save-dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
+```
+</TabItem>
+<TabItem label="yarn">
+```bash
+yarn add @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
+```
+```bash
+yarn add --dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
+```
+</TabItem>
+</Tabs>
+
+> Use `--legacy-peer-deps` if you encounter peer dependency resolution issues.
+
+### Step 3: Configure `babel.config.js`
+
+> NativeWind v5 uses PostCSS for style processing — do **not** add `nativewind/babel`.
+
+```js
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: ['react-native-worklets/plugin'],
+  };
+};
+```
+
+### Step 4: Create `postcss.config.js`
+
+```js
+export default {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+};
+```
+
+### Step 5: Configure `metro.config.js`
+
+```js
+const { getDefaultConfig } = require('expo/metro-config');
+const { withNativewind } = require('nativewind/metro');
+
+const config = getDefaultConfig(__dirname);
+
+module.exports = withNativewind(config);
+```
+
+### Step 6: Create `global.css`
+
+Theme tokens are defined here instead of `tailwind.config.js`:
+
+```css
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+@import "nativewind/theme";
+
+@layer theme {
+  :root {
+    --primary: 23 23 23;
+    --primary-foreground: 250 250 250;
+    --card: 255 255 255;
+    --secondary: 245 245 245;
+    --secondary-foreground: 23 23 23;
+    --background: 255 255 255;
+    --popover: 255 255 255;
+    --popover-foreground: 10 10 10;
+    --muted: 245 245 245;
+    --muted-foreground: 115 115 115;
+    --destructive: 231 0 11;
+    --foreground: 10 10 10;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 212 212 212;
+    --accent: 247 247 247;
+    --accent-foreground: 52 52 52;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: 255 245 245;
+      --primary-foreground: 23 23 23;
+      --card: 23 23 23;
+      --secondary: 38 38 38;
+      --secondary-foreground: 250 250 250;
+      --background: 10 10 10;
+      --popover: 23 23 23;
+      --popover-foreground: 250 250 250;
+      --muted: 38 38 38;
+      --muted-foreground: 161 161 161;
+      --destructive: 255 100 103;
+      --foreground: 250 250 250;
+      --border: 46 46 46;
+      --input: 46 46 46;
+      --ring: 115 115 115;
+      --accent: 38 38 38;
+      --accent-foreground: 250 250 250;
+    }
+  }
+
+  /* Web: class-based toggle overrides system preference */
+  :root.dark {
+    --primary: 255 245 245;
+    --primary-foreground: 23 23 23;
+    --card: 23 23 23;
+    --secondary: 38 38 38;
+    --secondary-foreground: 250 250 250;
+    --background: 10 10 10;
+    --popover: 23 23 23;
+    --popover-foreground: 250 250 250;
+    --muted: 38 38 38;
+    --muted-foreground: 161 161 161;
+    --destructive: 255 100 103;
+    --foreground: 250 250 250;
+    --border: 46 46 46;
+    --input: 46 46 46;
+    --ring: 115 115 115;
+    --accent: 38 38 38;
+    --accent-foreground: 250 250 250;
+  }
+
+  :root.light {
+    --primary: 23 23 23;
+    --primary-foreground: 250 250 250;
+    --card: 255 255 255;
+    --secondary: 245 245 245;
+    --secondary-foreground: 23 23 23;
+    --background: 255 255 255;
+    --popover: 255 255 255;
+    --popover-foreground: 10 10 10;
+    --muted: 245 245 245;
+    --muted-foreground: 115 115 115;
+    --destructive: 231 0 11;
+    --foreground: 10 10 10;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 212 212 212;
+    --accent: 247 247 247;
+    --accent-foreground: 52 52 52;
+  }
+}
+
+@theme inline {
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-card: rgb(var(--card));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-background: rgb(var(--background));
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-destructive: rgb(var(--destructive));
+  --color-foreground: rgb(var(--foreground));
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+}
+```
+
+### Step 7: Create `react-native-css-env.d.ts`
+
+```ts
+/// <reference types="react-native-css/types" />
+```
+
+### Step 8: Add path alias in `tsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}
+```
+
+### Step 9: Copy `GluestackUIProvider`
+
+Copy the contents of the <GluestackUIProviderLink /> into `components/ui/gluestack-ui-provider/` in your project.
+
+### Step 10: Wrap your app
+
+Import `global.css` and wrap your root layout with `GluestackUIProvider`:
+
+```tsx
+// app/_layout.tsx
+import '@/global.css';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return <GluestackUIProvider mode="light">{children}</GluestackUIProvider>;
+}
+```
+
+### Step 11: Add components
+
+```bash
+npx gluestack-ui add button
+```
+
+</TabItem>
+<TabItem label="UniWind">
+
+Uses **UniWind** with **Tailwind CSS v4** (Expo-only). Styles are processed on-device — no PostCSS build step required. Theme tokens live in `global.css` via `.light {}` / `.dark {}` class selectors — no `tailwind.config.js` needed.
+
+### Step 1: Install dependencies
+
+<Tabs>
+<TabItem label="npm">
+```bash
+npm i @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 uniwind@^1.4.0 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.5.3 react-native-svg@^15.13.0 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
+```
+```bash
+npm i --save-dev tailwindcss@^4.1.18
+```
+</TabItem>
+<TabItem label="yarn">
+```bash
+yarn add @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 uniwind@^1.4.0 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.5.3 react-native-svg@^15.13.0 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
+```
+```bash
+yarn add --dev tailwindcss@^4.1.18
+```
+</TabItem>
+</Tabs>
+
+> Use `--legacy-peer-deps` if you encounter peer dependency resolution issues.
+
+### Step 2: Configure `babel.config.js`
+
+> UniWind does **not** use `nativewind/babel`.
+
+```js
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      ['module-resolver', { root: ['./'], alias: { '@': './' } }],
+      'react-native-worklets/plugin',
+    ],
+  };
+};
+```
+
+### Step 3: Configure `metro.config.js`
+
+```js
+const { getDefaultConfig } = require('expo/metro-config');
+const { withUniwindConfig } = require('uniwind/metro');
+
+const config = getDefaultConfig(__dirname);
+
+module.exports = withUniwindConfig(config, {
+  cssEntryFile: './global.css',
+  themes: ['light', 'dark'],
+});
+```
+
+### Step 4: Create `global.css`
+
+UniWind requires `.light {}` and `.dark {}` at the **top level** of `@layer theme` — not nested inside `:root`:
+
+```css
+@import "tailwindcss";
+
+@layer theme {
+  .light {
+    --primary: 23 23 23;
+    --primary-foreground: 250 250 250;
+    --card: 255 255 255;
+    --secondary: 245 245 245;
+    --secondary-foreground: 23 23 23;
+    --background: 255 255 255;
+    --popover: 255 255 255;
+    --popover-foreground: 10 10 10;
+    --muted: 245 245 245;
+    --muted-foreground: 115 115 115;
+    --destructive: 231 0 11;
+    --foreground: 10 10 10;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 212 212 212;
+    --accent: 247 247 247;
+    --accent-foreground: 52 52 52;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not(:where(.light, .light *, .dark, .dark *)) {
+      --primary: 23 23 23;
+      --primary-foreground: 250 250 250;
+      --card: 255 255 255;
+      --secondary: 245 245 245;
+      --secondary-foreground: 23 23 23;
+      --background: 255 255 255;
+      --popover: 255 255 255;
+      --popover-foreground: 10 10 10;
+      --muted: 245 245 245;
+      --muted-foreground: 115 115 115;
+      --destructive: 231 0 11;
+      --foreground: 10 10 10;
+      --border: 229 229 229;
+      --input: 229 229 229;
+      --ring: 212 212 212;
+      --accent: 247 247 247;
+      --accent-foreground: 52 52 52;
+    }
+  }
+
+  .dark {
+    --primary: 255 245 245;
+    --primary-foreground: 23 23 23;
+    --card: 23 23 23;
+    --secondary: 38 38 38;
+    --secondary-foreground: 250 250 250;
+    --background: 10 10 10;
+    --popover: 23 23 23;
+    --popover-foreground: 250 250 250;
+    --muted: 38 38 38;
+    --muted-foreground: 161 161 161;
+    --destructive: 255 100 103;
+    --foreground: 250 250 250;
+    --border: 46 46 46;
+    --input: 46 46 46;
+    --ring: 115 115 115;
+    --accent: 38 38 38;
+    --accent-foreground: 250 250 250;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(:where(.light, .light *, .dark, .dark *)) {
+      --primary: 255 245 245;
+      --primary-foreground: 23 23 23;
+      --card: 23 23 23;
+      --secondary: 38 38 38;
+      --secondary-foreground: 250 250 250;
+      --background: 10 10 10;
+      --popover: 23 23 23;
+      --popover-foreground: 250 250 250;
+      --muted: 38 38 38;
+      --muted-foreground: 161 161 161;
+      --destructive: 255 100 103;
+      --foreground: 250 250 250;
+      --border: 46 46 46;
+      --input: 46 46 46;
+      --ring: 115 115 115;
+      --accent: 38 38 38;
+      --accent-foreground: 250 250 250;
+    }
+  }
+}
+
+@theme inline {
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-card: rgb(var(--card));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-background: rgb(var(--background));
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-destructive: rgb(var(--destructive));
+  --color-foreground: rgb(var(--foreground));
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+}
+```
+
+### Step 5: Create `uniwind-types.d.ts`
+
+```ts
+/// <reference types="uniwind/types" />
+```
+
+### Step 6: Add path alias in `tsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}
+```
+
+### Step 7: Copy `GluestackUIProvider`
+
+Copy the contents of the <GluestackUIProviderLink /> into `components/ui/gluestack-ui-provider/` in your project.
+
+### Step 8: Wrap your app
+
+```tsx
+// app/_layout.tsx
+import '@/global.css';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return <GluestackUIProvider mode="light">{children}</GluestackUIProvider>;
+}
+```
+
+### Step 9: Add components
+
+```bash
+npx gluestack-ui add button
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
 <TabItem label="Next.js">
 
-> gluestack-ui for Next.js uses **NativeWind v4** (Tailwind CSS v3). NativeWind v5 and UniWind are not supported for Next.js projects.
+> gluestack-ui v5 does not currently support Next.js. Next.js support will be available as soon as NativeWind v5 adds web support. In the meantime, the steps below use **NativeWind v4** (Tailwind CSS v3). For the full v4 documentation see [v4.gluestack.io](https://v4.gluestack.io).
 
 ### Step 1: Install dependencies
 
@@ -224,608 +677,22 @@ export default function App({ Component, pageProps }: any) {
 </TabItem>
 </Tabs>
 
-</TabItem>
-<TabItem label="Expo">
+### Step 7: Add components
 
-<Tabs>
-<TabItem label="NativeWind">
-
-> Uses **NativeWind v4** with **Tailwind CSS v3**. Theme tokens live in `tailwind.config.js` and `gluestack-ui-provider/config.ts`.
-
-### Step 1: Install dependencies
-
-<Tabs>
-<TabItem label="npm">
 ```bash
-npm i @gluestack-ui/core@alpha @gluestack-ui/utils@alpha nativewind@^4.1.23 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.12.0 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
+npx gluestack-ui add button
 ```
-```bash
-npm i --save-dev tailwindcss@^3.4.17 babel-plugin-module-resolver@^5.0.0 prettier-plugin-tailwindcss@^0.5.11
-```
-</TabItem>
-<TabItem label="yarn">
-```bash
-yarn add @gluestack-ui/core@alpha @gluestack-ui/utils@alpha nativewind@^4.1.23 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.12.0 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
-```
-```bash
-yarn add --dev tailwindcss@^3.4.17 babel-plugin-module-resolver@^5.0.0 prettier-plugin-tailwindcss@^0.5.11
-```
-</TabItem>
-</Tabs>
-
-### Step 2: Configure `babel.config.js`
-
-```js
-module.exports = function (api) {
-  api.cache(true);
-  return {
-    presets: ['babel-preset-expo'],
-    plugins: [
-      'nativewind/babel',
-      'react-native-worklets/plugin',
-    ],
-  };
-};
-```
-
-### Step 3: Configure `metro.config.js`
-
-```js
-const { getDefaultConfig } = require('expo/metro-config');
-const { withNativewind } = require('nativewind/metro');
-
-const config = getDefaultConfig(__dirname);
-
-module.exports = withNativewind(config, { input: './global.css' });
-```
-
-### Step 4: Configure `tailwind.config.js`
-
-```js
-%%-- File: packages/gluestack-ui/templates/tailwind.config.js --%%
-```
-
-### Step 5: Create `global.css`
-
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
-
-### Step 6: Add path alias in `tsconfig.json`
-
-```json
-{
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./*"]
-    }
-  }
-}
-```
-
-### Step 7: Copy `GluestackUIProvider`
-
-Copy the contents of the <GluestackUIProviderLink /> into `components/ui/gluestack-ui-provider/` in your project.
-
-### Step 8: Wrap your app
-
-Import `global.css` and wrap your root layout with `GluestackUIProvider`:
-
-```tsx
-// app/_layout.tsx
-import '@/global.css';
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <GluestackUIProvider mode="light">{children}</GluestackUIProvider>;
-}
-```
-
-</TabItem>
-<TabItem label="NativeWind v5">
-
-> Uses **NativeWind v5** with **Tailwind CSS v4** (CSS-first). Theme tokens live in `global.css` — there is no `tailwind.config.js`.
-
-### Step 1: Pin `lightningcss` in `package.json`
-
-Add this **before** installing packages to avoid version conflicts:
-
-```json
-{
-  "overrides": { "lightningcss": "1.30.1" },
-  "resolutions": { "lightningcss": "1.30.1" }
-}
-```
-
-### Step 2: Install dependencies
-
-<Tabs>
-<TabItem label="npm">
-```bash
-npm i @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0
-```
-```bash
-npm i --save-dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
-```
-</TabItem>
-<TabItem label="yarn">
-```bash
-yarn add @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0
-```
-```bash
-yarn add --dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
-```
-</TabItem>
-</Tabs>
-
-### Step 3: Create `postcss.config.js`
-
-```js
-export default {
-  plugins: {
-    "@tailwindcss/postcss": {},
-  },
-};
-```
-
-### Step 4: Configure `metro.config.js`
-
-```js
-const { getDefaultConfig } = require('expo/metro-config');
-const { withNativewind } = require('nativewind/metro');
-
-const config = getDefaultConfig(__dirname);
-
-module.exports = withNativewind(config);
-```
-
-### Step 5: Create `global.css`
-
-Theme tokens are defined here instead of `tailwind.config.js`:
-
-```css
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/preflight.css" layer(base);
-@import "tailwindcss/utilities.css";
-@import "nativewind/theme";
-
-@layer theme {
-  :root {
-    --primary: 23 23 23;
-    --primary-foreground: 250 250 250;
-    --card: 255 255 255;
-    --secondary: 245 245 245;
-    --secondary-foreground: 23 23 23;
-    --background: 255 255 255;
-    --popover: 255 255 255;
-    --popover-foreground: 10 10 10;
-    --muted: 245 245 245;
-    --muted-foreground: 115 115 115;
-    --destructive: 231 0 11;
-    --foreground: 10 10 10;
-    --border: 229 229 229;
-    --input: 229 229 229;
-    --ring: 212 212 212;
-    --accent: 247 247 247;
-    --accent-foreground: 52 52 52;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --primary: 255 245 245;
-      --primary-foreground: 23 23 23;
-      --card: 23 23 23;
-      --secondary: 38 38 38;
-      --secondary-foreground: 250 250 250;
-      --background: 10 10 10;
-      --popover: 23 23 23;
-      --popover-foreground: 250 250 250;
-      --muted: 38 38 38;
-      --muted-foreground: 161 161 161;
-      --destructive: 255 100 103;
-      --foreground: 250 250 250;
-      --border: 46 46 46;
-      --input: 46 46 46;
-      --ring: 115 115 115;
-      --accent: 38 38 38;
-      --accent-foreground: 250 250 250;
-    }
-  }
-
-  /* Web: class-based toggle wins over media query */
-  :root.dark {
-    --primary: 255 245 245;
-    --primary-foreground: 23 23 23;
-    --card: 23 23 23;
-    --secondary: 38 38 38;
-    --secondary-foreground: 250 250 250;
-    --background: 10 10 10;
-    --popover: 23 23 23;
-    --popover-foreground: 250 250 250;
-    --muted: 38 38 38;
-    --muted-foreground: 161 161 161;
-    --destructive: 255 100 103;
-    --foreground: 250 250 250;
-    --border: 46 46 46;
-    --input: 46 46 46;
-    --ring: 115 115 115;
-    --accent: 38 38 38;
-    --accent-foreground: 250 250 250;
-  }
-
-  :root.light {
-    --primary: 23 23 23;
-    --primary-foreground: 250 250 250;
-    --card: 255 255 255;
-    --secondary: 245 245 245;
-    --secondary-foreground: 23 23 23;
-    --background: 255 255 255;
-    --popover: 255 255 255;
-    --popover-foreground: 10 10 10;
-    --muted: 245 245 245;
-    --muted-foreground: 115 115 115;
-    --destructive: 231 0 11;
-    --foreground: 10 10 10;
-    --border: 229 229 229;
-    --input: 229 229 229;
-    --ring: 212 212 212;
-    --accent: 247 247 247;
-    --accent-foreground: 52 52 52;
-  }
-}
-
-@theme inline {
-  --color-primary: rgb(var(--primary));
-  --color-primary-foreground: rgb(var(--primary-foreground));
-  --color-card: rgb(var(--card));
-  --color-secondary: rgb(var(--secondary));
-  --color-secondary-foreground: rgb(var(--secondary-foreground));
-  --color-background: rgb(var(--background));
-  --color-popover: rgb(var(--popover));
-  --color-popover-foreground: rgb(var(--popover-foreground));
-  --color-muted: rgb(var(--muted));
-  --color-muted-foreground: rgb(var(--muted-foreground));
-  --color-destructive: rgb(var(--destructive));
-  --color-foreground: rgb(var(--foreground));
-  --color-border: rgb(var(--border));
-  --color-input: rgb(var(--input));
-  --color-ring: rgb(var(--ring));
-  --color-accent: rgb(var(--accent));
-  --color-accent-foreground: rgb(var(--accent-foreground));
-}
-```
-
-### Step 6: Create `react-native-css-env.d.ts`
-
-```ts
-/// <reference types="react-native-css/types" />
-```
-
-### Step 7: Add path alias in `tsconfig.json`
-
-```json
-{
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./*"]
-    }
-  }
-}
-```
-
-### Step 8: Copy `GluestackUIProvider`
-
-Copy the contents of the <GluestackUIProviderLink /> into `components/ui/gluestack-ui-provider/` in your project.
-
-### Step 9: Wrap your app
-
-```tsx
-// app/_layout.tsx
-import '@/global.css';
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <GluestackUIProvider mode="light">{children}</GluestackUIProvider>;
-}
-```
-
-</TabItem>
-<TabItem label="UniWind">
-
-> Uses **UniWind** with **Tailwind CSS v4** (CSS-first, Expo-only). Theme tokens live in `global.css` via `.light {}` / `.dark {}` class selectors — there is no `tailwind.config.js`.
-
-### Step 1: Install dependencies
-
-<Tabs>
-<TabItem label="npm">
-```bash
-npm i @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 uniwind@^1.3.0 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.5.3 react-native-svg@^15.13.0 react-stately@^3.39.0
-```
-```bash
-npm i --save-dev tailwindcss@^4.1.18
-```
-</TabItem>
-<TabItem label="yarn">
-```bash
-yarn add @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 uniwind@^1.3.0 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.5.3 react-native-svg@^15.13.0 react-stately@^3.39.0
-```
-```bash
-yarn add --dev tailwindcss@^4.1.18
-```
-</TabItem>
-</Tabs>
-
-### Step 2: Configure `metro.config.js`
-
-```js
-const { getDefaultConfig } = require('expo/metro-config');
-const { withUniwindConfig } = require('uniwind/metro');
-
-const config = getDefaultConfig(__dirname);
-
-module.exports = withUniwindConfig(config, {
-  cssEntryFile: './global.css',
-  themes: ['light', 'dark'],
-});
-```
-
-### Step 3: Create `global.css`
-
-UniWind uses top-level `.light {}` / `.dark {}` class selectors for theming:
-
-```css
-@import "tailwindcss";
-
-@layer theme {
-  .light {
-    --primary: 23 23 23;
-    --primary-foreground: 250 250 250;
-    --card: 255 255 255;
-    --secondary: 245 245 245;
-    --secondary-foreground: 23 23 23;
-    --background: 255 255 255;
-    --popover: 255 255 255;
-    --popover-foreground: 10 10 10;
-    --muted: 245 245 245;
-    --muted-foreground: 115 115 115;
-    --destructive: 231 0 11;
-    --foreground: 10 10 10;
-    --border: 229 229 229;
-    --input: 229 229 229;
-    --ring: 212 212 212;
-    --accent: 247 247 247;
-    --accent-foreground: 52 52 52;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root:not(:where(.light, .light *, .dark, .dark *)) {
-      --primary: 23 23 23;
-      --primary-foreground: 250 250 250;
-      --card: 255 255 255;
-      --secondary: 245 245 245;
-      --secondary-foreground: 23 23 23;
-      --background: 255 255 255;
-      --popover: 255 255 255;
-      --popover-foreground: 10 10 10;
-      --muted: 245 245 245;
-      --muted-foreground: 115 115 115;
-      --destructive: 231 0 11;
-      --foreground: 10 10 10;
-      --border: 229 229 229;
-      --input: 229 229 229;
-      --ring: 212 212 212;
-      --accent: 247 247 247;
-      --accent-foreground: 52 52 52;
-    }
-  }
-
-  .dark {
-    --primary: 255 245 245;
-    --primary-foreground: 23 23 23;
-    --card: 23 23 23;
-    --secondary: 38 38 38;
-    --secondary-foreground: 250 250 250;
-    --background: 10 10 10;
-    --popover: 23 23 23;
-    --popover-foreground: 250 250 250;
-    --muted: 38 38 38;
-    --muted-foreground: 161 161 161;
-    --destructive: 255 100 103;
-    --foreground: 250 250 250;
-    --border: 46 46 46;
-    --input: 46 46 46;
-    --ring: 115 115 115;
-    --accent: 38 38 38;
-    --accent-foreground: 250 250 250;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not(:where(.light, .light *, .dark, .dark *)) {
-      --primary: 255 245 245;
-      --primary-foreground: 23 23 23;
-      --card: 23 23 23;
-      --secondary: 38 38 38;
-      --secondary-foreground: 250 250 250;
-      --background: 10 10 10;
-      --popover: 23 23 23;
-      --popover-foreground: 250 250 250;
-      --muted: 38 38 38;
-      --muted-foreground: 161 161 161;
-      --destructive: 255 100 103;
-      --foreground: 250 250 250;
-      --border: 46 46 46;
-      --input: 46 46 46;
-      --ring: 115 115 115;
-      --accent: 38 38 38;
-      --accent-foreground: 250 250 250;
-    }
-  }
-}
-
-@theme inline {
-  --color-primary: rgb(var(--primary));
-  --color-primary-foreground: rgb(var(--primary-foreground));
-  --color-card: rgb(var(--card));
-  --color-secondary: rgb(var(--secondary));
-  --color-secondary-foreground: rgb(var(--secondary-foreground));
-  --color-background: rgb(var(--background));
-  --color-popover: rgb(var(--popover));
-  --color-popover-foreground: rgb(var(--popover-foreground));
-  --color-muted: rgb(var(--muted));
-  --color-muted-foreground: rgb(var(--muted-foreground));
-  --color-destructive: rgb(var(--destructive));
-  --color-foreground: rgb(var(--foreground));
-  --color-border: rgb(var(--border));
-  --color-input: rgb(var(--input));
-  --color-ring: rgb(var(--ring));
-  --color-accent: rgb(var(--accent));
-  --color-accent-foreground: rgb(var(--accent-foreground));
-}
-```
-
-### Step 4: Create `uniwind-types.d.ts`
-
-```ts
-/// <reference types="uniwind/types" />
-```
-
-### Step 5: Add path alias in `tsconfig.json`
-
-```json
-{
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./*"]
-    }
-  }
-}
-```
-
-### Step 6: Copy `GluestackUIProvider`
-
-Copy the contents of the <GluestackUIProviderLink /> into `components/ui/gluestack-ui-provider/` in your project.
-
-### Step 7: Wrap your app
-
-```tsx
-// app/_layout.tsx
-import '@/global.css';
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <GluestackUIProvider mode="light">{children}</GluestackUIProvider>;
-}
-```
-
-</TabItem>
-</Tabs>
 
 </TabItem>
 <TabItem label="React Native CLI">
 
-<Tabs>
-<TabItem label="NativeWind">
+Uses **NativeWind v5** with **Tailwind CSS v4** (CSS-first). Theme tokens live in `global.css` — no `tailwind.config.js` needed.
 
-> Uses **NativeWind v4** with **Tailwind CSS v3**.
-
-### Step 1: Install dependencies
-
-<Tabs>
-<TabItem label="npm">
-```bash
-npm i @gluestack-ui/core@alpha @gluestack-ui/utils@alpha nativewind@^4.1.23 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.12.0 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
-```
-```bash
-npm i --save-dev tailwindcss@^3.4.17 babel-plugin-module-resolver@^5.0.0 prettier-plugin-tailwindcss@^0.5.11
-```
-</TabItem>
-<TabItem label="yarn">
-```bash
-yarn add @gluestack-ui/core@alpha @gluestack-ui/utils@alpha nativewind@^4.1.23 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.12.0 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
-```
-```bash
-yarn add --dev tailwindcss@^3.4.17 babel-plugin-module-resolver@^5.0.0 prettier-plugin-tailwindcss@^0.5.11
-```
-</TabItem>
-</Tabs>
-
-### Step 2: Configure `babel.config.js`
-
-```js
-module.exports = {
-  presets: ['@react-native/babel-preset'],
-  plugins: [
-    'nativewind/babel',
-    'react-native-worklets/plugin',
-  ],
-};
-```
-
-### Step 3: Configure `metro.config.js`
-
-```js
-const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
-const { withNativewind } = require('nativewind/metro');
-
-const config = mergeConfig(getDefaultConfig(__dirname), {});
-
-module.exports = withNativewind(config, { input: './global.css' });
-```
-
-### Step 4: Configure `tailwind.config.js`
-
-```js
-%%-- File: packages/gluestack-ui/templates/tailwind.config.js --%%
-```
-
-### Step 5: Create `global.css`
-
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
-
-### Step 6: Add path alias in `tsconfig.json`
-
-```json
-{
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./*"]
-    }
-  }
-}
-```
-
-### Step 7: Copy `GluestackUIProvider`
-
-Copy the contents of the <GluestackUIProviderLink /> into `components/ui/gluestack-ui-provider/` in your project.
-
-### Step 8: Wrap your app
-
-```tsx
-// App.tsx
-import '@/global.css';
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
-
-export default function App() {
-  return (
-    <GluestackUIProvider mode="light">
-      {/* your app */}
-    </GluestackUIProvider>
-  );
-}
-```
-
-</TabItem>
-<TabItem label="NativeWind v5">
-
-> Uses **NativeWind v5** with **Tailwind CSS v4** (CSS-first). Theme tokens live in `global.css` — there is no `tailwind.config.js`.
+> UniWind is not supported for React Native CLI projects.
 
 ### Step 1: Pin `lightningcss` in `package.json`
+
+Add this **before** installing packages to avoid build errors:
 
 ```json
 {
@@ -839,7 +706,7 @@ export default function App() {
 <Tabs>
 <TabItem label="npm">
 ```bash
-npm i @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0
+npm i @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
 ```
 ```bash
 npm i --save-dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
@@ -847,7 +714,7 @@ npm i --save-dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
 </TabItem>
 <TabItem label="yarn">
 ```bash
-yarn add @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0
+yarn add @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
 ```
 ```bash
 yarn add --dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
@@ -855,17 +722,30 @@ yarn add --dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
 </TabItem>
 </Tabs>
 
-### Step 3: Create `postcss.config.js`
+> Use `--legacy-peer-deps` if you encounter peer dependency resolution issues.
+
+### Step 3: Configure `babel.config.js`
+
+> NativeWind v5 uses PostCSS for style processing — do **not** add `nativewind/babel`.
+
+```js
+module.exports = {
+  presets: ['@react-native/babel-preset'],
+  plugins: ['react-native-worklets/plugin'],
+};
+```
+
+### Step 4: Create `postcss.config.js`
 
 ```js
 export default {
   plugins: {
-    "@tailwindcss/postcss": {},
+    '@tailwindcss/postcss': {},
   },
 };
 ```
 
-### Step 4: Configure `metro.config.js`
+### Step 5: Configure `metro.config.js`
 
 ```js
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
@@ -876,7 +756,7 @@ const config = mergeConfig(getDefaultConfig(__dirname), {});
 module.exports = withNativewind(config);
 ```
 
-### Step 5: Create `global.css`
+### Step 6: Create `global.css`
 
 ```css
 @import "tailwindcss/theme.css" layer(theme);
@@ -949,13 +829,13 @@ module.exports = withNativewind(config);
 }
 ```
 
-### Step 6: Create `react-native-css-env.d.ts`
+### Step 7: Create `react-native-css-env.d.ts`
 
 ```ts
 /// <reference types="react-native-css/types" />
 ```
 
-### Step 7: Add path alias in `tsconfig.json`
+### Step 8: Add path alias in `tsconfig.json`
 
 ```json
 {
@@ -967,11 +847,11 @@ module.exports = withNativewind(config);
 }
 ```
 
-### Step 8: Copy `GluestackUIProvider`
+### Step 9: Copy `GluestackUIProvider`
 
 Copy the contents of the <GluestackUIProviderLink /> into `components/ui/gluestack-ui-provider/` in your project.
 
-### Step 9: Wrap your app
+### Step 10: Wrap your app
 
 ```tsx
 // App.tsx
@@ -985,6 +865,18 @@ export default function App() {
     </GluestackUIProvider>
   );
 }
+```
+
+### Step 11: Run pod install (iOS)
+
+```bash
+npx pod-install
+```
+
+### Step 12: Add components
+
+```bash
+npx gluestack-ui add button
 ```
 
 </TabItem>
@@ -1010,3 +902,7 @@ npm install --legacy-peer-deps
 **NativeWind v5 build errors related to lightningcss**
 
 Ensure `lightningcss` is pinned to `1.30.1` in both `overrides` and `resolutions` in `package.json`, then run a clean install.
+
+**UniWind theme tokens not applying on web**
+
+Ensure `.light {}` and `.dark {}` are at the **top level** of `@layer theme` — not nested inside `:root {}`. Nesting them inside `:root {}` causes the selectors to be treated as descendants of `:root` rather than being applied to `:root` itself.
