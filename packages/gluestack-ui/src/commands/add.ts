@@ -110,7 +110,7 @@ export const add = new Command()
         config.writableComponentsPath = options.path;
       }
       // Detect and set styling engine BEFORE cloning so the correct branch
-      // (main-v4-alpha vs feat/nw-v5-alpha) is used for the clone/pull.
+      // (main-v4-alpha vs main-v5-alpha) is used for the clone/pull.
       setStylingEngine(detectStylingEngine());
 
       !isTemplate &&

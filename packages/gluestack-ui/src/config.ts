@@ -13,7 +13,7 @@ const config = {
   tailwindConfigRootPath: 'src/gluestack-ui/templates/tailwind.config.js',
   writableComponentsPath: 'components/ui',
   branchName: 'main-v4-alpha',       // NativeWind v4 branch
-  v5BranchName: 'feat/nw-v5-alpha',  // NativeWind v5 / UniWind branch
+  v5BranchName: 'main-v5-alpha',  // NativeWind v5 / UniWind branch
   style: 'nativewind' as 'nativewind' | 'nativewind-v5' | 'uniwind',
   providerComponent: 'gluestack-ui-provider',
   gluestackUIPattern: '@/components/ui/',

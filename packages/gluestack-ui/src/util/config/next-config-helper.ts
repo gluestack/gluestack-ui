@@ -76,11 +76,11 @@ async function initNatiwindNextApp(
       resolvedConfig.app?.entry?.includes('layout') &&
       resolvedConfig.app.registry
     ) {
-      // if app router add registry file to root
+      // Registry lives in the templates cache (always main-v4-alpha), not the components cache
       const registryPath = isNextjs15 ? ['nextjs', 'next15'] : ['common'];
       const templatesPath = join(
         _homeDir,
-        config.gluestackDir,
+        config.gluestackTemplatesCacheDir,
         config.templatesDir
       );
       const registryContent = await readFile(
@@ -169,7 +169,7 @@ async function generateConfigNextApp(
   ];
   const filesEnsured = await ensureFilesPromise(filesTobeEnsured);
   if (permission && filesEnsured) {
-    await await initNatiwindNextApp(resolvedConfig, permission, isNextjs15);
+    await initNatiwindNextApp(resolvedConfig, permission, isNextjs15);
   }
 }
 

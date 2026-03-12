@@ -94,9 +94,7 @@ async function generateConfigRNApp(permission: boolean) {
   ];
   const filesEnsured = await ensureFilesPromise(filesTobeEnsured);
   if (permission && filesEnsured) {
-    if (permission) {
-      await initNatiwindRNApp(resolvedConfig, permission);
-    }
+    await initNatiwindRNApp(resolvedConfig, permission);
   }
 }
 
