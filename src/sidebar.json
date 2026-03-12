@@ -565,6 +565,10 @@
                 "path": "/ui/docs/guides/more/upgrade-to-v4"
               },
               {
+                "title": "Upgrade to v5",
+                "path": "/ui/docs/guides/more/upgrade-to-v5"
+              },
+              {
                 "title": "FAQs",
                 "path": "/ui/docs/guides/more/faqs"
               },
