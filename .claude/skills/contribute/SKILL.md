@@ -88,7 +88,7 @@ Before starting, make sure you have:
 
 ## Need Help?
 
-- Read: `/Users/sanchitkumar/Downloads/new_folder/gluestack-ui/CONTRIBUTING.md`
+- Read: [`CONTRIBUTING.md`](https://github.com/gluestack/gluestack-ui/blob/main/CONTRIBUTING.md)
 - Ask questions during any skill workflow
 - The agent will guide you through each step
 

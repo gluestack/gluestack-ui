@@ -919,8 +919,10 @@ Show the complete plan and ask:
 The `apps/` directory contains generated code that is automatically synced from `src/components/ui/`:
 - `apps/kitchen-sink/components/ui/` - Auto-generated via mapper
 - `apps/website/components/ui/` - Auto-generated via mapper
-- `apps/starter-kit-expo/components/ui/` - Auto-generated via mapper
-- `apps/starter-kit-next/components/ui/` - Auto-generated via mapper
+- `apps/starter-kit-expo/components/ui/` - Auto-generated via mapper (NativeWind v5)
+- `apps/starter-kit-expo-uniwind/components/ui/` - Auto-generated via mapper (UniWind)
+- `apps/starter-kit-next/components/ui/` - Auto-generated via mapper (NativeWind v4)
+- `apps/starter-kit-monorepo/components/ui/` - Auto-generated via mapper (NativeWind v4)
 
 **ONLY edit files in `src/components/ui/[component-name]/`** and changes will propagate automatically when you run `yarn sync`.
 
