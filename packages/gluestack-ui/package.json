@@ -1,11 +1,17 @@
 {
   "name": "gluestack-ui",
-  "version": "4.1.0-alpha.4",
+  "version": "5.0.0-alpha.0",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gluestack/gluestack-ui.git"
   },
+  "bugs": {
+    "url": "https://github.com/gluestack/gluestack-ui/issues"
+  },
+  "contributors": [
+    "Sanchit Kumar <sanchitverma03032003@gmail.com> (https://github.com/Sanchitv3)"
+  ],
   "bin": {
     "gluestack-ui": "./dist/index.js"
   },
