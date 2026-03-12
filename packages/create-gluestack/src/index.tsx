@@ -92,12 +92,6 @@ export async function main(args: string[]) {
     selectedFramework = frameworkSelection as string;
   }
 
-  // Universal Template coming soon...
-  if (selectedFramework === 'universal') {
-    console.log(chalk.bgYellow('\nUniversal (monorepo) template is coming soon!\n'));
-    process.exit(0);
-  }
-
   // Step 2: Styling engine selection (conditional)
   const stylingOptions = (data.options.stylingEngine as any)[selectedFramework]?.options || [];
 

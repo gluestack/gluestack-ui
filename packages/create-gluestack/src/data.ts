@@ -19,7 +19,7 @@ const data = {
           },
           {
             value: 'universal',
-            label: 'Universal app (Coming Soon)',
+            label: 'Universal app',
             hint: 'Next App Router + Expo Router + gluestack-ui',
           },
         ],
