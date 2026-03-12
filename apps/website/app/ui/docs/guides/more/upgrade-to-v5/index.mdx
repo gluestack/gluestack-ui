@@ -1,0 +1,561 @@
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHeaderCell,
+  TableCell,
+} from '@/docs-components/table';
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Upgrade to gluestack-ui v5
+
+gluestack-ui v5 moves to **Tailwind CSS v4** (CSS-first configuration). You can choose between two styling engines:
+
+- **NativeWind v5** — Expo and React Native CLI projects
+- **UniWind** — Expo-only alternative with native style processing
+
+Both engines eliminate `tailwind.config.js` in favor of defining theme tokens directly in `global.css`.
+
+## Automated Upgrade (Recommended)
+
+<CodeBlock code="npx gluestack-ui@alpha upgrade" language="bash" />
+
+The CLI auto-detects your current version and asks which engine to upgrade to:
+
+```
+◆ Which styling engine would you like to upgrade to?
+│ ● NativeWind v5 (Tailwind CSS v4)
+│ ○ UniWind (Tailwind CSS v4, Expo-only)
+│ ○ Stay on current version
+```
+
+> **Note:** The upgrade command is not supported for Next.js projects.
+
+---
+
+# NativeWind v5 Upgrade
+
+## What Changed
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Area</TableHeaderCell>
+      <TableHeaderCell>Before (NativeWind v4)</TableHeaderCell>
+      <TableHeaderCell>After (NativeWind v5)</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Tailwind version</TableCell>
+      <TableCell><InlineCode>tailwindcss@^3.x</InlineCode></TableCell>
+      <TableCell><InlineCode>tailwindcss@^4.2.0</InlineCode></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>NativeWind version</TableCell>
+      <TableCell><InlineCode>nativewind@^4.1.23</InlineCode></TableCell>
+      <TableCell><InlineCode>nativewind@^5.0.0-preview.2</InlineCode></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>New package</TableCell>
+      <TableCell>—</TableCell>
+      <TableCell><InlineCode>react-native-css@^3.0.4</InlineCode></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>PostCSS config</TableCell>
+      <TableCell>—</TableCell>
+      <TableCell><InlineCode>postcss.config.js</InlineCode> with <InlineCode>@tailwindcss/postcss</InlineCode></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Theme tokens</TableCell>
+      <TableCell><InlineCode>tailwind.config.js</InlineCode></TableCell>
+      <TableCell><InlineCode>global.css</InlineCode> via <InlineCode>@layer theme</InlineCode></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>metro.config.js</TableCell>
+      <TableCell><InlineCode>withNativewind</InlineCode> (same)</TableCell>
+      <TableCell><InlineCode>withNativewind</InlineCode> from <InlineCode>nativewind/metro</InlineCode></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Type declarations</TableCell>
+      <TableCell><InlineCode>nativewind-env.d.ts</InlineCode></TableCell>
+      <TableCell><InlineCode>react-native-css-env.d.ts</InlineCode></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>lightningcss</TableCell>
+      <TableCell>—</TableCell>
+      <TableCell>Must pin to <InlineCode>1.30.1</InlineCode></TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+## Automated CLI Upgrade
+
+<CodeBlock code="npx gluestack-ui@alpha upgrade" language="bash" />
+
+Select **NativeWind v5 (Tailwind CSS v4)**. The CLI will:
+
+1. Pin `lightningcss@1.30.1` in `package.json` overrides/resolutions
+2. Replace `nativewind@^4.x` with `nativewind@^5.0.0-preview.2`, add `react-native-css`
+3. Upgrade `tailwindcss` to v4, add `@tailwindcss/postcss`
+4. Rewrite `global.css` with Tailwind v4 imports and theme tokens
+5. Create `postcss.config.js`
+6. Add `withNativewind` to `metro.config.js` (preserves existing options like `inlineRem`)
+7. Prompt about `tailwind.config.js` — never auto-deleted (may contain custom tokens)
+8. Create `react-native-css-env.d.ts`
+
+> **After upgrading:** Commit your changes, then re-add components to get NativeWind v5 versions:
+> ```bash
+> npx gluestack-ui add button accordion modal # all components you use
+> ```
+
+## Manual Migration to NativeWind v5
+
+### Step 1: Pin lightningcss
+
+Add to `package.json` **before** installing other packages:
+
+```json
+{
+  "overrides": { "lightningcss": "1.30.1" },
+  "resolutions": { "lightningcss": "1.30.1" }
+}
+```
+
+### Step 2: Install packages
+
+<Tabs>
+<TabItem label="npm">
+<CodeBlock code={`npm install nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0
+npm install --save-dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0`} language="bash" />
+</TabItem>
+<TabItem label="yarn">
+<CodeBlock code={`yarn add nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0
+yarn add --dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0`} language="bash" />
+</TabItem>
+</Tabs>
+
+### Step 3: Create `postcss.config.js`
+
+```js
+export default {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+```
+
+### Step 4: Update `metro.config.js`
+
+Ensure `withNativewind` is imported from `nativewind/metro`:
+
+```js
+const { getDefaultConfig } = require("expo/metro-config");
+const { withNativewind } = require("nativewind/metro");
+
+const config = getDefaultConfig(__dirname);
+
+module.exports = withNativewind(config);
+```
+
+### Step 5: Rewrite `global.css`
+
+Replace the contents with Tailwind v4 format. Theme tokens move here from `tailwind.config.js`:
+
+```css
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+@import "nativewind/theme";
+
+@layer theme {
+  :root {
+    --primary: 23 23 23;
+    --primary-foreground: 250 250 250;
+    --card: 255 255 255;
+    --secondary: 245 245 245;
+    --secondary-foreground: 23 23 23;
+    --background: 255 255 255;
+    --popover: 255 255 255;
+    --popover-foreground: 10 10 10;
+    --muted: 245 245 245;
+    --muted-foreground: 115 115 115;
+    --destructive: 231 0 11;
+    --foreground: 10 10 10;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 212 212 212;
+    --accent: 247 247 247;
+    --accent-foreground: 52 52 52;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: 255 245 245;
+      --primary-foreground: 23 23 23;
+      --card: 23 23 23;
+      --secondary: 38 38 38;
+      --secondary-foreground: 250 250 250;
+      --background: 10 10 10;
+      --popover: 23 23 23;
+      --popover-foreground: 250 250 250;
+      --muted: 38 38 38;
+      --muted-foreground: 161 161 161;
+      --destructive: 255 100 103;
+      --foreground: 250 250 250;
+      --border: 46 46 46;
+      --input: 46 46 46;
+      --ring: 115 115 115;
+      --accent: 38 38 38;
+      --accent-foreground: 250 250 250;
+    }
+  }
+
+  /* Web: class-based toggle overrides media query */
+  :root.dark {
+    --primary: 255 245 245;
+    --primary-foreground: 23 23 23;
+    --card: 23 23 23;
+    --secondary: 38 38 38;
+    --secondary-foreground: 250 250 250;
+    --background: 10 10 10;
+    --popover: 23 23 23;
+    --popover-foreground: 250 250 250;
+    --muted: 38 38 38;
+    --muted-foreground: 161 161 161;
+    --destructive: 255 100 103;
+    --foreground: 250 250 250;
+    --border: 46 46 46;
+    --input: 46 46 46;
+    --ring: 115 115 115;
+    --accent: 38 38 38;
+    --accent-foreground: 250 250 250;
+  }
+
+  :root.light {
+    --primary: 23 23 23;
+    --primary-foreground: 250 250 250;
+    --card: 255 255 255;
+    --secondary: 245 245 245;
+    --secondary-foreground: 23 23 23;
+    --background: 255 255 255;
+    --popover: 255 255 255;
+    --popover-foreground: 10 10 10;
+    --muted: 245 245 245;
+    --muted-foreground: 115 115 115;
+    --destructive: 231 0 11;
+    --foreground: 10 10 10;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 212 212 212;
+    --accent: 247 247 247;
+    --accent-foreground: 52 52 52;
+  }
+}
+
+@theme inline {
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-card: rgb(var(--card));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-background: rgb(var(--background));
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-destructive: rgb(var(--destructive));
+  --color-foreground: rgb(var(--foreground));
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+}
+```
+
+### Step 6: Handle `tailwind.config.js`
+
+Tailwind v4 is CSS-first — `tailwind.config.js` is no longer needed. Before deleting it, migrate any custom tokens (fonts, shadows, breakpoints, etc.) to `global.css`.
+
+### Step 7: Create `react-native-css-env.d.ts`
+
+```ts
+/// <reference types="react-native-css/types" />
+```
+
+### Step 8: Re-add components
+
+```bash
+npx gluestack-ui add button accordion modal # all components you use
+```
+
+When prompted to overwrite, select **Yes** to get NativeWind v5 versions.
+
+---
+
+# UniWind Upgrade
+
+UniWind is an Expo-only Tailwind v4 styling engine. It processes styles natively on device without a PostCSS step and uses class-based theme toggling via `.dark` / `.light` selectors.
+
+> **UniWind is Expo-only.** It does not support Next.js or bare React Native CLI.
+
+## What Changed
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHeaderCell>Area</TableHeaderCell>
+      <TableHeaderCell>Before (NativeWind v4)</TableHeaderCell>
+      <TableHeaderCell>After (UniWind)</TableHeaderCell>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Styling engine</TableCell>
+      <TableCell><InlineCode>nativewind@^4.1.23</InlineCode></TableCell>
+      <TableCell><InlineCode>uniwind@^1.3.0</InlineCode></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Tailwind version</TableCell>
+      <TableCell><InlineCode>tailwindcss@^3.x</InlineCode></TableCell>
+      <TableCell><InlineCode>tailwindcss@^4.1.18</InlineCode></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>metro.config.js</TableCell>
+      <TableCell><InlineCode>withNativewind</InlineCode></TableCell>
+      <TableCell><InlineCode>withUniwindConfig</InlineCode> from <InlineCode>uniwind/metro</InlineCode></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Theme tokens</TableCell>
+      <TableCell><InlineCode>tailwind.config.js</InlineCode></TableCell>
+      <TableCell><InlineCode>global.css</InlineCode> with <InlineCode>.light {}</InlineCode> / <InlineCode>.dark {}</InlineCode></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>babel.config.js</TableCell>
+      <TableCell><InlineCode>nativewind/babel</InlineCode> plugin</TableCell>
+      <TableCell>Remove <InlineCode>nativewind/babel</InlineCode></TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Type declarations</TableCell>
+      <TableCell><InlineCode>nativewind-env.d.ts</InlineCode></TableCell>
+      <TableCell><InlineCode>uniwind-types.d.ts</InlineCode></TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+## Automated CLI Upgrade
+
+<CodeBlock code="npx gluestack-ui@alpha upgrade" language="bash" />
+
+Select **UniWind (Tailwind CSS v4, Expo-only)**. The CLI will:
+
+1. Replace `nativewind` with `uniwind`, upgrade `tailwindcss` to v4
+2. Rewrite `global.css` with UniWind `.light {}` / `.dark {}` theme format
+3. Update `metro.config.js` to use `withUniwindConfig`
+4. Remove `nativewind/babel` from `babel.config.js`
+5. Delete `tailwind.config.js`
+6. Replace `nativewind-env.d.ts` with `uniwind-types.d.ts`
+
+> **After upgrading:** Commit your changes, then re-add components:
+> ```bash
+> npx gluestack-ui add button accordion modal # all components you use
+> ```
+
+## Manual Migration to UniWind
+
+### Step 1: Install packages
+
+<Tabs>
+<TabItem label="npm">
+<CodeBlock code={`npm install uniwind@^1.3.0 @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0
+npm install --save-dev tailwindcss@^4.1.18
+npm uninstall nativewind`} language="bash" />
+</TabItem>
+<TabItem label="yarn">
+<CodeBlock code={`yarn add uniwind@^1.3.0 @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0
+yarn add --dev tailwindcss@^4.1.18
+yarn remove nativewind`} language="bash" />
+</TabItem>
+</Tabs>
+
+### Step 2: Update `metro.config.js`
+
+```js
+const { getDefaultConfig } = require("expo/metro-config");
+const { withUniwindConfig } = require("uniwind/metro");
+
+const config = getDefaultConfig(__dirname);
+
+module.exports = withUniwindConfig(config, {
+  cssEntryFile: "./global.css",
+  themes: ["light", "dark"],
+});
+```
+
+### Step 3: Rewrite `global.css`
+
+UniWind uses top-level `.light {}` and `.dark {}` class selectors (not nested inside `:root`):
+
+```css
+@import "tailwindcss";
+
+@layer theme {
+  .light {
+    --primary: 23 23 23;
+    --primary-foreground: 250 250 250;
+    --card: 255 255 255;
+    --secondary: 245 245 245;
+    --secondary-foreground: 23 23 23;
+    --background: 255 255 255;
+    --popover: 255 255 255;
+    --popover-foreground: 10 10 10;
+    --muted: 245 245 245;
+    --muted-foreground: 115 115 115;
+    --destructive: 231 0 11;
+    --foreground: 10 10 10;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 212 212 212;
+    --accent: 247 247 247;
+    --accent-foreground: 52 52 52;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not(:where(.light, .light *, .dark, .dark *)) {
+      --primary: 23 23 23;
+      --primary-foreground: 250 250 250;
+      --card: 255 255 255;
+      --secondary: 245 245 245;
+      --secondary-foreground: 23 23 23;
+      --background: 255 255 255;
+      --popover: 255 255 255;
+      --popover-foreground: 10 10 10;
+      --muted: 245 245 245;
+      --muted-foreground: 115 115 115;
+      --destructive: 231 0 11;
+      --foreground: 10 10 10;
+      --border: 229 229 229;
+      --input: 229 229 229;
+      --ring: 212 212 212;
+      --accent: 247 247 247;
+      --accent-foreground: 52 52 52;
+    }
+  }
+
+  .dark {
+    --primary: 255 245 245;
+    --primary-foreground: 23 23 23;
+    --card: 23 23 23;
+    --secondary: 38 38 38;
+    --secondary-foreground: 250 250 250;
+    --background: 10 10 10;
+    --popover: 23 23 23;
+    --popover-foreground: 250 250 250;
+    --muted: 38 38 38;
+    --muted-foreground: 161 161 161;
+    --destructive: 255 100 103;
+    --foreground: 250 250 250;
+    --border: 46 46 46;
+    --input: 46 46 46;
+    --ring: 115 115 115;
+    --accent: 38 38 38;
+    --accent-foreground: 250 250 250;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(:where(.light, .light *, .dark, .dark *)) {
+      --primary: 255 245 245;
+      --primary-foreground: 23 23 23;
+      --card: 23 23 23;
+      --secondary: 38 38 38;
+      --secondary-foreground: 250 250 250;
+      --background: 10 10 10;
+      --popover: 23 23 23;
+      --popover-foreground: 250 250 250;
+      --muted: 38 38 38;
+      --muted-foreground: 161 161 161;
+      --destructive: 255 100 103;
+      --foreground: 250 250 250;
+      --border: 46 46 46;
+      --input: 46 46 46;
+      --ring: 115 115 115;
+      --accent: 38 38 38;
+      --accent-foreground: 250 250 250;
+    }
+  }
+}
+
+@theme inline {
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-card: rgb(var(--card));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-background: rgb(var(--background));
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-destructive: rgb(var(--destructive));
+  --color-foreground: rgb(var(--foreground));
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+}
+```
+
+> **Why `.dark {}` at the top level?** UniWind's CSS visitor transforms `&:where(.dark, .dark *)` selectors into `.dark {}` — this must be at the top level of `@layer theme`, not nested inside `:root {}`. Nesting would create `:root .dark {}` (descendant selector) which would not match `html.dark`.
+
+### Step 4: Remove `nativewind/babel` from `babel.config.js`
+
+Remove the `nativewind/babel` entry from plugins and presets:
+
+```js
+// Before
+module.exports = {
+  presets: ['babel-preset-expo'],
+  plugins: ['nativewind/babel'],  // ← remove this
+};
+
+// After
+module.exports = {
+  presets: ['babel-preset-expo'],
+  plugins: [],
+};
+```
+
+### Step 5: Update type declarations
+
+Remove `nativewind-env.d.ts` and create `uniwind-types.d.ts`:
+
+```ts
+/// <reference types="uniwind/types" />
+```
+
+### Step 6: Delete `tailwind.config.js`
+
+Tailwind v4 is CSS-first — `tailwind.config.js` is not used by UniWind. Migrate any custom tokens to `global.css` first.
+
+### Step 7: Re-add components
+
+```bash
+npx gluestack-ui add button accordion modal # all components you use
+```
+
+When prompted to overwrite, select **Yes** to get UniWind versions.
+
+---
+
+## Support
+
+If you encounter issues during migration:
+- Check the [gluestack-ui documentation](https://gluestack.io/ui/docs)
+- Join our [Discord community](https://discord.gg/gluestack) for help
+- Report bugs on [GitHub](https://github.com/gluestack/gluestack-ui/issues)
