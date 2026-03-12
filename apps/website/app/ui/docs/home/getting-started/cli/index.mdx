@@ -51,6 +51,52 @@ Use the `add` command to add components and their dependencies to your project:
 <CodeBlock code={`Usage: ${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add [component] [options] \n \n add component to your project \n \n Options: \n   --all          Adds all existing components from gluestack-ui \n   --path <path>  Path to add components, defaults to the directory where GluestackUIProvider is located. \n   --use-npm      Set npm as the project's package manager, default \n   --use-yarn     Set yarn as the project's package manager \n   --use-bun      Set bun as the project's package manager \n   --use-pnpm     Set pnpm as the project's package manager, currently not supported in react-native-cli projects.`} language="bash" />
 
 
+## Upgrade
+
+Use the `upgrade` command to migrate your project's styling engine.
+
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} upgrade`} language="bash" />
+
+The upgrade command auto-detects your current gluestack-ui version and presents a prompt asking which styling engine you want to upgrade to:
+
+```
+◆ Which styling engine would you like to upgrade to?
+│ ● NativeWind v5 (Tailwind CSS v4)
+│ ○ UniWind (Tailwind CSS v4, Expo-only)
+│ ○ Stay on current version
+```
+
+### NativeWind v5 upgrade path
+
+Migrates from NativeWind v4 (Tailwind v3) to NativeWind v5 (Tailwind v4). The command will automatically:
+
+1. Pin `lightningcss@1.30.1` in `package.json` overrides/resolutions
+2. Replace `nativewind@^4.x` with `nativewind@^5.0.0-preview.2` and add `react-native-css`
+3. Upgrade `tailwindcss` to v4 and add `@tailwindcss/postcss`
+4. Rewrite `global.css` to Tailwind v4 format (with theme tokens)
+5. Create `postcss.config.js`
+6. Add `withNativewind` to `metro.config.js` (preserves existing options)
+7. Prompt whether to delete `tailwind.config.js` (never auto-deleted — may contain custom tokens)
+8. Create `react-native-css-env.d.ts`
+
+> **After upgrading:** Re-add your components using `npx gluestack-ui add <component>` to get the NativeWind v5 versions. Commit your changes first — re-adding will overwrite existing component files.
+
+### UniWind upgrade path
+
+Migrates from NativeWind v4 to UniWind (Tailwind v4, Expo-only). The command will automatically:
+
+1. Replace `nativewind` with `uniwind`
+2. Upgrade `tailwindcss` to v4
+3. Rewrite `global.css` to UniWind / Tailwind v4 format
+4. Update `metro.config.js` to use `withUniwindConfig`
+5. Remove `nativewind/babel` entries from `babel.config.js`
+6. Remove `tailwind.config.js` (Tailwind v4 is CSS-first)
+7. Remove `nativewind-env.d.ts` and create `uniwind-types.d.ts`
+
+> **After upgrading:** Re-add your components using `npx gluestack-ui add <component>` to get the UniWind versions. Commit your changes first.
+
+> **Note:** The upgrade command is not supported for Next.js projects.
+
 ## gluestack-ui.config.json
 
 Configuration for your project.
