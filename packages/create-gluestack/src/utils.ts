@@ -55,11 +55,8 @@ async function cloneProject(projectName: string, templateName: string) {
     // Move files
     moveAllFiles(dirPath, templateName);
 
-    // Clean up
+    // Clean up .git directory (apps/ was already removed inside moveAllFiles)
     try {
-      // Remove the apps directory
-      rmSync(path.join(dirPath, 'apps'), { recursive: true, force: true });
-      // Remove the .git directory
       rmSync(path.join(dirPath, '.git'), { recursive: true, force: true });
     } catch (cleanupError) {
       console.warn(
