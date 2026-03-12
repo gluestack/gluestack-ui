@@ -78,11 +78,11 @@ async function installDependencies(
   projectName: string,
   selectedPackageManager: string
 ) {
-  console.log('Installing Dependencies...');
+  console.log('Installing dependencies...');
   execSync(`${selectedPackageManager} install`, {
     cwd: path.join(process.cwd(), projectName),
   });
-  console.log('Dependancies Installed!');
+  console.log('Dependencies installed!');
 }
 
 async function gitInit(projectName: string) {

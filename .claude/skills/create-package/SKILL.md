@@ -267,6 +267,14 @@ yarn link:create-utils   # For gluestack-utils
 yarn link:apps
 ```
 
+Available apps (all under `apps/`):
+- `kitchen-sink` — component showcase
+- `starter-kit-expo` — Expo + NativeWind v5 (Tailwind v4)
+- `starter-kit-expo-uniwind` — Expo + UniWind (Tailwind v4)
+- `starter-kit-next` — Next.js + NativeWind v4 (Tailwind v3)
+- `starter-kit-monorepo` — Universal Expo + Next.js monorepo (NativeWind v4, Tailwind v3)
+- `website` — documentation site
+
 **Step 5.2: Start Watch Mode**
 
 The package will now rebuild automatically on changes:
@@ -526,20 +534,41 @@ const Dropdown = React.forwardRef((props, ref) => {
 
 **Step 7.2: Test in Apps**
 
-```bash
-# Test in kitchen-sink
-cd apps/kitchen-sink && yarn dev
+Choose the relevant app(s) to test in based on what was changed:
 
-# Test in website
+```bash
+# Kitchen sink — component showcase, best for testing new/modified components
+cd apps/kitchen-sink && yarn start
+
+# Website — docs site, test if component examples render correctly
 cd apps/website && yarn dev
+
+# Expo starter kit (NativeWind v5 + Tailwind v4)
+cd apps/starter-kit-expo && npx expo start
+
+# Expo starter kit (UniWind + Tailwind v4)
+cd apps/starter-kit-expo-uniwind && npx expo start
+
+# Next.js starter kit (NativeWind v4 + Tailwind v3)
+cd apps/starter-kit-next && yarn dev
+
+# Universal monorepo (Expo + Next.js)
+cd apps/starter-kit-monorepo && yarn dev
 ```
 
+**Which app to test in:**
+- New component creator → kitchen-sink + all starter kits
+- Utility/hook → kitchen-sink is sufficient
+- Styling change → all three starter kits (expo, expo-uniwind, next)
+- Core breaking change → all apps
+
 Verify:
-- Package imports correctly
+- Package imports correctly in each tested app
 - Functions work as expected
 - TypeScript types are correct
 - No console errors
 - Documentation examples work
+- Styling renders correctly across engines (NativeWind v5, UniWind, NativeWind v4)
 
 **Step 7.3: Build Test**
 

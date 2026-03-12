@@ -1,6 +1,6 @@
 const data = {
   gitRepo: 'https://github.com/gluestack/gluestack-ui.git',
-  branch: 'main-v4-alpha',
+  branch: 'feat/v5-cli',
   parentPath: 'apps', // This is the path to the parent directory of the template
   options: {
     framework: {
@@ -10,17 +10,17 @@ const data = {
           {
             value: 'expo',
             label: 'Expo app',
-            hint: 'Expo Router + gluestack-ui',
+            hint: 'Expo Router + gluestack-ui v5',
           },
           {
             value: 'next',
             label: 'Next.js app',
-            hint: 'Next App router + gluestack-ui',
+            hint: 'Next App Router + gluestack-ui (NativeWind v4)',
           },
           {
             value: 'universal',
             label: 'Universal app (Coming Soon)',
-            hint: 'Next App router + Expo Router + gluestack-ui',
+            hint: 'Next App Router + Expo Router + gluestack-ui',
           },
         ],
       },
@@ -32,13 +32,13 @@ const data = {
           {
             value: 'nativewind',
             label: 'NativeWind v5 (Tailwind v4)',
-            hint: 'Stable, production-ready',
+            hint: 'Expo & React Native CLI, recommended',
             templateName: 'starter-kit-expo',
           },
           {
             value: 'uniwind',
             label: 'UniWind (Tailwind v4)',
-            hint: 'Latest Tailwind with new features',
+            hint: 'Expo-only, no PostCSS build step',
             templateName: 'starter-kit-expo-uniwind',
           },
         ],
@@ -48,8 +48,8 @@ const data = {
         options: [
           {
             value: 'nativewind',
-            label: 'NativeWind (Tailwind v3)',
-            hint: 'Stable, production-ready',
+            label: 'NativeWind v4 (Tailwind v3)',
+            hint: 'gluestack-ui v5 Next.js support coming soon',
             templateName: 'starter-kit-next',
           },
         ],
@@ -57,11 +57,11 @@ const data = {
       universal: {
         options: [
           {
-            value: 'nativewind-v4',
+            value: 'nativewind',
             label: 'NativeWind v4 (Tailwind v3)',
-            hint: 'Stable, production-ready',
+            hint: 'Expo + Next.js monorepo — NativeWind v5 Next.js support coming soon',
             templateName: 'starter-kit-monorepo',
-          }
+          },
         ],
       },
     },
