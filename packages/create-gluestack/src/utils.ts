@@ -66,10 +66,11 @@ async function cloneProject(projectName: string, templateName: string) {
         'Warning: Some cleanup operations failed, but project should still be usable'
       );
     }
-  } catch (error) {
-    console.log(
-      'Git not installed or error occurred. Please install git and try again...'
+  } catch (error: any) {
+    console.error(
+      'Failed to clone project. Ensure git is installed and try again.'
     );
+    console.error(error?.message || error);
     process.exit(1);
   }
 }
@@ -95,17 +96,27 @@ async function gitInit(projectName: string) {
 
 function moveAllFiles(dirPath: string, templateName: string) {
   const sourcePath = path.join(dirPath, 'apps', templateName);
+  const tempPath = path.join(dirPath, '__gluestack_temp__');
 
-  // Read all files/directories in the source directory
-  const items = readdirSync(sourcePath);
+  // Move template to a temp location to avoid conflicts with the existing
+  // 'apps/' directory (e.g. monorepo templates that contain their own 'apps/' subdir)
+  renameSync(sourcePath, tempPath);
 
-  // Move each item to the destination
+  // Remove the now-empty apps directory so items can be moved to the root
+  rmSync(path.join(dirPath, 'apps'), { recursive: true, force: true });
+
+  // Read all files/directories in the temp directory
+  const items = readdirSync(tempPath);
+
+  // Move each item to the project root
   items.forEach((item) => {
-    const sourceItem = path.join(sourcePath, item);
+    const sourceItem = path.join(tempPath, item);
     const destItem = path.join(dirPath, item);
-
     renameSync(sourceItem, destItem);
   });
+
+  // Remove temp directory
+  rmSync(tempPath, { recursive: true, force: true });
 }
 
 export { cloneProject, installDependencies, gitInit };
