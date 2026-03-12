@@ -120,7 +120,7 @@ Both packages have been updated to \`^5.0.0-alpha.0\` and \`^5.0.1-alpha.0\` res
 
 ### Separate Component Registry Branch
 
-v5 components are served from the \`feat/nw-v5-alpha\` branch. The CLI automatically selects the correct branch based on the detected styling engine — no manual configuration needed.
+v5 components are served from the \`main-v5-alpha\` branch. The CLI automatically selects the correct branch based on the detected styling engine — no manual configuration needed.
 
 ## Breaking Changes
 
