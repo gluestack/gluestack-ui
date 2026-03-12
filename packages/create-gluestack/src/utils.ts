@@ -77,7 +77,14 @@ async function installDependencies(
   selectedPackageManager: string
 ) {
   console.log('Installing dependencies...');
-  execSync(`${selectedPackageManager} install`, {
+  // npm's strict pre-release peer dep resolution breaks alpha packages where
+  // e.g. 5.0.1-alpha.0 doesn't satisfy ">=5.0.0-alpha.0" (different patch).
+  // --legacy-peer-deps restores the npm v6 behavior that ignores this.
+  const installCmd =
+    selectedPackageManager === 'npm'
+      ? 'npm install --legacy-peer-deps'
+      : `${selectedPackageManager} install`;
+  execSync(installCmd, {
     cwd: path.join(process.cwd(), projectName),
   });
   console.log('Dependencies installed!');

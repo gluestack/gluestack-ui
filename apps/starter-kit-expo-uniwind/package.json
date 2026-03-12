@@ -13,7 +13,7 @@
   "dependencies": {
     "@expo/html-elements": "^0.13.8",
     "@gluestack-ui/core": "^5.0.1-alpha.0",
-    "@gluestack-ui/utils": "^5.0.1-alpha.0",
+    "@gluestack-ui/utils": "5.0.0-alpha.0",
     "@gorhom/bottom-sheet": "^5",
     "@legendapp/motion": "^2.4.0",
     "@react-aria/utils": "^3.33.0",
