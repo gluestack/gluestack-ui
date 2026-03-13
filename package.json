@@ -18,7 +18,7 @@
     "sync": "tsx scripts/dev.ts --sync",
     "sync:kitchen-sink": "tsx scripts/dev.ts --mapper=kitchen-sink --sync",
     "sync:website": "tsx scripts/dev.ts --mapper=website --sync",
-    "search:index": "tsx scripts/search/indexer.ts",
+    "search:index": "npx tsx scripts/search/indexer.ts",
     "sync:website:alt": "ts-node scripts/dev.ts --mapper=website --sync",
     "sync:starter-kits": "tsx scripts/dev.ts --mapper=starter-kits --sync",
     "dev:starter-kit-expo-uniwind": "tsx --watch scripts/dev.ts --mapper=starter-kit-expo-uniwind",
