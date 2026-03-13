@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "next build --webpack",
-    "build:preview": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui/core@preview @gluestack-ui/core@preview  && next build --webpack",
+    "search:index": "cd ../.. && tsx scripts/search/indexer.ts",
+    "build": "yarn search:index && next build --webpack",
+    "build:preview": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui/core@preview @gluestack-ui/core@preview  && yarn search:index && next build --webpack",
     "build:only": "next build --webpack",
     "start": "next start",
     "test": "jest"
   },
   "dependencies": {
-    "@docsearch/react": "^3.9.0",
     "@expo/html-elements": "^0.12.5",
     "@expo/next-adapter": "^6.0.0",
     "@gluestack-ui/core": "^4.1.0-alpha.2",
@@ -21,6 +21,7 @@
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "16.1.1",
+    "@orama/orama": "^3.1.18",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-scroll-area": "^1.2.10",
     "@radix-ui/react-slot": "^1.2.4",
