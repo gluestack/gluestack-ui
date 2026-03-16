@@ -18,7 +18,7 @@ import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import AnimatedGithubCount from '../landing-page/AnimatedGithubCount';
-import { UiDocSearch } from './Docsearch';
+import { SearchTrigger } from '@/components/search/SearchTrigger';
 import { MobileSidebarMenu } from './MobileSidebarMenu';
 import ProductDropdown from './ProductDropdown';
 import ResourcesDropdown from './ResourcesDropdown';
@@ -115,8 +115,8 @@ const Header = ({
           </div>
           <div className="flex flex-row xl:gap-10 gap-6 items-center">
             {/* Desktop: Show full search */}
-            <div className=" flex items-center justify-center">
-              <UiDocSearch />
+            <div className="flex items-center justify-center">
+              <SearchTrigger />
             </div>
 
             <NextLink
