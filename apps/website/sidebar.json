@@ -260,12 +260,14 @@
               {
                 "title": "DateTimePicker",
                 "path": "/ui/docs/components/date-time-picker",
+                "tags": ["alpha"],
                 "url": "https://i.imgur.com/fZPMCl3.png",
                 "darkUrl": "https://i.imgur.com/1c2clr3.png"
               },
               {
                 "title": "Calendar",
                 "path": "/ui/docs/components/calendar",
+                "tags": ["alpha"],
                 "url": "https://i.imgur.com/fZPMCl3.png",
                 "darkUrl": "https://i.imgur.com/1c2clr3.png"
               },
@@ -344,6 +346,7 @@
               {
                 "title": "Liquid Glass",
                 "path": "/ui/docs/components/liquid-glass",
+                "tags": ["alpha"],
                 "url": "https://i.imgur.com/xfmvFSy.png",
                 "darkUrl": "https://i.imgur.com/C8yWYco.png"
               },
@@ -380,6 +383,7 @@
               {
                 "title": "Image Viewer",
                 "path": "/ui/docs/components/image-viewer",
+                "tags": ["alpha"],
                 "url": "https://i.imgur.com/OyRsX4f.png",
                 "darkUrl": "https://i.imgur.com/VzxzCVU.png"
               }
@@ -501,21 +505,6 @@
           {
             "title": "AppLighter",
             "path": "https://www.applighter.com/"
-          }
-        ]
-      },
-      {
-        "type": "Dropdown",
-        "title": "MCP Server",
-        "icons": {
-          "source": "lucide-react-native",
-          "name": "Server",
-          "headerTitle": "MCP Server"
-        },
-        "subsections": [
-          {
-            "title": "MCP Server",
-            "path": "/ui/docs/mcp-server/mcp-server"
           }
         ]
       },
