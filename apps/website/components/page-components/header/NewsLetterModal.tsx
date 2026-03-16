@@ -109,7 +109,7 @@ export default function NewsletterModal({
                 <ModalBody>
                     <Box className="p-6">
                         <VStack className="gap-3">
-                            <Heading className="text-3xl font-bold leading-9 mb-3 text-typography-900">
+                            <Heading className="text-3xl font-bold leading-9 mb-3 text-foreground/90">
                                 Get exclusive updates!
                             </Heading>
                             <Text className="text-lg font-normal leading-[30px]">

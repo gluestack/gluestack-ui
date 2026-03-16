@@ -4,7 +4,7 @@ export function UtilsLink() {
   return (
     <Link
       isExternal
-      className="leading-6 font-body text-typography-950 underline underline-offset-4 decoration-typography-950 inline-block"
+      className="leading-6 font-body text-foreground underline underline-offset-4 decoration-foreground inline-block"
       href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/src/utils/gluestack-utils`}
     >
       GitHub repository
@@ -16,7 +16,7 @@ export function OverlayLink() {
   return (
     <Link
       isExternal
-      className="leading-6 font-body text-typography-950 underline underline-offset-4 decoration-typography-950 inline-block"
+      className="leading-6 font-body text-foreground underline underline-offset-4 decoration-foreground inline-block"
       href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/src/components/ui/overlay`}
     >
       GitHub repository
@@ -28,7 +28,7 @@ export function ToastLink() {
   return (
     <Link
       isExternal
-      className="leading-6 font-body text-typography-950 underline underline-offset-4 decoration-typography-950 inline-block"
+      className="leading-6 font-body text-foreground underline underline-offset-4 decoration-foreground inline-block"
       href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/src/components/ui/toast`}
     >
       GitHub repository
@@ -40,7 +40,7 @@ export function GluestackUIProviderLink() {
   return (
     <Link
       isExternal
-      className="leading-6 font-body text-typography-950 underline underline-offset-4 decoration-typography-950 inline-block"
+      className="leading-6 font-body text-foreground underline underline-offset-4 decoration-foreground inline-block"
       href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}/src/components/ui/gluestack-ui-provider`}
     >
       GitHub repository

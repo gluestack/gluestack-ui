@@ -5,9 +5,9 @@ export const GithubLink = ({ children }: { children: React.ReactNode }) => {
     <Link
       href={`https://github.com/gluestack/gluestack-ui/tree/${process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main'}`}
       isExternal
-      className="leading-6 font-body text-typography-950 underline underline-offset-4 decoration-typography-950 inline-block"
+      className="leading-6 font-body text-foreground underline underline-offset-4 decoration-foreground inline-block"
     >
-      <LinkText className="text-typography-950 data-[hover=true]:text-typography-950 data-[active=true]:text-typography-950">{children}</LinkText>
+      <LinkText className="text-foreground data-[hover=true]:text-foreground data-[active=true]:text-foreground">{children}</LinkText>
     </Link>
   );
 };

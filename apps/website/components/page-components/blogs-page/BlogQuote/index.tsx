@@ -25,7 +25,7 @@ const BlogQuote: React.FC<BlogQuoteProps> = ({
       <figure className="relative p-8 md:p-10 rounded-xl dark:bg-background-0 border border-outline-950/10">
         {/* Quote mark */}
         <svg
-          className="absolute h-12 w-12 text-typography-900/10"
+          className="absolute h-12 w-12 text-foreground/10"
           fill="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true"
@@ -36,7 +36,7 @@ const BlogQuote: React.FC<BlogQuoteProps> = ({
         {/* Quote content */}
         <div className="relative">
           <blockquote className="mt-6 md:mt-8">
-            <p className="text-lg md:text-xl text-typography-900/80 leading-relaxed">
+            <p className="text-lg md:text-xl text-foreground/80 leading-relaxed">
               {quote}
             </p>
           </blockquote>
@@ -48,11 +48,11 @@ const BlogQuote: React.FC<BlogQuoteProps> = ({
               <AvatarImage source={{ uri: authorImage }} />
             </Avatar>
             <div>
-              <div className="text-base font-semibold text-typography-900">
+              <div className="text-base font-semibold text-foreground/90">
                 {authorName}
               </div>
               {authorTitle && (
-                <div className="mt-1 text-sm text-typography-900/60">
+                <div className="mt-1 text-sm text-foreground/60">
                   {authorTitle}
                 </div>
               )}

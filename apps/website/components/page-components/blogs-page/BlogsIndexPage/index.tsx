@@ -7,7 +7,7 @@ const Blogs = ({ blogs }: { blogs: any }) => {
 
   return (
     <Box>
-      <Heading className="text-typography-950 text-2xl font-bold">
+      <Heading className="text-foreground/90 text-2xl font-bold">
         Latest posts
       </Heading>
       <div className="flex flex-col w-full">

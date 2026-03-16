@@ -112,7 +112,7 @@ export const TOC = ({ items }: { items: Item[] }) => {
 
   return (
     <Box className="fixed right-[7%] top-[180px] hidden xl:flex">
-      <Text className="text-2xl font-bold text-typography-900 py-1.5 px-0.5">
+      <Text className="text-2xl font-bold text-foreground/90 py-1.5 px-0.5">
         Table of Contents
       </Text>
 

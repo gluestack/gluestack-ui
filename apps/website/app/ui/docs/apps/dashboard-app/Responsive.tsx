@@ -185,13 +185,13 @@ function Responsiveness({
 
       <Box className="mt-[-12px] mb-6 border-radius-lg border-width-1 border-color-borderDark800 bg-backgroundDark950 p-4 w-auto self-start">
         <Box>
-          <Text className="text-typography-900 font-bold font-Inter" size="xl">
+          <Text className="text-foreground/90 font-bold font-Inter" size="xl">
             Give it a shot!
           </Text>
 
           <Box className="hidden md:flex">
             <Text
-              className="text-typography-600 font-Inter mt-2 md:max-w-[319px]"
+              className="text-foreground/60 font-Inter mt-2 md:max-w-[319px]"
               size="md"
             >
               Try it in your browser or scan the QR code with the&nbsp;
@@ -209,7 +209,7 @@ function Responsiveness({
             </Text>
           </Box>
 
-          <Text className="flex text-typography-600 font-Inter mt-2 md:hidden md:max-w-[319px]">
+          <Text className="flex text-foreground/60 font-Inter mt-2 md:hidden md:max-w-[319px]">
             Try on Expo app. It&apos;s the perfect way to dive right in and
             explore.
           </Text>
@@ -236,13 +236,13 @@ function Responsiveness({
             }
           >
             {/* <OpenInNewIcon /> */}
-            <Text className="text-typography-950 ml-2.5" size="sm">
+            <Text className="text-foreground ml-2.5" size="sm">
               Open in new tab
             </Text>
           </Pressable>
 
           <Pressable
-            className="flex py-1 px-3 mt-5 border-color-borderDark700 border-radius-sm border-width-1 bg-transparent flex-row items-center w-auto self-start border-color-borderDark700 bg-transparent "
+            className="flex py-1 px-3 mt-5 border-color-borderDark700 border-radius-sm border-width-1 bg-transparent flex-row items-center w-auto self-start border-color-borderDark700"
             // borderWidth={1}
             // bg="transparent"
             // flexDirection="row"
@@ -276,7 +276,7 @@ function Responsiveness({
               width={17}
               height={16}
             />
-            <Text className="text-typography-950 ml-2.5" size="sm">
+            <Text className="text-foreground ml-2.5" size="sm">
               Open in Expo
             </Text>
           </Pressable>
