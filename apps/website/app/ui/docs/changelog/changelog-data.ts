@@ -111,7 +111,7 @@ You'll be prompted to choose a styling engine:
 
 > **Note:** After running the upgrade command, commit your changes and then re-add components to get v5 versions:
 > \`\`\`bash
-> npx gluestack-ui add button accordion modal # etc.
+> npx gluestack-ui@alpha add button accordion modal # etc.
 > \`\`\`
 
 ### Updated \`@gluestack-ui/core\` and \`@gluestack-ui/utils\`
