@@ -82,7 +82,7 @@ export const docsComponents = {
     return (
       <Link
         isExternal={containsAny(props.href)}
-        className="leading-6 font-body text-typography-950 underline underline-offset-4 decoration-typography-950 inline-block"
+        className="leading-6 font-body text-foreground underline underline-offset-4 decoration-foreground inline-block"
         {...props}
       >
         <LinkText>{props.children}</LinkText>
