@@ -36,7 +36,7 @@ export const changelogEntries: ChangelogEntry[] = [
 
 Tailwind v4 eliminates \`tailwind.config.js\` in favor of a CSS-first approach. All design tokens now live in \`global.css\` via \`@layer theme\`, giving you a single, readable source of truth for your entire design system:
 
-\`\`\`css
+\`\`\`
 @layer theme {
   :root {
     --primary: 23 23 23;
@@ -133,10 +133,10 @@ v5 components are served from the \`main-v5-alpha\` branch. The CLI automaticall
 
 ## Platform Support
 
-| Engine | Expo | React Native CLI | Next.js |
-|---|---|---|---|
-| NativeWind v5 | ✅ | ✅ | ❌ |
-| UniWind | ✅ | ❌ | ❌ |
+| Engine        | Expo | React Native CLI | Next.js |
+| :------------ | :--: | :--------------: | :-----: |
+| NativeWind v5 |  ✅  |        ✅        |   ❌    |
+| UniWind       |  ✅  |        ❌        |   ❌    |
 
 > The \`upgrade\` CLI command is not supported for Next.js projects.
 
