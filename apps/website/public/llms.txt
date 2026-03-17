@@ -1,5 +1,5 @@
 # Gluestack UI - Universal React & React Native Component Library (v5 Alpha)
-> Site: gluestack.io
+> Site: v5.gluestack.io
 > Description: React & React Native UI components library with customizable Tailwind CSS v4 components for web & mobile apps
 > Last Updated: 2026-03-17
 > Version: v5 (Alpha)
