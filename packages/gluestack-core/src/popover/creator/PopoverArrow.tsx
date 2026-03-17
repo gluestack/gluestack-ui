@@ -53,7 +53,7 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
           // data attributes for uniwind
           data-flip={isFlipped ? 'true' : 'false'}
           // data attributes for nativewind
-          dataSet={{ flip: isFlipped }}
+          dataSet={{ flip: isFlipped ? 'true' : 'false' }}
           states={{
             flip: isFlipped,
           }}
