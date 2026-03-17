@@ -161,17 +161,15 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { Divider } from "@/components/ui/divider";
-import { ChevronUpIcon, ChevronDownIcon } from "@/components/ui/icon";
+import { ChevronDownIcon } from "@/components/ui/icon";
 
 function Example() {
   return (
     <Accordion
-      size="md"
-      variant="filled"
       type="single"
       isCollapsible={true}
       isDisabled={false}
-      className="m-5 w-[90%] border border-outline-200"
+      className="m-5 w-[90%]"
     >
       <AccordionItem value="a">
         <AccordionHeader>
@@ -182,11 +180,7 @@ function Example() {
                   <AccordionTitleText>
                     How do I place an order?
                   </AccordionTitleText>
-                  {isExpanded ? (
-                    <AccordionIcon as={ChevronUpIcon} className="ml-3" />
-                  ) : (
-                    <AccordionIcon as={ChevronDownIcon} className="ml-3" />
-                  )}
+                  <AccordionIcon as={ChevronDownIcon} />
                 </>
               );
             }}
@@ -210,11 +204,7 @@ function Example() {
                   <AccordionTitleText>
                     What payment methods do you accept?
                   </AccordionTitleText>
-                  {isExpanded ? (
-                    <AccordionIcon as={ChevronUpIcon} className="ml-3" />
-                  ) : (
-                    <AccordionIcon as={ChevronDownIcon} className="ml-3" />
-                  )}
+                  <AccordionIcon as={ChevronDownIcon} />
                 </>
               );
             }}
@@ -236,47 +226,31 @@ function Example() {
 
 ### Accordion
 
-- **variant**: `filled` | `unfilled` (default: `filled`)
-- **size**: `sm` | `md` | `lg` (default: `md`)
 - **type**: `single` | `multiple` (default: `single`) - Determines whether one or multiple items can be opened at the same time
 - **isCollapsible**: boolean (default: `true`) - When type is "single" or "multiple", allows closing content when clicking trigger for an open item
-- **defaultValue**: string[] (default: `[]`) - The value of the item to expand when initially rendered when type is "single" or "multiple"
-- **value**: string[] (default: `[]`) - The controlled value of the item to expand when type is "single" or "multiple"
-- **onValueChange**: function - Event handler called when the expanded state of an item changes and type is "single" or "multiple"
-- **isDisabled**: boolean (default: `false`) - When true, prevents the user from interacting with the accordion and all its items
-
-Inherits all the properties of React Native's View component.
+- **defaultValue**: string[] (default: `[]`) - The value of the item to expand when initially rendered
+- **value**: string[] (default: `[]`) - The controlled value of the item to expand
+- **onValueChange**: function - Event handler called when the expanded state of an item changes
+- **isDisabled**: boolean (default: `false`) - When true, prevents interaction with the accordion
 
 ### AccordionItem
 
-- **value**: string (required) - The controlled value of the item to expand when type is "single" or "multiple"
-- **isDisabled**: boolean (default: `false`) - When true, prevents the user from interacting with the accordion item
-
-Inherits all the properties of React Native's View component.
+- **value**: string (required) - The value of the item
+- **isDisabled**: boolean (default: `false`) - When true, prevents interaction with the item
 
 ### AccordionHeader
 
-Inherits all the properties of @expo/html-elements's H3 on web and React Native's View on native.
-
 ### AccordionTrigger
-
-Inherits all the properties of React Native's Pressable component.
 
 ### AccordionTitleText
 
-Inherits all the properties of React Native's Text component.
-
 ### AccordionIcon
 
-Inherits all the properties of React Native's View component.
+- **as**: The icon component to render.
 
 ### AccordionContent
 
-Inherits all the properties of React Native's View component.
-
 ### AccordionContentText
-
-Inherits all the properties of React Native's Text component.
 
 ## Default Styling
 
@@ -293,51 +267,6 @@ w-full
 
 <!-- BASE_STYLE_END -->
 
-### Default Variant Styling
-
-<!-- VARIANT_STYLES_START -->
-
-```json
-{
-  "variant": {
-    "filled": "bg-white shadow-hard-2",
-    "unfilled": ""
-  },
-  "size": {
-    "sm": "",
-    "md": "",
-    "lg": ""
-  }
-}
-```
-
-<!-- VARIANT_STYLES_END -->
-
-### AccordionItem
-
-<!-- BASE_STYLE_START -->
-
-The AccordionItem component uses the following base styling by default:
-
-```css
-/* Base styling applied to all AccordionItem components */
-```
-
-<!-- BASE_STYLE_END -->
-
-### Parent-Based Styling
-
-The styling below is applied to AccordionItem based on the props passed to the parent Accordion component:
-
-```json
-{
-  "variant": {
-    "filled": "bg-background-0",
-    "unfilled": "bg-transparent"
-  }
-}
-```
-
 ### AccordionHeader
 
 <!-- BASE_STYLE_START -->
@@ -346,7 +275,7 @@ The AccordionHeader component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all AccordionHeader components */
-mx-0 my-0
+py-2.5 m-0
 ```
 
 <!-- BASE_STYLE_END -->
@@ -359,7 +288,7 @@ The AccordionTrigger component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all AccordionTrigger components */
-w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background-50 py-3 px-4
+w-full flex-row justify-between items-center web:outline-none focus:outline-none data-[disabled=true]:opacity-40 data-[disabled=true]:cursor-not-allowed data-[focus-visible=true]:bg-background/10 gap-3
 ```
 
 <!-- BASE_STYLE_END -->
@@ -372,24 +301,10 @@ The AccordionTitleText component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all AccordionTitleText components */
-text-typography-900 font-bold flex-1 text-left
+text-foreground font-medium flex-1 text-left text-sm
 ```
 
 <!-- BASE_STYLE_END -->
-
-### Parent-Based Styling
-
-The styling below is applied to AccordionTitleText based on the props passed to the parent Accordion component:
-
-```json
-{
-  "size": {
-    "sm": "text-sm",
-    "md": "text-base",
-    "lg": "text-lg"
-  }
-}
-```
 
 ### AccordionIcon
 
@@ -399,27 +314,10 @@ The AccordionIcon component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all AccordionIcon components */
-text-typography-900 fill-none
+text-muted-foreground fill-none h-4 w-4
 ```
 
 <!-- BASE_STYLE_END -->
-
-### Parent-Based Styling
-
-The styling below is applied to AccordionIcon based on the props passed to the parent Accordion component:
-
-```json
-{
-  "size": {
-    "2xs": "h-3 w-3",
-    "xs": "h-3.5 w-3.5",
-    "sm": "h-4 w-4",
-    "md": "h-[18px] w-[18px]",
-    "lg": "h-5 w-5",
-    "xl": "h-6 w-6"
-  }
-}
-```
 
 ### AccordionContent
 
@@ -429,7 +327,7 @@ The AccordionContent component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all AccordionContent components */
-pt-1 pb-3 px-4
+pb-4
 ```
 
 <!-- BASE_STYLE_END -->
@@ -442,12 +340,10 @@ The AccordionContentText component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all AccordionContentText components */
-text-typography-700 font-normal
+text-foreground text-sm font-normal
 ```
 
 <!-- BASE_STYLE_END -->
-
-### Parent-Based Styling
 
 The styling below is applied to AccordionContentText based on the props passed to the parent Accordion component:
 
@@ -726,7 +622,7 @@ The ActionsheetBackdrop component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all ActionsheetBackdrop components */
-absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default web:pointer-events-auto
+absolute left-0 top-0 right-0 bottom-0 bg-[#000]/50 web:cursor-default web:pointer-events-auto
 ```
 
 <!-- BASE_STYLE_END -->
@@ -739,7 +635,7 @@ The ActionsheetContent component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all ActionsheetContent components */
-items-center rounded-tl-3xl rounded-tr-3xl p-5 pt-2 bg-background-0 web:pointer-events-auto web:select-none shadow-hard-5 border border-b-0 border-outline-100
+items-center rounded-t-lg p-4 bg-background web:pointer-events-auto web:select-none border-t border-border dark:border-border/10 max-h-[80vh] pb-safe
 ```
 
 <!-- BASE_STYLE_END -->
@@ -765,7 +661,7 @@ The ActionsheetDragIndicator component uses the following base styling by defaul
 
 ```css
 /* Base styling applied to all ActionsheetDragIndicator components */
-w-16 h-1 bg-background-400 rounded-full
+w-[100px] h-2 bg-muted rounded-full
 ```
 
 <!-- BASE_STYLE_END -->
@@ -778,7 +674,7 @@ The ActionsheetItem component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all ActionsheetItem components */
-w-full flex-row items-center p-3 rounded-sm data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-auto data-[disabled=true]:web:cursor-not-allowed hover:bg-background-50 active:bg-background-100 data-[focus=true]:bg-background-100 web:data-[focus-visible=true]:bg-background-100 web:data-[focus-visible=true]:outline-indicator-primary gap-2
+w-full flex-row items-center p-3 rounded-sm data-[disabled=true]:opacity-40 data-[disabled=true]:web:pointer-events-auto data-[disabled=true]:web:cursor-not-allowed data-[hover=true]:bg-accent data-[active=true]:bg-accent data-[focus=true]:bg-accent web:data-[focus-visible=true]:bg-accent gap-2
 ```
 
 <!-- BASE_STYLE_END -->
@@ -791,7 +687,7 @@ The ActionsheetItemText component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all ActionsheetItemText components */
-text-typography-700 font-normal font-body
+text-foreground font-normal text-sm
 ```
 
 <!-- BASE_STYLE_END -->
@@ -813,19 +709,6 @@ text-typography-700 font-normal font-body
   },
   "strikeThrough": {
     "true": "line-through"
-  },
-  "size": {
-    "2xs": "text-2xs",
-    "xs": "text-xs",
-    "sm": "text-sm",
-    "md": "text-base",
-    "lg": "text-lg",
-    "xl": "text-xl",
-    "2xl": "text-2xl",
-    "3xl": "text-3xl",
-    "4xl": "text-4xl",
-    "5xl": "text-5xl",
-    "6xl": "text-6xl"
   }
 }
 ```
@@ -840,29 +723,10 @@ The ActionsheetIcon component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all ActionsheetIcon components */
-text-background-500 fill-none
+text-foreground fill-none h-4 w-4
 ```
 
 <!-- BASE_STYLE_END -->
-
-### Default Variant Styling
-
-<!-- VARIANT_STYLES_START -->
-
-```json
-{
-  "size": {
-    "2xs": "h-3 w-3",
-    "xs": "h-3.5 w-3.5",
-    "sm": "h-4 w-4",
-    "md": "w-[18px] h-[18px]",
-    "lg": "h-5 w-5",
-    "xl": "h-6 w-6"
-  }
-}
-```
-
-<!-- VARIANT_STYLES_END -->
 
 ### ActionsheetScrollView
 
@@ -924,7 +788,7 @@ The ActionsheetSectionHeaderText component uses the following base styling by de
 
 ```css
 /* Base styling applied to all ActionsheetSectionHeaderText components */
-leading-5 font-bold font-heading my-0 text-typography-500 p-3 uppercase
+leading-5 font-semibold my-0 text-muted-foreground p-3 uppercase text-xs
 ```
 
 <!-- BASE_STYLE_END -->
@@ -947,17 +811,6 @@ leading-5 font-bold font-heading my-0 text-typography-500 p-3 uppercase
   "strikeThrough": {
     "true": "line-through"
   },
-  "size": {
-    "5xl": "text-5xl",
-    "4xl": "text-4xl",
-    "3xl": "text-3xl",
-    "2xl": "text-2xl",
-    "xl": "text-xl",
-    "lg": "text-lg",
-    "md": "text-base",
-    "sm": "text-sm",
-    "xs": "text-xs"
-  },
   "sub": {
     "true": "text-xs"
   },
@@ -965,16 +818,8 @@ leading-5 font-bold font-heading my-0 text-typography-500 p-3 uppercase
     "true": "italic"
   },
   "highlight": {
-    "true": "bg-yellow500"
+    "true": "bg-yellow-500"
   }
-}
-```
-
-### Default Variants
-
-```json
-{
-  "size": "xs"
 }
 ```
 
@@ -1031,12 +876,12 @@ function Example() {
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
           <ActionsheetItem onPress={handleClose}>
-            <ActionsheetIcon className="stroke-background-700" as={EditIcon} />
+            <ActionsheetIcon className="text-muted-foreground" as={EditIcon} />
             <ActionsheetItemText>Edit Message</ActionsheetItemText>
           </ActionsheetItem>
           <ActionsheetItem onPress={handleClose}>
             <ActionsheetIcon
-              className="stroke-background-700"
+              className="text-muted-foreground"
               as={EyeOffIcon}
             />
             <ActionsheetItemText>Mark Unread</ActionsheetItemText>
@@ -1086,7 +931,7 @@ function Example() {
         <AlertDialogBackdrop />
         <AlertDialogContent>
           <AlertDialogHeader>
-            <Heading className="text-typography-950 font-semibold" size="md">
+            <Heading className="font-semibold" size="md">
               Are you sure you want to delete this post?
             </Heading>
           </AlertDialogHeader>
@@ -1099,13 +944,12 @@ function Example() {
           <AlertDialogFooter>
             <Button
               variant="outline"
-              action="secondary"
               onPress={handleClose}
               size="sm"
             >
               <ButtonText>Cancel</ButtonText>
             </Button>
-            <Button size="sm" onPress={handleClose}>
+            <Button size="sm" onPress={handleClose} variant="destructive">
               <ButtonText>Delete</ButtonText>
             </Button>
           </AlertDialogFooter>
@@ -1123,39 +967,20 @@ function Example() {
 - **size**: `xs` | `sm` | `md` | `lg` | `full` (default: `md`)
 - **isOpen**: boolean (default: `false`) - If true, the alert-dialog will open
 - **onClose**: () => any - Callback invoked when the alert-dialog is closed
-- **useRNModal**: boolean (default: `false`) - If true, renders react-native native modal (Only works in react-native)
-- **defaultIsOpen**: boolean (default: `false`) - Specifies the default open state of the AlertDialog
-- **initialFocusRef**: React.RefObject<any> - The ref of element to receive focus when the alert-dialog opens
-- **finalFocusRef**: React.RefObject<any> - The ref of element to receive focus when the alert-dialog closes
-- **avoidKeyboard**: boolean - If true, the AlertDialog will avoid the keyboard
-- **closeOnOverlayClick**: boolean (default: `true`) - If true, the AlertDialog will close when the overlay is clicked
-- **isKeyboardDismissable**: boolean (default: `true`) - If true, the keyboard can dismiss the AlertDialog
-
-Inherits all the properties of React Native's View component.
-
-### AlertDialogBackdrop
-
-Inherits all the properties of React Native's Pressable component, created using @legendapp/motion's createMotionAnimatedComponent function to add animation.
 
 ### AlertDialogContent
 
-Inherits all the properties of @legendapp/motion's Motion.View component.
+- **size**: Inherits from parent AlertDialog.
 
 ### AlertDialogCloseButton
 
-Inherits all the properties of React Native's Pressable component.
-
 ### AlertDialogHeader
-
-Inherits all the properties of React Native's View component.
 
 ### AlertDialogBody
 
-Inherits all the properties of React Native's View component.
-
 ### AlertDialogFooter
 
-Inherits all the properties of React Native's View component.
+### AlertDialogBackdrop
 
 ## Default Styling
 
@@ -1172,35 +997,6 @@ group/modal w-full h-full justify-center items-center web:pointer-events-none
 
 <!-- BASE_STYLE_END -->
 
-### Parent-Based Styling
-
-The styling below is applied based on the props passed to the AlertDialog component:
-
-```json
-{
-  "size": {
-    "xs": "",
-    "sm": "",
-    "md": "",
-    "lg": "",
-    "full": ""
-  }
-}
-```
-
-### AlertDialogBackdrop
-
-<!-- BASE_STYLE_START -->
-
-The AlertDialogBackdrop component uses the following base styling by default:
-
-```css
-/* Base styling applied to all AlertDialogBackdrop components */
-absolute left-0 top-0 right-0 bottom-0 bg-background-dark web:cursor-default
-```
-
-<!-- BASE_STYLE_END -->
-
 ### AlertDialogContent
 
 <!-- BASE_STYLE_START -->
@@ -1209,7 +1005,7 @@ The AlertDialogContent component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all AlertDialogContent components */
-bg-background-0 rounded-lg overflow-hidden border border-outline-100 p-6
+bg-background rounded-lg overflow-hidden border border-border p-6
 ```
 
 <!-- BASE_STYLE_END -->
@@ -1238,7 +1034,7 @@ The AlertDialogCloseButton component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all AlertDialogCloseButton components */
-group/alert-dialog-close-button z-10 rounded-sm p-2 data-[focus-visible=true]:bg-background-100 web:cursor-pointer outline-0
+group/alert-dialog-close-button z-10 rounded-sm p-2 data-[focus-visible=true]:bg-background/10 web:cursor-pointer outline-0
 ```
 
 <!-- BASE_STYLE_END -->
@@ -1256,18 +1052,6 @@ justify-between items-center flex-row
 
 <!-- BASE_STYLE_END -->
 
-### AlertDialogBody
-
-<!-- BASE_STYLE_START -->
-
-The AlertDialogBody component uses the following base styling by default:
-
-```css
-/* Base styling applied to all AlertDialogBody components */
-```
-
-<!-- BASE_STYLE_END -->
-
 ### AlertDialogFooter
 
 <!-- BASE_STYLE_START -->
@@ -1281,83 +1065,18 @@ flex-row justify-end items-center gap-3
 
 <!-- BASE_STYLE_END -->
 
-## Accessibility
+### AlertDialogBackdrop
 
-- Follows WAI-ARIA Alert and Message Dialogs Pattern
-- Supports keyboard navigation:
-  - **Tab**: Moves focus to next tabbable element
-  - **Shift+Tab**: Moves focus to previous tabbable element
-  - **Escape**: Closes the dialog
-- Screen reader support with appropriate ARIA attributes
-- When dialog is open, `aria-modal="true"` is set on the content
+<!-- BASE_STYLE_START -->
 
-## Examples
+The AlertDialogBackdrop component uses the following base styling by default:
 
-```jsx
-import React from "react";
-import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogFooter,
-  AlertDialogBody,
-  AlertDialogBackdrop,
-} from "@/components/ui/alert-dialog";
-import { Box } from "@/components/ui/box";
-import { Button, ButtonText } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
-import { Text } from "@/components/ui/text";
-import { Icon, TrashIcon } from "@/components/ui/icon";
-
-function Example() {
-  const [showAlertDialog, setShowAlertDialog] = React.useState(false);
-  const handleClose = () => setShowAlertDialog(false);
-
-  return (
-    <>
-      <Button onPress={() => setShowAlertDialog(true)}>
-        <ButtonText>Delete Invoice</ButtonText>
-      </Button>
-      <AlertDialog isOpen={showAlertDialog} onClose={handleClose}>
-        <AlertDialogBackdrop />
-        <AlertDialogContent className="w-full max-w-[415px] gap-4 items-center">
-          <Box className="rounded-full h-[52px] w-[52px] bg-background-error items-center justify-center">
-            <Icon as={TrashIcon} size="lg" className="stroke-error-500" />
-          </Box>
-          <AlertDialogHeader className="mb-2">
-            <Heading size="md">Delete account?</Heading>
-          </AlertDialogHeader>
-          <AlertDialogBody>
-            <Text size="sm" className="text-center">
-              The invoice will be deleted from the invoices section and in the
-              documents folder. This cannot be undone.
-            </Text>
-          </AlertDialogBody>
-          <AlertDialogFooter className="mt-5">
-            <Button
-              size="sm"
-              action="negative"
-              onPress={handleClose}
-              className="px-[30px]"
-            >
-              <ButtonText>Delete</ButtonText>
-            </Button>
-            <Button
-              variant="outline"
-              action="secondary"
-              onPress={handleClose}
-              size="sm"
-              className="px-[30px]"
-            >
-              <ButtonText>Cancel</ButtonText>
-            </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-    </>
-  );
-}
+```css
+/* Base styling applied to all AlertDialogBackdrop components */
+absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default
 ```
+
+<!-- BASE_STYLE_END -->
 
 ---
 title: Alert
@@ -1374,7 +1093,7 @@ import { InfoIcon } from "@/components/ui/icon";
 
 function Example() {
   return (
-    <Alert>
+    <Alert variant="default">
       <AlertIcon as={InfoIcon} />
       <AlertText>Description of alert!</AlertText>
     </Alert>
@@ -1386,28 +1105,15 @@ function Example() {
 
 ### Alert
 
-- **action**: `error` | `warning` | `success` | `info` | `muted` (default: `muted`)
-- **variant**: `solid` | `outline` (default: `solid`)
+- **variant**: `default` | `destructive` (default: `default`)
 
 ### AlertText
 
-- **size**: `2xs` | `xs` | `sm` | `md` | `lg` | `xl` | `2xl` | `3xl` | `4xl` | `5xl` | `6xl` (default: `md`)
-- **isTruncated**: boolean (default: `false`) - When true, text will be truncated if it exceeds its container
-- **bold**: boolean (default: `false`) - When true, text will be bold
-- **underline**: boolean (default: `false`) - When true, text will be underlined
-- **strikeThrough**: boolean (default: `false`) - When true, text will have a line through it
-- **italic**: boolean (default: `false`) - When true, text will be italicized
-- **highlight**: boolean (default: `false`) - When true, text will have a yellow background highlight
-- **sub**: boolean (default: `false`) - Sets text size to xs
-
-Inherits all the properties of React Native's Text component.
+- **variant**: Inherits from parent Alert.
 
 ### AlertIcon
 
-- **size**: `2xs` | `xs` | `sm` | `md` | `lg` | `xl` (default: `md`)
-- **as**: Required prop to specify which icon to display
-
-Inherits all the properties of gluestack Style's AsForwarder component.
+- **variant**: Inherits from parent Alert.
 
 ## Default Styling
 
@@ -1419,7 +1125,7 @@ The Alert component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all Alert components */
-items-center py-3 px-4 rounded-md flex-row gap-2 border-outline-100
+rounded-lg border px-2.5 py-2 flex-row gap-2 items-start
 ```
 
 <!-- BASE_STYLE_END -->
@@ -1430,16 +1136,9 @@ items-center py-3 px-4 rounded-md flex-row gap-2 border-outline-100
 
 ```json
 {
-  "action": {
-    "error": "bg-background-error",
-    "warning": "bg-background-warning",
-    "success": "bg-background-success",
-    "info": "bg-background-info",
-    "muted": "bg-background-muted"
-  },
   "variant": {
-    "solid": "",
-    "outline": "border bg-background-0"
+    "default": "bg-card border-border",
+    "destructive": "bg-card border-destructive"
   }
 }
 ```
@@ -1451,6 +1150,56 @@ items-center py-3 px-4 rounded-md flex-row gap-2 border-outline-100
 <!-- BASE_STYLE_START -->
 
 The AlertText component uses the following base styling by default:
+
+```css
+/* Base styling applied to all AlertText components */
+font-medium tracking-tight text-sm flex-1
+```
+
+<!-- BASE_STYLE_END -->
+
+### Parent-Based Styling
+
+The styling below is applied to AlertText based on the `variant` prop passed to the parent Alert component:
+
+```json
+{
+  "variant": {
+    "default": "text-card-foreground",
+    "destructive": "text-destructive"
+  }
+}
+```
+
+<!-- VARIANT_STYLES_END -->
+
+### AlertIcon
+
+<!-- BASE_STYLE_START -->
+
+The AlertIcon component uses the following base styling by default:
+
+```css
+/* Base styling applied to all AlertIcon components */
+fill-none w-4 h-4 mt-0.5
+```
+
+<!-- BASE_STYLE_END -->
+
+### Parent-Based Styling
+
+The styling below is applied to AlertIcon based on the `variant` prop passed to the parent Alert component:
+
+```json
+{
+  "variant": {
+    "default": "text-card-foreground",
+    "destructive": "text-destructive"
+  }
+}
+```
+
+<!-- VARIANT_STYLES_END -->
 
 ```css
 /* Base styling applied to all AlertText components */
@@ -1652,7 +1401,7 @@ function Example() {
 
 ### Avatar
 
-- **size**: `xs` | `sm` | `md` | `lg` | `xl` | `2xl` (default: `md`)
+- Inherits all the properties of React Native's View component.
 
 ### AvatarGroup
 
@@ -1664,18 +1413,15 @@ Inherits all the properties of React Native's View component.
 Used for displaying the avatar image.
 Inherits all the properties of React Native's Image component.
 
-### AvatarFallbackText
+### AvatarFallbackText (or AvatarFallback)
 
 Displays text when the image is not available or fails to load.
 Inherits all the properties of React Native's Text component.
 
 ### AvatarBadge
 
-Used to show status indicators (online, offline, etc.).
+Used to show status indicators.
 Inherits all the properties of React Native's View component.
-
-> **Important Note:**  
-> For iOS: It is highly recommended to use `<AvatarFallbackText />` before `<AvatarImage />` to avoid indexing issues in iOS.
 
 ## Default Styling
 
@@ -1687,29 +1433,10 @@ The Avatar component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all Avatar components */
-rounded-full justify-center items-center relative bg-primary-600 group-[.avatar-group]/avatar-group:-ml-2.5
+relative flex h-12 w-12 shrink-0 rounded-full bg-muted items-center justify-center group-[.avatar-group]/avatar-group:-ml-2.5
 ```
 
 <!-- BASE_STYLE_END -->
-
-### Default Variant Styling
-
-<!-- VARIANT_STYLES_START -->
-
-```json
-{
-  "size": {
-    "xs": "w-6 h-6",
-    "sm": "w-8 h-8",
-    "md": "w-12 h-12",
-    "lg": "w-16 h-16",
-    "xl": "w-24 h-24",
-    "2xl": "w-32 h-32"
-  }
-}
-```
-
-<!-- VARIANT_STYLES_END -->
 
 ### AvatarFallbackText
 
@@ -1719,27 +1446,10 @@ The AvatarFallbackText component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all AvatarFallbackText components */
-text-typography-0 font-semibold overflow-hidden text-transform:uppercase web:cursor-default
+text-foreground text-xs font-medium text-transform:uppercase
 ```
 
 <!-- BASE_STYLE_END -->
-
-### Parent-Based Styling
-
-The styling below is applied to AvatarFallbackText based on the `size` prop passed to the parent Avatar component:
-
-```json
-{
-  "size": {
-    "xs": "text-2xs",
-    "sm": "text-xs",
-    "md": "text-base",
-    "lg": "text-xl",
-    "xl": "text-3xl",
-    "2xl": "text-5xl"
-  }
-}
-```
 
 ### AvatarGroup
 
@@ -1762,27 +1472,10 @@ The AvatarBadge component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all AvatarBadge components */
-w-5 h-5 bg-success-500 rounded-full absolute right-0 bottom-0 border-background-0 border-2
+absolute h-3 w-3 rounded-full border-2 border-background right-0 bottom-0 bg-green-500
 ```
 
 <!-- BASE_STYLE_END -->
-
-### Parent-Based Styling
-
-The styling below is applied to AvatarBadge based on the `size` prop passed to the parent Avatar component:
-
-```json
-{
-  "size": {
-    "xs": "w-2 h-2",
-    "sm": "w-2 h-2",
-    "md": "w-3 h-3",
-    "lg": "w-4 h-4",
-    "xl": "w-6 h-6",
-    "2xl": "w-8 h-8"
-  }
-}
-```
 
 ### AvatarImage
 
@@ -1792,94 +1485,10 @@ The AvatarImage component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all AvatarImage components */
-h-full w-full rounded-full absolute z-10
+h-full w-full rounded-full absolute
 ```
 
 <!-- BASE_STYLE_END -->
-
-## Examples
-
-```jsx
-import {
-  Avatar,
-  AvatarBadge,
-  AvatarFallbackText,
-  AvatarImage,
-  AvatarGroup,
-} from "@/components/ui/avatar";
-import { Heading } from "@/components/ui/heading";
-import { HStack } from "@/components/ui/hstack";
-import { VStack } from "@/components/ui/vstack";
-import { Text } from "@/components/ui/text";
-import { Icon } from "@/components/ui/icon";
-import { User } from "lucide-react-native";
-
-function Example() {
-  return (
-    <VStack space="xl">
-      {/* Avatar group example */}
-      <VStack space="sm">
-        <Text className="font-semibold">Team Members</Text>
-        <AvatarGroup>
-          <Avatar size="md">
-            <AvatarFallbackText>John Doe</AvatarFallbackText>
-            <AvatarImage
-              source={{
-                uri: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-              }}
-            />
-            <AvatarBadge />
-          </Avatar>
-          <Avatar size="md">
-            <AvatarFallbackText>John Doe</AvatarFallbackText>
-            <AvatarImage
-              source={{
-                uri: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-              }}
-            />
-            <AvatarBadge />
-          </Avatar>
-          <Avatar size="md">
-            <AvatarFallbackText>John Doe</AvatarFallbackText>
-            <AvatarImage
-              source={{
-                uri: "https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-              }}
-            />
-            <AvatarBadge />
-          </Avatar>
-        </AvatarGroup>
-      </VStack>
-
-      {/* Avatars with icon and profile info */}
-      <VStack space="2xl">
-        <HStack space="md">
-          <Avatar
-            size="lg"
-            className="bg-indigo-300 border-2 border-indigo-600"
-          >
-            <Icon as={User} size="xl" className="text-indigo-600" />
-          </Avatar>
-          <VStack>
-            <Heading size="sm">Ronald Richards</Heading>
-            <Text size="sm">Nursing Assistant</Text>
-          </VStack>
-        </HStack>
-        <HStack space="md">
-          <Avatar size="lg" className="bg-pink-300 border-2 border-pink-600">
-            <Icon as={User} size="xl" className="text-pink-600" />
-          </Avatar>
-          <VStack>
-            <Heading size="sm">Kevin James</Heading>
-            <Text size="sm">Web Designer</Text>
-          </VStack>
-        </HStack>
-      </VStack>
-    </VStack>
-  );
-}
-```
-
 
 ---
 title: Badge
@@ -1896,7 +1505,7 @@ import { GlobeIcon } from "@/components/ui/icon";
 
 function Example() {
   return (
-    <Badge>
+    <Badge variant="default">
       <BadgeText>Verified</BadgeText>
       <BadgeIcon as={GlobeIcon} className="ml-2" />
     </Badge>
@@ -1908,27 +1517,16 @@ function Example() {
 
 ### Badge
 
-- **action**: `error` | `warning` | `success` | `info` | `muted` (default: `muted`)
-- **variant**: `solid` | `outline` (default: `solid`)
-- **size**: `sm` | `md` | `lg` (default: `md`)
+- **variant**: `default` | `secondary` | `outline` | `destructive` (default: `default`)
 
 ### BadgeText
 
-- **isTruncated**: boolean (default: `false`) - When true, text will be truncated if it exceeds its container
-- **bold**: boolean (default: `false`) - When true, text will be bold
-- **underline**: boolean (default: `false`) - When true, text will be underlined
-- **strikeThrough**: boolean (default: `false`) - When true, text will have a line through it
-- **italic**: boolean (default: `false`) - When true, text will be italicized
-- **highlight**: boolean (default: `false`) - When true, text will have a yellow background highlight
-- **sub**: boolean (default: `false`) - Sets text size to xs
-
-Inherits all the properties of React Native's Text component.
+- **variant**: Inherits from parent Badge.
 
 ### BadgeIcon
 
-- **as**: Required prop to specify which icon to display
-
-Contains all Icon related layout style props and actions.
+- **variant**: Inherits from parent Badge.
+- **as**: Required prop to specify which icon to display.
 
 ## Default Styling
 
@@ -1940,7 +1538,7 @@ The Badge component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all Badge components */
-flex-row items-center rounded-sm data-[disabled=true]:opacity-50 px-2 py-1
+flex-row items-center justify-center rounded-sm px-2 py-0.5
 ```
 
 <!-- BASE_STYLE_END -->
@@ -1951,21 +1549,11 @@ flex-row items-center rounded-sm data-[disabled=true]:opacity-50 px-2 py-1
 
 ```json
 {
-  "action": {
-    "error": "bg-background-error border-error-300",
-    "warning": "bg-background-warning border-warning-300",
-    "success": "bg-background-success border-success-300",
-    "info": "bg-background-info border-info-300",
-    "muted": "bg-background-muted border-background-300"
-  },
   "variant": {
-    "solid": "",
-    "outline": "border"
-  },
-  "size": {
-    "sm": "",
-    "md": "",
-    "lg": ""
+    "default": "bg-primary",
+    "secondary": "bg-secondary",
+    "destructive": "bg-destructive dark:bg-destructive/60",
+    "outline": "border border-border dark:border-border/90 bg-transparent"
   }
 }
 ```
@@ -1980,58 +1568,22 @@ The BadgeText component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all BadgeText components */
-text-typography-700 font-body font-normal tracking-normal uppercase
+text-xs font-medium tracking-normal uppercase
 ```
 
 <!-- BASE_STYLE_END -->
 
-### Default Variant Styling
-
-<!-- VARIANT_STYLES_START -->
-
-```json
-{
-  "isTruncated": {
-    "true": "web:truncate"
-  },
-  "bold": {
-    "true": "font-bold"
-  },
-  "underline": {
-    "true": "underline"
-  },
-  "strikeThrough": {
-    "true": "line-through"
-  },
-  "sub": {
-    "true": "text-xs"
-  },
-  "italic": {
-    "true": "italic"
-  },
-  "highlight": {
-    "true": "bg-yellow-500"
-  }
-}
-```
-
 ### Parent-Based Styling
 
-The styling below is applied to BadgeText based on the `action` and `size` props passed to the parent Badge component:
+The styling below is applied to BadgeText based on the `variant` prop passed to the parent Badge component:
 
 ```json
 {
-  "action": {
-    "error": "text-error-600",
-    "warning": "text-warning-600",
-    "success": "text-success-600",
-    "info": "text-info-600",
-    "muted": "text-background-800"
-  },
-  "size": {
-    "sm": "text-2xs",
-    "md": "text-xs",
-    "lg": "text-sm"
+  "variant": {
+    "default": "text-primary-foreground",
+    "secondary": "text-secondary-foreground",
+    "destructive": "text-white",
+    "outline": "text-foreground"
   }
 }
 ```
@@ -2046,8 +1598,27 @@ The BadgeIcon component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all BadgeIcon components */
-fill-none
+fill-none h-3 w-3 pointer-events-none
 ```
+
+<!-- BASE_STYLE_END -->
+
+### Parent-Based Styling
+
+The styling below is applied to BadgeIcon based on the `variant` prop passed to the parent Badge component:
+
+```json
+{
+  "variant": {
+    "default": "text-primary-foreground",
+    "secondary": "text-secondary-foreground",
+    "destructive": "text-white",
+    "outline": "text-foreground"
+  }
+}
+```
+
+<!-- VARIANT_STYLES_END -->
 
 <!-- BASE_STYLE_END -->
 
@@ -2420,8 +1991,8 @@ import { Button, ButtonText } from "@/components/ui/button";
 
 function Example() {
   return (
-    <Button>
-      <ButtonText>Hello World!</ButtonText>
+    <Button variant="default" size="default">
+      <ButtonText>Button</ButtonText>
     </Button>
   );
 }
@@ -2431,18 +2002,19 @@ function Example() {
 
 ### Button
 
-- **action**: `primary` | `secondary` | `positive` | `negative` | `default` (default: `primary`)
-- **variant**: `link` | `outline` | `solid` (default: `solid`)
-- **size**: `xs` | `sm` | `md` | `lg` | `xl` (default: `md`)
+- **variant**: `default` | `destructive` | `outline` | `secondary` | `ghost` | `link` (default: `default`)
+- **size**: `default` | `sm` | `lg` | `icon` (default: `default`)
 - **isDisabled**: boolean (default: `false`)
 
 ### ButtonText
 
-Inherits all Text component properties.
+- **variant**: Inherits from parent Button.
+- **size**: Inherits from parent Button.
 
 ### ButtonIcon
 
-Component for adding icons to buttons.
+- **as**: The icon component to render.
+- **size**: `default` | `sm` | `lg` | `icon` | number.
 
 ### ButtonSpinner
 
@@ -2450,11 +2022,11 @@ Shows loading state in buttons.
 
 ### ButtonGroup
 
-Container for multiple buttons with space and flexDirection properties.
+Container for multiple buttons.
 
-- **space**: `xs` | `sm` | `md` | `lg` | `xl` | `2xl` | `3xl` | `4xl`
+- **space**: `xs` | `sm` | `md` | `lg` | `xl` | `2xl` | `3xl` | `4xl` (default: `md`)
 - **isAttached**: boolean (default: `false`)
-- **flexDirection**: `row` | `column` | `row-reverse` | `column-reverse` (default: `row`)
+- **flexDirection**: `row` | `column` | `row-reverse` | `column-reverse` (default: `column`)
 
 ## Default Styling
 
@@ -2466,7 +2038,7 @@ The Button component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all Button components */
-rounded bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2
+rounded-md flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40 gap-2 h-fit
 ```
 
 <!-- BASE_STYLE_END -->
@@ -2477,75 +2049,21 @@ rounded bg-primary-500 flex-row items-center justify-center data-[focus-visible=
 
 ```json
 {
-  "action": {
-    "primary": "bg-primary-500 data-[hover=true]:bg-primary-600 data-[active=true]:bg-primary-700 border-primary-300 data-[hover=true]:border-primary-400 data-[active=true]:border-primary-500 data-[focus-visible=true]:web:ring-indicator-info",
-    "secondary": "bg-secondary-500 border-secondary-300 data-[hover=true]:bg-secondary-600 data-[hover=true]:border-secondary-400 data-[active=true]:bg-secondary-700 data-[active=true]:border-secondary-700 data-[focus-visible=true]:web:ring-indicator-info",
-    "positive": "bg-success-500 border-success-300 data-[hover=true]:bg-success-600 data-[hover=true]:border-success-400 data-[active=true]:bg-success-700 data-[active=true]:border-success-500 data-[focus-visible=true]:web:ring-indicator-info",
-    "negative": "bg-error-500 border-error-300 data-[hover=true]:bg-error-600 data-[hover=true]:border-error-400 data-[active=true]:bg-error-700 data-[active=true]:border-error-500 data-[focus-visible=true]:web:ring-indicator-info",
-    "default": "bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent"
-  },
   "variant": {
-    "link": "px-0",
-    "outline": "bg-transparent border data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent",
-    "solid": ""
+    "default": "bg-primary data-[hover=true]:bg-primary/90 data-[active=true]:bg-primary/90",
+    "destructive": "bg-destructive data-[hover=true]:bg-destructive/90 data-[active=true]:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+    "outline": "border border-border bg-background shadow-xs data-[hover=true]:bg-accent data-[active=true]:bg-accent dark:bg-input/[0.045] dark:border-border/90 dark:data-[hover=true]:bg-input/[0.075] dark:data-[active=true]:bg-input/[0.075]",
+    "secondary": "bg-secondary text-secondary-foreground data-[hover=true]:bg-secondary/80 data-[active=true]:bg-secondary/80",
+    "ghost": "data-[hover=true]:bg-accent data-[active=true]:bg-accent dark:data-[hover=true]:bg-accent/50 dark:data-[active=true]:bg-accent/50",
+    "link": "text-primary underline-offset-4 data-[hover=true]:underline data-[active=true]:underline"
   },
   "size": {
-    "xs": "px-3.5 h-8",
-    "sm": "px-4 h-9",
-    "md": "px-5 h-10",
-    "lg": "px-6 h-11",
-    "xl": "px-7 h-12"
+    "default": "px-4 py-2",
+    "sm": "min-h-8 rounded-md px-3 text-xs",
+    "lg": "min-h-10 rounded-md px-8",
+    "icon": "min-h-9 min-w-9"
   }
 }
-```
-
-### Compound Variants
-
-These styles are applied when specific combinations of props are used:
-
-```json
-[
-  {
-    "action": "primary",
-    "variant": "link",
-    "class": "px-0 bg-transparent data-[hover=true]:bg-transparent data-[active=true]:bg-transparent"
-  },
-  {
-    "action": "secondary",
-    "variant": "link",
-    "class": "px-0 bg-transparent data-[hover=true]:bg-transparent data-[active=true]:bg-transparent"
-  },
-  {
-    "action": "positive",
-    "variant": "link",
-    "class": "px-0 bg-transparent data-[hover=true]:bg-transparent data-[active=true]:bg-transparent"
-  },
-  {
-    "action": "negative",
-    "variant": "link",
-    "class": "px-0 bg-transparent data-[hover=true]:bg-transparent data-[active=true]:bg-transparent"
-  },
-  {
-    "action": "primary",
-    "variant": "outline",
-    "class": "bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent"
-  },
-  {
-    "action": "secondary",
-    "variant": "outline",
-    "class": "bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent"
-  },
-  {
-    "action": "positive",
-    "variant": "outline",
-    "class": "bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent"
-  },
-  {
-    "action": "negative",
-    "variant": "outline",
-    "class": "bg-transparent data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent"
-  }
-]
 ```
 
 <!-- VARIANT_STYLES_END -->
@@ -2558,7 +2076,7 @@ The ButtonText component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all ButtonText components */
-text-typography-0 font-semibold web:select-none
+web:select-none font-sans
 ```
 
 <!-- BASE_STYLE_END -->
@@ -2569,74 +2087,21 @@ The styling below is applied to ButtonText based on the props passed to the pare
 
 ```json
 {
-  "action": {
-    "primary": "text-primary-600 data-[hover=true]:text-primary-600 data-[active=true]:text-primary-700",
-    "secondary": "text-typography-500 data-[hover=true]:text-typography-600 data-[active=true]:text-typography-700",
-    "positive": "text-success-600 data-[hover=true]:text-success-600 data-[active=true]:text-success-700",
-    "negative": "text-error-600 data-[hover=true]:text-error-600 data-[active=true]:text-error-700"
-  },
   "variant": {
-    "link": "data-[hover=true]:underline data-[active=true]:underline",
-    "outline": "",
-    "solid": "text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0"
+    "default": "text-primary-foreground",
+    "destructive": "text-white",
+    "outline": "text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground",
+    "secondary": "text-secondary-foreground",
+    "ghost": "text-foreground ",
+    "link": "text-primary data-[hover=true]:underline data-[active=true]:underline"
   },
   "size": {
-    "xs": "text-xs",
-    "sm": "text-sm",
-    "md": "text-base",
-    "lg": "text-lg",
-    "xl": "text-xl"
+    "default": "text-sm",
+    "sm": "text-xs",
+    "lg": "text-sm",
+    "icon": "text-sm"
   }
 }
-```
-
-### Parent Compound Variants
-
-These styles override the parent-based styling when specific combinations of props are used on the parent Button:
-
-```json
-[
-  {
-    "variant": "solid",
-    "action": "primary",
-    "class": "text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0"
-  },
-  {
-    "variant": "solid",
-    "action": "secondary",
-    "class": "text-typography-800 data-[hover=true]:text-typography-800 data-[active=true]:text-typography-800"
-  },
-  {
-    "variant": "solid",
-    "action": "positive",
-    "class": "text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0"
-  },
-  {
-    "variant": "solid",
-    "action": "negative",
-    "class": "text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0"
-  },
-  {
-    "variant": "outline",
-    "action": "primary",
-    "class": "text-primary-500 data-[hover=true]:text-primary-500 data-[active=true]:text-primary-500"
-  },
-  {
-    "variant": "outline",
-    "action": "secondary",
-    "class": "text-typography-500 data-[hover=true]:text-primary-600 data-[active=true]:text-typography-700"
-  },
-  {
-    "variant": "outline",
-    "action": "positive",
-    "class": "text-primary-500 data-[hover=true]:text-primary-500 data-[active=true]:text-primary-500"
-  },
-  {
-    "variant": "outline",
-    "action": "negative",
-    "class": "text-primary-500 data-[hover=true]:text-primary-500 data-[active=true]:text-primary-500"
-  }
-]
 ```
 
 ### ButtonIcon
@@ -2647,7 +2112,7 @@ The ButtonIcon component uses the following base styling by default:
 
 ```css
 /* Base styling applied to all ButtonIcon components */
-fill-none
+fill-none pointer-events-none shrink-0
 ```
 
 <!-- BASE_STYLE_END -->
@@ -2659,53 +2124,20 @@ The styling below is applied to ButtonIcon based on the props passed to the pare
 ```json
 {
   "variant": {
-    "link": "data-[hover=true]:underline data-[active=true]:underline",
-    "outline": "",
-    "solid": "text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0"
+    "default": "text-primary-foreground",
+    "destructive": "text-white",
+    "outline": "text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground",
+    "secondary": "text-secondary-foreground",
+    "ghost": "text-foreground data-[hover=true]:text-accent-foreground data-[active=true]:text-accent-foreground",
+    "link": "text-primary"
   },
   "size": {
-    "xs": "h-3.5 w-3.5",
-    "sm": "h-4 w-4",
-    "md": "h-[18px] w-[18px]",
-    "lg": "h-[18px] w-[18px]",
-    "xl": "h-5 w-5"
-  },
-  "action": {
-    "primary": "text-primary-600 data-[hover=true]:text-primary-600 data-[active=true]:text-primary-700",
-    "secondary": "text-typography-500 data-[hover=true]:text-typography-600 data-[active=true]:text-typography-700",
-    "positive": "text-success-600 data-[hover=true]:text-success-600 data-[active=true]:text-success-700",
-    "negative": "text-error-600 data-[hover=true]:text-error-600 data-[active=true]:text-error-700"
+    "default": "h-4 w-4",
+    "sm": "h-3 w-3",
+    "lg": "h-5 w-5",
+    "icon": "h-4 w-4"
   }
 }
-```
-
-### Parent Compound Variants
-
-These styles override the parent-based styling when specific combinations of props are used on the parent Button:
-
-```json
-[
-  {
-    "variant": "solid",
-    "action": "primary",
-    "class": "text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0"
-  },
-  {
-    "variant": "solid",
-    "action": "secondary",
-    "class": "text-typography-800 data-[hover=true]:text-typography-800 data-[active=true]:text-typography-800"
-  },
-  {
-    "variant": "solid",
-    "action": "positive",
-    "class": "text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0"
-  },
-  {
-    "variant": "solid",
-    "action": "negative",
-    "class": "text-typography-0 data-[hover=true]:text-typography-0 data-[active=true]:text-typography-0"
-  }
-]
 ```
 
 ### ButtonGroup
