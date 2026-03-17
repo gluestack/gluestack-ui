@@ -1302,10 +1302,10 @@
   dependencies:
     tslib "^2.8.0"
 
-"@gluestack-ui/core@^4.1.0-alpha.2":
-  version "4.1.0-alpha.2"
-  resolved "https://registry.npmjs.org/@gluestack-ui/core/-/core-4.1.0-alpha.2.tgz#1bbd13e096cc865ad366cc727e332764419ad5fe"
-  integrity sha512-eFNgiuDmdGUgytVCIdi7qRrhdi+1YdJ7DnGH0YApNcAgXoKtpZ39d+GlKuF2vcaARb8taXRGIrRw3DTMmwRsAQ==
+"@gluestack-ui/core@^5.0.3-alpha.0":
+  version "5.0.3-alpha.0"
+  resolved "https://registry.npmjs.org/@gluestack-ui/core/-/core-5.0.3-alpha.0.tgz#e67be2d78f4fb8517a6d674a5e13346145635b4c"
+  integrity sha512-TE1a0tXUF3MBqv5gFm/GkuO2KT67GbSnL6V+1cang9ulV3WRZ3CuFlh/P0jaL8zVv5k97dAqFw9ZAnYP+/fC6w==
   dependencies:
     date-fns "^4.1.0"
 
