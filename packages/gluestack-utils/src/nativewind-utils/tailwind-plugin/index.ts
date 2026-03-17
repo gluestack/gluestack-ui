@@ -36,7 +36,7 @@ const stateObj = {
   'disabled=false': 10,
 } as Record<string, number>;
 const getStatesWeight = (state: string) => {
-  return stateObj[state];
+  return stateObj[state] || 0;
 };
 
 const gluestackPlugin = plugin(function ({
@@ -55,7 +55,7 @@ const gluestackPlugin = plugin(function ({
     },
     {
       sort(a: any, z: any) {
-        return getStatesWeight(a.value) - getStatesWeight(z.value);
+        return getStatesWeight(a?.value || "") - getStatesWeight(z?.value || "");
       },
     }
   );
