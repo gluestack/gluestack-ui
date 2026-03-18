@@ -90,10 +90,11 @@ type IBottomSheetRootProps = {
   children?: React.ReactNode;
   onOpen?: () => void;
   onClose?: () => void;
+  onChange?: (index: number) => void;
 };
 
 export const BottomSheet = forwardRef<BottomSheetRef, IBottomSheetRootProps>(
-  ({ defaultSnapIndex = 0, onOpen, onClose, children }, ref) => {
+  ({ defaultSnapIndex = 0, onOpen, onClose, onChange, children }, ref) => {
     const bottomSheetRef = useRef<GorhomBottomSheet>(null);
     const [isVisible, setIsVisible] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(-1);
@@ -116,6 +117,7 @@ export const BottomSheet = forwardRef<BottomSheetRef, IBottomSheetRootProps>(
     const handleSheetChanges = useCallback(
       (index: number) => {
         setCurrentIndex(index);
+        onChange?.(index);
         if (index === -1) {
           setIsVisible(false);
           onClose?.();
@@ -123,7 +125,7 @@ export const BottomSheet = forwardRef<BottomSheetRef, IBottomSheetRootProps>(
           setIsVisible(true);
         }
       },
-      [onClose]
+      [onClose, onChange]
     );
 
     const snapToIndex = useCallback((index: number) => {
@@ -209,11 +211,17 @@ export const BottomSheetPortal = ({
 
   if (!isVisible) return null;
 
+  // Defensive index check to prevent Invariant Violation
+  const validIndex =
+    memoizedSnapPoints && memoizedSnapPoints.length > 0
+      ? Math.min(currentIndex, memoizedSnapPoints.length - 1)
+      : currentIndex;
+
   const sheetContent = (
     <StyledGorhomBottomSheet
       ref={bottomSheetRef}
       snapPoints={memoizedSnapPoints}
-      index={currentIndex}
+      index={validIndex}
       enableDynamicSizing={enableDynamicSizing}
       onChange={(idx) => {
         handleSheetChanges(idx);
