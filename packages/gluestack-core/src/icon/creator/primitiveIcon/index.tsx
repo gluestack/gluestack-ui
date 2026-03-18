@@ -37,7 +37,10 @@ export const PrimitiveIcon = React.forwardRef<
   ) => {
     color = color ?? classNameColor;
     const sizeProps = React.useMemo(() => {
-      if (size) return { size };
+      if (size) {
+        if (typeof size === 'number') return { size };
+        return {};
+      }
       // NativeWind v5 passes className-derived dimensions via the style prop.
       // Extract height/width from style as fallback for components like Lucide icons
       // that require explicit size props and don't read from the style object.

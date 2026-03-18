@@ -40,7 +40,7 @@ return (
       className="gap-4 max-w-[585px] w-full self-center items-start min-[400px]:items-center"
     >
       <VStack className="gap-4 min-[400px]:flex-row justify-between flex-1 min-[400px]:items-center">
-        <AlertText className="font-semibold text-foreground/90" size="sm">
+        <AlertText className="font-semibold text-foreground/90">
           Verify your phone number to create an API key
         </AlertText>
         <Button size="sm">
