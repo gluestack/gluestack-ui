@@ -51,17 +51,8 @@ function RootLayoutNav() {
         <GluestackUIProvider mode={colorMode}>
           <StatusBar style={colorMode === 'dark' ? 'light' : 'dark'} />
           <Slot />
-          {pathname === '/' && (
-            <Fab
-              onPress={() =>
-                setColorMode(colorMode === 'dark' ? 'light' : 'dark')
-              }
-              className="m-6"
-              size="lg"
-            >
-              <FabIcon as={colorMode === 'dark' ? MoonIcon : SunIcon} />
-            </Fab>
-          )}
+          
+          
         </GluestackUIProvider>
       </GestureHandlerRootView>
     </ThemeProvider>
