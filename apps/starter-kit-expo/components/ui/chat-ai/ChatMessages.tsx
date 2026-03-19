@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
- import { runOnUISync, scheduleOnUI } from 'react-native-worklets';
+import { runOnUISync, scheduleOnUI } from 'react-native-worklets';
 import { LegendListProps, LegendListRef } from '@legendapp/list';
 import { AnimatedLegendList } from '@legendapp/list/reanimated';
 import { ChatContext } from './context';
@@ -15,7 +15,6 @@ import Animated, {
   useAnimatedReaction,
   useAnimatedRef,
   scrollTo,
-
 } from 'react-native-reanimated';
 
 interface ChatMessagesProps extends Omit<
@@ -54,10 +53,10 @@ export const ChatMessages = React.forwardRef<
     if (messages.length === 0) return;
 
     // run on UI thread
-   scheduleOnUI(() => {
-     'worklet'; // ← Required in v4 for inline functions
-     shouldScroll.value = 1;
-   });
+    scheduleOnUI(() => {
+      'worklet'; // ← Required in v4 for inline functions
+      shouldScroll.value = 1;
+    });
   }, [messages.length, loading]);
 
   // 🔥 UI thread scroll logic
