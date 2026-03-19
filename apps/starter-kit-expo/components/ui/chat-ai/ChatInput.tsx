@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { ChatContext } from './context';
+import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
+import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
 const inputContainerStyle = tva({
   base: 'flex-row items-center p-2 border-t border-border bg-background',
@@ -57,7 +59,13 @@ export const ChatInput = React.forwardRef<
   const [input, setInput] = useState('');
 
   const loading = context?.loading || false;
+  const { height, progress } = useReanimatedKeyboardAnimation();
 
+  const inputAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: height.value }],
+    };
+  });
   const handleSend = () => {
     if (!input.trim() || loading) return;
 
@@ -83,9 +91,10 @@ export const ChatInput = React.forwardRef<
   );
 
   return (
-    <View
+    <Animated.View
       ref={ref}
       className={inputContainerStyle({ class: className })}
+      style={[ inputAnimatedStyle]}
       {...props}
     >
       <TextInput
@@ -103,7 +112,7 @@ export const ChatInput = React.forwardRef<
       {renderSendButton
         ? renderSendButton(handleSend, !input.trim() || loading)
         : defaultSendButton}
-    </View>
+    </Animated.View>
   );
 });
 
