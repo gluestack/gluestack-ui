@@ -18,13 +18,14 @@ interface UseChatReturn {
 
 export function useChat(options: UseChatOptions): UseChatReturn {
   const { api, initialMessages = [] } = options;
+
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
 
   const generateId = () =>
-    `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 
   const send = useCallback(
     async (input: string) => {
@@ -41,17 +42,19 @@ export function useChat(options: UseChatOptions): UseChatReturn {
         timestamp: Date.now(),
       };
 
-      setMessages((prev) => [...prev, userMessage]);
+      // ✅ safe update
+      const updatedMessages = [...messages, userMessage];
+      setMessages(updatedMessages);
 
       try {
         const response = await fetch(api, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            message: input,
-            messages: [...messages, userMessage],
+            messages: updatedMessages.map((m) => ({
+              role: m.role,
+              content: m.content,
+            })),
           }),
         });
 
@@ -64,7 +67,7 @@ export function useChat(options: UseChatOptions): UseChatReturn {
         const assistantMessage: ChatMessage = {
           id: generateId(),
           role: 'assistant',
-          content: data.message || data.content || 'OK',
+          content: data.message || 'No response',
           timestamp: Date.now(),
         };
 
