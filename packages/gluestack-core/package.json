@@ -20,7 +20,8 @@
   "license": "MIT",
   "sideEffects": false,
   "files": [
-    "lib",
+    "LICENSE",
+    "README.md",
     "accordion",
     "actionsheet",
     "alert",
@@ -29,6 +30,7 @@
     "bottomsheet",
     "button",
     "calendar",
+    "chat-ai",
     "checkbox",
     "date-time-picker",
     "fab",
@@ -36,6 +38,7 @@
     "icon",
     "image",
     "input",
+    "lib",
     "link",
     "menu",
     "modal",
@@ -47,12 +50,10 @@
     "select",
     "slider",
     "switch",
+    "tabs",
     "textarea",
     "toast",
-    "tabs",
-    "tooltip",
-    "README.md",
-    "LICENSE"
+    "tooltip"
   ],
   "publishConfig": {
     "access": "public"
@@ -179,6 +180,9 @@
       ],
       "tabs/creator": [
         "./lib/esm/tabs/creator/index.d.ts"
+      ],
+      "chat-ai/creator": [
+        "./lib/esm/chat-ai/creator/index.d.ts"
       ]
     }
   },

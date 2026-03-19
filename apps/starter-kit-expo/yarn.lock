@@ -1244,17 +1244,17 @@
   dependencies:
     tslib "^2.8.0"
 
-"@gluestack-ui/core@^5.0.0-alpha.0":
-  version "5.0.0-alpha.0"
-  resolved "https://registry.npmjs.org/@gluestack-ui/core/-/core-5.0.0-alpha.0.tgz#8e32ca762b95dcdcde773e6676b19429210677ef"
-  integrity sha512-1+WLQ2L6rY3dUJOCqCvG4hQmEWwJYP0oNSVeFz9bqjTslobPrYIhVkBcugySIEkpfoDIzT2MJ4msNQfUN8Jh/A==
+"@gluestack-ui/core@^5.0.1-alpha.0":
+  version "5.0.1-alpha.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/core/-/core-5.0.1-alpha.0.tgz#fc0ab2dd957e2a49c365d00f01147b4a69685ce2"
+  integrity sha512-FBka2UtKsLt5HkyzjIUSR7RYX5NVAa3g+7pCZI6NXLqgWtja3Tpd06wPm2Getp2XgSxa6ajtQgkKCFk4z40iAg==
   dependencies:
     date-fns "^4.1.0"
 
-"@gluestack-ui/utils@^5.0.1-alpha.0":
-  version "5.0.1-alpha.0"
-  resolved "https://registry.npmjs.org/@gluestack-ui/utils/-/utils-5.0.1-alpha.0.tgz#b46fcba708ed502d079acb02530b49651887f98e"
-  integrity sha512-eum6agDdxK7v5O4s0EFff6v5UmttmovyI6xmPcLOUHScPy1DUisvRJp6YTk2JWSBAwseaAmtCrMM8pGH3mSPxw==
+"@gluestack-ui/utils@5.0.0-alpha.0":
+  version "5.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@gluestack-ui/utils/-/utils-5.0.0-alpha.0.tgz#10053bd6bf79fc21289a4e4b027a1f4e0572ab7f"
+  integrity sha512-3edmSj/RDO0dfp3zcFm6et9wl8OmnZffpHbflAOJi/gIKyEgG/Q5BzRrsL7GiHl3Y3/QTm12b/pd+M1NjiQPaw==
   dependencies:
     dom-helpers "^6.0.1"
     react-aria "^3.46.0"
@@ -1566,6 +1566,13 @@
   dependencies:
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
+
+"@legendapp/list@^2.0.19":
+  version "2.0.19"
+  resolved "https://registry.yarnpkg.com/@legendapp/list/-/list-2.0.19.tgz#86fcef3c07f2fa62e3faec002be82f177070b7ee"
+  integrity sha512-zDWg8yg0smKxxk+M7gwAbZAnf5uczohPA+IjqLSkImz7+e9ytxeT0Mq35RBO9RTKODOXfV/aIgm1uqUHLBEdmg==
+  dependencies:
+    use-sync-external-store "^1.5.0"
 
 "@legendapp/motion@^2.4.0":
   version "2.5.3"
