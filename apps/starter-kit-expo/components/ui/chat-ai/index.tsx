@@ -1,6 +1,5 @@
 'use client';
 export { Chat } from './Chat';
-export { ChatAi } from './ChatAi';
 export { ChatMessages } from './ChatMessages';
 export { ChatMessage } from './ChatMessage';
 export { ChatInput } from './ChatInput';

@@ -74,9 +74,9 @@ export const ChatInput = React.forwardRef<
     <Pressable
       onPress={handleSend}
       disabled={!input.trim() || loading}
-      className={sendButtonStyle()}
+      className={sendButtonStyle({})}
     >
-      <Text className={sendButtonTextStyle()}>
+      <Text className={sendButtonTextStyle({})}>
         {loading ? '...' : sendButtonText}
       </Text>
     </Pressable>
@@ -94,7 +94,7 @@ export const ChatInput = React.forwardRef<
         placeholder={placeholder}
         placeholderTextColor="#666"
         multiline
-        className={inputStyle()}
+        className={inputStyle({})}
         onSubmitEditing={handleSend}
         blurOnSubmit={false}
         editable={!loading}
