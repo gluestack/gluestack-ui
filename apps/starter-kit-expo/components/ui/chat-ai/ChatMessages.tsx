@@ -1,9 +1,12 @@
 'use client';
-import React, { useContext } from 'react';
-import { LegendList, LegendListProps } from '@legendapp/list';
+import React, { useCallback, useContext, useEffect, useRef } from 'react';
+import {  LegendListProps, LegendListRef } from '@legendapp/list';
+import { AnimatedLegendList } from '@legendapp/list/reanimated';
 import { ChatContext } from './context';
 import { ChatMessage as ChatMessageComponent } from './ChatMessage';
 import { ChatMessage as ChatMessageType } from './types';
+import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
+import Animated, { interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
 interface ChatMessagesProps extends Omit<
   LegendListProps<ChatMessageType>,
@@ -26,6 +29,47 @@ export const ChatMessages = React.forwardRef<
   }
 
   const { messages } = context;
+  const { height, progress } = useReanimatedKeyboardAnimation();
+  const isAtBottom = useSharedValue(1);
+  const listRef = useRef<LegendListRef>(null);
+
+  const scrollToBottom = useCallback(() => {
+    if (listRef.current) {
+      listRef.current.scrollToEnd({ animated: true });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (messages.length > 0) {
+      scrollToBottom();
+    }
+  }, [messages.length, scrollToBottom]);
+  // Reanimated scroll handler - runs on UI thread
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      const { contentOffset, contentSize, layoutMeasurement } = event;
+      const bottomThreshold = 100;
+      const atBottom =
+        contentOffset.y + layoutMeasurement.height >=
+        contentSize.height - bottomThreshold;
+      isAtBottom.value = atBottom ? 1 : 0;
+    },
+  });
+  const listAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateY: interpolate(
+            progress.value,
+            [0, 1],
+            [0, isAtBottom.value * height.value]
+          ),
+        },
+      ],
+    };
+  });
+
+
 
   const defaultRenderItem = ({
     item,
@@ -35,13 +79,16 @@ export const ChatMessages = React.forwardRef<
   }) => <ChatMessageComponent message={item} />;
 
   return (
-    <LegendList
-      ref={ref}
-      data={messages}
-      renderItem={renderItem || defaultRenderItem}
-      keyExtractor={(item: ChatMessageType) => item.id}
-      {...props}
-    />
+    <Animated.View className="flex-1" style={[listAnimatedStyle]}>
+      <AnimatedLegendList
+        ref={ref}
+        data={messages}
+        renderItem={renderItem || defaultRenderItem}
+        keyExtractor={(item: ChatMessageType) => item.id}
+        onScroll={scrollHandler}
+        {...props}
+      />
+    </Animated.View>
   );
 });
 

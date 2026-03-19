@@ -14,7 +14,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary
@@ -48,12 +48,12 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorMode === 'dark' ? DarkTheme : DefaultTheme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <GluestackUIProvider mode={colorMode}>
-          <StatusBar style={colorMode === 'dark' ? 'light' : 'dark'} />
-          <Slot />
-          
-          
-        </GluestackUIProvider>
+        <KeyboardProvider>
+          <GluestackUIProvider mode={colorMode}>
+            <StatusBar style={colorMode === 'dark' ? 'light' : 'dark'} />
+            <Slot />
+          </GluestackUIProvider>
+        </KeyboardProvider>
       </GestureHandlerRootView>
     </ThemeProvider>
   );
