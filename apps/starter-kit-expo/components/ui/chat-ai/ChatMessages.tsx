@@ -53,13 +53,11 @@ export const ChatMessages = React.forwardRef<
   useEffect(() => {
     if (messages.length === 0) return;
 
-    if (!loading) {
-      // run on UI thread
-      runOnUI(() => {
-        'worklet';
-        shouldScroll.value = 1;
-      })();
-    }
+    // run on UI thread
+    runOnUI(() => {
+      'worklet';
+      shouldScroll.value = 1;
+    })();
   }, [messages.length, loading]);
 
   // 🔥 UI thread scroll logic
@@ -67,8 +65,6 @@ export const ChatMessages = React.forwardRef<
     () => shouldScroll.value,
     (value) => {
       if (value === 1) {
-        // ⚠️ scrollTo needs Y offset
-        // we fake "scroll to bottom" with large value
         scrollTo(listRef, 0, 999999, true);
 
         shouldScroll.value = 0;
