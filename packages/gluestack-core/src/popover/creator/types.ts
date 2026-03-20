@@ -90,6 +90,23 @@ export interface InterfacePopoverProps {
   focusScope?: boolean;
 }
 
+/**
+ * Optional props for `Popover.Arrow`. These adjust only the arrow indicator;
+ * root `Popover` `offset` / `crossOffset` still control the popover content position.
+ */
+export interface InterfacePopoverArrowProps {
+  /**
+   * Additional offset along the main axis for the arrow (content position unchanged).
+   * For top/bottom placement, nudges the arrow along the perpendicular edge; for left/right, along the horizontal edge.
+   */
+  offset?: number;
+  /**
+   * Additional offset along the cross axis for the arrow (content position unchanged).
+   * For top/bottom placement, nudges `left`; for left/right placement, nudges `top`.
+   */
+  crossOffset?: number;
+}
+
 export type IPopoverComponentType<
   PopoverProps,
   ArrowProps,
@@ -121,7 +138,8 @@ export type IPopoverComponentType<
     React.PropsWithoutRef<HeaderProps> & React.RefAttributes<HeaderProps>
   >;
   Arrow: React.ForwardRefExoticComponent<
-    React.PropsWithoutRef<ArrowProps> & React.RefAttributes<ArrowProps>
+    React.PropsWithoutRef<ArrowProps & InterfacePopoverArrowProps> &
+      React.RefAttributes<ArrowProps>
   >;
   Backdrop: React.ForwardRefExoticComponent<
     React.PropsWithoutRef<BackdropProps> & React.RefAttributes<BackdropProps>

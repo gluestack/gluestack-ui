@@ -2,10 +2,20 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { forwardRef } from 'react';
 import { usePopoverContent } from './PopoverContext';
-import { getArrowStyles } from './utils';
+import {
+  applyCrossOffsetToArrowStyle,
+  applyOffsetToArrowEdgeStyles,
+  getArrowStyles,
+} from './utils';
 
 const PopoverArrow = (StyledPopoverArrow: any) =>
   forwardRef((props: any, ref?: any) => {
+    const {
+      offset: offsetProp = 0,
+      crossOffset: crossOffsetProp = 0,
+      ...rest
+    } = props;
+
     const {
       value: {
         placement,
@@ -28,6 +38,25 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
     }, [arrowHeight, arrowWidth, placement, actualPlacement]);
 
     React.useEffect(() => {
+      const arrowStyle = applyCrossOffsetToArrowStyle(
+        arrowProps?.style ?? {},
+        actualPlacement,
+        crossOffsetProp
+      );
+
+      const adjustedTop =
+        placement === 'right bottom' || placement === 'left bottom'
+          ? arrowStyle.top > 4
+            ? arrowStyle.top - 4
+            : arrowStyle.top
+          : arrowStyle.top;
+
+      const edgeStyles = applyOffsetToArrowEdgeStyles(
+        additionalStyles,
+        actualPlacement,
+        offsetProp
+      );
+
       const ArrowComponent = (
         <StyledPopoverArrow
           ref={ref}
@@ -35,20 +64,14 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
             const { height, width } = event.nativeEvent.layout;
             updateArrowSize({ height, width });
           }}
-          {...props}
+          {...rest}
           style={[
-            props?.style,
-            arrowProps?.style,
+            rest?.style,
+            arrowStyle,
             {
-              // To avoid border radius case
-              top:
-                placement === 'right bottom' || placement === 'left bottom'
-                  ? arrowProps?.style?.top > 4
-                    ? arrowProps?.style?.top - 4
-                    : arrowProps?.style?.top
-                  : arrowProps?.style?.top,
+              top: adjustedTop,
             },
-            additionalStyles,
+            edgeStyles,
           ]}
           // data attributes for uniwind
           data-flip={isFlipped ? 'true' : 'false'}
@@ -68,6 +91,9 @@ const PopoverArrow = (StyledPopoverArrow: any) =>
       arrowWidth,
       actualPlacement,
       JSON.stringify(arrowProps?.style),
+      crossOffsetProp,
+      offsetProp,
+      isFlipped,
     ]);
 
     return null;

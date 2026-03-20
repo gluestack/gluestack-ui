@@ -39,7 +39,7 @@ const [isOpen, setIsOpen] = React.useState(false)
     >
       <PopoverBackdrop />
       <PopoverContent>
-        <PopoverArrow />
+        <PopoverArrow crossOffset={2} />
         <PopoverBody>
           <Text className="text-foreground">
             Alex, Annie and many others are already enjoying the Pro features,

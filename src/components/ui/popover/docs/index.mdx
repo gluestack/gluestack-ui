@@ -295,6 +295,47 @@ You can use any declarative animation library you prefer.
 Contains all backdrop related layout style props and actions.
 It is [react-native-reanimated's](https://docs.swmansion.com/react-native-reanimated/) [Animated.View](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/glossary#animatedview) component. You can use any declarative animation library you prefer.
 
+#### PopoverArrow
+
+Pointer indicator for the popover. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+Root `Popover` `offset` and `crossOffset` position the **popover content** relative to the trigger. `PopoverArrow` accepts its own optional `offset` and `crossOffset` to adjust **only the arrow** (same axis meaning as on `Popover`: cross axis shifts along the trigger edge for top/bottom placements via `left`, and along the vertical edge for left/right placements via `top`; main-axis `offset` nudges the arrow along the perpendicular edge from `getArrowStyles`).
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>crossOffset</InlineCode>
+        </TableCell>
+        <TableCell>number</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Extra cross-axis offset for the arrow only (does not move popover content).
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>offset</InlineCode>
+        </TableCell>
+        <TableCell>number</TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>
+          Extra main-axis offset for the arrow only (does not move popover content).
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
 #### PopoverHeader
 
 It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.

@@ -69,3 +69,63 @@ export const getArrowStyles = ({
 
   return additionalStyles;
 };
+
+type PopoverArrowAxisPlacement = 'top' | 'bottom' | 'left' | 'right';
+
+const toAxisPlacement = (
+  actualPlacement: string | undefined
+): PopoverArrowAxisPlacement => {
+  if (
+    actualPlacement === 'top' ||
+    actualPlacement === 'bottom' ||
+    actualPlacement === 'left' ||
+    actualPlacement === 'right'
+  ) {
+    return actualPlacement;
+  }
+  return 'bottom';
+};
+
+/** Nudge along the cross axis: `left` for top/bottom, `top` for left/right. */
+export const applyCrossOffsetToArrowStyle = (
+  arrowStyle: Record<string, any>,
+  actualPlacement: string | undefined,
+  crossOffset: number
+) => {
+  if (!crossOffset) {
+    return { ...arrowStyle };
+  }
+  const next = { ...arrowStyle };
+  const ap = toAxisPlacement(actualPlacement);
+  if (ap === 'top' || ap === 'bottom') {
+    if (typeof next.left === 'number') {
+      next.left += crossOffset;
+    }
+  } else if (typeof next.top === 'number') {
+    next.top += crossOffset;
+  }
+  return next;
+};
+
+/** Nudge along the main axis on the edge props from `getArrowStyles`. */
+export const applyOffsetToArrowEdgeStyles = (
+  edgeStyles: Record<string, any>,
+  actualPlacement: string | undefined,
+  offset: number
+) => {
+  if (!offset) {
+    return { ...edgeStyles };
+  }
+  const next = { ...edgeStyles };
+  const ap = toAxisPlacement(actualPlacement);
+  if (ap === 'bottom' && typeof next.top === 'number') {
+    next.top += offset;
+  } else if (ap === 'top' && typeof next.bottom === 'number') {
+    next.bottom += offset;
+  } else if (ap === 'right' && typeof next.left === 'number') {
+    next.left += offset;
+  } else if (ap === 'left' && typeof next.right === 'number') {
+    next.right += offset;
+  }
+  return next;
+};
