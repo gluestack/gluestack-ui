@@ -55,10 +55,10 @@ const selectTriggerStyle = tva({
   base: 'border border-background-300 rounded flex-row items-center overflow-hidden data-[hover=true]:border-outline-400 data-[focus=true]:border-primary-700 data-[disabled=true]:opacity-40 data-[disabled=true]:data-[hover=true]:border-background-300',
   variants: {
     size: {
-      xl: 'h-12',
-      lg: 'h-11',
-      md: 'h-10',
-      sm: 'h-9',
+      xl: 'min-h-12',
+      lg: 'min-h-11',
+      md: 'min-h-10',
+      sm: 'min-h-9',
     },
     variant: {
       underlined:
