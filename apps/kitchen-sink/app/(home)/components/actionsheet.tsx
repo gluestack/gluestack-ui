@@ -10,7 +10,7 @@ import { CreditCardIcon, UploadCloud } from 'lucide-react-native'
 import { Text } from '@/components/ui/text'
 import { Heading } from '@/components/ui/heading'
 import { Radio, RadioGroup, RadioLabel, RadioIndicator, RadioIcon } from '@/components/ui/radio'
-import { CircleIcon, EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon, Icon, CloseIcon } from '@/components/ui/icon'
+import { CircleIcon, EditIcon, EyeOffIcon, ClockIcon, DownloadIcon, TrashIcon, Icon, CloseIcon, ChevronLeftIcon, ShareIcon } from '@/components/ui/icon'
 import { Pressable } from '@/components/ui/pressable'
 
 
@@ -369,6 +369,93 @@ const [showActionsheet, setShowActionsheet] = React.useState(false);
 )
 };
 
+type NestedActionsheetScreen = 'root' | 'share' | 'delete';
+
+const ExampleNestedDynamic = () => {
+  const [showActionsheet, setShowActionsheet] = React.useState(false);
+  const [screen, setScreen] = React.useState<NestedActionsheetScreen>('root');
+
+  const handleOpen = () => {
+    setScreen('root');
+    setShowActionsheet(true);
+  };
+
+  const handleClose = () => {
+    setShowActionsheet(false);
+    setScreen('root');
+  };
+
+  return (
+    <>
+      <Button onPress={handleOpen}>
+        <ButtonText>Nested / dynamic content</ButtonText>
+      </Button>
+      <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <ActionsheetBackdrop />
+        <ActionsheetContent>
+          <ActionsheetDragIndicatorWrapper>
+            <ActionsheetDragIndicator />
+          </ActionsheetDragIndicatorWrapper>
+
+          {screen !== 'root' ? (
+            <Pressable
+              onPress={() => setScreen('root')}
+              className="flex-row items-center gap-2 w-full px-4 py-3 border-b border-border/80 active:bg-accent/40"
+            >
+              <Icon as={ChevronLeftIcon} size="sm" />
+              <Text className="font-medium text-foreground/90">Back</Text>
+            </Pressable>
+          ) : null}
+
+          {screen === 'root' ? (
+            <>
+              <ActionsheetItem onPress={() => setScreen('share')}>
+                <ActionsheetIcon as={ShareIcon} />
+                <ActionsheetItemText>Share…</ActionsheetItemText>
+              </ActionsheetItem>
+              <ActionsheetItem onPress={() => setScreen('delete')}>
+                <ActionsheetIcon as={TrashIcon} />
+                <ActionsheetItemText>Delete…</ActionsheetItemText>
+              </ActionsheetItem>
+              <ActionsheetItem onPress={handleClose}>
+                <ActionsheetItemText>Cancel</ActionsheetItemText>
+              </ActionsheetItem>
+            </>
+          ) : null}
+
+          {screen === 'share' ? (
+            <>
+              <ActionsheetItem onPress={handleClose}>
+                <ActionsheetItemText>Copy link</ActionsheetItemText>
+              </ActionsheetItem>
+              <ActionsheetItem onPress={handleClose}>
+                <ActionsheetItemText>Messages</ActionsheetItemText>
+              </ActionsheetItem>
+              <ActionsheetItem onPress={handleClose}>
+                <ActionsheetItemText>Mail</ActionsheetItemText>
+              </ActionsheetItem>
+            </>
+          ) : null}
+
+          {screen === 'delete' ? (
+            <>
+              <VStack className="w-full px-4 py-3 gap-1">
+                <Heading size="sm">Delete this message?</Heading>
+                <Text size="sm" className="text-foreground/50">
+                  This can&apos;t be undone.
+                </Text>
+              </VStack>
+              <ActionsheetItem onPress={handleClose}>
+                <ActionsheetItemText>Delete</ActionsheetItemText>
+              </ActionsheetItem>
+            </>
+          ) : null}
+        </ActionsheetContent>
+      </Actionsheet>
+    </>
+  );
+};
+
 const ExampleFileUploadWithActionsheet = () => {
 const [showActionsheet, setShowActionsheet] = React.useState(false);
           const handleClose = () => setShowActionsheet(false);
@@ -465,7 +552,12 @@ const COMPONENT_VARIANTS = [
     value: "file-upload-with-actionsheet",
     label: "File Upload with Actionsheet",
     content: <ExampleFileUploadWithActionsheet />,
-  }
+  },
+  {
+    value: "nested-dynamic-content",
+    label: "Nested (dynamic content)",
+    content: <ExampleNestedDynamic />,
+  },
 ];
 
 export default function ActionsheetScreen() {
