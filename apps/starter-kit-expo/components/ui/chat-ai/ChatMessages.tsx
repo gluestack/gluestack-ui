@@ -13,6 +13,7 @@ import Animated, {
   useAnimatedRef,
   scrollTo,
   runOnJS,
+  useAnimatedStyle,
 } from 'react-native-reanimated';
 
 interface ChatMessagesProps extends Omit<
@@ -50,8 +51,8 @@ export const ChatMessages = React.forwardRef<
   const blankSize = context?.blankSize ?? useSharedValue(0);
 
   // React state for footer spacer
-  const [bottomInset, setBottomInset] = useState(0);
-console.log(bottomInset);
+
+
   // Auto-scroll when new messages arrive
   useEffect(() => {
     if (messages.length === 0||!loading) return;
@@ -75,15 +76,13 @@ console.log(bottomInset);
     }
   );
 
-  // Sync keyboard + blank space to React
-  useAnimatedReaction(
-    () => blankSize.value + height.value,
-    (val, prev) => {
-      if (val !== prev) {
-        runOnJS(setBottomInset)(val);
-      }
-    }
-  );
+const footerStyle = useAnimatedStyle(() => ({
+  height: blankSize.value + height.value,
+}));
+
+  const contentContainerStyle = useAnimatedStyle(() => ({
+    paddingBottom: blankSize.value + height.value, // direct from UI thread
+  }));
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
@@ -127,8 +126,7 @@ console.log(bottomInset);
         onLayout={(event) => {
           viewportHeight.value = event.nativeEvent.layout.height;
         }}
-        // ✅ BEST APPROACH (footer spacer)
-        ListFooterComponent={<Animated.View style={{ height: bottomInset}} />}
+        ListFooterComponent={<Animated.View style={footerStyle} />}
         {...props}
       />
     </Animated.View>
