@@ -3,6 +3,8 @@ import React from 'react';
 import { View, ViewProps } from 'react-native';
 import { ChatContext } from './context';
 import { ChatMessage as ChatMessageType } from './types';
+import  Animated, { useSharedValue } from 'react-native-reanimated';
+
 
 interface ChatProps extends ViewProps {
   messages: ChatMessageType[];
@@ -13,6 +15,7 @@ interface ChatProps extends ViewProps {
   setMessages?: (messages: ChatMessageType[]) => void;
   status?: 'idle' | 'loading' | 'error';
   children: React.ReactNode;
+  blankSize?: Animated.SharedValue<number>;
 }
 
 export const Chat = React.forwardRef<
@@ -32,6 +35,9 @@ export const Chat = React.forwardRef<
   },
   ref
 ) {
+
+  const blankSize = useSharedValue(0);
+   
   const send = (input: string) => {
     onSend?.(input);
   };
@@ -52,6 +58,7 @@ export const Chat = React.forwardRef<
     reset,
     setMessages,
     status: statusProp,
+    blankSize,
   };
 
   return (

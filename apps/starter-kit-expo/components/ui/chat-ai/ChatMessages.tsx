@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from 'react';
-import { runOnUISync, scheduleOnUI } from 'react-native-worklets';
+import React, { useContext, useEffect, useState } from 'react';
 import { LegendListProps, LegendListRef } from '@legendapp/list';
 import { AnimatedLegendList } from '@legendapp/list/reanimated';
 import { ChatContext } from './context';
@@ -8,13 +7,12 @@ import { ChatMessage as ChatMessageType } from './types';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 
 import Animated, {
-  interpolate,
   useAnimatedScrollHandler,
-  useAnimatedStyle,
   useSharedValue,
   useAnimatedReaction,
   useAnimatedRef,
   scrollTo,
+  runOnJS,
 } from 'react-native-reanimated';
 
 interface ChatMessagesProps extends Omit<
@@ -32,98 +30,90 @@ export const ChatMessages = React.forwardRef<
   ChatMessagesProps
 >(function ChatMessages({ renderItem, ...props }, ref) {
   const context = useContext(ChatContext);
-
   if (!context) {
     throw new Error('ChatMessages must be used within a Chat component');
   }
 
   const { messages, loading } = context;
 
-  const { height, progress } = useReanimatedKeyboardAnimation();
+  const { height } = useReanimatedKeyboardAnimation();
 
-  // 🔥 Shared values
+  // Shared values
   const isAtBottom = useSharedValue(1);
   const shouldScroll = useSharedValue(0);
 
-  // 🔥 NEW: Track real dimensions on UI thread
   const contentHeight = useSharedValue(0);
   const viewportHeight = useSharedValue(0);
 
-  // 🔥 Animated ref (for scrollTo)
   const listRef = useAnimatedRef<LegendListRef>();
 
-  // 🔥 Trigger auto-scroll when new messages arrive
-  // Small timeout ensures the list has finished laying out the new item
+  const blankSize = context?.blankSize ?? useSharedValue(0);
+
+  // React state for footer spacer
+  const [bottomInset, setBottomInset] = useState(0);
+console.log(bottomInset);
+  // Auto-scroll when new messages arrive
   useEffect(() => {
-    if (messages.length === 0) return;
+    if (messages.length === 0||!loading) return;
 
     const timeout = setTimeout(() => {
-      scheduleOnUI(() => {
-        'worklet';
-        shouldScroll.value = 1;
-      });
-    }, 0); // 0ms = next tick (perfect for layout)
+      shouldScroll.value = 1;
+    }, 50);
 
     return () => clearTimeout(timeout);
   }, [messages.length, loading]);
 
-  // 🔥 UI thread scroll logic - now scrolls to EXACT bottom
+  // Scroll to bottom (UI thread)
   useAnimatedReaction(
     () => shouldScroll.value,
     (value) => {
       if (value === 1) {
         const targetY = Math.max(0, contentHeight.value - viewportHeight.value);
-
-        scrollTo(listRef, 0, targetY, true); // true = animated
-
+        scrollTo(listRef, 0, targetY, true);
         shouldScroll.value = 0;
       }
     }
   );
 
-  // 🔥 Track scroll position + update real dimensions
+  // Sync keyboard + blank space to React
+  useAnimatedReaction(
+    () => blankSize.value + height.value,
+    (val, prev) => {
+      if (val !== prev) {
+        runOnJS(setBottomInset)(val);
+      }
+    }
+  );
+
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
+      'worklet';
+
       const { contentOffset, contentSize, layoutMeasurement } = event;
 
-      const bottomThreshold = 100;
+      const bottomThreshold = 80;
 
-      const atBottom =
+      isAtBottom.value =
         contentOffset.y + layoutMeasurement.height >=
-        contentSize.height - bottomThreshold;
+        contentSize.height - bottomThreshold
+          ? 1
+          : 0;
 
-      isAtBottom.value = atBottom ? 1 : 0;
-
-      // 🔥 Keep real height up-to-date
       contentHeight.value = contentSize.height;
       viewportHeight.value = layoutMeasurement.height;
     },
   });
 
-  // 🔥 Keyboard animation (unchanged)
-  const listAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateY: interpolate(
-            progress.value,
-            [0, 1],
-            [0, isAtBottom.value * height.value]
-          ),
-        },
-      ],
-    };
-  });
-
   const defaultRenderItem = ({
     item,
+    index,
   }: {
     item: ChatMessageType;
     index: number;
-  }) => <ChatMessageComponent message={item} />;
+  }) => <ChatMessageComponent message={item} index={index} />;
 
   return (
-    <Animated.View className="flex-1" style={listAnimatedStyle}>
+    <Animated.View style={{ flex: 1 }}>
       <AnimatedLegendList
         ref={listRef}
         data={messages}
@@ -131,14 +121,14 @@ export const ChatMessages = React.forwardRef<
         keyExtractor={(item: ChatMessageType) => item.id}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
-        // 🔥 These two are the magic - they give us the REAL list height
-        onContentSizeChange={(width: number, height: number) => {
-          contentHeight.value = height;
+        onContentSizeChange={(_, h) => {
+          contentHeight.value = h;
         }}
         onLayout={(event) => {
           viewportHeight.value = event.nativeEvent.layout.height;
         }}
-        // User props come last so they can still override other things if needed
+        // ✅ BEST APPROACH (footer spacer)
+        ListFooterComponent={<Animated.View style={{ height: bottomInset}} />}
         {...props}
       />
     </Animated.View>

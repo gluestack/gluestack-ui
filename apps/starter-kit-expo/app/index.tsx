@@ -18,7 +18,7 @@ console.log(messages);
         onSend={send}
         className="flex-1 py-safe px-4"
       >
-        <ChatMessages className="flex-1 px-4 " />
+        <ChatMessages  />
         <ChatInput />
       </Chat>
    
