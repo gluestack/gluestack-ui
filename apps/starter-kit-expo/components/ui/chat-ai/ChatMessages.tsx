@@ -12,8 +12,8 @@ import Animated, {
   useAnimatedReaction,
   useAnimatedRef,
   scrollTo,
-  runOnJS,
   useAnimatedStyle,
+  interpolate,
 } from 'react-native-reanimated';
 
 interface ChatMessagesProps extends Omit<
@@ -37,7 +37,7 @@ export const ChatMessages = React.forwardRef<
 
   const { messages, loading } = context;
 
-  const { height } = useReanimatedKeyboardAnimation();
+  const { height,progress } = useReanimatedKeyboardAnimation();
 
   // Shared values
   const isAtBottom = useSharedValue(1);
@@ -75,6 +75,20 @@ export const ChatMessages = React.forwardRef<
       }
     }
   );
+  
+  const listAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateY: interpolate(
+            progress.value,
+            [0, 1],
+            [0, isAtBottom.value * height.value]
+          ),
+        },
+      ],
+    };
+  });
 
 const footerStyle = useAnimatedStyle(() => ({
   height: blankSize.value + height.value,
@@ -112,7 +126,7 @@ const footerStyle = useAnimatedStyle(() => ({
   }) => <ChatMessageComponent message={item} index={index} />;
 
   return (
-    <Animated.View style={{ flex: 1 }}>
+    <Animated.View className="flex-1" style={listAnimatedStyle}>
       <AnimatedLegendList
         ref={listRef}
         data={messages}
