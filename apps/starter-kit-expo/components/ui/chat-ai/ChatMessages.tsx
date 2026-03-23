@@ -5,6 +5,8 @@ import { ChatContext } from './context';
 import { ChatMessage as ChatMessageComponent } from './ChatMessage';
 import { ChatMessage as ChatMessageType } from './types';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
+import { useKeyboardAwareChat } from './useKeyboardAwareChat';
+import { GestureDetector } from 'react-native-gesture-handler';
 
 import Animated, {
   useAnimatedScrollHandler,
@@ -38,6 +40,13 @@ export const ChatMessages = React.forwardRef<
   const { messages, loading } = context;
 
   const { height,progress } = useReanimatedKeyboardAnimation();
+  const {
+  scrollHandler,
+  inputStyle,
+  listContentStyle,
+  panGesture,
+} = useKeyboardAwareChat();
+
 
   // Shared values
   const isAtBottom = useSharedValue(1);
@@ -98,24 +107,24 @@ const footerStyle = useAnimatedStyle(() => ({
     paddingBottom: blankSize.value + height.value, // direct from UI thread
   }));
 
-  const scrollHandler = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      'worklet';
+  // const scrollHandler = useAnimatedScrollHandler({
+  //   onScroll: (event) => {
+  //     'worklet';
 
-      const { contentOffset, contentSize, layoutMeasurement } = event;
+  //     const { contentOffset, contentSize, layoutMeasurement } = event;
 
-      const bottomThreshold = 80;
+  //     const bottomThreshold = 80;
 
-      isAtBottom.value =
-        contentOffset.y + layoutMeasurement.height >=
-        contentSize.height - bottomThreshold
-          ? 1
-          : 0;
+  //     isAtBottom.value =
+  //       contentOffset.y + layoutMeasurement.height >=
+  //       contentSize.height - bottomThreshold
+  //         ? 1
+  //         : 0;
 
-      contentHeight.value = contentSize.height;
-      viewportHeight.value = layoutMeasurement.height;
-    },
-  });
+  //     contentHeight.value = contentSize.height;
+  //     viewportHeight.value = layoutMeasurement.height;
+  //   },
+  // });
 
   const defaultRenderItem = ({
     item,
@@ -126,24 +135,27 @@ const footerStyle = useAnimatedStyle(() => ({
   }) => <ChatMessageComponent message={item} index={index} />;
 
   return (
-    <Animated.View className="flex-1" style={listAnimatedStyle}>
-      <AnimatedLegendList
-        ref={listRef}
-        data={messages}
-        renderItem={renderItem || defaultRenderItem}
-        keyExtractor={(item: ChatMessageType) => item.id}
-        onScroll={scrollHandler}
-        scrollEventThrottle={16}
-        onContentSizeChange={(_, h) => {
-          contentHeight.value = h;
-        }}
-        onLayout={(event) => {
-          viewportHeight.value = event.nativeEvent.layout.height;
-        }}
-        ListFooterComponent={<Animated.View style={footerStyle} />}
-        {...props}
-      />
-    </Animated.View>
+    <GestureDetector gesture={panGesture}>
+      <Animated.View className="flex-1" style={listAnimatedStyle}>
+        <AnimatedLegendList
+          ref={listRef}
+          data={messages}
+          renderItem={renderItem || defaultRenderItem}
+          keyboardDismissMode="interactive" // ⭐ CRITICAL
+          keyExtractor={(item: ChatMessageType) => item.id}
+          onScroll={scrollHandler}
+          scrollEventThrottle={16}
+          onContentSizeChange={(_, h) => {
+            contentHeight.value = h;
+          }}
+          onLayout={(event) => {
+            viewportHeight.value = event.nativeEvent.layout.height;
+          }}
+          ListFooterComponent={<Animated.View style={footerStyle} />}
+          {...props}
+        />
+      </Animated.View>
+    </GestureDetector>
   );
 });
 

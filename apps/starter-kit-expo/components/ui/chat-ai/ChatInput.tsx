@@ -12,14 +12,17 @@ import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { ChatContext } from './context';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
-
+import { useKeyboardAwareChat } from './useKeyboardAwareChat';
+import { GestureDetector } from 'react-native-gesture-handler';
+const { scrollHandler, inputStyle, listContentStyle, panGesture } =
+  useKeyboardAwareChat();
 const inputContainerStyle = tva({
   base: 'flex-row items-center p-2 border-t border-border bg-background',
 });
 
-const inputStyle = tva({
-  base: 'flex-1 p-2 bg-muted rounded-lg text-foreground',
-});
+// const inputStyle = tva({
+//   base: 'flex-1 p-2 bg-muted rounded-lg text-foreground',
+// });
 
 const sendButtonStyle = tva({
   base: 'ml-2 px-4 py-2 bg-primary rounded-lg',
@@ -91,19 +94,21 @@ export const ChatInput = React.forwardRef<
   );
 
   return (
+    <GestureDetector gesture={panGesture}>
     <Animated.View
       ref={ref}
       className={inputContainerStyle({ class: className })}
-      style={[ inputAnimatedStyle]}
+      style={[inputStyle,inputAnimatedStyle]}
       {...props}
     >
       <TextInput
+        className="flex-1 p-2 bg-muted rounded-lg text-foreground"
         value={input}
         onChangeText={setInput}
         placeholder={placeholder}
         placeholderTextColor="#666"
         multiline
-        className={inputStyle({})}
+     
         onSubmitEditing={handleSend}
         blurOnSubmit={false}
         editable={!loading}
@@ -113,6 +118,7 @@ export const ChatInput = React.forwardRef<
         ? renderSendButton(handleSend, !input.trim() || loading)
         : defaultSendButton}
     </Animated.View>
+    </GestureDetector>
   );
 });
 
