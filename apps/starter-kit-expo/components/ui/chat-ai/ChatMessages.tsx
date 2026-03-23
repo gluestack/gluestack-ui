@@ -40,14 +40,9 @@ export const ChatMessages = React.forwardRef<
 
   const { messages, loading } = context;
 
-  const { height,progress } = useReanimatedKeyboardAnimation();
-  const {
-  scrollHandler,
-  inputStyle,
-  listContentStyle,
-  panGesture,
-} = useKeyboardAwareChat();
-
+  const { height, progress } = useReanimatedKeyboardAnimation();
+  const { scrollHandler, inputStyle, listContentStyle, panGesture } =
+    useKeyboardAwareChat();
 
   // Shared values
   const isAtBottom = useSharedValue(1);
@@ -62,17 +57,16 @@ export const ChatMessages = React.forwardRef<
 
   // React state for footer spacer
 
+  useEffect(() => {
+    if (messages.length === 0) return;
 
-   useEffect(() => {
-     if (messages.length === 0) return;
+    const timeout = setTimeout(() => {
+      listRef.current?.scrollToEnd({ animated: false });
+    }, 50);
 
-     const timeout = setTimeout(() => {
-       listRef.current?.scrollToEnd({ animated: false });
-     }, 50);
+    return () => clearTimeout(timeout);
+  }, [messages.length]);
 
-     return () => clearTimeout(timeout);
-   }, [messages.length]);
-  
   const listAnimatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
@@ -87,9 +81,9 @@ export const ChatMessages = React.forwardRef<
     };
   });
 
-const footerStyle = useAnimatedStyle(() => ({
-  height: blankSize.value + height.value,
-}));
+  const footerStyle = useAnimatedStyle(() => ({
+    height: blankSize.value + height.value,
+  }));
 
   const contentContainerStyle = useAnimatedStyle(() => ({
     paddingBottom: blankSize.value + height.value, // direct from UI thread
