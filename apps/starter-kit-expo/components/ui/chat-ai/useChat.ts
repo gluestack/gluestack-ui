@@ -40,10 +40,20 @@ export function useChat(options: UseChatOptions): UseChatReturn {
         role: 'user',
         content: input,
         timestamp: Date.now(),
+        index: messages.length,
       };
 
-      // ✅ safe update
-      const updatedMessages = [...messages, userMessage];
+      const thinkingMessage: ChatMessage = {
+        id: generateId(),
+        role: 'assistant',
+        content: 'Thinking...',
+        timestamp: Date.now(),
+        index: messages.length + 1,
+        status: 'thinking',
+      };
+
+      // Add both user message and thinking placeholder together
+      const updatedMessages = [...messages, userMessage, thinkingMessage];
       setMessages(updatedMessages);
 
       try {
@@ -51,10 +61,12 @@ export function useChat(options: UseChatOptions): UseChatReturn {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            messages: updatedMessages.map((m) => ({
-              role: m.role,
-              content: m.content,
-            })),
+            messages: updatedMessages
+              .filter((m) => m.status !== 'thinking')
+              .map((m) => ({
+                role: m.role,
+                content: m.content,
+              })),
           }),
         });
 
@@ -64,19 +76,31 @@ export function useChat(options: UseChatOptions): UseChatReturn {
 
         const data = await response.json();
 
-        const assistantMessage: ChatMessage = {
-          id: generateId(),
-          role: 'assistant',
-          content: data.message || 'No response',
-          timestamp: Date.now(),
-        };
-
-        setMessages((prev) => [...prev, assistantMessage]);
+        // Replace thinking message with actual response
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === thinkingMessage.id
+              ? {
+                  ...msg,
+                  content: data.message || 'No response',
+                  status: 'idle',
+                }
+              : msg
+          )
+        );
         setStatus('idle');
       } catch (err) {
         const error = err instanceof Error ? err : new Error('Unknown error');
         setError(error);
         setStatus('error');
+        // Mark thinking message as error
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === thinkingMessage.id
+              ? { ...msg, content: 'Error occurred', status: 'error' }
+              : msg
+          )
+        );
       } finally {
         setLoading(false);
       }

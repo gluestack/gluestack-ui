@@ -4,4 +4,5 @@ export interface ChatMessage {
   content: string;
   timestamp: number;
   index: number;
+  status?: 'idle' | 'thinking' | 'error';
 }

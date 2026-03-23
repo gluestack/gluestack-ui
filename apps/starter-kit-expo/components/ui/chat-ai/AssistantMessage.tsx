@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { View, ViewProps, Text } from 'react-native';
+import { View, ViewProps, Text, ActivityIndicator } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { ChatMessage as ChatMessageType } from './types';
 import Animated from 'react-native-reanimated';
@@ -38,6 +38,8 @@ export const AssistantMessage = React.forwardRef<
   { message, className, index, textClassName, ...props },
   ref
 ) {
+  const isThinking = message.status === 'thinking';
+
   return (
     <Animated.View
       ref={ref}
@@ -47,14 +49,19 @@ export const AssistantMessage = React.forwardRef<
       })}
       {...props}
     >
-      <Text
-        className={messageTextStyle({
-          role: 'assistant',
-          class: textClassName,
-        })}
-      >
-        {message.content}
-      </Text>
+      <View className="flex-row items-center gap-2">
+        {isThinking && (
+          <ActivityIndicator size="small" className="text-foreground" />
+        )}
+        <Text
+          className={messageTextStyle({
+            role: 'assistant',
+            class: textClassName,
+          })}
+        >
+          {message.content}
+        </Text>
+      </View>
     </Animated.View>
   );
 });
