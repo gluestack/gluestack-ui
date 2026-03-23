@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { LegendListProps, LegendListRef } from '@legendapp/list';
 import { AnimatedLegendList } from '@legendapp/list/reanimated';
 import { ChatContext } from './context';
@@ -56,35 +56,22 @@ export const ChatMessages = React.forwardRef<
   const contentHeight = useSharedValue(0);
   const viewportHeight = useSharedValue(0);
 
-  const listRef = useAnimatedRef<LegendListRef>();
+  const listRef = useRef<LegendListRef>(null);
 
   const blankSize = context?.blankSize ?? useSharedValue(0);
 
   // React state for footer spacer
 
 
-  // Auto-scroll when new messages arrive
-  useEffect(() => {
-    if (messages.length === 0||!loading) return;
+   useEffect(() => {
+     if (messages.length === 0) return;
 
-    const timeout = setTimeout(() => {
-      shouldScroll.value = 1;
-    }, 50);
+     const timeout = setTimeout(() => {
+       listRef.current?.scrollToEnd({ animated: false });
+     }, 50);
 
-    return () => clearTimeout(timeout);
-  }, [messages.length, loading]);
-
-  // Scroll to bottom (UI thread)
-  useAnimatedReaction(
-    () => shouldScroll.value,
-    (value) => {
-      if (value === 1) {
-        const targetY = Math.max(0, contentHeight.value - viewportHeight.value);
-        scrollTo(listRef, 0, targetY, true);
-        shouldScroll.value = 0;
-      }
-    }
-  );
+     return () => clearTimeout(timeout);
+   }, [messages.length]);
   
   const listAnimatedStyle = useAnimatedStyle(() => {
     return {
