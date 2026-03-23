@@ -1,78 +1,65 @@
-'use client';
-import React, { useContext, useCallback } from 'react';
-import { View, LayoutChangeEvent, useWindowDimensions } from 'react-native';
+import { useContext } from 'react';
+import { useWindowDimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 import Animated, {
-  useSharedValue,
-  runOnUI,
   useAnimatedReaction,
   withTiming,
 } from 'react-native-reanimated';
-import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 import { ChatContext } from './context';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useMessageRenderedHeight } from './useMessageRenderedHeight';
+
+interface UseMessageBlankSizeOptions {
+  disabled?: boolean;
+  role: 'user' | 'assistant';
+}
 
 export function useMessageBlankSize({
-  isNewUserMessage = false, // set true ONLY for the user message that just entered
-}: {
-  isNewUserMessage?: boolean;
-}) {
+  disabled = false,
+  role,
+}: UseMessageBlankSizeOptions) {
   const context = useContext(ChatContext);
-  const blankSize = context?.blankSize ?? useSharedValue(0);
+
+  if (!context) {
+    throw new Error('useMessageBlankSize must be used inside Chat');
+  }
 
   const { height: keyboardHeight } = useReanimatedKeyboardAnimation();
   const windowHeight = useWindowDimensions().height;
   const insets = useSafeAreaInsets();
-  const messageHeight = useSharedValue(0);
-  const ref = React.useRef<View>(null);
 
-  const onLayout = useCallback(
-    (e: LayoutChangeEvent) => {
-      const height = e.nativeEvent.layout.height;
-      runOnUI(() => {
-        messageHeight.value = height;
+  const targetHeight =
+    role === 'assistant'
+      ? context.assistantMessageHeight
+      : context.userMessageHeight;
 
-        if (isNewUserMessage && height > 0) {
-          // 🔥 Vercel-style calculation for the user message just entered
-          const composerHeight = 50; // your ChatInput height (or measure it too)
-          const margin = 40; // visual breathing room
+  const { ref, onLayout } = useMessageRenderedHeight(targetHeight);
 
-          const calculatedBlank = Math.max(
-            0,
-            windowHeight -
-              height -
-              composerHeight -
-              keyboardHeight.value -
-              insets.bottom -
-              insets.top
-          );
-
-          blankSize.value = withTiming(calculatedBlank, { duration: 0 }); // instant
-        }
-      })();
-    },
-    [isNewUserMessage, windowHeight, keyboardHeight.value]
-  );
-
-  // 🔥 Live update blankSize when keyboard opens/closes (exactly like Vercel)
   useAnimatedReaction(
-    () => keyboardHeight.value,
-    (currentKeyboard) => {
-      if (!isNewUserMessage) return;
-      const currentMessageH = messageHeight.value;
-      if (currentMessageH <= 0) return;
+    () => {
+      return {
+        user: context.userMessageHeight.value,
+        assistant: context.assistantMessageHeight.value,
+        keyboard: keyboardHeight.value,
+        composer: context.composerHeight.value,
+        disabled,
+      };
+    },
+    ({ user, assistant, keyboard, composer, disabled: isDisabled }) => {
+      'worklet';
 
-      const composerHeight = 80;
-      const margin = 40;
-      console.log('bottom insets', insets.bottom);
-      blankSize.value = Math.max(
+      if (isDisabled) return;
+
+      const pairedHeight = assistant > 0 ? user + assistant : user;
+
+      if (pairedHeight <= 0) return;
+
+      const nextBlank = Math.max(
         0,
-        windowHeight -
-          currentMessageH -
-          composerHeight -
-          currentKeyboard -
-          margin -
-          insets.bottom
+        windowHeight - pairedHeight - composer - keyboard - insets.bottom
       );
+
+      context.blankSize.value = withTiming(nextBlank, { duration: 180 });
     }
   );
 

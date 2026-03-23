@@ -1,5 +1,5 @@
 'use client';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useCallback } from 'react';
 import {
   View,
   ViewProps,
@@ -7,6 +7,7 @@ import {
   TextInputProps,
   Pressable,
   Text,
+  LayoutChangeEvent,
 } from 'react-native';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { ChatContext } from './context';
@@ -19,10 +20,6 @@ const { scrollHandler, inputStyle, listContentStyle, panGesture } =
 const inputContainerStyle = tva({
   base: 'flex-row items-center p-2 border-t border-border bg-background',
 });
-
-// const inputStyle = tva({
-//   base: 'flex-1 p-2 bg-muted rounded-lg text-foreground',
-// });
 
 const sendButtonStyle = tva({
   base: 'ml-2 px-4 py-2 bg-primary rounded-lg',
@@ -62,13 +59,24 @@ export const ChatInput = React.forwardRef<
   const [input, setInput] = useState('');
 
   const loading = context?.loading || false;
-  const { height, progress } = useReanimatedKeyboardAnimation();
+  const { height } = useReanimatedKeyboardAnimation();
 
   const inputAnimatedStyle = useAnimatedStyle(() => {
     return {
-      transform: [{ translateY: height.value }],
+      transform: [{ translateY: -height.value }], // ← fixed sign (was positive)
     };
   });
+
+  // Measure composer height so blankSize calculation is correct
+  const onComposerLayout = useCallback(
+    (event: LayoutChangeEvent) => {
+      if (context) {
+        context.composerHeight.value = event.nativeEvent.layout.height;
+      }
+    },
+    [context]
+  );
+
   const handleSend = () => {
     if (!input.trim() || loading) return;
 
@@ -95,29 +103,29 @@ export const ChatInput = React.forwardRef<
 
   return (
     <GestureDetector gesture={panGesture}>
-    <Animated.View
-      ref={ref}
-      className={inputContainerStyle({ class: className })}
-      style={[inputAnimatedStyle]}
-      {...props}
-    >
-      <TextInput
-        className="flex-1 p-2 bg-muted rounded-lg text-foreground"
-        value={input}
-        onChangeText={setInput}
-        placeholder={placeholder}
-        placeholderTextColor="#666"
-        multiline
-     
-        onSubmitEditing={handleSend}
-        blurOnSubmit={false}
-        editable={!loading}
-        {...inputProps}
-      />
-      {renderSendButton
-        ? renderSendButton(handleSend, !input.trim() || loading)
-        : defaultSendButton}
-    </Animated.View>
+      <Animated.View
+        ref={ref}
+        className={inputContainerStyle({ class: className })}
+        style={[inputAnimatedStyle]}
+        onLayout={onComposerLayout} // ← new
+        {...props}
+      >
+        <TextInput
+          className="flex-1 p-2 bg-muted rounded-lg text-foreground"
+          value={input}
+          onChangeText={setInput}
+          placeholder={placeholder}
+          placeholderTextColor="#666"
+          multiline
+          onSubmitEditing={handleSend}
+          blurOnSubmit={false}
+          editable={!loading}
+          {...inputProps}
+        />
+        {renderSendButton
+          ? renderSendButton(handleSend, !input.trim() || loading)
+          : defaultSendButton}
+      </Animated.View>
     </GestureDetector>
   );
 });

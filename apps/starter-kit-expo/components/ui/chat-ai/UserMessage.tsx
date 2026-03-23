@@ -1,11 +1,12 @@
 'use client';
+
 import React, { useContext } from 'react';
 import { View, ViewProps, Text } from 'react-native';
+import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import { ChatMessage as ChatMessageType } from './types';
-import { useMessageBlankSize } from './useMessageBlankSize';
 import { ChatContext } from './context';
-import Animated from 'react-native-reanimated';
+import { ChatMessage as ChatMessageType } from './types';
+import { useFirstMessageAnimation } from './useFirstMessageAnimation';
 
 const messageContainerStyle = tva({
   base: 'p-3 my-1 rounded-lg max-w-[80%]',
@@ -27,7 +28,7 @@ const messageTextStyle = tva({
   },
 });
 
-export interface UserMessageProps extends ViewProps {
+interface UserMessageProps extends ViewProps {
   message: ChatMessageType;
   textClassName?: string;
   index: number;
@@ -43,17 +44,22 @@ export const UserMessage = React.forwardRef<
   const context = useContext(ChatContext);
   const messages = context?.messages ?? [];
 
-  const isNewUserMessage =
+  const isNewestUserMessage =
     message.role === 'user' && index === messages.length - 1;
 
-  const { ref: blankRef, onLayout } = useMessageBlankSize({
-    isNewUserMessage,
+  const {
+    style,
+    ref: animRef,
+    onLayout,
+  } = useFirstMessageAnimation({
+    disabled: !isNewestUserMessage,
   });
 
   return (
     <Animated.View
-      ref={blankRef}
-      onLayout={onLayout}
+      ref={animRef}
+      onLayout={isNewestUserMessage ? onLayout : undefined}
+      style={style}
       className={messageContainerStyle({
         role: 'user',
         class: className,
@@ -61,10 +67,7 @@ export const UserMessage = React.forwardRef<
       {...props}
     >
       <Text
-        className={messageTextStyle({
-          role: 'user',
-          class: textClassName,
-        })}
+        className='text-red-400'
       >
         {message.content}
       </Text>

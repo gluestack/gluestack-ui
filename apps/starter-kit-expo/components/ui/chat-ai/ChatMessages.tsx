@@ -1,23 +1,21 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
+'use client';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { View, Platform } from 'react-native';
 import { LegendListProps, LegendListRef } from '@legendapp/list';
 import { AnimatedLegendList } from '@legendapp/list/reanimated';
 import { ChatContext } from './context';
-import { ChatMessage as ChatMessageComponent } from './ChatMessage';
 import { ChatMessage as ChatMessageType } from './types';
-import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
+import { ChatMessage as ChatMessageComponent } from './ChatMessage';
 import { useKeyboardAwareChat } from './useKeyboardAwareChat';
+import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 import { GestureDetector } from 'react-native-gesture-handler';
 
 import Animated, {
-  useAnimatedScrollHandler,
   useSharedValue,
-  useAnimatedReaction,
-  useAnimatedRef,
-  scrollTo,
   useAnimatedStyle,
-  interpolate,
+  useAnimatedReaction,
 } from 'react-native-reanimated';
-import { Platform } from 'react-native';
+import { runOnJS } from 'react-native-worklets';
 
 interface ChatMessagesProps extends Omit<
   LegendListProps<ChatMessageType>,
@@ -38,75 +36,41 @@ export const ChatMessages = React.forwardRef<
     throw new Error('ChatMessages must be used within a Chat component');
   }
 
-  const { messages, loading } = context;
+  const { messages } = context;
 
-  const { height, progress } = useReanimatedKeyboardAnimation();
-  const { scrollHandler, inputStyle, listContentStyle, panGesture } =
-    useKeyboardAwareChat();
-
-  // Shared values
-  const isAtBottom = useSharedValue(1);
-  const shouldScroll = useSharedValue(0);
-
-  const contentHeight = useSharedValue(0);
-  const viewportHeight = useSharedValue(0);
+  const { height } = useReanimatedKeyboardAnimation();
+  const { scrollHandler, panGesture } = useKeyboardAwareChat();
 
   const listRef = useRef<LegendListRef>(null);
 
   const blankSize = context?.blankSize ?? useSharedValue(0);
+  const [blankSizeValue, setBlankSizeValue] = useState(0);
+  useAnimatedReaction(
+    () => blankSize.value,
+    (value) => {
+      runOnJS(() => {
+        setBlankSizeValue(value);
+      });
+    }
+  );
 
-  // React state for footer spacer
-
+  // 🔥 scroll to bottom (NO animation → Vercel style)
   useEffect(() => {
     if (messages.length === 0) return;
 
-    const timeout = setTimeout(() => {
+    const t = setTimeout(() => {
       listRef.current?.scrollToEnd({ animated: false });
-    }, 50);
+    }, 30);
 
-    return () => clearTimeout(timeout);
+    return () => clearTimeout(t);
   }, [messages.length]);
 
-  const listAnimatedStyle = useAnimatedStyle(() => {
+  // 🔥 footer = blank space + keyboard
+  const footerStyle = useAnimatedStyle(() => {
     return {
-      transform: [
-        {
-          translateY: interpolate(
-            progress.value,
-            [0, 1],
-            [0, isAtBottom.value * height.value]
-          ),
-        },
-      ],
+      height: blankSize.value + height.value,
     };
   });
-
-  const footerStyle = useAnimatedStyle(() => ({
-    height: blankSize.value + height.value,
-  }));
-
-  const contentContainerStyle = useAnimatedStyle(() => ({
-    paddingBottom: blankSize.value + height.value, // direct from UI thread
-  }));
-
-  // const scrollHandler = useAnimatedScrollHandler({
-  //   onScroll: (event) => {
-  //     'worklet';
-
-  //     const { contentOffset, contentSize, layoutMeasurement } = event;
-
-  //     const bottomThreshold = 80;
-
-  //     isAtBottom.value =
-  //       contentOffset.y + layoutMeasurement.height >=
-  //       contentSize.height - bottomThreshold
-  //         ? 1
-  //         : 0;
-
-  //     contentHeight.value = contentSize.height;
-  //     viewportHeight.value = layoutMeasurement.height;
-  //   },
-  // });
 
   const defaultRenderItem = ({
     item,
@@ -118,28 +82,22 @@ export const ChatMessages = React.forwardRef<
 
   return (
     <GestureDetector gesture={panGesture}>
-      <Animated.View className="flex-1" style={listAnimatedStyle}>
+      <View style={{ flex: 1 }}>
         <AnimatedLegendList
           ref={listRef}
           data={messages}
           renderItem={renderItem || defaultRenderItem}
+          keyExtractor={(item) => item.id}
+          onScroll={scrollHandler}
+          scrollEventThrottle={16}
+          contentContainerStyle={{ paddingBottom: blankSizeValue }}
           keyboardDismissMode={
             Platform.OS === 'ios' ? 'interactive' : 'on-drag'
           }
           keyboardShouldPersistTaps="handled"
-          keyExtractor={(item: ChatMessageType) => item.id}
-          onScroll={scrollHandler}
-          scrollEventThrottle={16}
-          onContentSizeChange={(_, h) => {
-            contentHeight.value = h;
-          }}
-          onLayout={(event) => {
-            viewportHeight.value = event.nativeEvent.layout.height;
-          }}
-          ListFooterComponent={<Animated.View style={footerStyle} />}
           {...props}
         />
-      </Animated.View>
+      </View>
     </GestureDetector>
   );
 });
