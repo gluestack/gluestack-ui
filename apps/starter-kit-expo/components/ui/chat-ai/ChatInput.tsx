@@ -98,7 +98,7 @@ export const ChatInput = React.forwardRef<
     <Animated.View
       ref={ref}
       className={inputContainerStyle({ class: className })}
-      style={[inputStyle,inputAnimatedStyle]}
+      style={[inputAnimatedStyle]}
       {...props}
     >
       <TextInput
