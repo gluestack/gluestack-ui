@@ -17,6 +17,7 @@ import Animated, {
   useAnimatedStyle,
   interpolate,
 } from 'react-native-reanimated';
+import { Platform } from 'react-native';
 
 interface ChatMessagesProps extends Omit<
   LegendListProps<ChatMessageType>,
@@ -141,7 +142,10 @@ const footerStyle = useAnimatedStyle(() => ({
           ref={listRef}
           data={messages}
           renderItem={renderItem || defaultRenderItem}
-          keyboardDismissMode="interactive" // ⭐ CRITICAL
+          keyboardDismissMode={
+            Platform.OS === 'ios' ? 'interactive' : 'on-drag'
+          }
+          keyboardShouldPersistTaps="handled"
           keyExtractor={(item: ChatMessageType) => item.id}
           onScroll={scrollHandler}
           scrollEventThrottle={16}
