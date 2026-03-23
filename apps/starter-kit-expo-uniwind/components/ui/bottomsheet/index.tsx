@@ -237,16 +237,17 @@ export const BottomSheetPortal = ({
 export const BottomSheetTrigger = ({
   className,
   index,
+  onPress,
   ...props
 }: PressableProps & { className?: string; index?: number }) => {
   const { handleOpen } = useContext(BottomSheetContext);
   return (
     <Pressable
+      {...props}
       onPress={(e) => {
-        props.onPress?.(e);
+        onPress?.(e);
         handleOpen(index);
       }}
-      {...props}
       className={bottomSheetTriggerStyle({ className })}
     >
       {props.children}
