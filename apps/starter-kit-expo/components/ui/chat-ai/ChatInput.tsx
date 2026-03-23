@@ -63,7 +63,7 @@ export const ChatInput = React.forwardRef<
 
   const inputAnimatedStyle = useAnimatedStyle(() => {
     return {
-      transform: [{ translateY: -height.value }], // ← fixed sign (was positive)
+      transform: [{ translateY: height.value }], // ← fixed sign (was positive)
     };
   });
 

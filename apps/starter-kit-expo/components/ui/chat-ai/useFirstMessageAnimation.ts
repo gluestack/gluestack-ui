@@ -87,7 +87,7 @@ console.log('keyboardHeight the hoook is called',keyboardHeight.value);
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [{ translateY: translateY.value }],
-      
+      opacity: progress.value,
     };
   });
 
