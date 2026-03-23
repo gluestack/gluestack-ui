@@ -71,10 +71,10 @@ type BottomSheetContextValue = {
 
 const BottomSheetContext = createContext<BottomSheetContextValue>({
   bottomSheetRef: { current: null! },
-  handleClose: () => {},
-  handleOpen: () => {},
+  handleClose: () => { },
+  handleOpen: () => { },
   isVisible: false,
-  handleSheetChanges: () => {},
+  handleSheetChanges: () => { },
   currentIndex: -1,
 });
 
@@ -247,16 +247,17 @@ export const BottomSheetPortal = ({
 export const BottomSheetTrigger = ({
   className,
   index,
+  onPress,
   ...props
 }: PressableProps & { className?: string; index?: number }) => {
   const { handleOpen } = useContext(BottomSheetContext);
   return (
     <RNPressable
+      {...props}
       onPress={(e) => {
-        props.onPress?.(e);
+        onPress?.(e);
         handleOpen(index);
       }}
-      {...props}
       className={bottomSheetTriggerStyle({ className })}
     >
       {props.children}
