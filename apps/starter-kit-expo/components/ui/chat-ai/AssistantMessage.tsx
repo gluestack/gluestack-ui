@@ -10,6 +10,9 @@ import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { ChatContext } from './context';
 import { ChatMessage as ChatMessageType } from './types';
 import { useMessageBlankSize } from './useMessageBlankSize';
+import { useFirstMessageAnimation } from './useFirstMessageAnimation';
+
+
 
 const messageContainerStyle = tva({
   base: 'p-3 my-1 rounded-lg max-w-[80%]',
@@ -47,8 +50,15 @@ export const AssistantMessage = React.forwardRef<
   const context = useContext(ChatContext);
   const messages = context?.messages ?? [];
 
+  const isFirstAssistantMessage = index === 1;
+
+  const { didUserMessageAnimate } = useFirstMessageAnimation({
+    disabled: !isFirstAssistantMessage,
+  });
+
   const isNewestAssistantMessage =
     message.role === 'assistant' && index === messages.length - 1;
+    console.log('isNewestAssistantMessage',isNewestAssistantMessage);
 
   const { ref: blankRef, onLayout } = useMessageBlankSize({
     role: 'assistant',
@@ -56,15 +66,8 @@ export const AssistantMessage = React.forwardRef<
   });
 
   const style = useAnimatedStyle(() => {
-    if (!isNewestAssistantMessage) {
-      return { opacity: 1 };
-    }
-
-    // Vercel exact pattern: fade in only after user message animation finishes
     return {
-      opacity: context?.didUserMessageAnimate.value
-        ? withTiming(1, { duration: 350 })
-        : 0,
+      opacity: didUserMessageAnimate.value ? 1 : 0,
     };
   });
 
