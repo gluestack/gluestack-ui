@@ -48,13 +48,13 @@ console.log(
 
       if (isDisabled) return;
 
-      const pairedHeight = assistant > 0 ? user + assistant : user;
+      const pairedHeight = user + assistant ;
 
       if (pairedHeight <= 0) return;
 
       const nextBlank = Math.max(
         0,
-        windowHeight - pairedHeight  - 120 - insets.bottom -insets.top
+        windowHeight - pairedHeight+assistant  - 100 - insets.bottom -insets.top
       );
 
       context.blankSize.value = nextBlank;
