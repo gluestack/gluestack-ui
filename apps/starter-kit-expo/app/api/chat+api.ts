@@ -1,33 +1,17 @@
 import { createOpenRouter } from '@openrouter/ai-sdk-provider';
-import { generateText } from 'ai';
+import { convertToModelMessages, streamText } from 'ai';
 
 export async function POST(request: Request) {
-  const body = await request.json();
-
-  const rawMessages = body?.messages ?? [];
-
-  if (!Array.isArray(rawMessages) || rawMessages.length === 0) {
-    return new Response(JSON.stringify({ error: 'Messages cannot be empty' }), {
-      status: 400,
-    });
-  }
-
-  // ✅ clean messages
-  const messages = rawMessages.map((m: any) => ({
-    role: m.role,
-    content: m.content,
-  }));
+  const { messages } = await request.json();
 
   const openrouter = createOpenRouter({
     apiKey: process.env.OPENROUTER_API_KEY ?? '',
   });
 
-  const result = await generateText({
-    model: openrouter('xiaomi/mimo-v2-omni'),
-    messages,
+  const result = streamText({
+    model: openrouter('anthropic/claude-3.5-sonnet'),
+    messages: await convertToModelMessages(messages),
   });
 
-  return Response.json({
-    message: result.text,
-  });
+  return result.toUIMessageStreamResponse();
 }
