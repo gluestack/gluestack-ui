@@ -1,7 +1,7 @@
 import { Feed } from 'feed';
 import { getSortedBlogs } from './blog-data';
 
-const SITE_URL = 'https://gluestack.io';
+const SITE_URL = 'https://v5.gluestack.io';
 
 export function generateRSSFeed(): string {
   const feed = new Feed({
