@@ -1,23 +1,43 @@
 import React, { forwardRef, useMemo } from 'react';
-import { Platform } from 'react-native';
+import { NativeSyntheticEvent, Platform, TextInputKeyPressEventData } from 'react-native';
 import { useFormControl } from '../../form-control/creator';
 import { useInput } from './InputContext';
 import { mergeRefs } from '@gluestack-ui/utils/common';
 
+export interface InputProps {
+  children?: React.ReactNode;
+  name?: string;
+  type?: string;
+  onKeyPress?: (e: NativeSyntheticEvent<TextInputKeyPressEventData>) => void;
+  editable?: boolean;
+  disabled?: boolean;
+  secureTextEntry?: boolean;
+  id?: string;
+  isDisabled?: boolean;
+  isInvalid?: boolean;
+  isReadOnly?: boolean;
+  isRequired?: boolean;
+  onFocus?: (e: any) => void;
+  onBlur?: (e: any) => void;
+  [key: string]: any;
+}
+
+
 export const Input = (StyledInput: any) =>
-  forwardRef(
+  forwardRef<any, InputProps>(
     (
       {
         children,
         onKeyPress,
+        name,
         type = 'text',
         'aria-label': ariaLabel = 'Input Field',
         secureTextEntry,
         editable,
         disabled,
         ...props
-      }: any,
-      ref?: any
+      },
+      ref
     ) => {
       const {
         isDisabled,
@@ -50,15 +70,14 @@ export const Input = (StyledInput: any) =>
         if (editable !== undefined) {
           return editable;
         } else {
-          return isDisabled || inputProps.isDisabled || isReadOnly
-            ? false
-            : true;
+          return !(isDisabled || inputProps.isDisabled || isReadOnly);
         }
       }, [isDisabled, inputProps.isDisabled, isReadOnly, editable]);
 
       return (
         <StyledInput
           {...props}
+          name={name}
           type={type}
           states={{
             focus: isFocused,
@@ -99,20 +118,14 @@ export const Input = (StyledInput: any) =>
           accessibilityElementsHidden={isDisabled || inputProps.isDisabled}
           readOnly={!editableProp}
           onKeyPress={(e: any) => {
-            e.persist();
+            e.persist?.();
             onKeyPress && onKeyPress(e);
           }}
           onFocus={(e: any) => {
-            handleFocus(
-              true,
-              props?.onFocus ? () => props?.onFocus(e) : () => {}
-            );
+            handleFocus(true, props?.onFocus ? () => props?.onFocus(e) : () => {});
           }}
           onBlur={(e: any) => {
-            handleFocus(
-              false,
-              props?.onBlur ? () => props?.onBlur(e) : () => {}
-            );
+            handleFocus(false, props?.onBlur ? () => props?.onBlur(e) : () => {});
           }}
           ref={mergedRef}
         >
