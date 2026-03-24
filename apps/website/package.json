@@ -37,6 +37,7 @@
     "date-fns": "^4.1.0",
     "dom-helpers": "^5.2.1",
     "dotenv": "^16.5.0",
+    "feed": "^5.2.0",
     "expo-blur": "^15.0.8",
     "expo-glass-effect": "^0.1.9",
     "geist": "^1.5.1",

@@ -43,9 +43,19 @@ export default async function RootLayout({
     | 'system';
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} ${plusJakartaSans.variable} ${sourceCodePro.variable} ${inter.variable} ${spaceMono.variable} ${roboto.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${GeistMono.variable} ${plusJakartaSans.variable} ${sourceCodePro.variable} ${inter.variable} ${spaceMono.variable} ${roboto.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <meta name="robots" content="index, follow" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="gluestack-ui Blog"
+          href="/rss.xml"
+        />
 
         <CanonicalLink />
 
