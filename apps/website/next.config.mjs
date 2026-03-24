@@ -20,6 +20,10 @@ const nextConfig = withExpo({
             key: 'X-Robots-Tag',
             value: 'index, follow', // same options as meta tag
           },
+          {
+            key: 'Permissions-Policy',
+            value: 'compute-pressure=()', // Explicitly disable compute-pressure API
+          },
         ],
       },
     ];
@@ -50,7 +54,6 @@ const nextConfig = withExpo({
     ignoreBuildErrors: true,
   },
   experimental: {
-    instrumentationHook: true,
     optimizeCss: true,
   },
   transpilePackages: [

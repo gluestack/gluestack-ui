@@ -1,5 +1,23 @@
 # @gluestack-ui/utils
 
+## 3.0.15
+
+### Patch Changes
+
+- chore: rollback
+
+## 3.0.14
+
+### Patch Changes
+
+- chore: Add generic types to useBreakpointValue hook
+
+## 3.0.13
+
+### Patch Changes
+
+- fix: updated dev dependencies
+
 ## 3.0.12
 
 ### Patch Changes

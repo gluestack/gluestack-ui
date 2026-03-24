@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from 'react';
 import { Box } from '@/components/ui/box';
 import { ArrowRightIcon, MailIcon } from '@/components/ui/icon';

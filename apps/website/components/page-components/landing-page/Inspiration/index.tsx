@@ -1,9 +1,9 @@
-'use client';
 import { Box } from '@/components/ui/box';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
-import { Image } from '@/components/ui/image';
+import Image from 'next/image';
+import insImg from '@/public/assets/ins-img.png';
 
 const Inspiration = () => {
   return (
@@ -20,9 +20,8 @@ const Inspiration = () => {
       <Box className="relative max-w-4xl w-full h-full aspect-[844/311]">
         <Image
           alt="tech logos"
-          source={require('@/public/assets/ins-img.png')}
+          src={insImg}
           className="w-full h-full"
-          resizeMode="contain"
         />
       </Box>
     </Box>

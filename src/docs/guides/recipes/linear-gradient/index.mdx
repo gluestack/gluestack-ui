@@ -14,7 +14,7 @@ This is an illustration of **Linear Gradient** component in `App.tsx` file.
 
 <GradientImage />
 
-```jsx
+```tsx
 import './global.css';
 import React, { useState } from 'react';
 import { Input, InputField, InputIcon, InputSlot } from '@/components/ui/input';
@@ -27,7 +27,7 @@ import { Center } from '@/components/ui/center';
 import { Mail } from 'lucide-react-native';
 
 export default function App() {
-  const [colorMode, setColorMode] = (useState < 'dark') | ('light' > 'light');
+  const [colorMode, setColorMode] = useState<"dark" | "light">("light");
   return (
     <SafeAreaView className="flex-1 justify-center items-center">
       <GluestackUIProvider mode={colorMode}>
