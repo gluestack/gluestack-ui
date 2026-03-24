@@ -1,18 +1,17 @@
-import React, { useContext } from 'react';
-import { Pressable, ScrollView } from 'react-native';
-import { useRouter, usePathname } from 'expo-router';
 import { Box } from '@/components/ui/box';
-import { Heading } from '@/components/ui/heading';
-import { VStack } from '@/components/ui/vstack';
-import { Text } from '@/components/ui/text';
-import { getAllComponents } from '@/utils/getComponents';
-import { HStack } from '@/components/ui/hstack';
-import { Image } from '@/components/ui/image';
-import { ColorModeContext } from './_layout';
-import { ChevronRightIcon } from '@/components/ui/icon';
-import { Icon } from '@/components/ui/icon';
 import { Grid, GridItem } from '@/components/ui/grid';
+import { Heading } from '@/components/ui/heading';
+import { HStack } from '@/components/ui/hstack';
+import { ChevronRightIcon, Icon } from '@/components/ui/icon';
+import { Image } from '@/components/ui/image';
+import { Text } from '@/components/ui/text';
+import { VStack } from '@/components/ui/vstack';
+import { getAllComponents } from '@/utils/getComponents';
+import { usePathname, useRouter } from 'expo-router';
+import React, { useContext, useMemo } from 'react';
+import { FlatList, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { ColorModeContext } from './_layout';
 
 const components = getAllComponents();
 const ComponentCard = ({ component, onPress }: any) => {
@@ -51,7 +50,7 @@ const ComponentCard = ({ component, onPress }: any) => {
 const Header = () => {
   const { colorMode }: any = useContext(ColorModeContext);
   return (
-    <HStack className="flex-1 bg-background-50 w-full mx-auto justify-between">
+    <HStack className="bg-background-50 w-full mx-auto justify-between">
       <VStack className="w-full  md:max-w-[630px] lg:max-w-[400px] xl:max-w-[480px] mx-5 md:ml-8 mb-8 mt-10 lg:my-[44px] xl:ml-[80px] flex-1">
         <HStack
           className="rounded-full bg-background-0 py-4 px-5 mb-7 md:mb-9 lg:mb-[80px] xl:mb-[132px] items-center native:max-w-[250px] w-fit"
@@ -101,63 +100,75 @@ export default function ComponentList() {
   const handleComponentPress = (componentPath: string) => {
     // Use Expo Router's built-in navigation state check
     const targetPath = `components/${componentPath}`;
-    
+
     // Prevent navigation if we're already on the target path or if navigation is in progress
     if (pathname.includes(targetPath)) {
       return;
     }
-    
+
     // Use replace instead of push to prevent stack accumulation on rapid clicks
     router.push(`/components/${componentPath}` as any);
   };
 
   // Filter out bottomsheet components and components without paths
-  const filteredComponents = components.map(category => ({
-    ...category,
-    components: category.components.filter(component => 
-      component.path && 
-      !component.name.toLowerCase().includes('bottomsheet') &&
-      !component.path.toLowerCase().includes('bottomsheet')
-    )
-  })).filter(category => category.components.length > 0);
+  const filteredComponents = useMemo(
+    () =>
+      components
+        .map((category) => ({
+          ...category,
+          components: category.components.filter(
+            (component) =>
+              component.path &&
+              !component.name.toLowerCase().includes('bottomsheet') &&
+              !component.path.toLowerCase().includes('bottomsheet')
+          ),
+        }))
+        .filter((category) => category.components.length > 0),
+    []
+  );
+
+  const renderCategoryItem = ({ item: category }: any) => (
+    <Box className="mt-4 border-b border-outline-100 pb-8 px-5 md:px-20">
+      <Heading size="lg" className="text-typography-900 mb-4">
+        {category.category}
+      </Heading>
+      <Grid
+        className="gap-5"
+        _extra={{
+          className: 'grid-cols-2 md:grid-cols-4 xl:grid-cols-6',
+        }}
+      >
+        {category.components.map((component: any) => (
+          <GridItem
+            _extra={{
+              className: 'col-span-1',
+            }}
+            key={component.name}
+          >
+            <ComponentCard
+              component={component}
+              onPress={() => handleComponentPress(component.path!)}
+            />
+          </GridItem>
+        ))}
+      </Grid>
+    </Box>
+  );
 
   return (
     <SafeAreaView className="flex-1 bg-background-0">
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <Header />
-        <VStack className="p-5 md:px-20">
-          {filteredComponents.map((category) => (
-            <Box
-              key={category.category}
-              className="mt-4 border-b border-outline-100 pb-8"
-            >
-              <Heading size="lg" className="text-typography-900 mb-4">
-                {category.category}
-              </Heading>
-              <Grid
-                className="gap-5"
-                _extra={{
-                  className: 'grid-cols-2 md:grid-cols-4 xl:grid-cols-6',
-                }}
-              >
-                {category.components.map((component) => (
-                  <GridItem
-                    _extra={{
-                      className: 'col-span-1',
-                    }}
-                    key={component.name}
-                  >
-                    <ComponentCard
-                      component={component}
-                      onPress={() => handleComponentPress(component.path!)}
-                    />
-                  </GridItem>
-                ))}
-              </Grid>
-            </Box>
-          ))}
-        </VStack>
-      </ScrollView>
+      <FlatList
+        data={filteredComponents}
+        renderItem={renderCategoryItem}
+        ListHeaderComponent={<Header />}
+        keyExtractor={(item) => item.category}
+        showsVerticalScrollIndicator={false}
+        removeClippedSubviews={true}
+        maxToRenderPerBatch={3}
+        updateCellsBatchingPeriod={50}
+        initialNumToRender={2}
+        windowSize={5}
+      />
     </SafeAreaView>
   );
 }

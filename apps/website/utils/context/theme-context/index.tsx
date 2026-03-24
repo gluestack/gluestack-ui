@@ -1,67 +1,59 @@
 'use client';
 import { createContext, useState, useEffect } from 'react';
 
-type ThemeMode =
-  | 'example'
-  | 'dark'
-  | 'violet'
-  | 'cyan'
-  | 'rose'
-  | 'bluegray'
-  | 'orange'
-  | 'blue'
-  | 'green'
-  | 'fuchsia';
-
 type ThemeContextType = {
   colorMode: 'light' | 'dark' | 'system';
   setColorMode: (mode: 'light' | 'dark' | 'system') => void;
-  themeMode: ThemeMode;
-  setThemeMode: (mode: ThemeMode) => void;
 };
 
 const ThemeContext = createContext<ThemeContextType>({
   colorMode: 'dark',
   setColorMode: () => {},
-  themeMode: 'example',
-  setThemeMode: () => {},
 });
+
+// Cookie helper functions
+const setCookie = (name: string, value: string, days: number = 365) => {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+};
+
+const getCookie = (name: string): string | null => {
+  const nameEQ = name + '=';
+  const ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+};
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [colorMode, setColorMode] = useState<'light' | 'dark' | 'system'>(
     'dark'
   );
-  const [themeMode, setThemeMode] = useState<ThemeMode>('example');
+
   const [mounted, setMounted] = useState(false);
 
-  // Load theme from localStorage after mount
+  // Load theme from cookies after mount
   useEffect(() => {
-    const savedColorMode = localStorage.getItem('colorMode') as
+    const savedColorMode = getCookie('colorMode') as
       | 'light'
       | 'dark'
       | 'system';
-    const savedThemeMode = localStorage.getItem('themeMode') as ThemeMode;
 
     if (savedColorMode) {
       setColorMode(savedColorMode);
     }
-    if (savedThemeMode) {
-      setThemeMode(savedThemeMode);
-    }
+
     setMounted(true);
   }, []);
 
   const handleColorModeChange = (mode: 'light' | 'dark' | 'system') => {
     setColorMode(mode);
     if (mounted) {
-      localStorage.setItem('colorMode', mode);
-    }
-  };
-
-  const handleThemeModeChange = (mode: ThemeMode) => {
-    setThemeMode(mode);
-    if (mounted) {
-      localStorage.setItem('themeMode', mode);
+      setCookie('colorMode', mode);
     }
   };
 
@@ -75,8 +67,6 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         colorMode,
         setColorMode: handleColorModeChange,
-        themeMode,
-        setThemeMode: handleThemeModeChange,
       }}
     >
       {children}

@@ -1,3 +1,4 @@
+'use client';
 import React, { useContext } from 'react';
 import { Box } from '@/components/ui/box';
 import { HStack } from '@/components/ui/hstack';
@@ -6,7 +7,7 @@ import { Text } from '@/components/ui/text';
 import { Pressable } from '@/components/ui/pressable';
 import { Link } from '@/components/ui/link';
 import { Image } from '@/components/ui/image';
-import { ThemeContext } from '@/utils/context/theme-context';
+import { useColorMode } from '@/app/provider';
 
 const footerItems = [
   {
@@ -25,6 +26,10 @@ const footerItems = [
         title: 'Blogs',
         href: '/blogs',
       },
+      {
+        title: 'Support',
+        href: '/support',
+      },
     ],
   },
   {
@@ -39,8 +44,8 @@ const footerItems = [
         href: 'https://github.com/gluestack/gluestack-ui-starter-kits/',
       },
       {
-        title: 'theappmarket',
-        href: 'https://theappmarket.io/',
+        title: 'gluestack-ui pro',
+        href: 'https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=site-navigation',
       },
     ],
   },
@@ -62,18 +67,34 @@ const footerItems = [
     ],
   },
   {
-    title: 'Contact',
+    title: 'Partners',
     links: [
       {
-        title: 'Support',
-        href: '/support',
+        title: 'RapidNative',
+        href: 'https://rapidnative.com/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
+        isExternal: true,
+      },
+      {
+        title: 'FlyDash',
+        href: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
+        isExternal: true,
+      },
+      {
+        title: 'AppLighter',
+        href: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
+        isExternal: true,
+      },
+      {
+        title: 'ScopeDesk',
+        href: 'https://scopedesk.ai/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
+        isExternal: true,
       },
     ],
   },
 ];
 
 const Footer = () => {
-  const { colorMode } = useContext(ThemeContext);
+  const { colorMode } = useColorMode();
   return (
     <Box className="justify-center max-w-[1440px] w-[85%] my-0 mx-auto relative border-t border-outline-100 mt-[60px]">
       <VStack className="pt-12 pb-7 mb-5 md:pb-12 md:mb-0">

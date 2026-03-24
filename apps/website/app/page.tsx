@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
-  const headersList = headers();
+export default async function Home() {
+  const headersList = await headers();
   const referrer =
     headersList.get('referer') || headersList.get('referrer') || '';
   return <App referrer={referrer} />;

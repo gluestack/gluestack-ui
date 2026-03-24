@@ -9,6 +9,7 @@ export default {
     './utils/**/*.{html,js,jsx,ts,tsx,mdx}',
     './*.{html,js,jsx,ts,tsx,mdx}',
   ],
+  important: 'html',
   presets: [require('nativewind/preset')],
   safelist: [
     {
