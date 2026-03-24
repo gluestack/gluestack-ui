@@ -2,10 +2,7 @@ import { useContext } from 'react';
 import { useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
-import Animated, {
-  useAnimatedReaction,
-  withTiming,
-} from 'react-native-reanimated';
+import { useAnimatedReaction, withTiming } from 'react-native-reanimated';
 import { ChatContext } from './context';
 import { useMessageRenderedHeight } from './useMessageRenderedHeight';
 
@@ -19,7 +16,6 @@ export function useMessageBlankSize({
   role,
 }: UseMessageBlankSizeOptions) {
   const context = useContext(ChatContext);
-
   if (!context) {
     throw new Error('useMessageBlankSize must be used inside Chat');
   }
@@ -28,23 +24,22 @@ export function useMessageBlankSize({
   const windowHeight = useWindowDimensions().height;
   const insets = useSafeAreaInsets();
 
+  // Pass the correct shared value from context
   const targetHeight =
-    role === 'assistant'
-      ? context.assistantMessageHeight
-      : context.userMessageHeight;
+    role === 'user'
+      ? context.userMessageHeight
+      : context.assistantMessageHeight;
 
-  const { ref, onLayout } = useMessageRenderedHeight(targetHeight);
+  const { ref, onLayout } = useMessageRenderedHeight(targetHeight); // ← Now it accepts targetHeight
 
   useAnimatedReaction(
-    () => {
-      return {
-        user: context.userMessageHeight.value,
-        assistant: context.assistantMessageHeight.value,
-        keyboard: keyboardHeight.value,
-        composer: context.composerHeight.value,
-        disabled,
-      };
-    },
+    () => ({
+      user: context.userMessageHeight.value,
+      assistant: context.assistantMessageHeight.value,
+      keyboard: keyboardHeight.value,
+      composer: context.composerHeight.value,
+      disabled,
+    }),
     ({ user, assistant, keyboard, composer, disabled: isDisabled }) => {
       'worklet';
 
@@ -56,12 +51,12 @@ export function useMessageBlankSize({
 
       const nextBlank = Math.max(
         0,
-        windowHeight - pairedHeight - composer - keyboard - insets.bottom
+        windowHeight - pairedHeight - composer - 50 - insets.bottom
       );
 
       context.blankSize.value = withTiming(nextBlank, { duration: 180 });
     }
   );
 
-  return { ref, onLayout };
+  return { ref, onLayout: disabled ? undefined : onLayout };
 }

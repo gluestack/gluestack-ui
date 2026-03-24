@@ -44,13 +44,25 @@ export const ChatMessages = React.forwardRef<
   const listRef = useRef<LegendListRef>(null);
 
   const blankSize = context?.blankSize ?? useSharedValue(0);
+  console.log('blankSize',blankSize.value);
+
+  const userMessageHeight = context?.userMessageHeight ?? useSharedValue(0);
+  const assistantMessageHeight = context?.assistantMessageHeight ?? useSharedValue(0);
+
+  useAnimatedReaction(()=>{
+    return {
+      user: userMessageHeight.value,
+      assistant: assistantMessageHeight.value,
+    };
+  },(value)=>{
+    console.log('value',value);
+  },[]);
+
   const [blankSizeValue, setBlankSizeValue] = useState(0);
   useAnimatedReaction(
     () => blankSize.value,
     (value) => {
-      runOnJS(() => {
-        setBlankSizeValue(value);
-      });
+      console.log('value',value);
     }
   );
 
@@ -58,11 +70,7 @@ export const ChatMessages = React.forwardRef<
   useEffect(() => {
     if (messages.length === 0) return;
 
-    const t = setTimeout(() => {
-      listRef.current?.scrollToEnd({ animated: false });
-    }, 30);
-
-    return () => clearTimeout(t);
+    listRef.current?.scrollToEnd({ animated: false });
   }, [messages.length]);
 
   // 🔥 footer = blank space + keyboard
@@ -90,13 +98,16 @@ export const ChatMessages = React.forwardRef<
           keyExtractor={(item) => item.id}
           onScroll={scrollHandler}
           scrollEventThrottle={16}
-          contentContainerStyle={{ paddingBottom: blankSizeValue }}
+          ListFooterComponent={
+            <Animated.View style={footerStyle} />
+          }
           keyboardDismissMode={
             Platform.OS === 'ios' ? 'interactive' : 'on-drag'
           }
           keyboardShouldPersistTaps="handled"
           {...props}
         />
+       
       </View>
     </GestureDetector>
   );

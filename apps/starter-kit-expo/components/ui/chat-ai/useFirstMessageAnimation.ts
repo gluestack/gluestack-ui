@@ -8,8 +8,9 @@ import {
   withSpring,
   runOnJS,
 } from 'react-native-reanimated';
+import { useContext } from 'react';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
-
+import { ChatContext } from './context';
 import { useNewMessageAnimation } from './useNewMessageAnimation';
 import { useMessageRenderedHeight } from './useMessageRenderedHeight';
 
@@ -23,7 +24,7 @@ export function useFirstMessageAnimation({
   const { height: keyboardHeight } = useReanimatedKeyboardAnimation();
   const { isMessageSendAnimating, finish: finishSendAnimation } =
     useNewMessageAnimation();
-console.log('keyboardHeight the hoook is called',keyboardHeight.value);
+ const context = useContext(ChatContext);
   const windowHeight = useWindowDimensions().height;
 
   const translateY = useSharedValue(0);
@@ -37,14 +38,10 @@ console.log('keyboardHeight the hoook is called',keyboardHeight.value);
       return targetHeight.value;
     },
     (messageHeight) => {
+    
       'worklet';
 
-    //   if (messageHeight <= 0) {runOnJS(console.log)('messageHeight is 0, skipping animation'); return};
-
-      // ────────────────────────────────────────────────
-      // Approximate starting Y position (near input bar)
-      // Adjust these magic numbers based on your UI
-      // ────────────────────────────────────────────────
+ 
       const composerHeightApprox = 80; // input bar + padding + borders
       const bottomPadding = 60; // visual offset so it starts "from below"
 

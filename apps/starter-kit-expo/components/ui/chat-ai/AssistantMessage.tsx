@@ -12,8 +12,6 @@ import { ChatMessage as ChatMessageType } from './types';
 import { useMessageBlankSize } from './useMessageBlankSize';
 import { useFirstMessageAnimation } from './useFirstMessageAnimation';
 
-
-
 const messageContainerStyle = tva({
   base: 'p-3 my-1 rounded-lg max-w-[80%]',
   variants: {
@@ -34,7 +32,7 @@ const messageTextStyle = tva({
   },
 });
 
-export interface AssistantMessageProps extends ViewProps {
+interface AssistantMessageProps extends ViewProps {
   message: ChatMessageType;
   textClassName?: string;
   index: number;
@@ -48,36 +46,55 @@ export const AssistantMessage = React.forwardRef<
   ref
 ) {
   const context = useContext(ChatContext);
-  const messages = context?.messages ?? [];
+  if (!context) throw new Error('AssistantMessage must be used inside Chat');
 
-  const isFirstAssistantMessage = index === 1;
+  const messages = context.messages ?? [];
 
-  const { didUserMessageAnimate } = useFirstMessageAnimation({
-    disabled: !isFirstAssistantMessage,
-  });
-
+  // Is this the newest assistant message? (including "Thinking..." stage)
   const isNewestAssistantMessage =
     message.role === 'assistant' && index === messages.length - 1;
-    console.log('isNewestAssistantMessage',isNewestAssistantMessage);
 
+  // Find the most recent user message index
+  const lastUserIndex = messages.reduceRight(
+    (acc, msg, i) => (acc === -1 && msg.role === 'user' ? i : acc),
+    -1
+  );
+
+  // This assistant is paired with the latest user message
+  const isPairedWithLatestUser =
+    isNewestAssistantMessage &&
+    lastUserIndex !== -1 &&
+    index === lastUserIndex + 1;
+
+  // Trigger user message animation (so we know when to fade in assistant)
+  const { didUserMessageAnimate } = useFirstMessageAnimation({
+    disabled: !isPairedWithLatestUser,
+  });
+
+  // Measure assistant height for blank size calculation
   const { ref: blankRef, onLayout } = useMessageBlankSize({
     role: 'assistant',
     disabled: !isNewestAssistantMessage,
   });
 
-  const style = useAnimatedStyle(() => {
-    return {
-      opacity: didUserMessageAnimate.value ? 1 : 0,
-    };
-  });
+  const opacityStyle = useAnimatedStyle(() => ({
+    opacity: didUserMessageAnimate.value ? withTiming(1, { duration: 280 }) : 0,
+  }));
 
   const isThinking = message.status === 'thinking';
 
   return (
     <Animated.View
-      ref={blankRef}
+      ref={(node) => {
+        // Combine blankRef and forwarded ref safely
+        if (typeof blankRef === 'function') blankRef(node);
+        else if (blankRef) blankRef.current = node;
+
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      }}
       onLayout={isNewestAssistantMessage ? onLayout : undefined}
-      style={style}
+      style={opacityStyle}
       className={messageContainerStyle({
         role: 'assistant',
         class: className,

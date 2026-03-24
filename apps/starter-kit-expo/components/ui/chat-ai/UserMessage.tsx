@@ -2,11 +2,12 @@
 
 import React, { useContext } from 'react';
 import { View, ViewProps, Text } from 'react-native';
-import Animated, { useAnimatedStyle } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { ChatContext } from './context';
 import { ChatMessage as ChatMessageType } from './types';
 import { useFirstMessageAnimation } from './useFirstMessageAnimation';
+import { useMessageBlankSize } from './useMessageBlankSize';
 
 const messageContainerStyle = tva({
   base: 'p-3 my-1 rounded-lg max-w-[80%]',
@@ -42,24 +43,53 @@ export const UserMessage = React.forwardRef<
   ref
 ) {
   const context = useContext(ChatContext);
-  const messages = context?.messages ?? [];
+  if (!context) throw new Error('UserMessage must be used inside Chat');
+
+  const messages = context.messages ?? [];
 
   const isNewestUserMessage =
-    message.role === 'user' && index === messages.length - 1;
+    message.role === 'user' &&
+    index === messages.findLastIndex((m) => m.role === 'user');
 
+  // Animation Hook
   const {
-    style,
+    style: animationStyle,
     ref: animRef,
-    onLayout,
+    onLayout: animOnLayout,
   } = useFirstMessageAnimation({
+    disabled: !isNewestUserMessage,
+  });
+
+  // Blank Size Measurement Hook
+  const { ref: blankRef, onLayout: blankOnLayout } = useMessageBlankSize({
+    role: 'user',
     disabled: !isNewestUserMessage,
   });
 
   return (
     <Animated.View
-      ref={animRef}
-      onLayout={isNewestUserMessage ? onLayout : undefined}
-      style={style}
+      ref={(node) => {
+        // Combine animation ref
+        if (typeof animRef === 'function') animRef(node);
+        else if (animRef) animRef.current = node;
+
+        // Combine blank measurement ref
+        if (typeof blankRef === 'function') blankRef(node);
+        else if (blankRef) blankRef.current = node;
+
+        // Forwarded ref from parent
+        if (typeof ref === 'function') ref(node);
+        else if (ref) ref.current = node;
+      }}
+      onLayout={
+        isNewestUserMessage
+          ? (event) => {
+              animOnLayout?.(event);
+              blankOnLayout?.(event);
+            }
+          : undefined
+      }
+      style={animationStyle}
       className={messageContainerStyle({
         role: 'user',
         class: className,
@@ -67,7 +97,10 @@ export const UserMessage = React.forwardRef<
       {...props}
     >
       <Text
-        className='text-red-400'
+        className={messageTextStyle({
+          role: 'user',
+          class: textClassName,
+        })}
       >
         {message.content}
       </Text>
