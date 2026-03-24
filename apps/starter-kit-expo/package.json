@@ -20,7 +20,7 @@
     "@gluestack-ui/core": "^5.0.1-alpha.0",
     "@gluestack-ui/utils": "5.0.0-alpha.0",
     "@gorhom/bottom-sheet": "^5",
-    "@legendapp/list": "^2.0.19",
+    "@legendapp/list": "^3.0.0-beta.43",
     "@legendapp/motion": "^2.4.0",
     "@openrouter/ai-sdk-provider": "^2.3.3",
     "@react-aria/utils": "^3.29.0",

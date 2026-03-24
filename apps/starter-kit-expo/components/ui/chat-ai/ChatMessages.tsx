@@ -9,7 +9,8 @@ import { ChatMessage as ChatMessageComponent } from './ChatMessage';
 import { useKeyboardAwareChat } from './useKeyboardAwareChat';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 import { GestureDetector } from 'react-native-gesture-handler';
-
+import { useWindowDimensions } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -35,6 +36,7 @@ export const ChatMessages = React.forwardRef<
   if (!context) {
     throw new Error('ChatMessages must be used within a Chat component');
   }
+const { height: windowHeight } = useWindowDimensions();
 
   const { messages } = context;
 
@@ -42,7 +44,7 @@ export const ChatMessages = React.forwardRef<
   const { scrollHandler, panGesture } = useKeyboardAwareChat();
 
   const listRef = useRef<LegendListRef>(null);
-
+const insets = useSafeAreaInsets();
   const blankSize = context?.blankSize ?? useSharedValue(0);
   console.log('blankSize',blankSize.value);
 
@@ -55,14 +57,16 @@ export const ChatMessages = React.forwardRef<
       assistant: assistantMessageHeight.value,
     };
   },(value)=>{
-    console.log('value',value);
+    console.log('userMessageHeight value',value.user);
+    console.log('assistantMessageHeight value',value.assistant);
   },[]);
 
   const [blankSizeValue, setBlankSizeValue] = useState(0);
   useAnimatedReaction(
     () => blankSize.value,
     (value) => {
-      console.log('value',value);
+      console.log('windowHeight',windowHeight - insets.bottom - insets.top);
+      console.log('blankSize value',value);
     }
   );
 
@@ -98,16 +102,15 @@ export const ChatMessages = React.forwardRef<
           keyExtractor={(item) => item.id}
           onScroll={scrollHandler}
           scrollEventThrottle={16}
-          ListFooterComponent={
-            <Animated.View style={footerStyle} />
-          }
+          contentContainerStyle={{
+            paddingBottom: blankSize.value
+          }}
           keyboardDismissMode={
             Platform.OS === 'ios' ? 'interactive' : 'on-drag'
           }
           keyboardShouldPersistTaps="handled"
           {...props}
         />
-       
       </View>
     </GestureDetector>
   );

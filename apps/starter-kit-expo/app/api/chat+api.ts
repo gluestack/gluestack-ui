@@ -23,7 +23,7 @@ export async function POST(request: Request) {
   });
 
   const result = await generateText({
-    model: openrouter('anthropic/claude-3.5-sonnet'),
+    model: openrouter('xiaomi/mimo-v2-omni'),
     messages,
   });
 

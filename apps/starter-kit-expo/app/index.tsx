@@ -8,7 +8,6 @@ export default function Home() {
   const { messages, send, loading, error } = useChat({
     api: 'http://10.153.0.82:8081/api/chat',
   });
-console.log(messages);
   return (
  
       <Chat
