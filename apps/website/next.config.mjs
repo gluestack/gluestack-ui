@@ -5,6 +5,7 @@ import { withExpo } from '@expo/next-adapter';
 import remarkPrism from 'remark-prism';
 import rehypeSlug from 'rehype-slug';
 import remarkToc from 'remark-toc';
+import remarkGfm from 'remark-gfm';
 import { redirects, oldRedirects } from './redirects.js';
 
 const nextConfig = withExpo({
@@ -95,7 +96,7 @@ const nextConfig = withExpo({
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkPrism, remarkToc],
+    remarkPlugins: [remarkGfm, remarkPrism, remarkToc],
     rehypePlugins: [rehypeSlug],
   },
 });

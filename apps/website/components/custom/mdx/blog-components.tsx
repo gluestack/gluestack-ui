@@ -12,6 +12,14 @@ import { InlineCode } from '@/components/docs-components/inline-code';
 import { Note } from '@/components/custom/markdown/note';
 import { OL } from '@/components/custom/markdown/ol';
 import { UL } from '@/components/custom/markdown/ul';
+import {
+  BlogTable,
+  BlogTableHeader,
+  BlogTableBody,
+  BlogTableRow,
+  BlogTableHeaderCell,
+  BlogTableCell,
+} from '@/components/custom/mdx/blog-table';
 
 function containsAny(targetString: string) {
   const stringsToCheck: string[] = [
@@ -92,4 +100,10 @@ export const blogComponents = {
   },
   code: (props: any) => <InlineCode {...props} />,
   blockquote: (props: any) => <Note {...props} />,
+  table: (props: any) => <BlogTable {...props} />,
+  thead: (props: any) => <BlogTableHeader {...props} />,
+  tbody: (props: any) => <BlogTableBody {...props} />,
+  tr: (props: any) => <BlogTableRow {...props} />,
+  th: (props: any) => <BlogTableHeaderCell {...props} />,
+  td: (props: any) => <BlogTableCell {...props} />,
 };

@@ -18,8 +18,27 @@ export interface BlogMeta {
 export const blogs: BlogMeta[] = [
   {
     title:
-      'gluestack-ui v4.1 Alpha: Supercharged Expo Apps with Uniwind and Tailwind v4',
+      'Introducing gluestack-ui v5 Alpha: Tailwind CSS v4, NativeWind v5, and UniWind',
     cover: '/images/og-image.png',
+    slug: 'gluestack-ui-v5-alpha-release',
+    published_at: {
+      start: '2026-03-11T00:00:00Z',
+    },
+    reading_time: 8,
+    author: [
+      {
+        id: 11,
+        avatar_url: 'https://avatars.githubusercontent.com/u/101696945?v=4',
+        email: '',
+        name: 'Sanchit Kumar',
+        occupation: 'Building gluestack-ui',
+      },
+    ],
+  },
+  {
+    title:
+      'gluestack-ui v4.1 Alpha: Supercharged Expo Apps with Uniwind and Tailwind v4',
+    cover: '/images/gluestack-ui-v4-alpha-release.png',
     slug: 'gluestack-ui-v4-1-alpha-release',
     published_at: {
       start: '2026-02-10T00:00:00Z',

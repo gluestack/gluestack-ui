@@ -13,7 +13,7 @@ gluestack-ui is a library of copy-pasteable components & patterns crafted with T
 
 <h3 align="center">
   <a href="https://github.com/gluestack/gluestack-ui">
-    <img src="https://raw.githubusercontent.com/gluestack/gluestack-ui/main/apps/website/public/images/og-image.png" alt="gluestack-ui logo" >
+    <img src="https://raw.githubusercontent.com/gluestack/gluestack-ui/main-v5-alpha/apps/website/public/images/og-image.png" alt="gluestack-ui logo" >
   </a>
   <br>
   <br>

@@ -1,0 +1,189 @@
+import { Box } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Image } from '@/components/ui/image';
+import { Heading } from '@/components/ui/heading';
+import { TOC } from '@/components/page-components/blogs-page/TOC';
+
+<Text className="text-sm pt-2">March 11, 2026</Text>
+
+# Introducing gluestack-ui v5 Alpha: Tailwind CSS v4, NativeWind v5, and UniWind
+
+<HStack className="gap-3 items-center">
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source={{ uri: 'https://avatars.githubusercontent.com/u/101696945?v=4' }}
+      alt="Sanchit Kumar"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-foreground">Sanchit Kumar</Text>
+    <Text className="text-sm">Building gluestack-ui</Text>
+  </Box>
+</HStack>
+
+<br />
+
+<Image
+  source={require('@/public/images/og-image.png')}
+  alt="gluestack-ui v5 Alpha Release"
+  className="h-[450px] w-full"
+  resizeMode="contain"
+/>
+
+<Text className="text-sm font-medium font-mono leading-normal">
+We're excited to announce **gluestack-ui v5 alpha** — a major step forward that moves the entire styling foundation to **Tailwind CSS v4**. You now get two engine choices (NativeWind v5 or UniWind), a new CLI upgrade command, and CSS-first theming with no `tailwind.config.js`.
+
+</Text>
+
+## Tailwind CSS v4 (CSS-First Theming)
+
+Tailwind v4 eliminates `tailwind.config.js` in favor of a CSS-first approach. All design tokens now live in `global.css` via `@layer theme`, giving you a single, readable source of truth for your entire design system:
+
+```
+@layer theme {
+  :root {
+    --primary: 23 23 23;
+    --background: 255 255 255;
+    /* ... */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --primary: 255 245 245; /* ... */ }
+  }
+}
+
+@theme inline {
+  --color-primary: rgb(var(--primary));
+  /* maps to bg-primary, text-primary, etc. */
+}
+```
+
+## Two Styling Engine Choices
+
+### NativeWind v5 — Expo & React Native CLI
+
+NativeWind v5 is the v5-compatible update to the familiar NativeWind engine. New in this version:
+
+- `nativewind@^5.0.0-preview.2` + new `react-native-css@^3.0.4` package
+- `postcss.config.js` required (uses `@tailwindcss/postcss`)
+- `metro.config.js` uses `withNativewind` from `nativewind/metro`
+- `react-native-css-env.d.ts` replaces `nativewind-env.d.ts`
+- `lightningcss` must be pinned to `1.30.1` in `package.json` overrides
+
+### UniWind — Expo Only
+
+UniWind is an alternative Tailwind v4 engine that processes styles natively on device, without a PostCSS step. Key differences from NativeWind v5:
+
+- No `postcss.config.js` needed
+- Theme toggling via `.light` / `.dark` class selectors on `<html>` (web) or Appearance API (native)
+- `metro.config.js` uses `withUniwindConfig` from `uniwind/metro`
+- Expo-only (no Next.js or bare React Native CLI support)
+
+## New `upgrade` CLI Command
+
+The new `upgrade` command automates migrating an existing gluestack-ui v4 project to v5:
+
+```bash
+npx gluestack-ui@alpha upgrade
+```
+
+You'll be prompted to choose a styling engine:
+
+```
+◆ Which styling engine would you like to upgrade to?
+│ ● NativeWind v5 (Tailwind CSS v4)
+│ ○ UniWind (Tailwind CSS v4, Expo-only)
+│ ○ Stay on current version
+```
+
+**NativeWind v5 upgrade path** handles:
+
+1. Pinning `lightningcss@1.30.1`
+2. Package migration (nativewind v4 → v5, adds react-native-css, upgrades tailwindcss + @tailwindcss/postcss)
+3. Rewrites `global.css` to Tailwind v4 format
+4. Creates `postcss.config.js`
+5. Updates `metro.config.js` (preserves existing options like `inlineRem`)
+6. Prompts about `tailwind.config.js` — never auto-deleted
+7. Creates `react-native-css-env.d.ts`
+
+**UniWind upgrade path** handles:
+
+1. Replaces nativewind with uniwind, upgrades tailwindcss to v4
+2. Rewrites `global.css` to UniWind format
+3. Updates `metro.config.js` to use `withUniwindConfig`
+4. Removes `nativewind/babel` from `babel.config.js`
+5. Deletes `tailwind.config.js`
+6. Replaces `nativewind-env.d.ts` with `uniwind-types.d.ts`
+
+**Note:** After running the upgrade command, commit your changes and then re-add components to get v5 versions:
+
+```bash
+npx gluestack-ui@alpha add button accordion modal # etc.
+```
+
+## Updated `@gluestack-ui/core` and `@gluestack-ui/utils`
+
+Both packages have been updated to `^5.0.0-alpha.0` and `^5.0.1-alpha.0` respectively, with full support for NativeWind v5 and UniWind via `cssInterop` → `styled()` migration.
+
+## Separate Component Registry Branch
+
+v5 components are served from the `main-v5-alpha` branch. The CLI automatically selects the correct branch based on the detected styling engine — no manual configuration needed.
+
+## Breaking Changes
+
+- **`tailwind.config.js` is no longer used** — migrate tokens to `global.css`
+- **`nativewind@^4.x` → `nativewind@^5.0.0-preview.2`** — components must be re-added
+- **`react-native-css`** is now a required peer dependency for NativeWind v5 projects
+- **`lightningcss` must be pinned** to `1.30.1` to avoid build errors
+- **`global.css` format changed** — uses `@import "tailwindcss/theme.css"` instead of `@tailwind` directives
+- **Component APIs are unchanged** — imports and usage remain identical
+
+## Platform Support
+
+| Engine        | Expo | React Native CLI | Next.js |
+| :------------ | :--: | :--------------: | :-----: |
+| NativeWind v5 | Yes  |       Yes        |   No    |
+| UniWind       | Yes  |        No        |   No    |
+
+> The `upgrade` CLI command is not supported for Next.js projects.
+
+## Getting Started
+
+### New project
+
+```bash
+npm create gluestack@alpha
+```
+
+### Upgrade existing v4 project
+
+```bash
+npx gluestack-ui@alpha upgrade
+```
+
+See the [Upgrade to v5 guide](/ui/docs/guides/more/upgrade-to-v5) for full details.
+
+We're actively gathering feedback — join us on [Discord](https://discord.gg/gluestack) or open an issue on [GitHub](https://github.com/gluestack/gluestack-ui/issues).
+
+<TOC
+  items={[
+    {
+      id: 'tailwind-css-v4-css-first-theming',
+      title: 'Tailwind CSS v4 (CSS-First Theming)',
+    },
+    { id: 'two-styling-engine-choices', title: 'Two Styling Engine Choices' },
+    { id: 'new-upgrade-cli-command', title: 'New Upgrade CLI Command' },
+    {
+      id: 'updated-gluestack-ui-core-and-gluestack-ui-utils',
+      title: 'Updated Core & Utils',
+    },
+    {
+      id: 'separate-component-registry-branch',
+      title: 'Component Registry Branch',
+    },
+    { id: 'breaking-changes', title: 'Breaking Changes' },
+    { id: 'platform-support', title: 'Platform Support' },
+    { id: 'getting-started', title: 'Getting Started' },
+  ]}
+/>
