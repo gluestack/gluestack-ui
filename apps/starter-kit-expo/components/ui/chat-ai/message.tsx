@@ -24,7 +24,7 @@ export const Message = memo(({ role, children, className }: MessageProps) => (
 ));
 
 export type MessageContentProps = {
-  role?: 'user' | 'assistant'; // ← Fixed: Now accepts role
+  role?: 'user' | 'assistant'|'system'; // ← Fixed: Now accepts role
   children: React.ReactNode;
   className?: string;
 };
