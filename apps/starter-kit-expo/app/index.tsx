@@ -24,7 +24,7 @@ export default function AIChat() {
   });
 
   return (
-    <View className="flex-1 bg-slate-50 dark:bg-slate-950">
+    <View className="flex-1 bg-slate-50 py-safe dark:bg-slate-950">
       <Conversation>
         <ConversationContent messages={messages} />
 
