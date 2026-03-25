@@ -54,7 +54,7 @@ export default async function RootLayout({
           rel="alternate"
           type="application/rss+xml"
           title="gluestack-ui Blog"
-          href="/rss.xml"
+          href="https://v5.gluestack.io/rss.xml"
         />
 
         <CanonicalLink />
