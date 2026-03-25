@@ -80,7 +80,7 @@ export const Chat = React.forwardRef<
 
   return (
     <ChatContext.Provider value={contextValue}>
-      <View ref={ref} {...props}>
+      <View className='bg-background' ref={ref} {...props}>
         {children}
       </View>
     </ChatContext.Provider>

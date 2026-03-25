@@ -43,7 +43,7 @@ export const PromptInput = ({
       <View className="flex-row items-end gap-2">
         <View className="flex-1 bg-slate-100 dark:bg-slate-800 rounded-3xl px-5 py-3">
           <TextInput
-            className="text-base max-h-32"
+            className="text-base max-h-32 text-white"
             value={text}
             onChangeText={setText}
             placeholder={placeholder}
