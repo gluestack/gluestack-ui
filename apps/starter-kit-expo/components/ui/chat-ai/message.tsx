@@ -4,7 +4,10 @@ import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import { createContext, useContext, useState } from 'react';
-
+import Animated, { withTiming, useAnimatedStyle } from 'react-native-reanimated';
+import { useMeasureHeight } from './useMessageHeight';
+import { useBlank } from './useBlank';
+import { useUserMessageAnimation } from './userAnimation';
 // ==================== BASIC MESSAGE COMPONENTS ====================
 
 export type MessageProps = {
@@ -13,38 +16,58 @@ export type MessageProps = {
   className?: string;
 };
 
-export const Message = memo(({ role, children, className }: MessageProps) => (
-  <View
-    className={`group flex w-full max-w-[95%] flex-col gap-2 ${
-      role === 'user' ? 'self-end' : 'self-start'
-    } ${className || ''}`}
-  >
-    {children}
-  </View>
-));
+export const Message = memo(({ role, children, className }: MessageProps) => {
+  const { ref, onLayout, style,didUserMessageAnimate } = useUserMessageAnimation();
+  const { ref: blankRef, onLayout: blankOnLayout, height: blankHeight, y: blankY } = useBlank();
+  const opacityStyle = useAnimatedStyle(() => ({
+    opacity: didUserMessageAnimate.value,
+  }));
+
+  if (role === 'user') {
+    return (
+      <Animated.View
+        ref={ref}
+        style={style}
+        onLayout={onLayout}
+        className={`group flex w-full max-w-[95%] flex-col gap-2  ${className || ''}`}
+      >
+        {children}
+      </Animated.View>
+    );
+  }
+  return (
+    <Animated.View
+      ref={blankRef}
+      onLayout={blankOnLayout}
+      className={`group flex w-full max-w-[95%] flex-col gap-2  ${className || ''}`}
+      style={opacityStyle}
+    >
+      {children}
+    </Animated.View>
+  );
+});
 
 export type MessageContentProps = {
-  role?: 'user' | 'assistant'|'system'; // ← Fixed: Now accepts role
+  role?: 'user' | 'assistant' | 'system'; // ← Fixed: Now accepts role
   children: React.ReactNode;
   className?: string;
 };
 
 export const MessageContent = memo(
-
   ({ role, children, className }: MessageContentProps) => {
-    console.log("the role inside message ",role)
-   return (
-    <View
-      className={`flex w-fit min-w-0 max-w-full flex-col gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${
-        role === 'user'
-          ? 'self-end bg-blue-600 text-white'
-          : 'self-start bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100'
-      } ${className || ''}`}
-    >
-      {children}
-    </View>
-    
-  )}
+    console.log('the role inside message ', role);
+    return (
+      <View
+        className={`flex w-fit min-w-0 max-w-full flex-col gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${
+          role === 'user'
+            ? 'self-end bg-blue-600 text-white'
+            : 'self-start bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100'
+        } ${className || ''}`}
+      >
+        {children}
+      </View>
+    );
+  }
 );
 
 export const MessageResponse = memo(

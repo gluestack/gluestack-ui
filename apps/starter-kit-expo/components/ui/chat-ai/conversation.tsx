@@ -12,6 +12,7 @@ import {
 import { ArrowDown, Download, MessageSquare } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import { Message, MessageContent, MessageResponse } from './message';
+import Animated from 'react-native-reanimated';
 
 export type ConversationProps = React.PropsWithChildren<{ className?: string }>;
 
@@ -93,7 +94,7 @@ export const ConversationContent = ({
   );
 
   return (
-    <FlatList
+    <Animated.FlatList
       ref={flatListRef}
       data={messages}
       renderItem={renderItem || defaultRenderItem}
@@ -113,6 +114,7 @@ export const ConversationContent = ({
       ListEmptyComponent={
         messages.length === 0 ? <ConversationEmptyState /> : undefined
       }
+    
     />
   );
 };
