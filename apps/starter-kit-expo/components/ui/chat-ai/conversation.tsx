@@ -16,7 +16,8 @@ import { Message, MessageContent, MessageResponse } from './message';
 import Animated, { useAnimatedProps, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useBlank } from './useBlank';
 export type ConversationProps = React.PropsWithChildren<{ className?: string }>;
-
+import { LegendListProps, LegendListRef } from '@legendapp/list';
+import { AnimatedLegendList } from '@legendapp/list/reanimated';
 
 type BlankContextType = {
   blankSize: SharedValue<number>;
@@ -139,23 +140,26 @@ const animatedStyle = useAnimatedStyle(() => ({
 }));
  const prevLengthRef = useRef(messages.length);
 const blankSizeRef = useRef(blankSize.value);
- useEffect(() => {
-   if (messages.length > prevLengthRef.current) {
-     flatListRef.current?.scrollToEnd({animated:false});
-   }
-   if (blankSize.value !== blankSizeRef.current) {
-    flatListRef.current?.scrollToEnd({animated:false});
-   }
-   blankSizeRef.current = blankSize.value;
-   prevLengthRef.current = messages.length;
- }, [messages,blankSize.value]);
+useEffect(() => {
+  const shouldScroll =
+    messages.length > prevLengthRef.current ||
+    blankSize.value !== blankSizeRef.current;
+
+  if (shouldScroll) {
+    setTimeout(() => {
+      flatListRef.current?.scrollToEnd({ animated: false });
+    }, 300); // or try 50–100 if needed
+  }
+
+  blankSizeRef.current = blankSize.value;
+  prevLengthRef.current = messages.length;
+}, [messages, blankSize.value]);
   return (
-    <Animated.FlatList
+    <AnimatedLegendList
       ref={flatListRef}
       data={messages}
       renderItem={renderItem || defaultRenderItem}
       keyExtractor={(item) => item.id}
-  
       className="flex-1"
       contentContainerClassName="px-4 py-6 gap-6"
       // onScroll={onScroll}
@@ -170,9 +174,11 @@ const blankSizeRef = useRef(blankSize.value);
       ListEmptyComponent={
         messages.length === 0 ? <ConversationEmptyState /> : undefined
       }
-     ListFooterComponent={<Animated.View style={[animatedStyle]} />}
-    //  animatedProps={animatedProps}
-    
+      // contentContainerStyle={{
+      //   paddingBottom: blankSize.value,
+      // }}
+        ListFooterComponent={<Animated.View style={[animatedStyle]} />}
+      //  animatedProps={animatedProps}
     />
   );
 };

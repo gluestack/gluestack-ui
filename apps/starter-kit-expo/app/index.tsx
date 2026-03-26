@@ -43,7 +43,7 @@ export default function AIChat() {
       </MessageContent>
       <MessageToolbar>
         <MessageAction onPress={() => {}}>
-        <CopyCheck color="white"/>
+        <CopyCheck strokeWidth={1} size={20} color="white"/>
         </MessageAction>
       </MessageToolbar>
     </Message>
