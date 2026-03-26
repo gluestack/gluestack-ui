@@ -135,8 +135,14 @@ console.log('blankSize', blankSize.value);
  const animatedStyle = useAnimatedStyle(() => ({
   height: blankSize.value,
  }));
+ const prevLengthRef = useRef(messages.length);
+
  useEffect(() => {
-  flatListRef.current?.scrollToEnd();
+   if (messages.length > prevLengthRef.current) {
+     flatListRef.current?.scrollToEnd();
+   }
+
+   prevLengthRef.current = messages.length;
  }, [messages]);
   return (
     <Animated.FlatList
