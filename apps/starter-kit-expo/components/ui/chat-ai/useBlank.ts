@@ -10,23 +10,40 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
 } from 'react-native-reanimated';
-
+import { useBlankContext } from './conversation';
 import { useMeasureHeight } from './useMessageHeight';
 import { useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const useBlank = () => {
+
   const { ref, onLayout, height, y } = useMeasureHeight();
-  const blankSize = useSharedValue(0);
+  const { blankSize, userMessageHeight } = useBlankContext();
+  console.log('userMessageHeight from context', userMessageHeight.value);
   const windowHeight = useWindowDimensions().height;
   const insets = useSafeAreaInsets();
   useAnimatedReaction(
     () => {
-      return height.value;
+      return {
+        height: height.value,
+        y: y.value,
+        userMessageHeight: userMessageHeight.value,
+      };
     },
-    (height) => {
-      blankSize.value =
-        windowHeight - height - 100 - insets.bottom - insets.top;
+    ({ height, userMessageHeight,y }) => {
+
+   
+      blankSize.value = Math.max(
+        0,
+        windowHeight - y  - height  - insets.bottom - insets.top-120
+      );
+        console.log('height', height);
+        console.log('userMessageHeight', userMessageHeight);
+        console.log('windowHeight', windowHeight);
+        console.log('insets.bottom', insets.bottom);
+        console.log('insets.top', insets.top);
+        console.log('y', y);
+        console.log('blankSize', blankSize.value);
     }
   );
 

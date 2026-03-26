@@ -12,6 +12,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { useMeasureHeight } from './useMessageHeight';
+import { useBlankContext } from './conversation';
 import { useWindowDimensions } from 'react-native';
 export const useUserMessageAnimation = () => {
   const { ref, onLayout, height, y } = useMeasureHeight();
@@ -19,20 +20,21 @@ export const useUserMessageAnimation = () => {
   const progress = useSharedValue(0);
   const windowHeight = useWindowDimensions().height;
   const didUserMessageAnimate = useSharedValue(0);
+  const { userMessageHeight } = useBlankContext();
   useAnimatedReaction(
     () => {
       return height.value;
     },
     (messageHeight) => {
       'worklet';
-
+      userMessageHeight.value = messageHeight;
       const composerHeightApprox = 80; // input bar + padding + borders
       const bottomPadding = 60; // visual offset so it starts "from below"
       const startY = Math.max(
         20,
         windowHeight - messageHeight - composerHeightApprox - bottomPadding
       );
-
+console.log('user message height ', messageHeight);
       translateY.value = withTiming(startY, { duration: 0 }, () => {
         translateY.value = withSpring(0, {
           damping: 22,
@@ -45,8 +47,7 @@ export const useUserMessageAnimation = () => {
         duration: 380,
       });
       didUserMessageAnimate.value = withTiming(1, { duration: 380 });
-    },
-    []
+    }
   );
   const animatedStyle = useAnimatedStyle(() => {
     return {

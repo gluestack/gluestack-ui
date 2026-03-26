@@ -55,7 +55,6 @@ export type MessageContentProps = {
 
 export const MessageContent = memo(
   ({ role, children, className }: MessageContentProps) => {
-    console.log('the role inside message ', role);
     return (
       <View
         className={`flex w-fit min-w-0 max-w-full flex-col gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${

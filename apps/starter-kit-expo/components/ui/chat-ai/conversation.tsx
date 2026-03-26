@@ -1,5 +1,6 @@
 // components/ai-elements/conversation.tsx
-import React, { useRef, useState, useCallback, type ReactElement } from 'react';
+import React, { useRef, useState, useCallback,useEffect, type ReactElement, createContext, ReactNode, useContext } from 'react';
+import type { SharedValue } from 'react-native-reanimated';
 import {
   View,
   Text,
@@ -12,14 +13,43 @@ import {
 import { ArrowDown, Download, MessageSquare } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import { Message, MessageContent, MessageResponse } from './message';
-import Animated from 'react-native-reanimated';
-
+import Animated, { useAnimatedProps, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import { useBlank } from './useBlank';
 export type ConversationProps = React.PropsWithChildren<{ className?: string }>;
 
+
+type BlankContextType = {
+  blankSize: SharedValue<number>;
+  userMessageHeight: SharedValue<number>;
+  assistantMessageHeight: SharedValue<number>;
+};
+
+const BlankContext = createContext<BlankContextType | null>(null);
+
+export const BlankProvider = ({ children }: { children: ReactNode }) => {
+  const blankSize = useSharedValue(0); // ← created ONLY ONCE
+  const userMessageHeight = useSharedValue(0);
+  const assistantMessageHeight = useSharedValue(0);
+  return (
+    <BlankContext.Provider value={{ blankSize, userMessageHeight, assistantMessageHeight }}>
+      {children}
+    </BlankContext.Provider>
+  );
+};
+
+export const useBlankContext = () => {
+  const context = useContext(BlankContext);
+  if (!context)
+    throw new Error('useBlankContext must be used inside BlankProvider');
+  return context;
+};
+
 export const Conversation = ({ children, className }: ConversationProps) => (
-  <View className={`flex-1 bg-slate-50 dark:bg-slate-950 ${className || ''}`}>
-    {children}
-  </View>
+  <BlankProvider>
+    <View className={`flex-1 bg-slate-50 dark:bg-slate-950 ${className || ''}`}>
+      {children}
+    </View>
+  </BlankProvider>
 );
 
 export type ConversationEmptyStateProps = {
@@ -93,6 +123,21 @@ export const ConversationContent = ({
     []
   );
 
+const { blankSize } = useBlankContext();
+console.log('blankSize', blankSize.value);
+ const animatedProps = useAnimatedProps(() => {
+   return {
+     contentInset: {
+       bottom: blankSize.value
+     },
+   };
+ });
+ const animatedStyle = useAnimatedStyle(() => ({
+  height: blankSize.value,
+ }));
+ useEffect(() => {
+  flatListRef.current?.scrollToEnd();
+ }, [messages]);
   return (
     <Animated.FlatList
       ref={flatListRef}
@@ -114,6 +159,7 @@ export const ConversationContent = ({
       ListEmptyComponent={
         messages.length === 0 ? <ConversationEmptyState /> : undefined
       }
+     ListFooterComponent={<Animated.View style={[animatedStyle]} />}
     
     />
   );

@@ -28,7 +28,7 @@ export default function AIChat() {
 
   // Custom renderItem using your Message components
   const renderMessage: ListRenderItem<UIMessage> = ({ item: message }) => (
-    console.log(message),
+
     <Message role={message.role}>
       <MessageContent role={message.role}>
         {message.parts
