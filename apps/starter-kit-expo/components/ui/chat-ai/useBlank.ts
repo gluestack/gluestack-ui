@@ -35,7 +35,7 @@ export const useBlank = () => {
    
       blankSize.value = Math.max(
         0,
-        windowHeight - userMessageHeight - height  - insets.bottom - insets.top-120
+        windowHeight - userMessageHeight - height  - insets.bottom - insets.top-220
       );
         console.log('height', height);
         console.log('userMessageHeight', userMessageHeight);

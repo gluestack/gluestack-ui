@@ -91,22 +91,22 @@ export const ConversationContent = ({
   ...flatListProps
 }: ConversationContentProps) => {
   const flatListRef = useRef<FlatList<UIMessage>>(null);
-  const [isAtBottom, setIsAtBottom] = useState(true);
+  // const [isAtBottom, setIsAtBottom] = useState(true);
 
-  const scrollToBottom = useCallback(() => {
-    flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
-  }, []);
+  // const scrollToBottom = useCallback(() => {
+  //   flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
+  // }, []);
 
-  const onScroll = useCallback((e: any) => {
-    const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
-    const distanceFromBottom =
-      contentSize.height - layoutMeasurement.height - contentOffset.y;
-    setIsAtBottom(distanceFromBottom < 60);
-  }, []);
+  // const onScroll = useCallback((e: any) => {
+  //   const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
+  //   const distanceFromBottom =
+  //     contentSize.height - layoutMeasurement.height - contentOffset.y;
+  //   setIsAtBottom(distanceFromBottom < 60);
+  // }, []);
 
-  const onContentSizeChange = useCallback(() => {
-    if (isAtBottom) scrollToBottom();
-  }, [isAtBottom, scrollToBottom]);
+  // const onContentSizeChange = useCallback(() => {
+  //   if (isAtBottom) scrollToBottom();
+  // }, [isAtBottom, scrollToBottom]);
 
   const defaultRenderItem: ListRenderItem<UIMessage> = useCallback(
     ({ item: message }) => (
@@ -153,8 +153,8 @@ console.log('blankSize', blankSize.value);
   
       className="flex-1"
       contentContainerClassName="px-4 py-6 gap-6"
-      onScroll={onScroll}
-      onContentSizeChange={onContentSizeChange}
+      // onScroll={onScroll}
+      // onContentSizeChange={onContentSizeChange}
       scrollEventThrottle={16}
       estimatedItemSize={estimatedItemSize}
       removeClippedSubviews
