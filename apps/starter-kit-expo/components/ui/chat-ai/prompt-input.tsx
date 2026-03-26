@@ -49,15 +49,15 @@ export const PromptInput = ({
             placeholder={placeholder}
             multiline
             onSubmitEditing={handleSubmit}
-            editable={status === 'ready'}
+           
           />
         </View>
 
         <TouchableOpacity
           onPress={handleSubmit}
-          disabled={status !== 'ready' || !text.trim()}
+          disabled={ !text.trim()}
           className={`px-7 py-3 rounded-3xl ${
-            status === 'ready' && text.trim() ? 'bg-blue-600' : 'bg-slate-300'
+          text.trim() ? 'bg-blue-600' : 'bg-slate-300'
           }`}
         >
           <Text className="text-white font-semibold">Send</Text>

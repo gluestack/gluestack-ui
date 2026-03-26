@@ -71,7 +71,7 @@ export const MessageContent = memo(
 
 export const MessageResponse = memo(
   ({ children }: { children: React.ReactNode }) => (
-    <Text className="text-base leading-6">{children}</Text>
+    <Text className="text-base leading-6 text-white">{children}</Text>
   )
 );
 
@@ -108,7 +108,7 @@ export const MessageAction = ({
   return (
     <TouchableOpacity
       onPress={handlePress}
-      className="h-8 w-8 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700"
+      className="h-8 w-8 items-center justify-center "
     >
       {children}
     </TouchableOpacity>

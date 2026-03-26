@@ -2,7 +2,11 @@
 import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport, UIMessage } from 'ai';
 import { fetch as expoFetch } from 'expo/fetch'; // ← This is required for Expo
+import { configureReanimatedLogger } from 'react-native-reanimated';
 
+configureReanimatedLogger({
+  strict: false,
+});
 import {
   Conversation,
   ConversationContent,
@@ -16,6 +20,7 @@ import {
 import { ConversationScrollButton } from '@/components/ui/chat-ai/conversation';
 import { ListRenderItem, View } from 'react-native';
 import { Text } from 'react-native';
+import { CopyCheck } from 'lucide-react-native';
 
 export default function AIChat() {
   const { messages, status, sendMessage, error } = useChat({
@@ -28,7 +33,6 @@ export default function AIChat() {
 
   // Custom renderItem using your Message components
   const renderMessage: ListRenderItem<UIMessage> = ({ item: message }) => (
-
     <Message role={message.role}>
       <MessageContent role={message.role}>
         {message.parts
@@ -39,7 +43,7 @@ export default function AIChat() {
       </MessageContent>
       <MessageToolbar>
         <MessageAction onPress={() => {}}>
-          <Text>Reply</Text>
+        <CopyCheck color="white"/>
         </MessageAction>
       </MessageToolbar>
     </Message>

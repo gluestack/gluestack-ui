@@ -13,7 +13,7 @@ import {
 import { ArrowDown, Download, MessageSquare } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import { Message, MessageContent, MessageResponse } from './message';
-import Animated, { useAnimatedProps, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import Animated, { useAnimatedProps, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useBlank } from './useBlank';
 export type ConversationProps = React.PropsWithChildren<{ className?: string }>;
 
@@ -132,18 +132,23 @@ console.log('blankSize', blankSize.value);
      },
    };
  });
- const animatedStyle = useAnimatedStyle(() => ({
-  height: blankSize.value,
- }));
+const animatedStyle = useAnimatedStyle(() => ({
+  height: withTiming(blankSize.value, {
+    duration: 250,
+  }),
+}));
  const prevLengthRef = useRef(messages.length);
-
+const blankSizeRef = useRef(blankSize.value);
  useEffect(() => {
    if (messages.length > prevLengthRef.current) {
-     flatListRef.current?.scrollToEnd();
+     flatListRef.current?.scrollToEnd({animated:false});
    }
-
+   if (blankSize.value !== blankSizeRef.current) {
+    flatListRef.current?.scrollToEnd({animated:false});
+   }
+   blankSizeRef.current = blankSize.value;
    prevLengthRef.current = messages.length;
- }, [messages]);
+ }, [messages,blankSize.value]);
   return (
     <Animated.FlatList
       ref={flatListRef}
@@ -166,6 +171,7 @@ console.log('blankSize', blankSize.value);
         messages.length === 0 ? <ConversationEmptyState /> : undefined
       }
      ListFooterComponent={<Animated.View style={[animatedStyle]} />}
+    //  animatedProps={animatedProps}
     
     />
   );
