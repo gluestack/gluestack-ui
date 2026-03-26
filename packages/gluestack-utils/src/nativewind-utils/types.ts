@@ -98,7 +98,7 @@ export type TVReturnType<
 > = {
   (
     props?: TVProps<V, S, C, EV, ES> & {
-      parentVariants?: Omit<TVProps<V, S, C, EV, ES>, 'class' | 'className'>;
+      parentVariants?: TVProps<V, S, C, EV, ES>;
     }
   ): HasSlots<S, ES> extends true
     ? {
