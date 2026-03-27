@@ -46,22 +46,6 @@ function Card1() {
         description: 'React Native Templates',
       },
     ],
-    [
-      {
-        name: 'ScopeDesk',
-        logo: '/icon/logo/scopedesk/logo.svg',
-        url: 'https://scopedesk.com/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
-        description: 'AI-Powered Project Scoping',
-      },
-    ],
-    [
-      {
-        name: 'FlyDash',
-        logo: '/icon/logo/flydash/logo.png',
-        url: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
-        description: 'Dashboard builder',
-      },
-    ],
   ];
 
   return (

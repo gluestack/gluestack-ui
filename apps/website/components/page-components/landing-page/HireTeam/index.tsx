@@ -17,22 +17,6 @@ const partnerAppsRows = [
       description: 'React Native Templates',
     },
   ],
-  [
-    {
-      name: 'ScopeDesk',
-      logo: '/icon/logo/scopedesk/logo.svg',
-      url: 'https://scopedesk.com/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
-      description: 'AI-Powered Project Scoping',
-    },
-  ],
-  [
-    {
-      name: 'FlyDash',
-      logo: '/icon/logo/flydash/logo.png',
-      url: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
-      description: 'Dashboard builder',
-    },
-  ],
 ];
 
 const HireTeam = () => {
