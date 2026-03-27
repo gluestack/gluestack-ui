@@ -8,7 +8,6 @@ import React, {
   createContext,
   ReactNode,
   useContext,
-
 } from 'react';
 import type { SharedValue } from 'react-native-reanimated';
 import { GestureDetector } from 'react-native-gesture-handler';
@@ -160,7 +159,9 @@ export const ConversationContent = ({
   }));
   const prevLengthRef = useRef(messages.length);
   useEffect(() => {
-    const shouldScroll = messages.length > prevLengthRef.current && messages[messages.length - 1].role === 'user';
+    const shouldScroll =
+      messages.length > prevLengthRef.current &&
+      messages[messages.length - 1].role === 'user';
 
     if (shouldScroll) {
       flatListRef.current?.scrollToEnd();
