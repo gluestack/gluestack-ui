@@ -160,7 +160,7 @@ export const ConversationContent = ({
   }));
   const prevLengthRef = useRef(messages.length);
   useEffect(() => {
-    const shouldScroll = messages.length > prevLengthRef.current;
+    const shouldScroll = messages.length > prevLengthRef.current && messages[messages.length - 1].role === 'user';
 
     if (shouldScroll) {
       flatListRef.current?.scrollToEnd();
