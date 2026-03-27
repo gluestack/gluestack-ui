@@ -1,7 +1,9 @@
 // components/ai-elements/prompt-input.tsx
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-
+import { useKeyboardAwareChat } from './useKeyboardAwareChat';
+import Animated, { useAnimatedStyle } from 'react-native-reanimated';
+import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 export type PromptInputMessage = { text: string };
 
 export type PromptInputProps = {
@@ -38,8 +40,21 @@ export const PromptInput = ({
     }
   };
 
+  const { height } = useReanimatedKeyboardAnimation();
+  const inputAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: height.value }], // ← fixed sign (was positive)
+    };
+  });
+
+  const { scrollHandler, inputStyle, listContentStyle, panGesture } =
+    useKeyboardAwareChat();
+
   return (
-    <View className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3">
+    <Animated.View
+      style={[inputAnimatedStyle]}
+      className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3"
+    >
       <View className="flex-row items-end gap-2">
         <View className="flex-1 bg-slate-100 dark:bg-slate-800 rounded-3xl px-5 py-3">
           <TextInput
@@ -49,20 +64,19 @@ export const PromptInput = ({
             placeholder={placeholder}
             multiline
             onSubmitEditing={handleSubmit}
-           
           />
         </View>
 
         <TouchableOpacity
           onPress={handleSubmit}
-          disabled={ !text.trim()}
+          disabled={!text.trim()}
           className={`px-7 py-3 rounded-3xl ${
-          text.trim() ? 'bg-blue-600' : 'bg-slate-300'
+            text.trim() ? 'bg-blue-600' : 'bg-slate-300'
           }`}
         >
           <Text className="text-white font-semibold">Send</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </Animated.View>
   );
 };
