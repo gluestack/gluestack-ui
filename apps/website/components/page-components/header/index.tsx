@@ -1,38 +1,32 @@
 'use client';
 
-import React, { useContext, useState } from 'react';
 import { Badge, BadgeText } from '@/components/ui/badge';
+import { Box } from '@/components/ui/box';
 import { HStack } from '@/components/ui/hstack';
-import { Icon, ChevronUpIcon, ChevronDownIcon } from '@/components/ui/icon';
+import { ChevronDownIcon, ChevronUpIcon, Icon } from '@/components/ui/icon';
 import { Link } from '@/components/ui/link';
+import { Menu, MenuItem } from '@/components/ui/menu';
 import { Pressable } from '@/components/ui/pressable';
 import { Text } from '@/components/ui/text';
 import { VStack } from '@/components/ui/vstack';
-import { Box } from '@/components/ui/box';
-import { Menu, MenuItem } from '@/components/ui/menu';
-import Image from 'next/image';
 import GluestackLogo from '@/public/svg/gluestack_logo.svg';
 import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';
 import { MenuIcon, MoonIcon, SunIcon, X } from 'lucide-react-native';
+import Image from 'next/image';
+import React, { useContext, useState } from 'react';
 
-import NewsletterModal from './NewsLetterModal';
-import AppLaunchKitLogo from '@/public/icon/logo/app-launch-kit/dark-mode.svg';
-import GluestackProLogo from '@/public/icon/logo/gluestack-pro/logo.svg';
-import AppLaunchKitLogoDark from '@/public/icon/logo/app-launch-kit/light-mode.svg';
+import { useColorMode } from '@/app/provider';
+import { LayoutContext } from '@/components/custom/layout/LayoutContext';
+import AppLighterLogo from '@/public/icon/logo/applighter/logo.png';
+import GluestackMarketLogo from '@/public/icon/logo/gluestack-market/logo.png';
 import StarterKitLogo from '@/public/icon/logo/gluestack/logo-dark.svg';
 import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
-import AppMarketLogo from '@/public/icon/logo/theappmarket/appmarket-logo.svg';
-import ScopeDeskLogo from '@/public/icon/logo/scopedesk/logo.svg';
-import GluestackMarketLogo from '@/public/icon/logo/gluestack-market/logo.png';
 import RapidNativelogo from '@/public/icon/logo/rapidnative/logo.png';
-import AppLighterLogo from '@/public/icon/logo/applighter/logo.png';
-import FlyDashLogo from '@/public/icon/logo/flydash/logo.png';
-import { useColorMode } from '@/app/provider';
-import NextLink from 'next/link';
 import { Nav } from '@expo/html-elements';
+import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { UiDocSearch } from './Docsearch';
-import { LayoutContext } from '@/components/custom/layout/LayoutContext';
+import NewsletterModal from './NewsLetterModal';
 
 // Updated Header component with internal state management
 const Header = ({
@@ -105,32 +99,6 @@ const Header = ({
       description: 'The only React Native templateyou’ll ever need',
       badge: {
         text: 'PAID',
-        action: 'info',
-      },
-    },
-    {
-      href: 'https://scopedesk.ai/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation',
-      logo: {
-        light: ScopeDeskLogo,
-        dark: ScopeDeskLogo,
-      },
-      title: 'ScopeDesk',
-      description: 'AI-Powered Project Scoping',
-      badge: {
-        text: 'Partner',
-        action: 'info',
-      },
-    },
-    {
-      href: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
-      logo: {
-        light: FlyDashLogo,
-        dark: FlyDashLogo,
-      },
-      title: 'FlyDash',
-      description: 'AI-Powered Internal Tools & Dashboard Builder',
-      badge: {
-        text: 'Partner',
         action: 'info',
       },
     },
