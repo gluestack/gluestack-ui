@@ -1,57 +1,64 @@
-import { useState, useCallback } from 'react';
-import Animated, {
-  useAnimatedRef,
-  useAnimatedReaction,
-  runOnUI,
-  measure,
-  runOnJS,
-  useSharedValue,
-  withTiming,
-  useAnimatedStyle,
-  withSpring,
-} from 'react-native-reanimated';
-import { useBlankContext } from './conversation';
-import { useMeasureHeight } from './useMessageHeight';
+import { useContext } from 'react';
 import { useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
+import { useAnimatedReaction, withTiming } from 'react-native-reanimated';
+import { useBlankContext } from './conversation';
+import { useMessageHeight } from './useMessageHeight';
 
-export const useBlank = () => {
+interface UseMessageBlankSizeOptions {
+  disabled?: boolean;
+  role: 'user' | 'assistant';
+}
 
-  const { ref, onLayout, height, y } = useMeasureHeight();
-  const { blankSize, userMessageHeight } = useBlankContext();
-  console.log('userMessageHeight from context', userMessageHeight.value);
+export function useBlankSize({
+  disabled = false,
+  role,
+}: UseMessageBlankSizeOptions) {
+  const context = useBlankContext();
+  if (!context) {
+    throw new Error('useMessageBlankSize must be used inside Chat');
+  }
+
+  const { height: keyboardHeight } = useReanimatedKeyboardAnimation();
   const windowHeight = useWindowDimensions().height;
   const insets = useSafeAreaInsets();
-  useAnimatedReaction(
-    () => {
-      return {
-        height: height.value,
-        y: y.value,
-        userMessageHeight: userMessageHeight.value,
-      };
-    },
-    ({ height, userMessageHeight,y }) => {
 
-   
-      blankSize.value = Math.max(
+  // Pass the correct shared value from context
+  const targetHeight =
+    role === 'user'
+      ? context.userMessageHeight
+      : context.assistantMessageHeight;
+
+  const { ref, onLayout } = useMessageHeight(targetHeight);
+  console.log(
+    context.assistantMessageHeight.value,
+    context.userMessageHeight.value
+  );
+  useAnimatedReaction(
+    () => ({
+      user: context.userMessageHeight.value,
+      assistant: context.assistantMessageHeight.value,
+      keyboard: keyboardHeight.value,
+      disabled,
+    }),
+    ({ user, assistant, disabled: isDisabled }) => {
+      'worklet';
+
+      if (isDisabled) return;
+
+      const pairedHeight = user + assistant;
+
+      if (pairedHeight <= 0) return;
+
+      const nextBlank = Math.max(
         0,
-        windowHeight - userMessageHeight - height  - insets.bottom - insets.top-220
+        windowHeight - pairedHeight - 100 - insets.bottom - insets.top
       );
-        console.log('height', height);
-        console.log('userMessageHeight', userMessageHeight);
-        console.log('windowHeight', windowHeight);
-        console.log('insets.bottom', insets.bottom);
-        console.log('insets.top', insets.top);
-        console.log('y', y);
-        console.log('blankSize', blankSize.value);
+
+      context.blankSize.value = nextBlank;
     }
   );
 
-  return {
-    ref,
-    onLayout,
-    height,
-    y,
-    blankSize,
-  };
-};
+  return { ref, onLayout: disabled ? undefined : onLayout };
+}

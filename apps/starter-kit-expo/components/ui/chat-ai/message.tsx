@@ -1,57 +1,102 @@
 // components/ai-elements/message.tsx
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
-import { createContext, useContext, useState } from 'react';
-import Animated, { withTiming, useAnimatedStyle } from 'react-native-reanimated';
-import { useMeasureHeight } from './useMessageHeight';
-import { useBlank } from './useBlank';
+import { createContext, useContext, useState, useMemo } from 'react';
+import Animated from 'react-native-reanimated';
 import { useUserMessageAnimation } from './userAnimation';
-// ==================== BASIC MESSAGE COMPONENTS ====================
+import { useBlankSize } from './useBlank';
+
+// Simple ref merger (no extra dependency needed)
+const mergeRefs = <T,>(
+  ...refs: Array<React.Ref<T> | null | undefined>
+): React.RefCallback<T> => {
+  return (node: T | null) => {
+    refs.forEach((ref) => {
+      if (typeof ref === 'function') {
+        ref(node);
+      } else if (ref != null) {
+        (ref as React.MutableRefObject<T | null>).current = node;
+      }
+    });
+  };
+};
+
+// ==================== PROPS TYPES ====================
 
 export type MessageProps = {
   role: UIMessage['role'];
   children: React.ReactNode;
   className?: string;
+  index: number; // ← Required for first message animation
 };
 
-export const Message = memo(({ role, children, className }: MessageProps) => {
-  const { ref, onLayout, style,didUserMessageAnimate } = useUserMessageAnimation();
-  const { ref: blankRef, onLayout: blankOnLayout, height: blankHeight, y: blankY } = useBlank();
-  const opacityStyle = useAnimatedStyle(() => ({
-    opacity: didUserMessageAnimate.value,
-  }));
+export type MessageContentProps = {
+  role?: 'user' | 'assistant' | 'system';
+  children: React.ReactNode;
+  className?: string;
+};
 
-  if (role === 'user') {
+// ==================== MAIN MESSAGE COMPONENT ====================
+
+export const Message = memo(
+  ({ role, children, className, index }: MessageProps) => {
+    const isUserFirstMessage = index === 0;
+
+    // Animation + height measurement for first user message
+    const {
+      style: animationStyle,
+      ref: animRef,
+      onLayout: animOnLayout,
+    } = useUserMessageAnimation({ disabled: !isUserFirstMessage });
+
+    // Blank space calculation for layout
+    const { ref: blankRef, onLayout: blankOnLayout } = useBlankSize({
+      role: 'user',
+      disabled: !isUserFirstMessage,
+    });
+
+    // Merge both refs safely
+    const combinedRef = useMemo(
+      () => mergeRefs(animRef, blankRef),
+      [animRef, blankRef]
+    );
+
+    if (role === 'user') {
+      return (
+        <Animated.View
+          ref={combinedRef}
+          onLayout={
+            isUserFirstMessage
+              ? (event) => {
+                  animOnLayout?.(event);
+                  blankOnLayout?.(event);
+                }
+              : undefined
+          }
+          style={animationStyle}
+          className={`group flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
+        >
+          {children}
+        </Animated.View>
+      );
+    }
+
+    // Assistant / System messages (only blank measurement)
     return (
       <Animated.View
-        ref={ref}
-        style={style}
-        onLayout={onLayout}
-        className={`group flex w-full max-w-[95%] flex-col gap-2  ${className || ''}`}
+        ref={blankRef}
+        onLayout={blankOnLayout}
+        className={`group flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
       >
         {children}
       </Animated.View>
     );
   }
-  return (
-    <Animated.View
-      ref={blankRef}
-      onLayout={blankOnLayout}
-      className={`group flex w-full max-w-[95%] flex-col gap-2  ${className || ''}`}
-      style={opacityStyle}
-    >
-      {children}
-    </Animated.View>
-  );
-});
+);
 
-export type MessageContentProps = {
-  role?: 'user' | 'assistant' | 'system'; // ← Fixed: Now accepts role
-  children: React.ReactNode;
-  className?: string;
-};
+// ==================== MESSAGE CONTENT & RESPONSE ====================
 
 export const MessageContent = memo(
   ({ role, children, className }: MessageContentProps) => {
@@ -71,7 +116,7 @@ export const MessageContent = memo(
 
 export const MessageResponse = memo(
   ({ children }: { children: React.ReactNode }) => (
-    <Text className="text-base leading-6 text-white">{children}</Text>
+    <Text className="text-base leading-6">{children}</Text>
   )
 );
 
@@ -108,7 +153,7 @@ export const MessageAction = ({
   return (
     <TouchableOpacity
       onPress={handlePress}
-      className="h-8 w-8 items-center justify-center "
+      className="h-8 w-8 items-center justify-center"
     >
       {children}
     </TouchableOpacity>
@@ -116,7 +161,6 @@ export const MessageAction = ({
 };
 
 // ==================== MESSAGE BRANCH (Advanced) ====================
-// (Keeping your original branch code as-is, only small cleanup)
 
 interface MessageBranchContextType {
   currentBranch: number;
@@ -133,10 +177,11 @@ const MessageBranchContext = createContext<MessageBranchContextType | null>(
 
 const useMessageBranch = () => {
   const context = useContext(MessageBranchContext);
-  if (!context)
+  if (!context) {
     throw new Error(
       'MessageBranch components must be used within <MessageBranch>'
     );
+  }
   return context;
 };
 
@@ -201,7 +246,7 @@ export const MessageBranchContent = ({
     if (branches.length !== childrenArray.length) {
       setBranches(childrenArray);
     }
-  }, [childrenArray]);
+  }, [childrenArray, branches.length]);
 
   return childrenArray.map((branch, index) => (
     <View

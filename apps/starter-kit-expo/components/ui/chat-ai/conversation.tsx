@@ -1,6 +1,18 @@
 // components/ai-elements/conversation.tsx
-import React, { useRef, useState, useCallback,useEffect, type ReactElement, createContext, ReactNode, useContext } from 'react';
+import React, {
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+  type ReactElement,
+  createContext,
+  ReactNode,
+  useContext,
+
+} from 'react';
 import type { SharedValue } from 'react-native-reanimated';
+import { GestureDetector } from 'react-native-gesture-handler';
+import { useKeyboardAwareChat } from './useKeyboardAwareChat';
 import {
   View,
   Text,
@@ -9,12 +21,18 @@ import {
   Alert,
   type FlatListProps,
   type ListRenderItem,
+  Platform,
 } from 'react-native';
 import { ArrowDown, Download, MessageSquare } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import { Message, MessageContent, MessageResponse } from './message';
-import Animated, { useAnimatedProps, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import { useBlank } from './useBlank';
+import Animated, {
+  useAnimatedProps,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
+
 export type ConversationProps = React.PropsWithChildren<{ className?: string }>;
 import { LegendListProps, LegendListRef } from '@legendapp/list';
 import { AnimatedLegendList } from '@legendapp/list/reanimated';
@@ -32,7 +50,9 @@ export const BlankProvider = ({ children }: { children: ReactNode }) => {
   const userMessageHeight = useSharedValue(0);
   const assistantMessageHeight = useSharedValue(0);
   return (
-    <BlankContext.Provider value={{ blankSize, userMessageHeight, assistantMessageHeight }}>
+    <BlankContext.Provider
+      value={{ blankSize, userMessageHeight, assistantMessageHeight }}
+    >
       {children}
     </BlankContext.Provider>
   );
@@ -123,63 +143,64 @@ export const ConversationContent = ({
     ),
     []
   );
+  const { scrollHandler, panGesture } = useKeyboardAwareChat();
+  const { blankSize } = useBlankContext();
+  console.log('blankSize', blankSize.value);
+  const animatedProps = useAnimatedProps(() => {
+    return {
+      contentInset: {
+        bottom: blankSize.value,
+      },
+    };
+  });
+  const animatedStyle = useAnimatedStyle(() => ({
+    height: withTiming(blankSize.value, {
+      duration: 250,
+    }),
+  }));
+  const prevLengthRef = useRef(messages.length);
+  useEffect(() => {
+    const shouldScroll = messages.length > prevLengthRef.current;
 
-const { blankSize } = useBlankContext();
-console.log('blankSize', blankSize.value);
- const animatedProps = useAnimatedProps(() => {
-   return {
-     contentInset: {
-       bottom: blankSize.value
-     },
-   };
- });
-const animatedStyle = useAnimatedStyle(() => ({
-  height: withTiming(blankSize.value, {
-    duration: 250,
-  }),
-}));
- const prevLengthRef = useRef(messages.length);
-const blankSizeRef = useRef(blankSize.value);
-useEffect(() => {
-  const shouldScroll =
-    messages.length > prevLengthRef.current ||
-    blankSize.value !== blankSizeRef.current;
+    if (shouldScroll) {
+      flatListRef.current?.scrollToEnd();
+    }
 
-  if (shouldScroll) {
-    setTimeout(() => {
-      flatListRef.current?.scrollToEnd({ animated: false });
-    }, 300); // or try 50–100 if needed
-  }
-
-  blankSizeRef.current = blankSize.value;
-  prevLengthRef.current = messages.length;
-}, [messages, blankSize.value]);
+    prevLengthRef.current = messages.length;
+  }, [messages, blankSize.value]);
   return (
-    <AnimatedLegendList
-      ref={flatListRef}
-      data={messages}
-      renderItem={renderItem || defaultRenderItem}
-      keyExtractor={(item) => item.id}
-      className="flex-1"
-      contentContainerClassName="px-4 py-6 gap-6"
-      // onScroll={onScroll}
-      // onContentSizeChange={onContentSizeChange}
-      scrollEventThrottle={16}
-      estimatedItemSize={estimatedItemSize}
-      removeClippedSubviews
-      initialNumToRender={15}
-      windowSize={10}
-      maxToRenderPerBatch={10}
-      {...flatListProps}
-      ListEmptyComponent={
-        messages.length === 0 ? <ConversationEmptyState /> : undefined
-      }
-      // contentContainerStyle={{
-      //   paddingBottom: blankSize.value,
-      // }}
-        ListFooterComponent={<Animated.View style={[animatedStyle]} />}
-      //  animatedProps={animatedProps}
-    />
+    <GestureDetector gesture={panGesture}>
+      <View style={{ flex: 1 }}>
+        <AnimatedLegendList
+          ref={flatListRef}
+          keyboardDismissMode={
+            Platform.OS === 'ios' ? 'interactive' : 'on-drag'
+          }
+          data={messages}
+          renderItem={renderItem || defaultRenderItem}
+          keyExtractor={(item) => item.id}
+          className="flex-1"
+          contentContainerClassName="px-4 py-6 gap-6"
+          scrollEventThrottle={16}
+          estimatedItemSize={estimatedItemSize}
+          removeClippedSubviews
+          initialNumToRender={15}
+          windowSize={10}
+          onScroll={scrollHandler}
+          maxToRenderPerBatch={10}
+          {...flatListProps}
+          ListEmptyComponent={
+            messages.length === 0 ? <ConversationEmptyState /> : undefined
+          }
+          contentContainerStyle={{
+            paddingBottom: blankSize.value,
+          }}
+          scrollEventThrottle={16}
+          //   ListFooterComponent={<Animated.View style={[animatedStyle]} />}
+          //  animatedProps={animatedProps}
+        />
+      </View>
+    </GestureDetector>
   );
 };
 

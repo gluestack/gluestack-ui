@@ -1,40 +1,44 @@
-import { useState, useCallback } from 'react';
-import Animated, {
-  useAnimatedRef,
+import {
   useAnimatedReaction,
-  runOnUI,
-  measure,
-  runOnJS,
   useSharedValue,
   withTiming,
   useAnimatedStyle,
   withSpring,
+  useDerivedValue,
 } from 'react-native-reanimated';
 
-import { useMeasureHeight } from './useMessageHeight';
+import { useMessageHeight } from './useMessageHeight';
 import { useBlankContext } from './conversation';
 import { useWindowDimensions } from 'react-native';
-export const useUserMessageAnimation = () => {
-  const { ref, onLayout, height, y } = useMeasureHeight();
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+export const useUserMessageAnimation = ({
+  disabled,
+}: {
+  disabled?: boolean;
+}) => {
+  const { ref, onLayout, targetHeight } = useMessageHeight();
   const translateY = useSharedValue(0);
-  const progress = useSharedValue(0);
+  const progress = useSharedValue(-1);
   const windowHeight = useWindowDimensions().height;
-  const didUserMessageAnimate = useSharedValue(0);
   const { userMessageHeight } = useBlankContext();
+  const insets = useSafeAreaInsets();
   useAnimatedReaction(
     () => {
-      return height.value;
+      const didAnimate = progress.get() !== -1;
+
+      if (disabled || didAnimate) return -1;
+
+      return targetHeight.value;
     },
+
     (messageHeight) => {
-      'worklet';
+      if (messageHeight <= 0) return;
+
       userMessageHeight.value = messageHeight;
-      const composerHeightApprox = 80; // input bar + padding + borders
-      const bottomPadding = 60; // visual offset so it starts "from below"
-      const startY = Math.max(
-        20,
-        windowHeight - messageHeight - composerHeightApprox - bottomPadding
-      );
-console.log('user message height ', messageHeight);
+
+      const startY = Math.max(20, windowHeight - messageHeight - insets.bottom);
+
       translateY.value = withTiming(startY, { duration: 0 }, () => {
         translateY.value = withSpring(0, {
           damping: 22,
@@ -43,18 +47,23 @@ console.log('user message height ', messageHeight);
           overshootClamping: true,
         });
       });
+
       progress.value = withTiming(1, {
         duration: 380,
       });
-      didUserMessageAnimate.value = withTiming(1, { duration: 380 });
     }
   );
+
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [{ translateY: translateY.value }],
-      opacity: progress.value,
+      opacity: disabled ? 1 : progress.value,
     };
   });
+
+  const didUserMessageAnimate = useDerivedValue(() =>
+    disabled ? 1 : progress.get() === 1
+  );
 
   return {
     ref: ref,
