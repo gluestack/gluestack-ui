@@ -31,10 +31,6 @@ export function useBlankSize({
       : context.assistantMessageHeight;
 
   const { ref, onLayout } = useMessageHeight(targetHeight);
-  console.log(
-    context.assistantMessageHeight.value,
-    context.userMessageHeight.value
-  );
   useAnimatedReaction(
     () => ({
       user: context.userMessageHeight.value,

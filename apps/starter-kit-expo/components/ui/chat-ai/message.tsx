@@ -1,14 +1,37 @@
 // components/ai-elements/message.tsx
-import React, { memo, useCallback } from 'react';
+import React, {
+  memo,
+  useCallback,
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+} from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
-import { createContext, useContext, useState, useMemo } from 'react';
 import Animated from 'react-native-reanimated';
 import { useUserMessageAnimation } from './userAnimation';
 import { useBlankSize } from './useBlank';
 
-// Simple ref merger (no extra dependency needed)
+// ==================== CONTEXT FOR ROLE ====================
+type MessageContextType = {
+  role: UIMessage['role'];
+};
+
+const MessageContext = createContext<MessageContextType | null>(null);
+
+const useMessageContext = () => {
+  const context = useContext(MessageContext);
+  if (!context) {
+    throw new Error(
+      'MessageToolbar and other children must be used inside <Message>'
+    );
+  }
+  return context;
+};
+
+// ==================== REF MERGER ====================
 const mergeRefs = <T,>(
   ...refs: Array<React.Ref<T> | null | undefined>
 ): React.RefCallback<T> => {
@@ -29,11 +52,10 @@ export type MessageProps = {
   role: UIMessage['role'];
   children: React.ReactNode;
   className?: string;
-  index: number; // ← Required for first message animation
+  index: number;
 };
 
 export type MessageContentProps = {
-  role?: 'user' | 'assistant' | 'system';
   children: React.ReactNode;
   className?: string;
 };
@@ -44,65 +66,70 @@ export const Message = memo(
   ({ role, children, className, index }: MessageProps) => {
     const isUserFirstMessage = index === 0;
 
-    // Animation + height measurement for first user message
     const {
       style: animationStyle,
       ref: animRef,
       onLayout: animOnLayout,
     } = useUserMessageAnimation({ disabled: !isUserFirstMessage });
 
-    // Blank space calculation for layout
     const { ref: blankRef, onLayout: blankOnLayout } = useBlankSize({
       role: 'user',
       disabled: !isUserFirstMessage,
     });
 
-    // Merge both refs safely
     const combinedRef = useMemo(
       () => mergeRefs(animRef, blankRef),
       [animRef, blankRef]
     );
 
+    const contextValue = useMemo(() => ({ role }), [role]);
+
     if (role === 'user') {
       return (
+        <MessageContext.Provider value={contextValue}>
+          <Animated.View
+            ref={combinedRef}
+            onLayout={
+              isUserFirstMessage
+                ? (event) => {
+                    animOnLayout?.(event);
+                    blankOnLayout?.(event);
+                  }
+                : undefined
+            }
+            style={animationStyle}
+            className={`group flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
+          >
+            {children}
+          </Animated.View>
+        </MessageContext.Provider>
+      );
+    }
+
+    // Assistant messages
+    return (
+      <MessageContext.Provider value={contextValue}>
         <Animated.View
-          ref={combinedRef}
-          onLayout={
-            isUserFirstMessage
-              ? (event) => {
-                  animOnLayout?.(event);
-                  blankOnLayout?.(event);
-                }
-              : undefined
-          }
-          style={animationStyle}
+          ref={blankRef}
+          onLayout={blankOnLayout}
           className={`group flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
         >
           {children}
         </Animated.View>
-      );
-    }
-
-    // Assistant / System messages (only blank measurement)
-    return (
-      <Animated.View
-        ref={blankRef}
-        onLayout={blankOnLayout}
-        className={`group flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
-      >
-        {children}
-      </Animated.View>
+      </MessageContext.Provider>
     );
   }
 );
 
-// ==================== MESSAGE CONTENT & RESPONSE ====================
+// ==================== MESSAGE CONTENT ====================
 
 export const MessageContent = memo(
-  ({ role, children, className }: MessageContentProps) => {
+  ({ children, className }: MessageContentProps) => {
+    const { role } = useMessageContext();
+
     return (
       <View
-        className={`flex w-fit min-w-0 max-w-full flex-col gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${
+        className={`flex w-fit min-w-0 max-w-[90%] mt-4 flex-col gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${
           role === 'user'
             ? 'self-end bg-blue-600 text-white'
             : 'self-start bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100'
@@ -114,27 +141,38 @@ export const MessageContent = memo(
   }
 );
 
+// ==================== MESSAGE RESPONSE ====================
+
 export const MessageResponse = memo(
   ({ children }: { children: React.ReactNode }) => (
-    <Text className="text-base leading-6">{children}</Text>
+    <Text className="text-base text-white  leading-6">{children}</Text>
   )
 );
 
-// ==================== TOOLBAR ====================
+// ==================== MESSAGE TOOLBAR (Now auto gets role) ====================
 
 export type MessageToolbarProps = {
   children: React.ReactNode;
   className?: string;
 };
 
-export const MessageToolbar = ({
-  children,
-  className,
-}: MessageToolbarProps) => (
-  <View className={`mt-3 flex-row items-center gap-3 ${className || ''}`}>
-    {children}
-  </View>
+export const MessageToolbar = memo(
+  ({ children, className }: MessageToolbarProps) => {
+    const { role } = useMessageContext();
+
+    return (
+      <View
+        className={`mt-3 flex-row items-center gap-3 ${
+          role === 'user' ? 'self-end' : 'self-start'
+        } ${className || ''}`}
+      >
+        {children}
+      </View>
+    );
+  }
 );
+
+// ==================== MESSAGE ACTION ====================
 
 export const MessageAction = ({
   onPress,
@@ -160,7 +198,9 @@ export const MessageAction = ({
   );
 };
 
-// ==================== MESSAGE BRANCH (Advanced) ====================
+// ==================== MESSAGE BRANCH COMPONENTS ====================
+
+// ... (keeping your branch components as they are - they don't need role)
 
 interface MessageBranchContextType {
   currentBranch: number;
@@ -216,7 +256,7 @@ export const MessageBranch = ({
     handleBranchChange(newBranch);
   };
 
-  const contextValue = {
+  const contextValue: MessageBranchContextType = {
     branches,
     currentBranch,
     goToNext,

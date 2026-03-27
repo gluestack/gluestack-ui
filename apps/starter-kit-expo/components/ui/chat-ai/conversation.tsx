@@ -144,7 +144,7 @@ export const ConversationContent = ({
   );
   const { scrollHandler, panGesture } = useKeyboardAwareChat();
   const { blankSize } = useBlankContext();
-  console.log('blankSize', blankSize.value);
+
   const animatedProps = useAnimatedProps(() => {
     return {
       contentInset: {
@@ -178,6 +178,7 @@ export const ConversationContent = ({
             Platform.OS === 'ios' ? 'interactive' : 'on-drag'
           }
           data={messages}
+          showsVerticalScrollIndicator={false}
           renderItem={renderItem || defaultRenderItem}
           keyExtractor={(item) => item.id}
           className="flex-1"
