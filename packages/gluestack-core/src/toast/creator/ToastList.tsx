@@ -23,6 +23,7 @@ const transitionConfig: any = {
 };
 
 const toastPositionStyle = Platform.OS === 'web' ? 'fixed' : 'absolute';
+const isWeb = Platform.OS === 'web';
 const POSITIONS = {
   'top': {
     top: 0,
@@ -85,7 +86,7 @@ export const ToastList = () => {
                 margin: 'auto',
                 //@ts-expect-error it is properly defined above per-platform
                 position: toastPositionStyle,
-                pointerEvents: 'box-none',
+                pointerEvents: isWeb ? 'none' : 'box-none',
                 ...POSITIONS[position],
               }}
             >
@@ -95,7 +96,9 @@ export const ToastList = () => {
                     key={toast.id}
                     initialMetrics={initialWindowMetrics}
                   >
-                    <SafeAreaView style={{ pointerEvents: 'box-none' }}>
+                    <SafeAreaView
+                      style={{ pointerEvents: isWeb ? 'none' : 'box-none' }}
+                    >
                       <AnimatedToastView
                         key={toast.id}
                         visible={visibleToasts[toast.id]}
@@ -201,7 +204,7 @@ const AnimatedToastView = ({
         {
           opacity,
           transform: [{ translateY }],
-          pointerEvents: 'box-none' as const,
+          pointerEvents: isWeb ? 'none' : 'box-none',
         },
         containerStyle,
       ]}
