@@ -4,6 +4,7 @@ import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 type IHeadingProps = VariantProps<typeof headingStyle> &
   React.ComponentPropsWithoutRef<'h1'> & {
     as?: React.ElementType;
+    testID?: string;
   };
 
 const MappedHeading = memo(
@@ -18,6 +19,7 @@ const MappedHeading = memo(
       sub,
       italic,
       highlight,
+      testID,
       ...props
     },
     ref
@@ -41,6 +43,7 @@ const MappedHeading = memo(
             })}
             {...props}
             ref={ref}
+            data-testid={testID}
           />
         );
       case '2xl':
@@ -59,6 +62,7 @@ const MappedHeading = memo(
             })}
             {...props}
             ref={ref}
+            data-testid={testID}
           />
         );
       case 'xl':
@@ -77,6 +81,7 @@ const MappedHeading = memo(
             })}
             {...props}
             ref={ref}
+            data-testid={testID}
           />
         );
       case 'lg':
@@ -95,6 +100,7 @@ const MappedHeading = memo(
             })}
             {...props}
             ref={ref}
+            data-testid={testID}
           />
         );
       case 'md':
@@ -113,6 +119,7 @@ const MappedHeading = memo(
             })}
             {...props}
             ref={ref}
+            data-testid={testID}
           />
         );
       case 'sm':
@@ -132,6 +139,7 @@ const MappedHeading = memo(
             })}
             {...props}
             ref={ref}
+            data-testid={testID}
           />
         );
       default:
@@ -150,6 +158,7 @@ const MappedHeading = memo(
             })}
             {...props}
             ref={ref}
+            data-testid={testID}
           />
         );
     }
@@ -158,7 +167,7 @@ const MappedHeading = memo(
 
 const Heading = memo(
   forwardRef<HTMLHeadingElement, IHeadingProps>(function Heading(
-    { className, size = 'lg', as: AsComp, ...props },
+    { className, size = 'lg', as: AsComp, testID, ...props },
     ref
   ) {
     const {
@@ -187,12 +196,13 @@ const Heading = memo(
           })}
           {...props}
           ref={ref}
+          data-testid={testID}
         />
       );
     }
 
     return (
-      <MappedHeading className={className} size={size} ref={ref} {...props} />
+      <MappedHeading className={className} size={size} ref={ref} testID={testID} {...props} />
     );
   })
 );

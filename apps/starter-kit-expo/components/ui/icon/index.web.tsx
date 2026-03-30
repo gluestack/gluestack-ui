@@ -25,11 +25,11 @@ const iconStyle = tva({
 export const Icon = React.forwardRef<
   React.ComponentRef<typeof UIIcon>,
   React.ComponentPropsWithoutRef<typeof UIIcon> &
-    VariantProps<typeof iconStyle> & {
-      height?: number | string;
-      width?: number | string;
-    }
->(function Icon({ size = 'md', className, ...props }, ref) {
+  VariantProps<typeof iconStyle> & {
+    height?: number | string;
+    width?: number | string;
+  }
+>(function Icon({ size = 'md', className, testID, ...props }, ref) {
   if (typeof size === 'number') {
     return (
       <UIIcon
@@ -38,6 +38,7 @@ export const Icon = React.forwardRef<
         {...props}
         className={iconStyle({ class: className })}
         size={size}
+        data-testid={testID}
       />
     );
   } else if (
@@ -50,6 +51,7 @@ export const Icon = React.forwardRef<
         ref={ref}
         {...props}
         className={iconStyle({ class: className })}
+        data-testid={testID}
       />
     );
   }
@@ -59,6 +61,7 @@ export const Icon = React.forwardRef<
       ref={ref}
       {...props}
       className={iconStyle({ size, class: className })}
+      data-testid={testID}
     />
   );
 });
@@ -76,11 +79,11 @@ const createIconUI = ({ ...props }: ParameterTypes) => {
   return React.forwardRef<
     React.ComponentRef<typeof UIIcon>,
     React.ComponentPropsWithoutRef<typeof UIIcon> &
-      VariantProps<typeof iconStyle> & {
-        height?: number | string;
-        width?: number | string;
-      }
-  >(function UIIcon({ className, ...inComingprops }, ref) {
+    VariantProps<typeof iconStyle> & {
+      height?: number | string;
+      width?: number | string;
+    }
+  >(function UIIcon({ className, testID, ...inComingprops }, ref) {
     const calculateClassName = React.useMemo(() => {
       return className === undefined
         ? accessClassName(inComingprops?.style)
@@ -92,6 +95,7 @@ const createIconUI = ({ ...props }: ParameterTypes) => {
         ref={ref}
         {...inComingprops}
         className={calculateClassName}
+        data-testid={testID}
       />
     );
   });

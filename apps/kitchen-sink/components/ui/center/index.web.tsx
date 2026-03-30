@@ -4,14 +4,14 @@ import { centerStyle } from './styles';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 
 type ICenterProps = React.ComponentPropsWithoutRef<'div'> &
-  VariantProps<typeof centerStyle>;
+  VariantProps<typeof centerStyle> & { testID?: string };
 
 const Center = React.forwardRef<HTMLDivElement, ICenterProps>(function Center(
-  { className, ...props },
+  { className, testID, ...props },
   ref
 ) {
   return (
-    <div className={centerStyle({ class: className })} {...props} ref={ref} />
+    <div className={centerStyle({ class: className })} {...props} ref={ref} data-testid={testID}/>
   );
 });
 

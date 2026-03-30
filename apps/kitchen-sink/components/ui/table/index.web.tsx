@@ -21,13 +21,14 @@ const TableFooterContext = createContext<{
   isFooterRow: false,
 });
 
-const Table = React.forwardRef<HTMLTableElement, React.ComponentProps<'table'>>(
-  function Table({ className, ...props }, ref) {
+const Table = React.forwardRef<HTMLTableElement, React.ComponentProps<'table'> & { testID?: string }>(
+  function Table({ className, testID, ...props }, ref) {
     return (
       <table
         ref={ref}
         className={tableStyle({ class: className })}
         {...props}
+        data-testid={testID}
       />
     );
   }
@@ -35,8 +36,8 @@ const Table = React.forwardRef<HTMLTableElement, React.ComponentProps<'table'>>(
 
 const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
-  React.ComponentProps<'thead'>
->(function TableHeader({ className, ...props }, ref) {
+  React.ComponentProps<'thead'> & { testID?: string }
+>(function TableHeader({ className, testID, ...props }, ref) {
   const contextValue = useMemo(() => {
     return {
       isHeaderRow: true,
@@ -48,6 +49,7 @@ const TableHeader = React.forwardRef<
         ref={ref}
         className={tableHeaderStyle({ class: className })}
         {...props}
+        data-testid={testID}
       />
     </TableHeaderContext.Provider>
   );
@@ -55,21 +57,22 @@ const TableHeader = React.forwardRef<
 
 const TableBody = React.forwardRef<
   HTMLTableSectionElement,
-  React.ComponentProps<'tbody'>
->(function TableBody({ className, ...props }, ref) {
+  React.ComponentProps<'tbody'> & { testID?: string }
+>(function TableBody({ className, testID, ...props }, ref) {
   return (
     <tbody
       ref={ref}
       className={tableBodyStyle({ class: className })}
       {...props}
+      data-testid={testID}
     />
   );
 });
 
 const TableFooter = React.forwardRef<
   HTMLTableSectionElement,
-  React.ComponentProps<'tfoot'>
->(function TableFooter({ className, ...props }, ref) {
+  React.ComponentProps<'tfoot'> & { testID?: string }
+>(function TableFooter({ className, testID, ...props }, ref) {
   const contextValue = useMemo(() => {
     return {
       isFooterRow: true,
@@ -81,6 +84,7 @@ const TableFooter = React.forwardRef<
         ref={ref}
         className={tableFooterStyle({ class: className })}
         {...props}
+        data-testid={testID}
       />
     </TableFooterContext.Provider>
   );
@@ -88,17 +92,17 @@ const TableFooter = React.forwardRef<
 
 const TableHead = React.forwardRef<
   HTMLTableCellElement,
-  React.ComponentProps<'th'>
->(function TableHead({ className, ...props }, ref) {
+  React.ComponentProps<'th'> & { testID?: string }
+>(function TableHead({ className, testID, ...props }, ref) {
   return (
-    <th ref={ref} className={tableHeadStyle({ class: className })} {...props} />
+    <th ref={ref} className={tableHeadStyle({ class: className })} {...props} data-testid={testID} />
   );
 });
 
 const TableRow = React.forwardRef<
   HTMLTableRowElement,
-  React.ComponentProps<'tr'>
->(function TableRow({ className, ...props }, ref) {
+  React.ComponentProps<'tr'> & { testID?: string }
+>(function TableRow({ className, testID, ...props }, ref) {
   const { isHeaderRow } = useContext(TableHeaderContext);
   const { isFooterRow } = useContext(TableFooterContext);
   return (
@@ -110,28 +114,30 @@ const TableRow = React.forwardRef<
         class: className,
       })}
       {...props}
+      data-testid={testID}
     />
   );
 });
 
 const TableData = React.forwardRef<
   HTMLTableCellElement,
-  React.ComponentProps<'td'>
->(function TableData({ className, ...props }, ref) {
+  React.ComponentProps<'td'> & { testID?: string }
+>(function TableData({ className, testID, ...props }, ref) {
   return (
-    <td ref={ref} className={tableDataStyle({ class: className })} {...props} />
+    <td ref={ref} className={tableDataStyle({ class: className })} {...props} data-testid={testID} />
   );
 });
 
 const TableCaption = React.forwardRef<
   HTMLTableCaptionElement,
-  React.ComponentProps<'caption'>
->(function TableCaption({ className, ...props }, ref) {
+  React.ComponentProps<'caption'> & { testID?: string }
+>(function TableCaption({ className, testID, ...props }, ref) {
   return (
     <caption
       ref={ref}
       className={tableCaptionStyle({ class: className })}
       {...props}
+      data-testid={testID}
     />
   );
 });

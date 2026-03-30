@@ -7,3 +7,4 @@ export { ariaAttr } from './accessibilityUtils';
 export { combineContextAndProps } from './combineContextAndProps';
 export { stableHash } from './stableHash';
 export { findNodeHandle } from './findNodeHandle';
+export { mapTestIDToWebProps } from './webTestProps';
