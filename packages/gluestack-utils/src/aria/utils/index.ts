@@ -14,6 +14,10 @@ export const getLabel = (props: any) => {
   let label = props['aria-label'];
 
   if (!label) {
+    label = props.accessibilityLabel;
+  }
+
+  if (!label) {
     label = typeof props.label === 'string' ? props.label : undefined;
   }
 

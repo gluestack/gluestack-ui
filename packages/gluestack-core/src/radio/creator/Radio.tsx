@@ -151,12 +151,10 @@ const Radio = (StyledRadio: any) =>
       };
 
       const inputRef = React.useRef(null);
-      const ariaLabel = props['aria-label'] || props.value || 'Radio';
 
       const { inputProps } = useRadio(
         {
           ...combinedProps,
-          'aria-label': ariaLabel,
           children,
         },
         contextState.state.state ?? {},
