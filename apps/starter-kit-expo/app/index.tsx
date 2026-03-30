@@ -1,74 +1,95 @@
-// app/chat.tsx   (or wherever you render the chat)
-import { useChat } from '@ai-sdk/react';
-import { DefaultChatTransport, UIMessage } from 'ai';
-import { fetch as expoFetch } from 'expo/fetch'; // ← This is required for Expo
-import { configureReanimatedLogger } from 'react-native-reanimated';
+'use client';
 
-configureReanimatedLogger({
-  strict: false,
-});
 import {
-  Conversation,
-  ConversationContent,
-  Message,
-  MessageAction,
-  MessageToolbar,
-  MessageContent,
-  MessageResponse,
-  PromptInput,
-} from '@/components/ui/chat-ai';
-import { ConversationScrollButton } from '@/components/ui/chat-ai/conversation';
-import { ListRenderItem, View } from 'react-native';
-import { Text } from 'react-native';
-import { CopyCheck } from 'lucide-react-native';
+  Attachment,
+  AttachmentPreview,
+  AttachmentRemove,
+  Attachments,
+} from '@/components/ui/chat-ai/attatchments';
 
-export default function AIChat() {
-  const { messages, status, sendMessage, error } = useChat({
-    transport: new DefaultChatTransport({
-      fetch: expoFetch as unknown as typeof globalThis.fetch, // ← Critical for React Native
-      api: 'http://10.153.0.82:8081/api/chat', // or use generateAPIUrl('/api/chat') if you have a helper
-    }),
-    onError: (err) => console.error('Chat error:', err),
-  });
+import { memo, useCallback, useState } from 'react';
+import { View } from 'react-native';
 
-  // Custom renderItem using your Message components
-  const renderMessage: ListRenderItem<UIMessage> = ({ item: message, index }) => (
-    <Message role={message.role} index={index}>
-      <MessageContent role={message.role}>
-        {message.parts
-          ?.filter((part) => part.type === 'text')
-          .map((part, i) => (
-            <MessageResponse key={i}>{part.text}</MessageResponse>
-          ))}
-      </MessageContent>
-      <MessageToolbar>
-        <MessageAction onPress={() => {}}>
-          <CopyCheck strokeWidth={1} size={20} color="white" />
-        </MessageAction>
-      </MessageToolbar>
-    </Message>
+// Simple random ID generator (works on both Web and React Native)
+const generateId = (): string => {
+  return (
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15)
+  );
+};
+
+const initialAttachments = [
+  {
+    filename: 'mountain-landscape.jpg',
+    id: generateId(),
+    mediaType: 'image/jpeg' as const,
+    type: 'file' as const,
+    url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
+  },
+  {
+    filename: 'ocean-sunset.jpg',
+    id: generateId(),
+    mediaType: 'image/jpeg' as const,
+    type: 'file' as const,
+    url: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=400&h=400&fit=crop',
+  },
+  {
+    filename: 'document.pdf',
+    id: generateId(),
+    mediaType: 'application/pdf' as const,
+    type: 'file' as const,
+    url: '',
+  },
+  {
+    filename: 'video.mp4',
+    id: generateId(),
+    mediaType: 'video/mp4' as const,
+    type: 'file' as const,
+    url: '',
+  },
+];
+
+interface AttachmentItemProps {
+  attachment: (typeof initialAttachments)[0];
+  onRemove: (id: string) => void;
+}
+
+const AttachmentItem = memo(({ attachment, onRemove }: AttachmentItemProps) => {
+  const handleRemove = useCallback(
+    () => onRemove(attachment.id),
+    [onRemove, attachment.id]
   );
 
-  // console.log('messages', messages);
   return (
-    <View className="flex-1 bg-slate-50 py-safe dark:bg-slate-950">
-      <Conversation>
-        <ConversationContent renderItem={renderMessage} messages={messages} />
+    <Attachment data={attachment} onRemove={handleRemove}>
+      <AttachmentPreview />
+      <AttachmentRemove />
+    </Attachment>
+  );
+});
 
-        {error && (
-          <Text className="p-4 text-red-500 text-center">
-            Error: {error.message}
-          </Text>
-        )}
+AttachmentItem.displayName = 'AttachmentItem';
 
-        {/* Optional: Show "AI is thinking..." */}
-        {status === 'streaming' && (
-          <Text className="px-4 py-2 text-slate-500">AI is thinking...</Text>
-        )}
-        <ConversationScrollButton />
-      </Conversation>
+const Example = () => {
+  const [attachments, setAttachments] = useState(initialAttachments);
 
-      <PromptInput sendMessage={sendMessage} status={status} />
+  const handleRemove = useCallback((id: string) => {
+    setAttachments((prev) => prev.filter((a) => a.id !== id));
+  }, []);
+
+  return (
+    <View className="flex items-center justify-center p-8">
+      <Attachments variant="grid">
+        {attachments.map((attachment) => (
+          <AttachmentItem
+            attachment={attachment}
+            key={attachment.id}
+            onRemove={handleRemove}
+          />
+        ))}
+      </Attachments>
     </View>
   );
-}
+};
+
+export default Example;
