@@ -33,6 +33,7 @@
     "dom-helpers": "^5.2.1",
     "expo": "~55.0.5",
     "expo-constants": "~55.0.7",
+    "expo-document-picker": "^55.0.9",
     "expo-font": "~55.0.1",
     "expo-glass-effect": "~55.0.7",
     "expo-image-picker": "^55.0.14",

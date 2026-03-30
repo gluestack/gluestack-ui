@@ -12,11 +12,14 @@ import {
   PromptInputProvider,
   usePromptInputAttachments,
   PromptInputMessage,
+  PromptInputActionMenu,
+  PromptInputActionMenuContent,
 } from '@/components/ui/chat-ai/prompt-input';
 
 import { memo, useCallback } from 'react';
 import { View } from 'react-native';
 
+// ================= ATTACHMENT ITEM =================
 const AttachmentItem = memo(({ attachment, onRemove }: any) => {
   const handleRemove = useCallback(
     () => onRemove(attachment.id),
@@ -31,7 +34,7 @@ const AttachmentItem = memo(({ attachment, onRemove }: any) => {
   );
 });
 
-// Attachments Display Component
+// ================= ATTACHMENTS DISPLAY =================
 const PromptInputAttachmentsDisplay = () => {
   const attachments = usePromptInputAttachments();
 
@@ -50,19 +53,25 @@ const PromptInputAttachmentsDisplay = () => {
   );
 };
 
+// ================= EXAMPLE =================
 const Example = () => {
   const handleSubmit = useCallback((message: PromptInputMessage) => {
     console.log('Submitted Message:', message);
   }, []);
 
   return (
-    <View className="flex-1 p-4 bg-background">
+    <View className="flex-1 pt-safe bg-white">
       <PromptInputProvider>
-        {/* Attachments - rendered inside provider */}
+        {/* Attachments */}
         <PromptInputAttachmentsDisplay />
 
-        {/* PromptInput - only text input */}
-        <PromptInput onSubmit={handleSubmit} />
+        {/* Input */}
+        <PromptInput onSubmit={handleSubmit}>
+          {/* 🔥 MENU INSIDE INPUT */}
+          <PromptInputActionMenu>
+            <PromptInputActionMenuContent />
+          </PromptInputActionMenu>
+        </PromptInput>
       </PromptInputProvider>
     </View>
   );

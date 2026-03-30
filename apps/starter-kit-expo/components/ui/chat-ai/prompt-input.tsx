@@ -9,9 +9,61 @@ import React, {
   ReactNode,
 } from 'react';
 import * as ImagePicker from 'expo-image-picker';
-
+import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 
+// ====================== NEW MENU EXPORTS ======================
+
+// Root (kept for API consistency)
+export const PromptInputActionMenu = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
+  return <>{children}</>;
+};
+
+// Trigger
+export const PromptInputActionMenuTrigger = ({ children, ...props }: any) => {
+  return (
+    <TouchableOpacity {...props}>
+      {children ?? <Text className="text-xl">+</Text>}
+    </TouchableOpacity>
+  );
+};
+
+// Content (actual Menu integration)
+export const PromptInputActionMenuContent = () => {
+  const attachments = usePromptInputAttachments();
+
+  return (
+    <Menu
+      placement="top"
+      offset={5}
+      trigger={({ ...triggerProps }) => {
+        return (
+          <TouchableOpacity {...triggerProps}>
+            <Text className="text-xl">+</Text>
+          </TouchableOpacity>
+        );
+      }}
+    >
+      <MenuItem
+        key="image"
+        textValue="Select Image"
+        onPress={attachments.openImagePicker}
+      >
+        <MenuItemLabel size="sm">Select Image</MenuItemLabel>
+      </MenuItem>
+
+      <MenuItem key="document" textValue="Select Document">
+        <MenuItemLabel size="sm">Select Document</MenuItemLabel>
+      </MenuItem>
+    </Menu>
+  );
+};
+
+// ====================== EXISTING CODE (UNCHANGED) ======================
 
 // Custom ID generator
 const generateId = (): string => {
@@ -124,7 +176,7 @@ export const PromptInput = ({ children, onSubmit }: PromptInputProps) => {
   };
 
   return (
-    <View className="border border-border rounded-2xl p-4 bg-background">
+    <View className="border border-border rounded-2xl p-4 bg-white">
       <TextInput
         value={text}
         onChangeText={setText}
@@ -135,12 +187,10 @@ export const PromptInput = ({ children, onSubmit }: PromptInputProps) => {
       />
 
       <View className="flex-row justify-between items-center mt-4">
-        <TouchableOpacity
-          onPress={attachments.openImagePicker}
-          className="px-5 py-2.5 bg-muted rounded-xl active:bg-accent"
-        >
-          <Text className="text-xl">📷</Text>
-        </TouchableOpacity>
+        {/* YOU CAN NOW USE MENU HERE */}
+        <PromptInputActionMenu>
+          <PromptInputActionMenuContent />
+        </PromptInputActionMenu>
 
         <TouchableOpacity
           onPress={handleSubmit}
