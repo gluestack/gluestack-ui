@@ -1,7 +1,5 @@
-// components/ai-elements/conversation.tsx
 import React, {
   useRef,
-  useState,
   useCallback,
   useEffect,
   type ReactElement,
@@ -25,12 +23,7 @@ import {
 import { ArrowDown, Download, MessageSquare } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import { Message, MessageContent, MessageResponse } from './message';
-import Animated, {
-  useAnimatedProps,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import { useSharedValue } from 'react-native-reanimated';
 
 export type ConversationProps = React.PropsWithChildren<{ className?: string }>;
 import { LegendListProps, LegendListRef } from '@legendapp/list';
@@ -111,26 +104,10 @@ export const ConversationContent = ({
   ...flatListProps
 }: ConversationContentProps) => {
   const flatListRef = useRef<FlatList<UIMessage>>(null);
-  // const [isAtBottom, setIsAtBottom] = useState(true);
-
-  // const scrollToBottom = useCallback(() => {
-  //   flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
-  // }, []);
-
-  // const onScroll = useCallback((e: any) => {
-  //   const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
-  //   const distanceFromBottom =
-  //     contentSize.height - layoutMeasurement.height - contentOffset.y;
-  //   setIsAtBottom(distanceFromBottom < 60);
-  // }, []);
-
-  // const onContentSizeChange = useCallback(() => {
-  //   if (isAtBottom) scrollToBottom();
-  // }, [isAtBottom, scrollToBottom]);
 
   const defaultRenderItem: ListRenderItem<UIMessage> = useCallback(
-    ({ item: message }) => (
-      <Message role={message.role}>
+    ({ item: message, index }) => (
+      <Message role={message.role} index={index}>
         <MessageContent>
           {message.parts
             ?.filter((part) => part.type === 'text')
@@ -145,19 +122,8 @@ export const ConversationContent = ({
   const { scrollHandler, panGesture } = useKeyboardAwareChat();
   const { blankSize } = useBlankContext();
 
-  const animatedProps = useAnimatedProps(() => {
-    return {
-      contentInset: {
-        bottom: blankSize.value,
-      },
-    };
-  });
-  const animatedStyle = useAnimatedStyle(() => ({
-    height: withTiming(blankSize.value, {
-      duration: 250,
-    }),
-  }));
   const prevLengthRef = useRef(messages.length);
+
   useEffect(() => {
     const shouldScroll =
       messages.length > prevLengthRef.current &&
@@ -166,9 +132,9 @@ export const ConversationContent = ({
     if (shouldScroll) {
       flatListRef.current?.scrollToEnd();
     }
-
     prevLengthRef.current = messages.length;
-  }, [messages, blankSize.value]);
+  }, [messages]);
+
   return (
     <GestureDetector gesture={panGesture}>
       <View style={{ flex: 1 }}>
@@ -198,9 +164,7 @@ export const ConversationContent = ({
             paddingBottom: blankSize.value,
           }}
           scrollEventThrottle={16}
-          //   ListFooterComponent={<Animated.View style={[animatedStyle]} />}
-          //  animatedProps={animatedProps}
-        />
+            />
       </View>
     </GestureDetector>
   );
