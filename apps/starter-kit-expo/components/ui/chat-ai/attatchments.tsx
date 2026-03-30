@@ -1,4 +1,4 @@
-
+'use client';
 
 import React, {
   createContext,
@@ -8,6 +8,7 @@ import React, {
   type ComponentProps,
   type ReactNode,
 } from 'react';
+import { Platform } from 'react-native';
 
 // Gluestack UI
 import { Box } from '@/components/ui/box';
@@ -19,7 +20,7 @@ import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip';
 // AI SDK Types
 import type { FileUIPart, SourceDocumentUIPart } from 'ai';
 
-// Icons (lucide-react-native)
+// Icons
 import {
   FileText,
   Globe,
@@ -152,6 +153,8 @@ export const Attachment = ({
     [data, mediaCategory, onRemove, variant]
   );
 
+  const isWeb = Platform.OS === 'web';
+
   return (
     <AttachmentContext.Provider value={contextValue}>
       <Box
@@ -165,6 +168,13 @@ export const Attachment = ({
         {...props}
       >
         {children}
+
+        {/* Remove Button - Always visible on Native, hover on Web */}
+        {onRemove && (
+          <AttachmentRemove
+            className={isWeb ? '' : 'opacity-100 absolute top-1 right-1'}
+          />
+        )}
       </Box>
     </AttachmentContext.Provider>
   );
@@ -228,7 +238,7 @@ export const AttachmentPreview = ({
 };
 
 // ============================================================================
-// AttachmentRemove
+// AttachmentRemove - Now controlled by platform in Attachment
 // ============================================================================
 export type AttachmentRemoveProps = ComponentProps<typeof Button> & {
   label?: string;
@@ -246,11 +256,19 @@ export const AttachmentRemove = ({
 
   if (!onRemove) return null;
 
+  const isWeb = Platform.OS === 'web';
+
   return (
     <Button
       onPress={handlePress}
       className={`
-        ${variant === 'grid' ? 'absolute top-2 right-2 size-6 rounded-full bg-background/80 opacity-0 group-hover:opacity-100' : ''}
+        ${
+          variant === 'grid'
+            ? isWeb
+              ? 'absolute top-2 right-2 size-6 rounded-full bg-background/80 opacity-0 group-hover:opacity-100'
+              : 'absolute top-1 right-1 size-6 rounded-full bg-background/90'
+            : ''
+        }
         ${variant === 'inline' ? 'size-5 opacity-0 group-hover:opacity-100' : ''}
         ${variant === 'list' ? 'size-8 shrink-0' : ''}
         ${className}
@@ -265,13 +283,13 @@ export const AttachmentRemove = ({
 };
 
 // ============================================================================
-// AttachmentHoverCard (Fixed for Gluestack Tooltip)
+// AttachmentHoverCard (Only for Web - Tooltip)
 // ============================================================================
 export type AttachmentHoverCardProps = Omit<
   ComponentProps<typeof Tooltip>,
   'trigger' | 'children'
 > & {
-  children: ReactNode; // First child = trigger, rest = content
+  children: ReactNode;
 };
 
 export const AttachmentHoverCard = ({
@@ -279,14 +297,16 @@ export const AttachmentHoverCard = ({
   placement = 'top',
   ...props
 }: AttachmentHoverCardProps) => {
-  const childrenArray = React.Children.toArray(children);
+  // On Native we don't use hover card, so just render children normally
+  if (Platform.OS !== 'web') {
+    return <>{children}</>;
+  }
 
+  const childrenArray = React.Children.toArray(children);
   const triggerElement = childrenArray[0];
   const content = childrenArray.slice(1);
 
-  if (!triggerElement) {
-    return <>{children}</>;
-  }
+  if (!triggerElement) return <>{children}</>;
 
   return (
     <Tooltip
