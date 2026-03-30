@@ -26,5 +26,5 @@ textarea/
 toast/
 tooltip/
 divider/
-
+!src/**
 
