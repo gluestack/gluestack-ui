@@ -1,4 +1,8 @@
-import type { PressableProps } from 'react-native';
+import type {
+  FlatList as RNFlatList,
+  PressableProps,
+  SectionList as RNSectionList,
+} from 'react-native';
 
 export interface InterfaceBottomSheetProps {
   /**
@@ -128,11 +132,10 @@ export type IBottomSheetComponentType<
       React.PropsWithoutRef<ScrollViewProps>
   >;
   FlatList: React.ForwardRefExoticComponent<
-    React.RefAttributes<FlatListProps> & React.PropsWithoutRef<FlatListProps>
+    React.PropsWithoutRef<FlatListProps> & React.RefAttributes<RNFlatList>
   >;
   SectionList: React.ForwardRefExoticComponent<
-    React.RefAttributes<SectionListProps> &
-      React.PropsWithoutRef<SectionListProps>
+    React.PropsWithoutRef<SectionListProps> & React.RefAttributes<RNSectionList>
   >;
   TextInput: React.ForwardRefExoticComponent<
     React.RefAttributes<TextInputProps> &

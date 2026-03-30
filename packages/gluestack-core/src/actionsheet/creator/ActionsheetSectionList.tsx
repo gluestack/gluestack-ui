@@ -1,11 +1,11 @@
 import React, { forwardRef } from 'react';
 
-export function ActionsheetSectionList<T>(
-  StyledActionsheetSectionList: React.ComponentType<T>
+export function ActionsheetSectionList<P>(
+  StyledActionsheetSectionList: React.ComponentType<P>
 ) {
-  return forwardRef(
-    ({ ...props }: { children?: React.ReactNode | string }, ref?: any) => {
-      return <StyledActionsheetSectionList ref={ref} {...(props as T)} />;
+  return forwardRef<any, React.PropsWithoutRef<P>>(
+    function ActionsheetSectionList(props, ref) {
+      return <StyledActionsheetSectionList ref={ref} {...(props as P)} />;
     }
   );
 }
