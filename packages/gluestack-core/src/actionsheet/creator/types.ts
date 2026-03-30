@@ -1,4 +1,9 @@
-import type { PressableProps } from 'react-native';
+import type {
+  FlatList as RNFlatList,
+  PressableProps,
+  SectionList as RNSectionList,
+  VirtualizedList,
+} from 'react-native';
 
 export interface InterfaceActionsheetProps {
   /**
@@ -101,15 +106,14 @@ export type IActionsheetComponentType<
       React.PropsWithoutRef<ScrollViewProps>
   >;
   VirtualizedList: React.ForwardRefExoticComponent<
-    React.RefAttributes<VirtualizedListProps> &
-      React.PropsWithoutRef<VirtualizedListProps>
+    React.PropsWithoutRef<VirtualizedListProps> &
+      React.RefAttributes<VirtualizedList<any>>
   >;
   FlatList: React.ForwardRefExoticComponent<
-    React.RefAttributes<FlatListProps> & React.PropsWithoutRef<FlatListProps>
+    React.PropsWithoutRef<FlatListProps> & React.RefAttributes<RNFlatList>
   >;
   SectionList: React.ForwardRefExoticComponent<
-    React.RefAttributes<SectionListProps> &
-      React.PropsWithoutRef<SectionListProps>
+    React.PropsWithoutRef<SectionListProps> & React.RefAttributes<RNSectionList>
   >;
   SectionHeaderText: React.ForwardRefExoticComponent<
     React.RefAttributes<SectionHeaderTextProps> &

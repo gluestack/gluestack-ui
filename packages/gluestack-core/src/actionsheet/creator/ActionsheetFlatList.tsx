@@ -1,11 +1,12 @@
 import React, { forwardRef } from 'react';
 
-export function ActionsheetFlatList<T>(
-  StyledActionsheetFlatList: React.ComponentType<T>
+export function ActionsheetFlatList<P>(
+  StyledActionsheetFlatList: React.ComponentType<P>
 ) {
-  return forwardRef(
-    ({ ...props }: { children?: React.ReactNode | string }, ref?: any) => {
-      return <StyledActionsheetFlatList ref={ref} {...(props as T)} />;
-    }
-  );
+  return forwardRef<any, React.PropsWithoutRef<P>>(function ActionsheetFlatList(
+    props,
+    ref
+  ) {
+    return <StyledActionsheetFlatList ref={ref} {...(props as P)} />;
+  });
 }
