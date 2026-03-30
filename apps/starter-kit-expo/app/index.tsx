@@ -2,10 +2,14 @@
 
 import {
   Attachment,
+  AttachmentHoverCard,
+  AttachmentHoverCardContent,
   AttachmentPreview,
   AttachmentRemove,
   Attachments,
 } from '@/components/ui/chat-ai/attatchments';
+
+import { Image } from '@/components/ui/image';
 
 import { memo, useCallback, useState } from 'react';
 import { View } from 'react-native';
@@ -62,7 +66,17 @@ const AttachmentItem = memo(({ attachment, onRemove }: AttachmentItemProps) => {
 
   return (
     <Attachment data={attachment} onRemove={handleRemove}>
-      <AttachmentPreview />
+      <AttachmentHoverCard>
+        <AttachmentPreview /> {/* ← This becomes the trigger */}
+        <AttachmentHoverCardContent>
+          <Image
+            source={{ uri: attachment.url }}
+            className="w-64 h-64 rounded-lg"
+            alt={attachment.filename}
+          />
+        </AttachmentHoverCardContent>
+      </AttachmentHoverCard>
+
       <AttachmentRemove />
     </Attachment>
   );

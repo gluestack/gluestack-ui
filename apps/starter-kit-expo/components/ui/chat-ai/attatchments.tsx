@@ -153,8 +153,6 @@ export const Attachment = ({
     [data, mediaCategory, onRemove, variant]
   );
 
-  const isWeb = Platform.OS === 'web';
-
   return (
     <AttachmentContext.Provider value={contextValue}>
       <Box
@@ -169,10 +167,14 @@ export const Attachment = ({
       >
         {children}
 
-        {/* Remove Button - Always visible on Native, hover on Web */}
+        {/* Remove Button */}
         {onRemove && (
           <AttachmentRemove
-            className={isWeb ? '' : 'opacity-100 absolute top-1 right-1'}
+            className={
+              Platform.OS === 'web'
+                ? ''
+                : 'opacity-100 absolute top-1 right-1 z-10'
+            }
           />
         )}
       </Box>
@@ -238,7 +240,7 @@ export const AttachmentPreview = ({
 };
 
 // ============================================================================
-// AttachmentRemove - Now controlled by platform in Attachment
+// AttachmentRemove
 // ============================================================================
 export type AttachmentRemoveProps = ComponentProps<typeof Button> & {
   label?: string;
@@ -251,12 +253,11 @@ export const AttachmentRemove = ({
   ...props
 }: AttachmentRemoveProps) => {
   const { onRemove, variant } = useAttachmentContext();
+  const isWeb = Platform.OS === 'web';
 
   const handlePress = useCallback(() => onRemove?.(), [onRemove]);
 
   if (!onRemove) return null;
-
-  const isWeb = Platform.OS === 'web';
 
   return (
     <Button
@@ -269,21 +270,21 @@ export const AttachmentRemove = ({
               : 'absolute top-1 right-1 size-6 rounded-full bg-background/90'
             : ''
         }
-        ${variant === 'inline' ? 'size-5 opacity-0 group-hover:opacity-100' : ''}
-        ${variant === 'list' ? 'size-8 shrink-0' : ''}
+        ${variant === 'inline' ? 'size-5 ml-auto' : ''}
+        ${variant === 'list' ? 'size-8 shrink-0 ml-auto' : ''}
         ${className}
       `}
       variant="ghost"
       size="sm"
       {...props}
     >
-      {children ?? <X size={variant === 'grid' ? 14 : 12} />}
+      {children ?? <X color="#ef4444" size={variant === 'grid' ? 14 : 12} />}
     </Button>
   );
 };
 
 // ============================================================================
-// AttachmentHoverCard (Only for Web - Tooltip)
+// AttachmentHoverCard - Available for ALL variants (same as original shadcn)
 // ============================================================================
 export type AttachmentHoverCardProps = Omit<
   ComponentProps<typeof Tooltip>,
@@ -295,22 +296,26 @@ export type AttachmentHoverCardProps = Omit<
 export const AttachmentHoverCard = ({
   children,
   placement = 'top',
+  openDelay = 0,
+  closeDelay = 100,
   ...props
 }: AttachmentHoverCardProps) => {
-  // On Native we don't use hover card, so just render children normally
-  if (Platform.OS !== 'web') {
+  const childrenArray = React.Children.toArray(children);
+  const triggerElement = childrenArray[0];
+  const contentElements = childrenArray.slice(1);
+
+  if (!triggerElement) {
     return <>{children}</>;
   }
 
-  const childrenArray = React.Children.toArray(children);
-  const triggerElement = childrenArray[0];
-  const content = childrenArray.slice(1);
-
-  if (!triggerElement) return <>{children}</>;
-
+  // Works on all variants (grid, inline, list)
+  // On Web → hover
+  // On Native → long press
   return (
     <Tooltip
       placement={placement}
+      openDelay={openDelay}
+      closeDelay={closeDelay}
       trigger={(triggerProps) => {
         if (React.isValidElement(triggerElement)) {
           return React.cloneElement(triggerElement, {
@@ -322,20 +327,16 @@ export const AttachmentHoverCard = ({
       }}
       {...props}
     >
-      {content}
+      {contentElements}
     </Tooltip>
   );
 };
-
-export type AttachmentHoverCardContentProps = ComponentProps<
-  typeof TooltipContent
->;
 
 export const AttachmentHoverCardContent = ({
   className = '',
   children,
   ...props
-}: AttachmentHoverCardContentProps) => (
+}: ComponentProps<typeof TooltipContent>) => (
   <TooltipContent className={`w-auto p-2 ${className}`} {...props}>
     {children}
   </TooltipContent>
