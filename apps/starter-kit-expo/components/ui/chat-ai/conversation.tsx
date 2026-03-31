@@ -33,6 +33,7 @@ type BlankContextType = {
   blankSize: SharedValue<number>;
   userMessageHeight: SharedValue<number>;
   assistantMessageHeight: SharedValue<number>;
+  messagesContainerHeight: SharedValue<number>;
 };
 
 const BlankContext = createContext<BlankContextType | null>(null);
@@ -41,9 +42,16 @@ export const BlankProvider = ({ children }: { children: ReactNode }) => {
   const blankSize = useSharedValue(0); // ← created ONLY ONCE
   const userMessageHeight = useSharedValue(0);
   const assistantMessageHeight = useSharedValue(0);
+  const messagesContainerHeight = useSharedValue(0);
+
   return (
     <BlankContext.Provider
-      value={{ blankSize, userMessageHeight, assistantMessageHeight }}
+      value={{
+        blankSize,
+        userMessageHeight,
+        assistantMessageHeight,
+        messagesContainerHeight,
+      }}
     >
       {children}
     </BlankContext.Provider>
@@ -134,10 +142,16 @@ export const ConversationContent = ({
     }
     prevLengthRef.current = messages.length;
   }, [messages]);
-
+  const { messagesContainerHeight } = useBlankContext();
   return (
     <GestureDetector gesture={panGesture}>
-      <View style={{ flex: 1 }}>
+      <View
+        style={{ flex: 1 }}
+        onLayout={(e) => {
+          const height = e.nativeEvent.layout.height;
+          messagesContainerHeight.value = height;
+        }}
+      >
         <AnimatedLegendList
           ref={flatListRef}
           keyboardDismissMode={
@@ -164,7 +178,7 @@ export const ConversationContent = ({
             paddingBottom: blankSize.value,
           }}
           scrollEventThrottle={16}
-            />
+        />
       </View>
     </GestureDetector>
   );

@@ -49,7 +49,7 @@ export function useBlankSize({
 
       const nextBlank = Math.max(
         0,
-        windowHeight - pairedHeight - 100 - insets.bottom - insets.top
+        context.messagesContainerHeight.value - pairedHeight 
       );
 
       context.blankSize.value = nextBlank;
