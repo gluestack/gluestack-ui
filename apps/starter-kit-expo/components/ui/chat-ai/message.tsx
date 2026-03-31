@@ -7,7 +7,7 @@ import React, {
   useState,
   useMemo,
 } from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Alert,Image } from 'react-native';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import Animated from 'react-native-reanimated';
@@ -53,6 +53,7 @@ export type MessageProps = {
   children: React.ReactNode;
   className?: string;
   index: number;
+  message: UIMessage;
 };
 
 export type MessageContentProps = {
@@ -63,9 +64,10 @@ export type MessageContentProps = {
 // ==================== MAIN MESSAGE COMPONENT ====================
 
 export const Message = memo(
-  ({ role, children, className, index }: MessageProps) => {
+  ({ role, children, className, index, message }: MessageProps) => {
     const isUserFirstMessage = index === 0;
-
+    // console.log(message)
+   console.log('content preview:', message.parts?.map((part) => part.url?.slice(0,50)));
     const {
       style: animationStyle,
       ref: animRef,
@@ -143,11 +145,60 @@ export const MessageContent = memo(
 
 // ==================== MESSAGE RESPONSE ====================
 
-export const MessageResponse = memo(
-  ({ children }: { children: React.ReactNode }) => (
-    <Text className="text-base text-white  leading-6">{children}</Text>
-  )
-);
+export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
+  if (!message.parts) {
+    return (
+      <Text className="text-base text-white leading-6">{message.content}</Text>
+    );
+  }
+
+  return (
+    <View style={{ gap: 8 }}>
+      {message.parts.map((part, index) => {
+        // 📝 TEXT (sometimes comes as reasoning/text)
+        if (part.type === 'text' || part.type === 'reasoning') {
+          return (
+            <Text key={index} className="text-base text-white leading-6">
+              {part.text || ''}
+            </Text>
+          );
+        }
+
+        // 🖼️ IMAGE (THIS IS YOUR CASE)
+        if (part.type === 'file') {
+          console.log('image part:', {
+            mimeType: part.mimeType,
+            hasData: !!part.data,
+            hasUrl: !!part.url,
+          });
+
+          let uri = '';
+
+          if (part.url) {
+            uri = part.url;
+            console.log('uri: usir worked only ', uri.slice(0,50))
+          } else if (part.data && part.mimeType) {
+            uri = `data:${part.mimeType};base64,${part.data}`;
+          }
+
+          if (!uri) return null;
+
+          return (
+            <Image
+              key={index}
+              source={{ uri }}
+              style={{ width: 300, height: 300, borderRadius: 16 }}
+              resizeMode="cover"
+            />
+          );
+        }
+
+        // ❌ ignore step-start etc
+        return null;
+      })}
+    </View>
+  );
+});
 
 // ==================== MESSAGE TOOLBAR (Now auto gets role) ====================
 

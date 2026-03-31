@@ -75,13 +75,9 @@ const PromptInputAttachmentsDisplay = () => {
 };
 
 const renderMessage: ListRenderItem<UIMessage> = ({ item: message, index }) => (
-  <Message role={message.role} index={index}>
-    <MessageContent role={message.role}>
-      {message.parts
-        ?.filter((part) => part.type === 'text')
-        .map((part, i) => (
-          <MessageResponse key={i}>{part.text}</MessageResponse>
-        ))}
+  <Message role={message.role} message={message} index={index}>
+    <MessageContent>
+      <MessageResponse message={message} />
     </MessageContent>
 
     <MessageToolbar>

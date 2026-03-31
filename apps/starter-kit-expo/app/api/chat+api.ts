@@ -9,7 +9,7 @@ export async function POST(request: Request) {
   });
 
   const result = streamText({
-    model: openrouter('anthropic/claude-3.5-sonnet'),
+    model: openrouter('openai/gpt-5-image-mini'),
     messages: await convertToModelMessages(messages),
   });
 
