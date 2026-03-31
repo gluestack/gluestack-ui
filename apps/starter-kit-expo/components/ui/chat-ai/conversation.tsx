@@ -137,7 +137,7 @@ export const ConversationContent = ({
 
   return (
     <GestureDetector gesture={panGesture}>
-      <View style={{ flex: 1,backgroundColor:'red' }}>
+      <View style={{ flex: 1 }}>
         <AnimatedLegendList
           ref={flatListRef}
           keyboardDismissMode={

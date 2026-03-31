@@ -1,4 +1,4 @@
-'use client';
+import { useChat } from '@ai-sdk/react';
 
 import {
   Attachment,
@@ -7,6 +7,26 @@ import {
   Attachments,
 } from '@/components/ui/chat-ai/attatchments';
 
+import { DefaultChatTransport, UIMessage } from 'ai';
+import { fetch as expoFetch } from 'expo/fetch'; // ← This is required for Expo
+import { configureReanimatedLogger } from 'react-native-reanimated';
+
+configureReanimatedLogger({
+  strict: false,
+});
+import {
+  Conversation,
+  ConversationContent,
+  Message,
+  MessageAction,
+  MessageToolbar,
+  MessageContent,
+  MessageResponse,
+} from '@/components/ui/chat-ai';
+import { ConversationScrollButton } from '@/components/ui/chat-ai/conversation';
+import { ListRenderItem } from 'react-native';
+import { Text } from 'react-native';
+import { CopyCheck } from 'lucide-react-native';
 import {
   PromptInput,
   PromptInputProvider,
@@ -18,6 +38,7 @@ import {
 
 import { memo, useCallback } from 'react';
 import { View } from 'react-native';
+
 
 // ================= ATTACHMENT ITEM =================
 const AttachmentItem = memo(({ attachment, onRemove }: any) => {
@@ -53,25 +74,70 @@ const PromptInputAttachmentsDisplay = () => {
   );
 };
 
+const renderMessage: ListRenderItem<UIMessage> = ({ item: message, index }) => (
+  <Message role={message.role} index={index}>
+    <MessageContent role={message.role}>
+      {message.parts
+        ?.filter((part) => part.type === 'text')
+        .map((part, i) => (
+          <MessageResponse key={i}>{part.text}</MessageResponse>
+        ))}
+    </MessageContent>
+
+    <MessageToolbar>
+      <MessageAction onPress={() => {}}>
+        <CopyCheck strokeWidth={1} size={20} color="white" />
+      </MessageAction>
+    </MessageToolbar>
+  </Message>
+);
+
 // ================= EXAMPLE =================
 const Example = () => {
-  const handleSubmit = useCallback((message: PromptInputMessage) => {
-    console.log('Submitted Message:', message);
-  }, []);
+  const { messages, status, sendMessage, error } = useChat({
+    transport: new DefaultChatTransport({
+      fetch: expoFetch as unknown as typeof globalThis.fetch, // ← Critical for React Native
+      api: 'http://10.153.0.82:8081/api/chat', // or use generateAPIUrl('/api/chat') if you have a helper
+    }),
+    onError: (err) => console.error('Chat error:', err),
+  });
+  const handleSubmit = useCallback(
+    (message: PromptInputMessage) => {
+      console.log('Submitted Message:', message);
+
+      sendMessage({
+        text: message.text, // 👈 important
+        // attachments: message.files, // 👈 optional (if you support attachments)
+      });
+    },
+    [sendMessage]
+  );
 
   return (
     <View className="flex-1 pt-safe bg-white">
+      <Conversation>
+        <ConversationContent renderItem={renderMessage} messages={messages} />
+
+        {error && (
+          <Text className="p-4 text-red-500 text-center">
+            Error: {error.message}
+          </Text>
+        )}
+
+        {status === 'streaming' && (
+          <Text className="px-4 py-2 text-slate-500">AI is thinking...</Text>
+        )}
+
+        <ConversationScrollButton />
+      </Conversation>
       <PromptInputProvider>
-        {/* Attachments */}
         <PromptInputAttachmentsDisplay />
 
-        {/* Input */}
         <PromptInput onSubmit={handleSubmit}>
-          {/* 🔥 MENU INSIDE INPUT */}
           <PromptInputActionMenu>
-            <PromptInputActionMenuContent />
+            <PromptInputActionMenuContent className="text-primary-foreground" />
           </PromptInputActionMenu>
-        </PromptInput>
+        </PromptInput >
       </PromptInputProvider>
     </View>
   );

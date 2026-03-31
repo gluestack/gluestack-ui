@@ -11,6 +11,7 @@ import React, {
 import { Platform } from 'react-native';
 
 // Gluestack UI
+import { ScrollView } from 'react-native';
 import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
@@ -115,16 +116,22 @@ export const Attachments = ({
 
   return (
     <AttachmentsContext.Provider value={contextValue}>
-      <Box
-        className={`
-          flex items-start 
-          ${variant === 'list' ? 'flex-col gap-2' : 'flex-wrap gap-2'}
-          ${variant === 'grid' ? 'ml-auto w-fit' : ''}
-          ${className}
-        `}
+        <Box>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{
+          flexDirection: variant === 'list' ? 'column' : 'row',
+          gap: 8,
+ 
+          height: 100,
+      
+        }}
+        className={className}
         {...props}
       >
         {children}
+      </ScrollView>
       </Box>
     </AttachmentsContext.Provider>
   );
