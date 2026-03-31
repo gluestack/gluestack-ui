@@ -50,8 +50,22 @@ function Slider<StyledSliderProps>(
       }
       props = newProps;
 
+      // orientation / isReversed are destructured out of the incoming props object, so `props`
+      // no longer contains them — hooks that read props.orientation must receive them explicitly.
+      const ariaSliderProps = {
+        ...(props as object),
+        orientation,
+        isReversed,
+      } as any;
+
       const { onLayout, layout: trackLayout } = useLayout();
-      const updatedProps: ISliderProps = Object.assign({}, props);
+      const trackRef = React.useRef<{ measureInWindow?: Function } | null>(
+        null
+      );
+      const updatedProps: ISliderProps = Object.assign({}, props, {
+        orientation,
+        isReversed,
+      });
 
       if (isReadOnly || isDisabled) {
         updatedProps.isDisabled = true;
@@ -73,10 +87,11 @@ function Slider<StyledSliderProps>(
       });
 
       const { trackProps } = useSlider(
-        props as unknown as any,
+        ariaSliderProps,
         state,
         trackLayout,
-        isReversed
+        isReversed,
+        trackRef
       );
       const contextValue = React.useMemo(() => {
         return {
@@ -96,6 +111,7 @@ function Slider<StyledSliderProps>(
           setIsHovered,
           trackProps,
           onTrackLayout: onLayout,
+          trackRef,
           sliderTrackHeight,
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -119,6 +135,7 @@ function Slider<StyledSliderProps>(
         isFocusVisibleProp,
         isPressedProp,
         sliderTrackHeight,
+        trackRef,
       ]);
 
       return (

@@ -54,6 +54,9 @@ function SliderFilledTrack<StyledSliderFilledTrack>(
       return (
         <StyledSliderFilledTrack
           {...props}
+          // Let presses hit the track Pressable so locationX/Y (and web offsets) are relative
+          // to the full track, not this partial-height/width child.
+          pointerEvents="none"
           ref={mergeRefs([_ref, ref])}
           style={[style, positionProps]}
           states={{

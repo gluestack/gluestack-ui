@@ -33,7 +33,8 @@ export function useSlider(
   props: AriaSliderProps,
   state: SliderState,
   trackLayout: any,
-  isReversed?: boolean
+  isReversed?: boolean,
+  trackRef?: React.RefObject<{ measureInWindow?: Function } | null>
 ): SliderAria {
   let { labelProps, fieldProps } = useLabel(props);
 
@@ -55,11 +56,11 @@ export function useSlider(
       state.values.every((_, i) => !state.isThumbDragging(i))
     ) {
       let size = isVertical ? trackLayout.height : trackLayout.width;
-      // Find the closest thumb
-      const trackPosition = trackLayout[isVertical ? 'y' : 'x'];
-      const clickPosition = isVertical ? clientY : clientX;
-      const offset = clickPosition - trackPosition;
-      let percent = offset / size;
+      // Native: clientX/clientY here are locationX/locationY from the press — relative to the
+      // track. Do not subtract layout.x/y (those are the track's position in its parent).
+      let offset = isVertical ? clientY : clientX;
+      offset = Math.max(0, Math.min(offset, size));
+      let percent = size > 0 ? offset / size : 0;
       if (reverseX) {
         if (!isVertical) {
           percent = 1 - percent;
@@ -107,9 +108,30 @@ export function useSlider(
     groupProps: {},
     trackProps: {
       onPress: (e: any) => {
-        const { locationX, locationY } = e.nativeEvent;
-        // @ts-ignore
-        onDownTrack(e, undefined, locationX, locationY);
+        const ne = e.nativeEvent;
+        const pageX = ne.pageX;
+        const pageY = ne.pageY;
+        const node = trackRef?.current;
+
+        const fallback = () => {
+          const { locationX = 0, locationY = 0 } = ne;
+          onDownTrack(e, undefined, locationX, locationY);
+        };
+
+        if (
+          node &&
+          typeof node.measureInWindow === 'function' &&
+          typeof pageX === 'number' &&
+          typeof pageY === 'number'
+        ) {
+          node.measureInWindow((x: number, y: number) => {
+            const ox = pageX - x;
+            const oy = pageY - y;
+            onDownTrack(e, undefined, ox, oy);
+          });
+        } else {
+          fallback();
+        }
       },
     },
     outputProps: {},
