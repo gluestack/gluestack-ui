@@ -192,7 +192,7 @@ export const PromptInput = ({ children, onSubmit }: PromptInputProps) => {
   };
 
   return (
-    <View className="border border-border rounded-2xl p-4 bg-background">
+    <View className="border-t border-border dark:bg-slate-950 p-4 bg-background">
       <TextInput
         value={text}
         onChangeText={setText}

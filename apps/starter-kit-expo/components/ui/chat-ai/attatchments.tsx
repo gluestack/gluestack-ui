@@ -116,22 +116,20 @@ export const Attachments = ({
 
   return (
     <AttachmentsContext.Provider value={contextValue}>
-        <Box>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{
-          flexDirection: variant === 'list' ? 'column' : 'row',
-          gap: 8,
- 
-          height: 100,
-      
-        }}
-        className={className}
-        {...props}
-      >
-        {children}
-      </ScrollView>
+      <Box>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            flexDirection: variant === 'list' ? 'column' : 'row',
+            gap: 8,
+            height: 100,
+          }}
+          className={`${className} dark:bg-slate-950`}
+          {...props}
+        >
+          {children}
+        </ScrollView>
       </Box>
     </AttachmentsContext.Provider>
   );

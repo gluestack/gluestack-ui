@@ -101,6 +101,8 @@ const Example = () => {
     }),
     onError: (err) => console.error('Chat error:', err),
   });
+
+  // console.log(messages)
   const handleSubmit = useCallback(
     (message: PromptInputMessage) => {
       console.log('Submitted Message:', message);
@@ -114,7 +116,7 @@ const Example = () => {
   );
 
   return (
-    <View className="flex-1 pt-safe bg-white">
+    <View className="flex-1 py-safe bg-white">
       <Conversation>
         <ConversationContent renderItem={renderMessage} messages={messages} />
 
