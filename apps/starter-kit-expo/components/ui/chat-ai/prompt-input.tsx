@@ -140,18 +140,21 @@ export const PromptInputProvider = ({ children }: { children: ReactNode }) => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
       allowsMultipleSelection: true,
-      quality: 0.85,
+      quality: 0.10,
+      base64: true,
     });
 
     if (!result.canceled && result.assets) {
+    
       const newFiles = result.assets.map((asset) => ({
         id: generateId(),
         filename: asset.fileName || `image-${Date.now()}.jpg`,
         mediaType: asset.mimeType || 'image/jpeg',
         type: 'file' as const,
-        url: asset.uri,
+        url: `data:${asset.mimeType || 'image/jpeg'};base64,${asset.base64}`,
       }));
       add(newFiles);
+     
     }
   }, [add]);
 

@@ -97,14 +97,17 @@ const Example = () => {
     }),
     onError: (err) => console.error('Chat error:', err),
   });
-
+console.log('messages: ', messages);
   // console.log(messages)
   const handleSubmit = useCallback(
     (message: PromptInputMessage) => {
-      console.log('Submitted Message:', message);
+      message.files.forEach((file) => {
+        console.log("submit message ",Object.keys(file));
+      });
 
       sendMessage({
-        text: message.text, // 👈 important
+        text: message.text,
+       files: message.files // 👈 important
         // attachments: message.files, // 👈 optional (if you support attachments)
       });
     },
