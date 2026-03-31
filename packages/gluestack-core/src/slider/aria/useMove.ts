@@ -49,14 +49,12 @@ export function useMove(props: any): MoveResult {
             return;
           }
 
-          if (deltaX) {
-            onMove({
-              type: 'move',
-              pointerType: 'touch',
-              deltaX: deltaX,
-              deltaY: deltaY,
-            });
-          }
+          onMove({
+            type: 'move',
+            pointerType: 'touch',
+            deltaX: deltaX,
+            deltaY: deltaY,
+          });
         },
         onPanResponderRelease: () => {
           onMoveEnd?.({

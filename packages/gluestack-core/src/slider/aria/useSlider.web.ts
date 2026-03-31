@@ -13,6 +13,32 @@ interface MoveEvent {
   deltaY: number;
 }
 
+/** Viewport client coords → offset along the track (RN onLayout has x/y, not top/left). */
+function getTrackPointerOffset(
+  e: React.UIEvent,
+  clientX: number,
+  clientY: number,
+  isVertical: boolean,
+  trackLayout: {
+    width: number;
+    height: number;
+    top?: number;
+    left?: number;
+    x?: number;
+    y?: number;
+  }
+): number {
+  const current = e.currentTarget as HTMLElement | null;
+  if (current && typeof current.getBoundingClientRect === 'function') {
+    const rect = current.getBoundingClientRect();
+    return isVertical ? clientY - rect.top : clientX - rect.left;
+  }
+  const trackPos = isVertical
+    ? (trackLayout.top ?? trackLayout.y ?? 0)
+    : (trackLayout.left ?? trackLayout.x ?? 0);
+  return (isVertical ? clientY : clientX) - trackPos;
+}
+
 interface SliderAria {
   /** Props for the label element. */
   labelProps: any;
@@ -123,11 +149,15 @@ function useSliderWeb(
       state.values.every((_, i) => !state.isThumbDragging(i))
     ) {
       let size = isVertical ? trackLayout.height : trackLayout.width;
-      // Find the closest thumb
-      const trackPosition = trackLayout[isVertical ? 'top' : 'left'];
-      const clickPosition = isVertical ? clientY : clientX;
-      const offset = clickPosition - trackPosition;
-      let percent = offset / size;
+      let offset = getTrackPointerOffset(
+        e,
+        clientX,
+        clientY,
+        isVertical,
+        trackLayout
+      );
+      offset = clamp(offset, 0, size);
+      let percent = size > 0 ? offset / size : 0;
       if (reverseX) {
         if (!isVertical) {
           percent = 1 - percent;
@@ -260,7 +290,8 @@ export const useSlider = (
   props: any,
   state: any,
   ref: any,
-  isReversed?: boolean
+  isReversed?: boolean,
+  _trackRef?: unknown
 ) => {
   let { groupProps: webGroupProps, ...rest } = useSliderWeb(
     props,

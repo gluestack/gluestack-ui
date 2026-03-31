@@ -12,6 +12,7 @@ function SliderTrack<StyledSliderTrackProps>(
     const {
       trackProps,
       onTrackLayout,
+      trackRef,
       isFocused,
       isFocusVisible,
       isDisabled,
@@ -22,7 +23,7 @@ function SliderTrack<StyledSliderTrackProps>(
     return (
       <StyledSliderTrack
         onLayout={onTrackLayout}
-        ref={mergeRefs([_ref, ref])}
+        ref={mergeRefs([trackRef, _ref, ref])}
         {...trackProps}
         style={[{ height: sliderTrackHeight }, style]}
         {...props}
