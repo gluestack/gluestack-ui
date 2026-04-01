@@ -169,7 +169,7 @@ export const PromptInputTextarea = () => {
       onChangeText={setText}
       placeholder="Let’s start building it"
       multiline
-      className="flex-1 text-base px-4 py-2 rounded-full bg-muted text-foreground placeholder:text-muted-foreground"
+      className="flex-1 text-base px-4 py-2 rounded-xl bg-muted text-foreground placeholder:text-muted-foreground"
     />
   );
 };
@@ -230,7 +230,11 @@ export const PromptInputActionMenuTrigger = ({ children, ...props }: any) => {
   );
 };
 
-export const PromptInputActionMenuContent = () => {
+export const PromptInputActionMenuContent = ({
+  trigger,
+}: {
+  trigger: (props: any) => React.ReactNode;
+}) => {
   const attachments = usePromptInputAttachments();
 
   const openDocumentPicker = useCallback(async () => {
@@ -250,15 +254,7 @@ export const PromptInputActionMenuContent = () => {
   }, [attachments]);
 
   return (
-    <Menu
-      placement="top"
-      offset={5}
-      trigger={(props) => (
-        <TouchableOpacity {...props}>
-          <Text className="text-xl text-primary">+</Text>
-        </TouchableOpacity>
-      )}
-    >
+    <Menu placement="top" offset={5} trigger={trigger}>
       <MenuItem onPress={attachments.openImagePicker}>
         <MenuItemLabel>Select Image</MenuItemLabel>
       </MenuItem>

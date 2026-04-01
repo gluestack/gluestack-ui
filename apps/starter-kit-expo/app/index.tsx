@@ -131,11 +131,14 @@ const Example = () => {
           <PromptInputBody>
             <PromptInputTools>
               <PromptInputActionMenu>
-                <PromptInputActionMenuTrigger />
-                <PromptInputActionMenuContent />
+                <PromptInputActionMenuContent
+                  trigger={(props: any) => (
+                    <PromptInputActionMenuTrigger {...props}>
+                      <Text className="text-3xl text-primary">+</Text>
+                    </PromptInputActionMenuTrigger>
+                  )}
+                />
               </PromptInputActionMenu>
-
-            
             </PromptInputTools>
 
             <PromptInputTextarea />
