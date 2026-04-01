@@ -206,28 +206,31 @@ export const PromptInput = ({ children, onSubmit }: PromptInputProps) => {
   return (
     <Animated.View
       style={inputAnimatedStyle}
-      className="border-t border-border bg-background p-4"
+      className="border-t border-border bg-background px-3 py-2"
     >
-      <TextInput
-        value={text}
-        onChangeText={setText}
-        placeholder="Type your message..."
-        multiline
-        className="min-h-20 text-base px-3 py-3 border border-border rounded-xl bg-background text-foreground placeholder:text-muted-foreground"
-        textAlignVertical="top"
-      />
+      <View className="flex-row items-center gap-2">
+        {children}
+        {/* Input */}
+        <TextInput
+          value={text}
+          onChangeText={setText}
+          placeholder="Let’s start building it"
+          multiline
+          className="flex-1 text-base px-4 py-2 rounded-full bg-muted text-foreground placeholder:text-muted-foreground"
+          textAlignVertical="center"
+        />
 
-      <View className="flex-row justify-between items-center mt-4">
+        {/* Send Button */}
         <TouchableOpacity
           onPress={handleSubmit}
           disabled={isDisabled}
-          className={`px-8 py-2.5 rounded-xl font-medium bg-primary ${isDisabled ? 'opacity-50' : ''}`}
+          className={`h-10 w-10 rounded-full items-center justify-center bg-primary ${
+            isDisabled ? 'opacity-50' : ''
+          }`}
         >
-          <Text className="text-primary-foreground">Send</Text>
+          <Text className="text-primary-foreground">↑</Text>
         </TouchableOpacity>
       </View>
-
-      {children}
     </Animated.View>
-  );
-};
+  );}
+

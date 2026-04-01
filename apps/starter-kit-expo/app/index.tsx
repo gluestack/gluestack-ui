@@ -107,7 +107,7 @@ const Example = () => {
   );
 
   return (
-    <View className="flex-1 pt-safe bg-white">
+    <View className="flex-1 py-safe">
       <Conversation>
         <ConversationContent renderItem={renderMessage} messages={messages} />
 
@@ -117,18 +117,13 @@ const Example = () => {
           </Text>
         )}
 
-        {status === 'streaming' && (
-          <Text className="px-4 py-2 text-slate-500">AI is thinking...</Text>
-        )}
-
         <ConversationScrollButton />
       </Conversation>
       <PromptInputProvider>
-        <PromptInputAttachmentsDisplay />
-
         <PromptInput onSubmit={handleSubmit}>
+          <PromptInputAttachmentsDisplay />
           <PromptInputActionMenu>
-            <PromptInputActionMenuContent className="text-primary-foreground" />
+            <PromptInputActionMenuContent />
           </PromptInputActionMenu>
         </PromptInput>
       </PromptInputProvider>
