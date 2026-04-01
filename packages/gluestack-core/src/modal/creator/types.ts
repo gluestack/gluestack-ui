@@ -42,6 +42,11 @@ export interface InterfaceModalProps {
    * @default false
    */
   useRNModal?: boolean;
+  /**
+   * The animation preset for the modal when using RN Modal.
+   * @default 'fade'
+   */
+  animationPreset?: 'fade' | 'slide' | 'none';
 }
 
 export interface IModalContentProps {
