@@ -229,7 +229,7 @@ const markdownRules = {
 export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
   const isUser = message.role === 'user';
 
-  // ✅ fallback (no parts yet)
+  // ✅ fallback
   if (!message || !message.parts) {
     return (
       <Markdown style={getMarkdownStyles(true)}>
@@ -238,18 +238,19 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
     );
   }
 
+const hasText = message.parts?.some((p) => p.type === 'text');
+const hasFile = message.parts?.some((p) => p.type === 'file');
+
+if (!hasText && !hasFile) {
+  return <Text style={{ color: '#64748b' }}>Thinking...</Text>;
+}
+
+
+
+  // ✅ FINAL RENDER
   return (
     <View className="gap-2">
       {message.parts.map((part, index) => {
-        // ✅ TEXT / MARKDOWN
-if(part.type === 'reasoning') {
-  return (
-    <Text key={index} style={{ color: '#64748b', fontStyle: 'italic' }}>
-      Thinking...
-    </Text>
-  );
-}
-       
         if (part.type === 'text') {
           return (
             <Markdown
@@ -262,13 +263,11 @@ if(part.type === 'reasoning') {
           );
         }
 
-        // ✅ IMAGE (base64 or URL)
         if (part.type === 'file') {
           let uri = '';
 
-          if (part.url) {
-            uri = part.url;
-          } else if (part.data && part.mimeType) {
+          if (part.url) uri = part.url;
+          else if (part.data && part.mimeType) {
             uri = `data:${part.mimeType};base64,${part.data}`;
           }
 
@@ -289,7 +288,6 @@ if(part.type === 'reasoning') {
     </View>
   );
 });
-
 // ==================== MESSAGE TOOLBAR ====================
 
 export type MessageToolbarProps = {
