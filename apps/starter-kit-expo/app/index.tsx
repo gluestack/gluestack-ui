@@ -34,6 +34,12 @@ import {
   PromptInputMessage,
   PromptInputActionMenu,
   PromptInputActionMenuContent,
+  PromptInputBody,
+  PromptInputTools,
+  PromptInputButton,
+  PromptInputTextarea,
+  PromptInputSubmit,
+  PromptInputActionMenuTrigger,
 } from '@/components/ui/chat-ai/prompt-input';
 
 import { memo, useCallback } from 'react';
@@ -122,9 +128,20 @@ const Example = () => {
       <PromptInputProvider>
         <PromptInput onSubmit={handleSubmit}>
           <PromptInputAttachmentsDisplay />
-          <PromptInputActionMenu>
-            <PromptInputActionMenuContent />
-          </PromptInputActionMenu>
+          <PromptInputBody>
+            <PromptInputTools>
+              <PromptInputActionMenu>
+                <PromptInputActionMenuTrigger />
+                <PromptInputActionMenuContent />
+              </PromptInputActionMenu>
+
+            
+            </PromptInputTools>
+
+            <PromptInputTextarea />
+
+            <PromptInputSubmit />
+          </PromptInputBody>
         </PromptInput>
       </PromptInputProvider>
     </View>
