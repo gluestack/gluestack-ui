@@ -177,7 +177,6 @@ const getMarkdownStyles = (isUser: boolean) => ({
   },
 });
 
-
 const markdownRules = {
   fence: (node, children, parent, styles) => {
     return (
@@ -243,7 +242,15 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
     <View className="gap-2">
       {message.parts.map((part, index) => {
         // ✅ TEXT / MARKDOWN
-        if (part.type === 'text' || part.type === 'reasoning') {
+if(part.type === 'reasoning') {
+  return (
+    <Text key={index} style={{ color: '#64748b', fontStyle: 'italic' }}>
+      Thinking...
+    </Text>
+  );
+}
+       
+        if (part.type === 'text') {
           return (
             <Markdown
               key={index}
@@ -323,8 +330,8 @@ export const MessageAction = ({
   };
 
   return (
-    <TouchableOpacity 
-      onPress={handlePress} 
+    <TouchableOpacity
+      onPress={handlePress}
       className="h-8 w-8 items-center justify-center"
     >
       {children}
@@ -399,9 +406,7 @@ export const MessageBranch = ({
 
   return (
     <MessageBranchContext.Provider value={contextValue}>
-      <View className={`w-full gap-2 ${className || ''}`}>
-        {children}
-      </View>
+      <View className={`w-full gap-2 ${className || ''}`}>{children}</View>
     </MessageBranchContext.Provider>
   );
 };
@@ -443,8 +448,8 @@ export const MessageBranchSelector = ({
 };
 
 export const MessageBranchPrevious = () => (
-  <TouchableOpacity 
-    onPress={() => {}} 
+  <TouchableOpacity
+    onPress={() => {}}
     className="h-8 w-8 items-center justify-center"
   >
     <ChevronLeft size={18} className="text-muted-foreground" />
@@ -452,8 +457,8 @@ export const MessageBranchPrevious = () => (
 );
 
 export const MessageBranchNext = () => (
-  <TouchableOpacity 
-    onPress={() => {}} 
+  <TouchableOpacity
+    onPress={() => {}}
     className="h-8 w-8 items-center justify-center"
   >
     <ChevronRight size={18} className="text-muted-foreground" />
