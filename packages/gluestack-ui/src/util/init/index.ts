@@ -2,7 +2,14 @@ import os from 'os';
 import { config, setStylingEngine } from '../../config';
 import { promisify } from 'util';
 import path, { join } from 'path';
-import { log, confirm, spinner, select, isCancel, cancel } from '@clack/prompts';
+import {
+  log,
+  confirm,
+  spinner,
+  select,
+  isCancel,
+  cancel,
+} from '@clack/prompts';
 import fs, { existsSync, writeFile } from 'fs-extra';
 import { checkIfInitialized, generateMonoRepoConfig } from '../config';
 import {
@@ -375,32 +382,56 @@ interface TSConfig {
   };
 }
 
-const stylingEngineOptions: Record<string, Array<{ value: string; label: string; hint: string }>> = {
+const stylingEngineOptions: Record<
+  string,
+  Array<{ value: string; label: string; hint: string }>
+> = {
   'nextjs': [
-    { value: 'nativewind', label: 'NativeWind v4 (Tailwind v3)', hint: 'Stable, production-ready' },
+    {
+      value: 'nativewind',
+      label: 'NativeWind v4 (Tailwind v3)',
+      hint: 'Stable, production-ready',
+    },
     // NativeWind v5 / UniWind for Next.js coming soon
   ],
   'expo': [
-    { value: 'nativewind-v5', label: 'NativeWind v5 (Tailwind v4)', hint: 'Latest NativeWind — CSS-first, no tailwind.config.js' },
-    { value: 'uniwind', label: 'UniWind (Tailwind v4)', hint: 'CSS-first theming with Tailwind v4' },
+    {
+      value: 'nativewind-v5',
+      label: 'NativeWind v5 (Tailwind v4)',
+      hint: 'Latest NativeWind — CSS-first, no tailwind.config.js',
+    },
+    {
+      value: 'uniwind',
+      label: 'UniWind (Tailwind v4)',
+      hint: 'CSS-first theming with Tailwind v4',
+    },
   ],
   'react-native-cli': [
-    { value: 'nativewind', label: 'NativeWind v4 (Tailwind v3)', hint: 'Stable, production-ready' },
+    {
+      value: 'nativewind',
+      label: 'NativeWind v4 (Tailwind v3)',
+      hint: 'Stable, production-ready',
+    },
     // NativeWind v5 / UniWind for RN CLI coming soon
   ],
 };
 
-async function promptStylingEngine(projectType: string): Promise<'nativewind' | 'nativewind-v5' | 'uniwind'> {
+async function promptStylingEngine(
+  projectType: string
+): Promise<'nativewind' | 'nativewind-v5' | 'uniwind'> {
   const options = stylingEngineOptions[projectType] || [];
-  const defaultStyle = (options[0]?.value ?? 'nativewind') as 'nativewind' | 'nativewind-v5' | 'uniwind';
+  const defaultStyle = (options[0]?.value ?? 'nativewind') as
+    | 'nativewind'
+    | 'nativewind-v5'
+    | 'uniwind';
 
   // Skip prompt if already set via CLI flag or yesToAll
   if (config.style !== 'nativewind' || config.yesToAll) {
-    const validValues = options.map(o => o.value);
+    const validValues = options.map((o) => o.value);
     if (!validValues.includes(config.style)) {
       log.warning(
         `\x1b[33m"${config.style}" is not yet supported for ${projectType} projects. ` +
-        `Falling back to ${defaultStyle}.\x1b[0m`
+          `Falling back to ${defaultStyle}.\x1b[0m`
       );
       return defaultStyle;
     }
@@ -428,7 +459,9 @@ async function promptStylingEngine(projectType: string): Promise<'nativewind' | 
 
 // Add version overrides/resolutions to package.json for all package managers
 // yarn uses "resolutions", npm uses "overrides", pnpm uses "pnpm.overrides", bun uses "overrides"
-async function addResolutions(resolutions: Record<string, string>): Promise<void> {
+async function addResolutions(
+  resolutions: Record<string, string>
+): Promise<void> {
   try {
     const pkgJsonPath = join(_currDir, 'package.json');
     const pkgJson = await fs.readJSON(pkgJsonPath);
@@ -438,7 +471,10 @@ async function addResolutions(resolutions: Record<string, string>): Promise<void
       pkgJson.resolutions = { ...(pkgJson.resolutions ?? {}), ...resolutions };
     } else if (versionManager === 'pnpm') {
       pkgJson.pnpm = pkgJson.pnpm ?? {};
-      pkgJson.pnpm.overrides = { ...(pkgJson.pnpm.overrides ?? {}), ...resolutions };
+      pkgJson.pnpm.overrides = {
+        ...(pkgJson.pnpm.overrides ?? {}),
+        ...resolutions,
+      };
     } else {
       // npm and bun both use "overrides"
       pkgJson.overrides = { ...(pkgJson.overrides ?? {}), ...resolutions };
@@ -450,19 +486,25 @@ async function addResolutions(resolutions: Record<string, string>): Promise<void
     }
 
     await fs.writeJSON(pkgJsonPath, pkgJson, { spaces: 2 });
-    const entries = Object.entries(resolutions).map(([k, v]) => `${k}@${v}`).join(', ');
+    const entries = Object.entries(resolutions)
+      .map(([k, v]) => `${k}@${v}`)
+      .join(', ');
     log.info(`✅ Added version overrides to package.json: ${entries}`);
   } catch (err) {
-    log.warning(`⚠ Could not update package.json overrides: ${(err as Error).message}`);
+    log.warning(
+      `⚠ Could not update package.json overrides: ${(err as Error).message}`
+    );
   }
 }
 
 const InitializeGlueStack = async ({
   projectType = 'library',
   isTemplate = false,
+  isMonorepo = false,
 }: {
   projectType: string;
   isTemplate?: boolean;
+  isMonorepo?: boolean;
 }) => {
   try {
     const initializeStatus = await checkIfInitialized(_currDir);
@@ -486,17 +528,27 @@ const InitializeGlueStack = async ({
     await cloneRepositoryAtRoot(join(_homeDir, config.gluestackDir));
     // Templates always live on main-v4-alpha — clone separately so they are
     // available even when the active styling engine uses main-v5-alpha.
-    await cloneTemplatesAtRoot(join(_homeDir, config.gluestackTemplatesCacheDir));
+    await cloneTemplatesAtRoot(
+      join(_homeDir, config.gluestackTemplatesCacheDir)
+    );
     const inputComponent = [config.providerComponent];
 
     // Check dependencies for the provider component
     const { components: providerDependencies } =
       await checkComponentDependencies(inputComponent);
 
+    // For monorepo mode, install project-level (styling) dependencies at the repo root
+    // so workspace package managers (yarn/pnpm) install them once for the whole monorepo.
     let additionalDependencies = await getProjectBasedDependencies(
       projectType,
-      config.style
+      config.style,
+      isMonorepo
     );
+
+    // providerDependencies are component names (used below when adding essential components)
+    const { components: providerComponentDependencies } =
+      await checkComponentDependencies(inputComponent);
+
     let versionManager: string | null = findLockFileType();
     if (!versionManager) {
       versionManager = await promptVersionManager();
@@ -508,14 +560,30 @@ const InitializeGlueStack = async ({
       await addResolutions({ lightningcss: '1.30.1' });
     }
 
-    await installDependencies(
-      inputComponent,
-      versionManager,
-      additionalDependencies
-    );
+    // If we're in monorepo mode (projectType 'library' and --monorepo was used),
+    // install project-level dependencies at the repo root rather than inside the components package.
+    const installTargetCwd =
+      projectType === 'library' &&
+      config.writableComponentsPath &&
+      config.writableComponentsPath.indexOf('packages') === -1
+        ? _currDir
+        : _currDir; // fallback to current dir; keep behavior same if detection fails
 
-    // Install native dependencies separately with proper version resolution
-    await installNativeDependencies(projectType);
+    // call installDependencies with current cwd set to installTargetCwd by temporarily changing process.cwd
+    const originalCwd = process.cwd();
+    try {
+      process.chdir(installTargetCwd);
+      await installDependencies(
+        inputComponent,
+        versionManager,
+        additionalDependencies
+      );
+
+      // Install native dependencies separately with proper version resolution
+      await installNativeDependencies(projectType);
+    } finally {
+      process.chdir(originalCwd);
+    }
 
     const s = spinner();
     s.start(
@@ -556,25 +624,65 @@ async function addProvider(isNextjs15: boolean | undefined) {
     // Determine source path based on styling engine
     let sourcePath: string;
     if (config.style === 'nativewind-v5') {
-      sourcePath = join(_homeDir, config.gluestackDir, config.nativewindV5ComponentsPath, config.providerComponent);
+      sourcePath = join(
+        _homeDir,
+        config.gluestackDir,
+        config.nativewindV5ComponentsPath,
+        config.providerComponent
+      );
     } else if (config.style === 'uniwind') {
-      sourcePath = join(_homeDir, config.gluestackDir, config.uniwindComponentsPath, config.providerComponent);
+      sourcePath = join(
+        _homeDir,
+        config.gluestackDir,
+        config.uniwindComponentsPath,
+        config.providerComponent
+      );
     } else {
-      sourcePath = join(_homeDir, config.gluestackDir, config.componentsResourcePath, config.providerComponent);
+      sourcePath = join(
+        _homeDir,
+        config.gluestackDir,
+        config.componentsResourcePath,
+        config.providerComponent
+      );
     }
 
     await fs.ensureDir(targetPath);
 
     // For NativeWind v5, write inlined provider files directly (cache may be stale)
     if (config.style === 'nativewind-v5') {
-      await fs.writeFile(join(targetPath, 'index.tsx'), NATIVEWIND_V5_PROVIDER_INDEX, 'utf8');
-      await fs.writeFile(join(targetPath, 'index.web.tsx'), NATIVEWIND_V5_PROVIDER_INDEX_WEB, 'utf8');
-      await fs.writeFile(join(targetPath, 'script.ts'), NATIVEWIND_V5_PROVIDER_SCRIPT, 'utf8');
+      await fs.writeFile(
+        join(targetPath, 'index.tsx'),
+        NATIVEWIND_V5_PROVIDER_INDEX,
+        'utf8'
+      );
+      await fs.writeFile(
+        join(targetPath, 'index.web.tsx'),
+        NATIVEWIND_V5_PROVIDER_INDEX_WEB,
+        'utf8'
+      );
+      await fs.writeFile(
+        join(targetPath, 'script.ts'),
+        NATIVEWIND_V5_PROVIDER_SCRIPT,
+        'utf8'
+      );
     } else {
       // Whitelist of files to copy per styling engine
       const allowedFiles: Record<string, string[]> = {
-        'nativewind': ['index.tsx', 'index.web.tsx', 'script.ts'],
-        'uniwind':    ['index.tsx', 'index.web.tsx', 'index.uniwind.tsx', 'script.ts'],
+        nativewind: [
+          'index.tsx',
+          'index.web.tsx',
+          'script.ts',
+          'config.ts',
+          'useGluestackColors.ts',
+        ],
+        uniwind: [
+          'index.tsx',
+          'index.web.tsx',
+          'index.uniwind.tsx',
+          'script.ts',
+          'config.ts',
+          'useGluestackColors.ts',
+        ],
       };
       const allowed = allowedFiles[config.style] ?? [];
 
@@ -626,11 +734,26 @@ async function addEssentialComponents(components: string[]) {
       // Determine source path based on styling engine
       let sourcePath: string;
       if (config.style === 'nativewind-v5') {
-        sourcePath = join(_homeDir, config.gluestackDir, config.nativewindV5ComponentsPath, component);
+        sourcePath = join(
+          _homeDir,
+          config.gluestackDir,
+          config.nativewindV5ComponentsPath,
+          component
+        );
       } else if (config.style === 'uniwind') {
-        sourcePath = join(_homeDir, config.gluestackDir, config.uniwindComponentsPath, component);
+        sourcePath = join(
+          _homeDir,
+          config.gluestackDir,
+          config.uniwindComponentsPath,
+          component
+        );
       } else {
-        sourcePath = join(_homeDir, config.gluestackDir, config.componentsResourcePath, component);
+        sourcePath = join(
+          _homeDir,
+          config.gluestackDir,
+          config.componentsResourcePath,
+          component
+        );
       }
 
       await fs.ensureDir(targetPath);
@@ -752,7 +875,9 @@ async function updateGlobalCss(resolvedConfig: any): Promise<void> {
     // For NativeWind v5, inline the CSS content directly (template not yet in cloned repo)
     if (config.style === 'nativewind-v5') {
       await fs.writeFile(globalCSSPath, NATIVEWIND_V5_GLOBAL_CSS, 'utf8');
-      log.info(`✅ Updated ${cssFileName} with NativeWind v5 (Tailwind v4) directives`);
+      log.info(
+        `✅ Updated ${cssFileName} with NativeWind v5 (Tailwind v4) directives`
+      );
       return;
     }
 
@@ -774,7 +899,9 @@ async function updateGlobalCss(resolvedConfig: any): Promise<void> {
     // For UniWind, replace entire content
     if (config.style === 'uniwind') {
       await fs.writeFile(globalCSSPath, templateContent, 'utf8');
-      log.info(`✅ Updated ${cssFileName} with UniWind (Tailwind v4) directives`);
+      log.info(
+        `✅ Updated ${cssFileName} with UniWind (Tailwind v4) directives`
+      );
       return;
     }
 
@@ -800,34 +927,39 @@ async function updateGlobalCss(resolvedConfig: any): Promise<void> {
       log.info(`${cssFileName} already contains proper Tailwind directives`);
     }
   } catch (err) {
-    log.error(`\x1b[31mError updating global CSS: ${(err as Error).message}\x1b[0m`);
+    log.error(
+      `\x1b[31mError updating global CSS: ${(err as Error).message}\x1b[0m`
+    );
   }
 }
 
-function cleanAndNormalizeCss(existingContent: string, templateContent: string): string {
+function cleanAndNormalizeCss(
+  existingContent: string,
+  templateContent: string
+): string {
   // Split content into lines for easier processing
   let lines = existingContent.split('\n');
-  
+
   // Remove old tailwindcss import if it exists
-  lines = lines.filter(line => 
-    !line.trim().match(/^@import\s+["']tailwindcss["'];?\s*$/i)
+  lines = lines.filter(
+    (line) => !line.trim().match(/^@import\s+["']tailwindcss["'];?\s*$/i)
   );
 
   // Check if any of the required tailwind directives exist
   const requiredDirectives = [
     '@tailwind base;',
-    '@tailwind components;', 
-    '@tailwind utilities;'
+    '@tailwind components;',
+    '@tailwind utilities;',
   ];
 
   const existingDirectives = new Set<string>();
-  
+
   // Find existing tailwind directives and their positions
   const directiveLines: number[] = [];
-  
+
   lines.forEach((line, index) => {
     const trimmedLine = line.trim();
-    requiredDirectives.forEach(directive => {
+    requiredDirectives.forEach((directive) => {
       const directiveWithoutSemicolon = directive.replace(';', '');
       if (
         trimmedLine === directive ||
@@ -850,32 +982,39 @@ function cleanAndNormalizeCss(existingContent: string, templateContent: string):
 
   // Find the best position to insert tailwind directives
   let insertPosition = 0;
-  
+
   // Look for existing imports to insert after them
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
     if (line.startsWith('@import') || line.startsWith('@charset')) {
       insertPosition = i + 1;
-    } else if (line.length > 0 && !line.startsWith('/*') && !line.startsWith('*')) {
+    } else if (
+      line.length > 0 &&
+      !line.startsWith('/*') &&
+      !line.startsWith('*')
+    ) {
       // Found first non-comment, non-import line
       break;
     }
   }
 
   // Insert the template content (tailwind directives) at the appropriate position
-  const templateLines = templateContent.split('\n').filter(line => line.trim());
-  
+  const templateLines = templateContent
+    .split('\n')
+    .filter((line) => line.trim());
+
   // Insert template lines
   lines.splice(insertPosition, 0, ...templateLines);
 
   // Clean up multiple consecutive empty lines
   const cleanedLines: string[] = [];
   let consecutiveEmptyLines = 0;
-  
+
   for (const line of lines) {
     if (line.trim() === '') {
       consecutiveEmptyLines++;
-      if (consecutiveEmptyLines <= 1) { // Allow max 1 consecutive empty line
+      if (consecutiveEmptyLines <= 1) {
+        // Allow max 1 consecutive empty line
         cleanedLines.push(line);
       }
     } else {
@@ -926,12 +1065,25 @@ async function commonInitialization(
           // Strip styling-engine suffix for template matching
           const isUniwindTemplate = templateFileName.endsWith('.uniwind');
           const isNativewindTemplate = templateFileName.endsWith('.nativewind');
-          const isNativewindV5Template = templateFileName.endsWith('.nativewindv5');
+          const isNativewindV5Template =
+            templateFileName.endsWith('.nativewindv5');
 
           // Skip templates that don't match the current styling engine
-          if (config.style === 'nativewind-v5' && (isNativewindTemplate || isUniwindTemplate)) return;
-          if (config.style === 'uniwind' && (isNativewindTemplate || isNativewindV5Template)) return;
-          if (config.style === 'nativewind' && (isUniwindTemplate || isNativewindV5Template)) return;
+          if (
+            config.style === 'nativewind-v5' &&
+            (isNativewindTemplate || isUniwindTemplate)
+          )
+            return;
+          if (
+            config.style === 'uniwind' &&
+            (isNativewindTemplate || isNativewindV5Template)
+          )
+            return;
+          if (
+            config.style === 'nativewind' &&
+            (isUniwindTemplate || isNativewindV5Template)
+          )
+            return;
 
           // Remove styling-specific suffix for matching
           if (isUniwindTemplate) {
@@ -1013,7 +1165,11 @@ async function commonInitialization(
 
     // Add styling-specific type definitions and extra config files
     if (config.style === 'nativewind-v5') {
-      const nativewindEnvPath = join(templatesPath, 'common', 'nativewind-env.d.ts');
+      const nativewindEnvPath = join(
+        templatesPath,
+        'common',
+        'nativewind-env.d.ts'
+      );
       await fs.copy(nativewindEnvPath, join(_currDir, 'nativewind-env.d.ts'));
       // Inline content for files not yet in the cloned repo (cache uses main-v4-alpha)
       await fs.writeFile(
@@ -1027,34 +1183,63 @@ async function commonInitialization(
         'utf8'
       );
       const isRNCLI = projectType === config.reactNativeCLIProject;
-      const metroConfigPath = resolvedConfig.config?.metroConfig || join(_currDir, 'metro.config.js');
+      const metroConfigPath =
+        resolvedConfig.config?.metroConfig || join(_currDir, 'metro.config.js');
       await fs.writeFile(
         metroConfigPath,
-        isRNCLI ? NATIVEWIND_V5_METRO_CONFIG_RN_CLI : NATIVEWIND_V5_METRO_CONFIG_EXPO,
+        isRNCLI
+          ? NATIVEWIND_V5_METRO_CONFIG_RN_CLI
+          : NATIVEWIND_V5_METRO_CONFIG_EXPO,
         'utf8'
       );
       log.info('✅ Written metro.config.js for NativeWind v5 (withNativewind)');
       // RN CLI also needs its own babel.config.js (Expo uses template from cache)
       if (isRNCLI) {
-        const babelConfigPath = resolvedConfig.config?.babelConfig || join(_currDir, 'babel.config.js');
-        await fs.writeFile(babelConfigPath, NATIVEWIND_V5_BABEL_CONFIG_RN_CLI, 'utf8');
+        const babelConfigPath =
+          resolvedConfig.config?.babelConfig ||
+          join(_currDir, 'babel.config.js');
+        await fs.writeFile(
+          babelConfigPath,
+          NATIVEWIND_V5_BABEL_CONFIG_RN_CLI,
+          'utf8'
+        );
         log.info('✅ Written babel.config.js for NativeWind v5 RN CLI');
       }
     } else if (config.style === 'uniwind') {
-      const uniwindTypesPath = join(templatesPath, 'common', 'uniwind-types.d.ts');
+      const uniwindTypesPath = join(
+        templatesPath,
+        'common',
+        'uniwind-types.d.ts'
+      );
       await fs.copy(uniwindTypesPath, join(_currDir, 'uniwind-types.d.ts'));
       // Write babel.config.js and metro.config.js inline — ensures nativewind/babel and
       // withNativewind are never present, even if the cached templates repo predates
       // the uniwind templates (cache always pulls from main-v4-alpha).
       const isRNCLI = projectType === config.reactNativeCLIProject;
-      const babelConfigPath = resolvedConfig.config?.babelConfig || join(_currDir, 'babel.config.js');
-      await fs.writeFile(babelConfigPath, isRNCLI ? UNIWIND_BABEL_CONFIG_RN_CLI : UNIWIND_BABEL_CONFIG_EXPO, 'utf8');
-      log.info('✅ Written babel.config.js for UniWind (nativewind/babel removed)');
-      const metroConfigPath = resolvedConfig.config?.metroConfig || join(_currDir, 'metro.config.js');
-      await fs.writeFile(metroConfigPath, isRNCLI ? UNIWIND_METRO_CONFIG_RN_CLI : UNIWIND_METRO_CONFIG_EXPO, 'utf8');
+      const babelConfigPath =
+        resolvedConfig.config?.babelConfig || join(_currDir, 'babel.config.js');
+      await fs.writeFile(
+        babelConfigPath,
+        isRNCLI ? UNIWIND_BABEL_CONFIG_RN_CLI : UNIWIND_BABEL_CONFIG_EXPO,
+        'utf8'
+      );
+      log.info(
+        '✅ Written babel.config.js for UniWind (nativewind/babel removed)'
+      );
+      const metroConfigPath =
+        resolvedConfig.config?.metroConfig || join(_currDir, 'metro.config.js');
+      await fs.writeFile(
+        metroConfigPath,
+        isRNCLI ? UNIWIND_METRO_CONFIG_RN_CLI : UNIWIND_METRO_CONFIG_EXPO,
+        'utf8'
+      );
       log.info('✅ Written metro.config.js for UniWind (withUniwindConfig)');
     } else {
-      const nativewindEnvPath = join(templatesPath, 'common', 'nativewind-env.d.ts');
+      const nativewindEnvPath = join(
+        templatesPath,
+        'common',
+        'nativewind-env.d.ts'
+      );
       await fs.copy(nativewindEnvPath, join(_currDir, 'nativewind-env.d.ts'));
     }
 
@@ -1117,7 +1302,12 @@ const filesToOverride = (projectType: string) => {
       }
       break;
     case config.expoProject:
-      files = ['babel.config.js', 'metro.config.js', 'global.css', 'tsconfig.json'];
+      files = [
+        'babel.config.js',
+        'metro.config.js',
+        'global.css',
+        'tsconfig.json',
+      ];
       if (config.style === 'nativewind') {
         files.push('tailwind.config.*');
       } else if (config.style === 'nativewind-v5') {
@@ -1127,7 +1317,12 @@ const filesToOverride = (projectType: string) => {
       }
       break;
     case config.reactNativeCLIProject:
-      files = ['babel.config.js', 'metro.config.js', 'global.css', 'tsconfig.json'];
+      files = [
+        'babel.config.js',
+        'metro.config.js',
+        'global.css',
+        'tsconfig.json',
+      ];
       if (config.style === 'nativewind') {
         files.push('tailwind.config.*');
       } else if (config.style === 'nativewind-v5') {

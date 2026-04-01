@@ -14,7 +14,7 @@ import {
   isValidPath,
   projectRootPath,
 } from '../util';
-import { checkIfInitialized, getComponentsPath } from '../util/config';
+import { checkIfInitialized, getComponentsPath, generateMonoRepoConfig } from '../util/config';
 
 const _homeDir = os.homedir();
 
@@ -27,6 +27,7 @@ const addOptionsSchema = z.object({
   useBun: z.boolean(),
   path: z.string().optional(),
   templateOnly: z.boolean(),
+  monorepo: z.boolean().optional().default(false),
   yes: z.boolean().optional().default(false),
 });
 
@@ -45,6 +46,7 @@ export const add = new Command()
     'Only install the template without installing dependencies',
     false
   )
+  .option('--monorepo', 'Generate monorepo configuration (gluestack-ui.config.json)', false)
   .option(
     '-y, --yes',
     'Answer yes to all prompts (for non-interactive environments)',
@@ -99,15 +101,73 @@ export const add = new Command()
       if (currWritablePath) {
         config.writableComponentsPath = currWritablePath;
       }
-      if (options.path && !isValidPath(options.path)) {
-        log.error(
-          `\x1b[31mInvalid path "${options.path}". Please provide a valid path for installing components.\x1b[0m`
-        );
-        process.exit(1);
-      }
-      if (options.path && options.path !== config.writableComponentsPath) {
-        await checkWritablePath(options.path);
-        config.writableComponentsPath = options.path;
+
+      if (options.monorepo) {
+        // Offer interactive selection of components path when in monorepo mode
+        const { select, text, isCancel, cancel } = await import('@clack/prompts');
+
+        // discover candidate paths in repo (apps/*, packages/*, components/*)
+        const candidates = [
+          'components/ui',
+          'components',
+          'packages/ui',
+          'packages',
+          'apps',
+        ].filter(Boolean);
+
+        let chosenPath = options.path;
+
+        if (!chosenPath && !config.yesToAll) {
+          try {
+            const selection = await select({
+              message: 'Select components path or choose "Other" to enter manually',
+              options: [
+                ...candidates.map((p) => ({ value: p, label: p })),
+                { value: 'other', label: 'Other (enter manually)' },
+              ],
+            });
+
+            if (isCancel(selection)) {
+              cancel('Operation cancelled.');
+              process.exit(0);
+            }
+
+            if (selection === 'other') {
+              const typed = await text({ message: 'Enter relative path to components (e.g. packages/ui/src/components)' });
+              if (isCancel(typed)) {
+                cancel('Operation cancelled.');
+                process.exit(0);
+              }
+              chosenPath = typed as string;
+            } else {
+              chosenPath = selection as string;
+            }
+          } catch (e) {
+            // fallback to provided path
+          }
+        }
+
+        if (chosenPath) {
+          if (!isValidPath(chosenPath)) {
+            log.error(
+              `\x1b[31mInvalid path "${chosenPath}". Please provide a valid path for installing components.\x1b[0m`
+            );
+            process.exit(1);
+          }
+          await checkWritablePath(chosenPath);
+          config.writableComponentsPath = chosenPath;
+        }
+      } else {
+        if (options.path && !isValidPath(options.path)) {
+          log.error(
+            `\x1b[31mInvalid path "${options.path}". Please provide a valid path for installing components.\x1b[0m`
+          );
+          process.exit(1);
+        }
+        if (options.path && options.path !== config.writableComponentsPath) {
+          await checkWritablePath(options.path);
+          config.writableComponentsPath = options.path;
+        }
       }
       // Detect and set styling engine BEFORE cloning so the correct branch
       // (main-v4-alpha vs main-v5-alpha) is used for the clone/pull.
@@ -122,6 +182,9 @@ export const add = new Command()
 
       try {
         await componentAdder(args);
+        if (options.monorepo) {
+          await generateMonoRepoConfig();
+        }
       } catch (err) {
         log.error(`\x1b[31mError: ${(err as Error).message}\x1b[0m`);
       }

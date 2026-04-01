@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import fg from 'fast-glob';
+import os from 'os';
 import { projectRootPath } from '..';
 import { config } from '../../config';
 import { PROJECT_SHARED_IGNORE } from './config-types';
@@ -134,6 +135,56 @@ async function generateMonoRepoConfig() {
     JSON.stringify(gluestackConfig, null, 2),
     'utf8'
   );
+
+  // Generate styling config files for monorepo root (NativeWind v4)
+  if (config.style === 'nativewind') {
+    const homeDir = os.homedir();
+    const templatesCacheDir = config.gluestackTemplatesCacheDir;
+    const templatesDir = path.resolve(
+      homeDir,
+      templatesCacheDir,
+      config.templatesDir
+    );
+
+    // tailwind.config.js
+    const tailwindSrc = path.resolve(templatesDir, 'tailwind.config.js');
+    const tailwindDst = path.resolve(projectRootPath, 'tailwind.config.js');
+    if (fs.existsSync(tailwindSrc) && !fs.existsSync(tailwindDst)) {
+      fs.copyFileSync(tailwindSrc, tailwindDst);
+    }
+
+    // postcss.config.js
+    const postcssSrc = path.resolve(
+      templatesDir,
+      'nextjs',
+      'postcss.config.js'
+    );
+    const postcssDst = path.resolve(projectRootPath, 'postcss.config.js');
+    if (fs.existsSync(postcssSrc) && !fs.existsSync(postcssDst)) {
+      fs.copyFileSync(postcssSrc, postcssDst);
+    }
+
+    // globals.css
+    const globalsCssSrc = path.resolve(templatesDir, 'common', 'globals.css');
+    const globalsCssDst = path.resolve(projectRootPath, 'globals.css');
+    if (fs.existsSync(globalsCssSrc) && !fs.existsSync(globalsCssDst)) {
+      fs.copyFileSync(globalsCssSrc, globalsCssDst);
+    }
+
+    // nativewind-env.d.ts
+    const nativewindEnvSrc = path.resolve(
+      templatesDir,
+      'common',
+      'nativewind-env.d.ts'
+    );
+    const nativewindEnvDst = path.resolve(
+      projectRootPath,
+      'nativewind-env.d.ts'
+    );
+    if (fs.existsSync(nativewindEnvSrc) && !fs.existsSync(nativewindEnvDst)) {
+      fs.copyFileSync(nativewindEnvSrc, nativewindEnvDst);
+    }
+  }
 }
 
 export {

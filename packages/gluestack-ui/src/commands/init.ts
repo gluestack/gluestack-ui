@@ -4,6 +4,7 @@ import { handleError } from '../util/handle-error';
 import { log } from '@clack/prompts';
 import { InitializeGlueStack } from '../util/init';
 import { config, setStylingEngine } from '../config';
+import { generateMonoRepoConfig } from '../util/config';
 import {
   checkWritablePath,
   detectProjectType,
@@ -20,6 +21,7 @@ const initOptionsSchema = z.object({
   useBun: z.boolean(),
   path: z.string().optional(),
   templateOnly: z.boolean(),
+  monorepo: z.boolean().optional().default(false),
   projectType: z.string(),
   yes: z.boolean().optional().default(false),
   nativewind: z.boolean().optional().default(false),
@@ -41,6 +43,11 @@ export const init = new Command()
   .option(
     '--template-only templateOnly',
     'Only install the template without installing dependencies',
+    false
+  )
+  .option(
+    '--monorepo',
+    'Generate monorepo configuration (gluestack-ui.config.json)',
     false
   )
   .option(
@@ -95,6 +102,14 @@ export const init = new Command()
       }
       // else: keep default (nativewind) for backward compatibility
 
+      // Enforce NativeWind v4 for monorepo mode — v5/UniWind are not web-compatible yet
+      if (options.monorepo && (options.nativewindV5 || options.uniwind)) {
+        log.warning(
+          'Monorepo mode currently only supports NativeWind v4. Falling back to --nativewind (v4).'
+        );
+        setStylingEngine('nativewind');
+      }
+
       const isTemplate = options.templateOnly;
       console.log('\n\x1b[1mWelcome to gluestack-ui v5 alpha!\x1b[0m\n');
       const cwd = process.cwd();
@@ -132,11 +147,80 @@ export const init = new Command()
         }
       }
 
-      const projectType = isTemplate
+      // Determine project type; for monorepo force 'library' and prompt for components path
+      let projectType = isTemplate
         ? options.projectType
         : await detectProjectType(cwd);
 
-      InitializeGlueStack({ projectType, isTemplate });
+      if (options.monorepo) {
+        projectType = 'library';
+        const { select, text, isCancel, cancel } =
+          await import('@clack/prompts');
+
+        const candidates = [
+          'components/ui',
+          'components',
+          'packages/ui',
+          'packages',
+          'apps',
+        ];
+        let chosenPath = options.path;
+
+        if (!chosenPath && !config.yesToAll) {
+          try {
+            const selection = await select({
+              message:
+                'Select components path for monorepo or choose "Other" to enter manually',
+              options: [
+                ...candidates.map((p) => ({ value: p, label: p })),
+                { value: 'other', label: 'Other (enter manually)' },
+              ],
+            });
+
+            if (isCancel(selection)) {
+              cancel('Operation cancelled.');
+              process.exit(0);
+            }
+
+            if (selection === 'other') {
+              const typed = await text({
+                message:
+                  'Enter relative path to components (e.g. packages/ui/src/components)',
+              });
+              if (isCancel(typed)) {
+                cancel('Operation cancelled.');
+                process.exit(0);
+              }
+              chosenPath = typed as string;
+            } else {
+              chosenPath = selection as string;
+            }
+          } catch (e) {
+            // ignore and fallback
+          }
+        }
+
+        if (chosenPath) {
+          if (!isValidPath(chosenPath)) {
+            log.error(
+              `\x1b[31mInvalid path "${chosenPath}". Please provide a valid path for installing components.\x1b[0m`
+            );
+            process.exit(1);
+          }
+          await checkWritablePath(chosenPath);
+          config.writableComponentsPath = chosenPath;
+        }
+      }
+
+      await InitializeGlueStack({
+        projectType,
+        isTemplate,
+        isMonorepo: options.monorepo,
+      });
+
+      if (options.monorepo) {
+        await generateMonoRepoConfig();
+      }
     } catch (err) {
       handleError(err);
     }
