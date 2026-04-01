@@ -1,38 +1,142 @@
-import React from 'react';
-import { ScrollView, StatusBar, View } from 'react-native';
-import Markdown from 'react-native-markdown-display';
+import { useChat } from '@ai-sdk/react';
 
-const markdownText = `
-# Hello 👋
+import {
+  Attachment,
+  AttachmentPreview,
+  AttachmentRemove,
+  Attachments,
+} from '@/components/ui/chat-ai/attatchments';
 
-This is **bold text**  
-This is *italic text*
+import { DefaultChatTransport, UIMessage } from 'ai';
+import { fetch as expoFetch } from 'expo/fetch'; // ← This is required for Expo
+import { configureReanimatedLogger } from 'react-native-reanimated';
 
-## Code Example:
+configureReanimatedLogger({
+  strict: false,
+});
+import {
+  Conversation,
+  ConversationContent,
+  Message,
+  MessageAction,
+  MessageToolbar,
+  MessageContent,
+  MessageResponse,
+} from '@/components/ui/chat-ai';
+import { ConversationScrollButton } from '@/components/ui/chat-ai/conversation';
+import { ListRenderItem } from 'react-native';
+import { Text } from 'react-native';
+import { CopyCheck } from 'lucide-react-native';
+import {
+  PromptInput,
+  PromptInputProvider,
+  usePromptInputAttachments,
+  PromptInputMessage,
+  PromptInputActionMenu,
+  PromptInputActionMenuContent,
+} from '@/components/ui/chat-ai/prompt-input';
 
-\`\`\`js
-function greet() {
-  console.log("Hello from AI this is js codee
-  ");
-}
-greet();
-\`\`\`
+import { memo, useCallback } from 'react';
+import { View } from 'react-native';
 
-- Item 1
-- Item 2
-`;
+// ================= ATTACHMENT ITEM =================
+const AttachmentItem = memo(({ attachment, onRemove }: any) => {
+  const handleRemove = useCallback(
+    () => onRemove(attachment.id),
+    [onRemove, attachment.id]
+  );
 
-const App = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <View className="flex-1 pt-safe">
-        <ScrollView contentContainerStyle={{ padding: 16 }}>
-          <Markdown>{markdownText}</Markdown>
-        </ScrollView>
-      </View>
-    </>
+    <Attachment data={attachment} onRemove={handleRemove}>
+      <AttachmentPreview />
+      <AttachmentRemove />
+    </Attachment>
+  );
+});
+
+// ================= ATTACHMENTS DISPLAY =================
+const PromptInputAttachmentsDisplay = () => {
+  const attachments = usePromptInputAttachments();
+
+  if (attachments.files.length === 0) return null;
+
+  return (
+    <Attachments variant="grid" className="mb-4">
+      {attachments.files.map((attachment: any) => (
+        <AttachmentItem
+          key={attachment.id}
+          attachment={attachment}
+          onRemove={attachments.remove}
+        />
+      ))}
+    </Attachments>
   );
 };
 
-export default App;
+  const renderMessage: ListRenderItem<UIMessage> = ({ item: message, index }) => (
+  <Message role={message.role} index={index} message={message}>
+    <MessageContent>
+      <MessageResponse message={message} />
+    </MessageContent>
+
+    <MessageToolbar>
+      <MessageAction>
+        <CopyCheck strokeWidth={1} size={20} color="white" />
+      </MessageAction>
+    </MessageToolbar>
+  </Message>
+);
+
+
+// ================= EXAMPLE =================
+const Example = () => {
+  const { messages, status, sendMessage, error } = useChat({
+    transport: new DefaultChatTransport({
+      fetch: expoFetch as unknown as typeof globalThis.fetch, // ← Critical for React Native
+      api: 'http://10.153.0.82:8081/api/chat', // or use generateAPIUrl('/api/chat') if you have a helper
+    }),
+    onError: (err) => console.error('Chat error:', err),
+  });
+  const handleSubmit = useCallback(
+    (message: PromptInputMessage) => {
+
+
+      sendMessage({
+        text: message.text, // 👈 important
+        files: message.files,
+      });
+    },
+    [sendMessage]
+  );
+
+  return (
+    <View className="flex-1 pt-safe bg-white">
+      <Conversation>
+        <ConversationContent renderItem={renderMessage} messages={messages} />
+
+        {error && (
+          <Text className="p-4 text-red-500 text-center">
+            Error: {error.message}
+          </Text>
+        )}
+
+        {status === 'streaming' && (
+          <Text className="px-4 py-2 text-slate-500">AI is thinking...</Text>
+        )}
+
+        <ConversationScrollButton />
+      </Conversation>
+      <PromptInputProvider>
+        <PromptInputAttachmentsDisplay />
+
+        <PromptInput onSubmit={handleSubmit}>
+          <PromptInputActionMenu>
+            <PromptInputActionMenuContent className="text-primary-foreground" />
+          </PromptInputActionMenu>
+        </PromptInput>
+      </PromptInputProvider>
+    </View>
+  );
+};
+
+export default Example;

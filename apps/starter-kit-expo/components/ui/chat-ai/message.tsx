@@ -7,13 +7,13 @@ import React, {
   useState,
   useMemo,
 } from 'react';
-import { View, Text, TouchableOpacity, Alert,Image } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Image } from 'react-native';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import Animated from 'react-native-reanimated';
 import { useUserMessageAnimation } from './userAnimation';
 import { useBlankSize } from './useBlank';
-
+import Markdown from 'react-native-markdown-display';
 // ==================== CONTEXT FOR ROLE ====================
 type MessageContextType = {
   role: UIMessage['role'];
@@ -66,7 +66,6 @@ export type MessageContentProps = {
 export const Message = memo(
   ({ role, children, className, index, message }: MessageProps) => {
     const isUserFirstMessage = index === 0;
-
 
     const {
       style: animationStyle,
@@ -145,56 +144,106 @@ export const MessageContent = memo(
 
 // ==================== MESSAGE RESPONSE ====================
 
-export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
-  if (!message.parts) {
+export const MessageResponse = memo(
+  ({ message }: { message: UIMessage }) => {
+    const isUser = message.role === 'user';
+
+    // ✅ fallback (no parts yet)
+    if (!message || !message.parts) {
+      return (
+        <Markdown
+          style={{
+            body: {
+              color: '#fff',
+              fontSize: 16,
+              lineHeight: 22,
+            },
+            code_block: {
+              backgroundColor: '#0f172a',
+              color: '#e2e8f0',
+              padding: 12,
+              borderRadius: 10,
+            },
+            code_inline: {
+              backgroundColor: '#1e293b',
+              color: '#e2e8f0',
+              padding: 4,
+              borderRadius: 4,
+            },
+          }}
+        >
+          {message?.content || ''}
+        </Markdown>
+      );
+    }
+
     return (
-      <Text className="text-base text-white leading-6">{message.content}</Text>
-    );
-  }
-
-  return (
-    <View style={{ gap: 8 }}>
-      {message.parts.map((part, index) => {
-        // 📝 TEXT (sometimes comes as reasoning/text)
-        if (part.type === 'text' || part.type === 'reasoning') {
-          return (
-            <Text key={index} className="text-base text-white leading-6">
-              {part.text || ''}
-            </Text>
-          );
-        }
-
-        // 🖼️ IMAGE (THIS IS YOUR CASE)
-        if (part.type === 'file') {
-         
-          let uri = '';
-
-          if (part.url) {
-            uri = part.url;
-
-          } else if (part.data && part.mimeType) {
-            uri = `data:${part.mimeType};base64,${part.data}`;
+      <View style={{ gap: 8 }}>
+        {message.parts.map((part, index) => {
+          // ✅ TEXT / MARKDOWN
+          if (part.type === 'text' || part.type === 'reasoning') {
+            return (
+              <Markdown
+                key={index}
+                style={{
+                  body: {
+                    color: isUser ? '#fff' : '#000',
+                    fontSize: 16,
+                    lineHeight: 22,
+                  },
+                  code_block: {
+                    backgroundColor: '#0f172a',
+                    color: '#e2e8f0',
+                    padding: 12,
+                    borderRadius: 10,
+                  },
+                  code_inline: {
+                    backgroundColor: '#1e293b',
+                    color: '#e2e8f0',
+                    padding: 4,
+                    borderRadius: 4,
+                  },
+                }}
+              >
+                {part.text || ''}
+              </Markdown>
+            );
           }
 
-          if (!uri) return null;
+          // ✅ IMAGE (base64 or URL)
+          if (part.type === 'file') {
+            let uri = '';
 
-          return (
-            <Image
-              key={index}
-              source={{ uri }}
-              style={{ width: 300, height: 300, borderRadius: 16 }}
-              resizeMode="cover"
-            />
-          );
-        }
+            if (part.url) {
+              uri = part.url;
+            } else if (part.data && part.mimeType) {
+              uri = `data:${part.mimeType};base64,${part.data}`;
+            }
 
-        // ❌ ignore step-start etc
-        return null;
-      })}
-    </View>
-  );
-});
+            if (!uri) return null;
 
+            return (
+              <Image
+                key={index}
+                source={{ uri }}
+                style={{
+                  width: 250,
+                  height: 250,
+                  borderRadius: 12,
+                  marginTop: 6,
+                }}
+                resizeMode="cover"
+              />
+            );
+          }
+
+          return null;
+        })}
+      </View>
+    );
+  }
+  
+);
 // ==================== MESSAGE TOOLBAR (Now auto gets role) ====================
 
 export type MessageToolbarProps = {
