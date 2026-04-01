@@ -39,7 +39,6 @@ import {
 import { memo, useCallback } from 'react';
 import { View } from 'react-native';
 
-
 // ================= ATTACHMENT ITEM =================
 const AttachmentItem = memo(({ attachment, onRemove }: any) => {
   const handleRemove = useCallback(
@@ -97,17 +96,11 @@ const Example = () => {
     }),
     onError: (err) => console.error('Chat error:', err),
   });
-console.log('messages: ', messages);
-  // console.log(messages)
   const handleSubmit = useCallback(
     (message: PromptInputMessage) => {
-      message.files.forEach((file) => {
-        console.log("submit message ",Object.keys(file));
-      });
-
       sendMessage({
         text: message.text,
-       files: message.files // 👈 important
+        files: message.files, // 👈 important
         // attachments: message.files, // 👈 optional (if you support attachments)
       });
     },
@@ -138,7 +131,7 @@ console.log('messages: ', messages);
           <PromptInputActionMenu>
             <PromptInputActionMenuContent className="text-primary-foreground" />
           </PromptInputActionMenu>
-        </PromptInput >
+        </PromptInput>
       </PromptInputProvider>
     </View>
   );

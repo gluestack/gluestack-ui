@@ -12,6 +12,10 @@ import * as ImagePicker from 'expo-image-picker';
 import * as DocumentPicker from 'expo-document-picker'; // ✅ ADDED
 import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
+import { useKeyboardAwareChat } from './useKeyboardAwareChat';
+
+import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
+import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
 // ====================== NEW MENU EXPORTS ======================
 
@@ -193,9 +197,14 @@ export const PromptInput = ({ children, onSubmit }: PromptInputProps) => {
     setText('');
     attachments.clear();
   };
-
+const { height } = useReanimatedKeyboardAnimation();
+const inputAnimatedStyle = useAnimatedStyle(() => {
+  return {
+    transform: [{ translateY: height.value }], // ← fixed sign (was positive)
+  };
+});
   return (
-    <View className="border-t border-border dark:bg-slate-950 p-4 bg-background">
+    <Animated.View style={inputAnimatedStyle} className="border-t border-border dark:bg-slate-950 p-4 bg-background">
       <TextInput
         value={text}
         onChangeText={setText}
@@ -221,6 +230,6 @@ export const PromptInput = ({ children, onSubmit }: PromptInputProps) => {
       </View>
 
       {children}
-    </View>
+    </Animated.View>
   );
 };

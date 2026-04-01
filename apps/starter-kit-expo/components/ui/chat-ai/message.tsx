@@ -66,8 +66,8 @@ export type MessageContentProps = {
 export const Message = memo(
   ({ role, children, className, index, message }: MessageProps) => {
     const isUserFirstMessage = index === 0;
-    // console.log(message)
-   console.log('content preview:', message.parts?.map((part) => part.url?.slice(0,50)));
+
+
     const {
       style: animationStyle,
       ref: animRef,
@@ -166,17 +166,12 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
 
         // 🖼️ IMAGE (THIS IS YOUR CASE)
         if (part.type === 'file') {
-          console.log('image part:', {
-            mimeType: part.mimeType,
-            hasData: !!part.data,
-            hasUrl: !!part.url,
-          });
-
+         
           let uri = '';
 
           if (part.url) {
             uri = part.url;
-            console.log('uri: usir worked only ', uri.slice(0,50))
+
           } else if (part.data && part.mimeType) {
             uri = `data:${part.mimeType};base64,${part.data}`;
           }
