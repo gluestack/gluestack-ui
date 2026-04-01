@@ -45,7 +45,11 @@ export const init = new Command()
     'Only install the template without installing dependencies',
     false
   )
-  .option('--monorepo', 'Generate monorepo configuration (gluestack-ui.config.json)', false)
+  .option(
+    '--monorepo',
+    'Generate monorepo configuration (gluestack-ui.config.json)',
+    false
+  )
   .option(
     '--projectType <projectType>',
     'Type of project to initialize',
@@ -100,7 +104,9 @@ export const init = new Command()
 
       // Enforce NativeWind v4 for monorepo mode — v5/UniWind are not web-compatible yet
       if (options.monorepo && (options.nativewindV5 || options.uniwind)) {
-        log.warning('Monorepo mode currently only supports NativeWind v4. Falling back to --nativewind (v4).');
+        log.warning(
+          'Monorepo mode currently only supports NativeWind v4. Falling back to --nativewind (v4).'
+        );
         setStylingEngine('nativewind');
       }
 
@@ -142,19 +148,29 @@ export const init = new Command()
       }
 
       // Determine project type; for monorepo force 'library' and prompt for components path
-      let projectType = isTemplate ? options.projectType : await detectProjectType(cwd);
+      let projectType = isTemplate
+        ? options.projectType
+        : await detectProjectType(cwd);
 
       if (options.monorepo) {
         projectType = 'library';
-        const { select, text, isCancel, cancel } = await import('@clack/prompts');
+        const { select, text, isCancel, cancel } =
+          await import('@clack/prompts');
 
-        const candidates = ['components/ui', 'components', 'packages/ui', 'packages', 'apps'];
+        const candidates = [
+          'components/ui',
+          'components',
+          'packages/ui',
+          'packages',
+          'apps',
+        ];
         let chosenPath = options.path;
 
         if (!chosenPath && !config.yesToAll) {
           try {
             const selection = await select({
-              message: 'Select components path for monorepo or choose "Other" to enter manually',
+              message:
+                'Select components path for monorepo or choose "Other" to enter manually',
               options: [
                 ...candidates.map((p) => ({ value: p, label: p })),
                 { value: 'other', label: 'Other (enter manually)' },
@@ -167,7 +183,10 @@ export const init = new Command()
             }
 
             if (selection === 'other') {
-              const typed = await text({ message: 'Enter relative path to components (e.g. packages/ui/src/components)' });
+              const typed = await text({
+                message:
+                  'Enter relative path to components (e.g. packages/ui/src/components)',
+              });
               if (isCancel(typed)) {
                 cancel('Operation cancelled.');
                 process.exit(0);
@@ -183,7 +202,9 @@ export const init = new Command()
 
         if (chosenPath) {
           if (!isValidPath(chosenPath)) {
-            log.error(`\x1b[31mInvalid path "${chosenPath}". Please provide a valid path for installing components.\x1b[0m`);
+            log.error(
+              `\x1b[31mInvalid path "${chosenPath}". Please provide a valid path for installing components.\x1b[0m`
+            );
             process.exit(1);
           }
           await checkWritablePath(chosenPath);
@@ -191,7 +212,11 @@ export const init = new Command()
         }
       }
 
-      await InitializeGlueStack({ projectType, isTemplate });
+      await InitializeGlueStack({
+        projectType,
+        isTemplate,
+        isMonorepo: options.monorepo,
+      });
 
       if (options.monorepo) {
         await generateMonoRepoConfig();

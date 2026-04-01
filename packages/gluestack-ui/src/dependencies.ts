@@ -164,13 +164,31 @@ const projectBasedDependencies: Dependencies = {
 // Get project based dependencies
 async function getProjectBasedDependencies(
   projectType: string | undefined,
-  style: string
+  style: string,
+  isMonorepo: boolean = false
 ) {
   try {
+    // Monorepo mode: install shared styling deps at the root so all workspace
+    // apps can consume them.  We reuse the Next.js dependency set because
+    // monorepo mode always enforces NativeWind v4 (same as Next.js).
+    if (isMonorepo) {
+      const monoKey = style === 'uniwind' ? 'nextjs-uniwind' : 'nextjs';
+      if (projectBasedDependencies[monoKey]) {
+        return {
+          dependencies: projectBasedDependencies[monoKey].dependencies,
+          devDependencies:
+            projectBasedDependencies[monoKey]?.devDependencies || {},
+        };
+      }
+    }
+
     if (projectType && projectType !== 'library') {
-      const dependencyKey = style === 'uniwind' ? `${projectType}-uniwind`
-        : style === 'nativewind-v5' ? `${projectType}-nativewind-v5`
-        : projectType;
+      const dependencyKey =
+        style === 'uniwind'
+          ? `${projectType}-uniwind`
+          : style === 'nativewind-v5'
+            ? `${projectType}-nativewind-v5`
+            : projectType;
 
       if (projectBasedDependencies[dependencyKey]) {
         return {
