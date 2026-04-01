@@ -21,7 +21,7 @@ import Animated from 'react-native-reanimated';
 import { useUserMessageAnimation } from './userAnimation';
 import { useBlankSize } from './useBlank';
 import Markdown from 'react-native-markdown-display';
-
+import { useUnstableNativeVariable } from 'nativewind';
 // ==================== CONTEXT ====================
 
 type MessageContextType = {
@@ -152,9 +152,29 @@ export const MessageContent = memo(
 
 // ==================== MARKDOWN STYLES (REUSED) ====================
 
+
+// ==================== MESSAGE RESPONSE ====================
+const colorArrayToHex = (arr) => {
+  const [r, g, b, a] = arr;
+
+  const toHex = (v) => Math.round(v).toString(16).padStart(2, '0');
+
+  // RGB
+  if (a === undefined || a === 1) {
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+  }
+
+  // RGBA → include alpha
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}${toHex(a * 255)}`;
+};
+
+export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
+  const isUser = message.role === 'user';
+  const mutedColor = useUnstableNativeVariable('--muted');
+const textColor = useUnstableNativeVariable('--foreground');
 const getMarkdownStyles = (isUser: boolean) => ({
   body: {
-    color: '#fff',
+    color: colorArrayToHex(textColor),
     fontSize: 16,
     lineHeight: 22,
   },
@@ -183,10 +203,10 @@ const markdownRules = {
       <View
         key={node.key}
         style={{
-          backgroundColor: '#0f172a',
+          backgroundColor: colorArrayToHex(mutedColor),
           padding: 12,
           borderRadius: 10,
-          marginTop: 8,
+          marginVertical: 8,
         }}
       >
         <Text
@@ -224,11 +244,6 @@ const markdownRules = {
     );
   },
 };
-// ==================== MESSAGE RESPONSE ====================
-
-export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
-  const isUser = message.role === 'user';
-
   // ✅ fallback
   if (!message || !message.parts) {
     return (
