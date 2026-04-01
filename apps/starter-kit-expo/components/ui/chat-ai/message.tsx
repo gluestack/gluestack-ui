@@ -170,8 +170,61 @@ const getMarkdownStyles = (isUser: boolean) => ({
     padding: 4,
     borderRadius: 4,
   },
+  pre: {
+    backgroundColor: '#0f172a',
+    borderRadius: 10,
+    padding: 0,
+  },
 });
 
+
+const markdownRules = {
+  fence: (node, children, parent, styles) => {
+    return (
+      <View
+        key={node.key}
+        style={{
+          backgroundColor: '#0f172a',
+          padding: 12,
+          borderRadius: 10,
+          marginTop: 8,
+        }}
+      >
+        <Text
+          style={{
+            color: '#e2e8f0',
+            fontFamily: 'monospace',
+          }}
+        >
+          {node.content}
+        </Text>
+      </View>
+    );
+  },
+
+  code_block: (node, children, parent, styles) => {
+    return (
+      <View
+        key={node.key}
+        style={{
+          backgroundColor: '#0f172a',
+          padding: 12,
+          borderRadius: 10,
+          marginTop: 8,
+        }}
+      >
+        <Text
+          style={{
+            color: '#e2e8f0',
+            fontFamily: 'monospace',
+          }}
+        >
+          {node.content}
+        </Text>
+      </View>
+    );
+  },
+};
 // ==================== MESSAGE RESPONSE ====================
 
 export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
@@ -192,7 +245,11 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
         // ✅ TEXT / MARKDOWN
         if (part.type === 'text' || part.type === 'reasoning') {
           return (
-            <Markdown key={index} style={getMarkdownStyles(isUser)}>
+            <Markdown
+              key={index}
+              rules={markdownRules}
+              style={getMarkdownStyles(isUser)}
+            >
               {part.text || ''}
             </Markdown>
           );
