@@ -32,9 +32,14 @@ The init command adds the necessary `gluestack-ui.config.json` file, includes th
 
 - `--path <path>`: Specifies the directory path where you want to add the GluestackUIProvider component. By default, it creates the component in the `components/ui` directory within your project's root.
 
+- `--monorepo`: When used in monorepo repositories, this flag switches the init flow to monorepo mode. In monorepo mode the CLI will treat the project as a shared component library (projectType: library) and will:
+  - Prompt to select or enter the components package where GluestackUIProvider and components should be written (e.g. `packages/ui`, `packages/components`, `apps/ui`).
+  - Generate a top-level `gluestack-ui.config.json` that points `app.components` to the chosen package path (relative to repo root).
+  - Add provider and core components into the chosen package path and update configs (tailwind, metro, tsconfig) appropriately.
+
 - `--use-<package>`: This flag specifies the package manager to use when initializing gluestack-ui. Supported options are npm (default), yarn, bun, and pnpm. Replace `<package>` with your preferred package manager.
 
-<CodeBlock code={`Usage: ${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} init [options] \n \n initialize your gluestack-ui and install dependencies \n \n Options: \n   --path <path>    Path to add GluestackUIProvider, defaults to components/ui in the current directory.`} language="bash" />
+<CodeBlock code={`Usage: ${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} init [options] \n \n initialize your gluestack-ui and install dependencies \n \n Options: \n   --path <path>    Path to add GluestackUIProvider, defaults to components/ui in the current directory. \n   --monorepo       Run init in monorepo/library mode and interactively choose components package.`} language="bash" />
 
 ## Add
 
@@ -47,8 +52,13 @@ Use the `add` command to add components and their dependencies to your project:
 - `--all`: This flag can be used to add all available components from gluestack-ui to your project.
 - `--path <path>`: Specifies the directory path where you want to add the component. By default, it will add the component to the same directory where the GluestackUIProvider is located.
 
+- `--monorepo`: When adding components into a monorepo, use --monorepo to enable monorepo-aware flows. With --monorepo the CLI will:
+  - Prompt you to select or enter the components package (e.g. `packages/ui`) if not provided via `--path`.
+  - Validate and write `gluestack-ui.config.json` at the repo root pointing to the selected components path.
+  - Ensure components are added into the chosen package rather than the repo root.
 
-<CodeBlock code={`Usage: ${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add [component] [options] \n \n add component to your project \n \n Options: \n   --all          Adds all existing components from gluestack-ui \n   --path <path>  Path to add components, defaults to the directory where GluestackUIProvider is located. \n   --use-npm      Set npm as the project's package manager, default \n   --use-yarn     Set yarn as the project's package manager \n   --use-bun      Set bun as the project's package manager \n   --use-pnpm     Set pnpm as the project's package manager, currently not supported in react-native-cli projects.`} language="bash" />
+
+<CodeBlock code={`Usage: ${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add [component] [options] \n \n add component to your project \n \n Options: \n   --all          Adds all existing components from gluestack-ui \n   --monorepo     Enable monorepo-aware add flows (interactive path selection) \n   --path <path>  Path to add components, defaults to the directory where GluestackUIProvider is located. \n   --use-npm      Set npm as the project's package manager (default) \n   --use-yarn     Set yarn as the project's package manager \n   --use-bun      Set bun as the project's package manager \n   --use-pnpm     Set pnpm as the project's package manager, currently not supported in react-native-cli projects.`} language="bash" />
 
 
 ## Upgrade
