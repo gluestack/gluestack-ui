@@ -3,7 +3,7 @@ import { useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 import { useAnimatedReaction, withTiming } from 'react-native-reanimated';
-import { useBlankContext } from './conversation';
+import { useBlankContext } from './blank-context';
 import { useMessageHeight } from './useMessageHeight';
 
 interface UseMessageBlankSizeOptions {
@@ -49,7 +49,7 @@ export function useBlankSize({
 
       const nextBlank = Math.max(
         0,
-        context.messagesContainerHeight.value - pairedHeight 
+        context.messagesContainerHeight.value - pairedHeight
       );
 
       context.blankSize.value = nextBlank;

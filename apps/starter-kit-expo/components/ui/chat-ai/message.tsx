@@ -7,14 +7,23 @@ import React, {
   useState,
   useMemo,
 } from 'react';
-import { View, Text, TouchableOpacity, Alert, Image } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Alert,
+  Image,
+  ViewStyle,
+} from 'react-native';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import Animated from 'react-native-reanimated';
 import { useUserMessageAnimation } from './userAnimation';
 import { useBlankSize } from './useBlank';
 import Markdown from 'react-native-markdown-display';
-// ==================== CONTEXT FOR ROLE ====================
+
+// ==================== CONTEXT ====================
+
 type MessageContextType = {
   role: UIMessage['role'];
 };
@@ -46,7 +55,7 @@ const mergeRefs = <T,>(
   };
 };
 
-// ==================== PROPS TYPES ====================
+// ==================== TYPES ====================
 
 export type MessageProps = {
   role: UIMessage['role'];
@@ -98,7 +107,7 @@ export const Message = memo(
                   }
                 : undefined
             }
-            style={animationStyle}
+            style={animationStyle as ViewStyle}
             className={`group flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
           >
             {children}
@@ -128,13 +137,13 @@ export const MessageContent = memo(
   ({ children, className }: MessageContentProps) => {
     const { role } = useMessageContext();
 
+    const roleStyles = role === 'user' 
+      ? 'self-end bg-primary' 
+      : 'self-start bg-muted';
+
     return (
       <View
-        className={`flex w-fit min-w-0 max-w-[90%] mt-4 flex-col gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${
-          role === 'user'
-            ? 'self-end bg-blue-600 text-white'
-            : 'self-start bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100'
-        } ${className || ''}`}
+        className={`flex w-fit min-w-0 max-w-[90%] flex-col gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${roleStyles} ${className || ''}`}
       >
         {children}
       </View>
@@ -142,109 +151,83 @@ export const MessageContent = memo(
   }
 );
 
+// ==================== MARKDOWN STYLES (REUSED) ====================
+
+const getMarkdownStyles = (isUser: boolean) => ({
+  body: {
+    color: isUser ? '#000' : '#fff',
+    fontSize: 16,
+    lineHeight: 22,
+  },
+  code_block: {
+    backgroundColor: '#0f172a',
+    color: '#e2e8f0',
+    padding: 12,
+    borderRadius: 10,
+  },
+  code_inline: {
+    backgroundColor: '#1e293b',
+    color: '#e2e8f0',
+    padding: 4,
+    borderRadius: 4,
+  },
+});
+
 // ==================== MESSAGE RESPONSE ====================
 
-export const MessageResponse = memo(
-  ({ message }: { message: UIMessage }) => {
-    const isUser = message.role === 'user';
+export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
+  const isUser = message.role === 'user';
 
-    // ✅ fallback (no parts yet)
-    if (!message || !message.parts) {
-      return (
-        <Markdown
-          style={{
-            body: {
-              color: '#fff',
-              fontSize: 16,
-              lineHeight: 22,
-            },
-            code_block: {
-              backgroundColor: '#0f172a',
-              color: '#e2e8f0',
-              padding: 12,
-              borderRadius: 10,
-            },
-            code_inline: {
-              backgroundColor: '#1e293b',
-              color: '#e2e8f0',
-              padding: 4,
-              borderRadius: 4,
-            },
-          }}
-        >
-          {message?.content || ''}
-        </Markdown>
-      );
-    }
-
+  // ✅ fallback (no parts yet)
+  if (!message || !message.parts) {
     return (
-      <View style={{ gap: 8 }}>
-        {message.parts.map((part, index) => {
-          // ✅ TEXT / MARKDOWN
-          if (part.type === 'text' || part.type === 'reasoning') {
-            return (
-              <Markdown
-                key={index}
-                style={{
-                  body: {
-                    color: isUser ? '#fff' : '#000',
-                    fontSize: 16,
-                    lineHeight: 22,
-                  },
-                  code_block: {
-                    backgroundColor: '#0f172a',
-                    color: '#e2e8f0',
-                    padding: 12,
-                    borderRadius: 10,
-                  },
-                  code_inline: {
-                    backgroundColor: '#1e293b',
-                    color: '#e2e8f0',
-                    padding: 4,
-                    borderRadius: 4,
-                  },
-                }}
-              >
-                {part.text || ''}
-              </Markdown>
-            );
-          }
-
-          // ✅ IMAGE (base64 or URL)
-          if (part.type === 'file') {
-            let uri = '';
-
-            if (part.url) {
-              uri = part.url;
-            } else if (part.data && part.mimeType) {
-              uri = `data:${part.mimeType};base64,${part.data}`;
-            }
-
-            if (!uri) return null;
-
-            return (
-              <Image
-                key={index}
-                source={{ uri }}
-                style={{
-                  width: 250,
-                  height: 250,
-                  borderRadius: 12,
-                  marginTop: 6,
-                }}
-                resizeMode="cover"
-              />
-            );
-          }
-
-          return null;
-        })}
-      </View>
+      <Markdown style={getMarkdownStyles(true)}>
+        {message?.content || ''}
+      </Markdown>
     );
   }
-  
-);
-// ==================== MESSAGE TOOLBAR (Now auto gets role) ====================
+
+  return (
+    <View className="gap-2">
+      {message.parts.map((part, index) => {
+        // ✅ TEXT / MARKDOWN
+        if (part.type === 'text' || part.type === 'reasoning') {
+          return (
+            <Markdown key={index} style={getMarkdownStyles(isUser)}>
+              {part.text || ''}
+            </Markdown>
+          );
+        }
+
+        // ✅ IMAGE (base64 or URL)
+        if (part.type === 'file') {
+          let uri = '';
+
+          if (part.url) {
+            uri = part.url;
+          } else if (part.data && part.mimeType) {
+            uri = `data:${part.mimeType};base64,${part.data}`;
+          }
+
+          if (!uri) return null;
+
+          return (
+            <Image
+              key={index}
+              source={{ uri }}
+              className="w-64 h-64 rounded-xl mt-1.5"
+              resizeMode="cover"
+            />
+          );
+        }
+
+        return null;
+      })}
+    </View>
+  );
+});
+
+// ==================== MESSAGE TOOLBAR ====================
 
 export type MessageToolbarProps = {
   children: React.ReactNode;
@@ -255,11 +238,11 @@ export const MessageToolbar = memo(
   ({ children, className }: MessageToolbarProps) => {
     const { role } = useMessageContext();
 
+    const roleStyles = role === 'user' ? 'self-end' : 'self-start';
+
     return (
       <View
-        className={`mt-3 flex-row items-center gap-3 ${
-          role === 'user' ? 'self-end' : 'self-start'
-        } ${className || ''}`}
+        className={`mt-3 flex-row items-center gap-3 ${roleStyles} ${className || ''}`}
       >
         {children}
       </View>
@@ -284,8 +267,8 @@ export const MessageAction = ({
   };
 
   return (
-    <TouchableOpacity
-      onPress={handlePress}
+    <TouchableOpacity 
+      onPress={handlePress} 
       className="h-8 w-8 items-center justify-center"
     >
       {children}
@@ -294,8 +277,6 @@ export const MessageAction = ({
 };
 
 // ==================== MESSAGE BRANCH COMPONENTS ====================
-
-// ... (keeping your branch components as they are - they don't need role)
 
 interface MessageBranchContextType {
   currentBranch: number;
@@ -362,7 +343,9 @@ export const MessageBranch = ({
 
   return (
     <MessageBranchContext.Provider value={contextValue}>
-      <View className={`w-full gap-2 ${className || ''}`}>{children}</View>
+      <View className={`w-full gap-2 ${className || ''}`}>
+        {children}
+      </View>
     </MessageBranchContext.Provider>
   );
 };
@@ -386,7 +369,7 @@ export const MessageBranchContent = ({
   return childrenArray.map((branch, index) => (
     <View
       key={branch.key || index}
-      className={index === currentBranch ? 'block' : 'hidden'}
+      className={index === currentBranch ? 'flex' : 'hidden'}
     >
       {branch}
     </View>
@@ -404,27 +387,27 @@ export const MessageBranchSelector = ({
 };
 
 export const MessageBranchPrevious = () => (
-  <TouchableOpacity
-    onPress={() => {}}
+  <TouchableOpacity 
+    onPress={() => {}} 
     className="h-8 w-8 items-center justify-center"
   >
-    <ChevronLeft size={18} color="#64748b" />
+    <ChevronLeft size={18} className="text-muted-foreground" />
   </TouchableOpacity>
 );
 
 export const MessageBranchNext = () => (
-  <TouchableOpacity
-    onPress={() => {}}
+  <TouchableOpacity 
+    onPress={() => {}} 
     className="h-8 w-8 items-center justify-center"
   >
-    <ChevronRight size={18} color="#64748b" />
+    <ChevronRight size={18} className="text-muted-foreground" />
   </TouchableOpacity>
 );
 
 export const MessageBranchPage = () => {
   const { currentBranch, totalBranches } = useMessageBranch();
   return (
-    <Text className="text-slate-500 dark:text-slate-400 text-sm">
+    <Text className="text-sm text-muted-foreground">
       {currentBranch + 1} of {totalBranches}
     </Text>
   );

@@ -3,11 +3,8 @@ import React, {
   useCallback,
   useEffect,
   type ReactElement,
-  createContext,
   ReactNode,
-  useContext,
 } from 'react';
-import type { SharedValue } from 'react-native-reanimated';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { useKeyboardAwareChat } from './useKeyboardAwareChat';
 import {
@@ -23,51 +20,17 @@ import {
 import { ArrowDown, Download, MessageSquare } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import { Message, MessageContent, MessageResponse } from './message';
-import { useSharedValue } from 'react-native-reanimated';
+import { BlankProvider, useBlankContext } from './blank-context';
 
 export type ConversationProps = React.PropsWithChildren<{ className?: string }>;
-import { LegendListProps, LegendListRef } from '@legendapp/list';
+import { LegendListProps, LegendListRef } from '@legendapp/list'; 
 import { AnimatedLegendList } from '@legendapp/list/reanimated';
 
-type BlankContextType = {
-  blankSize: SharedValue<number>;
-  userMessageHeight: SharedValue<number>;
-  assistantMessageHeight: SharedValue<number>;
-  messagesContainerHeight: SharedValue<number>;
-};
-
-const BlankContext = createContext<BlankContextType | null>(null);
-
-export const BlankProvider = ({ children }: { children: ReactNode }) => {
-  const blankSize = useSharedValue(0); // ← created ONLY ONCE
-  const userMessageHeight = useSharedValue(0);
-  const assistantMessageHeight = useSharedValue(0);
-  const messagesContainerHeight = useSharedValue(0);
-
-  return (
-    <BlankContext.Provider
-      value={{
-        blankSize,
-        userMessageHeight,
-        assistantMessageHeight,
-        messagesContainerHeight,
-      }}
-    >
-      {children}
-    </BlankContext.Provider>
-  );
-};
-
-export const useBlankContext = () => {
-  const context = useContext(BlankContext);
-  if (!context)
-    throw new Error('useBlankContext must be used inside BlankProvider');
-  return context;
-};
+// ==================== MAIN COMPONENTS ====================
 
 export const Conversation = ({ children, className }: ConversationProps) => (
   <BlankProvider>
-    <View className={`flex-1 bg-slate-50 dark:bg-slate-950 ${className || ''}`}>
+    <View className={`flex-1 bg-background ${className || ''}`}>
       {children}
     </View>
   </BlankProvider>
@@ -83,17 +46,15 @@ export type ConversationEmptyStateProps = {
 export const ConversationEmptyState = ({
   title = 'Start a conversation',
   description = 'Type a message below to begin chatting',
-  icon = <MessageSquare size={48} color="#64748b" />,
+  icon,
   className,
 }: ConversationEmptyStateProps) => (
   <View
     className={`flex-1 items-center justify-center px-10 py-12 ${className || ''}`}
   >
-    {icon}
-    <Text className="mt-4 text-xl font-semibold text-slate-700 dark:text-slate-300">
-      {title}
-    </Text>
-    <Text className="mt-2 text-center text-base text-slate-500 dark:text-slate-400">
+    {icon ?? <MessageSquare size={48} className="text-muted-foreground" />}
+    <Text className="mt-4 text-xl font-semibold text-foreground">{title}</Text>
+    <Text className="mt-2 text-center text-base text-muted-foreground">
       {description}
     </Text>
   </View>
@@ -115,12 +76,12 @@ export const ConversationContent = ({
 
   const defaultRenderItem: ListRenderItem<UIMessage> = useCallback(
     ({ item: message, index }) => (
-      <Message role={message.role} index={index}>
+      <Message role={message.role} index={index} message={message}>
         <MessageContent>
           {message.parts
             ?.filter((part) => part.type === 'text')
             .map((part, i) => (
-              <MessageResponse key={i}>{part.text}</MessageResponse>
+              <MessageResponse key={i} message={message} />
             ))}
         </MessageContent>
       </Message>
@@ -146,7 +107,7 @@ export const ConversationContent = ({
   return (
     <GestureDetector gesture={panGesture}>
       <View
-        style={{ flex: 1 }}
+        className="flex-1"
         onLayout={(e) => {
           const height = e.nativeEvent.layout.height;
           messagesContainerHeight.value = height;
@@ -177,7 +138,6 @@ export const ConversationContent = ({
           contentContainerStyle={{
             paddingBottom: blankSize.value,
           }}
-          scrollEventThrottle={16}
         />
       </View>
     </GestureDetector>
@@ -186,10 +146,10 @@ export const ConversationContent = ({
 
 export const ConversationScrollButton = () => (
   <TouchableOpacity
-    onPress={() => {}} // You can connect this to flatListRef if needed
-    className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-blue-600 h-11 w-11 items-center justify-center rounded-full shadow-lg"
+    onPress={() => {}}
+    className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-primary h-11 w-11 items-center justify-center rounded-full shadow-lg"
   >
-    <ArrowDown size={22} color="#fff" />
+    <ArrowDown size={22} className="text-primary-foreground" />
   </TouchableOpacity>
 );
 
@@ -215,9 +175,9 @@ export const ConversationDownload = ({
   return (
     <TouchableOpacity
       onPress={handleDownload}
-      className="absolute top-4 right-4 bg-white dark:bg-slate-800 p-3 rounded-2xl shadow-sm"
+      className="absolute top-4 right-4 bg-card p-3 rounded-2xl shadow-sm"
     >
-      <Download size={20} color="#64748b" />
+      <Download size={20} className="text-muted-foreground" />
     </TouchableOpacity>
   );
 };

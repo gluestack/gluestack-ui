@@ -5,24 +5,19 @@ import React, {
   useMemo,
   useState,
   type ReactNode,
-} from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from "react-native";
+} from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
 import {
   ChevronRight,
   File as FileIcon,
   Folder,
   FolderOpen,
-} from "lucide-react-native";
+} from 'lucide-react-native';
 import Animated, {
   useAnimatedStyle,
   withTiming,
   useSharedValue,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
 // ====================== Custom Collapsible ======================
 
@@ -67,8 +62,8 @@ interface FileTreeFolderContextType {
 }
 
 const FileTreeFolderContext = createContext<FileTreeFolderContextType>({
-  path: "",
-  name: "",
+  path: '',
+  name: '',
   isExpanded: false,
 });
 
@@ -80,7 +75,7 @@ export type FileTreeProps = {
   selectedPath?: string;
   onSelect?: (path: string) => void;
   onExpandedChange?: (expanded: Set<string>) => void;
-  style?: any;
+  className?: string;
   children: ReactNode;
 };
 
@@ -90,7 +85,7 @@ export const FileTree = ({
   selectedPath,
   onSelect,
   onExpandedChange,
-  style,
+  className,
   children,
 }: FileTreeProps) => {
   const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
@@ -118,8 +113,10 @@ export const FileTree = ({
 
   return (
     <FileTreeContext.Provider value={contextValue}>
-      <View style={[styles.container, style]}>
-        <View style={styles.inner}>{children}</View>
+      <View
+        className={`bg-background rounded-xl border border-border overflow-hidden ${className || ''}`}
+      >
+        <View className="p-2">{children}</View>
       </View>
     </FileTreeContext.Provider>
   );
@@ -131,14 +128,14 @@ export type FileTreeFolderProps = {
   path: string;
   name: string;
   children?: ReactNode;
-  style?: any;
+  className?: string;
 };
 
 export const FileTreeFolder = ({
   path,
   name,
   children,
-  style,
+  className,
 }: FileTreeFolderProps) => {
   const { expandedPaths, togglePath, selectedPath, onSelect } =
     useContext(FileTreeContext);
@@ -156,42 +153,42 @@ export const FileTreeFolder = ({
 
   return (
     <FileTreeFolderContext.Provider value={folderContextValue}>
-      <View style={style}>
+      <View className={className}>
         <TouchableOpacity
-          style={[styles.folderRow, isSelected && styles.selected]}
+          className={`flex-row items-center py-1.5 px-2 rounded-md ${isSelected ? 'bg-accent' : ''}`}
           onPress={handleSelect}
           activeOpacity={0.7}
         >
           <TouchableOpacity
             onPress={handleToggle}
-            style={styles.chevronButton}
+            className="p-1"
             activeOpacity={0.7}
           >
             <ChevronRight
               size={18}
-              color="#64748b"
-              style={{ transform: [{ rotate: isExpanded ? "90deg" : "0deg" }] }}
+              className="text-muted-foreground"
+              style={{ transform: [{ rotate: isExpanded ? '90deg' : '0deg' }] }}
             />
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.folderContent}
+            className="flex-row items-center flex-1 gap-2"
             onPress={handleSelect}
             activeOpacity={0.7}
           >
             {isExpanded ? (
-              <FolderOpen size={18} color="#3b82f6" />
+              <FolderOpen size={18} className="text-primary" />
             ) : (
-              <Folder size={18} color="#3b82f6" />
+              <Folder size={18} className="text-primary" />
             )}
-            <Text style={styles.name} numberOfLines={1}>
+            <Text className="text-sm text-foreground flex-1" numberOfLines={1}>
               {name}
             </Text>
           </TouchableOpacity>
         </TouchableOpacity>
 
         <Collapsible open={isExpanded}>
-          <View style={styles.childrenContainer}>{children}</View>
+          <View className="ml-6 pl-1 border-l border-border">{children}</View>
         </Collapsible>
       </View>
     </FileTreeFolderContext.Provider>
@@ -204,14 +201,14 @@ export type FileTreeFileProps = {
   path: string;
   name: string;
   icon?: ReactNode;
-  style?: any;
+  className?: string;
 };
 
 export const FileTreeFile = ({
   path,
   name,
   icon,
-  style,
+  className,
 }: FileTreeFileProps) => {
   const { selectedPath, onSelect } = useContext(FileTreeContext);
   const isSelected = selectedPath === path;
@@ -220,14 +217,14 @@ export const FileTreeFile = ({
 
   return (
     <TouchableOpacity
-      style={[styles.fileRow, isSelected && styles.selected, style]}
+      className={`flex-row items-center py-1.5 px-2 rounded-md ${isSelected ? 'bg-accent' : ''} ${className || ''}`}
       onPress={handlePress}
       activeOpacity={0.7}
     >
-      <View style={styles.spacer} />
-      <View style={styles.fileContent}>
-        {icon ?? <FileIcon size={18} color="#64748b" />}
-        <Text style={styles.name} numberOfLines={1}>
+      <View className="w-6.5" />
+      <View className="flex-row items-center gap-2 flex-1">
+        {icon ?? <FileIcon size={18} className="text-muted-foreground" />}
+        <Text className="text-sm text-foreground flex-1" numberOfLines={1}>
           {name}
         </Text>
       </View>
@@ -239,77 +236,16 @@ export const FileTreeFile = ({
 
 export const FileTreeActions = ({
   children,
-  style,
+  className,
 }: {
   children: ReactNode;
-  style?: any;
+  className?: string;
 }) => {
-  return <View style={[styles.actions, style]}>{children}</View>;
+  return (
+    <View
+      className={`ml-auto flex-row items-center gap-1.5 ${className || ''}`}
+    >
+      {children}
+    </View>
+  );
 };
-
-// ====================== Styles ======================
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#e2e8f0",
-    overflow: "hidden",
-  },
-  inner: {
-    padding: 8,
-  },
-  folderRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 6,
-    paddingHorizontal: 8,
-    borderRadius: 6,
-  },
-  folderContent: {
-    flexDirection: "row",
-    alignItems: "center",
-    flex: 1,
-    gap: 8,
-  },
-  chevronButton: {
-    padding: 4,
-  },
-  fileRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 6,
-    paddingHorizontal: 8,
-    borderRadius: 6,
-  },
-  fileContent: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    flex: 1,
-  },
-  spacer: {
-    width: 26,
-  },
-  name: {
-    fontSize: 14,
-    color: "#1f2937",
-    flex: 1,
-  },
-  selected: {
-    backgroundColor: "#f1f5f9",
-  },
-  childrenContainer: {
-    marginLeft: 24,
-    paddingLeft: 4,
-    borderLeftWidth: 1,
-    borderLeftColor: "#e2e8f0",
-  },
-  actions: {
-    marginLeft: "auto",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-  },
-});

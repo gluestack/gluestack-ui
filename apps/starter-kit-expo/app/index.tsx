@@ -73,7 +73,7 @@ const PromptInputAttachmentsDisplay = () => {
   );
 };
 
-  const renderMessage: ListRenderItem<UIMessage> = ({ item: message, index }) => (
+const renderMessage: ListRenderItem<UIMessage> = ({ item: message, index }) => (
   <Message role={message.role} index={index} message={message}>
     <MessageContent>
       <MessageResponse message={message} />
@@ -87,7 +87,6 @@ const PromptInputAttachmentsDisplay = () => {
   </Message>
 );
 
-
 // ================= EXAMPLE =================
 const Example = () => {
   const { messages, status, sendMessage, error } = useChat({
@@ -99,8 +98,6 @@ const Example = () => {
   });
   const handleSubmit = useCallback(
     (message: PromptInputMessage) => {
-
-
       sendMessage({
         text: message.text, // 👈 important
         files: message.files,

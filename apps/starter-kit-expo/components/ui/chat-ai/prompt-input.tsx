@@ -9,7 +9,7 @@ import React, {
   ReactNode,
 } from 'react';
 import * as ImagePicker from 'expo-image-picker';
-import * as DocumentPicker from 'expo-document-picker'; // ✅ ADDED
+import * as DocumentPicker from 'expo-document-picker';
 import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { useKeyboardAwareChat } from './useKeyboardAwareChat';
@@ -38,7 +38,6 @@ export const PromptInputActionMenuTrigger = ({ children, ...props }: any) => {
 export const PromptInputActionMenuContent = () => {
   const attachments = usePromptInputAttachments();
 
-  // ✅ DOCUMENT PICKER ADDED
   const openDocumentPicker = useCallback(async () => {
     const result = await DocumentPicker.getDocumentAsync({
       multiple: true,
@@ -64,7 +63,7 @@ export const PromptInputActionMenuContent = () => {
       trigger={({ ...triggerProps }) => {
         return (
           <TouchableOpacity {...triggerProps}>
-            <Text className="text-xl text-foreground">+</Text>
+            <Text className="text-xl text-primary">+</Text>
           </TouchableOpacity>
         );
       }}
@@ -80,7 +79,7 @@ export const PromptInputActionMenuContent = () => {
       <MenuItem
         key="document"
         textValue="Select Document"
-        onPress={openDocumentPicker} // ✅ CONNECTED
+        onPress={openDocumentPicker}
       >
         <MenuItemLabel size="sm">Select Document</MenuItemLabel>
       </MenuItem>
@@ -144,12 +143,11 @@ export const PromptInputProvider = ({ children }: { children: ReactNode }) => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
       allowsMultipleSelection: true,
-      quality: 0.10,
+      quality: 0.1,
       base64: true,
     });
 
     if (!result.canceled && result.assets) {
-    
       const newFiles = result.assets.map((asset) => ({
         id: generateId(),
         filename: asset.fileName || `image-${Date.now()}.jpg`,
@@ -158,7 +156,6 @@ export const PromptInputProvider = ({ children }: { children: ReactNode }) => {
         url: `data:${asset.mimeType || 'image/jpeg'};base64,${asset.base64}`,
       }));
       add(newFiles);
-     
     }
   }, [add]);
 
@@ -197,33 +194,34 @@ export const PromptInput = ({ children, onSubmit }: PromptInputProps) => {
     setText('');
     attachments.clear();
   };
-const { height } = useReanimatedKeyboardAnimation();
-const inputAnimatedStyle = useAnimatedStyle(() => {
-  return {
-    transform: [{ translateY: height.value }], // ← fixed sign (was positive)
-  };
-});
+  const { height } = useReanimatedKeyboardAnimation();
+  const inputAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: height.value }],
+    };
+  });
+
+  const isDisabled = !text.trim() && attachments.files.length === 0;
+
   return (
-    <Animated.View style={inputAnimatedStyle} className="border-t border-border dark:bg-slate-950 p-4 bg-background">
+    <Animated.View
+      style={inputAnimatedStyle}
+      className="border-t border-border bg-background p-4"
+    >
       <TextInput
         value={text}
         onChangeText={setText}
-        placeholderTextColor="#666"
         placeholder="Type your message..."
         multiline
-        className="min-h-[80px] text-white text-base px-3 py-3 border border-border rounded-xl bg-background"
+        className="min-h-20 text-base px-3 py-3 border border-border rounded-xl bg-background text-foreground placeholder:text-muted-foreground"
         textAlignVertical="top"
       />
 
       <View className="flex-row justify-between items-center mt-4">
         <TouchableOpacity
           onPress={handleSubmit}
-          disabled={!text.trim() && attachments.files.length === 0}
-          className={`px-8 py-2.5 rounded-xl font-medium bg-primary text-white${
-            !text.trim() && attachments.files.length === 0
-              ? ''
-              : 'bg-primary text-white'
-          }`}
+          disabled={isDisabled}
+          className={`px-8 py-2.5 rounded-xl font-medium bg-primary ${isDisabled ? 'opacity-50' : ''}`}
         >
           <Text className="text-primary-foreground">Send</Text>
         </TouchableOpacity>

@@ -8,7 +8,7 @@ import {
 } from 'react-native-reanimated';
 
 import { useMessageHeight } from './useMessageHeight';
-import { useBlankContext } from './conversation';
+import { useBlankContext } from './blank-context';
 import { useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 

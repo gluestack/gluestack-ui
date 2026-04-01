@@ -125,7 +125,7 @@ export const Attachments = ({
             gap: 8,
             height: 100,
           }}
-          className={`${className} dark:bg-slate-950`}
+          className={`${className} bg-background`}
           {...props}
         >
           {children}
@@ -225,7 +225,9 @@ export const AttachmentPreview = ({
     const Icon = iconMap[mediaCategory];
     const size = variant === 'inline' ? 12 : variant === 'list' ? 24 : 20;
 
-    return fallbackIcon ?? <Icon size={size} color="#888888" />;
+    return (
+      fallbackIcon ?? <Icon size={size} className="text-muted-foreground" />
+    );
   };
 
   return (
@@ -283,7 +285,9 @@ export const AttachmentRemove = ({
       size="sm"
       {...props}
     >
-      {children ?? <X color="#ef4444" size={variant === 'grid' ? 14 : 12} />}
+      {children ?? (
+        <X className="text-destructive" size={variant === 'grid' ? 14 : 12} />
+      )}
     </Button>
   );
 };
