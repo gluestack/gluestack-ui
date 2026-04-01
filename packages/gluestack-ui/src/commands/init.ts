@@ -98,6 +98,12 @@ export const init = new Command()
       }
       // else: keep default (nativewind) for backward compatibility
 
+      // Enforce NativeWind v4 for monorepo mode — v5/UniWind are not web-compatible yet
+      if (options.monorepo && (options.nativewindV5 || options.uniwind)) {
+        log.warning('Monorepo mode currently only supports NativeWind v4. Falling back to --nativewind (v4).');
+        setStylingEngine('nativewind');
+      }
+
       const isTemplate = options.templateOnly;
       console.log('\n\x1b[1mWelcome to gluestack-ui v5 alpha!\x1b[0m\n');
       const cwd = process.cwd();

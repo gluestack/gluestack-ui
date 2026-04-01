@@ -493,10 +493,16 @@ const InitializeGlueStack = async ({
     const { components: providerDependencies } =
       await checkComponentDependencies(inputComponent);
 
+    // For monorepo mode, install project-level (styling) dependencies at the repo root
+    // so workspace package managers (yarn/pnpm) install them once for the whole monorepo.
     let additionalDependencies = await getProjectBasedDependencies(
       projectType,
       config.style
     );
+
+    // providerDependencies are component names (used below when adding essential components)
+    const { components: providerComponentDependencies } = await checkComponentDependencies(inputComponent);
+
     let versionManager: string | null = findLockFileType();
     if (!versionManager) {
       versionManager = await promptVersionManager();
@@ -508,14 +514,27 @@ const InitializeGlueStack = async ({
       await addResolutions({ lightningcss: '1.30.1' });
     }
 
-    await installDependencies(
-      inputComponent,
-      versionManager,
-      additionalDependencies
-    );
+    // If we're in monorepo mode (projectType 'library' and --monorepo was used),
+    // install project-level dependencies at the repo root rather than inside the components package.
+    const installTargetCwd = projectType === 'library' && config.writableComponentsPath && config.writableComponentsPath.indexOf('packages') === -1
+      ? _currDir
+      : _currDir; // fallback to current dir; keep behavior same if detection fails
 
-    // Install native dependencies separately with proper version resolution
-    await installNativeDependencies(projectType);
+    // call installDependencies with current cwd set to installTargetCwd by temporarily changing process.cwd
+    const originalCwd = process.cwd();
+    try {
+      process.chdir(installTargetCwd);
+      await installDependencies(
+        inputComponent,
+        versionManager,
+        additionalDependencies
+      );
+
+      // Install native dependencies separately with proper version resolution
+      await installNativeDependencies(projectType);
+    } finally {
+      process.chdir(originalCwd);
+    }
 
     const s = spinner();
     s.start(

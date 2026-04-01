@@ -81,9 +81,9 @@ npx gluestack-ui add button --monorepo -y
 
 - `--nativewind`: Use NativeWind v4 (Tailwind CSS v3) as the styling engine. Useful for projects that need to stay on Tailwind v3.
 
-- `--nativewind-v5`: Use NativeWind v5 (Tailwind CSS v4) as the styling engine. This is the default for new projects.
+- `--nativewind-v5`: Use NativeWind v5 (Tailwind CSS v4) as the styling engine. Note: NativeWind v5 is not yet web-compatible in monorepo mode; the CLI will fall back to NativeWind v4 in monorepo setups.
 
-- `--uniwind`: Use UniWind (Tailwind CSS v4, Expo-only) as the styling engine. UniWind has no PostCSS build step.
+- `--uniwind`: Use UniWind (Tailwind CSS v4, Expo-only) as the styling engine. Note: UniWind is not supported for monorepo Next.js setups. In monorepo mode the CLI will fall back to NativeWind v4.
 
 - `-y, --yes`: Answer yes to all prompts. Use this for non-interactive environments like CI/CD pipelines.
 
