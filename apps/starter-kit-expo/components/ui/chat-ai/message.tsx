@@ -137,13 +137,12 @@ export const MessageContent = memo(
   ({ children, className }: MessageContentProps) => {
     const { role } = useMessageContext();
 
-    const roleStyles = role === 'user' 
-      ? 'self-end bg-primary' 
-      : 'self-start bg-muted';
+    const roleStyles =
+      role === 'user' ? 'self-end bg-muted max-w-[90%]' : 'self-start ';
 
     return (
       <View
-        className={`flex w-fit min-w-0 max-w-[90%] flex-col gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${roleStyles} ${className || ''}`}
+        className={`flex w-fit min-w-0  flex-col gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${roleStyles} ${className || ''}`}
       >
         {children}
       </View>
@@ -155,7 +154,7 @@ export const MessageContent = memo(
 
 const getMarkdownStyles = (isUser: boolean) => ({
   body: {
-    color: isUser ? '#000' : '#fff',
+    color: '#fff',
     fontSize: 16,
     lineHeight: 22,
   },
@@ -215,7 +214,7 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
             <Image
               key={index}
               source={{ uri }}
-              className="w-64 h-64 rounded-xl mt-1.5"
+              className="w-40 h-40 rounded-xl mt-1.5"
               resizeMode="cover"
             />
           );
