@@ -160,7 +160,7 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
   const markdownRules = {
     text: (node, children, parent) => {
       return (
-        <Text key={node.key} className="text-base text-foreground ">
+        <Text key={node.key} className="text-lg text-foreground ">
           {node.content}
         </Text>
       );

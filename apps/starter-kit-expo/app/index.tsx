@@ -86,15 +86,15 @@ const renderMessage: ListRenderItem<UIMessage> = ({ item: message, index }) => (
       <MessageResponse message={message} />
     </MessageContent>
 
-    <MessageToolbar>
+    <MessageToolbar className="mt-[2px]">
       <MessageAction>
-        <Menu strokeWidth={1} size={20} color="white" />
+        <Menu strokeWidth={1} size={18} color="white" />
       </MessageAction>
       <MessageAction>
-        <Share strokeWidth={1} size={20} color="white" />
+        <Share strokeWidth={1} size={18} color="white" />
       </MessageAction>
       <MessageAction>
-        <CopyCheck strokeWidth={1} size={20} color="white" />
+        <CopyCheck strokeWidth={1} size={18} color="white" />
       </MessageAction>
     </MessageToolbar>
   </Message>
