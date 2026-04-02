@@ -14,6 +14,7 @@ import {
   Alert,
   Image,
   ViewStyle,
+  Platform,
 } from 'react-native';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
@@ -152,7 +153,6 @@ export const MessageContent = memo(
 
 // ==================== MARKDOWN STYLES (REUSED) ====================
 
-
 // ==================== MESSAGE RESPONSE ====================
 const colorArrayToHex = (arr) => {
   const [r, g, b, a] = arr;
@@ -169,110 +169,102 @@ const colorArrayToHex = (arr) => {
 };
 
 export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
-  const isUser = message.role === 'user';
-  const mutedColor = useUnstableNativeVariable('--muted');
-const textColor = useUnstableNativeVariable('--foreground');
-const getMarkdownStyles = (isUser: boolean) => ({
-  body: {
-    color: colorArrayToHex(textColor),
-    fontSize: 16,
-    lineHeight: 22,
-  },
-  code_block: {
-    backgroundColor: '#0f172a',
-    color: '#e2e8f0',
-    padding: 12,
-    borderRadius: 10,
-  },
-  code_inline: {
-    backgroundColor: '#1e293b',
-    color: '#e2e8f0',
-    padding: 4,
-    borderRadius: 4,
-  },
-  pre: {
-    backgroundColor: '#0f172a',
-    borderRadius: 10,
-    padding: 0,
-  },
-});
-
-const markdownRules = {
-  fence: (node, children, parent, styles) => {
-    return (
-      <View
-        key={node.key}
-        style={{
-          backgroundColor: colorArrayToHex(mutedColor),
-          padding: 12,
-          borderRadius: 10,
-          marginVertical: 8,
-        }}
-      >
-        <Text
-          style={{
-            color: colorArrayToHex(textColor),
-            fontFamily: 'monospace',
-          }}
-        >
+  const markdownRules = {
+    text: (node, children, parent) => {
+      return (
+        <Text key={node.key} className="text-base text-foreground leading-6">
           {node.content}
         </Text>
-      </View>
-    );
-  },
+      );
+    },
 
-  code_block: (node, children, parent, styles) => {
-    return (
-      <View
-        key={node.key}
-        style={{
-          backgroundColor: '#0f172a',
-          padding: 12,
-          borderRadius: 10,
-          marginTop: 8,
-        }}
-      >
-        <Text
-          style={{
-            color: '#e2e8f0',
-            fontFamily: 'monospace',
-          }}
-        >
-          {node.content}
-        </Text>
+   
+
+    ordered_list: (node, children) => {
+      return (
+        <View key={node.key} className="mb-2">
+          {children}
+        </View>
+      );
+    },
+
+    list_item: (node, children, parent) => {
+      const isOrdered = parent?.type === 'ordered_list';
+      const index = node.index ?? 0;
+      // console.log(children);
+      return (
+        <View key={node.key} className="flex-row items-start mb-1">
+          <Text className="text-foreground mr-2">
+            {isOrdered ? `${index + 1}.` : '•'}
+          </Text>
+          <View className="flex-1">
+            <View className="flex-1">{children}</View>
+          </View>
+        </View>
+      );
+    },
+    
+
+    paragraph: (node, children) => {
+      return (
+        <View key={node.key} className="mb-2">
+          {children}
+        </View>
+      );
+    },
+
+    strong: (node, children) => (
+      <Text key={node.key} className="font-bold text-foreground">
+        {children}
+      </Text>
+    ),
+
+    em: (node, children) => (
+      <Text key={node.key} className="italic text-foreground">
+        {children}
+      </Text>
+    ),
+
+    fence: (node) => (
+      <View key={node.key} className="rounded-xl p-3 my-2 bg-muted">
+        <Text className="text-white font-mono text-sm">{node.content}</Text>
       </View>
-    );
-  },
-};
-  // ✅ fallback
-  if (!message || !message.parts) {
-    return (
-      <Markdown style={getMarkdownStyles(true)}>
-        {message?.content || ''}
-      </Markdown>
-    );
+    ),
+
+    code_block: (node) => (
+      <View className="bg-slate-900 rounded-xl p-3 my-2" key={node.key}>
+        <Text className="text-white font-mono text-sm">{node.content}</Text>
+      </View>
+    ),
+
+    code_inline: (node) => (
+      <Text
+        key={node.key}
+        className="bg-slate-800 text-white px-1 py-0.5 rounded"
+      >
+        {node.content}
+      </Text>
+    ),
+  };
+
+  // fallback
+  if (!message?.parts) {
+    return <Markdown rules={markdownRules}>{message?.content || ''}</Markdown>;
   }
 
-const hasText = message.parts?.some((p) => p.type === 'text');
-const hasFile = message.parts?.some((p) => p.type === 'file');
+  const hasText = message.parts.some((p) => p.type === 'text');
+  const hasFile = message.parts.some((p) => p.type === 'file');
 
-if (!hasText && !hasFile) {
-  return <Text style={{ color: '#64748b' }}>Thinking...</Text>;
-}
+  if (!hasText && !hasFile) {
+    return <Text className="text-muted-foreground">Thinking...</Text>;
+  }
 
-
-
-  // ✅ FINAL RENDER
   return (
     <View className="gap-2">
       {message.parts.map((part, index) => {
         if (part.type === 'text') {
           return (
-            <Markdown
-              key={index}
-              rules={markdownRules}
-              style={getMarkdownStyles(isUser)}
-            >
+            <Markdown key={index} rules={markdownRules}>
               {part.text || ''}
             </Markdown>
           );

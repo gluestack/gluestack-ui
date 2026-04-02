@@ -99,7 +99,9 @@ export const ConversationContent = ({
       messages[messages.length - 1].role === 'user';
 
     if (shouldScroll) {
-      flatListRef.current?.scrollToEnd();
+       if (Platform.OS !== 'web') {
+      flatListRef.current?.scrollToEnd()
+       }
     }
     prevLengthRef.current = messages.length;
   }, [messages]);
