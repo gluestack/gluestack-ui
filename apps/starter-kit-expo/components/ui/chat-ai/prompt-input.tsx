@@ -136,9 +136,12 @@ export const PromptInput = ({
   const isDisabled = !text.trim() && attachments.files.length === 0;
 
   const { height } = useReanimatedKeyboardAnimation();
-  const inputAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: height.value }],
-  }),[height.value]);
+  const inputAnimatedStyle = useAnimatedStyle(
+    () => ({
+      transform: [{ translateY: height.value }],
+    }),
+    [height.value]
+  );
 
   return (
     <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>
@@ -225,7 +228,9 @@ export const PromptInputActionMenu = ({ children }: any) => <>{children}</>;
 export const PromptInputActionMenuTrigger = ({ children, ...props }: any) => {
   return (
     <TouchableOpacity {...props}>
-      {children ?? <Text className="text-xl text-primary">+</Text>}
+      <View className="h-10 w-10 rounded-full items-center justify-center bg-primary/10">
+        {children ?? <Text className="text-xl text-primary">+</Text>}
+      </View>
     </TouchableOpacity>
   );
 };
