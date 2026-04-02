@@ -181,7 +181,7 @@ export const PromptInputTextarea = () => {
 
 export const PromptInputFooter = ({ children }: { children: ReactNode }) => {
   return (
-    <View className="flex-row items-center justify-between mt-3">
+    <View className="flex-row items-center justify-between mt-6">
       {children}
     </View>
   );

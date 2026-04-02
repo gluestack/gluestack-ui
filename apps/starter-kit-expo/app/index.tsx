@@ -6,7 +6,7 @@ import {
   AttachmentRemove,
   Attachments,
 } from '@/components/ui/chat-ai/attatchments';
-
+import { TouchableOpacity } from 'react-native';
 import { DefaultChatTransport, UIMessage } from 'ai';
 import { fetch as expoFetch } from 'expo/fetch'; // ← This is required for Expo
 import { configureReanimatedLogger } from 'react-native-reanimated';
@@ -149,6 +149,11 @@ const Example = () => {
                   )}
                 />
               </PromptInputActionMenu>
+              <TouchableOpacity>
+                <View className="h-10 px-3 rounded-full items-center justify-center bg-primary/10">
+                  <Text className="text-xl text-primary">Model</Text>
+                </View>
+              </TouchableOpacity>
             </PromptInputTools>
             <PromptInputSubmit />
           </PromptInputFooter>
