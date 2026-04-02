@@ -109,7 +109,7 @@ export const Message = memo(
                 : undefined
             }
             style={animationStyle as ViewStyle}
-            className={`group flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
+            className={`group mt-4 flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
           >
             {children}
           </Animated.View>
@@ -143,7 +143,7 @@ export const MessageContent = memo(
 
     return (
       <View
-        className={`flex w-fit min-w-0  flex-col gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${roleStyles} ${className || ''}`}
+        className={`flex w-fit min-w-0 flex-col justify-center gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${roleStyles} ${className || ''}`}
       >
         {children}
       </View>
@@ -159,7 +159,7 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
   const markdownRules = {
     text: (node, children, parent) => {
       return (
-        <Text key={node.key} className="text-base text-foreground leading-6">
+        <Text key={node.key} className="text-base text-foreground ">
           {node.content}
         </Text>
       );
@@ -194,7 +194,7 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
 
     paragraph: (node, children) => {
       return (
-        <View key={node.key} className="mb-2">
+        <View key={node.key} className="">
           {children}
         </View>
       );
@@ -294,10 +294,10 @@ export const MessageToolbar = memo(
     const { role } = useMessageContext();
 
     const roleStyles = role === 'user' ? 'self-end' : 'self-start';
-
+if (role === 'user') return null;
     return (
       <View
-        className={`mt-3 flex-row items-center gap-3 ${roleStyles} ${className || ''}`}
+        className={`-mt-4 ml-2 flex-row items-center gap-3 ${roleStyles} ${className || ''}`}
       >
         {children}
       </View>
@@ -320,6 +320,9 @@ export const MessageAction = ({
     if (tooltip) Alert.alert(tooltip);
     onPress?.();
   };
+const { role } = useMessageContext();
+
+// ❌ Hide for user messages
 
   return (
     <TouchableOpacity
