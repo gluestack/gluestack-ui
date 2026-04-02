@@ -26,7 +26,7 @@ import {
 import { ConversationScrollButton } from '@/components/ui/chat-ai/conversation';
 import { ListRenderItem } from 'react-native';
 import { Text } from 'react-native';
-import { CopyCheck } from 'lucide-react-native';
+import { CopyCheck, Menu, Option, Share } from 'lucide-react-native';
 import {
   PromptInput,
   PromptInputProvider,
@@ -87,6 +87,12 @@ const renderMessage: ListRenderItem<UIMessage> = ({ item: message, index }) => (
 
     <MessageToolbar>
       <MessageAction>
+        <Menu strokeWidth={1} size={20} color="white" />
+      </MessageAction>
+      <MessageAction>
+        <Share strokeWidth={1} size={20} color="white" />
+      </MessageAction>
+      <MessageAction>
         <CopyCheck strokeWidth={1} size={20} color="white" />
       </MessageAction>
     </MessageToolbar>
@@ -113,7 +119,7 @@ const Example = () => {
   );
 
   return (
-    <View className="flex-1 py-safe">
+    <View className="flex-1 py-safe bg-background">
       <Conversation>
         <ConversationContent renderItem={renderMessage} messages={messages} />
 

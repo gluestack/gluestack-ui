@@ -16,6 +16,7 @@ import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
 import { Text } from '@/components/ui/text';
+
 import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip';
 
 // AI SDK Types
@@ -178,7 +179,7 @@ export const Attachment = ({
             className={
               Platform.OS === 'web'
                 ? ''
-                : 'opacity-100 absolute top-1 right-1 z-10'
+                : 'opacity-100 absolute top-3 right-3 z-10'
             }
           />
         )}
@@ -207,8 +208,8 @@ export const AttachmentPreview = ({
         <Image
           source={{ uri: data.url }}
           alt={data.filename || 'Image'}
-          className={`size-full object-cover ${variant !== 'grid' ? 'rounded' : ''}`}
-          style={variant === 'grid' ? { width: 96, height: 96 } : undefined}
+          className={`size-full object-cover ${variant !== 'grid' ? 'rounded' : 'rounded-xl'}`}
+          style={variant === 'grid' ? { width: 104, height: 104 } : undefined}
         />
       );
     }
@@ -234,7 +235,7 @@ export const AttachmentPreview = ({
     <Box
       className={`
         flex shrink-0 items-center justify-center overflow-hidden
-        ${variant === 'grid' ? 'size-full bg-muted' : ''}
+        ${variant === 'grid' ? 'size-full ' : ''}
         ${variant === 'inline' ? 'size-5 rounded bg-background' : ''}
         ${variant === 'list' ? 'size-12 rounded bg-muted' : ''}
         ${className}
@@ -274,7 +275,7 @@ export const AttachmentRemove = ({
           variant === 'grid'
             ? isWeb
               ? 'absolute top-2 right-2 size-6 rounded-full bg-background/80 opacity-0 group-hover:opacity-100'
-              : 'absolute top-1 right-1 size-6 rounded-full bg-background/90'
+              : 'absolute top-3 right-3 h-8 w-8 items-center flex justify-center rounded-full bg-muted'
             : ''
         }
         ${variant === 'inline' ? 'size-5 ml-auto' : ''}
@@ -286,7 +287,7 @@ export const AttachmentRemove = ({
       {...props}
     >
       {children ?? (
-        <X className="text-destructive" size={variant === 'grid' ? 14 : 12} />
+        <X className="text-destructive" color={'white'}  size={variant === 'grid' ? 12 : 12} />
       )}
     </Button>
   );
@@ -362,7 +363,7 @@ export const AttachmentEmpty = ({
   ...props
 }: ComponentProps<typeof Box>) => (
   <Box
-    className={`flex items-center justify-center p-4 text-muted-foreground text-sm ${className}`}
+    className={`flex items-center justify-center  text-muted-foreground text-sm ${className}`}
     {...props}
   >
     {children ?? 'No attachments'}
