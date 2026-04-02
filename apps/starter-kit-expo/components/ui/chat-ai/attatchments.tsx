@@ -123,10 +123,11 @@ export const Attachments = ({
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
             flexDirection: variant === 'list' ? 'column' : 'row',
-            gap: 8,
-            height: 100,
+            
+            height: 80,
+         
           }}
-          className={`${className} bg-background`}
+          className={`${className} bg-muted `}
           {...props}
         >
           {children}
