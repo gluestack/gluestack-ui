@@ -105,7 +105,7 @@ export const ConversationContent = ({
   }, [messages]);
   const { messagesContainerHeight } = useBlankContext();
   return (
-    <GestureDetector gesture={panGesture}>
+    // <GestureDetector gesture={panGesture}>
       <View
         className="flex-1"
         onLayout={(e) => {
@@ -140,7 +140,7 @@ export const ConversationContent = ({
           }}
         />
       </View>
-    </GestureDetector>
+    // </GestureDetector>
   );
 };
 
