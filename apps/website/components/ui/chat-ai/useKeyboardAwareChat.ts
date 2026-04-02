@@ -47,14 +47,14 @@ export const useKeyboardAwareChat = () => {
         },
       ],
     };
-  });
+  },[keyboardHeight.value, keyboardProgress.value]);
 
   // 🔹 Optional: list bottom spacing (smooth)
   const listContentStyle = useAnimatedStyle(() => {
     return {
       paddingBottom: keyboardOffset.value,
     };
-  });
+  },[keyboardOffset.value]);
 
   // 🔹 (Optional) Gesture placeholder for future extension
   const panGesture = useMemo(() => {

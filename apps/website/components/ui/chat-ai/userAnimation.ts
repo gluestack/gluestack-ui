@@ -10,7 +10,7 @@ import {
 import { useMessageHeight } from './useMessageHeight';
 import { useBlankContext } from './blank-context';
 import { useWindowDimensions } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 
 export const useUserMessageAnimation = ({
   disabled,
@@ -22,7 +22,7 @@ export const useUserMessageAnimation = ({
   const progress = useSharedValue(-1);
   const windowHeight = useWindowDimensions().height;
   const { userMessageHeight } = useBlankContext();
-  const insets = useSafeAreaInsets();
+
   useAnimatedReaction(
     () => {
       const didAnimate = progress.get() !== -1;
@@ -37,7 +37,7 @@ export const useUserMessageAnimation = ({
 
       userMessageHeight.value = messageHeight;
 
-      const startY = Math.max(20, windowHeight - messageHeight - insets.bottom);
+      const startY = Math.max(20, windowHeight - messageHeight );
 
       translateY.value = withTiming(startY, { duration: 0 }, () => {
         translateY.value = withSpring(0, {
@@ -59,7 +59,7 @@ export const useUserMessageAnimation = ({
       transform: [{ translateY: translateY.value }],
       opacity: disabled ? 1 : progress.value,
     };
-  });
+  },[disabled, progress.value, translateY.value]);
 
   const didUserMessageAnimate = useDerivedValue(() =>
     disabled ? 1 : progress.get() === 1
