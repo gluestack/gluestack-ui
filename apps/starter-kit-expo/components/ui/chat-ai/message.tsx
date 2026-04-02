@@ -211,7 +211,7 @@ const markdownRules = {
       >
         <Text
           style={{
-            color: '#e2e8f0',
+            color: colorArrayToHex(textColor),
             fontFamily: 'monospace',
           }}
         >
