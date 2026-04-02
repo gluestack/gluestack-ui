@@ -144,7 +144,7 @@ export const PromptInput = ({
     <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>
       <Animated.View
         style={inputAnimatedStyle}
-        className="border-t border-border bg-background px-3 py-2"
+        className="bg-muted border-border mx-4 rounded-3xl  px-3 py-2"
       >
         {children}
       </Animated.View>
@@ -155,7 +155,7 @@ export const PromptInput = ({
 // ====================== BODY ======================
 
 export const PromptInputBody = ({ children }: { children: ReactNode }) => {
-  return <View className="flex-row pt-2 items-center gap-2">{children}</View>;
+  return <View className="flex-row  pt-2 items-center gap-2">{children}</View>;
 };
 
 // ====================== TEXTAREA ======================
@@ -169,7 +169,7 @@ export const PromptInputTextarea = () => {
       onChangeText={setText}
       placeholder="Let’s start building it"
       multiline
-      className="flex-1 text-base px-4 py-6 items-center justify-center rounded-3xl bg-muted text-foreground placeholder:text-muted-foreground"
+      className="flex-1 text-xl px-4 items-center justify-center rounded-3xl text-foreground placeholder:text-muted-foreground"
     />
   );
 };
@@ -178,7 +178,7 @@ export const PromptInputTextarea = () => {
 
 export const PromptInputFooter = ({ children }: { children: ReactNode }) => {
   return (
-    <View className="flex-row items-center justify-between mt-2">
+    <View className="flex-row items-center justify-between mt-3">
       {children}
     </View>
   );
