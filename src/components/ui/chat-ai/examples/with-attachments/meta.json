@@ -1,16 +1,18 @@
 {
-  "title": "Basic",
-  "description": "A basic chat interface example",
+  "title": "With Attachments",
+  "description": "Chat interface with file attachments support",
   "reactLive": {
     "Conversation": "@/components/ui/chat-ai",
     "ConversationContent": "@/components/ui/chat-ai",
     "Message": "@/components/ui/chat-ai",
     "MessageContent": "@/components/ui/chat-ai",
     "MessageResponse": "@/components/ui/chat-ai",
-    "MessageToolbar": "@/components/ui/chat-ai",
-    "MessageAction": "@/components/ui/chat-ai",
     "PromptInput": "@/components/ui/chat-ai",
     "PromptInputProvider": "@/components/ui/chat-ai",
-    "ConversationScrollButton": "@/components/ui/chat-ai"
+    "Attachments": "@/components/ui/chat-ai",
+    "Attachment": "@/components/ui/chat-ai",
+    "AttachmentPreview": "@/components/ui/chat-ai",
+    "AttachmentRemove": "@/components/ui/chat-ai",
+    "usePromptInputAttachments": "@/components/ui/chat-ai"
   }
 }

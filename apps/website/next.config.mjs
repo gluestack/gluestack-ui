@@ -70,6 +70,10 @@ const nextConfig = withExpo({
     '@gluestack-ui/utils',
     'react-native-reanimated',
     'react-native-worklets',
+    'react-native-markdown-display',
+    'expo-modules-core',
+    'expo-image-picker',
+    'expo-document-picker',
     // Add other packages that need transpiling
   ],
   images: {

@@ -1,0 +1,72 @@
+function Example() {
+  const [messages, setMessages] = React.useState([
+    {
+      id: '1',
+      role: 'user',
+      content: 'Here is the document you requested',
+    },
+  ]);
+
+  const AttachmentItem = ({ attachment, onRemove }) => {
+    return (
+      <Attachment data={attachment} onRemove={() => onRemove(attachment.id)}>
+        <AttachmentPreview />
+        <AttachmentRemove />
+      </Attachment>
+    );
+  };
+
+  const PromptInputAttachmentsDisplay = () => {
+    const attachments = usePromptInputAttachments();
+
+    if (attachments.files.length === 0) return null;
+
+    return (
+      <Attachments variant="grid" className="mb-4">
+        {attachments.files.map((attachment) => (
+          <AttachmentItem
+            key={attachment.id}
+            attachment={attachment}
+            onRemove={attachments.remove}
+          />
+        ))}
+      </Attachments>
+    );
+  };
+
+  const renderMessage = ({ item: message, index }) => (
+    <Message role={message.role} index={index} message={message}>
+      <MessageContent>
+        <MessageResponse message={message} />
+      </MessageContent>
+    </Message>
+  );
+
+  const handleSubmit = ({ text, files }) => {
+    if (!text.trim() && files.length === 0) return;
+    
+    const newMessage = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: text,
+    };
+    
+    setMessages([...messages, newMessage]);
+  };
+
+  return (
+    <div className="h-[500px] flex flex-col">
+      <Conversation className="flex-1">
+        <ConversationContent 
+          messages={messages} 
+          renderItem={renderMessage}
+        />
+      </Conversation>
+      <PromptInputProvider>
+        <PromptInput onSubmit={handleSubmit}>
+          <PromptInputAttachmentsDisplay />
+        </PromptInput>
+      </PromptInputProvider>
+    </div>
+  );
+}

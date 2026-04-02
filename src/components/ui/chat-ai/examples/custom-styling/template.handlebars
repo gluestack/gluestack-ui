@@ -3,25 +3,20 @@ function Example() {
     {
       id: '1',
       role: 'user',
-      content: 'Hello, how can you help me today?',
+      content: 'Can you help me style this component?',
     },
     {
       id: '2',
       role: 'assistant',
-      content: 'Hi! I can help you with various tasks including answering questions, writing code, analyzing data, and much more. What would you like to work on?',
+      content: 'Absolutely! You can customize the chat interface using Tailwind CSS classes. Each component accepts a className prop for styling.',
     },
   ]);
 
   const renderMessage = ({ item: message, index }) => (
     <Message role={message.role} index={index} message={message}>
-      <MessageContent>
+      <MessageContent className={message.role === 'user' ? 'bg-blue-600' : 'bg-slate-200'}>
         <MessageResponse message={message} />
       </MessageContent>
-      <MessageToolbar>
-        <MessageAction>
-          <span>⋮</span>
-        </MessageAction>
-      </MessageToolbar>
     </Message>
   );
 
@@ -38,16 +33,21 @@ function Example() {
   };
 
   return (
-    <div className="h-[500px] flex flex-col">
+    <div className="h-[500px] flex flex-col rounded-lg overflow-hidden border border-border">
+      <div className="bg-primary p-4">
+        <h3 className="text-primary-foreground font-semibold">Custom Chat</h3>
+      </div>
       <Conversation className="flex-1">
         <ConversationContent 
           messages={messages} 
           renderItem={renderMessage}
         />
-        <ConversationScrollButton />
       </Conversation>
       <PromptInputProvider>
-        <PromptInput onSubmit={handleSubmit} />
+        <PromptInput 
+          onSubmit={handleSubmit}
+          className="border-t-2 border-primary"
+        />
       </PromptInputProvider>
     </div>
   );
