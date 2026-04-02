@@ -111,7 +111,6 @@ import React, {
   useCallback,
   useEffect,
   type ReactElement,
-  ReactNode,
 } from 'react';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { useKeyboardAwareChat } from './useKeyboardAwareChat';
@@ -125,13 +124,14 @@ import {
   type ListRenderItem,
   Platform,
 } from 'react-native';
+
 import { ArrowDown, Download, MessageSquare } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import { Message, MessageContent, MessageResponse } from './message';
 import { BlankProvider, useBlankContext } from './blank-context';
 
-export type ConversationProps = React.PropsWithChildren<{ className?: string }>;
-import { LegendListProps, LegendListRef } from '@legendapp/list'; 
+// LegendList types only (for native)
+import type { LegendListProps, LegendListRef } from '@legendapp/list';
 import { AnimatedLegendList } from '@legendapp/list/reanimated';
 
 // ==================== MAIN COMPONENTS ====================
@@ -180,7 +180,7 @@ export const ConversationContent = ({
   estimatedItemSize = 140,
   ...flatListProps
 }: ConversationContentProps) => {
-  const flatListRef = useRef<FlatList<UIMessage>>(null);
+  const flatListRef = useRef<FlatList<UIMessage> | LegendListRef>(null);
 
   const defaultRenderItem: ListRenderItem<UIMessage> = useCallback(
     ({ item: message, index }) => (
@@ -196,6 +196,7 @@ export const ConversationContent = ({
     ),
     []
   );
+
   const { scrollHandler, panGesture } = useKeyboardAwareChat();
   const { blankSize } = useBlankContext();
 
@@ -206,54 +207,54 @@ export const ConversationContent = ({
       messages.length > prevLengthRef.current &&
       messages[messages.length - 1].role === 'user';
 
-    if (shouldScroll) {
-       if (Platform.OS !== 'web') {
-      flatListRef.current?.scrollToEnd()
-       }
+    if (shouldScroll && Platform.OS !== 'web') {
+      flatListRef.current?.scrollToEnd?.();
     }
     prevLengthRef.current = messages.length;
   }, [messages]);
+
   const { messagesContainerHeight } = useBlankContext();
+
+  // ←←← THIS IS THE KEY CHANGE ←←←
+  const ListComponent = Platform.OS === 'web' ? FlatList : AnimatedLegendList;
+
   return (
-    // <GestureDetector gesture={panGesture}>
-      <View
+    <View
+      className="flex-1"
+      onLayout={(e) => {
+        const height = e.nativeEvent.layout.height;
+        messagesContainerHeight.value = height;
+      }}
+    >
+      <ListComponent
+        ref={flatListRef}
+        data={messages}
+        showsVerticalScrollIndicator={false}
+        renderItem={renderItem || defaultRenderItem}
+        keyExtractor={(item) => item.id}
         className="flex-1"
-        onLayout={(e) => {
-          const height = e.nativeEvent.layout.height;
-          messagesContainerHeight.value = height;
+        contentContainerClassName="px-4 py-6 gap-6"
+        scrollEventThrottle={16}
+        // LegendList-only props (ignored safely on web)
+        estimatedItemSize={estimatedItemSize}
+        removeClippedSubviews={Platform.OS !== 'web'}
+        initialNumToRender={15}
+        windowSize={10}
+        maxToRenderPerBatch={10}
+        onScroll={scrollHandler}
+        ListEmptyComponent={
+          messages.length === 0 ? <ConversationEmptyState /> : undefined
+        }
+        contentContainerStyle={{
+          paddingBottom: blankSize.value,
         }}
-      >
-        <AnimatedLegendList
-          ref={flatListRef}
-          keyboardDismissMode={
-            Platform.OS === 'ios' ? 'interactive' : 'on-drag'
-          }
-          data={messages}
-          showsVerticalScrollIndicator={false}
-          renderItem={renderItem || defaultRenderItem}
-          keyExtractor={(item) => item.id}
-          className="flex-1"
-          contentContainerClassName="px-4 py-6 gap-6"
-          scrollEventThrottle={16}
-          estimatedItemSize={estimatedItemSize}
-          removeClippedSubviews
-          initialNumToRender={15}
-          windowSize={10}
-          onScroll={scrollHandler}
-          maxToRenderPerBatch={10}
-          {...flatListProps}
-          ListEmptyComponent={
-            messages.length === 0 ? <ConversationEmptyState /> : undefined
-          }
-          contentContainerStyle={{
-            paddingBottom: blankSize.value,
-          }}
-        />
-      </View>
-    // </GestureDetector>
+        {...flatListProps}
+      />
+    </View>
   );
 };
 
+// ConversationScrollButton and ConversationDownload stay exactly the same
 export const ConversationScrollButton = () => (
   <TouchableOpacity
     onPress={() => {}}
@@ -448,19 +449,6 @@ export const MessageContent = memo(
 // ==================== MARKDOWN STYLES (REUSED) ====================
 
 // ==================== MESSAGE RESPONSE ====================
-const colorArrayToHex = (arr) => {
-  const [r, g, b, a] = arr;
-
-  const toHex = (v) => Math.round(v).toString(16).padStart(2, '0');
-
-  // RGB
-  if (a === undefined || a === 1) {
-    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-  }
-
-  // RGBA → include alpha
-  return `#${toHex(r)}${toHex(g)}${toHex(b)}${toHex(a * 255)}`;
-};
 
 export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
   const markdownRules = {
@@ -913,7 +901,7 @@ export const PromptInput = ({
   const { height } = useReanimatedKeyboardAnimation();
   const inputAnimatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: height.value }],
-  }));
+  }),[height.value]);
 
   return (
     <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>
@@ -1700,7 +1688,7 @@ const Collapsible = ({ open, children }: CollapsibleProps) => {
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: progress.value,
     maxHeight: progress.value * 9999,
-  }));
+  }),[progress.value]);
 
   React.useEffect(() => {
     progress.value = withTiming(open ? 1 : 0, { duration: 180 });
@@ -1920,7 +1908,7 @@ export const FileTreeActions = ({
 
 import { useContext } from 'react';
 import { useWindowDimensions } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 import { useAnimatedReaction, withTiming } from 'react-native-reanimated';
 import { useBlankContext } from './blank-context';
@@ -1942,7 +1930,7 @@ export function useBlankSize({
 
   const { height: keyboardHeight } = useReanimatedKeyboardAnimation();
   const windowHeight = useWindowDimensions().height;
-  const insets = useSafeAreaInsets();
+
 
   // Pass the correct shared value from context
   const targetHeight =
@@ -2061,14 +2049,14 @@ export const useKeyboardAwareChat = () => {
         },
       ],
     };
-  });
+  },[keyboardHeight.value, keyboardProgress.value]);
 
   // 🔹 Optional: list bottom spacing (smooth)
   const listContentStyle = useAnimatedStyle(() => {
     return {
       paddingBottom: keyboardOffset.value,
     };
-  });
+  },[keyboardOffset.value]);
 
   // 🔹 (Optional) Gesture placeholder for future extension
   const panGesture = useMemo(() => {
@@ -2095,7 +2083,7 @@ import {
 import { useMessageHeight } from './useMessageHeight';
 import { useBlankContext } from './blank-context';
 import { useWindowDimensions } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 
 export const useUserMessageAnimation = ({
   disabled,
@@ -2107,7 +2095,7 @@ export const useUserMessageAnimation = ({
   const progress = useSharedValue(-1);
   const windowHeight = useWindowDimensions().height;
   const { userMessageHeight } = useBlankContext();
-  const insets = useSafeAreaInsets();
+
   useAnimatedReaction(
     () => {
       const didAnimate = progress.get() !== -1;
@@ -2122,7 +2110,7 @@ export const useUserMessageAnimation = ({
 
       userMessageHeight.value = messageHeight;
 
-      const startY = Math.max(20, windowHeight - messageHeight - insets.bottom);
+      const startY = Math.max(20, windowHeight - messageHeight );
 
       translateY.value = withTiming(startY, { duration: 0 }, () => {
         translateY.value = withSpring(0, {
@@ -2144,7 +2132,7 @@ export const useUserMessageAnimation = ({
       transform: [{ translateY: translateY.value }],
       opacity: disabled ? 1 : progress.value,
     };
-  });
+  },[disabled, progress.value, translateY.value]);
 
   const didUserMessageAnimate = useDerivedValue(() =>
     disabled ? 1 : progress.get() === 1

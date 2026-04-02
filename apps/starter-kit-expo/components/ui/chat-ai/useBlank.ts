@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useWindowDimensions } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 import { useAnimatedReaction, withTiming } from 'react-native-reanimated';
 import { useBlankContext } from './blank-context';
@@ -22,7 +22,7 @@ export function useBlankSize({
 
   const { height: keyboardHeight } = useReanimatedKeyboardAnimation();
   const windowHeight = useWindowDimensions().height;
-  const insets = useSafeAreaInsets();
+
 
   // Pass the correct shared value from context
   const targetHeight =

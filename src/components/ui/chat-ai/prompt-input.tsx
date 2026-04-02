@@ -138,7 +138,7 @@ export const PromptInput = ({
   const { height } = useReanimatedKeyboardAnimation();
   const inputAnimatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: height.value }],
-  }));
+  }),[height.value]);
 
   return (
     <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>

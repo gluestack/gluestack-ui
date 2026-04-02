@@ -32,7 +32,7 @@ const Collapsible = ({ open, children }: CollapsibleProps) => {
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: progress.value,
     maxHeight: progress.value * 9999,
-  }));
+  }),[progress.value]);
 
   React.useEffect(() => {
     progress.value = withTiming(open ? 1 : 0, { duration: 180 });

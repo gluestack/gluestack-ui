@@ -154,19 +154,6 @@ export const MessageContent = memo(
 // ==================== MARKDOWN STYLES (REUSED) ====================
 
 // ==================== MESSAGE RESPONSE ====================
-const colorArrayToHex = (arr) => {
-  const [r, g, b, a] = arr;
-
-  const toHex = (v) => Math.round(v).toString(16).padStart(2, '0');
-
-  // RGB
-  if (a === undefined || a === 1) {
-    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-  }
-
-  // RGBA → include alpha
-  return `#${toHex(r)}${toHex(g)}${toHex(b)}${toHex(a * 255)}`;
-};
 
 export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
   const markdownRules = {

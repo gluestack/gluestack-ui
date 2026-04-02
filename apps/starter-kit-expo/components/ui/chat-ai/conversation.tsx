@@ -3,7 +3,6 @@ import React, {
   useCallback,
   useEffect,
   type ReactElement,
-  ReactNode,
 } from 'react';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { useKeyboardAwareChat } from './useKeyboardAwareChat';
@@ -17,13 +16,14 @@ import {
   type ListRenderItem,
   Platform,
 } from 'react-native';
+
 import { ArrowDown, Download, MessageSquare } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import { Message, MessageContent, MessageResponse } from './message';
 import { BlankProvider, useBlankContext } from './blank-context';
 
-export type ConversationProps = React.PropsWithChildren<{ className?: string }>;
-import { LegendListProps, LegendListRef } from '@legendapp/list'; 
+// LegendList types only (for native)
+import type { LegendListProps, LegendListRef } from '@legendapp/list';
 import { AnimatedLegendList } from '@legendapp/list/reanimated';
 
 // ==================== MAIN COMPONENTS ====================
@@ -72,7 +72,7 @@ export const ConversationContent = ({
   estimatedItemSize = 140,
   ...flatListProps
 }: ConversationContentProps) => {
-  const flatListRef = useRef<FlatList<UIMessage>>(null);
+  const flatListRef = useRef<FlatList<UIMessage> | LegendListRef>(null);
 
   const defaultRenderItem: ListRenderItem<UIMessage> = useCallback(
     ({ item: message, index }) => (
@@ -88,6 +88,7 @@ export const ConversationContent = ({
     ),
     []
   );
+
   const { scrollHandler, panGesture } = useKeyboardAwareChat();
   const { blankSize } = useBlankContext();
 
@@ -98,54 +99,54 @@ export const ConversationContent = ({
       messages.length > prevLengthRef.current &&
       messages[messages.length - 1].role === 'user';
 
-    if (shouldScroll) {
-       if (Platform.OS !== 'web') {
-      flatListRef.current?.scrollToEnd()
-       }
+    if (shouldScroll && Platform.OS !== 'web') {
+      flatListRef.current?.scrollToEnd?.();
     }
     prevLengthRef.current = messages.length;
   }, [messages]);
+
   const { messagesContainerHeight } = useBlankContext();
+
+  // ←←← THIS IS THE KEY CHANGE ←←←
+  const ListComponent = Platform.OS === 'web' ? FlatList : AnimatedLegendList;
+
   return (
-    // <GestureDetector gesture={panGesture}>
-      <View
+    <View
+      className="flex-1"
+      onLayout={(e) => {
+        const height = e.nativeEvent.layout.height;
+        messagesContainerHeight.value = height;
+      }}
+    >
+      <ListComponent
+        ref={flatListRef}
+        data={messages}
+        showsVerticalScrollIndicator={false}
+        renderItem={renderItem || defaultRenderItem}
+        keyExtractor={(item) => item.id}
         className="flex-1"
-        onLayout={(e) => {
-          const height = e.nativeEvent.layout.height;
-          messagesContainerHeight.value = height;
+        contentContainerClassName="px-4 py-6 gap-6"
+        scrollEventThrottle={16}
+        // LegendList-only props (ignored safely on web)
+        estimatedItemSize={estimatedItemSize}
+        removeClippedSubviews={Platform.OS !== 'web'}
+        initialNumToRender={15}
+        windowSize={10}
+        maxToRenderPerBatch={10}
+        onScroll={scrollHandler}
+        ListEmptyComponent={
+          messages.length === 0 ? <ConversationEmptyState /> : undefined
+        }
+        contentContainerStyle={{
+          paddingBottom: blankSize.value,
         }}
-      >
-        <AnimatedLegendList
-          ref={flatListRef}
-          keyboardDismissMode={
-            Platform.OS === 'ios' ? 'interactive' : 'on-drag'
-          }
-          data={messages}
-          showsVerticalScrollIndicator={false}
-          renderItem={renderItem || defaultRenderItem}
-          keyExtractor={(item) => item.id}
-          className="flex-1"
-          contentContainerClassName="px-4 py-6 gap-6"
-          scrollEventThrottle={16}
-          estimatedItemSize={estimatedItemSize}
-          removeClippedSubviews
-          initialNumToRender={15}
-          windowSize={10}
-          onScroll={scrollHandler}
-          maxToRenderPerBatch={10}
-          {...flatListProps}
-          ListEmptyComponent={
-            messages.length === 0 ? <ConversationEmptyState /> : undefined
-          }
-          contentContainerStyle={{
-            paddingBottom: blankSize.value,
-          }}
-        />
-      </View>
-    // </GestureDetector>
+        {...flatListProps}
+      />
+    </View>
   );
 };
 
+// ConversationScrollButton and ConversationDownload stay exactly the same
 export const ConversationScrollButton = () => (
   <TouchableOpacity
     onPress={() => {}}
