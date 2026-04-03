@@ -1,4 +1,5 @@
-import { Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, ConversationScrollButton, Attachments, Attachment, AttachmentPreview, AttachmentRemove, usePromptInputAttachments } from '@/components/ui/chat-ai'
+import { Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, Attachments, Attachment, AttachmentPreview, AttachmentRemove, usePromptInputAttachments } from '@/components/ui/chat-ai'
+import { Box } from '@/components/ui/box'
 
 
 import React from 'react';
@@ -44,7 +45,7 @@ const [messages, setMessages] = React.useState([
   };
 
   return (
-    <div className="h-[500px] flex flex-col">
+    <Box className="h-[600px] web:pb-5 bg-background" >
       <Conversation className="flex-1">
         <ConversationContent 
           messages={messages} 
@@ -52,10 +53,15 @@ const [messages, setMessages] = React.useState([
         />
         <ConversationScrollButton />
       </Conversation>
+      
       <PromptInputProvider>
-        <PromptInput onSubmit={handleSubmit} />
+        <PromptInput onSubmit={handleSubmit} >
+           <PromptInputBody className="bg-blue-500">
+            <PromptInputTextarea />
+          </PromptInputBody>
+        </PromptInput>
       </PromptInputProvider>
-    </div>
+    </Box>
   )
 };
 
@@ -99,7 +105,7 @@ const [messages, setMessages] = React.useState([
   };
 
   return (
-    <div className="h-[500px] flex flex-col">
+    <Box className="h-[600px] web:pb-5 bg-background" >
       <Conversation className="flex-1">
         <ConversationContent 
           messages={messages} 
@@ -107,10 +113,15 @@ const [messages, setMessages] = React.useState([
         />
         <ConversationScrollButton />
       </Conversation>
+      
       <PromptInputProvider>
-        <PromptInput onSubmit={handleSubmit} />
+        <PromptInput onSubmit={handleSubmit} >
+           <PromptInputBody className="bg-blue-500">
+            <PromptInputTextarea />
+          </PromptInputBody>
+        </PromptInput>
       </PromptInputProvider>
-    </div>
+    </Box>
   )
 };
 

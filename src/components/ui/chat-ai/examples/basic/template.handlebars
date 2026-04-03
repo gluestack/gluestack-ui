@@ -38,7 +38,7 @@ function Example() {
   };
 
   return (
-    <div className="h-[500px] flex flex-col">
+    <Box className="h-[600px] web:pb-5 bg-background" >
       <Conversation className="flex-1">
         <ConversationContent 
           messages={messages} 
@@ -46,9 +46,14 @@ function Example() {
         />
         <ConversationScrollButton />
       </Conversation>
+      
       <PromptInputProvider>
-        <PromptInput onSubmit={handleSubmit} />
+        <PromptInput onSubmit={handleSubmit} >
+           <PromptInputBody className="bg-blue-500">
+            <PromptInputTextarea />
+          </PromptInputBody>
+        </PromptInput>
       </PromptInputProvider>
-    </div>
+    </Box>
   );
 }

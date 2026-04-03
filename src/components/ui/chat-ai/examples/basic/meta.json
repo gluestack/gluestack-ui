@@ -11,6 +11,9 @@
     "MessageAction": "@/components/ui/chat-ai",
     "PromptInput": "@/components/ui/chat-ai",
     "PromptInputProvider": "@/components/ui/chat-ai",
-    "ConversationScrollButton": "@/components/ui/chat-ai"
+    "PromptInputBody": "@/components/ui/chat-ai",
+    "PromptInputTextarea": "@/components/ui/chat-ai",
+    "ConversationScrollButton": "@/components/ui/chat-ai",
+    "Box": "@/components/ui/box"
   }
 }

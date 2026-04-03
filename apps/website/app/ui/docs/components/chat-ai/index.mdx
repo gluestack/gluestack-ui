@@ -1,5 +1,6 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, ConversationScrollButton, Attachments, Attachment, AttachmentPreview, AttachmentRemove, usePromptInputAttachments } from '@/components/ui/chat-ai';
+import { Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, Attachments, Attachment, AttachmentPreview, AttachmentRemove, usePromptInputAttachments } from '@/components/ui/chat-ai';
+import { Box } from '@/components/ui/box';
 
 import { CodeBlock } from "@/components/custom/markdown/code-block"; 
 
@@ -67,7 +68,7 @@ This is an illustration of **Chat AI** components.
   };
 
   return (
-    <div className="h-[500px] flex flex-col">
+    <Box className="h-[600px] web:pb-5 bg-background" >
       <Conversation className="flex-1">
         <ConversationContent 
           messages={messages} 
@@ -75,15 +76,20 @@ This is an illustration of **Chat AI** components.
         />
         <ConversationScrollButton />
       </Conversation>
+      
       <PromptInputProvider>
-        <PromptInput onSubmit={handleSubmit} />
+        <PromptInput onSubmit={handleSubmit} >
+           <PromptInputBody className="bg-blue-500">
+            <PromptInputTextarea />
+          </PromptInputBody>
+        </PromptInput>
       </PromptInputProvider>
-    </div>
+    </Box>
   );
 }`}
   argTypes={{}}
-  reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, ConversationScrollButton }}
-  importMap={{"@/components/ui/chat-ai":["Conversation","ConversationContent","Message","MessageContent","MessageResponse","MessageToolbar","MessageAction","PromptInput","PromptInputProvider","ConversationScrollButton"]}}
+  reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, Box }}
+  importMap={{"@/components/ui/chat-ai":["Conversation","ConversationContent","Message","MessageContent","MessageResponse","MessageToolbar","MessageAction","PromptInput","PromptInputProvider","PromptInputBody","PromptInputTextarea","ConversationScrollButton"],"@/components/ui/box":["Box"]}}
   
 />
 
@@ -158,13 +164,13 @@ export const ConversationEmptyState = ({
   className,
 }: ConversationEmptyStateProps) => (
   <View
-    className={`flex-1 items-center justify-center px-10 py-12 ${className || ''}`}
+    className={`flex-1  items-center justify-center   ${className || ''}`}
   >
-    {icon ?? <MessageSquare size={48} className="text-muted-foreground" />}
-    <Text className="mt-4 text-xl font-semibold text-foreground">{title}</Text>
-    <Text className="mt-2 text-center text-base text-muted-foreground">
+    {/* {icon ?? <MessageSquare size={48} className="text-muted-foreground" />} */}
+    <Text className="mt-4 text-3xl font-semibold text-foreground">{title}</Text>
+    {/* <Text className="mt-2 text-center text-base text-muted-foreground">
       {description}
-    </Text>
+    </Text> */}
   </View>
 );
 
@@ -218,40 +224,40 @@ export const ConversationContent = ({
   // ←←← THIS IS THE KEY CHANGE ←←←
   const ListComponent = Platform.OS === 'web' ? FlatList : AnimatedLegendList;
 
-  return (
-    <View
-      className="flex-1"
-      onLayout={(e) => {
-        const height = e.nativeEvent.layout.height;
-        messagesContainerHeight.value = height;
-      }}
-    >
-      <ListComponent
-        ref={flatListRef}
-        data={messages}
-        showsVerticalScrollIndicator={false}
-        renderItem={renderItem || defaultRenderItem}
-        keyExtractor={(item) => item.id}
-        className="flex-1"
-        contentContainerClassName="px-4 py-6 gap-6"
-        scrollEventThrottle={16}
-        // LegendList-only props (ignored safely on web)
-        estimatedItemSize={estimatedItemSize}
-        removeClippedSubviews={Platform.OS !== 'web'}
-        initialNumToRender={15}
-        windowSize={10}
-        maxToRenderPerBatch={10}
-        onScroll={scrollHandler}
-        ListEmptyComponent={
-          messages.length === 0 ? <ConversationEmptyState /> : undefined
-        }
-        contentContainerStyle={{
-          paddingBottom: blankSize.value,
-        }}
-        {...flatListProps}
-      />
-    </View>
-  );
+ return (
+   <View
+     className="flex-1"
+     onLayout={(e) => {
+       const height = e.nativeEvent.layout.height;
+       messagesContainerHeight.value = height;
+     }}
+   >
+     {messages.length === 0 ? (
+       <ConversationEmptyState />
+     ) : (
+       <ListComponent
+         ref={flatListRef}
+         data={messages}
+         showsVerticalScrollIndicator={false}
+         renderItem={renderItem || defaultRenderItem}
+         keyExtractor={(item) => item.id}
+         className="flex-1"
+         contentContainerClassName="px-4 py-6 gap-6"
+         scrollEventThrottle={16}
+         estimatedItemSize={estimatedItemSize}
+         removeClippedSubviews={Platform.OS !== 'web'}
+         initialNumToRender={15}
+         windowSize={10}
+         maxToRenderPerBatch={10}
+         onScroll={scrollHandler}
+         contentContainerStyle={{
+           paddingBottom: blankSize.value,
+         }}
+         {...flatListProps}
+       />
+     )}
+   </View>
+ );
 };
 
 // ConversationScrollButton and ConversationDownload stay exactly the same
@@ -322,6 +328,7 @@ import { useUnstableNativeVariable } from 'nativewind';
 
 type MessageContextType = {
   role: UIMessage['role'];
+  message?: UIMessage;
 };
 
 const MessageContext = createContext<MessageContextType | null>(null);
@@ -388,7 +395,7 @@ export const Message = memo(
       [animRef, blankRef]
     );
 
-    const contextValue = useMemo(() => ({ role }), [role]);
+    const contextValue = useMemo(() => ({ role, message }), [role, message]);
 
     if (role === 'user') {
       return (
@@ -404,7 +411,7 @@ export const Message = memo(
                 : undefined
             }
             style={animationStyle as ViewStyle}
-            className={`group flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
+            className={`group mt-4 flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
           >
             {children}
           </Animated.View>
@@ -438,7 +445,7 @@ export const MessageContent = memo(
 
     return (
       <View
-        className={`flex w-fit min-w-0  flex-col gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${roleStyles} ${className || ''}`}
+        className={`flex w-fit min-w-0 flex-col justify-center gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${roleStyles} ${className || ''}`}
       >
         {children}
       </View>
@@ -454,13 +461,11 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
   const markdownRules = {
     text: (node, children, parent) => {
       return (
-        <Text key={node.key} className="text-base text-foreground leading-6">
+        <Text key={node.key} className="text-lg text-foreground ">
           {node.content}
         </Text>
       );
     },
-
-   
 
     ordered_list: (node, children) => {
       return (
@@ -485,11 +490,10 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
         </View>
       );
     },
-    
 
     paragraph: (node, children) => {
       return (
-        <View key={node.key} className="mb-2">
+        <View key={node.key} className="">
           {children}
         </View>
       );
@@ -582,17 +586,25 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
 export type MessageToolbarProps = {
   children: React.ReactNode;
   className?: string;
+  message?: UIMessage;
 };
 
 export const MessageToolbar = memo(
   ({ children, className }: MessageToolbarProps) => {
-    const { role } = useMessageContext();
+    const { role, message } = useMessageContext();
 
     const roleStyles = role === 'user' ? 'self-end' : 'self-start';
+   const hasText = message?.parts?.some(
+     (p) => p.type === 'text' && p.text?.length > 0
+   );
+
+   if (!hasText) return null;
+
+    if (role === 'user') return null;
 
     return (
       <View
-        className={`mt-3 flex-row items-center gap-3 ${roleStyles} ${className || ''}`}
+        className={`-mt-4 ml-2 flex-row items-center gap-3 ${roleStyles} ${className || ''}`}
       >
         {children}
       </View>
@@ -899,15 +911,18 @@ export const PromptInput = ({
   const isDisabled = !text.trim() && attachments.files.length === 0;
 
   const { height } = useReanimatedKeyboardAnimation();
-  const inputAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: height.value }],
-  }),[height.value]);
+  const inputAnimatedStyle = useAnimatedStyle(
+    () => ({
+      transform: [{ translateY: height.value }],
+    }),
+    [height.value]
+  );
 
   return (
     <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>
       <Animated.View
         style={inputAnimatedStyle}
-        className="border-t border-border bg-background px-3 py-2"
+        className="bg-muted border-border mx-4 rounded-3xl  px-3 py-2"
       >
         {children}
       </Animated.View>
@@ -918,7 +933,7 @@ export const PromptInput = ({
 // ====================== BODY ======================
 
 export const PromptInputBody = ({ children }: { children: ReactNode }) => {
-  return <View className="flex-row items-center gap-2">{children}</View>;
+  return <View className="flex-row  pt-2 items-center gap-2">{children}</View>;
 };
 
 // ====================== TEXTAREA ======================
@@ -932,7 +947,7 @@ export const PromptInputTextarea = () => {
       onChangeText={setText}
       placeholder="Let’s start building it"
       multiline
-      className="flex-1 text-base px-4 py-2 rounded-xl bg-muted text-foreground placeholder:text-muted-foreground"
+      className="flex-1 text-xl px-4 items-center justify-center rounded-3xl text-foreground placeholder:text-muted-foreground"
     />
   );
 };
@@ -941,7 +956,7 @@ export const PromptInputTextarea = () => {
 
 export const PromptInputFooter = ({ children }: { children: ReactNode }) => {
   return (
-    <View className="flex-row items-center justify-between mt-2">
+    <View className="flex-row items-center justify-between mt-6">
       {children}
     </View>
   );
@@ -972,7 +987,7 @@ export const PromptInputSubmit = () => {
     <TouchableOpacity
       onPress={handleSubmit}
       disabled={isDisabled}
-      className={`h-10 w-10 rounded-full items-center justify-center bg-primary ${
+      className={`h-10 w-10 rounded-full items-center justify-center mx-3 bg-primary ${
         isDisabled ? 'opacity-50' : ''
       }`}
     >
@@ -988,7 +1003,9 @@ export const PromptInputActionMenu = ({ children }: any) => <>{children}</>;
 export const PromptInputActionMenuTrigger = ({ children, ...props }: any) => {
   return (
     <TouchableOpacity {...props}>
-      {children ?? <Text className="text-xl text-primary">+</Text>}
+      <View className="h-10 w-10 rounded-full items-center justify-center bg-primary/10">
+        {children ?? <Text className="text-xl text-primary">+</Text>}
+      </View>
     </TouchableOpacity>
   );
 };
@@ -1028,6 +1045,7 @@ export const PromptInputActionMenuContent = ({
     </Menu>
   );
 };
+
 'use client';
 
 import React, {
@@ -1046,6 +1064,7 @@ import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
 import { Text } from '@/components/ui/text';
+
 import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip';
 
 // AI SDK Types
@@ -1152,10 +1171,11 @@ export const Attachments = ({
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
             flexDirection: variant === 'list' ? 'column' : 'row',
-            gap: 8,
-            height: 100,
+            
+            height: 80,
+         
           }}
-          className={`${className} bg-background`}
+          className={`${className} bg-muted `}
           {...props}
         >
           {children}
@@ -1208,7 +1228,7 @@ export const Attachment = ({
             className={
               Platform.OS === 'web'
                 ? ''
-                : 'opacity-100 absolute top-1 right-1 z-10'
+                : 'opacity-100 absolute top-3 right-3 z-10'
             }
           />
         )}
@@ -1237,8 +1257,8 @@ export const AttachmentPreview = ({
         <Image
           source={{ uri: data.url }}
           alt={data.filename || 'Image'}
-          className={`size-full object-cover ${variant !== 'grid' ? 'rounded' : ''}`}
-          style={variant === 'grid' ? { width: 96, height: 96 } : undefined}
+          className={`size-full object-cover ${variant !== 'grid' ? 'rounded' : 'rounded-xl'}`}
+          style={variant === 'grid' ? { width: 104, height: 104 } : undefined}
         />
       );
     }
@@ -1264,7 +1284,7 @@ export const AttachmentPreview = ({
     <Box
       className={`
         flex shrink-0 items-center justify-center overflow-hidden
-        ${variant === 'grid' ? 'size-full bg-muted' : ''}
+        ${variant === 'grid' ? 'size-full ' : ''}
         ${variant === 'inline' ? 'size-5 rounded bg-background' : ''}
         ${variant === 'list' ? 'size-12 rounded bg-muted' : ''}
         ${className}
@@ -1304,7 +1324,7 @@ export const AttachmentRemove = ({
           variant === 'grid'
             ? isWeb
               ? 'absolute top-2 right-2 size-6 rounded-full bg-background/80 opacity-0 group-hover:opacity-100'
-              : 'absolute top-1 right-1 size-6 rounded-full bg-background/90'
+              : 'absolute top-3 right-3 h-8 w-8 items-center flex justify-center rounded-full bg-muted'
             : ''
         }
         ${variant === 'inline' ? 'size-5 ml-auto' : ''}
@@ -1316,7 +1336,7 @@ export const AttachmentRemove = ({
       {...props}
     >
       {children ?? (
-        <X className="text-destructive" size={variant === 'grid' ? 14 : 12} />
+        <X className="text-destructive" color={'white'}  size={variant === 'grid' ? 12 : 12} />
       )}
     </Button>
   );
@@ -1392,7 +1412,7 @@ export const AttachmentEmpty = ({
   ...props
 }: ComponentProps<typeof Box>) => (
   <Box
-    className={`flex items-center justify-center p-4 text-muted-foreground text-sm ${className}`}
+    className={`flex items-center justify-center  text-muted-foreground text-sm ${className}`}
     {...props}
   >
     {children ?? 'No attachments'}
@@ -1931,7 +1951,6 @@ export function useBlankSize({
   const { height: keyboardHeight } = useReanimatedKeyboardAnimation();
   const windowHeight = useWindowDimensions().height;
 
-
   // Pass the correct shared value from context
   const targetHeight =
     role === 'user'
@@ -1957,7 +1976,7 @@ export function useBlankSize({
 
       const nextBlank = Math.max(
         0,
-        context.messagesContainerHeight.value - pairedHeight
+        context.messagesContainerHeight.value - pairedHeight - 16
       );
 
       context.blankSize.value = nextBlank;
@@ -2588,7 +2607,7 @@ Components for handling file attachments.
   };
 
   return (
-    <div className="h-[500px] flex flex-col">
+    <Box className="h-[600px] web:pb-5 bg-background" >
       <Conversation className="flex-1">
         <ConversationContent 
           messages={messages} 
@@ -2596,15 +2615,20 @@ Components for handling file attachments.
         />
         <ConversationScrollButton />
       </Conversation>
+      
       <PromptInputProvider>
-        <PromptInput onSubmit={handleSubmit} />
+        <PromptInput onSubmit={handleSubmit} >
+           <PromptInputBody className="bg-blue-500">
+            <PromptInputTextarea />
+          </PromptInputBody>
+        </PromptInput>
       </PromptInputProvider>
-    </div>
+    </Box>
   );
 }`}
   argTypes={{}}
-  reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, ConversationScrollButton }}
-  importMap={{"@/components/ui/chat-ai":["Conversation","ConversationContent","Message","MessageContent","MessageResponse","MessageToolbar","MessageAction","PromptInput","PromptInputProvider","ConversationScrollButton"]}}
+  reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, Box }}
+  importMap={{"@/components/ui/chat-ai":["Conversation","ConversationContent","Message","MessageContent","MessageResponse","MessageToolbar","MessageAction","PromptInput","PromptInputProvider","PromptInputBody","PromptInputTextarea","ConversationScrollButton"],"@/components/ui/box":["Box"]}}
   
 />
 

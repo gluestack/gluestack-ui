@@ -8,7 +8,10 @@ import { MessageToolbar } from '@/components/ui/chat-ai';
 import { MessageAction } from '@/components/ui/chat-ai';
 import { PromptInput } from '@/components/ui/chat-ai';
 import { PromptInputProvider } from '@/components/ui/chat-ai';
+import { PromptInputBody } from '@/components/ui/chat-ai';
+import { PromptInputTextarea } from '@/components/ui/chat-ai';
 import { ConversationScrollButton } from '@/components/ui/chat-ai';
+import { Box } from '@/components/ui/box';
 
 export default function Example() {
   return (
@@ -53,7 +56,7 @@ export default function Example() {
   };
 
   return (
-    <div className="h-[500px] flex flex-col">
+    <Box className="h-[600px] web:pb-5 bg-background" >
       <Conversation className="flex-1">
         <ConversationContent 
           messages={messages} 
@@ -61,14 +64,19 @@ export default function Example() {
         />
         <ConversationScrollButton />
       </Conversation>
+      
       <PromptInputProvider>
-        <PromptInput onSubmit={handleSubmit} />
+        <PromptInput onSubmit={handleSubmit} >
+           <PromptInputBody className="bg-blue-500">
+            <PromptInputTextarea />
+          </PromptInputBody>
+        </PromptInput>
       </PromptInputProvider>
-    </div>
+    </Box>
   );
 }`}
       argTypes={{}}
-      reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, ConversationScrollButton }}
+      reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, Box }}
       
     />
   );

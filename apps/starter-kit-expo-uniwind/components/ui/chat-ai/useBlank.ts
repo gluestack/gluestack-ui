@@ -23,7 +23,6 @@ export function useBlankSize({
   const { height: keyboardHeight } = useReanimatedKeyboardAnimation();
   const windowHeight = useWindowDimensions().height;
 
-
   // Pass the correct shared value from context
   const targetHeight =
     role === 'user'
@@ -49,7 +48,7 @@ export function useBlankSize({
 
       const nextBlank = Math.max(
         0,
-        context.messagesContainerHeight.value - pairedHeight
+        context.messagesContainerHeight.value - pairedHeight - 16
       );
 
       context.blankSize.value = nextBlank;
