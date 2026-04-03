@@ -14,6 +14,21 @@
     "PromptInputBody": "@/components/ui/chat-ai",
     "PromptInputTextarea": "@/components/ui/chat-ai",
     "ConversationScrollButton": "@/components/ui/chat-ai",
-    "Box": "@/components/ui/box"
+    "Box": "@/components/ui/box",
+    "PromptInputFooter": "@/components/ui/chat-ai",
+    "PromptInputTools": "@/components/ui/chat-ai",
+    "PromptInputActionMenu": "@/components/ui/chat-ai",
+    "PromptInputActionMenuContent": "@/components/ui/chat-ai",
+    "PromptInputActionMenuTrigger": "@/components/ui/chat-ai",
+    "PromptInputSubmit": "@/components/ui/chat-ai",
+    "TouchableOpacity": "react-native",
+    "View": "react-native",
+    "Text": "react-native",
+    "memo":"react",
+    "CopyCheck": "lucide-react-native",
+    "Menu": "lucide-react-native",
+    "Option": "lucide-react-native",
+    "Share": "lucide-react-native"
+   
   }
 }
