@@ -136,15 +136,18 @@ export const PromptInput = ({
   const isDisabled = !text.trim() && attachments.files.length === 0;
 
   const { height } = useReanimatedKeyboardAnimation();
-  const inputAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: height.value }],
-  }),[height.value]);
+  const inputAnimatedStyle = useAnimatedStyle(
+    () => ({
+      transform: [{ translateY: height.value }],
+    }),
+    [height.value]
+  );
 
   return (
     <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>
       <Animated.View
         style={inputAnimatedStyle}
-        className="border-t border-border bg-background px-3 py-2"
+        className="bg-muted border-border mx-4 rounded-3xl  px-3 py-2"
       >
         {children}
       </Animated.View>
@@ -155,7 +158,7 @@ export const PromptInput = ({
 // ====================== BODY ======================
 
 export const PromptInputBody = ({ children }: { children: ReactNode }) => {
-  return <View className="flex-row items-center gap-2">{children}</View>;
+  return <View className="flex-row  pt-2 items-center gap-2">{children}</View>;
 };
 
 // ====================== TEXTAREA ======================
@@ -169,7 +172,7 @@ export const PromptInputTextarea = () => {
       onChangeText={setText}
       placeholder="Let’s start building it"
       multiline
-      className="flex-1 text-base px-4 py-2 rounded-xl bg-muted text-foreground placeholder:text-muted-foreground"
+      className="flex-1 text-xl px-4 items-center justify-center rounded-3xl text-foreground placeholder:text-muted-foreground"
     />
   );
 };
@@ -178,7 +181,7 @@ export const PromptInputTextarea = () => {
 
 export const PromptInputFooter = ({ children }: { children: ReactNode }) => {
   return (
-    <View className="flex-row items-center justify-between mt-2">
+    <View className="flex-row items-center justify-between mt-6">
       {children}
     </View>
   );
@@ -209,7 +212,7 @@ export const PromptInputSubmit = () => {
     <TouchableOpacity
       onPress={handleSubmit}
       disabled={isDisabled}
-      className={`h-10 w-10 rounded-full items-center justify-center bg-primary ${
+      className={`h-10 w-10 rounded-full items-center justify-center mx-3 bg-primary ${
         isDisabled ? 'opacity-50' : ''
       }`}
     >
@@ -225,7 +228,9 @@ export const PromptInputActionMenu = ({ children }: any) => <>{children}</>;
 export const PromptInputActionMenuTrigger = ({ children, ...props }: any) => {
   return (
     <TouchableOpacity {...props}>
-      {children ?? <Text className="text-xl text-primary">+</Text>}
+      <View className="h-10 w-10 rounded-full items-center justify-center bg-primary/10">
+        {children ?? <Text className="text-xl text-primary">+</Text>}
+      </View>
     </TouchableOpacity>
   );
 };

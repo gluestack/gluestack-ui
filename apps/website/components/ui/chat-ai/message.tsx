@@ -27,6 +27,7 @@ import { useUnstableNativeVariable } from 'nativewind';
 
 type MessageContextType = {
   role: UIMessage['role'];
+  message?: UIMessage;
 };
 
 const MessageContext = createContext<MessageContextType | null>(null);
@@ -93,7 +94,7 @@ export const Message = memo(
       [animRef, blankRef]
     );
 
-    const contextValue = useMemo(() => ({ role }), [role]);
+    const contextValue = useMemo(() => ({ role, message }), [role, message]);
 
     if (role === 'user') {
       return (
@@ -109,7 +110,7 @@ export const Message = memo(
                 : undefined
             }
             style={animationStyle as ViewStyle}
-            className={`group flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
+            className={`group mt-4 flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
           >
             {children}
           </Animated.View>
@@ -143,7 +144,7 @@ export const MessageContent = memo(
 
     return (
       <View
-        className={`flex w-fit min-w-0  flex-col gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${roleStyles} ${className || ''}`}
+        className={`flex w-fit min-w-0 flex-col justify-center gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${roleStyles} ${className || ''}`}
       >
         {children}
       </View>
@@ -159,13 +160,11 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
   const markdownRules = {
     text: (node, children, parent) => {
       return (
-        <Text key={node.key} className="text-base text-foreground leading-6">
+        <Text key={node.key} className="text-lg text-foreground ">
           {node.content}
         </Text>
       );
     },
-
-   
 
     ordered_list: (node, children) => {
       return (
@@ -190,11 +189,10 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
         </View>
       );
     },
-    
 
     paragraph: (node, children) => {
       return (
-        <View key={node.key} className="mb-2">
+        <View key={node.key} className="">
           {children}
         </View>
       );
@@ -287,17 +285,25 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
 export type MessageToolbarProps = {
   children: React.ReactNode;
   className?: string;
+  message?: UIMessage;
 };
 
 export const MessageToolbar = memo(
   ({ children, className }: MessageToolbarProps) => {
-    const { role } = useMessageContext();
+    const { role, message } = useMessageContext();
 
     const roleStyles = role === 'user' ? 'self-end' : 'self-start';
+   const hasText = message?.parts?.some(
+     (p) => p.type === 'text' && p.text?.length > 0
+   );
+
+   if (!hasText) return null;
+
+    if (role === 'user') return null;
 
     return (
       <View
-        className={`mt-3 flex-row items-center gap-3 ${roleStyles} ${className || ''}`}
+        className={`-mt-4 ml-2 flex-row items-center gap-3 ${roleStyles} ${className || ''}`}
       >
         {children}
       </View>

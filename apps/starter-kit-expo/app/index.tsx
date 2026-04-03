@@ -105,7 +105,7 @@ const Example = () => {
   const { messages, status, sendMessage, error } = useChat({
     transport: new DefaultChatTransport({
       fetch: expoFetch as unknown as typeof globalThis.fetch, // ← Critical for React Native
-      api: 'http://localhost:8082/api/chat', // or use generateAPIUrl('/api/chat') if you have a helper
+      api: 'http://localhost:8081/api/chat', // or use generateAPIUrl('/api/chat') if you have a helper
     }),
     onError: (err) => console.error('Chat error:', err),
   });
