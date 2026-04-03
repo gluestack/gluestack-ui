@@ -145,11 +145,10 @@ export const PromptInput = ({
 
   return (
     <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>
-      <Animated.View
-        style={inputAnimatedStyle}
-        className="bg-muted border-border mx-4 rounded-3xl  px-3 py-2"
-      >
-        {children}
+      <Animated.View style={inputAnimatedStyle}>
+        <View className="bg-muted border-border mx-4 rounded-3xl  px-3 py-2">
+          {children}
+        </View>
       </Animated.View>
     </PromptContext.Provider>
   );
@@ -172,7 +171,7 @@ export const PromptInputTextarea = () => {
       onChangeText={setText}
       placeholder="Let’s start building it"
       multiline
-      className="flex-1 text-xl px-4 items-center justify-center rounded-3xl text-foreground placeholder:text-muted-foreground"
+      className="flex-1 text-xl px-4 items-center justify-center rounded-3xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-0 focus:border-transparent"
     />
   );
 };
