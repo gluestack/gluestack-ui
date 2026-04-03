@@ -140,11 +140,11 @@ export const MessageContent = memo(
     const { role } = useMessageContext();
 
     const roleStyles =
-      role === 'user' ? 'self-end bg-muted max-w-[90%]' : 'self-start ';
+      role === 'user' ? 'self-end bg-muted max-w-[90%] px-4' : 'self-start ';
 
     return (
       <View
-        className={`flex w-fit min-w-0 flex-col justify-center gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${roleStyles} ${className || ''}`}
+        className={`flex w-fit min-w-0 flex-col justify-center gap-2 overflow-hidden text-base  py-3 rounded-3xl ${roleStyles} ${className || ''}`}
       >
         {children}
       </View>

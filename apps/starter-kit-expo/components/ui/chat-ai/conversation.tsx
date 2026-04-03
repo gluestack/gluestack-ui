@@ -30,7 +30,7 @@ import { AnimatedLegendList } from '@legendapp/list/reanimated';
 
 export const Conversation = ({ children, className }: ConversationProps) => (
   <BlankProvider>
-    <View className={`flex-1 bg-background ${className || ''}`}>
+    <View className={`flex-1 bg-background px-4 ${className || ''}`}>
       {children}
     </View>
   </BlankProvider>
@@ -49,9 +49,7 @@ export const ConversationEmptyState = ({
   icon,
   className,
 }: ConversationEmptyStateProps) => (
-  <View
-    className={`flex-1  items-center justify-center   ${className || ''}`}
-  >
+  <View className={`flex-1  items-center justify-center   ${className || ''}`}>
     {/* {icon ?? <MessageSquare size={48} className="text-muted-foreground" />} */}
     <Text className="mt-4 text-3xl font-semibold text-foreground">{title}</Text>
     {/* <Text className="mt-2 text-center text-base text-muted-foreground">
@@ -110,40 +108,38 @@ export const ConversationContent = ({
   // ←←← THIS IS THE KEY CHANGE ←←←
   const ListComponent = Platform.OS === 'web' ? FlatList : AnimatedLegendList;
 
- return (
-   <View
-     className="flex-1"
-     onLayout={(e) => {
-       const height = e.nativeEvent.layout.height;
-       messagesContainerHeight.value = height;
-     }}
-   >
-     {messages.length === 0 ? (
-       <ConversationEmptyState />
-     ) : (
-       <ListComponent
-         ref={flatListRef}
-         data={messages}
-         showsVerticalScrollIndicator={false}
-         renderItem={renderItem || defaultRenderItem}
-         keyExtractor={(item) => item.id}
-         className="flex-1"
-         contentContainerClassName="px-4 py-6 gap-6"
-         scrollEventThrottle={16}
-         estimatedItemSize={estimatedItemSize}
-         removeClippedSubviews={Platform.OS !== 'web'}
-         initialNumToRender={15}
-         windowSize={10}
-         maxToRenderPerBatch={10}
-         onScroll={scrollHandler}
-         contentContainerStyle={{
-           paddingBottom: blankSize.value,
-         }}
-         {...flatListProps}
-       />
-     )}
-   </View>
- );
+  return (
+    <View
+      className="flex-1"
+      onLayout={(e) => {
+        const height = e.nativeEvent.layout.height;
+        messagesContainerHeight.value = height;
+      }}
+    >
+      {messages.length === 0 ? (
+        <ConversationEmptyState />
+      ) : (
+        <ListComponent
+          ref={flatListRef}
+          data={messages}
+          showsVerticalScrollIndicator={false}
+          renderItem={renderItem || defaultRenderItem}
+          keyExtractor={(item) => item.id}
+          scrollEventThrottle={16}
+          estimatedItemSize={estimatedItemSize}
+          removeClippedSubviews={Platform.OS !== 'web'}
+          initialNumToRender={15}
+          windowSize={10}
+          maxToRenderPerBatch={10}
+          onScroll={scrollHandler}
+          contentContainerStyle={{
+            paddingBottom: blankSize.value,
+          }}
+          {...flatListProps}
+        />
+      )}
+    </View>
+  );
 };
 
 // ConversationScrollButton and ConversationDownload stay exactly the same

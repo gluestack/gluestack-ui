@@ -30,7 +30,7 @@ import { AnimatedLegendList } from '@legendapp/list/reanimated';
 
 export const Conversation = ({ children, className }: ConversationProps) => (
   <BlankProvider>
-    <View className={`flex-1 bg-background ${className || ''}`}>
+    <View className={`flex-1 relative bg-red-400 ${className || ''}`}>
       {children}
     </View>
   </BlankProvider>

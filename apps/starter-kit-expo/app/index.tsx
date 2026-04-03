@@ -131,34 +131,34 @@ const Example = () => {
         )}
 
         <ConversationScrollButton />
+        <PromptInputProvider>
+          <PromptInput onSubmit={handleSubmit}>
+            <PromptInputAttachmentsDisplay />
+            <PromptInputBody>
+              <PromptInputTextarea />
+            </PromptInputBody>
+            <PromptInputFooter>
+              <PromptInputTools>
+                <PromptInputActionMenu>
+                  <PromptInputActionMenuContent
+                    trigger={(props: any) => (
+                      <PromptInputActionMenuTrigger {...props} className="px-3">
+                        <Text className="text-3xl text-primary">+</Text>
+                      </PromptInputActionMenuTrigger>
+                    )}
+                  />
+                </PromptInputActionMenu>
+                <TouchableOpacity>
+                  <View className="h-10 px-3 rounded-full items-center justify-center bg-primary/10">
+                    <Text className="text-xl text-primary">Model</Text>
+                  </View>
+                </TouchableOpacity>
+              </PromptInputTools>
+              <PromptInputSubmit />
+            </PromptInputFooter>
+          </PromptInput>
+        </PromptInputProvider>
       </Conversation>
-      <PromptInputProvider>
-        <PromptInput onSubmit={handleSubmit}>
-          <PromptInputAttachmentsDisplay />
-          <PromptInputBody>
-            <PromptInputTextarea />
-          </PromptInputBody>
-          <PromptInputFooter>
-            <PromptInputTools>
-              <PromptInputActionMenu>
-                <PromptInputActionMenuContent
-                  trigger={(props: any) => (
-                    <PromptInputActionMenuTrigger {...props} className="px-3">
-                      <Text className="text-3xl text-primary">+</Text>
-                    </PromptInputActionMenuTrigger>
-                  )}
-                />
-              </PromptInputActionMenu>
-              <TouchableOpacity>
-                <View className="h-10 px-3 rounded-full items-center justify-center bg-primary/10">
-                  <Text className="text-xl text-primary">Model</Text>
-                </View>
-              </TouchableOpacity>
-            </PromptInputTools>
-            <PromptInputSubmit />
-          </PromptInputFooter>
-        </PromptInput>
-      </PromptInputProvider>
     </View>
   );
 };

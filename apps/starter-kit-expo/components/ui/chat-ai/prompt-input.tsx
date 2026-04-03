@@ -146,7 +146,7 @@ export const PromptInput = ({
   return (
     <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>
       <Animated.View style={inputAnimatedStyle}>
-        <View className="bg-muted border-border mx-4 rounded-3xl  px-3 py-2">
+        <View className="bg-muted border-border absolute bottom-4  w-full rounded-3xl  px-3 py-2">
           {children}
         </View>
       </Animated.View>

@@ -219,7 +219,7 @@ import { AnimatedLegendList } from '@legendapp/list/reanimated';
 
 export const Conversation = ({ children, className }: ConversationProps) => (
   <BlankProvider>
-    <View className={`flex-1 bg-background ${className || ''}`}>
+    <View className={`flex-1 bg-background px-4 ${className || ''}`}>
       {children}
     </View>
   </BlankProvider>
@@ -238,9 +238,7 @@ export const ConversationEmptyState = ({
   icon,
   className,
 }: ConversationEmptyStateProps) => (
-  <View
-    className={`flex-1  items-center justify-center   ${className || ''}`}
-  >
+  <View className={`flex-1  items-center justify-center   ${className || ''}`}>
     {/* {icon ?? <MessageSquare size={48} className="text-muted-foreground" />} */}
     <Text className="mt-4 text-3xl font-semibold text-foreground">{title}</Text>
     {/* <Text className="mt-2 text-center text-base text-muted-foreground">
@@ -299,40 +297,38 @@ export const ConversationContent = ({
   // ←←← THIS IS THE KEY CHANGE ←←←
   const ListComponent = Platform.OS === 'web' ? FlatList : AnimatedLegendList;
 
- return (
-   <View
-     className="flex-1"
-     onLayout={(e) => {
-       const height = e.nativeEvent.layout.height;
-       messagesContainerHeight.value = height;
-     }}
-   >
-     {messages.length === 0 ? (
-       <ConversationEmptyState />
-     ) : (
-       <ListComponent
-         ref={flatListRef}
-         data={messages}
-         showsVerticalScrollIndicator={false}
-         renderItem={renderItem || defaultRenderItem}
-         keyExtractor={(item) => item.id}
-         className="flex-1"
-         contentContainerClassName="px-4 py-6 gap-6"
-         scrollEventThrottle={16}
-         estimatedItemSize={estimatedItemSize}
-         removeClippedSubviews={Platform.OS !== 'web'}
-         initialNumToRender={15}
-         windowSize={10}
-         maxToRenderPerBatch={10}
-         onScroll={scrollHandler}
-         contentContainerStyle={{
-           paddingBottom: blankSize.value,
-         }}
-         {...flatListProps}
-       />
-     )}
-   </View>
- );
+  return (
+    <View
+      className="flex-1"
+      onLayout={(e) => {
+        const height = e.nativeEvent.layout.height;
+        messagesContainerHeight.value = height;
+      }}
+    >
+      {messages.length === 0 ? (
+        <ConversationEmptyState />
+      ) : (
+        <ListComponent
+          ref={flatListRef}
+          data={messages}
+          showsVerticalScrollIndicator={false}
+          renderItem={renderItem || defaultRenderItem}
+          keyExtractor={(item) => item.id}
+          scrollEventThrottle={16}
+          estimatedItemSize={estimatedItemSize}
+          removeClippedSubviews={Platform.OS !== 'web'}
+          initialNumToRender={15}
+          windowSize={10}
+          maxToRenderPerBatch={10}
+          onScroll={scrollHandler}
+          contentContainerStyle={{
+            paddingBottom: blankSize.value,
+          }}
+          {...flatListProps}
+        />
+      )}
+    </View>
+  );
 };
 
 // ConversationScrollButton and ConversationDownload stay exactly the same
@@ -520,7 +516,7 @@ export const MessageContent = memo(
 
     return (
       <View
-        className={`flex w-fit min-w-0 flex-col justify-center gap-2 overflow-hidden text-base px-4 py-3 rounded-3xl ${roleStyles} ${className || ''}`}
+        className={`flex w-fit min-w-0 flex-col justify-center gap-2 overflow-hidden text-base  py-3 rounded-3xl ${roleStyles} ${className || ''}`}
       >
         {children}
       </View>
@@ -995,178 +991,8 @@ export const PromptInput = ({
 
   return (
     <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>
-      <Animated.View
-        style={inputAnimatedStyle}
-        className="bg-muted border-border mx-4 rounded-3xl  px-3 py-2"
-      >
-        {children}
-      </Animated.View>
-    </PromptContext.Provider>
-  );
-};
-
-// ====================== BODY ======================
-
-export const PromptInputBody = ({ children }: { children: ReactNode }) => {
-  return <View className="flex-row  pt-2 items-center gap-2">{children}</View>;
-};
-
-// ====================== TEXTAREA ======================
-
-export const PromptInputTextarea = () => {
-  const { text, setText } = usePrompt();
-
-  return (
-    <TextInput
-      value={text}'use client';
-
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
-  useMemo,
-  ReactNode,
-} from 'react';
-import * as ImagePicker from 'expo-image-picker';
-import * as DocumentPicker from 'expo-document-picker';
-import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
-import { View, TextInput, TouchableOpacity, Text } from 'react-native';
-import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
-import Animated, { useAnimatedStyle } from 'react-native-reanimated';
-
-// ====================== CONTEXT ======================
-
-type PromptContextType = {
-  text: string;
-  setText: (t: string) => void;
-  handleSubmit: () => void;
-  isDisabled: boolean;
-};
-
-const PromptContext = createContext<PromptContextType | null>(null);
-
-const usePrompt = () => {
-  const context = useContext(PromptContext);
-  if (!context) throw new Error('Must be inside PromptInput');
-  return context;
-};
-
-// ====================== ATTACHMENTS ======================
-
-const generateId = (): string => {
-  return (
-    Math.random().toString(36).substring(2) +
-    Math.random().toString(36).substring(2)
-  );
-};
-
-export type FileUIPart = {
-  type: 'file';
-  filename?: string;
-  mediaType?: string;
-  url: string;
-};
-
-const AttachmentsContext = createContext<any>(null);
-
-export const usePromptInputAttachments = () => {
-  const context = useContext(AttachmentsContext);
-  if (!context) {
-    throw new Error('usePromptInputAttachments must be used within provider');
-  }
-  return context;
-};
-
-export const PromptInputProvider = ({ children }: { children: ReactNode }) => {
-  const [textInput, setTextInput] = useState('');
-  const [attachmentFiles, setAttachmentFiles] = useState<
-    (FileUIPart & { id: string })[]
-  >([]);
-
-  const add = useCallback((newFiles: any[]) => {
-    setAttachmentFiles((prev) => [...prev, ...newFiles]);
-  }, []);
-
-  const remove = useCallback((id: string) => {
-    setAttachmentFiles((prev) => prev.filter((f) => f.id !== id));
-  }, []);
-
-  const clear = useCallback(() => {
-    setAttachmentFiles([]);
-    setTextInput('');
-  }, []);
-
-  const openImagePicker = useCallback(async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'],
-      allowsMultipleSelection: true,
-      quality: 0.1,
-      base64: true,
-    });
-
-    if (!result.canceled && result.assets) {
-      const newFiles = result.assets.map((asset) => ({
-        id: generateId(),
-        filename: asset.fileName || `image-${Date.now()}.jpg`,
-        mediaType: asset.mimeType || 'image/jpeg',
-        type: 'file' as const,
-        url: `data:${asset.mimeType || 'image/jpeg'};base64,${asset.base64}`,
-      }));
-      add(newFiles);
-    }
-  }, [add]);
-
-  const attachmentsValue = useMemo(
-    () => ({
-      files: attachmentFiles,
-      add,
-      remove,
-      clear,
-      openImagePicker,
-    }),
-    [attachmentFiles, add, remove, clear, openImagePicker]
-  );
-
-  return (
-    <AttachmentsContext.Provider value={attachmentsValue}>
-      {children}
-    </AttachmentsContext.Provider>
-  );
-};
-
-// ====================== MAIN INPUT ======================
-
-export const PromptInput = ({
-  children,
-  onSubmit,
-}: {
-  children: ReactNode;
-  onSubmit?: any;
-}) => {
-  const [text, setText] = useState('');
-  const attachments = usePromptInputAttachments();
-
-  const handleSubmit = () => {
-    onSubmit?.({ text, files: attachments.files });
-    setText('');
-    attachments.clear();
-  };
-
-  const isDisabled = !text.trim() && attachments.files.length === 0;
-
-  const { height } = useReanimatedKeyboardAnimation();
-  const inputAnimatedStyle = useAnimatedStyle(
-    () => ({
-      transform: [{ translateY: height.value }],
-    }),
-    [height.value]
-  );
-
-  return (
-    <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>
       <Animated.View style={inputAnimatedStyle}>
-        <View className="bg-muted border-border mx-4 rounded-3xl  px-3 py-2">
+        <View className="bg-muted border-border absolute bottom-4  w-full rounded-3xl  px-3 py-2">
           {children}
         </View>
       </Animated.View>
@@ -1188,108 +1014,6 @@ export const PromptInputTextarea = () => {
   return (
     <TextInput
       value={text}
-      onChangeText={setText}
-      placeholder="Let’s start building it"
-      multiline
-      className="flex-1 text-xl px-4 items-center justify-center rounded-3xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-0 focus:border-transparent"
-    />
-  );
-};
-
-// ====================== FOOTER ======================
-
-export const PromptInputFooter = ({ children }: { children: ReactNode }) => {
-  return (
-    <View className="flex-row items-center justify-between mt-6">
-      {children}
-    </View>
-  );
-};
-
-// ====================== TOOLS ======================
-
-export const PromptInputTools = ({ children }: { children: ReactNode }) => {
-  return <View className="flex-row items-center gap-2">{children}</View>;
-};
-
-// ====================== BUTTON ======================
-
-export const PromptInputButton = ({ children }: { children: ReactNode }) => {
-  return (
-    <TouchableOpacity className="px-3 py-1 rounded-full bg-muted">
-      <Text>{children}</Text>
-    </TouchableOpacity>
-  );
-};
-
-// ====================== SUBMIT ======================
-
-export const PromptInputSubmit = () => {
-  const { handleSubmit, isDisabled } = usePrompt();
-
-  return (
-    <TouchableOpacity
-      onPress={handleSubmit}
-      disabled={isDisabled}
-      className={`h-10 w-10 rounded-full items-center justify-center mx-3 bg-primary ${
-        isDisabled ? 'opacity-50' : ''
-      }`}
-    >
-      <Text className="text-primary-foreground">↑</Text>
-    </TouchableOpacity>
-  );
-};
-
-// ====================== ACTION MENU ======================
-
-export const PromptInputActionMenu = ({ children }: any) => <>{children}</>;
-
-export const PromptInputActionMenuTrigger = ({ children, ...props }: any) => {
-  return (
-    <TouchableOpacity {...props}>
-      <View className="h-10 w-10 rounded-full items-center justify-center bg-primary/10">
-        {children ?? <Text className="text-xl text-primary">+</Text>}
-      </View>
-    </TouchableOpacity>
-  );
-};
-
-export const PromptInputActionMenuContent = ({
-  trigger,
-}: {
-  trigger: (props: any) => React.ReactNode;
-}) => {
-  const attachments = usePromptInputAttachments();
-
-  const openDocumentPicker = useCallback(async () => {
-    const result = await DocumentPicker.getDocumentAsync({ multiple: true });
-
-    if (result.assets) {
-      const newFiles = result.assets.map((asset) => ({
-        id: generateId(),
-        filename: asset.name,
-        mediaType: asset.mimeType,
-        type: 'file' as const,
-        url: asset.uri,
-      }));
-
-      attachments.add(newFiles);
-    }
-  }, [attachments]);
-
-  return (
-    <Menu placement="top" offset={5} trigger={trigger}>
-      <MenuItem onPress={attachments.openImagePicker}>
-        <MenuItemLabel>Select Image</MenuItemLabel>
-      </MenuItem>
-
-      <MenuItem onPress={openDocumentPicker}>
-        <MenuItemLabel>Select Document</MenuItemLabel>
-      </MenuItem>
-    </Menu>
-  );
-};
-
       onChangeText={setText}
       placeholder="Let’s start building it"
       multiline
