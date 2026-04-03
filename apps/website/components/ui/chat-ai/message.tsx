@@ -95,7 +95,8 @@ export const Message = memo(
     );
 
     const contextValue = useMemo(() => ({ role, message }), [role, message]);
-
+const containerStyle =
+  Platform.OS === 'web' ? undefined : (animationStyle as ViewStyle);
     if (role === 'user') {
       return (
         <MessageContext.Provider value={contextValue}>
@@ -109,7 +110,7 @@ export const Message = memo(
                   }
                 : undefined
             }
-            style={animationStyle as ViewStyle}
+            style={containerStyle}
             className={`group mt-4 flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
           >
             {children}
@@ -126,6 +127,7 @@ export const Message = memo(
           onLayout={blankOnLayout}
           className={`group flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
         >
+          
           {children}
         </Animated.View>
       </MessageContext.Provider>
