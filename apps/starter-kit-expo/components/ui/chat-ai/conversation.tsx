@@ -45,7 +45,7 @@ export const ConversationEmptyState = ({
   icon, 
   className,
 }: ConversationEmptyStateProps) => (
-  <View className={`flex-1  items-center justify-center   ${className || ''}`}>}
+  <View className={`flex-1  items-center justify-center   ${className || ''}`}>
     <Text className="mt-4 text-3xl font-semibold text-foreground">{title}</Text>
   </View>
 );
@@ -100,6 +100,7 @@ export const ConversationContent = ({
 
 
   return (
+   
     <View
       className="flex-1"
       onLayout={(e) => {
@@ -113,6 +114,7 @@ export const ConversationContent = ({
         <AnimatedLegendList
           ref={flatListRef}
           data={messages}
+        keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
           showsVerticalScrollIndicator={false}
           renderItem={renderItem || defaultRenderItem}
           keyExtractor={(item) => item.id}
@@ -130,6 +132,7 @@ export const ConversationContent = ({
         />
       )}
     </View>
+  
   );
 };
 
