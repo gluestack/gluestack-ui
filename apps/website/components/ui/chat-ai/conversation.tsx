@@ -17,20 +17,16 @@ import {
   Platform,
 } from 'react-native';
 
-import { ArrowDown, Download, MessageSquare } from 'lucide-react-native';
+import { ArrowDown, Download } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import { Message, MessageContent, MessageResponse } from './message';
 import { BlankProvider, useBlankContext } from './blank-context';
-
-// LegendList types only (for native)
-import type { LegendListProps, LegendListRef } from '@legendapp/list';
+import type { LegendListRef } from '@legendapp/list';
 import { AnimatedLegendList } from '@legendapp/list/reanimated';
-
-// ==================== MAIN COMPONENTS ====================
 
 export const Conversation = ({ children, className }: ConversationProps) => (
   <BlankProvider>
-    <View className={`flex-1 relative bg-red-400 ${className || ''}`}>
+    <View className={`flex-1 bg-background px-4 ${className || ''}`}>
       {children}
     </View>
   </BlankProvider>
@@ -46,17 +42,11 @@ export type ConversationEmptyStateProps = {
 export const ConversationEmptyState = ({
   title = 'Start a conversation',
   description = 'Type a message below to begin chatting',
-  icon,
+  icon, 
   className,
 }: ConversationEmptyStateProps) => (
-  <View
-    className={`flex-1  items-center justify-center   ${className || ''}`}
-  >
-    {/* {icon ?? <MessageSquare size={48} className="text-muted-foreground" />} */}
+  <View className={`flex-1  items-center justify-center   ${className || ''}`}>
     <Text className="mt-4 text-3xl font-semibold text-foreground">{title}</Text>
-    {/* <Text className="mt-2 text-center text-base text-muted-foreground">
-      {description}
-    </Text> */}
   </View>
 );
 
@@ -107,46 +97,46 @@ export const ConversationContent = ({
 
   const { messagesContainerHeight } = useBlankContext();
 
-  // ←←← THIS IS THE KEY CHANGE ←←←
-  const ListComponent = Platform.OS === 'web' ? FlatList : AnimatedLegendList;
 
- return (
-   <View
-     className="flex-1"
-     onLayout={(e) => {
-       const height = e.nativeEvent.layout.height;
-       messagesContainerHeight.value = height;
-     }}
-   >
-     {messages.length === 0 ? (
-       <ConversationEmptyState />
-     ) : (
-       <ListComponent
-         ref={flatListRef}
-         data={messages}
-         showsVerticalScrollIndicator={false}
-         renderItem={renderItem || defaultRenderItem}
-         keyExtractor={(item) => item.id}
-         className="flex-1"
-         contentContainerClassName="px-4 py-6 gap-6"
-         scrollEventThrottle={16}
-         estimatedItemSize={estimatedItemSize}
-         removeClippedSubviews={Platform.OS !== 'web'}
-         initialNumToRender={15}
-         windowSize={10}
-         maxToRenderPerBatch={10}
-         onScroll={scrollHandler}
-         contentContainerStyle={{
-           paddingBottom: blankSize.value,
-         }}
-         {...flatListProps}
-       />
-     )}
-   </View>
- );
+
+  return (
+   
+    <View
+      className="flex-1"
+      onLayout={(e) => {
+        const height = e.nativeEvent.layout.height;
+        messagesContainerHeight.value = height;
+      }}
+    >
+      {messages.length === 0 ? (
+        <ConversationEmptyState />
+      ) : (
+        <AnimatedLegendList
+          ref={flatListRef}
+          data={messages}
+        keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+          showsVerticalScrollIndicator={false}
+          renderItem={renderItem || defaultRenderItem}
+          keyExtractor={(item) => item.id}
+          scrollEventThrottle={16}
+          estimatedItemSize={estimatedItemSize}
+          removeClippedSubviews={Platform.OS !== 'web'}
+          initialNumToRender={15}
+          windowSize={10}
+          maxToRenderPerBatch={10}
+          onScroll={scrollHandler}
+          contentContainerStyle={{
+            paddingBottom: blankSize.value,
+          }}
+          {...flatListProps}
+        />
+      )}
+    </View>
+  
+  );
 };
 
-// ConversationScrollButton and ConversationDownload stay exactly the same
+
 export const ConversationScrollButton = () => (
   <TouchableOpacity
     onPress={() => {}}

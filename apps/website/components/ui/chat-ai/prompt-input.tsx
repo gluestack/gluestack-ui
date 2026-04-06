@@ -1,5 +1,3 @@
-'use client';
-
 import React, {
   createContext,
   useContext,
@@ -15,7 +13,7 @@ import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
-// ====================== CONTEXT ======================
+
 
 type PromptContextType = {
   text: string;
@@ -32,7 +30,7 @@ const usePrompt = () => {
   return context;
 };
 
-// ====================== ATTACHMENTS ======================
+
 
 const generateId = (): string => {
   return (
@@ -115,7 +113,6 @@ export const PromptInputProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// ====================== MAIN INPUT ======================
 
 export const PromptInput = ({
   children,
@@ -146,7 +143,7 @@ export const PromptInput = ({
   return (
     <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>
       <Animated.View style={inputAnimatedStyle}>
-        <View className="bg-muted border-border mx-4 absolute bottom-0 rounded-3xl  px-3 py-2">
+        <View className="bg-muted border-border absolute bottom-4  w-full rounded-3xl  px-3 py-2">
           {children}
         </View>
       </Animated.View>
@@ -154,13 +151,11 @@ export const PromptInput = ({
   );
 };
 
-// ====================== BODY ======================
 
 export const PromptInputBody = ({ children }: { children: ReactNode }) => {
   return <View className="flex-row  pt-2 items-center gap-2">{children}</View>;
 };
 
-// ====================== TEXTAREA ======================
 
 export const PromptInputTextarea = () => {
   const { text, setText } = usePrompt();
@@ -176,7 +171,6 @@ export const PromptInputTextarea = () => {
   );
 };
 
-// ====================== FOOTER ======================
 
 export const PromptInputFooter = ({ children }: { children: ReactNode }) => {
   return (
@@ -186,13 +180,11 @@ export const PromptInputFooter = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// ====================== TOOLS ======================
 
 export const PromptInputTools = ({ children }: { children: ReactNode }) => {
   return <View className="flex-row items-center gap-2">{children}</View>;
 };
 
-// ====================== BUTTON ======================
 
 export const PromptInputButton = ({ children }: { children: ReactNode }) => {
   return (
@@ -202,7 +194,6 @@ export const PromptInputButton = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// ====================== SUBMIT ======================
 
 export const PromptInputSubmit = () => {
   const { handleSubmit, isDisabled } = usePrompt();
@@ -220,7 +211,6 @@ export const PromptInputSubmit = () => {
   );
 };
 
-// ====================== ACTION MENU ======================
 
 export const PromptInputActionMenu = ({ children }: any) => <>{children}</>;
 
