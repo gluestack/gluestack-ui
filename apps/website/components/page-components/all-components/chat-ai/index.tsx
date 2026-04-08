@@ -44,7 +44,7 @@ export default function Example() {
     },
   ]);
 
-  // ================= ATTACHMENT ITEM =================
+
   const AttachmentItem = memo(({ attachment, onRemove }: any) => {
     const handleRemove = React.useCallback(
       () => onRemove(attachment.id),
@@ -59,7 +59,7 @@ export default function Example() {
     );
   });
 
-  // ================= ATTACHMENTS DISPLAY =================
+
   const PromptInputAttachmentsDisplay = () => {
     const attachments = usePromptInputAttachments();
 
@@ -100,7 +100,7 @@ export default function Example() {
     </Message>
   );
 
-  // ================= HANDLE SUBMIT WITH FAKE AI RESPONSE =================
+
   const handleSubmit = ({ text }: { text: string }) => {
     if (!text.trim()) return;
 

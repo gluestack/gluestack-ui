@@ -17,7 +17,7 @@ const [messages, setMessages] = React.useState([
     },
   ]);
 
-  // ================= ATTACHMENT ITEM =================
+
   const AttachmentItem = memo(({ attachment, onRemove }: any) => {
     const handleRemove = React.useCallback(
       () => onRemove(attachment.id),
@@ -32,7 +32,7 @@ const [messages, setMessages] = React.useState([
     );
   });
 
-  // ================= ATTACHMENTS DISPLAY =================
+
   const PromptInputAttachmentsDisplay = () => {
     const attachments = usePromptInputAttachments();
 
@@ -73,7 +73,7 @@ const [messages, setMessages] = React.useState([
     </Message>
   );
 
-  // ================= HANDLE SUBMIT WITH FAKE AI RESPONSE =================
+
   const handleSubmit = ({ text }: { text: string }) => {
     if (!text.trim()) return;
 

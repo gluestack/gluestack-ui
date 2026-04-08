@@ -52,7 +52,7 @@ This is an illustration of **Chat AI** components.
     },
   ]);
 
-  // ================= ATTACHMENT ITEM =================
+
   const AttachmentItem = memo(({ attachment, onRemove }: any) => {
     const handleRemove = React.useCallback(
       () => onRemove(attachment.id),
@@ -67,7 +67,7 @@ This is an illustration of **Chat AI** components.
     );
   });
 
-  // ================= ATTACHMENTS DISPLAY =================
+
   const PromptInputAttachmentsDisplay = () => {
     const attachments = usePromptInputAttachments();
 
@@ -108,7 +108,7 @@ This is an illustration of **Chat AI** components.
     </Message>
   );
 
-  // ================= HANDLE SUBMIT WITH FAKE AI RESPONSE =================
+
   const handleSubmit = ({ text }: { text: string }) => {
     if (!text.trim()) return;
 
