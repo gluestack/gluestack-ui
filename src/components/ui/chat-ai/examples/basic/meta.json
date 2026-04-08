@@ -1,6 +1,6 @@
 {
   "title": "Basic",
-  "description": "A basic chat interface example",
+  "description": "A basic chat interface example. This is just a mock example—features like streaming and image upload do not work here. However, they function properly when using the useChat hook from Vercel with an OpenRouter API key.",
   "reactLive": {
     "Conversation": "@/components/ui/chat-ai",
     "ConversationContent": "@/components/ui/chat-ai",

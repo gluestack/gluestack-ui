@@ -1,31 +1,54 @@
-import React, { Children, isValidElement } from 'react';
-import type { ComponentProps, ReactNode } from 'react';
+import React, {
+  Children,
+  isValidElement,
+  cloneElement,
+  type ReactNode,
+  type ComponentProps,
+} from 'react';
 import {
   Modal,
   ModalBackdrop,
   ModalContent,
   ModalHeader,
-  ModalBody,
   ModalCloseButton,
+  ModalBody,
 } from '@/components/ui/modal';
 import { X } from 'lucide-react-native';
-import { Pressable, Text, View, TextInput } from 'react-native';
+import { Pressable, Text, View, TextInput, ScrollView } from 'react-native';
 
-// ====================== Core Components ======================
+// Context
+const ModelSelectorContext = React.createContext<{
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+} | null>(null);
 
+const useModelSelector = () => {
+  const ctx = React.useContext(ModelSelectorContext);
+  if (!ctx)
+    throw new Error(
+      'ModelSelector sub-components must be used inside <ModelSelector>'
+    );
+  return ctx;
+};
+
+// ─────────────────────────────────────────────────────────────
+// Root
+// ─────────────────────────────────────────────────────────────
 export type ModelSelectorProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'full';
   children: ReactNode;
 };
 
 export const ModelSelector = ({
   open,
   onOpenChange,
+  size = 'md',
   children,
 }: ModelSelectorProps) => {
-  // Filter children - trigger renders outside, content goes in modal
   const childrenArray = Children.toArray(children);
+
   const triggerChildren: ReactNode[] = [];
   let contentElement: React.ReactElement | null = null;
 
@@ -38,61 +61,90 @@ export const ModelSelector = ({
   });
 
   return (
-    <View>
+    <ModelSelectorContext.Provider value={{ open, onOpenChange }}>
       {triggerChildren}
-      <Modal isOpen={open} onClose={() => onOpenChange(false)}>
+
+      <Modal isOpen={open} onClose={() => onOpenChange(false)} size={size}>
         <ModalBackdrop />
         {contentElement}
       </Modal>
-    </View>
+    </ModelSelectorContext.Provider>
   );
 };
 
-export type ModelSelectorTriggerProps = ComponentProps<typeof Pressable>;
+// ─────────────────────────────────────────────────────────────
+// Trigger (asChild support)
+// ─────────────────────────────────────────────────────────────
+export type ModelSelectorTriggerProps = {
+  asChild?: boolean;
+} & ComponentProps<typeof Pressable>;
 
 export const ModelSelectorTrigger = ({
+  asChild = false,
   className,
+  children,
+  onPress: userOnPress,
   ...props
-}: ModelSelectorTriggerProps) => (
-  <Pressable
-    className={`w-[200px] h-[40px] bg-primary justify-between ${className || ''}`}
-    {...props}
-  />
-);
+}: ModelSelectorTriggerProps) => {
+  const { onOpenChange } = useModelSelector();
 
+  const handlePress = () => {
+    onOpenChange(true);
+    userOnPress?.();
+  };
+
+  if (asChild && isValidElement(children)) {
+    return cloneElement(children, {
+      ...props,
+      onPress: handlePress,
+      className: `${children.props.className || ''} ${className || ''}`,
+    } as any);
+  }
+
+  return (
+    <Pressable
+      className={`w-[200px] h-[40px] bg-primary justify-between ${className || ''}`}
+      onPress={handlePress}
+      {...props}
+    >
+      {children}
+    </Pressable>
+  );
+};
+
+// ─────────────────────────────────────────────────────────────
+// Content — NOW passes size to ModalContent (this fixes the crash)
+// ─────────────────────────────────────────────────────────────
 export type ModelSelectorContentProps = ComponentProps<typeof ModalContent> & {
   title?: ReactNode;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'full'; // ← added
 };
 
 export const ModelSelectorContent = ({
   title = 'Model Selector',
   children,
   className,
-  size,
+  size, // ← receive from root
   ...props
-}: ModelSelectorContentProps) => {
-  return (
-    <ModalContent className={className} size={size} {...props}>
-      <ModalHeader>
-        <Text className="sr-only">{title}</Text>
-        <ModalCloseButton>
-          <X size={20} className="text-muted-foreground" />
-        </ModalCloseButton>
-      </ModalHeader>
+}: ModelSelectorContentProps) => (
+  <ModalContent className={className} {...props}>
+    <ModalHeader>
+      <Text className="sr-only">{title}</Text>
+      <ModalCloseButton>
+        <X size={20} className="text-muted-foreground" />
+      </ModalCloseButton>
+    </ModalHeader>
+    <ScrollView className="max-h-[500px]">
+      <ModalBody>{children}</ModalBody>
+    </ScrollView>
+  </ModalContent>
+);
 
-      <ModalBody className="p-0 flex-1">{children as ReactNode}</ModalBody>
-    </ModalContent>
-  );
-};
-
-// ====================== Command-like Components ======================
-
-export type ModelSelectorInputProps = ComponentProps<typeof TextInput>;
-
+// Rest of the components (unchanged)
 export const ModelSelectorInput = ({
   className,
   ...props
-}: ModelSelectorInputProps) => (
+}: ComponentProps<typeof TextInput>) => (
   <TextInput
     className={`h-12 px-4 border-b border-border text-base text-foreground placeholder:text-muted-foreground ${className || ''}`}
     placeholder="Search models..."
@@ -100,19 +152,17 @@ export const ModelSelectorInput = ({
   />
 );
 
-export type ModelSelectorListProps = ComponentProps<typeof View>;
 export const ModelSelectorList = ({
   className,
   ...props
-}: ModelSelectorListProps) => (
-  <View className={`flex-1 ${className || ''}`} {...props} />
+}: ComponentProps<typeof View>) => (
+  <View className={`flex-1 ${className || ' w-full'}`} {...props} />
 );
 
-export type ModelSelectorEmptyProps = ComponentProps<typeof View>;
 export const ModelSelectorEmpty = ({
   className,
   ...props
-}: ModelSelectorEmptyProps) => (
+}: ComponentProps<typeof View>) => (
   <View
     className={`flex-1 items-center justify-center py-12 ${className || ''}`}
     {...props}
@@ -121,15 +171,12 @@ export const ModelSelectorEmpty = ({
   </View>
 );
 
-export type ModelSelectorGroupProps = ComponentProps<typeof View> & {
-  heading?: string;
-};
 export const ModelSelectorGroup = ({
   heading,
   children,
   className,
   ...props
-}: ModelSelectorGroupProps) => (
+}: ComponentProps<typeof View> & { heading?: string }) => (
   <View className={className} {...props}>
     {heading && (
       <Text className="px-4 py-2 text-sm font-semibold text-muted-foreground">
@@ -140,32 +187,27 @@ export const ModelSelectorGroup = ({
   </View>
 );
 
-export type ModelSelectorItemProps = ComponentProps<typeof Pressable> & {
-  value?: string;
-  isSelected?: boolean;
-};
-
 export const ModelSelectorItem = ({
   isSelected = false,
   children,
   className,
   ...props
-}: ModelSelectorItemProps) => (
-  <Pressable
-    className={`flex-row items-center px-4 py-3 ${
-      isSelected ? 'bg-accent' : 'active:bg-muted'
-    } ${className || ''}`}
-    {...props}
-  >
-    {children}
-  </Pressable>
-);
+}: ComponentProps<typeof Pressable> & { isSelected?: boolean }) => {
+  console.log(children);
+  return (
+    <Pressable
+      className={`flex-row items-center  h-4 w-4 px-4 py-3 ${isSelected ? 'bg-accent' : 'active:bg-muted'} ${className || ''}`}
+      {...props}
+    >
+      {children}
+    </Pressable>
+  );
+};
 
-export type ModelSelectorShortcutProps = ComponentProps<typeof View>;
 export const ModelSelectorShortcut = ({
   className,
   ...props
-}: ModelSelectorShortcutProps) => (
+}: ComponentProps<typeof View>) => (
   <View className={`ml-auto ${className || ''}`} {...props} />
 );
 
@@ -175,15 +217,9 @@ export const ModelSelectorSeparator = ({
   className?: string;
 }) => <View className={`h-px bg-border mx-4 my-1 ${className || ''}`} />;
 
-// ====================== UI Helpers ======================
-
-export type ModelSelectorLogoProps = {
-  provider: string;
-};
-
-export const ModelSelectorLogo = ({ provider }: ModelSelectorLogoProps) => (
+export const ModelSelectorLogo = ({ provider }: { provider: string }) => (
   <View className="w-5 h-5 rounded-full bg-muted items-center justify-center">
-    <Text className="text-[10px] font-medium text-foreground">
+    <Text className="text-[10px] text-foreground font-medium text-foreground">
       {provider.slice(0, 2).toUpperCase()}
     </Text>
   </View>

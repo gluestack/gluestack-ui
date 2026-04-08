@@ -25,10 +25,22 @@ Build AI chat interfaces with a comprehensive set of components including conver
 
 This is an illustration of **Chat AI** components.
 
+   <video
+              poster="/videos/Chat-app.mp4"
+              className="lg:-mr-20 xl:-mr-24 h-[calc(60vh-110px)] xl:object-cover"
+              autoPlay
+              loop
+              preload="auto"
+              playsInline
+              muted
+            >
+              <source src="/videos/Chat-app.mp4" type="video/mp4" />
+            </video>
+
 
   
 
-  A basic chat interface example
+  A basic chat interface example. This is just a mock example—features like streaming and image upload do not work here. However, they function properly when using the useChat hook from Vercel with an OpenRouter API key.
 
   <CodePreviewer
   code={`function Example() {
@@ -188,6 +200,7 @@ export * from './conversation';
 export * from './prompt-input';
 export * from './file-tree';
 export * from './model-selector';
+export * from './attatchments';
 import React, {
   useRef,
   useCallback,
@@ -207,16 +220,12 @@ import {
   Platform,
 } from 'react-native';
 
-import { ArrowDown, Download, MessageSquare } from 'lucide-react-native';
+import { ArrowDown, Download } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import { Message, MessageContent, MessageResponse } from './message';
 import { BlankProvider, useBlankContext } from './blank-context';
-
-// LegendList types only (for native)
-import type { LegendListProps, LegendListRef } from '@legendapp/list';
+import type { LegendListRef } from '@legendapp/list';
 import { AnimatedLegendList } from '@legendapp/list/reanimated';
-
-// ==================== MAIN COMPONENTS ====================
 
 export const Conversation = ({ children, className }: ConversationProps) => (
   <BlankProvider>
@@ -236,15 +245,11 @@ export type ConversationEmptyStateProps = {
 export const ConversationEmptyState = ({
   title = 'Start a conversation',
   description = 'Type a message below to begin chatting',
-  icon,
+  icon, 
   className,
 }: ConversationEmptyStateProps) => (
   <View className={`flex-1  items-center justify-center   ${className || ''}`}>
-    {/* {icon ?? <MessageSquare size={48} className="text-muted-foreground" />} */}
     <Text className="mt-4 text-3xl font-semibold text-foreground">{title}</Text>
-    {/* <Text className="mt-2 text-center text-base text-muted-foreground">
-      {description}
-    </Text> */}
   </View>
 );
 
@@ -295,10 +300,10 @@ export const ConversationContent = ({
 
   const { messagesContainerHeight } = useBlankContext();
 
-  // ←←← THIS IS THE KEY CHANGE ←←←
-  const ListComponent = Platform.OS === 'web' ? FlatList : AnimatedLegendList;
+
 
   return (
+   
     <View
       className="flex-1"
       onLayout={(e) => {
@@ -309,9 +314,10 @@ export const ConversationContent = ({
       {messages.length === 0 ? (
         <ConversationEmptyState />
       ) : (
-        <ListComponent
+        <AnimatedLegendList
           ref={flatListRef}
           data={messages}
+        keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
           showsVerticalScrollIndicator={false}
           renderItem={renderItem || defaultRenderItem}
           keyExtractor={(item) => item.id}
@@ -321,7 +327,6 @@ export const ConversationContent = ({
           initialNumToRender={15}
           windowSize={10}
           maxToRenderPerBatch={10}
-          onScroll={scrollHandler}
           contentContainerStyle={{
             paddingBottom: blankSize.value,
           }}
@@ -329,10 +334,11 @@ export const ConversationContent = ({
         />
       )}
     </View>
+  
   );
 };
 
-// ConversationScrollButton and ConversationDownload stay exactly the same
+
 export const ConversationScrollButton = () => (
   <TouchableOpacity
     onPress={() => {}}
@@ -371,10 +377,8 @@ export const ConversationDownload = ({
   );
 };
 
-// components/ai-elements/message.tsx
 import React, {
   memo,
-  useCallback,
   createContext,
   useContext,
   useState,
@@ -387,7 +391,6 @@ import {
   Alert,
   Image,
   ViewStyle,
-  Platform,
 } from 'react-native';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
@@ -395,8 +398,6 @@ import Animated from 'react-native-reanimated';
 import { useUserMessageAnimation } from './userAnimation';
 import { useBlankSize } from './useBlank';
 import Markdown from 'react-native-markdown-display';
-import { useUnstableNativeVariable } from 'nativewind';
-// ==================== CONTEXT ====================
 
 type MessageContextType = {
   role: UIMessage['role'];
@@ -415,7 +416,6 @@ const useMessageContext = () => {
   return context;
 };
 
-// ==================== REF MERGER ====================
 const mergeRefs = <T,>(
   ...refs: Array<React.Ref<T> | null | undefined>
 ): React.RefCallback<T> => {
@@ -430,8 +430,6 @@ const mergeRefs = <T,>(
   };
 };
 
-// ==================== TYPES ====================
-
 export type MessageProps = {
   role: UIMessage['role'];
   children: React.ReactNode;
@@ -444,8 +442,6 @@ export type MessageContentProps = {
   children: React.ReactNode;
   className?: string;
 };
-
-// ==================== MAIN MESSAGE COMPONENT ====================
 
 export const Message = memo(
   ({ role, children, className, index, message }: MessageProps) => {
@@ -474,14 +470,10 @@ export const Message = memo(
         <MessageContext.Provider value={contextValue}>
           <Animated.View
             ref={combinedRef}
-            onLayout={
-              isUserFirstMessage
-                ? (event) => {
-                    animOnLayout?.(event);
-                    blankOnLayout?.(event);
-                  }
-                : undefined
-            }
+            onLayout={(event) => {
+              animOnLayout?.(event);
+              blankOnLayout?.(event);
+            }}
             style={animationStyle as ViewStyle}
             className={`group mt-4 flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
           >
@@ -491,7 +483,6 @@ export const Message = memo(
       );
     }
 
-    // Assistant messages
     return (
       <MessageContext.Provider value={contextValue}>
         <Animated.View
@@ -505,8 +496,6 @@ export const Message = memo(
     );
   }
 );
-
-// ==================== MESSAGE CONTENT ====================
 
 export const MessageContent = memo(
   ({ children, className }: MessageContentProps) => {
@@ -524,10 +513,6 @@ export const MessageContent = memo(
     );
   }
 );
-
-// ==================== MARKDOWN STYLES (REUSED) ====================
-
-// ==================== MESSAGE RESPONSE ====================
 
 export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
   const markdownRules = {
@@ -550,7 +535,6 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
     list_item: (node, children, parent) => {
       const isOrdered = parent?.type === 'ordered_list';
       const index = node.index ?? 0;
-      // console.log(children);
       return (
         <View key={node.key} className="flex-row items-start mb-1">
           <Text className="text-foreground mr-2">
@@ -605,7 +589,6 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
     ),
   };
 
-  // fallback
   if (!message?.parts) {
     return <Markdown rules={markdownRules}>{message?.content || ''}</Markdown>;
   }
@@ -653,7 +636,6 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
     </View>
   );
 });
-// ==================== MESSAGE TOOLBAR ====================
 
 export type MessageToolbarProps = {
   children: React.ReactNode;
@@ -666,11 +648,11 @@ export const MessageToolbar = memo(
     const { role, message } = useMessageContext();
 
     const roleStyles = role === 'user' ? 'self-end' : 'self-start';
-   const hasText = message?.parts?.some(
-     (p) => p.type === 'text' && p.text?.length > 0
-   );
+    const hasText = message?.parts?.some(
+      (p) => p.type === 'text' && p.text?.length > 0
+    );
 
-   if (!hasText) return null;
+    if (!hasText) return null;
 
     if (role === 'user') return null;
 
@@ -683,8 +665,6 @@ export const MessageToolbar = memo(
     );
   }
 );
-
-// ==================== MESSAGE ACTION ====================
 
 export const MessageAction = ({
   onPress,
@@ -709,8 +689,6 @@ export const MessageAction = ({
     </TouchableOpacity>
   );
 };
-
-// ==================== MESSAGE BRANCH COMPONENTS ====================
 
 interface MessageBranchContextType {
   currentBranch: number;
@@ -857,6 +835,8 @@ import React, {
 } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import * as DocumentPicker from 'expo-document-picker';
+import { Platform } from 'react-native';
+
 import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
@@ -911,8 +891,10 @@ export const PromptInputProvider = ({ children }: { children: ReactNode }) => {
     (FileUIPart & { id: string })[]
   >([]);
 
-  const add = useCallback((newFiles: any[]) => {
-    setAttachmentFiles((prev) => [...prev, ...newFiles]);
+  const add = useCallback((newFiles: any[] | any) => {
+    // Accept single object OR array (more flexible)
+    const filesToAdd = Array.isArray(newFiles) ? newFiles : [newFiles];
+    setAttachmentFiles((prev) => [...prev, ...filesToAdd]);
   }, []);
 
   const remove = useCallback((id: string) => {
@@ -924,23 +906,36 @@ export const PromptInputProvider = ({ children }: { children: ReactNode }) => {
     setTextInput('');
   }, []);
 
+  // ====================== FIXED IMAGE PICKER ======================
   const openImagePicker = useCallback(async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
       allowsMultipleSelection: true,
       quality: 0.1,
-      base64: true,
+      base64: Platform.OS !== 'web', // base64 only on native
     });
 
-    if (!result.canceled && result.assets) {
-      const newFiles = result.assets.map((asset) => ({
-        id: generateId(),
-        filename: asset.fileName || `image-${Date.now()}.jpg`,
-        mediaType: asset.mimeType || 'image/jpeg',
-        type: 'file' as const,
-        url: `data:${asset.mimeType || 'image/jpeg'};base64,${asset.base64}`,
-      }));
-      add(newFiles);
+    if (!result.canceled && result.assets && result.assets.length > 0) {
+      const newFiles = result.assets.map((asset) => {
+        let url = '';
+
+        if (Platform.OS === 'web') {
+          url = asset.uri; // blob URL on web
+        } else {
+          url = `data:${asset.mimeType || 'image/jpeg'};base64,${asset.base64}`;
+        }
+
+        return {
+          id: generateId(),
+          filename: asset.fileName || asset.name || `image-${Date.now()}.jpg`,
+          mediaType: asset.mimeType || 'image/jpeg',
+          type: 'file' as const,
+          url,
+        };
+
+      });
+
+      add(newFiles); // ← now correctly passes array
     }
   }, [add]);
 
@@ -962,7 +957,7 @@ export const PromptInputProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// ====================== MAIN INPUT ======================
+// ====================== REST OF YOUR COMPONENTS (unchanged) ======================
 
 export const PromptInput = ({
   children,
@@ -993,7 +988,7 @@ export const PromptInput = ({
   return (
     <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>
       <Animated.View style={inputAnimatedStyle}>
-        <View className="bg-muted border-border absolute bottom-4  w-full rounded-3xl  px-3 py-2">
+        <View className="bg-muted border-border absolute bottom-4 w-full rounded-3xl px-3 py-2">
           {children}
         </View>
       </Animated.View>
@@ -1001,17 +996,12 @@ export const PromptInput = ({
   );
 };
 
-// ====================== BODY ======================
-
-export const PromptInputBody = ({ children }: { children: ReactNode }) => {
-  return <View className="flex-row  pt-2 items-center gap-2">{children}</View>;
-};
-
-// ====================== TEXTAREA ======================
+export const PromptInputBody = ({ children }: { children: ReactNode }) => (
+  <View className="flex-row pt-2 items-center gap-2">{children}</View>
+);
 
 export const PromptInputTextarea = () => {
   const { text, setText } = usePrompt();
-
   return (
     <TextInput
       value={text}
@@ -1023,37 +1013,22 @@ export const PromptInputTextarea = () => {
   );
 };
 
-// ====================== FOOTER ======================
+export const PromptInputFooter = ({ children }: { children: ReactNode }) => (
+  <View className="flex-row items-center justify-between mt-6">{children}</View>
+);
 
-export const PromptInputFooter = ({ children }: { children: ReactNode }) => {
-  return (
-    <View className="flex-row items-center justify-between mt-6">
-      {children}
-    </View>
-  );
-};
+export const PromptInputTools = ({ children }: { children: ReactNode }) => (
+  <View className="flex-row items-center gap-2">{children}</View>
+);
 
-// ====================== TOOLS ======================
-
-export const PromptInputTools = ({ children }: { children: ReactNode }) => {
-  return <View className="flex-row items-center gap-2">{children}</View>;
-};
-
-// ====================== BUTTON ======================
-
-export const PromptInputButton = ({ children }: { children: ReactNode }) => {
-  return (
-    <TouchableOpacity className="px-3 py-1 rounded-full bg-muted">
-      <Text>{children}</Text>
-    </TouchableOpacity>
-  );
-};
-
-// ====================== SUBMIT ======================
+export const PromptInputButton = ({ children }: { children: ReactNode }) => (
+  <TouchableOpacity className="px-3 py-1 rounded-full bg-muted">
+    <Text>{children}</Text>
+  </TouchableOpacity>
+);
 
 export const PromptInputSubmit = () => {
   const { handleSubmit, isDisabled } = usePrompt();
-
   return (
     <TouchableOpacity
       onPress={handleSubmit}
@@ -1067,19 +1042,15 @@ export const PromptInputSubmit = () => {
   );
 };
 
-// ====================== ACTION MENU ======================
-
 export const PromptInputActionMenu = ({ children }: any) => <>{children}</>;
 
-export const PromptInputActionMenuTrigger = ({ children, ...props }: any) => {
-  return (
-    <TouchableOpacity {...props}>
-      <View className="h-10 w-10 rounded-full items-center justify-center bg-primary/10">
-        {children ?? <Text className="text-xl text-primary">+</Text>}
-      </View>
-    </TouchableOpacity>
-  );
-};
+export const PromptInputActionMenuTrigger = ({ children, ...props }: any) => (
+  <TouchableOpacity {...props}>
+    <View className="h-10 w-10 rounded-full items-center justify-center bg-primary/10">
+      {children ?? <Text className="text-xl text-primary">+</Text>}
+    </View>
+  </TouchableOpacity>
+);
 
 export const PromptInputActionMenuContent = ({
   trigger,
@@ -1117,8 +1088,6 @@ export const PromptInputActionMenuContent = ({
   );
 };
 
-'use client';
-
 import React, {
   createContext,
   useCallback,
@@ -1128,20 +1097,12 @@ import React, {
   type ReactNode,
 } from 'react';
 import { Platform } from 'react-native';
-
-// Gluestack UI
 import { ScrollView } from 'react-native';
 import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
-import { Text } from '@/components/ui/text';
-
 import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip';
-
-// AI SDK Types
 import type { FileUIPart, SourceDocumentUIPart } from 'ai';
-
-// Icons
 import {
   FileText,
   Globe,
@@ -1151,6 +1112,8 @@ import {
   Video,
   X,
 } from 'lucide-react-native';
+
+
 
 export type AttachmentData =
   | (FileUIPart & { id: string })
@@ -1166,10 +1129,8 @@ export type AttachmentMediaCategory =
 
 export type AttachmentVariant = 'grid' | 'inline' | 'list';
 
-// ============================================================================
-// Utilities
-// ============================================================================
-export const getMediaCategory = (
+
+export const getMediaCategory = ( 
   data: AttachmentData
 ): AttachmentMediaCategory => {
   if (data.type === 'source-document') return 'source';
@@ -1191,9 +1152,7 @@ export const getAttachmentLabel = (data: AttachmentData): string => {
   return data.filename || (category === 'image' ? 'Image' : 'Attachment');
 };
 
-// ============================================================================
-// Contexts
-// ============================================================================
+
 interface AttachmentsContextValue {
   variant: AttachmentVariant;
 }
@@ -1219,9 +1178,7 @@ export const useAttachmentContext = () => {
   return ctx;
 };
 
-// ============================================================================
-// Attachments Container
-// ============================================================================
+
 export type AttachmentsProps = ComponentProps<typeof Box> & {
   variant?: AttachmentVariant;
 };
@@ -1242,9 +1199,8 @@ export const Attachments = ({
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
             flexDirection: variant === 'list' ? 'column' : 'row',
-            
+
             height: 80,
-         
           }}
           className={`${className} bg-muted `}
           {...props}
@@ -1256,9 +1212,7 @@ export const Attachments = ({
   );
 };
 
-// ============================================================================
-// Attachment Item
-// ============================================================================
+
 export type AttachmentProps = ComponentProps<typeof Box> & {
   data: AttachmentData;
   onRemove?: () => void;
@@ -1292,8 +1246,6 @@ export const Attachment = ({
         {...props}
       >
         {children}
-
-        {/* Remove Button */}
         {onRemove && (
           <AttachmentRemove
             className={
@@ -1308,9 +1260,7 @@ export const Attachment = ({
   );
 };
 
-// ============================================================================
-// AttachmentPreview
-// ============================================================================
+
 export type AttachmentPreviewProps = ComponentProps<typeof Box> & {
   fallbackIcon?: ReactNode;
 };
@@ -1367,9 +1317,6 @@ export const AttachmentPreview = ({
   );
 };
 
-// ============================================================================
-// AttachmentRemove
-// ============================================================================
 export type AttachmentRemoveProps = ComponentProps<typeof Button> & {
   label?: string;
 };
@@ -1407,15 +1354,16 @@ export const AttachmentRemove = ({
       {...props}
     >
       {children ?? (
-        <X className="text-destructive" color={'white'}  size={variant === 'grid' ? 12 : 12} />
+        <X
+          className="text-destructive"
+          color={'white'}
+          size={variant === 'grid' ? 12 : 12}
+        />
       )}
     </Button>
   );
 };
 
-// ============================================================================
-// AttachmentHoverCard - Available for ALL variants (same as original shadcn)
-// ============================================================================
 export type AttachmentHoverCardProps = Omit<
   ComponentProps<typeof Tooltip>,
   'trigger' | 'children'
@@ -1438,9 +1386,6 @@ export const AttachmentHoverCard = ({
     return <>{children}</>;
   }
 
-  // Works on all variants (grid, inline, list)
-  // On Web → hover
-  // On Native → long press
   return (
     <Tooltip
       placement={placement}
@@ -1473,10 +1418,7 @@ export const AttachmentHoverCardContent = ({
 );
 
 export const AttachmentHoverCardText = TooltipText;
-
-// ============================================================================
-// AttachmentEmpty
-// ============================================================================
+  
 export const AttachmentEmpty = ({
   className = '',
   children,
@@ -1530,34 +1472,57 @@ export const useBlankContext = () => {
   return context;
 };
 
-import React, { Children, isValidElement } from 'react';
-import type { ComponentProps, ReactNode } from 'react';
+import React, {
+  Children,
+  isValidElement,
+  cloneElement,
+  type ReactNode,
+  type ComponentProps,
+} from 'react';
 import {
   Modal,
   ModalBackdrop,
   ModalContent,
   ModalHeader,
-  ModalBody,
   ModalCloseButton,
+  ModalBody,
 } from '@/components/ui/modal';
 import { X } from 'lucide-react-native';
-import { Pressable, Text, View, TextInput } from 'react-native';
+import { Pressable, Text, View, TextInput, ScrollView } from 'react-native';
 
-// ====================== Core Components ======================
+// Context
+const ModelSelectorContext = React.createContext<{
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+} | null>(null);
 
+const useModelSelector = () => {
+  const ctx = React.useContext(ModelSelectorContext);
+  if (!ctx)
+    throw new Error(
+      'ModelSelector sub-components must be used inside <ModelSelector>'
+    );
+  return ctx;
+};
+
+// ─────────────────────────────────────────────────────────────
+// Root
+// ─────────────────────────────────────────────────────────────
 export type ModelSelectorProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'full';
   children: ReactNode;
 };
 
 export const ModelSelector = ({
   open,
   onOpenChange,
+  size = 'md',
   children,
 }: ModelSelectorProps) => {
-  // Filter children - trigger renders outside, content goes in modal
   const childrenArray = Children.toArray(children);
+
   const triggerChildren: ReactNode[] = [];
   let contentElement: React.ReactElement | null = null;
 
@@ -1570,61 +1535,90 @@ export const ModelSelector = ({
   });
 
   return (
-    <View>
+    <ModelSelectorContext.Provider value={{ open, onOpenChange }}>
       {triggerChildren}
-      <Modal isOpen={open} onClose={() => onOpenChange(false)}>
+
+      <Modal isOpen={open} onClose={() => onOpenChange(false)} size={size}>
         <ModalBackdrop />
         {contentElement}
       </Modal>
-    </View>
+    </ModelSelectorContext.Provider>
   );
 };
 
-export type ModelSelectorTriggerProps = ComponentProps<typeof Pressable>;
+// ─────────────────────────────────────────────────────────────
+// Trigger (asChild support)
+// ─────────────────────────────────────────────────────────────
+export type ModelSelectorTriggerProps = {
+  asChild?: boolean;
+} & ComponentProps<typeof Pressable>;
 
 export const ModelSelectorTrigger = ({
+  asChild = false,
   className,
+  children,
+  onPress: userOnPress,
   ...props
-}: ModelSelectorTriggerProps) => (
-  <Pressable
-    className={`w-[200px] h-[40px] bg-primary justify-between ${className || ''}`}
-    {...props}
-  />
-);
+}: ModelSelectorTriggerProps) => {
+  const { onOpenChange } = useModelSelector();
 
+  const handlePress = () => {
+    onOpenChange(true);
+    userOnPress?.();
+  };
+
+  if (asChild && isValidElement(children)) {
+    return cloneElement(children, {
+      ...props,
+      onPress: handlePress,
+      className: `${children.props.className || ''} ${className || ''}`,
+    } as any);
+  }
+
+  return (
+    <Pressable
+      className={`w-[200px] h-[40px] bg-primary justify-between ${className || ''}`}
+      onPress={handlePress}
+      {...props}
+    >
+      {children}
+    </Pressable>
+  );
+};
+
+// ─────────────────────────────────────────────────────────────
+// Content — NOW passes size to ModalContent (this fixes the crash)
+// ─────────────────────────────────────────────────────────────
 export type ModelSelectorContentProps = ComponentProps<typeof ModalContent> & {
   title?: ReactNode;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'full'; // ← added
 };
 
 export const ModelSelectorContent = ({
   title = 'Model Selector',
   children,
   className,
-  size,
+  size, // ← receive from root
   ...props
-}: ModelSelectorContentProps) => {
-  return (
-    <ModalContent className={className} size={size} {...props}>
-      <ModalHeader>
-        <Text className="sr-only">{title}</Text>
-        <ModalCloseButton>
-          <X size={20} className="text-muted-foreground" />
-        </ModalCloseButton>
-      </ModalHeader>
+}: ModelSelectorContentProps) => (
+  <ModalContent className={className} {...props}>
+    <ModalHeader>
+      <Text className="sr-only">{title}</Text>
+      <ModalCloseButton>
+        <X size={20} className="text-muted-foreground" />
+      </ModalCloseButton>
+    </ModalHeader>
+    <ScrollView className="max-h-[500px]">
+      <ModalBody>{children}</ModalBody>
+    </ScrollView>
+  </ModalContent>
+);
 
-      <ModalBody className="p-0 flex-1">{children as ReactNode}</ModalBody>
-    </ModalContent>
-  );
-};
-
-// ====================== Command-like Components ======================
-
-export type ModelSelectorInputProps = ComponentProps<typeof TextInput>;
-
+// Rest of the components (unchanged)
 export const ModelSelectorInput = ({
   className,
   ...props
-}: ModelSelectorInputProps) => (
+}: ComponentProps<typeof TextInput>) => (
   <TextInput
     className={`h-12 px-4 border-b border-border text-base text-foreground placeholder:text-muted-foreground ${className || ''}`}
     placeholder="Search models..."
@@ -1632,19 +1626,17 @@ export const ModelSelectorInput = ({
   />
 );
 
-export type ModelSelectorListProps = ComponentProps<typeof View>;
 export const ModelSelectorList = ({
   className,
   ...props
-}: ModelSelectorListProps) => (
-  <View className={`flex-1 ${className || ''}`} {...props} />
+}: ComponentProps<typeof View>) => (
+  <View className={`flex-1 ${className || ' w-full'}`} {...props} />
 );
 
-export type ModelSelectorEmptyProps = ComponentProps<typeof View>;
 export const ModelSelectorEmpty = ({
   className,
   ...props
-}: ModelSelectorEmptyProps) => (
+}: ComponentProps<typeof View>) => (
   <View
     className={`flex-1 items-center justify-center py-12 ${className || ''}`}
     {...props}
@@ -1653,15 +1645,12 @@ export const ModelSelectorEmpty = ({
   </View>
 );
 
-export type ModelSelectorGroupProps = ComponentProps<typeof View> & {
-  heading?: string;
-};
 export const ModelSelectorGroup = ({
   heading,
   children,
   className,
   ...props
-}: ModelSelectorGroupProps) => (
+}: ComponentProps<typeof View> & { heading?: string }) => (
   <View className={className} {...props}>
     {heading && (
       <Text className="px-4 py-2 text-sm font-semibold text-muted-foreground">
@@ -1672,32 +1661,27 @@ export const ModelSelectorGroup = ({
   </View>
 );
 
-export type ModelSelectorItemProps = ComponentProps<typeof Pressable> & {
-  value?: string;
-  isSelected?: boolean;
-};
-
 export const ModelSelectorItem = ({
   isSelected = false,
   children,
   className,
   ...props
-}: ModelSelectorItemProps) => (
-  <Pressable
-    className={`flex-row items-center px-4 py-3 ${
-      isSelected ? 'bg-accent' : 'active:bg-muted'
-    } ${className || ''}`}
-    {...props}
-  >
-    {children}
-  </Pressable>
-);
+}: ComponentProps<typeof Pressable> & { isSelected?: boolean }) => {
+  console.log(children);
+  return (
+    <Pressable
+      className={`flex-row items-center  h-4 w-4 px-4 py-3 ${isSelected ? 'bg-accent' : 'active:bg-muted'} ${className || ''}`}
+      {...props}
+    >
+      {children}
+    </Pressable>
+  );
+};
 
-export type ModelSelectorShortcutProps = ComponentProps<typeof View>;
 export const ModelSelectorShortcut = ({
   className,
   ...props
-}: ModelSelectorShortcutProps) => (
+}: ComponentProps<typeof View>) => (
   <View className={`ml-auto ${className || ''}`} {...props} />
 );
 
@@ -1707,15 +1691,9 @@ export const ModelSelectorSeparator = ({
   className?: string;
 }) => <View className={`h-px bg-border mx-4 my-1 ${className || ''}`} />;
 
-// ====================== UI Helpers ======================
-
-export type ModelSelectorLogoProps = {
-  provider: string;
-};
-
-export const ModelSelectorLogo = ({ provider }: ModelSelectorLogoProps) => (
+export const ModelSelectorLogo = ({ provider }: { provider: string }) => (
   <View className="w-5 h-5 rounded-full bg-muted items-center justify-center">
-    <Text className="text-[10px] font-medium text-foreground">
+    <Text className="text-[10px] text-foreground font-medium text-foreground">
       {provider.slice(0, 2).toUpperCase()}
     </Text>
   </View>
@@ -1997,11 +1975,8 @@ export const FileTreeActions = ({
   );
 };
 
-import { useContext } from 'react';
-import { useWindowDimensions } from 'react-native';
-
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
-import { useAnimatedReaction, withTiming } from 'react-native-reanimated';
+import { useAnimatedReaction } from 'react-native-reanimated';
 import { useBlankContext } from './blank-context';
 import { useMessageHeight } from './useMessageHeight';
 
@@ -2020,15 +1995,8 @@ export function useBlankSize({
   }
 
   const { height: keyboardHeight } = useReanimatedKeyboardAnimation();
-  const windowHeight = useWindowDimensions().height;
+  const { ref, onLayout } = useMessageHeight();
 
-  // Pass the correct shared value from context
-  const targetHeight =
-    role === 'user'
-      ? context.userMessageHeight
-      : context.assistantMessageHeight;
-
-  const { ref, onLayout } = useMessageHeight(targetHeight);
   useAnimatedReaction(
     () => ({
       user: context.userMessageHeight.value,
@@ -2036,25 +2004,27 @@ export function useBlankSize({
       keyboard: keyboardHeight.value,
       disabled,
     }),
+
     ({ user, assistant, disabled: isDisabled }) => {
       'worklet';
-
-      if (isDisabled) return;
-
-      const pairedHeight = user + assistant;
-
-      if (pairedHeight <= 0) return;
-
-      const nextBlank = Math.max(
-        0,
-        context.messagesContainerHeight.value - pairedHeight - 16
+      console.log(
+        user,
+        assistant,
+        disabled,
+        context.messagesContainerHeight.value
       );
 
+      const pairedHeight = user;
+      const nextBlank = Math.max(
+        0,
+        context.messagesContainerHeight.value - pairedHeight - 46
+      );
+      console.log('blank', nextBlank);
       context.blankSize.value = nextBlank;
     }
   );
 
-  return { ref, onLayout: disabled ? undefined : onLayout };
+  return { ref, onLayout: onLayout };
 }
 
 import { useCallback } from 'react';
@@ -2103,34 +2073,29 @@ import { useKeyboardHandler } from 'react-native-keyboard-controller';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 
 export const useKeyboardAwareChat = () => {
-  // 🔹 Shared values
+
   const keyboardHeight = useSharedValue(0);
   const keyboardProgress = useSharedValue(0);
   const scrollY = useSharedValue(0);
-
-  // 🔹 Keyboard tracking (native-driven interactive)
   useKeyboardHandler({
     onInteractive: (e) => {
-      'worklet'; // ✅ REQUIRED
+      'worklet';
 
       keyboardHeight.value = e.height;
       keyboardProgress.value = e.progress;
     },
   });
 
-  // 🔹 Scroll tracking
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (e) => {
       scrollY.value = e.contentOffset.y;
     },
   });
 
-  // 🔹 Derived keyboard offset
   const keyboardOffset = useDerivedValue(() => {
     return keyboardHeight.value * keyboardProgress.value;
   });
 
-  // 🔹 Input bar animation
   const inputStyle = useAnimatedStyle(() => {
     return {
       transform: [
@@ -2141,16 +2106,16 @@ export const useKeyboardAwareChat = () => {
     };
   },[keyboardHeight.value, keyboardProgress.value]);
 
-  // 🔹 Optional: list bottom spacing (smooth)
+
   const listContentStyle = useAnimatedStyle(() => {
     return {
       paddingBottom: keyboardOffset.value,
     };
   },[keyboardOffset.value]);
 
-  // 🔹 (Optional) Gesture placeholder for future extension
+
   const panGesture = useMemo(() => {
-    return Gesture.Pan(); // currently not controlling keyboard
+    return Gesture.Pan(); 
   }, []);
 
   return {
@@ -2174,7 +2139,6 @@ import { useMessageHeight } from './useMessageHeight';
 import { useBlankContext } from './blank-context';
 import { useWindowDimensions } from 'react-native';
 
-
 export const useUserMessageAnimation = ({
   disabled,
 }: {
@@ -2185,7 +2149,14 @@ export const useUserMessageAnimation = ({
   const progress = useSharedValue(-1);
   const windowHeight = useWindowDimensions().height;
   const { userMessageHeight } = useBlankContext();
-
+  useAnimatedReaction(
+    () => {
+      return targetHeight.value;
+    },
+    (messageHeight) => {
+      userMessageHeight.value = messageHeight;
+    }
+  );
   useAnimatedReaction(
     () => {
       const didAnimate = progress.get() !== -1;
@@ -2200,7 +2171,7 @@ export const useUserMessageAnimation = ({
 
       userMessageHeight.value = messageHeight;
 
-      const startY = Math.max(20, windowHeight - messageHeight );
+      const startY = Math.max(20, windowHeight - messageHeight);
 
       translateY.value = withTiming(startY, { duration: 0 }, () => {
         translateY.value = withSpring(0, {
@@ -2222,7 +2193,7 @@ export const useUserMessageAnimation = ({
       transform: [{ translateY: translateY.value }],
       opacity: disabled ? 1 : progress.value,
     };
-  },[disabled, progress.value, translateY.value]);
+  }, [disabled, progress.value, translateY.value]);
 
   const didUserMessageAnimate = useDerivedValue(() =>
     disabled ? 1 : progress.get() === 1
@@ -2627,309 +2598,6 @@ Components for handling file attachments.
 **AttachmentPreview** - Preview of the attachment (image or icon).
 
 **AttachmentRemove** - Button to remove an attachment.
-
-## Examples
-
-### Basic Example
-
-
-  
-
-  A basic chat interface example
-
-  <CodePreviewer
-  code={`function Example() {
-  const [messages, setMessages] = React.useState([
-    {
-      id: '1',
-      role: 'assistant',
-      content: 'Hi! I can help you with various tasks. What would you like to work on today?',
-    },
-  ]);
-
-  // ================= ATTACHMENT ITEM =================
-  const AttachmentItem = memo(({ attachment, onRemove }: any) => {
-    const handleRemove = React.useCallback(
-      () => onRemove(attachment.id),
-      [onRemove, attachment.id]
-    );
-
-    return (
-      <Attachment data={attachment} onRemove={handleRemove}>
-        <AttachmentPreview />
-        <AttachmentRemove />
-      </Attachment>
-    );
-  });
-
-  // ================= ATTACHMENTS DISPLAY =================
-  const PromptInputAttachmentsDisplay = () => {
-    const attachments = usePromptInputAttachments();
-
-    if (attachments.files.length === 0) return null;
-
-    return (
-      <Attachments variant="grid" className="mb-4">
-        {attachments.files.map((attachment: any) => (
-          <AttachmentItem
-            key={attachment.id}
-            attachment={attachment}
-            onRemove={attachments.remove}
-          />
-        ))}
-      </Attachments>
-    );
-  };
-
-  const renderMessage: ListRenderItem<UIMessage> = ({ item: message, index }) => (
-    <Message role={message.role} index={index} message={message}>
-      <MessageContent>
-        <MessageResponse message={message} />
-      </MessageContent>
-
-      {message.role === 'assistant' && (
-        <MessageToolbar className="mt-[2px]">
-          <MessageAction>
-            <Menu strokeWidth={1} size={18} color="white" />
-          </MessageAction>
-          <MessageAction>
-            <Share strokeWidth={1} size={18} color="white" />
-          </MessageAction>
-          <MessageAction>
-            <CopyCheck strokeWidth={1} size={18} color="white" />
-          </MessageAction>
-        </MessageToolbar>
-      )}
-    </Message>
-  );
-
-  // ================= HANDLE SUBMIT WITH FAKE AI RESPONSE =================
-  const handleSubmit = ({ text }: { text: string }) => {
-    if (!text.trim()) return;
-
-    const userMessage = {
-      id: Date.now().toString(),
-      role: 'user' as const,
-      content: text,
-    };
-
-  
-    setMessages((prev) => [...prev, userMessage]);
-
-    setTimeout(() => {
-      const aiReply = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant' as const,
-        content: "Hello! . This is a fake generated response. In a real app, this would come from Grok, GPT, or any AI model using Vercel AI SDK.",
-      }
-
-      setMessages((prev) => [...prev, aiReply]);
-    }, 800)
-  };
-
-  return (
-    <Box className="h-[600px] web:pb-5 bg-background">
-      <Conversation className="flex-1">
-        <ConversationContent 
-          messages={messages} 
-          renderItem={renderMessage}
-        />
-        <ConversationScrollButton />
-      </Conversation>
-      
-      <PromptInputProvider>
-        <PromptInput onSubmit={handleSubmit}>
-          <PromptInputAttachmentsDisplay />
-          <PromptInputBody>
-            <PromptInputTextarea />
-          </PromptInputBody>
-
-          <PromptInputFooter>
-            <PromptInputTools>
-              <PromptInputActionMenu>
-                <PromptInputActionMenuContent
-                  trigger={(props: any) => (
-                    <PromptInputActionMenuTrigger {...props} className="px-3">
-                      <Text className="text-3xl text-primary">+</Text>
-                    </PromptInputActionMenuTrigger>
-                  )}
-                />
-              </PromptInputActionMenu>
-
-              <TouchableOpacity>
-                <View className="h-10 px-3 rounded-full items-center justify-center bg-primary/10">
-                  <Text className="text-xl text-primary">Model</Text>
-                </View>
-              </TouchableOpacity>
-            </PromptInputTools>
-
-            <PromptInputSubmit />
-          </PromptInputFooter>
-        </PromptInput>
-      </PromptInputProvider>
-    </Box>
-  );
-}`}
-  argTypes={{}}
-  reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, Box, PromptInputFooter, PromptInputTools, PromptInputActionMenu, PromptInputActionMenuContent, PromptInputActionMenuTrigger, PromptInputSubmit, TouchableOpacity, View, Text, memo, CopyCheck, Menu, Option, Share, Attachment, AttachmentPreview, AttachmentRemove, Attachments, usePromptInputAttachments }}
-  importMap={{"@/components/ui/chat-ai":["Conversation","ConversationContent","Message","MessageContent","MessageResponse","MessageToolbar","MessageAction","PromptInput","PromptInputProvider","PromptInputBody","PromptInputTextarea","ConversationScrollButton","PromptInputFooter","PromptInputTools","PromptInputActionMenu","PromptInputActionMenuContent","PromptInputActionMenuTrigger","PromptInputSubmit","Attachment","AttachmentPreview","AttachmentRemove","Attachments","usePromptInputAttachments"],"@/components/ui/box":["Box"],"react-native":["TouchableOpacity","View","Text"],"react":["memo"],"lucide-react-native":["CopyCheck","Menu","Option","Share"]}}
-  
-/>
-
-### With Attachments
-
-
-  #### With Attachments
-
-  Chat interface with file attachments support
-
-  <CodePreviewer
-  code={`function Example() {
-  const [messages, setMessages] = React.useState([
-    {
-      id: '1',
-      role: 'user',
-      content: 'Here is the document you requested',
-    },
-  ]);
-
-  const AttachmentItem = ({ attachment, onRemove }) => {
-    return (
-      <Attachment data={attachment} onRemove={() => onRemove(attachment.id)}>
-        <AttachmentPreview />
-        <AttachmentRemove />
-      </Attachment>
-    );
-  };
-
-  const PromptInputAttachmentsDisplay = () => {
-    const attachments = usePromptInputAttachments();
-
-    if (attachments.files.length === 0) return null;
-
-    return (
-      <Attachments variant="grid" className="mb-4">
-        {attachments.files.map((attachment) => (
-          <AttachmentItem
-            key={attachment.id}
-            attachment={attachment}
-            onRemove={attachments.remove}
-          />
-        ))}
-      </Attachments>
-    );
-  };
-
-  const renderMessage = ({ item: message, index }) => (
-    <Message role={message.role} index={index} message={message}>
-      <MessageContent>
-        <MessageResponse message={message} />
-      </MessageContent>
-    </Message>
-  );
-
-  const handleSubmit = ({ text, files }) => {
-    if (!text.trim() && files.length === 0) return;
-    
-    const newMessage = {
-      id: Date.now().toString(),
-      role: 'user',
-      content: text,
-    };
-    
-    setMessages([...messages, newMessage]);
-  };
-
-  return (
-    <div className="h-[500px] flex flex-col">
-      <Conversation className="flex-1">
-        <ConversationContent 
-          messages={messages} 
-          renderItem={renderMessage}
-        />
-      </Conversation>
-      <PromptInputProvider>
-        <PromptInput onSubmit={handleSubmit}>
-          <PromptInputAttachmentsDisplay />
-        </PromptInput>
-      </PromptInputProvider>
-    </div>
-  );
-}`}
-  argTypes={{}}
-  reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, PromptInput, PromptInputProvider, Attachments, Attachment, AttachmentPreview, AttachmentRemove, usePromptInputAttachments }}
-  importMap={{"@/components/ui/chat-ai":["Conversation","ConversationContent","Message","MessageContent","MessageResponse","PromptInput","PromptInputProvider","Attachments","Attachment","AttachmentPreview","AttachmentRemove","usePromptInputAttachments"]}}
-  
-/>
-
-### Custom Styling
-
-
-  #### Custom Styling
-
-  Chat interface with custom styling and theming
-
-  <CodePreviewer
-  code={`function Example() {
-  const [messages, setMessages] = React.useState([
-    {
-      id: '1',
-      role: 'user',
-      content: 'Can you help me style this component?',
-    },
-    {
-      id: '2',
-      role: 'assistant',
-      content: 'Absolutely! You can customize the chat interface using Tailwind CSS classes. Each component accepts a className prop for styling.',
-    },
-  ]);
-
-  const renderMessage = ({ item: message, index }) => (
-    <Message role={message.role} index={index} message={message}>
-      <MessageContent className={message.role === 'user' ? 'bg-blue-600' : 'bg-slate-200'}>
-        <MessageResponse message={message} />
-      </MessageContent>
-    </Message>
-  );
-
-  const handleSubmit = ({ text }) => {
-    if (!text.trim()) return;
-    
-    const newMessage = {
-      id: Date.now().toString(),
-      role: 'user',
-      content: text,
-    };
-    
-    setMessages([...messages, newMessage]);
-  };
-
-  return (
-    <div className="h-[500px] flex flex-col rounded-lg overflow-hidden border border-border">
-      <div className="bg-primary p-4">
-        <h3 className="text-primary-foreground font-semibold">Custom Chat</h3>
-      </div>
-      <Conversation className="flex-1">
-        <ConversationContent 
-          messages={messages} 
-          renderItem={renderMessage}
-        />
-      </Conversation>
-      <PromptInputProvider>
-        <PromptInput 
-          onSubmit={handleSubmit}
-          className="border-t-2 border-primary"
-        />
-      </PromptInputProvider>
-    </div>
-  );
-}`}
-  argTypes={{}}
-  reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, PromptInput, PromptInputProvider }}
-  importMap={{"@/components/ui/chat-ai":["Conversation","ConversationContent","Message","MessageContent","MessageResponse","PromptInput","PromptInputProvider"]}}
-  
-/>
-
 
 
 ## Usage
