@@ -43,8 +43,8 @@ export default function Example() {
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent>
-          <AccordionContentText>
+        <AccordionContent className="max-h-[100px] overflow-hidden md:max-h-[80px]">
+          <AccordionContentText className="text-xs md:text-[11px]">
             To place an order, simply select the products you want, proceed to
             checkout, provide shipping and payment information, and finalize
             your purchase.
@@ -71,8 +71,8 @@ export default function Example() {
             }}
           </AccordionTrigger>
         </AccordionHeader>
-        <AccordionContent>
-          <AccordionContentText>
+        <AccordionContent className="max-h-[100px] overflow-hidden md:max-h-[80px]">
+          <AccordionContentText className="text-xs md:text-[11px]">
             We accept all major credit cards, including Visa, Mastercard, and
             American Express. We also support payments through PayPal.
           </AccordionContentText>
