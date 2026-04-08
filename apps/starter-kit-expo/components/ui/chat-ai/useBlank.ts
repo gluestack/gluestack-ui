@@ -1,5 +1,8 @@
+import { useContext } from 'react';
+import { useWindowDimensions } from 'react-native';
+
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
-import { useAnimatedReaction } from 'react-native-reanimated';
+import { useAnimatedReaction, withTiming } from 'react-native-reanimated';
 import { useBlankContext } from './blank-context';
 import { useMessageHeight } from './useMessageHeight';
 
@@ -18,29 +21,37 @@ export function useBlankSize({
   }
 
   const { height: keyboardHeight } = useReanimatedKeyboardAnimation();
-  const { ref, onLayout } = useMessageHeight();
-  
-  useAnimatedReaction(
+  const windowHeight = useWindowDimensions().height;
 
+  // Pass the correct shared value from context
+  const targetHeight =
+    role === 'user'
+      ? context.userMessageHeight
+      : context.assistantMessageHeight;
+
+  const { ref, onLayout } = useMessageHeight(targetHeight);
+  useAnimatedReaction(
     () => ({
       user: context.userMessageHeight.value,
       assistant: context.assistantMessageHeight.value,
       keyboard: keyboardHeight.value,
       disabled,
     }),
-
     ({ user, assistant, disabled: isDisabled }) => {
       'worklet';
 
       if (isDisabled) return;
 
-      const pairedHeight = user 
+      const pairedHeight = user + assistant;
+
+      if (pairedHeight <= 0) return;
+
       const nextBlank = Math.max(
         0,
         context.messagesContainerHeight.value - pairedHeight - 16
       );
-      context.blankSize.value = nextBlank;
 
+      context.blankSize.value = nextBlank;
     }
   );
 

@@ -1,4 +1,4 @@
-import { Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, PromptInputFooter, PromptInputTools, PromptInputActionMenu, PromptInputActionMenuContent, PromptInputActionMenuTrigger, PromptInputSubmit, Attachments, Attachment, AttachmentPreview, AttachmentRemove, usePromptInputAttachments } from '@/components/ui/chat-ai'
+import { Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, PromptInputFooter, PromptInputTools, PromptInputActionMenu, PromptInputActionMenuContent, PromptInputActionMenuTrigger, PromptInputSubmit, Attachment, AttachmentPreview, AttachmentRemove, Attachments, usePromptInputAttachments } from '@/components/ui/chat-ai'
 import { Box } from '@/components/ui/box'
 import { TouchableOpacity, View, Text } from 'react-native'
 import { memo } from 'react'
@@ -19,7 +19,7 @@ const [messages, setMessages] = React.useState([
 
   // ================= ATTACHMENT ITEM =================
   const AttachmentItem = memo(({ attachment, onRemove }: any) => {
-    const handleRemove = useCallback(
+    const handleRemove = React.useCallback(
       () => onRemove(attachment.id),
       [onRemove, attachment.id]
     );
@@ -109,6 +109,7 @@ const [messages, setMessages] = React.useState([
       
       <PromptInputProvider>
         <PromptInput onSubmit={handleSubmit}>
+          <PromptInputAttachmentsDisplay />
           <PromptInputBody>
             <PromptInputTextarea />
           </PromptInputBody>
@@ -151,7 +152,7 @@ const [messages, setMessages] = React.useState([
 
   // ================= ATTACHMENT ITEM =================
   const AttachmentItem = memo(({ attachment, onRemove }: any) => {
-    const handleRemove = useCallback(
+    const handleRemove = React.useCallback(
       () => onRemove(attachment.id),
       [onRemove, attachment.id]
     );
@@ -241,6 +242,7 @@ const [messages, setMessages] = React.useState([
       
       <PromptInputProvider>
         <PromptInput onSubmit={handleSubmit}>
+          <PromptInputAttachmentsDisplay />
           <PromptInputBody>
             <PromptInputTextarea />
           </PromptInputBody>

@@ -9,7 +9,7 @@ function Example() {
 
   // ================= ATTACHMENT ITEM =================
   const AttachmentItem = memo(({ attachment, onRemove }: any) => {
-    const handleRemove = useCallback(
+    const handleRemove = React.useCallback(
       () => onRemove(attachment.id),
       [onRemove, attachment.id]
     );
@@ -99,6 +99,7 @@ function Example() {
       
       <PromptInputProvider>
         <PromptInput onSubmit={handleSubmit}>
+          <PromptInputAttachmentsDisplay />
           <PromptInputBody>
             <PromptInputTextarea />
           </PromptInputBody>

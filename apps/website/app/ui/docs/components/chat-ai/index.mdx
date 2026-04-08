@@ -1,5 +1,5 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
-import { Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, PromptInputFooter, PromptInputTools, PromptInputActionMenu, PromptInputActionMenuContent, PromptInputActionMenuTrigger, PromptInputSubmit, Attachments, Attachment, AttachmentPreview, AttachmentRemove, usePromptInputAttachments } from '@/components/ui/chat-ai';
+import { Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, PromptInputFooter, PromptInputTools, PromptInputActionMenu, PromptInputActionMenuContent, PromptInputActionMenuTrigger, PromptInputSubmit, Attachment, AttachmentPreview, AttachmentRemove, Attachments, usePromptInputAttachments } from '@/components/ui/chat-ai';
 import { Box } from '@/components/ui/box';
 import { TouchableOpacity, View, Text } from 'react-native';
 import { memo } from 'react';
@@ -42,7 +42,7 @@ This is an illustration of **Chat AI** components.
 
   // ================= ATTACHMENT ITEM =================
   const AttachmentItem = memo(({ attachment, onRemove }: any) => {
-    const handleRemove = useCallback(
+    const handleRemove = React.useCallback(
       () => onRemove(attachment.id),
       [onRemove, attachment.id]
     );
@@ -132,6 +132,7 @@ This is an illustration of **Chat AI** components.
       
       <PromptInputProvider>
         <PromptInput onSubmit={handleSubmit}>
+          <PromptInputAttachmentsDisplay />
           <PromptInputBody>
             <PromptInputTextarea />
           </PromptInputBody>
@@ -163,8 +164,8 @@ This is an illustration of **Chat AI** components.
   );
 }`}
   argTypes={{}}
-  reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, Box, PromptInputFooter, PromptInputTools, PromptInputActionMenu, PromptInputActionMenuContent, PromptInputActionMenuTrigger, PromptInputSubmit, TouchableOpacity, View, Text, memo, CopyCheck, Menu, Option, Share }}
-  importMap={{"@/components/ui/chat-ai":["Conversation","ConversationContent","Message","MessageContent","MessageResponse","MessageToolbar","MessageAction","PromptInput","PromptInputProvider","PromptInputBody","PromptInputTextarea","ConversationScrollButton","PromptInputFooter","PromptInputTools","PromptInputActionMenu","PromptInputActionMenuContent","PromptInputActionMenuTrigger","PromptInputSubmit"],"@/components/ui/box":["Box"],"react-native":["TouchableOpacity","View","Text"],"react":["memo"],"lucide-react-native":["CopyCheck","Menu","Option","Share"]}}
+  reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, Box, PromptInputFooter, PromptInputTools, PromptInputActionMenu, PromptInputActionMenuContent, PromptInputActionMenuTrigger, PromptInputSubmit, TouchableOpacity, View, Text, memo, CopyCheck, Menu, Option, Share, Attachment, AttachmentPreview, AttachmentRemove, Attachments, usePromptInputAttachments }}
+  importMap={{"@/components/ui/chat-ai":["Conversation","ConversationContent","Message","MessageContent","MessageResponse","MessageToolbar","MessageAction","PromptInput","PromptInputProvider","PromptInputBody","PromptInputTextarea","ConversationScrollButton","PromptInputFooter","PromptInputTools","PromptInputActionMenu","PromptInputActionMenuContent","PromptInputActionMenuTrigger","PromptInputSubmit","Attachment","AttachmentPreview","AttachmentRemove","Attachments","usePromptInputAttachments"],"@/components/ui/box":["Box"],"react-native":["TouchableOpacity","View","Text"],"react":["memo"],"lucide-react-native":["CopyCheck","Menu","Option","Share"]}}
   
 />
 
@@ -512,7 +513,7 @@ export const MessageContent = memo(
     const { role } = useMessageContext();
 
     const roleStyles =
-      role === 'user' ? 'self-end bg-muted max-w-[90%]' : 'self-start ';
+      role === 'user' ? 'self-end bg-muted max-w-[90%] px-4' : 'self-start ';
 
     return (
       <View
@@ -2648,7 +2649,7 @@ Components for handling file attachments.
 
   // ================= ATTACHMENT ITEM =================
   const AttachmentItem = memo(({ attachment, onRemove }: any) => {
-    const handleRemove = useCallback(
+    const handleRemove = React.useCallback(
       () => onRemove(attachment.id),
       [onRemove, attachment.id]
     );
@@ -2738,6 +2739,7 @@ Components for handling file attachments.
       
       <PromptInputProvider>
         <PromptInput onSubmit={handleSubmit}>
+          <PromptInputAttachmentsDisplay />
           <PromptInputBody>
             <PromptInputTextarea />
           </PromptInputBody>
@@ -2769,8 +2771,8 @@ Components for handling file attachments.
   );
 }`}
   argTypes={{}}
-  reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, Box, PromptInputFooter, PromptInputTools, PromptInputActionMenu, PromptInputActionMenuContent, PromptInputActionMenuTrigger, PromptInputSubmit, TouchableOpacity, View, Text, memo, CopyCheck, Menu, Option, Share }}
-  importMap={{"@/components/ui/chat-ai":["Conversation","ConversationContent","Message","MessageContent","MessageResponse","MessageToolbar","MessageAction","PromptInput","PromptInputProvider","PromptInputBody","PromptInputTextarea","ConversationScrollButton","PromptInputFooter","PromptInputTools","PromptInputActionMenu","PromptInputActionMenuContent","PromptInputActionMenuTrigger","PromptInputSubmit"],"@/components/ui/box":["Box"],"react-native":["TouchableOpacity","View","Text"],"react":["memo"],"lucide-react-native":["CopyCheck","Menu","Option","Share"]}}
+  reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, Box, PromptInputFooter, PromptInputTools, PromptInputActionMenu, PromptInputActionMenuContent, PromptInputActionMenuTrigger, PromptInputSubmit, TouchableOpacity, View, Text, memo, CopyCheck, Menu, Option, Share, Attachment, AttachmentPreview, AttachmentRemove, Attachments, usePromptInputAttachments }}
+  importMap={{"@/components/ui/chat-ai":["Conversation","ConversationContent","Message","MessageContent","MessageResponse","MessageToolbar","MessageAction","PromptInput","PromptInputProvider","PromptInputBody","PromptInputTextarea","ConversationScrollButton","PromptInputFooter","PromptInputTools","PromptInputActionMenu","PromptInputActionMenuContent","PromptInputActionMenuTrigger","PromptInputSubmit","Attachment","AttachmentPreview","AttachmentRemove","Attachments","usePromptInputAttachments"],"@/components/ui/box":["Box"],"react-native":["TouchableOpacity","View","Text"],"react":["memo"],"lucide-react-native":["CopyCheck","Menu","Option","Share"]}}
   
 />
 

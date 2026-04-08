@@ -28,7 +28,12 @@
     "CopyCheck": "lucide-react-native",
     "Menu": "lucide-react-native",
     "Option": "lucide-react-native",
-    "Share": "lucide-react-native"
+    "Share": "lucide-react-native",
+    "Attachment": "@/components/ui/chat-ai",
+    "AttachmentPreview": "@/components/ui/chat-ai",
+    "AttachmentRemove": "@/components/ui/chat-ai",
+    "Attachments": "@/components/ui/chat-ai",
+    "usePromptInputAttachments": "@/components/ui/chat-ai"
    
   }
 }

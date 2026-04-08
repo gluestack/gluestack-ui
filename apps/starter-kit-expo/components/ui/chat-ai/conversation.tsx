@@ -17,12 +17,16 @@ import {
   Platform,
 } from 'react-native';
 
-import { ArrowDown, Download } from 'lucide-react-native';
+import { ArrowDown, Download, MessageSquare } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
 import { Message, MessageContent, MessageResponse } from './message';
 import { BlankProvider, useBlankContext } from './blank-context';
-import type { LegendListRef } from '@legendapp/list';
+
+// LegendList types only (for native)
+import type { LegendListProps, LegendListRef } from '@legendapp/list';
 import { AnimatedLegendList } from '@legendapp/list/reanimated';
+
+// ==================== MAIN COMPONENTS ====================
 
 export const Conversation = ({ children, className }: ConversationProps) => (
   <BlankProvider>
@@ -42,11 +46,15 @@ export type ConversationEmptyStateProps = {
 export const ConversationEmptyState = ({
   title = 'Start a conversation',
   description = 'Type a message below to begin chatting',
-  icon, 
+  icon,
   className,
 }: ConversationEmptyStateProps) => (
   <View className={`flex-1  items-center justify-center   ${className || ''}`}>
+    {/* {icon ?? <MessageSquare size={48} className="text-muted-foreground" />} */}
     <Text className="mt-4 text-3xl font-semibold text-foreground">{title}</Text>
+    {/* <Text className="mt-2 text-center text-base text-muted-foreground">
+      {description}
+    </Text> */}
   </View>
 );
 
@@ -97,10 +105,10 @@ export const ConversationContent = ({
 
   const { messagesContainerHeight } = useBlankContext();
 
-
+  // ←←← THIS IS THE KEY CHANGE ←←←
+  const ListComponent = Platform.OS === 'web' ? FlatList : AnimatedLegendList;
 
   return (
-   
     <View
       className="flex-1"
       onLayout={(e) => {
@@ -111,10 +119,9 @@ export const ConversationContent = ({
       {messages.length === 0 ? (
         <ConversationEmptyState />
       ) : (
-        <AnimatedLegendList
+        <ListComponent
           ref={flatListRef}
           data={messages}
-        keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
           showsVerticalScrollIndicator={false}
           renderItem={renderItem || defaultRenderItem}
           keyExtractor={(item) => item.id}
@@ -132,11 +139,10 @@ export const ConversationContent = ({
         />
       )}
     </View>
-  
   );
 };
 
-
+// ConversationScrollButton and ConversationDownload stay exactly the same
 export const ConversationScrollButton = () => (
   <TouchableOpacity
     onPress={() => {}}

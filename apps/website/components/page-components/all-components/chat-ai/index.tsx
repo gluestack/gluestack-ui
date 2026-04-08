@@ -26,6 +26,11 @@ import { CopyCheck } from 'lucide-react-native';
 import { Menu } from 'lucide-react-native';
 import { Option } from 'lucide-react-native';
 import { Share } from 'lucide-react-native';
+import { Attachment } from '@/components/ui/chat-ai';
+import { AttachmentPreview } from '@/components/ui/chat-ai';
+import { AttachmentRemove } from '@/components/ui/chat-ai';
+import { Attachments } from '@/components/ui/chat-ai';
+import { usePromptInputAttachments } from '@/components/ui/chat-ai';
 
 export default function Example() {
   return (
@@ -41,7 +46,7 @@ export default function Example() {
 
   // ================= ATTACHMENT ITEM =================
   const AttachmentItem = memo(({ attachment, onRemove }: any) => {
-    const handleRemove = useCallback(
+    const handleRemove = React.useCallback(
       () => onRemove(attachment.id),
       [onRemove, attachment.id]
     );
@@ -131,6 +136,7 @@ export default function Example() {
       
       <PromptInputProvider>
         <PromptInput onSubmit={handleSubmit}>
+          <PromptInputAttachmentsDisplay />
           <PromptInputBody>
             <PromptInputTextarea />
           </PromptInputBody>
@@ -162,7 +168,7 @@ export default function Example() {
   );
 }`}
       argTypes={{}}
-      reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, Box, PromptInputFooter, PromptInputTools, PromptInputActionMenu, PromptInputActionMenuContent, PromptInputActionMenuTrigger, PromptInputSubmit, TouchableOpacity, View, Text, memo, CopyCheck, Menu, Option, Share }}
+      reactLive={{ Conversation, ConversationContent, Message, MessageContent, MessageResponse, MessageToolbar, MessageAction, PromptInput, PromptInputProvider, PromptInputBody, PromptInputTextarea, ConversationScrollButton, Box, PromptInputFooter, PromptInputTools, PromptInputActionMenu, PromptInputActionMenuContent, PromptInputActionMenuTrigger, PromptInputSubmit, TouchableOpacity, View, Text, memo, CopyCheck, Menu, Option, Share, Attachment, AttachmentPreview, AttachmentRemove, Attachments, usePromptInputAttachments }}
       
     />
   );

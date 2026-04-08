@@ -11,6 +11,7 @@ import {
 import { X } from 'lucide-react-native';
 import { Pressable, Text, View, TextInput } from 'react-native';
 
+// ====================== Core Components ======================
 
 export type ModelSelectorProps = {
   open: boolean;
@@ -23,6 +24,7 @@ export const ModelSelector = ({
   onOpenChange,
   children,
 }: ModelSelectorProps) => {
+  // Filter children - trigger renders outside, content goes in modal
   const childrenArray = Children.toArray(children);
   const triggerChildren: ReactNode[] = [];
   let contentElement: React.ReactElement | null = null;
@@ -83,6 +85,7 @@ export const ModelSelectorContent = ({
   );
 };
 
+// ====================== Command-like Components ======================
 
 export type ModelSelectorInputProps = ComponentProps<typeof TextInput>;
 
@@ -171,7 +174,8 @@ export const ModelSelectorSeparator = ({
 }: {
   className?: string;
 }) => <View className={`h-px bg-border mx-4 my-1 ${className || ''}`} />;
-  
+
+// ====================== UI Helpers ======================
 
 export type ModelSelectorLogoProps = {
   provider: string;

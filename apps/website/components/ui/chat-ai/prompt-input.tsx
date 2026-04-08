@@ -1,3 +1,5 @@
+'use client';
+
 import React, {
   createContext,
   useContext,
@@ -8,12 +10,14 @@ import React, {
 } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import * as DocumentPicker from 'expo-document-picker';
+import { Platform } from 'react-native';
+
 import { Menu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 
-
+// ====================== CONTEXT ======================
 
 type PromptContextType = {
   text: string;
@@ -30,7 +34,7 @@ const usePrompt = () => {
   return context;
 };
 
-
+// ====================== ATTACHMENTS ======================
 
 const generateId = (): string => {
   return (
@@ -62,8 +66,10 @@ export const PromptInputProvider = ({ children }: { children: ReactNode }) => {
     (FileUIPart & { id: string })[]
   >([]);
 
-  const add = useCallback((newFiles: any[]) => {
-    setAttachmentFiles((prev) => [...prev, ...newFiles]);
+  const add = useCallback((newFiles: any[] | any) => {
+    // Accept single object OR array (more flexible)
+    const filesToAdd = Array.isArray(newFiles) ? newFiles : [newFiles];
+    setAttachmentFiles((prev) => [...prev, ...filesToAdd]);
   }, []);
 
   const remove = useCallback((id: string) => {
@@ -75,23 +81,37 @@ export const PromptInputProvider = ({ children }: { children: ReactNode }) => {
     setTextInput('');
   }, []);
 
+  // ====================== FIXED IMAGE PICKER ======================
   const openImagePicker = useCallback(async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
       allowsMultipleSelection: true,
       quality: 0.1,
-      base64: true,
+      base64: Platform.OS !== 'web', // base64 only on native
     });
 
-    if (!result.canceled && result.assets) {
-      const newFiles = result.assets.map((asset) => ({
-        id: generateId(),
-        filename: asset.fileName || `image-${Date.now()}.jpg`,
-        mediaType: asset.mimeType || 'image/jpeg',
-        type: 'file' as const,
-        url: `data:${asset.mimeType || 'image/jpeg'};base64,${asset.base64}`,
-      }));
-      add(newFiles);
+    if (!result.canceled && result.assets && result.assets.length > 0) {
+      const newFiles = result.assets.map((asset) => {
+        let url = '';
+
+        if (Platform.OS === 'web') {
+          url = asset.uri; // blob URL on web
+        } else {
+          url = `data:${asset.mimeType || 'image/jpeg'};base64,${asset.base64}`;
+        }
+
+        return {
+          id: generateId(),
+          filename: asset.fileName || asset.name || `image-${Date.now()}.jpg`,
+          mediaType: asset.mimeType || 'image/jpeg',
+          type: 'file' as const,
+          url,
+        };
+
+      });
+
+      add(newFiles); // ← now correctly passes array
+      console.log(newFiles);
     }
   }, [add]);
 
@@ -113,6 +133,7 @@ export const PromptInputProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
+// ====================== REST OF YOUR COMPONENTS (unchanged) ======================
 
 export const PromptInput = ({
   children,
@@ -143,7 +164,7 @@ export const PromptInput = ({
   return (
     <PromptContext.Provider value={{ text, setText, handleSubmit, isDisabled }}>
       <Animated.View style={inputAnimatedStyle}>
-        <View className="bg-muted border-border absolute bottom-4  w-full rounded-3xl  px-3 py-2">
+        <View className="bg-muted border-border absolute bottom-4 w-full rounded-3xl px-3 py-2">
           {children}
         </View>
       </Animated.View>
@@ -151,15 +172,12 @@ export const PromptInput = ({
   );
 };
 
-
-export const PromptInputBody = ({ children }: { children: ReactNode }) => {
-  return <View className="flex-row  pt-2 items-center gap-2">{children}</View>;
-};
-
+export const PromptInputBody = ({ children }: { children: ReactNode }) => (
+  <View className="flex-row pt-2 items-center gap-2">{children}</View>
+);
 
 export const PromptInputTextarea = () => {
   const { text, setText } = usePrompt();
-
   return (
     <TextInput
       value={text}
@@ -171,33 +189,22 @@ export const PromptInputTextarea = () => {
   );
 };
 
+export const PromptInputFooter = ({ children }: { children: ReactNode }) => (
+  <View className="flex-row items-center justify-between mt-6">{children}</View>
+);
 
-export const PromptInputFooter = ({ children }: { children: ReactNode }) => {
-  return (
-    <View className="flex-row items-center justify-between mt-6">
-      {children}
-    </View>
-  );
-};
+export const PromptInputTools = ({ children }: { children: ReactNode }) => (
+  <View className="flex-row items-center gap-2">{children}</View>
+);
 
-
-export const PromptInputTools = ({ children }: { children: ReactNode }) => {
-  return <View className="flex-row items-center gap-2">{children}</View>;
-};
-
-
-export const PromptInputButton = ({ children }: { children: ReactNode }) => {
-  return (
-    <TouchableOpacity className="px-3 py-1 rounded-full bg-muted">
-      <Text>{children}</Text>
-    </TouchableOpacity>
-  );
-};
-
+export const PromptInputButton = ({ children }: { children: ReactNode }) => (
+  <TouchableOpacity className="px-3 py-1 rounded-full bg-muted">
+    <Text>{children}</Text>
+  </TouchableOpacity>
+);
 
 export const PromptInputSubmit = () => {
   const { handleSubmit, isDisabled } = usePrompt();
-
   return (
     <TouchableOpacity
       onPress={handleSubmit}
@@ -211,18 +218,15 @@ export const PromptInputSubmit = () => {
   );
 };
 
-
 export const PromptInputActionMenu = ({ children }: any) => <>{children}</>;
 
-export const PromptInputActionMenuTrigger = ({ children, ...props }: any) => {
-  return (
-    <TouchableOpacity {...props}>
-      <View className="h-10 w-10 rounded-full items-center justify-center bg-primary/10">
-        {children ?? <Text className="text-xl text-primary">+</Text>}
-      </View>
-    </TouchableOpacity>
-  );
-};
+export const PromptInputActionMenuTrigger = ({ children, ...props }: any) => (
+  <TouchableOpacity {...props}>
+    <View className="h-10 w-10 rounded-full items-center justify-center bg-primary/10">
+      {children ?? <Text className="text-xl text-primary">+</Text>}
+    </View>
+  </TouchableOpacity>
+);
 
 export const PromptInputActionMenuContent = ({
   trigger,

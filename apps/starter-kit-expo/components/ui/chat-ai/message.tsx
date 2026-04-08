@@ -1,5 +1,7 @@
+// components/ai-elements/message.tsx
 import React, {
   memo,
+  useCallback,
   createContext,
   useContext,
   useState,
@@ -11,7 +13,8 @@ import {
   TouchableOpacity,
   Alert,
   Image,
-  ViewStyle,  
+  ViewStyle,
+  Platform,
 } from 'react-native';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
@@ -19,6 +22,8 @@ import Animated from 'react-native-reanimated';
 import { useUserMessageAnimation } from './userAnimation';
 import { useBlankSize } from './useBlank';
 import Markdown from 'react-native-markdown-display';
+import { useUnstableNativeVariable } from 'nativewind';
+// ==================== CONTEXT ====================
 
 type MessageContextType = {
   role: UIMessage['role'];
@@ -37,6 +42,7 @@ const useMessageContext = () => {
   return context;
 };
 
+// ==================== REF MERGER ====================
 const mergeRefs = <T,>(
   ...refs: Array<React.Ref<T> | null | undefined>
 ): React.RefCallback<T> => {
@@ -51,6 +57,7 @@ const mergeRefs = <T,>(
   };
 };
 
+// ==================== TYPES ====================
 
 export type MessageProps = {
   role: UIMessage['role'];
@@ -65,6 +72,7 @@ export type MessageContentProps = {
   className?: string;
 };
 
+// ==================== MAIN MESSAGE COMPONENT ====================
 
 export const Message = memo(
   ({ role, children, className, index, message }: MessageProps) => {
@@ -99,10 +107,7 @@ export const Message = memo(
                     animOnLayout?.(event);
                     blankOnLayout?.(event);
                   }
-                : (event) => {
-                   animOnLayout?.(event);
-                    blankOnLayout?.(event);
-                  }
+                : undefined
             }
             style={animationStyle as ViewStyle}
             className={`group mt-4 flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
@@ -113,6 +118,7 @@ export const Message = memo(
       );
     }
 
+    // Assistant messages
     return (
       <MessageContext.Provider value={contextValue}>
         <Animated.View
@@ -127,6 +133,7 @@ export const Message = memo(
   }
 );
 
+// ==================== MESSAGE CONTENT ====================
 
 export const MessageContent = memo(
   ({ children, className }: MessageContentProps) => {
@@ -145,6 +152,9 @@ export const MessageContent = memo(
   }
 );
 
+// ==================== MARKDOWN STYLES (REUSED) ====================
+
+// ==================== MESSAGE RESPONSE ====================
 
 export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
   const markdownRules = {
@@ -167,6 +177,7 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
     list_item: (node, children, parent) => {
       const isOrdered = parent?.type === 'ordered_list';
       const index = node.index ?? 0;
+      // console.log(children);
       return (
         <View key={node.key} className="flex-row items-start mb-1">
           <Text className="text-foreground mr-2">
@@ -221,6 +232,7 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
     ),
   };
 
+  // fallback
   if (!message?.parts) {
     return <Markdown rules={markdownRules}>{message?.content || ''}</Markdown>;
   }
@@ -268,6 +280,7 @@ export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
     </View>
   );
 });
+// ==================== MESSAGE TOOLBAR ====================
 
 export type MessageToolbarProps = {
   children: React.ReactNode;
@@ -280,11 +293,11 @@ export const MessageToolbar = memo(
     const { role, message } = useMessageContext();
 
     const roleStyles = role === 'user' ? 'self-end' : 'self-start';
-    const hasText = message?.parts?.some(
-      (p) => p.type === 'text' && p.text?.length > 0
-    );
+   const hasText = message?.parts?.some(
+     (p) => p.type === 'text' && p.text?.length > 0
+   );
 
-    if (!hasText) return null;
+   if (!hasText) return null;
 
     if (role === 'user') return null;
 
@@ -298,6 +311,7 @@ export const MessageToolbar = memo(
   }
 );
 
+// ==================== MESSAGE ACTION ====================
 
 export const MessageAction = ({
   onPress,
@@ -323,6 +337,7 @@ export const MessageAction = ({
   );
 };
 
+// ==================== MESSAGE BRANCH COMPONENTS ====================
 
 interface MessageBranchContextType {
   currentBranch: number;
@@ -341,7 +356,7 @@ const useMessageBranch = () => {
   const context = useContext(MessageBranchContext);
   if (!context) {
     throw new Error(
-      'MessageBranch components must be used within <MessageBranch>',
+      'MessageBranch components must be used within <MessageBranch>'
     );
   }
   return context;
