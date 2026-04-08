@@ -30,6 +30,8 @@ import { Text } from '@/components/ui/text';
 
     import centerComponent from './center'
 
+    import chataiComponent from './chat-ai'
+
     import checkboxComponent from './checkbox'
 
     import datetimepickerComponent from './date-time-picker'
@@ -100,8 +102,8 @@ import { Text } from '@/components/ui/text';
   
   
 
-const componentsList = [accordionComponent,actionsheetComponent,alertComponent,alertdialogComponent,avatarComponent,badgeComponent,bottomsheetComponent,boxComponent,buttonComponent,calendarComponent,cardComponent,centerComponent,checkboxComponent,datetimepickerComponent,dividerComponent,drawerComponent,fabComponent,formcontrolComponent,gridComponent,headingComponent,hstackComponent,iconComponent,imageComponent,imageviewerComponent,inputComponent,linkComponent,liquidglassComponent,menuComponent,modalComponent,popoverComponent,portalComponent,pressableComponent,progressComponent,radioComponent,selectComponent,skeletonComponent,sliderComponent,spinnerComponent,switchComponent,tableComponent,tabsComponent,textComponent,textareaComponent,toastComponent,tooltipComponent,vstackComponent];
-const componentsNameList = ["accordion","actionsheet","alert","alert-dialog","avatar","badge","bottomsheet","box","button","calendar","card","center","checkbox","date-time-picker","divider","drawer","fab","form-control","grid","heading","hstack","icon","image","image-viewer","input","link","liquid-glass","menu","modal","popover","portal","pressable","progress","radio","select","skeleton","slider","spinner","switch","table","tabs","text","textarea","toast","tooltip","vstack"];
+const componentsList = [accordionComponent,actionsheetComponent,alertComponent,alertdialogComponent,avatarComponent,badgeComponent,bottomsheetComponent,boxComponent,buttonComponent,calendarComponent,cardComponent,centerComponent,chataiComponent,checkboxComponent,datetimepickerComponent,dividerComponent,drawerComponent,fabComponent,formcontrolComponent,gridComponent,headingComponent,hstackComponent,iconComponent,imageComponent,imageviewerComponent,inputComponent,linkComponent,liquidglassComponent,menuComponent,modalComponent,popoverComponent,portalComponent,pressableComponent,progressComponent,radioComponent,selectComponent,skeletonComponent,sliderComponent,spinnerComponent,switchComponent,tableComponent,tabsComponent,textComponent,textareaComponent,toastComponent,tooltipComponent,vstackComponent];
+const componentsNameList = ["accordion","actionsheet","alert","alert-dialog","avatar","badge","bottomsheet","box","button","calendar","card","center","chat-ai","checkbox","date-time-picker","divider","drawer","fab","form-control","grid","heading","hstack","icon","image","image-viewer","input","link","liquid-glass","menu","modal","popover","portal","pressable","progress","radio","select","skeleton","slider","spinner","switch","table","tabs","text","textarea","toast","tooltip","vstack"];
 export default function AllComponents() {
   return (
     <Grid

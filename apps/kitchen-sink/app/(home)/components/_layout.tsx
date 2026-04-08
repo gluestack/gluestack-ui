@@ -352,6 +352,12 @@ export default function ComponentsLayout() {
           />
      
 
+          <Stack.Screen
+        name="chat-ai"
+        options={{
+          header: () => <CustomHeader title="ChatAi" />,
+        }}
+      />
     </Stack>
   );
 }

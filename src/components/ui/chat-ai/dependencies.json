@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@legendapp/list": "^3.0.0-beta.43",
+    "@openrouter/ai-sdk-provider": "^2.3.3",
+    "ai": "^6.0.116",
+    "date-fns": "^4.1.0",
+    "expo-document-picker": "^55.0.9",
+    "expo-image-picker": "^55.0.14",
+    "react-native-enriched-markdown": "^0.4.1",
+    "react-native-keyboard-controller": "^1.21.0",
+    "react-native-markdown-display": "^7.0.2"
+  },
+  "components": ["menu","modal","box","text","image","button"]
+}

@@ -1,0 +1,13 @@
+{
+  "title": "Custom Styling",
+  "description": "Chat interface with custom styling and theming",
+  "reactLive": {
+    "Conversation": "@/components/ui/chat-ai",
+    "ConversationContent": "@/components/ui/chat-ai",
+    "Message": "@/components/ui/chat-ai",
+    "MessageContent": "@/components/ui/chat-ai",
+    "MessageResponse": "@/components/ui/chat-ai",
+    "PromptInput": "@/components/ui/chat-ai",
+    "PromptInputProvider": "@/components/ui/chat-ai"
+  }
+}

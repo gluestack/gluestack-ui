@@ -1,0 +1,569 @@
+---
+title: gluestack-ui Chat AI Component | AI Chat Interface for React Native
+description: Build AI chat interfaces with a comprehensive set of components including conversations, messages, attachments, and prompt inputs. Perfect for creating AI-powered chat applications in React & React Native.
+pageTitle: Chat AI
+pageDescription: Build AI chat interfaces with a comprehensive set of components including conversations, messages, attachments, and prompt inputs.
+showHeader: true
+---
+
+import { Tabs, TabItem } from '@/docs-components/tabs';
+import {
+  Table,
+  TableHeader,
+  TableCell,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+} from '@/docs-components/table';
+import { AnatomyImage } from '@/docs-components/anatomy-image';
+import { InlineCode } from '@/docs-components/inline-code';
+
+# Chat AI
+
+Build AI chat interfaces with a comprehensive set of components including conversations, messages, attachments, and prompt inputs. Perfect for creating AI-powered chat applications in React & React Native.
+
+This is an illustration of **Chat AI** components.
+
+   <video
+              poster="/videos/Chat-app.mp4"
+              className="lg:-mr-20 xl:-mr-24 h-[calc(60vh-110px)] xl:object-cover"
+              autoPlay
+              loop
+              preload="auto"
+              playsInline
+              muted
+            >
+              <source src="/videos/Chat-app.mp4" type="video/mp4" />
+            </video>
+
+///{Example:basic}///
+
+<br />
+## Installation
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add chat-ai`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+
+### Step 1: Copy and paste the following code into your project.
+
+```jsx
+%%-- File: apps/starter-kit-expo/components/ui/chat-ai/index.tsx --%%
+%%-- File: apps/starter-kit-expo/components/ui/chat-ai/conversation.tsx --%%
+%%-- File: apps/starter-kit-expo/components/ui/chat-ai/message.tsx --%%
+%%-- File: apps/starter-kit-expo/components/ui/chat-ai/prompt-input.tsx --%%
+%%-- File: apps/starter-kit-expo/components/ui/chat-ai/attatchments.tsx --%%
+%%-- File: apps/starter-kit-expo/components/ui/chat-ai/blank-context.tsx --%%
+%%-- File: apps/starter-kit-expo/components/ui/chat-ai/model-selector.tsx --%%
+%%-- File: apps/starter-kit-expo/components/ui/chat-ai/file-tree.tsx --%%
+%%-- File: apps/starter-kit-expo/components/ui/chat-ai/useBlank.ts --%%
+%%-- File: apps/starter-kit-expo/components/ui/chat-ai/useMessageHeight.ts --%%
+%%-- File: apps/starter-kit-expo/components/ui/chat-ai/useKeyboardAwareChat.ts --%%
+%%-- File: apps/starter-kit-expo/components/ui/chat-ai/userAnimation.ts --%%
+```
+
+### Step 2: Update the import paths to match your project setup.
+
+</TabItem>
+</Tabs>
+
+## API Reference
+
+To use this component in your project, include the following import statement in your file.
+
+```jsx
+import {
+  Conversation,
+  ConversationContent,
+  ConversationEmptyState,
+  ConversationScrollButton,
+  ConversationDownload,
+  Message,
+  MessageContent,
+  MessageResponse,
+  MessageToolbar,
+  MessageAction,
+  MessageBranch,
+  PromptInput,
+  PromptInputProvider,
+  PromptInputActionMenu,
+  PromptInputActionMenuContent,
+  PromptInputActionMenuTrigger,
+  usePromptInputAttachments,
+  Attachments,
+  Attachment,
+  AttachmentPreview,
+  AttachmentRemove,
+} from '@/components/ui/chat-ai';
+```
+
+### Component Props
+
+This section provides a comprehensive reference list for the component props, detailing descriptions, properties, types, and default behavior for easy project integration.
+
+#### Conversation
+
+The root container for the chat interface. It provides context for the entire conversation.
+
+<>
+
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>children</InlineCode>
+      </TableCell>
+      <TableCell>ReactNode</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The content of the conversation.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>className</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Additional CSS classes to apply.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+#### ConversationContent
+
+Displays the list of messages in the conversation.
+
+<>
+
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>messages</InlineCode>
+      </TableCell>
+      <TableCell>Array&lt;UIMessage&gt;</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Array of messages to display.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>renderItem</InlineCode>
+      </TableCell>
+      <TableCell>ListRenderItem&lt;UIMessage&gt;</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Custom render function for messages.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>estimatedItemSize</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>140</TableCell>
+      <TableCell>Estimated height of each message item.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+#### Message
+
+Represents an individual message in the conversation.
+
+<>
+
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>role</InlineCode>
+      </TableCell>
+      <TableCell>'user' | 'assistant'</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The role of the message sender.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>index</InlineCode>
+      </TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The index of the message in the list.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>message</InlineCode>
+      </TableCell>
+      <TableCell>UIMessage</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The message data object.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>children</InlineCode>
+      </TableCell>
+      <TableCell>ReactNode</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The content of the message.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>className</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Additional CSS classes to apply.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+#### MessageContent
+
+Wrapper for the message content with role-based styling.
+
+<>
+
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>children</InlineCode>
+      </TableCell>
+      <TableCell>ReactNode</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The content to display.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>className</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Additional CSS classes to apply.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+#### MessageResponse
+
+Renders the message content with markdown support.
+
+<>
+
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>message</InlineCode>
+      </TableCell>
+      <TableCell>UIMessage</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The message object containing content and parts.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+#### MessageToolbar
+
+Container for message action buttons.
+
+<>
+
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>children</InlineCode>
+      </TableCell>
+      <TableCell>ReactNode</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Action buttons to display.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>className</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Additional CSS classes to apply.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+#### MessageAction
+
+Individual action button for messages.
+
+<>
+
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onPress</InlineCode>
+      </TableCell>
+      <TableCell>() =&gt; void</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Callback when action is pressed.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>tooltip</InlineCode>
+      </TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Tooltip text for the action.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>children</InlineCode>
+      </TableCell>
+      <TableCell>ReactNode</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>The icon or content of the action.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+#### PromptInput
+
+Input area for typing and sending messages.
+
+<>
+
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>children</InlineCode>
+      </TableCell>
+      <TableCell>ReactNode</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Additional content (attachments, etc.).</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>onSubmit</InlineCode>
+      </TableCell>
+      <TableCell>(message: PromptInputMessage) =&gt; void</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Callback when message is submitted.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+#### PromptInputProvider
+
+Provider component for managing prompt input state.
+
+<>
+
+<Table>
+  <TableBody>
+    <TableRow>
+      <TableHeaderCell>Prop</TableHeaderCell>
+      <TableHeaderCell>Type</TableHeaderCell>
+      <TableHeaderCell>Default</TableHeaderCell>
+      <TableHeaderCell>Description</TableHeaderCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>
+        <InlineCode>children</InlineCode>
+      </TableCell>
+      <TableCell>ReactNode</TableCell>
+      <TableCell>-</TableCell>
+      <TableCell>Child components.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+</>
+
+#### Attachment Components
+
+Components for handling file attachments.
+
+**Attachments** - Container for multiple attachments.
+
+**Attachment** - Individual attachment item.
+
+**AttachmentPreview** - Preview of the attachment (image or icon).
+
+**AttachmentRemove** - Button to remove an attachment.
+
+
+## Usage
+
+### Basic Usage
+
+```jsx
+import {
+  Conversation,
+  ConversationContent,
+  Message,
+  MessageContent,
+  MessageResponse,
+  PromptInput,
+  PromptInputProvider,
+} from '@/components/ui/chat-ai';
+
+function Chat() {
+  const [messages, setMessages] = useState([]);
+
+  const handleSubmit = ({ text, files }) => {
+    // Handle message submission
+    setMessages([...messages, { role: 'user', content: text }]);
+  };
+
+  return (
+    <Conversation>
+      <ConversationContent messages={messages} />
+      <PromptInputProvider>
+        <PromptInput onSubmit={handleSubmit} />
+      </PromptInputProvider>
+    </Conversation>
+  );
+}
+```
+
+### With AI SDK
+
+```jsx
+import { useChat } from '@ai-sdk/react';
+import { DefaultChatTransport } from 'ai';
+import { fetch as expoFetch } from 'expo/fetch';
+
+function AIChat() {
+  const { messages, sendMessage } = useChat({
+    transport: new DefaultChatTransport({
+      fetch: expoFetch,
+      api: 'http://localhost:8082/api/chat',
+    }),
+  });
+
+  const handleSubmit = (message) => {
+    sendMessage({
+      text: message.text,
+      files: message.files,
+    });
+  };
+
+  return (
+    <Conversation>
+      <ConversationContent messages={messages} />
+      <PromptInputProvider>
+        <PromptInput onSubmit={handleSubmit} />
+      </PromptInputProvider>
+    </Conversation>
+  );
+}
+```
+
+## Accessibility
+
+### Keyboard Navigation
+
+- **Tab**: Move focus between interactive elements
+- **Enter**: Submit message or activate buttons
+- **Shift + Enter**: New line in text input
+- **Escape**: Close menus or modals
+
+### Screen Reader
+
+- Messages are announced with proper role and labeling
+- Attachment previews have descriptive alt text
+- Action buttons have accessible labels
+
+### Focus Management
+
+- Focus is managed when opening menus
+- Input field maintains focus for continuous typing
+- Keyboard-aware scrolling for chat list
+
+## Best Practices
+
+### Do's
+
+- ✅ Use semantic HTML for better accessibility
+- ✅ Provide clear feedback for user actions
+- ✅ Handle loading states gracefully
+- ✅ Validate file types and sizes before upload
+- ✅ Implement proper error handling
+
+### Don'ts
+
+- ❌ Don't store sensitive data in local state
+- ❌ Don't ignore accessibility requirements
+- ❌ Don't forget to handle network errors
+- ❌ Don't allow unlimited file uploads
+
+## Related Components
+
+- [Textarea](/ui/textarea) - Multi-line text input
+- [Button](/ui/button) - Action buttons
+- [Menu](/ui/menu) - Dropdown menus
+- [Tooltip](/ui/tooltip) - Helpful hints
