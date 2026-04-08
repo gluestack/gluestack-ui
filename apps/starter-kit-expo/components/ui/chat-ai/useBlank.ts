@@ -19,9 +19,8 @@ export function useBlankSize({
 
   const { height: keyboardHeight } = useReanimatedKeyboardAnimation();
   const { ref, onLayout } = useMessageHeight();
-  
-  useAnimatedReaction(
 
+  useAnimatedReaction(
     () => ({
       user: context.userMessageHeight.value,
       assistant: context.assistantMessageHeight.value,
@@ -31,18 +30,22 @@ export function useBlankSize({
 
     ({ user, assistant, disabled: isDisabled }) => {
       'worklet';
+      console.log(
+        user,
+        assistant,
+        disabled,
+        context.messagesContainerHeight.value
+      );
 
-      if (isDisabled) return;
-
-      const pairedHeight = user 
+      const pairedHeight = user;
       const nextBlank = Math.max(
         0,
-        context.messagesContainerHeight.value - pairedHeight - 16
+        context.messagesContainerHeight.value - pairedHeight - 46
       );
+      console.log('blank', nextBlank);
       context.blankSize.value = nextBlank;
-
     }
   );
 
-  return { ref, onLayout: disabled ? undefined : onLayout };
+  return { ref, onLayout: onLayout };
 }

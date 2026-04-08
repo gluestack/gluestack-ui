@@ -111,7 +111,6 @@ export const PromptInputProvider = ({ children }: { children: ReactNode }) => {
       });
 
       add(newFiles); // ← now correctly passes array
-      console.log(newFiles);
     }
   }, [add]);
 

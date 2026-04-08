@@ -184,7 +184,6 @@ export const AttachmentPreview = ({
 
   const renderContent = () => {
     if (mediaCategory === 'image' && data.type === 'file' && data.url) {
-      console.log('data.url url to attackments',data.url);
       return (
         <Image
           source={{ uri: data.url }}

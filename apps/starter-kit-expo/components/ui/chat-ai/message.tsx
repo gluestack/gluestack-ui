@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   Alert,
   Image,
-  ViewStyle,  
+  ViewStyle,
 } from 'react-native';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import type { UIMessage } from 'ai';
@@ -51,7 +51,6 @@ const mergeRefs = <T,>(
   };
 };
 
-
 export type MessageProps = {
   role: UIMessage['role'];
   children: React.ReactNode;
@@ -64,7 +63,6 @@ export type MessageContentProps = {
   children: React.ReactNode;
   className?: string;
 };
-
 
 export const Message = memo(
   ({ role, children, className, index, message }: MessageProps) => {
@@ -93,17 +91,10 @@ export const Message = memo(
         <MessageContext.Provider value={contextValue}>
           <Animated.View
             ref={combinedRef}
-            onLayout={
-              isUserFirstMessage
-                ? (event) => {
-                    animOnLayout?.(event);
-                    blankOnLayout?.(event);
-                  }
-                : (event) => {
-                   animOnLayout?.(event);
-                    blankOnLayout?.(event);
-                  }
-            }
+            onLayout={(event) => {
+              animOnLayout?.(event);
+              blankOnLayout?.(event);
+            }}
             style={animationStyle as ViewStyle}
             className={`group mt-4 flex w-full max-w-[95%] flex-col gap-2 ${className || ''}`}
           >
@@ -127,7 +118,6 @@ export const Message = memo(
   }
 );
 
-
 export const MessageContent = memo(
   ({ children, className }: MessageContentProps) => {
     const { role } = useMessageContext();
@@ -144,7 +134,6 @@ export const MessageContent = memo(
     );
   }
 );
-
 
 export const MessageResponse = memo(({ message }: { message: UIMessage }) => {
   const markdownRules = {
@@ -298,7 +287,6 @@ export const MessageToolbar = memo(
   }
 );
 
-
 export const MessageAction = ({
   onPress,
   tooltip,
@@ -323,7 +311,6 @@ export const MessageAction = ({
   );
 };
 
-
 interface MessageBranchContextType {
   currentBranch: number;
   totalBranches: number;
@@ -341,7 +328,7 @@ const useMessageBranch = () => {
   const context = useContext(MessageBranchContext);
   if (!context) {
     throw new Error(
-      'MessageBranch components must be used within <MessageBranch>',
+      'MessageBranch components must be used within <MessageBranch>'
     );
   }
   return context;
