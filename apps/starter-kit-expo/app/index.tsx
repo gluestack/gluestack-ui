@@ -1,166 +1,19 @@
-import { useChat } from '@ai-sdk/react';
+import Logo from '@/assets/icons/Logo';
+import { Box } from '@/components/ui/box';
+import { Center } from '@/components/ui/center';
+import { Text } from '@/components/ui/text';
+import React from 'react';
 
-import {
-  Attachment,
-  AttachmentPreview,
-  AttachmentRemove,
-  Attachments,
-} from '@/components/ui/chat-ai/attatchments';
-import { TouchableOpacity } from 'react-native';
-import { DefaultChatTransport, UIMessage } from 'ai';
-import { fetch as expoFetch } from 'expo/fetch'; // ← This is required for Expo
-import { configureReanimatedLogger } from 'react-native-reanimated';
-
-configureReanimatedLogger({
-  strict: false,
-});
-import {
-  Conversation,
-  ConversationContent,
-  Message,
-  MessageAction,
-  MessageToolbar,
-  MessageContent,
-  MessageResponse,
-} from '@/components/ui/chat-ai';
-import { ConversationScrollButton } from '@/components/ui/chat-ai/conversation';
-import { ListRenderItem } from 'react-native';
-import { Text } from 'react-native';
-import { CopyCheck, Menu, Option, Share } from 'lucide-react-native';
-import {
-  PromptInput,
-  PromptInputProvider,
-  usePromptInputAttachments,
-  PromptInputMessage,
-  PromptInputActionMenu,
-  PromptInputActionMenuContent,
-  PromptInputBody,
-  PromptInputTools,
-  PromptInputButton,
-  PromptInputTextarea,
-  PromptInputSubmit,
-  PromptInputActionMenuTrigger,
-  PromptInputFooter,
-} from '@/components/ui/chat-ai/prompt-input';
-
-import { memo, useCallback } from 'react';
-import { View } from 'react-native';
-
-// ================= ATTACHMENT ITEM =================
-const AttachmentItem = memo(({ attachment, onRemove }: any) => {
-  const handleRemove = useCallback(
-    () => onRemove(attachment.id),
-    [onRemove, attachment.id]
-  );
-
+export default function Home() {
   return (
-    <Attachment data={attachment} onRemove={handleRemove}>
-      <AttachmentPreview />
-      <AttachmentRemove />
-    </Attachment>
+    <Box className="flex-1 bg-background">
+      <Center className="flex-1 gap-5">
+        <Logo />
+        <Text className="font-semibold">
+          Get started by editing{' '}
+          <Text className="text-primary/70">app/index.tsx</Text>
+        </Text>
+      </Center>
+    </Box>
   );
-});
-
-// ================= ATTACHMENTS DISPLAY =================
-const PromptInputAttachmentsDisplay = () => {
-  const attachments = usePromptInputAttachments();
-
-  if (attachments.files.length === 0) return null;
-
-  return (
-    <Attachments variant="grid" className="mb-4">
-      {attachments.files.map((attachment: any) => (
-        <AttachmentItem
-          key={attachment.id}
-          attachment={attachment}
-          onRemove={attachments.remove}
-        />
-      ))}
-    </Attachments>
-  );
-};
-
-const renderMessage: ListRenderItem<UIMessage> = ({ item: message, index }) => (
-  <Message role={message.role} index={index} message={message}>
-    <MessageContent>
-      <MessageResponse message={message} />
-    </MessageContent>
-
-    <MessageToolbar className="mt-[2px]">
-      <MessageAction>
-        <Menu strokeWidth={1} size={18} color="white" />
-      </MessageAction>
-      <MessageAction>
-        <Share strokeWidth={1} size={18} color="white" />
-      </MessageAction>
-      <MessageAction>
-        <CopyCheck strokeWidth={1} size={18} color="white" />
-      </MessageAction>
-    </MessageToolbar>
-  </Message>
-);
-
-// ================= EXAMPLE =================
-const Example = () => {
-  const { messages, status, sendMessage, error } = useChat({
-    transport: new DefaultChatTransport({
-      fetch: expoFetch as unknown as typeof globalThis.fetch, // ← Critical for React Native
-      api: 'http://localhost:8081/api/chat', // or use generateAPIUrl('/api/chat') if you have a helper
-    }),
-    onError: (err) => console.error('Chat error:', err),
-  });
-  const handleSubmit = useCallback(
-    (message: PromptInputMessage) => {
-      sendMessage({
-        text: message.text, // 👈 important
-        files: message.files,
-      });
-    },
-    [sendMessage]
-  );
-
-  return (
-    <View className="flex-1 py-safe bg-background">
-      <Conversation>
-        <ConversationContent renderItem={renderMessage} messages={messages} />
-
-        {error && (
-          <Text className="p-4 text-red-500 text-center">
-            Error: {error.message}
-          </Text>
-        )}
-
-        <ConversationScrollButton />
-        <PromptInputProvider>
-          <PromptInput onSubmit={handleSubmit}>
-            <PromptInputAttachmentsDisplay />
-            <PromptInputBody>
-              <PromptInputTextarea />
-            </PromptInputBody>
-            <PromptInputFooter>
-              <PromptInputTools>
-                <PromptInputActionMenu>
-                  <PromptInputActionMenuContent
-                    trigger={(props: any) => (
-                      <PromptInputActionMenuTrigger {...props} className="px-3">
-                        <Text className="text-3xl text-primary">+</Text>
-                      </PromptInputActionMenuTrigger>
-                    )}
-                  />
-                </PromptInputActionMenu>
-                <TouchableOpacity>
-                  <View className="h-10 px-3 rounded-full items-center justify-center bg-primary/10">
-                    <Text className="text-xl text-primary">Model</Text>
-                  </View>
-                </TouchableOpacity>
-              </PromptInputTools>
-              <PromptInputSubmit />
-            </PromptInputFooter>
-          </PromptInput>
-        </PromptInputProvider>
-      </Conversation>
-    </View>
-  );
-};
-
-export default Example;
+}
