@@ -124,7 +124,6 @@ export const ConversationContent = ({
           initialNumToRender={15}
           windowSize={10}
           maxToRenderPerBatch={10}
-          onScroll={scrollHandler}
           contentContainerStyle={{
             paddingBottom: blankSize.value,
           }}
