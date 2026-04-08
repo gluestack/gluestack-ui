@@ -1,5 +1,3 @@
-'use client';
-
 import React, {
   createContext,
   useCallback,
@@ -9,20 +7,12 @@ import React, {
   type ReactNode,
 } from 'react';
 import { Platform } from 'react-native';
-
-// Gluestack UI
 import { ScrollView } from 'react-native';
 import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
-import { Text } from '@/components/ui/text';
-
 import { Tooltip, TooltipContent, TooltipText } from '@/components/ui/tooltip';
-
-// AI SDK Types
 import type { FileUIPart, SourceDocumentUIPart } from 'ai';
-
-// Icons
 import {
   FileText,
   Globe,
@@ -32,6 +22,8 @@ import {
   Video,
   X,
 } from 'lucide-react-native';
+
+
 
 export type AttachmentData =
   | (FileUIPart & { id: string })
@@ -47,10 +39,8 @@ export type AttachmentMediaCategory =
 
 export type AttachmentVariant = 'grid' | 'inline' | 'list';
 
-// ============================================================================
-// Utilities
-// ============================================================================
-export const getMediaCategory = (
+
+export const getMediaCategory = ( 
   data: AttachmentData
 ): AttachmentMediaCategory => {
   if (data.type === 'source-document') return 'source';
@@ -72,9 +62,7 @@ export const getAttachmentLabel = (data: AttachmentData): string => {
   return data.filename || (category === 'image' ? 'Image' : 'Attachment');
 };
 
-// ============================================================================
-// Contexts
-// ============================================================================
+
 interface AttachmentsContextValue {
   variant: AttachmentVariant;
 }
@@ -100,9 +88,7 @@ export const useAttachmentContext = () => {
   return ctx;
 };
 
-// ============================================================================
-// Attachments Container
-// ============================================================================
+
 export type AttachmentsProps = ComponentProps<typeof Box> & {
   variant?: AttachmentVariant;
 };
@@ -123,9 +109,8 @@ export const Attachments = ({
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
             flexDirection: variant === 'list' ? 'column' : 'row',
-            
+
             height: 80,
-         
           }}
           className={`${className} bg-muted `}
           {...props}
@@ -137,9 +122,7 @@ export const Attachments = ({
   );
 };
 
-// ============================================================================
-// Attachment Item
-// ============================================================================
+
 export type AttachmentProps = ComponentProps<typeof Box> & {
   data: AttachmentData;
   onRemove?: () => void;
@@ -173,8 +156,6 @@ export const Attachment = ({
         {...props}
       >
         {children}
-
-        {/* Remove Button */}
         {onRemove && (
           <AttachmentRemove
             className={
@@ -189,9 +170,7 @@ export const Attachment = ({
   );
 };
 
-// ============================================================================
-// AttachmentPreview
-// ============================================================================
+
 export type AttachmentPreviewProps = ComponentProps<typeof Box> & {
   fallbackIcon?: ReactNode;
 };
@@ -205,6 +184,7 @@ export const AttachmentPreview = ({
 
   const renderContent = () => {
     if (mediaCategory === 'image' && data.type === 'file' && data.url) {
+      console.log('data.url url to attackments',data.url);
       return (
         <Image
           source={{ uri: data.url }}
@@ -248,9 +228,6 @@ export const AttachmentPreview = ({
   );
 };
 
-// ============================================================================
-// AttachmentRemove
-// ============================================================================
 export type AttachmentRemoveProps = ComponentProps<typeof Button> & {
   label?: string;
 };
@@ -288,15 +265,16 @@ export const AttachmentRemove = ({
       {...props}
     >
       {children ?? (
-        <X className="text-destructive" color={'white'}  size={variant === 'grid' ? 12 : 12} />
+        <X
+          className="text-destructive"
+          color={'white'}
+          size={variant === 'grid' ? 12 : 12}
+        />
       )}
     </Button>
   );
 };
 
-// ============================================================================
-// AttachmentHoverCard - Available for ALL variants (same as original shadcn)
-// ============================================================================
 export type AttachmentHoverCardProps = Omit<
   ComponentProps<typeof Tooltip>,
   'trigger' | 'children'
@@ -319,9 +297,6 @@ export const AttachmentHoverCard = ({
     return <>{children}</>;
   }
 
-  // Works on all variants (grid, inline, list)
-  // On Web → hover
-  // On Native → long press
   return (
     <Tooltip
       placement={placement}
@@ -354,10 +329,7 @@ export const AttachmentHoverCardContent = ({
 );
 
 export const AttachmentHoverCardText = TooltipText;
-
-// ============================================================================
-// AttachmentEmpty
-// ============================================================================
+  
 export const AttachmentEmpty = ({
   className = '',
   children,
