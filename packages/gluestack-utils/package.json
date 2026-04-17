@@ -1,6 +1,6 @@
 {
   "name": "@gluestack-ui/utils",
-  "version": "5.0.5-alpha.0",
+  "version": "5.0.6-alpha.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gluestack/gluestack-ui.git"
@@ -93,13 +93,17 @@
   },
   "dependencies": {
     "@react-aria/dialog": "^3.5.27",
-    "@react-aria/focus": "^3.20.5",
-    "@react-aria/interactions": "^3.25.3",
+    "@react-aria/focus": "^3.21.3",
+    "@react-aria/interactions": "^3.26.0",
     "@react-aria/ssr": "^3.9.9",
-    "@react-aria/utils": "^3.29.1",
+    "@react-aria/utils": "^3.32.0",
+    "@react-stately/toggle": "^3.9.4",
+    "@react-types/checkbox": "^3.10.2",
+    "@react-types/dialog": "^3.5.22",
+    "@react-types/shared": "^3.33.0",
     "dom-helpers": "^6.0.1",
-    "react-aria": "^3.46.0",
-    "react-stately": "^3.44.0",
+    "react-aria": "^3.48.0",
+    "react-stately": "^3.46.0",
     "tailwind-variants": "0.1.20"
   },
   "engines": {
