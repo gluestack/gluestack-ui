@@ -96,6 +96,8 @@ function px(val: string | number | undefined): number {
 
 // ── Variable creation ────────────────────────────────────────────────────────
 
+const colorVariableMap = new Map<string, Variable>();
+
 async function createColorVariables(
   collection: VariableCollection,
   colors: Record<string, string>
@@ -106,6 +108,7 @@ async function createColorVariables(
     try {
       const variable = figma.variables.createVariable(name, collection, 'COLOR');
       variable.setValueForMode(collection.defaultModeId, rgb);
+      colorVariableMap.set(`${rgb.r},${rgb.g},${rgb.b}`, variable);
     } catch {
       // skip duplicates
     }
@@ -130,6 +133,15 @@ async function createSpacingVariables(
 
 // ── Node builders ────────────────────────────────────────────────────────────
 
+function getSolidPaint(rgb: RGB): SolidPaint {
+  const variable = colorVariableMap.get(`${rgb.r},${rgb.g},${rgb.b}`);
+  const paint: SolidPaint = { type: 'SOLID', color: rgb };
+  if (variable) {
+    return figma.variables.setBoundVariableForPaint(paint, 'color', variable);
+  }
+  return paint;
+}
+
 async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode): Promise<void> {
   if (spec.type === 'TEXT') {
     await figma.loadFontAsync({ family: spec.styles.fontFamily ?? 'Inter', style: 'Regular' });
@@ -139,7 +151,7 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
     t.characters = spec.name;
     t.fontSize = spec.styles.fontSize ?? 14;
     const rgb = parseRgb(spec.styles.color ?? '#0F172A');
-    if (rgb) t.fills = [{ type: 'SOLID', color: rgb }];
+    if (rgb) t.fills = [getSolidPaint(rgb)];
     parent.appendChild(t);
     return;
   }
@@ -149,7 +161,7 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
     shape.name = spec.name;
     shape.resize(px(spec.styles.width) || 16, px(spec.styles.height) || 16);
     const rgb = parseRgb(spec.styles.backgroundColor ?? '#E2E8F0');
-    if (rgb) shape.fills = [{ type: 'SOLID', color: rgb }];
+    if (rgb) shape.fills = [getSolidPaint(rgb)];
     if (spec.styles.borderRadius) {
       (shape as RectangleNode).cornerRadius = px(spec.styles.borderRadius);
     }
@@ -182,7 +194,7 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
   // Fill
   if (spec.styles.backgroundColor && spec.styles.backgroundColor !== 'transparent') {
     const rgb = parseRgb(spec.styles.backgroundColor);
-    if (rgb) frame.fills = [{ type: 'SOLID', color: rgb }];
+    if (rgb) frame.fills = [getSolidPaint(rgb)];
     else frame.fills = [];
   } else {
     frame.fills = [];
@@ -192,7 +204,7 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
   if (spec.styles.borderWidth && spec.styles.borderWidth > 0) {
     const borderRgb = parseRgb(spec.styles.borderColor ?? '#E2E8F0');
     if (borderRgb) {
-      frame.strokes = [{ type: 'SOLID', color: borderRgb }];
+      frame.strokes = [getSolidPaint(borderRgb)];
       frame.strokeWeight = spec.styles.borderWidth;
       frame.strokeAlign = 'INSIDE';
     }
@@ -251,7 +263,7 @@ async function createComponents(
 
         if (tree.styles.backgroundColor && tree.styles.backgroundColor !== 'transparent') {
           const rgb = parseRgb(tree.styles.backgroundColor);
-          if (rgb) node.fills = [{ type: 'SOLID', color: rgb }];
+          if (rgb) node.fills = [getSolidPaint(rgb)];
           else node.fills = [];
         } else {
           node.fills = [];
@@ -260,7 +272,7 @@ async function createComponents(
         if (tree.styles.borderWidth) {
           const bRgb = parseRgb(tree.styles.borderColor ?? '#E2E8F0');
           if (bRgb) {
-            node.strokes = [{ type: 'SOLID', color: bRgb }];
+            node.strokes = [getSolidPaint(bRgb)];
             node.strokeWeight = tree.styles.borderWidth;
             node.strokeAlign = 'INSIDE';
           }
@@ -282,8 +294,8 @@ async function createComponents(
         set.name = comp.name;
         set.x = xOffset;
         set.y = 0;
-        set.fills = [{ type: 'SOLID', color: { r: 0.97, g: 0.97, b: 1 } }];
-        set.strokes = [{ type: 'SOLID', color: { r: 0.78, g: 0.78, b: 1 } }];
+        set.fills = [getSolidPaint(parseRgb('#F8FAFC')!)];
+        set.strokes = [getSolidPaint(parseRgb('#E2E8F0')!)];
         set.strokeWeight = 1;
         set.cornerRadius = 8;
         set.paddingTop = 24;
@@ -291,6 +303,12 @@ async function createComponents(
         set.paddingLeft = 24;
         set.paddingRight = 24;
         set.itemSpacing = 16;
+        
+        // Auto-arrange the variants inside the set
+        set.layoutMode = 'HORIZONTAL';
+        set.layoutWrap = 'WRAP';
+        set.counterAxisSpacing = 16;
+        
         xOffset += (set.width ?? 400) + 80;
       }
     } else {
@@ -316,7 +334,7 @@ async function createComponents(
         node.cornerRadius = px(tree.styles.borderRadius);
         if (tree.styles.backgroundColor && tree.styles.backgroundColor !== 'transparent') {
           const rgb = parseRgb(tree.styles.backgroundColor);
-          if (rgb) node.fills = [{ type: 'SOLID', color: rgb }];
+          if (rgb) node.fills = [getSolidPaint(rgb)];
           else node.fills = [];
         } else {
           node.fills = [];

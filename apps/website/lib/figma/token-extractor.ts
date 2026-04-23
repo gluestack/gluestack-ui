@@ -40,72 +40,18 @@ export interface DesignTokens {
   shadows: ShadowTokens;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// CSS Variable reader (runs in browser via /figma page)
-// ─────────────────────────────────────────────────────────────────────────────
+import { colors } from '../../components/ui/gluestack-ui-provider/config';
 
-/** All CSS variable names used by the Gluestack theme (from globals.css + tailwind config) */
-const CSS_VAR_NAMES = [
-  '--foreground',
-  '--background',
-  '--card',
-  '--card-foreground',
-  '--popover',
-  '--popover-foreground',
-  '--primary',
-  '--primary-foreground',
-  '--secondary',
-  '--secondary-foreground',
-  '--muted',
-  '--muted-foreground',
-  '--accent',
-  '--accent-foreground',
-  '--destructive',
-  '--border',
-  '--input',
-  '--ring',
-  '--sidebar',
-  '--sidebar-foreground',
-  '--sidebar-primary',
-  '--sidebar-primary-foreground',
-  '--sidebar-accent',
-  '--sidebar-accent-foreground',
-  '--sidebar-border',
-  '--sidebar-ring',
-  '--chart-1',
-  '--chart-2',
-  '--chart-3',
-  '--chart-4',
-  '--chart-5',
-];
-
-/** Resolve CSS variables from the live DOM (browser only) */
+/** Read the exact Gluestack UI tokens from the app's config (source of truth) */
 export function extractCSSVariables(): ColorTokens {
-  if (typeof window === 'undefined') return {};
-
-  const root = document.documentElement;
-  const computedStyle = getComputedStyle(root);
   const tokens: ColorTokens = {};
-
-  for (const varName of CSS_VAR_NAMES) {
-    const value = computedStyle.getPropertyValue(varName).trim();
-    if (value) {
-      // CSS vars are stored as "r g b" channel values (Tailwind CSS-in-JS pattern)
-      // Convert to full hex/rgb for Figma
-      const tokenName = varName.replace('--', '');
-      tokens[tokenName] = resolveColorValue(value);
-    }
-  }
-
-  // Also scan for any additional --color-* custom properties
-  for (let i = 0; i < root.style.length; i++) {
-    const prop = root.style[i];
-    if (prop.startsWith('--') && !tokens[prop.replace('--', '')]) {
-      const value = computedStyle.getPropertyValue(prop).trim();
-      if (value) {
-        tokens[prop.replace('--', '')] = resolveColorValue(value);
-      }
-    }
+  
+  // We use the light mode tokens as the baseline for Figma variables
+  const sourceColors = colors.light;
+  
+  for (const [key, value] of Object.entries(sourceColors)) {
+    const tokenName = key.replace('--', '');
+    tokens[tokenName] = resolveColorValue(value);
   }
 
   return tokens;

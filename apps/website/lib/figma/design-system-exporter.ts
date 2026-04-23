@@ -14,6 +14,14 @@ import {
   type RegistryEntry,
 } from './component-registry';
 import { extractTokens, type DesignTokens } from './token-extractor';
+import { colors } from '../../components/ui/gluestack-ui-provider/config';
+
+function resolveRGB(raw: string | undefined, fallback: string): string {
+  if (!raw) return fallback;
+  const parts = raw.trim().split(/\s+/);
+  if (parts.length === 3) return `rgb(${parts[0]}, ${parts[1]}, ${parts[2]})`;
+  return raw;
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Types (matches PRD §5.2)
@@ -87,46 +95,26 @@ function buildInstanceTree(
 ): FigmaNodeJSON {
   const hasVariant = (key: string, val: string) => props[key] === val;
 
-  // Resolve semantic token → placeholder hex
-  const resolveToken = (cls: string): string => {
-    const tokenMap: Record<string, string> = {
-      'bg-primary': '#2563EB',
-      'bg-secondary': '#F1F5F9',
-      'bg-destructive': '#DC2626',
-      'bg-card': '#FFFFFF',
-      'bg-transparent': 'transparent',
-      'bg-accent': '#F8FAFC',
-      'bg-muted': '#F1F5F9',
-      'text-primary-foreground': '#FFFFFF',
-      'text-foreground': '#0F172A',
-      'text-secondary-foreground': '#334155',
-      'text-muted-foreground': '#64748B',
-      'text-destructive': '#DC2626',
-      'border-border': '#E2E8F0',
-    };
-    return tokenMap[cls] ?? '#E2E8F0';
-  };
-
   // Button node
   if (entry.name === 'Button') {
     const variant = props.variant ?? 'default';
     const size = props.size ?? 'default';
 
     const bgMap: Record<string, string> = {
-      default: '#2563EB',
-      destructive: '#DC2626',
+      default: resolveRGB(colors.light['--primary'], '#2563EB'),
+      destructive: resolveRGB(colors.light['--destructive'], '#DC2626'),
       outline: 'transparent',
-      secondary: '#F1F5F9',
+      secondary: resolveRGB(colors.light['--secondary'], '#F1F5F9'),
       ghost: 'transparent',
       link: 'transparent',
     };
     const textColorMap: Record<string, string> = {
-      default: '#FFFFFF',
-      destructive: '#FFFFFF',
-      outline: '#0F172A',
-      secondary: '#334155',
-      ghost: '#0F172A',
-      link: '#2563EB',
+      default: resolveRGB(colors.light['--primary-foreground'], '#FFFFFF'),
+      destructive: resolveRGB(colors.light['--primary-foreground'], '#FFFFFF'),
+      outline: resolveRGB(colors.light['--foreground'], '#0F172A'),
+      secondary: resolveRGB(colors.light['--secondary-foreground'], '#334155'),
+      ghost: resolveRGB(colors.light['--foreground'], '#0F172A'),
+      link: resolveRGB(colors.light['--primary'], '#2563EB'),
     };
     const paddingMap: Record<string, { h: number; v: number }> = {
       default: { h: 16, v: 8 },
@@ -141,9 +129,9 @@ function buildInstanceTree(
       type: 'FRAME',
       name: `Button / ${variant} / ${size}`,
       styles: {
-        backgroundColor: bgMap[variant] ?? '#2563EB',
+        backgroundColor: bgMap[variant] ?? bgMap['default'],
         borderRadius: 6,
-        borderColor: variant === 'outline' ? '#E2E8F0' : 'transparent',
+        borderColor: variant === 'outline' ? resolveRGB(colors.light['--border'], '#E2E8F0') : 'transparent',
         borderWidth: variant === 'outline' ? 1 : 0,
         paddingTop: pad.v,
         paddingBottom: pad.v,
@@ -161,7 +149,7 @@ function buildInstanceTree(
           type: 'TEXT',
           name: 'ButtonText',
           styles: {
-            color: textColorMap[variant] ?? '#FFFFFF',
+            color: textColorMap[variant] ?? textColorMap['default'],
             fontSize: size === 'sm' ? 12 : 14,
             fontFamily: 'Inter',
             fontWeight: '500',
@@ -175,18 +163,18 @@ function buildInstanceTree(
   if (entry.name === 'Badge') {
     const variant = props.variant ?? 'default';
     const bgMap: Record<string, string> = {
-      default: '#2563EB',
-      secondary: '#F1F5F9',
-      destructive: '#DC2626',
+      default: resolveRGB(colors.light['--primary'], '#2563EB'),
+      secondary: resolveRGB(colors.light['--secondary'], '#F1F5F9'),
+      destructive: resolveRGB(colors.light['--destructive'], '#DC2626'),
       outline: 'transparent',
     };
     return {
       type: 'FRAME',
       name: `Badge / ${variant}`,
       styles: {
-        backgroundColor: bgMap[variant] ?? '#2563EB',
+        backgroundColor: bgMap[variant] ?? bgMap['default'],
         borderRadius: 6,
-        borderColor: variant === 'outline' ? '#E2E8F0' : 'transparent',
+        borderColor: variant === 'outline' ? resolveRGB(colors.light['--border'], '#E2E8F0') : 'transparent',
         borderWidth: variant === 'outline' ? 1 : 0,
         paddingTop: 2,
         paddingBottom: 2,
@@ -204,8 +192,8 @@ function buildInstanceTree(
           styles: {
             color:
               variant === 'default' || variant === 'destructive'
-                ? '#FFFFFF'
-                : '#0F172A',
+                ? resolveRGB(colors.light['--primary-foreground'], '#FFFFFF')
+                : resolveRGB(colors.light['--foreground'], '#0F172A'),
             fontSize: 12,
             fontFamily: 'Inter',
             fontWeight: '500',
@@ -222,9 +210,9 @@ function buildInstanceTree(
       type: 'FRAME',
       name: `Alert / ${variant}`,
       styles: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: resolveRGB(colors.light['--background'], '#FFFFFF'),
         borderRadius: 8,
-        borderColor: variant === 'destructive' ? '#DC2626' : '#E2E8F0',
+        borderColor: variant === 'destructive' ? resolveRGB(colors.light['--destructive'], '#DC2626') : resolveRGB(colors.light['--border'], '#E2E8F0'),
         borderWidth: 1,
         paddingTop: 8,
         paddingBottom: 8,
@@ -243,7 +231,7 @@ function buildInstanceTree(
             width: 16,
             height: 16,
             backgroundColor:
-              variant === 'destructive' ? '#DC2626' : '#0F172A',
+              variant === 'destructive' ? resolveRGB(colors.light['--destructive'], '#DC2626') : resolveRGB(colors.light['--foreground'], '#0F172A'),
             borderRadius: 2,
           },
         },
@@ -251,7 +239,7 @@ function buildInstanceTree(
           type: 'TEXT',
           name: 'AlertText',
           styles: {
-            color: variant === 'destructive' ? '#DC2626' : '#0F172A',
+            color: variant === 'destructive' ? resolveRGB(colors.light['--destructive'], '#DC2626') : resolveRGB(colors.light['--foreground'], '#0F172A'),
             fontSize: 14,
             fontFamily: 'Inter',
             fontWeight: '500',
@@ -271,7 +259,7 @@ function buildInstanceTree(
         width: 240,
         backgroundColor: 'transparent',
         borderRadius: 6,
-        borderColor: '#E2E8F0',
+        borderColor: resolveRGB(colors.light['--border'], '#E2E8F0'),
         borderWidth: 1,
         paddingLeft: 12,
         paddingRight: 12,
@@ -284,7 +272,7 @@ function buildInstanceTree(
           type: 'TEXT',
           name: 'Placeholder text',
           styles: {
-            color: '#94A3B8',
+            color: resolveRGB(colors.light['--muted-foreground'], '#94A3B8'),
             fontSize: 14,
             fontFamily: 'Inter',
             fontWeight: '400',
@@ -299,9 +287,9 @@ function buildInstanceTree(
     type: 'FRAME',
     name: `${entry.name}${Object.keys(props).length ? ' / ' + Object.values(props).join(' / ') : ''}`,
     styles: {
-      backgroundColor: '#F8FAFC',
+      backgroundColor: resolveRGB(colors.light['--card'], '#F8FAFC'),
       borderRadius: 8,
-      borderColor: '#E2E8F0',
+      borderColor: resolveRGB(colors.light['--border'], '#E2E8F0'),
       borderWidth: 1,
       paddingTop: 16,
       paddingBottom: 16,
