@@ -296,9 +296,21 @@ function buildInstanceTree(
       paddingLeft: 16,
       paddingRight: 16,
       flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
       gap: 8,
     },
-    children: [],
+    children: [
+      {
+        type: 'TEXT',
+        name: entry.name,
+        styles: {
+          color: resolveRGB(colors.light['--foreground'], '#0F172A'),
+          fontSize: 14,
+          fontFamily: 'Inter',
+        },
+      },
+    ],
   };
 }
 
