@@ -73,35 +73,61 @@ export interface FigmaStyles {
 
 function parseClasses(classes: string, mode: ColorMode = 'light'): FigmaStyles {
   const s: FigmaStyles = {};
-  for (const c of classes.split(/\s+/).filter(Boolean)) {
-    // Background
-    if (c === 'bg-transparent') { s.backgroundColor = 'transparent'; continue; }
-    if (c.startsWith('bg-')) { s.backgroundColor = tok(c.slice(3), mode); continue; }
+  for (const raw of classes.split(/\s+/).filter(Boolean)) {
+    // Skip pseudo-state, responsive, dark:, native:, web:, data-* prefixes
+    if (/^(hover:|focus:|active:|disabled:|dark:|native:|web:|data-|group-|peer-)/.test(raw)) continue;
 
-    // Text color vs font size
-    if (c.startsWith('text-')) {
-      const k = c.slice(5);
-      if (FS[k] !== undefined) { s.fontSize = FS[k]; continue; }
-      if (k === 'transparent') { s.color = 'transparent'; continue; }
-      s.color = tok(k, mode); continue;
+    const c = raw;
+
+    // ── Background ──────────────────────────────────────────────
+    if (c === 'bg-transparent') { s.backgroundColor = 'transparent'; continue; }
+    if (c === 'bg-white') { s.backgroundColor = 'rgb(255, 255, 255)'; continue; }
+    if (c.startsWith('bg-') && !c.startsWith('bg-gradient')) {
+      const val = c.slice(3);
+      // Handle opacity suffix: bg-primary/90
+      const base = val.split('/')[0];
+      s.backgroundColor = tok(base, mode);
+      continue;
     }
 
-    // Border
+    // ── Text color vs font size ─────────────────────────────────
+    if (c.startsWith('text-')) {
+      const val = c.slice(5);
+      // font-size values
+      if (FS[val] !== undefined) { s.fontSize = FS[val]; continue; }
+      if (val === 'transparent') { s.color = 'transparent'; continue; }
+      // Handle opacity suffix: text-foreground/70
+      const base = val.split('/')[0];
+      s.color = tok(base, mode);
+      continue;
+    }
+
+    // ── Border ──────────────────────────────────────────────────
     if (c === 'border') { s.borderWidth = 1; continue; }
-    if (c === 'border-2') { s.borderWidth = 2; continue; }
     if (c === 'border-0') { s.borderWidth = 0; continue; }
+    if (c === 'border-2') { s.borderWidth = 2; continue; }
     if (c === 'border-transparent') { s.borderColor = 'transparent'; continue; }
+    // Skip directional borders (border-t, border-b, border-l, border-r, border-t-primary etc.)
+    if (/^border-(t|b|l|r)($|-)/.test(c)) continue;
     if (c.startsWith('border-')) {
       const k = c.slice(7);
-      if (!isNaN(Number(k))) { s.borderWidth = Number(k); continue; }
-      s.borderColor = tok(k, mode); continue;
+      // Pure number = border width
+      if (/^\d+$/.test(k)) { s.borderWidth = Number(k); continue; }
+      // Otherwise it's a color token
+      const base = k.split('/')[0];
+      s.borderColor = tok(base, mode);
+      continue;
     }
 
-    // Border radius
+    // ── Border radius ───────────────────────────────────────────
     if (c === 'rounded') { s.borderRadius = 8; continue; }
-    if (c.startsWith('rounded-')) { s.borderRadius = RADII[c.slice(8)] ?? 8; continue; }
+    if (c.startsWith('rounded-')) {
+      const k = c.slice(8);
+      s.borderRadius = RADII[k] ?? 8;
+      continue;
+    }
 
-    // Padding
+    // ── Padding ─────────────────────────────────────────────────
     if (c.startsWith('px-')) { const v = sp(c.slice(3)); s.paddingLeft = v; s.paddingRight = v; continue; }
     if (c.startsWith('py-')) { const v = sp(c.slice(3)); s.paddingTop = v; s.paddingBottom = v; continue; }
     if (c.startsWith('pt-')) { s.paddingTop = sp(c.slice(3)); continue; }
@@ -110,10 +136,10 @@ function parseClasses(classes: string, mode: ColorMode = 'light'): FigmaStyles {
     if (c.startsWith('pr-')) { s.paddingRight = sp(c.slice(3)); continue; }
     if (c.startsWith('p-')) { const v = sp(c.slice(2)); s.paddingTop = v; s.paddingRight = v; s.paddingBottom = v; s.paddingLeft = v; continue; }
 
-    // Gap
+    // ── Gap ──────────────────────────────────────────────────────
     if (c.startsWith('gap-')) { s.gap = sp(c.slice(4)); continue; }
 
-    // Flex
+    // ── Flex ─────────────────────────────────────────────────────
     if (c === 'flex-row') { s.flexDirection = 'row'; continue; }
     if (c === 'flex-col') { s.flexDirection = 'column'; continue; }
     if (c === 'items-center') { s.alignItems = 'center'; continue; }
@@ -123,21 +149,45 @@ function parseClasses(classes: string, mode: ColorMode = 'light'): FigmaStyles {
     if (c === 'justify-between') { s.justifyContent = 'space-between'; continue; }
     if (c === 'justify-start') { s.justifyContent = 'flex-start'; continue; }
 
-    // Size
+    // ── Width ────────────────────────────────────────────────────
     if (c === 'w-full') { s.width = '100%'; continue; }
-    if (c.startsWith('w-')) { s.width = sp(c.slice(2)); continue; }
-    if (c === 'h-fit' || c === 'h-auto') { /* HUG sizing — omit */ continue; }
-    if (c.startsWith('h-')) { s.height = sp(c.slice(2)); continue; }
+    if (c === 'w-auto') { continue; /* HUG */ }
+    if (c === 'w-px') { s.width = 1; continue; }
+    if (c === 'w-fit') { continue; /* HUG */ }
+    if (c.startsWith('w-')) {
+      const k = c.slice(2);
+      // Fractional: w-1/2, w-1/3, etc.
+      if (k.includes('/')) {
+        const [num, den] = k.split('/').map(Number);
+        if (den) { s.width = Math.round((num / den) * 200); continue; } // 200px reference
+      }
+      s.width = sp(k); continue;
+    }
 
-    // Font weight
+    // ── Height ───────────────────────────────────────────────────
+    if (c === 'h-full') { s.height = '100%'; continue; }
+    if (c === 'h-fit' || c === 'h-auto') { continue; /* HUG */ }
+    if (c === 'h-px') { s.height = 1; continue; }
+    if (c.startsWith('h-')) {
+      const k = c.slice(2);
+      if (k.includes('/')) {
+        const [num, den] = k.split('/').map(Number);
+        if (den) { s.height = Math.round((num / den) * 100); continue; }
+      }
+      s.height = sp(k); continue;
+    }
+
+    // ── Font weight ─────────────────────────────────────────────
     if (c === 'font-normal') { s.fontWeight = '400'; continue; }
     if (c === 'font-medium') { s.fontWeight = '500'; continue; }
     if (c === 'font-semibold') { s.fontWeight = '600'; continue; }
     if (c === 'font-bold') { s.fontWeight = '700'; continue; }
+    if (c === 'font-extrabold') { s.fontWeight = '800'; continue; }
 
-    // Opacity
-    if (c === 'opacity-50') { s.opacity = 0.5; continue; }
-    if (c === 'opacity-0') { s.opacity = 0; continue; }
+    // ── Opacity ──────────────────────────────────────────────────
+    if (c.startsWith('opacity-')) { s.opacity = parseInt(c.slice(8)) / 100; continue; }
+
+    // Silently skip: overflow-hidden, shrink-0, animate-*, cursor-*, shadow-*, etc.
   }
   return s;
 }

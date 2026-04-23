@@ -55,7 +55,7 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
       { name: 'ButtonText', description: 'Text label inside a Button' },
       { name: 'ButtonIcon', description: 'Icon inside a Button' },
     ],
-    baseClasses: 'flex-row items-center justify-center rounded-md gap-2',
+    baseClasses: 'rounded-md flex-row items-center justify-center gap-2',
     isContainer: true,
     variantClasses: {
       variant: {
@@ -313,7 +313,7 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
       { name: 'CheckboxIndicator', description: 'Visual checkbox box' },
       { name: 'CheckboxLabel', description: 'Checkbox label text' },
     ],
-    baseClasses: 'flex-row gap-2 items-center',
+    baseClasses: 'flex-row items-center justify-start gap-2',
     isContainer: true,
     variantClasses: {
       size: {
@@ -343,7 +343,7 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
       { name: 'RadioIndicator', description: 'Visual radio circle' },
       { name: 'RadioLabel', description: 'Radio label text' },
     ],
-    baseClasses: 'flex-row gap-2 items-center',
+    baseClasses: 'flex-row items-center justify-start gap-2',
     isContainer: true,
     variantClasses: {
       size: {
@@ -370,7 +370,7 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
     ],
     defaultProps: { size: 'md' },
     subParts: [],
-    baseClasses: 'rounded-full flex-row items-center bg-muted border border-border',
+    baseClasses: 'rounded-full items-center justify-center bg-input flex-row',
     isContainer: false,
     variantClasses: {
       size: {
@@ -393,7 +393,7 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
     ],
     defaultProps: { size: 'md' },
     subParts: [],
-    baseClasses: 'rounded-full border-2 border-border border-t-primary items-center justify-center',
+    baseClasses: 'rounded-full border-2 border-muted items-center justify-center',
     isContainer: false,
     variantClasses: {
       size: {
