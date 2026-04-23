@@ -287,41 +287,77 @@ async function createComponents(
           .join(', ') || 'default';
         node.description = comp.description;
 
-        // Apply layout from tree root
+        // Apply root spec to the component node
         const tree = instance.tree;
-        node.layoutMode = tree.styles.flexDirection === 'row' ? 'HORIZONTAL' : 'VERTICAL';
-        node.primaryAxisAlignItems = 'CENTER';
-        node.counterAxisAlignItems = 'CENTER';
-        node.itemSpacing = px(tree.styles.gap);
-        node.paddingTop = px(tree.styles.paddingTop);
-        node.paddingBottom = px(tree.styles.paddingBottom);
-        node.paddingLeft = px(tree.styles.paddingLeft);
-        node.paddingRight = px(tree.styles.paddingRight);
-        node.layoutSizingHorizontal = 'HUG';
-        node.layoutSizingVertical = 'HUG';
-        node.cornerRadius = px(tree.styles.borderRadius);
 
-        if (tree.styles.backgroundColor && tree.styles.backgroundColor !== 'transparent') {
-          const rgb = parseRgb(tree.styles.backgroundColor);
-          if (rgb) node.fills = [getSolidPaint(rgb)];
-          else node.fills = [];
-        } else {
+        if (tree.type === 'TEXT') {
+          // Pure text component (Heading, Text) — wrap in a HUG frame
+          node.layoutMode = 'HORIZONTAL';
+          node.primaryAxisAlignItems = 'CENTER';
+          node.counterAxisAlignItems = 'CENTER';
+          node.paddingTop = 0; node.paddingBottom = 0;
+          node.paddingLeft = 0; node.paddingRight = 0;
+          node.layoutSizingHorizontal = 'HUG';
+          node.layoutSizingVertical = 'HUG';
           node.fills = [];
-        }
+          const fStyle = String(tree.styles.fontWeight ?? '400') === '700' ? 'Bold'
+            : String(tree.styles.fontWeight ?? '400') === '600' ? 'SemiBold'
+            : String(tree.styles.fontWeight ?? '400') === '500' ? 'Medium' : 'Regular';
+          await figma.loadFontAsync({ family: 'Inter', style: fStyle }).catch(() => {});
+          await figma.loadFontAsync({ family: 'Inter', style: 'Regular' }).catch(() => {});
+          const t = figma.createText();
+          t.fontName = { family: 'Inter', style: fStyle };
+          t.characters = tree.name; // tree.name IS the sample text
+          t.fontSize = px(tree.styles.fontSize) || 16;
+          const rgb = parseRgb(tree.styles.color ?? 'rgb(10, 10, 10)');
+          if (rgb) t.fills = [getSolidPaint(rgb)];
+          node.appendChild(t);
 
-        if (tree.styles.borderWidth) {
-          const bRgb = parseRgb(tree.styles.borderColor ?? '#E2E8F0');
-          if (bRgb) {
-            node.strokes = [getSolidPaint(bRgb)];
-            node.strokeWeight = tree.styles.borderWidth;
-            node.strokeAlign = 'INSIDE';
+        } else if (tree.type === 'RECTANGLE' || tree.type === 'ELLIPSE') {
+          // Shape root (Divider, Skeleton, Spinner)
+          const w = px(tree.styles.width) || 240;
+          const h = px(tree.styles.height) || 4;
+          node.resize(Math.max(w, 1), Math.max(h, 1));
+          node.layoutMode = 'NONE';
+          node.cornerRadius = px(tree.styles.borderRadius);
+          if (tree.styles.backgroundColor && tree.styles.backgroundColor !== 'transparent') {
+            const rgb = parseRgb(tree.styles.backgroundColor);
+            if (rgb) node.fills = [getSolidPaint(rgb)]; else node.fills = [];
+          } else { node.fills = []; }
+          if (tree.styles.borderWidth && tree.styles.borderWidth > 0) {
+            const bRgb = parseRgb(tree.styles.borderColor ?? 'rgb(229,229,229)');
+            if (bRgb) { node.strokes = [getSolidPaint(bRgb)]; node.strokeWeight = tree.styles.borderWidth; node.strokeAlign = 'INSIDE'; }
+          }
+
+        } else {
+          // Normal FRAME component
+          node.layoutMode = tree.styles.flexDirection === 'row' ? 'HORIZONTAL' : 'VERTICAL';
+          node.primaryAxisAlignItems = 'CENTER';
+          node.counterAxisAlignItems = 'CENTER';
+          node.itemSpacing = px(tree.styles.gap);
+          node.paddingTop = px(tree.styles.paddingTop);
+          node.paddingBottom = px(tree.styles.paddingBottom);
+          node.paddingLeft = px(tree.styles.paddingLeft);
+          node.paddingRight = px(tree.styles.paddingRight);
+          node.layoutSizingHorizontal = tree.styles.width && tree.styles.width !== '100%' ? 'FIXED' : 'HUG';
+          node.layoutSizingVertical = tree.styles.height ? 'FIXED' : 'HUG';
+          if (tree.styles.width && tree.styles.width !== '100%') {
+            node.resize(px(tree.styles.width) || 160, px(tree.styles.height) || 40);
+          }
+          node.cornerRadius = px(tree.styles.borderRadius);
+          if (tree.styles.backgroundColor && tree.styles.backgroundColor !== 'transparent') {
+            const rgb = parseRgb(tree.styles.backgroundColor);
+            if (rgb) node.fills = [getSolidPaint(rgb)]; else node.fills = [];
+          } else { node.fills = []; }
+          if (tree.styles.borderWidth) {
+            const bRgb = parseRgb(tree.styles.borderColor ?? 'rgb(229,229,229)');
+            if (bRgb) { node.strokes = [getSolidPaint(bRgb)]; node.strokeWeight = tree.styles.borderWidth; node.strokeAlign = 'INSIDE'; }
+          }
+          for (const child of tree.children ?? []) {
+            await buildNode(child, node);
           }
         }
 
-        // Children
-        for (const child of tree.children ?? []) {
-          await buildNode(child, node);
-        }
 
         page.appendChild(node);
         figmaComponents.push(node);
@@ -361,26 +397,51 @@ async function createComponents(
 
       const tree = comp.instances[0]?.tree;
       if (tree) {
-        node.layoutMode = tree.styles.flexDirection === 'row' ? 'HORIZONTAL' : 'VERTICAL';
-        node.primaryAxisAlignItems = 'CENTER';
-        node.counterAxisAlignItems = 'CENTER';
-        node.itemSpacing = px(tree.styles.gap);
-        node.paddingTop = px(tree.styles.paddingTop);
-        node.paddingBottom = px(tree.styles.paddingBottom);
-        node.paddingLeft = px(tree.styles.paddingLeft);
-        node.paddingRight = px(tree.styles.paddingRight);
-        node.layoutSizingHorizontal = 'HUG';
-        node.layoutSizingVertical = 'HUG';
-        node.cornerRadius = px(tree.styles.borderRadius);
-        if (tree.styles.backgroundColor && tree.styles.backgroundColor !== 'transparent') {
-          const rgb = parseRgb(tree.styles.backgroundColor);
-          if (rgb) node.fills = [getSolidPaint(rgb)];
-          else node.fills = [];
+        if (tree.type === 'TEXT') {
+          node.layoutMode = 'HORIZONTAL'; node.primaryAxisAlignItems = 'CENTER'; node.counterAxisAlignItems = 'CENTER';
+          node.paddingTop = 0; node.paddingBottom = 0; node.paddingLeft = 0; node.paddingRight = 0;
+          node.layoutSizingHorizontal = 'HUG'; node.layoutSizingVertical = 'HUG'; node.fills = [];
+          const fStyle = String(tree.styles.fontWeight ?? '400') === '700' ? 'Bold'
+            : String(tree.styles.fontWeight ?? '400') === '500' ? 'Medium' : 'Regular';
+          await figma.loadFontAsync({ family: 'Inter', style: fStyle }).catch(() => {});
+          const t = figma.createText();
+          t.fontName = { family: 'Inter', style: fStyle };
+          t.characters = tree.name;
+          t.fontSize = px(tree.styles.fontSize) || 16;
+          const rgb = parseRgb(tree.styles.color ?? 'rgb(10,10,10)');
+          if (rgb) t.fills = [getSolidPaint(rgb)];
+          node.appendChild(t);
+        } else if (tree.type === 'RECTANGLE' || tree.type === 'ELLIPSE') {
+          const w = px(tree.styles.width) || 240; const h = px(tree.styles.height) || 4;
+          node.resize(Math.max(w, 1), Math.max(h, 1)); node.layoutMode = 'NONE';
+          node.cornerRadius = px(tree.styles.borderRadius);
+          if (tree.styles.backgroundColor && tree.styles.backgroundColor !== 'transparent') {
+            const rgb = parseRgb(tree.styles.backgroundColor);
+            if (rgb) node.fills = [getSolidPaint(rgb)]; else node.fills = [];
+          } else { node.fills = []; }
+          if (tree.styles.borderWidth && tree.styles.borderWidth > 0) {
+            const bRgb = parseRgb(tree.styles.borderColor ?? 'rgb(229,229,229)');
+            if (bRgb) { node.strokes = [getSolidPaint(bRgb)]; node.strokeWeight = tree.styles.borderWidth; node.strokeAlign = 'INSIDE'; }
+          }
         } else {
-          node.fills = [];
-        }
-        for (const child of tree.children ?? []) {
-          await buildNode(child, node);
+          node.layoutMode = tree.styles.flexDirection === 'row' ? 'HORIZONTAL' : 'VERTICAL';
+          node.primaryAxisAlignItems = 'CENTER'; node.counterAxisAlignItems = 'CENTER';
+          node.itemSpacing = px(tree.styles.gap);
+          node.paddingTop = px(tree.styles.paddingTop); node.paddingBottom = px(tree.styles.paddingBottom);
+          node.paddingLeft = px(tree.styles.paddingLeft); node.paddingRight = px(tree.styles.paddingRight);
+          node.layoutSizingHorizontal = tree.styles.width && tree.styles.width !== '100%' ? 'FIXED' : 'HUG';
+          node.layoutSizingVertical = tree.styles.height ? 'FIXED' : 'HUG';
+          if (tree.styles.width && tree.styles.width !== '100%') node.resize(px(tree.styles.width) || 160, px(tree.styles.height) || 40);
+          node.cornerRadius = px(tree.styles.borderRadius);
+          if (tree.styles.backgroundColor && tree.styles.backgroundColor !== 'transparent') {
+            const rgb = parseRgb(tree.styles.backgroundColor);
+            if (rgb) node.fills = [getSolidPaint(rgb)]; else node.fills = [];
+          } else { node.fills = []; }
+          if (tree.styles.borderWidth) {
+            const bRgb = parseRgb(tree.styles.borderColor ?? 'rgb(229,229,229)');
+            if (bRgb) { node.strokes = [getSolidPaint(bRgb)]; node.strokeWeight = tree.styles.borderWidth; node.strokeAlign = 'INSIDE'; }
+          }
+          for (const child of tree.children ?? []) { await buildNode(child, node); }
         }
       }
 
