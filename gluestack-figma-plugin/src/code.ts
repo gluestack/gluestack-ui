@@ -199,7 +199,7 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
   if (spec.type === 'RECTANGLE' || spec.type === 'ELLIPSE') {
     const shape = spec.type === 'ELLIPSE' ? figma.createEllipse() : figma.createRectangle();
     shape.name = spec.name;
-    shape.resize(px(spec.styles.width) || 16, px(spec.styles.height) || 16);
+    shape.resize(Math.max(px(spec.styles.width), 1), Math.max(px(spec.styles.height), 1));
     const rgb = parseRgb(spec.styles.backgroundColor ?? '#E2E8F0');
     if (rgb) shape.fills = [getSolidPaint(rgb)];
     if (spec.styles.borderRadius) {
@@ -225,7 +225,7 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
 
   // Size
   if (spec.styles.width && spec.styles.width !== '100%') {
-    frame.resize(px(spec.styles.width) || 160, px(spec.styles.height) || 40);
+    frame.resize(Math.max(px(spec.styles.width), 1), Math.max(px(spec.styles.height), 1));
   } else {
     frame.layoutSizingHorizontal = 'HUG';
     frame.layoutSizingVertical = 'HUG';
@@ -315,8 +315,8 @@ async function createComponents(
 
         } else if (tree.type === 'RECTANGLE' || tree.type === 'ELLIPSE') {
           // Shape root (Divider, Skeleton, Spinner)
-          const w = px(tree.styles.width) || 240;
-          const h = px(tree.styles.height) || 4;
+          const w = px(tree.styles.width);
+          const h = px(tree.styles.height);
           node.resize(Math.max(w, 1), Math.max(h, 1));
           node.layoutMode = 'NONE';
           node.cornerRadius = px(tree.styles.borderRadius);
@@ -342,7 +342,7 @@ async function createComponents(
           node.layoutSizingHorizontal = tree.styles.width && tree.styles.width !== '100%' ? 'FIXED' : 'HUG';
           node.layoutSizingVertical = tree.styles.height ? 'FIXED' : 'HUG';
           if (tree.styles.width && tree.styles.width !== '100%') {
-            node.resize(px(tree.styles.width) || 160, px(tree.styles.height) || 40);
+            node.resize(Math.max(px(tree.styles.width), 1), Math.max(px(tree.styles.height), 1));
           }
           node.cornerRadius = px(tree.styles.borderRadius);
           if (tree.styles.backgroundColor && tree.styles.backgroundColor !== 'transparent') {
@@ -412,7 +412,7 @@ async function createComponents(
           if (rgb) t.fills = [getSolidPaint(rgb)];
           node.appendChild(t);
         } else if (tree.type === 'RECTANGLE' || tree.type === 'ELLIPSE') {
-          const w = px(tree.styles.width) || 240; const h = px(tree.styles.height) || 4;
+          const w = px(tree.styles.width); const h = px(tree.styles.height);
           node.resize(Math.max(w, 1), Math.max(h, 1)); node.layoutMode = 'NONE';
           node.cornerRadius = px(tree.styles.borderRadius);
           if (tree.styles.backgroundColor && tree.styles.backgroundColor !== 'transparent') {
@@ -431,7 +431,7 @@ async function createComponents(
           node.paddingLeft = px(tree.styles.paddingLeft); node.paddingRight = px(tree.styles.paddingRight);
           node.layoutSizingHorizontal = tree.styles.width && tree.styles.width !== '100%' ? 'FIXED' : 'HUG';
           node.layoutSizingVertical = tree.styles.height ? 'FIXED' : 'HUG';
-          if (tree.styles.width && tree.styles.width !== '100%') node.resize(px(tree.styles.width) || 160, px(tree.styles.height) || 40);
+          if (tree.styles.width && tree.styles.width !== '100%') node.resize(Math.max(px(tree.styles.width), 1), Math.max(px(tree.styles.height), 1));
           node.cornerRadius = px(tree.styles.borderRadius);
           if (tree.styles.backgroundColor && tree.styles.backgroundColor !== 'transparent') {
             const rgb = parseRgb(tree.styles.backgroundColor);

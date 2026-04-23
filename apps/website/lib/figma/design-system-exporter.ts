@@ -303,28 +303,15 @@ function buildInstanceTree(
 
   const parsedRoot = parseClasses(allClasses, mode);
 
-  const rootStyles: FigmaStyles = {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    paddingTop: 8,
-    paddingBottom: 8,
-    paddingLeft: 16,
-    paddingRight: 16,
-    borderRadius: 4,
-    ...parsedRoot,
-  };
-
   const variantLabel = Object.keys(props).length
     ? Object.entries(props).map(([k, v]) => `${k}=${v}`).join(', ')
     : 'default';
 
   // ── Pure-text root (Heading, Text) — render as TEXT node ────────────────
-  if (entry.subParts.length === 0 && !entry.isContainer) {
+  if (entry.subParts.length === 0 && !entry.isContainer && isTextLike(entry.name)) {
     return {
       type: 'TEXT',
-      name: variantLabel,
+      name: SAMPLE_TEXT[entry.name] || variantLabel,
       styles: {
         color: parsedRoot.color ?? tok('foreground', mode),
         fontSize: parsedRoot.fontSize ?? 16,
@@ -334,48 +321,15 @@ function buildInstanceTree(
     };
   }
 
-  // ── Divider — render as a thin RECTANGLE ────────────────────────────────
-  if (entry.name === 'Divider') {
-    const isVertical = props.orientation === 'vertical';
+  // ── Single shape root (Divider, Skeleton, Spinner) ───────────────────────
+  if (entry.subParts.length === 0 && !entry.isContainer && !isTextLike(entry.name)) {
+    // Determine type: Spinner usually has border radius 9999 / rounded-full and border-width but no bg.
+    // Or just treat all single non-text roots as RECTANGLE by default.
+    const isEllipse = !!(parsedRoot.borderRadius && parsedRoot.borderRadius > 50 && parsedRoot.borderWidth);
     return {
-      type: 'RECTANGLE',
+      type: isEllipse ? 'ELLIPSE' : 'RECTANGLE',
       name: variantLabel,
-      styles: {
-        backgroundColor: tok('border', mode),
-        width: isVertical ? 1 : 240,
-        height: isVertical ? 80 : 1,
-        borderRadius: 0,
-      },
-    };
-  }
-
-  // ── Skeleton — solid rectangle ───────────────────────────────────────────
-  if (entry.name === 'Skeleton') {
-    return {
-      type: 'RECTANGLE',
-      name: variantLabel,
-      styles: {
-        backgroundColor: tok('muted', mode),
-        width: 200,
-        height: 16,
-        borderRadius: parsedRoot.borderRadius ?? 4,
-      },
-    };
-  }
-
-  // ── Spinner — ellipse ────────────────────────────────────────────────────
-  if (entry.name === 'Spinner') {
-    const d = parsedRoot.width ?? parsedRoot.height ?? 24;
-    return {
-      type: 'ELLIPSE',
-      name: variantLabel,
-      styles: {
-        width: d,
-        height: d,
-        backgroundColor: 'transparent',
-        borderColor: tok('border', mode),
-        borderWidth: 2,
-      },
+      styles: { ...parsedRoot },
     };
   }
 
@@ -401,18 +355,10 @@ function buildInstanceTree(
     }
 
     if (isShapePart(sub.name)) {
-      // Indicators, thumbs, tracks → RECTANGLE with explicit dimensions
       return {
         type: 'RECTANGLE' as const,
         name: sub.name,
-        styles: {
-          backgroundColor: subParsed.backgroundColor ?? tok('muted', mode),
-          borderColor: subParsed.borderColor,
-          borderWidth: subParsed.borderWidth,
-          borderRadius: subParsed.borderRadius ?? 4,
-          width: subParsed.width ?? 16,
-          height: subParsed.height ?? 16,
-        },
+        styles: { ...subParsed },
       };
     }
 
@@ -420,23 +366,11 @@ function buildInstanceTree(
     return {
       type: 'FRAME' as const,
       name: sub.name,
-      styles: {
-        backgroundColor: subParsed.backgroundColor ?? 'transparent',
-        borderRadius: subParsed.borderRadius ?? 0,
-        borderColor: subParsed.borderColor,
-        borderWidth: subParsed.borderWidth,
-        flexDirection: subParsed.flexDirection ?? 'row',
-        alignItems: subParsed.alignItems ?? 'center',
-        gap: subParsed.gap ?? 8,
-        paddingTop: subParsed.paddingTop ?? 8,
-        paddingBottom: subParsed.paddingBottom ?? 8,
-        paddingLeft: subParsed.paddingLeft ?? 8,
-        paddingRight: subParsed.paddingRight ?? 8,
-      },
+      styles: { ...subParsed },
     };
   });
 
-  return { type: 'FRAME', name: variantLabel, styles: rootStyles, children };
+  return { type: 'FRAME', name: variantLabel, styles: { ...parsedRoot }, children };
 }
 
 // ─── Main assembler ───────────────────────────────────────────────────────────
