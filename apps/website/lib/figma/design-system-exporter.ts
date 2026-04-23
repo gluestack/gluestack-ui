@@ -346,7 +346,7 @@ export function buildDesignSystemExport(
   });
 
   const totalTokens =
-    Object.keys(tokens.colors).length +
+    Object.keys(tokens.colors.light).length +
     Object.keys(tokens.spacing).length +
     Object.keys(tokens.typography.fontSizes).length +
     Object.keys(tokens.radius).length +

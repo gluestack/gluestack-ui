@@ -31,7 +31,7 @@ interface ComponentDefinition {
 }
 
 interface DesignTokens {
-  colors: Record<string, string>;
+  colors: { light: Record<string, string>; dark: Record<string, string> };
   spacing: Record<string, number>;
   typography: {
     fontSizes: Record<string, string>;
@@ -100,15 +100,26 @@ const colorVariableMap = new Map<string, Variable>();
 
 async function createColorVariables(
   collection: VariableCollection,
-  colors: Record<string, string>
+  colors: { light: Record<string, string>; dark: Record<string, string> }
 ): Promise<void> {
-  for (const [name, value] of Object.entries(colors)) {
-    const rgb = parseRgb(value);
-    if (!rgb) continue;
+  collection.renameMode(collection.defaultModeId, 'Light');
+  let darkModeId: string;
+  try {
+    darkModeId = collection.addMode('Dark');
+  } catch {
+    darkModeId = collection.modes.find((m) => m.name === 'Dark')?.modeId ?? collection.defaultModeId;
+  }
+
+  for (const [name, lightValue] of Object.entries(colors.light)) {
+    const lightRgb = parseRgb(lightValue);
+    const darkValue = colors.dark[name];
+    const darkRgb = darkValue ? parseRgb(darkValue) : lightRgb;
+    if (!lightRgb) continue;
     try {
       const variable = figma.variables.createVariable(name, collection, 'COLOR');
-      variable.setValueForMode(collection.defaultModeId, rgb);
-      colorVariableMap.set(`${rgb.r},${rgb.g},${rgb.b}`, variable);
+      variable.setValueForMode(collection.defaultModeId, lightRgb);
+      if (darkRgb) variable.setValueForMode(darkModeId, darkRgb);
+      colorVariableMap.set(`${lightRgb.r},${lightRgb.g},${lightRgb.b}`, variable);
     } catch {
       // skip duplicates
     }
@@ -132,6 +143,35 @@ async function createSpacingVariables(
 }
 
 // ── Node builders ────────────────────────────────────────────────────────────
+
+async function drawTokens(page: PageNode) {
+  let x = 0;
+  let y = 0;
+  await figma.loadFontAsync({ family: 'Inter', style: 'Regular' });
+  for (const variable of colorVariableMap.values()) {
+    const rect = figma.createRectangle();
+    rect.name = variable.name;
+    rect.resize(100, 100);
+    rect.x = x;
+    rect.y = y;
+    rect.cornerRadius = 8;
+    rect.fills = [figma.variables.setBoundVariableForPaint({ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }, 'color', variable)];
+    
+    const label = figma.createText();
+    label.characters = variable.name;
+    label.x = x;
+    label.y = y + 110;
+    
+    page.appendChild(rect);
+    page.appendChild(label);
+    
+    x += 150;
+    if (x > 1000) {
+      x = 0;
+      y += 150;
+    }
+  }
+}
 
 function getSolidPaint(rgb: RGB): SolidPaint {
   const variable = colorVariableMap.get(`${rgb.r},${rgb.g},${rgb.b}`);
@@ -366,7 +406,7 @@ async function importDesignSystem(
     // Color collection
     const colorCollection = figma.variables.createVariableCollection('Gluestack / Colors');
     await createColorVariables(colorCollection, tokens.colors);
-    post('log', `  ✅ ${Object.keys(tokens.colors).length} color variables`);
+    post('log', `  ✅ ${Object.keys(tokens.colors.light).length} color variables created with Light/Dark modes`);
 
     // Spacing collection
     const spacingCollection = figma.variables.createVariableCollection('Gluestack / Spacing');
@@ -375,12 +415,20 @@ async function importDesignSystem(
   }
 
   if (options.createComponents) {
-    // Create dedicated page
-    let dsPage = figma.root.children.find((p) => p.name === '🎨 Gluestack Design System') as PageNode | undefined;
+    // Create dedicated pages
+    let tokensPage = figma.root.children.find((p) => p.name === '🎨 Gluestack Tokens') as PageNode | undefined;
+    if (!tokensPage) {
+      tokensPage = figma.createPage();
+      tokensPage.name = '🎨 Gluestack Tokens';
+    }
+    let dsPage = figma.root.children.find((p) => p.name === '🧩 Gluestack Components') as PageNode | undefined;
     if (!dsPage) {
       dsPage = figma.createPage();
-      dsPage.name = '🎨 Gluestack Design System';
+      dsPage.name = '🧩 Gluestack Components';
     }
+
+    post('log', `🎨 Drawing tokens on Tokens canvas…`);
+    await drawTokens(tokensPage);
 
     post('log', `🧩 Creating ${components.length} components…`);
     await createComponents(components, dsPage);

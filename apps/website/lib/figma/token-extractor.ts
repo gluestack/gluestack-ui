@@ -9,7 +9,8 @@
  */
 
 export interface ColorTokens {
-  [key: string]: string;
+  light: Record<string, string>;
+  dark: Record<string, string>;
 }
 
 export interface SpacingTokens {
@@ -44,14 +45,15 @@ import { colors } from '../../components/ui/gluestack-ui-provider/config';
 
 /** Read the exact Gluestack UI tokens from the app's config (source of truth) */
 export function extractCSSVariables(): ColorTokens {
-  const tokens: ColorTokens = {};
+  const tokens: ColorTokens = { light: {}, dark: {} };
   
-  // We use the light mode tokens as the baseline for Figma variables
-  const sourceColors = colors.light;
-  
-  for (const [key, value] of Object.entries(sourceColors)) {
+  for (const [key, value] of Object.entries(colors.light)) {
     const tokenName = key.replace('--', '');
-    tokens[tokenName] = resolveColorValue(value);
+    tokens.light[tokenName] = resolveColorValue(value);
+  }
+  for (const [key, value] of Object.entries(colors.dark)) {
+    const tokenName = key.replace('--', '');
+    tokens.dark[tokenName] = resolveColorValue(value);
   }
 
   return tokens;
