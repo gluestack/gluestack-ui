@@ -368,7 +368,7 @@ async function importDesignSystem(
     await createComponents(components, dsPage);
     post('log', `  ✅ All components created`);
 
-    figma.currentPage = dsPage;
+    await figma.setCurrentPageAsync(dsPage);
     figma.viewport.scrollAndZoomIntoView(dsPage.children);
   }
 
