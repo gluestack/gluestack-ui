@@ -380,10 +380,13 @@ function applySize(
     return;
   }
 
-  node.layoutSizingHorizontal =
-    rawWidth === '100%' && allowFillSizing ? 'FILL' : 'HUG';
-  node.layoutSizingVertical =
-    rawHeight === '100%' && allowFillSizing ? 'FILL' : 'HUG';
+  const parentIsAutoLayout = !!node.parent && 'layoutMode' in node.parent && node.parent.layoutMode !== 'NONE';
+  if (!parentIsAutoLayout) {
+    return;
+  }
+
+  node.layoutSizingHorizontal = rawWidth === '100%' && allowFillSizing ? 'FILL' : 'HUG';
+  node.layoutSizingVertical = rawHeight === '100%' && allowFillSizing ? 'FILL' : 'HUG';
 }
 
 function applyFrameStyling(node: FrameNode | ComponentNode, styles: Record<string, any>) {
@@ -507,9 +510,11 @@ async function composeComponentFromTree(node: ComponentNode, tree: FigmaNodeJSON
   }
 
   if (tree.type === 'RECTANGLE' || tree.type === 'ELLIPSE') {
-    const w = px(getStyleValue(tree.styles, ['width'], 1));
-    const h = px(getStyleValue(tree.styles, ['height'], 1));
-    node.resize(Math.max(w, 1), Math.max(h, 1));
+    const rawW = getStyleValue(tree.styles, ['width']);
+    const rawH = getStyleValue(tree.styles, ['height']);
+    const resolvedW = rawW === undefined || rawW === '100%' ? 1 : Math.max(px(rawW), 1);
+    const resolvedH = rawH === undefined || rawH === '100%' ? 1 : Math.max(px(rawH), 1);
+    node.resize(resolvedW, resolvedH);
     node.layoutMode = 'NONE';
     applyCornerRadii(node, tree.styles);
     const paints = parseBackgroundPaints(getStyleValue(tree.styles, ['backgroundColor', 'background']));
@@ -547,7 +552,13 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
   if (spec.type === 'RECTANGLE' || spec.type === 'ELLIPSE') {
     const shape = spec.type === 'ELLIPSE' ? figma.createEllipse() : figma.createRectangle();
     shape.name = spec.name;
-    shape.resize(Math.max(px(spec.styles.width), 1), Math.max(px(spec.styles.height), 1));
+    const rawWidth = getStyleValue(spec.styles, ['width']);
+    const rawHeight = getStyleValue(spec.styles, ['height']);
+    const widthIsFill = rawWidth === '100%' && parentSupportsFill;
+    const heightIsFill = rawHeight === '100%' && parentSupportsFill;
+    const width = rawWidth === undefined || rawWidth === '100%' ? 1 : Math.max(px(rawWidth), 1);
+    const height = rawHeight === undefined || rawHeight === '100%' ? 1 : Math.max(px(rawHeight), 1);
+    shape.resize(width, height);
     const rgb = parseRgb(getStyleValue(spec.styles, ['backgroundColor', 'background'], '#E2E8F0'));
     if (rgb) shape.fills = [getSolidPaint(rgb)];
     else shape.fills = [];
@@ -563,16 +574,22 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
       }
     }
     parent.appendChild(shape);
+    if (parentSupportsFill) {
+      // Shapes in auto-layout can be FIXED or FILL; HUG is invalid for most shape nodes.
+      if (widthIsFill) shape.layoutSizingHorizontal = 'FILL';
+      if (heightIsFill) shape.layoutSizingVertical = 'FILL';
+      shape.layoutAlign = 'INHERIT';
+    }
     return;
   }
 
   const frame = figma.createFrame();
   frame.name = spec.name;
   applyAutoLayout(frame, spec.styles);
-  applySize(frame, spec.styles, { width: 1, height: 1 }, parentSupportsFill);
   applyFrameStyling(frame, spec.styles);
 
   parent.appendChild(frame);
+  applySize(frame, spec.styles, { width: 1, height: 1 }, parentSupportsFill);
 
   for (const child of spec.children ?? []) {
     await buildNode(child, frame);

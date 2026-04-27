@@ -345,10 +345,10 @@ function buildInstanceTree(
         type: 'TEXT' as const,
         name: sampleText,
         styles: {
-          color: tok('foreground', mode),
-          fontSize: 14,
+          color: subParsed.color ?? parsedRoot.color ?? tok('foreground', mode),
+          fontSize: subParsed.fontSize ?? parsedRoot.fontSize ?? 14,
           fontFamily: 'Inter',
-          fontWeight: '400',
+          fontWeight: subParsed.fontWeight ?? parsedRoot.fontWeight ?? '400',
           ...subParsed,
         },
       };
