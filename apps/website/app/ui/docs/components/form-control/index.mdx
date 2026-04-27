@@ -374,7 +374,10 @@ const FormControlErrorIcon = React.forwardRef<
 });
 
 type IFormControlLabelProps = React.ComponentProps<typeof UIFormControl.Label> &
-  VariantProps<typeof formControlLabelStyle>;
+  VariantProps<typeof formControlLabelStyle> & {
+    htmlFor?: string;
+    role?: string;
+  };
 
 const FormControlLabel = React.forwardRef<
   React.ComponentRef<typeof UIFormControl.Label>,
