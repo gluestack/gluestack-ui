@@ -56,6 +56,20 @@
     }
     textarea:focus { border-color: #6366f1; }
     textarea::placeholder { color: #475569; }
+    textarea.invalid { border-color: #ef4444; }
+
+    .validation-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 6px;
+    }
+    .validation-badge.valid { background: rgba(34,197,94,0.15); color: #4ade80; }
+    .validation-badge.invalid { background: rgba(239,68,68,0.15); color: #f87171; }
 
     .toggles {
       display: flex;
@@ -116,6 +130,21 @@
     }
     .btn-secondary:hover { background: rgba(255,255,255,0.08); color: #e2e8f0; }
 
+    .progress-bar {
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 2px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #a855f7);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
     .log-box {
       background: rgba(0,0,0,0.5);
       border: 1px solid rgba(255,255,255,0.06);
@@ -133,6 +162,7 @@
     .log-line { line-height: 1.5; }
     .log-line.success { color: #4ade80; }
     .log-line.error { color: #f87171; }
+    .log-line.warning { color: #fbbf24; }
 
     .stats {
       display: flex;
@@ -158,23 +188,36 @@
       border-radius: 8px;
       padding: 10px 12px;
       border: 1px solid rgba(255,255,255,0.06);
+      margin-top: 12px;
     }
     .hint strong { color: #94a3b8; }
+
+    .clear-log {
+      float: right;
+      background: none;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      font-size: 11px;
+      padding: 2px 6px;
+    }
+    .clear-log:hover { color: #e2e8f0; }
   </style>
 </head>
 <body>
   <div class="header">
     <div class="dot"></div>
     <h1>Gluestack Design System</h1>
-    <span>v2.0</span>
+    <span>v2.1</span>
   </div>
 
   <div class="section">
     <label>Paste Design System JSON</label>
     <textarea
       id="json-input"
-      placeholder='Paste JSON from the /figma page (or use "Copy to Clipboard" button)…'
+      placeholder='Paste JSON from the /figma page (or use "Load Sample" button)…'
     ></textarea>
+    <div id="validation-badge" style="display:none"></div>
   </div>
 
   <div class="toggles">
@@ -182,14 +225,14 @@
       <input type="checkbox" id="toggle-variables" checked />
       <div class="toggle-info">
         <span class="toggle-label">Create Variables</span>
-        <span class="toggle-desc">Color + Spacing Figma Variables from tokens</span>
+        <span class="toggle-desc">Color + Spacing + Radius Figma Variables with proper scopes</span>
       </div>
     </div>
     <div class="toggle-row">
       <input type="checkbox" id="toggle-components" checked />
       <div class="toggle-info">
         <span class="toggle-label">Create Components</span>
-        <span class="toggle-desc">Component sets with all variant combinations</span>
+        <span class="toggle-desc">Component sets with all variant combinations and properties</span>
       </div>
     </div>
   </div>
@@ -199,8 +242,12 @@
     <button class="btn-secondary" id="btn-close">✕</button>
   </div>
 
+  <div class="progress-bar" id="progress-bar" style="display:none">
+    <div class="progress-bar-fill" id="progress-fill"></div>
+  </div>
+
   <div class="section" id="log-section" style="display:none">
-    <label>Progress</label>
+    <label>Progress <button class="clear-log" id="btn-clear-log">Clear</button></label>
     <div class="log-box" id="log-box"></div>
   </div>
 
@@ -210,14 +257,20 @@
       <div class="stat-key">Components</div>
     </div>
     <div class="stat">
+      <div class="stat-val" id="stat-variants">—</div>
+      <div class="stat-key">Variants</div>
+    </div>
+    <div class="stat">
       <div class="stat-val" id="stat-tokens">—</div>
       <div class="stat-key">Tokens</div>
     </div>
   </div>
 
-  <div class="hint" style="margin-top:16px">
-    <strong>How to get the JSON:</strong> Open the Gluestack website at <code>/figma</code>,
+  <div class="hint">
+    <strong>How to use:</strong> Open the Gluestack website at <code>/figma</code>,
     click <em>Copy to Clipboard</em>, then paste here and click Import.
+    The plugin will create Figma variables (with proper scopes), text/effect styles,
+    and component sets with variant properties.
   </div>
 </body>
 </html>

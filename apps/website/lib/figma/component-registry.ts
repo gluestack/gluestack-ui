@@ -49,8 +49,9 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
     variants: [
       { name: 'variant', values: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'], defaultValue: 'default' },
       { name: 'size', values: ['default', 'sm', 'lg', 'icon'], defaultValue: 'default' },
+      { name: 'isDisabled', values: ['false', 'true'], defaultValue: 'false' },
     ],
-    defaultProps: { variant: 'default', size: 'default' },
+    defaultProps: { variant: 'default', size: 'default', isDisabled: 'false' },
     subParts: [
       { name: 'ButtonText', description: 'Text label inside a Button' },
       { name: 'ButtonIcon', description: 'Icon inside a Button' },
@@ -71,6 +72,10 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
         sm:      'h-8 px-3 text-xs',
         lg:      'h-10 px-8 text-sm',
         icon:    'h-9 w-9',
+      },
+      isDisabled: {
+        'true':  'opacity-50 cursor-not-allowed',
+        'false': '',
       },
     },
     subPartClasses: {
@@ -144,13 +149,26 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
     name: 'Input',
     importPath: 'input',
     description: 'Text input field.',
-    variants: [],
-    defaultProps: {},
+    variants: [
+      { name: 'isDisabled', values: ['false', 'true'], defaultValue: 'false' },
+      { name: 'isInvalid', values: ['false', 'true'], defaultValue: 'false' },
+    ],
+    defaultProps: { isDisabled: 'false', isInvalid: 'false' },
     subParts: [
       { name: 'InputField', description: 'The actual text input element' },
     ],
     baseClasses: 'h-9 flex-row items-center rounded-md border border-border bg-transparent px-3 gap-2',
     isContainer: true,
+    variantClasses: {
+      isDisabled: {
+        'true':  'opacity-50 border-border bg-muted',
+        'false': '',
+      },
+      isInvalid: {
+        'true':  'border-destructive',
+        'false': '',
+      },
+    },
     subPartClasses: {
       InputField: 'text-sm text-foreground',
     },
@@ -165,8 +183,10 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
     description: 'Multi-line text input.',
     variants: [
       { name: 'size', values: ['sm', 'md', 'lg', 'xl'], defaultValue: 'md' },
+      { name: 'isDisabled', values: ['false', 'true'], defaultValue: 'false' },
+      { name: 'isInvalid', values: ['false', 'true'], defaultValue: 'false' },
     ],
-    defaultProps: { size: 'md' },
+    defaultProps: { size: 'md', isDisabled: 'false', isInvalid: 'false' },
     subParts: [{ name: 'TextareaInput', description: 'Textarea input field' }],
     baseClasses: 'rounded-md border border-border bg-transparent p-3 flex-col',
     isContainer: true,
@@ -176,6 +196,14 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
         md: 'text-sm',
         lg: 'text-base',
         xl: 'text-lg',
+      },
+      isDisabled: {
+        'true':  'opacity-50 bg-muted',
+        'false': '',
+      },
+      isInvalid: {
+        'true':  'border-destructive',
+        'false': '',
       },
     },
     subPartClasses: {
@@ -307,8 +335,10 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
     description: 'Checkbox input control.',
     variants: [
       { name: 'size', values: ['sm', 'md', 'lg'], defaultValue: 'md' },
+      { name: 'isChecked', values: ['false', 'true'], defaultValue: 'false' },
+      { name: 'isDisabled', values: ['false', 'true'], defaultValue: 'false' },
     ],
-    defaultProps: { size: 'md' },
+    defaultProps: { size: 'md', isChecked: 'false', isDisabled: 'false' },
     subParts: [
       { name: 'CheckboxIndicator', description: 'Visual checkbox box' },
       { name: 'CheckboxLabel', description: 'Checkbox label text' },
@@ -320,6 +350,14 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
         sm: 'h-4 w-4',
         md: 'h-5 w-5',
         lg: 'h-6 w-6',
+      },
+      isChecked: {
+        'true':  '',
+        'false': '',
+      },
+      isDisabled: {
+        'true':  'opacity-50',
+        'false': '',
       },
     },
     subPartClasses: {
@@ -337,8 +375,10 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
     description: 'Radio button input control.',
     variants: [
       { name: 'size', values: ['sm', 'md', 'lg'], defaultValue: 'md' },
+      { name: 'isChecked', values: ['false', 'true'], defaultValue: 'false' },
+      { name: 'isDisabled', values: ['false', 'true'], defaultValue: 'false' },
     ],
-    defaultProps: { size: 'md' },
+    defaultProps: { size: 'md', isChecked: 'false', isDisabled: 'false' },
     subParts: [
       { name: 'RadioIndicator', description: 'Visual radio circle' },
       { name: 'RadioLabel', description: 'Radio label text' },
@@ -350,6 +390,14 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
         sm: 'h-4 w-4',
         md: 'h-5 w-5',
         lg: 'h-6 w-6',
+      },
+      isChecked: {
+        'true':  '',
+        'false': '',
+      },
+      isDisabled: {
+        'true':  'opacity-50',
+        'false': '',
       },
     },
     subPartClasses: {
@@ -367,8 +415,10 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
     description: 'Toggle switch control.',
     variants: [
       { name: 'size', values: ['sm', 'md', 'lg'], defaultValue: 'md' },
+      { name: 'isChecked', values: ['false', 'true'], defaultValue: 'false' },
+      { name: 'isDisabled', values: ['false', 'true'], defaultValue: 'false' },
     ],
-    defaultProps: { size: 'md' },
+    defaultProps: { size: 'md', isChecked: 'false', isDisabled: 'false' },
     subParts: [],
     baseClasses: 'rounded-full items-center justify-center bg-input flex-row',
     isContainer: false,
@@ -377,6 +427,14 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
         sm: 'h-4 w-8',
         md: 'h-6 w-11',
         lg: 'h-7 w-14',
+      },
+      isChecked: {
+        'true':  'bg-primary',
+        'false': 'bg-input',
+      },
+      isDisabled: {
+        'true':  'opacity-50',
+        'false': '',
       },
     },
   },
@@ -460,8 +518,9 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
     variants: [
       { name: 'size', values: ['sm', 'md', 'lg'], defaultValue: 'md' },
       { name: 'orientation', values: ['horizontal', 'vertical'], defaultValue: 'horizontal' },
+      { name: 'isDisabled', values: ['false', 'true'], defaultValue: 'false' },
     ],
-    defaultProps: { size: 'md', orientation: 'horizontal' },
+    defaultProps: { size: 'md', orientation: 'horizontal', isDisabled: 'false' },
     subParts: [
       { name: 'SliderTrack', description: 'Slider track' },
       { name: 'SliderFilledTrack', description: 'Filled portion of track' },
@@ -478,6 +537,10 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
       orientation: {
         horizontal: 'w-full',
         vertical:   'h-full',
+      },
+      isDisabled: {
+        'true':  'opacity-50',
+        'false': '',
       },
     },
     subPartClasses: {
@@ -496,8 +559,10 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
     description: 'Dropdown select input.',
     variants: [
       { name: 'size', values: ['sm', 'md', 'lg', 'xl'], defaultValue: 'md' },
+      { name: 'isDisabled', values: ['false', 'true'], defaultValue: 'false' },
+      { name: 'isInvalid', values: ['false', 'true'], defaultValue: 'false' },
     ],
-    defaultProps: { size: 'md' },
+    defaultProps: { size: 'md', isDisabled: 'false', isInvalid: 'false' },
     subParts: [
       { name: 'SelectTrigger', description: 'Select trigger button' },
       { name: 'SelectInput', description: 'Display text of selected value' },
@@ -506,6 +571,14 @@ export const COMPONENT_REGISTRY: RegistryEntry[] = [
     isContainer: true,
     variantClasses: {
       size: { sm: 'text-xs', md: 'text-sm', lg: 'text-base', xl: 'text-lg' },
+      isDisabled: {
+        'true':  'opacity-50',
+        'false': '',
+      },
+      isInvalid: {
+        'true':  'border-destructive',
+        'false': '',
+      },
     },
     subPartClasses: {
       SelectTrigger: 'h-9 flex-row items-center rounded-md border border-border bg-background px-3 gap-2',
