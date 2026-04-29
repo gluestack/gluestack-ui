@@ -1,19 +1,30 @@
-import Logo from '@/assets/icons/Logo';
-import { Box } from '@/components/ui/box';
-import { Center } from '@/components/ui/center';
-import { Text } from '@/components/ui/text';
-import React from 'react';
+import { Text } from "@/components/ui/text";
+import { Popover, PopoverArrow, PopoverBackdrop, PopoverBody, PopoverContent } from "@/components/ui/popover";
+import { Pressable } from "react-native";
+import { Box } from "@/components/ui/box";
 
-export default function Home() {
+// This will behave unexpectedly on web and not at all on mobile
+export default function MyComponent() {
+  return <Box className="bg-background flex-1 justify-center items-center"><Text className=""> This is my inlined content, should absolutely <ClickMePopover/>. This is important...</Text></Box>
+}
+
+function ClickMePopover() {
   return (
-    <Box className="flex-1 bg-background">
-      <Center className="flex-1 gap-5">
-        <Logo />
-        <Text className="font-semibold">
-          Get started by editing{' '}
-          <Text className="text-primary/70">app/index.tsx</Text>
-        </Text>
-      </Center>
-    </Box>
-  );
+    <Popover
+      trigger={
+        (props) => <Pressable {...props} className="">
+          <Text className="leading-0">click me !</Text>
+        </Pressable>
+      }
+    >
+      <PopoverBackdrop />
+      <PopoverContent>
+        <PopoverArrow />
+        <PopoverBody>
+          <Text>This is my popover content</Text>
+        </PopoverBody>
+      </PopoverContent>
+
+    </Popover>
+  )
 }

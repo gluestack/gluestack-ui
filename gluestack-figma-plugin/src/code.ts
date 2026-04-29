@@ -64,6 +64,13 @@ interface DesignSystemExport {
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
+const EPSILON = 0.001;
+
+/** Generates a stable key for color lookup that is resilient to floating point errors */
+function getColorKey(rgb: ColorRGB): string {
+  return `${Math.round(rgb.r / EPSILON) * EPSILON},${Math.round(rgb.g / EPSILON) * EPSILON},${Math.round(rgb.b / EPSILON) * EPSILON}`;
+}
+
 function post(type: string, payload?: any) {
   figma.ui.postMessage({ type, payload });
 }
@@ -120,8 +127,8 @@ function px(val: string | number | undefined): number {
 
 /** Sanitizes property names for Figma Variant naming to avoid parser errors */
 function sanitizeVariantName(key: string, value: any): string {
-  const cleanKey = key.replace(/[^a-zA-Z0-9]/g, '');
-  const cleanValue = String(value).replace(/[^a-zA-Z0-9]/g, '');
+  const cleanKey = key.replace(/[^a-zA-Z0-9_-]/g, '');
+  const cleanValue = String(value).replace(/[^a-zA-Z0-9_-]/g, '');
   return `${cleanKey}=${cleanValue}`;
 }
 
@@ -187,6 +194,8 @@ async function ensureFontLoaded(family: string, style: string): Promise<FontName
 
 // ── Variable creation ────────────────────────────────────────────────────────
 
+// ── Variable creation ────────────────────────────────────────────────────────
+
 async function createColorVariables(
   collection: VariableCollection,
   colors: { light: Record<string, string>; dark: Record<string, string> }
@@ -208,7 +217,7 @@ async function createColorVariables(
       const variable = figma.variables.createVariable(name, collection, 'COLOR');
       variable.setValueForMode(collection.defaultModeId, lightRgb);
       if (darkRgb) variable.setValueForMode(darkModeId, darkRgb);
-      colorVariableMap.set(`${lightRgb.r},${lightRgb.g},${lightRgb.b}`, variable);
+      colorVariableMap.set(getColorKey(lightRgb), variable);
     } catch {
       // skip duplicates
     }
@@ -250,7 +259,7 @@ async function createSpacingVariables(
 // ── Node builders ────────────────────────────────────────────────────────────
 
 function getSolidPaint(rgb: ColorRGB): SolidPaint {
-  const variable = colorVariableMap.get(`${rgb.r},${rgb.g},${rgb.b}`);
+  const variable = colorVariableMap.get(getColorKey(rgb));
   const paint: SolidPaint = { type: 'SOLID', color: { r: rgb.r, g: rgb.g, b: rgb.b } };
   if (variable) {
     return figma.variables.setBoundVariableForPaint(paint, 'color', variable);
@@ -361,19 +370,30 @@ function applyCornerRadii(
 }
 
 function applySize(
-  node: FrameNode | ComponentNode,
+  node: FrameNode | ComponentNode | RectangleNode,
   styles: Record<string, any>,
   defaults: { width: number; height: number } = { width: 1, height: 1 },
   allowFillSizing = false
 ) {
   const rawWidth = getStyleValue(styles, ['width', 'minWidth']);
   const rawHeight = getStyleValue(styles, ['height', 'minHeight']);
+  const minWidth = getStyleValue(styles, ['minWidth']);
+  const minHeight = getStyleValue(styles, ['minHeight']);
+  const maxWidth = getStyleValue(styles, ['maxWidth']);
+  const maxHeight = getStyleValue(styles, ['maxHeight']);
+
   const hasFixedWidth = rawWidth !== undefined && rawWidth !== '100%' && rawWidth !== 'auto';
   const hasFixedHeight = rawHeight !== undefined && rawHeight !== '100%' && rawHeight !== 'auto';
 
   if (hasFixedWidth || hasFixedHeight) {
-    const width = hasFixedWidth ? Math.max(px(rawWidth), 1) : Math.max(defaults.width, 1);
-    const height = hasFixedHeight ? Math.max(px(rawHeight), 1) : Math.max(defaults.height, 1);
+    let width = hasFixedWidth ? Math.max(px(rawWidth), 1) : Math.max(defaults.width, 1);
+    let height = hasFixedHeight ? Math.max(px(rawHeight), 1) : Math.max(defaults.height, 1);
+
+    if (minWidth !== undefined) width = Math.max(width, px(minWidth));
+    if (minHeight !== undefined) height = Math.max(height, px(minHeight));
+    if (maxWidth !== undefined) width = Math.min(width, px(maxWidth));
+    if (maxHeight !== undefined) height = Math.min(height, px(maxHeight));
+
     node.resize(width, height);
     node.layoutSizingHorizontal = hasFixedWidth ? 'FIXED' : 'HUG';
     node.layoutSizingVertical = hasFixedHeight ? 'FIXED' : 'HUG';
@@ -382,6 +402,11 @@ function applySize(
 
   const parentIsAutoLayout = !!node.parent && 'layoutMode' in node.parent && node.parent.layoutMode !== 'NONE';
   if (!parentIsAutoLayout) {
+    const width = rawWidth === '100%' ? (node.parent?.width ?? defaults.width) : Math.max(px(rawWidth ?? 0), 1);
+    const height = rawHeight === '100%' ? (node.parent?.height ?? defaults.height) : Math.max(px(rawHeight ?? 0), 1);
+    node.resize(width, height);
+    node.layoutSizingHorizontal = 'FIXED';
+    node.layoutSizingVertical = 'FIXED';
     return;
   }
 
@@ -531,9 +556,18 @@ async function composeComponentFromTree(node: ComponentNode, tree: FigmaNodeJSON
     return;
   }
 
-  applyAutoLayout(node, tree.styles);
-  applySize(node, tree.styles, { width: 1, height: 1 }, false);
+  // For non-text/shape nodes, check if it's a container that should have Auto Layout
+  const flexDirection = getStyleValue(tree.styles, ['flexDirection']);
+  const isExplicitAutoLayout = !!flexDirection;
+
+  if (isExplicitAutoLayout) {
+    applyAutoLayout(node, tree.styles);
+  } else {
+    node.layoutMode = 'NONE';
+  }
+
   applyFrameStyling(node, tree.styles);
+  applySize(node, tree.styles, { width: 1, height: 1 }, true); // Default to allowFill for component trees
 
   for (const child of tree.children ?? []) {
     await buildNode(child, node);
@@ -585,7 +619,18 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
 
   const frame = figma.createFrame();
   frame.name = spec.name;
-  applyAutoLayout(frame, spec.styles);
+
+  // Check if the design explicitly requests auto-layout via flexDirection or similar
+  const flexDirection = getStyleValue(spec.styles, ['flexDirection']);
+  const isExplicitAutoLayout = !!flexDirection;
+
+  if (isExplicitAutoLayout) {
+    applyAutoLayout(frame, spec.styles);
+  } else {
+    // Default to a standard frame (layoutMode = 'NONE') to allow absolute positioning
+    frame.layoutMode = 'NONE';
+  }
+
   applyFrameStyling(frame, spec.styles);
 
   parent.appendChild(frame);
