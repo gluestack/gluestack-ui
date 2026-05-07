@@ -17,6 +17,8 @@ const measureOffset = (ref: RefObject<any>) =>
           resolve({ top: y, left: x, width, height });
         }
       );
+    } else {
+      resolve({ top: 0, left: 0, width: 0, height: 0 });
     }
   });
 
@@ -37,7 +39,13 @@ interface AriaPositionProps extends PositionProps {
   /**
    * The ref for the element which the overlay positions itself with respect to.
    */
-  targetRef: RefObject<any>;
+  targetRef?: RefObject<any>;
+  targetRect?: {
+    top: number;
+    left: number;
+    width: number;
+    height: number;
+  };
   /**
    * The ref for the overlay element.
    */
@@ -94,6 +102,7 @@ const getArrowPropsWithStatusBarHeight = ({
 export function useOverlayPosition(props: AriaPositionProps) {
   let {
     targetRef,
+    targetRect,
     overlayRef,
     placement = 'bottom' as Placement,
     offset = 0,
@@ -115,19 +124,19 @@ export function useOverlayPosition(props: AriaPositionProps) {
   let [rendered, setRendered] = React.useState(false);
 
   let updatePosition = async () => {
-    const [overlayOffset, triggerOffset] = await Promise.all([
-      measureOffset(overlayRef),
-      measureOffset(targetRef),
-    ]);
+    const overlayOffset = await measureOffset(overlayRef);
+    const triggerOffset = targetRect ?? (await measureOffset(targetRef));
 
     // Sometimes measure returns height/width 0. Best solution would be to use onLayout callback, but that might diverege from React Aria's useOverlayPosition API. Decide later, this works for now
-    if (
-      !overlayOffset.width ||
-      !overlayOffset.height ||
-      !triggerOffset.width ||
-      !triggerOffset.height
-    ) {
+    if (!overlayOffset.width || !overlayOffset.height) {
       requestAnimationFrame(updatePosition);
+      return;
+    }
+
+    if (!triggerOffset?.width || !triggerOffset?.height) {
+      if (!targetRect) {
+        requestAnimationFrame(updatePosition);
+      }
       return;
     }
 
@@ -166,6 +175,10 @@ export function useOverlayPosition(props: AriaPositionProps) {
   }, [
     placement,
     isOpen,
+    targetRect?.top,
+    targetRect?.left,
+    targetRect?.width,
+    targetRect?.height,
     offset,
     shouldFlip,
     crossOffset,

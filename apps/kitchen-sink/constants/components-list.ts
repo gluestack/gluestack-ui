@@ -55,7 +55,7 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: "Calendar", path: "calendar", count: 7 },
   { title: "Card", path: "card", count: 5, icon: CardIcon },
   { title: "Center", path: "center", count: 1, icon: CenterIcon },
-  { title: "ChatAi", path: "chat-ai", count: 1 },
+  { title: "ChatAi", path: "chat-ai", count: 3 },
   { title: "Checkbox", path: "checkbox", count: 9, icon: CheckboxIcon },
   { title: "DateTimePicker", path: "date-time-picker", count: 4 },
   { title: "Divider", path: "divider", count: 5, icon: DividerIcon },
@@ -73,7 +73,7 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: "Liquid Glass", path: "liquid-glass", count: 4 },
   { title: "Menu", path: "menu", count: 3, icon: MenuIcon },
   { title: "Modal", path: "modal", count: 5, icon: ModalIcon },
-  { title: "Popover", path: "popover", count: 5, icon: PopoverIcon },
+  { title: "Popover", path: "popover", count: 6, icon: PopoverIcon },
   { title: "Portal", path: "portal", count: 1, icon: PortalIcon },
   { title: "Pressable", path: "pressable", count: 2, icon: PressableIcon },
   { title: "Progress", path: "progress", count: 4, icon: ProgressIcon },
@@ -88,7 +88,7 @@ export const COMPONENTS_LIST: ComponentItem[] = [
   { title: "Text", path: "text", count: 2, icon: TextIcon },
   { title: "Textarea", path: "textarea", count: 2, icon: TextareaIcon },
   { title: "Toast", path: "toast", count: 5, icon: ToastIcon },
-  { title: "Tooltip", path: "tooltip", count: 3, icon: TooltipIcon },
+  { title: "Tooltip", path: "tooltip", count: 4, icon: TooltipIcon },
   { title: "VStack", path: "vstack", count: 2, icon: VStackIcon }
 ];
 

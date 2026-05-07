@@ -132,6 +132,44 @@ const [isOpen, setIsOpen] = React.useState(false);
         )
 };
 
+const ExamplePopoverWithInlineTextTrigger = () => {
+const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <Popover
+      isOpen={isOpen}
+      onClose={() => setIsOpen(false)}
+      onOpen={() => setIsOpen(true)}
+      offset={10}
+      trigger={(triggerProps) => {
+        return (
+          <Text className="text-typography-900 leading-6">
+            Read the{' '}
+            <Text
+              {...triggerProps}
+              onClick={triggerProps.onClick ?? triggerProps.onPress}
+              className="font-semibold text-primary-600 underline cursor-pointer"
+            >
+              highlighted release notes
+            </Text>{' '}
+            to open a popover from inline text.
+          </Text>
+        );
+      }}
+    >
+      <PopoverBackdrop />
+      <PopoverContent className="max-w-[280px]">
+        <PopoverArrow />
+        <PopoverBody>
+          <Text className="text-typography-900">
+            Inline text triggers position from the last touch or click point.
+          </Text>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  )
+};
+
 const ExamplePopoverWithCTA = () => {
 const [isOpen, setIsOpen] = React.useState(false);
         const [values, setValues] = React.useState(['work']);
@@ -354,6 +392,11 @@ const COMPONENT_VARIANTS = [
     value: "popover-used-along-with-multiple-avatars",
     label: "Popover used along with multiple Avatars",
     content: <ExamplePopoverUsedAlongWithMultipleAvatars />,
+  },
+  {
+    value: "popover-with-inline-text-trigger",
+    label: "Popover with Inline Text Trigger",
+    content: <ExamplePopoverWithInlineTextTrigger />,
   },
   {
     value: "popover-with-cta",

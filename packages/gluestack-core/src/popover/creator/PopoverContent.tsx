@@ -15,6 +15,32 @@ import { getContainerStyle } from './utils';
 const DEFAULT_ARROW_HEIGHT = 14,
   DEFAULT_ARROW_WIDTH = 14;
 
+const isNumber = (value: unknown): value is number =>
+  typeof value === 'number' && Number.isFinite(value);
+
+const isAnchorResolved = (anchor: any) => {
+  return (
+    anchor &&
+    isNumber(anchor.x) &&
+    isNumber(anchor.y) &&
+    isNumber(anchor.width) &&
+    isNumber(anchor.height)
+  );
+};
+
+const anchorToTargetRect = (anchor: any) => {
+  if (!anchor) {
+    return undefined;
+  }
+
+  return {
+    top: anchor.y,
+    left: anchor.x,
+    width: anchor.width,
+    height: anchor.height,
+  };
+};
+
 const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
   forwardRef(({ children, style, ...props }: any, ref?: any) => {
     const { value } = usePopover('PopoverContext');
@@ -27,6 +53,8 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
 
     const {
       targetRef,
+      resolvedAnchor,
+      shouldAnchorToTouchPoint,
       initialFocusRef,
       finalFocusRef,
       popoverContentId,
@@ -97,6 +125,13 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
           } as any)
         : {};
     const overlayRef = React.useRef(null);
+    const targetRect = React.useMemo(
+      () =>
+        shouldAnchorToTouchPoint
+          ? anchorToTargetRect(resolvedAnchor)
+          : undefined,
+      [resolvedAnchor, shouldAnchorToTouchPoint]
+    );
 
     const {
       overlayProps,
@@ -106,6 +141,7 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
     } = useOverlayPosition({
       placement: placement,
       targetRef,
+      targetRect,
       overlayRef,
       crossOffset,
       offset,
@@ -113,7 +149,10 @@ const PopoverContent = (StyledPopoverContent: any, AnimatePresence?: any) =>
       shouldFlip,
     });
 
-    if (Object.keys(overlayProps.style).length === 0) {
+    if (
+      Object.keys(overlayProps.style).length === 0 &&
+      (!shouldAnchorToTouchPoint || !isAnchorResolved(resolvedAnchor))
+    ) {
       overlayProps.style = {
         top: -1000,
         left: -1000,

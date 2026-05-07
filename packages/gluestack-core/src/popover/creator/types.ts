@@ -1,5 +1,15 @@
 import React from 'react';
 
+export type PointAnchor = {
+  type: 'point';
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
+export type Anchor = PointAnchor;
+
 export interface InterfacePopoverProps {
   /**
    * If true, the popover will be opened by default.

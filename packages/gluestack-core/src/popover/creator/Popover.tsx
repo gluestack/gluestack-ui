@@ -2,6 +2,37 @@ import React, { forwardRef } from 'react';
 import { useControllableState } from '@gluestack-ui/utils/hooks';
 import { Overlay } from '../../overlay/creator';
 import { PopoverProvider } from './PopoverContext';
+import { mergeRefs } from '@gluestack-ui/utils/common';
+
+const POINT_SIZE = 1;
+
+const getElementRef = (element: any) => element?.props?.ref ?? element?.ref;
+
+const getElementTypeName = (type: any) =>
+  type?.displayName ||
+  type?.name ||
+  type?.render?.displayName ||
+  type?.render?.name;
+
+const isTextElementType = (type: any) => {
+  const name = getElementTypeName(type);
+
+  return name === 'Text';
+};
+
+const isTextTriggerElement = (element: any, reference: any): boolean => {
+  if (!React.isValidElement(element)) {
+    return false;
+  }
+
+  if (getElementRef(element) === reference) {
+    return isTextElementType(element.type);
+  }
+
+  return React.Children.toArray((element as any).props?.children).some(
+    (child) => isTextTriggerElement(child, reference)
+  );
+};
 
 export const Popover = (StyledPopover: any) =>
   forwardRef(
@@ -62,17 +93,69 @@ export const Popover = (StyledPopover: any) =>
         setIsOpen(false);
       }, [setIsOpen]);
 
+      const targetRef = React.useRef(null);
+      const shouldAnchorToTouchPointRef = React.useRef(false);
+      const [lastInteractionPoint, setLastInteractionPoint] = React.useState<{
+        x: number;
+        y: number;
+      } | null>(null);
+
+      const resolvedAnchor = React.useMemo(() => {
+        if (!lastInteractionPoint) {
+          return null;
+        }
+
+        return {
+          type: 'point',
+          x: lastInteractionPoint.x,
+          y: lastInteractionPoint.y,
+          width: POINT_SIZE,
+          height: POINT_SIZE,
+        };
+      }, [lastInteractionPoint]);
+
+      const captureInteractionPoint = React.useCallback((event: any) => {
+        const pageX = event?.nativeEvent?.pageX ?? event?.pageX;
+        const pageY = event?.nativeEvent?.pageY ?? event?.pageY;
+
+        if (
+          typeof pageX === 'number' &&
+          Number.isFinite(pageX) &&
+          typeof pageY === 'number' &&
+          Number.isFinite(pageY)
+        ) {
+          setLastInteractionPoint({ x: pageX, y: pageY });
+        }
+      }, []);
+
+      const handleTriggerPress = React.useCallback(
+        (event: any) => {
+          captureInteractionPoint(event);
+          handleOpen();
+        },
+        [captureInteractionPoint, handleOpen]
+      );
+
       const updatedTrigger = (reference: any) => {
-        return trigger(
+        const mergedTriggerRef = mergeRefs([reference, targetRef]);
+        const triggerElement = trigger(
           {
-            'ref': reference,
-            'onPress': handleOpen,
+            'ref': mergedTriggerRef,
+            'onPress': handleTriggerPress,
+            'onClick': handleTriggerPress,
             'aria-expanded': isOpen ? true : false,
             'aria-controls': isOpen ? popoverContentId : undefined,
             'aria-haspopup': true,
           },
           { open: isOpen }
         );
+
+        shouldAnchorToTouchPointRef.current = isTextTriggerElement(
+          triggerElement,
+          mergedTriggerRef
+        );
+
+        return triggerElement;
       };
 
       // let floatingParams: any = {};
@@ -81,11 +164,16 @@ export const Popover = (StyledPopover: any) =>
       //   floatingParams = { whileElementsMounted: autoUpdate };
       // }
 
-      const targetRef = React.useRef(null);
+      const triggerElement = updatedTrigger(targetRef);
+      const activeAnchor = shouldAnchorToTouchPointRef.current
+        ? resolvedAnchor
+        : null;
 
       const contextValue: any = React.useMemo(() => {
         return {
           targetRef,
+          resolvedAnchor: activeAnchor,
+          shouldAnchorToTouchPoint: shouldAnchorToTouchPointRef.current,
           strategy: 'absolute',
           handleClose,
           initialFocusRef,
@@ -108,6 +196,7 @@ export const Popover = (StyledPopover: any) =>
         };
       }, [
         targetRef,
+        activeAnchor,
         handleClose,
         initialFocusRef,
         finalFocusRef,
@@ -131,7 +220,7 @@ export const Popover = (StyledPopover: any) =>
       if (_experimentalOverlay) {
         return (
           <>
-            {updatedTrigger(targetRef)}
+            {triggerElement}
             <PopoverProvider value={contextValue}>
               <StyledPopover ref={ref} {...props}>
                 {children}
@@ -143,7 +232,7 @@ export const Popover = (StyledPopover: any) =>
 
       return (
         <>
-          {updatedTrigger(targetRef)}
+          {triggerElement}
           <Overlay
             isOpen={isOpen}
             onRequestClose={handleClose}

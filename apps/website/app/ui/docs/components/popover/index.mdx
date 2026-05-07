@@ -400,7 +400,6 @@ export {
 </TabItem>
 </Tabs>
 
-
 ## API Reference
 
 To use this component in your project, include the following import statement in your file.
@@ -660,7 +659,8 @@ Root `Popover` `offset` and `crossOffset` position the **popover content** relat
         <TableCell>number</TableCell>
         <TableCell>-</TableCell>
         <TableCell>
-          Extra cross-axis offset for the arrow only (does not move popover content).
+          Extra cross-axis offset for the arrow only (does not move popover
+          content).
         </TableCell>
       </TableRow>
       <TableRow>
@@ -670,7 +670,8 @@ Root `Popover` `offset` and `crossOffset` position the **popover content** relat
         <TableCell>number</TableCell>
         <TableCell>-</TableCell>
         <TableCell>
-          Extra main-axis offset for the arrow only (does not move popover content).
+          Extra main-axis offset for the arrow only (does not move popover
+          content).
         </TableCell>
       </TableRow>
     </TableBody>
@@ -837,6 +838,55 @@ The Examples section provides visual representations of the different variants o
   argTypes={{}}
   reactLive={{ Popover, PopoverBackdrop, PopoverContent, PopoverBody, PopoverArrow, Button, ButtonText, Text, Avatar, AvatarGroup, AvatarFallbackText, AvatarImage }}
   importMap={{"@/components/ui/popover":["Popover","PopoverBackdrop","PopoverContent","PopoverBody","PopoverArrow"],"@/components/ui/button":["Button","ButtonText"],"@/components/ui/text":["Text"],"@/components/ui/avatar":["Avatar","AvatarGroup","AvatarFallbackText","AvatarImage"]}}
+  
+/>
+
+
+  #### Popover with Inline Text Trigger
+
+  
+
+  <CodePreviewer
+  code={`function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <Popover
+      isOpen={isOpen}
+      onClose={() => setIsOpen(false)}
+      onOpen={() => setIsOpen(true)}
+      offset={10}
+      trigger={(triggerProps) => {
+        return (
+          <Text className="text-typography-900 leading-6">
+            Read the{' '}
+            <Text
+              {...triggerProps}
+              onClick={triggerProps.onClick ?? triggerProps.onPress}
+              className="font-semibold text-primary-600 underline cursor-pointer"
+            >
+              highlighted release notes
+            </Text>{' '}
+            to open a popover from inline text.
+          </Text>
+        );
+      }}
+    >
+      <PopoverBackdrop />
+      <PopoverContent className="max-w-[280px]">
+        <PopoverArrow />
+        <PopoverBody>
+          <Text className="text-typography-900">
+            Inline text triggers position from the last touch or click point.
+          </Text>
+        </PopoverBody>
+      </PopoverContent>
+    </Popover>
+  );
+}`}
+  argTypes={{}}
+  reactLive={{ Popover, PopoverBackdrop, PopoverArrow, PopoverBody, PopoverContent, Text }}
+  importMap={{"@/components/ui/popover":["Popover","PopoverBackdrop","PopoverArrow","PopoverBody","PopoverContent"],"@/components/ui/text":["Text"]}}
   
 />
 
