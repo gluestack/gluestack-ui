@@ -559,75 +559,125 @@ function applyCornerRadii(
  * Apply size to a node. CRITICAL: resize() resets sizing modes back to FIXED.
  * So we MUST call resize() FIRST, then set layoutSizingHorizontal/Vertical AFTER.
  */
+/**
+ * Apply size to a node.
+ * Decouples dimension extraction from layout sizing mode to support HUG/FILL with min/max constraints.
+ */
 function applySize(
-  node: FrameNode | ComponentNode | RectangleNode,
+  node: FrameNode | ComponentNode | RectangleNode | EllipseNode,
   styles: Record<string, any>,
   defaults: { width: number; height: number } = { width: 1, height: 1 },
   allowFillSizing = false
 ) {
-  const rawWidth = getStyleValue(styles, ['width', 'minWidth']);
-  const rawHeight = getStyleValue(styles, ['height', 'minHeight']);
+  const rawWidth = getStyleValue(styles, ['width']);
+  const rawHeight = getStyleValue(styles, ['height']);
   const minWidth = getStyleValue(styles, ['minWidth']);
   const minHeight = getStyleValue(styles, ['minHeight']);
   const maxWidth = getStyleValue(styles, ['maxWidth']);
   const maxHeight = getStyleValue(styles, ['maxHeight']);
 
-  const hasFixedWidth = rawWidth !== undefined && rawWidth !== '100%' && rawWidth !== 'auto';
-  const hasFixedHeight = rawHeight !== undefined && rawHeight !== '100%' && rawHeight !== 'auto';
+  const isWidthAutoOrPercent = rawWidth === 'auto' || rawWidth === '100%';
+  const isHeightAutoOrPercent = rawHeight === 'auto' || rawHeight === '100%';
 
-  // Check if the node has auto-layout (HUG/FILL only valid on auto-layout frames)
-  const isAutoLayout = 'layoutMode' in node && node.layoutMode !== 'NONE';
+  // A dimension is "fixed" if it's a number and not auto/percent
+  const hasFixedWidth = rawWidth !== undefined && !isWidthAutoOrPercent;
+  const hasFixedHeight = rawHeight !== undefined && !isHeightAutoOrPercent;
 
-  if (hasFixedWidth || hasFixedHeight) {
-    let width = hasFixedWidth ? Math.max(px(rawWidth), 1) : Math.max(defaults.width, 1);
-    let height = hasFixedHeight ? Math.max(px(rawHeight), 1) : Math.max(defaults.height, 1);
+  // 1. Determine Target Sizing Modes
+  // HUG/FILL can only be set on children of auto-layout frames
+  let targetWidthSizing: 'FIXED' | 'HUG' | 'FILL' = 'FIXED';
+  let targetHeightSizing: 'FIXED' | 'HUG' | 'FILL' = 'FIXED';
 
-    if (minWidth !== undefined) width = Math.max(width, px(minWidth));
-    if (minHeight !== undefined) height = Math.max(height, px(minHeight));
-    if (maxWidth !== undefined) width = Math.min(width, px(maxWidth));
-    if (maxHeight !== undefined) height = Math.min(height, px(maxHeight));
+  if (allowFillSizing) {
+    // Parent has auto-layout, so we can use HUG or FILL
+    const widthIsFill = rawWidth === '100%';
+    const heightIsFill = rawHeight === '100%';
 
-    // CRITICAL: resize() FIRST, then set sizing modes AFTER
-    node.resize(width, height);
-    node.layoutSizingHorizontal = hasFixedWidth ? 'FIXED' : (isAutoLayout ? 'HUG' : 'FIXED');
-    node.layoutSizingVertical = hasFixedHeight ? 'FIXED' : (isAutoLayout ? 'HUG' : 'FIXED');
-    return;
+    // Width sizing logic
+    if (hasFixedWidth) {
+      targetWidthSizing = 'FIXED';
+    } else if (widthIsFill) {
+      targetWidthSizing = 'FILL';
+    } else {
+      // No explicit width - use HUG so content dictates size
+      // But ensure minWidth constraint is applied via constraints, not sizing mode
+      targetWidthSizing = 'HUG';
+    }
+
+    // Height sizing logic
+    if (hasFixedHeight) {
+      targetHeightSizing = 'FIXED';
+    } else if (heightIsFill) {
+      targetHeightSizing = 'FILL';
+    } else {
+      // No explicit height - use HUG so content dictates size
+      targetHeightSizing = 'HUG';
+    }
+  } else {
+    // Parent does NOT have auto-layout - must use FIXED
+    if (hasFixedWidth) targetWidthSizing = 'FIXED';
+    if (hasFixedHeight) targetHeightSizing = 'FIXED';
   }
 
-  const parentIsAutoLayout = !!node.parent && 'layoutMode' in node.parent && node.parent.layoutMode !== 'NONE';
+  // 2. Determine Target Dimensions for resize()
+  // Note: resize() must be called before setting sizing modes.
+  // For FILL, we use the current/parent dimension as a placeholder.
+  // For HUG, we set to 1 so content dictates size, with min constraints applied separately.
 
-  if (!parentIsAutoLayout) {
-    const width = rawWidth === '100%'
-      ? (node.parent && 'width' in node.parent ? (node.parent as any).width : defaults.width)
-      : Math.max(px(rawWidth ?? 0), 1);
-    const height = rawHeight === '100%'
-      ? (node.parent && 'height' in node.parent ? (node.parent as any).height : defaults.height)
-      : Math.max(px(rawHeight ?? 0), 1);
+  let targetWidth = 1;
+  let targetHeight = 1;
 
-    // CRITICAL: resize() FIRST, then sizing modes AFTER
-    node.resize(width, height);
+  if (targetWidthSizing === 'FIXED') {
+    targetWidth = hasFixedWidth ? px(rawWidth) : defaults.width;
+  } else if (targetWidthSizing === 'FILL') {
+    targetWidth = node.parent && 'width' in node.parent ? (node.parent as any).width : defaults.width;
+  } else { // HUG
+    // For HUG, start with a reasonable base size; content will expand it
+    // Apply min-width as initial size if specified
+    targetWidth = Math.max(1, px(minWidth ?? 1));
+  }
+
+  if (targetHeightSizing === 'FIXED') {
+    targetHeight = hasFixedHeight ? px(rawHeight) : defaults.height;
+  } else if (targetHeightSizing === 'FILL') {
+    targetHeight = node.parent && 'height' in node.parent ? (node.parent as any).height : defaults.height;
+  } else { // HUG
+    // For HUG, start with a reasonable base size; content will expand it
+    // Apply min-height as initial size if specified
+    targetHeight = Math.max(1, px(minHeight ?? 1));
+  }
+
+  // 3. Apply Min/Max Constraints to the target dimensions
+  // For FIXED mode, these constrain the resize value
+  // For FILL/HUG mode, we'll set constraints on the node instead
+  if (minWidth !== undefined && targetWidthSizing === 'FIXED') {
+    targetWidth = Math.max(targetWidth, px(minWidth));
+  }
+  if (minHeight !== undefined && targetHeightSizing === 'FIXED') {
+    targetHeight = Math.max(targetHeight, px(minHeight));
+  }
+  if (maxWidth !== undefined && targetWidthSizing === 'FIXED') {
+    targetWidth = Math.min(targetWidth, px(maxWidth));
+  }
+  if (maxHeight !== undefined && targetHeightSizing === 'FIXED') {
+    targetHeight = Math.min(targetHeight, px(maxHeight));
+  }
+
+    // 4. Execute Mutation
+  node.resize(Math.max(targetWidth, 1), Math.max(targetHeight, 1));
+
+  // HUG/FILL sizing modes MUST be set on nodes that are part of an auto-layout hierarchy.
+  // Non-auto-layout nodes (like standalone Rectangles/Ellipses) MUST use FIXED.
+  // Text nodes can use HUG if their parent is auto-layout.
+  const isAutoLayoutParent = node.parent && 'layoutMode' in node.parent && (node.parent as any).layoutMode !== 'NONE';
+
+  if (isAutoLayoutParent) {
+    node.layoutSizingHorizontal = targetWidthSizing;
+    node.layoutSizingVertical = targetHeightSizing;
+  } else {
     node.layoutSizingHorizontal = 'FIXED';
     node.layoutSizingVertical = 'FIXED';
-    return;
   }
-
-  // Child of auto-layout parent with no explicit dimensions
-  // Don't resize — let auto-layout handle sizing
-  // Just set sizing modes
-  const widthIsFill = rawWidth === '100%' && allowFillSizing;
-  const heightIsFill = rawHeight === '100%' && allowFillSizing;
-
-  if (widthIsFill || heightIsFill) {
-    // Need a reasonable resize first for FILL to work properly
-    const w = widthIsFill && node.parent && 'width' in node.parent
-      ? (node.parent as any).width : (node.width || defaults.width);
-    const h = heightIsFill && node.parent && 'height' in node.parent
-      ? (node.parent as any).height : (node.height || defaults.height);
-    node.resize(Math.max(w, 1), Math.max(h, 1));
-  }
-
-  node.layoutSizingHorizontal = widthIsFill ? 'FILL' : (isAutoLayout ? 'HUG' : 'FIXED');
-  node.layoutSizingVertical = heightIsFill ? 'FILL' : (isAutoLayout ? 'HUG' : 'FIXED');
 }
 
 function applyFrameStyling(node: FrameNode | ComponentNode, styles: Record<string, any>) {
@@ -929,33 +979,17 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
   if (spec.type === 'ELLIPSE') {
     const ellipse = figma.createEllipse();
     ellipse.name = spec.layerName ?? spec.name;
-    const rawWidth = getStyleValue(spec.styles, ['width']);
-    const rawHeight = getStyleValue(spec.styles, ['height']);
-    const width = rawWidth === undefined ? 20 : Math.max(px(rawWidth), 1);
-    const height = rawHeight === undefined ? 20 : Math.max(px(rawHeight), 1);
-    ellipse.resize(width, height);
     const rgb = parseRgb(getStyleValue(spec.styles, ['backgroundColor', 'background'], '#E2E8F0'));
     if (rgb) ellipse.fills = [getSolidPaint(rgb)];
     else ellipse.fills = [];
     parent.appendChild(ellipse);
-    // Set FILL sizing AFTER appendChild
-    if (parentIsAutoLayout) {
-      const widthIsFill = rawWidth === '100%';
-      if (widthIsFill) ellipse.layoutSizingHorizontal = 'FILL';
-    }
+    applySize(ellipse as any, spec.styles, { width: 20, height: 20 }, parentIsAutoLayout);
     return;
   }
 
   if (spec.type === 'RECTANGLE') {
     const shape = figma.createRectangle();
     shape.name = spec.layerName ?? spec.name;
-    const rawWidth = getStyleValue(spec.styles, ['width']);
-    const rawHeight = getStyleValue(spec.styles, ['height']);
-    const widthIsFill = rawWidth === '100%' && parentIsAutoLayout;
-    const heightIsFill = rawHeight === '100%' && parentIsAutoLayout;
-    const width = rawWidth === undefined || rawWidth === '100%' ? 1 : Math.max(px(rawWidth), 1);
-    const height = rawHeight === undefined || rawHeight === '100%' ? 1 : Math.max(px(rawHeight), 1);
-    shape.resize(width, height);
     const rgb = parseRgb(getStyleValue(spec.styles, ['backgroundColor', 'background'], '#E2E8F0'));
     if (rgb) shape.fills = [getSolidPaint(rgb)];
     else shape.fills = [];
@@ -985,11 +1019,7 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
       }
     }
     parent.appendChild(shape);
-    // FILL sizing AFTER appendChild
-    if (parentIsAutoLayout) {
-      if (widthIsFill) shape.layoutSizingHorizontal = 'FILL';
-      if (heightIsFill) shape.layoutSizingVertical = 'FILL';
-    }
+    applySize(shape, spec.styles, { width: 1, height: 1 }, parentIsAutoLayout);
     return;
   }
 
