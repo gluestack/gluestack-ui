@@ -5,8 +5,8 @@
  * Ensures compound components (Button -> ButtonText) and all props (isDisabled, etc.)
  * are perfectly preserved through recursive structural mapping.
  *
- * v2.1 — Component properties, variable scopes, text/effect styles,
- *         absolute positioning, duplicate detection, error handling
+ * v3.0 — Component properties, proper sizing order, variable scopes & bindings,
+ *         explicit modes, font discovery, variant grid layout, text auto-resize
  */
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -73,7 +73,6 @@ interface DesignSystemExport {
 
 const EPSILON = 0.001;
 
-/** Generates a stable key for color lookup that is resilient to floating point errors */
 function getColorKey(rgb: ColorRGB): string {
   return `${Math.round(rgb.r / EPSILON) * EPSILON},${Math.round(rgb.g / EPSILON) * EPSILON},${Math.round(rgb.b / EPSILON) * EPSILON}`;
 }
@@ -88,6 +87,8 @@ function sleep(ms: number): Promise<void> {
 
 /** Parse CSS color string → { r, g, b, a } (0-1 scale for Figma) */
 function parseRgb(value: string): ColorRGB | null {
+  if (!value || value === 'transparent' || value === 'none') return null;
+
   const hexMatch = value.match(/^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6}|[a-fA-F0-9]{8})$/);
   if (hexMatch) {
     let hex = hexMatch[1];
@@ -132,7 +133,7 @@ function px(val: string | number | undefined): number {
   return parseFloat(String(val)) || 0;
 }
 
-/** Sanitizes property names for Figma Variant naming to avoid parser errors */
+/** Sanitizes property names for Figma Variant naming */
 function sanitizeVariantName(key: string, value: any): string {
   const cleanKey = key.replace(/[^a-zA-Z0-9_-]/g, '');
   const cleanValue = String(value).replace(/[^a-zA-Z0-9_-]/g, '');
@@ -148,13 +149,15 @@ const loadedFonts = new Set<string>();
 let availableFontsCache: Font[] | null = null;
 
 // Track created resources for duplicate detection
-const createdCollectionIds = new Set<string>();
 const createdTextStyleIds = new Map<string, string>();
 const createdEffectStyleIds = new Map<string, string>();
 
-function normalizeFontStyle(style: string): string {
-  return style.replace(/\s+/g, '').toLowerCase();
-}
+// Variable collection references for setExplicitVariableModeForCollection
+let colorCollectionRef: VariableCollection | null = null;
+let spacingCollectionRef: VariableCollection | null = null;
+let radiusCollectionRef: VariableCollection | null = null;
+
+// ── Font Discovery & Loading ─────────────────────────────────────────────────
 
 async function getAvailableFonts(): Promise<Font[]> {
   if (!availableFontsCache) {
@@ -167,21 +170,29 @@ function pickBestFontMatch(fonts: Font[], family: string, style: string): FontNa
   const familyFonts = fonts.filter((font) => font.fontName.family === family);
   if (familyFonts.length === 0) return null;
 
-  const normalizedTarget = normalizeFontStyle(style);
+  // Try exact style match (case-insensitive, ignoring spaces)
+  const normalizedTarget = style.replace(/\s+/g, '').toLowerCase();
   const exact = familyFonts.find(
-    (font) => normalizeFontStyle(font.fontName.style) === normalizedTarget
+    (font) => font.fontName.style.replace(/\s+/g, '').toLowerCase() === normalizedTarget
   );
   if (exact) return exact.fontName;
 
+  // Try partial match (e.g., "SemiBold" matches "Semi Bold")
+  const partial = familyFonts.find(
+    (font) => font.fontName.style.replace(/\s+/g, '').toLowerCase().includes(normalizedTarget)
+      || normalizedTarget.includes(font.fontName.style.replace(/\s+/g, '').toLowerCase())
+  );
+  if (partial) return partial.fontName;
+
+  // Fallback to Regular
   const regular = familyFonts.find(
-    (font) => normalizeFontStyle(font.fontName.style) === 'regular'
+    (font) => font.fontName.style.toLowerCase() === 'regular'
   );
   if (regular) return regular.fontName;
 
   return familyFonts[0].fontName;
 }
 
-/** Load and return an assignable font name with safe fallbacks */
 async function ensureFontLoaded(family: string, style: string): Promise<FontName> {
   const availableFonts = await getAvailableFonts();
   const requestedFont = pickBestFontMatch(availableFonts, family, style);
@@ -195,11 +206,14 @@ async function ensureFontLoaded(family: string, style: string): Promise<FontName
     loadedFonts.add(fontKey);
     return finalFont;
   } catch (e) {
-    post('log', `⚠️ Failed to load font: ${finalFont.family} ${finalFont.style}. Falling back to Inter Regular.`);
+    post('log', `⚠️ Failed to load font: ${finalFont.family} ${finalFont.style}. Using fallback.`);
     const emergencyFallback: FontName =
       fallbackFont ?? availableFonts[0]?.fontName ?? { family: 'Inter', style: 'Regular' };
-    await figma.loadFontAsync(emergencyFallback);
-    loadedFonts.add(`${emergencyFallback.family}-${emergencyFallback.style}`);
+    const emergencyKey = `${emergencyFallback.family}-${emergencyFallback.style}`;
+    if (!loadedFonts.has(emergencyKey)) {
+      await figma.loadFontAsync(emergencyFallback);
+      loadedFonts.add(emergencyKey);
+    }
     return emergencyFallback;
   }
 }
@@ -247,13 +261,15 @@ async function createColorVariables(
       const variable = figma.variables.createVariable(name, collection, 'COLOR');
 
       // Determine scopes based on token name
-      // Valid VariableScope values: ALL_SCOPES, TEXT_CONTENT, CORNER_RADIUS, WIDTH_HEIGHT, GAP
-      // Color variables use ALL_SCOPES by default since the plugin API doesn't
-      // have granular color scopes like FRAME_FILL, TEXT_FILL etc.
       const lowerName = name.toLowerCase();
-      // All color variables get ALL_SCOPES for now — the Figma API
-      // will handle proper scope filtering in the UI automatically
-      // based on the variable type (COLOR).
+      if (lowerName.includes('foreground') || lowerName.includes('text')) {
+        variable.scopes = ['TEXT_FILL', 'FRAME_FILL', 'SHAPE_FILL', 'STROKE_COLOR'];
+      } else if (lowerName.includes('border') || lowerName.includes('input') || lowerName.includes('stroke')) {
+        variable.scopes = ['STROKE_COLOR', 'FRAME_FILL', 'SHAPE_FILL'];
+      } else {
+        // Background/surface colors
+        variable.scopes = ['FRAME_FILL', 'SHAPE_FILL', 'STROKE_COLOR', 'TEXT_FILL'];
+      }
 
       variable.setValueForMode(collection.defaultModeId, lightRgb);
       if (darkRgb) variable.setValueForMode(darkModeId, darkRgb);
@@ -271,6 +287,7 @@ async function createSpacingVariables(
   collection: VariableCollection,
   values: Record<string, number>
 ): Promise<void> {
+  collection.renameMode(collection.defaultModeId, 'Default');
   let created = 0;
   for (const [name, value] of Object.entries(values)) {
     try {
@@ -291,6 +308,7 @@ async function createRadiusVariables(
   collection: VariableCollection,
   values: Record<string, number>
 ): Promise<void> {
+  collection.renameMode(collection.defaultModeId, 'Default');
   let created = 0;
   for (const [name, value] of Object.entries(values)) {
     try {
@@ -319,12 +337,10 @@ async function createTextStyles(typography: DesignTokens['typography']): Promise
 
   let created = 0;
 
-  // Create a "Body" style set for common sizes
   const sizeEntries = Object.entries(fontSizes);
   for (const [sizeName, fontSizePx] of sizeEntries) {
     const fontSize = px(fontSizePx);
 
-    // Regular weight body style
     for (const [weightName, weightValue] of Object.entries(fontWeights)) {
       // Only create styles for common combinations to avoid explosion
       if (!['normal', 'medium', 'semibold', 'bold'].includes(weightName)) continue;
@@ -339,10 +355,8 @@ async function createTextStyles(typography: DesignTokens['typography']): Promise
         const fontFamily = (fontFamilies.sans as string) || 'Inter';
         const fontName = await ensureFontLoaded(fontFamily, figmaStyleName);
 
-        const fontSizeId = fontSize;
-        textStyle.fontSize = fontSizeId;
+        textStyle.fontSize = fontSize;
 
-        // Apply font
         try {
           textStyle.fontName = fontName;
         } catch {
@@ -354,7 +368,7 @@ async function createTextStyles(typography: DesignTokens['typography']): Promise
         if (lh) {
           const lhNum = parseFloat(lh);
           if (lhNum > 5) {
-            textStyle.lineHeight = { unit: 'PIXELS', value: lhNum * fontSizeId };
+            textStyle.lineHeight = { unit: 'PIXELS', value: lhNum * fontSize };
           } else {
             textStyle.lineHeight = { unit: 'PERCENT', value: lhNum * 100 };
           }
@@ -367,6 +381,8 @@ async function createTextStyles(typography: DesignTokens['typography']): Promise
         if (ls) {
           const lsVal = parseFloat(ls);
           textStyle.letterSpacing = { unit: 'PERCENT', value: lsVal * 100 };
+        } else {
+          textStyle.letterSpacing = { value: 0, unit: 'PERCENT' };
         }
 
         createdTextStyleIds.set(styleName, textStyle.id);
@@ -384,7 +400,6 @@ async function createEffectStyles(shadows: Record<string, string>): Promise<void
   for (const [name, shadowValue] of Object.entries(shadows)) {
     if (!shadowValue || shadowValue === 'none') continue;
 
-    // Multi-shadow support: split by ), then parse each
     const shadowParts = shadowValue.split(/\),\s*/).map((s) => s.trim().replace(/^\(/, '').replace(/\)$/, ''));
     const effects: Effect[] = [];
 
@@ -411,11 +426,18 @@ async function createEffectStyles(shadows: Record<string, string>): Promise<void
 
 // ── Node builders ────────────────────────────────────────────────────────────
 
-function getSolidPaint(rgb: ColorRGB): SolidPaint {
+function getSolidPaint(rgb: ColorRGB): Paint {
   const variable = colorVariableMap.get(getColorKey(rgb));
-  const paint: SolidPaint = { type: 'SOLID', color: { r: rgb.r, g: rgb.g, b: rgb.b } };
+  const baseColor = { r: rgb.r, g: rgb.g, b: rgb.b };
+  const basePaint = { type: 'SOLID' as const, color: baseColor };
+
+  // Handle alpha via paint opacity (separate from color)
+  const paint: Paint = rgb.a !== undefined && rgb.a < 1
+    ? { ...basePaint, opacity: rgb.a }
+    : basePaint;
+
   if (variable) {
-    return figma.variables.setBoundVariableForPaint(paint, 'color', variable);
+    return figma.variables.setBoundVariableForPaint(basePaint, 'color', variable);
   }
   return paint;
 }
@@ -499,7 +521,7 @@ function parseBackgroundPaints(value: unknown): Paint[] | null {
 }
 
 function applyCornerRadii(
-  node: FrameNode | ComponentNode | RectangleNode,
+  node: any,
   styles: Record<string, any>
 ) {
   // Try per-corner first
@@ -533,6 +555,10 @@ function applyCornerRadii(
   }
 }
 
+/**
+ * Apply size to a node. CRITICAL: resize() resets sizing modes back to FIXED.
+ * So we MUST call resize() FIRST, then set layoutSizingHorizontal/Vertical AFTER.
+ */
 function applySize(
   node: FrameNode | ComponentNode | RectangleNode,
   styles: Record<string, any>,
@@ -549,6 +575,9 @@ function applySize(
   const hasFixedWidth = rawWidth !== undefined && rawWidth !== '100%' && rawWidth !== 'auto';
   const hasFixedHeight = rawHeight !== undefined && rawHeight !== '100%' && rawHeight !== 'auto';
 
+  // Check if the node has auto-layout (HUG/FILL only valid on auto-layout frames)
+  const isAutoLayout = 'layoutMode' in node && node.layoutMode !== 'NONE';
+
   if (hasFixedWidth || hasFixedHeight) {
     let width = hasFixedWidth ? Math.max(px(rawWidth), 1) : Math.max(defaults.width, 1);
     let height = hasFixedHeight ? Math.max(px(rawHeight), 1) : Math.max(defaults.height, 1);
@@ -558,39 +587,59 @@ function applySize(
     if (maxWidth !== undefined) width = Math.min(width, px(maxWidth));
     if (maxHeight !== undefined) height = Math.min(height, px(maxHeight));
 
+    // CRITICAL: resize() FIRST, then set sizing modes AFTER
     node.resize(width, height);
-    // HUG is only valid on auto-layout frames. For nodes without auto-layout, use FIXED.
-    const isAutoLayout = 'layoutMode' in node && node.layoutMode !== 'NONE';
     node.layoutSizingHorizontal = hasFixedWidth ? 'FIXED' : (isAutoLayout ? 'HUG' : 'FIXED');
     node.layoutSizingVertical = hasFixedHeight ? 'FIXED' : (isAutoLayout ? 'HUG' : 'FIXED');
     return;
   }
 
   const parentIsAutoLayout = !!node.parent && 'layoutMode' in node.parent && node.parent.layoutMode !== 'NONE';
+
   if (!parentIsAutoLayout) {
-    const width = rawWidth === '100%' ? (node.parent && 'width' in node.parent ? (node.parent as any).width : defaults.width) : Math.max(px(rawWidth ?? 0), 1);
-    const height = rawHeight === '100%' ? (node.parent && 'height' in node.parent ? (node.parent as any).height : defaults.height) : Math.max(px(rawHeight ?? 0), 1);
+    const width = rawWidth === '100%'
+      ? (node.parent && 'width' in node.parent ? (node.parent as any).width : defaults.width)
+      : Math.max(px(rawWidth ?? 0), 1);
+    const height = rawHeight === '100%'
+      ? (node.parent && 'height' in node.parent ? (node.parent as any).height : defaults.height)
+      : Math.max(px(rawHeight ?? 0), 1);
+
+    // CRITICAL: resize() FIRST, then sizing modes AFTER
     node.resize(width, height);
     node.layoutSizingHorizontal = 'FIXED';
     node.layoutSizingVertical = 'FIXED';
     return;
   }
 
-  // HUG sizing is only valid on auto-layout frames. For non-auto-layout nodes,
-  // fall back to FIXED sizing using the node's current dimensions.
-  const isAutoLayout = 'layoutMode' in node && node.layoutMode !== 'NONE';
-  node.layoutSizingHorizontal = rawWidth === '100%' && allowFillSizing ? 'FILL' : (isAutoLayout ? 'HUG' : 'FIXED');
-  node.layoutSizingVertical = rawHeight === '100%' && allowFillSizing ? 'FILL' : (isAutoLayout ? 'HUG' : 'FIXED');
+  // Child of auto-layout parent with no explicit dimensions
+  // Don't resize — let auto-layout handle sizing
+  // Just set sizing modes
+  const widthIsFill = rawWidth === '100%' && allowFillSizing;
+  const heightIsFill = rawHeight === '100%' && allowFillSizing;
+
+  if (widthIsFill || heightIsFill) {
+    // Need a reasonable resize first for FILL to work properly
+    const w = widthIsFill && node.parent && 'width' in node.parent
+      ? (node.parent as any).width : (node.width || defaults.width);
+    const h = heightIsFill && node.parent && 'height' in node.parent
+      ? (node.parent as any).height : (node.height || defaults.height);
+    node.resize(Math.max(w, 1), Math.max(h, 1));
+  }
+
+  node.layoutSizingHorizontal = widthIsFill ? 'FILL' : (isAutoLayout ? 'HUG' : 'FIXED');
+  node.layoutSizingVertical = heightIsFill ? 'FILL' : (isAutoLayout ? 'HUG' : 'FIXED');
 }
 
 function applyFrameStyling(node: FrameNode | ComponentNode, styles: Record<string, any>) {
   const background = getStyleValue(styles, ['backgroundColor', 'background']);
   const paints = parseBackgroundPaints(background);
-  if (paints) node.fills = paints;
-  else if (background && background !== 'transparent' && background !== 'none') {
-    // Try as direct color
+  if (paints && paints.length > 0) {
+    node.fills = paints;
+  } else if (background && background !== 'transparent' && background !== 'none') {
     const rgb = parseRgb(String(background));
     if (rgb) node.fills = [getSolidPaint(rgb)];
+  } else if (background === 'transparent' || background === 'none') {
+    node.fills = [];
   }
 
   // Handle directional borders
@@ -607,9 +656,7 @@ function applyFrameStyling(node: FrameNode | ComponentNode, styles: Record<strin
       node.strokeWeight = borderWidth > 0 ? borderWidth : Math.max(borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth);
       node.strokeAlign = 'INSIDE';
 
-      // Per-side borders (approximate with individual sides)
       if (borderTopWidth > 0 || borderBottomWidth > 0 || borderLeftWidth > 0 || borderRightWidth > 0) {
-        // Use individual stroke sides if supported
         if ('strokeTop' in node) {
           (node as any).strokeTop = borderTopWidth > 0;
           (node as any).strokeBottom = borderBottomWidth > 0;
@@ -640,7 +687,6 @@ function applyFrameStyling(node: FrameNode | ComponentNode, styles: Record<strin
   // Shadow
   const shadowValue = getStyleValue(styles, ['boxShadow', 'shadow']);
   if (typeof shadowValue === 'string' && shadowValue.trim() && shadowValue !== 'none') {
-    // Try to find a matching effect style
     const shadowParts = shadowValue.split(/\),\s*/).map((s) => s.trim().replace(/^\(/, '').replace(/\)$/, ''));
     const effects: Effect[] = [];
     for (const part of shadowParts) {
@@ -667,21 +713,21 @@ function applyAutoLayout(frame: FrameNode | ComponentNode, styles: Record<string
   if (justify === 'center') frame.primaryAxisAlignItems = 'CENTER';
   else if (justify === 'flex-end' || justify === 'end') frame.primaryAxisAlignItems = 'MAX';
   else if (justify === 'space-between') frame.primaryAxisAlignItems = 'SPACE_BETWEEN';
-  else if (justify === 'space-around') frame.primaryAxisAlignItems = 'SPACE_BETWEEN'; // Approximation
+  else if (justify === 'space-around') frame.primaryAxisAlignItems = 'SPACE_BETWEEN';
   else frame.primaryAxisAlignItems = 'MIN';
 
   const align = getStyleValue(styles, ['alignItems'], 'flex-start');
   if (align === 'center') frame.counterAxisAlignItems = 'CENTER';
   else if (align === 'flex-end' || align === 'end') frame.counterAxisAlignItems = 'MAX';
-  else if (align === 'stretch') frame.counterAxisAlignItems = 'MIN'; // STRETCH not supported on counter axis
   else frame.counterAxisAlignItems = 'MIN';
 
-  frame.itemSpacing = px(getStyleValue(styles, ['gap', 'columnGap', 'rowGap'], 0));
+  const gapValue = px(getStyleValue(styles, ['gap', 'columnGap', 'rowGap'], 0));
+  frame.itemSpacing = gapValue;
 
   // Try to bind spacing variable for gap
-  const gapValue = getStyleValue(styles, ['gap', 'columnGap', 'rowGap']);
-  if (typeof gapValue === 'string') {
-    const spacingVar = spacingVariableMap.get(`spacing-${gapValue}`);
+  const rawGap = getStyleValue(styles, ['gap', 'columnGap', 'rowGap']);
+  if (typeof rawGap === 'string') {
+    const spacingVar = spacingVariableMap.get(`spacing-${rawGap}`);
     if (spacingVar) {
       try { frame.setBoundVariable('itemSpacing', spacingVar); } catch { /* not supported */ }
     }
@@ -692,10 +738,10 @@ function applyAutoLayout(frame: FrameNode | ComponentNode, styles: Record<string
   frame.paddingLeft = px(getStyleValue(styles, ['paddingLeft', 'paddingHorizontal', 'padding'], 0));
   frame.paddingRight = px(getStyleValue(styles, ['paddingRight', 'paddingHorizontal', 'padding'], 0));
 
-  // Flex grow/shrink
+  // Flex grow on children — use layoutGrow when appending children
   const flexGrow = getStyleValue(styles, ['flexGrow']);
-  if (flexGrow !== undefined) {
-    // Store for child nodes — not directly settable on frames in Figma
+  if (flexGrow !== undefined && typeof flexGrow === 'number') {
+    // Will be applied on the child in buildNode
   }
 }
 
@@ -718,6 +764,9 @@ async function createTextNode(spec: FigmaNodeJSON): Promise<TextNode> {
 
   t.characters = textValue;
   t.fontSize = px(getStyleValue(spec.styles, ['fontSize'], 14));
+
+  // Auto-resize so text fits its content in auto-layout
+  t.textAutoResize = 'WIDTH_AND_HEIGHT';
 
   const lineHeight = getStyleValue(spec.styles, ['lineHeight']);
   if (lineHeight !== undefined) {
@@ -753,12 +802,16 @@ async function createTextNode(spec: FigmaNodeJSON): Promise<TextNode> {
   if (textDecoration.includes('line-through')) t.textDecoration = 'STRIKETHROUGH';
 
   const textOpacity = Number(getStyleValue(spec.styles, ['opacity'], 1));
-  if (!Number.isNaN(textOpacity)) {
+  if (!Number.isNaN(textOpacity) && textOpacity < 1) {
     t.opacity = Math.max(0, Math.min(textOpacity, 1));
   }
   return t;
 }
 
+/**
+ * Build a component's internal tree from JSON.
+ * CRITICAL: The ComponentNode must have auto-layout set BEFORE children are appended.
+ */
 async function composeComponentFromTree(node: ComponentNode, tree: FigmaNodeJSON): Promise<void> {
   if (tree.type === 'TEXT') {
     node.layoutMode = 'HORIZONTAL';
@@ -766,48 +819,79 @@ async function composeComponentFromTree(node: ComponentNode, tree: FigmaNodeJSON
     node.counterAxisAlignItems = 'MIN';
     node.paddingTop = 0; node.paddingBottom = 0;
     node.paddingLeft = 0; node.paddingRight = 0;
-    applySize(node, tree.styles, { width: 1, height: 1 }, false);
     node.fills = [];
     const t = await createTextNode(tree);
     node.appendChild(t);
+    // After appendChild, set sizing
+    applySize(node, tree.styles, { width: 1, height: 1 }, false);
     return;
   }
 
   if (tree.type === 'RECTANGLE' || tree.type === 'ELLIPSE') {
+    // For shape-type roots, we still need auto-layout so we can add component properties later
+    // Make the component a container that holds the shape
+    node.layoutMode = 'HORIZONTAL';
+    node.primaryAxisAlignItems = 'MIN';
+    node.counterAxisAlignItems = 'MIN';
+    node.paddingTop = 0; node.paddingBottom = 0;
+    node.paddingLeft = 0; node.paddingRight = 0;
+    node.fills = [];
+
     const rawW = getStyleValue(tree.styles, ['width']);
     const rawH = getStyleValue(tree.styles, ['height']);
-    const resolvedW = rawW === undefined || rawW === '100%' ? 1 : Math.max(px(rawW), 1);
-    const resolvedH = rawH === undefined || rawH === '100%' ? 1 : Math.max(px(rawH), 1);
-    node.resize(resolvedW, resolvedH);
-    node.layoutMode = 'NONE';
-    applyCornerRadii(node, tree.styles);
-    const paints = parseBackgroundPaints(getStyleValue(tree.styles, ['backgroundColor', 'background']));
-    if (paints) node.fills = paints;
-    const borderWidth = px(getStyleValue(tree.styles, ['borderWidth'], 0));
-    if (borderWidth > 0) {
-      const bRgb = parseRgb(String(getStyleValue(tree.styles, ['borderColor'], 'rgb(229,229,229)')));
-      if (bRgb) {
-        node.strokes = [getSolidPaint(bRgb)];
-        node.strokeWeight = borderWidth;
-        node.strokeAlign = 'INSIDE';
+    const resolvedW = rawW === undefined || rawW === '100%' ? 20 : Math.max(px(rawW), 1);
+    const resolvedH = rawH === undefined || rawH === '100%' ? 20 : Math.max(px(rawH), 1);
+
+    if (tree.type === 'ELLIPSE') {
+      const ellipse = figma.createEllipse();
+      ellipse.name = tree.layerName ?? tree.name;
+      ellipse.resize(resolvedW, resolvedH);
+      const paints = parseBackgroundPaints(getStyleValue(tree.styles, ['backgroundColor', 'background']));
+      if (paints && paints.length > 0) ellipse.fills = paints;
+      else ellipse.fills = [{ type: 'SOLID', color: { r: 0.89, g: 0.89, b: 0.91 } }];
+      applyCornerRadii(ellipse, tree.styles);
+      node.appendChild(ellipse);
+    } else {
+      const shape = figma.createRectangle();
+      shape.name = tree.layerName ?? tree.name;
+      shape.resize(resolvedW, resolvedH);
+      const paints = parseBackgroundPaints(getStyleValue(tree.styles, ['backgroundColor', 'background']));
+      if (paints && paints.length > 0) shape.fills = paints;
+      else shape.fills = [{ type: 'SOLID', color: { r: 0.89, g: 0.89, b: 0.91 } }];
+      applyCornerRadii(shape, tree.styles);
+      const borderWidth = px(getStyleValue(tree.styles, ['borderWidth'], 0));
+      if (borderWidth > 0) {
+        const bRgb = parseRgb(String(getStyleValue(tree.styles, ['borderColor'], 'rgb(229,229,229)')));
+        if (bRgb) {
+          shape.strokes = [getSolidPaint(bRgb)];
+          shape.strokeWeight = borderWidth;
+          shape.strokeAlign = 'INSIDE';
+        }
       }
+      node.appendChild(shape);
     }
+
+    // Component sizes to fit its child
+    node.resize(resolvedW, resolvedH);
+    node.layoutSizingHorizontal = 'FIXED';
+    node.layoutSizingVertical = 'FIXED';
     return;
   }
 
-  // For non-text/shape nodes, check if it's a container that should have Auto Layout
+  // For FRAME containers: set up auto-layout BEFORE adding children
   const flexDirection = getStyleValue(tree.styles, ['flexDirection']);
-  const isExplicitAutoLayout = !!flexDirection;
+  const hasChildren = (tree.children?.length ?? 0) > 0;
 
-  if (isExplicitAutoLayout) {
+  if (flexDirection) {
     applyAutoLayout(node, tree.styles);
-  } else if (tree.children && tree.children.length > 0) {
-    // Default to column layout for containers with children
+  } else if (hasChildren) {
     node.layoutMode = 'VERTICAL';
     node.primaryAxisAlignItems = 'MIN';
     node.counterAxisAlignItems = 'MIN';
   } else {
-    node.layoutMode = 'NONE';
+    node.layoutMode = 'HORIZONTAL';
+    node.primaryAxisAlignItems = 'MIN';
+    node.counterAxisAlignItems = 'MIN';
   }
 
   applyFrameStyling(node, tree.styles);
@@ -829,13 +913,13 @@ async function composeComponentFromTree(node: ComponentNode, tree: FigmaNodeJSON
 }
 
 async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode): Promise<void> {
-  const parentSupportsFill = parent.layoutMode !== 'NONE';
+  const parentIsAutoLayout = parent.layoutMode !== 'NONE';
 
   if (spec.type === 'TEXT') {
     const t = await createTextNode(spec);
     parent.appendChild(t);
-    // Text sizing in auto-layout
-    if (parentSupportsFill) {
+    // Text sizing in auto-layout — AFTER appendChild
+    if (parentIsAutoLayout) {
       const widthIsFill = getStyleValue(spec.styles, ['width']) === '100%';
       if (widthIsFill) t.layoutSizingHorizontal = 'FILL';
     }
@@ -854,10 +938,10 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
     if (rgb) ellipse.fills = [getSolidPaint(rgb)];
     else ellipse.fills = [];
     parent.appendChild(ellipse);
-    if (parentSupportsFill) {
+    // Set FILL sizing AFTER appendChild
+    if (parentIsAutoLayout) {
       const widthIsFill = rawWidth === '100%';
       if (widthIsFill) ellipse.layoutSizingHorizontal = 'FILL';
-      ellipse.layoutAlign = 'INHERIT';
     }
     return;
   }
@@ -867,26 +951,29 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
     shape.name = spec.layerName ?? spec.name;
     const rawWidth = getStyleValue(spec.styles, ['width']);
     const rawHeight = getStyleValue(spec.styles, ['height']);
-    const widthIsFill = rawWidth === '100%' && parentSupportsFill;
-    const heightIsFill = rawHeight === '100%' && parentSupportsFill;
+    const widthIsFill = rawWidth === '100%' && parentIsAutoLayout;
+    const heightIsFill = rawHeight === '100%' && parentIsAutoLayout;
     const width = rawWidth === undefined || rawWidth === '100%' ? 1 : Math.max(px(rawWidth), 1);
     const height = rawHeight === undefined || rawHeight === '100%' ? 1 : Math.max(px(rawHeight), 1);
     shape.resize(width, height);
     const rgb = parseRgb(getStyleValue(spec.styles, ['backgroundColor', 'background'], '#E2E8F0'));
     if (rgb) shape.fills = [getSolidPaint(rgb)];
     else shape.fills = [];
-    if (getStyleValue(spec.styles, ['borderRadius']) !== undefined) {
-      shape.cornerRadius = px(spec.styles.borderRadius);
-    }
-    // Handle per-corner radii
+
+    // Corner radii
     const tl = getStyleValue(spec.styles, ['borderTopLeftRadius']);
     const tr = getStyleValue(spec.styles, ['borderTopRightRadius']);
     const br = getStyleValue(spec.styles, ['borderBottomRightRadius']);
     const bl = getStyleValue(spec.styles, ['borderBottomLeftRadius']);
-    if (tl !== undefined) shape.topLeftRadius = px(tl);
-    if (tr !== undefined) shape.topRightRadius = px(tr);
-    if (br !== undefined) shape.bottomRightRadius = px(br);
-    if (bl !== undefined) shape.bottomLeftRadius = px(bl);
+    const hasPerCorner = [tl, tr, br, bl].some((v) => v !== undefined);
+    if (hasPerCorner) {
+      shape.topLeftRadius = px(tl ?? 0);
+      shape.topRightRadius = px(tr ?? 0);
+      shape.bottomRightRadius = px(br ?? 0);
+      shape.bottomLeftRadius = px(bl ?? 0);
+    } else if (getStyleValue(spec.styles, ['borderRadius']) !== undefined) {
+      shape.cornerRadius = px(spec.styles.borderRadius);
+    }
 
     const borderWidth = px(getStyleValue(spec.styles, ['borderWidth'], 0));
     if (borderWidth > 0) {
@@ -898,25 +985,25 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
       }
     }
     parent.appendChild(shape);
-    if (parentSupportsFill) {
+    // FILL sizing AFTER appendChild
+    if (parentIsAutoLayout) {
       if (widthIsFill) shape.layoutSizingHorizontal = 'FILL';
       if (heightIsFill) shape.layoutSizingVertical = 'FILL';
-      shape.layoutAlign = 'INHERIT';
     }
     return;
   }
 
+  // FRAME / GROUP
   const frame = figma.createFrame();
   frame.name = spec.layerName ?? spec.name;
 
-  // Check if the design explicitly requests auto-layout via flexDirection or similar
+  // Set up auto-layout BEFORE adding children
   const flexDirection = getStyleValue(spec.styles, ['flexDirection']);
   const hasChildren = (spec.children?.length ?? 0) > 0;
 
   if (flexDirection) {
     applyAutoLayout(frame, spec.styles);
   } else if (hasChildren) {
-    // Default to column layout for containers with children
     frame.layoutMode = 'VERTICAL';
     frame.primaryAxisAlignItems = 'MIN';
     frame.counterAxisAlignItems = 'MIN';
@@ -926,8 +1013,9 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
 
   applyFrameStyling(frame, spec.styles);
 
+  // Append to parent BEFORE setting FILL sizing
   parent.appendChild(frame);
-  applySize(frame, spec.styles, { width: 1, height: 1 }, parentSupportsFill);
+  applySize(frame, spec.styles, { width: 1, height: 1 }, parentIsAutoLayout);
 
   // Handle position: absolute
   if (spec.styles.position === 'absolute') {
@@ -939,12 +1027,174 @@ async function buildNode(spec: FigmaNodeJSON, parent: FrameNode | ComponentNode)
     if (spec.styles.inset !== undefined) { frame.x = px(spec.styles.inset); frame.y = px(spec.styles.inset); }
   }
 
+  // Flex grow for this frame within its parent
+  const flexGrow = getStyleValue(spec.styles, ['flexGrow']);
+  if (flexGrow !== undefined && typeof flexGrow === 'number' && flexGrow > 0) {
+    frame.layoutGrow = flexGrow;
+  }
+
   for (const child of spec.children ?? []) {
     await buildNode(child, frame);
   }
 }
 
-// ── Component generation with property definitions ─────────────────────────────
+// ── Component generation with properties ─────────────────────────────────────
+
+/**
+ * Add component properties to a ComponentNode using addComponentProperty.
+ * This returns property keys that must be linked to child nodes via componentPropertyReferences.
+ */
+function addComponentProperties(
+  comp: ComponentNode,
+  compDef: ComponentDefinition,
+  tree: FigmaNodeJSON
+): void {
+  // Add TEXT properties for text nodes in the tree
+  const textNodes = findTextNodesInTree(tree);
+  for (const textInfo of textNodes) {
+    try {
+      const propKey = comp.addComponentProperty(textInfo.name, 'TEXT', textInfo.text);
+      // Find the actual text node in the component and link it
+      const textChild = comp.findOne((n) =>
+        n.type === 'TEXT' && n.name === textInfo.name
+      ) as TextNode | null;
+      if (textChild) {
+        textChild.componentPropertyReferences = { characters: propKey };
+      }
+    } catch (e) {
+      // Property may already exist or node not found
+    }
+  }
+
+  // Add BOOLEAN properties for state variants (isDisabled, isChecked, etc.)
+  for (const [propName, propValues] of Object.entries(compDef.variants)) {
+    const isBoolean = propValues.length === 2 &&
+      propValues.some((v) => String(v) === 'true') &&
+      propValues.some((v) => String(v) === 'false');
+    if (isBoolean) {
+      try {
+        const defaultValue = String(compDef.defaultProps[propName]) === 'true';
+        comp.addComponentProperty(propName, 'BOOLEAN', defaultValue);
+      } catch (e) {
+        // Property may already exist from variant definition
+      }
+    }
+  }
+}
+
+interface TextNodeInfo {
+  name: string;
+  text: string;
+}
+
+function findTextNodesInTree(node: FigmaNodeJSON): TextNodeInfo[] {
+  const results: TextNodeInfo[] = [];
+  if (node.type === 'TEXT') {
+    results.push({
+      name: node.layerName ?? node.name,
+      text: node.text ?? node.name,
+    });
+  }
+  for (const child of node.children ?? []) {
+    results.push(...findTextNodesInTree(child));
+  }
+  return results;
+}
+
+/**
+ * Layout variants in a grid after combineAsVariants.
+ * All variants stack at (0,0) — we must position them manually.
+ */
+function layoutComponentSet(
+  set: ComponentSetNode,
+  variantAxes: Record<string, string[]>
+): void {
+  const axisKeys = Object.keys(variantAxes);
+  const numAxes = axisKeys.length;
+
+  if (numAxes === 0 || set.children.length <= 1) {
+    // Simple horizontal layout for single-variant or no-variant components
+    let x = 0;
+    for (const child of set.children) {
+      child.x = x;
+      child.y = 0;
+      x += child.width + 16;
+    }
+  } else if (numAxes === 1) {
+    // Single axis: lay out in a row
+    let x = 0;
+    for (const child of set.children) {
+      child.x = x;
+      child.y = 0;
+      x += child.width + 16;
+    }
+  } else {
+    // Multi-axis: lay out as a grid
+    // First axis = columns, second axis = rows
+    const colValues = variantAxes[axisKeys[0]] || ['default'];
+    const rowValues = numAxes > 1 ? variantAxes[axisKeys[1]] : ['default'];
+
+    // Find max column/row widths for proper spacing
+    const colWidths: number[] = new Array(colValues.length).fill(0);
+    const rowHeights: number[] = new Array(rowValues.length).fill(0);
+
+    for (const child of set.children) {
+      const props = Object.fromEntries(
+        child.name.split(', ').map((p) => {
+          const eqIdx = p.indexOf('=');
+          return [p.slice(0, eqIdx), p.slice(eqIdx + 1)];
+        })
+      );
+
+      const colIdx = colValues.indexOf(String(props[axisKeys[0]] ?? 'default'));
+      const rowIdx = numAxes > 1 ? rowValues.indexOf(String(props[axisKeys[1]] ?? 'default')) : 0;
+
+      if (colIdx >= 0 && rowIdx >= 0) {
+        colWidths[colIdx] = Math.max(colWidths[colIdx], child.width);
+        rowHeights[rowIdx] = Math.max(rowHeights[rowIdx], child.height);
+      }
+    }
+
+    const gapX = 24;
+    const gapY = 24;
+
+    // Calculate cumulative positions
+    const colX: number[] = [0];
+    for (let i = 1; i < colValues.length; i++) {
+      colX[i] = colX[i - 1] + colWidths[i - 1] + gapX;
+    }
+    const rowY: number[] = [0];
+    for (let i = 1; i < rowValues.length; i++) {
+      rowY[i] = rowY[i - 1] + rowHeights[i - 1] + gapY;
+    }
+
+    // Position each child
+    for (const child of set.children) {
+      const props = Object.fromEntries(
+        child.name.split(', ').map((p) => {
+          const eqIdx = p.indexOf('=');
+          return [p.slice(0, eqIdx), p.slice(eqIdx + 1)];
+        })
+      );
+
+      const colIdx = colValues.indexOf(String(props[axisKeys[0]] ?? 'default'));
+      const rowIdx = numAxes > 1 ? rowValues.indexOf(String(props[axisKeys[1]] ?? 'default')) : 0;
+
+      if (colIdx >= 0 && rowIdx >= 0) {
+        child.x = colX[Math.max(0, colIdx)];
+        child.y = rowY[Math.max(0, rowIdx)];
+      }
+    }
+  }
+
+  // CRITICAL: Resize component set from actual child bounds
+  let maxX = 0, maxY = 0;
+  for (const child of set.children) {
+    maxX = Math.max(maxX, child.x + child.width);
+    maxY = Math.max(maxY, child.y + child.height);
+  }
+  set.resizeWithoutConstraints(maxX + 40, maxY + 40);
+}
 
 async function createComponents(
   components: ComponentDefinition[],
@@ -967,9 +1217,10 @@ async function createComponents(
           .join(', ') || 'default';
         node.description = comp.description;
 
-        const tree = instance.tree;
+        await composeComponentFromTree(node, instance.tree);
 
-        await composeComponentFromTree(node, tree);
+        // Add component properties BEFORE combineAsVariants
+        addComponentProperties(node, comp, instance.tree);
 
         page.appendChild(node);
         figmaComponents.push(node);
@@ -983,16 +1234,26 @@ async function createComponents(
         set.y = 0;
         set.fills = [];
         set.strokes = [];
-        set.paddingTop = 0; set.paddingBottom = 0;
-        set.paddingLeft = 0; set.paddingRight = 0;
-        set.itemSpacing = 16;
-        set.layoutMode = 'VERTICAL';
-        set.counterAxisSpacing = 16;
+        set.paddingTop = 16; set.paddingBottom = 16;
+        set.paddingLeft = 16; set.paddingRight = 16;
+        set.itemSpacing = 0;
+        set.counterAxisSpacing = 0;
+        set.layoutMode = 'NONE'; // We position manually
 
-        // Note: componentPropertyDefinitions is read-only on ComponentSetNode.
-        // Text override capability is set on individual ComponentNodes via
-        // findTextNodes and setting their properties. This is handled during
-        // composeComponentFromTree where text nodes get editable content.
+        // Layout variants in a structured grid
+        layoutComponentSet(set, comp.variants);
+
+        // Set explicit variable modes on each variant component
+        if (colorCollectionRef) {
+          for (const child of set.children) {
+            try {
+              child.setExplicitVariableModeForCollection(
+                colorCollectionRef,
+                colorCollectionRef.defaultModeId // Light mode
+              );
+            } catch { /* not all nodes support this */ }
+          }
+        }
 
         xOffset += (set.width ?? 400) + 80;
       }
@@ -1006,12 +1267,20 @@ async function createComponents(
       const tree = comp.instances[0]?.tree;
       if (tree) {
         await composeComponentFromTree(node, tree);
+
+        // Add component properties
+        addComponentProperties(node, comp, tree);
       }
 
-      // Add text property definitions for single-instance components
-      // Note: componentPropertyDefinitions is read-only in the current API.
-      // Text nodes created inside components are automatically editable.
-      // We mark them as overridable by finding them after creation.
+      // Set explicit variable mode
+      if (colorCollectionRef) {
+        try {
+          node.setExplicitVariableModeForCollection(
+            colorCollectionRef,
+            colorCollectionRef.defaultModeId
+          );
+        } catch { /* skip */ }
+      }
 
       page.appendChild(node);
       xOffset += (node.width ?? 200) + 80;
@@ -1090,7 +1359,6 @@ async function importDesignSystem(
   if (options.createVariables) {
     post('log', '🔑 Creating Figma Variable collections…');
 
-    // Check for existing collections and reuse or skip
     const existingCollections = await figma.variables.getLocalVariableCollectionsAsync();
 
     let colorCollection: VariableCollection;
@@ -1101,6 +1369,7 @@ async function importDesignSystem(
     } else {
       colorCollection = figma.variables.createVariableCollection('Gluestack / Colors');
     }
+    colorCollectionRef = colorCollection;
     await createColorVariables(colorCollection, tokens.colors);
 
     let spacingCollection: VariableCollection;
@@ -1111,6 +1380,7 @@ async function importDesignSystem(
     } else {
       spacingCollection = figma.variables.createVariableCollection('Gluestack / Spacing');
     }
+    spacingCollectionRef = spacingCollection;
     await createSpacingVariables(spacingCollection, tokens.spacing);
 
     let radiusCollection: VariableCollection;
@@ -1121,6 +1391,7 @@ async function importDesignSystem(
     } else {
       radiusCollection = figma.variables.createVariableCollection('Gluestack / Radius');
     }
+    radiusCollectionRef = radiusCollection;
     const radiusValues: Record<string, number> = Object.fromEntries(
       Object.entries(tokens.radius).map(([k, v]) => [k, px(v)])
     );
@@ -1145,7 +1416,6 @@ async function importDesignSystem(
       tokensPage = figma.createPage();
       tokensPage.name = '🎨 Gluestack Tokens';
     }
-    // CRITICAL: Ensure the page is loaded before appending to it
     await figma.setCurrentPageAsync(tokensPage);
 
     let dsPage = figma.root.children.find((p) => p.name === '🧩 Gluestack Components') as PageNode | undefined;
@@ -1153,7 +1423,6 @@ async function importDesignSystem(
       dsPage = figma.createPage();
       dsPage.name = '🧩 Gluestack Components';
     }
-    // CRITICAL: Ensure the page is loaded before appending to it
     await figma.setCurrentPageAsync(dsPage);
 
     post('log', `🎨 Drawing tokens…`);
