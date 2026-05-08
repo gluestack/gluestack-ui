@@ -5,6 +5,19 @@ import { useOverlayPosition } from '../../overlay/aria';
 import { OverlayAnimatePresence } from './OverlayAnimatePresence';
 import { Platform, View } from 'react-native';
 
+const anchorToTargetRect = (anchor: any) => {
+  if (!anchor) {
+    return undefined;
+  }
+
+  return {
+    top: anchor.y,
+    left: anchor.x,
+    width: anchor.width,
+    height: anchor.height,
+  };
+};
+
 export function TooltipContent<StyledTooltipContentProps>(
   StyledTooltipContent: React.ComponentType<StyledTooltipContentProps>,
   AnimatePresence?: React.ComponentType<any>
@@ -14,6 +27,8 @@ export function TooltipContent<StyledTooltipContentProps>(
     const {
       isOpen,
       targetRef,
+      resolvedAnchor,
+      shouldAnchorToTouchPoint,
       placement,
       crossOffset,
       offset,
@@ -21,10 +36,18 @@ export function TooltipContent<StyledTooltipContentProps>(
       shouldOverlapWithTrigger,
     } = value;
     const overlayRef = React.useRef(null);
+    const targetRect = React.useMemo(
+      () =>
+        shouldAnchorToTouchPoint
+          ? anchorToTargetRect(resolvedAnchor)
+          : undefined,
+      [resolvedAnchor, shouldAnchorToTouchPoint]
+    );
     const { overlayProps, placement: calculatedPlacement } = useOverlayPosition(
       {
         placement,
         targetRef,
+        targetRect,
         overlayRef,
         crossOffset,
         offset,

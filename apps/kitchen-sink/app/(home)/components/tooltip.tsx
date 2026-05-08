@@ -112,6 +112,33 @@ return (
         )
 };
 
+const ExampleInlineText = () => {
+return (
+    <Text className="text-sm">
+      This is an example of inline text with a tooltip. You can get more
+      information by{' '}
+      <Tooltip
+        placement="top"
+        trigger={(triggerProps) => {
+          return (
+            <Text {...triggerProps} className="text-primary-500 underline">
+              long pressing
+            </Text>
+          );
+        }}
+      >
+        <TooltipContent>
+          <TooltipText>
+            This tooltip anchors to the exact touch point on the text
+          </TooltipText>
+        </TooltipContent>
+      </Tooltip>{' '}
+      on the highlighted word to see the tooltip appear at the correct
+      position.
+    </Text>
+  )
+};
+
 const COMPONENT_VARIANTS = [
   {
     value: "basic",
@@ -127,6 +154,11 @@ const COMPONENT_VARIANTS = [
     value: "tooltip-with-icon",
     label: "Tooltip with Icon",
     content: <ExampleTooltipWithIcon />,
+  },
+  {
+    value: "inline-text",
+    label: "Inline Text",
+    content: <ExampleInlineText />,
   }
 ];
 

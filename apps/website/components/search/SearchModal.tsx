@@ -10,11 +10,17 @@ import { useSearch, type SearchHit } from '@/hooks/useSearch';
 
 function highlight(text: string, query: string): React.ReactNode {
   if (!query.trim()) return text;
-  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  const regex = new RegExp(
+    `(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`,
+    'gi'
+  );
   const parts = text.split(regex);
   return parts.map((part, i) =>
     regex.test(part) ? (
-      <mark key={i} className="bg-primary/20 text-foreground rounded-sm px-0.5 not-italic font-medium">
+      <mark
+        key={i}
+        className="bg-primary/20 text-foreground rounded-sm px-0.5 not-italic font-medium"
+      >
         {part}
       </mark>
     ) : (
@@ -28,10 +34,15 @@ function highlight(text: string, query: string): React.ReactNode {
 function getExcerpt(content: string, query: string, maxLen = 140): string {
   const lower = content.toLowerCase();
   const idx = lower.indexOf(query.toLowerCase());
-  if (idx === -1) return content.slice(0, maxLen) + (content.length > maxLen ? '…' : '');
+  if (idx === -1)
+    return content.slice(0, maxLen) + (content.length > maxLen ? '…' : '');
   const start = Math.max(0, idx - 50);
   const end = Math.min(content.length, idx + query.length + 90);
-  return (start > 0 ? '…' : '') + content.slice(start, end) + (end < content.length ? '…' : '');
+  return (
+    (start > 0 ? '…' : '') +
+    content.slice(start, end) +
+    (end < content.length ? '…' : '')
+  );
 }
 
 // ─── Result item ─────────────────────────────────────────────────────────────
@@ -78,11 +89,15 @@ function ResultItem({
         <div className="flex items-center gap-1.5 mb-0.5">
           {section && (
             <>
-              <span className="text-xs text-muted-foreground truncate">{section}</span>
+              <span className="text-xs text-muted-foreground truncate">
+                {section}
+              </span>
               {subsection && (
                 <>
                   <span className="text-xs text-muted-foreground">/</span>
-                  <span className="text-xs text-muted-foreground truncate">{subsection}</span>
+                  <span className="text-xs text-muted-foreground truncate">
+                    {subsection}
+                  </span>
                 </>
               )}
             </>
@@ -213,7 +228,9 @@ function SearchModalContent({ onClose }: { onClose: () => void }) {
               <div className="flex flex-col items-center justify-center py-10 text-muted-foreground gap-2">
                 <Search className="h-8 w-8 opacity-30" />
                 <p className="text-sm">No results for &ldquo;{query}&rdquo;</p>
-                <p className="text-xs opacity-70">Try a different search term</p>
+                <p className="text-xs opacity-70">
+                  Try a different search term
+                </p>
               </div>
             )}
           </div>
@@ -230,16 +247,24 @@ function SearchModalContent({ onClose }: { onClose: () => void }) {
         {/* Footer */}
         <div className="flex items-center gap-4 px-4 py-2.5 border-t border-border">
           <span className="flex items-center gap-1 text-xs text-muted-foreground">
-            <kbd className="inline-flex h-5 items-center rounded border border-border px-1 font-mono text-[10px]">↑</kbd>
-            <kbd className="inline-flex h-5 items-center rounded border border-border px-1 font-mono text-[10px]">↓</kbd>
+            <kbd className="inline-flex h-5 items-center rounded border border-border px-1 font-mono text-[10px]">
+              ↑
+            </kbd>
+            <kbd className="inline-flex h-5 items-center rounded border border-border px-1 font-mono text-[10px]">
+              ↓
+            </kbd>
             Navigate
           </span>
           <span className="flex items-center gap-1 text-xs text-muted-foreground">
-            <kbd className="inline-flex h-5 items-center rounded border border-border px-1 font-mono text-[10px]">↵</kbd>
+            <kbd className="inline-flex h-5 items-center rounded border border-border px-1 font-mono text-[10px]">
+              ↵
+            </kbd>
             Open
           </span>
           <span className="flex items-center gap-1 text-xs text-muted-foreground">
-            <kbd className="inline-flex h-5 items-center rounded border border-border px-1 font-mono text-[10px]">Esc</kbd>
+            <kbd className="inline-flex h-5 items-center rounded border border-border px-1 font-mono text-[10px]">
+              Esc
+            </kbd>
             Close
           </span>
         </div>

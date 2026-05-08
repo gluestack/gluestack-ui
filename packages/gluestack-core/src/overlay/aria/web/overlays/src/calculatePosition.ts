@@ -60,7 +60,8 @@ interface Offset {
 
 interface PositionOpts {
   placement: Placement;
-  targetNode: HTMLElement;
+  targetNode?: HTMLElement;
+  targetRect?: Offset;
   overlayNode: HTMLElement;
   scrollNode: HTMLElement;
   padding: number;
@@ -472,6 +473,7 @@ export function calculatePosition(opts: PositionOpts): PositionResult {
   let {
     placement,
     targetNode,
+    targetRect,
     overlayNode,
     scrollNode,
     padding,
@@ -487,11 +489,22 @@ export function calculatePosition(opts: PositionOpts): PositionResult {
   const containerPositionStyle = window.getComputedStyle(container).position;
   let isContainerPositioned =
     !!containerPositionStyle && containerPositionStyle !== 'static';
-  let childOffset: Offset = isBodyContainer
-    ? getOffset(targetNode)
-    : getPosition(targetNode, container);
+  let childOffset: Offset;
+  if (targetRect) {
+    childOffset = isBodyContainer
+      ? targetRect
+      : {
+          ...targetRect,
+          top: targetRect.top - getOffset(container).top,
+          left: targetRect.left - getOffset(container).left,
+        };
+  } else {
+    childOffset = isBodyContainer
+      ? getOffset(targetNode)
+      : getPosition(targetNode, container);
+  }
 
-  if (!isBodyContainer) {
+  if (!isBodyContainer && targetNode) {
     childOffset.top += parseInt(getCss(targetNode, 'marginTop'), 10) || 0;
     childOffset.left += parseInt(getCss(targetNode, 'marginLeft'), 10) || 0;
   }

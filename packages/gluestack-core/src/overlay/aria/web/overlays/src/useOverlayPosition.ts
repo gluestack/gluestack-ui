@@ -32,7 +32,13 @@ interface AriaPositionProps extends PositionProps {
   /**
    * The ref for the element which the overlay positions itself with respect to.
    */
-  targetRef: RefObject<HTMLElement>;
+  targetRef?: RefObject<HTMLElement>;
+  targetRect?: {
+    top: number;
+    left: number;
+    width: number;
+    height: number;
+  };
   /**
    * The ref for the overlay element.
    */
@@ -77,6 +83,7 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
   const direction = isRTL() ? 'rtl' : undefined;
   let {
     targetRef,
+    targetRect,
     overlayRef,
     scrollRef = overlayRef,
     placement = 'bottom' as Placement,
@@ -90,6 +97,8 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
     shouldOverlapWithTrigger = false,
     onClose,
   } = props;
+  const scrollTriggerRef =
+    targetRef ?? ({ current: null } as RefObject<HTMLElement>);
   let [position, setPosition] = useState<PositionResult>({
     position: {},
     arrowOffsetLeft: undefined,
@@ -102,8 +111,12 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
     shouldUpdatePosition,
     placement,
     overlayRef.current,
-    targetRef.current?.offsetLeft,
-    targetRef.current?.offsetTop,
+    targetRef?.current?.offsetLeft,
+    targetRef?.current?.offsetTop,
+    targetRect?.top,
+    targetRect?.left,
+    targetRect?.width,
+    targetRect?.height,
     scrollRef.current,
     containerPadding,
     shouldFlip,
@@ -120,7 +133,7 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
       shouldUpdatePosition === false ||
       !isOpen ||
       !overlayRef.current ||
-      !targetRef.current ||
+      (!targetRef?.current && !targetRect) ||
       !scrollRef.current ||
       !boundaryElement
     ) {
@@ -131,7 +144,8 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
       calculatePosition({
         placement: translateRTL(placement, direction),
         overlayNode: overlayRef.current,
-        targetNode: targetRef.current,
+        targetNode: targetRef?.current,
+        targetRect,
         scrollNode: scrollRef.current,
         padding: containerPadding,
         shouldFlip,
@@ -183,7 +197,7 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
   // When scrolling a parent scrollable region of the trigger (other than the body),
   // we hide the popover. Otherwise, its position would be incorrect.
   useCloseOnScroll({
-    triggerRef: targetRef,
+    triggerRef: scrollTriggerRef,
     isOpen,
     onClose: onClose ? close : undefined,
   });

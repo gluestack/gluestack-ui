@@ -7,6 +7,7 @@ import PopoverFooter from './PopoverFooter';
 import PopoverHeader from './PopoverHeader';
 import PopoverBackdrop from './PopoverBackdrop';
 import type { IPopoverComponentType } from './types';
+export type { Anchor, PointAnchor, IPopoverProps } from './types';
 
 export function createPopover<
   PopoverProps,
