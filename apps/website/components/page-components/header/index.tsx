@@ -97,6 +97,16 @@ const Header = ({
                   </span>
                 </div>
               </NextLink>
+              <NextLink
+                className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                href="/llms.txt"
+              >
+                <div className="rounded-full flex items-center justify-center">
+                  <span className="leading-normal font-normal text-sm text-foreground/70">
+                    LLMs.txt
+                  </span>
+                </div>
+              </NextLink>
               <ProductDropdown />
               <ResourcesDropdown />
               {!isDocsRoute && (

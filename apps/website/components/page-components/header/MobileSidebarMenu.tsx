@@ -147,6 +147,38 @@ export const headerItems: SidebarSectionProps[] = [
             />
           </svg>
         ),
+      },
+      {
+        title: 'LLMs.txt',
+        link: '/llms.txt',
+        logo: (
+          <svg
+            width="22"
+            height="22"
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6ZM8 19c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2Zm4-7H8v-2h4v2Zm5-7.5V8h-4V4h2.5L17 5.5Z"
+              fill="#272625"
+            />
+          </svg>
+        ),
+        logoDark: (
+          <svg
+            width="22"
+            height="22"
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6ZM8 19c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2Zm4-7H8v-2h4v2Zm5-7.5V8h-4V4h2.5L17 5.5Z"
+              fill="#F6F6F6"
+            />
+          </svg>
+        ),
         logoDark: (
           <svg
             width="22"

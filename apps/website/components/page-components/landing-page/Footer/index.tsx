@@ -26,6 +26,14 @@ const footerItems = [
         title: 'Blogs',
         href: '/blogs',
       },
+      {
+        title: 'LLMs.txt',
+        href: '/llms.txt',
+      },
+      {
+        title: 'LLMs-full.txt',
+        href: '/llms-full.txt',
+      },
     ],
   },
   {
