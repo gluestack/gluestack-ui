@@ -6,11 +6,43 @@ const DOCS_DIR = path.join(__dirname, '../app/ui/docs');
 const OUTPUT_DIR = path.join(__dirname, '../public');
 const LLMS_TXT_PATH = path.join(OUTPUT_DIR, 'llms.txt');
 const LLMS_FULL_TXT_PATH = path.join(OUTPUT_DIR, 'llms-full.txt');
+const semanticExtractorPath = path.join(__dirname, 'lib/semantic-extractor.js');
 
 /**
  * Simple regex-based cleaner for MDX content to make it LLM-friendly.
  */
-function cleanMDXContent(content) {
+async function cleanMDXContent(content) {
+  // Try to load the unified pipeline
+  try {
+    // Dynamically import required modules
+    const unified = await import('unified');
+    const remarkParse = await import('remark-parse');
+    const remarkMdx = await import('remark-mdx');
+    const remarkStringify = await import('remark-stringify');
+
+    // For ESM modules, we need to use dynamic import
+    const extractorModule = await import(semanticExtractorPath);
+
+    const processed = await unified.unified()
+      .use(remarkParse.default)
+      .use(remarkMdx.default)
+      .use(extractorModule.default)
+      .use(remarkStringify.default)
+      .process(content);
+
+    // Replace escaped backticks
+    return processed.toString().replace(/\\`/g, '`');
+  } catch (error) {
+    // Fall back to regex-based approach if unified fails
+    console.warn('Warning: Using fallback regex-based cleaner:', error.message);
+    return cleanMDXContentRegex(content);
+  }
+}
+
+/**
+ * Fallback regex-based cleaner for MDX content to make it LLM-friendly.
+ */
+function cleanMDXContentRegex(content) {
   let cleaned = content;
 
   // 1. Remove ESM imports (e.g., import { ... } from '...')
@@ -76,7 +108,7 @@ async function generateFiles() {
     const title = titleMatch.charAt(0).toUpperCase() + titleMatch.slice(1);
 
     const rawContent = fs.readFileSync(file, 'utf-8');
-    const cleanedContent = cleanMDXContent(rawContent);
+    const cleanedContent = await cleanMDXContent(rawContent);
 
     // Clean up the title for better display (replace hyphens with spaces, capitalize properly)
     const cleanTitle = title.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
