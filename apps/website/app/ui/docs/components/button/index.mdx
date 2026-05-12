@@ -1,4 +1,5 @@
 import { CodePreviewer } from '@/components/custom/code-previewer';
+import { AdvancedComponentLLMGenerator } from '@/components/custom/component-llm-generator/advanced';
 import { Button, ButtonText, ButtonSpinner, ButtonIcon } from '@/components/ui/button';
 import { EditIcon, ArrowUpIcon, InfoIcon, AddIcon, ArrowLeftIcon } from '@/components/ui/icon';
 import { Box } from '@/components/ui/box';
@@ -22,6 +23,320 @@ import {
 import { AnatomyImage } from '@/docs-components/anatomy-image';
 import { InlineCode } from '@/docs-components/inline-code';
 
+<AdvancedComponentLLMGenerator 
+  componentName="Button" 
+  componentPath="/ui/docs/components/button"
+  mdxContent={`
+# Button
+
+Discover a powerful button component for React & React Native with customizable size, shape, color, and behavior. Perfect for UI design & seamless user interactions.
+
+This is an illustration of **Button** component.
+
+  
+  
+
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Button variant="{{variant}}" size="{{size}}">
+        <ButtonText>Button</ButtonText>
+    </Button>
+  )
+}`}
+  argTypes={{
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "default",
+      "destructive",
+      "outline",
+      "secondary",
+      "ghost",
+      "link"
+    ],
+    "defaultValue": "default"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "default",
+      "sm",
+      "lg"
+    ],
+    "defaultValue": "default"
+  }
+  }}
+  reactLive={{ Button, ButtonText }}
+  importMap={{"@/components/ui/button":["Button","ButtonText"]}}
+  
+  />
+
+<br />
+## Installation
+
+
+<Tabs>
+<TabItem label="CLI">
+### Run the following command:
+<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add button`} language="bash" />
+</TabItem>
+<TabItem label="Manual">
+
+
+### Step 1: Copy and paste the following code into your project.
+
+\`\`\`jsx
+'use client';
+import { createButton } from '@gluestack-ui/core/button/creator';
+import { UIIcon } from '@gluestack-ui/core/icon/creator';
+import {
+  tva,
+  useStyleContext,
+  withStyleContext,
+  type VariantProps,
+} from '@gluestack-ui/utils/nativewind-utils';
+
+const Button = createButton({
+  Root: ' Pressable',
+  SubComponents: {
+    Icon: UIIcon,
+    Text: 'Text',
+    Spinner: ' ActivityIndicator',
+  },
+});
+
+export default Button;
+\`\`\`
+
+### Step 2: Copy and paste the following code into your project.
+
+\`\`\`jsx
+import { Button, ButtonText, ButtonIcon, ButtonSpinner } from '@/components/ui/button';
+
+// Usage
+<Button>
+  <ButtonText>Button</ButtonText>
+</Button>
+\`\`\`
+</TabItem>
+</Tabs>
+
+<br />
+
+### Import
+
+To use this component in your project, include the following imports:
+
+\`\`\`jsx
+import { Button, ButtonText, ButtonIcon, ButtonSpinner } from '@/components/ui/button';
+\`\`\`
+
+### Anatomy
+
+The Button component consists of the following parts:
+
+- **Root**: The main container element
+- **Text**: The text content within the button
+- **Icon**: Optional icon component
+- **Spinner**: Optional loading indicator
+
+Below is a visual representation of the Button component's anatomy:
+
+  
+  
+
+### Usage
+
+The Button component can be used in various ways depending on your needs. Here are some common examples:
+
+#### Basic Button
+
+\`\`\`jsx
+<Button>
+  <ButtonText>Button</ButtonText>
+</Button>
+\`\`\`
+
+#### Button with Icon
+
+\`\`\`jsx
+<Button>
+  <ButtonIcon as={AddIcon} />
+  <ButtonText>Add Item</ButtonText>
+</Button>
+\`\`\`
+
+#### Button with Spinner
+
+\`\`\`jsx
+<Button isDisabled={isLoading}>
+  {isLoading ? (
+    <ButtonSpinner />
+  ) : (
+    <ButtonText>Submit</ButtonText>
+  )}
+</Button>
+\`\`\`
+
+#### Button Variants
+
+\`\`\`jsx
+<Button variant="default">
+  <ButtonText>Default</ButtonText>
+</Button>
+
+<Button variant="secondary">
+  <ButtonText>Secondary</ButtonText>
+</Button>
+
+<Button variant="outline">
+  <ButtonText>Outline</ButtonText>
+</Button>
+
+<Button variant="ghost">
+  <ButtonText>Ghost</ButtonText>
+</Button>
+
+<Button variant="link">
+  <ButtonText>Link</ButtonText>
+</Button>
+\`\`\`
+
+#### Button Sizes
+
+\`\`\`jsx
+<Button size="sm">
+  <ButtonText>Small</ButtonText>
+</Button>
+
+<Button size="md">
+  <ButtonText>Medium</ButtonText>
+</Button>
+
+<Button size="lg">
+  <ButtonText>Large</ButtonText>
+</Button>
+\`\`\`
+
+### Props
+
+The Button component accepts the following props:
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>variant</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>default</TableCell>
+        <TableCell>Changes the visual style of the button</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>Changes the size of the button</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isDisabled</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>Disables the button</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isFocusVisible</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>Indicates if the button has focus</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isHovered</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>Indicates if the button is hovered</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>isPressed</InlineCode>
+        </TableCell>
+        <TableCell>boolean</TableCell>
+        <TableCell>false</TableCell>
+        <TableCell>Indicates if the button is pressed</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          <InlineCode>space</InlineCode>
+        </TableCell>
+        <TableCell>string</TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>It sets the space between different buttons.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
+#### ButtonSpinner
+
+Contains all spinner related layout style props and actions.
+It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator) component.
+
+#### ButtonIcon
+
+Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
+
+### Accessibility
+
+We have outlined the various features that ensure the Button component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/).
+
+#### Keyboard
+
+- \`Tab\`: Moves focus to the next focusable element.
+- \`Shift + Tab\`: Moves focus to the previous focusable element.
+- \`Enter\`: Triggers the button's action.
+
+### Screen Reader
+
+- VoiceOver: When the button is focused, the screen reader will announce the button's label and its current state.
+
+### Focus Management
+
+- The \`onFocus\` and \`onBlur\` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
+
+### Props
+
+Button component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+`}
+>
 # Button
 
 Discover a powerful button component for React & React Native with customizable size, shape, color, and behavior. Perfect for UI design & seamless user interactions.

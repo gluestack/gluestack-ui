@@ -624,6 +624,20 @@
                 "path": "/ui/docs/guides/more/discord-faqs"
               }
             ]
+          },
+          {
+            "type": "heading",
+            "title": "Resources",
+            "items": [
+              {
+                "title": "LLMs.txt",
+                "path": "/llms.txt"
+              },
+              {
+                "title": "LLMs-full.txt",
+                "path": "/llms-full.txt"
+              }
+            ]
           }
         ]
       }
