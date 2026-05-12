@@ -2,7 +2,7 @@
 
 > Site: v5.gluestack.io
 > Description: React & React Native UI components library with customizable Tailwind CSS v4 components for web & mobile apps
-> Last Updated: 2026-05-08
+> Last Updated: 2026-05-11
 > Version: v5 (Alpha)
 
 # About

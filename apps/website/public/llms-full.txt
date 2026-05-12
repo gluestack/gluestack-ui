@@ -4911,6 +4911,310 @@ import {
   TableRow,
 } from '@/docs-components/table';
 
+<AdvancedComponentLLMGenerator 
+  componentName="Button" 
+  componentPath="/ui/docs/components/button"
+  mdxContent={`
+# Button
+
+Discover a powerful button component for React & React Native with customizable size, shape, color, and behavior. Perfect for UI design & seamless user interactions.
+
+This is an illustration of **Button** component.
+
+  
+  
+
+  <CodePreviewer
+  code={`function Example() {
+  return (
+    <Button variant="{{variant}}" size="{{size}}">
+        <ButtonText>Button</ButtonText>
+    </Button>
+  )
+}`}
+  argTypes={{
+  "variant": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "default",
+      "destructive",
+      "outline",
+      "secondary",
+      "ghost",
+      "link"
+    ],
+    "defaultValue": "default"
+  },
+  "size": {
+    "control": {
+      "type": "select"
+    },
+    "options": [
+      "default",
+      "sm",
+      "lg"
+    ],
+    "defaultValue": "default"
+  }
+  }}
+  reactLive={{ Button, ButtonText }}
+  importMap={{"@/components/ui/button":["Button","ButtonText"]}}
+  
+  />
+
+<br />
+## Installation
+
+### Run the following command:
+`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui
+
+### Step 1: Copy and paste the following code into your project.
+
+\`\`\`jsx
+'use client';
+
+import {
+  tva,
+  useStyleContext,
+  withStyleContext,
+  type VariantProps,
+} from '@gluestack-ui/utils/nativewind-utils';
+
+const Button = createButton({
+  Root: ' Pressable',
+  SubComponents: {
+    Icon: UIIcon,
+    Text: 'Text',
+    Spinner: ' ActivityIndicator',
+  },
+});
+
+export default Button;
+\`\`\`
+
+### Step 2: Copy and paste the following code into your project.
+
+\`\`\`jsx
+
+// Usage
+<Button>
+  <ButtonText>Button</ButtonText>
+</Button>
+\`\`\`
+
+<br />
+
+### Import
+
+To use this component in your project, include the following imports:
+
+\`\`\`jsx
+
+\`\`\`
+
+### Anatomy
+
+The Button component consists of the following parts:
+
+- **Root**: The main container element
+- **Text**: The text content within the button
+- **Icon**: Optional icon component
+- **Spinner**: Optional loading indicator
+
+Below is a visual representation of the Button component's anatomy:
+
+  
+  
+
+### Usage
+
+The Button component can be used in various ways depending on your needs. Here are some common examples:
+
+#### Basic Button
+
+\`\`\`jsx
+<Button>
+  <ButtonText>Button</ButtonText>
+</Button>
+\`\`\`
+
+#### Button with Icon
+
+\`\`\`jsx
+<Button>
+  
+  <ButtonText>Add Item</ButtonText>
+</Button>
+\`\`\`
+
+#### Button with Spinner
+
+\`\`\`jsx
+<Button isDisabled={isLoading}>
+  {isLoading ? (
+    
+  ) : (
+    <ButtonText>Submit</ButtonText>
+  )}
+</Button>
+\`\`\`
+
+#### Button Variants
+
+\`\`\`jsx
+<Button variant="default">
+  <ButtonText>Default</ButtonText>
+</Button>
+
+<Button variant="secondary">
+  <ButtonText>Secondary</ButtonText>
+</Button>
+
+<Button variant="outline">
+  <ButtonText>Outline</ButtonText>
+</Button>
+
+<Button variant="ghost">
+  <ButtonText>Ghost</ButtonText>
+</Button>
+
+<Button variant="link">
+  <ButtonText>Link</ButtonText>
+</Button>
+\`\`\`
+
+#### Button Sizes
+
+\`\`\`jsx
+<Button size="sm">
+  <ButtonText>Small</ButtonText>
+</Button>
+
+<Button size="md">
+  <ButtonText>Medium</ButtonText>
+</Button>
+
+<Button size="lg">
+  <ButtonText>Large</ButtonText>
+</Button>
+\`\`\`
+
+### Props
+
+The Button component accepts the following props:
+
+<>
+  
+    
+      
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      
+    
+    
+      
+        
+          <InlineCode>variant</InlineCode>
+        
+        string
+        default
+        Changes the visual style of the button
+      
+      
+        
+          <InlineCode>size</InlineCode>
+        
+        string
+        md
+        Changes the size of the button
+      
+      
+        
+          <InlineCode>isDisabled</InlineCode>
+        
+        boolean
+        false
+        Disables the button
+      
+      
+        
+          <InlineCode>isFocusVisible</InlineCode>
+        
+        boolean
+        false
+        Indicates if the button has focus
+      
+      
+        
+          <InlineCode>isHovered</InlineCode>
+        
+        boolean
+        false
+        Indicates if the button is hovered
+      
+      
+        
+          <InlineCode>isPressed</InlineCode>
+        
+        boolean
+        false
+        Indicates if the button is pressed
+      
+      
+        
+          <InlineCode>space</InlineCode>
+        
+        string
+        md
+        It sets the space between different buttons.
+      
+    
+  
+</>
+
+#### ButtonSpinner
+
+Contains all spinner related layout style props and actions.
+It inherits all the properties of React Native's [ActivityIndicator](https://reactnative.dev/docs/activityindicator) component.
+
+#### ButtonIcon
+
+Contains all Icon related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
+
+### Features
+
+- Keyboard support for actions.
+- Support for hover, focus and active states.
+- Option to add your styles or use the default styles.
+
+### Accessibility
+
+We have outlined the various features that ensure the Button component is accessible to all users, including those with disabilities. These features help ensure that your application is inclusive and meets accessibility standards.Adheres to the [WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/button/).
+
+#### Keyboard
+
+- \`Tab\`: Moves focus to the next focusable element.
+- \`Shift + Tab\`: Moves focus to the previous focusable element.
+- \`Enter\`: Triggers the button's action.
+
+### Screen Reader
+
+- VoiceOver: When the button is focused, the screen reader will announce the button's label and its current state.
+
+### Focus Management
+
+- The \`onFocus\` and \`onBlur\` props to manage focus states and provide visual cues to users. This is especially important for users who rely on keyboard navigation.
+
+### Props
+
+Button component is created using Pressable component from react-native. It extends all the props supported by [React Native Pressable](https://reactnative.dev/docs/pressable#props), [utility props](/ui/docs/styling/utility-and-sx-props) and the props mentioned below.
+
+`}
+>
 # Button
 
 Discover a powerful button component for React & React Native with customizable size, shape, color, and behavior. Perfect for UI design & seamless user interactions.
