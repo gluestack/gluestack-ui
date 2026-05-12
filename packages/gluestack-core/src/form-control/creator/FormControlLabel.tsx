@@ -28,11 +28,28 @@ const FormControlLabel = ({
       }
     }, [combinedProps?.id, props.htmlFor]);
 
+    const targetId = props.htmlFor || combinedProps?.id;
+
+    const handleClick = React.useCallback(
+      (e: any) => {
+        props?.onClick?.(e);
+
+        if (!targetId || typeof document === 'undefined') return;
+
+        const inputElement = document.getElementById(targetId);
+        if (inputElement instanceof HTMLInputElement) {
+          inputElement.click();
+        }
+      },
+      [targetId, props.onClick]
+    );
+
     return (
       <StyledFormControlLabel
         ref={mergedRef}
         {...combinedProps}
         id={combinedProps?.labelId}
+        onClick={handleClick}
       >
         {children}
         {isRequired && (
