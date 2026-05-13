@@ -22,6 +22,26 @@ export default async function RootLayout({
       <head>
         <meta name="robots" content="index, follow" />
 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'gluestack',
+              url: 'https://gluestack.io',
+              logo: 'https://gluestack.io/svg/gluestack_logo.svg',
+              sameAs: [
+                'https://github.com/gluestack/gluestack-ui',
+                'https://twitter.com/gluestack',
+                'https://discord.com/invite/V5SU7HZSAQ',
+                'https://www.linkedin.com/company/gluestackio/',
+                'https://bsky.app/profile/gluestack.io',
+              ],
+            }),
+          }}
+        />
+
         <CanonicalLink />
 
         {/* Google Tag Manager - moved to async script */}
