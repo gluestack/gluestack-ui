@@ -23,7 +23,7 @@ const Community = () => {
 
   return (
     <WebsiteLayout applyBgImage={true}>
-      <Box className="justify-center max-w-[1440px] w-[85%] my-0 mx-auto relative pt-20 mt-56 xl:mt-24">
+      <Box className="justify-center max-w-[1440px] w-[85%] my-0 mx-auto relative xl:mt-24">
         {/* Hero */}
         <VStack className="justify-center mb-8 max-w-[1000px]">
           <Heading className="font-bold leading-[48px] max-w-[750px] my-0 text-4xl md:text-6xl md:leading-[72px] lg:mx-0 text-typography-900">
@@ -67,7 +67,7 @@ const Community = () => {
 
         {/* Tab content */}
         {activeTab === 'interns' ? (
-          <Box className="items-center lg:flex-row">
+          <Box className="items-start lg:flex-row">
             {/* Left: Program description */}
             <VStack className="justify-center mb-16 sm:mx-auto lg:w-[60%] lg:pr-2 lg:mb-0 max-w-[1000px]">
               <Text className="text-typography-700 leading-7 text-lg max-w-[600px]">
@@ -114,7 +114,7 @@ const Community = () => {
             <InternshipForm />
           </Box>
         ) : (
-          <Box className="items-center lg:flex-row">
+          <Box className="items-start lg:flex-row">
             {/* Left: CFP description */}
             <VStack className="justify-center mb-16 sm:mx-auto lg:w-[60%] lg:pr-2 lg:mb-0 max-w-[1000px]">
               <Text className="text-typography-700 leading-7 text-lg max-w-[600px]">
