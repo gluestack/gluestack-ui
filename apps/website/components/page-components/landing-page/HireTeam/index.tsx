@@ -16,12 +16,12 @@ const partnerAppsRows = [
       url: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
       description: 'React Native Templates',
     },
-    {
-      name: 'Geeky Lego', // TODO: Replace logo and URL with actuals when available
-      logo: '/icon/logo/geeky-lego/logo.svg',
-      url: 'https://geeklego.io/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
-      description: 'Building blocks for modern apps',
-    },
+    // {
+    //   name: 'GeekLego', // TODO: Replace logo actuals when available
+    //   logo: '/icon/logo/geeky-lego/logo.svg',
+    //   url: 'https://geeklego.io/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
+    //   description: 'Building blocks for modern apps',
+    // },
   ],
 ];
 
