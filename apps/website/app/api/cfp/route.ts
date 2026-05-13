@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        text: `🎤 *New CFP Submission*\n👤 Name: ${submission.name || 'N/A'}\n📧 Email: ${submission.email}\n🏷️ Type: ${submission.type}\n📌 Title: ${submission.title}\n📝 Abstract: ${submission.abstract}\n🙋 Bio: ${submission.bio || 'N/A'}`,
+        text: `*New CFP Submission*\nName: ${submission.name || 'N/A'}\nEmail: ${submission.email}\nType: ${submission.type}\nTitle: ${submission.title}\nAbstract: ${submission.abstract}\nBio: ${submission.bio || 'N/A'}`,
       }),
     });
 
