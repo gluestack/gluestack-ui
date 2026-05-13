@@ -30,6 +30,14 @@ const footerItems = [
         title: 'Support',
         href: '/support',
       },
+      {
+        title: 'Enterprise',
+        href: '/contact',
+      },
+      {
+        title: 'Interns & CFP',
+        href: '/community',
+      },
     ],
   },
   {
@@ -79,6 +87,11 @@ const footerItems = [
         href: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
         isExternal: true,
       },
+      // {
+      //   title: 'GeekLego',
+      //   href: 'https://geeklego.io/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
+      //   isExternal: true,
+      // },
     ],
   },
 ];

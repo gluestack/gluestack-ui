@@ -16,6 +16,12 @@ const partnerAppsRows = [
       url: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
       description: 'React Native Templates',
     },
+    // {
+    //   name: 'GeekLego', // TODO: Replace logo actuals when available
+    //   logo: '/icon/logo/geeky-lego/logo.svg',
+    //   url: 'https://geeklego.io/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
+    //   description: 'Building blocks for modern apps',
+    // },
   ],
 ];
 
@@ -70,7 +76,7 @@ const HireTeam = () => {
             {partnerAppsRows.map((row, rowIndex) => (
               <div
                 key={rowIndex}
-                className={`grid gap-3 ${row.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}
+                className={`grid gap-3 ${row.length > 2 ? 'grid-cols-3' : row.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}
               >
                 {row.map((app) => (
                   <a

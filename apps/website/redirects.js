@@ -100,9 +100,8 @@ export const redirects = [
   },
   {
     source: '/enterprise',
-    destination: 'https://v1.gluestack.io/enterprise',
-    permanent: true,
-    basePath: false,
+    destination: '/contact',
+    permanent: false,
   },
   {
     source: '/ui/docs/components/react-native-components/status-bar',
