@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
-import sidebarData from './sidebar.json';
+import fs from 'fs';
+import path from 'path';
 
 function extractPaths(obj: any): string[] {
   const paths: string[] = [];
@@ -15,6 +16,10 @@ function extractPaths(obj: any): string[] {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://gluestack.io';
+
+  const sidebarPath = path.join(process.cwd(), 'sidebar.json');
+  const sidebarRaw = fs.readFileSync(sidebarPath, 'utf-8');
+  const sidebarData = JSON.parse(sidebarRaw);
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -74,8 +79,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const docPaths = extractPaths(sidebarData);
-  const docPages: MetadataRoute.Sitemap = docPaths.map((path) => ({
-    url: `${baseUrl}${path}`,
+  const docPages: MetadataRoute.Sitemap = docPaths.map((p) => ({
+    url: `${baseUrl}${p}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.6,

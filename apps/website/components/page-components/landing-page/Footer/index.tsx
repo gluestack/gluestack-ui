@@ -89,7 +89,7 @@ const footerItems = [
       },
       {
         title: 'Geeky Lego',
-        href: 'https://geekylego.com/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
+        href: 'https://geeklego.io/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
         isExternal: true,
       },
     ],

@@ -19,7 +19,7 @@ const partnerAppsRows = [
     {
       name: 'Geeky Lego', // TODO: Replace logo and URL with actuals when available
       logo: '/icon/logo/geeky-lego/logo.svg',
-      url: 'https://geekylego.com/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
+      url: 'https://geeklego.io/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
       description: 'Building blocks for modern apps',
     },
   ],
