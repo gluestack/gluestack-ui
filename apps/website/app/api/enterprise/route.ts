@@ -58,7 +58,7 @@ export async function POST(request: Request) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        text: `🏢 *New Enterprise Inquiry*\n👤 Name: ${inquiry.name || 'N/A'}\n📧 Email: ${inquiry.email}\n🏢 Company: ${inquiry.company || 'N/A'}\n💼 Role: ${inquiry.role || 'N/A'}\n🎯 Interest: ${inquiry.interest}\n💰 Budget: ${inquiry.budget || 'N/A'}\n💬 Message: ${inquiry.message}`,
+        text: `*New Enterprise Inquiry*\nName: ${inquiry.name || 'N/A'}\nEmail: ${inquiry.email}\nCompany: ${inquiry.company || 'N/A'}\nRole: ${inquiry.role || 'N/A'}\nInterest: ${inquiry.interest}\nBudget: ${inquiry.budget || 'N/A'}\nMessage: ${inquiry.message}`,
       }),
     });
 
