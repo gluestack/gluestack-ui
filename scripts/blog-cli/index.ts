@@ -203,14 +203,18 @@ async function runPipeline(cliArgs: CLIArgs): Promise<void> {
 
   // ─── Stage 1: Ideation ─────────────────────────────────────
 
-  if (config.fromStage <= 1 && cliArgs.command !== 'ideate') {
+  if (config.fromStage <= 1) {
     if (cliArgs.topic) {
+      // Manual topic provided — skip ideation
       state.topic = cliArgs.topic;
       log.step(`Topic: "${state.topic}"`);
     } else {
+      // No topic — auto-ideate
+      log.step('No topic provided — generating suggestions...');
       const result = await runIdeation(provider, config);
       if (!result.ok) {
         log.error(`Ideation failed: ${result.error}`);
+        log.info('Try providing a topic manually: yarn blog create --topic "Your topic"');
         process.exit(1);
       }
       state.topic = result.data;
@@ -220,18 +224,15 @@ async function runPipeline(cliArgs: CLIArgs): Promise<void> {
 
   // If command is just "ideate", we're done
   if (cliArgs.command === 'ideate') {
-    const result = await runIdeation(provider, config);
-    if (!result.ok) {
-      log.error(`Ideation failed: ${result.error}`);
-      process.exit(1);
+    if (state.topic) {
+      log.info(`Selected topic: ${state.topic}`);
     }
-    log.info(`Selected topic: ${result.data}`);
     outro('Topic selected!');
     return;
   }
 
   if (!state.topic) {
-    log.error('No topic provided. Use --topic or --ideate.');
+    log.error('No topic available. Use --topic to provide one.');
     process.exit(1);
   }
 

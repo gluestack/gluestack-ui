@@ -32,13 +32,19 @@ export class LiteLLMProvider extends BaseProvider {
     jsonMode: boolean;
   }): Promise<string> {
     return withRetry(async () => {
+      // Some models (e.g. vLLM/Gemma) don't support response_format.
+      // When jsonMode is requested, inject a system instruction instead
+      // and rely on the prompt to produce JSON output.
+      const jsonInstruction = params.jsonMode
+        ? '\n\nIMPORTANT: Return ONLY valid JSON. No markdown fences, no explanation.'
+        : '';
+
       const response = await this.client.chat.completions.create({
         model: this.model,
         messages: [
-          { role: 'system', content: params.system },
+          { role: 'system', content: params.system + jsonInstruction },
           { role: 'user', content: params.user },
         ],
-        ...(params.jsonMode ? { response_format: { type: 'json_object' } } : {}),
         temperature: params.jsonMode ? 0.3 : 0.7,
       });
 
