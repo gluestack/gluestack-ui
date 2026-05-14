@@ -1,6 +1,6 @@
 // ─── AI Provider ───────────────────────────────────────────────
 
-export type AIProviderType = 'openai' | 'anthropic';
+export type AIProviderType = 'openai' | 'anthropic' | 'litellm';
 
 export interface AIProvider {
   chat(params: {

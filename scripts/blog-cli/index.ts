@@ -2,6 +2,7 @@ import { intro, log, outro, confirm, isCancel, cancel } from '@clack/prompts';
 import { buildConfig } from './config';
 import { OpenAIProvider } from './providers/openai';
 import { AnthropicProvider } from './providers/anthropic';
+import { LiteLLMProvider } from './providers/litellm';
 import type {
   AIProvider,
   CLIArgs,
@@ -117,7 +118,7 @@ Commands:
 Options:
   --topic <string>        Manual topic (skips ideation stage)
   --ideate                Run AI ideation to suggest topics
-  --provider <string>     AI provider: 'openai' or 'anthropic' (default: from env)
+  --provider <string>     AI provider: 'openai', 'anthropic', or 'litellm' (default: from env)
   --model <string>        Override default model for chosen provider
   --author <string>       Author name (must match known author)
   --author-json <string>  Full author info as JSON string
@@ -144,6 +145,9 @@ Examples:
 function createProvider(config: PipelineConfig): AIProvider {
   if (config.provider === 'anthropic') {
     return new AnthropicProvider(config.model);
+  }
+  if (config.provider === 'litellm') {
+    return new LiteLLMProvider(config.model);
   }
   return new OpenAIProvider(config.model, config.imageModel);
 }

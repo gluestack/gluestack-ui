@@ -120,7 +120,8 @@ function loadEnvFile(): void {
 function resolveProvider(cliProvider?: AIProviderType): AIProviderType {
   if (cliProvider) return cliProvider;
   const envProvider = process.env.BLOG_CLI_PROVIDER as AIProviderType;
-  if (envProvider === 'openai' || envProvider === 'anthropic') return envProvider;
+  if (envProvider === 'openai' || envProvider === 'anthropic' || envProvider === 'litellm') return envProvider;
+  if (process.env.LITELLM_BASE_URL) return 'litellm';
   if (process.env.OPENAI_API_KEY) return 'openai';
   if (process.env.ANTHROPIC_API_KEY) return 'anthropic';
   return DEFAULT_PROVIDER;
@@ -205,6 +206,9 @@ export function buildConfig(
   if (provider === 'anthropic' && !process.env.ANTHROPIC_API_KEY) {
     throw new Error('ANTHROPIC_API_KEY is required when provider is anthropic');
   }
+  if (provider === 'litellm' && !process.env.LITELLM_BASE_URL) {
+    throw new Error('LITELLM_BASE_URL is required when provider is litellm (e.g. http://localhost:4000)');
+  }
 
   const author = resolveAuthor(partial.authorName, partial.authorJson);
 
@@ -213,7 +217,11 @@ export function buildConfig(
     model:
       partial.model ||
       process.env.BLOG_CLI_MODEL ||
-      (provider === 'anthropic' ? 'claude-sonnet-4-20250514' : DEFAULT_MODEL),
+      (provider === 'anthropic'
+        ? 'claude-sonnet-4-20250514'
+        : provider === 'litellm'
+          ? 'vllm/gemma-4'
+          : DEFAULT_MODEL),
     imageModel:
       process.env.BLOG_CLI_IMAGE_MODEL || DEFAULT_IMAGE_MODEL,
     seoKeywords: partial.keywords || [],
