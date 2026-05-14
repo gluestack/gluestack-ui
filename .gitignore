@@ -48,3 +48,6 @@ yarn-error.log*
 
 .yalc/
 yalc.lock
+
+# blog-cli pipeline state
+.blog-cli-state.json
