@@ -1,6 +1,6 @@
 import type { PipelineConfig, StageResult } from '../types';
 import { gitAdd, gitCommit } from '../utils/git';
-import { log } from '@clack/prompts';
+import { log, confirm, isCancel, cancel } from '@clack/prompts';
 
 export async function runCommit(
   files: string[],
@@ -14,7 +14,25 @@ export async function runCommit(
       return { ok: true, data: 'dry-run' };
     }
 
-    log.step('Committing to git...');
+    log.step('Ready to commit');
+    log.info(`  ${files.length} files staged`);
+    log.info(`  Commit message: blog: add '${title}'`);
+
+    const shouldCommit = await confirm({
+      message: 'Commit these changes to git?',
+      initialValue: true,
+    });
+
+    if (isCancel(shouldCommit)) {
+      cancel('Commit cancelled.');
+      return { ok: true, data: 'cancelled' };
+    }
+
+    if (!shouldCommit) {
+      log.info('  Skipping commit. Files are generated but not committed.');
+      log.info('  You can review and commit manually when ready.');
+      return { ok: true, data: 'skipped' };
+    }
 
     gitAdd(files);
 
