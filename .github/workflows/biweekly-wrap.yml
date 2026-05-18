@@ -1,0 +1,23 @@
+name: Bi-Weekly Wrap
+
+on:
+  schedule:
+    # Runs every other Monday at 10:00 UTC (cron: minute hour dom month dow)
+    # Picked an off-peak minute (37) to avoid :00/:30 fleet congestion
+    - cron: "37 10 */14 * *"
+  workflow_dispatch: {}  # manual trigger from Actions tab
+
+jobs:
+  biweekly-wrap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run bi-weekly wrap
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+        run: python3 wraps/biweekly_wrap.py
