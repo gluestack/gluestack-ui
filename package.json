@@ -48,7 +48,8 @@
     "changeset:status": "changeset status",
     "changeset:empty": "changeset --empty",
     "create:component": "tsx scripts/create.ts",
-    "blog": "tsx scripts/blog-cli/index.ts"
+    "blog": "tsx scripts/blog-cli/index.ts",
+    "wrap": "tsx scripts/wrap/index.ts"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",

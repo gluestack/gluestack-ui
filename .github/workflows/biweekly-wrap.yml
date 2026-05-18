@@ -1,0 +1,67 @@
+name: Bi-Weekly Wrap
+
+on:
+  schedule:
+    # 1st and 15th of each month at 3:30 UTC (9:00 AM IST)
+    - cron: '30 3 1,15 * *'
+  workflow_dispatch:
+    inputs:
+      from_date:
+        description: 'Start date (YYYY-MM-DD)'
+        required: false
+      to_date:
+        description: 'End date (YYYY-MM-DD)'
+        required: false
+
+jobs:
+  generate-wrap:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Generate bi-weekly wrap
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.from_date }}" ]; then
+            ARGS="$ARGS --from ${{ github.event.inputs.from_date }}"
+          fi
+          if [ -n "${{ github.event.inputs.to_date }}" ]; then
+            ARGS="$ARGS --to ${{ github.event.inputs.to_date }}"
+          fi
+          yarn wrap $ARGS
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LITELLM_BASE_URL: ${{ secrets.LITELLM_BASE_URL }}
+          LITELLM_API_KEY: ${{ secrets.LITELLM_API_KEY }}
+          BLOG_CLI_MODEL: ${{ secrets.BLOG_CLI_MODEL }}
+
+      - name: Upload wrap artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: biweekly-wrap-${{ github.run_number }}
+          path: wraps/
+          retention-days: 30
+
+      - name: Notify Slack
+        if: success()
+        run: |
+          curl -X POST "$SLACK_WEBHOOK_URL" \
+            -H 'Content-type: application/json' \
+            -d '{"text":"📰 Bi-weekly wrap generated! Check the GitHub Actions artifact for the draft."}'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

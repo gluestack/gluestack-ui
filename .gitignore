@@ -51,3 +51,6 @@ yalc.lock
 
 # blog-cli pipeline state
 .blog-cli-state.json
+
+# bi-weekly wrap generated files
+wraps/
