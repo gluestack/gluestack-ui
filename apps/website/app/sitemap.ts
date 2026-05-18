@@ -87,6 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const blogSlugs = [
+    'accessible-form-design-a-guide-for-devs-designers',
     'public-incident-report',
     'gluestack-v3-release',
     'build-a-simple-ui-with-gluestack-ui-and-expo',

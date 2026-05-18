@@ -7,6 +7,24 @@ import BlogsPageLayout from '@/components/page-components/blogs-page/BlogsPageLa
 
 const blogs = [
   {
+    title: 'Accessible Form Design: A Guide for Devs & Designers',
+    cover: '/images/blogs/banner-1.png',
+    slug: 'accessible-form-design-a-guide-for-devs-designers',
+    published_at: {
+      start: '2026-05-14T06:53:15.644Z',
+    },
+    reading_time: 6,
+    author: [
+      {
+        id: 11,
+        avatar_url: 'https://avatars.githubusercontent.com/u/101696945?v=4',
+        email: '',
+        name: 'Sanchit Kumar',
+        occupation: 'Building gluestack-ui',
+      }
+    ],
+  },
+  {
     title: 'React Native ARIA & gluestack-ui Security Incident Report',
     cover:
       '/images/blogs/rn-aria-incident-report.png',
