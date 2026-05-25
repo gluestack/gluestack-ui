@@ -8,6 +8,10 @@ interface CheckboxGroupAria {
   groupProps: any;
   /** Props for the checkbox group's visible label (if any). */
   labelProps: any;
+  /** Props for the checkbox group's description element (if any) - web only. */
+  descriptionProps?: any;
+  /** Props for the checkbox group's error message element (if any) - web only. */
+  errorMessageProps?: any;
 }
 
 /**
@@ -30,5 +34,7 @@ export function useCheckboxGroup(
       'aria-label': getLabel(props),
     }),
     labelProps: {},
+    descriptionProps: {},
+    errorMessageProps: {},
   };
 }

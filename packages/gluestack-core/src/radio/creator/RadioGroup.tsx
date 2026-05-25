@@ -36,6 +36,12 @@ export const RadioGroup = (StyledRadioGroup: any) =>
           ref={ref}
         >
           {children}
+          {radioGroupState.descriptionProps && (
+            <div {...radioGroupState.descriptionProps} style={{ display: 'none' }} />
+          )}
+          {radioGroupState.errorMessageProps && (
+            <div {...radioGroupState.errorMessageProps} style={{ display: 'none' }} />
+          )}
         </StyledRadioGroup>
       </RadioGroupProvider>
     );

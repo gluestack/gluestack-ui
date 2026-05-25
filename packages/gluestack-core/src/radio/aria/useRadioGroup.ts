@@ -11,6 +11,10 @@ export interface RadioGroupAria {
   radioGroupProps: any;
   /** Props for the radio group's visible label (if any). */
   labelProps: any;
+  /** Props for the radio group's description element (if any) - web only. */
+  descriptionProps?: any;
+  /** Props for the radio group's error message element (if any) - web only. */
+  errorMessageProps?: any;
 }
 
 /**
@@ -32,5 +36,7 @@ export function useRadioGroup(
       'aria-disabled': isDisabled,
     },
     labelProps: {},
+    descriptionProps: {},
+    errorMessageProps: {},
   };
 }

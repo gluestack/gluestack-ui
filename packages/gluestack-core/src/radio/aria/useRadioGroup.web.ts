@@ -9,6 +9,10 @@ interface RadioGroupAria {
   radioGroupProps: any;
   /** Props for the radio group's visible label (if any). */
   labelProps: any;
+  /** Props for the radio group's description element (if any). */
+  descriptionProps: any;
+  /** Props for the radio group's error message element (if any). */
+  errorMessageProps: any;
 }
 
 /**
@@ -31,6 +35,14 @@ export function useRadioGroup(
     labelProps: mergeProps(
       params.labelProps,
       mapDomPropsToRN(params.labelProps)
+    ),
+    descriptionProps: mergeProps(
+      params.descriptionProps,
+      mapDomPropsToRN(params.descriptionProps)
+    ),
+    errorMessageProps: mergeProps(
+      params.errorMessageProps,
+      mapDomPropsToRN(params.errorMessageProps)
     ),
   };
 
