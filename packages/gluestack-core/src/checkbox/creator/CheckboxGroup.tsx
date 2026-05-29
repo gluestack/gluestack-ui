@@ -1,4 +1,5 @@
 import React, { createContext, forwardRef } from 'react';
+import { Platform, View } from 'react-native';
 import { useCheckboxGroup } from '../aria';
 import { useCheckboxGroupState } from '@react-stately/checkbox';
 import { useFormControlContext } from '../../form-control/creator';
@@ -28,11 +29,11 @@ const CheckboxGroup = (StyledCheckboxGroup: any) =>
       >
         <StyledCheckboxGroup {...checkboxGroupState.groupProps} {...props} ref={ref}>
           {children}
-          {checkboxGroupState.descriptionProps && (
-            <div {...checkboxGroupState.descriptionProps} style={{ display: 'none' }} />
+          {Platform.OS === 'web' && checkboxGroupState.descriptionProps && (
+            <View {...checkboxGroupState.descriptionProps} style={{ display: 'none' }} />
           )}
-          {checkboxGroupState.errorMessageProps && (
-            <div {...checkboxGroupState.errorMessageProps} style={{ display: 'none' }} />
+          {Platform.OS === 'web' && checkboxGroupState.errorMessageProps && (
+            <View {...checkboxGroupState.errorMessageProps} style={{ display: 'none' }} />
           )}
         </StyledCheckboxGroup>
       </CheckboxGroupContext.Provider>
