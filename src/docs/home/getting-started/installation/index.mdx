@@ -119,17 +119,17 @@ npm i @gluestack-ui/core @gluestack-ui/utils react-native-svg @gluestack/ui-next
 
 > **For React Native CLI:** Make sure to install `react-dom` as well as it is required by some of the Gluestack UI components.
 
-### Step 4: Copy required components
+### Step 3: Copy required components
 
 - Copy all the contents of the GluestackUIProvider folder from the{" "}<GluestackUIProviderLink />{" "}into your project's `@/components/ui/gluestack-ui-provider` directory.
 
-### Step 5: Update Configuration Files
+### Step 4: Update Configuration Files
 
 You need to update the following configuration files in the root of your project. Replace the content of each file with the provided code blocks below. If a file does not exist, create it manually.
 
 > **(For Expo/React Native)** Make sure `global.css` is in the project root. If not, update its path in `metro.config.js` and `app/layout.tsx`.
 
-#### Step 5.1: Update Tailwind configuration
+#### Step 4.1: Update Tailwind configuration
 
 Update the `tailwind.config.js` file with the following code and also the `content` property with paths to the files where components are used.
 
@@ -137,7 +137,7 @@ Update the `tailwind.config.js` file with the following code and also the `conte
 %%-- File: packages/gluestack-ui/templates/tailwind.config.js --%%
 ```
 
-#### Step 5.2: Configure components path
+#### Step 4.2: Configure components path
 
 Create a `components/ui` folder inside `src` folder and add path in `tsconfig.json`
 
@@ -152,7 +152,7 @@ Create a `components/ui` folder inside `src` folder and add path in `tsconfig.js
   }
 ```
 
-#### Step 5.3: Configure GluestackUIProvider in project
+#### Step 4.3: Configure GluestackUIProvider in project
 
 Wrap your app with `GluestackUIProvider` in `App.tsx`.
 
@@ -168,7 +168,7 @@ export default function App() {
 }
 ```
 
-### Step 6: Update Next config file. (Next.js Only).
+### Step 5: Update Next config file. (Next.js Only).
 
 Make sure your `next.config` file look like this, as mentioned below.
 
@@ -176,7 +176,7 @@ Make sure your `next.config` file look like this, as mentioned below.
 %%-- File: packages/gluestack-ui/templates/nextjs/next.config.js --%%
 ```
 
-### Step 7: Server-side rendering (SSR) (Next.js Only).
+### Step 6: Server-side rendering (SSR) (Next.js Only).
 
 It's also recommended to set up your server-side rendering (SSR) correctly. To do this, you will need to use the `flush()` function exported by the `@/utils/gluestack-utils/nativewind-utils`
 
