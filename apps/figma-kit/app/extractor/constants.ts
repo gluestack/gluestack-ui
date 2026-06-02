@@ -1,0 +1,285 @@
+/**
+ * extractor/constants.ts
+ * ----------------------
+ * All shared constants used across the fiber extractor system.
+ * Covers prop filtering rules, CSS style keys, component skip lists,
+ * and text element detection sets.
+ */
+
+export const IGNORED_PROP_KEYS = new Set([
+  "children",
+  "className",
+  "style",
+  "ref",
+  "key",
+  "id",
+  "placeholder",
+  "label",
+  "title",
+  "alt",
+  "src",
+  "defaultValue",
+  "value",
+  "name",
+  "onClick",
+  "onChange",
+  "onBlur",
+  "onFocus",
+  "onSubmit",
+  "onKeyDown",
+  "onKeyUp",
+  "onMouseEnter",
+  "onMouseLeave",
+  "dangerouslySetInnerHTML",
+]);
+
+export const ALWAYS_CAPTURE_KEYS = new Set([
+  "display",
+  "position",
+  "overflow",
+  "overflowX",
+  "overflowY",
+  "visibility",
+  "width",
+  "height",
+  "minWidth",
+  "maxWidth",
+  "minHeight",
+  "maxHeight",
+  "flexGrow",
+  "flexShrink",
+  "flexBasis",
+  "alignSelf",
+  "justifySelf",
+  "zIndex",
+  "top",
+  "right",
+  "bottom",
+  "left",
+  "boxSizing",
+]);
+
+export const STYLE_KEYS: (keyof CSSStyleDeclaration)[] = [
+  "width",
+  "height",
+  "minWidth",
+  "maxWidth",
+  "minHeight",
+  "maxHeight",
+  "display",
+  "position",
+  "overflow",
+  "overflowX",
+  "overflowY",
+  "flexDirection",
+  "flexWrap",
+  "flexGrow",
+  "flexShrink",
+  "flexBasis",
+  "alignItems",
+  "alignSelf",
+  "alignContent",
+  "justifyContent",
+  "justifyItems",
+  "justifySelf",
+  "gap",
+  "rowGap",
+  "columnGap",
+  "padding",
+  "paddingTop",
+  "paddingRight",
+  "paddingBottom",
+  "paddingLeft",
+  "margin",
+  "marginTop",
+  "marginRight",
+  "marginBottom",
+  "marginLeft",
+  "fontFamily",
+  "fontSize",
+  "fontWeight",
+  "fontStyle",
+  "lineHeight",
+  "letterSpacing",
+  "textAlign",
+  "textDecoration",
+  "textTransform",
+  "whiteSpace",
+  "wordBreak",
+  "color",
+  "backgroundColor",
+  "backgroundImage",
+  "backgroundSize",
+  "backgroundPosition",
+  "opacity",
+  "border",
+  "borderTop",
+  "borderRight",
+  "borderBottom",
+  "borderLeft",
+  "borderWidth",
+  "borderTopWidth",
+  "borderRightWidth",
+  "borderBottomWidth",
+  "borderLeftWidth",
+  "borderStyle",
+  "borderColor",
+  "borderRadius",
+  "borderTopLeftRadius",
+  "borderTopRightRadius",
+  "borderBottomLeftRadius",
+  "borderBottomRightRadius",
+  "boxShadow",
+  "filter",
+  "backdropFilter",
+  "transform",
+  "transition",
+  "cursor",
+  "pointerEvents",
+  "userSelect",
+  "zIndex",
+  "top",
+  "right",
+  "bottom",
+  "left",
+  "boxSizing",
+  "objectFit",
+  "objectPosition",
+  "outline",
+  "outlineColor",
+  "outlineWidth",
+  "outlineOffset",
+];
+
+export const RN_TEXT_COMPONENT_NAMES = new Set([
+  "Text",
+  "StyledText",
+  "AnimatedText",
+  "ButtonText",
+  "BadgeText",
+  "AlertText",
+  "AvatarFallbackText",
+  "CheckboxLabel",
+  "Heading",
+  "InputField",
+  "AccordionTitleText",
+  "AccordionContentText",
+]);
+
+export const TEXT_ELEMENT_TAGS = new Set([
+  "p",
+  "span",
+  "a",
+  "strong",
+  "em",
+  "b",
+  "i",
+  "u",
+  "s",
+  "small",
+  "mark",
+  "abbr",
+  "cite",
+  "code",
+  "kbd",
+  "samp",
+  "var",
+  "time",
+  "q",
+  "blockquote",
+  "pre",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "label",
+  "legend",
+  "caption",
+  "figcaption",
+  "li",
+  "dt",
+  "dd",
+  "th",
+  "td",
+  "title",
+  "sub",
+  "sup",
+]);
+
+export const PRIMITIVE_NAMES = new Set([
+  "View",
+  "Image",
+  "TextInput",
+  "ScrollView",
+  "Animated.View",
+  "Animated.Text",
+  "Pressable",
+]);
+
+export const RN_INTERNAL_NAMES = new Set([
+  "SegmentViewNode",
+  "SegmentTrieNode",
+  "SegmentViewStateNode",
+  "ScrollAndMaybeFocusHandler",
+  "InnerScrollAndFocusHandlerOld",
+]);
+
+export const INFRA_NAMES = new Set([
+  "HistoryUpdater",
+  "ReplaySsrOnlyErrors",
+  "ToastList",
+  "Home",
+  "IconMark",
+  "MappedHeading",
+  "ChildPath",
+  "GlobeIcon",
+]);
+
+/**
+ * Components that are internal infrastructure and should never appear in
+ * extraction output. Covers three categories:
+ *
+ * 1. Framer Motion animation wrappers  — MotionComponent, AnimatePresence, etc.
+ * 2. Gluestack overlay infrastructure  — Overlay, FocusScope, BackdropPressable, etc.
+ * 3. Bare generic primitives           — "Icon", "Item", "Text" with no namespace,
+ *    which are internal render helpers not meaningful design components.
+ *
+ * Used by traverseFiber (skip during walk) AND by filterNoisyComponents
+ * (post-process filter on the result array).
+ */
+export const NOISY_COMPONENT_NAMES = new Set([
+  // Framer Motion internals
+  // "MotionComponent",
+  "AnimatePresence",
+  "PresenceChild",
+  "AnimatedComponent",
+  "LazyMotion",
+  "MotionConfig",
+
+  // Gluestack / React Native overlay infrastructure
+  "Overlay",
+  "OverlayContainer",
+  "OverlayView",
+  "BackdropPressable",
+  "FocusScope",
+  "PortalWrapper",
+  "Portal",
+  "OverlayBackdrop",
+  "ModalBackdrop", // pure dim backdrop, no design content
+  "AlertDialogBackdrop",
+
+  // Bare un-namespaced primitives that are internal render helpers
+  // (real Gluestack ones are always namespaced: ButtonText, MenuItemLabel, etc.)
+  "Item", // internal list-item wrapper in several Gluestack composites
+
+]);
+
+export const OPEN_PROP_NAMES = [
+  "isOpen",
+  "open",
+  "defaultIsOpen",
+  "defaultOpen",
+  "visible",
+];

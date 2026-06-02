@@ -17,7 +17,7 @@ import { processComponentChange, copySpecialFile, MapperConfig } from '../utils/
 
 const mapperConfig: MapperConfig = {
   sourcePath: path.resolve('src/components/ui'),
-  destPath: path.resolve('apps/figma-ui-kit-generator/components/ui'),
+  destPath: path.resolve('apps/figma-kit/components/ui'),
   // Skip docs and examples — the figma kit reads MDX directly at runtime
   ignoreFiles: ['docs', 'examples', 'dependencies.json'],
 };
@@ -41,7 +41,7 @@ export default {
       filePath.endsWith('/sidebar.json') ||
       filePath.endsWith('\\sidebar.json')
     ) {
-      const destPath = path.resolve('apps/figma-ui-kit-generator/sidebar.json');
+      const destPath = path.resolve('apps/figma-kit/sidebar.json');
       copySpecialFile(filePath, destPath);
       console.log('✅ [figma-kit] sidebar.json synced');
     }
