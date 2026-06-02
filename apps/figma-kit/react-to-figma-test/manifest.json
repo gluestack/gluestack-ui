@@ -1,0 +1,9 @@
+{
+  "name": "react-to-figma-test",
+  "id": "react-to-figma-importer",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "permissions": ["currentuser"]
+}
