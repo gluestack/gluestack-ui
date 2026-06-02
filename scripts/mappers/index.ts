@@ -1,6 +1,7 @@
 import websiteMapper from './website';
 import kitchenSinkMapper from './kitchen-sink';
 import starterKitsMapper from './starter-kits';
+import figmaKitMapper from './figma-kit';
 
 export default [
   {
@@ -14,5 +15,9 @@ export default [
   {
     name: 'starter-kits',
     mapper: starterKitsMapper,
+  },
+  {
+    name: 'figma-kit',
+    mapper: figmaKitMapper,
   },
 ];
