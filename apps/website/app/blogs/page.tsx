@@ -258,8 +258,11 @@ const Blogs = () => {
   });
   return (
     <BlogsPageLayout>
-      <Heading className="text-4xl lg:text-5xl my-6 pt-4 text-typography-950">
-        Latest posts
+      <Heading
+        size="4xl"
+        className="text-4xl lg:text-5xl my-6 pt-4 text-typography-950"
+      >
+        Blogs
       </Heading>
       <Box>
         {sortedBlogs &&

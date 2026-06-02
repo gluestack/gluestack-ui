@@ -31,10 +31,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/icon/apple-touch-icon.png',
-  },
 };
 
 const CookiePolicyLayout = ({
