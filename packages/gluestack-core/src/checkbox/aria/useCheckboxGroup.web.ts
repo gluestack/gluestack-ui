@@ -8,6 +8,10 @@ interface CheckboxGroupAria {
   groupProps: any;
   /** Props for the checkbox group's visible label (if any). */
   labelProps: any;
+  /** Props for the checkbox group's description element (if any). */
+  descriptionProps: any;
+  /** Props for the checkbox group's error message element (if any). */
+  errorMessageProps: any;
 }
 
 /**
@@ -29,6 +33,14 @@ export function useCheckboxGroup(
     groupProps: {
       ...params.groupProps,
       ...mapDomPropsToRN(params.groupProps),
+    },
+    descriptionProps: {
+      ...params.descriptionProps,
+      ...mapDomPropsToRN(params.descriptionProps),
+    },
+    errorMessageProps: {
+      ...params.errorMessageProps,
+      ...mapDomPropsToRN(params.errorMessageProps),
     },
   };
 }

@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { Platform, View } from 'react-native';
 import { useRadioGroup } from '../aria';
 import { useRadioGroupState } from '@react-stately/radio';
 import { RadioGroupProvider } from './RadioGroupContext';
@@ -36,6 +37,12 @@ export const RadioGroup = (StyledRadioGroup: any) =>
           ref={ref}
         >
           {children}
+          {Platform.OS === 'web' && radioGroupState.descriptionProps && (
+            <View {...radioGroupState.descriptionProps} style={{ display: 'none' }} />
+          )}
+          {Platform.OS === 'web' && radioGroupState.errorMessageProps && (
+            <View {...radioGroupState.errorMessageProps} style={{ display: 'none' }} />
+          )}
         </StyledRadioGroup>
       </RadioGroupProvider>
     );

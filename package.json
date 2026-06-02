@@ -1,12 +1,15 @@
 {
   "private": true,
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.96.0",
     "@clack/prompts": "^0.11.0",
     "chokidar": "^4.0.3",
+    "openai": "^6.37.0",
     "solito": "^4.4.1",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "zod": "^4.4.3"
   },
   "scripts": {
     "dev": "tsx --watch scripts/dev.ts",
@@ -35,7 +38,7 @@
     "unlink:apps": "yarn unlink:apps-website && yarn unlink:apps-kitchen-sink",
     "unlink:apps-website": "cd apps/website && yalc remove @gluestack-ui/utils && yalc remove @gluestack-ui/core && rm -rf node_modules/@gluestack-ui && rm -rf .yalc",
     "unlink:apps-kitchen-sink": "cd apps/kitchen-sink && yalc remove @gluestack-ui/utils && yalc remove @gluestack-ui/core && rm -rf node_modules/@gluestack-ui && rm -rf .yalc",
-    "unlink:apps-src":"cd src && yalc remove @gluestack-ui/utils && yalc remove @gluestack-ui/core && rm -rf node_modules/@gluestack-ui && rm -rf .yalc",
+    "unlink:apps-src": "cd src && yalc remove @gluestack-ui/utils && yalc remove @gluestack-ui/core && rm -rf node_modules/@gluestack-ui && rm -rf .yalc",
     "update:starter-kit": "yarn update:starter-kit-next && yarn update:starter-kit-expo",
     "update:starter-kit-next": "yarn sync:starter-kits && cd apps/starter-kit-next && yarn && yarn add @gluestack-ui/utils@latest @gluestack-ui/core@latest",
     "update:starter-kit-expo": "yarn sync:starter-kits && cd apps/starter-kit-expo && yarn && yarn add @gluestack-ui/utils@latest @gluestack-ui/core@latest",
@@ -44,7 +47,8 @@
     "release": "changeset publish",
     "changeset:status": "changeset status",
     "changeset:empty": "changeset --empty",
-    "create:component": "tsx scripts/create.ts"
+    "create:component": "tsx scripts/create.ts",
+    "blog": "tsx scripts/blog-cli/index.ts"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
