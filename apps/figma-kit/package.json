@@ -9,18 +9,37 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@expo/html-elements": "^0.12.5",
+    "@gluestack-ui/core": "^4.0.0-alpha.0",
+    "@gluestack-ui/utils": "^4.0.0-alpha.0",
+    "@gluestack/ui-next-adapter": "^3.0.3",
+    "@legendapp/motion": "^2.5.3",
+    "dom-helpers": "^5.2.1",
+    "nativewind": "^4.2.4",
     "next": "16.2.7",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-aria": "^3.49.0",
+    "react-dom": "19.2.4",
+    "react-native-reanimated": "~4.1.0",
+    "react-native-safe-area-context": "^5.8.0",
+    "react-native-svg": "^15.15.5",
+    "react-native-web": "^0.19.13",
+    "react-native-worklets": "^0.5.2",
+    "react-stately": "^3.47.0",
+    "tailwind-variants": "^0.1.20"
   },
   "devDependencies": {
+    "@react-native/assets-registry": "^0.79.7",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-native": "^0.72.8",
+    "autoprefixer": "^10.5.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
-    "tailwindcss": "^4",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^3.4.19",
     "typescript": "^5"
   }
 }
