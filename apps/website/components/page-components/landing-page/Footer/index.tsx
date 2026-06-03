@@ -15,7 +15,7 @@ const footerItems = [
     links: [
       {
         title: 'Figma',
-        href: 'https://www.figma.com/community/file/1358053104938234615/gluestack-ui-v2-0-design-kit',
+        href: 'https://www.figma.com/community/file/1643548953069901369',
         isExternal: true,
       },
       {

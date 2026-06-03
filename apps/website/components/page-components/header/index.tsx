@@ -354,7 +354,7 @@ const Header = ({
                 <Link
                   className="rounded-full"
                   aria-label="figma link"
-                  href="https://www.figma.com/community/file/1577667149474894602"
+                  href="https://www.figma.com/community/file/1643548953069901369"
                   isExternal
                 >
                   <svg
