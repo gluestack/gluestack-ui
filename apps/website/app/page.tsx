@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { headers } from 'next/headers';
 
 export const metadata: Metadata = {
-  title: 'gluestack — React & React Native UI Component Library',
+  title: 'gluestack - React & React Native Components for Web & Mobile Apps',
   description:
     'Copy-paste universal, accessible and beautifully designed components & patterns crafted with Tailwind CSS (NativeWind) for React Native, Next.js, Expo & React.',
   openGraph: {
