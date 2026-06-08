@@ -6,6 +6,7 @@ import {
   useStyleContext,
   withStyleContext,
 } from '@gluestack-ui/utils/nativewind-utils';
+import { styled } from 'nativewind';
 import React from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 import Animated, {
@@ -22,6 +23,8 @@ const RootComponent = withStyleContext(View, SCOPE);
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedView = Animated.createAnimatedComponent(View);
 
+const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
+
 const UIAccessibleAlertDialog = createAlertDialog({
   Root: RootComponent,
   Body: ScrollView,
@@ -29,7 +32,7 @@ const UIAccessibleAlertDialog = createAlertDialog({
   CloseButton: Pressable,
   Header: View,
   Footer: View,
-  Backdrop: AnimatedPressable,
+  Backdrop: StyledAnimatedPressable,
 });
 
 const alertDialogStyle = tva({
@@ -73,7 +76,7 @@ const alertDialogFooterStyle = tva({
 const alertDialogBodyStyle = tva({ base: '' });
 
 const alertDialogBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-[#000]/50 web:cursor-default',
 });
 
 type IAlertDialogProps = React.ComponentPropsWithoutRef<
