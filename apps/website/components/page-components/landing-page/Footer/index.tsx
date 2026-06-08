@@ -87,6 +87,11 @@ const footerItems = [
         href: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
         isExternal: true,
       },
+      {
+        title: 'letsdeployit',
+        href: 'https://www.letsdeploy.it/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
+        isExternal: true,
+      },
       // {
       //   title: 'GeekLego',
       //   href: 'https://geeklego.io/?utm_source=gluestack.io&utm_medium=footer&utm_campaign=brand-awareness',
