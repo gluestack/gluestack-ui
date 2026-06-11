@@ -56,8 +56,7 @@ function ActionsheetContent(
       const [contentSheetHeightState, setContentSheetHeightState] =
         React.useState(0);
 
-      const [animatedViewSheetHeight, setAnimatedViewSheetHeight] =
-        React.useState(0);
+      const [animatedViewSheetHeight, setAnimatedViewSheetHeight] = React.useState(windowHeight);
 
       const animationDefaultConfig = {
         type: 'timing',
