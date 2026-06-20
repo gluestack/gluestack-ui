@@ -52,7 +52,7 @@ export function createAccordion<
   Accordion.Trigger.displayName = 'Accordion.Trigger';
   Accordion.Content.displayName = 'Accordion.Content';
   Accordion.Icon.displayName = 'Accordion.Icon';
-  Accordion.TitleText.displayName = 'Accordion.TtitleText';
+  Accordion.TitleText.displayName = 'Accordion.TitleText';
 
   return Accordion as IAccordionComponentType<
     AccordionProps,
