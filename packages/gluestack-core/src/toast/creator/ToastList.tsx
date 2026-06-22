@@ -81,19 +81,19 @@ export const ToastList = () => {
           return (
             <View
               key={position}
+              pointerEvents="box-none"
               style={{
                 justifyContent: 'center',
                 margin: 'auto',
                 //@ts-expect-error it is properly defined above per-platform
                 position: toastPositionStyle,
-                pointerEvents: 'box-none',
                 ...POSITIONS[position],
               }}
             >
               {toastInfo[position].map((toast: IToast) => {
                 return (
                   <SafeAreaProvider key={toast.id} initialMetrics={initialWindowMetrics}>
-                    <SafeAreaView style={{ pointerEvents: 'box-none' }}>
+                    <SafeAreaView pointerEvents="box-none">
                       <OverlayAnimatePresence
                         visible={visibleToasts[toast.id]}
                         AnimatePresence={AnimatePresence}
@@ -122,9 +122,11 @@ export const ToastList = () => {
                           }}
                           key={toast.id}
                           {...toast.config?.containerStyle}
-                          style={{ pointerEvents: 'box-none' }}
+                          pointerEvents="box-none"
+                          style={{}}
                         >
                           <View
+                            pointerEvents="box-none"
                             style={{
                               bottom:
                                 [
