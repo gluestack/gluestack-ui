@@ -24,7 +24,7 @@ export const TryItOutNow = () => {
         </Box>
         <a
           className="contents"
-          href="https://www.figma.com/community/file/1577667149474894602"
+          href="https://www.figma.com/community/file/1643548953069901369"
           target="__blank"
         >
           <Button className="gap-2 sm:mt-0 mt-6">

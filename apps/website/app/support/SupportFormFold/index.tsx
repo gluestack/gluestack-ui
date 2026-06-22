@@ -60,7 +60,10 @@ const SupportFormFold = () => {
       <Box className="items-center lg:flex-row">
         {/* Left Content */}
         <VStack className="justify-center mb-16 sm:mx-auto lg:w-[60%] lg:pr-2 lg:mb-0 max-w-[1000px]">
-          <Heading className="font-bold leading-[48px] max-w-[750px] my-0 text-4xl md:text-6xl md:leading-[72px] lg:mx-0 text-typography-900">
+          <Heading
+            size="4xl"
+            className="font-bold leading-[48px] max-w-[750px] my-0 text-4xl md:text-6xl md:leading-[72px] lg:mx-0 text-typography-900"
+          >
             How Can We Help?
           </Heading>
           <Text className="text-typography-700 leading-8 mt-2 text-2xl max-w-[750px]">

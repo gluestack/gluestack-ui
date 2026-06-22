@@ -42,7 +42,32 @@ export default async function RootLayout({
           }}
         />
 
+        {/* Favicon — single source, prevents duplicate link tags */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/icon/apple-touch-icon.png" />
+
         <CanonicalLink />
+
+        {/* JSON-LD Organization structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'gluestack',
+              url: 'https://gluestack.io',
+              logo: 'https://gluestack.io/images/og-image.png',
+              sameAs: [
+                'https://github.com/gluestack/gluestack-ui',
+                'https://x.com/gluestack',
+                'https://discord.gg/WK3zEwmQ4m',
+                'https://linkedin.com/company/gluestack',
+                'https://bsky.app/profile/gluestack.bsky.social',
+              ],
+            }),
+          }}
+        />
 
         {/* Google Tag Manager - moved to async script */}
         <script

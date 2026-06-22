@@ -19,6 +19,9 @@ import { useColorMode } from '@/app/provider';
 import { LayoutContext } from '@/components/custom/layout/LayoutContext';
 import AppLighterLogo from '@/public/icon/logo/applighter/logo.png';
 import GluestackMarketLogo from '@/public/icon/logo/gluestack-market/logo.png';
+// TODO: replace placeholder with the real LetsDeployIt logo once provided:
+// import LetsDeployItLogo from '@/public/icon/logo/letsdeployit/logo.png';
+import LetsDeployItLogo from '@/public/icon/logo/letsdeployit/logo.png';
 import StarterKitLogo from '@/public/icon/logo/gluestack/logo-dark.svg';
 import StarterKitLogoDark from '@/public/icon/logo/gluestack/logo-light.svg';
 import RapidNativelogo from '@/public/icon/logo/rapidnative/logo.png';
@@ -84,6 +87,19 @@ const Header = ({
       },
       title: 'AppLighter',
       description: 'Premium React Native & Expo Templates',
+      badge: {
+        text: 'Partner',
+        action: 'info',
+      },
+    },
+    {
+      href: 'https://www.letsdeploy.it/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
+      logo: {
+        light: LetsDeployItLogo,
+        dark: LetsDeployItLogo,
+      },
+      title: 'letsdeployit',
+      description: 'Deploy native apps to both app stores with AI',
       badge: {
         text: 'Partner',
         action: 'info',
@@ -354,7 +370,7 @@ const Header = ({
                 <Link
                   className="rounded-full"
                   aria-label="figma link"
-                  href="https://www.figma.com/community/file/1577667149474894602"
+                  href="https://www.figma.com/community/file/1643548953069901369"
                   isExternal
                 >
                   <svg

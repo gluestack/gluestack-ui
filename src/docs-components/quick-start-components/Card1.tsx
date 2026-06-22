@@ -45,6 +45,12 @@ function Card1() {
         url: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
         description: 'React Native Templates',
       },
+      {
+        name: 'letsdeployit',
+        logo: '/icon/logo/letsdeployit/logo.png',
+        url: 'https://www.letsdeploy.it/?utm_source=gluestack.io&utm_medium=quick_start&utm_campaign=brand-awareness',
+        description: 'Deploy native apps with AI',
+      },
     ],
   ];
 
@@ -197,7 +203,7 @@ function Card1() {
                         key={app.name}
                         href={app.url}
                         isExternal
-                        className="rounded-lg bg-secondary-0 flex-1 flex flex-row items-center gap-3 px-3 py-3 hover:bg-background-100 transition-colors"
+                        className="rounded-lg bg-secondary-0 flex-1 flex flex-col items-center gap-3 px-3 py-3 hover:bg-background-100 transition-colors"
                       >
                         <Box className="h-8 w-8 relative flex-shrink-0">
                           <img
@@ -206,11 +212,11 @@ function Card1() {
                             className="object-contain absolute inset-0 w-full h-full"
                           />
                         </Box>
-                        <VStack className="gap-0">
-                          <Text className="text-sm font-bold text-typography-900">
+                        <VStack className="gap-0 items-center">
+                          <Text className="text-sm font-bold text-typography-900 text-center">
                             {app.name}
                           </Text>
-                          <Text className="text-xs text-typography-500">
+                          <Text className="text-xs text-typography-500 text-center">
                             {app.description}
                           </Text>
                         </VStack>

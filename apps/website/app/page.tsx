@@ -3,21 +3,19 @@ import { Metadata } from 'next';
 import { headers } from 'next/headers';
 
 export const metadata: Metadata = {
-  title:
-    'gluestack: React & React Native UI components library for Web & Mobile App',
+  title: 'gluestack - React & React Native Components for Web & Mobile Apps',
   description:
-    'A powerful React & React Native component library with customizable Tailwind UI components & patterns. Works seamlessly with shadcn React Native for web & mobile apps!',
+    'Copy-paste universal, accessible and beautifully designed components & patterns crafted with Tailwind CSS (NativeWind) for React Native, Next.js, Expo & React.',
   openGraph: {
-    title:
-      'gluestack: React & React Native UI components library for Web & Mobile App',
+    title: 'gluestack — React & React Native UI Component Library',
     description:
-      'A powerful React & React Native component library with customizable Tailwind UI components & patterns. Works seamlessly with shadcn React Native for web & mobile apps!',
+      'Copy-paste universal, accessible and beautifully designed components & patterns crafted with Tailwind CSS (NativeWind) for React Native, Next.js, Expo & React.',
     siteName: 'gluestack',
     url: 'https://gluestack.io/',
     images: [
       {
         url: 'https://gluestack.io/images/og-image.png',
-        alt: 'gluestack: React & React Native Components & Patterns',
+        alt: 'gluestack — React & React Native Components & Patterns',
       },
     ],
     type: 'website',
@@ -25,19 +23,15 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     site: '@gluestack',
-    title: 'gluestack: React & React Native Components & Patterns',
+    title: 'gluestack — React & React Native UI Component Library',
     description:
       'Copy-paste universal, accessible and beautifully designed components & patterns crafted with Tailwind CSS (NativeWind) for React Native, Next.js, Expo & React.',
     images: [
       {
         url: 'https://gluestack.io/images/og-image.png',
-        alt: 'Copy-paste universal, accessible and beautifully designed components & patterns crafted with Tailwind CSS (NativeWind) for React Native, Next.js, Expo & React.',
+        alt: 'gluestack — React & React Native Components & Patterns',
       },
     ],
-  },
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/icon/apple-touch-icon.png',
   },
 };
 

@@ -64,6 +64,9 @@ const Overlay = React.forwardRef<
     }
 
     if (useRNModal || (useRNModalOnAndroid && Platform.OS === 'android')) {
+      if (!isOpen && exited) {
+        return null;
+      }
       return (
         <ExitAnimationContext.Provider value={{ exited, setExited }}>
           <Modal
