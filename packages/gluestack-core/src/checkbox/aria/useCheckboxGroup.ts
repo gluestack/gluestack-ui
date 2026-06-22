@@ -30,7 +30,7 @@ export function useCheckboxGroup(
 
   return {
     groupProps: mergeProps(domProps, {
-      ' aria-disabled': isDisabled,
+      'aria-disabled': isDisabled,
       'aria-label': getLabel(props),
     }),
     labelProps: {},
