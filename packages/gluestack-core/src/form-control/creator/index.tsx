@@ -5,7 +5,7 @@ import FormControlErrorText from './FormControlErrorText';
 import FormControlErrorIcon from './FormControlErrorIcon';
 
 import FormControlHelper from './FormControlHelper';
-import FormControlHelperText from './FormControlHelper';
+import FormControlHelperText from './FormControlHelperText';
 
 import FormControlLabel from './FormControlLabel';
 import FormControlLabelText from './FormControlLabelText';
