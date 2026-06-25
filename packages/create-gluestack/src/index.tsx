@@ -11,8 +11,6 @@ export async function main(args: string[]) {
 
   const supportedFrameworkArgs = [
     '--starter-kit-expo',
-    '--starter-kit-next',
-    '--starter-kit-monorepo',
     '--starter-kit-expo-uniwind',
   ];
 
@@ -65,12 +63,6 @@ export async function main(args: string[]) {
   } else if (selectedFramework === 'starter-kit-expo-uniwind') {
     selectedFramework = 'expo';
     selectedStyling = 'uniwind';
-  } else if (selectedFramework === 'starter-kit-next') {
-    selectedFramework = 'next';
-    selectedStyling = selectedStyling || 'nativewind';
-  } else if (selectedFramework === 'starter-kit-monorepo') {
-    selectedFramework = 'universal';
-    selectedStyling = selectedStyling || 'nativewind';
   }
 
   // Step 1: Framework selection (if not provided via args)
@@ -163,10 +155,6 @@ export async function main(args: string[]) {
   let message = '';
   if (selectedFramework === 'expo') {
     message = `an Expo app with ${selectedStyling === 'uniwind' ? 'UniWind (Tailwind v4)' : 'NativeWind v5 (Tailwind v4)'}`;
-  } else if (selectedFramework === 'next') {
-    message = 'a Next.js app with NativeWind v4 (Tailwind v3)';
-  } else if (selectedFramework === 'universal') {
-    message = 'a Universal (monorepo) app with NativeWind v4 (Tailwind v3)';
   }
   console.log(
     `⏳ Creating ${message}. Hang tight, this may take a while...\n`
@@ -174,9 +162,7 @@ export async function main(args: string[]) {
 
   try {
     await cloneProject(projName, templateName);
-    if (selectedFramework !== 'universal') {
-      await installDependencies(projName, selectedPackageManager);
-    }
+    await installDependencies(projName, selectedPackageManager);
     await gitInit(projName);
     console.log(
       chalk.green(
