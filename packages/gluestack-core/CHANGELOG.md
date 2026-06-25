@@ -1,5 +1,13 @@
 # @gluestack-ui/core
 
+## 5.0.15
+
+### Patch Changes
+
+- ba32fb0: Stable v5 release
+- Updated dependencies [ba32fb0]
+  - @gluestack-ui/utils@5.0.6
+
 ## 3.0.12
 
 ### Patch Changes

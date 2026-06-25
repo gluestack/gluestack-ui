@@ -1,5 +1,11 @@
 # create-gluecode
 
+## 5.0.3
+
+### Patch Changes
+
+- ba32fb0: Stable v5 release
+
 ## 3.0.2
 
 ### Patch Changes

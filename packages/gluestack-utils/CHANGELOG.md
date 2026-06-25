@@ -1,5 +1,11 @@
 # @gluestack-ui/utils
 
+## 5.0.6
+
+### Patch Changes
+
+- ba32fb0: Stable v5 release
+
 ## 3.0.13
 
 ### Patch Changes

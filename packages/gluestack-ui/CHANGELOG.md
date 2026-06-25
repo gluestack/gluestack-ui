@@ -1,5 +1,11 @@
 ## 0.4.9-alpha.0 (2023-07-21)
 
+## 5.0.3
+
+### Patch Changes
+
+- ba32fb0: Stable v5 release
+
 ## 3.0.11
 
 ### Patch Changes
