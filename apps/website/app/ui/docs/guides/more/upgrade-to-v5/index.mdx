@@ -1,4 +1,4 @@
-import { CodeBlock } from "@/components/custom/markdown/code-block"; 
+import { CodeBlock } from "@/components/custom/markdown/code-block";
 
 import {
   Table,
@@ -22,7 +22,7 @@ Both engines eliminate `tailwind.config.js` in favor of defining theme tokens di
 
 ## Automated Upgrade (Recommended)
 
-<CodeBlock code="npx gluestack-ui@alpha upgrade" language="bash" />
+<CodeBlock code="npx gluestack-ui@latest upgrade" language="bash" />
 
 The CLI auto-detects your current version and asks which engine to upgrade to:
 
@@ -58,7 +58,7 @@ The CLI auto-detects your current version and asks which engine to upgrade to:
     <TableRow>
       <TableCell>NativeWind version</TableCell>
       <TableCell><InlineCode>nativewind@^4.1.23</InlineCode></TableCell>
-      <TableCell><InlineCode>nativewind@^5.0.0-preview.2</InlineCode></TableCell>
+      <TableCell><InlineCode>nativewind@^5.0.0-preview.4</InlineCode></TableCell>
     </TableRow>
     <TableRow>
       <TableCell>New package</TableCell>
@@ -95,12 +95,12 @@ The CLI auto-detects your current version and asks which engine to upgrade to:
 
 ## Automated CLI Upgrade
 
-<CodeBlock code="npx gluestack-ui@alpha upgrade" language="bash" />
+<CodeBlock code="npx gluestack-ui@latest upgrade" language="bash" />
 
 Select **NativeWind v5 (Tailwind CSS v4)**. The CLI will:
 
 1. Pin `lightningcss@1.30.1` in `package.json` overrides/resolutions
-2. Replace `nativewind@^4.x` with `nativewind@^5.0.0-preview.2`, add `react-native-css`
+2. Replace `nativewind@^4.x` with `nativewind@^5.0.0-preview.4`, add `react-native-css`
 3. Upgrade `tailwindcss` to v4, add `@tailwindcss/postcss`
 4. Rewrite `global.css` with Tailwind v4 imports and theme tokens
 5. Create `postcss.config.js`
@@ -110,7 +110,7 @@ Select **NativeWind v5 (Tailwind CSS v4)**. The CLI will:
 
 > **After upgrading:** Commit your changes, then re-add components to get NativeWind v5 versions:
 > ```bash
-> npx gluestack-ui@alpha add button accordion modal # all components you use
+> npx gluestack-ui@latest add button accordion modal # all components you use
 > ```
 
 ## Manual Migration to NativeWind v5
@@ -130,11 +130,11 @@ Add to `package.json` **before** installing other packages:
 
 <Tabs>
 <TabItem label="npm">
-<CodeBlock code={`npm install nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0
+<CodeBlock code={`npm install nativewind@^5.0.0-preview.4 react-native-css@^3.0.4 @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6
 npm install --save-dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0`} language="bash" />
 </TabItem>
 <TabItem label="yarn">
-<CodeBlock code={`yarn add nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0
+<CodeBlock code={`yarn add nativewind@^5.0.0-preview.4 react-native-css@^3.0.4 @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6
 yarn add --dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0`} language="bash" />
 </TabItem>
 </Tabs>
@@ -291,7 +291,7 @@ Tailwind v4 is CSS-first — `tailwind.config.js` is no longer needed. Before de
 ### Step 8: Re-add components
 
 ```bash
-npx gluestack-ui@alpha add button accordion modal # all components you use
+npx gluestack-ui@latest add button accordion modal # all components you use
 ```
 
 When prompted to overwrite, select **Yes** to get NativeWind v5 versions.
@@ -350,7 +350,7 @@ UniWind is an Expo-only Tailwind v4 styling engine. It processes styles natively
 
 ## Automated CLI Upgrade
 
-<CodeBlock code="npx gluestack-ui@alpha upgrade" language="bash" />
+<CodeBlock code="npx gluestack-ui@latest upgrade" language="bash" />
 
 Select **UniWind (Tailwind CSS v4, Expo-only)**. The CLI will:
 
@@ -363,7 +363,7 @@ Select **UniWind (Tailwind CSS v4, Expo-only)**. The CLI will:
 
 > **After upgrading:** Commit your changes, then re-add components:
 > ```bash
-> npx gluestack-ui@alpha add button accordion modal # all components you use
+> npx gluestack-ui@latest add button accordion modal # all components you use
 > ```
 
 ## Manual Migration to UniWind
@@ -372,12 +372,12 @@ Select **UniWind (Tailwind CSS v4, Expo-only)**. The CLI will:
 
 <Tabs>
 <TabItem label="npm">
-<CodeBlock code={`npm install uniwind@^1.3.0 @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0
+<CodeBlock code={`npm install uniwind@^1.3.0 @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6
 npm install --save-dev tailwindcss@^4.1.18
 npm uninstall nativewind`} language="bash" />
 </TabItem>
 <TabItem label="yarn">
-<CodeBlock code={`yarn add uniwind@^1.3.0 @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0
+<CodeBlock code={`yarn add uniwind@^1.3.0 @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6
 yarn add --dev tailwindcss@^4.1.18
 yarn remove nativewind`} language="bash" />
 </TabItem>
@@ -546,7 +546,7 @@ Tailwind v4 is CSS-first — `tailwind.config.js` is not used by UniWind. Migrat
 ### Step 7: Re-add components
 
 ```bash
-npx gluestack-ui@alpha add button accordion modal # all components you use
+npx gluestack-ui@latest add button accordion modal # all components you use
 ```
 
 When prompted to overwrite, select **Yes** to get UniWind versions.
