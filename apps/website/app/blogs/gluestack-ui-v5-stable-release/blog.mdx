@@ -1,0 +1,117 @@
+import { Box } from '@/components/ui/box';
+import { HStack } from '@/components/ui/hstack';
+import { Text } from '@/components/ui/text';
+import { Image } from '@/components/ui/image';
+import { Heading } from '@/components/ui/heading';
+
+<Text className="text-sm pt-2">June 25, 2026</Text>
+
+# Announcing gluestack-ui v5: Production-Ready Stable Release
+
+<HStack className="gap-3 items-center">
+  <Box className="h-8 w-8 rounded-full overflow-hidden">
+    <Image
+      source={{ uri: 'https://avatars.githubusercontent.com/u/101696945?v=4' }}
+      alt="Sanchit Kumar"
+      className="h-8 w-8"
+    />
+  </Box>
+  <Box>
+    <Text className="text-sm font-bold text-foreground">Sanchit Kumar</Text>
+    <Text className="text-sm">Building gluestack-ui</Text>
+  </Box>
+</HStack>
+
+<br />
+
+<Image
+  source={require('@/public/images/og-image.png')}
+  alt="gluestack-ui v5 Stable Release"
+  className="h-[450px] w-full"
+  resizeMode="contain"
+/>
+
+<Text className="text-sm font-medium font-mono leading-normal">
+  We are thrilled to announce the **stable release of gluestack-ui v5**!
+  Following a highly successful alpha/preview phase, v5 is now production-ready,
+  featuring full support for Tailwind CSS v4, NativeWind v5, deep Expo
+  integration, and a highly streamlined developer experience.
+</Text>
+
+## 🚀 Native-First & Stable Performance
+
+With the stable release of v5, we have made a major strategic shift to focus entirely on **native mobile performance**.
+
+By leaning heavily into the latest capabilities of **NativeWind v5** (leveraging Tailwind CSS v4) and **Expo Router**, v5 brings lightning-fast execution and a premium developer experience to native platforms.
+
+As part of this native-first focus, we have simplified our library footprint:
+
+- **Next.js Support Dropped**: To focus 100% on building the absolute best UI tools for React Native and Expo, we have deprecated Next.js and universal monorepo adapters.
+- **Expo Router First**: Deep, stable integrations with Expo Router out-of-the-box.
+
+---
+
+## 🎨 Tailwind CSS v4 & CSS-First Theming
+
+No more complex configuration files. Tailwind CSS v4 introduces a modern, CSS-first setup that eliminates `tailwind.config.js` entirely.
+
+Your design tokens now live directly in your CSS files using native `@layer theme` definitions. This provides a single, readable source of truth for colors, typography, border-radii, and dark mode overrides:
+
+```css
+@layer theme {
+  :root {
+    --primary: 23 23 23;
+    --background: 255 255 255;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: 255 245 245;
+    }
+  }
+}
+
+@theme inline {
+  --color-primary: rgb(var(--primary));
+}
+```
+
+---
+
+## 🛠️ Streamlined CLI & Redesigned Installation
+
+We've completely redesigned our CLI initialization process to be faster, cleaner, and strictly non-interactive when necessary.
+
+### Starting a New Project
+
+You can easily spin up a new Expo and gluestack-ui v5 project with:
+
+```bash
+npm create gluestack@latest
+```
+
+### Upgrading from v4
+
+If you are upgrading an existing v4 codebase, run our dedicated upgrade utility:
+
+```bash
+npx gluestack-ui upgrade
+```
+
+The upgrade utility will guide you to update package dependencies, migrate your styling to CSS-first variables, set up PostCSS, and configure your metro builds.
+
+---
+
+## ⚠️ Key Upgrading Notes
+
+- **CSS Variables**: Design tokens must live in your `global.css` (instead of `tailwind.config.js`).
+- **lightningcss**: Ensure `lightningcss` is pinned to `1.30.1` in your resolutions/overrides to prevent build-time Metro compilation errors.
+- **Component Re-adding**: Once upgraded, re-add your components via CLI to fetch their stable v5 implementations:
+  ```bash
+  npx gluestack-ui add button accordion modal
+  ```
+
+---
+
+## 🎉 Get Started Today!
+
+We want to thank our amazing community for all the feedback during the alpha and preview stages. Check out the updated [Quick Start Guide](/ui/docs/home/overview/quick-start) and start building modern, responsive, and accessible native apps with **gluestack-ui v5** today!

@@ -17,6 +17,24 @@ export interface BlogMeta {
 
 export const blogs: BlogMeta[] = [
   {
+    title: 'Announcing gluestack-ui v5: Production-Ready Stable Release',
+    cover: '/images/og-image.png',
+    slug: 'gluestack-ui-v5-stable-release',
+    published_at: {
+      start: '2026-06-25T00:00:00Z',
+    },
+    reading_time: 6,
+    author: [
+      {
+        id: 11,
+        avatar_url: 'https://avatars.githubusercontent.com/u/101696945?v=4',
+        email: '',
+        name: 'Sanchit Kumar',
+        occupation: 'Building gluestack-ui',
+      },
+    ],
+  },
+  {
     title:
       'Introducing gluestack-ui v5 Alpha: Tailwind CSS v4, NativeWind v5, and UniWind',
     cover: '/images/og-image.png',
