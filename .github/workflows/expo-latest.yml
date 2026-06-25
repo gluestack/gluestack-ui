@@ -137,17 +137,16 @@ jobs:
           npm run web & sleep 30
       - name: Check if button is rendered
         run: |
-          echo "First curl attempt:"
-          curl -s http://localhost:8081 | tee curl_output_1.log
-          echo "Waiting for 30 seconds..."
-          sleep 30
-          echo "Second curl attempt:"
-          curl -s http://localhost:8081 | tee curl_output_2.log
-          echo "Searching for 'Hello World!' in the output:"
-          if grep -q "Hello World!" curl_output_1.log || grep -q "Hello World!" curl_output_2.log; then
-            echo "Button found on the page"
+          echo "Waiting for dev server..."
+          sleep 15
+          echo "Fetching web bundle from Metro..."
+          curl -s "http://localhost:8081/index.bundle?platform=web&dev=true" > bundle.js
+          echo "Searching for 'Hello World!' in the compiled bundle:"
+          if grep -q "Hello World!" bundle.js; then
+            echo "Button found and bundle compiled successfully!"
             exit 0
           else
-            echo "Button not found on the page"
+            echo "Button not found or compilation failed. Bundle output:"
+            cat bundle.js | head -n 100
             exit 1
           fi
