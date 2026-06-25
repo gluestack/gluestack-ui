@@ -97,7 +97,7 @@ jobs:
           node-version: '22'
       - name: Create Expo project
         run: |
-          npx create-expo-app@latest test-app --template default@sdk-56 --yes
+          npx create-expo-app@latest test-app --template blank-typescript --yes
           cd test-app
       - name: Install dependencies
         working-directory: test-app
@@ -111,18 +111,22 @@ jobs:
       - name: Add Button component
         working-directory: test-app
         run: |
-          mkdir -p app/\(tabs\)
-          cat <<EOT > app/\(tabs\)/index.tsx
+          cat <<EOT > App.tsx
           import React from 'react';
           import { View } from 'react-native';
           import { Button, ButtonText } from '@/components/ui/button';
+          import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+          import "./global.css";
+
           export default function App() {
             return (
-              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Button size="md" variant="solid" action="primary">
-                  <ButtonText>Hello World!</ButtonText>
-                </Button>
-              </View>
+              <GluestackUIProvider>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                  <Button size="md" variant="solid" action="primary">
+                    <ButtonText>Hello World!</ButtonText>
+                  </Button>
+                </View>
+              </GluestackUIProvider>
             );
           }
           EOT
