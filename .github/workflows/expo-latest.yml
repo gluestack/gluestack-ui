@@ -102,7 +102,7 @@ jobs:
       - name: Install dependencies
         working-directory: test-app
         run: |
-          npm install react-native-web react-dom @expo/metro-runtime
+          npm install react-native-web react-dom @expo/metro-runtime --legacy-peer-deps
       - name: Install gluestack-ui
         working-directory: test-app
         run: |
