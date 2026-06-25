@@ -90,14 +90,14 @@ jobs:
     runs-on: macos-latest
     name: Expo latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
       - name: Create Expo project
         run: |
-          npx create-expo-app@latest test-app
+          npx create-expo-app@latest test-app --yes --no-install
           cd test-app
       - name: Install dependencies
         working-directory: test-app
@@ -106,8 +106,8 @@ jobs:
       - name: Install gluestack-ui
         working-directory: test-app
         run: |
-          npx gluestack-ui init --template-only --projectType expo
-          npx gluestack-ui add --all
+          npx gluestack-ui init --template-only --projectType expo --nativewind-v5 -y
+          npx gluestack-ui add --all -y
           npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css
       - name: Add Button component
         working-directory: test-app
