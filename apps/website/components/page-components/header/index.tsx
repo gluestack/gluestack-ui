@@ -71,9 +71,6 @@ const Header = ({
                 src={colorMode === 'dark' ? GluestackLogoDark : GluestackLogo}
                 priority
               />
-              <span className="text-xs font-semibold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/50">
-                preview
-              </span>
             </NextLink>
             {/* Desktop: Show Docs and Demo buttons */}
             <div className="hidden md:flex items-center xl:ml-10">
