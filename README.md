@@ -1,6 +1,6 @@
-gluestack v3 is here!
-Our biggest release yet is live today — with a new Source-to-Destination architecture for contributors, Next.js 15 + RSC support, Expo SDK 53, TypeScript-first tooling, performance upgrades, and more.
-# gluestack-ui: React & React Native Components & Patterns
+gluestack v5 is here!
+Our biggest release yet is live today — with support for NativeWind v5 (Tailwind v4), optimized CLI performance, Expo Router first, and state-of-the-art native components.
+# gluestack-ui: React Native & Expo Components & Patterns
 
 gluestack-ui is a library of copy-pasteable components & patterns crafted with Tailwind CSS (NativeWind).
 
@@ -8,7 +8,6 @@ gluestack-ui is a library of copy-pasteable components & patterns crafted with T
 
 [![NPM downloads](https://img.shields.io/npm/dw/@gluestack-ui/utils?logo=npm&label=NPM%20downloads&cacheSeconds=3600)](https://www.npmjs.com/package/@gluestack-ui/utils) [![Commits per month](https://img.shields.io/github/commit-activity/m/gluestack/gluestack-ui?label=Commits&logo=git)](https://github.com/gluestack/gluestack-ui/commits)
 
-[![Next.js Latest](https://github.com/gluestack/gluestack-ui/actions/workflows/next-latest.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/next-latest.yml)
 [![Expo Latest](https://github.com/gluestack/gluestack-ui/actions/workflows/expo-latest.yml/badge.svg)](https://github.com/gluestack/gluestack-ui/actions/workflows/expo-latest.yml)
 
 <h3 align="center">
@@ -17,11 +16,11 @@ gluestack-ui is a library of copy-pasteable components & patterns crafted with T
   </a>
   <br>
   <br>
-</h3>
+ </h3>
 
 ## Introduction
 
-**gluestack-ui v3** offers customizable, beautifully designed components for your projects. Unlike traditional libraries, it's not a pre-packaged dependency. Choose the components you need and copy-paste them directly into your React, Next.js & React Native projects.
+**gluestack-ui v5** offers customizable, beautifully designed components for your native projects. Unlike traditional libraries, it's not a pre-packaged dependency. Choose the components you need and copy-paste them directly into your Expo and React Native projects.
 
 ## Documentation
 
@@ -29,28 +28,27 @@ You can find detailed documentation for each component, including a list of prop
 
 ## Features
 
+- **NativeWind v5 / Tailwind v4 Integration:** Tailwind CSS support for seamless styling across native platforms.
 - **Modular Architecture:** Pick and choose the components you need without unnecessary bloat.
-- **NativeWind Integration:** Tailwind CSS support for seamless styling across web and mobile.
-- **RSC Compatible:** Optimized for React Server Components to enhance performance.
-- **Universal Design:** Consistent design across web and mobile platforms.
+- **Expo Router First:** Out-of-the-box integration with the latest Expo Router.
 - **Flexible Theming:** Customize your components with ease using theming tokens and configuration.
 - **Accessibility:** Built with robust accessibility features to ensure inclusivity.
 - **Frequent updates:** We are constantly working on improving the library and adding new components. Follow us on GitHub to stay up-to-date on the latest releases and features.
 - **Community support:** Need help using the library or have a suggestion for a new feature? Join our [Discord](https://discord.com/invite/95qQ84nf6f) channel to connect with the community and get support.
 
-## Installing **gluestack-ui v3**
+## Installing **gluestack-ui v5**
 
-To get started with **gluestack-ui v3**, you must have an existing Next.js or Expo project. Then, simply run the following command:
+To get started with **gluestack-ui v5**, you must have an existing Expo or React Native project. Then, simply run the following command:
 
 ```bash
 npx gluestack-ui init
 ```
 
-For detailed installation instructions, visit the [gluestack-ui v3 installation guide](https://gluestack.io/ui/docs/home/getting-started/installation).
+For detailed installation instructions, visit the [gluestack-ui v5 installation guide](https://gluestack.io/ui/docs/home/getting-started/installation).
 
 ## Tech Stack
 
-JavaScript, React, React Native, Styled System
+TypeScript, React Native, Expo, Tailwind CSS, NativeWind
 
 ## Getting Started
 
@@ -59,9 +57,9 @@ JavaScript, React, React Native, Styled System
 - **Customize:** Tailor the components to fit your project's needs using theming tokens and configuration.
 - **Build:** Start building your app with a consistent, accessible, and high-performance UI.
 
-## Migration from gluestack-ui v1
+## Migration from gluestack-ui v3 / v4
 
-If you're migrating from gluestack-ui v1, we've got you covered with a detailed [migration guide](https://gluestack.io/ui/docs/home/overview/upgrade-to-v2) with codemod.
+If you're migrating from earlier versions, check our [migration guide](https://gluestack.io/ui/docs) to upgrade to v5.
 
 ## Created By GeekyAnts
 
@@ -75,4 +73,4 @@ We welcome contributions to the `gluestack-ui`. If you have an idea for a new co
 
 ## License
 
-Licensed under the MIT License, Copyright © 2024 GeekyAnts. See [LICENSE](https://github.com/gluestack/gluestack-ui/blob/main/LICENSE) for more information.
+Licensed under the MIT License, Copyright © 2026 GeekyAnts. See [LICENSE](https://github.com/gluestack/gluestack-ui/blob/main/LICENSE) for more information.
