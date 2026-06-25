@@ -252,6 +252,32 @@ export const headerItems: SidebarSectionProps[] = [
         ),
       },
       {
+        title: 'letsdeployit',
+        link: 'https://www.letsdeploy.it/?utm_source=gluestack.io&utm_medium=header&utm_campaign=brand-awareness',
+        description: 'Deploy native apps to both app stores with AI.',
+        logo: (
+          <Image
+            alt="letsdeployit logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/letsdeployit/logo.png')}
+          />
+        ),
+        logoDark: (
+          <Image
+            alt="letsdeployit logo"
+            className="w-5 h-5"
+            size="md"
+            source={require('@/public/icon/logo/letsdeployit/logo.png')}
+          />
+        ),
+        badge: (
+          <Badge variant='default'>
+            <BadgeText>Partner</BadgeText>
+          </Badge>
+        ),
+      },
+      {
         title: 'gluestack-ui pro',
         link: 'https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation',
         description: "The only React Native template you'll ever need.",
