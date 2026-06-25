@@ -38,7 +38,7 @@ This skill is organized into specialized sub-skills for better token efficiency:
 **Use for:** Initial project setup, installation, configuration, adding components
 
 Covers:
-- Using the official CLI (`npx gluestack-ui@alpha init -y` and `npx gluestack-ui@alpha add --all -y`)
+- Using the official CLI (`npx gluestack-ui init -y` and `npx gluestack-ui add --all -y`)
 - Project initialization for Expo, React Native CLI, and Next.js
 - Dependency management
 - Configuration files (tailwind, metro, babel, etc.)

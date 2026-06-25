@@ -39,7 +39,7 @@ Ensure these prerequisites are satisfied to use the gluestack-ui CLI:
 To initialize gluestack-ui v4 via CLI, use **only** this command (from your project root):
 
 ```bash
-npx gluestack-ui@alpha init -y
+npx gluestack-ui init -y
 ```
 
 This adds **GluestackUIProvider** and essential components (**icon**, **overlay**, **toast**). Do not use any other command or method for CLI initialization.
@@ -47,11 +47,11 @@ This adds **GluestackUIProvider** and essential components (**icon**, **overlay*
 After init, your project is ready to use gluestack-ui components. To add more components via CLI, use the **add** command or the [CLI guide](https://v4.gluestack.io/ui/docs/home/getting-started/cli). Example:
 
 ```bash
-npx gluestack-ui@alpha add box
+npx gluestack-ui add box
 ```
 or
 ```bash
-npx gluestack-ui@alpha add --all -y
+npx gluestack-ui add --all -y
 ```
 
 If you run into issues during CLI installation, use the **manual installation guide** (Manual tab on the same Installation page).
@@ -67,7 +67,7 @@ For installation without the CLI, use **only** the **Manual** tab on the v4 Inst
 **Do not:**
 
 - Use manual steps from gluestack.io (without `v4.`), or from blog posts, Stack Overflow, or other guides that reference **v1/v2/v3**.
-- Install or suggest **@gluestack/styled**, **@gluestack-ui/themed**, or any v1/v2/v3 packages. v4 does not use those; v4 uses `@gluestack-ui/core@alpha`, `@gluestack-ui/utils@alpha`, NativeWind, and the provider/components from the v4 Manual tab only.
+- Install or suggest **@gluestack/styled**, **@gluestack-ui/themed**, or any v1/v2/v3 packages. v4 does not use those; v4 uses `@gluestack-ui/core`, `@gluestack-ui/utils`, NativeWind, and the provider/components from the v4 Manual tab only.
 
 ---
 
