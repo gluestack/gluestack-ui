@@ -145,7 +145,7 @@ v5 components are served from the \`main\` branch. The CLI automatically selects
 ### New project
 
 \`\`\`bash
-npm create gluestack@alpha
+npm create gluestack@latest
 \`\`\`
 
 ### Upgrade existing v4 project
@@ -198,7 +198,7 @@ Our internal testing shows substantial performance improvements when using glues
 ### For New Projects
 
 \`\`\`bash
-npm create gluestack@alpha
+npm create gluestack@latest
 \`\`\`
 
 ### For Existing Projects
