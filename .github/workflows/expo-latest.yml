@@ -94,7 +94,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
       - name: Create Expo project
         run: |
           npx create-expo-app@latest test-app --template default@sdk-56 --yes
@@ -108,7 +108,6 @@ jobs:
         run: |
           npx gluestack-ui init --template-only --projectType expo --nativewind-v5 -y
           npx gluestack-ui add --all -y
-          npx tailwindcss -i ./global.css -o ./node_modules/.cache/nativewind/global.css
       - name: Add Button component
         working-directory: test-app
         run: |
