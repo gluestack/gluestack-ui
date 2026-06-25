@@ -16,23 +16,13 @@ const partnerAppsRows = [
       url: 'https://www.applighter.com/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
       description: 'React Native Templates',
     },
+    {
+      name: 'letsdeployit',
+      logo: '/icon/logo/letsdeployit/logo.png',
+      url: 'https://www.letsdeploy.it/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
+      description: 'Deploy native apps with AI',
+    },
   ],
-  // [
-  //   {
-  //     name: 'ScopeDesk',
-  //     logo: '/icon/logo/scopedesk/logo.svg',
-  //     url: 'https://scopedesk.com/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
-  //     description: 'AI-Powered Project Scoping',
-  //   },
-  // ],
-  // [
-  //   {
-  //     name: 'FlyDash',
-  //     logo: '/icon/logo/flydash/logo.png',
-  //     url: 'https://flydash.io/?utm_source=gluestack.io&utm_medium=partner_apps&utm_campaign=brand-awareness',
-  //     description: 'Dashboard builder',
-  //   },
-  // ],
 ];
 
 const HireTeam = () => {
@@ -86,7 +76,7 @@ const HireTeam = () => {
             {partnerAppsRows.map((row, rowIndex) => (
               <div
                 key={rowIndex}
-                className={`grid gap-3 ${row.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}
+                className={`grid gap-3 ${row.length > 2 ? 'grid-cols-3' : row.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}
               >
                 {row.map((app) => (
                   <a
@@ -94,7 +84,7 @@ const HireTeam = () => {
                     href={app.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                    className="flex flex-col items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
                   >
                     <div className="h-10 w-10 relative flex-shrink-0">
                       <Image
@@ -104,9 +94,9 @@ const HireTeam = () => {
                         className="object-contain"
                       />
                     </div>
-                    <span className="text-white text-base font-semibold">
+                    <span className="text-white text-base font-semibold text-center">
                       {app.name}
-                      <p className="text-gray-400 text-xs">
+                      <p className="text-gray-400 text-xs text-center">
                         {app.description}
                       </p>
                     </span>
