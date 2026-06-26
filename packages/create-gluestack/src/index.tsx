@@ -6,8 +6,8 @@ import chalk from 'chalk';
 import { cloneProject, gitInit, installDependencies } from './utils';
 
 export async function main(args: string[]) {
-  console.log(chalk.bold.magenta('\nWelcome to gluestack-ui v5 alpha!'));
-  console.log(chalk.yellow('Creating a new project with gluestack-ui v5 alpha.'));
+  console.log(chalk.bold.magenta('\nWelcome to gluestack-ui v5!'));
+  console.log(chalk.yellow('Creating a new project with gluestack-ui v5.'));
 
   const supportedFrameworkArgs = [
     '--starter-kit-expo',
