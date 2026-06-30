@@ -12,7 +12,7 @@ import NewsletterModal from './NewsLetterModal';
 import GluestackLogo from '@/public/svg/gluestack_logo.svg';
 import GluestackLogoDark from '@/public/svg/gluestack_logo_dark.svg';
 import { Nav } from '@expo/html-elements';
-import { Menu, Moon, SunIcon } from 'lucide-react';
+import { ChevronDownIcon, Menu, Moon, SunIcon } from 'lucide-react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -26,6 +26,9 @@ import { HStack } from '@/components/ui/hstack';
 import { Link } from '@/components/ui/link';
 import { Text } from '@/components/ui/text';
 import { Box } from '@/components/ui/box';
+import { Icon } from '@/components/ui/icon';
+import { Menu as VersionMenu, MenuItem } from '@/components/ui/menu';
+import { Pressable } from '@/components/ui/pressable';
 
 const Header = ({
   isOpenSidebar: propsIsOpenSidebar,
@@ -72,6 +75,50 @@ const Header = ({
                 priority
               />
             </NextLink>
+            {/* Version selector */}
+            <VersionMenu
+              placement="bottom"
+              offset={18}
+              trigger={({ ...triggerProps }) => {
+                return (
+                  <Pressable
+                    {...triggerProps}
+                    className="flex-row items-center pb-0.5"
+                  >
+                    <Text className="font-bold text-foreground text-sm">
+                      v5
+                    </Text>
+                    <Icon as={ChevronDownIcon} className="w-3 h-3 ml-1 text-foreground" />
+                  </Pressable>
+                );
+              }}
+            >
+              <MenuItem className="min-w-fit px-5 py-2">v5</MenuItem>
+              <MenuItem
+                className="min-w-fit px-5 py-2"
+                onPress={() => {
+                  window.open('https://v4.gluestack.io', '_blank');
+                }}
+              >
+                v4
+              </MenuItem>
+              <MenuItem
+                className="min-w-fit px-5 py-2"
+                onPress={() => {
+                  window.open('https://v3.gluestack.io', '_blank');
+                }}
+              >
+                v3
+              </MenuItem>
+              <MenuItem
+                className="min-w-fit px-5 py-2"
+                onPress={() => {
+                  window.open('https://v2.gluestack.io', '_blank');
+                }}
+              >
+                v2
+              </MenuItem>
+            </VersionMenu>
             {/* Desktop: Show Docs and Demo buttons */}
             <div className="hidden md:flex items-center xl:ml-10">
               <NextLink
