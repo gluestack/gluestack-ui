@@ -5,7 +5,7 @@ import { Check, Copy } from 'lucide-react';
 const CopySnippetButton = () => {
   const [copied, setCopied] = useState(false);
   const copyToClipboard = async () => {
-    const text = 'npx skills add gluestack/agent-skills';
+    const text = 'npx skills add gluestack/agent-skills --skill gluestack-ui-v5';
     await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => {
