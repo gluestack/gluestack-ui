@@ -73,7 +73,7 @@ const App = ({ referrer }: { referrer: string }) => {
               </NextLink>
               <div className="flex w-fit flex-row gap-3 border border-border rounded-full items-center py-3 px-6">
                 <Terminal className="text-muted-foreground" />
-                <span className="font-geist-mono">npx skills add gluestack/agent-skills</span>
+                <span className="font-geist-mono">npx skills add gluestack/agent-skills --skill gluestack-ui-v5</span>
                 <CopySnippetButton />
               </div>
             </div>
