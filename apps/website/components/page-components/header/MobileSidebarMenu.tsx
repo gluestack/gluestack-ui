@@ -64,7 +64,7 @@ export const headerItems: SidebarSectionProps[] = [
       },
       {
         title: 'Figma',
-        link: 'https://www.figma.com/community/file/1577667149474894602/gluestack-ui-v3-0-design-kit',
+        link: 'https://www.figma.com/community/file/1654085106966764966',
         logo: (
           <svg
             xmlns="http://www.w3.org/2000/svg"
