@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const SocialLinksOptions = [
   {
-    href: 'https://www.figma.com/community/file/1577667149474894602',
+    href: 'https://www.figma.com/community/file/1654085106966764966',
     title: 'Figma',
     description: 'View our design files and components in Figma.',
     icon: (
