@@ -31,9 +31,8 @@ const BadgeComponent = () => {
   };
   return isBadgeVisible ? (
     <Box
-      className={`web:fixed web:bottom-6 web:sm:left-6 self-center sm:w-auto sm:p-0 px-6 w-full sm:self-end my-0 mx-auto z-50 ${
-        shouldAnimate ? 'slide-up' : ''
-      }`}
+      className={`web:fixed web:bottom-6 web:sm:left-6 self-center sm:w-auto sm:p-0 px-6 w-full sm:self-end my-0 mx-auto z-50 ${shouldAnimate ? 'slide-up' : ''
+        }`}
     >
       <Badge className="p-4 gap-3 md:flex-row flex-col rounded-xl bg-foreground">
         <VStack className="md:items-start items-center md:self-center self-start">
@@ -71,9 +70,11 @@ const BadgeComponent = () => {
             action="secondary"
             variant="outline"
             onPress={handleDenyClick}
-            className="sm:w-auto border-background"
+            className="sm:w-auto border-background bg-transparent data-[hover=true]:bg-background hover:bg-background dark:bg-transparent dark:data-[hover=true]:bg-background dark:hover:bg-background"
           >
-            <ButtonText className="text-background">Deny</ButtonText>
+            <ButtonText className="text-background data-[hover=true]:text-foreground hover:text-foreground dark:data-[hover=true]:text-foreground dark:hover:text-foreground">
+              Deny
+            </ButtonText>
           </Button>
           <Button
             onPress={handleEulaAccept}
