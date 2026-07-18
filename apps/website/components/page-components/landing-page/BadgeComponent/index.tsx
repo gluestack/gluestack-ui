@@ -31,8 +31,9 @@ const BadgeComponent = () => {
   };
   return isBadgeVisible ? (
     <Box
-      className={`web:fixed web:bottom-6 web:sm:left-6 self-center sm:w-auto sm:p-0 px-6 w-full sm:self-end my-0 mx-auto z-50 ${shouldAnimate ? 'slide-up' : ''
-        }`}
+      className={`web:fixed web:bottom-6 web:sm:left-6 self-center sm:w-auto sm:p-0 px-6 w-full sm:self-end my-0 mx-auto z-50 ${
+        shouldAnimate ? 'slide-up' : ''
+      }`}
     >
       <Badge className="p-4 gap-3 md:flex-row flex-col rounded-xl bg-foreground">
         <VStack className="md:items-start items-center md:self-center self-start">
