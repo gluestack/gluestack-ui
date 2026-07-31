@@ -199,7 +199,7 @@ const Header = ({
                     window.open('https://v5.gluestack.io', '_blank');
                   }}
                 >
-                  v5 alpha
+                  v5
                 </MenuItem>
                 <MenuItem
                   className="min-w-fit px-5 py-2"
