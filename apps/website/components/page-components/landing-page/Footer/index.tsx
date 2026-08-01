@@ -77,6 +77,14 @@ const footerItems = [
         title: 'Support',
         href: '/support',
       },
+      {
+        title: 'Interns & CFP',
+        href: '/community'
+      },
+      {
+        title: 'Enterprise',
+        href: '/contact'
+      }
     ],
   },
   {
