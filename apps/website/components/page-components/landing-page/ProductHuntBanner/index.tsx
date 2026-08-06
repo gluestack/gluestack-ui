@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@/components/ui/box';
 import { HStack } from '@/components/ui/hstack';
+import Image from 'next/image';
 
 type ProductHuntBannerProps = {
   showPHBanner: boolean;
@@ -13,23 +14,23 @@ const ProductHuntBanner = ({
 }: ProductHuntBannerProps) => {
   if (!showPHBanner) return null;
   return (
-    <Box className="sticky top-[53px] md:top-[60px] z-[5]">
+    <Box className="sticky top-0 z-[60]">
       <div className="w-full bg-gradient-to-r from-orange-500 via-orange-600 to-red-600">
         <div className="mx-auto w-[85%] max-w-[1440px] px-2 sm:px-2">
           <div className="flex items-center justify-between gap-3 py-2 md:py-2.5">
             <a
-              href="https://www.producthunt.com/products/gluestack-ui-pro?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-gluestack&#0045;ui&#0045;pro"
+              href="https://www.producthunt.com/products/gluestack-ui-pro?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-gluestack-ui-pro-2"
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 inline-flex"
             >
-              <img
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1036836&theme=light&t=1762942861229"
-                alt="gluestack&#0032;ui&#0032;pro Product Hunt featured badge"
-                width="110"
-                className="h-6 md:h-7 w-auto"
+              <Image
+                alt="gluestack-ui pro - 50+ Premium React Native UI screens to ship apps faster | Product Hunt"
+                width="200"
+                height="50"
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1214527&theme=light&t=1786003995859"
               />
             </a>
+
             <p className="text-[13px] sm:text-sm md:text-base font-medium text-white/95 text-center">
               We're live on Product Hunt!
               <span className="hidden lg:inline">
@@ -39,7 +40,7 @@ const ProductHuntBanner = ({
             </p>
             <HStack className="gap-2">
               <a
-                href="https://www.producthunt.com/products/gluestack?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-gluestack&#0045;v3"
+                href="https://www.producthunt.com/products/gluestack-ui-pro?embed=true&utm_source=badge-featured&utm_medium=badge"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center rounded-md bg-white text-orange-600 hover:bg-white/90 active:bg-white/80 transition px-3 py-1 text-xs sm:text-sm font-semibold"
