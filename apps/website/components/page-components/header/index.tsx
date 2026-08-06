@@ -29,6 +29,7 @@ import { Box } from '@/components/ui/box';
 import { Icon } from '@/components/ui/icon';
 import { Menu as VersionMenu, MenuItem, MenuItemLabel } from '@/components/ui/menu';
 import { Pressable } from '@/components/ui/pressable';
+import ProductHuntBanner from '../landing-page/ProductHuntBanner';
 
 const Header = ({
   isOpenSidebar: propsIsOpenSidebar,
@@ -42,6 +43,7 @@ const Header = ({
   const pathname = usePathname();
   const { colorMode, setColorMode } = useColorMode();
   const [showModal, setShowModal] = useState(false);
+  const [showPHBanner, setShowPHBanner] = useState(true);
 
   // Check if current route is documentation
   const isDocsRoute = pathname?.includes('/ui/docs/');
@@ -54,7 +56,12 @@ const Header = ({
     : GluestackLogo;
 
   return (
-    <div className="h-[53px] w-full sticky top-0 z-10 flex justify-center bg-white/80 border-b border-border dark:bg-background/80 backdrop-blur-md">
+    <>
+      <ProductHuntBanner
+        showPHBanner={showPHBanner}
+        setShowPHBanner={setShowPHBanner}
+      />
+      <div className="h-[53px] w-full sticky top-0 z-10 flex justify-center bg-white/80 border-b border-border dark:bg-background/80 backdrop-blur-md">
       {/* @ts-ignore */}
       <Nav className="items-center justify-center w-full mx-auto py-6">
         <div
@@ -290,6 +297,7 @@ const Header = ({
         </SheetContent>
       </Sheet>
     </div>
+    </>
   );
 };
 
