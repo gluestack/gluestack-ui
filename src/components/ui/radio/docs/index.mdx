@@ -36,12 +36,13 @@ This is an illustration of **Radio** component.
 
 ### Run the following command:
 
-<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add radio`} language="bash" />
-
+<CodeBlock
+  code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add radio`}
+  language="bash"
+/>
 
 </TabItem>
 <TabItem label="Manual">
-
 
 ### Step 1: Install the following dependencies:
 
@@ -59,7 +60,6 @@ npm i lucide-react-native
 
 </TabItem>
 </Tabs>
-
 
 ## API Reference
 
@@ -162,6 +162,14 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
           <TableCell>bool</TableCell>
           <TableCell>false</TableCell>
           <TableCell>{`To manually set indeterminate to the radio.`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>
+            <InlineCode>size</InlineCode>
+          </TableCell>
+          <TableCell>sm | md | lg</TableCell>
+          <TableCell>md</TableCell>
+          <TableCell>{`The size of the radio and its indicator/label.`}</TableCell>
         </TableRow>
       </TableBody>
     </Table>
