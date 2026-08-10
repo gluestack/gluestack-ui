@@ -2284,6 +2284,8 @@ const RootComponent = withStyleContext(View, SCOPE);
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedView = Animated.createAnimatedComponent(View);
 
+const StyledAnimatedPressable = styled(AnimatedPressable, { className: 'style' });
+
 const UIAccessibleAlertDialog = createAlertDialog({
   Root: RootComponent,
   Body: ScrollView,
@@ -2291,7 +2293,7 @@ const UIAccessibleAlertDialog = createAlertDialog({
   CloseButton: Pressable,
   Header: View,
   Footer: View,
-  Backdrop: AnimatedPressable,
+  Backdrop: StyledAnimatedPressable,
 });
 
 const alertDialogStyle = tva({
@@ -2335,7 +2337,7 @@ const alertDialogFooterStyle = tva({
 const alertDialogBodyStyle = tva({ base: '' });
 
 const alertDialogBackdropStyle = tva({
-  base: 'absolute left-0 top-0 right-0 bottom-0 bg-black/50 web:cursor-default',
+  base: 'absolute left-0 top-0 right-0 bottom-0 bg-[#000]/50 web:cursor-default',
 });
 
 type IAlertDialogProps = React.ComponentPropsWithoutRef<
@@ -26134,6 +26136,10 @@ Create an intuitive UI using the gluestack-ui Tooltip component in React & React
 This is an illustration of **Tooltip** component.
 
 
+
+
+
+
 ```jsx
 function Example() {
   return (
@@ -28002,7 +28008,7 @@ URL: /ui/docs/guides/more/troubleshooting/index
 
 # Troubleshooting
 
-If you encounter any issues while using nativewind, please refer to the nativewind [troubleshooting guide](https://www.nativewind.dev/v4/guides/troubleshooting).
+If you encounter any issues while using nativewind, please refer to the nativewind [troubleshooting guide](https://www.nativewind.dev/v5/guides/troubleshooting).
 
 ## Common Issues
 
@@ -28035,7 +28041,7 @@ If encountering flashing issues in Next.js:
 
 ### 4. TailwindCSS Classnames Not Overriding in react-native-web
 
-To ensure Tailwind styles override with higher specificity, add `important: 'html'` to your `tailwind.config.js`.
+**NativeWind v4:** To ensure Tailwind styles override with higher specificity, add `important: 'html'` to your `tailwind.config.js`.
 
 ```jsx
 // tailwind.config.js
@@ -28046,10 +28052,12 @@ module.exports = {
 }
 ```
 
+**NativeWind v5:** This uses Tailwind CSS v4 (CSS-first) and does not use `tailwind.config.js`. See the [upgrade to v5 guide](/ui/docs/guides/more/upgrade-to-v5) for the current setup.
+
 ## Known Issues
 
 - `placeholder` does not work with CSS tokens.
-- `dark:` does not function with "class" as a strategy in native devices.
+- `dark:` does not function with "class" as a strategy in native devices (NativeWind v4). In NativeWind v5, Tailwind CSS v4 handles dark mode via `prefers-color-scheme` by default.
 
 ## Still Facing Issues?
 
@@ -29582,7 +29590,7 @@ Both engines eliminate `tailwind.config.js` in favor of defining theme tokens di
 ## Automated Upgrade (Recommended)
 
 ```bash
-npx gluestack-ui@alpha upgrade
+npx gluestack-ui@latest upgrade
 ```
 
 The CLI auto-detects your current version and asks which engine to upgrade to:
@@ -29605,7 +29613,7 @@ The CLI auto-detects your current version and asks which engine to upgrade to:
 | Area | Before (NativeWind v4) | After (NativeWind v5) |
 | --- | --- | --- |
 | Tailwind version | `tailwindcss@^3.x` | `tailwindcss@^4.2.0` |
-| NativeWind version | `nativewind@^4.1.23` | `nativewind@^5.0.0-preview.2` |
+| NativeWind version | `nativewind@^4.1.23` | `nativewind@^5.0.0-preview.4` |
 | New package | — | `react-native-css@^3.0.4` |
 | PostCSS config | — | `postcss.config.js` with `@tailwindcss/postcss` |
 | Theme tokens | `tailwind.config.js` | `global.css` via `@layer theme` |
@@ -29616,13 +29624,13 @@ The CLI auto-detects your current version and asks which engine to upgrade to:
 ## Automated CLI Upgrade
 
 ```bash
-npx gluestack-ui@alpha upgrade
+npx gluestack-ui@latest upgrade
 ```
 
 Select **NativeWind v5 (Tailwind CSS v4)**. The CLI will:
 
 1. Pin `lightningcss@1.30.1` in `package.json` overrides/resolutions
-2. Replace `nativewind@^4.x` with `nativewind@^5.0.0-preview.2`, add `react-native-css`
+2. Replace `nativewind@^4.x` with `nativewind@^5.0.0-preview.4`, add `react-native-css`
 3. Upgrade `tailwindcss` to v4, add `@tailwindcss/postcss`
 4. Rewrite `global.css` with Tailwind v4 imports and theme tokens
 5. Create `postcss.config.js`
@@ -29632,7 +29640,7 @@ Select **NativeWind v5 (Tailwind CSS v4)**. The CLI will:
 
 > **After upgrading:** Commit your changes, then re-add components to get NativeWind v5 versions:
 > ```bash
-> npx gluestack-ui@alpha add button accordion modal # all components you use
+> npx gluestack-ui@latest add button accordion modal # all components you use
 > ```
 
 ## Manual Migration to NativeWind v5
@@ -29653,14 +29661,14 @@ Add to `package.json` **before** installing other packages:
 **npm:**
 
 ```bash
-npm install nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0
+npm install nativewind@^5.0.0-preview.4 react-native-css@^3.0.4 @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6
 npm install --save-dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
 ```
 
 **yarn:**
 
 ```bash
-yarn add nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0
+yarn add nativewind@^5.0.0-preview.4 react-native-css@^3.0.4 @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6
 yarn add --dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
 ```
 
@@ -29816,7 +29824,7 @@ Tailwind v4 is CSS-first — `tailwind.config.js` is no longer needed. Before de
 ### Step 8: Re-add components
 
 ```bash
-npx gluestack-ui@alpha add button accordion modal # all components you use
+npx gluestack-ui@latest add button accordion modal # all components you use
 ```
 
 When prompted to overwrite, select **Yes** to get NativeWind v5 versions.
@@ -29843,7 +29851,7 @@ UniWind is an Expo-only Tailwind v4 styling engine. It processes styles natively
 ## Automated CLI Upgrade
 
 ```bash
-npx gluestack-ui@alpha upgrade
+npx gluestack-ui@latest upgrade
 ```
 
 Select **UniWind (Tailwind CSS v4, Expo-only)**. The CLI will:
@@ -29857,7 +29865,7 @@ Select **UniWind (Tailwind CSS v4, Expo-only)**. The CLI will:
 
 > **After upgrading:** Commit your changes, then re-add components:
 > ```bash
-> npx gluestack-ui@alpha add button accordion modal # all components you use
+> npx gluestack-ui@latest add button accordion modal # all components you use
 > ```
 
 ## Manual Migration to UniWind
@@ -29867,7 +29875,7 @@ Select **UniWind (Tailwind CSS v4, Expo-only)**. The CLI will:
 **npm:**
 
 ```bash
-npm install uniwind@^1.3.0 @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0
+npm install uniwind@^1.3.0 @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6
 npm install --save-dev tailwindcss@^4.1.18
 npm uninstall nativewind
 ```
@@ -29875,7 +29883,7 @@ npm uninstall nativewind
 **yarn:**
 
 ```bash
-yarn add uniwind@^1.3.0 @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0
+yarn add uniwind@^1.3.0 @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6
 yarn add --dev tailwindcss@^4.1.18
 yarn remove nativewind
 ```
@@ -30043,7 +30051,7 @@ Tailwind v4 is CSS-first — `tailwind.config.js` is not used by UniWind. Migrat
 ### Step 7: Re-add components
 
 ```bash
-npx gluestack-ui@alpha add button accordion modal # all components you use
+npx gluestack-ui@latest add button accordion modal # all components you use
 ```
 
 When prompted to overwrite, select **Yes** to get UniWind versions.
@@ -30415,7 +30423,7 @@ The upgrade command auto-detects your current gluestack-ui version and presents 
 Migrates from NativeWind v4 (Tailwind v3) to NativeWind v5 (Tailwind v4). The command will automatically:
 
 1. Pin `lightningcss@1.30.1` in `package.json` overrides/resolutions
-2. Replace `nativewind@^4.x` with `nativewind@^5.0.0-preview.2` and add `react-native-css`
+2. Replace `nativewind@^4.x` with `nativewind@^5.0.0-preview.4` and add `react-native-css`
 3. Upgrade `tailwindcss` to v4 and add `@tailwindcss/postcss`
 4. Rewrite `global.css` to Tailwind v4 format (with theme tokens)
 5. Create `postcss.config.js`
@@ -30423,7 +30431,7 @@ Migrates from NativeWind v4 (Tailwind v3) to NativeWind v5 (Tailwind v4). The co
 7. Prompt whether to delete `tailwind.config.js` (never auto-deleted — may contain custom tokens)
 8. Create `react-native-css-env.d.ts`
 
-> **After upgrading:** Re-add your components using `npx gluestack-ui@alpha add <component>` to get the NativeWind v5 versions. Commit your changes first — re-adding will overwrite existing component files.
+> **After upgrading:** Re-add your components using `npx gluestack-ui@latest add <component>` to get the NativeWind v5 versions. Commit your changes first — re-adding will overwrite existing component files.
 
 ### UniWind upgrade path
 
@@ -30437,7 +30445,7 @@ Migrates from NativeWind v4 to UniWind (Tailwind v4, Expo-only). The command wil
 6. Remove `tailwind.config.js` (Tailwind v4 is CSS-first)
 7. Remove `nativewind-env.d.ts` and create `uniwind-types.d.ts`
 
-> **After upgrading:** Re-add your components using `npx gluestack-ui@alpha add <component>` to get the UniWind versions. Commit your changes first.
+> **After upgrading:** Re-add your components using `npx gluestack-ui@latest add <component>` to get the UniWind versions. Commit your changes first.
 
 > **Note:** The upgrade command is not supported for Next.js projects.
 
@@ -30529,9 +30537,7 @@ URL: /ui/docs/home/getting-started/figma-ui-kit/index
 
 # Figma UI Kit
 
-The [Figma UI Kit](https://www.figma.com/community/file/1577667149474894602) provides a collection of ready-to-use UI components from the gluestack-ui library. So you can directly use these components in Figma and design your app. The developers won't have a chance to say this is not possible!
-
-<img src="/images/figma-kit.png" />
+The [Figma UI Kit](https://www.figma.com/community/file/1654085106966764966) provides a collection of ready-to-use UI components from the gluestack-ui library. So you can directly use these components in Figma and design your app. The developers won't have a chance to say this is not possible!
 
 ## What is included?
 
@@ -30675,7 +30681,7 @@ Add this **before** installing packages to avoid build errors caused by version 
 <Tabs>
 <TabItem label="npm">
 ```bash
-npm i @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
+npm i @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6 nativewind@^5.0.0-preview.4 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
 ```
 ```bash
 npm i --save-dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
@@ -30684,7 +30690,7 @@ npm i --save-dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
 **yarn:**
 
 ```bash
-yarn add @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
+yarn add @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6 nativewind@^5.0.0-preview.4 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
 ```
 ```bash
 yarn add --dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
@@ -30893,7 +30899,7 @@ Uses **UniWind** with **Tailwind CSS v4** (Expo-only). Styles are processed on-d
 **npm:**
 
 ```bash
-npm i @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 uniwind@^1.4.0 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.5.3 react-native-svg@^15.13.0 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
+npm i @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6 uniwind@^1.4.0 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.5.3 react-native-svg@^15.13.0 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
 ```
 ```bash
 npm i --save-dev tailwindcss@^4.1.18
@@ -30902,7 +30908,7 @@ npm i --save-dev tailwindcss@^4.1.18
 **yarn:**
 
 ```bash
-yarn add @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 uniwind@^1.4.0 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.5.3 react-native-svg@^15.13.0 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
+yarn add @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6 uniwind@^1.4.0 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.5.3 react-native-svg@^15.13.0 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
 ```
 ```bash
 yarn add --dev tailwindcss@^4.1.18
@@ -31431,7 +31437,7 @@ Add this **before** installing packages to avoid build errors:
 **npm:**
 
 ```bash
-npm i @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
+npm i @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6 nativewind@^5.0.0-preview.4 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
 ```
 ```bash
 npm i --save-dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
@@ -31440,7 +31446,7 @@ npm i --save-dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
 **yarn:**
 
 ```bash
-yarn add @gluestack-ui/core@^5.0.0-alpha.0 @gluestack-ui/utils@^5.0.1-alpha.0 nativewind@^5.0.0-preview.2 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
+yarn add @gluestack-ui/core@^5.0.15 @gluestack-ui/utils@^5.0.6 nativewind@^5.0.0-preview.4 react-native-css@^3.0.4 react-native-safe-area-context@^5.6.1 react-aria@^3.45.0 @expo/html-elements@^0.12.5 tailwind-variants@^0.1.20 @legendapp/motion@^2.4.0 react-native-svg@^15.15.3 react-stately@^3.39.0 react-native-reanimated@~4.2.1 react-native-worklets@^0.7.1
 ```
 ```bash
 yarn add --dev tailwindcss@^4.2.0 @tailwindcss/postcss@^4.2.0
@@ -32043,50 +32049,30 @@ export const config = {
 };
 ```
 
-#### Step 2: Map tokens to Tailwind in `tailwind.config.js`
+#### Step 2: Map tokens to Tailwind in `global.css`
 
-Ensure your Tailwind config maps the CSS variables to Tailwind classes:
+In NativeWind v5, Tailwind theme tokens are mapped directly in `global.css` using `@theme inline` — no `tailwind.config.js` needed:
 
-```jsx
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        border: 'rgb(var(--border))',
-        input: 'rgb(var(--input))',
-        ring: 'rgb(var(--ring))',
-        background: 'rgb(var(--background))',
-        foreground: 'rgb(var(--foreground))',
-        primary: {
-          DEFAULT: 'rgb(var(--primary))',
-          foreground: 'rgb(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'rgb(var(--secondary))',
-          foreground: 'rgb(var(--secondary-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'rgb(var(--destructive))',
-        },
-        muted: {
-          DEFAULT: 'rgb(var(--muted))',
-          foreground: 'rgb(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'rgb(var(--accent))',
-          foreground: 'rgb(var(--accent-foreground))',
-        },
-        popover: {
-          DEFAULT: 'rgb(var(--popover))',
-          foreground: 'rgb(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'rgb(var(--card))',
-        },
-      },
-    },
-  },
-};
+```css
+@theme inline {
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-destructive: rgb(var(--destructive));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+  --color-card: rgb(var(--card));
+}
 ```
 
 ### Usage in Components
@@ -32094,31 +32080,33 @@ module.exports = {
 Once configured, use the semantic tokens in your components:
 
 ```jsx
-// Primary button
-<Button className="bg-primary text-primary-foreground">
-  <ButtonText>Primary Action</ButtonText>
-</Button>
+<>
+  {/* Primary button */}
+  <Button className="bg-primary text-primary-foreground">
+    <ButtonText>Primary Action</ButtonText>
+  </Button>
 
-// Secondary button
-<Button className="bg-secondary text-secondary-foreground">
-  <ButtonText>Secondary Action</ButtonText>
-</Button>
+  {/* Secondary button */}
+  <Button className="bg-secondary text-secondary-foreground">
+    <ButtonText>Secondary Action</ButtonText>
+  </Button>
 
-// Card with proper contrast
-<Box className="bg-card border border-border p-4">
-  <Text className="text-foreground">Card content</Text>
-  <Text className="text-muted-foreground">Muted description</Text>
-</Box>
+  {/* Card with proper contrast */}
+  <Box className="bg-card border border-border p-4">
+    <Text className="text-foreground">Card content</Text>
+    <Text className="text-muted-foreground">Muted description</Text>
+  </Box>
 
-// Destructive action
-<Button className="bg-destructive text-primary-foreground">
-  <ButtonText>Delete</ButtonText>
-</Button>
+  {/* Destructive action */}
+  <Button className="bg-destructive text-primary-foreground">
+    <ButtonText>Delete</ButtonText>
+  </Button>
 
-// With opacity
-<Box className="bg-primary/10">
-  <Text className="text-primary">Subtle primary background</Text>
-</Box>
+  {/* With opacity */}
+  <Box className="bg-primary/10">
+    <Text className="text-primary">Subtle primary background</Text>
+  </Box>
+</>
 ```
 
 ### Adding Custom Tokens
@@ -32146,19 +32134,15 @@ export const config = {
 };
 ```
 
-#### Step 2: Add to tailwind.config.js
+#### Step 2: Add to `global.css`
 
-```jsx
-colors: {
-  // ... existing colors
-  success: {
-    DEFAULT: 'rgb(var(--success))',
-    foreground: 'rgb(var(--success-foreground))',
-  },
-  warning: {
-    DEFAULT: 'rgb(var(--warning))',
-    foreground: 'rgb(var(--warning-foreground))',
-  },
+```css
+@theme inline {
+  /* ... existing tokens */
+  --color-success: rgb(var(--success));
+  --color-success-foreground: rgb(var(--success-foreground));
+  --color-warning: rgb(var(--warning));
+  --color-warning-foreground: rgb(var(--warning-foreground));
 }
 ```
 
@@ -32181,13 +32165,16 @@ export const config = {
 };
 ```
 
-#### Step 2: Add to tailwind.config.js
+#### Step 2: Add to `global.css`
 
-```jsx
-fontSize: {
-  'custom-heading-xl': 'var(--font-size-custom)',
+```css
+@theme inline {
+  /* ... existing tokens */
+  --font-size-custom-heading-xl: var(--font-size-custom);
 }
 ```
+
+Then use it in your components with the `text-custom-heading-xl` class.
 
 #### Step 3: Configure tva for the component
 
@@ -32248,29 +32235,22 @@ gluestack-ui provides two ways of switching the color scheme or color mode: usin
 
 ### Using CSS Variables
 
-With CSS variables, you can configure multiple color schemes in the `config.ts` file. This file contains two predefined color schemes: `light` and `dark`. It utilizes the [vars](https://www.nativewind.dev/v4/api/vars) functionality from nativewind to switch token values when the color mode is changed. This approach results in less code and makes configuring tokens for different color schemes easier.
+With CSS variables, you can configure multiple color schemes in the `config.ts` file. This file contains two predefined color schemes: `light` and `dark`. It utilizes the [vars](https://www.nativewind.dev/v5/api/vars) functionality from nativewind to switch token values when the color mode is changed. This approach results in less code and makes configuring tokens for different color schemes easier.
 
 ### Usage
 
 Let's look at an example where we define the `primary` token and switch it.
 
-1. First, define the color token in your `tailwind.config.js` file and assign a variable value as shown below, following Tailwind's recommendation for [using CSS variables in Tailwind](https://tailwindcss.com/docs/customizing-colors#using-css-variables).
+1. First, map the CSS variable to a Tailwind color utility in your `global.css` using `@theme inline` — no `tailwind.config.js` needed:
 
-```js
-// tailwind.config.js
-
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        primary: 'rgb(var(--color-primary)/<alpha-value>)',
-      },
-    },
-  },
-};
+```css
+/* global.css */
+@theme inline {
+  --color-primary: rgb(var(--color-primary));
+}
 ```
 
-2. Now, define the values of that CSS variable for the `light` and `dark` color schemes in the `config.ts` file as shown below. [Reference](https://www.nativewind.dev/v4/guides/themes).
+2. Now, define the values of that CSS variable for the `light` and `dark` color schemes in the `config.ts` file as shown below:
 
 ```js
 // config.ts
@@ -32339,32 +32319,9 @@ export default function App() {
 }
 ```
 
-In the above example, we switch the background color of our Box component in dark mode using the `dark:` syntax. To use dark mode, we need to change the `darkMode` strategy to `"class"` for the web and `"media"` for native devices in the `tailwind.config.js` file. You can achieve this by setting the `DARK_MODE` environment variable as shown below.
+In the above example, we switch the background color of our Box component in dark mode using the `dark:` syntax. NativeWind v5 uses Tailwind CSS v4, where the `dark:` variant works out of the box using `prefers-color-scheme: dark` — no `tailwind.config.js` or `DARK_MODE` environment variable needed.
 
-```js
-// tailwind.config.js
-
-module.exports = {
-  darkMode: process.env.DARK_MODE ? process.env.DARK_MODE : 'media',
-  // rest of the config
-};
-```
-
-After this, we need to update our scripts in the `package.json` file as shown below:
-
-```json
-{
-  "scripts": {
-    "android": "DARK_MODE=media expo start --android",
-    "ios": "DARK_MODE=media expo start --ios",
-    "web": "DARK_MODE=class expo start --web"
-  }
-}
-```
-
-For Next.js projects, you can directly set the `darkMode` strategy to `"class"` without needing to change the scripts.
-
-> Note: This is a temporary solution until we fix the issue with nativewind for the `darkMode:"class"` strategy.
+For web apps that need manual dark mode toggling (class-based), define `:root.dark` and `:root.light` selectors in your `global.css` `@layer theme` block. The `GluestackUIProvider` `mode` prop handles the toggle on both native and web. See the [installation guide](/ui/docs/home/getting-started/installation) for the full `global.css` setup.
 
 ## Persist Color Mode
 
@@ -32569,11 +32526,13 @@ export const config = {
 
 Usage with opacity:
 ```jsx
-// Full opacity
-<Box className="bg-primary" />
+<>
+  {/* Full opacity — bg-primary (100% opacity) */}
+  <Box className="bg-primary" />
 
-// 50% opacity
-<Box className="bg-primary/50" />
+  {/* 50% opacity — bg-primary/50 */}
+  <Box className="bg-primary/50" />
+</>
 ```
 
 ### Benefits of This System
@@ -32583,17 +32542,41 @@ Usage with opacity:
 3. **Guaranteed contrast** - Foreground tokens ensure readable text
 4. **Design system consistency** - Follows industry-standard patterns
 
-To customize colors, update `gluestack-ui-provider/config.ts` and `tailwind.config.js`. For detailed instructions, see [Customizing Theme](/ui/docs/home/theme-configuration/customizing-theme).
+To customize colors, update `gluestack-ui-provider/config.ts` and `global.css`. For detailed instructions, see [Customizing Theme](/ui/docs/home/theme-configuration/customizing-theme).
 
 ## Typography
 
-To manage Typography options, update **theme** in `tailwind.config.js`.
+To manage Typography options, add tokens in `global.css` via `@theme inline`.
 
-To add or update **Font Family**. Please refer [Tailwind CSS documentation](https://tailwindcss.com/docs/font-family). We have also added a new family, '**roboto**', in our `tailwind.config.js`.
+To add or update **Font Family**, use `@theme inline` in `global.css`:
 
-To add or update **font sizes**, please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-size). We have added a new size, '**2xs**', in `tailwind.config.js` with a value of '**10px**'.
+```css
+@theme inline {
+  --font-family-roboto: 'Roboto', sans-serif;
+}
+```
 
-To add or update **font weights**, please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-weight). We have added a new weight, '**extrablack**', in `tailwind.config.js` with a value of '**950**'.
+Please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-family) for more details.
+
+To add or update **font sizes**, use `@theme inline` in `global.css`:
+
+```css
+@theme inline {
+  --font-size-2xs: 10px;
+}
+```
+
+Please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-size) for more details.
+
+To add or update **font weights**, use `@theme inline` in `global.css`:
+
+```css
+@theme inline {
+  --font-weight-extrablack: 950;
+}
+```
+
+Please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-weight) for more details.
 
 To add or update **line heights**. Please refer [Tailwind CSS documentation](https://tailwindcss.com/docs/line-height).
 

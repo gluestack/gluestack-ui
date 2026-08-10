@@ -5,7 +5,7 @@ description: Troubleshoot common Nativewind issues, including dark mode, Toast i
 
 # Troubleshooting
 
-If you encounter any issues while using nativewind, please refer to the nativewind [troubleshooting guide](https://www.nativewind.dev/v4/guides/troubleshooting).
+If you encounter any issues while using nativewind, please refer to the nativewind [troubleshooting guide](https://www.nativewind.dev/v5/guides/troubleshooting).
 
 ## Common Issues
 
@@ -40,7 +40,7 @@ If encountering flashing issues in Next.js:
 
 ### 4. TailwindCSS Classnames Not Overriding in react-native-web
 
-To ensure Tailwind styles override with higher specificity, add `important: 'html'` to your `tailwind.config.js`.
+**NativeWind v4:** To ensure Tailwind styles override with higher specificity, add `important: 'html'` to your `tailwind.config.js`.
 
 ```jsx
 // tailwind.config.js
@@ -51,10 +51,12 @@ module.exports = {
 }
 ```
 
+**NativeWind v5:** This uses Tailwind CSS v4 (CSS-first) and does not use `tailwind.config.js`. See the [upgrade to v5 guide](/ui/docs/guides/more/upgrade-to-v5) for the current setup.
+
 ## Known Issues
 
 - `placeholder` does not work with CSS tokens.
-- `dark:` does not function with "class" as a strategy in native devices.
+- `dark:` does not function with "class" as a strategy in native devices (NativeWind v4). In NativeWind v5, Tailwind CSS v4 handles dark mode via `prefers-color-scheme` by default.
 
 ## Still Facing Issues?
 
