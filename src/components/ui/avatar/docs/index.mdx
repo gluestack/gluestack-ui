@@ -10,7 +10,6 @@ pageDescription: Enhance your UI with our React Native Avatar component. Explore
 showHeader: true
 ---
 
-
 import {
   Table,
   TableHeader,
@@ -22,7 +21,6 @@ import {
 import { InlineCode } from '@/docs-components/inline-code';
 import { AnatomyImage } from '@/docs-components/anatomy-image';
 import { Tabs, TabItem } from '@/docs-components/tabs';
-
 
 # Avatar
 
@@ -40,11 +38,13 @@ This is an illustration of **Avatar** component.
 <TabItem label="CLI">
 ### Run the following command:
 
-<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add avatar`} language="bash" />
+<CodeBlock
+  code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add avatar`}
+  language="bash"
+/>
 
 </TabItem>
 <TabItem label="Manual">
-
 
 ### Step 1: Copy and paste the following code into your project.
 
@@ -138,7 +138,7 @@ Avatar component is created using View component from react-native. It extends a
       <TableCell>
         <InlineCode>size</InlineCode>
       </TableCell>
-      <TableCell>xs | sm | md | lg | xl | 2xl</TableCell>
+      <TableCell>sm | md | lg</TableCell>
       <TableCell>md</TableCell>
       <TableCell>Determines the size of the avatar.</TableCell>
     </TableRow>
@@ -148,6 +148,8 @@ Avatar component is created using View component from react-native. It extends a
 ### Examples
 
 The Examples section provides visual representations of the different variants of the component, allowing you to quickly and easily determine which one best fits your needs. Simply copy the code and integrate it into your project.
+
+/// {Example:sizes} ///
 
 /// {Example:with-letters} ///
 

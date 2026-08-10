@@ -38,8 +38,11 @@ This is an illustration of **Toast** component.
   <TabItem label="CLI">
 
 ### Run the following command:
-<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add toast`} language="bash" />
 
+<CodeBlock
+  code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add toast`}
+  language="bash"
+/>
 
   </TabItem>
   <TabItem label="Manual">
@@ -62,7 +65,6 @@ npm i react-native-reanimated
 
 </TabItem>
 </Tabs>
-
 
 ## API Reference
 
@@ -161,10 +163,60 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 Contains all Text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
 
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>
+          2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl
+        </TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>Sets the font size of the toast title.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
 #### ToastDescription
 
 Contains all Text related layout style props and actions.
 It inherits all the properties of React Native's [Text](https://reactnative.dev/docs/text) component.
+
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>
+          2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl
+        </TableCell>
+        <TableCell>md</TableCell>
+        <TableCell>Sets the font size of the toast description.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
 
 ### Accessibility
 

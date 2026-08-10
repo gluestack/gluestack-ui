@@ -8,7 +8,7 @@ import React from 'react';
 import { UsageVariantFlatList } from '@/components/custom/component-presentation/usage-variant-flatlist';
 
 const ExampleBasic = () => {
-return (
+  return (
     <Menu
       placement="top"
       offset={5}
@@ -18,27 +18,27 @@ return (
           <Button {...triggerProps}>
             <ButtonText>Menu</ButtonText>
           </Button>
-        )
+        );
       }}
     >
       <MenuItem key="Add account" textValue="Add account">
-        <Icon as={AddIcon} size="sm" className="mr-2 " />
-        <MenuItemLabel size="sm">Add account</MenuItemLabel>
+        <Icon as={AddIcon} size="sm" className="mr-2" />
+        <MenuItemLabel>Add account</MenuItemLabel>
       </MenuItem>
       <MenuItem key="Community" textValue="Community">
-        <Icon as={GlobeIcon} size="sm" className="mr-2 " />
-        <MenuItemLabel size="sm">Community</MenuItemLabel>
+        <Icon as={GlobeIcon} size="sm" className="mr-2" />
+        <MenuItemLabel>Community</MenuItemLabel>
       </MenuItem>
       <MenuItem key="Plugins" textValue="Plugins">
-        <Icon as={PlayIcon} size="sm" className="mr-2 " />
-        <MenuItemLabel size="sm">Plugins</MenuItemLabel>
+        <Icon as={PlayIcon} size="sm" className="mr-2" />
+        <MenuItemLabel>Plugins</MenuItemLabel>
       </MenuItem>
       <MenuItem key="Settings" textValue="Settings">
-        <Icon as={SettingsIcon} size="sm" className="mr-2 " />
-        <MenuItemLabel size="sm">Settings</MenuItemLabel>
+        <Icon as={SettingsIcon} size="sm" className="mr-2" />
+        <MenuItemLabel>Settings</MenuItemLabel>
       </MenuItem>
     </Menu>
-  )
+  );
 };
 
 const ExampleMenuWithTag = () => {

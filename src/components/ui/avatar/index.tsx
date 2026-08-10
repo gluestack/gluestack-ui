@@ -6,6 +6,8 @@ import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva, withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
 const SCOPE = 'AVATAR';
 
+const AvatarSizeContext = React.createContext<'sm' | 'md' | 'lg'>('md');
+
 const UIAvatar = createAvatar({
   Root: withStyleContext(View, SCOPE),
   Badge: View,
@@ -15,11 +17,25 @@ const UIAvatar = createAvatar({
 });
 
 const avatarStyle = tva({
-  base: 'relative flex h-12 w-12 shrink-0 rounded-full bg-muted items-center justify-center group-[.avatar-group]/avatar-group:-ml-2.5',
+  base: 'relative flex shrink-0 rounded-full bg-muted items-center justify-center group-[.avatar-group]/avatar-group:-ml-2.5',
+  variants: {
+    size: {
+      sm: 'h-8 w-8',
+      md: 'h-12 w-12',
+      lg: 'h-16 w-16',
+    },
+  },
 });
 
 const avatarFallbackTextStyle = tva({
-  base: 'text-foreground text-xs font-medium text-transform:uppercase',
+  base: 'text-foreground font-medium text-transform:uppercase',
+  parentVariants: {
+    size: {
+      sm: 'text-2xs',
+      md: 'text-xs',
+      lg: 'text-sm',
+    },
+  },
 });
 
 const avatarGroupStyle = tva({
@@ -27,7 +43,14 @@ const avatarGroupStyle = tva({
 });
 
 const avatarBadgeStyle = tva({
-  base: 'absolute h-3 w-3 rounded-full border-2 border-background right-0 bottom-0 bg-green-500',
+  base: 'absolute rounded-full border-2 border-background right-0 bottom-0 bg-green-500',
+  parentVariants: {
+    size: {
+      sm: 'h-1.5 w-1.5',
+      md: 'h-3 w-3',
+      lg: 'h-3.5 w-3.5',
+    },
+  },
 });
 
 const avatarImageStyle = tva({
@@ -43,14 +66,18 @@ type IAvatarProps = Omit<
 const Avatar = React.forwardRef<
   React.ComponentRef<typeof UIAvatar>,
   IAvatarProps
->(function Avatar({ className, ...props }, ref) {
+>(function Avatar({ className, size = 'md', children, ...props }, ref) {
   return (
-    <UIAvatar
-      ref={ref}
-      {...props}
-      className={avatarStyle({ class: className })}
-      context={{}}
-    />
+    <AvatarSizeContext.Provider value={size}>
+      <UIAvatar
+        ref={ref}
+        {...props}
+        className={avatarStyle({ size, class: className })}
+        context={{}}
+      >
+        {children}
+      </UIAvatar>
+    </AvatarSizeContext.Provider>
   );
 });
 
@@ -61,11 +88,15 @@ const AvatarBadge = React.forwardRef<
   React.ComponentRef<typeof UIAvatar.Badge>,
   IAvatarBadgeProps
 >(function AvatarBadge({ className, ...props }, ref) {
+  const size = React.useContext(AvatarSizeContext);
   return (
     <UIAvatar.Badge
       ref={ref}
       {...props}
-      className={avatarBadgeStyle({ class: className })}
+      className={avatarBadgeStyle({
+        parentVariants: { size },
+        class: className,
+      })}
     />
   );
 });
@@ -78,11 +109,15 @@ const AvatarFallbackText = React.forwardRef<
   React.ComponentRef<typeof UIAvatar.FallbackText>,
   IAvatarFallbackTextProps
 >(function AvatarFallbackText({ className, ...props }, ref) {
+  const size = React.useContext(AvatarSizeContext);
   return (
     <UIAvatar.FallbackText
       ref={ref}
       {...props}
-      className={avatarFallbackTextStyle({ class: className })}
+      className={avatarFallbackTextStyle({
+        parentVariants: { size },
+        class: className,
+      })}
     />
   );
 });
@@ -134,5 +169,5 @@ export {
   AvatarFallback,
   AvatarFallbackText,
   AvatarGroup,
-  AvatarImage
+  AvatarImage,
 };

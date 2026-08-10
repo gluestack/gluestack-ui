@@ -38,13 +38,13 @@ This is an illustration of **Tabs** component.
 
 ### Run the following command:
 
-<CodeBlock code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add tabs`} language="bash" />
-
+<CodeBlock
+  code={`${process.env.NEXT_PUBLIC_GLUESTACK_COMMAND || 'npx gluestack-ui'} add tabs`}
+  language="bash"
+/>
 
 </TabItem>
 <TabItem label="Manual">
-
-
 
 > Note: At present, we have integrated `react-native-reanimated` for animations. You have the option to remove this and implement your own custom animation wrapper.
 
@@ -72,7 +72,6 @@ npm i react-native-reanimated
 
 </TabItem>
 </DocTabs>
-
 
 ## API Reference
 
@@ -132,52 +131,70 @@ Contains all the tabs component parts.
   </TableHeader>
   <TableBody>
     <TableRow>
-      <TableCell><InlineCode>value</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>value</InlineCode>
+      </TableCell>
       <TableCell>string</TableCell>
       <TableCell>-</TableCell>
-      <TableCell>The controlled value of the tab to activate. Use with onValueChange.</TableCell>
+      <TableCell>
+        The controlled value of the tab to activate. Use with onValueChange.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>defaultValue</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>defaultValue</InlineCode>
+      </TableCell>
       <TableCell>string</TableCell>
       <TableCell>-</TableCell>
-      <TableCell>The value of the tab that should be active when initially rendered. Use when you do not need to control the state.</TableCell>
+      <TableCell>
+        The value of the tab that should be active when initially rendered. Use
+        when you do not need to control the state.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>onValueChange</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>onValueChange</InlineCode>
+      </TableCell>
       <TableCell>(value: string) =&gt; void</TableCell>
       <TableCell>-</TableCell>
       <TableCell>Event handler called when the value changes.</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>orientation</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>orientation</InlineCode>
+      </TableCell>
       <TableCell>'horizontal' | 'vertical'</TableCell>
       <TableCell>'horizontal'</TableCell>
       <TableCell>The orientation of the tabs.</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>activationMode</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>activationMode</InlineCode>
+      </TableCell>
       <TableCell>'automatic' | 'manual'</TableCell>
       <TableCell>'automatic'</TableCell>
-      <TableCell>Whether tabs activate automatically on focus or manually with Enter/Space.</TableCell>
+      <TableCell>
+        Whether tabs activate automatically on focus or manually with
+        Enter/Space.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>disabled</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>disabled</InlineCode>
+      </TableCell>
       <TableCell>boolean</TableCell>
       <TableCell>false</TableCell>
-      <TableCell>When true, prevents the user from interacting with the tabs.</TableCell>
+      <TableCell>
+        When true, prevents the user from interacting with the tabs.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>variant</InlineCode></TableCell>
-      <TableCell>'underlined' | 'filled' | 'enclosed'</TableCell>
-      <TableCell>'underlined'</TableCell>
+      <TableCell>
+        <InlineCode>variant</InlineCode>
+      </TableCell>
+      <TableCell>'underlined' | 'filled'</TableCell>
+      <TableCell>'filled'</TableCell>
       <TableCell>The visual style variant of the tabs.</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell><InlineCode>size</InlineCode></TableCell>
-      <TableCell>'sm' | 'md' | 'lg'</TableCell>
-      <TableCell>'md'</TableCell>
-      <TableCell>The size of the tabs.</TableCell>
     </TableRow>
   </TableBody>
 </Table>
@@ -197,16 +214,24 @@ Contains the triggers that are aligned along the edge of the active content.
   </TableHeader>
   <TableBody>
     <TableRow>
-      <TableCell><InlineCode>scrollable</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>scrollable</InlineCode>
+      </TableCell>
       <TableCell>boolean</TableCell>
       <TableCell>false</TableCell>
-      <TableCell>When true, enables horizontal scrolling for overflow tabs.</TableCell>
+      <TableCell>
+        When true, enables horizontal scrolling for overflow tabs.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>snapToCenter</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>snapToCenter</InlineCode>
+      </TableCell>
       <TableCell>boolean</TableCell>
       <TableCell>true</TableCell>
-      <TableCell>When scrollable is true, snaps the selected tab to center.</TableCell>
+      <TableCell>
+        When scrollable is true, snaps the selected tab to center.
+      </TableCell>
     </TableRow>
   </TableBody>
 </Table>
@@ -226,16 +251,24 @@ The button that activates its associated content.
   </TableHeader>
   <TableBody>
     <TableRow>
-      <TableCell><InlineCode>value</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>value</InlineCode>
+      </TableCell>
       <TableCell>string</TableCell>
       <TableCell>-</TableCell>
-      <TableCell>A unique value that associates the trigger with a content.</TableCell>
+      <TableCell>
+        A unique value that associates the trigger with a content.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>disabled</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>disabled</InlineCode>
+      </TableCell>
       <TableCell>boolean</TableCell>
       <TableCell>false</TableCell>
-      <TableCell>When true, prevents the user from interacting with the tab.</TableCell>
+      <TableCell>
+        When true, prevents the user from interacting with the tab.
+      </TableCell>
     </TableRow>
   </TableBody>
 </Table>
@@ -255,16 +288,25 @@ Contains the content associated with each trigger.
   </TableHeader>
   <TableBody>
     <TableRow>
-      <TableCell><InlineCode>value</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>value</InlineCode>
+      </TableCell>
       <TableCell>string</TableCell>
       <TableCell>-</TableCell>
-      <TableCell>A unique value that associates the content with a trigger.</TableCell>
+      <TableCell>
+        A unique value that associates the content with a trigger.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>forceMount</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>forceMount</InlineCode>
+      </TableCell>
       <TableCell>boolean</TableCell>
       <TableCell>false</TableCell>
-      <TableCell>Used to force mounting when more control is needed. Useful for animation.</TableCell>
+      <TableCell>
+        Used to force mounting when more control is needed. Useful for
+        animation.
+      </TableCell>
     </TableRow>
   </TableBody>
 </Table>
@@ -290,7 +332,9 @@ The icon displayed within a tab trigger.
   </TableHeader>
   <TableBody>
     <TableRow>
-      <TableCell><InlineCode>as</InlineCode></TableCell>
+      <TableCell>
+        <InlineCode>as</InlineCode>
+      </TableCell>
       <TableCell>React.ComponentType</TableCell>
       <TableCell>-</TableCell>
       <TableCell>The icon component to render.</TableCell>
@@ -319,32 +363,65 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
   </TableHeader>
   <TableBody>
     <TableRow>
-      <TableCell><InlineCode>Tab</InlineCode></TableCell>
-      <TableCell>When focus moves onto the tabs, focuses the active trigger. When a trigger is focused, moves focus to the active content.</TableCell>
+      <TableCell>
+        <InlineCode>Tab</InlineCode>
+      </TableCell>
+      <TableCell>
+        When focus moves onto the tabs, focuses the active trigger. When a
+        trigger is focused, moves focus to the active content.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>ArrowDown</InlineCode></TableCell>
-      <TableCell>Moves focus to the next trigger in vertical orientation and activates its associated content.</TableCell>
+      <TableCell>
+        <InlineCode>ArrowDown</InlineCode>
+      </TableCell>
+      <TableCell>
+        Moves focus to the next trigger in vertical orientation and activates
+        its associated content.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>ArrowUp</InlineCode></TableCell>
-      <TableCell>Moves focus to the previous trigger in vertical orientation and activates its associated content.</TableCell>
+      <TableCell>
+        <InlineCode>ArrowUp</InlineCode>
+      </TableCell>
+      <TableCell>
+        Moves focus to the previous trigger in vertical orientation and
+        activates its associated content.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>ArrowLeft</InlineCode></TableCell>
-      <TableCell>Moves focus to the previous trigger in horizontal orientation and activates its associated content.</TableCell>
+      <TableCell>
+        <InlineCode>ArrowLeft</InlineCode>
+      </TableCell>
+      <TableCell>
+        Moves focus to the previous trigger in horizontal orientation and
+        activates its associated content.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>ArrowRight</InlineCode></TableCell>
-      <TableCell>Moves focus to the next trigger in horizontal orientation and activates its associated content.</TableCell>
+      <TableCell>
+        <InlineCode>ArrowRight</InlineCode>
+      </TableCell>
+      <TableCell>
+        Moves focus to the next trigger in horizontal orientation and activates
+        its associated content.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>Home</InlineCode></TableCell>
-      <TableCell>Moves focus to the first trigger and activates its associated content.</TableCell>
+      <TableCell>
+        <InlineCode>Home</InlineCode>
+      </TableCell>
+      <TableCell>
+        Moves focus to the first trigger and activates its associated content.
+      </TableCell>
     </TableRow>
     <TableRow>
-      <TableCell><InlineCode>End</InlineCode></TableCell>
-      <TableCell>Moves focus to the last trigger and activates its associated content.</TableCell>
+      <TableCell>
+        <InlineCode>End</InlineCode>
+      </TableCell>
+      <TableCell>
+        Moves focus to the last trigger and activates its associated content.
+      </TableCell>
     </TableRow>
   </TableBody>
 </Table>
@@ -367,11 +444,9 @@ Adheres to the [Tabs WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/pa
 
 /// {Example:variants} ///
 
-
 ### Scrollable
 
 /// {Example:scrollable} ///
-
 
 ### Controlled
 
