@@ -82,13 +82,11 @@ export const config = {
 
 Usage with opacity:
 ```jsx
-<>
-  {/* Full opacity — bg-primary (100% opacity) */}
-  <Box className="bg-primary" />
+// Full opacity
+<Box className="bg-primary" />
 
-  {/* 50% opacity — bg-primary/50 */}
-  <Box className="bg-primary/50" />
-</>
+// 50% opacity
+<Box className="bg-primary/50" />
 ```
 
 ### Benefits of This System
@@ -102,41 +100,17 @@ To customize colors, update `gluestack-ui-provider/config.ts` and `global.css`. 
 
 ## Typography
 
-To manage Typography options, add tokens in `global.css` via `@theme inline`.
+To manage Typography options, update `global.css` using `@theme inline` or `@theme` in Tailwind v4.
 
-To add or update **Font Family**, use `@theme inline` in `global.css`:
+To add or update **Font Family**. Please refer [Tailwind CSS documentation](https://tailwindcss.com/docs/font-family). We have also added a new family, '**roboto**', in `global.css`.
 
-```css
-@theme inline {
-  --font-family-roboto: 'Roboto', sans-serif;
-}
-```
-
-Please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-family) for more details.
-
-To add or update **font sizes**, use `@theme inline` in `global.css`:
-
-```css
-@theme inline {
-  --font-size-2xs: 10px;
-}
-```
-
-Please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-size) for more details.
+To add or update **font sizes**, please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-size). We have added a new size, '**2xs**', in `global.css` with a value of '**10px**'.
 
 <FontSizeComponent />
 
 <br />
 
-To add or update **font weights**, use `@theme inline` in `global.css`:
-
-```css
-@theme inline {
-  --font-weight-extrablack: 950;
-}
-```
-
-Please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-weight) for more details.
+To add or update **font weights**, please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-weight). We have added a new weight, '**extrablack**', in `global.css` with a value of '**950**'.
 
 <FontWeightComponent />
 

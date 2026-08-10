@@ -115,15 +115,17 @@ export const config = {
 };
 ```
 
-#### Step 2: Map tokens to Tailwind in `global.css`
+#### Step 2: Map tokens in `global.css`
 
-In NativeWind v5, Tailwind theme tokens are mapped directly in `global.css` using `@theme inline` — no `tailwind.config.js` needed:
+NativeWind v5 uses a CSS-first approach. Map your tokens to Tailwind utilities in `global.css` using `@theme inline`:
 
 ```css
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+@import "nativewind/theme";
+
 @theme inline {
-  --color-border: rgb(var(--border));
-  --color-input: rgb(var(--input));
-  --color-ring: rgb(var(--ring));
   --color-background: rgb(var(--background));
   --color-foreground: rgb(var(--foreground));
   --color-primary: rgb(var(--primary));
@@ -138,41 +140,44 @@ In NativeWind v5, Tailwind theme tokens are mapped directly in `global.css` usin
   --color-popover: rgb(var(--popover));
   --color-popover-foreground: rgb(var(--popover-foreground));
   --color-card: rgb(var(--card));
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
 }
 ```
+
+The `vars()` in `config.ts` sets the CSS custom properties (like `--primary: 23 23 23`), and `@theme inline` in `global.css` maps them to Tailwind utilities (like `bg-primary`, `text-primary-foreground`).
 
 ### Usage in Components
 
 Once configured, use the semantic tokens in your components:
 
 ```jsx
-<>
-  {/* Primary button */}
-  <Button className="bg-primary text-primary-foreground">
-    <ButtonText>Primary Action</ButtonText>
-  </Button>
+// Primary button
+<Button className="bg-primary text-primary-foreground">
+  <ButtonText>Primary Action</ButtonText>
+</Button>
 
-  {/* Secondary button */}
-  <Button className="bg-secondary text-secondary-foreground">
-    <ButtonText>Secondary Action</ButtonText>
-  </Button>
+// Secondary button
+<Button className="bg-secondary text-secondary-foreground">
+  <ButtonText>Secondary Action</ButtonText>
+</Button>
 
-  {/* Card with proper contrast */}
-  <Box className="bg-card border border-border p-4">
-    <Text className="text-foreground">Card content</Text>
-    <Text className="text-muted-foreground">Muted description</Text>
-  </Box>
+// Card with proper contrast
+<Box className="bg-card border border-border p-4">
+  <Text className="text-foreground">Card content</Text>
+  <Text className="text-muted-foreground">Muted description</Text>
+</Box>
 
-  {/* Destructive action */}
-  <Button className="bg-destructive text-primary-foreground">
-    <ButtonText>Delete</ButtonText>
-  </Button>
+// Destructive action
+<Button className="bg-destructive text-primary-foreground">
+  <ButtonText>Delete</ButtonText>
+</Button>
 
-  {/* With opacity */}
-  <Box className="bg-primary/10">
-    <Text className="text-primary">Subtle primary background</Text>
-  </Box>
-</>
+// With opacity
+<Box className="bg-primary/10">
+  <Text className="text-primary">Subtle primary background</Text>
+</Box>
 ```
 
 ### Adding Custom Tokens
@@ -200,7 +205,7 @@ export const config = {
 };
 ```
 
-#### Step 2: Add to `global.css`
+#### Step 2: Add to global.css
 
 ```css
 @theme inline {
@@ -231,7 +236,7 @@ export const config = {
 };
 ```
 
-#### Step 2: Add to `global.css`
+#### Step 2: Add to global.css
 
 ```css
 @theme inline {
@@ -239,8 +244,6 @@ export const config = {
   --font-size-custom-heading-xl: var(--font-size-custom);
 }
 ```
-
-Then use it in your components with the `text-custom-heading-xl` class.
 
 #### Step 3: Configure tva for the component
 
