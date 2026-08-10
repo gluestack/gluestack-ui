@@ -115,50 +115,30 @@ export const config = {
 };
 ```
 
-#### Step 2: Map tokens to Tailwind in `tailwind.config.js`
+#### Step 2: Map tokens to Tailwind in `global.css`
 
-Ensure your Tailwind config maps the CSS variables to Tailwind classes:
+In NativeWind v5, Tailwind theme tokens are mapped directly in `global.css` using `@theme inline` — no `tailwind.config.js` needed:
 
-```jsx
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        border: 'rgb(var(--border))',
-        input: 'rgb(var(--input))',
-        ring: 'rgb(var(--ring))',
-        background: 'rgb(var(--background))',
-        foreground: 'rgb(var(--foreground))',
-        primary: {
-          DEFAULT: 'rgb(var(--primary))',
-          foreground: 'rgb(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'rgb(var(--secondary))',
-          foreground: 'rgb(var(--secondary-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'rgb(var(--destructive))',
-        },
-        muted: {
-          DEFAULT: 'rgb(var(--muted))',
-          foreground: 'rgb(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'rgb(var(--accent))',
-          foreground: 'rgb(var(--accent-foreground))',
-        },
-        popover: {
-          DEFAULT: 'rgb(var(--popover))',
-          foreground: 'rgb(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'rgb(var(--card))',
-        },
-      },
-    },
-  },
-};
+```css
+@theme inline {
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-destructive: rgb(var(--destructive));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+  --color-card: rgb(var(--card));
+}
 ```
 
 ### Usage in Components
@@ -166,31 +146,33 @@ module.exports = {
 Once configured, use the semantic tokens in your components:
 
 ```jsx
-// Primary button
-<Button className="bg-primary text-primary-foreground">
-  <ButtonText>Primary Action</ButtonText>
-</Button>
+<>
+  {/* Primary button */}
+  <Button className="bg-primary text-primary-foreground">
+    <ButtonText>Primary Action</ButtonText>
+  </Button>
 
-// Secondary button
-<Button className="bg-secondary text-secondary-foreground">
-  <ButtonText>Secondary Action</ButtonText>
-</Button>
+  {/* Secondary button */}
+  <Button className="bg-secondary text-secondary-foreground">
+    <ButtonText>Secondary Action</ButtonText>
+  </Button>
 
-// Card with proper contrast
-<Box className="bg-card border border-border p-4">
-  <Text className="text-foreground">Card content</Text>
-  <Text className="text-muted-foreground">Muted description</Text>
-</Box>
+  {/* Card with proper contrast */}
+  <Box className="bg-card border border-border p-4">
+    <Text className="text-foreground">Card content</Text>
+    <Text className="text-muted-foreground">Muted description</Text>
+  </Box>
 
-// Destructive action
-<Button className="bg-destructive text-primary-foreground">
-  <ButtonText>Delete</ButtonText>
-</Button>
+  {/* Destructive action */}
+  <Button className="bg-destructive text-primary-foreground">
+    <ButtonText>Delete</ButtonText>
+  </Button>
 
-// With opacity
-<Box className="bg-primary/10">
-  <Text className="text-primary">Subtle primary background</Text>
-</Box>
+  {/* With opacity */}
+  <Box className="bg-primary/10">
+    <Text className="text-primary">Subtle primary background</Text>
+  </Box>
+</>
 ```
 
 ### Adding Custom Tokens
@@ -218,19 +200,15 @@ export const config = {
 };
 ```
 
-#### Step 2: Add to tailwind.config.js
+#### Step 2: Add to `global.css`
 
-```jsx
-colors: {
-  // ... existing colors
-  success: {
-    DEFAULT: 'rgb(var(--success))',
-    foreground: 'rgb(var(--success-foreground))',
-  },
-  warning: {
-    DEFAULT: 'rgb(var(--warning))',
-    foreground: 'rgb(var(--warning-foreground))',
-  },
+```css
+@theme inline {
+  /* ... existing tokens */
+  --color-success: rgb(var(--success));
+  --color-success-foreground: rgb(var(--success-foreground));
+  --color-warning: rgb(var(--warning));
+  --color-warning-foreground: rgb(var(--warning-foreground));
 }
 ```
 
@@ -253,13 +231,16 @@ export const config = {
 };
 ```
 
-#### Step 2: Add to tailwind.config.js
+#### Step 2: Add to `global.css`
 
-```jsx
-fontSize: {
-  'custom-heading-xl': 'var(--font-size-custom)',
+```css
+@theme inline {
+  /* ... existing tokens */
+  --font-size-custom-heading-xl: var(--font-size-custom);
 }
 ```
+
+Then use it in your components with the `text-custom-heading-xl` class.
 
 #### Step 3: Configure tva for the component
 

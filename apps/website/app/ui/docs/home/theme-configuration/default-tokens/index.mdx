@@ -72,11 +72,13 @@ export const config = {
 
 Usage with opacity:
 ```jsx
-// Full opacity
-<Box className="bg-primary" />
+<>
+  {/* Full opacity — bg-primary (100% opacity) */}
+  <Box className="bg-primary" />
 
-// 50% opacity
-<Box className="bg-primary/50" />
+  {/* 50% opacity — bg-primary/50 */}
+  <Box className="bg-primary/50" />
+</>
 ```
 
 ### Benefits of This System
@@ -86,21 +88,45 @@ Usage with opacity:
 3. **Guaranteed contrast** - Foreground tokens ensure readable text
 4. **Design system consistency** - Follows industry-standard patterns
 
-To customize colors, update `gluestack-ui-provider/config.ts` and `tailwind.config.js`. For detailed instructions, see [Customizing Theme](/ui/docs/home/theme-configuration/customizing-theme).
+To customize colors, update `gluestack-ui-provider/config.ts` and `global.css`. For detailed instructions, see [Customizing Theme](/ui/docs/home/theme-configuration/customizing-theme).
 
 ## Typography
 
-To manage Typography options, update **theme** in `tailwind.config.js`.
+To manage Typography options, add tokens in `global.css` via `@theme inline`.
 
-To add or update **Font Family**. Please refer [Tailwind CSS documentation](https://tailwindcss.com/docs/font-family). We have also added a new family, '**roboto**', in our `tailwind.config.js`.
+To add or update **Font Family**, use `@theme inline` in `global.css`:
 
-To add or update **font sizes**, please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-size). We have added a new size, '**2xs**', in `tailwind.config.js` with a value of '**10px**'.
+```css
+@theme inline {
+  --font-family-roboto: 'Roboto', sans-serif;
+}
+```
+
+Please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-family) for more details.
+
+To add or update **font sizes**, use `@theme inline` in `global.css`:
+
+```css
+@theme inline {
+  --font-size-2xs: 10px;
+}
+```
+
+Please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-size) for more details.
 
 <FontSizeComponent />
 
 <br />
 
-To add or update **font weights**, please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-weight). We have added a new weight, '**extrablack**', in `tailwind.config.js` with a value of '**950**'.
+To add or update **font weights**, use `@theme inline` in `global.css`:
+
+```css
+@theme inline {
+  --font-weight-extrablack: 950;
+}
+```
+
+Please refer to the [Tailwind CSS documentation](https://tailwindcss.com/docs/font-weight) for more details.
 
 <FontWeightComponent />
 

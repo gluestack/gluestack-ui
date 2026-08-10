@@ -20,32 +20,26 @@ gluestack-ui provides two ways of switching the color scheme or color mode: usin
 
 ### Using CSS Variables
 
-With CSS variables, you can configure multiple color schemes in the `config.ts` file. This file contains two predefined color schemes: `light` and `dark`. It utilizes the [vars](https://www.nativewind.dev/v4/api/vars) functionality from nativewind to switch token values when the color mode is changed. This approach results in less code and makes configuring tokens for different color schemes easier.
+With CSS variables, you can configure multiple color schemes in the `config.ts` file. This file contains two predefined color schemes: `light` and `dark`. It utilizes the [vars](https://www.nativewind.dev/v5/api/vars) functionality from nativewind to switch token values when the color mode is changed. This approach results in less code and makes configuring tokens for different color schemes easier.
 
 ### Usage
 
 Let's look at an example where we define the `primary` token and switch it.
 
-1. First, define the color token in your `tailwind.config.js` file and assign a variable value as shown below, following Tailwind's recommendation for [using CSS variables in Tailwind](https://tailwindcss.com/docs/customizing-colors#using-css-variables).
+1. First, map the CSS variable to a Tailwind color utility in your `global.css` using `@theme inline` — no `tailwind.config.js` needed:
 
-```js
-// tailwind.config.js
-
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        primary: 'rgb(var(--color-primary)/<alpha-value>)',
-      },
-    },
-  },
-};
+```css
+/* global.css */
+@theme inline {
+  --color-primary: rgb(var(--color-primary));
+}
 ```
 
-2. Now, define the values of that CSS variable for the `light` and `dark` color schemes in the `config.ts` file as shown below. [Reference](https://www.nativewind.dev/v4/guides/themes).
+2. Now, define the values of that CSS variable for the `light` and `dark` color schemes in the `config.ts` file as shown below:
 
 ```js
 // config.ts
+import { vars } from 'nativewind';
 
 export const config = {
   light: vars({
@@ -121,32 +115,9 @@ export default function App() {
 }
 ```
 
-In the above example, we switch the background color of our Box component in dark mode using the `dark:` syntax. To use dark mode, we need to change the `darkMode` strategy to `"class"` for the web and `"media"` for native devices in the `tailwind.config.js` file. You can achieve this by setting the `DARK_MODE` environment variable as shown below.
+In the above example, we switch the background color of our Box component in dark mode using the `dark:` syntax. NativeWind v5 uses Tailwind CSS v4, where the `dark:` variant works out of the box using `prefers-color-scheme: dark` — no `tailwind.config.js` or `DARK_MODE` environment variable needed.
 
-```js
-// tailwind.config.js
-
-module.exports = {
-  darkMode: process.env.DARK_MODE ? process.env.DARK_MODE : 'media',
-  // rest of the config
-};
-```
-
-After this, we need to update our scripts in the `package.json` file as shown below:
-
-```json
-{
-  "scripts": {
-    "android": "DARK_MODE=media expo start --android",
-    "ios": "DARK_MODE=media expo start --ios",
-    "web": "DARK_MODE=class expo start --web"
-  }
-}
-```
-
-For Next.js projects, you can directly set the `darkMode` strategy to `"class"` without needing to change the scripts.
-
-> Note: This is a temporary solution until we fix the issue with nativewind for the `darkMode:"class"` strategy.
+For web apps that need manual dark mode toggling (class-based), define `:root.dark` and `:root.light` selectors in your `global.css` `@layer theme` block. The `GluestackUIProvider` `mode` prop handles the toggle on both native and web. See the [installation guide](/ui/docs/home/getting-started/installation) for the full `global.css` setup.
 
 ## Persist Color Mode
 
