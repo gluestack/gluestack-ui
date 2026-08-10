@@ -47,7 +47,7 @@ const modalBackdropStyle = tva({
 });
 
 const modalContentStyle = tva({
-  base: 'bg-background rounded-md overflow-hidden border border-border/80 shadow-hard-2 p-6',
+  base: 'bg-background rounded-md overflow-hidden border border-border/80 shadow-hard-2 p-6 max-h-[85vh]',
   parentVariants: {
     size: {
       xs: 'w-[60%] max-w-[360px]',
@@ -173,7 +173,6 @@ const ModalBody = React.forwardRef<
 >(function ModalBody({ className, ...props }, ref) {
   return (
     <UIModal.Body
-      scrollEnabled={false}
       ref={ref}
       {...props}
       className={modalBodyStyle({
