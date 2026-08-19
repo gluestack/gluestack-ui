@@ -78,7 +78,7 @@ const VadimStream = () => {
         <Heading className="text-3xl font-roboto font-bold sm:leading-[54px] leading-9 text-foreground sm:text-4xl">
           MCP Server
         </Heading>
-        <Text className="text-lg font-roboto font-normal leading-[30px] lg:w-[75%]">
+        <Text className="text-lg text-muted-foreground font-normal leading-[30px] lg:w-[75%]">
           Our MCP (Model Context Protocol) Server is an intelligent code
           generation tool that creates production-ready, consistent UI
           components using gluestack-ui v2. It streamlines your development
@@ -95,7 +95,7 @@ const VadimStream = () => {
           src="https://www.youtube.com/embed/5lSvkESJgmY"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          loading='lazy'
+          loading="lazy"
         />
       </Box>
     </Box>

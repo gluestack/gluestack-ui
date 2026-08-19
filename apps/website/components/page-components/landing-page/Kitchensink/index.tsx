@@ -15,13 +15,13 @@ import { kitchensink } from '@/components/docs-components/apps/appConfig';
 
 const Kitchensink = () => {
   return (
-    <Box className="gap-10 p-4 bg-muted mt-[120px] sm:mt-0 sm:bg-background sm:p-0 sm:border-none border border-border rounded-lg sm:rounded-none">
+    <Box className="gap-10 p-4  mt-[120px] sm:mt-0  sm:p-0 sm:border-none border border-border rounded-lg sm:rounded-none">
       <VStack className="max-w-[1024px] sm:mt-[120px] gap-3">
         <Heading className="text-3xl font-bold sm:leading-[54px] leading-9 text-foreground sm:text-4xl">
           Kitchensink
         </Heading>
         <VStack className="gap-4">
-          <Text className="text-lg font-normal leading-[30px] lg:w-[75%]">
+          <Text className="text-lg text-muted-foreground font-normal leading-[30px] lg:w-[75%]">
             <a
               href="https://gluestack.io/ui/docs/apps/kitchensink-app"
               className="underline underline-offset-4 group-hover/link:underline"

@@ -945,7 +945,7 @@ const MainContent = () => {
       <VStack className="gap-20 flex-1">
         <VStack className="gap-3">
           <Heading className="text-5xl">Same code for Next.js and Expo</Heading>
-          <Text>
+          <Text className="text-muted-foreground">
             Lorem ipsum dolor sit amet consectetur. Pretium mauris maecenas
             lobortis libero orci orci pellentesque. Hendrerit penatibus mauris
             adipiscing egestas. Nec risus malesuada habitant diam fermentum.

@@ -11,7 +11,7 @@ const Example = () => {
         <Heading size="2xl" className="text-3xl md:text-4xl font-bold">
           Same code for Next.js and Expo
         </Heading>
-        <Text className="text-lg font-normal leading-[30px] w-full md:w-[75%]">
+        <Text className="text-lg text-muted-foreground font-normal leading-[30px] w-full md:w-[75%]">
           Build universal apps with consistent code across Next.js and Expo
           projects. Boost productivity, ensure code consistency, and simplify
           maintenance for both web and mobile platforms using a powerful React
