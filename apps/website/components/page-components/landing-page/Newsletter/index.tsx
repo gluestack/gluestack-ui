@@ -86,13 +86,12 @@ export const Newsletter = ({
       setLoading(true);
       setError(false);
       setErrorMessage('');
-  
-      const response = await axios.post('/api/listmonk', { 
-       
+
+      const response = await axios.post('/api/listmonk', {
         email: email,
-        name: '' // You can add a name field to your form if needed
+        name: '', // You can add a name field to your form if needed
       });
-  
+
       if (response.status === 200) {
         setSuccess(true);
         setError(false);
@@ -102,16 +101,19 @@ export const Newsletter = ({
     } catch (error: any) {
       setError(true);
       setSuccess(false);
-      
+
       // Handle different error cases based on status code
       if (error.response?.status === 409) {
         setErrorMessage('This email is already subscribed!');
       } else if (error.response?.status === 400) {
         setErrorMessage('Please enter a valid email address!');
       } else {
-        setErrorMessage(error.response?.data?.message || 'Error subscribing to newsletter. Please try again!');
+        setErrorMessage(
+          error.response?.data?.message ||
+            'Error subscribing to newsletter. Please try again!'
+        );
       }
-      
+
       setEmail('');
     } finally {
       setLoading(false);
@@ -136,7 +138,7 @@ export const Newsletter = ({
         <Heading className="text-3xl font-bold sm:leading-[54px] leading-9 mb-3 text-foreground sm:text-4xl">
           Get exclusive updates!
         </Heading>
-        <Text className="text-lg font-normal leading-[30px] lg:w-[75%]">
+        <Text className="text-lg text-muted-foreground font-normal leading-[30px] lg:w-[75%]">
           We can&apos;t do this alone, we would love feedback and the fastest
           way for us to reach out to you is via emails. We won&apos;t spam, I
           promise!
@@ -178,7 +180,7 @@ export const Newsletter = ({
             onPress={subscribeToNewsLetter}
           >
             {loading ? (
-             <ButtonText>loading</ButtonText>
+              <ButtonText>loading</ButtonText>
             ) : (
               <>
                 <ButtonText className="font-medium leading-normal">

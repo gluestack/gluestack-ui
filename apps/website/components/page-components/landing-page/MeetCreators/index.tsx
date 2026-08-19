@@ -33,8 +33,8 @@ function MeetCreators({ geekyantsLink }: { geekyantsLink: string }) {
         </Text>
         <Text className="text-lg font-normal leading-[30px] mt-3 text-muted-foreground">
           GeekyAnts is a team of React Native experts who love open-source and
-          solving developer problems. We've been working on React Native since
-          2015 and have designed and built{' '}
+          solving developer problems. We&apos;ve been working on React Native
+          since 2015 and have designed and built{' '}
           <a
             href="https://theappmarket.io/"
             className="underline underline-offset-4 group-hover/link:underline"

@@ -15,7 +15,7 @@ export const SocialMediaGridTestimonial = () => {
         <Heading className="text-3xl md:text-4xl  ">
           Public Cheers for Us!
         </Heading>
-        <Text className="  md:text-base">
+        <Text className="text-muted-foreground md:text-base">
           Find out how our users are spreading the word!
         </Text>
       </Box>

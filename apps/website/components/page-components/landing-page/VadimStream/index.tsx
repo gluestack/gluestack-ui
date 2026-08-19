@@ -83,7 +83,7 @@ const VadimStream = () => {
             notJust.dev
           </Span>
         </Heading>
-        <Text className="text-lg font-roboto font-normal leading-[30px] lg:w-[75%]">
+        <Text className="text-lg text-muted-foreground font-normal leading-[30px] lg:w-[75%]">
           Vadim, popularly known as &quot;just-not-dev&quot; on YouTube, offers
           insightful and practical videos that explore a wide range of developer
           tools and frameworks, including gluestack-ui.
@@ -98,7 +98,7 @@ const VadimStream = () => {
             src="https://www.youtube.com/embed/FBXUPJ9_Xl0?enablejsapi=1"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            loading='lazy'
+            loading="lazy"
           />
         </Box>
         <Box className="flex-1 border border-border rounded-lg overflow-hidden aspect-video">
