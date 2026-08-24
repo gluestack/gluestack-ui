@@ -538,8 +538,10 @@ const installNativeDependencies = async (
           );
         }
       } else if (projectType === config.reactNativeCLIProject) {
-        // For React Native CLI, install react-dom + native deps
-        const nativeDeps = ['react-native-reanimated', 'react-native-worklets', 'react-dom'];
+        // For React Native CLI, install native deps
+        // (react-dom is no longer installed — react-aria was removed from the
+        // RN CLI dependency set, see issue #3421)
+        const nativeDeps = ['react-native-reanimated', 'react-native-worklets'];
         const versionManager = config.packageManager || findLockFileType();
         if (!versionManager) {
           throw new Error('No package manager found');

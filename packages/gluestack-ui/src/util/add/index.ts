@@ -173,7 +173,13 @@ const writeComponent = async (component: string, targetPath: string) => {
     const files = await fs.readdir(sourcePath, { withFileTypes: true });
 
     for (const file of files) {
-      if (file.isFile() && file.name !== 'dependencies.json') {
+      // Copy only source-code files — never docs/, examples/, .handlebars,
+      // meta.json or other non-code files from the cached repo (issue #3421).
+      if (
+        file.isFile() &&
+        file.name !== 'dependencies.json' &&
+        /\.(tsx?|jsx?)$/.test(file.name)
+      ) {
         await fs.copy(
           join(sourcePath, file.name),
           join(targetPath, file.name),

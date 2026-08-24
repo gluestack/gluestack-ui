@@ -249,6 +249,43 @@ const UNIWIND_BABEL_CONFIG_RN_CLI = `module.exports = {
 };
 `;
 
+// NativeWind v4 babel.config.js for RN CLI — inlined because the templates cache
+// (main-v4-alpha) is stale and still ships the deprecated
+// metro-react-native-babel-preset (removed in RN 0.72).
+// See https://github.com/gluestack/gluestack-ui/issues/3421.
+const NATIVEWIND_V4_BABEL_CONFIG_RN_CLI = `module.exports = {
+  presets: ['module:@react-native/babel-preset', 'nativewind/babel'],
+  plugins: [
+    [
+      'module-resolver',
+      {
+        root: ['./'],
+        alias: {
+          '@': './',
+          'tailwind.config': './tailwind.config.js',
+        },
+      },
+    ],
+    'react-native-worklets/plugin',
+  ],
+};
+`;
+
+// NativeWind v4 metro.config.js for RN CLI — inlined for the same reason as babel,
+// plus the react-dom resolver alias (react-aria pulls react-dom into RN projects
+// where it has no implementation). See issue #3421.
+const NATIVEWIND_V4_METRO_CONFIG_RN_CLI = `const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
+const { withNativeWind } = require('nativewind/metro');
+
+const config = getDefaultConfig(__dirname);
+
+config.resolver.extraNodeModules = {
+  'react-dom': require.resolve('react-native'),
+};
+
+module.exports = withNativeWind(config, { input: './global.css', inlineRem: 16 });
+`;
+
 // NativeWind v5 global.css — inlined to avoid dependency on cloned repo having the file
 const NATIVEWIND_V5_GLOBAL_CSS = `@import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/preflight.css" layer(base);
@@ -758,11 +795,17 @@ async function addEssentialComponents(components: string[]) {
 
       await fs.ensureDir(targetPath);
 
-      // Copy only files from the root directory, excluding subdirectories and dependencies.json
+      // Copy only source-code files from the root directory — excluding
+      // subdirectories, dependencies.json, and any non-code files
+      // (docs/, examples/, .handlebars, meta.json — see issue #3421).
       const files = await fs.readdir(sourcePath, { withFileTypes: true });
 
       for (const file of files) {
-        if (file.isFile() && file.name !== 'dependencies.json') {
+        if (
+          file.isFile() &&
+          file.name !== 'dependencies.json' &&
+          /\.(tsx?|jsx?)$/.test(file.name)
+        ) {
           await fs.copy(
             join(sourcePath, file.name),
             join(targetPath, file.name),
@@ -1241,6 +1284,32 @@ async function commonInitialization(
         'nativewind-env.d.ts'
       );
       await fs.copy(nativewindEnvPath, join(_currDir, 'nativewind-env.d.ts'));
+
+      // Inline correct babel/metro configs for RN CLI — the templates cache
+      // (main-v4-alpha) is stale: it still ships the deprecated
+      // metro-react-native-babel-preset and lacks the react-dom resolver alias.
+      // Overwrites whatever the template-copy loop above wrote. See issue #3421.
+      const isRNCLI = projectType === config.reactNativeCLIProject;
+      if (isRNCLI) {
+        const babelConfigPath =
+          resolvedConfig.config?.babelConfig ||
+          join(_currDir, 'babel.config.js');
+        await fs.writeFile(
+          babelConfigPath,
+          NATIVEWIND_V4_BABEL_CONFIG_RN_CLI,
+          'utf8'
+        );
+        log.info('✅ Written babel.config.js for NativeWind v4 RN CLI');
+        const metroConfigPath =
+          resolvedConfig.config?.metroConfig ||
+          join(_currDir, 'metro.config.js');
+        await fs.writeFile(
+          metroConfigPath,
+          NATIVEWIND_V4_METRO_CONFIG_RN_CLI,
+          'utf8'
+        );
+        log.info('✅ Written metro.config.js for NativeWind v4 RN CLI');
+      }
     }
 
     permission && (await updateTSConfig(projectType, resolvedConfig));

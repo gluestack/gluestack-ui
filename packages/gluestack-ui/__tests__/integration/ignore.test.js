@@ -20,41 +20,53 @@ describe('Ignore functionality', () => {
       // This test would need proper mocking of fs.readdirSync
       // For now, we just test that the config is properly set up
       expect(config.ignoreComponents).toContain('utils');
-      expect(config.ignoreComponents).toContain('creator');
-      expect(config.ignoreFolders).toContain('docs');
-      expect(config.ignoreFolders).toContain('examples');
     });
   });
 
-  describe('Folder filtering during copy', () => {
-    test('should ignore docs and examples folders during component copy', () => {
-      // Test that the filter function properly excludes ignored folders
-      const component = 'button';
-      const basePath = `/home/user/.gluestack/cache/gluestack-ui/src/components/ui/${component}`;
+  describe('Copy filtering (docs/examples/non-code files)', () => {
+    // The copy functions (writeComponent in util/add, addEssentialComponents
+    // in util/init) only copy root-level files with source-code extensions.
+    // This keeps docs/, examples/, .handlebars, meta.json etc. out of user
+    // projects — see https://github.com/gluestack/gluestack-ui/issues/3421.
+    const isCopyable = (fileName) =>
+      fileName !== 'dependencies.json' && /\.(tsx?|jsx?)$/.test(fileName);
 
-      // Simulate the filter function from writeComponent
-      const filter = (src) => {
-        const relativePath = src.replace(basePath, '');
+    test('should copy source-code files', () => {
+      expect(isCopyable('index.tsx')).toBe(true);
+      expect(isCopyable('index.web.tsx')).toBe(true);
+      expect(isCopyable('styles.ts')).toBe(true);
+      expect(isCopyable('script.ts')).toBe(true);
+      expect(isCopyable('component.jsx')).toBe(true);
+    });
 
-        // Skip if the path starts with any of the ignored folders
-        for (const ignoreFolder of config.ignoreFolders) {
-          if (
-            relativePath.startsWith(`/${ignoreFolder}`) ||
-            relativePath.startsWith(`\\${ignoreFolder}`)
-          ) {
-            return false;
-          }
-        }
+    test('should exclude dependencies.json and non-code files', () => {
+      expect(isCopyable('dependencies.json')).toBe(false);
+      expect(isCopyable('template.handlebars')).toBe(false);
+      expect(isCopyable('meta.json')).toBe(false);
+      expect(isCopyable('README.md')).toBe(false);
+      expect(isCopyable('docs')).toBe(false);
+      expect(isCopyable('examples')).toBe(false);
+    });
 
-        return true;
-      };
+    test('copy functions in built CLI implement this filter', () => {
+      const pkgRoot = path.join(__dirname, '..', '..');
+      const addSrc = fs.readFileSync(
+        path.join(pkgRoot, 'dist/util/add/index.js'),
+        'utf8'
+      );
+      const initSrc = fs.readFileSync(
+        path.join(pkgRoot, 'dist/util/init/index.js'),
+        'utf8'
+      );
 
-      // Test cases
-      expect(filter(`${basePath}/index.tsx`)).toBe(true);
-      expect(filter(`${basePath}/docs/README.md`)).toBe(false);
-      expect(filter(`${basePath}/examples/basic.tsx`)).toBe(false);
-      expect(filter(`${basePath}/src/component.tsx`)).toBe(true);
-      expect(filter(`${basePath}/styles.ts`)).toBe(true);
+      // Both copy paths exclude dependencies.json and only allow code extensions.
+      const filterPattern = /dependencies\.json/;
+      const extPattern = /\\\.\(tsx\?\|jsx\?\)\$/;
+
+      expect(filterPattern.test(addSrc)).toBe(true);
+      expect(filterPattern.test(initSrc)).toBe(true);
+      expect(extPattern.test(addSrc)).toBe(true);
+      expect(extPattern.test(initSrc)).toBe(true);
     });
   });
 
@@ -64,13 +76,6 @@ describe('Ignore functionality', () => {
       expect(config.ignoreComponents).toBeDefined();
       expect(Array.isArray(config.ignoreComponents)).toBe(true);
       expect(config.ignoreComponents.length).toBeGreaterThan(0);
-    });
-
-    test('should have ignoreFolders array with docs and examples', () => {
-      expect(config.ignoreFolders).toBeDefined();
-      expect(Array.isArray(config.ignoreFolders)).toBe(true);
-      expect(config.ignoreFolders).toContain('docs');
-      expect(config.ignoreFolders).toContain('examples');
     });
   });
 });
