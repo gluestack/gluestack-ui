@@ -35,7 +35,7 @@ This is an illustration of **ActionSheet** component.
 ### Step 1: Install the following dependencies:
 
 ```bash
-npm i @expo/html-elements @legendapp/motion
+npm i @expo/html-elements react-native-reanimated
 ```
 
 ### Step 2: Copy and paste the following code into your project.
@@ -146,11 +146,11 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 #### ActionsheetBackdrop
 
-It is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [@legendapp/motion's](https://legendapp.com/open-source/motion/) `createMotionAnimatedComponent` function to add animation to the component. You can use any declarative animation library you prefer.
+It is React Native's [Pressable](https://reactnative.dev/docs/pressable) component, created using [react-native-reanimated's](https://docs.swmansion.com/react-native-reanimated/) `Animated.createAnimatedComponent` function to add animation to the component. It fades in and out with `FadeIn`/`FadeOut` animations when the Actionsheet opens and closes. You can override these using the `entering` and `exiting` props.
 
 #### ActionsheetContent
 
-It inherits all the properties of [@legendapp/motion's](https://legendapp.com/open-source/motion/) [Motion.View](https://legendapp.com/open-source/motion/overview/) component. With this Actionsheet component, you have the flexibility to use any declarative animation library that suits your needs.
+It inherits all the properties of [react-native-reanimated's](https://docs.swmansion.com/react-native-reanimated/) `Animated.View` component, and slides in from the bottom (`SlideInDown`) and out to the bottom (`SlideOutDown`) when the Actionsheet opens and closes. You can override these using the `entering` and `exiting` props.
 
 #### ActionsheetDragIndicatorWrapper
 

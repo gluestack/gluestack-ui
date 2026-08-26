@@ -136,7 +136,6 @@ function installV4Packages(
     // SDK-compatible version instead of defaulting to npm latest.
     const expoNativePackages = [
       'react-native-reanimated',
-      '@legendapp/motion',
       'react-native-svg',
       'react-native-safe-area-context',
       '@expo/html-elements',
@@ -171,7 +170,6 @@ function installV4Packages(
       // react-native-worklets must stay in the same minor as reanimated's
       // bundled native worklets binary (4.2.x bundles worklets 0.7.x).
       'react-native-worklets@~0.7.1',
-      '@legendapp/motion@^2.4.0',
       'react-native-svg@^15.12.0',
     ];
 

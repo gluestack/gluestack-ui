@@ -4,14 +4,14 @@ import { createActionsheet } from '@gluestack-ui/core/actionsheet/creator';
 import { UIIcon } from '@gluestack-ui/core/icon/creator';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  AnimatePresence,
-  createMotionAnimatedComponent,
-  Motion,
-  MotionComponentProps,
-} from '@legendapp/motion';
 import { styled } from 'nativewind';
 import React from 'react';
+import Animated, {
+  FadeIn,
+  FadeOut,
+  SlideInDown,
+  SlideOutDown,
+} from 'react-native-reanimated';
 import {
   FlatList,
   Pressable,
@@ -20,7 +20,6 @@ import {
   SectionList,
   Text,
   View,
-  ViewStyle,
   VirtualizedList,
 } from 'react-native';
 
@@ -31,28 +30,33 @@ const ItemWrapper = React.forwardRef<
   return <Pressable {...props} ref={ref} />;
 });
 
-type IMotionViewProps = React.ComponentProps<typeof View> &
-  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+// Passthrough exit-state machine: core only runs its exit timer when
+// AnimatePresence is truthy; visuals come from reanimated entering/exiting.
+const AnimatePresence = React.forwardRef<
+  unknown,
+  { children?: React.ReactNode }
+>(function AnimatePresence({ children }, _ref) {
+  return <>{children}</>;
+});
 
-const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+const AnimatedView = Animated.createAnimatedComponent(View);
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-type IAnimatedPressableProps = React.ComponentProps<typeof Pressable> &
-  MotionComponentProps<typeof Pressable, ViewStyle, unknown, unknown, unknown>;
+const StyledAnimatedView = styled(AnimatedView, { className: 'style' });
+const StyledAnimatedPressable = styled(AnimatedPressable, {
+  className: 'style',
+});
 
-const AnimatedPressable = createMotionAnimatedComponent(
-  Pressable
-) as React.ComponentType<IAnimatedPressableProps>;
-
-const StyledUIIcon = styled(UIIcon, { className: "style" });
+const StyledUIIcon = styled(UIIcon, { className: 'style' });
 
 export const UIActionsheet = createActionsheet({
   Root: View,
-  Content: MotionView,
+  Content: StyledAnimatedView,
   Item: ItemWrapper,
   ItemText: Text,
   DragIndicator: View,
   IndicatorWrapper: View,
-  Backdrop: AnimatedPressable,
+  Backdrop: StyledAnimatedPressable,
   ScrollView: ScrollView,
   VirtualizedList: VirtualizedList,
   FlatList: FlatList,
@@ -65,7 +69,7 @@ export const UIActionsheet = createActionsheet({
 const actionsheetStyle = tva({ base: 'w-full h-full web:pointer-events-none' });
 
 const actionsheetContentStyle = tva({
-  base: 'items-center rounded-t-lg p-4 bg-background web:pointer-events-auto web:select-none border-t border-border dark:border-border/10 max-h-[80vh] pb-safe',
+  base: 'items-center rounded-t-lg p-4 bg-background web:pointer-events-auto web:select-none border-t border-border dark:border-border/10 max-h-[80vh] pb-safe absolute bottom-0 left-0 right-0',
 });
 
 const actionsheetItemStyle = tva({
@@ -227,9 +231,21 @@ const Actionsheet = React.forwardRef<
 const ActionsheetContent = React.forwardRef<
   React.ComponentRef<typeof UIActionsheet.Content>,
   IActionsheetContentProps
->(function ActionsheetContent({ className, ...props }, ref) {
+>(function ActionsheetContent(
+  {
+    className,
+    initial: _initial,
+    animate: _animate,
+    exit: _exit,
+    transition: _transition,
+    ...props
+  },
+  ref
+) {
   return (
     <UIActionsheet.Content
+      entering={SlideInDown.duration(200)}
+      exiting={SlideOutDown.duration(200)}
       className={actionsheetContentStyle({
         class: className,
       })}
@@ -312,19 +328,8 @@ const ActionsheetBackdrop = React.forwardRef<
 >(function ActionsheetBackdrop({ className, ...props }, ref) {
   return (
     <UIActionsheet.Backdrop
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      exit={{
-        opacity: 0,
-      }}
-      transition={{
-        type: 'timing',
-        duration: 200,
-      }}
+      entering={FadeIn.duration(200)}
+      exiting={FadeOut.duration(200)}
       {...props}
       className={actionsheetBackdropStyle({
         class: className,
@@ -454,7 +459,17 @@ const ActionsheetIcon = React.forwardRef<
 });
 
 export {
-  Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator,
-  ActionsheetDragIndicatorWrapper, ActionsheetFlatList, ActionsheetIcon, ActionsheetItem,
-  ActionsheetItemText, ActionsheetScrollView, ActionsheetSectionHeaderText, ActionsheetSectionList, ActionsheetVirtualizedList
+  Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetFlatList,
+  ActionsheetIcon,
+  ActionsheetItem,
+  ActionsheetItemText,
+  ActionsheetScrollView,
+  ActionsheetSectionHeaderText,
+  ActionsheetSectionList,
+  ActionsheetVirtualizedList,
 };

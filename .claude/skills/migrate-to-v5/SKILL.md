@@ -472,13 +472,13 @@ npm install @gluestack-ui/core@^4.0.0-alpha.0 @gluestack-ui/utils@^4.0.0-alpha.0
   tailwind-variants@^0.1.20 nativewind@^4.1.23
 
 # Expo: use expo install for native packages (resolves SDK-compatible versions)
-npx expo install react-native-reanimated @legendapp/motion react-native-svg \
+npx expo install react-native-reanimated react-native-svg \
   react-native-safe-area-context @expo/html-elements
 npx expo install --fix   # resolves react-native-worklets at matching version
 
 # RN CLI / non-Expo:
 npm install react-native-reanimated@~4.2.1 react-native-worklets@~0.7.1 \
-  @legendapp/motion@^2.4.0 react-native-svg@^15.12.0 \
+  react-native-svg@^15.12.0 \
   react-native-safe-area-context@^5.6.1 @expo/html-elements@^0.12.5
 ```
 

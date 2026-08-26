@@ -1,30 +1,32 @@
 'use client';
 import React from 'react';
 import { createTooltip } from '@gluestack-ui/core/tooltip/creator';
-import { View, Text, ViewStyle } from 'react-native';
+import { View, Text } from 'react-native';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  Motion,
-  AnimatePresence,
-  MotionComponentProps,
-} from '@legendapp/motion';
 import { cssInterop } from 'nativewind';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
-type IMotionViewProps = React.ComponentProps<typeof View> &
-  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+// Passthrough exit-state machine: core only runs its exit timer when
+// AnimatePresence is truthy; visuals come from reanimated entering/exiting.
+const AnimatePresence = React.forwardRef<
+  unknown,
+  { children?: React.ReactNode }
+>(function AnimatePresence({ children }, _ref) {
+  return <>{children}</>;
+});
 
-const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+const AnimatedView = Animated.createAnimatedComponent(View);
 
 export const UITooltip = createTooltip({
   Root: withStyleContext(View),
-  Content: MotionView,
+  Content: AnimatedView,
   Text: Text,
   AnimatePresence: AnimatePresence,
 });
 
-cssInterop(MotionView, { className: 'style' });
+cssInterop(AnimatedView, { className: 'style' });
 
 const tooltipStyle = tva({
   base: 'w-full h-full web:pointer-events-none',
@@ -98,10 +100,22 @@ const Tooltip = React.forwardRef<
 const TooltipContent = React.forwardRef<
   React.ComponentRef<typeof UITooltip.Content>,
   ITooltipContentProps & { className?: string }
->(function TooltipContent({ className, ...props }, ref) {
+>(function TooltipContent(
+  {
+    className,
+    initial: _initial,
+    animate: _animate,
+    exit: _exit,
+    transition: _transition,
+    ...props
+  },
+  ref
+) {
   return (
     <UITooltip.Content
       ref={ref}
+      entering={FadeIn.duration(100)}
+      exiting={FadeOut.duration(100)}
       {...props}
       className={tooltipContentStyle({
         class: className,

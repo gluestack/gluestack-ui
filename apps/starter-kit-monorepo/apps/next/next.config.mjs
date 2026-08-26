@@ -16,7 +16,6 @@ const nextConfig = {
     'react-native-reanimated',
     'react-native-safe-area-context',
     '@expo/html-elements',
-    '@legendapp/motion',
     '@gorhom/bottom-sheet',
     'lucide-react-native',
   ],

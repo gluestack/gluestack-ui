@@ -15,7 +15,6 @@
     "@gluestack-ui/core": "^5.0.8-alpha.0",
     "@gluestack-ui/utils": "5.0.3-alpha.0",
     "@gorhom/bottom-sheet": "^5",
-    "@legendapp/motion": "^2.4.0",
     "@react-aria/utils": "^3.33.0",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native-community/datetimepicker": "8.6.0",
