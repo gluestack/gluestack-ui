@@ -33,7 +33,6 @@ import {
   MenuItemLabel,
 } from '@/components/ui/menu';
 import { Pressable } from '@/components/ui/pressable';
-import ProductHuntBanner from '../landing-page/ProductHuntBanner';
 
 const Header = ({
   isOpenSidebar: propsIsOpenSidebar,
@@ -47,7 +46,6 @@ const Header = ({
   const pathname = usePathname();
   const { colorMode, setColorMode } = useColorMode();
   const [showModal, setShowModal] = useState(false);
-  const [showPHBanner, setShowPHBanner] = useState(true);
 
   // Check if current route is documentation
   const isDocsRoute = pathname?.includes('/ui/docs/');
