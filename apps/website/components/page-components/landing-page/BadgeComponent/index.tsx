@@ -71,9 +71,11 @@ const BadgeComponent = () => {
             action="secondary"
             variant="outline"
             onPress={handleDenyClick}
-            className="sm:w-auto border-background"
+            className="sm:w-auto border-background bg-transparent data-[hover=true]:bg-background hover:bg-background dark:bg-transparent dark:data-[hover=true]:bg-background dark:hover:bg-background"
           >
-            <ButtonText className="text-background">Deny</ButtonText>
+            <ButtonText className="text-background data-[hover=true]:text-foreground hover:text-foreground dark:data-[hover=true]:text-foreground dark:hover:text-foreground">
+              Deny
+            </ButtonText>
           </Button>
           <Button
             onPress={handleEulaAccept}
