@@ -110,10 +110,11 @@ export const BottomSheet = forwardRef<BottomSheetRef, IBottomSheetRootProps>(
       [defaultSnapIndex, onOpen]
     );
 
-    const handleClose = useCallback(() => {
-      Keyboard.dismiss();
-      setCurrentIndex(-1);
-    }, []);
+    const handleClose = useCallback(() => {                                                                                              
+      Keyboard.dismiss();                                                                                                                
+      setCurrentIndex(-1);                                                                                                               
+      bottomSheetRef.current?.close();                                                                        
+    }, []);     
 
     const handleSheetChanges = useCallback(
       (index: number) => {
