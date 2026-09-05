@@ -114,6 +114,10 @@ const UISelect = createSelect(
     FlatList: ActionsheetFlatList,
     SectionList: ActionsheetSectionList,
     SectionHeaderText: ActionsheetSectionHeaderText,
+  },
+  //THIS THIRD ARGUMENT TO DISABLE NATIVE SELECT ON WEB
+  {
+    useRNSelect: false,
   }
 );
 
@@ -123,13 +127,14 @@ type ISelectProps = VariantProps<typeof selectStyle> &
 const Select = React.forwardRef<
   React.ComponentRef<typeof UISelect>,
   ISelectProps
->(function Select({ className, ...props }, ref) {
+>(function Select({ className, useRNSelect = false, ...props }, ref) {
   return (
     <UISelect
       className={selectStyle({
         class: className,
       })}
       ref={ref}
+      useRNSelect={useRNSelect}
       {...props}
     />
   );
