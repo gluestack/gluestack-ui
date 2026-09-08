@@ -167,10 +167,10 @@ function installV4Packages(
   } else {
     // For non-Expo projects use pinned tested versions.
     const versionedNativePackages = [
-      'react-native-reanimated@~4.2.1',
+      'react-native-reanimated@~4.4.1',
       // react-native-worklets must stay in the same minor as reanimated's
-      // bundled native worklets binary (4.2.x bundles worklets 0.7.x).
-      'react-native-worklets@~0.7.1',
+      // bundled native worklets binary (4.4.x bundles worklets 0.9.x).
+      'react-native-worklets@~0.9.3',
       '@legendapp/motion@^2.4.0',
       'react-native-svg@^15.12.0',
     ];
