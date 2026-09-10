@@ -1589,18 +1589,6 @@
   dependencies:
     use-sync-external-store "^1.5.0"
 
-"@legendapp/motion@^2.4.0":
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/@legendapp/motion/-/motion-2.5.3.tgz#f9a4c07c76eee757c5ca206085440d14cc28001b"
-  integrity sha512-IcNiStiK3qG5LaIPLC8fVV0BHIrkf7EY5HfOv3xbuMH0z4D945yaaEDafP5bboHf/uj9XRjTQHVTtZgwpMNlHw==
-  dependencies:
-    "@legendapp/tools" "2.0.1"
-
-"@legendapp/tools@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@legendapp/tools/-/tools-2.0.1.tgz#995fe6cb3e2398b939f645505aa8e1abc84bd07f"
-  integrity sha512-Kxt0HWvWElRK6oybHRzcYxdgaKGwuaiRNreS7usW7QuHXRIHaH4yMcW2YNRG4DHE5fpefv+Bno/BohQcCE4FaA==
-
 "@lottiefiles/dotlottie-react@^0.17.13":
   version "0.17.13"
   resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-react/-/dotlottie-react-0.17.13.tgz#a38ec8a97ea3ea544977fff5734d294ec155a89a"

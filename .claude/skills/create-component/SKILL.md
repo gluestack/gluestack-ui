@@ -82,8 +82,6 @@ questions:
     options:
       - label: "react-native-reanimated (Recommended)"
         description: "Better performance, runs on UI thread, most components use this"
-      - label: "@legendapp/motion"
-        description: "Simple declarative animations, good for basic transitions"
       - label: "No animations"
         description: "Static component without animations"
 ```
@@ -235,21 +233,6 @@ questions:
         description: "Natural motion with spring animations"
       - label: "Layout animations"
         description: "Animate position and size changes"
-```
-
-If **@legendapp/motion** was chosen:
-```yaml
-questions:
-  - question: "What type of animations does this component need?"
-    header: "Animation Type"
-    multiSelect: true
-    options:
-      - label: "Opacity transitions"
-        description: "Fade in/out effects"
-      - label: "Scale transitions"
-        description: "Zoom in/out effects"
-      - label: "Position transitions"
-        description: "Slide movements"
 ```
 
 **Question 5: Styling & Variants**
@@ -651,7 +634,6 @@ Always import from the deep path, not the component name directly:
 
 Use the animation library the user specified during requirements gathering:
 - If user chose **react-native-reanimated**: Use `Animated` from `react-native-reanimated`
-- If user chose **@legendapp/motion**: Use motion components from `@legendapp/motion`
 - If user chose **No animations**: Don't import any animation library
 
 **CRITICAL: Use Latest Color Tokens**
@@ -676,8 +658,6 @@ import { [componentName]Style, [subComponent]Style } from './styles';
 // Import animation library based on user's choice
 // Example with react-native-reanimated:
 import Animated, { FadeIn, SlideInUp } from 'react-native-reanimated';
-// OR with @legendapp/motion:
-// import { Motion } from '@legendapp/motion';
 
 // Create context-aware root
 const Root = withStyleContext(View, '[COMPONENT_NAME]');
@@ -973,7 +953,7 @@ mkdir -p src/components/ui/[component-name]/examples/basic
 2. Create `src/components/ui/[component-name]/index.tsx` with compound component:
    - Import creator using deep path: `@gluestack-ui/core/[component-name]/creator`
    - Import utils from: `@gluestack-ui/utils/nativewind-utils`
-   - Use user's chosen animation library (react-native-reanimated or @legendapp/motion)
+   - Use user's chosen animation library (react-native-reanimated or none)
    - Use semantic color tokens in className props
 
 3. Create `src/components/ui/[component-name]/styles.tsx` with tva() styles:
@@ -1674,7 +1654,7 @@ Would you like me to help you create the PR?
     - Barrel export in `packages/gluestack-core/src/[component]/index.tsx`
     - Update `packages/gluestack-core/src/index.tsx`
     - Scripts auto-generate deep import files
-11. **ALWAYS respect user's animation library choice** - if they want react-native-reanimated, don't use @legendapp/motion!
+11. **ALWAYS respect user's animation library choice** - if they want react-native-reanimated, don't use any other animation library!
 12. **ALWAYS test in multiple apps** before finalizing
 13. **ALWAYS create complete documentation following exact format**:
     - Use proper frontmatter (title, description, pageTitle, pageDescription, showHeader)

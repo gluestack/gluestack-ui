@@ -6,7 +6,6 @@
   "dependencies": {
     "@expo/html-elements": "^0.12.5",
     "@gorhom/bottom-sheet": "^5.1.8",
-    "@legendapp/motion": "^2.4.0",
     "nativewind": "^5.0.0-preview.2",
     "react": "19.2.0",
     "react-native": "0.83.2",

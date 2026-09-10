@@ -16,7 +16,6 @@
     "@gluestack-ui/utils": "^4.0.0-alpha.0",
     "@gluestack/ui-next-adapter": "^4.0.0-alpha.0",
     "@gorhom/bottom-sheet": "^5.0.0-alpha.11",
-    "@legendapp/motion": "^2.4.0",
     "@repo/tailwind-config": "workspace:*",
     "@repo/components": "workspace:*",
     "dom-helpers": "^5.2.1",

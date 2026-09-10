@@ -11,7 +11,7 @@ import { Center } from '@/components/ui/center';
 import { EditIcon, Icon } from '@/components/ui/icon';
 import { Command } from 'lucide-react-native';
 
-import { CodeBlock } from "@/components/custom/markdown/code-block";
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
 
 import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
@@ -32,9 +32,9 @@ Create an intuitive UI using the gluestack-ui Tooltip component in React & React
 This is an illustration of **Tooltip** component.
 
 
+  
 
-
-
+  
 
   <CodePreviewer
   code={`function Example() {
@@ -79,7 +79,7 @@ This is an illustration of **Tooltip** component.
 }}
   reactLive={{ Tooltip, TooltipContent, TooltipText, Button, ButtonText }}
   importMap={{"@/components/ui/tooltip":["Tooltip","TooltipContent","TooltipText"],"@/components/ui/button":["Button","ButtonText"]}}
-
+  
 />
 
 <br />
@@ -98,12 +98,12 @@ This is an illustration of **Tooltip** component.
 </TabItem>
 <TabItem label="Manual">
 
-> Note: At present, we have integrated the `@legendapp/motion` for animation. You have the option to remove this and implement your own custom animation wrapper.
+> Note: At present, we have integrated `react-native-reanimated` for animation. You have the option to remove this and implement your own custom animation wrapper.
 
 ### Step 1: Install the following dependencies:
 
 ```bash
-npm i @legendapp/motion
+npm i react-native-reanimated
 ```
 
 ### Step 2: Copy and paste the following code into your project.
@@ -112,27 +112,29 @@ npm i @legendapp/motion
 'use client';
 import React from 'react';
 import { createTooltip } from '@gluestack-ui/core/tooltip/creator';
-import { View, Text, ViewStyle } from 'react-native';
+import { View, Text } from 'react-native';
 import type { VariantProps } from '@gluestack-ui/utils/nativewind-utils';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
 import { withStyleContext } from '@gluestack-ui/utils/nativewind-utils';
-import {
-  Motion,
-  AnimatePresence,
-  MotionComponentProps,
-} from '@legendapp/motion';
 import { styled } from 'nativewind';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 
-type IMotionViewProps = React.ComponentProps<typeof View> &
-  MotionComponentProps<typeof View, ViewStyle, unknown, unknown, unknown>;
+// Passthrough exit-state machine: core only runs its exit timer when
+// AnimatePresence is truthy; visuals come from reanimated entering/exiting.
+const AnimatePresence = React.forwardRef<
+  unknown,
+  { children?: React.ReactNode }
+>(function AnimatePresence({ children }, _ref) {
+  return <>{children}</>;
+});
 
-const MotionView = Motion.View as React.ComponentType<IMotionViewProps>;
+const AnimatedView = Animated.createAnimatedComponent(View);
 
-const StyledMotionView = styled(MotionView, { className: 'style' });
+const StyledAnimatedView = styled(AnimatedView, { className: 'style' });
 
 export const UITooltip = createTooltip({
-  Root: withStyleContext(StyledMotionView),
-  Content: MotionView,
+  Root: withStyleContext(StyledAnimatedView),
+  Content: StyledAnimatedView,
   Text: Text,
   AnimatePresence: AnimatePresence,
 });
@@ -210,10 +212,22 @@ const Tooltip = React.forwardRef<
 const TooltipContent = React.forwardRef<
   React.ComponentRef<typeof UITooltip.Content>,
   ITooltipContentProps & { className?: string }
->(function TooltipContent({ className, ...props }, ref) {
+>(function TooltipContent(
+  {
+    className,
+    initial: _initial,
+    animate: _animate,
+    exit: _exit,
+    transition: _transition,
+    ...props
+  },
+  ref
+) {
   return (
     <UITooltip.Content
       ref={ref}
+      entering={FadeIn.duration(100)}
+      exiting={FadeOut.duration(100)}
       {...props}
       className={tooltipContentStyle({
         class: className,
@@ -450,6 +464,31 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 Contains all text related layout style props and actions. It inherits all the properties of React Native's Text component.
 
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>
+          2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl
+        </TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Sets the font size of the tooltip text.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
 #### TooltipContent
 
 Contains all backdrop related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
@@ -514,7 +553,7 @@ We have outlined the various features that ensure the Tooltip component is acces
   argTypes={{}}
   reactLive={{ Avatar, AvatarGroup, AvatarFallbackText, HStack, Tooltip, TooltipContent, TooltipText, Text, Box, Heading, VStack, Center }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarGroup","AvatarFallbackText"],"@/components/ui/hstack":["HStack"],"@/components/ui/tooltip":["Tooltip","TooltipContent","TooltipText"],"@/components/ui/text":["Text"],"@/components/ui/box":["Box"],"@/components/ui/heading":["Heading"],"@/components/ui/vstack":["VStack"],"@/components/ui/center":["Center"]}}
-
+  
 />
 
 
@@ -558,7 +597,7 @@ We have outlined the various features that ensure the Tooltip component is acces
   argTypes={{}}
   reactLive={{ Avatar, AvatarFallbackText, HStack, Tooltip, TooltipContent, Text, Box, Heading, EditIcon, Command, Icon }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarFallbackText"],"@/components/ui/hstack":["HStack"],"@/components/ui/tooltip":["Tooltip","TooltipContent"],"@/components/ui/text":["Text"],"@/components/ui/box":["Box"],"@/components/ui/heading":["Heading"],"@/components/ui/icon":["EditIcon","Icon"],"lucide-react-native":["Command"]}}
-
+  
 />
 
 
@@ -617,5 +656,5 @@ We have outlined the various features that ensure the Tooltip component is acces
 }}
   reactLive={{ Tooltip, TooltipContent, TooltipText, Text }}
   importMap={{"@/components/ui/tooltip":["Tooltip","TooltipContent","TooltipText"],"@/components/ui/text":["Text"]}}
-
+  
 />
