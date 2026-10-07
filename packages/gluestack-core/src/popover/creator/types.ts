@@ -94,6 +94,11 @@ export interface InterfacePopoverProps {
    */
   useRNModal?: boolean;
 
+  /* Animation of the react-native native modal, passed to Overlay
+   * @default 'fade'
+   */
+  animationPreset?: 'fade' | 'slide' | 'none';
+
   /* If true, it will not allow to interact with anything outside the popover
    * @default true
    */
