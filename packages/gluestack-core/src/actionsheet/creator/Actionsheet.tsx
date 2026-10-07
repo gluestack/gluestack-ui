@@ -19,6 +19,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
         closeOnOverlayClick = true,
         isKeyboardDismissable = true,
         useRNModal,
+        animationPreset,
         initialFocusRef,
         finalFocusRef,
         snapPoints,
@@ -86,6 +87,7 @@ export function Actionsheet<T>(StyledActionsheet: React.ComponentType<T>) {
           onRequestClose={handleClose}
           isKeyboardDismissable={isKeyboardDismissable}
           useRNModal={useRNModal}
+          animationPreset={animationPreset}
           // @ts-ignore
           style={overlayStyle}
         >

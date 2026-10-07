@@ -47,6 +47,7 @@ export const Popover = (StyledPopover: any) =>
         initialFocusRef,
         finalFocusRef,
         useRNModal,
+        animationPreset,
         focusScope = true,
         trapFocus = true,
         placement = 'bottom',
@@ -238,6 +239,7 @@ export const Popover = (StyledPopover: any) =>
             onRequestClose={handleClose}
             isKeyboardDismissable={isKeyboardDismissable}
             useRNModal={useRNModal}
+            animationPreset={animationPreset}
           >
             <PopoverProvider value={contextValue}>
               <StyledPopover ref={ref} {...props}>
