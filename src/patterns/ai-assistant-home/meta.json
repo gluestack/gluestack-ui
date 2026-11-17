@@ -1,0 +1,9 @@
+{
+  "title": "AI assistant home",
+  "description": "Assistant start screen with a personal greeting, a multi-line prompt box with attach and voice, colourful quick-action cards and a list of recent chats.",
+  "category": "ai-chat",
+  "tags": ["ai", "assistant", "home", "prompt", "quick actions"],
+  "prompt": "Start a new chat with the prompt or quick-action text when sent, and load recent chats from my conversation history store.",
+  "featured": false,
+  "added": "2026-11-17"
+}

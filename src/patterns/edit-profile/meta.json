@@ -1,0 +1,9 @@
+{
+  "title": "Edit profile",
+  "description": "A profile editor with a large avatar and camera button, icon-led fields for name, username, email, location and website, a bio textarea with a live character counter, and sticky Cancel / Save buttons.",
+  "category": "profile-settings",
+  "tags": ["profile", "form", "avatar", "edit", "account"],
+  "prompt": "Prefill the fields from my user store, open the image picker from the avatar button, validate username and email, and save changes to my API with a success toast.",
+  "featured": false,
+  "added": "2026-11-17"
+}

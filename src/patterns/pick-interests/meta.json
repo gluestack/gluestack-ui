@@ -1,0 +1,14 @@
+{
+  "title": "Pick interests",
+  "description": "Topic picker with icon chips that toggle to a selected state, a step progress bar, a minimum-selection counter and a sticky Continue button that unlocks at three picks.",
+  "category": "onboarding",
+  "tags": [
+    "onboarding",
+    "chips",
+    "personalization",
+    "selection"
+  ],
+  "prompt": "Load the topics from my API, save the selected ids to the user's profile on Continue and use them to seed the home feed.",
+  "featured": false,
+  "added": "2026-11-17"
+}

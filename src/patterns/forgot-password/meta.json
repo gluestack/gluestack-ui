@@ -1,0 +1,14 @@
+{
+  "title": "Forgot password",
+  "description": "Password recovery screen with a layered key illustration built from views and icons, an email field and an inline 'check your inbox' success hint after sending.",
+  "category": "authentication",
+  "tags": [
+    "auth",
+    "password reset",
+    "recovery",
+    "form"
+  ],
+  "prompt": "Call my password-reset endpoint from Send reset link, keep the success hint generic so it doesn't reveal whether the email exists, and link back to my sign-in screen.",
+  "featured": false,
+  "added": "2026-11-17"
+}

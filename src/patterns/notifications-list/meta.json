@@ -1,0 +1,9 @@
+{
+  "title": "Notifications",
+  "description": "Activity list grouped into Today and Earlier, with avatar plus type-icon badges, unread highlight and dots, post thumbnails, a follow-back button and mark all as read.",
+  "category": "feedback",
+  "tags": ["notifications", "activity", "unread", "list"],
+  "prompt": "Load notifications from my backend, mark them read on tap and on 'Mark all as read', and route each type to its target screen.",
+  "featured": false,
+  "added": "2026-11-17"
+}

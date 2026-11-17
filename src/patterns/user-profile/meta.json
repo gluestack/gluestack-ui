@@ -1,0 +1,9 @@
+{
+  "title": "User profile",
+  "description": "Public profile with a cover photo, overlapping avatar, verified badge, bio and links, follow and message buttons, a stats bar, icon tabs and a three-column photo grid.",
+  "category": "social",
+  "tags": ["profile", "follow", "stats", "photo grid", "tabs"],
+  "prompt": "Load the profile and posts for the given user id, persist follow state to my backend, and switch the grid content when a tab is selected.",
+  "featured": false,
+  "added": "2026-11-17"
+}

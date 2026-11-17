@@ -1,0 +1,9 @@
+{
+  "title": "Booking slots",
+  "description": "Appointment booking with a provider and service card, horizontally scrolling date chips showing open slots, a morning and afternoon time grid with booked times struck through, and a sticky confirm bar.",
+  "category": "productivity",
+  "tags": ["booking", "appointments", "time slots", "scheduling"],
+  "prompt": "Fetch open slots for the chosen provider and date from my booking API, and create the reservation when Confirm is pressed, then show a confirmation screen.",
+  "featured": false,
+  "added": "2026-11-17"
+}

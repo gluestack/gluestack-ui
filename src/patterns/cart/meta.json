@@ -1,0 +1,9 @@
+{
+  "title": "Shopping cart",
+  "description": "Cart with image line items, quantity steppers and remove, a free-shipping progress bar, a working promo code field, an order summary and a sticky checkout button with the live total.",
+  "category": "commerce",
+  "tags": ["cart", "ecommerce", "quantity stepper", "promo code", "checkout"],
+  "prompt": "Back the line items with my cart store, validate promo codes against my API, compute tax server-side, and navigate to checkout from the sticky button.",
+  "featured": false,
+  "added": "2026-11-17"
+}

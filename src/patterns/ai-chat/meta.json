@@ -1,0 +1,9 @@
+{
+  "title": "AI chat",
+  "description": "AI assistant conversation with user and assistant bubbles, a numbered plan card and a copyable code block inside the answer, message actions, suggested follow-up chips and a composer with attach and send.",
+  "category": "ai-chat",
+  "tags": ["ai", "chat", "assistant", "composer", "code block"],
+  "prompt": "Stream assistant replies from my LLM endpoint into the thread, send the composer text on submit, and fill the composer when a follow-up chip is tapped.",
+  "featured": true,
+  "added": "2026-11-17"
+}

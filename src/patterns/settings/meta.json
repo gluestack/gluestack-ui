@@ -1,0 +1,9 @@
+{
+  "title": "Settings",
+  "description": "Grouped iOS-style settings list with a profile card, icon rows, inline switches, values and a destructive sign-out row.",
+  "category": "profile-settings",
+  "tags": ["settings", "list", "profile", "preferences"],
+  "prompt": "Connect each row to its screen with my router, and persist the switches with my settings store.",
+  "featured": true,
+  "added": "2026-11-17"
+}

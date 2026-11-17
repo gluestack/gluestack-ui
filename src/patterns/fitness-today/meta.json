@@ -1,0 +1,9 @@
+{
+  "title": "Fitness today",
+  "description": "Daily fitness summary with move, exercise and stand goal bars on a dark activity card, a streak badge, steps, heart rate and sleep tiles, a tappable weekly steps chart with a goal line, and recent workouts.",
+  "category": "dashboard",
+  "tags": ["fitness", "health", "activity", "progress", "chart"],
+  "prompt": "Read today's activity, steps, heart rate and sleep from HealthKit / Health Connect, let the user edit their goals, and open the workout detail when a workout is tapped.",
+  "featured": false,
+  "added": "2026-11-17"
+}

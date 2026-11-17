@@ -1,0 +1,9 @@
+{
+  "title": "File browser",
+  "description": "A cloud-drive home with a segmented storage usage bar and legend, colour-coded folders that switch between grid and list views, and a recent files list with type icons and an upload button.",
+  "category": "lists-search",
+  "tags": ["files", "storage", "folders", "grid", "list"],
+  "prompt": "Load folders, recent files and storage usage from my storage API, persist the grid/list choice, and open the system document picker from the upload button.",
+  "featured": false,
+  "added": "2026-11-17"
+}

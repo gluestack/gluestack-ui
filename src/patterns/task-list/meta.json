@@ -1,0 +1,9 @@
+{
+  "title": "Task list",
+  "description": "Today's tasks with round checkboxes, priority flags and list filters, under a progress card that updates as you tick items off. Completed tasks drop into their own section and a floating button adds new ones.",
+  "category": "productivity",
+  "tags": ["tasks", "todo", "checklist", "progress"],
+  "prompt": "Load tasks from my store for the selected day, persist checkbox toggles, and open a new-task sheet from the add button.",
+  "featured": true,
+  "added": "2026-11-17"
+}

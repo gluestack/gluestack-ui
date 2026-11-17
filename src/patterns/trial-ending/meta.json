@@ -1,0 +1,15 @@
+{
+  "title": "Trial ending",
+  "description": "Upgrade prompt for the last days of a free trial with a live countdown, trial progress, a recap of what the user achieved and what they'll lose, and a discounted Keep Pro CTA.",
+  "category": "paywall",
+  "tags": [
+    "paywall",
+    "trial",
+    "upgrade",
+    "countdown",
+    "retention"
+  ],
+  "prompt": "Compute the countdown from the user's trial end date, fill the recap stats from their real usage and start the discounted purchase from Keep Pro.",
+  "featured": false,
+  "added": "2026-11-17"
+}

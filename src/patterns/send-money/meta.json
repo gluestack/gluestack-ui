@@ -1,0 +1,9 @@
+{
+  "title": "Send money",
+  "description": "Peer-to-peer transfer screen with a row of recent recipients, a large amount display driven by an on-screen number pad (decimal and length limits included), a balance check, a note field and a confirm button.",
+  "category": "finance",
+  "tags": ["transfer", "payments", "keypad", "p2p", "wallet"],
+  "prompt": "Load recent recipients from my contacts API, confirm with biometrics before calling my transfer endpoint, and show the success screen with the transaction reference.",
+  "featured": false,
+  "added": "2026-11-17"
+}

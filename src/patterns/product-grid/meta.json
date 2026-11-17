@@ -1,0 +1,9 @@
+{
+  "title": "Shop home",
+  "description": "Storefront home with search, filterable category chips, a promo banner and a two-column product grid with favourite toggles, prices and star ratings.",
+  "category": "commerce",
+  "tags": ["shop", "product grid", "search", "categories", "ecommerce"],
+  "prompt": "Load products and categories from my catalog API, persist favourites to the signed-in user, and open the product detail screen when a card is tapped.",
+  "featured": false,
+  "added": "2026-11-17"
+}

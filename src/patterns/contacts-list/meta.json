@@ -1,0 +1,9 @@
+{
+  "title": "Contacts list",
+  "description": "An address book with live search, a horizontal favourites row with online badges and alphabetical sections of contacts mixing photos and coloured initials, each with a quick-call button.",
+  "category": "lists-search",
+  "tags": ["contacts", "list", "avatars", "alphabetical", "search"],
+  "prompt": "Load contacts from my API or the device address book, render the sections with a SectionList for large lists, and start a call or open the contact detail on tap.",
+  "featured": false,
+  "added": "2026-11-17"
+}

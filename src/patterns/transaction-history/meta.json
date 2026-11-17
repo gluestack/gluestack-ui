@@ -1,0 +1,9 @@
+{
+  "title": "Transaction history",
+  "description": "Searchable transaction list with money-in and money-out totals, an All / Income / Expenses segmented filter, and rows grouped by day with a net total per day and income shown in green.",
+  "category": "finance",
+  "tags": ["transactions", "history", "filters", "grouped list", "banking"],
+  "prompt": "Page transactions from my API with infinite scroll, group them by the user's local date, and open a transaction detail sheet when a row is tapped.",
+  "featured": false,
+  "added": "2026-11-17"
+}
