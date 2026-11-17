@@ -1,49 +1,26 @@
-import App from '@/components/page-components/landing-page';
+import Home from '@/components/patterns/Home';
+import { patterns } from '@/utils/patterns';
 import { Metadata } from 'next';
-import { headers } from 'next/headers';
+
+const title = 'gluestack: Expo & React Native UI patterns for AI agents';
+const description = `${patterns.length}+ copy-paste Expo and React Native screens built on gluestack-ui, the open-source React & React Native component library. One prompt for Claude Code, Cursor or Codex, an MCP server and a shadcn-compatible registry.`;
 
 export const metadata: Metadata = {
-  title:
-    'gluestack: React & React Native UI components library for Web & Mobile App',
-  description:
-    'A powerful React & React Native component library with customizable Tailwind UI components & patterns. Works seamlessly with shadcn React Native for web & mobile apps!',
+  title,
+  description,
+  alternates: { canonical: 'https://gluestack.io/' },
   openGraph: {
-    title:
-      'gluestack: React & React Native UI components library for Web & Mobile App',
-    description:
-      'A powerful React & React Native component library with customizable Tailwind UI components & patterns. Works seamlessly with shadcn React Native for web & mobile apps!',
+    title,
+    description,
     siteName: 'gluestack',
     url: 'https://gluestack.io/',
-    images: [
-      {
-        url: 'https://gluestack.io/images/og-image.png',
-        alt: 'gluestack: React & React Native Components & Patterns',
-      },
-    ],
+    images: [{ url: 'https://gluestack.io/images/og-image.png', alt: title }],
     type: 'website',
   },
-  twitter: {
-    card: 'summary_large_image',
-    site: '@gluestack',
-    title: 'gluestack: React & React Native Components & Patterns',
-    description:
-      'Copy-paste universal, accessible and beautifully designed components & patterns crafted with Tailwind CSS (NativeWind) for React Native, Next.js, Expo & React.',
-    images: [
-      {
-        url: 'https://gluestack.io/images/og-image.png',
-        alt: 'Copy-paste universal, accessible and beautifully designed components & patterns crafted with Tailwind CSS (NativeWind) for React Native, Next.js, Expo & React.',
-      },
-    ],
-  },
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/icon/apple-touch-icon.png',
-  },
+  twitter: { card: 'summary_large_image', site: '@gluestack', title, description, images: [{ url: 'https://gluestack.io/images/og-image.png' }] },
+  icons: { icon: '/favicon.ico', apple: '/icon/apple-touch-icon.png' },
 };
 
-export default async function Home() {
-  const headersList = await headers();
-  const referrer =
-    headersList.get('referer') || headersList.get('referrer') || '';
-  return <App referrer={referrer} />;
+export default function Page() {
+  return <Home />;
 }

@@ -754,11 +754,7 @@ export const redirects = [
 ];
 
 export const oldRedirects = [
-  {
-    source: '/ui',
-    destination: '/ui/docs/home/overview/introduction',
-    permanent: true,
-  },
+  // '/ui' used to redirect to the docs introduction; it is now the component library's home page.
   {
     source: '/ui/docs',
     destination: '/ui/docs/home/overview/quick-start',
@@ -807,7 +803,7 @@ export const oldRedirects = [
   },
   {
     source: '/ui/nativewind/:path*',
-    destination: 'ui/:path*',
+    destination: '/ui/:path*',
     permanent: true,
   },
   {

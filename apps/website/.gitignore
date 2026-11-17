@@ -42,3 +42,5 @@ next-env.d.ts
 yalc.lock
 
 !lib/
+# built from apps/patterns-preview by `yarn build:patterns-preview`
+/public/preview

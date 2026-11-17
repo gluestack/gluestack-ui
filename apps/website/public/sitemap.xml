@@ -7,6 +7,11 @@
     <priority>1.00</priority>
   </url>
   <url>
+    <loc>https://gluestack.io/ui</loc>
+    <lastmod>2026-11-17T00:00:00+00:00</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
     <loc>https://gluestack.io/ui/docs/home/overview/quick-start</loc>
     <lastmod>2025-03-17T10:06:09+00:00</lastmod>
     <priority>0.80</priority>

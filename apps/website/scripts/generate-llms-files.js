@@ -6,6 +6,14 @@ const DOCS_DIR = path.join(__dirname, '../app/ui/docs');
 const OUTPUT_DIR = path.join(__dirname, '../public');
 const LLMS_TXT_PATH = path.join(OUTPUT_DIR, 'llms.txt');
 const LLMS_FULL_TXT_PATH = path.join(OUTPUT_DIR, 'llms-full.txt');
+// Generated from src/patterns by scripts/mappers/patterns/generate.ts (run before this script).
+const PATTERNS_JSON = path.join(__dirname, '../data/generated/patterns.json');
+const SITE = 'https://gluestack.io';
+
+function loadPatterns() {
+  if (!fs.existsSync(PATTERNS_JSON)) return { categories: [], patterns: [] };
+  return JSON.parse(fs.readFileSync(PATTERNS_JSON, 'utf-8'));
+}
 
 // ---------------------------------------------------------------------------
 // 1. MDX → Clean Markdown
@@ -474,8 +482,27 @@ async function generateFiles() {
     pages.push({ relativePath, urlPath, title, description, category, cleanedContent });
   }
 
+  const catalog = loadPatterns();
+  const catTitle = (id) => (catalog.categories.find((c) => c.id === id) || {}).title || id;
+
   // --- Generate llms-full.txt ---
   let fullContent = '';
+
+  if (catalog.patterns.length) {
+    fullContent += '# Patterns\n\n';
+    fullContent += 'Production-ready Expo / React Native screens built on gluestack-ui. Each one lists the components to add with the gluestack-ui CLI and the full source.\n\n';
+    for (const p of catalog.patterns) {
+      fullContent += `## Pattern: ${p.title}\n\n`;
+      fullContent += `URL: /patterns/${p.slug}\n\n`;
+      fullContent += `${p.description}\n\n`;
+      fullContent += `- Category: ${catTitle(p.category)}\n`;
+      fullContent += `- Components: ${p.components.map((c) => c.name).join(', ')} (npx gluestack-ui@latest add ${p.components.map((c) => c.name).join(' ')})\n`;
+      if (p.dependencies.length) fullContent += `- Packages: ${p.dependencies.join(', ')}\n`;
+      fullContent += `- File: components/patterns/${p.slug}.tsx\n\n`;
+      fullContent += '```tsx\n' + p.code.trimEnd() + '\n```\n\n---\n\n';
+    }
+    fullContent += '# Documentation\n\n';
+  }
 
   for (const page of pages) {
     fullContent += `## ${page.title}\n\n`;
@@ -491,11 +518,24 @@ async function generateFiles() {
   let summary = '';
 
   // Title (required)
-  summary += '# gluestack UI\n\n';
+  summary += '# gluestack\n\n';
 
   // Summary (required — blockquote style per spec)
-  summary += '> Universal React & React Native component library with Tailwind CSS v4.\n';
-  summary += '> Copy-paste components for web (Next.js) and mobile (Expo / React Native), supporting both NativeWind v5 and UniWind engines.\n\n';
+  summary += '> Expo & React Native UI patterns for AI coding agents, built on gluestack-ui: a universal React & React Native component library with Tailwind CSS v4.\n';
+  summary += '> Copy-paste screens and components for web (Next.js) and mobile (Expo / React Native), supporting both NativeWind v5 and UniWind engines.\n\n';
+
+  summary += 'Agents: connect the MCP server at https://gluestack.io/api/mcp (tools: search_patterns, get_pattern, list_components, get_component), or fetch a pattern prompt at /patterns/<slug>/prompt. Every pattern and component is also a shadcn registry item: /r/<slug>.json, /r/ui/<component>.json, index at /r/registry.json.\n\n';
+
+  if (catalog.patterns.length) {
+    summary += '## Patterns\n\n';
+    for (const c of catalog.categories) {
+      const list = catalog.patterns.filter((p) => p.category === c.id);
+      if (!list.length) continue;
+      summary += `### ${c.title}\n\n`;
+      for (const p of list) summary += `- [${p.title}](/patterns/${p.slug}.md): ${p.description}\n`;
+      summary += '\n';
+    }
+  }
 
   // Group pages by category
   const categoryOrder = [
@@ -530,13 +570,14 @@ async function generateFiles() {
 
   // Optional details
   summary += '## Quick Reference\n\n';
-  summary += '- **CLI**: `npx gluestack-ui@alpha add <component>`\n';
+  summary += '- **CLI**: `npx gluestack-ui@latest add <component>`\n';
   summary += '- **Theming**: CSS variables defined in `global.css` with `@theme inline` mappings\n';
   summary += '- **Engines**: NativeWind v5 or UniWind\n';
-  summary += '- **Docs**: https://v5.gluestack.io/ui/docs\n\n';
+  summary += '- **Docs**: https://gluestack.io/ui/docs\n';
+  summary += '- **Patterns**: https://gluestack.io/patterns\n\n';
 
   summary += '## Full Documentation\n\n';
-  summary += '- [llms-full.txt](./llms-full.txt): Complete documentation for all components and guides\n';
+  summary += '- [llms-full.txt](./llms-full.txt): Every pattern with its source, plus the complete documentation for all components and guides\n';
 
   fs.writeFileSync(LLMS_TXT_PATH, summary);
   console.log(`Created ${LLMS_TXT_PATH}`);

@@ -3,14 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --webpack",
+    "dev": "yarn gen:patterns && next dev --webpack",
     "generate:llms": "node scripts/generate-llms-files.js",
     "search:index": "npx tsx ../../scripts/search/indexer.ts",
-    "build": "yarn generate:llms && yarn search:index && next build --webpack",
+    "build": "yarn gen:patterns && yarn build:patterns-preview && yarn generate:llms && yarn search:index && next build --webpack",
     "build:preview": "cd ../.. && yarn install && yarn sync:website && cd apps/website && yarn add @gluestack-ui/core@preview @gluestack-ui/core@preview  && yarn generate:llms && yarn search:index && next build --webpack",
     "build:only": "next build --webpack",
     "start": "next start",
-    "test": "jest"
+    "test": "jest",
+    "gen:patterns": "npx tsx ../../scripts/mappers/patterns/generate.ts",
+    "build:patterns-preview": "cd ../patterns-preview && yarn install --frozen-lockfile --non-interactive && yarn build"
   },
   "dependencies": {
     "@expo/html-elements": "^0.12.5",
@@ -21,7 +23,7 @@
     "@legendapp/motion": "^2.4.0",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
-    "@next/mdx": "16.1.1",
+    "@next/mdx": "16.4.6",
     "@orama/orama": "^3.1.18",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-scroll-area": "^1.2.10",
@@ -53,7 +55,7 @@
     "lucide-react-native": "^0.510.0",
     "nanoid": "^5.1.5",
     "nativewind": "^4.1.23",
-    "next": "16.1.1",
+    "next": "16.4.6",
     "next-compose-plugins": "^2.2.1",
     "prettier": "3.6.2",
     "prism-react-renderer": "^2.4.1",
@@ -88,9 +90,9 @@
     "@types/react-dom": "19.2.3",
     "@types/react-native-web": "^0.19.2",
     "eslint": "^9",
-    "eslint-config-next": "16.1.1",
+    "eslint-config-next": "16.4.6",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^3.4.19",
     "typescript": "^5"
   },
   "resolutions": {
