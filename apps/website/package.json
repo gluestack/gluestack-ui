@@ -12,7 +12,7 @@
     "start": "next start",
     "test": "jest",
     "gen:patterns": "npx tsx ../../scripts/mappers/patterns/generate.ts",
-    "build:patterns-preview": "cd ../patterns-preview && yarn install --frozen-lockfile --non-interactive && yarn build"
+    "build:patterns-preview": "cd ../patterns-preview && yarn install --frozen-lockfile --non-interactive --production=false && yarn build"
   },
   "dependencies": {
     "@expo/html-elements": "^0.12.5",
