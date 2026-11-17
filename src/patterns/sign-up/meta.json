@@ -1,0 +1,15 @@
+{
+  "title": "Sign up",
+  "description": "Account creation with name, email and password fields, a live password strength meter with rule checklist, a terms checkbox that gates the CTA and Apple / Google options.",
+  "category": "authentication",
+  "tags": [
+    "auth",
+    "signup",
+    "form",
+    "password strength",
+    "social login"
+  ],
+  "prompt": "Wire Create account to my auth provider, validate the email inline and keep the strength rules in sync with my backend's password policy.",
+  "featured": false,
+  "added": "2026-11-17"
+}

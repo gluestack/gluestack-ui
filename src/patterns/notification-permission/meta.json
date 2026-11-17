@@ -1,0 +1,14 @@
+{
+  "title": "Notification permission",
+  "description": "Explain-then-ask screen that previews real notifications and lists exactly what the user will receive before triggering the system prompt, with a quiet Not now option.",
+  "category": "onboarding",
+  "tags": [
+    "onboarding",
+    "permissions",
+    "notifications",
+    "push"
+  ],
+  "prompt": "Call expo-notifications requestPermissionsAsync from the primary button, register the push token with my backend and skip this screen if permission was already granted.",
+  "featured": false,
+  "added": "2026-11-17"
+}

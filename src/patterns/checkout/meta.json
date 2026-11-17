@@ -1,0 +1,9 @@
+{
+  "title": "Checkout",
+  "description": "One-page checkout with a saved shipping address, delivery speed and payment method radio cards, an itemised order summary that updates with the delivery choice, and a sticky place-order button.",
+  "category": "commerce",
+  "tags": ["checkout", "payment", "radio", "order summary", "ecommerce"],
+  "prompt": "Load saved addresses and payment methods for the signed-in user, quote delivery and tax from my API, and create the order with my payments provider when Place order is pressed.",
+  "featured": false,
+  "added": "2026-11-17"
+}

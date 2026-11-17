@@ -1,0 +1,14 @@
+[
+  { "id": "authentication", "title": "Authentication", "description": "Sign in, sign up, one-time codes and account recovery." },
+  { "id": "onboarding", "title": "Onboarding", "description": "First-run flows, welcome carousels and permission asks." },
+  { "id": "ai-chat", "title": "AI & Chat", "description": "Chat threads, AI assistants, composers and conversation lists." },
+  { "id": "commerce", "title": "Commerce", "description": "Product grids, product pages, carts and checkout." },
+  { "id": "social", "title": "Social & Feeds", "description": "Feeds, posts, stories, profiles and comments." },
+  { "id": "dashboard", "title": "Dashboards", "description": "Stats, charts, activity and at-a-glance home screens." },
+  { "id": "finance", "title": "Finance", "description": "Wallets, transactions, cards and transfers." },
+  { "id": "profile-settings", "title": "Profile & Settings", "description": "Profiles, settings lists, preferences and account screens." },
+  { "id": "paywall", "title": "Paywalls & Pricing", "description": "Subscription paywalls, plan pickers and upgrade prompts." },
+  { "id": "lists-search", "title": "Lists & Search", "description": "Search with filters, lists, empty states and results." },
+  { "id": "productivity", "title": "Productivity", "description": "Tasks, calendars, notes and bookings." },
+  { "id": "feedback", "title": "Feedback & States", "description": "Notifications, empty and error states, ratings and success screens." }
+]

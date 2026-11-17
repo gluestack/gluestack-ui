@@ -10,6 +10,10 @@ import CanonicalLink from '@/components/custom/canonical/CanonicalLink';
 import { cookies } from 'next/headers';
 
 import { Provider } from './provider';
+import type { Metadata } from 'next';
+
+// Resolves relative Open Graph / Twitter image URLs.
+export const metadata: Metadata = { metadataBase: new URL('https://gluestack.io') };
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-plus-jakarta-sans',

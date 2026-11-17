@@ -7,7 +7,7 @@ export default function Example() {
     <ComponentPreviewer
       code={`function Example() {
   return (
-    <Input variant="{{variant}}" size="{{size}}" isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } isReadOnly={ {{isReadOnly}} }>
+    <Input isDisabled={ {{isDisabled}} } isInvalid={ {{isInvalid}} } isReadOnly={ {{isReadOnly}} }>
         <InputField placeholder="Enter Text here..." />
     </Input>
   )

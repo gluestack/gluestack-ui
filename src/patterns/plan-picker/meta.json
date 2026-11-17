@@ -1,0 +1,14 @@
+{
+  "title": "Plan picker",
+  "description": "Three-tier plan selector with a monthly / yearly toggle, radio-style tier cards with a 'Most popular' tag and a feature comparison table that highlights the chosen tier.",
+  "category": "paywall",
+  "tags": [
+    "pricing",
+    "plans",
+    "comparison",
+    "subscription"
+  ],
+  "prompt": "Fetch tiers and prices from my billing backend, keep the comparison rows in one config and send the chosen tier and billing period to my checkout.",
+  "featured": false,
+  "added": "2026-11-17"
+}

@@ -10,7 +10,20 @@ import { redirects, oldRedirects } from './redirects.js';
 
 const nextConfig = withExpo({
   async redirects() {
-    return [...redirects, ...oldRedirects];
+    return [
+      ...redirects,
+      ...oldRedirects,
+      { source: '/mcp', destination: '/agents', permanent: false },
+    ];
+  },
+  async rewrites() {
+    return [
+      // Expo web export of the patterns (apps/patterns-preview) lives in public/preview.
+      { source: '/preview', destination: '/preview/index.html' },
+      { source: '/preview/:slug([a-z0-9-]+)', destination: '/preview/:slug.html' },
+      // Markdown twins of pattern pages, for agents.
+      { source: '/patterns/:slug([a-z0-9-]+).md', destination: '/patterns/:slug/md' },
+    ];
   },
   async headers() {
     return [

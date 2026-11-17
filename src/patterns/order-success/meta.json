@@ -1,0 +1,9 @@
+{
+  "title": "Order success",
+  "description": "Order confirmation with a success check, item summary with totals, payment and shipping address, a what-happens-next timeline and sticky track / continue buttons.",
+  "category": "feedback",
+  "tags": ["order", "success", "confirmation", "checkout", "receipt"],
+  "prompt": "Fill the screen from the completed order returned by my checkout, wire 'Track order' to the tracking screen and 'Continue shopping' back to the store.",
+  "featured": false,
+  "added": "2026-11-17"
+}

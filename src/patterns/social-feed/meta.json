@@ -1,0 +1,9 @@
+{
+  "title": "Social feed",
+  "description": "Photo feed with a stories strip on top, author rows with location, full-width images, like / comment / share counts, a save toggle and a bottom tab bar.",
+  "category": "social",
+  "tags": ["feed", "posts", "stories", "social", "tab bar"],
+  "prompt": "Fetch posts with pagination from my API, persist likes and saves optimistically, and open the story viewer and comments screen on tap.",
+  "featured": true,
+  "added": "2026-11-17"
+}

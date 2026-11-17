@@ -1,0 +1,9 @@
+{
+  "title": "Product detail",
+  "description": "Full-bleed product image with back, share and favourite buttons, colour swatches, a size picker with sold-out sizes, delivery and returns highlights and a sticky quantity + add-to-cart bar.",
+  "category": "commerce",
+  "tags": ["product", "ecommerce", "size picker", "add to cart", "sticky cta"],
+  "prompt": "Load the product, its variants and stock by id from my catalog API, swap the image when the colour changes, and add the selected variant and quantity to my cart store.",
+  "featured": true,
+  "added": "2026-11-17"
+}

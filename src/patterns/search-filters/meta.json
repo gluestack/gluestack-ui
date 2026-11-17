@@ -1,0 +1,9 @@
+{
+  "title": "Search with filters",
+  "description": "A search screen with a clearable input and filter button, removable recent searches, category filter chips and a results list with thumbnails, ratings and prices.",
+  "category": "lists-search",
+  "tags": ["search", "filters", "chips", "results", "recent"],
+  "prompt": "Debounce the query and fetch results from my search API with the active filter, persist recent searches locally, and open a filter sheet from the sliders button.",
+  "featured": false,
+  "added": "2026-11-17"
+}

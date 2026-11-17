@@ -1,0 +1,9 @@
+{
+  "title": "Analytics dashboard",
+  "description": "Store analytics with a 7D / 30D / 90D period switch, four KPI cards with up/down delta badges, a tappable revenue bar chart built from plain views, and a ranked top-products list with share bars.",
+  "category": "dashboard",
+  "tags": ["analytics", "kpi", "bar chart", "dashboard", "stats"],
+  "prompt": "Fetch KPIs, the revenue series and top products for the selected period from my analytics API, and format currency with the store's locale.",
+  "featured": true,
+  "added": "2026-11-17"
+}

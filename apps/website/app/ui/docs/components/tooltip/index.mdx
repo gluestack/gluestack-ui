@@ -11,7 +11,7 @@ import { Center } from '@/components/ui/center';
 import { EditIcon, Icon } from '@/components/ui/icon';
 import { Command } from 'lucide-react-native';
 
-import { CodeBlock } from "@/components/custom/markdown/code-block";
+import { CodeBlock } from "@/components/custom/markdown/code-block"; 
 
 import { Tabs, TabItem } from '@/docs-components/tabs';
 import {
@@ -32,9 +32,9 @@ Create an intuitive UI using the gluestack-ui Tooltip component in React & React
 This is an illustration of **Tooltip** component.
 
 
+  
 
-
-
+  
 
   <CodePreviewer
   code={`function Example() {
@@ -79,7 +79,7 @@ This is an illustration of **Tooltip** component.
 }}
   reactLive={{ Tooltip, TooltipContent, TooltipText, Button, ButtonText }}
   importMap={{"@/components/ui/tooltip":["Tooltip","TooltipContent","TooltipText"],"@/components/ui/button":["Button","ButtonText"]}}
-
+  
 />
 
 <br />
@@ -450,6 +450,31 @@ It inherits all the properties of React Native's [View](https://reactnative.dev/
 
 Contains all text related layout style props and actions. It inherits all the properties of React Native's Text component.
 
+<>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHeaderCell>Prop</TableHeaderCell>
+        <TableHeaderCell>Type</TableHeaderCell>
+        <TableHeaderCell>Default</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          <InlineCode>size</InlineCode>
+        </TableCell>
+        <TableCell>
+          2xs | xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl | 6xl
+        </TableCell>
+        <TableCell>-</TableCell>
+        <TableCell>Sets the font size of the tooltip text.</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</>
+
 #### TooltipContent
 
 Contains all backdrop related layout style props and actions. It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view) component.
@@ -514,7 +539,7 @@ We have outlined the various features that ensure the Tooltip component is acces
   argTypes={{}}
   reactLive={{ Avatar, AvatarGroup, AvatarFallbackText, HStack, Tooltip, TooltipContent, TooltipText, Text, Box, Heading, VStack, Center }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarGroup","AvatarFallbackText"],"@/components/ui/hstack":["HStack"],"@/components/ui/tooltip":["Tooltip","TooltipContent","TooltipText"],"@/components/ui/text":["Text"],"@/components/ui/box":["Box"],"@/components/ui/heading":["Heading"],"@/components/ui/vstack":["VStack"],"@/components/ui/center":["Center"]}}
-
+  
 />
 
 
@@ -558,7 +583,7 @@ We have outlined the various features that ensure the Tooltip component is acces
   argTypes={{}}
   reactLive={{ Avatar, AvatarFallbackText, HStack, Tooltip, TooltipContent, Text, Box, Heading, EditIcon, Command, Icon }}
   importMap={{"@/components/ui/avatar":["Avatar","AvatarFallbackText"],"@/components/ui/hstack":["HStack"],"@/components/ui/tooltip":["Tooltip","TooltipContent"],"@/components/ui/text":["Text"],"@/components/ui/box":["Box"],"@/components/ui/heading":["Heading"],"@/components/ui/icon":["EditIcon","Icon"],"lucide-react-native":["Command"]}}
-
+  
 />
 
 
@@ -617,5 +642,5 @@ We have outlined the various features that ensure the Tooltip component is acces
 }}
   reactLive={{ Tooltip, TooltipContent, TooltipText, Text }}
   importMap={{"@/components/ui/tooltip":["Tooltip","TooltipContent","TooltipText"],"@/components/ui/text":["Text"]}}
-
+  
 />

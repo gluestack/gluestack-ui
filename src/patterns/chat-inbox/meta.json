@@ -1,0 +1,9 @@
+{
+  "title": "Chat inbox",
+  "description": "Messaging inbox with live search, an online-now avatar strip, filter pills, pinned threads, unread count badges, read receipts and a typing indicator.",
+  "category": "ai-chat",
+  "tags": ["chat", "inbox", "messages", "search", "unread"],
+  "prompt": "Load conversations from my chat backend sorted by last message, keep unread counts and presence in sync in real time, and open the thread on tap.",
+  "featured": false,
+  "added": "2026-11-17"
+}

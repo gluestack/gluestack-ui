@@ -1,0 +1,15 @@
+{
+  "title": "Subscription paywall",
+  "description": "Full paywall with a bold hero, benefit list, yearly and monthly plan cards with a 'Save 40%' badge, a sticky trial CTA whose copy follows the selected plan, and restore / terms links.",
+  "category": "paywall",
+  "tags": [
+    "paywall",
+    "subscription",
+    "in-app purchase",
+    "pricing",
+    "trial"
+  ],
+  "prompt": "Load prices from my in-app purchase provider (RevenueCat or StoreKit) instead of the hardcoded strings, start the purchase from the CTA and wire Restore purchases.",
+  "featured": true,
+  "added": "2026-11-17"
+}

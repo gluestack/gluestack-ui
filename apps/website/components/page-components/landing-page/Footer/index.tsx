@@ -11,6 +11,16 @@ import { useColorMode } from '@/app/provider';
 
 const footerItems = [
   {
+    title: 'Platform',
+    links: [
+      { title: 'Patterns', href: '/patterns' },
+      { title: 'Components', href: '/ui' },
+      { title: 'For agents', href: '/agents' },
+      { title: 'MCP server', href: '/agents' },
+      { title: 'Registry', href: '/r/registry.json' },
+    ],
+  },
+  {
     title: 'Resources',
     links: [
       {
@@ -115,7 +125,7 @@ const Footer = () => {
     <Box className="justify-center max-w-[1440px] w-[85%] my-0 mx-auto relative border-t border-border mt-[60px]">
       <VStack className="pt-12 pb-7 mb-5 md:pb-12 md:mb-0">
         <HStack className="flex-1 flex-wrap">
-          <VStack className="mb-9 xl:mb-0 flex-1 min-w-[400px]">
+          <VStack className="mb-9 xl:mb-0 flex-1 basis-full md:basis-auto md:min-w-[400px]">
             <Link href="/" className="no-underline mb-2">
               {colorMode === 'light' ? (
                 <Image

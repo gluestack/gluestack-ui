@@ -1,0 +1,9 @@
+{
+  "title": "Calendar agenda",
+  "description": "A week strip date picker with coloured event dots above a time-aligned agenda of colour-coded event cards with location, video-call and attendee avatars. Empty days show a friendly placeholder.",
+  "category": "productivity",
+  "tags": ["calendar", "agenda", "events", "schedule", "date picker"],
+  "prompt": "Load events for the visible week from my calendar store, page weeks with the arrows, and open an event detail or new-event sheet on tap.",
+  "featured": true,
+  "added": "2026-11-17"
+}

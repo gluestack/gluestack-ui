@@ -1,0 +1,9 @@
+{
+  "title": "Comments thread",
+  "description": "Comment sheet with nested replies on a thread line, an author badge, likes per comment, collapsible replies and a composer that shows who you are replying to.",
+  "category": "social",
+  "tags": ["comments", "replies", "thread", "likes", "composer"],
+  "prompt": "Load comments with their replies from my API, post new comments or replies to the selected parent, and persist likes per comment.",
+  "featured": false,
+  "added": "2026-11-17"
+}

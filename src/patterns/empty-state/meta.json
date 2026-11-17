@@ -1,0 +1,9 @@
+{
+  "title": "Empty inbox",
+  "description": "Friendly empty state for a mail inbox with an illustration built from views and icons, folder tabs that swap the copy, a primary action and a secondary retry.",
+  "category": "feedback",
+  "tags": ["empty state", "inbox", "illustration", "zero state"],
+  "prompt": "Show this when the list query returns no items, wire 'Write a message' to my compose screen and 'Check again' to a refetch.",
+  "featured": false,
+  "added": "2026-11-17"
+}

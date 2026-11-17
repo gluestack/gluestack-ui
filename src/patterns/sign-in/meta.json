@@ -1,0 +1,9 @@
+{
+  "title": "Sign in",
+  "description": "Email and password sign-in with a show/hide password toggle, forgot-password link and Apple / Google buttons. Keyboard-aware on iOS.",
+  "category": "authentication",
+  "tags": ["auth", "login", "form", "social login"],
+  "prompt": "Wire the Sign in button to my auth provider and show inline errors under the fields. Navigate to the sign-up screen from 'Create an account'.",
+  "featured": true,
+  "added": "2026-11-17"
+}

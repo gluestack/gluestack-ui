@@ -1,7 +1,85 @@
-# gluestack UI
+# gluestack
 
-> Universal React & React Native component library with Tailwind CSS v4.
-> Copy-paste components for web (Next.js) and mobile (Expo / React Native), supporting both NativeWind v5 and UniWind engines.
+> Expo & React Native UI patterns for AI coding agents, built on gluestack-ui: a universal React & React Native component library with Tailwind CSS v4.
+> Copy-paste screens and components for web (Next.js) and mobile (Expo / React Native), supporting both NativeWind v5 and UniWind engines.
+
+Agents: connect the MCP server at https://gluestack.io/api/mcp (tools: search_patterns, get_pattern, list_components, get_component), or fetch a pattern prompt at /patterns/<slug>/prompt. Every pattern and component is also a shadcn registry item: /r/<slug>.json, /r/ui/<component>.json, index at /r/registry.json.
+
+## Patterns
+
+### Authentication
+
+- [Forgot password](/patterns/forgot-password.md): Password recovery screen with a layered key illustration built from views and icons, an email field and an inline 'check your inbox' success hint after sending.
+- [OTP verification](/patterns/otp-verification.md): Six-digit one-time code entry with individual boxes driven by a single hidden input (so paste and SMS autofill work), an active-box cursor and a resend countdown.
+- [Sign in](/patterns/sign-in.md): Email and password sign-in with a show/hide password toggle, forgot-password link and Apple / Google buttons. Keyboard-aware on iOS.
+- [Sign up](/patterns/sign-up.md): Account creation with name, email and password fields, a live password strength meter with rule checklist, a terms checkbox that gates the CTA and Apple / Google options.
+
+### Onboarding
+
+- [Notification permission](/patterns/notification-permission.md): Explain-then-ask screen that previews real notifications and lists exactly what the user will receive before triggering the system prompt, with a quiet Not now option.
+- [Pick interests](/patterns/pick-interests.md): Topic picker with icon chips that toggle to a selected state, a step progress bar, a minimum-selection counter and a sticky Continue button that unlocks at three picks.
+- [Welcome carousel](/patterns/welcome-carousel.md): Swipeable three-page intro with rich visual blocks made from cards, a timer ring and a bar chart, animated pill dots, Skip and a Next button that becomes Get started.
+
+### AI & Chat
+
+- [AI assistant home](/patterns/ai-assistant-home.md): Assistant start screen with a personal greeting, a multi-line prompt box with attach and voice, colourful quick-action cards and a list of recent chats.
+- [AI chat](/patterns/ai-chat.md): AI assistant conversation with user and assistant bubbles, a numbered plan card and a copyable code block inside the answer, message actions, suggested follow-up chips and a composer with attach and send.
+- [Chat inbox](/patterns/chat-inbox.md): Messaging inbox with live search, an online-now avatar strip, filter pills, pinned threads, unread count badges, read receipts and a typing indicator.
+
+### Commerce
+
+- [Shopping cart](/patterns/cart.md): Cart with image line items, quantity steppers and remove, a free-shipping progress bar, a working promo code field, an order summary and a sticky checkout button with the live total.
+- [Checkout](/patterns/checkout.md): One-page checkout with a saved shipping address, delivery speed and payment method radio cards, an itemised order summary that updates with the delivery choice, and a sticky place-order button.
+- [Product detail](/patterns/product-detail.md): Full-bleed product image with back, share and favourite buttons, colour swatches, a size picker with sold-out sizes, delivery and returns highlights and a sticky quantity + add-to-cart bar.
+- [Shop home](/patterns/product-grid.md): Storefront home with search, filterable category chips, a promo banner and a two-column product grid with favourite toggles, prices and star ratings.
+
+### Social & Feeds
+
+- [Comments thread](/patterns/comments-thread.md): Comment sheet with nested replies on a thread line, an author badge, likes per comment, collapsible replies and a composer that shows who you are replying to.
+- [Social feed](/patterns/social-feed.md): Photo feed with a stories strip on top, author rows with location, full-width images, like / comment / share counts, a save toggle and a bottom tab bar.
+- [User profile](/patterns/user-profile.md): Public profile with a cover photo, overlapping avatar, verified badge, bio and links, follow and message buttons, a stats bar, icon tabs and a three-column photo grid.
+
+### Dashboards
+
+- [Analytics dashboard](/patterns/analytics-dashboard.md): Store analytics with a 7D / 30D / 90D period switch, four KPI cards with up/down delta badges, a tappable revenue bar chart built from plain views, and a ranked top-products list with share bars.
+- [Fitness today](/patterns/fitness-today.md): Daily fitness summary with move, exercise and stand goal bars on a dark activity card, a streak badge, steps, heart rate and sleep tiles, a tappable weekly steps chart with a goal line, and recent workouts.
+
+### Finance
+
+- [Send money](/patterns/send-money.md): Peer-to-peer transfer screen with a row of recent recipients, a large amount display driven by an on-screen number pad (decimal and length limits included), a balance check, a note field and a confirm button.
+- [Transaction history](/patterns/transaction-history.md): Searchable transaction list with money-in and money-out totals, an All / Income / Expenses segmented filter, and rows grouped by day with a net total per day and income shown in green.
+- [Wallet home](/patterns/wallet-home.md): Banking home screen with a bold balance card you can hide, quick actions for send, request, top up and exchange, income and spend tiles, and a recent activity list mixing contacts and merchants.
+
+### Profile & Settings
+
+- [Account overview](/patterns/account-overview.md): A shopping-app account tab with a profile header and stats strip, a dark loyalty membership card with points progress, a grouped menu with status badges and values, a sign-out button and a bottom tab bar.
+- [Edit profile](/patterns/edit-profile.md): A profile editor with a large avatar and camera button, icon-led fields for name, username, email, location and website, a bio textarea with a live character counter, and sticky Cancel / Save buttons.
+- [Settings](/patterns/settings.md): Grouped iOS-style settings list with a profile card, icon rows, inline switches, values and a destructive sign-out row.
+
+### Paywalls & Pricing
+
+- [Subscription paywall](/patterns/paywall-subscription.md): Full paywall with a bold hero, benefit list, yearly and monthly plan cards with a 'Save 40%' badge, a sticky trial CTA whose copy follows the selected plan, and restore / terms links.
+- [Plan picker](/patterns/plan-picker.md): Three-tier plan selector with a monthly / yearly toggle, radio-style tier cards with a 'Most popular' tag and a feature comparison table that highlights the chosen tier.
+- [Trial ending](/patterns/trial-ending.md): Upgrade prompt for the last days of a free trial with a live countdown, trial progress, a recap of what the user achieved and what they'll lose, and a discounted Keep Pro CTA.
+
+### Lists & Search
+
+- [Contacts list](/patterns/contacts-list.md): An address book with live search, a horizontal favourites row with online badges and alphabetical sections of contacts mixing photos and coloured initials, each with a quick-call button.
+- [File browser](/patterns/file-browser.md): A cloud-drive home with a segmented storage usage bar and legend, colour-coded folders that switch between grid and list views, and a recent files list with type icons and an upload button.
+- [Search with filters](/patterns/search-filters.md): A search screen with a clearable input and filter button, removable recent searches, category filter chips and a results list with thumbnails, ratings and prices.
+
+### Productivity
+
+- [Booking slots](/patterns/booking-slots.md): Appointment booking with a provider and service card, horizontally scrolling date chips showing open slots, a morning and afternoon time grid with booked times struck through, and a sticky confirm bar.
+- [Calendar agenda](/patterns/calendar-agenda.md): A week strip date picker with coloured event dots above a time-aligned agenda of colour-coded event cards with location, video-call and attendee avatars. Empty days show a friendly placeholder.
+- [Task list](/patterns/task-list.md): Today's tasks with round checkboxes, priority flags and list filters, under a progress card that updates as you tick items off. Completed tasks drop into their own section and a floating button adds new ones.
+
+### Feedback & States
+
+- [Empty inbox](/patterns/empty-state.md): Friendly empty state for a mail inbox with an illustration built from views and icons, folder tabs that swap the copy, a primary action and a secondary retry.
+- [Notifications](/patterns/notifications-list.md): Activity list grouped into Today and Earlier, with avatar plus type-icon badges, unread highlight and dots, post thumbnails, a follow-back button and mark all as read.
+- [Order success](/patterns/order-success.md): Order confirmation with a success check, item summary with totals, payment and shipping address, a what-happens-next timeline and sticky track / continue buttons.
+- [Rate your experience](/patterns/rate-experience.md): A post-order review screen with a large tappable star rating and label, quick-pick tag chips that switch between praise and complaints based on the score, an optional comment box and a sticky submit button.
 
 ## Getting Started
 
@@ -104,11 +182,12 @@
 
 ## Quick Reference
 
-- **CLI**: `npx gluestack-ui@alpha add <component>`
+- **CLI**: `npx gluestack-ui@latest add <component>`
 - **Theming**: CSS variables defined in `global.css` with `@theme inline` mappings
 - **Engines**: NativeWind v5 or UniWind
-- **Docs**: https://v5.gluestack.io/ui/docs
+- **Docs**: https://gluestack.io/ui/docs
+- **Patterns**: https://gluestack.io/patterns
 
 ## Full Documentation
 
-- [llms-full.txt](./llms-full.txt): Complete documentation for all components and guides
+- [llms-full.txt](./llms-full.txt): Every pattern with its source, plus the complete documentation for all components and guides

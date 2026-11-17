@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "gluestack patterns",
+    "slug": "gluestack-patterns-preview",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "gluestackpatterns",
+    "userInterfaceStyle": "automatic",
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "baseUrl": "/preview",
+      "typedRoutes": false
+    }
+  }
+}

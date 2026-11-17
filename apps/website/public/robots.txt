@@ -1,9 +1,12 @@
 # *
 User-agent: *
 Allow: /
+# Raw pattern previews are embedded in /patterns/<slug>; index those pages instead.
+Disallow: /preview/
 
 # Host
 Host: https://gluestack.io
 
 # Sitemaps
 Sitemap: https://gluestack.io/sitemap.xml
+Sitemap: https://gluestack.io/patterns-sitemap.xml

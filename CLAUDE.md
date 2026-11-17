@@ -13,12 +13,14 @@ yarn dev                          # all mappers
 yarn dev:kitchen-sink             # kitchen-sink mapper only
 yarn dev:website                  # website mapper only
 yarn dev:starter-kits             # starter-kits mapper only
+yarn dev:patterns                 # patterns mapper only (src/patterns → preview app + website catalog)
 
 # One-time sync (no watching)
 yarn sync                         # all mappers
 yarn sync:kitchen-sink
 yarn sync:website
 yarn sync:starter-kits
+yarn sync:patterns
 
 # Local package development (uses yalc; requires `npm install -g yalc`)
 yarn link:create                  # build + publish gluestack-utils & gluestack-core to yalc, start watch
@@ -56,10 +58,12 @@ src/
 ├── components/ui/        # All UI components (Button, Input, Modal, etc.)
 ├── docs-components/      # Documentation-specific components (website only)
 ├── docs/                 # Component docs/examples (website only)
+├── patterns/             # Full-screen UI patterns for gluestack.io/patterns (see src/patterns/README.md)
 └── sidebar.json          # Documentation sidebar config (website only)
 
 apps/
-├── website/              # gluestack.io documentation site (Next.js)
+├── website/              # gluestack.io: patterns catalog (/), component library (/ui), docs (/ui/docs) (Next.js)
+├── patterns-preview/     # Expo web app that renders each pattern at gluestack.io/preview/<slug>
 ├── kitchen-sink/         # Component showcase & testing (Expo)
 ├── starter-kit-next/     # Next.js starter template
 └── starter-kit-expo/     # Expo starter template
@@ -110,3 +114,11 @@ src/components/ui/button/
 - **Changesets** manage versioning across all packages. PRs should include a changeset via `yarn changeset`.
 - CI workflows: `next-latest.yml` and `expo-latest.yml` run on PRs to `main`. `publish-production.yml` handles npm publishes.
 - There's a preview publish system (`preview-publish.yml`, `cleanup-preview.yml`) for pre-release testing.
+
+### Patterns platform
+
+gluestack.io's front page is a catalog of full-screen patterns for AI coding agents; the component library lives at `/ui`
+and its docs stay at `/ui/docs/*` (never move docs URLs; old links and redirects in `apps/website/redirects.js` must keep working).
+See `src/patterns/README.md` for adding a pattern. Agent surfaces on the website: copy prompt (`utils/patterns/index.ts buildPrompt`),
+`/patterns/<slug>/prompt`, `/patterns/<slug>.md`, the shadcn-compatible registry `/r/...`, the MCP server `app/api/mcp/route.ts`
+and `llms.txt`. The website build (`yarn build` in apps/website) regenerates the catalog and builds the preview app into `public/preview`.

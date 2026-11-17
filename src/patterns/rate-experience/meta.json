@@ -1,0 +1,9 @@
+{
+  "title": "Rate your experience",
+  "description": "A post-order review screen with a large tappable star rating and label, quick-pick tag chips that switch between praise and complaints based on the score, an optional comment box and a sticky submit button.",
+  "category": "feedback",
+  "tags": ["rating", "review", "feedback", "stars", "chips"],
+  "prompt": "Pass the order details in as props, send the rating, tags and comment to my reviews API on submit, then close the screen with a thank-you toast.",
+  "featured": false,
+  "added": "2026-11-17"
+}

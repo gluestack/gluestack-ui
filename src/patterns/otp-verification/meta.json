@@ -1,0 +1,15 @@
+{
+  "title": "OTP verification",
+  "description": "Six-digit one-time code entry with individual boxes driven by a single hidden input (so paste and SMS autofill work), an active-box cursor and a resend countdown.",
+  "category": "authentication",
+  "tags": [
+    "auth",
+    "otp",
+    "2fa",
+    "verification",
+    "code input"
+  ],
+  "prompt": "Send the code to my verification endpoint when all six digits are entered, show an inline error on mismatch and call my resend API when the timer runs out.",
+  "featured": false,
+  "added": "2026-11-17"
+}

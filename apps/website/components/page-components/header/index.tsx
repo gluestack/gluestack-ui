@@ -49,6 +49,12 @@ const Header = ({
 
   // Check if current route is documentation
   const isDocsRoute = pathname?.includes('/ui/docs/');
+  const isActive = (href: string) => {
+    const h = href.replace(/\/$/, '');
+    if (!pathname) return false;
+    if (h === '/ui') return pathname === '/ui';
+    return pathname === h || pathname.startsWith(h + '/');
+  };
 
   // Use a default logo during SSR to avoid hydration mismatch
   const logoSrc = mounted
@@ -66,7 +72,7 @@ const Header = ({
             className={`flex flex-row justify-between items-center  ${
               pathname?.includes('/ui/docs/')
                 ? 'w-[100%] px-5'
-                : 'w-[85%] max-w-[1440px]'
+                : 'w-full px-6 max-w-[1440px]'
             }`}
           >
             <div className="flex flex-row  gap-3 items-center shrink-0">
@@ -134,11 +140,41 @@ const Header = ({
               <div className="hidden md:flex items-center xl:ml-10">
                 <NextLink
                   className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  href="/patterns"
+                >
+                  <div className="rounded-full flex items-center justify-center">
+                    <span className={`leading-normal font-normal text-sm ${isActive('/patterns') ? 'text-foreground' : 'text-foreground/70'}`}>
+                      Patterns
+                    </span>
+                  </div>
+                </NextLink>
+                <NextLink
+                  className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  href="/ui"
+                >
+                  <div className="rounded-full flex items-center justify-center">
+                    <span className={`leading-normal font-normal text-sm ${isActive('/ui') ? 'text-foreground' : 'text-foreground/70'}`}>
+                      Components
+                    </span>
+                  </div>
+                </NextLink>
+                <NextLink
+                  className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   href="/ui/docs"
                 >
                   <div className="rounded-full flex items-center justify-center">
-                    <span className="leading-normal font-normal text-sm text-foreground/70">
+                    <span className={`leading-normal font-normal text-sm ${isActive('/ui/docs') ? 'text-foreground' : 'text-foreground/70'}`}>
                       Docs
+                    </span>
+                  </div>
+                </NextLink>
+                <NextLink
+                  className="lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  href="/agents"
+                >
+                  <div className="rounded-full flex items-center justify-center">
+                    <span className={`leading-normal font-normal text-sm ${isActive('/agents') ? 'text-foreground' : 'text-foreground/70'}`}>
+                      Agents
                     </span>
                   </div>
                 </NextLink>
@@ -147,25 +183,13 @@ const Header = ({
                   href="/blogs/"
                 >
                   <div className="rounded-full flex items-center justify-center">
-                    <span className="leading-normal font-normal text-sm text-foreground/70">
+                    <span className={`leading-normal font-normal text-sm ${isActive('/blogs/') ? 'text-foreground' : 'text-foreground/70'}`}>
                       Blog
                     </span>
                   </div>
                 </NextLink>
                 <ProductDropdown />
                 <ResourcesDropdown />
-                {!isDocsRoute && (
-                  <NextLink
-                    className="web:focus:shadow-none lg:flex hidden rounded-full px-3 py-1 hover:bg-primary/10 active:bg-primary/20 outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                    href="https://www.applighter.com/?utm_source=gluestack.io&utm_medium=header&utm_campaign=site-navigation"
-                  >
-                    <Box className="rounded-full items-center justify-center">
-                      <Text className="leading-normal font-normal text-sm text-foreground/70">
-                        Templates
-                      </Text>
-                    </Box>
-                  </NextLink>
-                )}
               </div>
             </div>
             <div className="flex flex-row xl:gap-10 gap-6 items-center ">
@@ -217,7 +241,7 @@ const Header = ({
                 {!isDocsRoute && (
                   <Link
                     href="https://pro.gluestack.io/?utm_source=gluestack.io&utm_medium=banner_docs&utm_campaign=brand-awareness"
-                    className="border border-border rounded-full px-4 py-1.5 xl:flex hidden"
+                    className="border border-border rounded-full px-4 py-1.5 2xl:flex hidden"
                   >
                     <Text className="text-sm text-typography-900">Pro</Text>
                   </Link>
@@ -225,10 +249,10 @@ const Header = ({
                 {!isDocsRoute ? (
                   <NextLink
                     className="min-[1120px]:flex hidden"
-                    href="/ui/docs/home/overview/quick-start"
+                    href="/patterns"
                   >
                     <Button className="rounded-full shadow-none px-4" size="sm">
-                      Get Started
+                      Browse patterns
                     </Button>
                   </NextLink>
                 ) : (

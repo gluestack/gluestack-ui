@@ -1,0 +1,9 @@
+{
+  "title": "Wallet home",
+  "description": "Banking home screen with a bold balance card you can hide, quick actions for send, request, top up and exchange, income and spend tiles, and a recent activity list mixing contacts and merchants.",
+  "category": "finance",
+  "tags": ["wallet", "banking", "balance", "transactions", "fintech"],
+  "prompt": "Load the balance, monthly totals and recent transactions for the signed-in account from my API, remember the hide-balance choice, and route each quick action to its flow.",
+  "featured": true,
+  "added": "2026-11-17"
+}

@@ -5,6 +5,7 @@ import { Image } from '@/components/ui/image';
 import NextLink from 'next/link';
 import { useColorMode } from '@/app/provider';
 import { useEffect, useState } from 'react';
+import { Bot, Boxes, LayoutGrid } from 'lucide-react';
 
 export interface SidebarItemProps {
   title: string;
@@ -20,7 +21,17 @@ export interface SidebarSectionProps {
   items: SidebarItemProps[];
 }
 
+const icon = (Icon: typeof Boxes) => <Icon className="h-5 w-5 text-foreground" />;
+
 export const headerItems: SidebarSectionProps[] = [
+  {
+    title: 'Platform',
+    items: [
+      { title: 'Patterns', link: '/patterns', logo: icon(LayoutGrid), logoDark: icon(LayoutGrid) },
+      { title: 'Components', link: '/ui', logo: icon(Boxes), logoDark: icon(Boxes) },
+      { title: 'For agents (MCP)', link: '/agents', logo: icon(Bot), logoDark: icon(Bot) },
+    ],
+  },
   {
     title: 'Resources',
     items: [

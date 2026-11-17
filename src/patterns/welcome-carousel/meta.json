@@ -1,0 +1,14 @@
+{
+  "title": "Welcome carousel",
+  "description": "Swipeable three-page intro with rich visual blocks made from cards, a timer ring and a bar chart, animated pill dots, Skip and a Next button that becomes Get started.",
+  "category": "onboarding",
+  "tags": [
+    "onboarding",
+    "carousel",
+    "intro",
+    "paging"
+  ],
+  "prompt": "Replace the slides with my product's value props, persist that onboarding was seen and route Get started / Skip to my sign-up screen.",
+  "featured": true,
+  "added": "2026-11-17"
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Account overview",
+  "description": "A shopping-app account tab with a profile header and stats strip, a dark loyalty membership card with points progress, a grouped menu with status badges and values, a sign-out button and a bottom tab bar.",
+  "category": "profile-settings",
+  "tags": ["account", "profile", "membership", "loyalty", "menu"],
+  "prompt": "Load the user, stats and loyalty points from my API, route each menu row and tab with my navigator, and confirm before signing out.",
+  "featured": false,
+  "added": "2026-11-17"
+}
